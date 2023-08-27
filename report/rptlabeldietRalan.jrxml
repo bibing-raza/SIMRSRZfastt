@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.8181818181818519"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="inisial_poli" class="java.lang.String"/>
+	<parameter name="nm_unit" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select a.nm_pasien,a.no_rkm_medis, a.ttl, 'RJ' inisial_kls, a.inisial_label_gz, 
+ifnull(b.nama_diet,'.........................................') nama_diet_pagi, 
+ifnull(b.waktu,'Pagi') waktu_pagi, ifnull(b.inisial_wkt,'PA') inisial_wkt_pagi, 
+ifnull(c.nama_diet,'.........................................') nama_diet_siang, 
+ifnull(c.waktu,'Siang') waktu_siang, ifnull(c.inisial_wkt,'SI') inisial_wkt_siang, 
+ifnull(d.nama_diet,'.........................................') nama_diet_sore, 
+ifnull(d.waktu,'Sore') waktu_sore, ifnull(d.inisial_wkt,'SO') inisial_wkt_sore 
+from ((select rp.no_rkm_medis, p.nm_pasien, CONCAT(p.tmp_lahir,', ',DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y')) ttl, 
+left(rp.kd_poli,3) inisial_label_gz from reg_periksa rp 
+INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis
+where rp.status_lanjut='Ralan' and rp.kd_poli = 'igdk' and rp.tgl_registrasi='2021-08-13') as a  
+left join 
+(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu, LEFT (UPPER(dd.waktu), 2) inisial_wkt FROM reg_periksa rp 
+LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='2021-08-13' 
+and (dd.waktu = 'pagi' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet 
+WHERE rp.status_lanjut='Ralan' and rp.kd_poli = 'igdk') as b on a.no_rkm_medis = b.no_rkm_medis 
+left JOIN 
+(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu, LEFT (UPPER(dd.waktu), 2) inisial_wkt FROM reg_periksa rp 
+LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='2021-08-13' 
+and (dd.waktu = 'siang' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet 
+WHERE rp.status_lanjut='Ralan' and rp.kd_poli = 'igdk') as c on a.no_rkm_medis = c.no_rkm_medis 
+left JOIN 
+(SELECT rp.no_rkm_medis, d.nama_diet, dd.waktu, LEFT (UPPER(dd.waktu), 2) inisial_wkt FROM reg_periksa rp
+LEFT JOIN detail_beri_diet_ralan dd ON dd.no_rawat = rp.no_rawat AND dd.tanggal='2021-08-13' 
+and (dd.waktu = 'sore' OR ifnull(dd.waktu, '-') = '-') LEFT JOIN diet d ON d.kd_diet = dd.kd_diet 
+WHERE rp.status_lanjut='Ralan' and rp.kd_poli = 'igdk') as d on a.no_rkm_medis = d.no_rkm_medis) 
+ORDER BY nama_diet_pagi DESC, nama_diet_siang DESC, nama_diet_sore DESC, nm_pasien]]>
+	</queryString>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ttl" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="inisial_kls" class="java.lang.String"/>
+	<field name="inisial_label_gz" class="java.lang.String"/>
+	<field name="nama_diet_pagi" class="java.lang.String"/>
+	<field name="waktu_pagi" class="java.lang.String"/>
+	<field name="inisial_wkt_pagi" class="java.lang.String"/>
+	<field name="nama_diet_siang" class="java.lang.String"/>
+	<field name="waktu_siang" class="java.lang.String"/>
+	<field name="inisial_wkt_siang" class="java.lang.String"/>
+	<field name="nama_diet_sore" class="java.lang.String"/>
+	<field name="waktu_sore" class="java.lang.String"/>
+	<field name="inisial_wkt_sore" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="14">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="0" y="0" width="515" height="12"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{nm_unit}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="107" splitType="Stretch">
+			<rectangle>
+				<reportElement x="0" y="15" width="157" height="89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="5" y="18" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="39" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NO. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="51" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[TTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="5" y="62" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[DIET]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="35" y="39" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_rkm_medis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="35" y="51" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{ttl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="5" y="91" width="148" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["BATAS KONSUMSI 2 JAM ("+$P{inisial_poli}+"-"+$F{inisial_wkt_pagi}+"-"+$F{inisial_kls}+")"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="35" y="18" width="118" height="20"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="170" y="15" width="157" height="89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="175" y="18" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="39" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NO. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="51" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[TTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="175" y="62" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[DIET]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="205" y="39" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_rkm_medis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="205" y="51" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{ttl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="175" y="91" width="148" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["BATAS KONSUMSI 2 JAM ("+$P{inisial_poli}+"-"+$F{inisial_wkt_siang}+"-"+$F{inisial_kls}+")"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="205" y="18" width="118" height="20"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<rectangle>
+				<reportElement x="340" y="15" width="157" height="89"/>
+			</rectangle>
+			<staticText>
+				<reportElement x="345" y="18" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NAMA]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="39" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[NO. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="51" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[TTL]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="345" y="62" width="30" height="11"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[DIET]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="375" y="39" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_rkm_medis}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="375" y="51" width="118" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{ttl}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="345" y="91" width="148" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["BATAS KONSUMSI 2 JAM ("+$P{inisial_poli}+"-"+$F{inisial_wkt_sore}+"-"+$F{inisial_kls}+")"]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="375" y="18" width="118" height="20"/>
+				<textElement verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="1" width="153" height="12"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["----------- Jadwal diet : "+$F{waktu_pagi}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="170" y="1" width="153" height="12"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["----------- Jadwal diet : "+$F{waktu_siang}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="340" y="1" width="153" height="12"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true" isItalic="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["----------- Jadwal diet : "+$F{waktu_sore}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="35" y="62" width="118" height="29"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nama_diet_pagi}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="205" y="62" width="118" height="29"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nama_diet_siang}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="375" y="62" width="118" height="29"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{nama_diet_sore}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

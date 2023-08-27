@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="210" pageHeight="130" columnWidth="200" leftMargin="5" rightMargin="5" topMargin="5" bottomMargin="5">
+	<property name="ireport.zoom" value="2.0490403660952117"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<queryString>
+		<![CDATA[SELECT r.no_rkm_medis, p.nm_pasien, b.nm_bangsal, concat(DATE_FORMAT(ki.tgl_masuk,'%d-%m-%Y'),', Jam : ',ki.jam_masuk) wkt_msk FROM kamar_inap ki 
+INNER JOIN reg_periksa r on r.no_rawat = ki.no_rawat 
+INNER JOIN pasien p on p.no_rkm_medis = r.no_rkm_medis 
+INNER JOIN kamar k on k.kd_kamar = ki.kd_kamar 
+INNER JOIN bangsal b on b.kd_bangsal = k.kd_bangsal 
+WHERE ki.no_rawat='2019/12/29/000039' AND r.status_lanjut='Ranap' AND r.stts_daftar='Lama' AND ki.tgl_masuk='2019-12-29' 
+ORDER BY ki.tgl_masuk, ki.jam_masuk LIMIT 1]]>
+	</queryString>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_bangsal" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="wkt_msk" class="java.lang.String"/>
+	<background>
+		<band/>
+	</background>
+	<detail>
+		<band height="120">
+			<staticText>
+				<reportElement mode="Opaque" x="26" y="5" width="153" height="26"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<text><![CDATA[-: TRACER PASIEN :-
+RAWAT INAP]]></text>
+			</staticText>
+			<textField>
+				<reportElement mode="Opaque" x="18" y="35" width="154" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["NO. RM/CM : "+$F{no_rkm_medis}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="30" width="200" height="1"/>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="18" y="47" width="165" height="26"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Nama Pasien : "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement mode="Opaque" x="72" y="76" width="119" height="24"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_bangsal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement mode="Opaque" x="18" y="99" width="170" height="12"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Masuk : "+$F{wkt_msk}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="115" width="200" height="1"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement mode="Transparent" x="18" y="76" width="55" height="13"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ruang Inap :]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

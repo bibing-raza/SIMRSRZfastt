@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20">
+	<property name="ireport.zoom" value="1.6528925619834727"/>
+	<property name="ireport.x" value="23"/>
+	<property name="ireport.y" value="0"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT a.tgl_awal, a.tgl_akhir, a.tgl_perawatan, a.no_rawat, a.no_resep, a.nm_dokter, a.no_rkm_medis, a.nm_pasien, a.png_jawab, a.status_lanjut, 
+                      IF (a.status_lanjut = 'RANAP', b.nm_bangsal, a.nm_poli) unit, a.apotek, a.nama_brng, a.kode_sat, a.hrg_jual, a.jml, a.sub_total, a.embalase, a.tuslah, a.total 
+                      FROM ((SELECT (SELECT MIN(tgl_perawatan) FROM detail_pemberian_obat WHERE detail_pemberian_obat.tgl_perawatan BETWEEN '2017-09-15' AND '2017-09-15') AS tgl_awal, 
+                      (SELECT MAX(tgl_perawatan) FROM  detail_pemberian_obat WHERE detail_pemberian_obat.tgl_perawatan BETWEEN '2017-09-15' AND '2017-09-15') AS tgl_akhir, 
+                      detail_pemberian_obat.tgl_perawatan, detail_pemberian_obat.no_rawat, IFNULL(resep_obat.no_resep, '-') no_resep, IFNULL(dokter.nm_dokter, '-') nm_dokter, 
+                      reg_periksa.no_rkm_medis, pasien.nm_pasien, penjab.png_jawab, reg_periksa.status_lanjut, poliklinik.nm_poli, bangsal.nm_bangsal AS apotek, databarang.nama_brng, 
+                      databarang.kode_sat, detail_pemberian_obat.biaya_obat AS hrg_jual, detail_pemberian_obat.jml, (detail_pemberian_obat.biaya_obat * detail_pemberian_obat.jml) AS sub_total, 
+                      detail_pemberian_obat.embalase, detail_pemberian_obat.tuslah, detail_pemberian_obat.total, bangsal.kd_bangsal, penjab.kd_pj 
+                      FROM detail_pemberian_obat 
+                      INNER JOIN reg_periksa ON reg_periksa.no_rawat = detail_pemberian_obat.no_rawat 
+                      INNER JOIN poliklinik ON poliklinik.kd_poli = reg_periksa.kd_poli 
+                      INNER JOIN pasien ON pasien.no_rkm_medis = reg_periksa.no_rkm_medis 
+                      INNER JOIN databarang ON detail_pemberian_obat.no_rawat = reg_periksa.no_rawat 
+                      AND reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
+                      AND detail_pemberian_obat.kode_brng = databarang.kode_brng 
+                      INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj 
+                      LEFT JOIN resep_obat ON resep_obat.no_rawat = detail_pemberian_obat.no_rawat 
+                      AND detail_pemberian_obat.tgl_perawatan = resep_obat.tgl_perawatan 
+                      AND detail_pemberian_obat.jam = resep_obat.jam 
+                      LEFT JOIN dokter ON resep_obat.kd_dokter = dokter.kd_dokter 
+                      LEFT JOIN riwayat_obat_pasien ON riwayat_obat_pasien.kode_brng = detail_pemberian_obat.kode_brng 
+                      AND riwayat_obat_pasien.tanggal = detail_pemberian_obat.tgl_perawatan 
+                      AND riwayat_obat_pasien.no_rawat = detail_pemberian_obat.no_rawat 
+                      AND riwayat_obat_pasien.jam = detail_pemberian_obat.jam 
+                      AND riwayat_obat_pasien.`status` = 'simpan' 
+                      LEFT JOIN bangsal ON bangsal.kd_bangsal = riwayat_obat_pasien.kd_bangsal 
+                      ORDER BY penjab.png_jawab, resep_obat.no_resep, detail_pemberian_obat.no_rawat) AS a 
+                      LEFT JOIN (SELECT p.no_rawat, b2.nm_bangsal, p.tgl_masuk, p.jam_masuk FROM kamar_inap p INNER JOIN kamar k ON k.kd_kamar = p.kd_kamar 
+                      INNER JOIN bangsal b2 ON b2.kd_bangsal = k.kd_bangsal WHERE p.no_rawat IN (SELECT DISTINCT detail_pemberian_obat.no_rawat 
+                      FROM detail_pemberian_obat 
+                      INNER JOIN reg_periksa ON reg_periksa.no_rawat = detail_pemberian_obat.no_rawat 
+                      INNER JOIN poliklinik ON poliklinik.kd_poli = reg_periksa.kd_poli 
+                      INNER JOIN pasien ON pasien.no_rkm_medis = reg_periksa.no_rkm_medis 
+                      INNER JOIN databarang ON detail_pemberian_obat.no_rawat = reg_periksa.no_rawat 
+                      AND reg_periksa.no_rkm_medis = pasien.no_rkm_medis 
+                      AND detail_pemberian_obat.kode_brng = databarang.kode_brng 
+                      INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj 
+                      LEFT JOIN resep_obat ON resep_obat.no_rawat = detail_pemberian_obat.no_rawat 
+                      AND detail_pemberian_obat.tgl_perawatan = resep_obat.tgl_perawatan 
+                      AND detail_pemberian_obat.jam = resep_obat.jam 
+                      LEFT JOIN dokter ON resep_obat.kd_dokter = dokter.kd_dokter 
+                      LEFT JOIN riwayat_obat_pasien ON riwayat_obat_pasien.kode_brng = detail_pemberian_obat.kode_brng 
+                      AND riwayat_obat_pasien.tanggal = detail_pemberian_obat.tgl_perawatan 
+                      AND riwayat_obat_pasien.no_rawat = detail_pemberian_obat.no_rawat 
+                      AND riwayat_obat_pasien.jam = detail_pemberian_obat.jam 
+                      AND riwayat_obat_pasien.`status` = 'simpan' 
+                      LEFT JOIN bangsal ON bangsal.kd_bangsal = riwayat_obat_pasien.kd_bangsal 
+                      WHERE detail_pemberian_obat.tgl_perawatan BETWEEN '2017-09-15' AND '2017-09-15' AND reg_periksa.status_lanjut = 'Ralan' 
+                      AND bangsal.kd_bangsal in ('APT01','APT02') AND penjab.kd_pj='P01') and p.stts_pulang <> 'Pindah Kamar' 
+                      ORDER BY p.tgl_masuk DESC, p.jam_masuk DESC) AS b ON a.no_rawat = b.no_rawat) WHERE a.tgl_perawatan BETWEEN '2017-09-15' AND '2017-09-15' 
+                      AND a.status_lanjut = 'Ralan' AND a.kd_bangsal in ('APT01','APT02') AND a.kd_pj='P01' ORDER BY a.png_jawab, a.no_resep]]>
+	</queryString>
+	<field name="tgl_awal" class="java.sql.Date"/>
+	<field name="tgl_akhir" class="java.sql.Date"/>
+	<field name="tgl_perawatan" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rawat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_resep" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_dokter" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="png_jawab" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_lanjut" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="unit" class="java.lang.String"/>
+	<field name="apotek" class="java.lang.String"/>
+	<field name="nama_brng" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="kode_sat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="hrg_jual" class="java.lang.Double"/>
+	<field name="jml" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sub_total" class="java.lang.Double"/>
+	<field name="embalase" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tuslah" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="total" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="embalase_1" class="java.lang.Double" resetType="Group" resetGroup="Grup Resep" calculation="Sum">
+		<variableExpression><![CDATA[$F{embalase}]]></variableExpression>
+	</variable>
+	<variable name="tuslah_1" class="java.lang.Double" resetType="Group" resetGroup="Grup Resep" calculation="Sum">
+		<variableExpression><![CDATA[$F{tuslah}]]></variableExpression>
+	</variable>
+	<variable name="total_1" class="java.lang.Double" resetType="Group" resetGroup="Grup Resep" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<variable name="embalase_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{embalase}]]></variableExpression>
+	</variable>
+	<variable name="tuslah_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{tuslah}]]></variableExpression>
+	</variable>
+	<variable name="total_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<group name="Grup Resep">
+		<groupExpression><![CDATA[$F{no_resep}]]></groupExpression>
+		<groupHeader>
+			<band height="24">
+				<textField>
+					<reportElement x="1" y="1" width="513" height="11"/>
+					<textElement lineSpacing="Single">
+						<font fontName="Tahoma" size="8"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["No. Resep : "+$F{no_resep}+" No. Rawat : "+$F{no_rawat}+" Dokter PerResep : "+$F{nm_dokter}]]></textFieldExpression>
+				</textField>
+				<textField isStretchWithOverflow="true">
+					<reportElement x="1" y="12" width="513" height="11"/>
+					<textElement lineSpacing="Single">
+						<font fontName="Tahoma" size="8" isBold="false"/>
+					</textElement>
+					<textFieldExpression class="java.lang.String"><![CDATA["No. RM : "+$F{no_rkm_medis}+" Nama Pasien : "+$F{nm_pasien}+" Unit/Poli : "+$F{unit}]]></textFieldExpression>
+				</textField>
+			</band>
+		</groupHeader>
+		<groupFooter>
+			<band height="14">
+				<staticText>
+					<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="214" y="2" width="109" height="11" forecolor="#000000" backcolor="#F0F0DC"/>
+					<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
+						<font fontName="Tahoma" size="8" isBold="true" isStrikeThrough="false"/>
+					</textElement>
+					<text><![CDATA[Sub Total : Rp.]]></text>
+				</staticText>
+				<textField pattern="#,##0">
+					<reportElement x="326" y="2" width="49" height="11"/>
+					<textElement textAlignment="Right" lineSpacing="Single">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{embalase_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="387" y="2" width="49" height="11"/>
+					<textElement textAlignment="Right" lineSpacing="Single">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{tuslah_1}]]></textFieldExpression>
+				</textField>
+				<textField pattern="#,##0">
+					<reportElement x="437" y="2" width="74" height="11"/>
+					<textElement textAlignment="Right" lineSpacing="Single">
+						<font fontName="Tahoma" size="8" isBold="true"/>
+					</textElement>
+					<textFieldExpression class="java.lang.Double"><![CDATA[$V{total_1}]]></textFieldExpression>
+				</textField>
+				<line>
+					<reportElement x="0" y="0" width="513" height="1"/>
+					<graphicElement>
+						<pen lineWidth="0.5"/>
+					</graphicElement>
+				</line>
+			</band>
+		</groupFooter>
+	</group>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="92" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="53" width="513" height="15"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Laporan Detail Rekap Total Resep Rawat Jalan Per Pasien Per Cara Bayar Semua Depo]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="2" y="29" width="513" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="119" y="3" width="30" height="38"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<line>
+				<reportElement x="0" y="48" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="2" y="4" width="513" height="17"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="2" y="18" width="513" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="142" y="66" width="68" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Periode Tgl. :]]></text>
+			</staticText>
+			<textField pattern="dd MMM yyyy">
+				<reportElement x="211" y="66" width="75" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_awal}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="279" y="66" width="16" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[s.d]]></text>
+			</staticText>
+			<textField pattern="dd MMM yyyy">
+				<reportElement x="300" y="66" width="75" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[$F{tgl_akhir}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="378" y="11" width="136" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Cara Bayar : "+$F{png_jawab}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band splitType="Stretch"/>
+	</pageHeader>
+	<columnHeader>
+		<band height="18" splitType="Stretch">
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="1" y="0" width="24" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="26" y="0" width="161" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Nama Item Obat/Alkes/BHP]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="437" y="0" width="74" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Total Trans. (Rp)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="257" y="0" width="67" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Biaya Obat (Rp)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="326" y="0" width="60" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Embalase (Rp)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="387" y="0" width="49" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Tuslah (Rp)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="224" y="0" width="32" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Jumlah]]></text>
+			</staticText>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="188" y="0" width="35" height="18" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Satuan]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="0" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="17" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="1" y="1" width="24" height="11"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{Grup Resep_COUNT}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="26" y="1" width="161" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nama_brng}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="257" y="1" width="67" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{hrg_jual}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="224" y="1" width="32" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{jml}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="326" y="1" width="49" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{embalase}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="188" y="1" width="35" height="11"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{kode_sat}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="387" y="1" width="49" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{tuslah}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="437" y="1" width="74" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="18" splitType="Stretch">
+			<textField evaluationTime="Report" pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="462" y="3" width="36" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["" + $V{PAGE_NUMBER}]]></textFieldExpression>
+			</textField>
+			<textField pattern="" isBlankWhenNull="false">
+				<reportElement key="textField" x="292" y="3" width="170" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["hal. " + $V{PAGE_NUMBER} + " dari "]]></textFieldExpression>
+			</textField>
+			<textField pattern="dd/MM/yyyy HH.mm.ss" isBlankWhenNull="false">
+				<reportElement key="textField" x="4" y="3" width="74" height="15" forecolor="#000000" backcolor="#FFFFFF"/>
+				<box>
+					<topPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<leftPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<bottomPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+					<rightPen lineWidth="0.0" lineStyle="Solid" lineColor="#000000"/>
+				</box>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new Date()]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="0" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageFooter>
+	<summary>
+		<band height="36">
+			<line>
+				<reportElement x="0" y="0" width="513" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="214" y="2" width="109" height="11" forecolor="#000000" backcolor="#F0F0DC"/>
+				<textElement textAlignment="Right" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[Grand Total : Rp.]]></text>
+			</staticText>
+			<textField pattern="#,##0">
+				<reportElement x="326" y="2" width="49" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{embalase_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="387" y="2" width="49" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{tuslah_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="437" y="2" width="74" height="11"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="8" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{total_2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

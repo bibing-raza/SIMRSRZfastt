@@ -1,0 +1,1860 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="552" pageHeight="396" columnWidth="538" leftMargin="7" rightMargin="7" topMargin="7" bottomMargin="7">
+	<property name="ireport.zoom" value="2.0000000000000404"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<queryString>
+		<![CDATA[select no_rkm_medis, concat(nm_pasien,' (',if(jk='L','LK','PR'),')') nm_pasien, date_format(tgl_lahir,'%d-%m-%Y') tgl_lhr from pasien where no_rkm_medis='412530']]>
+	</queryString>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_lhr" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="382" splitType="Stretch">
+			<staticText>
+				<reportElement x="8" y="11" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="38" y="11" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="20" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="38" y="20" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="38" y="112" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="103" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="103" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="112" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="302" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="293" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="38" y="206" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="197" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="38" y="293" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="38" y="302" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="197" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="206" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="112" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="197" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="197" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="20" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="206" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="302" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="11" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="206" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="103" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="222" y="103" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="112" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="222" y="293" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="20" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="222" y="302" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="192" y="293" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="11" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="112" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="406" y="20" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="293" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="406" y="197" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="197" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="406" y="206" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="302" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="406" y="11" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="206" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="103" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="406" y="103" width="125" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}+", Jam Diberikan : "]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="406" y="112" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="20" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Nama ]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="406" y="302" width="125" height="17"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="376" y="293" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="11" width="25" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[No. RM]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="20" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="302" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="11" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="112" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="206" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="103" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="293" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="197" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="112" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="206" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="11" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="293" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="302" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="20" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="103" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="197" width="5" height="9"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="20" width="5" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="293" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="206" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="112" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="11" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="302" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="103" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="197" width="5" height="9"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="36" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="36" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="36" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="36" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="36" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="36" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="44" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="222" y="44" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="44" width="123" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="129" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="129" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="129" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="129" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="137" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="129" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="137" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="137" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="216" y="129" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="319" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="319" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="319" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="319" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="327" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="319" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="327" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="327" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="216" y="319" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="32" y="223" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="223" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="223" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="223" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="231" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="223" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Obat]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="231" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="231" width="125" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="216" y="223" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="400" y="47" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="55" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="481" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="507" y="55" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="55" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="55" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="216" y="47" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="47" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="38" y="55" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="55" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="47" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="148" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="148" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="140" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="148" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="148" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="148" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="148" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="400" y="140" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="140" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="140" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="242" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="242" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="234" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="242" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="242" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="242" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="242" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="400" y="234" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="234" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="234" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="338" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="481" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="222" y="338" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="32" y="330" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="406" y="338" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Dalam]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="338" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="338" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="38" y="338" width="74" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="400" y="330" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="114" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="298" y="330" width="25" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[ML/CC : ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="216" y="330" width="5" height="10"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<line>
+				<reportElement x="300" y="18" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="116" y="18" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="484" y="18" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="115" y="110" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="300" y="110" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="484" y="110" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="116" y="204" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="300" y="204" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="484" y="204" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="116" y="300" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="300" y="300" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="484" y="300" width="27" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="58" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="66" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="486" y="58" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="58" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="243" y="66" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="60" y="66" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="427" y="66" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="66" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="58" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="58" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="66" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="303" y="58" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="140" y="77" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="69" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="77" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="69" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="77" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="69" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="69" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="69" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="507" y="77" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="244" y="77" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="69" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="77" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="159" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="151" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="170" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="427" y="159" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="151" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="244" y="170" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="170" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="159" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="151" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="162" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="151" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="162" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="151" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="170" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="170" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="162" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="507" y="159" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="243" y="159" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="162" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="151" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="162" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="162" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="159" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="170" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="253" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="376" y="245" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="264" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="427" y="253" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="245" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="244" y="264" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="264" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="253" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="245" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="256" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="245" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="192" y="256" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="245" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="264" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="264" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="256" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="507" y="253" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="243" y="253" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="256" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="245" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="256" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="256" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="253" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="264" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="427" y="349" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="360" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="507" y="349" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="352" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="341" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="60" y="360" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="192" y="341" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="341" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="507" y="360" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="119" y="341" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="428" y="360" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="60" y="349" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="324" y="349" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="243" y="349" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="486" y="341" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="486" y="352" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="243" y="360" width="57" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="341" width="51" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Penyiapan :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="376" y="352" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="119" y="352" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+			<line>
+				<reportElement x="324" y="360" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="140" y="349" width="23" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.7" lineStyle="Dotted"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="8" y="352" width="53" height="10"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Tgl. Kadaluarsa :]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="303" y="352" width="20" height="10"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="7"/>
+				</textElement>
+				<text><![CDATA[Jam :]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

@@ -1,0 +1,3 @@
+##!/bin/sh
+cd /Users/unitsimrs/Documents/SIMRS_DEVELOP_ON_MAC/SIMRSRZfastnew/dist
+java -jar SIMRSKhanzaF.jar

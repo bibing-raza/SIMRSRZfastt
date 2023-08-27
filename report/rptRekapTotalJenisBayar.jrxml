@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5026296018031824"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="tgl_awal" class="java.lang.String"/>
+	<parameter name="tgl_akhir" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[ SELECT PJ.png_jawab, Sum(DPO.total-(DPO.embalase+DPO.tuslah)) AS T_biaya, Sum(DPO.embalase) AS T_embalase, 
+                     Sum(DPO.tuslah) AS T_tuslah, SUM((DPO.total-(DPO.embalase+DPO.tuslah))+DPO.embalase+DPO.tuslah) AS T_transaksi
+                     FROM reg_periksa RP INNER JOIN pasien P
+                     INNER JOIN detail_pemberian_obat DPO
+                     INNER JOIN databarang DB ON DPO.kode_brng = DB.kode_brng AND DPO.no_rawat = RP.no_rawat AND RP.no_rkm_medis = P.no_rkm_medis
+                     INNER JOIN penjab PJ ON RP.kd_pj = PJ.kd_pj
+                     where DPO.tgl_perawatan BETWEEN '2017-10-01' and '2017-10-31' GROUP BY RP.kd_pj 
+union ALL
+select a.png_jawab, sum(a.T_Biaya) T_Biaya , sum(a.T_Embalase) T_Embalase, sum(a.T_Tuslah) T_Tuslah , sum(a.T_Transaksi) T_Transaksi from 
+(select  'UMUM (Jual Bebas)' as png_jawab,
+                     sum(j.subtotal) as T_Biaya, 0 as T_Embalase ,sum(j.tambahan) as T_Tuslah, sum(j.total) as T_Transaksi
+                     from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual
+                     inner join databarang g on g.kode_brng = j.kode_brng
+                     left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual
+                     left join penjab b on b.kd_pj = r.kd_pj
+                     left join dokter d on d.kd_dokter = r.kd_dokter
+                     left join poliklinik k on k.kd_poli = r.kd_poli
+                     left join pasien s on s.no_rkm_medis = r.no_rkm_medis
+                     left join dokter d2 on d2.kd_dokter = p.kd_dokter      
+                     where p.tgl_jual BETWEEN '2017-10-01' and '2017-10-31'
+                     GROUP BY p.nota_jual, p.tgl_jual, r.no_rkm_medis
+                     order by p.nota_jual, p.tgl_jual, r.no_rkm_medis) as a]]>
+	</queryString>
+	<field name="png_jawab" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="T_biaya" class="java.lang.Double"/>
+	<field name="T_embalase" class="java.lang.Double"/>
+	<field name="T_tuslah" class="java.lang.Double"/>
+	<field name="T_transaksi" class="java.lang.Double"/>
+	<variable name="T_biaya_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{T_biaya}]]></variableExpression>
+	</variable>
+	<variable name="T_biaya_2" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{T_biaya}]]></variableExpression>
+	</variable>
+	<variable name="T_embalase_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{T_embalase}]]></variableExpression>
+	</variable>
+	<variable name="T_tuslah_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{T_tuslah}]]></variableExpression>
+	</variable>
+	<variable name="T_transaksi_1" class="java.lang.Double" calculation="Sum">
+		<variableExpression><![CDATA[$F{T_transaksi}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="117">
+			<line>
+				<reportElement x="0" y="50" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="62" width="514" height="15"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAPORAN REKAP TOTAL TRANSAKSI OBAT PER JENIS BAYAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="149" y="75" width="62" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Periode Tgl. ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="279" y="75" width="19" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Arial" size="11" isBold="false"/>
+				</textElement>
+				<text><![CDATA[s.d]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="20" y="103" width="159" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jenis Bayar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="181" y="103" width="93" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Hrg. Jual Obat (Rp.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="277" y="103" width="70" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Embalase (Rp.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="350" y="103" width="72" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tuslah (Rp.)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="425" y="103" width="89" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Total Trans. (Rp.)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="514" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="101" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="179" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="275" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="348" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="423" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="103" width="19" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No.]]></text>
+			</staticText>
+			<line>
+				<reportElement x="21" y="101" width="1" height="15"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="1" y="30" width="513" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="121" y="4" width="30" height="38"/>
+				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="1" y="5" width="513" height="17"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="1" y="19" width="513" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="210" y="75" width="75" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl_awal}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="298" y="75" width="98" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial" size="11"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgl_akhir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="25" y="1" width="152" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{png_jawab}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="181" y="1" width="89" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{T_biaya}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="277" y="1" width="65" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{T_embalase}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="350" y="1" width="67" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{T_tuslah}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="425" y="1" width="85" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$F{T_transaksi}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="0" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="514" y="0" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="-1" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="179" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="275" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="348" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="423" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="21" y="1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="2" y="1" width="19" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Integer"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="99" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="1" width="176" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Grand Total]]></text>
+			</staticText>
+			<line>
+				<reportElement x="514" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="0" y="13" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="514" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField pattern="dd MMMM yyyy">
+				<reportElement x="379" y="32" width="88" height="14"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Arial" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="329" y="32" width="52" height="14"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Martapura, ]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="339" y="44" width="88" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Arial" size="10"/>
+				</textElement>
+				<text><![CDATA[Petugas, ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="339" y="95" width="88" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="179" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="275" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="348" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="423" y="-1" width="1" height="14"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField pattern="#,##0">
+				<reportElement x="181" y="1" width="89" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{T_biaya_2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="277" y="1" width="65" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{T_embalase_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="350" y="1" width="67" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{T_tuslah_1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0">
+				<reportElement x="425" y="1" width="85" height="13"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Arial"/>
+				</textElement>
+				<textFieldExpression class="java.lang.Double"><![CDATA[$V{T_transaksi_1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

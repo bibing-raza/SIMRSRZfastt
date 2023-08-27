@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="62" pageHeight="799" columnWidth="56" leftMargin="3" rightMargin="3" topMargin="3" bottomMargin="3">
+	<property name="ireport.zoom" value="2.6573415000000016"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="555"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="tgl_lahir" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select no_rkm_medis, nm_pasien, jk from pasien where no_rkm_medis='420212']]>
+	</queryString>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<background>
+		<band/>
+	</background>
+	<title>
+		<band height="702">
+			<textField pattern="">
+				<reportElement mode="Transparent" x="13" y="116" width="17" height="168"/>
+				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
+					<font fontName="Arial" size="14" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["No. RM : "+$F{no_rkm_medis}]]></textFieldExpression>
+			</textField>
+			<textField pattern="">
+				<reportElement mode="Transparent" x="27" y="21" width="13" height="263"/>
+				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Nama : "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="4" y="192" width="13" height="92"/>
+				<textElement rotation="Left" lineSpacing="Single">
+					<font fontName="SansSerif" size="9" isBold="false" isUnderline="true"/>
+				</textElement>
+				<text><![CDATA[RSUD Ratu Zalecha]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="38" y="21" width="13" height="263"/>
+				<textElement verticalAlignment="Middle" rotation="Left" lineSpacing="Single">
+					<font fontName="Arial" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Tgl. Lahir : "+$P{tgl_lahir}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+</jasperReport>

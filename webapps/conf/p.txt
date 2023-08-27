@@ -1,0 +1,4 @@
+    $db_hostname    ="localhost";
+    $db_username    ="sirsraza";
+    $db_password    ="mNWtACEbNP";
+    $db_name        ="sik";
