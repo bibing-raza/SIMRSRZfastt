@@ -1015,7 +1015,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_MnPrinRekapTotalActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Sequel.cariIsiComboDB("select nm_dokter from dokter where kd_sps='S0012' order by nm_dokter", cmbDokter);
+        Sequel.cariIsiComboDB("select nm_dokter from dokter where kd_sps='S0012' and status='1' order by nm_dokter", cmbDokter);
     }//GEN-LAST:event_formWindowOpened
 
     /**
