@@ -4849,10 +4849,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
         PanelAccor.setPreferredSize(new java.awt.Dimension(310, 43));
-        PanelAccor.setWarnaBawah(new java.awt.Color(250, 250, 245));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
-        ChkAccor.setBackground(new java.awt.Color(250, 255, 245));
         ChkAccor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 255, 248)));
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
         ChkAccor.setFocusable(false);
@@ -4876,10 +4874,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ScrollMenu.setPreferredSize(new java.awt.Dimension(130, 383));
 
         FormMenu.setBackground(new java.awt.Color(250, 250, 245));
-        FormMenu.setBorder(null);
         FormMenu.setName("FormMenu"); // NOI18N
         FormMenu.setPreferredSize(new java.awt.Dimension(150, 483));
-        FormMenu.setWarnaBawah(new java.awt.Color(250, 250, 245));
         FormMenu.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 1, 1));
 
         BtnTarifTindakan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -4888,7 +4884,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnTarifTindakan.setText("1. Tarif Pemeriksaan/Tindakan");
         BtnTarifTindakan.setFocusPainted(false);
         BtnTarifTindakan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnTarifTindakan.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnTarifTindakan.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnTarifTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnTarifTindakan.setIconTextGap(10);
         BtnTarifTindakan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4908,7 +4904,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPemeriksaanDR.setText("2. Pemeriksaan Dokter");
         BtnPemeriksaanDR.setFocusPainted(false);
         BtnPemeriksaanDR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPemeriksaanDR.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPemeriksaanDR.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPemeriksaanDR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemeriksaanDR.setIconTextGap(10);
         BtnPemeriksaanDR.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4928,7 +4924,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPemeriksaanPR.setText("3. Pemeriksaan Petugas");
         BtnPemeriksaanPR.setFocusPainted(false);
         BtnPemeriksaanPR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPemeriksaanPR.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPemeriksaanPR.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPemeriksaanPR.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPemeriksaanPR.setIconTextGap(10);
         BtnPemeriksaanPR.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4948,7 +4944,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPRMRJ.setText("4. PRMRJ Pasien");
         BtnPRMRJ.setFocusPainted(false);
         BtnPRMRJ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPRMRJ.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPRMRJ.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPRMRJ.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPRMRJ.setIconTextGap(10);
         BtnPRMRJ.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4968,7 +4964,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnCatatanResep.setText("5. Catatan Resep Obat");
         BtnCatatanResep.setFocusPainted(false);
         BtnCatatanResep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnCatatanResep.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnCatatanResep.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnCatatanResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnCatatanResep.setIconTextGap(10);
         BtnCatatanResep.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -4988,7 +4984,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnRingkasanRiwayat.setText("6. Ringkasan Riwayat Rawat Jalan");
         BtnRingkasanRiwayat.setFocusPainted(false);
         BtnRingkasanRiwayat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnRingkasanRiwayat.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnRingkasanRiwayat.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnRingkasanRiwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRingkasanRiwayat.setIconTextGap(10);
         BtnRingkasanRiwayat.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5008,7 +5004,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnRingkasanPulangRanap.setText("7. Ringkasan Pulang Rawat Inap");
         BtnRingkasanPulangRanap.setFocusPainted(false);
         BtnRingkasanPulangRanap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnRingkasanPulangRanap.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnRingkasanPulangRanap.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnRingkasanPulangRanap.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnRingkasanPulangRanap.setIconTextGap(10);
         BtnRingkasanPulangRanap.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5028,7 +5024,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianKeperawatan.setText("8. Penilaian Awal Keperawatan/Assesmen");
         BtnPenilaianKeperawatan.setFocusPainted(false);
         BtnPenilaianKeperawatan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPenilaianKeperawatan.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPenilaianKeperawatan.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPenilaianKeperawatan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianKeperawatan.setIconTextGap(10);
         BtnPenilaianKeperawatan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5048,7 +5044,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnMenjawabRujukan.setText("9. Menjawab Rujukan Internal");
         BtnMenjawabRujukan.setFocusPainted(false);
         BtnMenjawabRujukan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnMenjawabRujukan.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnMenjawabRujukan.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnMenjawabRujukan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnMenjawabRujukan.setIconTextGap(10);
         BtnMenjawabRujukan.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5068,7 +5064,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianAwalMedisTHT.setText("10. Penilaian Awal Medis THT");
         BtnPenilaianAwalMedisTHT.setFocusPainted(false);
         BtnPenilaianAwalMedisTHT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPenilaianAwalMedisTHT.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPenilaianAwalMedisTHT.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPenilaianAwalMedisTHT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianAwalMedisTHT.setIconTextGap(10);
         BtnPenilaianAwalMedisTHT.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5088,7 +5084,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHasilPemeriksaanRad.setText("11. Hasil Pemeriksaan Radiologi");
         BtnHasilPemeriksaanRad.setFocusPainted(false);
         BtnHasilPemeriksaanRad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnHasilPemeriksaanRad.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilPemeriksaanRad.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnHasilPemeriksaanRad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanRad.setIconTextGap(10);
         BtnHasilPemeriksaanRad.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5108,7 +5104,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianAwalMedisMata.setText("12. Penilaian Awal Medis Mata");
         BtnPenilaianAwalMedisMata.setFocusPainted(false);
         BtnPenilaianAwalMedisMata.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnPenilaianAwalMedisMata.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnPenilaianAwalMedisMata.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnPenilaianAwalMedisMata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnPenilaianAwalMedisMata.setIconTextGap(10);
         BtnPenilaianAwalMedisMata.setMargin(new java.awt.Insets(1, 1, 1, 1));
@@ -5128,7 +5124,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHasilPemeriksaanLab.setText("13. Hasil Pemeriksaan Laboratorium");
         BtnHasilPemeriksaanLab.setFocusPainted(false);
         BtnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
-        BtnHasilPemeriksaanLab.setGlassColor(new java.awt.Color(255, 255, 255));
+        BtnHasilPemeriksaanLab.setGlassColor(new java.awt.Color(204, 255, 204));
         BtnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         BtnHasilPemeriksaanLab.setIconTextGap(10);
         BtnHasilPemeriksaanLab.setMargin(new java.awt.Insets(1, 1, 1, 1));
