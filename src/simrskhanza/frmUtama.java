@@ -6192,7 +6192,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/08/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27/08/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6287,9 +6287,9 @@ public class frmUtama extends javax.swing.JFrame {
 
         btnGantiPassword.setForeground(new java.awt.Color(0, 0, 0));
         btnGantiPassword.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/loginorg.png"))); // NOI18N
-        btnGantiPassword.setMnemonic('M');
+        btnGantiPassword.setMnemonic('G');
         btnGantiPassword.setText("Ganti Password");
-        btnGantiPassword.setToolTipText("Alt+M");
+        btnGantiPassword.setToolTipText("Alt+G");
         btnGantiPassword.setEnabled(false);
         btnGantiPassword.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         btnGantiPassword.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
@@ -6710,7 +6710,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu1.setMnemonic('I');
         jMenu1.setText("Informasi");
         jMenu1.setToolTipText("Alt+I");
-        jMenu1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenu1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenu1.setName("jMenu1"); // NOI18N
         jMenu1.setPreferredSize(new java.awt.Dimension(120, 30));
 
@@ -6769,7 +6769,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu2.setMnemonic('I');
         jMenu2.setText("Tarif Penunjang Medis");
         jMenu2.setToolTipText("Alt+I");
-        jMenu2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenu2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenu2.setName("jMenu2"); // NOI18N
         jMenu2.setPreferredSize(new java.awt.Dimension(170, 30));
 
@@ -6804,7 +6804,7 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu3.setMnemonic('I');
         jMenu3.setText("Tarif Pelayanan Kesehatan");
         jMenu3.setToolTipText("Alt+I");
-        jMenu3.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        jMenu3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jMenu3.setName("jMenu3"); // NOI18N
         jMenu3.setPreferredSize(new java.awt.Dimension(190, 30));
 

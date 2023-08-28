@@ -7856,7 +7856,7 @@
         </Property>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="27/08/2023"/>
+            <StringItem index="0" value="28/08/2023"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd/MM/yyyy"/>
@@ -7947,7 +7947,7 @@
             <Property name="text" type="java.lang.String" value="Informasi"/>
             <Property name="toolTipText" type="java.lang.String" value="Alt+I"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jMenu1" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -8041,7 +8041,7 @@
             <Property name="text" type="java.lang.String" value="Tarif Penunjang Medis"/>
             <Property name="toolTipText" type="java.lang.String" value="Alt+I"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jMenu2" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -8099,7 +8099,7 @@
             <Property name="text" type="java.lang.String" value="Tarif Pelayanan Kesehatan"/>
             <Property name="toolTipText" type="java.lang.String" value="Alt+I"/>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="11" style="0"/>
+              <Font name="Tahoma" size="11" style="1"/>
             </Property>
             <Property name="name" type="java.lang.String" value="jMenu3" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
@@ -8302,9 +8302,9 @@
             <Property name="icon" type="javax.swing.Icon" noResource="true" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/picture/loginorg.png"/>
             </Property>
-            <Property name="mnemonic" type="int" value="77"/>
+            <Property name="mnemonic" type="int" value="71"/>
             <Property name="text" type="java.lang.String" value="Ganti Password"/>
-            <Property name="toolTipText" type="java.lang.String" value="Alt+M"/>
+            <Property name="toolTipText" type="java.lang.String" value="Alt+G"/>
             <Property name="enabled" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
