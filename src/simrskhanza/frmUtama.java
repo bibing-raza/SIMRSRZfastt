@@ -12868,18 +12868,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     }
 
     private void isTutup() {
-        if (akses.getform().equals("DlgKasirRalan") == true) {
+        if (akses.getform().equals("DlgKasirRalan")) {
             DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
             kasirralan.tRefreshAntrian.stop();
             kasirralan.tRefreshPoli.stop();
         }
         
-        if (akses.getform().equals("DlgReg") == true) {
+        if (akses.getform().equals("DlgReg")) {
             DlgReg reg = new DlgReg(null, false);
             reg.tRefreshAntri.stop();
         }
         
-        if (akses.getform().equals("DlgDashboardEresep") == true) {
+        if (akses.getform().equals("DlgDashboardEresep")) {
             DlgDashboardEresep dash = new DlgDashboardEresep(this, false);
             dash.tEresep.stop();
         }
