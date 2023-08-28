@@ -468,7 +468,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         TNoRM.setDocument(new batasInput((byte) 6).getOnlyAngka(TNoRM));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         KdDokter.setDocument(new batasInput((byte) 3).getKata(KdDokter));
-        no_telp.setDocument(new batasInput((byte) 13).getOnlyAngka(no_telp));
+        no_telp.setDocument(new batasInput((byte) 15).getOnlyAngka(no_telp));
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
@@ -5919,12 +5919,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //                    tampilNoRujukan(no_peserta);
                     NoTelp.setText(no_telp.getText());
 
-                    if (cekViaBPJSKartu.mrnoTelepon.equals("null")) {
-                        NoTelp.setText(Sequel.cariIsi("select ifnull(no_tlp,'0') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-                    } else {
-                        NoTelp.setText(cekViaBPJSKartu.mrnoTelepon);
-                    }
-                    NoTelp.requestFocus();
+//                    if (cekViaBPJSKartu.mrnoTelepon.equals("null")) {
+//                        NoTelp.setText(Sequel.cariIsi("select ifnull(no_tlp,'0') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+//                    } else {
+//                        NoTelp.setText(cekViaBPJSKartu.mrnoTelepon);
+//                    }
+//                    NoTelp.requestFocus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Status kepesertaan tidak aktif..!!");
                     BtnBatal.requestFocus();
