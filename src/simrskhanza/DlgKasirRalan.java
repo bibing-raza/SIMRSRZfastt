@@ -107,16 +107,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             psFakIGD, psRes;
     private ResultSet rskasir, rsumurpasien, rspasienboking, rspasien, rsdiagnosa, rsprosedur, 
             rsdokter, rsMati, rsRiwKunj, rs, rsCek, rsLaprm, rsFakIGD, rsRes;
-    private final Properties prop = new Properties();
-//    public DlgKamarInap statusgizi = new DlgKamarInap(null, false);
-//    public DlgPemberianDiet dietRalan = new DlgPemberianDiet(null, false);
-//    public DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
-//    public DlgIkhtisarPerawatanHIVart hiv = new DlgIkhtisarPerawatanHIVart(null, false);
-//    public DlgPemeriksaanKlinisLabHIV hiv1 = new DlgPemeriksaanKlinisLabHIV(null, false);
-//    public DlgTerapiAntiretroviralHIV hiv2 = new DlgTerapiAntiretroviralHIV(null, false);
-//    public DlgFollowUpPerawatanTerapiARThiv hiv3 = new DlgFollowUpPerawatanTerapiARThiv(null, false);    
+    private final Properties prop = new Properties();    
     private Date cal = new Date();
-//    private DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
     private String umur = "0", sttsumur = "Th", cekSEPboking = "", tglklaim = "", drdpjp = "", poli = "", crBayar = "", diagnosa_ok = "",
             sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis ", cekPOLI = "", namadokter = "", nik = "", aktifjadwal = "",
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
@@ -147,7 +139,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             cekTotKun = 0, cekDiag = 0, cekPem = 0, cekPemPet = 0, cekRujukInternal = 0, cekSEP = 0, panggilan = 0, 
             nomorpasien = 0, hasilantrian = 0, cekUmur = 0, totskorTriase = 0, skorGZ1 = 0, skorGZ2 = 0, skorYaGZ1 = 0, skor = 0;
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
-//    public DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     public DlgCariDokter2 dokter1 = new DlgCariDokter2(null, false);
     public DlgCariDokter dokter2 = new DlgCariDokter(null, false);
     public Timer tRefreshPoli, tRefreshAntrian;
@@ -3041,7 +3032,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3894,7 +3885,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4131,8 +4122,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4151,8 +4141,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4400,11 +4389,15 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void DTPCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari1KeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariActionPerformed(null);
+        }
 }//GEN-LAST:event_DTPCari1KeyPressed
 
     private void DTPCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPCari2KeyPressed
-        // TODO add your handling code here:
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCariActionPerformed(null);
+        }
 }//GEN-LAST:event_DTPCari2KeyPressed
 
     private void tbKasirRalanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbKasirRalanMouseClicked
@@ -6712,6 +6705,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tRefreshAntrian.start();        
         TabRawat.setSelectedIndex(0);
+        Valid.tabelKosong(tabModekasir);
     }//GEN-LAST:event_formWindowOpened
 
     private void MnPenilaianAwalMedisRalanTHTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalMedisRalanTHTActionPerformed
@@ -8395,7 +8389,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         TDokter.setText("");
         pasiendipilih.setText("");
         norw_dipilih = "";
-        kddokter_dipilih = "";        
+        kddokter_dipilih = "";
     }
 
     private void formulirKlaim() {

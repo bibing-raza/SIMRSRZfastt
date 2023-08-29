@@ -3445,7 +3445,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -3496,7 +3496,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -3757,7 +3757,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -3886,7 +3886,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -3979,7 +3979,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 130, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4205,7 +4205,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -4235,7 +4235,6 @@ public final class DlgReg extends javax.swing.JDialog {
         cmbSttsUmur.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsUmur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Th", "Bl", "Hr" }));
         cmbSttsUmur.setName("cmbSttsUmur"); // NOI18N
-        cmbSttsUmur.setOpaque(false);
         internalFrame10.add(cmbSttsUmur);
         cmbSttsUmur.setBounds(211, 20, 50, 23);
 
@@ -4624,7 +4623,6 @@ public final class DlgReg extends javax.swing.JDialog {
         JnsnoID.setForeground(new java.awt.Color(0, 0, 0));
         JnsnoID.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "No. Rekam Medik", "No. Kartu BPJS", "NIK KTP" }));
         JnsnoID.setName("JnsnoID"); // NOI18N
-        JnsnoID.setOpaque(false);
         JnsnoID.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
                 JnsnoIDItemStateChanged(evt);
@@ -4876,8 +4874,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4891,8 +4888,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5096,7 +5092,7 @@ public final class DlgReg extends javax.swing.JDialog {
         internalFrame2.setPreferredSize(new java.awt.Dimension(494, 492));
         internalFrame2.setLayout(new java.awt.BorderLayout());
 
-        panelGlass9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ OPERATOR ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        panelGlass9.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ OPERATOR ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 120));
         panelGlass9.setLayout(null);
@@ -5240,7 +5236,7 @@ public final class DlgReg extends javax.swing.JDialog {
         FormInput1.setPreferredSize(new java.awt.Dimension(490, 300));
         FormInput1.setLayout(new java.awt.BorderLayout());
 
-        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ PANGGILAN ANTRIAN ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ PANGGILAN ANTRIAN ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(816, 102));
@@ -5251,7 +5247,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 102));
         jPanel4.setLayout(new java.awt.BorderLayout(1, 1));
 
-        internalFrame25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan BPJS ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame25.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan BPJS ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         internalFrame25.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame25.setName("internalFrame25"); // NOI18N
         internalFrame25.setPreferredSize(new java.awt.Dimension(0, 130));
@@ -5310,7 +5306,7 @@ public final class DlgReg extends javax.swing.JDialog {
 
         jPanel4.add(internalFrame25, java.awt.BorderLayout.PAGE_START);
 
-        internalFrame26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan Umum (NON BPJS) ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame26.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan Umum (NON BPJS) ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         internalFrame26.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame26.setName("internalFrame26"); // NOI18N
         internalFrame26.setPreferredSize(new java.awt.Dimension(0, 130));
@@ -5376,7 +5372,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 102));
         jPanel2.setLayout(new java.awt.BorderLayout(1, 1));
 
-        internalFrame27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan LANSIA / BAYI ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame27.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Jalan LANSIA / BAYI ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         internalFrame27.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame27.setName("internalFrame27"); // NOI18N
         internalFrame27.setPreferredSize(new java.awt.Dimension(0, 130));
@@ -5435,7 +5431,7 @@ public final class DlgReg extends javax.swing.JDialog {
 
         jPanel2.add(internalFrame27, java.awt.BorderLayout.PAGE_START);
 
-        internalFrame28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Inap ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame28.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Nomor Pasien Rawat Inap ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         internalFrame28.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame28.setName("internalFrame28"); // NOI18N
         internalFrame28.setPreferredSize(new java.awt.Dimension(0, 80));
@@ -5754,8 +5750,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5769,8 +5764,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-06-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -7162,7 +7156,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }//GEN-LAST:event_BtnKeluar3KeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil();
+        tampilAwal();
         tRefreshAntri.start();
     }//GEN-LAST:event_formWindowOpened
 
@@ -11707,5 +11701,146 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private void NoRWTbaru(String tgl) {
         noRwNew = "";
         noRwNew = Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + tgl + "' ", tgl + "/", 6);
+    }
+    
+    public void tampilAwal() {
+        Valid.tabelKosong(tabMode);
+        try {
+            ps = koneksi.prepareStatement("select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"
+                    + "reg_periksa.kd_dokter,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,pasien.jk,concat(reg_periksa.umurdaftar,' ',reg_periksa.sttsumur)as umur,poliklinik.nm_poli,"
+                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.stts_daftar,penjab.png_jawab,pasien.no_tlp,reg_periksa.stts,"
+                    + "IFNULL(bridging_sep.no_sep,'-') nosep, if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas "
+                    + "from reg_periksa inner join dokter inner join pasien inner join poliklinik inner join penjab on reg_periksa.kd_dokter=dokter.kd_dokter and "
+                    + "reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and reg_periksa.kd_poli=poliklinik.kd_poli "
+                    + "LEFT JOIN bridging_sep ON bridging_sep.no_rawat = reg_periksa.no_rawat left join pegawai pg on pg.nik = reg_periksa.nip_petugas where "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_reg like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rawat like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.tgl_registrasi like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.kd_dokter like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and dokter.nm_dokter like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.stts_daftar like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and pasien.nm_pasien like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and poliklinik.nm_poli like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.p_jawab like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.almt_pj like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and reg_periksa.hubunganpj like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and penjab.png_jawab like ? or "
+                    + " poliklinik.kd_poli<>'IGDK' and poliklinik.nm_poli like ? and dokter.nm_dokter like ? and tgl_registrasi between ? and ? and "
+                    + "if(reg_periksa.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by reg_periksa.tgl_registrasi,reg_periksa.jam_reg desc");
+            try {
+                ps.setString(1, "%" + CrPoli.getText() + "%");
+                ps.setString(2, "%" + CrDokter.getText() + "%");
+                ps.setString(3, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(4, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(5, "%" + TCari.getText().trim() + "%");
+                ps.setString(6, "%" + CrPoli.getText() + "%");
+                ps.setString(7, "%" + CrDokter.getText() + "%");
+                ps.setString(8, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(9, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(10, "%" + TCari.getText().trim() + "%");
+                ps.setString(11, "%" + CrPoli.getText() + "%");
+                ps.setString(12, "%" + CrDokter.getText() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, "%" + CrPoli.getText() + "%");
+                ps.setString(17, "%" + CrDokter.getText() + "%");
+                ps.setString(18, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(19, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(20, "%" + TCari.getText().trim() + "%");
+                ps.setString(21, "%" + CrPoli.getText() + "%");
+                ps.setString(22, "%" + CrDokter.getText() + "%");
+                ps.setString(23, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(24, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(25, "%" + TCari.getText().trim() + "%");
+                ps.setString(26, "%" + CrPoli.getText() + "%");
+                ps.setString(27, "%" + CrDokter.getText() + "%");
+                ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(30, "%" + TCari.getText().trim() + "%");
+                ps.setString(31, "%" + CrPoli.getText() + "%");
+                ps.setString(32, "%" + CrDokter.getText() + "%");
+                ps.setString(33, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(34, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(35, "%" + TCari.getText().trim() + "%");
+                ps.setString(36, "%" + CrPoli.getText() + "%");
+                ps.setString(37, "%" + CrDokter.getText() + "%");
+                ps.setString(38, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(39, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(40, "%" + TCari.getText().trim() + "%");
+                ps.setString(41, "%" + CrPoli.getText() + "%");
+                ps.setString(42, "%" + CrDokter.getText() + "%");
+                ps.setString(43, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(44, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(45, "%" + TCari.getText().trim() + "%");
+                ps.setString(46, "%" + CrPoli.getText() + "%");
+                ps.setString(47, "%" + CrDokter.getText() + "%");
+                ps.setString(48, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(49, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(50, "%" + TCari.getText().trim() + "%");
+                ps.setString(51, "%" + CrPoli.getText() + "%");
+                ps.setString(52, "%" + CrDokter.getText() + "%");
+                ps.setString(53, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(54, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(55, "%" + TCari.getText().trim() + "%");
+                ps.setString(56, "%" + CrPoli.getText() + "%");
+                ps.setString(57, "%" + CrDokter.getText() + "%");
+                ps.setString(58, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(59, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(60, "%" + TCari.getText().trim() + "%");
+                ps.setString(61, "%" + CrPoli.getText() + "%");
+                ps.setString(62, "%" + CrDokter.getText() + "%");
+                ps.setString(63, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(64, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(65, "%" + TCari.getText().trim() + "%");
+                ps.setString(66, "%" + CrPoli.getText() + "%");
+                ps.setString(67, "%" + CrDokter.getText() + "%");
+                ps.setString(68, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(69, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(70, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new Object[]{
+                        false,
+                        rs.getString("no_reg"),
+                        rs.getString("no_rawat"),
+                        rs.getString("tgl_registrasi"),
+                        rs.getString("jam_reg"),
+                        rs.getString("kd_dokter"),
+                        rs.getString("nm_dokter"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("jk"),
+                        rs.getString("umur"),
+                        rs.getString("nm_poli"),
+                        rs.getString("png_jawab"),
+                        rs.getString("nosep"),
+                        rs.getString("p_jawab"),
+                        rs.getString("almt_pj"),
+                        rs.getString("hubunganpj"),
+                        Valid.SetAngka(rs.getDouble("biaya_reg")),
+                        rs.getString("stts_daftar"),
+                        rs.getString("no_tlp"),
+                        rs.getString("stts"),
+                        rs.getString("nm_petugas").replaceAll("-", "Petugas SIPO")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        LCount.setText("" + tabMode.getRowCount());
     }
 }

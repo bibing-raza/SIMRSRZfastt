@@ -2600,7 +2600,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -2815,8 +2815,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2830,8 +2829,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2964,7 +2962,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         TabRawat.setBackground(new java.awt.Color(204, 255, 204));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabRawat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TabRawat.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        TabRawat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -4767,8 +4766,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-08-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -4848,7 +4846,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(310, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(350, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(250, 255, 248)));
@@ -4880,7 +4878,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnTarifTindakan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnTarifTindakan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnTarifTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnTarifTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnTarifTindakan.setText("1. Tarif Pemeriksaan/Tindakan");
         BtnTarifTindakan.setFocusPainted(false);
         BtnTarifTindakan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4889,7 +4887,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnTarifTindakan.setIconTextGap(10);
         BtnTarifTindakan.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnTarifTindakan.setName("BtnTarifTindakan"); // NOI18N
-        BtnTarifTindakan.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnTarifTindakan.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnTarifTindakan.setRoundRect(false);
         BtnTarifTindakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4900,7 +4898,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPemeriksaanDR.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPemeriksaanDR.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPemeriksaanDR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPemeriksaanDR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPemeriksaanDR.setText("2. Pemeriksaan Dokter");
         BtnPemeriksaanDR.setFocusPainted(false);
         BtnPemeriksaanDR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4909,7 +4907,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPemeriksaanDR.setIconTextGap(10);
         BtnPemeriksaanDR.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPemeriksaanDR.setName("BtnPemeriksaanDR"); // NOI18N
-        BtnPemeriksaanDR.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPemeriksaanDR.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPemeriksaanDR.setRoundRect(false);
         BtnPemeriksaanDR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4920,7 +4918,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPemeriksaanPR.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPemeriksaanPR.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPemeriksaanPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPemeriksaanPR.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPemeriksaanPR.setText("3. Pemeriksaan Petugas");
         BtnPemeriksaanPR.setFocusPainted(false);
         BtnPemeriksaanPR.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4929,7 +4927,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPemeriksaanPR.setIconTextGap(10);
         BtnPemeriksaanPR.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPemeriksaanPR.setName("BtnPemeriksaanPR"); // NOI18N
-        BtnPemeriksaanPR.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPemeriksaanPR.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPemeriksaanPR.setRoundRect(false);
         BtnPemeriksaanPR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4940,7 +4938,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPRMRJ.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPRMRJ.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPRMRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPRMRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPRMRJ.setText("4. PRMRJ Pasien");
         BtnPRMRJ.setFocusPainted(false);
         BtnPRMRJ.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4949,7 +4947,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPRMRJ.setIconTextGap(10);
         BtnPRMRJ.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPRMRJ.setName("BtnPRMRJ"); // NOI18N
-        BtnPRMRJ.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPRMRJ.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPRMRJ.setRoundRect(false);
         BtnPRMRJ.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4960,7 +4958,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnCatatanResep.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnCatatanResep.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCatatanResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnCatatanResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCatatanResep.setText("5. Catatan Resep Obat");
         BtnCatatanResep.setFocusPainted(false);
         BtnCatatanResep.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4969,7 +4967,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnCatatanResep.setIconTextGap(10);
         BtnCatatanResep.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnCatatanResep.setName("BtnCatatanResep"); // NOI18N
-        BtnCatatanResep.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnCatatanResep.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnCatatanResep.setRoundRect(false);
         BtnCatatanResep.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4980,7 +4978,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnRingkasanRiwayat.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnRingkasanRiwayat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnRingkasanRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnRingkasanRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnRingkasanRiwayat.setText("6. Ringkasan Riwayat Rawat Jalan");
         BtnRingkasanRiwayat.setFocusPainted(false);
         BtnRingkasanRiwayat.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -4989,7 +4987,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnRingkasanRiwayat.setIconTextGap(10);
         BtnRingkasanRiwayat.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnRingkasanRiwayat.setName("BtnRingkasanRiwayat"); // NOI18N
-        BtnRingkasanRiwayat.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnRingkasanRiwayat.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnRingkasanRiwayat.setRoundRect(false);
         BtnRingkasanRiwayat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5000,7 +4998,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnRingkasanPulangRanap.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnRingkasanPulangRanap.setForeground(new java.awt.Color(0, 0, 0));
-        BtnRingkasanPulangRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnRingkasanPulangRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnRingkasanPulangRanap.setText("7. Ringkasan Pulang Rawat Inap");
         BtnRingkasanPulangRanap.setFocusPainted(false);
         BtnRingkasanPulangRanap.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5009,7 +5007,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnRingkasanPulangRanap.setIconTextGap(10);
         BtnRingkasanPulangRanap.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnRingkasanPulangRanap.setName("BtnRingkasanPulangRanap"); // NOI18N
-        BtnRingkasanPulangRanap.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnRingkasanPulangRanap.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnRingkasanPulangRanap.setRoundRect(false);
         BtnRingkasanPulangRanap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5020,7 +5018,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPenilaianKeperawatan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPenilaianKeperawatan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPenilaianKeperawatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPenilaianKeperawatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPenilaianKeperawatan.setText("8. Penilaian Awal Keperawatan/Assesmen");
         BtnPenilaianKeperawatan.setFocusPainted(false);
         BtnPenilaianKeperawatan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5029,7 +5027,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianKeperawatan.setIconTextGap(10);
         BtnPenilaianKeperawatan.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPenilaianKeperawatan.setName("BtnPenilaianKeperawatan"); // NOI18N
-        BtnPenilaianKeperawatan.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPenilaianKeperawatan.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPenilaianKeperawatan.setRoundRect(false);
         BtnPenilaianKeperawatan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5040,7 +5038,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnMenjawabRujukan.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnMenjawabRujukan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnMenjawabRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnMenjawabRujukan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnMenjawabRujukan.setText("9. Menjawab Rujukan Internal");
         BtnMenjawabRujukan.setFocusPainted(false);
         BtnMenjawabRujukan.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5049,7 +5047,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnMenjawabRujukan.setIconTextGap(10);
         BtnMenjawabRujukan.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnMenjawabRujukan.setName("BtnMenjawabRujukan"); // NOI18N
-        BtnMenjawabRujukan.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnMenjawabRujukan.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnMenjawabRujukan.setRoundRect(false);
         BtnMenjawabRujukan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5060,7 +5058,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPenilaianAwalMedisTHT.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPenilaianAwalMedisTHT.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPenilaianAwalMedisTHT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPenilaianAwalMedisTHT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPenilaianAwalMedisTHT.setText("10. Penilaian Awal Medis THT");
         BtnPenilaianAwalMedisTHT.setFocusPainted(false);
         BtnPenilaianAwalMedisTHT.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5069,7 +5067,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianAwalMedisTHT.setIconTextGap(10);
         BtnPenilaianAwalMedisTHT.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPenilaianAwalMedisTHT.setName("BtnPenilaianAwalMedisTHT"); // NOI18N
-        BtnPenilaianAwalMedisTHT.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPenilaianAwalMedisTHT.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPenilaianAwalMedisTHT.setRoundRect(false);
         BtnPenilaianAwalMedisTHT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5080,7 +5078,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnHasilPemeriksaanRad.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnHasilPemeriksaanRad.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHasilPemeriksaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnHasilPemeriksaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnHasilPemeriksaanRad.setText("11. Hasil Pemeriksaan Radiologi");
         BtnHasilPemeriksaanRad.setFocusPainted(false);
         BtnHasilPemeriksaanRad.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5089,7 +5087,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHasilPemeriksaanRad.setIconTextGap(10);
         BtnHasilPemeriksaanRad.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnHasilPemeriksaanRad.setName("BtnHasilPemeriksaanRad"); // NOI18N
-        BtnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnHasilPemeriksaanRad.setRoundRect(false);
         BtnHasilPemeriksaanRad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5100,7 +5098,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnPenilaianAwalMedisMata.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnPenilaianAwalMedisMata.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPenilaianAwalMedisMata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnPenilaianAwalMedisMata.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnPenilaianAwalMedisMata.setText("12. Penilaian Awal Medis Mata");
         BtnPenilaianAwalMedisMata.setFocusPainted(false);
         BtnPenilaianAwalMedisMata.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5109,7 +5107,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnPenilaianAwalMedisMata.setIconTextGap(10);
         BtnPenilaianAwalMedisMata.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnPenilaianAwalMedisMata.setName("BtnPenilaianAwalMedisMata"); // NOI18N
-        BtnPenilaianAwalMedisMata.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnPenilaianAwalMedisMata.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnPenilaianAwalMedisMata.setRoundRect(false);
         BtnPenilaianAwalMedisMata.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -5120,7 +5118,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         BtnHasilPemeriksaanLab.setBorder(javax.swing.BorderFactory.createEtchedBorder());
         BtnHasilPemeriksaanLab.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
+        BtnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnHasilPemeriksaanLab.setText("13. Hasil Pemeriksaan Laboratorium");
         BtnHasilPemeriksaanLab.setFocusPainted(false);
         BtnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
@@ -5129,7 +5127,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         BtnHasilPemeriksaanLab.setIconTextGap(10);
         BtnHasilPemeriksaanLab.setMargin(new java.awt.Insets(1, 1, 1, 1));
         BtnHasilPemeriksaanLab.setName("BtnHasilPemeriksaanLab"); // NOI18N
-        BtnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(285, 23));
+        BtnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(300, 23));
         BtnHasilPemeriksaanLab.setRoundRect(false);
         BtnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -8364,9 +8362,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             emptTeksRujukanInternal();
             tampilRujukanInternal();            
             if (tabModeRujukan.getRowCount() != 0) {
-                BtnMenjawabRujukan.setBackground(Color.ORANGE);
+                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
             } else {
-                BtnMenjawabRujukan.setBackground(TabRawat.getBackground());
+                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
             }
         }
     }//GEN-LAST:event_BtnMenjawabRujukanActionPerformed
@@ -14419,7 +14417,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     public void isMenu() {
         if (ChkAccor.isSelected() == true) {
             ChkAccor.setVisible(false);
-            PanelAccor.setPreferredSize(new Dimension(310, HEIGHT));
+            PanelAccor.setPreferredSize(new Dimension(350, HEIGHT));
             FormMenu.setVisible(true);
             ChkAccor.setVisible(true);
         } else if (ChkAccor.isSelected() == false) {
