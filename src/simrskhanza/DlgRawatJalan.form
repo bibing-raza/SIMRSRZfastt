@@ -1932,7 +1932,7 @@
         <Property name="editable" type="boolean" value="false"/>
         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
           <StringArray count="1">
-            <StringItem index="0" value="28-08-2023"/>
+            <StringItem index="0" value="29-08-2023"/>
           </StringArray>
         </Property>
         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2284,7 +2284,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="28-08-2023"/>
+                        <StringItem index="0" value="29-08-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2313,7 +2313,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="28-08-2023"/>
+                        <StringItem index="0" value="29-08-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2533,7 +2533,7 @@
               </Border>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-              <Font name="Tahoma" size="14" style="0"/>
+              <Font name="Tahoma" size="12" style="1"/>
             </Property>
             <Property name="name" type="java.lang.String" value="TabRawat" noResource="true"/>
           </Properties>
@@ -2554,7 +2554,11 @@
             <Container class="widget.InternalFrame" name="internalFrame4">
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="1. Tarif Pemeriksaan/Tindakan">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame4" noResource="true"/>
               </Properties>
@@ -2796,7 +2800,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="2. Pemeriksaan Dokter">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame5" noResource="true"/>
               </Properties>
@@ -3677,7 +3685,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="3. Pemeriksaan Petugas">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame8" noResource="true"/>
               </Properties>
@@ -4489,7 +4501,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="5. Catatan Resep Obat">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame6" noResource="true"/>
               </Properties>
@@ -5118,7 +5134,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="6. Ringkasan Riwayat Rawat Jalan">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame7" noResource="true"/>
               </Properties>
@@ -5175,7 +5195,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="7. Ringkasan Pulang Rawat Inap">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame11" noResource="true"/>
               </Properties>
@@ -5232,7 +5256,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="8. Penilaian Awal Keperawatan/Assesmen">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame10" noResource="true"/>
               </Properties>
@@ -5289,7 +5317,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="9. Menjawab Rujukan Internal">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame16" noResource="true"/>
               </Properties>
@@ -5734,7 +5766,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="10. Penilaian Awal Medis THT">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame17" noResource="true"/>
               </Properties>
@@ -5788,7 +5824,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="11. Hasil Pemeriksaan Radiologi">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame18" noResource="true"/>
               </Properties>
@@ -5842,7 +5882,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="12. Penilaian Awal Medis Mata">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame19" noResource="true"/>
               </Properties>
@@ -5896,7 +5940,11 @@
                   <Color blue="eb" green="ff" red="eb" type="rgb"/>
                 </Property>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
-                  <Border info="null"/>
+                  <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
+                    <TitledBorder title="13. Hasil Pemeriksaan Laboratorium">
+                      <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
+                    </TitledBorder>
+                  </Border>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame20" noResource="true"/>
               </Properties>
@@ -6166,7 +6214,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="28-08-2023"/>
+                        <StringItem index="0" value="29-08-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
