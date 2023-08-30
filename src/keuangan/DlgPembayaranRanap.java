@@ -51,7 +51,7 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
             Ralan_Paramedis = 0, Ralan_Dokter_Paramedis = 0, Tambahan = 0, Potongan = 0, Kamar = 0, Registrasi = 0, Harian = 0, Retur_Obat = 0, Resep_Pulang = 0,
             Service = 0, ttlLaborat = 0, ttlRadiologi = 0, ttlOperasi = 0, ttlObat = 0, ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlRalan_Dokter = 0,
             ttlRalan_Paramedis = 0, ttlTambahan = 0, ttlPotongan = 0, ttlKamar = 0, ttlRegistrasi = 0, ttlHarian = 0, ttlRetur_Obat = 0, ttlResep_Pulang = 0, ttlService = 0;
-    private String sqlps2 = "select sum(totalbiaya) from billing where no_rawat=? and status=? ", kdkamarnya = "";
+    private String sqlps2 = "select sum(totalbiaya) from billing where no_rawat=? and status=? ", kdkamarnya = "", dialog_simpan = "";
 
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -151,6 +151,8 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
         TKd = new widget.TextBox();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnBilling = new javax.swing.JMenuItem();
+        MnRekapPenerimaanSudahByr = new javax.swing.JMenuItem();
+        MnRekapPenerimaanPerTglSudahByr = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbBangsal = new widget.Table();
@@ -180,20 +182,47 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnBilling.setBackground(new java.awt.Color(255, 255, 255));
         MnBilling.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBilling.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBilling.setText("Billing/Pembayaran Pasien");
         MnBilling.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnBilling.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnBilling.setName("MnBilling"); // NOI18N
-        MnBilling.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnBilling.setPreferredSize(new java.awt.Dimension(300, 26));
         MnBilling.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnBillingActionPerformed(evt);
             }
         });
         jPopupMenu1.add(MnBilling);
+
+        MnRekapPenerimaanSudahByr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPenerimaanSudahByr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRekapPenerimaanSudahByr.setText("Rekap Penerimaan Trans. Sudah Bayar");
+        MnRekapPenerimaanSudahByr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPenerimaanSudahByr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPenerimaanSudahByr.setName("MnRekapPenerimaanSudahByr"); // NOI18N
+        MnRekapPenerimaanSudahByr.setPreferredSize(new java.awt.Dimension(300, 26));
+        MnRekapPenerimaanSudahByr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPenerimaanSudahByrActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnRekapPenerimaanSudahByr);
+
+        MnRekapPenerimaanPerTglSudahByr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapPenerimaanPerTglSudahByr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRekapPenerimaanPerTglSudahByr.setText("Rekap Penerimaan Trans. Sudah Bayar PerTanggal");
+        MnRekapPenerimaanPerTglSudahByr.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapPenerimaanPerTglSudahByr.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapPenerimaanPerTglSudahByr.setName("MnRekapPenerimaanPerTglSudahByr"); // NOI18N
+        MnRekapPenerimaanPerTglSudahByr.setPreferredSize(new java.awt.Dimension(300, 26));
+        MnRekapPenerimaanPerTglSudahByr.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapPenerimaanPerTglSudahByrActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnRekapPenerimaanPerTglSudahByr);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -204,7 +233,8 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pembayaran Pasien Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Pembayaran Pasien Ranap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -316,7 +346,6 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
         label11.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label11);
 
-        Tgl1.setEditable(false);
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -329,7 +358,6 @@ public final class DlgPembayaranRanap extends javax.swing.JDialog {
         label18.setPreferredSize(new java.awt.Dimension(27, 23));
         panelisi4.add(label18);
 
-        Tgl2.setEditable(false);
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -601,6 +629,74 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         cmbBayar.setEditable(false);
     }//GEN-LAST:event_cmbBayarMouseClicked
 
+    private void MnRekapPenerimaanSudahByrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPenerimaanSudahByrActionPerformed
+        if (kdpenjab.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis bayarnya...!!!!");
+            kdpenjab.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT a.blnreg 'Bulan', a.nm_gedung 'Ruang/Bangsal/Gedung',	b.jlh_px 'Jlh. Pasien',	a.jlh_penrimaan 'Jlh. Penerimaan' "
+                    + "FROM ((SELECT ki.tgl_keluar, date_format(ki.tgl_keluar, '%M') blnreg, b.nm_gedung, sum(dn.besar_bayar) jlh_penrimaan, "
+                    + "CONVERT (date_format(ki.tgl_keluar, '%m'),INT) bln FROM reg_periksa rp "
+                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
+                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "INNER JOIN detail_nota_inap dn ON dn.no_rawat = rp.no_rawat "
+                    + "WHERE rp.status_lanjut = 'Ranap' AND ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
+                    + "GROUP BY rp.kd_pj, b.nm_gedung, MONTH(ki.tgl_keluar)) AS a "
+                    + "LEFT JOIN "
+                    + "(SELECT ki.tgl_keluar, COUNT(rp.no_rkm_medis) jlh_px, b.nm_gedung FROM reg_periksa rp "
+                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
+                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE rp.status_lanjut = 'Ranap' AND ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
+                    + "GROUP BY rp.kd_pj, b.nm_gedung, MONTH(ki.tgl_keluar)) AS b "
+                    + "ON b.nm_gedung = a.nm_gedung AND a.tgl_keluar = b.tgl_keluar) "
+                    + "ORDER BY a.bln, a.blnreg, a.nm_gedung", dialog_simpan);
+            JOptionPane.showMessageDialog(null, "Total Penerimaan Rawat Inap Perbulan berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPenerimaanSudahByrActionPerformed
+
+    private void MnRekapPenerimaanPerTglSudahByrActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapPenerimaanPerTglSudahByrActionPerformed
+        if (kdpenjab.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis bayarnya...!!!!");
+            kdpenjab.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            dialog_simpan = Valid.openDialog();
+            Valid.MyReportToExcel("SELECT a.tglreg 'Tgl. Penerimaan/Plng.', a.nm_gedung 'Ruang/Bangsal/Gedung', b.jlh_px 'Jlh. Pasien', a.jlh_penrimaan 'Jlh. Penerimaan' "
+                    + "FROM ((SELECT ki.tgl_keluar, date_format(ki.tgl_keluar,'%d-%m-%Y') tglreg, b.nm_gedung, sum(dn.besar_bayar) jlh_penrimaan, "
+                    + "CONVERT (date_format(ki.tgl_keluar, '%m'),INT) bln FROM reg_periksa rp "
+                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
+                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "INNER JOIN detail_nota_inap dn ON dn.no_rawat = rp.no_rawat "
+                    + "WHERE rp.status_lanjut = 'Ranap' AND ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
+                    + "GROUP BY rp.kd_pj, b.nm_gedung, ki.tgl_keluar) AS a "
+                    + "LEFT JOIN "
+                    + "(SELECT ki.tgl_keluar, COUNT(rp.no_rkm_medis) jlh_px, b.nm_gedung FROM reg_periksa rp "
+                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
+                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE rp.status_lanjut = 'Ranap' AND ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
+                    + "GROUP BY rp.kd_pj, b.nm_gedung, ki.tgl_keluar) AS b "
+                    + "ON b.nm_gedung = a.nm_gedung AND a.tgl_keluar = b.tgl_keluar) "
+                    + "ORDER BY a.bln, a.tglreg, a.nm_gedung", dialog_simpan);
+            JOptionPane.showMessageDialog(null, "Total Penerimaan Rawat Inap PerTanggal berhasil diexport menjadi file excel,..!!!");
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRekapPenerimaanPerTglSudahByrActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -625,6 +721,8 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnSeek2;
     private javax.swing.JLabel LCount;
     private javax.swing.JMenuItem MnBilling;
+    private javax.swing.JMenuItem MnRekapPenerimaanPerTglSudahByr;
+    private javax.swing.JMenuItem MnRekapPenerimaanSudahByr;
     private widget.ScrollPane Scroll;
     private widget.TextBox TKd;
     private widget.Tanggal Tgl1;

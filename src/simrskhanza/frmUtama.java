@@ -7081,7 +7081,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     kasirralan.tRefreshAntrian.start();
     kasirralan.isCek();
     kasirralan.empttext();
-//    kasirralan.tampilkasir();
+    kasirralan.tampilkasir();
     kasirralan.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
     kasirralan.setLocationRelativeTo(PanelUtama);
     kasirralan.setVisible(true);
@@ -8778,7 +8778,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgIGD igd = new DlgIGD(this, false);
-        igd.tampil();
         igd.emptTeks();
         igd.isCek();
         igd.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());

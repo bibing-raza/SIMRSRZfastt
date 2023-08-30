@@ -19,6 +19,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCariObat2;
 import inventory.DlgReturJual;
 import java.awt.Cursor;
 import java.awt.Dimension;
@@ -45,6 +46,8 @@ import java.util.Map;
 import keuangan.DlgLhtBiaya;
 import keuangan.DlgLhtPiutang;
 import keuangan.Jurnal;
+import simrskhanza.DlgCariPerawatanRanap;
+import simrskhanza.DlgInputResepPulang;
 import simrskhanza.DlgPenanggungJawab;
 import simrskhanza.DlgPeriksaLaboratorium;
 import simrskhanza.DlgPeriksaRadiologi;
@@ -59,9 +62,6 @@ import simrskhanza.DlgTagihanOperasi;
  */
 public class DlgBilingRanap extends javax.swing.JDialog {
     private final DefaultTableModel tabModeRwJlDr, tabModeTambahan, tabModePotongan, tabModeKamIn, tabModeAkunBayar, tabModeAkunPiutang;
-    public DlgResepPulang reseppulang = new DlgResepPulang(null, false);
-    public DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
-    public DlgRawatInap rawatinap = new DlgRawatInap(null, false);
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     public DlgDeposit deposit = new DlgDeposit(null, false);
     private Connection koneksi = koneksiDB.condb();
@@ -141,28 +141,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             + "FROM rawat_jl_drpr r INNER JOIN jns_perawatan jp ON jp.kd_jenis_prw=r.kd_jenis_prw "
             + "INNER JOIN kategori_perawatan kp ON kp.kd_kategori=jp.kd_kategori "
             + "INNER JOIN dokter d ON d.kd_dokter=r.kd_dokter WHERE r.no_rawat =? AND kp.kd_kategori =? GROUP BY r.kd_jenis_prw, r.kd_dokter",
-            //            sqlpsralandrpr = "select jns_perawatan.nm_perawatan,rawat_jl_drpr.biaya_rawat as total_byrdr,count(rawat_jl_drpr.kd_jenis_prw) as jml, "
-            //            + "sum(rawat_jl_drpr.biaya_rawat) as biaya,"
-            //            + "sum(rawat_jl_drpr.bhp) as totalbhp,"
-            //            + "sum(rawat_jl_drpr.material) as totalmaterial,"
-            //            + "rawat_jl_drpr.tarif_tindakandr,"
-            //            + "sum(rawat_jl_drpr.tarif_tindakanpr) as totaltarif_tindakanpr,"
-            //            + "sum(rawat_jl_drpr.tarif_tindakandr) as totaltarif_tindakandr  "
-            //            + "from rawat_jl_drpr inner join jns_perawatan inner join kategori_perawatan "
-            //            + "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and "
-            //            + "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori where "
-            //            + "rawat_jl_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_drpr.kd_jenis_prw",
-
-            //            sqlpsranapdokter = "select jns_perawatan_inap.nm_perawatan,rawat_inap_dr.biaya_rawat as total_byrdr,count(rawat_inap_dr.kd_jenis_prw) as jml, "
-            //            + "sum(rawat_inap_dr.biaya_rawat) as biaya,"
-            //            + "sum(rawat_inap_dr.bhp) as totalbhp,"
-            //            + "sum(rawat_inap_dr.material) as totalmaterial,"
-            //            + "rawat_inap_dr.tarif_tindakandr,"
-            //            + "sum(rawat_inap_dr.tarif_tindakandr) as totaltarif_tindakandr "
-            //            + "from rawat_inap_dr inner join jns_perawatan_inap inner join kategori_perawatan "
-            //            + "on rawat_inap_dr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "
-            //            + "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori where "
-            //            + "rawat_inap_dr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_dr.kd_jenis_prw",
             sqlpsranapdokter = "select CONCAT(jns_perawatan_inap.nm_perawatan,' (',dokter.nm_dokter,')') nm_perawatan,rawat_inap_dr.biaya_rawat as total_byrdr,count(rawat_inap_dr.kd_jenis_prw) as jml, "
             + "sum(rawat_inap_dr.biaya_rawat) as biaya,"
             + "sum(rawat_inap_dr.bhp) as totalbhp,"
@@ -184,29 +162,12 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             + "on rawat_inap_drpr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "
             + "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori and dokter.kd_dokter = rawat_inap_drpr.kd_dokter and petugas.nip = rawat_inap_drpr.nip where "
             + "rawat_inap_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_drpr.kd_jenis_prw,rawat_inap_drpr.kd_dokter, rawat_inap_drpr.nip",
-            //            sqlpsranapdrpr = "select jns_perawatan_inap.nm_perawatan,rawat_inap_drpr.biaya_rawat as total_byrdr,count(rawat_inap_drpr.kd_jenis_prw) as jml, "
-            //            + "sum(rawat_inap_drpr.biaya_rawat) as biaya,"
-            //            + "sum(rawat_inap_drpr.bhp) as totalbhp,"
-            //            + "sum(rawat_inap_drpr.material) as totalmaterial,"
-            //            + "rawat_inap_drpr.tarif_tindakandr,"
-            //            + "sum(rawat_inap_drpr.tarif_tindakanpr) as totaltarif_tindakanpr, "
-            //            + "sum(rawat_inap_drpr.tarif_tindakandr) as totaltarif_tindakandr "
-            //            + "from rawat_inap_drpr inner join jns_perawatan_inap inner join kategori_perawatan "
-            //            + "on rawat_inap_drpr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw and "
-            //            + "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori where "
-            //            + "rawat_inap_drpr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_inap_drpr.kd_jenis_prw",
             sqlpsralanperawat = "select jns_perawatan.nm_perawatan,jns_perawatan.total_byrpr,count(jns_perawatan.nm_perawatan) as jml, "
             + "jns_perawatan.total_byrpr*count(jns_perawatan.nm_perawatan) as biaya "
             + "from rawat_jl_pr inner join jns_perawatan inner join kategori_perawatan  "
             + "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw  and "
             + "jns_perawatan.kd_kategori=kategori_perawatan.kd_kategori where "
             + "rawat_jl_pr.no_rawat=? and kategori_perawatan.kd_kategori=? group by rawat_jl_pr.kd_jenis_prw ",
-            //            sqlpsranapperawat = "select jns_perawatan_inap.nm_perawatan,jns_perawatan_inap.total_byrpr,count(jns_perawatan_inap.nm_perawatan) as jml, "
-            //            + "jns_perawatan_inap.total_byrpr*count(jns_perawatan_inap.nm_perawatan) as biaya "
-            //            + "from rawat_inap_pr inner join jns_perawatan_inap  inner join kategori_perawatan "
-            //            + "on rawat_inap_pr.kd_jenis_prw=jns_perawatan_inap.kd_jenis_prw  and "
-            //            + "jns_perawatan_inap.kd_kategori=kategori_perawatan.kd_kategori where "
-            //            + "rawat_inap_pr.no_rawat=? and kategori_perawatan.kd_kategori=?  group by rawat_inap_pr.kd_jenis_prw",
             sqlpsranapperawat = "select concat(jns_perawatan_inap.nm_perawatan,' (',IF(petugas.nama like 'PETUGAS%',replace(petugas.nama,'PETUGAS ',''),petugas.nama),')') nm_perawatan,jns_perawatan_inap.total_byrpr,count(jns_perawatan_inap.nm_perawatan) as jml, "
             + "jns_perawatan_inap.total_byrpr*count(jns_perawatan_inap.nm_perawatan) as biaya "
             + "from rawat_inap_pr inner join jns_perawatan_inap inner join petugas inner join kategori_perawatan "
@@ -574,171 +535,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         }
         warna2.kolom = 3;
         tbAkunPiutang.setDefaultRenderer(Object.class, warna2);
-
-        beriobat.dlgobt.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DLgBilingRanap")) {
-                    isRawat();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
-        beriobat.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DLgBilingRanap")) {
-                    isRawat();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
-        rawatinap.perawatan.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DLgBilingRanap")) {
-                    isRawat();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
-        reseppulang.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DLgBilingRanap")) {
-                    isRawat();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
-        reseppulang.inputresep.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DLgBilingRanap")) {
-                    isRawat();
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
 
         deposit.addWindowListener(new WindowListener() {
             @Override
@@ -3183,32 +2979,35 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                     akses.setform("DLgBilingRanap");
                     if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Rincian Biaya")) {
                         if (akses.gettindakan_ranap() == true) {
-                            rawatinap.perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
-                            rawatinap.perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            rawatinap.perawatan.isCek();
-                            rawatinap.perawatan.tampil();
-                            rawatinap.perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            rawatinap.perawatan.setLocationRelativeTo(internalFrame1);
-                            rawatinap.perawatan.setVisible(true);
+                            DlgCariPerawatanRanap perawatan = new DlgCariPerawatanRanap(null, false);
+                            perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
+                            perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            perawatan.isCek();
+                            perawatan.tampil();
+                            perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            perawatan.setLocationRelativeTo(internalFrame1);
+                            perawatan.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Resep Pulang")) {
                         if (akses.getresep_pulang() == true) {
-                            reseppulang.inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+                            DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
+                            inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                                     Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-                            reseppulang.inputresep.isCek();
-                            reseppulang.inputresep.tampil();
-                            reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-                            reseppulang.inputresep.setVisible(true);
+                            inputresep.isCek();
+                            inputresep.tampil();
+                            inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            inputresep.setLocationRelativeTo(internalFrame1);
+                            inputresep.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Obat & BHP")) {
                         if (akses.getberi_obat() == true) {
-                            beriobat.dlgobt.isCek();
-                            beriobat.dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
-                            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            beriobat.dlgobt.tampil();
-                            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-                            beriobat.dlgobt.setVisible(true);
+                            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
+                            dlgobt.isCek();
+                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            dlgobt.tampil();
+                            dlgobt.setLocationRelativeTo(internalFrame1);
+                            dlgobt.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Tambahan Biaya")) {
                         if (akses.gettambahan_biaya() == true) {
@@ -3223,32 +3022,35 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                     akses.setform("DLgBilingRanap");
                     if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Rincian Biaya")) {
                         if (akses.gettindakan_ranap() == true) {
-                            rawatinap.perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
-                            rawatinap.perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            rawatinap.perawatan.isCek();
-                            rawatinap.perawatan.tampil();
-                            rawatinap.perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            rawatinap.perawatan.setLocationRelativeTo(internalFrame1);
-                            rawatinap.perawatan.setVisible(true);
+                            DlgCariPerawatanRanap perawatan = new DlgCariPerawatanRanap(null, false);
+                            perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
+                            perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            perawatan.isCek();
+                            perawatan.tampil();
+                            perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            perawatan.setLocationRelativeTo(internalFrame1);
+                            perawatan.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Resep Pulang")) {
                         if (akses.getresep_pulang() == true) {
-                            reseppulang.inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+                            DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
+                            inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                                     Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-                            reseppulang.inputresep.isCek();
-                            reseppulang.inputresep.tampil();
-                            reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-                            reseppulang.inputresep.setVisible(true);
+                            inputresep.isCek();
+                            inputresep.tampil();
+                            inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            inputresep.setLocationRelativeTo(internalFrame1);
+                            inputresep.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Obat & BHP")) {
                         if (akses.getberi_obat() == true) {
-                            beriobat.dlgobt.isCek();
-                            beriobat.dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
-                            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            beriobat.dlgobt.tampil();
-                            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-                            beriobat.dlgobt.setVisible(true);
+                            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
+                            dlgobt.isCek();
+                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            dlgobt.tampil();
+                            dlgobt.setLocationRelativeTo(internalFrame1);
+                            dlgobt.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Tambahan Biaya")) {
                         if (akses.gettambahan_biaya() == true) {
@@ -3329,32 +3131,35 @@ private void tbBillingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     akses.setform("DLgBilingRanap");
                     if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Rincian Biaya")) {
                         if (akses.gettindakan_ranap() == true) {
-                            rawatinap.perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
-                            rawatinap.perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            rawatinap.perawatan.isCek();
-                            rawatinap.perawatan.tampil();
-                            rawatinap.perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            rawatinap.perawatan.setLocationRelativeTo(internalFrame1);
-                            rawatinap.perawatan.setVisible(true);
+                            DlgCariPerawatanRanap perawatan = new DlgCariPerawatanRanap(null, false);
+                            perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
+                            perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            perawatan.isCek();
+                            perawatan.tampil();
+                            perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            perawatan.setLocationRelativeTo(internalFrame1);
+                            perawatan.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Resep Pulang")) {
                         if (akses.getresep_pulang() == true) {
-                            reseppulang.inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+                            DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
+                            inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                                     Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-                            reseppulang.inputresep.isCek();
-                            reseppulang.inputresep.tampil();
-                            reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-                            reseppulang.inputresep.setVisible(true);
+                            inputresep.isCek();
+                            inputresep.tampil();
+                            inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            inputresep.setLocationRelativeTo(internalFrame1);
+                            inputresep.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Obat & BHP")) {
                         if (akses.getberi_obat() == true) {
-                            beriobat.dlgobt.isCek();
-                            beriobat.dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
-                            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            beriobat.dlgobt.tampil();
-                            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-                            beriobat.dlgobt.setVisible(true);
+                            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
+                            dlgobt.isCek();
+                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            dlgobt.tampil();
+                            dlgobt.setLocationRelativeTo(internalFrame1);
+                            dlgobt.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Tambahan Biaya")) {
                         if (akses.gettambahan_biaya() == true) {
@@ -3369,32 +3174,35 @@ private void tbBillingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                     akses.setform("DLgBilingRanap");
                     if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Rincian Biaya")) {
                         if (akses.gettindakan_ranap() == true) {
-                            rawatinap.perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
-                            rawatinap.perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
-                            rawatinap.perawatan.isCek();
-                            rawatinap.perawatan.tampil();
-                            rawatinap.perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            rawatinap.perawatan.setLocationRelativeTo(internalFrame1);
-                            rawatinap.perawatan.setVisible(true);
+                            DlgCariPerawatanRanap perawatan = new DlgCariPerawatanRanap(null, false);
+                            perawatan.setNoRm(TNoRw.getText(), "rawat_inap_dr", DTPTgl.getDate(), "00", "00", "00", true, TPasien.getText());
+                            perawatan.setPetugas("", "", "", "", "", "", "", "", "", "", "", "", "", "");
+                            perawatan.isCek();
+                            perawatan.tampil();
+                            perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            perawatan.setLocationRelativeTo(internalFrame1);
+                            perawatan.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Resep Pulang")) {
                         if (akses.getresep_pulang() == true) {
-                            reseppulang.inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+                            DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
+                            inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                                     Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-                            reseppulang.inputresep.isCek();
-                            reseppulang.inputresep.tampil();
-                            reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-                            reseppulang.inputresep.setVisible(true);
+                            inputresep.isCek();
+                            inputresep.tampil();
+                            inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            inputresep.setLocationRelativeTo(internalFrame1);
+                            inputresep.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Obat & BHP")) {
                         if (akses.getberi_obat() == true) {
-                            beriobat.dlgobt.isCek();
-                            beriobat.dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
-                            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            beriobat.dlgobt.tampil();
-                            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-                            beriobat.dlgobt.setVisible(true);
+                            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
+                            dlgobt.isCek();
+                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            dlgobt.tampil();
+                            dlgobt.setLocationRelativeTo(internalFrame1);
+                            dlgobt.setVisible(true);
                         }
                     } else if (tbBilling.getValueAt(tbBilling.getSelectedRow(), kolom).toString().contains("Tambahan Biaya")) {
                         if (akses.gettambahan_biaya() == true) {
@@ -3452,14 +3260,15 @@ private void MnInputResepPulangActionPerformed(java.awt.event.ActionEvent evt) {
         JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
         TNoRw.requestFocus();
     } else {
+        DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
         akses.setform("DLgBilingRanap");
-        reseppulang.inputresep.isCek();
-        reseppulang.inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+        inputresep.isCek();
+        inputresep.setNoRm(TNoRw.getText(), "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                 Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-        reseppulang.inputresep.tampil();
-        reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-        reseppulang.inputresep.setVisible(true);
+        inputresep.tampil();
+        inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        inputresep.setLocationRelativeTo(internalFrame1);
+        inputresep.setVisible(true);
     }
 }//GEN-LAST:event_MnInputResepPulangActionPerformed
 
@@ -3472,13 +3281,14 @@ private void MnInputObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
         if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
         } else {
+            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
             akses.setform("DLgBilingRanap");
-            beriobat.dlgobt.isCek();
-            beriobat.dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
-            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            beriobat.dlgobt.tampil();
-            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-            beriobat.dlgobt.setVisible(true);
+            dlgobt.isCek();
+            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            dlgobt.tampil();
+            dlgobt.setLocationRelativeTo(internalFrame1);
+            dlgobt.setVisible(true);
         }
 
     }
@@ -4038,6 +3848,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_BtnSeek2ActionPerformed
 
     private void MnDataObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataObatActionPerformed
+        DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
         akses.setform("DLgBilingRanap");
         beriobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         beriobat.setLocationRelativeTo(internalFrame1);
@@ -4047,7 +3858,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_MnDataObatActionPerformed
 
     private void MnDataResepPulangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataResepPulangActionPerformed
-        akses.setform("DLgBilingRanap");
+        DlgResepPulang reseppulang = new DlgResepPulang(null, false);
+        akses.setform("DLgBilingRanap");        
         reseppulang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         reseppulang.setLocationRelativeTo(internalFrame1);
         reseppulang.isCek();
@@ -4308,13 +4120,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             TNoRw.requestFocus();
         } else {
+            DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
             akses.setform("DLgBilingRanap");
-            beriobat.dlgobt.isCek();
-            beriobat.dlgobt.setNoRm(norawatbayi, DTPTgl.getDate(), "00", "00", "00", true);
-            beriobat.dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            beriobat.dlgobt.tampil();
-            beriobat.dlgobt.setLocationRelativeTo(internalFrame1);
-            beriobat.dlgobt.setVisible(true);
+            dlgobt.isCek();
+            dlgobt.setNoRm(norawatbayi, DTPTgl.getDate(), "00", "00", "00", true);
+            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            dlgobt.tampil();
+            dlgobt.setLocationRelativeTo(internalFrame1);
+            dlgobt.setVisible(true);
         }
     }//GEN-LAST:event_MnInputObat1ActionPerformed
 
@@ -4369,6 +4182,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             TNoRw.requestFocus();
         } else {
+            DlgRawatInap rawatinap = new DlgRawatInap(null, false);
             akses.setform("DLgBilingRanap");
             rawatinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             rawatinap.setLocationRelativeTo(internalFrame1);
@@ -4398,6 +4212,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_MnRawatJalan1ActionPerformed
 
     private void MnDataObat1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataObat1ActionPerformed
+        DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
         akses.setform("DLgBilingRanap");
         beriobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         beriobat.setLocationRelativeTo(internalFrame1);
@@ -4411,14 +4226,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             TNoRw.requestFocus();
         } else {
+            DlgInputResepPulang inputresep=new DlgInputResepPulang(null,false);
             akses.setform("DLgBilingRanap");
-            reseppulang.inputresep.isCek();
-            reseppulang.inputresep.setNoRm(norawatbayi, "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
+            inputresep.isCek();
+            inputresep.setNoRm(norawatbayi, "-", Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat=?", TNoRw.getText()),
                     Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat=?", TNoRw.getText()));
-            reseppulang.inputresep.tampil();
-            reseppulang.inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            reseppulang.inputresep.setLocationRelativeTo(internalFrame1);
-            reseppulang.inputresep.setVisible(true);
+            inputresep.tampil();
+            inputresep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            inputresep.setLocationRelativeTo(internalFrame1);
+            inputresep.setVisible(true);
         }
     }//GEN-LAST:event_MnInputResepPulang1ActionPerformed
 
@@ -4477,6 +4293,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_MnCariRadiologi1ActionPerformed
 
     private void MnDataResepPulang1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataResepPulang1ActionPerformed
+        DlgResepPulang reseppulang = new DlgResepPulang(null, false);
         akses.setform("DLgBilingRanap");
         reseppulang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         reseppulang.setLocationRelativeTo(internalFrame1);

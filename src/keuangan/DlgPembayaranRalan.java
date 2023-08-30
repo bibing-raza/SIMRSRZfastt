@@ -275,7 +275,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnBilling.setBackground(new java.awt.Color(255, 255, 255));
         MnBilling.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBilling.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnBilling.setText("Billing/Pembayaran Pasien");
@@ -301,7 +300,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         MnUrutanData.setOpaque(true);
         MnUrutanData.setPreferredSize(new java.awt.Dimension(265, 26));
 
-        MnDokter.setBackground(new java.awt.Color(255, 255, 255));
         MnDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDokter.setText("Nama Dokter");
@@ -317,7 +315,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         });
         MnUrutanData.add(MnDokter);
 
-        MnTglTagihan.setBackground(new java.awt.Color(255, 255, 255));
         MnTglTagihan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTglTagihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnTglTagihan.setText("Tgl. Tagihan");
@@ -335,7 +332,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnUrutanData);
 
-        MnRekapPenerimaanPoliSdhByr.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPenerimaanPoliSdhByr.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapPenerimaanPoliSdhByr.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPenerimaanPoliSdhByr.setText("Rekap Penerimaan Poliklinik (Sudah Bayar)");
@@ -350,7 +346,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnRekapPenerimaanPoliSdhByr);
 
-        MnRekapPenerimaanPoliSdhByrPerTgl.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPenerimaanPoliSdhByrPerTgl.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapPenerimaanPoliSdhByrPerTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPenerimaanPoliSdhByrPerTgl.setText("Rekap Penerimaan Poli PerTgl. (Sudah Bayar)");
@@ -389,7 +384,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         panelisi4.add(label11);
         label11.setBounds(0, 10, 100, 23);
 
-        Tgl1.setEditable(false);
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -409,7 +403,6 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         panelisi4.add(label18);
         label18.setBounds(210, 10, 27, 23);
 
-        Tgl2.setEditable(false);
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(100, 23));

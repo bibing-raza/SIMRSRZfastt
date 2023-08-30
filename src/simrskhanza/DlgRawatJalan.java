@@ -79,12 +79,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private DlgPasien pasien = new DlgPasien(null, false);
-    private DlgCariPoli poli = new DlgCariPoli(null, false);
-    private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    public DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    public DlgCariPerawatanRalan perawatan = new DlgCariPerawatanRalan(null, false);
-    private DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
     private PreparedStatement ps3, ps4, ps5, ps6, ps7, psFar, psLab1, psRad1, psparu, psRiwKunj, 
             psPet, psR1, psR2, psru1, psTglBO, psRiwIO;
     private ResultSet rs, rs2, rs3, rs4, rsDiag, rsDiag1, rsObat, rs6, rs7, rs8, rs9, rs10, rs11, rs12, rsLab1, rsRad1,
@@ -99,6 +93,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
     private final Properties prop = new Properties();
     private String sql, host = "", jawaban = "", tglSimpanRujukan = "", tglPemberianObat = "", resepDipilih = "", prmrj = "";
     private Date dateReg, timeReg, dateSimpan, timeSimpan;
+    private DlgPasien pasien = new DlgPasien(null, false);
+    private DlgCariPoli poli = new DlgCariPoli(null, false);
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private DlgCariPerawatanRalan perawatan = new DlgCariPerawatanRalan(null, false);
+    private DlgRujukanPoliInternal dlgrjk = new DlgRujukanPoliInternal(null, false);
 
     /* Creates new form DlgPerawatan
      *
@@ -808,6 +808,60 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 }
             });
         }
+        
+        pasien.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgRawatJalan")) {
+                    if (pasien.getTable().getSelectedRow() != -1) {
+                        TCariPasien.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 1).toString());
+                    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+
+        pasien.getTable().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (akses.getform().equals("DlgRawatJalan")) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        pasien.dispose();
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
 
         perawatan.addWindowListener(new WindowListener() {
             @Override
@@ -5245,8 +5299,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
                                     if (tabModeRujukan.getRowCount() != 0) {
                                         TabRawat.setBackgroundAt(8, Color.ORANGE);
+                                        BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
                                     } else {
                                         TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                                        BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
                                     }
                                 } else {
                                     JOptionPane.showMessageDialog(null, "Maaf, hanya dokter saja yg. bisa memberi balasan/jawaban rujukan internal poliklinik ini...!!");
@@ -5318,8 +5374,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                                 tampilRujukanInternal();
                                 if (tabModeRujukan.getRowCount() != 0) {
                                     TabRawat.setBackgroundAt(8, Color.ORANGE);
+                                    BtnMenjawabRujukan.setGlassColor(Color.ORANGE);                                    
                                 } else {
                                     TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                                    BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
                                 }
                             } else {
                                 JOptionPane.showMessageDialog(null, "Maaf, hanya dokter saja yg. bisa memberi balasan/jawaban rujukan internal poliklinik ini...!!");
@@ -5486,8 +5544,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             tampilRujukanInternal();
             if (tabModeRujukan.getRowCount() != 0) {
                 TabRawat.setBackgroundAt(8, Color.ORANGE);
+                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
             } else {
                 TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
             }
         }
 
@@ -5681,8 +5741,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             tampilRujukanInternal();
             if (tabModeRujukan.getRowCount() != 0) {
                 TabRawat.setBackgroundAt(8, Color.ORANGE);
+                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
             } else {
                 TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
             }
         } else if (TabRawat.getSelectedIndex() == 9) {
             TCari.setText(TNoRM.getText());
@@ -5879,8 +5941,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             tampilRujukanInternal();
             if (tabModeRujukan.getRowCount() != 0) {
                 TabRawat.setBackgroundAt(8, Color.ORANGE);
+                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
             } else {
                 TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
             }
         } else if (TabRawat.getSelectedIndex() == 9) {
             kdpoli.setText("");
@@ -6156,8 +6220,10 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                         tampilRujukanInternal();
                         if (tabModeRujukan.getRowCount() != 0) {
                             TabRawat.setBackgroundAt(8, Color.ORANGE);
+                            BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
                         } else {
                             TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                            BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
                         }
                     }
 
@@ -6290,8 +6356,10 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     tampilRujukanInternal();
                     if (tabModeRujukan.getRowCount() != 0) {
                         TabRawat.setBackgroundAt(8, Color.ORANGE);
+                        BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
                     } else {
                         TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                        BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
                     }
                 }
 
@@ -8974,8 +9042,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
         if (tabModeRujukan.getRowCount() != 0) {
             TabRawat.setBackgroundAt(8, Color.ORANGE);
+            BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
         } else {
             TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+            BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
         }
     }
     
