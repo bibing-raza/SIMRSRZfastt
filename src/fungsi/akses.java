@@ -86,7 +86,7 @@ public final class akses {
         try {
             ps = koneksi.prepareStatement("select * from admin where usere=AES_ENCRYPT(?,'nur') and passworde=AES_ENCRYPT(?,'windi')");
             ps2 = koneksi.prepareStatement("select * from user u "
-                    + "left join petugas p on p.nip = AES_DECRYPT(u.id_user,'nur') "
+                    + "left join petugas p on p.nip = AES_DECRYPT(u.id_user,'nur') or p.user_id = AES_DECRYPT(u.id_user,'nur') "
                     + "left join dokter d on d.kd_dokter = AES_DECRYPT(u.id_user, 'nur') where "
                     + "u.id_user=AES_ENCRYPT(?,'nur') and u.password=AES_ENCRYPT(?,'windi')");
             try {

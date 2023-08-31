@@ -1388,14 +1388,10 @@ public class DlgUser extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        Sequel.cariIsi("select nip from petugas where nip=? ", noID, TKd.getText());
-        
         if (TKd.getText().trim().equals("") || TNmUser.getText().trim().equals("")) {
             Valid.textKosong(TKd, "User");
         } else if (TPass.getText().trim().equals("")) {
             Valid.textKosong(TPass, "Password");
-        } else if (noID.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Karyawan tersebut belum masuk ke data petugas, tambahkan dulu ke data petugas...!!!!");
         } else {
             if (Sequel.menyimpantf("user", "AES_ENCRYPT('" + TKd.getText() + "','nur'),AES_ENCRYPT('" + TPass.getText() + "','windi'),'false','false','false','false','false','false','false','false',"
                     + "'false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false','false',"
@@ -2301,12 +2297,23 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 rs=ps.executeQuery();
                 while(rs.next()){
                     user = "";
-                    user = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", rs.getString(1));
-                    jabatan = Sequel.cariIsi("select nm_sps from spesialis where kd_sps=?", Sequel.cariIsi("select kd_sps from dokter where kd_dokter=?", rs.getString(1)));
+//                    user = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", rs.getString(1));
+//                    jabatan = Sequel.cariIsi("select nm_sps from spesialis where kd_sps=?", Sequel.cariIsi("select kd_sps from dokter where kd_dokter=?", rs.getString(1)));
+                    
                     if (user.equals("")) {
-                        user = Sequel.cariIsi("select nama from petugas where nip=?", rs.getString(1));
-                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn=?", Sequel.cariIsi("select kd_jbtn from petugas where nip=?", rs.getString(1)));
-                    }   
+                        if (Sequel.cariInteger("select count(-1) from petugas where nip='" + rs.getString(1) + "'") > 0) {
+                            user = Sequel.cariIsi("select nama from petugas where nip=?", rs.getString(1));
+                            jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn=?", Sequel.cariIsi("select kd_jbtn from petugas where nip=?", rs.getString(1)));
+                        } else if (Sequel.cariInteger("select count(-1) from petugas where user_id='" + rs.getString(1) + "'") > 0) {
+                            user = Sequel.cariIsi("select nama from petugas where user_id=?", rs.getString(1));
+                            jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn=?", Sequel.cariIsi("select kd_jbtn from petugas where user_id=?", rs.getString(1)));
+                        }
+                    }
+                    
+//                    if (user.equals("")) {
+//                        user = Sequel.cariIsi("select nama from petugas where nip=?", rs.getString(1));
+//                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn=?", Sequel.cariIsi("select kd_jbtn from petugas where nip=?", rs.getString(1)));
+//                    }   
                     try {
                         if (rs.getString(1).toLowerCase().contains(TCari.getText().toLowerCase())
                                 || user.toLowerCase().contains(TCari.getText().toLowerCase()) 
@@ -3085,23 +3092,23 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }
 
     private void isUser() {
-        try{
-            rs=koneksi.prepareStatement("select nm_dokter from dokter where kd_dokter='"+TKd.getText()+"'").executeQuery();
-            if(rs.next()){
+        try {
+            rs = koneksi.prepareStatement("select nm_dokter from dokter where kd_dokter='" + TKd.getText() + "'").executeQuery();
+            if (rs.next()) {
                 TNmUser.setText(rs.getString(1));
-            }else if(!rs.next()){
-                rs=koneksi.prepareStatement("select nama from petugas where nip='"+TKd.getText()+"'").executeQuery();
-                if(rs.next()){
+            } else if (!rs.next()) {
+                rs = koneksi.prepareStatement("select nama from petugas where nip='" + TKd.getText() + "' or user_id='" + TKd.getText() + "'").executeQuery();
+                if (rs.next()) {
                     TNmUser.setText(rs.getString(1));
-                }else if(!rs.next()){
+                } else if (!rs.next()) {
                     TNmUser.setText("");
                 }
             }
-            if(rs!=null){
+            if (rs != null) {
                 rs.close();
             }
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 
@@ -3128,7 +3135,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         i=tbUser.getSelectedRow();
         if(i!= -1){
             TKd.setText(tbUser.getValueAt(i,0).toString());
-            TPass.setText(tbUser.getValueAt(i,3).toString());            
+            TPass.setText(tbUser.getValueAt(i,3).toString());
         }
     }
     
