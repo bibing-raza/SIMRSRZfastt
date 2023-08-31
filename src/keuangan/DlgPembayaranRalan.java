@@ -912,14 +912,16 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     + "from ((SELECT rp.tgl_registrasi, date_format(rp.tgl_registrasi,'%M') blnreg, pl.nm_poli, rp.kd_poli, "
                     + "sum(dn.besar_bayar) jlh_penrimaan, CONVERT(date_format(rp.tgl_registrasi,'%m'),INT) bln FROM reg_periksa rp "
                     + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
-                    + "INNER JOIN detail_nota_jalan dn ON dn.no_rawat = rp.no_rawat WHERE rp.status_lanjut = 'Ralan' AND "
-                    + "rp.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                    + "and rp.kd_pj='" + kdpenjab.getText() + "' GROUP BY rp.kd_pj, rp.kd_poli, MONTH(rp.tgl_registrasi)) as a left join "
-                    + "(SELECT rp.tgl_registrasi, COUNT(rp.no_rkm_medis) jlh_px, rp.kd_poli FROM reg_periksa rp "
-                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli WHERE "
-                    + "rp.status_lanjut = 'Ralan' AND rp.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
-                    + "and rp.kd_pj='" + kdpenjab.getText() + "' GROUP BY rp.kd_pj, rp.kd_poli, MONTH(rp.tgl_registrasi)) as b on b.kd_poli=a.kd_poli and "
-                    + "a.tgl_registrasi=b.tgl_registrasi) order by a.bln, a.blnreg, a.nm_poli", dialog_simpan);
+                    + "INNER JOIN detail_nota_jalan dn ON dn.no_rawat = rp.no_rawat "
+                    + "WHERE rp.status_lanjut = 'Ralan' AND rp.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "and rp.kd_pj='" + kdpenjab.getText() + "' GROUP BY rp.kd_pj, rp.kd_poli, MONTH(rp.tgl_registrasi)) as a "
+                    + "left join "
+                    + "(SELECT rp.tgl_registrasi, COUNT(rp.no_rkm_medis) jlh_px, rp.kd_poli, date_format(rp.tgl_registrasi,'%M') blnreg FROM reg_periksa rp "
+                    + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
+                    + "WHERE rp.status_lanjut = 'Ralan' AND rp.tgl_registrasi between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + "and rp.kd_pj='" + kdpenjab.getText() + "' GROUP BY rp.kd_pj, rp.kd_poli, MONTH(rp.tgl_registrasi)) as b "
+                    + "on b.kd_poli = a.kd_poli and a.blnreg = b.blnreg) "
+                    + "order by a.bln, a.blnreg, a.nm_poli", dialog_simpan);
             JOptionPane.showMessageDialog(null, "Total Penerimaan Rawat Jalan Perbulan berhasil diexport menjadi file excel,..!!!");
             this.setCursor(Cursor.getDefaultCursor());
         }

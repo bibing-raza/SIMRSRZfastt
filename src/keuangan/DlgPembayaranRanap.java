@@ -636,7 +636,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             dialog_simpan = Valid.openDialog();
-            Valid.MyReportToExcel("SELECT a.blnreg 'Bulan', a.nm_gedung 'Ruang/Bangsal/Gedung',	b.jlh_px 'Jlh. Pasien',	a.jlh_penrimaan 'Jlh. Penerimaan' "
+            Valid.MyReportToExcel("SELECT a.blnreg 'Bulan', a.nm_gedung 'Ruang/Bangsal/Gedung', b.jlh_px 'Jlh. Pasien', a.jlh_penrimaan 'Jlh. Penerimaan' "
                     + "FROM ((SELECT ki.tgl_keluar, date_format(ki.tgl_keluar, '%M') blnreg, b.nm_gedung, sum(dn.besar_bayar) jlh_penrimaan, "
                     + "CONVERT (date_format(ki.tgl_keluar, '%m'),INT) bln FROM reg_periksa rp "
                     + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
@@ -648,7 +648,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
                     + "GROUP BY rp.kd_pj, b.nm_gedung, MONTH(ki.tgl_keluar)) AS a "
                     + "LEFT JOIN "
-                    + "(SELECT ki.tgl_keluar, COUNT(rp.no_rkm_medis) jlh_px, b.nm_gedung FROM reg_periksa rp "
+                    + "(SELECT ki.tgl_keluar, COUNT(rp.no_rkm_medis) jlh_px, b.nm_gedung, date_format(ki.tgl_keluar, '%M') blnreg FROM reg_periksa rp "
                     + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj "
                     + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
@@ -656,7 +656,7 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     + "WHERE rp.status_lanjut = 'Ranap' AND ki.tgl_keluar BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
                     + "AND rp.kd_pj = '" + kdpenjab.getText() + "' and ki.stts_pulang not in ('-','Pindah Kamar') "
                     + "GROUP BY rp.kd_pj, b.nm_gedung, MONTH(ki.tgl_keluar)) AS b "
-                    + "ON b.nm_gedung = a.nm_gedung AND a.tgl_keluar = b.tgl_keluar) "
+                    + "ON b.nm_gedung = a.nm_gedung AND a.blnreg = b.blnreg) "
                     + "ORDER BY a.bln, a.blnreg, a.nm_gedung", dialog_simpan);
             JOptionPane.showMessageDialog(null, "Total Penerimaan Rawat Inap Perbulan berhasil diexport menjadi file excel,..!!!");
             this.setCursor(Cursor.getDefaultCursor());
