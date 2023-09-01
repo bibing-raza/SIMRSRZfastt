@@ -698,7 +698,7 @@ public class DlgUser extends javax.swing.JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if(dlgpetugas.getTable().getSelectedRow()!= -1){                   
-                    TKd.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),11).toString());
+                    TKd.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),0).toString());
                     TNmUser.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),1).toString());
                     TPass.setText(dlgpetugas.getTable().getValueAt(dlgpetugas.getTable().getSelectedRow(),0).toString());
                 }            
