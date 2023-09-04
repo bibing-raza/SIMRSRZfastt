@@ -6192,7 +6192,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/08/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30/08/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7078,7 +7078,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     isTutup();
     DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
-    kasirralan.tRefreshAntrian.start();
+    akses.tRefreshAntrian.start();
     kasirralan.isCek();
     kasirralan.empttext();
     kasirralan.tampilkasir();
@@ -8777,7 +8777,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private void btnIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIGDActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgIGD igd = new DlgIGD(this, false);
+        DlgIGD igd = new DlgIGD(this, false);        
         igd.emptTeks();
         igd.isCek();
         igd.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -12866,14 +12866,14 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isTutup() {
         if (akses.getform().equals("DlgKasirRalan")) {
-            DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
-            kasirralan.tRefreshAntrian.stop();
-            kasirralan.tRefreshPoli.stop();
+//            DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
+            akses.tRefreshAntrian.stop();
+            akses.tRefreshPoli.stop();
         }
         
         if (akses.getform().equals("DlgReg")) {
-            DlgReg reg = new DlgReg(null, false);
-            reg.tRefreshAntri.stop();
+//            DlgReg reg = new DlgReg(null, false);
+            akses.tRefreshAntri.stop();
         }
         
         if (akses.getform().equals("DlgDashboardEresep")) {

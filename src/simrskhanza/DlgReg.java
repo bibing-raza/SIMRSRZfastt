@@ -170,7 +170,7 @@ public final class DlgReg extends javax.swing.JDialog {
     private char[] UNIT_1_360 = {ESC, 40, 'U', '1', '0'};
     // move vertical print position
     private char[] VERTICAL_PRINT_POSITION = {ESC, 'J', '1'};
-    public Timer tRefreshAntri;
+    
 
     /**
      * Creates new form DlgReg
@@ -7174,7 +7174,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampilAwal();
-        tRefreshAntri.start();
+        akses.tRefreshAntri.start();
     }//GEN-LAST:event_formWindowOpened
 
     private void MnPeriksaRadiologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPeriksaRadiologiActionPerformed
@@ -9819,8 +9819,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }//GEN-LAST:event_BtnGantiUmurActionPerformed
 
     private void MnPetugasRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPetugasRegActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         tampil();
         infoSEP();
+        this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnPetugasRegActionPerformed
 
     /**
@@ -11650,7 +11652,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         // Timer
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
-        tRefreshAntri = new Timer(1000, taskPerformer);        
+        akses.tRefreshAntri = new Timer(1000, taskPerformer);        
     }
     
     private void resetPanggilanAntrian() {

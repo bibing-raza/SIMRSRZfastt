@@ -143,7 +143,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     public DlgCariDokter dokter2 = new DlgCariDokter(null, false);
     public DlgCariPoli poliklinik = new DlgCariPoli(null, false);
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
-    public Timer tRefreshPoli, tRefreshAntrian;
+//    public Timer tRefreshPoli, tRefreshAntrian;
 
     /**
      * Creates new form DlgReg
@@ -6194,10 +6194,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 ChkAutoRefres.setSelected(false);
                 BtnSeek4.requestFocus();
             } else {
-                tRefreshPoli.start();
+                akses.tRefreshPoli.start();
             }
         } else {
-            tRefreshPoli.stop();
+            akses.tRefreshPoli.stop();
             tampilkasir();
             empttext();
         }
@@ -6654,7 +6654,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }//GEN-LAST:event_MnDataKankerBtnPrintActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tRefreshAntrian.start();        
+        akses.tRefreshAntrian.start();        
         TabRawat.setSelectedIndex(0);
     }//GEN-LAST:event_formWindowOpened
 
@@ -8728,7 +8728,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         // Timer
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
-        tRefreshPoli = new Timer(30000, taskPerformer);
+        akses.tRefreshPoli = new Timer(30000, taskPerformer);
     }
     
     private void otomatisRefreshAntrian() {
@@ -8743,7 +8743,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         //Timer
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setengah menit
-        tRefreshAntrian = new Timer(60000, taskPerformer);        
+       akses.tRefreshAntrian = new Timer(60000, taskPerformer);        
     }
     
     private void hitungAntrianBPJS() {

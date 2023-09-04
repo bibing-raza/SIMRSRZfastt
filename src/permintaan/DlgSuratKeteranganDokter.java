@@ -1212,7 +1212,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
                         + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");                
                 param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", Sequel.cariIsi("select ifnull(user_id,'-') from petugas where nip='" + kddokter + "'"));
+                param.put("nipdokter", kddokter);
                 param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
                         + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
                                 + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
@@ -1373,7 +1373,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 param.put("berlaku", Tberlaku.getText() + " (" + Sequel.Terbilang(Valid.SetAngka(Tberlaku.getText())) + ") "
                         + cmbSelama.getSelectedItem().toString() + " sejak tanggal dikeluarkan.");
                 param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", Sequel.cariIsi("select ifnull(user_id,'-') from petugas where nip='" + kddokter + "'"));
+                param.put("nipdokter", kddokter);
                 param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
                         + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_dokter where "
                                 + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));

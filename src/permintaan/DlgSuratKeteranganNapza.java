@@ -1267,7 +1267,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
                                 + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
                 param.put("nmdokter", Tnmdokter.getText());
-                param.put("nipdokter", Sequel.cariIsi("select ifnull(user_id,'-') from petugas where nip='" + kddokter + "'"));
+                param.put("nipdokter", kddokter);
                 
                 if (tglsurat.equals("ya")) {
                     param.put("nosurattgl", TnoSuratDari.getText() + " tanggal "

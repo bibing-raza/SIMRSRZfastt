@@ -1117,7 +1117,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                 param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
                         + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_rohani where "
                                 + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-                param.put("nipdokter", Sequel.cariIsi("select ifnull(user_id,'-') from petugas where nip='" + kddokter + "'"));
+                param.put("nipdokter", kddokter);
                 
                 Valid.MyReport("rptSuratRohani.jasper", "report", "::[ Surat Keterangan Kesehatan Rohani ]::","SELECT date(now())", param);
             }
