@@ -399,7 +399,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(60);
             } else if (i == 1) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(200);
             } else if (i == 2) {
                 column.setPreferredWidth(250);
             }
@@ -596,13 +596,17 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
         WindowTemplate = new javax.swing.JDialog();
         internalFrame4 = new widget.InternalFrame();
-        Scroll1 = new widget.ScrollPane();
-        tbTemplate = new widget.Table();
         panelisi4 = new widget.panelisi();
         jLabel9 = new widget.Label();
         TCari1 = new widget.TextBox();
         BtnCari1 = new widget.Button();
+        BtnCopas = new widget.Button();
         BtnCloseIn1 = new widget.Button();
+        jPanel1 = new javax.swing.JPanel();
+        Scroll1 = new widget.ScrollPane();
+        tbTemplate = new widget.Table();
+        Scroll3 = new widget.ScrollPane();
+        Ttemplate = new widget.TextArea();
         internalFrame1 = new widget.InternalFrame();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -915,26 +919,6 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         internalFrame4.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame4.setLayout(new java.awt.BorderLayout());
 
-        Scroll1.setName("Scroll1"); // NOI18N
-        Scroll1.setOpaque(true);
-        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
-
-        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
-        tbTemplate.setName("tbTemplate"); // NOI18N
-        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTemplateMouseClicked(evt);
-            }
-        });
-        tbTemplate.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbTemplateKeyPressed(evt);
-            }
-        });
-        Scroll1.setViewportView(tbTemplate);
-
-        internalFrame4.add(Scroll1, java.awt.BorderLayout.PAGE_START);
-
         panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
@@ -976,6 +960,20 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCari1);
 
+        BtnCopas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCopas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopas.setMnemonic('U');
+        BtnCopas.setText("Copy & Paste");
+        BtnCopas.setToolTipText("Alt+U");
+        BtnCopas.setName("BtnCopas"); // NOI18N
+        BtnCopas.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCopas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCopasActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnCopas);
+
         BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
         BtnCloseIn1.setMnemonic('U');
@@ -991,6 +989,40 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         panelisi4.add(BtnCloseIn1);
 
         internalFrame4.add(panelisi4, java.awt.BorderLayout.CENTER);
+
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(816, 250));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
+
+        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
+        tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTemplateMouseClicked(evt);
+            }
+        });
+        Scroll1.setViewportView(tbTemplate);
+
+        jPanel1.add(Scroll1);
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        Ttemplate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Baca Template Dipilih ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Ttemplate.setColumns(20);
+        Ttemplate.setRows(5);
+        Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Ttemplate.setName("Ttemplate"); // NOI18N
+        Scroll3.setViewportView(Ttemplate);
+
+        jPanel1.add(Scroll3);
+
+        internalFrame4.add(jPanel1, java.awt.BorderLayout.PAGE_START);
 
         WindowTemplate.getContentPane().add(internalFrame4, java.awt.BorderLayout.CENTER);
 
@@ -1282,7 +1314,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023 12:26:10" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023 21:44:50" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -2756,7 +2788,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel174);
         jLabel174.setBounds(10, 2070, 125, 23);
 
-        TglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023 12:26:11" }));
+        TglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023 21:44:50" }));
         TglKeluar.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglKeluar.setName("TglKeluar"); // NOI18N
         TglKeluar.setOpaque(false);
@@ -4372,28 +4404,21 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void tbTemplateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTemplateMouseClicked
         if(tabMode1.getRowCount() != 0) {
             try {
-                x = JOptionPane.showConfirmDialog(rootPane, "Apakah data ini akan dipakai..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    getDataTemplate();
-                    WindowTemplate.dispose();
+                if (tbTemplate.getSelectedRow() != -1) {
+                    Ttemplate.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
                 }
             } catch (java.lang.NullPointerException e) {
             }
         }
     }//GEN-LAST:event_tbTemplateMouseClicked
 
-    private void tbTemplateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbTemplateKeyPressed
-        if (tabMode1.getRowCount() != 0) {
-            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-                WindowTemplate.dispose();
-            }
-        }
-    }//GEN-LAST:event_tbTemplateKeyPressed
-
     private void BtnAlergiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlergiActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 1;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4401,9 +4426,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAlergiActionPerformed
 
     private void BtnAnamnesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAnamnesisActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 2;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4411,9 +4439,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAnamnesisActionPerformed
 
     private void BtnPemFisikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemFisikActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 3;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4421,9 +4452,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPemFisikActionPerformed
 
     private void BtnJantungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJantungActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 4;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4431,9 +4465,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnJantungActionPerformed
 
     private void BtnParuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnParuActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 5;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4441,9 +4478,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnParuActionPerformed
 
     private void BtnAbdomenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbdomenActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 6;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4451,9 +4491,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAbdomenActionPerformed
 
     private void BtnPunggungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPunggungActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 7;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4461,9 +4504,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPunggungActionPerformed
 
     private void BtnEkstremActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEkstremActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 8;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4471,9 +4517,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnEkstremActionPerformed
 
     private void BtnGambarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGambarActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 9;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4481,9 +4530,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnGambarActionPerformed
 
     private void BtnDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDiagnosaActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 10;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4491,9 +4543,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnDiagnosaActionPerformed
 
     private void BtnRencanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRencanaActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 11;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4501,9 +4556,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRencanaActionPerformed
 
     private void BtnInformasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInformasiActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 12;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4511,9 +4569,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnInformasiActionPerformed
 
     private void BtnAsuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsuhanActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 13;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4521,9 +4582,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAsuhanActionPerformed
 
     private void BtnAlasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlasanActionPerformed
+        pilihan = 0;
+        Ttemplate.setText("");
+        
         pilihan = 14;
         tampilTemplate();
-        WindowTemplate.setSize(601, 325);
+        WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -4545,6 +4609,14 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             BtnCari1ActionPerformed(null);
         }
     }//GEN-LAST:event_BtnCari1KeyPressed
+
+    private void BtnCopasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopasActionPerformed
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah data ini akan dipakai..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            copas();
+            WindowTemplate.dispose();
+        }
+    }//GEN-LAST:event_BtnCopasActionPerformed
 
     /**
     * @param args the command line arguments
@@ -4573,6 +4645,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCloseIn1;
+    private widget.Button BtnCopas;
     private widget.Button BtnDiagnosa;
     private widget.Button BtnDokter;
     private widget.Button BtnDpjp;
@@ -4637,6 +4710,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll3;
     private widget.TextArea TAbdomen;
     private widget.TextBox TAir;
     private widget.TextArea TAlasanDirujuk;
@@ -4694,6 +4768,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.TextBox Tspo2;
     private widget.TextBox Ttd;
     private widget.TextBox Ttemp;
+    private widget.TextArea Ttemplate;
     private widget.TextBox Tusg;
     private widget.TextBox Txray;
     private javax.swing.JDialog WindowTemplate;
@@ -4843,6 +4918,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private widget.Label jLabel98;
     private widget.Label jLabel99;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator3;
@@ -5206,6 +5282,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         ChkLaserasi.setSelected(false);
         ChkTdkTampk.setSelected(false);
         BtnRencana.setEnabled(false);
+        Valid.tabelKosong(tabMode1);
         hitungSkorDowne();
     }
 
@@ -6115,100 +6192,100 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.Alergi like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.Alergi''<> and p.no_rkm_medis like ? OR "
+                        + "pa.Alergi''<> and p.nm_pasien like ? OR "
+                        + "pa.Alergi''<> and pa.Alergi like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 2) {
                 ps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.anamnesis like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.anamnesis<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.anamnesis<>'' and p.nm_pasien like ? OR "
+                        + "pa.anamnesis<>'' and pa.anamnesis like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 3) {
                 ps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.pemeriksaan_fisik like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.pemeriksaan_fisik<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.pemeriksaan_fisik<>'' and p.nm_pasien like ? OR "
+                        + "pa.pemeriksaan_fisik<>'' and pa.pemeriksaan_fisik like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 4) {
                 ps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.survei_jantung like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.survei_jantung<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.survei_jantung<>'' and p.nm_pasien like ? OR "
+                        + "pa.survei_jantung<>'' and pa.survei_jantung like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 5) {
                 ps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.survei_paru like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.survei_paru<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.survei_paru<>'' and p.nm_pasien like ? OR "
+                        + "pa.survei_paru<>'' and pa.survei_paru like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 6) {
                 ps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.survei_abdomen like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.survei_abdomen<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.survei_abdomen<>'' and p.nm_pasien like ? OR "
+                        + "pa.survei_abdomen<>'' and pa.survei_abdomen like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 7) {
                 ps7 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.survei_punggung like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.survei_punggung<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.survei_punggung<>'' and p.nm_pasien like ? OR "
+                        + "pa.survei_punggung<>'' and pa.survei_punggung like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 8) {
                 ps8 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.survei_ekstremitas like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.survei_ekstremitas<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.survei_ekstremitas<>'' and p.nm_pasien like ? OR "
+                        + "pa.survei_ekstremitas<>'' and pa.survei_ekstremitas like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 9) {
                 ps9 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.ket_gambar like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.ket_gambar<'' and p.no_rkm_medis like ? OR "
+                        + "pa.ket_gambar<'' and p.nm_pasien like ? OR "
+                        + "pa.ket_gambar<'' and pa.ket_gambar like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 10) {
                 ps10 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.diag_medis_sementara like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.diag_medis_sementara<'' and p.no_rkm_medis like ? OR "
+                        + "pa.diag_medis_sementara<'' and p.nm_pasien like ? OR "
+                        + "pa.diag_medis_sementara<'' and pa.diag_medis_sementara like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 11) {
                 ps11 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.ket_rencana_instruksi like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.ket_rencana_instruksi<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.ket_rencana_instruksi<>'' and p.nm_pasien like ? OR "
+                        + "pa.ket_rencana_instruksi<>'' and pa.ket_rencana_instruksi like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 12) {
                 ps12 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.telah_diberikan_informasi_edukasi like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.telah_diberikan_informasi_edukasi<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.telah_diberikan_informasi_edukasi<>'' and p.nm_pasien like ? OR "
+                        + "pa.telah_diberikan_informasi_edukasi<>'' and pa.telah_diberikan_informasi_edukasi like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 13) {
                 ps13 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.rencana_asuhan_diharapkan like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.rencana_asuhan_diharapkan<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.rencana_asuhan_diharapkan<>'' and p.nm_pasien like ? OR "
+                        + "pa.rencana_asuhan_diharapkan<>'' and pa.rencana_asuhan_diharapkan like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 14) {
                 ps14 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "p.no_rkm_medis like ? OR "
-                        + "p.nm_pasien like ? OR "
-                        + "pa.alasan_dirujuk like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.alasan_dirujuk<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.alasan_dirujuk<>'' and p.nm_pasien like ? OR "
+                        + "pa.alasan_dirujuk<>'' and pa.alasan_dirujuk like ? ORDER BY pa.tanggal desc limit 20");
             }
             try {
                 if (pilihan == 1) {
@@ -6449,37 +6526,35 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         }
     }
     
-    private void getDataTemplate() {
-        if (tbTemplate.getSelectedRow() != -1) {
-            if (pilihan == 1) {
-                TAlergi.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 2) {
-                TAnamnesis.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 3) {
-                TPemeriksaan.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 4) {
-                TJantung.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 5) {
-                TParu.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 6) {
-                TAbdomen.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 7) {
-                TPunggung.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 8) {
-                TEkstremitas.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 9) {
-                Tket_gambar.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 10) {
-                TDiagSementara.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 11) {
-                TketRencana.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 12) {
-                Tedukasi.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 13) {
-                Trencana.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            } else if (pilihan == 14) {
-                TAlasanDirujuk.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
-            }
+    private void copas() {
+        if (pilihan == 1) {
+            TAlergi.setText(Ttemplate.getText());
+        } else if (pilihan == 2) {
+            TAnamnesis.setText(Ttemplate.getText());
+        } else if (pilihan == 3) {
+            TPemeriksaan.setText(Ttemplate.getText());
+        } else if (pilihan == 4) {
+            TJantung.setText(Ttemplate.getText());
+        } else if (pilihan == 5) {
+            TParu.setText(Ttemplate.getText());
+        } else if (pilihan == 6) {
+            TAbdomen.setText(Ttemplate.getText());
+        } else if (pilihan == 7) {
+            TPunggung.setText(Ttemplate.getText());
+        } else if (pilihan == 8) {
+            TEkstremitas.setText(Ttemplate.getText());
+        } else if (pilihan == 9) {
+            Tket_gambar.setText(Ttemplate.getText());
+        } else if (pilihan == 10) {
+            TDiagSementara.setText(Ttemplate.getText());
+        } else if (pilihan == 11) {
+            TketRencana.setText(Ttemplate.getText());
+        } else if (pilihan == 12) {
+            Tedukasi.setText(Ttemplate.getText());
+        } else if (pilihan == 13) {
+            Trencana.setText(Ttemplate.getText());
+        } else if (pilihan == 14) {
+            TAlasanDirujuk.setText(Ttemplate.getText());
         }
     }
 }

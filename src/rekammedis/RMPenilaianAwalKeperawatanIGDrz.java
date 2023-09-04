@@ -704,13 +704,12 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Assesmen Keperawatan Gawat Darurat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Assesmen Keperawatan Gawat Darurat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         TabRawat.setBackground(new java.awt.Color(255, 255, 254));
-        TabRawat.setForeground(new java.awt.Color(0, 0, 0));
         TabRawat.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabRawat.setName("TabRawat"); // NOI18N
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -765,7 +764,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2023 19:18:57" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023 09:29:17" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -1115,7 +1114,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel30);
         jLabel30.setBounds(0, 415, 130, 23);
 
-        ChkSkriningD.setBackground(new java.awt.Color(240, 250, 230));
+        ChkSkriningD.setBackground(new java.awt.Color(242, 242, 242));
         ChkSkriningD.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(ChkSkriningD);
         ChkSkriningD.setText("DEWASA (Modifikasi MST)");
@@ -1131,7 +1130,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(ChkSkriningD);
         ChkSkriningD.setBounds(30, 435, 160, 23);
 
-        ChkSkriningA.setBackground(new java.awt.Color(240, 250, 230));
+        ChkSkriningA.setBackground(new java.awt.Color(242, 242, 242));
         ChkSkriningA.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(ChkSkriningA);
         ChkSkriningA.setText("ANAK (berdasarkan modifikasi form STRONG Kids)");
@@ -1253,7 +1252,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         jLabel74.setBounds(0, 645, 350, 23);
 
         kesimpulanGZDewasa.setEditable(false);
-        kesimpulanGZDewasa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Dewasa (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        kesimpulanGZDewasa.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Dewasa (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanGZDewasa.setColumns(20);
         kesimpulanGZDewasa.setRows(5);
         kesimpulanGZDewasa.setName("kesimpulanGZDewasa"); // NOI18N
@@ -1261,7 +1260,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         kesimpulanGZDewasa.setBounds(38, 675, 350, 50);
 
         kesimpulanGZanak.setEditable(false);
-        kesimpulanGZanak.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Anak (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        kesimpulanGZanak.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi Anak (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanGZanak.setColumns(20);
         kesimpulanGZanak.setRows(5);
         kesimpulanGZanak.setName("kesimpulanGZanak"); // NOI18N
@@ -1526,9 +1525,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel85);
         jLabel85.setBounds(758, 435, 40, 23);
 
-        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ASSESMEN RESIKO JATUH : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll8.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " ASSESMEN RESIKO JATUH : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll8.setName("Scroll8"); // NOI18N
-        Scroll8.setOpaque(true);
 
         tbFaktorResiko.setName("tbFaktorResiko"); // NOI18N
         tbFaktorResiko.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1565,7 +1563,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TotSkorRJ.setBounds(698, 815, 40, 23);
 
         kesimpulanResikoJatuh.setEditable(false);
-        kesimpulanResikoJatuh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skor Resiko Jatuh : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(0, 0, 0))); // NOI18N
+        kesimpulanResikoJatuh.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skor Resiko Jatuh : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanResikoJatuh.setColumns(20);
         kesimpulanResikoJatuh.setRows(5);
         kesimpulanResikoJatuh.setName("kesimpulanResikoJatuh"); // NOI18N
@@ -1648,7 +1646,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
         TabTindakanPencegahan.setBackground(new java.awt.Color(255, 255, 254));
         TabTindakanPencegahan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TabTindakanPencegahan.setForeground(new java.awt.Color(0, 0, 0));
         TabTindakanPencegahan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabTindakanPencegahan.setName("TabTindakanPencegahan"); // NOI18N
 
@@ -1657,7 +1654,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
         TabPencegahanDewasa.setBackground(new java.awt.Color(255, 255, 254));
         TabPencegahanDewasa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TabPencegahanDewasa.setForeground(new java.awt.Color(0, 0, 0));
         TabPencegahanDewasa.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabPencegahanDewasa.setName("TabPencegahanDewasa"); // NOI18N
 
@@ -1712,7 +1708,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
         TabPencegahanAnak.setBackground(new java.awt.Color(255, 255, 254));
         TabPencegahanAnak.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        TabPencegahanAnak.setForeground(new java.awt.Color(0, 0, 0));
         TabPencegahanAnak.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabPencegahanAnak.setName("TabPencegahanAnak"); // NOI18N
 
@@ -2209,7 +2204,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel94);
         jLabel94.setBounds(0, 2169, 200, 23);
 
-        chkIden1.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden1.setBackground(new java.awt.Color(242, 242, 242));
         chkIden1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden1.setText("Pasien dengan keterbatasan kognitif, ketergantungan aktifitas harian (hambatan mobilisasi)");
         chkIden1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2219,7 +2214,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden1);
         chkIden1.setBounds(30, 2189, 470, 23);
 
-        chkIden2.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden2.setBackground(new java.awt.Color(242, 242, 242));
         chkIden2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden2.setText("Lansia dengan lebih dari 1 masalah kesehatan");
         chkIden2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2229,7 +2224,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden2);
         chkIden2.setBounds(30, 2219, 250, 23);
 
-        chkIden3.setBackground(new java.awt.Color(255, 255, 250));
+        chkIden3.setBackground(new java.awt.Color(242, 242, 242));
         chkIden3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkIden3.setForeground(new java.awt.Color(0, 0, 0));
         chkIden3.setText("Pasien dengan resiko tinggi (infeksi, kejang, penurunan kesadaran)");
@@ -2243,7 +2238,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden3);
         chkIden3.setBounds(30, 2249, 350, 23);
 
-        chkIden4.setBackground(new java.awt.Color(255, 255, 250));
+        chkIden4.setBackground(new java.awt.Color(242, 242, 242));
         chkIden4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkIden4.setForeground(new java.awt.Color(0, 0, 0));
         chkIden4.setText("Potensi komplain tinggi");
@@ -2257,7 +2252,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden4);
         chkIden4.setBounds(30, 2279, 150, 23);
 
-        chkIden5.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden5.setBackground(new java.awt.Color(242, 242, 242));
         chkIden5.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden5.setText("Pasien dengan penyakit kronis, katastropik, terminal");
         chkIden5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2267,7 +2262,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden5);
         chkIden5.setBounds(30, 2309, 300, 23);
 
-        chkIden6.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden6.setBackground(new java.awt.Color(242, 242, 242));
         chkIden6.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden6.setText("Sering masuk IGD, readmisi Rumah Sakit");
         chkIden6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2277,7 +2272,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden6);
         chkIden6.setBounds(510, 2189, 310, 23);
 
-        chkIden7.setBackground(new java.awt.Color(255, 255, 250));
+        chkIden7.setBackground(new java.awt.Color(242, 242, 242));
         chkIden7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkIden7.setForeground(new java.awt.Color(0, 0, 0));
         chkIden7.setText("Perkiraan asuhan dengan biaya tinggi");
@@ -2291,7 +2286,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden7);
         chkIden7.setBounds(510, 2219, 310, 23);
 
-        chkIden8.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden8.setBackground(new java.awt.Color(242, 242, 242));
         chkIden8.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden8.setText("Pasien tanpa keluarga/terlantar, tinggal sendiri");
         chkIden8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2301,7 +2296,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden8);
         chkIden8.setBounds(510, 2249, 310, 23);
 
-        chkIden9.setBackground(new java.awt.Color(255, 255, 250));
+        chkIden9.setBackground(new java.awt.Color(242, 242, 242));
         chkIden9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkIden9.setForeground(new java.awt.Color(0, 0, 0));
         chkIden9.setText("Kasus yang melebihi rata-rata lama dirawat");
@@ -2315,7 +2310,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkIden9);
         chkIden9.setBounds(510, 2279, 310, 23);
 
-        chkIden10.setBackground(new java.awt.Color(240, 250, 230));
+        chkIden10.setBackground(new java.awt.Color(242, 242, 242));
         chkIden10.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkIden10.setText("Kasus yang membutuhkan kontinuitas pelayanan, rencana");
         chkIden10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2338,7 +2333,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel96);
         jLabel96.setBounds(0, 2354, 100, 23);
 
-        chkMPP.setBackground(new java.awt.Color(255, 255, 250));
+        chkMPP.setBackground(new java.awt.Color(242, 242, 242));
         chkMPP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkMPP.setForeground(new java.awt.Color(0, 0, 0));
         chkMPP.setText("Manajer Pelayanan Pasien");
@@ -2352,7 +2347,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(chkMPP);
         chkMPP.setBounds(106, 2354, 150, 23);
 
-        chkDP.setBackground(new java.awt.Color(240, 250, 230));
+        chkDP.setBackground(new java.awt.Color(242, 242, 242));
         chkDP.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         chkDP.setText("Discharge Planning");
         chkDP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2368,7 +2363,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2023 19:19:01" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023 09:29:17" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2543,7 +2538,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2558,7 +2553,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-07-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-07-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

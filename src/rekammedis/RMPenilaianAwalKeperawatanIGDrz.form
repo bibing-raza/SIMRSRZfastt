@@ -43,7 +43,6 @@
                 </LineBorder>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -67,9 +66,6 @@
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="ff" red="ff" type="rgb"/>
-            </Property>
-            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="0" green="0" red="0" type="rgb"/>
             </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="12" style="0"/>
@@ -225,7 +221,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="17-07-2023 09:29:17"/>
+                                <StringItem index="0" value="04-09-2023 23:25:23"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy HH:mm:ss"/>
@@ -956,7 +952,7 @@
                         <Component class="widget.RadioButton" name="ChkSkriningD">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -988,7 +984,7 @@
                         <Component class="widget.RadioButton" name="ChkSkriningA">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -1247,7 +1243,6 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title=" Kesimpulan Skrining Gizi Dewasa (Total Skor) : ">
                                   <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
@@ -1268,7 +1263,6 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title=" Kesimpulan Skrining Gizi Anak (Total Skor) : ">
                                   <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
@@ -1753,12 +1747,10 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title=" ASSESMEN RESIKO JATUH : ">
                                   <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
                             <Property name="name" type="java.lang.String" value="Scroll8" noResource="true"/>
-                            <Property name="opaque" type="boolean" value="true"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1818,7 +1810,6 @@
                               <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
                                 <TitledBorder title=" Kesimpulan Skor Resiko Jatuh : ">
                                   <Font PropertyName="font" name="Tahoma" size="11" style="0"/>
-                                  <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
                                 </TitledBorder>
                               </Border>
                             </Property>
@@ -1958,9 +1949,6 @@
                                 <EmptyBorder/>
                               </Border>
                             </Property>
-                            <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="0" green="0" red="0" type="rgb"/>
-                            </Property>
                             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                               <Font name="Tahoma" size="12" style="0"/>
                             </Property>
@@ -1997,9 +1985,6 @@
                                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                                         <EmptyBorder/>
                                       </Border>
-                                    </Property>
-                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="0" green="0" red="0" type="rgb"/>
                                     </Property>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="12" style="0"/>
@@ -2143,9 +2128,6 @@
                                       <Border info="org.netbeans.modules.form.compat2.border.EmptyBorderInfo">
                                         <EmptyBorder/>
                                       </Border>
-                                    </Property>
-                                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                                      <Color blue="0" green="0" red="0" type="rgb"/>
                                     </Property>
                                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                                       <Font name="Tahoma" size="12" style="0"/>
@@ -3302,7 +3284,7 @@
                         <Component class="widget.RadioButton" name="chkIden1">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3328,7 +3310,7 @@
                         <Component class="widget.RadioButton" name="chkIden2">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3354,7 +3336,7 @@
                         <Component class="widget.CekBox" name="chkIden3">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3389,7 +3371,7 @@
                         <Component class="widget.CekBox" name="chkIden4">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3424,7 +3406,7 @@
                         <Component class="widget.RadioButton" name="chkIden5">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3450,7 +3432,7 @@
                         <Component class="widget.RadioButton" name="chkIden6">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3476,7 +3458,7 @@
                         <Component class="widget.CekBox" name="chkIden7">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3511,7 +3493,7 @@
                         <Component class="widget.RadioButton" name="chkIden8">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3537,7 +3519,7 @@
                         <Component class="widget.CekBox" name="chkIden9">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3572,7 +3554,7 @@
                         <Component class="widget.RadioButton" name="chkIden10">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3627,7 +3609,7 @@
                         <Component class="widget.CekBox" name="chkMPP">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="fa" green="ff" red="ff" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3662,7 +3644,7 @@
                         <Component class="widget.RadioButton" name="chkDP">
                           <Properties>
                             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                              <Color blue="e6" green="fa" red="f0" type="rgb"/>
+                              <Color blue="f2" green="f2" red="f2" type="rgb"/>
                             </Property>
                             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                               <Border info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
@@ -3703,7 +3685,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="17-07-2023 09:29:17"/>
+                                <StringItem index="0" value="04-09-2023 23:25:25"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy HH:mm:ss"/>
@@ -4158,7 +4140,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="17-07-2023"/>
+                            <StringItem index="0" value="04-09-2023"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4187,7 +4169,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="17-07-2023"/>
+                            <StringItem index="0" value="04-09-2023"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
