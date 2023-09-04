@@ -3469,6 +3469,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnJatuhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJatuhActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 1;
         tampilTemplate();
@@ -3482,6 +3483,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnLukaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLukaActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 2;
         tampilTemplate();
@@ -3495,6 +3497,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnListrikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnListrikActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 3;
         tampilTemplate();
@@ -3508,6 +3511,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnKimiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKimiaActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 4;
         tampilTemplate();
@@ -3521,6 +3525,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnLainyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnLainyaActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 5;
         tampilTemplate();
@@ -3534,6 +3539,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnKeluhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluhanActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 6;
         tampilTemplate();
@@ -3547,6 +3553,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnVasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVasActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 7;
         tampilTemplate();
@@ -3560,6 +3567,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private void BtnCatatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
 
         pilihan = 8;
         tampilTemplate();

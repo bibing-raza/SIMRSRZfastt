@@ -4415,6 +4415,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnAlergiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlergiActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 1;
         tampilTemplate();
@@ -4428,6 +4429,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnAnamnesisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAnamnesisActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 2;
         tampilTemplate();
@@ -4441,6 +4443,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnPemFisikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemFisikActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 3;
         tampilTemplate();
@@ -4454,6 +4457,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnJantungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJantungActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 4;
         tampilTemplate();
@@ -4467,6 +4471,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnParuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnParuActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 5;
         tampilTemplate();
@@ -4480,6 +4485,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnAbdomenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAbdomenActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 6;
         tampilTemplate();
@@ -4493,6 +4499,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnPunggungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPunggungActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 7;
         tampilTemplate();
@@ -4506,6 +4513,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnEkstremActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEkstremActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 8;
         tampilTemplate();
@@ -4519,6 +4527,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnGambarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGambarActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 9;
         tampilTemplate();
@@ -4532,6 +4541,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDiagnosaActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 10;
         tampilTemplate();
@@ -4545,6 +4555,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnRencanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRencanaActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 11;
         tampilTemplate();
@@ -4558,6 +4569,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnInformasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInformasiActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 12;
         tampilTemplate();
@@ -4571,6 +4583,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnAsuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsuhanActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 13;
         tampilTemplate();
@@ -4584,6 +4597,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private void BtnAlasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAlasanActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
+        TCari1.setText("");
         
         pilihan = 14;
         tampilTemplate();
