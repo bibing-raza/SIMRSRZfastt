@@ -4419,6 +4419,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 1;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Alergi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4433,6 +4434,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 2;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Anamnesis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4447,6 +4449,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 3;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Pemeriksaan Fisik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4461,6 +4464,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 4;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Survei Sekunder Jantung ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4475,6 +4479,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 5;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Survei Sekunder Paru ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4489,6 +4494,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 6;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Survei Sekunder Abdomen & Pelvis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4503,6 +4509,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 7;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Survei Sekunder Punggung & Pinggang ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4517,6 +4524,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 8;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Survei Sekunder Ekstremitas ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4531,6 +4539,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 9;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Penjelasan Gambar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4545,6 +4554,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 10;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Diagnosa Medis Sementara ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4559,6 +4569,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 11;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Ket. Rencana/Instruksi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4573,6 +4584,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 12;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Informasi/Edukasi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4587,6 +4599,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 13;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Rencana Asuhan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -4601,6 +4614,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         pilihan = 14;
         tampilTemplate();
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Alasan Dirujuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -6206,9 +6220,9 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "pa.Alergi''<> and p.no_rkm_medis like ? OR "
-                        + "pa.Alergi''<> and p.nm_pasien like ? OR "
-                        + "pa.Alergi''<> and pa.Alergi like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.Alergi<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.Alergi<>'' and p.nm_pasien like ? OR "
+                        + "pa.Alergi<>'' and pa.Alergi like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 2) {
                 ps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
@@ -6262,16 +6276,16 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 ps9 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "pa.ket_gambar<'' and p.no_rkm_medis like ? OR "
-                        + "pa.ket_gambar<'' and p.nm_pasien like ? OR "
-                        + "pa.ket_gambar<'' and pa.ket_gambar like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.ket_gambar<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.ket_gambar<>'' and p.nm_pasien like ? OR "
+                        + "pa.ket_gambar<>'' and pa.ket_gambar like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 10) {
                 ps10 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "pa.diag_medis_sementara<'' and p.no_rkm_medis like ? OR "
-                        + "pa.diag_medis_sementara<'' and p.nm_pasien like ? OR "
-                        + "pa.diag_medis_sementara<'' and pa.diag_medis_sementara like ? ORDER BY pa.tanggal desc limit 20");
+                        + "pa.diag_medis_sementara<>'' and p.no_rkm_medis like ? OR "
+                        + "pa.diag_medis_sementara<>'' and p.nm_pasien like ? OR "
+                        + "pa.diag_medis_sementara<>'' and pa.diag_medis_sementara like ? ORDER BY pa.tanggal desc limit 20");
             } else if (pilihan == 11) {
                 ps11 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pa.* from penilaian_awal_medis_igd pa "
                         + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "

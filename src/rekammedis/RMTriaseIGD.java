@@ -3473,6 +3473,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 1;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Jatuh Dari Ketinggian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3487,6 +3488,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 2;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Luka Bakar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3501,6 +3503,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 3;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Trauma Listrik ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3515,6 +3518,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 4;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Trauma Zat Kimia ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3529,6 +3533,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 5;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Trauma Lainnya ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3543,6 +3548,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 6;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Keluhan Utama ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3557,6 +3563,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 7;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template VAS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -3571,6 +3578,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         pilihan = 8;
         tampilTemplate();
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Catatan Khusus ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
@@ -5069,9 +5077,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                 ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, ti.* from triase_igd ti "
                         + "inner join reg_periksa rp on rp.no_rawat=ti.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "ti.ket_jatuh''<> and p.no_rkm_medis like ? OR "
-                        + "ti.ket_jatuh''<> and p.nm_pasien like ? OR "
-                        + "ti.ket_jatuh''<> and ti.ket_jatuh like ? ORDER BY ti.tanggal desc limit 20");
+                        + "ti.ket_jatuh<>'' and p.no_rkm_medis like ? OR "
+                        + "ti.ket_jatuh<>'' and p.nm_pasien like ? OR "
+                        + "ti.ket_jatuh<>'' and ti.ket_jatuh like ? ORDER BY ti.tanggal desc limit 20");
             } else if (pilihan == 2) {
                 ps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, ti.* from triase_igd ti "
                         + "inner join reg_periksa rp on rp.no_rawat=ti.no_rawat "
