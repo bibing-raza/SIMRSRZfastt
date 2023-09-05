@@ -4555,6 +4555,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
                     DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
+                    DTPCariA.setDate(rs1.getDate("tgl_registrasi"));
                     tgllahir.setText(rs1.getString("tgl_lahir"));
                     
                     td.setText(rs1.getString("td"));
