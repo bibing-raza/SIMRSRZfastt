@@ -1240,12 +1240,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame2.setBorder(null);
         internalFrame2.setName("internalFrame2"); // NOI18N
-        internalFrame2.setOpaque(false);
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
         internalFrame9.setBorder(null);
         internalFrame9.setName("internalFrame9"); // NOI18N
-        internalFrame9.setOpaque(false);
         internalFrame9.setLayout(new java.awt.GridLayout(1, 2));
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa Statistik ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -1292,12 +1290,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame3.setBorder(null);
         internalFrame3.setName("internalFrame3"); // NOI18N
-        internalFrame3.setOpaque(false);
         internalFrame3.setLayout(new java.awt.BorderLayout(1, 1));
 
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setOpaque(false);
         internalFrame4.setLayout(new java.awt.GridLayout(1, 2));
 
         Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur Statistik]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -1345,7 +1341,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame6.setBorder(null);
         internalFrame6.setName("internalFrame6"); // NOI18N
-        internalFrame6.setOpaque(false);
         internalFrame6.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll7.setName("Scroll7"); // NOI18N
@@ -1471,7 +1466,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame7.setBorder(null);
         internalFrame7.setName("internalFrame7"); // NOI18N
-        internalFrame7.setOpaque(false);
         internalFrame7.setLayout(new java.awt.BorderLayout());
 
         Scroll43.setName("Scroll43"); // NOI18N
@@ -1488,7 +1482,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame8.setBorder(null);
         internalFrame8.setName("internalFrame8"); // NOI18N
-        internalFrame8.setOpaque(false);
         internalFrame8.setLayout(new java.awt.BorderLayout());
 
         Scroll44.setName("Scroll44"); // NOI18N

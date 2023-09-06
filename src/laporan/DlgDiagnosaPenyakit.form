@@ -1057,7 +1057,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame2" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1078,7 +1077,6 @@
                       <Border info="null"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="internalFrame9" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -1153,7 +1151,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame3" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1174,7 +1171,6 @@
                       <Border info="null"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="internalFrame4" noResource="true"/>
-                    <Property name="opaque" type="boolean" value="false"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout" value="org.netbeans.modules.form.compat2.layouts.DesignBorderLayout$BorderConstraintsDescription">
@@ -1252,7 +1248,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame6" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1538,7 +1533,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame7" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
@@ -1584,7 +1578,6 @@
                   <Border info="null"/>
                 </Property>
                 <Property name="name" type="java.lang.String" value="internalFrame8" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">

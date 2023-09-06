@@ -51,8 +51,8 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "Pasien","No. LIS", "Keterangan Hasil Lab.", "cekok", "norawat", "Tgl. Periksa",
-            "Jam Periksa", "Dokter Pengirim"}) {
+            "Pasien", "No. LIS", "Keterangan Hasil Lab.", "cekok", "norawat", "Tgl. Periksa",
+            "Jam Periksa", "Dokter Pengirim", "Jns. Rawat"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -63,12 +63,12 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         tbLIS.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLIS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             TableColumn column = tbLIS.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(230);
+                column.setPreferredWidth(195);
             } else if (i == 1) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(75);
             } else if (i == 2) {
                 column.setPreferredWidth(180);
             } else if (i == 3) {
@@ -82,7 +82,9 @@ public class DlgHasilLIS extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(70);
             } else if (i == 7) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(210);
+            } else if (i == 8) {
+                column.setPreferredWidth(65);
             }
         }
         tbLIS.setDefaultRenderer(Object.class, new WarnaTable());
@@ -363,10 +365,10 @@ public class DlgHasilLIS extends javax.swing.JDialog {
                     + "IF(lh.no_lab IS NULL,'Petugas Lab. belum mengirim hasil','Hasil Lab. bisa dicetak') hasil_lab, "
                     + "IFNULL(lh.no_lab,'') cekOK, pl.no_rawat, IFNULL(DATE_FORMAT(lh.waktu_reg_lab,'%d-%m-%Y'),DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y')) tgl, "
                     + "IFNULL(DATE_FORMAT(lh.waktu_reg_lab,'%H:%i:%s'),DATE_FORMAT(pl.jam,'%H:%i:%s')) jam, "
-                    + "IFNULL(lh.dokter_pengirim,'') dokter_pengirim FROM lis_reg lr LEFT JOIN reg_periksa rp ON rp.no_rawat=lr.no_rawat "
-                    + "LEFT JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis LEFT JOIN periksa_lab pl ON pl.no_rawat=lr.no_rawat "
-                    + "LEFT JOIN lis_hasil_data_pasien lh ON lh.no_lab=lr.no_lab WHERE lr.no_rawat='" + norawat + "' "
-                    + "GROUP BY lr.no_lab ORDER BY hasil_lab, tgl DESC, jam DESC");
+                    + "IFNULL(lh.dokter_pengirim,'') dokter_pengirim, if(rp.status_lanjut='Ralan','R. Jalan','R. Inap') stts_lnjut FROM lis_reg lr "
+                    + "LEFT JOIN reg_periksa rp ON rp.no_rawat=lr.no_rawat LEFT JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
+                    + "LEFT JOIN periksa_lab pl ON pl.no_rawat=lr.no_rawat LEFT JOIN lis_hasil_data_pasien lh ON lh.no_lab=lr.no_lab WHERE "
+                    + "rp.no_rkm_medis='" + nomorrm + "' GROUP BY lr.no_lab ORDER BY rp.no_rawat desc, tgl DESC, jam DESC, hasil_lab limit 10");
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -378,7 +380,8 @@ public class DlgHasilLIS extends javax.swing.JDialog {
                         rs.getString("no_rawat"),
                         rs.getString("tgl"),
                         rs.getString("jam"),
-                        rs.getString("dokter_pengirim")
+                        rs.getString("dokter_pengirim"),
+                        rs.getString("stts_lnjut")
                     });
                 }
             } catch (Exception e) {
