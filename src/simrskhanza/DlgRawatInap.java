@@ -3917,7 +3917,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             resep.setLocationRelativeTo(internalFrame1);
             resep.isCek();
             resep.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "Ranap");
-            resep.tampil();
+            resep.tampilDiagStatistik();
+            resep.tampilDiagInadrg();
             resep.setVisible(true);
         }
     }//GEN-LAST:event_MnDiagnosaActionPerformed
@@ -4235,7 +4236,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             diagnosa.setLocationRelativeTo(internalFrame1);
             diagnosa.isCek();            
             diagnosa.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "Ranap");
-            diagnosa.tampil();
+            diagnosa.tampilDiagStatistik();
+            diagnosa.tampilDiagInadrg();
             diagnosa.setVisible(true);
         }
     }//GEN-LAST:event_btnDiagnosaActionPerformed

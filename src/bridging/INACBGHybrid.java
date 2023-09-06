@@ -212,7 +212,8 @@ public class INACBGHybrid extends javax.swing.JDialog {
                                             diagnosa.setLocationRelativeTo(internalFrame1);
                                             diagnosa.isCek();
                                             diagnosa.setNoRm(rs.getString("no_rawat"), rs.getDate("tgl_registrasi"), rs.getString("status_lanjut"));
-                                            diagnosa.tampil();
+                                            diagnosa.tampilDiagStatistik();
+                                            diagnosa.tampilDiagInadrg();
                                             diagnosa.setVisible(true); 
                                         }
                                     } catch (Exception e) {

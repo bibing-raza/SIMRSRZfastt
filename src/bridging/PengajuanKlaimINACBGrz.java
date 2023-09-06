@@ -5126,7 +5126,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     } else {
                         diagnosa.setNoRm(norawat, tglDiagnosa.getDate(), "Ralan");
                     }
-                    diagnosa.tampil();
+                    diagnosa.tampilDiagStatistik();
+                    diagnosa.tampilDiagInadrg();
                     diagnosa.setVisible(true);
                 }
             }
@@ -5154,7 +5155,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
                     } else {
                         diagnosa.setNoRm(norawat, tglDiagnosa.getDate(), "Ralan");
                     }
-                    diagnosa.tampil();
+                    diagnosa.tampilDiagStatistik();
+                    diagnosa.tampilDiagInadrg();
                     diagnosa.setVisible(true);
                 }
             }

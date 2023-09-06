@@ -6538,7 +6538,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.isCek();
                 resep.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "Ralan");
-                resep.tampil();
+                resep.tampilDiagStatistik();
+                resep.tampilDiagInadrg();
                 resep.setVisible(true);
             }
         }

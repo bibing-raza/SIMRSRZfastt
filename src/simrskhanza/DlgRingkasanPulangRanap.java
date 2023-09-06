@@ -1729,7 +1729,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             resep.setLocationRelativeTo(internalFrame1);
             resep.isCek();
             resep.setNoRm(TNoRW.getText(), DTPCari2.getDate(), "Ranap");
-            resep.tampil();
+            resep.tampilDiagStatistik();
+            resep.tampilDiagInadrg();
             resep.setVisible(true);
         }
     }//GEN-LAST:event_MnDiagnosaActionPerformed

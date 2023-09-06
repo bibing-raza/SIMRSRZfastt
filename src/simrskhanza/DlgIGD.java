@@ -6110,7 +6110,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.isCek();
                 resep.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "Ralan");
-                resep.tampil();
+                resep.tampilDiagStatistik();
+                resep.tampilDiagInadrg();
                 resep.setVisible(true);
             }
         }
