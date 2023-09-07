@@ -3080,7 +3080,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void hapus_diagproINADRG() {
-        if (TabRawat.getSelectedIndex() == 2) {
+        if (TabRawat.getSelectedIndex() == 0) {
             if (tabMode1.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, data diagnosa INADRG sudah habis...!!!!");
                 TNoRw.requestFocus();
@@ -3093,7 +3093,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     }
                 }
             }
-        } else if (TabRawat.getSelectedIndex() == 3) {
+        } else if (TabRawat.getSelectedIndex() == 1) {
             if (tabMode2.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, data prosedur/tindakan/ICD 9 INADRG sudah habis...!!!!");
                 TNoRw.requestFocus();
