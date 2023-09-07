@@ -1664,69 +1664,18 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Diagnosa primer belum tersimpan untuk kunjungan pasien saat ini...");
                 } else {
                     formulirKlaim();
-
-//                Map<String, Object> param = new HashMap<>();
-//                param.put("namars", var.getnamars());
-//                param.put("alamatrs", var.getalamatrs());
-//                param.put("kotars", var.getkabupatenrs());
-//                param.put("propinsirs", var.getpropinsirs());
-//                param.put("kontakrs", var.getkontakrs());
-//                param.put("emailrs", var.getemailrs());
-//                param.put("logo", Sequel.cariGambar("select logo from setting"));
-//                Valid.MyReport("rptDiagnosa.jasper", "report", "::[ Data Diagnosa Pasien ]::",
-//                        "select reg_periksa.tgl_registrasi,diagnosa_pasien.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"
-//                        + "diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status "
-//                        + "from diagnosa_pasien inner join reg_periksa inner join pasien inner join penyakit "
-//                        + "on diagnosa_pasien.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-//                        + "and diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
-//                        + "where reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and reg_periksa.tgl_registrasi like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and diagnosa_pasien.no_rawat like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and reg_periksa.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and pasien.nm_pasien like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and diagnosa_pasien.kd_penyakit like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and penyakit.nm_penyakit like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and diagnosa_pasien.status like '%" + TCari.getText().trim() + "%' "
-//                        + "order by reg_periksa.tgl_registrasi,diagnosa_pasien.prioritas ", param);
                 }
             } else if (!Status.getSelectedItem().equals("Ralan")) {
                 JOptionPane.showMessageDialog(null, "Untuk saat ini hanya mencetak formulir klaim pasien rawat jalan saja...!!!!");
             }
 
         } else if (TabRawat.getSelectedIndex() == 1) {
-//            if (TabModeTindakanPasien.getRowCount() == 0) {
-//                JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-//                BtnBatal.requestFocus();
-//            } else if (TabModeTindakanPasien.getRowCount() != 0 && (Status.getSelectedItem().equals("Ralan"))) {
             if (cekPremier == 0 && (Status.getSelectedItem().equals("Ralan"))) {
                 JOptionPane.showMessageDialog(null, "Diagnosa primer belum tersimpan untuk kunjungan pasien saat ini...");
             } else if (!Status.getSelectedItem().equals("Ralan")) {
                 JOptionPane.showMessageDialog(null, "Untuk saat ini hanya mencetak formulir klaim pasien rawat jalan saja...!!!!");
             } else {
                 formulirKlaim();
-                
-//                Map<String, Object> param = new HashMap<>();
-//                param.put("namars", var.getnamars());
-//                param.put("alamatrs", var.getalamatrs());
-//                param.put("kotars", var.getkabupatenrs());
-//                param.put("propinsirs", var.getpropinsirs());
-//                param.put("kontakrs", var.getkontakrs());
-//                param.put("emailrs", var.getemailrs());
-//                param.put("logo", Sequel.cariGambar("select logo from setting"));
-//                Valid.MyReport("rptProsedur.jasper", "report", "::[ Data Prosedur Tindakan Pasien ]::",
-//                        "select reg_periksa.tgl_registrasi,prosedur_pasien.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,"
-//                        + "prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status "
-//                        + "from prosedur_pasien inner join reg_periksa inner join pasien inner join icd9 "
-//                        + "on prosedur_pasien.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
-//                        + "and prosedur_pasien.kode=icd9.kode "
-//                        + "where reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and reg_periksa.tgl_registrasi like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and prosedur_pasien.no_rawat like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and reg_periksa.no_rkm_medis like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and pasien.nm_pasien like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and prosedur_pasien.kode like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and icd9.deskripsi_panjang like '%" + TCari.getText().trim() + "%' or "
-//                        + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and reg_periksa.no_rkm_medis like '%" + TCariPasien.getText() + "%' and prosedur_pasien.status like '%" + TCari.getText().trim() + "%' "
-//                        + "order by reg_periksa.tgl_registrasi,prosedur_pasien.prioritas ", param);
-  
             }
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -1740,14 +1689,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        cekPremier = 0;
-        cekPremier = Sequel.cariInteger("select count(-1) from diagnosa_pasien where no_rawat='" + TNoRw.getText() + "' and prioritas=1");
-        
-        if (cekPremier == 0 && (!akses.getkode().equals("Admin Utama"))) {
-            JOptionPane.showMessageDialog(null, "Diagnosa primer belum tersimpan untuk kunjungan pasien saat ini...");
-        } else {
-            dispose();
-        }
+        dispose();        
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
