@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="559" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" uuid="0ad1de82-d66d-494b-bdc9-496918b97a08">
 	<property name="ireport.zoom" value="1.8181818181818545"/>
 	<property name="ireport.x" value="0"/>
@@ -967,10 +967,9 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				</textElement>
 				<text><![CDATA[Jantung]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="65" y="157" width="312" height="23" uuid="0580a9a5-836a-48f5-a760-d37e857e701b">
+			<textField>
+				<reportElement x="65" y="157" width="325" height="23" uuid="0580a9a5-836a-48f5-a760-d37e857e701b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
@@ -989,10 +988,9 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				</textElement>
 				<text><![CDATA[Paru]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="65" y="180" width="312" height="23" uuid="589fd9ff-3ada-4766-b69d-e92a27172b7b">
+			<textField>
+				<reportElement x="65" y="180" width="325" height="23" uuid="589fd9ff-3ada-4766-b69d-e92a27172b7b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
@@ -1066,10 +1064,9 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				</textElement>
 				<text><![CDATA[Punggung & Pinggang]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="65" y="214" width="312" height="23" uuid="5bde56cd-0b87-4885-932d-51b4b65e6907">
+			<textField>
+				<reportElement x="65" y="214" width="325" height="23" uuid="5bde56cd-0b87-4885-932d-51b4b65e6907">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
@@ -1099,10 +1096,9 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				</textElement>
 				<text><![CDATA[Ekstremitas]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="65" y="237" width="312" height="23" uuid="d18f6b85-f969-412a-a6d2-e4ec35653dda">
+			<textField>
+				<reportElement x="65" y="237" width="325" height="23" uuid="d18f6b85-f969-412a-a6d2-e4ec35653dda">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8" isBold="false"/>
@@ -1325,7 +1321,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="3" y="260" width="548" height="53" uuid="28b4fe3b-41f2-49ca-907b-30541d915c94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>

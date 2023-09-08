@@ -9126,8 +9126,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             + "if(ti.skor2_92_93='ya','V','') skor2_92, if(ti.skor3_selain='ya','V','') skor3_selain, if(ti.skor3_35_3='ya','V','') skor3_35, if(ti.skor3_92='ya','V','') skor3_92, "
                             + "ti.catatan, ti.pukul, if(ti.triase_resusitasi='ya','V','') resus, if(ti.triase_non_resusitasi='ya','V','') nonresus, if(ti.triase_klinik='ya','V','') klinik, "
                             + "if(ti.triase_doa='ya','V','') doa, pg.nama petgas, if(ti.kll_tunggal='ya','V','') kll_tunggal, if(ti.kll_versus='ya','V','') kll_versus, if(ti.jatuh='ya','V','') jatuh, "
-                            + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain "
-                            + "from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain, "
+                            + "ti.bb, ti.tb from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                             + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
                 }
             } catch (Exception e) {
@@ -9602,8 +9602,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("spo2", rsLaprm.getString("spo2"));
                     param.put("nyeri", rsLaprm.getString("skala_nyeri"));
                     param.put("resikojatuh", rsLaprm.getString("resiko_jatuh"));
-                    param.put("kriteria", rsLaprm.getString("kriteria_transfer"));
-                    param.put("lab", rsLaprm.getString("lab"));
+                    param.put("kriteria", rsLaprm.getString("kriteria_transfer"));                    
                     param.put("diagnosa", rsLaprm.getString("diagnosa"));
                     param.put("rekomendasi", rsLaprm.getString("rekomendasi"));
                     param.put("alasanpindahruangan", rsLaprm.getString("alasan_pindah_ruangan"));
@@ -9619,6 +9618,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             + Sequel.cariIsi("select date_format(tgl_serah_terima_transfer,'%Y') from transfer_serah_terima_pasien_igd where "
                                     + "no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
 
+                    if (rsLaprm.getString("lab").equals("ya")) {
+                        param.put("lab", "V");
+                    } else {
+                        param.put("lab", "");
+                    }
+                    
                     if (rsLaprm.getString("ekg").equals("ya")) {
                         param.put("ekg", "V");
                     } else {
