@@ -21,6 +21,7 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import inventory.DlgCatatanResep;
+import inventory.DlgPemberianObatPasien;
 import inventory.DlgPenjualan;
 import inventory.DlgPeresepanDokter;
 import inventory.DlgReturJual;
@@ -693,6 +694,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnLihatDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnLihatResepTransferSerahTerimaIGD = new javax.swing.JMenuItem();
+        MnPemberianObat = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetriIGD = new javax.swing.JMenu();
         MnInputDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
         MnLihatDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
@@ -2088,7 +2090,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnInputDataTransferSerahTerimaIGD.setName("MnInputDataTransferSerahTerimaIGD"); // NOI18N
-        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
         MnInputDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataTransferSerahTerimaIGDActionPerformed(evt);
@@ -2105,7 +2107,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnLihatDataTransferSerahTerimaIGD.setName("MnLihatDataTransferSerahTerimaIGD"); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
         MnLihatDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataTransferSerahTerimaIGDActionPerformed(evt);
@@ -2122,13 +2124,30 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatResepTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatResepTransferSerahTerimaIGD.setIconTextGap(5);
         MnLihatResepTransferSerahTerimaIGD.setName("MnLihatResepTransferSerahTerimaIGD"); // NOI18N
-        MnLihatResepTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnLihatResepTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
         MnLihatResepTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatResepTransferSerahTerimaIGDActionPerformed(evt);
             }
         });
         MnTransferSerahTerimaIGD.add(MnLihatResepTransferSerahTerimaIGD);
+
+        MnPemberianObat.setBackground(new java.awt.Color(255, 255, 254));
+        MnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPemberianObat.setForeground(new java.awt.Color(50, 50, 50));
+        MnPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPemberianObat.setText("Pemberian Obat");
+        MnPemberianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPemberianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPemberianObat.setIconTextGap(5);
+        MnPemberianObat.setName("MnPemberianObat"); // NOI18N
+        MnPemberianObat.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnPemberianObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPemberianObatActionPerformed(evt);
+            }
+        });
+        MnTransferSerahTerimaIGD.add(MnPemberianObat);
 
         MnRMGawatDarurat.add(MnTransferSerahTerimaIGD);
 
@@ -3018,7 +3037,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3871,7 +3890,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4108,7 +4127,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4127,7 +4146,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7521,6 +7540,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
 
+    private void MnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianObatActionPerformed
+        DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
+        akses.setform("DlgKasirRalan");
+        beriObat.isCek();
+        beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText());
+        beriObat.setSize(914, internalFrame1.getHeight() - 40);
+        beriObat.setLocationRelativeTo(internalFrame1);
+        beriObat.setAlwaysOnTop(false);
+        beriObat.setVisible(true);
+    }//GEN-LAST:event_MnPemberianObatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -7630,6 +7660,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnNomorTB;
     private javax.swing.JMenu MnObatRalan;
     private javax.swing.JMenuItem MnOperasi;
+    private javax.swing.JMenuItem MnPemberianObat;
     private javax.swing.JMenuItem MnPemeriksaanKlinisLabHIV;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanKebidanan;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalan;
@@ -8074,6 +8105,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnSuratKeteranganDokter.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnCekRujukanJKN.setEnabled(akses.getbpjs_cek_kartu());
         MnAsesmenMedikObstetri.setEnabled(akses.getpenilaian_awal_medis_ralan_kebidanan());
+        MnPemberianObat.setEnabled(akses.getpemberian_obat());
         
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getkode().equals("Admin Utama")) {
             ppProgramPRB.setEnabled(true);

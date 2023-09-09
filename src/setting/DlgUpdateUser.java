@@ -609,7 +609,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "kendali_Mutu_kendali_Biaya_INACBG,dashboard_eResep,bpjs_sep_internal,kemenkes_sitt,rencana_kontrol_jkn,spri_jkn,hapus_sep,"
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
-                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -836,6 +836,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[C]Temporary Presensi".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[C]Temporary Presensi", rs.getBoolean("temporary_presensi")});
+                    }
+                    
+                    if ("[D]Pemberian Obat Pasien".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[D]Pemberian Obat Pasien", rs.getBoolean("pemberian_obat")});
                     }
 
                     if ("[D]Darurat Stok".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -2355,6 +2359,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[C]Temporary Presensi".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","temporary_presensi='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[D]Pemberian Obat Pasien".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","pemberian_obat='"+tbUser.getValueAt(i,2).toString()+"'");
             }
 
             if("[D]Darurat Stok".equals(tbUser.getValueAt(i,1).toString())){

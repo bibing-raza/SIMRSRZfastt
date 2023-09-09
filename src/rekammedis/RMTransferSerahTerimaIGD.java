@@ -18,6 +18,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgPemberianObatPasien;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -881,6 +882,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnBeriObat = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -1272,7 +1274,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023 10:48:26" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023 20:45:25" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -2967,6 +2969,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        BtnBeriObat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBeriObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Syringe.png"))); // NOI18N
+        BtnBeriObat.setMnemonic('P');
+        BtnBeriObat.setText("Pemberian Obat");
+        BtnBeriObat.setToolTipText("Alt+P");
+        BtnBeriObat.setName("BtnBeriObat"); // NOI18N
+        BtnBeriObat.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnBeriObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBeriObatActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnBeriObat);
+
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -3916,6 +3932,17 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbTemplateMouseClicked
 
+    private void BtnBeriObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBeriObatActionPerformed
+        DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
+        akses.setform("RMTransferSerahTerima");
+        beriObat.isCek();
+        beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
+        beriObat.setSize(914, internalFrame1.getHeight() - 40);
+        beriObat.setLocationRelativeTo(internalFrame1);
+        beriObat.setAlwaysOnTop(false);
+        beriObat.setVisible(true);
+    }//GEN-LAST:event_BtnBeriObatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3936,6 +3963,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Button BtnAlasan;
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
+    private widget.Button BtnBeriObat;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCari2;
@@ -4376,6 +4404,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnHapus.setEnabled(akses.getdata_triase_igd());
         BtnPrint.setEnabled(akses.getdata_triase_igd());
         BtnEdit.setEnabled(akses.getdata_triase_igd());
+        BtnBeriObat.setEnabled(akses.getpemberian_obat());
         TabRawat.setEnabledAt(1, akses.getresep_dokter());
     }
     
