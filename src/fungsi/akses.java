@@ -80,7 +80,7 @@ public final class akses {
             kemenkes_sitt = false, rencana_kontrol_jkn = false, spri_jkn = false, hapus_sep = false, penilaian_awal_medis_ralan_kebidanan = false, penilaian_awal_keperawatan_kebidanan = false,
             ikhtisar_perawatan_hiv = false, survey_kepuasan = false, kemenkes_kanker = false, aktivasi_bridging = false, operator_antrian = false, penilaian_awal_medis_ralan_tht = false,
             rekam_psikologis = false, penilaian_pasien_geriatri = false, penilaian_awal_medis_ralan_mata = false, surat_sakit = false, surat_keterangan_kir_mcu = false, asesmen_medik_dewasa_ranap = false,
-            pemberian_obat = false;
+            pemberian_obat = false, cppt = false;
     public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri;
 
     public static void setData(String user, String pass) {
@@ -477,6 +477,7 @@ public final class akses {
                     akses.surat_keterangan_kir_mcu = true;
                     akses.asesmen_medik_dewasa_ranap = true;
                     akses.pemberian_obat = true;
+                    akses.cppt = true;
                 } else if (rs.getRow() >= 1) {
                     akses.kode = "Admin Utama";
                     akses.penyakit = true;
@@ -849,6 +850,7 @@ public final class akses {
                     akses.surat_keterangan_kir_mcu = true;
                     akses.asesmen_medik_dewasa_ranap = true;
                     akses.pemberian_obat = true;
+                    akses.cppt = true;
                 } else if (rs2.getRow() >= 1) {
                     rs2.beforeFirst();
                     rs2.next();
@@ -1225,6 +1227,7 @@ public final class akses {
                     akses.surat_keterangan_kir_mcu = rs2.getBoolean("surat_keterangan_kir_mcu");
                     akses.asesmen_medik_dewasa_ranap = rs2.getBoolean("asesmen_medik_dewasa_ranap");
                     akses.pemberian_obat = rs2.getBoolean("pemberian_obat");
+                    akses.cppt = rs2.getBoolean("cppt");
                 } else if ((rs.getRow() == 0) && (rs2.getRow() == 0)) {
                     akses.kode = "";
                     akses.penyakit = false;
@@ -1598,6 +1601,7 @@ public final class akses {
                     akses.surat_keterangan_kir_mcu = false;
                     akses.asesmen_medik_dewasa_ranap = false;
                     akses.pemberian_obat = false;
+                    akses.cppt = false;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3246,5 +3250,9 @@ public final class akses {
     
     public static boolean getpemberian_obat() {
         return akses.pemberian_obat;
+    }
+    
+    public static boolean getcppt() {
+        return akses.cppt;
     }
 }

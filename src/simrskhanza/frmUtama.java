@@ -335,6 +335,7 @@ import presensi.DlgSidikJari;
 import presensi.DlgTemporaryPresensi;
 import rekammedis.DlgAssesmenGiziHarian;
 import rekammedis.DlgAssesmenGiziUlang;
+import rekammedis.DlgCPPT;
 import rekammedis.DlgInputKodeICD;
 import rekammedis.DlgMasterDTD;
 import rekammedis.DlgMasterJabatanKomite;
@@ -925,6 +926,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSuratKeteranganDokter = new widget.ButtonBig();
         btnAsesmenMedikDewasaRanap = new widget.ButtonBig();
         btnPemberianObat = new widget.ButtonBig();
+        btnCPPT = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6198,6 +6200,19 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         Panelmenu.add(btnPemberianObat);
+
+        btnCPPT.setForeground(new java.awt.Color(0, 0, 0));
+        btnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
+        btnCPPT.setText("CPPT");
+        btnCPPT.setIconTextGap(0);
+        btnCPPT.setName("btnCPPT"); // NOI18N
+        btnCPPT.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnCPPT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCPPTActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnCPPT);
 
         scrollPane2.setViewportView(Panelmenu);
 
@@ -12333,6 +12348,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPemberianObatActionPerformed
 
+    private void btnCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCPPTActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgCPPT aplikasi = new DlgCPPT(this, false);
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnCPPTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12412,6 +12439,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnBulananHAIsRS;
     private widget.ButtonBig btnBulananHAIsRalan;
     private widget.ButtonBig btnBulananHAIsRanap;
+    private widget.ButtonBig btnCPPT;
     private widget.ButtonBig btnCashFlow;
     private widget.ButtonBig btnCatatanPasien;
     private widget.ButtonBig btnCekBPJSDiagnosa;
@@ -14380,6 +14408,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnCPPT);
+                jmlmenu++;
+            }
+            
             if (akses.getasesmen_medik_dewasa_ranap()== true) {
                 Panelmenu.add(btnAsesmenMedikDewasaRanap);
                 jmlmenu++;
@@ -14867,6 +14900,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnCPPT);
+            jmlmenu++;
+        }
+        
         if (akses.getpemberian_obat() == true) {
             Panelmenu.add(btnPemberianObat);
             jmlmenu++;
@@ -16781,6 +16819,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (akses.getcppt()== true) {
+            if (btnCPPT.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnCPPT);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getpemberian_obat()== true) {
             if (btnPemberianObat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPemberianObat);

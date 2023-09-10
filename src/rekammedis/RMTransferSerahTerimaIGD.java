@@ -60,15 +60,15 @@ import simrskhanza.DlgCariPeriksaRadiologi;
  * @author perpustakaan
  */
 public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
-    private DefaultTableModel tabMode, tabMode1, tabModeResepObat, tabModeFarmasi, tabModeTglBeriObat, tabModeRiwItemObat;
+    private DefaultTableModel tabMode, tabMode1;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     public DlgKamar kamar = new DlgKamar(null, false);
-    private PreparedStatement ps, ps1, ps2, psFar, psTglBO, psRiwIO, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
-    private ResultSet rs, rs1, rs2, rsFar, rsTglBO, rsRiwIO, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
+    private PreparedStatement ps, ps1, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
+    private ResultSet rs, rs1, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
     private int i = 0, x = 0, pilihan = 0, cekHasilRad = 0;
     private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", 
             kd_kamar_pindah = "", resepDipilih = "", cekResep = "", tglResep = "", status_kmr = "",
@@ -324,130 +324,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         }
         tbTransfer.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabModeResepObat = new DefaultTableModel(null, new Object[]{
-            "P", "No.Rawat", "Tgl.Input", "Jam Input", "Nama Obat", "Status", "Nama Dokter", "Id"}) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                boolean a = false;
-                if (colIndex == 0) {
-                    a = true;
-                }
-                return a;
-            }
-            Class[] types = new Class[]{
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-
-            @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
-            }
-        };
-        tbResepObat.setModel(tabModeResepObat);
-        tbResepObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
-        tbResepObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        for (i = 0; i < 8; i++) {
-            TableColumn column = tbResepObat.getColumnModel().getColumn(i);
-            if (i == 0) {
-                column.setPreferredWidth(20);
-            } else if (i == 1) {
-                column.setPreferredWidth(105);
-            } else if (i == 2) {
-                column.setPreferredWidth(70);
-            } else if (i == 3) {
-                column.setPreferredWidth(80);
-            } else if (i == 4) {
-                column.setPreferredWidth(240);
-            } else if (i == 5) {
-                column.setPreferredWidth(50);
-            } else if (i == 6) {
-                column.setPreferredWidth(200);
-            } else if (i == 7) {
-//                column.setPreferredWidth(100);
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            }
-        }
-        tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        tabModeFarmasi = new DefaultTableModel(null, new Object[]{"Nama Obat/Alkes", "Satuan", "Stok Apotek IGD (UMUM)","Stok Apotek Sentral (BPJS)"}) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
-            }
-        };
-        
-        tbObat.setModel(tabModeFarmasi);
-        tbObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
-        tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        for (i = 0; i < 4; i++) {
-            TableColumn column = tbObat.getColumnModel().getColumn(i);
-            if (i == 0) {
-                column.setPreferredWidth(350);
-            } else if (i == 1) {
-                column.setPreferredWidth(60);
-            } else if (i == 2) {
-                column.setPreferredWidth(150);
-            } else if (i == 3) {
-                column.setPreferredWidth(150);
-            }
-        }
-        tbObat.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        tabModeTglBeriObat = new DefaultTableModel(null, new Object[]{
-            "tgl", "Tanggal","Jlh. Item", "Poliklinik", "Dokter Peresep"}) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
-            }
-        };
-        tbTglBeriObat.setModel(tabModeTglBeriObat);
-        tbTglBeriObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
-        tbTglBeriObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        for (i = 0; i < 5; i++) {
-            TableColumn column = tbTglBeriObat.getColumnModel().getColumn(i);
-            if (i == 0) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);                
-            } else if (i == 1) {
-                column.setPreferredWidth(75);
-            } else if (i == 2) {
-                column.setPreferredWidth(56);
-            } else if (i == 3) {
-                column.setPreferredWidth(120);
-            } else if (i == 4) {
-                column.setPreferredWidth(250);
-            } 
-        }
-        tbTglBeriObat.setDefaultRenderer(Object.class, new WarnaTable());
-        
-        tabModeRiwItemObat = new DefaultTableModel(null, new Object[]{
-            "Tanggal","Nama Obat/Alkes/BHP", "Jumlah"}) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
-            }
-        };
-        tbItemObat.setModel(tabModeRiwItemObat);
-        tbItemObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
-        tbItemObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        for (i = 0; i < 3; i++) {
-            TableColumn column = tbItemObat.getColumnModel().getColumn(i);
-            if (i == 0) {
-                column.setPreferredWidth(64);            
-            } else if (i == 1) {
-                column.setPreferredWidth(250);
-            } else if (i == 2) {
-                column.setPreferredWidth(56);
-            } 
-        }
-        tbItemObat.setDefaultRenderer(Object.class, new WarnaTable());
-        
         tabMode1 = new DefaultTableModel(null, new Object[]{"No. RM", "Nama Pasien", "Data Template"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -471,7 +347,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tbTemplate.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
-        TCari1.setDocument(new batasInput((int) 100).getKata(TCari1));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -668,9 +543,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnSemuanya = new javax.swing.JMenuItem();
-        MnDibatalkan = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
@@ -827,41 +699,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnDiagnosa = new widget.Button();
         BtnRekom = new widget.Button();
         ChkLab = new widget.CekBox();
-        internalFrame5 = new widget.InternalFrame();
-        panelGlass13 = new widget.panelisi();
-        jLabel54 = new widget.Label();
-        DTPCariA = new widget.Tanggal();
-        jLabel55 = new widget.Label();
-        DTPCariB = new widget.Tanggal();
-        jLabel56 = new widget.Label();
-        TCari1 = new widget.TextBox();
-        BtnCariObat = new widget.Button();
-        jPanel1 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        panelGlass16 = new widget.panelisi();
-        jLabel53 = new widget.Label();
-        TResepObat = new widget.TextBox();
-        Scroll4 = new widget.ScrollPane();
-        tbResepObat = new widget.Table();
-        PanelInput1 = new javax.swing.JPanel();
-        ChkInput1 = new widget.CekBox();
-        PanelRiwayatObat = new javax.swing.JPanel();
-        panelGlass18 = new widget.panelisi();
-        Scroll44 = new widget.ScrollPane();
-        tbTglBeriObat = new widget.Table();
-        panelGlass17 = new widget.panelisi();
-        ChkPoli1 = new widget.CekBox();
-        jLabel74 = new widget.Label();
-        Scroll45 = new widget.ScrollPane();
-        tbItemObat = new widget.Table();
-        jPanel2 = new javax.swing.JPanel();
-        panelisi4 = new widget.panelisi();
-        jLabel64 = new widget.Label();
-        TCariObat = new widget.TextBox();
-        BtnCari1 = new widget.Button();
-        Scroll33 = new widget.ScrollPane();
-        tbObat = new widget.Table();
-        internalFrame4 = new widget.InternalFrame();
+        internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTransfer = new widget.Table();
         panelGlass9 = new widget.panelisi();
@@ -883,38 +721,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         BtnBeriObat = new widget.Button();
-
-        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
-
-        MnSemuanya.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSemuanya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSemuanya.setText("Conteng Semua Item");
-        MnSemuanya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSemuanya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSemuanya.setIconTextGap(5);
-        MnSemuanya.setName("MnSemuanya"); // NOI18N
-        MnSemuanya.setPreferredSize(new java.awt.Dimension(185, 26));
-        MnSemuanya.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSemuanyaActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnSemuanya);
-
-        MnDibatalkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnDibatalkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnDibatalkan.setText("Hilangkan Semua Conteng");
-        MnDibatalkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnDibatalkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnDibatalkan.setIconTextGap(5);
-        MnDibatalkan.setName("MnDibatalkan"); // NOI18N
-        MnDibatalkan.setPreferredSize(new java.awt.Dimension(185, 26));
-        MnDibatalkan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnDibatalkanActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnDibatalkan);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
@@ -1274,7 +1080,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023 20:45:25" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023 21:03:51" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -2418,321 +2224,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         TabRawat.addTab("Input Transfer & Serah Terima", FormTST);
 
-        internalFrame5.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        internalFrame5.setName("internalFrame5"); // NOI18N
-        internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
-
-        panelGlass13.setName("panelGlass13"); // NOI18N
-        panelGlass13.setPreferredSize(new java.awt.Dimension(44, 45));
-        panelGlass13.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel54.setText("Tgl. Resep :");
-        jLabel54.setName("jLabel54"); // NOI18N
-        jLabel54.setPreferredSize(new java.awt.Dimension(65, 23));
-        panelGlass13.add(jLabel54);
-
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
-        DTPCariA.setDisplayFormat("dd-MM-yyyy");
-        DTPCariA.setName("DTPCariA"); // NOI18N
-        DTPCariA.setOpaque(false);
-        DTPCariA.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass13.add(DTPCariA);
-
-        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel55.setText("s.d.");
-        jLabel55.setName("jLabel55"); // NOI18N
-        jLabel55.setPreferredSize(new java.awt.Dimension(23, 23));
-        panelGlass13.add(jLabel55);
-
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
-        DTPCariB.setDisplayFormat("dd-MM-yyyy");
-        DTPCariB.setName("DTPCariB"); // NOI18N
-        DTPCariB.setOpaque(false);
-        DTPCariB.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass13.add(DTPCariB);
-
-        jLabel56.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel56.setText("Key Word :");
-        jLabel56.setName("jLabel56"); // NOI18N
-        jLabel56.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass13.add(jLabel56);
-
-        TCari1.setForeground(new java.awt.Color(0, 0, 0));
-        TCari1.setName("TCari1"); // NOI18N
-        TCari1.setPreferredSize(new java.awt.Dimension(205, 23));
-        TCari1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCari1KeyPressed(evt);
-            }
-        });
-        panelGlass13.add(TCari1);
-
-        BtnCariObat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCariObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCariObat.setMnemonic('3');
-        BtnCariObat.setText("Tampilkan Data");
-        BtnCariObat.setToolTipText("Alt+3");
-        BtnCariObat.setName("BtnCariObat"); // NOI18N
-        BtnCariObat.setPreferredSize(new java.awt.Dimension(130, 23));
-        BtnCariObat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCariObatActionPerformed(evt);
-            }
-        });
-        panelGlass13.add(BtnCariObat);
-
-        internalFrame5.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
-
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(816, 102));
-        jPanel1.setLayout(new javax.swing.BoxLayout(jPanel1, javax.swing.BoxLayout.LINE_AXIS));
-
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Item Obat/Resep yang diberikan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        jPanel4.setName("jPanel4"); // NOI18N
-        jPanel4.setOpaque(false);
-        jPanel4.setPreferredSize(new java.awt.Dimension(660, 102));
-        jPanel4.setLayout(new java.awt.BorderLayout(1, 1));
-
-        panelGlass16.setName("panelGlass16"); // NOI18N
-        panelGlass16.setPreferredSize(new java.awt.Dimension(44, 40));
-        panelGlass16.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 8));
-
-        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel53.setText("Nama Obat :");
-        jLabel53.setName("jLabel53"); // NOI18N
-        jLabel53.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass16.add(jLabel53);
-
-        TResepObat.setForeground(new java.awt.Color(0, 0, 0));
-        TResepObat.setName("TResepObat"); // NOI18N
-        TResepObat.setPreferredSize(new java.awt.Dimension(450, 24));
-        TResepObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TResepObatKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TResepObatKeyPressed(evt);
-            }
-        });
-        panelGlass16.add(TResepObat);
-
-        jPanel4.add(panelGlass16, java.awt.BorderLayout.PAGE_START);
-
-        Scroll4.setName("Scroll4"); // NOI18N
-        Scroll4.setOpaque(true);
-
-        tbResepObat.setAutoCreateRowSorter(true);
-        tbResepObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbResepObat.setComponentPopupMenu(jPopupMenu1);
-        tbResepObat.setName("tbResepObat"); // NOI18N
-        tbResepObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbResepObatMouseClicked(evt);
-            }
-        });
-        tbResepObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbResepObatKeyPressed(evt);
-            }
-        });
-        Scroll4.setViewportView(tbResepObat);
-
-        jPanel4.add(Scroll4, java.awt.BorderLayout.CENTER);
-
-        PanelInput1.setName("PanelInput1"); // NOI18N
-        PanelInput1.setOpaque(false);
-        PanelInput1.setPreferredSize(new java.awt.Dimension(816, 260));
-        PanelInput1.setLayout(new java.awt.BorderLayout(1, 1));
-
-        ChkInput1.setForeground(new java.awt.Color(0, 0, 0));
-        ChkInput1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput1.setText(".: Riwayat Obat Farmasi");
-        ChkInput1.setToolTipText("");
-        ChkInput1.setBorderPainted(true);
-        ChkInput1.setBorderPaintedFlat(true);
-        ChkInput1.setFocusable(false);
-        ChkInput1.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
-        ChkInput1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkInput1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput1.setName("ChkInput1"); // NOI18N
-        ChkInput1.setPreferredSize(new java.awt.Dimension(192, 20));
-        ChkInput1.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput1.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput1.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInput1ActionPerformed(evt);
-            }
-        });
-        PanelInput1.add(ChkInput1, java.awt.BorderLayout.PAGE_START);
-
-        PanelRiwayatObat.setName("PanelRiwayatObat"); // NOI18N
-        PanelRiwayatObat.setOpaque(false);
-        PanelRiwayatObat.setPreferredSize(new java.awt.Dimension(816, 150));
-        PanelRiwayatObat.setLayout(new javax.swing.BoxLayout(PanelRiwayatObat, javax.swing.BoxLayout.LINE_AXIS));
-
-        panelGlass18.setName("panelGlass18"); // NOI18N
-        panelGlass18.setPreferredSize(new java.awt.Dimension(340, 40));
-        panelGlass18.setLayout(new java.awt.BorderLayout());
-
-        Scroll44.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Tgl. Pemberian Obat ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
-        Scroll44.setName("Scroll44"); // NOI18N
-        Scroll44.setPreferredSize(new java.awt.Dimension(150, 130));
-
-        tbTglBeriObat.setAutoCreateRowSorter(true);
-        tbTglBeriObat.setToolTipText("Silahkan klik salah satu tgl. utk melihat obatnya");
-        tbTglBeriObat.setName("tbTglBeriObat"); // NOI18N
-        tbTglBeriObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTglBeriObatMouseClicked(evt);
-            }
-        });
-        tbTglBeriObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbTglBeriObatKeyPressed(evt);
-            }
-        });
-        Scroll44.setViewportView(tbTglBeriObat);
-
-        panelGlass18.add(Scroll44, java.awt.BorderLayout.CENTER);
-
-        panelGlass17.setName("panelGlass17"); // NOI18N
-        panelGlass17.setPreferredSize(new java.awt.Dimension(44, 33));
-        panelGlass17.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 3));
-
-        ChkPoli1.setBorder(null);
-        ChkPoli1.setForeground(new java.awt.Color(0, 0, 0));
-        ChkPoli1.setSelected(true);
-        ChkPoli1.setText("Hanya dipoli/inst. ini");
-        ChkPoli1.setBorderPainted(true);
-        ChkPoli1.setBorderPaintedFlat(true);
-        ChkPoli1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ChkPoli1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkPoli1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkPoli1.setName("ChkPoli1"); // NOI18N
-        ChkPoli1.setOpaque(false);
-        ChkPoli1.setPreferredSize(new java.awt.Dimension(127, 23));
-        ChkPoli1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkPoli1ActionPerformed(evt);
-            }
-        });
-        panelGlass17.add(ChkPoli1);
-
-        jLabel74.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel74.setText("untuk 5 kunjungan terakhir.");
-        jLabel74.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        jLabel74.setName("jLabel74"); // NOI18N
-        jLabel74.setPreferredSize(new java.awt.Dimension(170, 23));
-        panelGlass17.add(jLabel74);
-
-        panelGlass18.add(panelGlass17, java.awt.BorderLayout.PAGE_START);
-
-        PanelRiwayatObat.add(panelGlass18);
-
-        Scroll45.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ":: Item Obat Sesuai Yang Diresepkan ::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
-        Scroll45.setName("Scroll45"); // NOI18N
-        Scroll45.setPreferredSize(new java.awt.Dimension(390, 423));
-
-        tbItemObat.setAutoCreateRowSorter(true);
-        tbItemObat.setToolTipText("Silahkan klik untuk memilih data obatnya");
-        tbItemObat.setName("tbItemObat"); // NOI18N
-        tbItemObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbItemObatMouseClicked(evt);
-            }
-        });
-        tbItemObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbItemObatKeyPressed(evt);
-            }
-        });
-        Scroll45.setViewportView(tbItemObat);
-
-        PanelRiwayatObat.add(Scroll45);
-
-        PanelInput1.add(PanelRiwayatObat, java.awt.BorderLayout.CENTER);
-
-        jPanel4.add(PanelInput1, java.awt.BorderLayout.PAGE_END);
-
-        jPanel1.add(jPanel4);
-
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Daftar Obat/Alkes Farmasi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        jPanel2.setName("jPanel2"); // NOI18N
-        jPanel2.setOpaque(false);
-        jPanel2.setPreferredSize(new java.awt.Dimension(350, 102));
-        jPanel2.setLayout(new java.awt.BorderLayout(1, 1));
-
-        panelisi4.setBorder(null);
-        panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
-
-        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel64.setText("Cari Obat/Alkes : ");
-        jLabel64.setName("jLabel64"); // NOI18N
-        jLabel64.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelisi4.add(jLabel64);
-
-        TCariObat.setForeground(new java.awt.Color(0, 0, 0));
-        TCariObat.setName("TCariObat"); // NOI18N
-        TCariObat.setPreferredSize(new java.awt.Dimension(180, 23));
-        TCariObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCariObatKeyPressed(evt);
-            }
-        });
-        panelisi4.add(TCariObat);
-
-        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnCari1.setMnemonic('C');
-        BtnCari1.setText("Cek");
-        BtnCari1.setToolTipText("Alt+C");
-        BtnCari1.setName("BtnCari1"); // NOI18N
-        BtnCari1.setPreferredSize(new java.awt.Dimension(65, 30));
-        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCari1ActionPerformed(evt);
-            }
-        });
-        panelisi4.add(BtnCari1);
-
-        jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_START);
-
-        Scroll33.setName("Scroll33"); // NOI18N
-        Scroll33.setOpaque(true);
-
-        tbObat.setAutoCreateRowSorter(true);
-        tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbObat.setName("tbObat"); // NOI18N
-        tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbObatMouseClicked(evt);
-            }
-        });
-        tbObat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbObatKeyPressed(evt);
-            }
-        });
-        Scroll33.setViewportView(tbObat);
-
-        jPanel2.add(Scroll33, java.awt.BorderLayout.CENTER);
-
-        jPanel1.add(jPanel2);
-
-        internalFrame5.add(jPanel1, java.awt.BorderLayout.CENTER);
-
-        TabRawat.addTab("Resep Obat", internalFrame5);
-
-        internalFrame4.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
+        internalFrame2.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        internalFrame2.setName("internalFrame2"); // NOI18N
+        internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
@@ -2753,7 +2247,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbTransfer);
 
-        internalFrame4.add(Scroll, java.awt.BorderLayout.CENTER);
+        internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -2766,7 +2260,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2781,7 +2275,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2836,9 +2330,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass9.add(LCount);
 
-        internalFrame4.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
+        internalFrame2.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
 
-        TabRawat.addTab("Data Transfer & Serah Terima", internalFrame4);
+        TabRawat.addTab("Data Transfer & Serah Terima", internalFrame2);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -2915,10 +2409,10 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
-        BtnPrint.setText("Cetak RM 6 / Resep");
+        BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
         BtnPrint.setName("BtnPrint"); // NOI18N
-        BtnPrint.setPreferredSize(new java.awt.Dimension(160, 30));
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPrintActionPerformed(evt);
@@ -2991,55 +2485,27 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if (TabRawat.getSelectedIndex() == 0) {
-            if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-                Valid.textKosong(TNoRw, "Pasien");
-            } else {
-                cekData();
-                if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 63, new String[]{
-                    TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar, 
-                    Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
-                    Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
-                    td.getText(), nadi.getText(), suhu.getText(), rr.getText(), spo2.getText(), nyeri.getText(), cmbResiko.getSelectedItem().toString(),
-                    cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
-                    endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""), 
-                    Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""), 
-                    Valid.SetTgl(tgl_drain.getSelectedItem() + ""), alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(),
-                    Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
-                    oksigen, drain, lab
-                }) == true) {
-                    TCari.setText(TNoRw.getText());
-                    emptTeks();
-                    tampil();
-                    TabRawat.setSelectedIndex(2);
-                }
-            }
-            
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            if (Tdpjp.getText().trim().equals("")) {
-                Valid.textKosong(Tdpjp, "Nama DPJP");
-                btnDPJP.requestFocus();
-            } else if (TResepObat.getText().trim().equals("")) {
-                Valid.textKosong(TResepObat, "nama obat");
-            } else if (akses.getadmin() == true) {
-                JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh meresepkan obat...!!!!");
-            } else {
-                Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep where "
-                        + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
-                        Sequel.cariIsi("select year(now())"), 6, noIdObat);
-                try {
-                    Sequel.menyimpan("catatan_resep", "?,?,?,?,?,?,?", "Data", 7, new String[]{
-                        noIdObat.getText(), TNoRw.getText(), Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), Sequel.cariIsi("SELECT TIME(NOW())"),
-                        TResepObat.getText(), "BELUM", akses.getkode()
-                    });
-                    Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
-                    TResepObat.setText("");
-                    TResepObat.requestFocus();
-                    tampilResepObat();
-                } catch (Exception e) {
-                    JOptionPane.showMessageDialog(null, "Data Tidak Tersimpan, Hubungi Admin ! " + e);
-                }
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            cekData();
+            if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 63, new String[]{
+                        TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
+                        Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
+                        Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
+                        td.getText(), nadi.getText(), suhu.getText(), rr.getText(), spo2.getText(), nyeri.getText(), cmbResiko.getSelectedItem().toString(),
+                        cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
+                        endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
+                        Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
+                        Valid.SetTgl(tgl_drain.getSelectedItem() + ""), alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(),
+                        Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
+                        oksigen, drain, lab
+                    }) == true) {
+                TCari.setText(TNoRw.getText());
+                emptTeks();
+                tampil();
+                TabRawat.setSelectedIndex(1);
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -3057,66 +2523,21 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (TabRawat.getSelectedIndex() == 0 || TabRawat.getSelectedIndex() == 2) {
-            if (tbTransfer.getSelectedRow() > -1) {
-                hapus();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
-            }
-            
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            if (tabModeResepObat.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-                TNoRw.requestFocus();
-            } else if (TPasien.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
-            } else if (akses.getadmin() == true) {
-                JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh menghapus resepnya...!!!!");
-            } else if (!TPasien.getText().trim().equals("")) {
-                for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                    if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.queryu("delete from catatan_resep where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
-                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
-                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
-                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
-                    }
-                }
-                TResepObat.setText("");
-                tampilResepObat();
-            }
+        if (tbTransfer.getSelectedRow() > -1) {
+            hapus();
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        if (TabRawat.getSelectedIndex() == 0) {
-            if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-                Valid.textKosong(TNoRw, "Pasien");
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            if (tbTransfer.getSelectedRow() > -1) {
+                ganti();
             } else {
-                if (tbTransfer.getSelectedRow() > -1) {
-                    ganti();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
-                }
-            }
-
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            if (tbResepObat.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Tidak ada data yang akan diperbaiki..!!!!");
-            } else if (TResepObat.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(rootPane, "Silakan pilih dulu salah satu datanya pada tabel..!!");
-            } else if (akses.getadmin() == true) {
-                JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh merubah resepnya...!!!!");
-            } else {
-                if (tbResepObat.getSelectedRow() > -1) {
-                    Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
-                            "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Valid.SetTgl(tgl_transfer.getSelectedItem() + "") + "',"
-                            + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
-                    TResepObat.setText("");
-                    tampilResepObat();
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
-                    TCari.requestFocus();
-                }
+                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -3131,6 +2552,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        WindowTemplate.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -3142,11 +2564,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (TabRawat.getSelectedIndex() == 0 || TabRawat.getSelectedIndex() == 2) {
-            cetakRM6();
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            cetakResep();
-        }
+        cetakRM6();
 }//GEN-LAST:event_BtnPrintActionPerformed
 
     private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
@@ -3195,7 +2613,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
-            TabRawat.setSelectedIndex(2);
+            TabRawat.setSelectedIndex(1);
         } else if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
         }
@@ -3204,13 +2622,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
-            TCari1.setText(TNoRM.getText());
-            TResepObat.setText("");
-            TCariObat.setText("");
-            ChkInput1.setSelected(false);
-            isFormRiwayatObat();
-            tampilResepObat();
-        } else if (TabRawat.getSelectedIndex() == 2) {
             tampil();
         }
     }//GEN-LAST:event_TabRawatMouseClicked
@@ -3412,166 +2823,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void Talat_lainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Talat_lainKeyPressed
         Valid.pindah(evt, Talat_lain, tgl_alat_lain);
     }//GEN-LAST:event_Talat_lainKeyPressed
-
-    private void TResepObatKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TResepObatKeyTyped
-        evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
-    }//GEN-LAST:event_TResepObatKeyTyped
-
-    private void TResepObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TResepObatKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpanActionPerformed(null);
-        }
-    }//GEN-LAST:event_TResepObatKeyPressed
-
-    private void tbResepObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbResepObatMouseClicked
-        if (tabModeResepObat.getRowCount() != 0) {
-            try {
-                getDataCatatanResep();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-    }//GEN-LAST:event_tbResepObatMouseClicked
-
-    private void tbResepObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbResepObatKeyPressed
-        if (tabModeResepObat.getRowCount() != 0) {
-            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
-                try {
-                    getDataCatatanResep();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }//GEN-LAST:event_tbResepObatKeyPressed
-
-    private void ChkInput1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInput1ActionPerformed
-        isFormRiwayatObat();
-    }//GEN-LAST:event_ChkInput1ActionPerformed
-
-    private void tbTglBeriObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbTglBeriObatMouseClicked
-        if (tabModeTglBeriObat.getRowCount() != 0) {
-            try {
-                getDataRiwObat();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-    }//GEN-LAST:event_tbTglBeriObatMouseClicked
-
-    private void tbTglBeriObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbTglBeriObatKeyPressed
-        if (tabModeTglBeriObat.getRowCount() != 0) {
-            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
-                try {
-                    getDataRiwObat();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }//GEN-LAST:event_tbTglBeriObatKeyPressed
-
-    private void ChkPoli1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkPoli1ActionPerformed
-        Valid.tabelKosong(tabModeRiwItemObat);
-        if (ChkPoli1.isSelected() == true) {
-            ChkPoli1.setText("Hanya dipoliklinik ini");
-            tampilTglBeriObat();
-        } else if (ChkPoli1.isSelected() == false) {
-            ChkPoli1.setText("Semua Poliklinik");
-            tampilTglBeriObat();
-        }
-    }//GEN-LAST:event_ChkPoli1ActionPerformed
-
-    private void tbItemObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbItemObatMouseClicked
-        if (tabModeRiwItemObat.getRowCount() != 0) {
-            try {
-                getDataItemObat();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-    }//GEN-LAST:event_tbItemObatMouseClicked
-
-    private void tbItemObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbItemObatKeyPressed
-        if (tabModeRiwItemObat.getRowCount() != 0) {
-            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
-                try {
-                    getDataItemObat();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }//GEN-LAST:event_tbItemObatKeyPressed
-
-    private void TCariObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariObatKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnCari1ActionPerformed(null);
-        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            BtnCari1.requestFocus();
-        }
-    }//GEN-LAST:event_TCariObatKeyPressed
-
-    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
-        if (TCariObat.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Nama Obat/Alkes yang akan dicari harus diisi dulu...!!!");
-            TCariObat.requestFocus();
-        } else {
-            tampilFarmasi();
-            tbObat.requestFocus();
-        }
-    }//GEN-LAST:event_BtnCari1ActionPerformed
-
-    private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
-        if (tabModeFarmasi.getRowCount() != 0) {
-            try {
-                getDataFarmasi();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-    }//GEN-LAST:event_tbObatMouseClicked
-
-    private void tbObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbObatKeyPressed
-        if (tabModeFarmasi.getRowCount() != 0) {
-            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
-                try {
-                    getDataFarmasi();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }
-        }
-    }//GEN-LAST:event_tbObatKeyPressed
-
-    private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnCariObatActionPerformed(null);
-        }
-    }//GEN-LAST:event_TCari1KeyPressed
-
-    private void MnSemuanyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSemuanyaActionPerformed
-        if (tabModeResepObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
-            tbResepObat.requestFocus();
-        } else {
-            tampilResepObat();
-            contengResep();
-        }
-    }//GEN-LAST:event_MnSemuanyaActionPerformed
-
-    private void MnDibatalkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDibatalkanActionPerformed
-        if (tabModeResepObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
-            tbResepObat.requestFocus();
-        } else {
-            tampilResepObat();            
-
-            for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 1).equals(TNoRw.getText())) {
-                    tbResepObat.setValueAt(Boolean.FALSE, i, 0);
-                }
-            }
-        }
-    }//GEN-LAST:event_MnDibatalkanActionPerformed
-
-    private void BtnCariObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariObatActionPerformed
-        tampilResepObat();
-        ChkInput1.setSelected(false);
-        isFormRiwayatObat();
-    }//GEN-LAST:event_BtnCariObatActionPerformed
 
     private void TrekomendasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TrekomendasiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -3895,7 +3146,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void TCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari2KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnCari1ActionPerformed(null);
+            BtnCari2ActionPerformed(null);
         }
     }//GEN-LAST:event_TCari2KeyPressed
 
@@ -3905,7 +3156,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void BtnCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari2KeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnCari1ActionPerformed(null);
+            BtnCari2ActionPerformed(null);
         }
     }//GEN-LAST:event_BtnCari2KeyPressed
 
@@ -3965,9 +3216,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Button BtnBatal;
     private widget.Button BtnBeriObat;
     private widget.Button BtnCari;
-    private widget.Button BtnCari1;
     private widget.Button BtnCari2;
-    private widget.Button BtnCariObat;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCopas;
     private widget.Button BtnDiagnosa;
@@ -3991,48 +3240,33 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     public widget.CekBox ChkFotoC;
     public widget.CekBox ChkFotoG;
     public widget.CekBox ChkInfus;
-    private widget.CekBox ChkInput1;
     public widget.CekBox ChkKateter;
     public widget.CekBox ChkLab;
     public widget.CekBox ChkLain_alat;
     public widget.CekBox ChkLainya;
     public widget.CekBox ChkNGT;
     public widget.CekBox ChkOksigen;
-    private widget.CekBox ChkPoli1;
     public widget.CekBox ChkSpiri;
     public widget.CekBox ChkThoraks;
     public widget.CekBox ChkUSG;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
-    private widget.Tanggal DTPCariA;
-    private widget.Tanggal DTPCariB;
     private widget.PanelBiasa FormInput;
     private widget.InternalFrame FormTST;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
-    private javax.swing.JMenuItem MnSemuanya;
-    private javax.swing.JPanel PanelInput1;
-    private javax.swing.JPanel PanelRiwayatObat;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll3;
-    private widget.ScrollPane Scroll33;
-    private widget.ScrollPane Scroll4;
-    private widget.ScrollPane Scroll44;
-    private widget.ScrollPane Scroll45;
     private widget.ScrollPane ScrollTriase1;
     private widget.TextBox TCari;
-    private widget.TextBox TCari1;
     private widget.TextBox TCari2;
-    private widget.TextBox TCariObat;
     private widget.TextBox TDiagnosa;
     private widget.TextBox TIdObat;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
-    private widget.TextBox TResepObat;
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox Talasan_pindah;
     private widget.TextArea Talasan_ranap;
@@ -4072,8 +3306,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox gcsm;
     private widget.TextBox gcsv;
     private widget.InternalFrame internalFrame1;
-    private widget.InternalFrame internalFrame4;
-    private widget.InternalFrame internalFrame5;
+    private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame6;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -4115,10 +3348,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel47;
     private widget.Label jLabel48;
     private widget.Label jLabel5;
-    private widget.Label jLabel53;
-    private widget.Label jLabel54;
-    private widget.Label jLabel55;
-    private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
     private widget.Label jLabel59;
@@ -4127,27 +3356,16 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel61;
     private widget.Label jLabel62;
     private widget.Label jLabel63;
-    private widget.Label jLabel64;
     private widget.Label jLabel7;
-    private widget.Label jLabel74;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
     private widget.TextBox nadi;
     private widget.TextBox noIdObat;
     private widget.TextBox nyeri;
-    private widget.panelisi panelGlass13;
-    private widget.panelisi panelGlass16;
-    private widget.panelisi panelGlass17;
-    private widget.panelisi panelGlass18;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
-    private widget.panelisi panelisi4;
     private widget.panelisi panelisi5;
     private widget.TextBox rr;
     private widget.ScrollPane scrollPane10;
@@ -4158,11 +3376,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ScrollPane scrollPane9;
     private widget.TextBox spo2;
     private widget.TextBox suhu;
-    private widget.Table tbItemObat;
-    private widget.Table tbObat;
-    private widget.Table tbResepObat;
     private widget.Table tbTemplate;
-    private widget.Table tbTglBeriObat;
     private widget.Table tbTransfer;
     private widget.TextBox td;
     private widget.Tanggal tgl_alat_lain;
@@ -4384,11 +3598,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Tnm_dokter.setText("-");
         Tnm_petugas1.setText("-");
         Tnm_petugas2.setText("-");
-
-        TResepObat.setText("");
-        TCariObat.setText("");
-        ChkInput1.setSelected(false);
-        isFormRiwayatObat();
     }
     
     public void setNoRm(String norwt, Date tgl2) {
@@ -4405,7 +3614,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnPrint.setEnabled(akses.getdata_triase_igd());
         BtnEdit.setEnabled(akses.getdata_triase_igd());
         BtnBeriObat.setEnabled(akses.getpemberian_obat());
-        TabRawat.setEnabledAt(1, akses.getresep_dokter());
     }
     
     private void getData() {
@@ -4560,7 +3768,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
-            TabRawat.setSelectedIndex(2);
+            TabRawat.setSelectedIndex(1);
         }
     }
     
@@ -4579,7 +3787,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
                     DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
-                    DTPCariA.setDate(rs1.getDate("tgl_registrasi"));
                     tgllahir.setText(rs1.getString("tgl_lahir"));
                     
                     td.setText(rs1.getString("td"));
@@ -4601,302 +3808,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notif : " + e);
-        }
-    }
-    
-    private void tampilResepObat() {
-        Valid.tabelKosong(tabModeResepObat);
-        try {
-            ps2 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, c.status, d.nm_dokter, c.noID from catatan_resep c "
-                    + "inner join reg_periksa r on r.no_rawat = c.no_rawat  "
-                    + "inner join dokter d on d.kd_dokter = c.kd_dokter where  "
-                    + "c.tgl_perawatan between ? and ? and c.no_rawat like ? or "
-                    + "c.tgl_perawatan between ? and ? and c.nama_obat like ? or "
-                    + "c.tgl_perawatan between ? and ? and r.no_rkm_medis like ? "
-                    + "order by c.noId");
-            try {
-                ps2.setString(1, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
-                ps2.setString(2, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
-                ps2.setString(3, "%" + TCari1.getText().trim() + "%");
-                ps2.setString(4, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
-                ps2.setString(5, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
-                ps2.setString(6, "%" + TCari1.getText().trim() + "%");
-                ps2.setString(7, Valid.SetTgl(DTPCariA.getSelectedItem() + ""));
-                ps2.setString(8, Valid.SetTgl(DTPCariB.getSelectedItem() + ""));
-                ps2.setString(9, "%" + TCari1.getText().trim() + "%");
-                rs2 = ps2.executeQuery();
-                while (rs2.next()) {
-                    tabModeResepObat.addRow(new Object[]{
-                        false,
-                        rs2.getString(1),
-                        rs2.getString(2),
-                        rs2.getString(3),
-                        rs2.getString(4),
-                        rs2.getString(5),
-                        rs2.getString(6),
-                        rs2.getString(7)
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs2 != null) {
-                    rs2.close();
-                }
-                if (ps2 != null) {
-                    ps2.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-        LCount.setText("" + tabModeResepObat.getRowCount());
-    }
-    
-    private void contengResep() {
-        for (i = 0; i < tbResepObat.getRowCount(); i++) {
-            if (tbResepObat.getValueAt(i, 1).equals(TNoRw.getText())) {
-                tbResepObat.setValueAt(Boolean.TRUE, i, 0);
-            }
-        }
-    }
-    
-    private void tampilFarmasi() {
-        Valid.tabelKosong(tabModeFarmasi);
-        try {
-            psFar = koneksi.prepareStatement("SELECT db.nama_brng, db.kode_sat, sum(case when gd.kd_bangsal = 'APT01' then ifnull(format(gd.stok,0),0) END) apotek_igd, "
-                    + "sum(case when gd.kd_bangsal = 'APT02' then ifnull(format(gd.stok,0),0) END) apotek_sentral FROM gudangbarang gd "
-                    + "INNER JOIN databarang db on db.kode_brng=gd.kode_brng where "
-                    + "db.nama_brng like ? and gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' group by gd.kode_brng "
-                    + "order by db.nama_brng");
-            try {
-                psFar.setString(1, "%" + TCariObat.getText().trim() + "%");
-                rsFar = psFar.executeQuery();
-                while (rsFar.next()) {
-                    tabModeFarmasi.addRow(new Object[]{
-                        rsFar.getString("nama_brng"),
-                        rsFar.getString("kode_sat"),
-                        rsFar.getString("apotek_igd"),
-                        rsFar.getString("apotek_sentral")
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsFar != null) {
-                    rsFar.close();
-                }
-                if (psFar != null) {
-                    psFar.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void isFormRiwayatObat() {
-        if (ChkInput1.isSelected() == true) {
-            ChkInput1.setVisible(false);
-            PanelInput1.setPreferredSize(new Dimension(WIDTH, 220));
-            PanelRiwayatObat.setVisible(true);
-            ChkInput1.setVisible(true);
-            ChkPoli1.setSelected(true);
-            
-            if (ChkPoli1.isSelected() == true) {
-                ChkPoli1.setText("Hanya dipoli/inst. ini");
-                tampilTglBeriObat();
-            } else if (ChkPoli1.isSelected() == false) {
-                ChkPoli1.setText("Semua Poli/Inst.");
-                tampilTglBeriObat();
-            }
-        } else if (ChkInput1.isSelected() == false) {
-            ChkInput1.setVisible(false);
-            PanelInput1.setPreferredSize(new Dimension(WIDTH, 20));
-            PanelRiwayatObat.setVisible(false);
-            ChkInput1.setVisible(true);
-            Valid.tabelKosong(tabModeTglBeriObat);
-            Valid.tabelKosong(tabModeRiwItemObat);
-        }
-    }
-    
-    private void tampilTglBeriObat() {
-        Valid.tabelKosong(tabModeTglBeriObat);
-        try {
-            if (ChkPoli1.isSelected() == true) {
-                psTglBO = koneksi.prepareStatement("select dpo.tgl_perawatan tglAsli, date_format(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, "
-                        + "count(dpo.kode_brng) jlhItem, pl.nm_poli, d.nm_dokter from detail_pemberian_obat dpo "
-                        + "inner join reg_periksa rp on rp.no_rawat=dpo.no_rawat "
-                        + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
-                        + "inner join dokter d on d.kd_dokter=rp.kd_dokter where "
-                        + "rp.no_rkm_medis='" + TNoRM.getText() + "' and rp.kd_poli='IGDK' and rp.status_lanjut='ralan' "
-                        + "group by dpo.tgl_perawatan order by dpo.tgl_perawatan desc, dpo.jam desc limit 5");
-            } else if (ChkPoli1.isSelected() == false) {
-                psTglBO = koneksi.prepareStatement("select dpo.tgl_perawatan tglAsli, date_format(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, "
-                        + "count(dpo.kode_brng) jlhItem, pl.nm_poli, d.nm_dokter from detail_pemberian_obat dpo "
-                        + "inner join reg_periksa rp on rp.no_rawat=dpo.no_rawat "
-                        + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
-                        + "inner join dokter d on d.kd_dokter=rp.kd_dokter where "
-                        + "rp.no_rkm_medis='" + TNoRM.getText() + "' and rp.status_lanjut='ralan' "
-                        + "group by dpo.tgl_perawatan order by dpo.tgl_perawatan desc, dpo.jam desc limit 5");
-            }
-            try {
-                rsTglBO = psTglBO.executeQuery();
-                while (rsTglBO.next()) {
-                    tabModeTglBeriObat.addRow(new Object[]{
-                        rsTglBO.getString("tglAsli"),
-                        rsTglBO.getString("tanggal"),
-                        rsTglBO.getString("jlhItem"),
-                        rsTglBO.getString("nm_poli"),
-                        rsTglBO.getString("nm_dokter")
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsTglBO != null) {
-                    rsTglBO.close();
-                }
-                if (psTglBO != null) {
-                    psTglBO.close();
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void getDataCatatanResep() {
-        if (tbResepObat.getSelectedRow() != -1) {
-            TNoRw.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 1).toString());
-            TResepObat.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 4).toString());            
-            TIdObat.setText(tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 7).toString());
-        }
-    }
-    
-    private void getDataRiwObat() {
-        tglPemberianObat = "";
-        if (tbTglBeriObat.getSelectedRow() != -1) {
-            tglPemberianObat = tbTglBeriObat.getValueAt(tbTglBeriObat.getSelectedRow(), 0).toString();
-            tampilRiwItemObat();
-        }
-    }
-    
-    private void tampilRiwItemObat() {
-        Valid.tabelKosong(tabModeRiwItemObat);
-        try {
-            if (ChkPoli1.isSelected() == true) {
-                psRiwIO = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, db.nama_brng,"
-                        + "CONCAT(dpo.jml ,' ',LOWER(db.kode_sat)) jlh FROM detail_pemberian_obat dpo "
-                        + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=dpo.no_rawat WHERE "
-                        + "dpo.tgl_perawatan='" + tglPemberianObat + "' and rp.no_rkm_medis='" + TNoRM.getText() + "' and rp.kd_poli='IGDK' and rp.status_lanjut='ralan'");
-            } else if (ChkPoli1.isSelected() == false) {
-                psRiwIO = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tanggal, db.nama_brng,"
-                        + "CONCAT(dpo.jml ,' ',LOWER(db.kode_sat)) jlh FROM detail_pemberian_obat dpo "
-                        + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng "
-                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=dpo.no_rawat WHERE "
-                        + "dpo.tgl_perawatan='" + tglPemberianObat + "' and rp.no_rkm_medis='" + TNoRM.getText() + "' and rp.status_lanjut='ralan'");
-            }
-            
-            try {
-                rsRiwIO = psRiwIO.executeQuery();
-                while (rsRiwIO.next()) {
-                    tabModeRiwItemObat.addRow(new Object[]{
-                        rsRiwIO.getString("tanggal"),
-                        rsRiwIO.getString("nama_brng"),
-                        rsRiwIO.getString("jlh")
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsRiwIO != null) {
-                    rsRiwIO.close();
-                }
-                if (psRiwIO != null) {
-                    psRiwIO.close();
-                }
-            }
-        } catch (SQLException e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void getDataItemObat() {
-        if (tbItemObat.getSelectedRow() != -1) {
-            TResepObat.setText(tbItemObat.getValueAt(tbItemObat.getSelectedRow(), 1).toString());
-            TResepObat.requestFocus();
-        }
-    }
-    
-    private void getDataFarmasi() {
-        if (tbObat.getSelectedRow() != -1) {
-            if (TResepObat.getText().equals("")) {
-                TResepObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 0).toString() + " ");
-            } else {
-                TResepObat.setText(TResepObat.getText() + " " + tbObat.getValueAt(tbObat.getSelectedRow(), 0).toString());
-            }
-            TResepObat.requestFocus();
-        }        
-    }
-    
-    private void cetakResep() {
-        if (tbResepObat.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Resep obat untuk pasien tersebut belum ada ditabel...!!!!");
-            BtnCari.requestFocus();
-        } else if (TNoRw.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "No. rawat pasien tidak ditemukan...!!!!");
-            tbResepObat.requestFocus();
-        } else {
-            //cek contengnya
-            x = 0;
-            for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                    x++;
-                }
-            }
-
-            if (x == 0) {
-                JOptionPane.showMessageDialog(null, "Item resep yg. akan dicetak masih belum diconteng...!!");
-                contengResep();
-                BtnPrint.requestFocus();
-            } else {
-                resepDipilih = "";
-                for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                    if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                        if (resepDipilih.equals("")) {
-                            resepDipilih = "'" + tbResepObat.getValueAt(i, 7).toString() + "'";
-                        } else {
-                            resepDipilih = resepDipilih + ",'" + tbResepObat.getValueAt(i, 7).toString() + "'";
-                        }
-                    }
-                }
-
-                if (Sequel.cariInteger("SELECT COUNT(-1) FROM catatan_resep WHERE no_rawat ='" + TNoRw.getText() + "' AND noId IN (" + resepDipilih + ")") == 0) {
-                    JOptionPane.showMessageDialog(null, "Maaf, hanya resep utk. hari ini yg. bisa dicetak, krn. pasien sdh. dilayani/diresepkan obatnya...!!!");
-                    tbResepObat.requestFocus();
-                } else {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("alamatrs", akses.getalamatrs());
-                    param.put("kotars", akses.getkabupatenrs());
-                    param.put("propinsirs", akses.getpropinsirs());
-                    param.put("kontakrs", akses.getkontakrs());
-                    param.put("emailrs", akses.getemailrs());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    Valid.MyReport("rptResepRalan.jasper", "report", "::[ Resep Dokter Poliklinik/Unit Rawat Jalan ]::",
-                            " select c.no_rawat, pl.nm_poli, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan,'%d/%m/%Y')) tgl_resep, c.nama_obat, "
-                            + "r.no_rkm_medis, p.nm_pasien, CONCAT(r.umurdaftar,' ',r.sttsumur) umur, "
-                            + "CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, d.no_ijn_praktek no_sip, ifnull(p.no_tlp,'-') noHP from catatan_resep c "
-                            + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
-                            + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
-                            + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                            + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
-                    this.setCursor(Cursor.getDefaultCursor());
-                }
-            }
         }
     }
     
@@ -5196,17 +4107,18 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("tgllainalat", "-");
             }
 
-            if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "'") == 0) {
+            if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                    + "no_rawat='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' and status='Ralan'") == 0) {
                 Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
                         "SELECT date(now())", param);
             } else {
                 Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                        "SELECT nama_obat, noId FROM catatan_resep WHERE no_rawat ='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' "
-                        + "ORDER BY noId", param);
+                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' "
+                        + "and status='Ralan' ORDER BY waktu_simpan desc", param);
             }
 
             emptTeks();
-            TabRawat.setSelectedIndex(2);
+            TabRawat.setSelectedIndex(1);
             tampil();
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu..!!!!");
