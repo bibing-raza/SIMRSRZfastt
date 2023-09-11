@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="557" leftMargin="19" rightMargin="19" topMargin="19" bottomMargin="19" uuid="aa47d386-4bb8-46a4-b6a4-87b694622106">
 	<property name="ireport.zoom" value="2.000000000000005"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="240"/>
+	<property name="ireport.y" value="528"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -84,12 +84,31 @@
 	<parameter name="tgllainalat" class="java.lang.String"/>
 	<parameter name="tgltransferserah" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT nama_obat, noId FROM catatan_resep WHERE no_rawat ='2023/06/22/000001' ORDER BY noId]]>
+		<![CDATA[SELECT * FROM pemberian_obat WHERE no_rawat ='2023/09/01/000001' 
+and status='Ralan' ORDER BY waktu_simpan desc]]>
 	</queryString>
+	<field name="no_rawat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="nama_obat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="noId" class="java.lang.String">
+	<field name="dosis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cara_pemberian" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jlh_sisa_obat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waktu_simpan" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
@@ -1191,10 +1210,10 @@
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="468" width="181" height="11" uuid="a6df38b7-aa8a-4f12-9894-07e28092b381">
+				<reportElement x="26" y="468" width="211" height="11" uuid="a6df38b7-aa8a-4f12-9894-07e28092b381">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Top">
+				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
@@ -1232,12 +1251,76 @@
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
+			<staticText>
+				<reportElement x="238" y="468" width="52" height="11" uuid="0a1dd377-59e3-4dab-a3c5-48d360cb5f15">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Dosis]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="292" y="468" width="127" height="11" uuid="30d6b8b3-6fbe-4802-b7b4-7c9980003091">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Cara Pemberian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="421" y="468" width="69" height="11" uuid="19d89b13-f8b4-4272-ad66-08481afe2e01">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Jdwal. Pemberian]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="491" y="468" width="65" height="11" uuid="7e32f48a-d982-4a7a-b919-04b3a1085bb3">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Top">
+					<font fontName="Tahoma" size="8" isStrikeThrough="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[Jlh. (Sisa Obat)]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="237" y="467" width="1" height="13" uuid="91115ca6-ab01-4c7a-adff-0e97ea7c8c47"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="290" y="467" width="1" height="13" uuid="f111b696-df17-467a-9cd6-5fc6315d8db0"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="419" y="467" width="1" height="13" uuid="2916564e-9d65-462f-a3a2-4b65cd379d4c"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="490" y="467" width="1" height="13" uuid="6a929298-fe2b-4586-bd05-9f627153a0ba"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 	<detail>
-		<band height="12">
+		<band height="13">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="26" y="0" width="523" height="12" uuid="62be155b-ad93-4aad-92dc-e5865585bea2"/>
+				<reportElement x="26" y="0" width="209" height="12" uuid="62be155b-ad93-4aad-92dc-e5865585bea2"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1257,7 +1340,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="11" width="557" height="1" uuid="8a33f32c-5fe3-4e96-830c-a0ddc88a4e99"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="12" width="557" height="1" uuid="8a33f32c-5fe3-4e96-830c-a0ddc88a4e99"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1276,6 +1359,61 @@
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="240" y="0" width="48" height="12" uuid="0e2a0f21-8bff-4efc-81d2-646fb7fd468a"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{dosis}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="294" y="0" width="123" height="12" uuid="002eee4e-e9ad-4883-b809-4de8623c8160"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{cara_pemberian}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="494" y="0" width="59" height="12" uuid="fbcbb3aa-0fe8-47ba-839b-92baa81eae6d"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jlh_sisa_obat}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="237" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="32259105-428e-42ff-9857-e22eafdedcc6"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="290" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="96c88137-6128-4c3b-b00c-79ddb87bfc2b"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="419" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1e7deb25-0a5c-48d0-875d-cfe43c434b64"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="490" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="877e6f01-42e7-4c3c-b8d0-0cff0a5a2c01"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="HH:mm:ss">
+				<reportElement x="422" y="0" width="67" height="12" uuid="795e5720-3d9e-4f4c-b782-68762e7af928"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jadwal_pemberian}]]></textFieldExpression>
+			</textField>
 		</band>
 	</detail>
 	<summary>
