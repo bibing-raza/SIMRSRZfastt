@@ -63,7 +63,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             ngt = "", infus = "", obat = "", tidakada = "", paten = "", obsP = "", deformitas = "", contusio = "", penetrasi = "", tenderness = "",
             swelling = "", ekskoriasi = "", abrasi = "", burn = "", laserasi = "", tdk_tmpk_jls = "", obsT = "", traumaJlnNfs = "", resikoAspirasi = "",
             bendaAsing = "", hipertensi = "", dm = "", jantung = "", merokok = "", meninggal = "", ganggnafas = "", kdItemrad = "", itemDipilih = "",
-            tglRad = "", jamRad = "";
+            tglRad = "", jamRad = "", jamkeluar = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -80,11 +80,11 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             "Menangis", "Tonus Otot", "Skor Apgar", "Frekuensi Nafas", "Retraksi", "Sianosis", "Air Entry", "Merintih", "GCS E", "Pupil", "Diam. Kanan", 
             "Reflek Chya.", "Meningeal Signs", "Literalisasi", "Deformitas", "Contusio", "Penetrasi", "Tenderness", "Swelling", "Ekskoriasi", "Abrasi", 
             "Burn", "Laserasi", "Tdk. Tampak Jls.", "Alergi", "Hipertensi", "DM", "Jantung", "Riw. Lain", "Merokok", "Kebiasaan Lain", "Anamnesis", 
-            "Pemrk. Fisik", "Konjuntiva", "Sklera", "Bibir", "Mukosa", "Deviasi", "JVP", "LNN", "Tiroid", "Thorax", "Jantung", "Paru", "Abdomen", "Punggung", 
+            "Pemrk. Fisik", "Konjuntiva", "Sklera", "Bibir", "Mukosa", "Deviasi", "JVP", "LNN", "Tiroid", "Jantung", "Paru", "Abdomen", "Punggung", 
             "Ekstremitas", "lab", "x-ray", "ecg", "ctscan", "usg", "lainnya", "diagnosis", "icd", "Renc. Instruksi", "Ket. Rencana", "edukasi", "rencana", 
-            "nip_edukasi", "penerima_edukasi", "nip_dokter", "tglkeluar", "ruang_opname", "indikasi_msk", "dipulangkan", "dirujuk","alasan_rujuk",
+            "nip_edukasi", "penerima_edukasi", "nip_dokter", "tgljamkeluar", "ruang_opname", "indikasi_msk", "dipulangkan", "dirujuk", "alasan_rujuk",
             "meninggal", "jam_mati", "penyebab", "ku", "td", "hr", "rr", "temp", "spo2", "gcs", "nip_perawat", "nip_dpjp", "ket_gambar", "gcs_v", "gcs_m",
-            "diameter_kiri", "gangguan_jalan_nafas", "nadi_2", "akral_2"
+            "diameter_kiri", "gangguan_jalan_nafas", "nadi_2", "akral_2", "cekjamkeluar", "tglkeluar", "jamkeluar"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -93,7 +93,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         tbPenilaian.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPenilaian.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 129; i++) {
+        for (i = 0; i < 131; i++) {
             TableColumn column = tbPenilaian.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -292,7 +292,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             } else if (i == 97) {
                 column.setPreferredWidth(100);
             } else if (i == 98) {
-                column.setPreferredWidth(100);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 99) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -381,6 +382,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 128) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 129) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 130) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -830,7 +837,6 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jSeparator4 = new javax.swing.JSeparator();
         jLabel173 = new widget.Label();
         jLabel174 = new widget.Label();
-        TglKeluar = new widget.Tanggal();
         jLabel175 = new widget.Label();
         cmbRuangan = new widget.ComboBox();
         jLabel176 = new widget.Label();
@@ -909,6 +915,11 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         BtnInformasi = new widget.Button();
         BtnAsuhan = new widget.Button();
         BtnAlasan = new widget.Button();
+        ChkJamKeluar = new widget.CekBox();
+        TglKeluar = new widget.Tanggal();
+        cmbJam1 = new widget.ComboBox();
+        cmbMnt1 = new widget.ComboBox();
+        cmbDtk1 = new widget.ComboBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPenilaian = new widget.Table();
@@ -1540,7 +1551,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 2231));
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 2261));
         FormInput.setLayout(null);
 
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
@@ -1642,7 +1653,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023 20:45:52" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023 10:55:46" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -2922,23 +2933,16 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel173.setBounds(10, 1980, 330, 23);
 
         jLabel174.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel174.setText("Tgl. & Jam Keluar :");
+        jLabel174.setText("Tgl. Keluar :");
         jLabel174.setName("jLabel174"); // NOI18N
         FormInput.add(jLabel174);
         jLabel174.setBounds(10, 2000, 125, 23);
-
-        TglKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023 20:45:52" }));
-        TglKeluar.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
-        TglKeluar.setName("TglKeluar"); // NOI18N
-        TglKeluar.setOpaque(false);
-        FormInput.add(TglKeluar);
-        TglKeluar.setBounds(140, 2000, 130, 23);
 
         jLabel175.setForeground(new java.awt.Color(0, 0, 0));
         jLabel175.setText("Opname Diruangan :");
         jLabel175.setName("jLabel175"); // NOI18N
         FormInput.add(jLabel175);
-        jLabel175.setBounds(10, 2030, 125, 23);
+        jLabel175.setBounds(10, 2060, 125, 23);
 
         cmbRuangan.setForeground(new java.awt.Color(0, 0, 0));
         cmbRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "AS-SAMI/1", "AS-SAMI/2" }));
@@ -2950,13 +2954,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbRuangan);
-        cmbRuangan.setBounds(140, 2030, 170, 23);
+        cmbRuangan.setBounds(140, 2060, 170, 23);
 
         jLabel176.setForeground(new java.awt.Color(0, 0, 0));
         jLabel176.setText("Indikasi Masuk :");
         jLabel176.setName("jLabel176"); // NOI18N
         FormInput.add(jLabel176);
-        jLabel176.setBounds(10, 2060, 125, 23);
+        jLabel176.setBounds(10, 2090, 125, 23);
 
         Tindikasi.setForeground(new java.awt.Color(0, 0, 0));
         Tindikasi.setName("Tindikasi"); // NOI18N
@@ -2966,13 +2970,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tindikasi);
-        Tindikasi.setBounds(140, 2060, 330, 23);
+        Tindikasi.setBounds(140, 2090, 330, 23);
 
         jLabel177.setForeground(new java.awt.Color(0, 0, 0));
         jLabel177.setText("Dipulangkan, Kontrol Ke :");
         jLabel177.setName("jLabel177"); // NOI18N
         FormInput.add(jLabel177);
-        jLabel177.setBounds(10, 2090, 125, 23);
+        jLabel177.setBounds(10, 2120, 125, 23);
 
         Tdipulangkan.setForeground(new java.awt.Color(0, 0, 0));
         Tdipulangkan.setName("Tdipulangkan"); // NOI18N
@@ -2982,13 +2986,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdipulangkan);
-        Tdipulangkan.setBounds(140, 2090, 330, 23);
+        Tdipulangkan.setBounds(140, 2120, 330, 23);
 
         jLabel178.setForeground(new java.awt.Color(0, 0, 0));
         jLabel178.setText("Dirujuk Ke :");
         jLabel178.setName("jLabel178"); // NOI18N
         FormInput.add(jLabel178);
-        jLabel178.setBounds(10, 2120, 125, 23);
+        jLabel178.setBounds(10, 2150, 125, 23);
 
         Tdirujuk.setForeground(new java.awt.Color(0, 0, 0));
         Tdirujuk.setName("Tdirujuk"); // NOI18N
@@ -2998,13 +3002,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdirujuk);
-        Tdirujuk.setBounds(140, 2120, 330, 23);
+        Tdirujuk.setBounds(140, 2150, 330, 23);
 
         jLabel179.setForeground(new java.awt.Color(0, 0, 0));
         jLabel179.setText("Alasan Dirujuk :");
         jLabel179.setName("jLabel179"); // NOI18N
         FormInput.add(jLabel179);
-        jLabel179.setBounds(10, 2150, 125, 23);
+        jLabel179.setBounds(10, 2180, 125, 23);
 
         scrollPane10.setName("scrollPane10"); // NOI18N
 
@@ -3021,7 +3025,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         scrollPane10.setViewportView(TAlasanDirujuk);
 
         FormInput.add(scrollPane10);
-        scrollPane10.setBounds(140, 2150, 640, 70);
+        scrollPane10.setBounds(140, 2180, 640, 70);
 
         ChkMeninggal.setBackground(new java.awt.Color(255, 255, 250));
         ChkMeninggal.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3738,7 +3742,65 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnAlasan);
-        BtnAlasan.setBounds(785, 2150, 100, 23);
+        BtnAlasan.setBounds(785, 2180, 100, 23);
+
+        ChkJamKeluar.setBackground(new java.awt.Color(255, 255, 250));
+        ChkJamKeluar.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkJamKeluar.setForeground(new java.awt.Color(0, 0, 0));
+        ChkJamKeluar.setText("Jam Keluar :");
+        ChkJamKeluar.setBorderPainted(true);
+        ChkJamKeluar.setBorderPaintedFlat(true);
+        ChkJamKeluar.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkJamKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkJamKeluar.setName("ChkJamKeluar"); // NOI18N
+        ChkJamKeluar.setOpaque(false);
+        ChkJamKeluar.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkJamKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkJamKeluarActionPerformed(evt);
+            }
+        });
+        FormInput.add(ChkJamKeluar);
+        ChkJamKeluar.setBounds(10, 2030, 125, 23);
+
+        TglKeluar.setEditable(false);
+        TglKeluar.setDisplayFormat("dd-MM-yyyy");
+        TglKeluar.setName("TglKeluar"); // NOI18N
+        FormInput.add(TglKeluar);
+        TglKeluar.setBounds(140, 2000, 100, 23);
+
+        cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
+        cmbJam1.setName("cmbJam1"); // NOI18N
+        cmbJam1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbJam1MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbJam1);
+        cmbJam1.setBounds(140, 2030, 45, 23);
+
+        cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbMnt1.setName("cmbMnt1"); // NOI18N
+        cmbMnt1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbMnt1MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbMnt1);
+        cmbMnt1.setBounds(190, 2030, 45, 23);
+
+        cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
+        cmbDtk1.setName("cmbDtk1"); // NOI18N
+        cmbDtk1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbDtk1MouseReleased(evt);
+            }
+        });
+        FormInput.add(cmbDtk1);
+        cmbDtk1.setBounds(240, 2030, 45, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -3781,7 +3843,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3795,7 +3857,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3978,6 +4040,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 param.put("jam_meninggal", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + ":" + cmbDtk.getSelectedItem().toString());                
             } else {
                 param.put("jam_meninggal", "-");
+            }
+            
+            if (ChkJamKeluar.isSelected() == true) {
+                param.put("jam_keluar", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + ":" + cmbDtk1.getSelectedItem().toString());   
+            } else {
+                param.put("jam_keluar", "-");
             }
             
             Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
@@ -4896,6 +4964,34 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnBayiActionPerformed
 
+    private void ChkJamKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJamKeluarActionPerformed
+        if (ChkJamKeluar.isSelected() == true) {
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
+        } else {
+            cmbJam1.setSelectedIndex(0);
+            cmbMnt1.setSelectedIndex(0);
+            cmbDtk1.setSelectedIndex(0);
+            
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
+        }
+    }//GEN-LAST:event_ChkJamKeluarActionPerformed
+
+    private void cmbJam1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJam1MouseReleased
+        AutoCompleteDecorator.decorate(cmbJam1);
+    }//GEN-LAST:event_cmbJam1MouseReleased
+
+    private void cmbMnt1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbMnt1MouseReleased
+        AutoCompleteDecorator.decorate(cmbMnt1);
+    }//GEN-LAST:event_cmbMnt1MouseReleased
+
+    private void cmbDtk1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk1MouseReleased
+        AutoCompleteDecorator.decorate(cmbDtk1);
+    }//GEN-LAST:event_cmbDtk1MouseReleased
+
     /**
     * @param args the command line arguments
     */
@@ -4964,6 +5060,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     public widget.CekBox ChkHipertensi;
     public widget.CekBox ChkInfus;
     public widget.CekBox ChkIntubasi;
+    public widget.CekBox ChkJamKeluar;
     public widget.CekBox ChkJantung;
     public widget.CekBox ChkKateter;
     public widget.CekBox ChkLaserasi;
@@ -5067,9 +5164,11 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.ComboBox cmbCkpBulan;
     private widget.ComboBox cmbDeviasi;
     private widget.ComboBox cmbDtk;
+    private widget.ComboBox cmbDtk1;
     private widget.ComboBox cmbGerakanDada;
     private widget.ComboBox cmbJVP;
     private widget.ComboBox cmbJam;
+    private widget.ComboBox cmbJam1;
     private widget.ComboBox cmbKesJalanNafas;
     private widget.ComboBox cmbKesPernapasan;
     private widget.ComboBox cmbKesSirkulasi;
@@ -5078,6 +5177,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.ComboBox cmbLNN;
     private widget.ComboBox cmbLater;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbMukosa;
     private widget.ComboBox cmbNadi1;
     private widget.ComboBox cmbNadi2;
@@ -5244,7 +5344,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
-                    + "date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, pm.* FROM reg_periksa rp "
+                    + "date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, DATE_FORMAT(pm.tgl_keluar_igd,'%Y-%m-%d') tglklr, DATE_FORMAT(pm.tgl_keluar_igd,'%H:%i:%s') jamklr, "
+                    + "pm.* FROM reg_periksa rp "
                     + "inner join penilaian_awal_medis_igd pm on pm.no_rawat=rp.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "left join pegawai pg1 on pg1.nik=pm.nip_perawat "
@@ -5422,7 +5523,10 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                         rs.getString("diameter_kiri"),
                         rs.getString("gangguan_jalan_nafas"),
                         rs.getString("nadi_2"),
-                        rs.getString("akral_2")
+                        rs.getString("akral_2"),
+                        rs.getString("cek_jam_keluar"),
+                        rs.getString("tglklr"),
+                        rs.getString("jamklr")
                     });
                 }
             } catch (Exception e) {
@@ -5563,6 +5667,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         ChkTdkTampk.setSelected(false);
         BtnRencana.setEnabled(false);
         Valid.tabelKosong(tabMode1);
+        ChkJamKeluar.setSelected(false);
+        cmbJam1.setSelectedIndex(0);
+        cmbMnt1.setSelectedIndex(0);
+        cmbDtk1.setSelectedIndex(0);
+        cmbJam1.setEnabled(false);
+        cmbMnt1.setEnabled(false);
+        cmbDtk1.setEnabled(false);
         hitungSkorDowne();
     }
 
@@ -5603,6 +5714,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jantung = "";
         merokok = "";        
         meninggal = "";
+        jamkeluar = "";
         
         if (tbPenilaian.getSelectedRow() != -1) {
             TNoRw.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString());
@@ -5725,8 +5837,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             nmpetugas.setText(Sequel.cariIsi("select ifnull(nama,'') from pegawai where nik='" + kdpetugas.getText() + "'"));
             nmpenerima.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 101).toString());
             kddokter.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 102).toString());
-            nmdokter.setText(Sequel.cariIsi("select ifnull(nama,'') from pegawai where nik='" + kddokter.getText() + "'"));
-            Valid.SetTgl2(TglKeluar, tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 103).toString());
+            nmdokter.setText(Sequel.cariIsi("select ifnull(nama,'') from pegawai where nik='" + kddokter.getText() + "'"));            
             cmbRuangan.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 104).toString());
             Tindikasi.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 105).toString());
             Tdipulangkan.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 106).toString());
@@ -5738,7 +5849,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             cmbJam.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 110).toString().substring(6, 8));
-            Tpenyebab.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 111).toString());
+            Tpenyebab.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 111).toString());            
             Tku.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 112).toString());
             Ttd.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 113).toString());
             Thr.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 114).toString());
@@ -5753,10 +5864,16 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             Tket_gambar.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 121).toString());
             TgcsV.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 122).toString());
             TgcsM.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 123).toString());
-            TDiam_kiri.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(),124).toString());
+            TDiam_kiri.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 124).toString());
             ganggnafas = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(),125).toString();
             cmbNadi2.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 126).toString());
             cmbAkral2.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 127).toString());
+            jamkeluar = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 128).toString();
+            Valid.SetTgl(TglKeluar, tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 129).toString());                                    
+            
+            cmbJam1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(0, 2));
+            cmbMnt1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(3, 5));
+            cmbDtk1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(6, 8));
             hitungSkorDowne();
             dataCek();
         }
@@ -5874,7 +5991,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 + "telah_diberikan_informasi_edukasi=?, rencana_asuhan_diharapkan=?, nip_pemberi_edukasi=?, penerima_edukasi=?, nip_dokter=?, tgl_keluar_igd=?, "
                 + "opname_diruang=?, indikasi_msk=?, dipulangkan_kontrol_ke=?, dirujuk_ke=?, alasan_dirujuk=?, meninggal=?, jam_meninggal=?, penyebab=?, k_u=?, "
                 + "td=?, hr=?, rr=?, temp=?, spo2=?, gcs_pulang=?, nip_perawat=?, nip_dpjp=?, ket_gambar=?, gcs_v=?, gcs_m=?, diameter_kiri=?, gangguan_jalan_nafas=?, "
-                + "nadi_2=?, akral_2=?", 125, new String[]{
+                + "nadi_2=?, akral_2=?, cek_jam_keluar=?", 126, new String[]{
                     TNoRw.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), cervical, rjp, defribrilasi, intubasi,
                     vtp, dekompresi, balut, kateter, ngt, infus, obat, TObat.getText(), tidakada, paten, obsP, cmbObstruksi.getSelectedItem().toString(), obsT, traumaJlnNfs, cmbTrauma.getSelectedItem().toString(), 
                     resikoAspirasi, cmbResiko.getSelectedItem().toString(), bendaAsing, TBendaAsing.getText(), cmbKesJalanNafas.getSelectedItem().toString(), cmbPernapasan.getSelectedItem().toString(),
@@ -5889,10 +6006,10 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                     cmbLNN.getSelectedItem().toString(), cmbTiroid.getSelectedItem().toString(), TJantung.getText(), TParu.getText(), TAbdomen.getText(), TPunggung.getText(), 
                     TEkstremitas.getText(), TLab.getText(), Txray.getText(), Tecg.getText(), Tctscan.getText(), Tusg.getText(), Tlainya.getText(), TDiagSementara.getText(), Ticd.getText(), 
                     cmbRencana.getSelectedItem().toString(), TketRencana.getText(), Tedukasi.getText(), Trencana.getText(), kdpetugas.getText(), nmpenerima.getText(), kddokter.getText(), 
-                    Valid.SetTgl(TglKeluar.getSelectedItem() + "") + " " + TglKeluar.getSelectedItem().toString().substring(11, 19), cmbRuangan.getSelectedItem().toString(), Tindikasi.getText(), 
-                    Tdipulangkan.getText(), Tdirujuk.getText(), TAlasanDirujuk.getText(), meninggal, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                    Valid.SetTgl(TglKeluar.getSelectedItem() + "") + " " + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), cmbRuangan.getSelectedItem().toString(), 
+                    Tindikasi.getText(), Tdipulangkan.getText(), Tdirujuk.getText(), TAlasanDirujuk.getText(), meninggal, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                     Tpenyebab.getText(), Tku.getText(), Ttd.getText(), Thr.getText(), Trr.getText(), Ttemp.getText(), Tspo2.getText(), Tgcs.getText(), KdPerawat.getText(), kddpjp.getText(),
-                    Tket_gambar.getText(), TgcsV.getText(), TgcsM.getText(), TDiam_kiri.getText(), ganggnafas, cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString(),
+                    Tket_gambar.getText(), TgcsV.getText(), TgcsM.getText(), TDiam_kiri.getText(), ganggnafas, cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString(), jamkeluar,
                     tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
                 }) == true) {
             TCari.setText(TNoRw.getText());
@@ -5952,7 +6069,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         cekData();
         BtnJumlahActionPerformed(null);
         if (Sequel.menyimpantf("penilaian_awal_medis_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 124, new String[]{
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 125, new String[]{
             TNoRw.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), cervical, rjp, defribrilasi, intubasi, vtp, dekompresi, balut, kateter, ngt, infus, obat,
             TObat.getText(), tidakada, paten, obsP, cmbObstruksi.getSelectedItem().toString(), obsT, traumaJlnNfs, cmbTrauma.getSelectedItem().toString(), resikoAspirasi, cmbResiko.getSelectedItem().toString(), bendaAsing, TBendaAsing.getText(),
             cmbKesJalanNafas.getSelectedItem().toString(), cmbPernapasan.getSelectedItem().toString(), cmbReguler.getSelectedItem().toString(), cmbGerakanDada.getSelectedItem().toString(), cmbTipePernapasan.getSelectedItem().toString(), 
@@ -5963,10 +6080,10 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             TPemeriksaan.getText(), cmbKonjung.getSelectedItem().toString(), cmbSklera.getSelectedItem().toString(), cmbBibir.getSelectedItem().toString(), cmbMukosa.getSelectedItem().toString(), cmbDeviasi.getSelectedItem().toString(), 
             cmbJVP.getSelectedItem().toString(), cmbLNN.getSelectedItem().toString(), cmbTiroid.getSelectedItem().toString(), TJantung.getText(), TParu.getText(), TAbdomen.getText(), TPunggung.getText(), TEkstremitas.getText(), 
             TLab.getText(), Txray.getText(), Tecg.getText(), Tctscan.getText(), Tusg.getText(), Tlainya.getText(), TDiagSementara.getText(), Ticd.getText(), cmbRencana.getSelectedItem().toString(), TketRencana.getText(), Tedukasi.getText(), 
-            Trencana.getText(), kdpetugas.getText(), nmpenerima.getText(), kddokter.getText(), Valid.SetTgl(TglKeluar.getSelectedItem() + "") + " " + TglKeluar.getSelectedItem().toString().substring(11, 19), cmbRuangan.getSelectedItem().toString(), 
-            Tindikasi.getText(), Tdipulangkan.getText(), Tdirujuk.getText(), TAlasanDirujuk.getText(), meninggal, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tpenyebab.getText(), Tku.getText(), 
-            Ttd.getText(), Thr.getText(), Trr.getText(), Ttemp.getText(), Tspo2.getText(), Tgcs.getText(), KdPerawat.getText(), kddpjp.getText(), Tket_gambar.getText(), TgcsV.getText(), TgcsM.getText(), TDiam_kiri.getText(), ganggnafas,
-            cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString()
+            Trencana.getText(), kdpetugas.getText(), nmpenerima.getText(), kddokter.getText(), Valid.SetTgl(TglKeluar.getSelectedItem() + "") + " " + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
+            cmbRuangan.getSelectedItem().toString(), Tindikasi.getText(), Tdipulangkan.getText(), Tdirujuk.getText(), TAlasanDirujuk.getText(), meninggal, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
+            Tpenyebab.getText(), Tku.getText(), Ttd.getText(), Thr.getText(), Trr.getText(), Ttemp.getText(), Tspo2.getText(), Tgcs.getText(), KdPerawat.getText(), kddpjp.getText(), Tket_gambar.getText(), TgcsV.getText(), TgcsM.getText(), 
+            TDiam_kiri.getText(), ganggnafas, cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString(), jamkeluar
         }) == true) {
             TCari.setText(TNoRw.getText());
             Ttd.setText("");
@@ -6190,6 +6307,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         } else {
             meninggal = "tidak";
         }
+        
+        if (ChkJamKeluar.isSelected() == true) {
+            jamkeluar = "ya";
+        } else {
+            jamkeluar = "tidak";
+        }
     }
     
     private void hitungSkorDowne() {
@@ -6410,6 +6533,12 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             ChkMeninggal.setSelected(false);
         }
         
+        if (jamkeluar.equals("ya")) {
+            ChkJamKeluar.setSelected(true);
+        } else {
+            ChkJamKeluar.setSelected(false);
+        }
+        
         //------------------------------------------------------------
         if (ChkObat.isSelected() == true) {
             TObat.setEnabled(true);
@@ -6472,6 +6601,20 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             cmbJam.setEnabled(false);
             cmbMnt.setEnabled(false);
             cmbDtk.setEnabled(false);
+        }
+        
+        if (ChkJamKeluar.isSelected() == true) {
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
+        } else {
+            cmbJam1.setSelectedIndex(0);
+            cmbMnt1.setSelectedIndex(0);
+            cmbDtk1.setSelectedIndex(0);
+            
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
         }
     }
     

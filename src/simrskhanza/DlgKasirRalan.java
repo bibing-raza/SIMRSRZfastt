@@ -7601,7 +7601,19 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     }//GEN-LAST:event_MnInputDataCPPTActionPerformed
 
     private void MnLihatDataCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataCPPTActionPerformed
-        // TODO add your handling code here:
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cetakCPPTigd();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data CPPT IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
     }//GEN-LAST:event_MnLihatDataCPPTActionPerformed
 
     /**
@@ -9236,7 +9248,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void cetakAsesMedikIGD() {
         skorAsesIGD = "";
         try {
-            psLaprm = koneksi.prepareStatement("select * from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_keluar_igd,'%H:%i:%s') jamklr from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -9261,6 +9273,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("jam_meninggal", rsLaprm.getString("jam_meninggal"));
                     } else {
                         param.put("jam_meninggal", "-");
+                    }
+
+                    if (rsLaprm.getString("cek_jam_keluar").equals("ya")) {
+                        param.put("jam_keluar", rsLaprm.getString("jamklr"));
+                    } else {
+                        param.put("jam_keluar", "-");
                     }
 
                     Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
@@ -9842,13 +9860,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         param.put("tgllainalat", "-");
                     }
 
-                    if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + rsLaprm.getString("no_rawat") + "'") == 0) {
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                            + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
                         Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
                                 "SELECT date(now())", param);
                     } else {
                         Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                                "SELECT nama_obat, noId FROM catatan_resep WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
-                                + "ORDER BY noId", param);
+                                "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
+                                + "and status='Ralan' ORDER BY waktu_simpan desc", param);
                     }
                 }
             } catch (Exception e) {
@@ -10065,5 +10084,19 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void cetakCPPTigd() {
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");        
+        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
+                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
+                    + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
+                    + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
+                    + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
+                    + "AND c. STATUS = 'Ralan' ORDER BY c.waktu_simpan", param);
     }
 }

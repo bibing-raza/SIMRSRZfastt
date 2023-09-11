@@ -44,6 +44,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int x = 0;
+    private String kdobat = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -52,8 +53,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian", "Jadwal Pemberian", 
-            "Jlh. Sisa Obat", "Status", "wkt_simpan","Tgl. Pemberian"};
+        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian", "Jadwal Pemberian",
+            "Jlh. Sisa Obat", "Status", "wkt_simpan", "Tgl. Pemberian", "kodeobat"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -62,7 +63,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -87,7 +88,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 10) {
                 column.setPreferredWidth(85);
-            } 
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -702,7 +706,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             Sequel.menyimpan("pemberian_obat", "'" + TNoRW.getText() + "','" + nmObat.getText() + "',"
                     + "'" + dosis.getText() + "','" + caraPemberian.getText() + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + jlhSisaObat.getText() + "','Ralan','" + Sequel.cariIsi("select now()") + "'", "Pemberian Obat");
+                    + "'" + jlhSisaObat.getText() + "','Ralan','" + Sequel.cariIsi("select now()") + "','" + kdobat + "'", "Pemberian Obat");
             tampil();
             emptTeks();
         }
@@ -762,10 +766,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } else {
             if (tbObat.getSelectedRow() > -1) {
                 Sequel.mengedit("pemberian_obat", "waktu_simpan=?", "nama_obat=?, dosis=?, cara_pemberian=?, "
-                        + "jadwal_pemberian=?, jlh_sisa_obat=?", 6, new String[]{
+                        + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?", 7, new String[]{
                             nmObat.getText(), dosis.getText(), caraPemberian.getText(),
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                            jlhSisaObat.getText(),
+                            jlhSisaObat.getText(), kdobat,
                             tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString()
                         });
                 tampil();
@@ -936,6 +940,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (tabMode1.getRowCount() != 0) {
             if (evt.getClickCount() == 2) {
                 if (tbFarmasi.getSelectedRow() != -1) {
+                    kdobat = tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 0).toString();
                     nmObat.setText(tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 1).toString());
                     WindowObat.dispose();
                 }
@@ -947,6 +952,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (tabMode1.getRowCount() != 0) {
             if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 if (tbFarmasi.getSelectedRow() != -1) {
+                    kdobat = tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 0).toString();
                     nmObat.setText(tbFarmasi.getValueAt(tbFarmasi.getSelectedRow(), 1).toString());
                     WindowObat.dispose();
                 }
@@ -1024,7 +1030,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         try {
             if (cmbHlm.getSelectedIndex() == 6) {
                 ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                        + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.waktu_simpan,'%d-%m-%Y') tglObat from pemberian_obat po "
+                        + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.waktu_simpan,'%d-%m-%Y') tglObat, po.kode_brng from pemberian_obat po "
                         + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "po.no_rawat like '%" + TNoRW.getText() + "%' and p.no_rkm_medis like ? or "
                         + "po.no_rawat like '%" + TNoRW.getText() + "%' and p.nm_pasien like ? or "
@@ -1038,7 +1044,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         + "order by po.waktu_simpan desc");
             } else {
                 ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                        + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.waktu_simpan,'%d-%m-%Y') tglObat from pemberian_obat po "
+                        + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.waktu_simpan,'%d-%m-%Y') tglObat, po.kode_brng from pemberian_obat po "
                         + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "po.no_rawat like '%" + TNoRW.getText() + "%' and p.no_rkm_medis like ? or "
                         + "po.no_rawat like '%" + TNoRW.getText() + "%' and p.nm_pasien like ? or "
@@ -1074,7 +1080,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         rs.getString("jlh_sisa_obat"),
                         rs.getString("status"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("tglObat")
+                        rs.getString("tglObat"),
+                        rs.getString("kode_brng")
                     });
                 }
             } catch (Exception e) {
@@ -1096,6 +1103,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private void emptTeks() {
         nmObat.setText("");
         dosis.setText("");
+        kdobat = "";
         caraPemberian.setText("");
         cmbJam.setSelectedIndex(0);
         cmbMnt.setSelectedIndex(0);
@@ -1107,6 +1115,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     }
 
     private void getData() {
+        kdobat = "";
         if(tbObat.getSelectedRow()!= -1){
             TNoRW.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
             TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
@@ -1118,6 +1127,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbMnt.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 6).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 6).toString().substring(6, 8));
             jlhSisaObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
+            kdobat = tbObat.getValueAt(tbObat.getSelectedRow(),11).toString();
         }
     }
     

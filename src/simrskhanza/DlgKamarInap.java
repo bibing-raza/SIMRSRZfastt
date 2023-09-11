@@ -16459,7 +16459,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void cetakAsesMedikIGD() {
         skorAsesIGD = "";
         try {
-            psLaprm = koneksi.prepareStatement("select * from penilaian_awal_medis_igd where no_rawat='" + norawat.getText() + "'");
+            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_keluar_igd,'%H:%i:%s') jamklr from penilaian_awal_medis_igd where no_rawat='" + norawat.getText() + "'");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -16485,6 +16485,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } else {
                         param.put("jam_meninggal", "-");
                     }
+                    
+                    if (rsLaprm.getString("cek_jam_keluar").equals("ya")) {
+                        param.put("jam_keluar", rsLaprm.getString("jamklr"));
+                    } else {
+                        param.put("jam_keluar", "-");
+                    }
 
                     Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
                             "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
@@ -16494,7 +16500,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
                             + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
                             + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi, pa.kulit_mukosa, pa.akral, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
                             + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
                             + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
                             + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
@@ -16504,7 +16510,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
                             + "pa.rencana_asuhan_diharapkan, pg1.nama pemberi_edukasi, pa.penerima_edukasi, pg2.nama nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
                             + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
-                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri "
+                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, pa.nadi_2, pa.akral_2 "
                             + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
                             + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
                             + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
@@ -16518,7 +16524,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
                             + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
                             + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi, pa.kulit_mukosa, pa.akral, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
+                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
                             + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
                             + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
                             + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
@@ -17115,7 +17121,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     param.put("nyeri", rsLaprm.getString("skala_nyeri"));
                     param.put("resikojatuh", rsLaprm.getString("resiko_jatuh"));
                     param.put("kriteria", rsLaprm.getString("kriteria_transfer"));
-                    param.put("lab", rsLaprm.getString("lab"));
                     param.put("diagnosa", rsLaprm.getString("diagnosa"));
                     param.put("rekomendasi", rsLaprm.getString("rekomendasi"));
                     param.put("alasanpindahruangan", rsLaprm.getString("alasan_pindah_ruangan"));
@@ -17131,6 +17136,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + Sequel.cariIsi("select date_format(tgl_serah_terima_transfer,'%Y') from transfer_serah_terima_pasien_igd where "
                                     + "no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
 
+                    if (rsLaprm.getString("lab").equals("ya")) {
+                        param.put("lab", "V");
+                    } else {
+                        param.put("lab", "");
+                    }
+                    
                     if (rsLaprm.getString("ekg").equals("ya")) {
                         param.put("ekg", "V");
                     } else {
@@ -17261,13 +17272,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         param.put("tgllainalat", "-");
                     }
 
-                    if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + rsLaprm.getString("no_rawat") + "'") == 0) {
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                            + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
                         Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
                                 "SELECT date(now())", param);
                     } else {
                         Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                                "SELECT nama_obat, noId FROM catatan_resep WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
-                                + "ORDER BY noId", param);
+                                "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
+                                + "and status='Ralan' ORDER BY waktu_simpan desc", param);
                     }
                 }
             } catch (Exception e) {
