@@ -4939,7 +4939,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             gantiBayi();
             BtnKeluar1ActionPerformed(null);
         } else {
-            if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 120).toString())) {
+            if (kddpjp.getText().equals(Sequel.cariIsi("select nip_dpjp from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"))) {
                 emptTeksBayi();
                 gantiBayi();
                 BtnKeluar1ActionPerformed(null);
@@ -5635,6 +5635,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         TDiagSementara.setText("");
         Ticd.setText("");
         cmbRencana.setSelectedIndex(0);
+        BtnRencana.setEnabled(false);
         TketRencana.setText("");
         TketRencana.setEnabled(false);        
         Tedukasi.setText("");
@@ -5869,7 +5870,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             cmbNadi2.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 126).toString());
             cmbAkral2.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 127).toString());
             jamkeluar = tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 128).toString();
-            Valid.SetTgl(TglKeluar, tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 129).toString());                                    
+            Valid.SetTgl(TglKeluar, tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 129).toString());
             
             cmbJam1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(0, 2));
             cmbMnt1.setSelectedItem(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 130).toString().substring(3, 5));
@@ -6570,8 +6571,10 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         
         if (cmbRencana.getSelectedIndex() != 0) {
             TketRencana.setEnabled(true);
+            BtnRencana.setEnabled(true);
         } else {
             TketRencana.setText("");
+            BtnRencana.setEnabled(false);
             TketRencana.setEnabled(false);
         }
         

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.9.0.final using JasperReports Library version 6.9.0-cb8f9004be492ccc537180b49c026951f4220bf3  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="557" leftMargin="19" rightMargin="19" topMargin="19" bottomMargin="19" uuid="9386cec6-cb87-4bd3-ac1f-ecf23ade8130">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="9386cec6-cb87-4bd3-ac1f-ecf23ade8130">
 	<property name="ireport.zoom" value="1.818181818181821"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="302"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -500,7 +499,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 	<title>
 		<band height="420">
 			<textField>
-				<reportElement x="388" y="28" width="158" height="11" uuid="0b94d5be-d2ca-4bee-9d9a-5dc1e843ca5a">
+				<reportElement x="360" y="28" width="158" height="11" uuid="0b94d5be-d2ca-4bee-9d9a-5dc1e843ca5a">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -511,7 +510,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="388" y="39" width="158" height="11" uuid="31ac5f46-0300-4f0a-8db5-749b7b0301b7">
+				<reportElement x="360" y="39" width="158" height="11" uuid="31ac5f46-0300-4f0a-8db5-749b7b0301b7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -521,7 +520,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{tgllhr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="388" y="17" width="158" height="11" uuid="57adb474-ffd8-41b4-98df-34f6e5bc448c">
+				<reportElement mode="Transparent" x="360" y="17" width="158" height="11" uuid="57adb474-ffd8-41b4-98df-34f6e5bc448c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -531,7 +530,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="329" y="17" width="52" height="11" uuid="7d5fecac-7ec9-4638-858f-9bddf63973a2">
+				<reportElement x="301" y="17" width="52" height="11" uuid="7d5fecac-7ec9-4638-858f-9bddf63973a2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -541,7 +540,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="17" width="7" height="11" uuid="acc35c5b-57cb-4b21-8ac4-192e5ad1abda">
+				<reportElement x="353" y="17" width="7" height="11" uuid="acc35c5b-57cb-4b21-8ac4-192e5ad1abda">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -551,13 +550,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="100" width="557" height="1" uuid="aa889e73-8c40-4e9d-b980-ce0e98eb4b93"/>
+				<reportElement x="0" y="100" width="520" height="1" uuid="aa889e73-8c40-4e9d-b980-ce0e98eb4b93"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="381" y="28" width="7" height="11" uuid="c6991075-4857-4322-8260-0416f40b3164">
+				<reportElement x="353" y="28" width="7" height="11" uuid="c6991075-4857-4322-8260-0416f40b3164">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -567,7 +566,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="28" width="52" height="11" uuid="15548841-9757-4676-9bff-6ddf6fa55445">
+				<reportElement x="301" y="28" width="52" height="11" uuid="15548841-9757-4676-9bff-6ddf6fa55445">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -577,7 +576,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="39" width="52" height="11" uuid="24550298-f85a-4495-b03c-ff7073d04afa">
+				<reportElement x="301" y="39" width="52" height="11" uuid="24550298-f85a-4495-b03c-ff7073d04afa">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -587,7 +586,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="39" width="7" height="11" uuid="8606f9ee-f518-4ca3-b405-73030e0ccbb3">
+				<reportElement x="353" y="39" width="7" height="11" uuid="8606f9ee-f518-4ca3-b405-73030e0ccbb3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -601,7 +600,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="55" width="557" height="17" backcolor="#F0F0DC" uuid="6138d7ee-815a-4a06-8bd6-a9b72301a11f"/>
+				<reportElement mode="Opaque" x="0" y="55" width="520" height="17" backcolor="#F0F0DC" uuid="6138d7ee-815a-4a06-8bd6-a9b72301a11f"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -609,7 +608,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[ASESMEN MEDIK OBSTETRI]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="72" width="557" height="1" uuid="05256a74-7c68-4fe3-83f0-ca5be0c7f761">
+				<reportElement x="0" y="72" width="520" height="1" uuid="05256a74-7c68-4fe3-83f0-ca5be0c7f761">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -650,25 +649,25 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[INTERVENSI PREHOSPITAL]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="140" width="557" height="1" uuid="e402ecfa-f2d6-4740-bd75-bd0654e614fd"/>
+				<reportElement x="0" y="140" width="520" height="1" uuid="e402ecfa-f2d6-4740-bd75-bd0654e614fd"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="152" width="557" height="1" uuid="7e78b42e-7661-4b1b-a3b7-e6a02b9a007e"/>
+				<reportElement x="0" y="152" width="520" height="1" uuid="7e78b42e-7661-4b1b-a3b7-e6a02b9a007e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="268" width="557" height="1" uuid="182483f5-a6f7-4642-a005-7eaaa0211281"/>
+				<reportElement x="0" y="268" width="520" height="1" uuid="182483f5-a6f7-4642-a005-7eaaa0211281"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="67" y="358" width="481" height="11" uuid="efc6bf46-2adf-4c80-96fc-a5ca207e1e96">
+				<reportElement x="67" y="358" width="451" height="11" uuid="efc6bf46-2adf-4c80-96fc-a5ca207e1e96">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -711,7 +710,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="114" width="59" height="11" uuid="5011f8fd-868a-46ae-b973-1cd583ab11fb">
+				<reportElement x="17" y="114" width="52" height="11" uuid="5011f8fd-868a-46ae-b973-1cd583ab11fb">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -722,7 +721,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Cervical Collar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="17" y="126" width="59" height="11" uuid="601796a5-472d-4a4d-be60-52882bd0996d">
+				<reportElement x="17" y="126" width="52" height="11" uuid="601796a5-472d-4a4d-be60-52882bd0996d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -733,7 +732,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[RJP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="126" width="36" height="11" uuid="dbd2a4d8-72f4-4887-8ca1-b0759f84fbcc">
+				<reportElement x="85" y="126" width="36" height="11" uuid="dbd2a4d8-72f4-4887-8ca1-b0759f84fbcc">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -744,7 +743,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Intubasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="94" y="114" width="36" height="11" uuid="19171fd8-caad-488e-aaad-eb0596282988">
+				<reportElement x="85" y="114" width="36" height="11" uuid="19171fd8-caad-488e-aaad-eb0596282988">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -755,7 +754,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Defribilasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="141" width="557" height="11" backcolor="#F0F0DC" uuid="4df18ba1-6d2d-496f-9cce-0d017ec3cff7">
+				<reportElement mode="Opaque" x="0" y="141" width="520" height="11" backcolor="#F0F0DC" uuid="4df18ba1-6d2d-496f-9cce-0d017ec3cff7">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -777,13 +776,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[JALAN NAPAS :]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="357" width="557" height="1" uuid="198c2e6b-8dd8-4ea3-92e6-b2db5dc3e84c"/>
+				<reportElement x="0" y="357" width="520" height="1" uuid="198c2e6b-8dd8-4ea3-92e6-b2db5dc3e84c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="462" y="0" width="83" height="13" uuid="2cbfef25-520d-43b2-a9a1-955f22cc2bb7">
+				<reportElement x="435" y="0" width="83" height="13" uuid="2cbfef25-520d-43b2-a9a1-955f22cc2bb7">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -793,7 +792,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[RM 5.1 REV 02]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="55" width="557" height="1" uuid="50f0c894-5184-470d-8168-ba227e4153a5">
+				<reportElement x="0" y="55" width="520" height="1" uuid="50f0c894-5184-470d-8168-ba227e4153a5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -801,13 +800,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="323" y="12" width="1" height="43" uuid="af5bdf00-520b-49a0-bf84-aa337187420e"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="295" y="12" width="1" height="43" uuid="af5bdf00-520b-49a0-bf84-aa337187420e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="557" height="1" uuid="30e28a5c-1629-4970-8f85-88dcb2b81da5">
+				<reportElement x="0" y="12" width="520" height="1" uuid="30e28a5c-1629-4970-8f85-88dcb2b81da5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -821,13 +820,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="12" width="1" height="408" uuid="ea2c2679-d2cd-4722-845b-9ee0a0feabc2"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="12" width="1" height="408" uuid="ea2c2679-d2cd-4722-845b-9ee0a0feabc2"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="149" y="114" width="47" height="11" uuid="bf004ef9-98ff-45a5-9399-8d6100e8eebe">
+				<reportElement x="137" y="114" width="47" height="11" uuid="bf004ef9-98ff-45a5-9399-8d6100e8eebe">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -838,7 +837,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[VTP]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="149" y="126" width="107" height="11" uuid="f125f0b4-4ad5-458d-90b7-558bb0ce64c4">
+				<reportElement x="137" y="126" width="107" height="11" uuid="f125f0b4-4ad5-458d-90b7-558bb0ce64c4">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -849,7 +848,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Dekompresi Jarum  / WSD*]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="126" width="50" height="11" uuid="798ea874-f73f-4165-b29d-1837928bcbcf">
+				<reportElement x="260" y="126" width="50" height="11" uuid="798ea874-f73f-4165-b29d-1837928bcbcf">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -860,7 +859,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Kateter Urin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="275" y="114" width="50" height="11" uuid="8184ea49-7f62-461f-b72e-f48ac925db03">
+				<reportElement x="260" y="114" width="50" height="11" uuid="8184ea49-7f62-461f-b72e-f48ac925db03">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -871,7 +870,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Balut / Bidai*]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="343" y="126" width="27" height="11" uuid="ea0c865c-7f6e-4d93-9ed8-6ef3af127f25">
+				<reportElement x="325" y="126" width="22" height="11" uuid="ea0c865c-7f6e-4d93-9ed8-6ef3af127f25">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -882,7 +881,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Infus]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="343" y="114" width="27" height="11" uuid="194f6f34-8663-4e83-8fc9-ac9fd083c2d5">
+				<reportElement x="325" y="114" width="22" height="11" uuid="194f6f34-8663-4e83-8fc9-ac9fd083c2d5">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -893,7 +892,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[NGT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="390" y="126" width="40" height="11" uuid="19fa6a9b-6355-46eb-9552-afeb1a2e24d7">
+				<reportElement x="364" y="126" width="40" height="11" uuid="19fa6a9b-6355-46eb-9552-afeb1a2e24d7">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -916,67 +915,67 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="80" y="114" width="11" height="11" uuid="d9b5b471-7b8e-4227-b6f0-80362d3d8681"/>
+				<reportElement mode="Transparent" x="71" y="114" width="11" height="11" uuid="d9b5b471-7b8e-4227-b6f0-80362d3d8681"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="80" y="125" width="11" height="11" uuid="e2c97903-8fb9-4bf2-a4f1-3fa6595304ae"/>
+				<reportElement mode="Transparent" x="71" y="125" width="11" height="11" uuid="e2c97903-8fb9-4bf2-a4f1-3fa6595304ae"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="135" y="114" width="11" height="11" uuid="0cf3f4e2-a38c-4a69-b068-ce9597b103eb"/>
+				<reportElement mode="Transparent" x="123" y="114" width="11" height="11" uuid="0cf3f4e2-a38c-4a69-b068-ce9597b103eb"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="135" y="125" width="11" height="11" uuid="d5c36b37-d334-4f0a-8fe6-80ddad0b2047"/>
+				<reportElement mode="Transparent" x="123" y="125" width="11" height="11" uuid="d5c36b37-d334-4f0a-8fe6-80ddad0b2047"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="261" y="114" width="11" height="11" uuid="16000201-3bd2-48e8-885c-cf15d7f45084"/>
+				<reportElement mode="Transparent" x="246" y="114" width="11" height="11" uuid="16000201-3bd2-48e8-885c-cf15d7f45084"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="261" y="125" width="11" height="11" uuid="d8926d74-6c4b-4542-8121-5fc618ec21ef"/>
+				<reportElement mode="Transparent" x="246" y="125" width="11" height="11" uuid="d8926d74-6c4b-4542-8121-5fc618ec21ef"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="330" y="114" width="11" height="11" uuid="ddb5fa35-7ab4-4cdb-a140-a92c448fde02"/>
+				<reportElement mode="Transparent" x="312" y="114" width="11" height="11" uuid="ddb5fa35-7ab4-4cdb-a140-a92c448fde02"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="330" y="125" width="11" height="11" uuid="f6e26b59-749a-425d-80ac-95b1eecbe163"/>
+				<reportElement mode="Transparent" x="312" y="125" width="11" height="11" uuid="f6e26b59-749a-425d-80ac-95b1eecbe163"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="376" y="114" width="11" height="11" uuid="a0c743ef-c196-469e-8736-5ac2c6f41bd5"/>
+				<reportElement mode="Transparent" x="350" y="114" width="11" height="11" uuid="a0c743ef-c196-469e-8736-5ac2c6f41bd5"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="376" y="125" width="11" height="11" uuid="54bbc8c4-7556-4cde-92fa-ff9892abbc78"/>
+				<reportElement mode="Transparent" x="350" y="125" width="11" height="11" uuid="54bbc8c4-7556-4cde-92fa-ff9892abbc78"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="390" y="114" width="160" height="11" uuid="41f710a9-3764-42ea-b18b-44e58ec431bb"/>
+				<reportElement x="364" y="114" width="154" height="11" uuid="41f710a9-3764-42ea-b18b-44e58ec431bb"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1000,7 +999,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{rjp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="114" width="11" height="11" uuid="93d26003-62a3-4dfc-939f-8af6a3a3a2fe"/>
+				<reportElement x="71" y="114" width="11" height="11" uuid="93d26003-62a3-4dfc-939f-8af6a3a3a2fe"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1008,7 +1007,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{def}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="80" y="125" width="11" height="11" uuid="edb33b2a-7b50-44cf-be20-1c35dfd423d4"/>
+				<reportElement x="71" y="125" width="11" height="11" uuid="edb33b2a-7b50-44cf-be20-1c35dfd423d4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1016,7 +1015,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{intu}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="135" y="114" width="11" height="11" uuid="63a901a3-8453-40ab-bfab-86b23ac99d76"/>
+				<reportElement x="123" y="114" width="11" height="11" uuid="63a901a3-8453-40ab-bfab-86b23ac99d76"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1024,7 +1023,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{vtp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="135" y="125" width="11" height="11" uuid="f7528bce-cff1-41ba-b650-6f6344c56a70"/>
+				<reportElement x="123" y="125" width="11" height="11" uuid="f7528bce-cff1-41ba-b650-6f6344c56a70"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1032,7 +1031,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{dek}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="261" y="114" width="11" height="11" uuid="d9c67e0a-319f-4382-be82-ae391cb5cdb1"/>
+				<reportElement x="246" y="114" width="11" height="11" uuid="d9c67e0a-319f-4382-be82-ae391cb5cdb1"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1040,7 +1039,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{bal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="261" y="125" width="11" height="11" uuid="02b13c9e-c2f0-420d-b6b4-e4b224c669fc"/>
+				<reportElement x="246" y="125" width="11" height="11" uuid="02b13c9e-c2f0-420d-b6b4-e4b224c669fc"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1048,7 +1047,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{kat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="114" width="11" height="11" uuid="94c6f611-6b18-481e-9633-1828fce63761"/>
+				<reportElement x="312" y="114" width="11" height="11" uuid="94c6f611-6b18-481e-9633-1828fce63761"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1056,7 +1055,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{ngt}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="330" y="125" width="11" height="11" uuid="1fad9819-0290-401e-b572-a44f55bef54b"/>
+				<reportElement x="312" y="125" width="11" height="11" uuid="1fad9819-0290-401e-b572-a44f55bef54b"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1064,7 +1063,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{inf}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="376" y="114" width="11" height="11" uuid="b9b4413b-8465-4e93-914b-f2a6bd3cc27e"/>
+				<reportElement x="350" y="114" width="11" height="11" uuid="b9b4413b-8465-4e93-914b-f2a6bd3cc27e"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1072,7 +1071,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{obt}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="376" y="125" width="11" height="11" uuid="906a2faf-c6d9-4be6-872e-76ab9a8bb3bd"/>
+				<reportElement x="350" y="125" width="11" height="11" uuid="906a2faf-c6d9-4be6-872e-76ab9a8bb3bd"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1117,7 +1116,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</textElement>
 				<textFieldExpression><![CDATA["Resiko Aspirasi : "+$F{aspirasi}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="17" y="222" width="162" height="22" uuid="2f74ad33-388c-4281-a73c-e61fb309d461"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
@@ -1125,7 +1124,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</textElement>
 				<textFieldExpression><![CDATA["Benda Asing : "+$F{ket_benda_asing}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="3" y="243" width="176" height="25" uuid="4004ec34-a4d3-4789-906c-dbd08389d211"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
@@ -1218,7 +1217,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{ben}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="186" y="154" width="65" height="11" uuid="22067c56-854f-4720-a3cf-95999854eb70">
+				<reportElement x="185" y="154" width="65" height="11" uuid="22067c56-854f-4720-a3cf-95999854eb70">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1229,7 +1228,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[PERNAPASAN :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="186" y="167" width="150" height="11" uuid="72e2bf00-8493-4c3a-b26e-b61e9b644ba4"/>
+				<reportElement x="185" y="167" width="150" height="11" uuid="72e2bf00-8493-4c3a-b26e-b61e9b644ba4"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1237,7 +1236,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{pernafasan}+" : "+$F{data_pernafasan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="186" y="178" width="180" height="11" uuid="05926b36-3dab-467d-ad14-c230eab4aa6d"/>
+				<reportElement x="185" y="178" width="162" height="11" uuid="05926b36-3dab-467d-ad14-c230eab4aa6d"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1245,15 +1244,15 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Gerakan Dada : "+$F{gerakan_dada}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="186" y="189" width="180" height="11" uuid="f4c6db0e-00d9-4e58-a6de-c4537d089f82"/>
+				<reportElement x="185" y="189" width="162" height="11" uuid="f4c6db0e-00d9-4e58-a6de-c4537d089f82"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Tipe Pernapasan : "+$F{tipe_pernafasan}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="186" y="200" width="180" height="25" uuid="535ddaf1-85cf-4f7a-9b39-ba8428ad05ac"/>
+			<textField>
+				<reportElement x="185" y="200" width="162" height="62" uuid="535ddaf1-85cf-4f7a-9b39-ba8428ad05ac"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1261,7 +1260,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Kesimpulan : "+$F{kesimpulan_pernafasan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="377" y="154" width="60" height="11" uuid="6d0faa0e-6497-4a06-bba1-840a153f1d22">
+				<reportElement x="355" y="154" width="60" height="11" uuid="6d0faa0e-6497-4a06-bba1-840a153f1d22">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1272,7 +1271,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[SIRKULASI :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="377" y="167" width="175" height="11" uuid="c20d60eb-19af-44d8-82ed-56d13726a773"/>
+				<reportElement x="355" y="167" width="161" height="11" uuid="c20d60eb-19af-44d8-82ed-56d13726a773"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1280,7 +1279,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Nadi : "+$F{nadi_2}+", "+$F{nadi_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="178" width="175" height="11" uuid="6a183972-0768-4248-b146-5034a8365be7"/>
+				<reportElement x="355" y="178" width="161" height="11" uuid="6a183972-0768-4248-b146-5034a8365be7"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1288,7 +1287,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Kulit / Mukosa : "+$F{kulit_mukosa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="189" width="175" height="11" uuid="1135a3af-32fa-4f10-bda7-3cea7f4adfce"/>
+				<reportElement x="355" y="189" width="161" height="11" uuid="1135a3af-32fa-4f10-bda7-3cea7f4adfce"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1296,15 +1295,15 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Akral : "+$F{akral_2}+", "+$F{akral_1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="200" width="175" height="11" uuid="126c8132-3492-4012-aecc-b44aacf6c75e"/>
+				<reportElement x="355" y="200" width="161" height="11" uuid="126c8132-3492-4012-aecc-b44aacf6c75e"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA["CRT : "+$F{crt}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="377" y="211" width="175" height="25" uuid="81e4c573-b635-400a-a1af-1d3e441bb227"/>
+			<textField>
+				<reportElement x="355" y="211" width="161" height="51" uuid="81e4c573-b635-400a-a1af-1d3e441bb227"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1437,7 +1436,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[": "+$F{lateralisasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="377" y="270" width="54" height="11" uuid="7602042f-c5b4-4d6c-aa68-4848ce8d4e40">
+				<reportElement x="357" y="270" width="54" height="11" uuid="7602042f-c5b4-4d6c-aa68-4848ce8d4e40">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1456,13 +1455,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Obstruksi Partial : "+$F{data_obstruksi_partial}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="377" y="281" width="11" height="11" uuid="0f9875f0-f77e-412f-a152-f22ad1d82a1e"/>
+				<reportElement mode="Transparent" x="357" y="281" width="11" height="11" uuid="0f9875f0-f77e-412f-a152-f22ad1d82a1e"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="391" y="281" width="52" height="11" uuid="64a9a4bf-1d3f-44c8-ac3e-36bd89075dcc">
+				<reportElement x="371" y="281" width="52" height="11" uuid="64a9a4bf-1d3f-44c8-ac3e-36bd89075dcc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1472,7 +1471,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Deformitas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="391" y="292" width="52" height="11" uuid="e158f9e0-3818-4a68-8353-b736244ed180">
+				<reportElement x="371" y="292" width="52" height="11" uuid="e158f9e0-3818-4a68-8353-b736244ed180">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1482,13 +1481,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Contusio]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="377" y="292" width="11" height="11" uuid="748a889b-4b07-45eb-86a6-17afc6b0c716"/>
+				<reportElement mode="Transparent" x="357" y="292" width="11" height="11" uuid="748a889b-4b07-45eb-86a6-17afc6b0c716"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="391" y="303" width="52" height="11" uuid="b8f3a04e-39fa-450d-b005-1c378a27e5db">
+				<reportElement x="371" y="303" width="52" height="11" uuid="b8f3a04e-39fa-450d-b005-1c378a27e5db">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1498,19 +1497,19 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Penetrasi]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="377" y="303" width="11" height="11" uuid="8a23d5eb-a94f-4bf4-9f94-fe035e6d2cf4"/>
+				<reportElement mode="Transparent" x="357" y="303" width="11" height="11" uuid="8a23d5eb-a94f-4bf4-9f94-fe035e6d2cf4"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="377" y="314" width="11" height="11" uuid="2a0fe933-7c8c-4aba-a3d2-3783efed7b5e"/>
+				<reportElement mode="Transparent" x="357" y="314" width="11" height="11" uuid="2a0fe933-7c8c-4aba-a3d2-3783efed7b5e"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="391" y="314" width="52" height="11" uuid="3fd997e7-e650-40f6-b331-ff4fb0da9337">
+				<reportElement x="371" y="314" width="52" height="11" uuid="3fd997e7-e650-40f6-b331-ff4fb0da9337">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1520,7 +1519,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Tenderness]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="391" y="325" width="52" height="11" uuid="3e97e951-5a8e-47f9-bf0b-2ba90c8d89c2">
+				<reportElement x="371" y="325" width="52" height="11" uuid="3e97e951-5a8e-47f9-bf0b-2ba90c8d89c2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1530,13 +1529,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Swelling]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="377" y="325" width="11" height="11" uuid="75a716f4-0564-46c4-ae76-0e3aa200d8e2"/>
+				<reportElement mode="Transparent" x="357" y="325" width="11" height="11" uuid="75a716f4-0564-46c4-ae76-0e3aa200d8e2"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="462" y="292" width="52" height="11" uuid="c9c50c16-6fdd-40f5-b59c-a828a50e4d1b">
+				<reportElement x="442" y="292" width="52" height="11" uuid="c9c50c16-6fdd-40f5-b59c-a828a50e4d1b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1546,19 +1545,19 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Abrasi]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="448" y="325" width="11" height="11" uuid="1ef30262-1189-449b-bc09-ee27a47a8b04"/>
+				<reportElement mode="Transparent" x="428" y="325" width="11" height="11" uuid="1ef30262-1189-449b-bc09-ee27a47a8b04"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="448" y="303" width="11" height="11" uuid="635b3c0d-0f6f-4d13-8221-12671370cbc4"/>
+				<reportElement mode="Transparent" x="428" y="303" width="11" height="11" uuid="635b3c0d-0f6f-4d13-8221-12671370cbc4"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="462" y="303" width="52" height="11" uuid="2037444f-36ae-4002-95e6-353d1a025c30">
+				<reportElement x="442" y="303" width="52" height="11" uuid="2037444f-36ae-4002-95e6-353d1a025c30">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1568,7 +1567,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Burn]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="462" y="314" width="52" height="11" uuid="ee5fad13-62a8-47d4-b950-44bbe96412ef">
+				<reportElement x="442" y="314" width="52" height="11" uuid="ee5fad13-62a8-47d4-b950-44bbe96412ef">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1578,7 +1577,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Laserasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="462" y="281" width="52" height="11" uuid="50a927b7-103c-4c06-b8a4-a93a983e5dae">
+				<reportElement x="442" y="281" width="52" height="11" uuid="50a927b7-103c-4c06-b8a4-a93a983e5dae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1588,25 +1587,25 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Ekskoriasi]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="448" y="281" width="11" height="11" uuid="69a8fdda-7e9c-4820-aa00-0a8b85f8b967"/>
+				<reportElement mode="Transparent" x="428" y="281" width="11" height="11" uuid="69a8fdda-7e9c-4820-aa00-0a8b85f8b967"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="448" y="292" width="11" height="11" uuid="3f39dacf-eedc-4a80-bc48-0004e59bb1a3"/>
+				<reportElement mode="Transparent" x="428" y="292" width="11" height="11" uuid="3f39dacf-eedc-4a80-bc48-0004e59bb1a3"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="448" y="314" width="11" height="11" uuid="a920ea25-ca1f-4879-b0ea-6eb0d408558d"/>
+				<reportElement mode="Transparent" x="428" y="314" width="11" height="11" uuid="a920ea25-ca1f-4879-b0ea-6eb0d408558d"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="462" y="325" width="90" height="11" uuid="6a3c0a68-96a0-4fd2-9808-3481c4faa627">
+				<reportElement x="442" y="325" width="75" height="11" uuid="6a3c0a68-96a0-4fd2-9808-3481c4faa627">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1616,7 +1615,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Tidak Tampak Jelas]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="377" y="281" width="11" height="11" uuid="7006829c-a611-4c8a-8595-64e7fa3f5f41"/>
+				<reportElement x="357" y="281" width="11" height="11" uuid="7006829c-a611-4c8a-8595-64e7fa3f5f41"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1624,7 +1623,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{def}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="292" width="11" height="11" uuid="ce741942-d540-4c55-8b63-8651a5fe8cca"/>
+				<reportElement x="357" y="292" width="11" height="11" uuid="ce741942-d540-4c55-8b63-8651a5fe8cca"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1632,7 +1631,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{con}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="303" width="11" height="11" uuid="af623c3c-4f27-45a9-859b-f1558c5363c4"/>
+				<reportElement x="357" y="303" width="11" height="11" uuid="af623c3c-4f27-45a9-859b-f1558c5363c4"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1640,7 +1639,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{pen}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="314" width="11" height="11" uuid="5fd6bafa-782a-42f2-8c8d-12d29df8726a"/>
+				<reportElement x="357" y="314" width="11" height="11" uuid="5fd6bafa-782a-42f2-8c8d-12d29df8726a"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1648,7 +1647,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{ten}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="377" y="325" width="11" height="11" uuid="cabfe8cf-cde4-4279-9108-1afa9bd83daa"/>
+				<reportElement x="357" y="325" width="11" height="11" uuid="cabfe8cf-cde4-4279-9108-1afa9bd83daa"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1656,7 +1655,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{swe}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="448" y="281" width="11" height="11" uuid="5ae8acbd-b556-4926-9047-057c9aa6ee1d"/>
+				<reportElement x="428" y="281" width="11" height="11" uuid="5ae8acbd-b556-4926-9047-057c9aa6ee1d"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1664,7 +1663,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{eks}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="448" y="292" width="11" height="11" uuid="e9ae319a-282a-4887-a72b-4ab46c074423"/>
+				<reportElement x="428" y="292" width="11" height="11" uuid="e9ae319a-282a-4887-a72b-4ab46c074423"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1672,7 +1671,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{abr}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="448" y="303" width="11" height="11" uuid="652243ed-4106-42f6-ae97-b591d173a6c3"/>
+				<reportElement x="428" y="303" width="11" height="11" uuid="652243ed-4106-42f6-ae97-b591d173a6c3"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1680,7 +1679,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{bur}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="448" y="314" width="11" height="11" uuid="b383b71b-dca8-4a1f-abc9-e519fe410f30"/>
+				<reportElement x="428" y="314" width="11" height="11" uuid="b383b71b-dca8-4a1f-abc9-e519fe410f30"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1688,7 +1687,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{las}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="448" y="325" width="11" height="11" uuid="0ff81319-e578-43ac-9eac-6cac204cfd07"/>
+				<reportElement x="428" y="325" width="11" height="11" uuid="0ff81319-e578-43ac-9eac-6cac204cfd07"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1696,7 +1695,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{tdktampak}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="372" y="153" width="1" height="204" uuid="d94cf73a-ec6c-40a7-9586-0826dada4af8"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="351" y="153" width="1" height="204" uuid="d94cf73a-ec6c-40a7-9586-0826dada4af8"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1743,7 +1742,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Cara Pasien Datang : ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="91" y="368" width="457" height="11" uuid="84576f3c-1e81-4313-857f-95bab67f10c1"/>
+				<reportElement x="91" y="368" width="427" height="11" uuid="84576f3c-1e81-4313-857f-95bab67f10c1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1751,7 +1750,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{cara_datang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="378" width="545" height="11" uuid="bde6419c-54f0-4f11-9f8f-f1d0c42704bc"/>
+				<reportElement x="3" y="378" width="514" height="11" uuid="bde6419c-54f0-4f11-9f8f-f1d0c42704bc"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1769,7 +1768,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Keluhan :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="398" width="545" height="11" uuid="57b76095-77fa-4b84-87ab-1dabc415acbe"/>
+				<reportElement x="3" y="398" width="515" height="11" uuid="57b76095-77fa-4b84-87ab-1dabc415acbe"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1777,7 +1776,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{perut_mules}+" "+$P{keluar_lendir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="408" width="545" height="11" uuid="5d6f1793-1d7e-484f-9d94-74e6f019407b"/>
+				<reportElement x="3" y="408" width="515" height="11" uuid="5d6f1793-1d7e-484f-9d94-74e6f019407b"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1789,7 +1788,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 	<detail>
 		<band height="12">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="0" width="545" height="11" uuid="e1f71df1-8e59-41bc-b531-e6cbe60e5024"/>
+				<reportElement x="3" y="0" width="514" height="11" uuid="e1f71df1-8e59-41bc-b531-e6cbe60e5024"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1803,7 +1802,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="12" uuid="2726c6c0-4c87-462c-be1c-1641b7acebfb"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="12" uuid="2726c6c0-4c87-462c-be1c-1641b7acebfb"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1837,7 +1836,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Riwayat Penyakit Dahulu :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="98" width="545" height="11" uuid="b1391d79-92ec-4593-bbab-cbe37498a675">
+				<reportElement x="3" y="98" width="514" height="11" uuid="b1391d79-92ec-4593-bbab-cbe37498a675">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1870,7 +1869,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="0" y="190" width="557" height="1" uuid="e4be8ee2-a768-4041-a277-7f0131590972"/>
+				<reportElement x="0" y="190" width="520" height="1" uuid="e4be8ee2-a768-4041-a277-7f0131590972"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1912,7 +1911,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{dm1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="0" width="545" height="11" uuid="c26a3db7-5a87-454e-82bc-ab6bcb6ba82c"/>
+				<reportElement x="3" y="0" width="514" height="11" uuid="c26a3db7-5a87-454e-82bc-ab6bcb6ba82c"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1920,7 +1919,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{mengeluh_pusing}+" "+$P{nyeri_ulu}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="10" width="545" height="11" uuid="898e41e0-3ac5-49fa-a5cb-426798193060"/>
+				<reportElement x="3" y="10" width="514" height="11" uuid="898e41e0-3ac5-49fa-a5cb-426798193060"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1928,7 +1927,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{pandangan}+" "+$P{mual}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="20" width="545" height="11" uuid="7ed0e7ec-b1c4-4446-a750-8cb060b04295"/>
+				<reportElement x="3" y="20" width="514" height="11" uuid="7ed0e7ec-b1c4-4446-a750-8cb060b04295"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1936,7 +1935,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{batuk}+" "+$P{demam}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="30" width="545" height="11" uuid="58c94154-b4ff-41d0-bd94-2a0b0beb7a00"/>
+				<reportElement x="3" y="30" width="514" height="11" uuid="58c94154-b4ff-41d0-bd94-2a0b0beb7a00"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1944,7 +1943,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{riw_jln_jauh}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="40" width="545" height="11" uuid="a397841a-bcb1-428a-ab99-4bbe979ba517"/>
+				<reportElement x="3" y="40" width="514" height="11" uuid="a397841a-bcb1-428a-ab99-4bbe979ba517"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1952,7 +1951,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Os ANC dengan PKM / Bidan : "+$F{os_anc_bidan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="50" width="545" height="11" uuid="b98ead29-ce90-4f85-a5a3-66d682e2ab83"/>
+				<reportElement x="3" y="50" width="514" height="11" uuid="b98ead29-ce90-4f85-a5a3-66d682e2ab83"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1960,7 +1959,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["dengan dr. "+$F{dengan_spog1}+" SPOG, "+$F{jml_spog1}+" X"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="60" width="545" height="11" uuid="38b98ea4-02a2-4259-a1e0-bfe2030613b7"/>
+				<reportElement x="3" y="60" width="514" height="11" uuid="38b98ea4-02a2-4259-a1e0-bfe2030613b7"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2050,7 +2049,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Riwayat Penyakit Keluarga :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="134" width="545" height="11" uuid="c382d800-9a0d-4f5e-901e-ef5b7af20011">
+				<reportElement x="3" y="134" width="515" height="11" uuid="c382d800-9a0d-4f5e-901e-ef5b7af20011">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -2157,7 +2156,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{dm2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="88" y="144" width="460" height="11" uuid="48d207c5-b6bb-4fba-b9bb-362ed04556da"/>
+				<reportElement x="88" y="144" width="429" height="11" uuid="48d207c5-b6bb-4fba-b9bb-362ed04556da"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2215,7 +2214,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{cek_suntik1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="196" y="155" width="352" height="11" uuid="a47d0ab3-27c3-459e-bac4-6a041953a4c1"/>
+				<reportElement x="196" y="155" width="322" height="11" uuid="a47d0ab3-27c3-459e-bac4-6a041953a4c1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2259,7 +2258,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{cek_implan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="290" y="166" width="258" height="11" uuid="6aef0d84-8d65-4a6a-91bb-b5a7c1489bf9"/>
+				<reportElement x="290" y="166" width="228" height="11" uuid="6aef0d84-8d65-4a6a-91bb-b5a7c1489bf9"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2273,7 +2272,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="58" y="178" width="490" height="11" uuid="50d78b28-cde2-4759-9840-6b94eff6baf1"/>
+				<reportElement x="58" y="178" width="459" height="11" uuid="50d78b28-cde2-4759-9840-6b94eff6baf1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2281,7 +2280,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{riwayat_kb_lain}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="72" width="557" height="1" uuid="d71ce627-f2b1-4e58-909c-4dc1d3cd9d76"/>
+				<reportElement x="0" y="72" width="520" height="1" uuid="d71ce627-f2b1-4e58-909c-4dc1d3cd9d76"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -2297,7 +2296,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Riwayat Kehamilan Sekarang]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="202" width="545" height="11" uuid="e0c528e3-54e2-4c19-9b56-6d5cd69a0718"/>
+				<reportElement x="3" y="202" width="515" height="11" uuid="e0c528e3-54e2-4c19-9b56-6d5cd69a0718"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2305,7 +2304,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["HPHT : "+$F{hpht}+" HPL : "+$F{hpl}+" UK : "+$F{uk}+" minggu,"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="212" width="545" height="11" uuid="d487673d-c015-4aca-87d6-9b44108bc5e2"/>
+				<reportElement x="3" y="212" width="515" height="11" uuid="d487673d-c015-4aca-87d6-9b44108bc5e2"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2313,7 +2312,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$P{uk_usg}+" BB sebelum Hamil : "+$F{bb_blm_hamil}+" Kg.  BB setelah Hamil : "+$F{bb_stlh_hamil}+" Kg.  TBI : "+$F{tbi}+" Cm"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="222" width="545" height="11" uuid="c9cb7bf1-d36a-4956-94b0-35721a8f7e4c"/>
+				<reportElement x="3" y="222" width="515" height="11" uuid="c9cb7bf1-d36a-4956-94b0-35721a8f7e4c"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2427,7 +2426,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="40" y="247" width="508" height="11" uuid="d93c2540-4f28-4446-8765-76bf7cfdf3e1"/>
+				<reportElement x="40" y="247" width="478" height="11" uuid="d93c2540-4f28-4446-8765-76bf7cfdf3e1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2435,7 +2434,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA[$F{keluhan_lain}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="259" width="557" height="1" uuid="070a9aab-673b-4db2-b4a7-2c52d564d382"/>
+				<reportElement x="0" y="259" width="520" height="1" uuid="070a9aab-673b-4db2-b4a7-2c52d564d382"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -2451,7 +2450,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<text><![CDATA[Pemeriksaan OBSTETRI : ]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="105" y="261" width="443" height="11" uuid="dbcfa4cd-548d-4838-9a3c-388ffe8b688d"/>
+				<reportElement x="105" y="261" width="412" height="11" uuid="dbcfa4cd-548d-4838-9a3c-388ffe8b688d"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2459,7 +2458,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Leopold 1 : "+$F{leopold1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="105" y="272" width="443" height="11" uuid="0b7cec97-da40-4150-8ad0-ca9731df92ba"/>
+				<reportElement x="105" y="272" width="412" height="11" uuid="0b7cec97-da40-4150-8ad0-ca9731df92ba"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2467,7 +2466,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Leopold 2 : "+$F{leopold2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="105" y="294" width="443" height="11" uuid="ad848875-76ad-49a1-b6cb-b215b3084aa1"/>
+				<reportElement x="105" y="294" width="412" height="11" uuid="ad848875-76ad-49a1-b6cb-b215b3084aa1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2475,7 +2474,7 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				<textFieldExpression><![CDATA["Leopold 4 : "+$F{leopold4}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="105" y="283" width="443" height="11" uuid="59621905-3ca4-43e6-b953-af38f874d2b7"/>
+				<reportElement x="105" y="283" width="412" height="11" uuid="59621905-3ca4-43e6-b953-af38f874d2b7"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -2537,13 +2536,13 @@ INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis limit 1]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="326" uuid="25590c16-acbe-4d1e-9008-66a4eec471d1"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="326" uuid="25590c16-acbe-4d1e-9008-66a4eec471d1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="325" width="557" height="1" uuid="18b33a46-485f-412c-97f2-4c939f382ca1"/>
+				<reportElement x="0" y="325" width="520" height="1" uuid="18b33a46-485f-412c-97f2-4c939f382ca1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="559" leftMargin="18" rightMargin="18" topMargin="18" bottomMargin="18" uuid="0ad1de82-d66d-494b-bdc9-496918b97a08">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="0ad1de82-d66d-494b-bdc9-496918b97a08">
 	<property name="ireport.zoom" value="1.8181818181818545"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="16"/>
+	<property name="ireport.y" value="590"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -572,7 +571,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 	<title>
 		<band height="361">
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="9" width="557" height="13" backcolor="#F0F0DC" uuid="c78b4256-33cf-4c7a-a7f6-6e25f6ab8f4c">
+				<reportElement mode="Opaque" x="0" y="9" width="520" height="13" backcolor="#F0F0DC" uuid="c78b4256-33cf-4c7a-a7f6-6e25f6ab8f4c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -583,19 +582,19 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[SURVEI SEKUNDER]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="21" width="557" height="1" uuid="a57c2434-78b7-4572-959a-0df0049c9c2b"/>
+				<reportElement x="0" y="21" width="520" height="1" uuid="a57c2434-78b7-4572-959a-0df0049c9c2b"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="9" width="557" height="1" uuid="db9ab06b-a3d2-46d2-9943-53831647fa26"/>
+				<reportElement x="0" y="9" width="520" height="1" uuid="db9ab06b-a3d2-46d2-9943-53831647fa26"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="73" y="23" width="475" height="11" uuid="2eef38e5-d7be-4b55-b52c-82dd134b8561">
+				<reportElement x="73" y="23" width="447" height="11" uuid="2eef38e5-d7be-4b55-b52c-82dd134b8561">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -771,17 +770,17 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{mukosa}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="394" y="36" width="149" height="224" uuid="61ada6d0-437f-4448-a92e-88639dccb3dc"/>
+				<reportElement x="369" y="36" width="149" height="224" uuid="61ada6d0-437f-4448-a92e-88639dccb3dc"/>
 				<imageExpression><![CDATA["setting/anatomi_tubuh_manusia.jpg"]]></imageExpression>
 			</image>
 			<line>
-				<reportElement x="0" y="360" width="557" height="1" uuid="238b560d-aae8-4255-8d1c-ade11c47dd86"/>
+				<reportElement x="0" y="360" width="519" height="1" uuid="238b560d-aae8-4255-8d1c-ade11c47dd86"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="9" width="1" height="352" uuid="a0ac6cce-0ecd-4c68-b6c3-0ac4d1d75221"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="9" width="1" height="352" uuid="a0ac6cce-0ecd-4c68-b6c3-0ac4d1d75221"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -969,7 +968,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Jantung]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="157" width="325" height="23" uuid="0580a9a5-836a-48f5-a760-d37e857e701b">
+				<reportElement x="65" y="157" width="303" height="23" uuid="0580a9a5-836a-48f5-a760-d37e857e701b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -990,7 +989,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Paru]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="180" width="325" height="23" uuid="589fd9ff-3ada-4766-b69d-e92a27172b7b">
+				<reportElement x="65" y="180" width="303" height="23" uuid="589fd9ff-3ada-4766-b69d-e92a27172b7b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1011,7 +1010,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="95" y="203" width="282" height="11" uuid="12dc6569-469c-4ecf-a247-e498a936561e">
+				<reportElement x="95" y="203" width="270" height="11" uuid="12dc6569-469c-4ecf-a247-e498a936561e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1066,7 +1065,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Punggung & Pinggang]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="214" width="325" height="23" uuid="5bde56cd-0b87-4885-932d-51b4b65e6907">
+				<reportElement x="65" y="214" width="303" height="23" uuid="5bde56cd-0b87-4885-932d-51b4b65e6907">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1098,7 +1097,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Ekstremitas]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="237" width="325" height="23" uuid="d18f6b85-f969-412a-a6d2-e4ec35653dda">
+				<reportElement x="65" y="237" width="303" height="23" uuid="d18f6b85-f969-412a-a6d2-e4ec35653dda">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Top">
@@ -1119,7 +1118,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Pemeriksaan Penunjang :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="326" width="220" height="11" uuid="a1b13da6-b41b-4a86-990a-cb8b44ed6304">
+				<reportElement x="65" y="326" width="201" height="11" uuid="a1b13da6-b41b-4a86-990a-cb8b44ed6304">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1163,7 +1162,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[X-RAY]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="337" width="220" height="11" uuid="eabd68f6-cd07-4183-8ae5-4bf633e13f53">
+				<reportElement x="65" y="337" width="201" height="11" uuid="eabd68f6-cd07-4183-8ae5-4bf633e13f53">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1196,7 +1195,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="65" y="348" width="220" height="11" uuid="d98a11ef-a112-41d7-b10e-abe0714ccc96">
+				<reportElement x="65" y="348" width="201" height="11" uuid="d98a11ef-a112-41d7-b10e-abe0714ccc96">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1218,7 +1217,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[ECG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="287" y="326" width="40" height="11" uuid="63bd8bec-cc67-46cb-9339-6014c72e5a64">
+				<reportElement x="269" y="326" width="40" height="11" uuid="63bd8bec-cc67-46cb-9339-6014c72e5a64">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1229,7 +1228,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[CT SCAN]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="333" y="348" width="220" height="11" uuid="57b60b89-e0dc-4d16-bdf0-61e7ea82f8be">
+				<reportElement x="315" y="348" width="205" height="11" uuid="57b60b89-e0dc-4d16-bdf0-61e7ea82f8be">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1240,7 +1239,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{lainnya_penunjang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="333" y="326" width="220" height="11" uuid="430e9070-c980-4e66-990e-c19b5a2b65ef">
+				<reportElement x="315" y="326" width="205" height="11" uuid="430e9070-c980-4e66-990e-c19b5a2b65ef">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1251,7 +1250,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{ct_scan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="327" y="337" width="6" height="11" uuid="e991da8a-5e59-4592-94bf-3902a5794d7d">
+				<reportElement x="309" y="337" width="6" height="11" uuid="e991da8a-5e59-4592-94bf-3902a5794d7d">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1262,7 +1261,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="333" y="337" width="220" height="11" uuid="23a1eea4-5c0b-483f-aa19-ef3a4465139e">
+				<reportElement x="315" y="337" width="205" height="11" uuid="23a1eea4-5c0b-483f-aa19-ef3a4465139e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1273,7 +1272,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{usg}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="287" y="337" width="40" height="11" uuid="f7adf5b2-9705-49b2-b56b-c0966fc6d31c">
+				<reportElement x="269" y="337" width="40" height="11" uuid="f7adf5b2-9705-49b2-b56b-c0966fc6d31c">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1284,7 +1283,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[USG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="327" y="326" width="6" height="11" uuid="f302045f-ea1a-490d-92e5-477f812225bc">
+				<reportElement x="309" y="326" width="6" height="11" uuid="f302045f-ea1a-490d-92e5-477f812225bc">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1295,7 +1294,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="287" y="348" width="40" height="11" uuid="5d7aee82-2b85-4913-bb5a-5023878d5b68">
+				<reportElement x="269" y="348" width="40" height="11" uuid="5d7aee82-2b85-4913-bb5a-5023878d5b68">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1306,7 +1305,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[Lainnya]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="327" y="348" width="6" height="11" uuid="6bea8fd4-427d-4da2-a261-513ba25459d3">
+				<reportElement x="309" y="348" width="6" height="11" uuid="6bea8fd4-427d-4da2-a261-513ba25459d3">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1317,13 +1316,13 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="360" width="557" height="1" uuid="28631d60-d840-4f78-8c9a-aa15e51036ff"/>
+				<reportElement x="0" y="360" width="520" height="1" uuid="28631d60-d840-4f78-8c9a-aa15e51036ff"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="260" width="548" height="53" uuid="28b4fe3b-41f2-49ca-907b-30541d915c94">
+				<reportElement x="3" y="260" width="516" height="53" uuid="28b4fe3b-41f2-49ca-907b-30541d915c94">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1349,7 +1348,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[DIAGNOSIS MEDIS SEMENTARA / MASALAH :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="9" y="11" width="536" height="12" uuid="627001e3-8a16-4b00-a824-43dc0ea7f828"/>
+				<reportElement x="9" y="11" width="510" height="12" uuid="627001e3-8a16-4b00-a824-43dc0ea7f828"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1357,7 +1356,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{diag_medis_sementara}+"\n"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="25" uuid="2e11fb80-e1aa-4acf-964d-001e3eae8de9"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="25" uuid="2e11fb80-e1aa-4acf-964d-001e3eae8de9"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1369,7 +1368,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="461" y="0" width="37" height="11" uuid="a0f1675f-3b8c-4b85-ab3a-8e8ee7a9e90a">
+				<reportElement x="426" y="0" width="37" height="11" uuid="a0f1675f-3b8c-4b85-ab3a-8e8ee7a9e90a">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1380,7 +1379,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[ICD-10 :]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="498" y="0" width="55" height="11" uuid="0dee3652-19f2-47a4-9a5f-f035973d8057">
+				<reportElement x="463" y="0" width="55" height="11" uuid="0dee3652-19f2-47a4-9a5f-f035973d8057">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1393,7 +1392,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 		</band>
 		<band height="27">
 			<line>
-				<reportElement x="0" y="0" width="557" height="1" uuid="5575a62c-e304-4b9d-9f23-1654cf5ecc8b"/>
+				<reportElement x="0" y="0" width="520" height="1" uuid="5575a62c-e304-4b9d-9f23-1654cf5ecc8b"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1410,7 +1409,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[RENCANA / INSTRUKSI :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="9" y="12" width="536" height="12" uuid="5dd6923d-3153-4f6e-b9f4-e5e62e4f3ad1"/>
+				<reportElement x="9" y="12" width="510" height="12" uuid="5dd6923d-3153-4f6e-b9f4-e5e62e4f3ad1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1418,7 +1417,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{rencana_instruksi} +" : "+$F{ket_rencana_instruksi}+"\n"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="27" uuid="94aae4e5-0918-42fb-a796-dbcf3fab9969"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="27" uuid="94aae4e5-0918-42fb-a796-dbcf3fab9969"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1432,13 +1431,13 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 		</band>
 		<band height="24">
 			<line>
-				<reportElement x="0" y="0" width="557" height="1" uuid="f234039a-a496-4d1c-a0b7-bfd5d3ef2e7c"/>
+				<reportElement x="0" y="0" width="520" height="1" uuid="f234039a-a496-4d1c-a0b7-bfd5d3ef2e7c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="1" width="545" height="11" uuid="5975f31a-b57e-4349-9761-e57b3367fc86">
+				<reportElement x="3" y="1" width="516" height="11" uuid="5975f31a-b57e-4349-9761-e57b3367fc86">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1449,7 +1448,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[TELAH DIBERIKAN INFORMASI/EDUKASI TENTANG :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="9" y="12" width="536" height="12" uuid="b1cfda40-1e75-48ad-9b4b-8e7ecdb763da"/>
+				<reportElement x="9" y="12" width="510" height="12" uuid="b1cfda40-1e75-48ad-9b4b-8e7ecdb763da"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1457,7 +1456,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{telah_diberikan_informasi_edukasi}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="24" uuid="a29fb88f-0bc2-4858-b348-260720b3ba94"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="24" uuid="a29fb88f-0bc2-4858-b348-260720b3ba94"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1471,7 +1470,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 		</band>
 		<band height="24">
 			<staticText>
-				<reportElement x="3" y="0" width="545" height="11" uuid="1155a8ae-6c97-4a49-acac-9f769c68828f">
+				<reportElement x="3" y="0" width="516" height="11" uuid="1155a8ae-6c97-4a49-acac-9f769c68828f">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1482,7 +1481,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[RENCANA ASUHAN / ASUHAN YANG DIHARAPKAN :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="9" y="11" width="536" height="12" uuid="234490a5-01dc-4b4d-b731-6e5b4d9b0bb1"/>
+				<reportElement x="9" y="11" width="510" height="12" uuid="234490a5-01dc-4b4d-b731-6e5b4d9b0bb1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1490,7 +1489,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<textFieldExpression><![CDATA[$F{rencana_asuhan_diharapkan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="24" uuid="abbd00fb-3cae-45fd-bef3-16ae14a94e55"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="24" uuid="abbd00fb-3cae-45fd-bef3-16ae14a94e55"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1506,13 +1505,13 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 	<summary>
 		<band height="282">
 			<line>
-				<reportElement x="0" y="0" width="557" height="1" uuid="ed87718b-9f98-45b2-80d5-7559c550f9c5"/>
+				<reportElement x="0" y="0" width="520" height="1" uuid="ed87718b-9f98-45b2-80d5-7559c550f9c5"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="1" width="178" height="11" uuid="219541a5-b755-4552-a27f-7dc58ccfadc4">
+				<reportElement x="3" y="1" width="170" height="11" uuid="219541a5-b755-4552-a27f-7dc58ccfadc4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1523,13 +1522,13 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[PEMBERI EDUKASI / INFORMASI]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="54" width="557" height="1" uuid="4f048bd0-cfb5-4162-9c7a-dd92b4829a08"/>
+				<reportElement x="0" y="54" width="520" height="1" uuid="4f048bd0-cfb5-4162-9c7a-dd92b4829a08"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="168" width="557" height="1" uuid="86d80fdd-fe3b-4dea-9f9b-64d487772e3e"/>
+				<reportElement x="0" y="168" width="520" height="1" uuid="86d80fdd-fe3b-4dea-9f9b-64d487772e3e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1546,13 +1545,13 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[TANGGAL KELUAR]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="203" width="557" height="1" uuid="1af990ba-d81f-4ec4-8a7d-f78da31c3d30"/>
+				<reportElement x="0" y="203" width="520" height="1" uuid="1af990ba-d81f-4ec4-8a7d-f78da31c3d30"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="55" width="557" height="13" backcolor="#F0F0DC" uuid="22d869a9-a00c-48d9-8e7d-5c6a92f3409c">
+				<reportElement mode="Opaque" x="0" y="55" width="520" height="13" backcolor="#F0F0DC" uuid="22d869a9-a00c-48d9-8e7d-5c6a92f3409c">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1563,7 +1562,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[PASIEN KELUAR IGD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="205" width="263" height="23" uuid="0b463857-cb6a-4320-8ea4-c7afab192fd5">
+				<reportElement x="3" y="205" width="221" height="23" uuid="0b463857-cb6a-4320-8ea4-c7afab192fd5">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1575,7 +1574,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 Perawat]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="3" y="265" width="263" height="12" uuid="688bb372-342e-4b28-a866-b48e445100e2"/>
+				<reportElement x="3" y="265" width="221" height="12" uuid="688bb372-342e-4b28-a866-b48e445100e2"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1583,7 +1582,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA["("+$F{nm_perawat}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="297" y="265" width="254" height="12" uuid="3ac1ab10-84f2-4d47-bd3a-3aa0852880bf"/>
+				<reportElement x="265" y="265" width="254" height="12" uuid="3ac1ab10-84f2-4d47-bd3a-3aa0852880bf"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1591,7 +1590,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA["("+$F{nm_dpjp}+")"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="280" uuid="d8912bae-e7f8-4d5b-bc5b-9594262471ab"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="280" uuid="d8912bae-e7f8-4d5b-bc5b-9594262471ab"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1603,13 +1602,13 @@ Perawat]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="280" width="557" height="1" uuid="6feda2b0-67ea-437e-aa8d-722d20655dea"/>
+				<reportElement x="0" y="280" width="520" height="1" uuid="6feda2b0-67ea-437e-aa8d-722d20655dea"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="41" width="178" height="12" uuid="c6576ae2-c2e5-4471-956a-65378db59fc0"/>
+				<reportElement x="3" y="41" width="170" height="12" uuid="c6576ae2-c2e5-4471-956a-65378db59fc0"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1617,13 +1616,13 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA["("+$F{pemberi_edukasi}+")"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="184" y="0" width="1" height="54" uuid="431ccfc5-9c85-43ba-8440-066d7011a44e"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="175" y="0" width="1" height="54" uuid="431ccfc5-9c85-43ba-8440-066d7011a44e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="188" y="1" width="177" height="11" uuid="7104f5eb-e6d0-4f17-a29c-eed2c99e45b4">
+				<reportElement x="178" y="1" width="155" height="11" uuid="7104f5eb-e6d0-4f17-a29c-eed2c99e45b4">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1634,7 +1633,7 @@ Perawat]]></text>
 				<text><![CDATA[PENERIMA EDUKASI / INFORMASI]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="188" y="41" width="177" height="12" uuid="18eb9901-5e84-4fd8-8bf6-804f585139c0"/>
+				<reportElement x="178" y="41" width="155" height="12" uuid="18eb9901-5e84-4fd8-8bf6-804f585139c0"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1642,7 +1641,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA["("+$F{penerima_edukasi}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="372" y="41" width="179" height="12" uuid="7ab6ea2e-ced9-44fc-8c5a-1ecad91c8f69"/>
+				<reportElement x="339" y="41" width="179" height="12" uuid="7ab6ea2e-ced9-44fc-8c5a-1ecad91c8f69"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1650,7 +1649,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA["("+$F{nm_dokter}+")"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="372" y="1" width="179" height="11" uuid="32759db8-f8a2-45bf-a839-a9341277c17f">
+				<reportElement x="339" y="1" width="179" height="11" uuid="32759db8-f8a2-45bf-a839-a9341277c17f">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1661,13 +1660,13 @@ Perawat]]></text>
 				<text><![CDATA[Dokter,]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="368" y="0" width="1" height="54" uuid="cd189431-d552-4be3-935b-e09a01b14782"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="335" y="0" width="1" height="54" uuid="cd189431-d552-4be3-935b-e09a01b14782"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="67" width="557" height="1" uuid="e1670121-c705-44ed-9c7b-e8dd2d6d8927"/>
+				<reportElement x="0" y="67" width="520" height="1" uuid="e1670121-c705-44ed-9c7b-e8dd2d6d8927"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1882,7 +1881,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$F{opname_diruang}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="101" width="436" height="11" uuid="89003094-92c3-4407-b87b-9cf63ff64d8c">
+				<reportElement x="115" y="101" width="403" height="11" uuid="89003094-92c3-4407-b87b-9cf63ff64d8c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1893,7 +1892,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$F{indikasi_msk}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="112" width="436" height="11" uuid="9dfee7f3-d6c6-4bfa-828c-2c231f1dcbb5">
+				<reportElement x="115" y="112" width="403" height="11" uuid="9dfee7f3-d6c6-4bfa-828c-2c231f1dcbb5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1904,7 +1903,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$F{dipulangkan_kontrol_ke}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="123" width="436" height="11" uuid="023ad0ae-43fd-462a-8182-e5567f58544a">
+				<reportElement x="115" y="123" width="403" height="11" uuid="023ad0ae-43fd-462a-8182-e5567f58544a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1915,7 +1914,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$F{dirujuk_ke}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="134" width="436" height="11" uuid="289d3d15-2d51-498c-ba7c-dcacf14c7811">
+				<reportElement x="115" y="134" width="403" height="11" uuid="289d3d15-2d51-498c-ba7c-dcacf14c7811">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1934,7 +1933,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$P{jam_meninggal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="115" y="156" width="436" height="11" uuid="23a29531-f903-4901-9f0f-03e348d20e8e">
+				<reportElement x="115" y="156" width="403" height="11" uuid="23a29531-f903-4901-9f0f-03e348d20e8e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1945,7 +1944,7 @@ Perawat]]></text>
 				<textFieldExpression><![CDATA[$F{penyebab}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="33" y="169" width="518" height="11" uuid="ff3d1d6e-cdd5-432d-9641-9d033c255d29">
+				<reportElement x="33" y="169" width="485" height="11" uuid="ff3d1d6e-cdd5-432d-9641-9d033c255d29">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -2176,7 +2175,7 @@ Perawat]]></text>
 				<text><![CDATA[SpO2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="297" y="205" width="254" height="23" uuid="852fa5bd-e9a3-4173-9691-83897a6404c5">
+				<reportElement x="265" y="205" width="254" height="23" uuid="852fa5bd-e9a3-4173-9691-83897a6404c5">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -2188,7 +2187,7 @@ Perawat]]></text>
 DPJP]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="281" y="204" width="1" height="76" uuid="6d515c28-4f21-42de-b699-cfa80c302360"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="261" y="204" width="1" height="76" uuid="6d515c28-4f21-42de-b699-cfa80c302360"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>

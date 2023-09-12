@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="557" leftMargin="19" rightMargin="19" topMargin="19" bottomMargin="19" uuid="aa47d386-4bb8-46a4-b6a4-87b694622106">
-	<property name="ireport.zoom" value="2.000000000000005"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="aa47d386-4bb8-46a4-b6a4-87b694622106">
+	<property name="ireport.zoom" value="1.5026296018031589"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="528"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -114,7 +114,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 	<title>
 		<band height="480">
 			<staticText>
-				<reportElement x="329" y="17" width="52" height="11" uuid="b34a9e3f-7c49-4a39-8ef3-bedcd91e004b">
+				<reportElement x="301" y="17" width="52" height="11" uuid="b34a9e3f-7c49-4a39-8ef3-bedcd91e004b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -124,7 +124,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="17" width="7" height="11" uuid="65699597-4f3f-419b-8fd6-5451edc95abd">
+				<reportElement x="353" y="17" width="7" height="11" uuid="65699597-4f3f-419b-8fd6-5451edc95abd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -134,7 +134,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="28" width="7" height="11" uuid="d0d29d0f-0389-46ce-8654-3d89f4bcb022">
+				<reportElement x="353" y="28" width="7" height="11" uuid="d0d29d0f-0389-46ce-8654-3d89f4bcb022">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -144,7 +144,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="28" width="52" height="11" uuid="57e7cfa1-1472-451b-8647-d40afd0446f8">
+				<reportElement x="301" y="28" width="52" height="11" uuid="57e7cfa1-1472-451b-8647-d40afd0446f8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -154,7 +154,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="39" width="52" height="11" uuid="337d0826-cae7-4fce-99c7-4e2abd227f28">
+				<reportElement x="301" y="39" width="52" height="11" uuid="337d0826-cae7-4fce-99c7-4e2abd227f28">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -164,7 +164,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="39" width="7" height="11" uuid="f73ce004-8bb9-4741-a94d-47a1747f4869">
+				<reportElement x="353" y="39" width="7" height="11" uuid="f73ce004-8bb9-4741-a94d-47a1747f4869">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -178,7 +178,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="55" width="557" height="17" backcolor="#F0F0DC" uuid="a61eb6b7-04f9-49a0-a7b1-e34039b262eb"/>
+				<reportElement mode="Opaque" x="0" y="55" width="520" height="17" backcolor="#F0F0DC" uuid="a61eb6b7-04f9-49a0-a7b1-e34039b262eb"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -186,7 +186,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[TRANSFER DAN SERAH TERIMA PASIEN ANTAR RUANGAN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="72" width="557" height="1" uuid="7c3fc39c-0f82-49ff-998b-ff05ef0a57e7">
+				<reportElement x="0" y="72" width="520" height="1" uuid="7c3fc39c-0f82-49ff-998b-ff05ef0a57e7">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -216,7 +216,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="483" y="0" width="67" height="13" uuid="6a2cf572-cc44-4ced-879c-4a5721fd4391">
+				<reportElement x="451" y="0" width="67" height="13" uuid="6a2cf572-cc44-4ced-879c-4a5721fd4391">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -226,7 +226,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[RM 6 REV 01]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="55" width="557" height="1" uuid="70df3bef-c5f4-4d07-ad59-583e862088f7">
+				<reportElement x="0" y="55" width="520" height="1" uuid="70df3bef-c5f4-4d07-ad59-583e862088f7">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -234,13 +234,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="323" y="12" width="1" height="43" uuid="72e396ff-8b95-49ba-a628-b78586caffa8"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="295" y="12" width="1" height="43" uuid="72e396ff-8b95-49ba-a628-b78586caffa8"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="557" height="1" uuid="0c5ea4d9-fa78-4a53-8628-256b2e7e88ae">
+				<reportElement x="0" y="12" width="520" height="1" uuid="0c5ea4d9-fa78-4a53-8628-256b2e7e88ae">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -254,13 +254,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="12" width="1" height="468" uuid="4831f664-47b1-4492-be76-3b58efb7c757"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="12" width="1" height="468" uuid="4831f664-47b1-4492-be76-3b58efb7c757"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="388" y="17" width="158" height="11" uuid="c96654c8-874c-45e4-9eac-3f08d6ceae55"/>
+				<reportElement x="360" y="17" width="158" height="11" uuid="c96654c8-874c-45e4-9eac-3f08d6ceae55"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -268,7 +268,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$P{norm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="28" width="158" height="11" uuid="0a14d267-3da5-4bb9-a1a6-76255d125559"/>
+				<reportElement x="360" y="28" width="158" height="11" uuid="0a14d267-3da5-4bb9-a1a6-76255d125559"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -276,7 +276,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$P{nmpasien}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="388" y="39" width="158" height="11" uuid="c8d306c5-a1af-4244-b90d-c9a810657fce"/>
+				<reportElement x="360" y="39" width="158" height="11" uuid="c8d306c5-a1af-4244-b90d-c9a810657fce"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -387,7 +387,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</textElement>
 				<textFieldExpression><![CDATA[": "+$P{konsulen2}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
+			<textField>
 				<reportElement x="75" y="110" width="200" height="22" uuid="c7142b17-7632-4e0d-aa2b-c87c4d407ea5"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
@@ -396,7 +396,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{diagnosis}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="75" width="196" height="11" uuid="e47164a2-b86f-4bf8-b342-3a00c94cdc4c"/>
+				<reportElement x="355" y="75" width="163" height="11" uuid="e47164a2-b86f-4bf8-b342-3a00c94cdc4c"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -404,7 +404,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{tglmasuk}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="86" width="196" height="11" uuid="197bf6b4-1f98-4046-b23f-774078ae820d"/>
+				<reportElement x="355" y="86" width="163" height="11" uuid="197bf6b4-1f98-4046-b23f-774078ae820d"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -412,15 +412,15 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{ruangkamar}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="98" width="196" height="11" uuid="5aae286e-22bb-4c61-a2f5-d6dc59249b2b"/>
+				<reportElement x="355" y="98" width="163" height="11" uuid="5aae286e-22bb-4c61-a2f5-d6dc59249b2b"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[": "+$P{tgljampindah}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="355" y="110" width="196" height="22" uuid="a3cd8455-5e8e-4bb4-85ff-5b007ce6ead5"/>
+			<textField>
+				<reportElement x="355" y="110" width="163" height="22" uuid="a3cd8455-5e8e-4bb4-85ff-5b007ce6ead5"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -438,7 +438,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Alasan Rawat Inap]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="133" width="477" height="11" uuid="bfca6022-19a2-4304-aba0-19530b25e8f4"/>
+				<reportElement x="75" y="133" width="443" height="11" uuid="bfca6022-19a2-4304-aba0-19530b25e8f4"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -455,16 +455,16 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</textElement>
 				<text><![CDATA[Keluhan]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="75" y="145" width="477" height="22" uuid="2c4162a4-7cc4-4219-9294-56b61524b375"/>
+			<textField>
+				<reportElement x="75" y="145" width="443" height="22" uuid="2c4162a4-7cc4-4219-9294-56b61524b375"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[": "+$P{keluhan}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="75" y="168" width="477" height="22" uuid="008e2b51-4d9c-4799-a836-9a3907492814"/>
+			<textField>
+				<reportElement x="75" y="168" width="443" height="22" uuid="008e2b51-4d9c-4799-a836-9a3907492814"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -491,8 +491,8 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</textElement>
 				<text><![CDATA[Riwayat Alergi]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="76" y="191" width="477" height="22" uuid="a7d476de-90fc-45cd-b56f-13bdd2a47c8d"/>
+			<textField>
+				<reportElement x="76" y="191" width="443" height="22" uuid="a7d476de-90fc-45cd-b56f-13bdd2a47c8d"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -520,7 +520,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Keadaan Umum]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="226" width="477" height="11" uuid="e9328775-db11-4bce-a25c-b10bd1eda7a5"/>
+				<reportElement x="75" y="226" width="443" height="11" uuid="e9328775-db11-4bce-a25c-b10bd1eda7a5"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -538,7 +538,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Kesadaran]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="238" width="477" height="11" uuid="7d12f4e8-4e4e-4856-ad9b-9a7f2c7ce426"/>
+				<reportElement x="75" y="238" width="443" height="11" uuid="7d12f4e8-4e4e-4856-ad9b-9a7f2c7ce426"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -556,7 +556,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Pemeriksaan Tanda Vital]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="250" width="477" height="11" uuid="33e84249-f895-4653-9725-37dd594475a7"/>
+				<reportElement x="75" y="250" width="443" height="11" uuid="33e84249-f895-4653-9725-37dd594475a7"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -564,7 +564,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": Tensi : "+$P{tensi}+" MmHg  Nadi : "+$P{nadi}+" x/mnt  Suhu : "+$P{suhu}+" °C  RR : "+$P{rr}+" x/mnt"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="75" y="261" width="477" height="11" uuid="0f94adab-fbed-4ecf-b52f-da4460c1bcf4"/>
+				<reportElement x="75" y="261" width="443" height="11" uuid="0f94adab-fbed-4ecf-b52f-da4460c1bcf4"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -582,7 +582,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Skore Resiko Jatuh]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="273" width="477" height="11" uuid="b5d6fd34-f0d7-426b-b5d5-d3d0c3ae57f7"/>
+				<reportElement x="75" y="273" width="443" height="11" uuid="b5d6fd34-f0d7-426b-b5d5-d3d0c3ae57f7"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -898,7 +898,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="255" y="309" width="296" height="11" uuid="c4eeca43-4955-4dca-9b78-21f917115847"/>
+				<reportElement x="255" y="309" width="263" height="11" uuid="c4eeca43-4955-4dca-9b78-21f917115847"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -906,7 +906,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{ketctscan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="322" width="296" height="11" uuid="cac5fd4a-ebe7-4888-9aff-01b6795ed87e"/>
+				<reportElement x="255" y="322" width="263" height="11" uuid="cac5fd4a-ebe7-4888-9aff-01b6795ed87e"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -914,7 +914,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{ketendos}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="335" width="296" height="11" uuid="3989401d-d9fb-4cee-9a07-56ea8683a953"/>
+				<reportElement x="255" y="335" width="263" height="11" uuid="3989401d-d9fb-4cee-9a07-56ea8683a953"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -922,15 +922,15 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[": "+$P{ketctg}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="348" width="296" height="11" uuid="5ef65e06-2bb9-4201-9829-02fc431540ae"/>
+				<reportElement x="255" y="348" width="263" height="11" uuid="5ef65e06-2bb9-4201-9829-02fc431540ae"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[": "+$P{ketlainya}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="75" y="361" width="477" height="22" uuid="2bc86e7e-624e-481a-ab34-61ba999bb296"/>
+			<textField>
+				<reportElement x="75" y="361" width="443" height="22" uuid="2bc86e7e-624e-481a-ab34-61ba999bb296"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1124,7 +1124,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$P{tgldrain}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="202" y="443" width="349" height="11" uuid="c3bf3880-001f-42d3-9cb8-31d2a6c7a13f"/>
+				<reportElement x="202" y="443" width="316" height="11" uuid="c3bf3880-001f-42d3-9cb8-31d2a6c7a13f"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1200,7 +1200,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Obat-obatan yang diberikan :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="3" y="468" width="18" height="11" uuid="957b1a16-0c2c-4032-98ca-81c96eae7706">
+				<reportElement x="2" y="468" width="18" height="11" uuid="957b1a16-0c2c-4032-98ca-81c96eae7706">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1210,7 +1210,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="26" y="468" width="211" height="11" uuid="a6df38b7-aa8a-4f12-9894-07e28092b381">
+				<reportElement x="23" y="468" width="175" height="11" uuid="a6df38b7-aa8a-4f12-9894-07e28092b381">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1220,13 +1220,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Nama Obat]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="466" width="557" height="1" uuid="a7642c44-8162-41a4-bf4a-5d565526e536"/>
+				<reportElement x="0" y="466" width="520" height="1" uuid="a7642c44-8162-41a4-bf4a-5d565526e536"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="479" width="557" height="1" uuid="ed65fe02-a64c-4010-bdb6-10fbbcfc467e"/>
+				<reportElement x="0" y="479" width="520" height="1" uuid="ed65fe02-a64c-4010-bdb6-10fbbcfc467e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1252,7 +1252,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="238" y="468" width="52" height="11" uuid="0a1dd377-59e3-4dab-a3c5-48d360cb5f15">
+				<reportElement x="199" y="468" width="52" height="11" uuid="0a1dd377-59e3-4dab-a3c5-48d360cb5f15">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1262,7 +1262,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Dosis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="292" y="468" width="127" height="11" uuid="30d6b8b3-6fbe-4802-b7b4-7c9980003091">
+				<reportElement x="253" y="468" width="127" height="11" uuid="30d6b8b3-6fbe-4802-b7b4-7c9980003091">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1272,7 +1272,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Cara Pemberian]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="421" y="468" width="69" height="11" uuid="19d89b13-f8b4-4272-ad66-08481afe2e01">
+				<reportElement x="382" y="468" width="69" height="11" uuid="19d89b13-f8b4-4272-ad66-08481afe2e01">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1282,7 +1282,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Jdwal. Pemberian]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="491" y="468" width="65" height="11" uuid="7e32f48a-d982-4a7a-b919-04b3a1085bb3">
+				<reportElement x="453" y="468" width="65" height="11" uuid="7e32f48a-d982-4a7a-b919-04b3a1085bb3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1292,25 +1292,25 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Jlh. (Sisa Obat)]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="237" y="467" width="1" height="13" uuid="91115ca6-ab01-4c7a-adff-0e97ea7c8c47"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="198" y="467" width="1" height="13" uuid="91115ca6-ab01-4c7a-adff-0e97ea7c8c47"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="290" y="467" width="1" height="13" uuid="f111b696-df17-467a-9cd6-5fc6315d8db0"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="251" y="467" width="1" height="13" uuid="f111b696-df17-467a-9cd6-5fc6315d8db0"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="419" y="467" width="1" height="13" uuid="2916564e-9d65-462f-a3a2-4b65cd379d4c"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="380" y="467" width="1" height="13" uuid="2916564e-9d65-462f-a3a2-4b65cd379d4c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="490" y="467" width="1" height="13" uuid="6a929298-fe2b-4586-bd05-9f627153a0ba"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="451" y="467" width="1" height="13" uuid="6a929298-fe2b-4586-bd05-9f627153a0ba"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1320,7 +1320,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 	<detail>
 		<band height="13">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="26" y="0" width="209" height="12" uuid="62be155b-ad93-4aad-92dc-e5865585bea2"/>
+				<reportElement x="26" y="0" width="169" height="12" uuid="62be155b-ad93-4aad-92dc-e5865585bea2"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1334,19 +1334,19 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="556" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0535b8c8-b74a-4ede-8fcf-c696107da5f3"/>
+				<reportElement stretchType="RelativeToTallestObject" x="520" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0535b8c8-b74a-4ede-8fcf-c696107da5f3"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="12" width="557" height="1" uuid="8a33f32c-5fe3-4e96-830c-a0ddc88a4e99"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="12" width="520" height="1" uuid="8a33f32c-5fe3-4e96-830c-a0ddc88a4e99"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="0" width="18" height="11" uuid="9f75fabc-f9d4-4417-9a54-81e9bd56b322"/>
+				<reportElement x="2" y="0" width="18" height="11" uuid="9f75fabc-f9d4-4417-9a54-81e9bd56b322"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1360,7 +1360,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="240" y="0" width="48" height="12" uuid="0e2a0f21-8bff-4efc-81d2-646fb7fd468a"/>
+				<reportElement x="201" y="0" width="48" height="12" uuid="0e2a0f21-8bff-4efc-81d2-646fb7fd468a"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1368,7 +1368,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$F{dosis}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="294" y="0" width="123" height="12" uuid="002eee4e-e9ad-4883-b809-4de8623c8160"/>
+				<reportElement x="255" y="0" width="123" height="12" uuid="002eee4e-e9ad-4883-b809-4de8623c8160"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1376,7 +1376,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$F{cara_pemberian}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="494" y="0" width="59" height="12" uuid="fbcbb3aa-0fe8-47ba-839b-92baa81eae6d"/>
+				<reportElement x="456" y="0" width="59" height="12" uuid="fbcbb3aa-0fe8-47ba-839b-92baa81eae6d"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1384,31 +1384,31 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$F{jlh_sisa_obat}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="237" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="32259105-428e-42ff-9857-e22eafdedcc6"/>
+				<reportElement stretchType="RelativeToTallestObject" x="198" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="32259105-428e-42ff-9857-e22eafdedcc6"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="290" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="96c88137-6128-4c3b-b00c-79ddb87bfc2b"/>
+				<reportElement stretchType="RelativeToTallestObject" x="251" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="96c88137-6128-4c3b-b00c-79ddb87bfc2b"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="419" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1e7deb25-0a5c-48d0-875d-cfe43c434b64"/>
+				<reportElement stretchType="RelativeToTallestObject" x="380" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1e7deb25-0a5c-48d0-875d-cfe43c434b64"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="490" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="877e6f01-42e7-4c3c-b8d0-0cff0a5a2c01"/>
+				<reportElement stretchType="RelativeToTallestObject" x="451" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="877e6f01-42e7-4c3c-b8d0-0cff0a5a2c01"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true" pattern="HH:mm:ss">
-				<reportElement x="422" y="0" width="67" height="12" uuid="795e5720-3d9e-4f4c-b782-68762e7af928"/>
+				<reportElement x="383" y="0" width="67" height="12" uuid="795e5720-3d9e-4f4c-b782-68762e7af928"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -1419,13 +1419,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 	<summary>
 		<band height="179">
 			<line>
-				<reportElement x="0" y="76" width="557" height="1" uuid="7868047a-2c2e-416a-b0df-2536714f598a"/>
+				<reportElement x="0" y="76" width="520" height="1" uuid="7868047a-2c2e-416a-b0df-2536714f598a"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="77" uuid="3a73c42d-b91e-4069-aeb0-8603c962d887"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="77" uuid="3a73c42d-b91e-4069-aeb0-8603c962d887"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1437,7 +1437,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="0" width="557" height="11" uuid="c3c3e50a-1497-4a35-a373-e10d52758e6c">
+				<reportElement x="0" y="0" width="520" height="11" uuid="c3c3e50a-1497-4a35-a373-e10d52758e6c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1447,13 +1447,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[REKOMENDASI]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="10" width="557" height="1" uuid="e7e88167-cc4a-45cb-a997-3000a0ecfd77"/>
+				<reportElement x="0" y="10" width="520" height="1" uuid="e7e88167-cc4a-45cb-a997-3000a0ecfd77"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="11" width="546" height="50" uuid="2e76ac1d-787b-4d97-8810-ea90d8dc563b"/>
+			<textField>
+				<reportElement x="3" y="11" width="515" height="50" uuid="2e76ac1d-787b-4d97-8810-ea90d8dc563b"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1461,13 +1461,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA[$P{rekomendasi}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="61" width="557" height="1" uuid="fe24f21b-4436-43e3-858f-f0e839f3ddb7"/>
+				<reportElement x="0" y="61" width="520" height="1" uuid="fe24f21b-4436-43e3-858f-f0e839f3ddb7"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="64" width="546" height="11" uuid="12b196ff-32ac-48b6-9f92-962185439b4e"/>
+				<reportElement x="3" y="64" width="515" height="11" uuid="12b196ff-32ac-48b6-9f92-962185439b4e"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1475,7 +1475,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA["ALASAN PINDAH RUANGAN : "+$P{alasanpindahruangan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="355" y="79" width="198" height="11" uuid="eb169516-ebef-42d4-bbbd-7d9506a9c02d"/>
+				<reportElement x="319" y="79" width="198" height="11" uuid="eb169516-ebef-42d4-bbbd-7d9506a9c02d"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1483,7 +1483,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA["Martapura, "+$P{tgltransferserah}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="288" y="103" width="137" height="11" uuid="9aefcb04-c62b-4b13-899e-f45e426da3e3">
+				<reportElement x="270" y="103" width="118" height="11" uuid="9aefcb04-c62b-4b13-899e-f45e426da3e3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1493,7 +1493,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Yang Menyerahkan,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="425" y="103" width="128" height="11" uuid="fc92cf80-b5e2-448f-8e80-c7298347d371">
+				<reportElement x="390" y="103" width="128" height="11" uuid="fc92cf80-b5e2-448f-8e80-c7298347d371">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1503,7 +1503,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Yang Menerima,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="288" y="159" width="137" height="11" uuid="1118075e-3020-4481-abe3-74c50888890a"/>
+				<reportElement x="270" y="159" width="118" height="11" uuid="1118075e-3020-4481-abe3-74c50888890a"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1511,7 +1511,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA["("+$P{ygmenyerahkan}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="425" y="159" width="128" height="11" uuid="8eda2f5f-0e39-4653-8b01-a87b272a49aa"/>
+				<reportElement x="390" y="159" width="128" height="11" uuid="8eda2f5f-0e39-4653-8b01-a87b272a49aa"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1529,7 +1529,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Disetujui,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="128" y="103" width="158" height="11" uuid="c833c340-3e1f-496c-bf46-6ffc252748c8">
+				<reportElement x="110" y="103" width="158" height="11" uuid="c833c340-3e1f-496c-bf46-6ffc252748c8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1539,7 +1539,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Dokter,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="5" y="159" width="121" height="11" uuid="8e1af28e-bdd5-4c2d-b6ad-c29caea2905d"/>
+				<reportElement x="5" y="159" width="103" height="11" uuid="8e1af28e-bdd5-4c2d-b6ad-c29caea2905d"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1547,7 +1547,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA["("+$P{nmpasienkeluarga}+")"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="128" y="159" width="158" height="11" uuid="e5fedf3e-150a-4fd6-8ac8-d31dc28f712b"/>
+				<reportElement x="110" y="159" width="158" height="11" uuid="e5fedf3e-150a-4fd6-8ac8-d31dc28f712b"/>
 				<textElement textAlignment="Center" verticalAlignment="Top">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1555,7 +1555,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression><![CDATA["("+$P{nmdokter}+")"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="5" y="103" width="121" height="11" uuid="cc3323dd-4d04-4348-ad66-9a8c723f1fc9">
+				<reportElement x="5" y="103" width="103" height="11" uuid="cc3323dd-4d04-4348-ad66-9a8c723f1fc9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">

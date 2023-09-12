@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="557" leftMargin="19" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
 	<property name="ireport.zoom" value="1.8181818181818235"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="417"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -166,7 +166,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 	<title>
 		<band height="295">
 			<textField>
-				<reportElement x="388" y="28" width="158" height="11" uuid="a501ce81-ddef-4dfa-9498-76b631233a83">
+				<reportElement x="359" y="28" width="158" height="11" uuid="a501ce81-ddef-4dfa-9498-76b631233a83">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -177,7 +177,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
 			</textField>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="388" y="39" width="158" height="11" uuid="834487b2-9e33-4680-be66-05192479bcf9">
+				<reportElement x="359" y="39" width="158" height="11" uuid="834487b2-9e33-4680-be66-05192479bcf9">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -187,7 +187,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{tgllahir}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="388" y="17" width="158" height="11" uuid="7f7644db-41a2-405f-b7a3-356ab457f0b6">
+				<reportElement mode="Transparent" x="359" y="17" width="158" height="11" uuid="7f7644db-41a2-405f-b7a3-356ab457f0b6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement verticalAlignment="Middle">
@@ -197,7 +197,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="329" y="17" width="52" height="11" uuid="7aea713c-4c4d-4192-b3d0-6a2e913b5147">
+				<reportElement x="300" y="17" width="52" height="11" uuid="7aea713c-4c4d-4192-b3d0-6a2e913b5147">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -207,7 +207,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="17" width="7" height="11" uuid="96fd3012-6cfb-4e98-8ede-53f42609c254">
+				<reportElement x="352" y="17" width="7" height="11" uuid="96fd3012-6cfb-4e98-8ede-53f42609c254">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -217,13 +217,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="88" width="557" height="1" uuid="4b9449bc-b6d2-4a09-ab03-a8bf8b8b766e"/>
+				<reportElement x="0" y="88" width="519" height="1" uuid="4b9449bc-b6d2-4a09-ab03-a8bf8b8b766e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="381" y="28" width="7" height="11" uuid="a1fb2542-8c2d-4a40-b95d-40dcd5e756c6">
+				<reportElement x="352" y="28" width="7" height="11" uuid="a1fb2542-8c2d-4a40-b95d-40dcd5e756c6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -233,7 +233,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="28" width="52" height="11" uuid="43eeac50-8039-442b-949a-8de5d0d9dd5f">
+				<reportElement x="300" y="28" width="52" height="11" uuid="43eeac50-8039-442b-949a-8de5d0d9dd5f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -243,7 +243,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="39" width="52" height="11" uuid="dc879ee3-0cdd-4702-981d-41a67480d73f">
+				<reportElement x="300" y="39" width="52" height="11" uuid="dc879ee3-0cdd-4702-981d-41a67480d73f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -253,7 +253,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="39" width="7" height="11" uuid="366bf6e3-2010-4742-9c4b-49dfb5e8a18a">
+				<reportElement x="352" y="39" width="7" height="11" uuid="366bf6e3-2010-4742-9c4b-49dfb5e8a18a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -267,7 +267,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="55" width="557" height="17" backcolor="#F0F0DC" uuid="a9d977ec-a230-41e3-bb48-94b366853f95"/>
+				<reportElement mode="Opaque" x="0" y="55" width="519" height="17" backcolor="#F0F0DC" uuid="a9d977ec-a230-41e3-bb48-94b366853f95"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -275,7 +275,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[TRIASE]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="72" width="557" height="1" uuid="ec732be0-5299-4b6d-b2bb-72f84af73ec4">
+				<reportElement x="0" y="72" width="519" height="1" uuid="ec732be0-5299-4b6d-b2bb-72f84af73ec4">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -283,7 +283,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="75" width="549" height="11" uuid="341af5d5-27bb-475a-9810-ebefa8cc4331">
+				<reportElement x="3" y="75" width="516" height="11" uuid="341af5d5-27bb-475a-9810-ebefa8cc4331">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -294,13 +294,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Kontak Awal Pasien : "+$F{kontak_awal}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="165" width="557" height="1" uuid="5ea25c97-14e9-4ea6-9522-33a34df291eb"/>
+				<reportElement x="0" y="165" width="519" height="1" uuid="5ea25c97-14e9-4ea6-9522-33a34df291eb"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="177" width="557" height="1" uuid="ebc1bc1f-f0eb-4c30-9912-80c4dae2809c"/>
+				<reportElement x="0" y="177" width="519" height="1" uuid="ebc1bc1f-f0eb-4c30-9912-80c4dae2809c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -328,7 +328,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="166" width="557" height="11" backcolor="#F0F0DC" uuid="6d70e453-300e-4787-bd56-79a1d14bc3c8">
+				<reportElement mode="Opaque" x="0" y="166" width="519" height="11" backcolor="#F0F0DC" uuid="6d70e453-300e-4787-bd56-79a1d14bc3c8">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -339,7 +339,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[MEKANISME TRAUMA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="507" y="0" width="38" height="13" uuid="ac99d76c-75b6-4b9f-b34b-ac7e9b6091f1">
+				<reportElement x="482" y="0" width="38" height="13" uuid="ac99d76c-75b6-4b9f-b34b-ac7e9b6091f1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -349,7 +349,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[RM 5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="283" width="557" height="11" backcolor="#F0F0DC" uuid="f2d4f8a1-4e95-4457-93d5-872385b7a107">
+				<reportElement mode="Opaque" x="0" y="283" width="519" height="11" backcolor="#F0F0DC" uuid="f2d4f8a1-4e95-4457-93d5-872385b7a107">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -360,7 +360,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[KELUHAN UTAMA]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="55" width="557" height="1" uuid="0674312f-662f-4975-ab2c-4b7f17bbe6fa">
+				<reportElement x="0" y="55" width="519" height="1" uuid="0674312f-662f-4975-ab2c-4b7f17bbe6fa">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -368,13 +368,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="323" y="12" width="1" height="43" uuid="857faa3a-50e7-42c9-ae0d-b466d7daa9bf"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="294" y="12" width="1" height="43" uuid="857faa3a-50e7-42c9-ae0d-b466d7daa9bf"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="557" height="1" uuid="a10669b4-5813-49c5-b90d-1c4bdb17bb5b">
+				<reportElement x="0" y="12" width="519" height="1" uuid="a10669b4-5813-49c5-b90d-1c4bdb17bb5b">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -388,7 +388,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="12" width="1" height="282" uuid="5cfa1db1-c2b7-4323-8cea-6eaa790b7d30"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="12" width="1" height="282" uuid="5cfa1db1-c2b7-4323-8cea-6eaa790b7d30"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -478,7 +478,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{trauma_zat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="3" y="91" width="549" height="11" uuid="7cae88d1-4f4f-451d-a95e-2723f3cb50c6">
+				<reportElement x="3" y="91" width="516" height="11" uuid="7cae88d1-4f4f-451d-a95e-2723f3cb50c6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -489,13 +489,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Cara Masuk : "+$F{cr_msk}+", Sudah terpasang : "+$F{sudah_terpasang}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="104" width="557" height="1" uuid="cb87f9ce-8365-4df8-8ae9-521df69c052e"/>
+				<reportElement x="0" y="104" width="519" height="1" uuid="cb87f9ce-8365-4df8-8ae9-521df69c052e"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="107" width="549" height="11" uuid="6d87c002-dd02-492e-b582-e7a7ae43c38b"/>
+				<reportElement x="3" y="107" width="516" height="11" uuid="6d87c002-dd02-492e-b582-e7a7ae43c38b"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -503,13 +503,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Alasan Kedatangan : "+$P{alasan_kedatangan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="120" width="557" height="1" uuid="fff3b7bc-830b-401f-92fe-5e5a73e8c5be"/>
+				<reportElement x="0" y="120" width="519" height="1" uuid="fff3b7bc-830b-401f-92fe-5e5a73e8c5be"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="123" width="549" height="11" uuid="19c39f4f-a75e-4188-b395-931222636e15"/>
+				<reportElement x="3" y="123" width="516" height="11" uuid="19c39f4f-a75e-4188-b395-931222636e15"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -517,13 +517,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Kendaraan : "+$P{kendaraan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="135" width="557" height="1" uuid="33c6c669-45c7-4713-b14a-c57c2f33c795"/>
+				<reportElement x="0" y="135" width="519" height="1" uuid="33c6c669-45c7-4713-b14a-c57c2f33c795"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="138" width="549" height="11" uuid="dc98608d-140d-493c-945b-57e44bd0cd67">
+				<reportElement x="3" y="138" width="516" height="11" uuid="dc98608d-140d-493c-945b-57e44bd0cd67">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -534,13 +534,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Identitas Pengantar : "+$F{iden_pengntar}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="150" width="557" height="1" uuid="bdd99631-173d-48d8-9b23-6265e00fc15f"/>
+				<reportElement x="0" y="150" width="519" height="1" uuid="bdd99631-173d-48d8-9b23-6265e00fc15f"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="153" width="549" height="11" uuid="4b0bea0d-7ada-49d8-a36d-648c7aad2b9b">
+				<reportElement x="3" y="153" width="516" height="11" uuid="4b0bea0d-7ada-49d8-a36d-648c7aad2b9b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -551,7 +551,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Kasus : "+$F{kasus}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="185" width="534" height="11" uuid="86fb69b2-5249-460f-ab2a-8ffe37660234"/>
+				<reportElement x="18" y="185" width="500" height="11" uuid="86fb69b2-5249-460f-ab2a-8ffe37660234"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -559,7 +559,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{kll_tunggal}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="198" width="534" height="11" uuid="4185d11c-fe45-4651-8b81-70de5d499f71"/>
+				<reportElement x="18" y="198" width="500" height="11" uuid="4185d11c-fe45-4651-8b81-70de5d499f71"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -567,7 +567,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{kll}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="211" width="534" height="11" uuid="4a294323-1951-4f33-ad66-8fa0a2709173"/>
+				<reportElement x="18" y="211" width="500" height="11" uuid="4a294323-1951-4f33-ad66-8fa0a2709173"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -575,7 +575,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{jatuh}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="224" width="534" height="11" uuid="a1160d31-ab44-4d23-83b8-39b4028cc6d4"/>
+				<reportElement x="18" y="224" width="500" height="11" uuid="a1160d31-ab44-4d23-83b8-39b4028cc6d4"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -583,7 +583,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{luka}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="237" width="534" height="11" uuid="72629f3f-ec86-4877-9cf0-f8b714e4b1ea"/>
+				<reportElement x="18" y="237" width="500" height="11" uuid="72629f3f-ec86-4877-9cf0-f8b714e4b1ea"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -591,7 +591,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{trauma_listrik}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="250" width="534" height="11" uuid="a2bef63e-ee84-4d74-8374-f4c7333ca332"/>
+				<reportElement x="18" y="250" width="500" height="11" uuid="a2bef63e-ee84-4d74-8374-f4c7333ca332"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -599,7 +599,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{trauma_zat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="18" y="263" width="534" height="11" uuid="663e7acf-7021-46c2-b433-0fbd3238e132"/>
+				<reportElement x="18" y="263" width="500" height="11" uuid="663e7acf-7021-46c2-b433-0fbd3238e132"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -621,13 +621,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="0" y="282" width="557" height="1" uuid="ca9c47f9-243d-4be5-a13a-3b981bb2a5b2"/>
+				<reportElement x="0" y="282" width="519" height="1" uuid="ca9c47f9-243d-4be5-a13a-3b981bb2a5b2"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="294" width="557" height="1" uuid="c2e3576f-8347-4300-8e01-1138f45e9b8c"/>
+				<reportElement x="0" y="294" width="519" height="1" uuid="c2e3576f-8347-4300-8e01-1138f45e9b8c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -637,7 +637,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 	<detail>
 		<band height="15">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="0" width="542" height="12" uuid="2b3f9d8c-0085-4924-9e01-49c86db35911"/>
+				<reportElement x="3" y="0" width="516" height="12" uuid="2b3f9d8c-0085-4924-9e01-49c86db35911"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -651,13 +651,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="556" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e6008988-0414-4ce3-8ecb-61ed25086a5c"/>
+				<reportElement stretchType="RelativeToTallestObject" x="519" y="0" width="1" height="15" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e6008988-0414-4ce3-8ecb-61ed25086a5c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="14" width="557" height="1" uuid="e10bb5c7-da25-4361-99f7-9576bdbaea5d"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="14" width="519" height="1" uuid="e10bb5c7-da25-4361-99f7-9576bdbaea5d"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -667,7 +667,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 	<summary>
 		<band height="395">
 			<textField>
-				<reportElement mode="Opaque" x="0" y="0" width="557" height="12" backcolor="#F0F0DC" uuid="f6eba3d8-1dfc-46c4-ab09-5614841b1ae5"/>
+				<reportElement mode="Opaque" x="0" y="0" width="519" height="12" backcolor="#F0F0DC" uuid="f6eba3d8-1dfc-46c4-ab09-5614841b1ae5"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="9" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -675,13 +675,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{pacs}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="12" width="557" height="1" uuid="985b84d3-bdc7-41d5-80d3-4fec84428884"/>
+				<reportElement x="0" y="12" width="519" height="1" uuid="985b84d3-bdc7-41d5-80d3-4fec84428884"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="13" width="557" height="11" backcolor="#F0F0DC" uuid="2eabcdf9-0c41-48a6-84b0-afc0d81a8079">
+				<reportElement mode="Opaque" x="0" y="13" width="519" height="11" backcolor="#F0F0DC" uuid="2eabcdf9-0c41-48a6-84b0-afc0d81a8079">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -692,13 +692,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[TANDA VITAL]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="24" width="557" height="1" uuid="3222a907-b089-4a77-b8ea-4f3041c20967"/>
+				<reportElement x="0" y="24" width="519" height="1" uuid="3222a907-b089-4a77-b8ea-4f3041c20967"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="26" width="549" height="11" uuid="beeb1932-98dd-4199-bfe9-9056229b396d">
+				<reportElement x="3" y="26" width="516" height="11" uuid="beeb1932-98dd-4199-bfe9-9056229b396d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -709,7 +709,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{kesadaran}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="38" width="557" height="1" uuid="736bd60c-b84d-4b51-8d02-0a538977dfb9"/>
+				<reportElement x="0" y="38" width="519" height="1" uuid="736bd60c-b84d-4b51-8d02-0a538977dfb9"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -735,7 +735,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Nadi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="202" y="41" width="53" height="11" uuid="eadba671-b133-4985-93d7-9f6dbcd29514">
+				<reportElement x="182" y="41" width="53" height="11" uuid="eadba671-b133-4985-93d7-9f6dbcd29514">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -745,7 +745,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Pernapasan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="202" y="55" width="53" height="11" uuid="f4f7bbf5-7bc8-43d2-aa32-06cfd6e781a4">
+				<reportElement x="182" y="55" width="53" height="11" uuid="f4f7bbf5-7bc8-43d2-aa32-06cfd6e781a4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -755,7 +755,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Temperatur]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="75" y="41" width="120" height="11" uuid="ebc24839-a254-48d4-8056-ebfe6104f699">
+				<reportElement x="75" y="41" width="89" height="11" uuid="ebc24839-a254-48d4-8056-ebfe6104f699">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -766,7 +766,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[": "+$F{td}+" mmHg"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="75" y="55" width="120" height="11" uuid="e0f28960-3dac-4de7-b36f-94e94d1b6ce0">
+				<reportElement x="75" y="55" width="89" height="11" uuid="e0f28960-3dac-4de7-b36f-94e94d1b6ce0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -777,7 +777,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[": "+$F{nadi}+" x/menit"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="41" width="120" height="11" uuid="1a37ac3c-b1e2-4b06-80f7-b4786406ef9a">
+				<reportElement x="235" y="41" width="89" height="11" uuid="1a37ac3c-b1e2-4b06-80f7-b4786406ef9a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -788,7 +788,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[": "+$F{napas}+" x/menit"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="255" y="55" width="120" height="11" uuid="0d743c9a-2d3e-4f51-8574-3c245feaa1a3">
+				<reportElement x="235" y="55" width="89" height="11" uuid="0d743c9a-2d3e-4f51-8574-3c245feaa1a3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -799,7 +799,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[": "+$F{temperatur}+" °C"]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="434" y="41" width="120" height="11" uuid="bacfd20c-0490-4c1f-8b6b-e7c98ee71108">
+				<reportElement x="393" y="41" width="89" height="11" uuid="bacfd20c-0490-4c1f-8b6b-e7c98ee71108">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -810,7 +810,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[": "+$F{saturasi}+" %"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="381" y="41" width="53" height="11" uuid="5190d579-2608-4608-a053-80443f21d177">
+				<reportElement x="340" y="41" width="53" height="11" uuid="5190d579-2608-4608-a053-80443f21d177">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -820,7 +820,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Saturasi O2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="381" y="55" width="53" height="11" uuid="3d9e4fcf-2c39-4a61-a110-db0bbe7fc730">
+				<reportElement x="340" y="55" width="53" height="11" uuid="3d9e4fcf-2c39-4a61-a110-db0bbe7fc730">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -830,7 +830,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Nyeri]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="434" y="55" width="120" height="11" uuid="bf764cec-3805-4785-b777-d7b4199c1d02">
+				<reportElement x="393" y="55" width="89" height="11" uuid="bf764cec-3805-4785-b777-d7b4199c1d02">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -851,7 +851,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[VAS (Visual Analog Scale) :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="81" width="549" height="42" uuid="9128eb18-7511-44ad-9dab-00c90846e342">
+				<reportElement x="3" y="81" width="516" height="42" uuid="9128eb18-7511-44ad-9dab-00c90846e342">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -862,25 +862,25 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{vas}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="53" width="557" height="1" uuid="af70d600-6a69-47c1-963a-9b657dd9265a"/>
+				<reportElement x="0" y="53" width="519" height="1" uuid="af70d600-6a69-47c1-963a-9b657dd9265a"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="67" width="557" height="1" uuid="d15aab52-6829-4b4d-8952-97d8e42dfeb2"/>
+				<reportElement x="0" y="67" width="519" height="1" uuid="d15aab52-6829-4b4d-8952-97d8e42dfeb2"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="150" width="557" height="1" uuid="d6fd86fe-9108-4350-82f5-95dde0b4f0c2"/>
+				<reportElement x="0" y="150" width="519" height="1" uuid="d6fd86fe-9108-4350-82f5-95dde0b4f0c2"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="151" width="557" height="12" backcolor="#F0F0DC" uuid="17a29994-a035-4d33-8075-e9a1df290128">
+				<reportElement mode="Opaque" x="0" y="151" width="519" height="12" backcolor="#F0F0DC" uuid="17a29994-a035-4d33-8075-e9a1df290128">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -891,7 +891,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[WORTHING PHYSIOLOGICAL SCORING SYSTEM (WPSS)]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="163" width="557" height="1" uuid="32986032-aafb-469d-9d70-541f5b2b232f"/>
+				<reportElement x="0" y="163" width="519" height="1" uuid="32986032-aafb-469d-9d70-541f5b2b232f"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1367,43 +1367,43 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{skor3_92}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="177" width="557" height="1" uuid="b6b5b306-bfdf-4bc5-8f21-938965a48657"/>
+				<reportElement x="0" y="177" width="519" height="1" uuid="b6b5b306-bfdf-4bc5-8f21-938965a48657"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="192" width="557" height="1" uuid="1f1f9e21-bd4b-4f5a-847a-bea8a0772688"/>
+				<reportElement x="0" y="192" width="519" height="1" uuid="1f1f9e21-bd4b-4f5a-847a-bea8a0772688"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="207" width="557" height="1" uuid="27d1f0cd-9c7f-4734-b179-23f119ea4e2d"/>
+				<reportElement x="0" y="207" width="519" height="1" uuid="27d1f0cd-9c7f-4734-b179-23f119ea4e2d"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="222" width="557" height="1" uuid="1f55f46c-213a-4f24-b45a-d67b6d4d1c8a"/>
+				<reportElement x="0" y="222" width="519" height="1" uuid="1f55f46c-213a-4f24-b45a-d67b6d4d1c8a"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="236" width="557" height="1" uuid="46d9f748-f0ed-4be5-bd9e-ff2515f8d4e3"/>
+				<reportElement x="0" y="236" width="519" height="1" uuid="46d9f748-f0ed-4be5-bd9e-ff2515f8d4e3"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="251" width="557" height="1" uuid="78ccdf4e-b2c2-47d8-9a53-d907fc3cf87c"/>
+				<reportElement x="0" y="251" width="519" height="1" uuid="78ccdf4e-b2c2-47d8-9a53-d907fc3cf87c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="266" width="557" height="1" uuid="3154ddc7-cf11-4bf5-8286-67eec5cc5c03"/>
+				<reportElement x="0" y="266" width="519" height="1" uuid="3154ddc7-cf11-4bf5-8286-67eec5cc5c03"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1485,13 +1485,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[   0 - 1]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="278" width="557" height="1" uuid="cfec300c-f871-47e7-9f0a-2fbd8c2fcec3"/>
+				<reportElement x="0" y="278" width="519" height="1" uuid="cfec300c-f871-47e7-9f0a-2fbd8c2fcec3"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="3" y="281" width="196" height="11" uuid="6dcb3ca2-9e94-4b57-a9aa-57ef6bd28639">
+				<reportElement x="3" y="281" width="179" height="11" uuid="6dcb3ca2-9e94-4b57-a9aa-57ef6bd28639">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1501,7 +1501,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[CATATAN KHUSUS :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="358" y="281" width="196" height="11" uuid="7697f921-edc6-4392-8936-28c095da7a1c">
+				<reportElement x="335" y="281" width="183" height="11" uuid="7697f921-edc6-4392-8936-28c095da7a1c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top">
@@ -1511,7 +1511,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[PETUGAS TRIASE]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="208" y="281" width="139" height="12" uuid="f8c10b3a-d8a3-432a-974a-99f9844fae61"/>
+				<reportElement x="189" y="281" width="139" height="12" uuid="f8c10b3a-d8a3-432a-974a-99f9844fae61"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1519,7 +1519,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Pukul : "+$F{pukul}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="3" y="291" width="196" height="96" uuid="8ee32f2b-0693-45fd-a206-1642a306b746"/>
+				<reportElement x="3" y="291" width="179" height="96" uuid="8ee32f2b-0693-45fd-a206-1642a306b746"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -1527,31 +1527,31 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{catatan}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Opaque" x="208" y="294" width="139" height="16" backcolor="#FF0033" uuid="da6dfa73-6768-4ac7-b392-f10bd5b0be55"/>
+				<reportElement mode="Opaque" x="189" y="294" width="139" height="16" backcolor="#FF0033" uuid="da6dfa73-6768-4ac7-b392-f10bd5b0be55"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Opaque" x="208" y="310" width="139" height="16" backcolor="#FDD900" uuid="33578edc-9b9f-4e40-be82-43a22e9b4158"/>
+				<reportElement mode="Opaque" x="189" y="310" width="139" height="16" backcolor="#FDD900" uuid="33578edc-9b9f-4e40-be82-43a22e9b4158"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Opaque" x="208" y="326" width="139" height="16" backcolor="#009933" uuid="64f8e951-a07f-436d-9518-1f8cd1d25c28"/>
+				<reportElement mode="Opaque" x="189" y="326" width="139" height="16" backcolor="#009933" uuid="64f8e951-a07f-436d-9518-1f8cd1d25c28"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Opaque" x="208" y="342" width="139" height="16" backcolor="#999999" uuid="51e4852d-2176-43cc-bc6d-27a73d9434f9"/>
+				<reportElement mode="Opaque" x="189" y="342" width="139" height="16" backcolor="#999999" uuid="51e4852d-2176-43cc-bc6d-27a73d9434f9"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="229" y="296" width="108" height="11" uuid="91ad48b2-486e-4861-bcd2-1e92561452fb">
+				<reportElement x="210" y="296" width="108" height="11" uuid="91ad48b2-486e-4861-bcd2-1e92561452fb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1561,7 +1561,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Ruang Resusitasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="312" width="108" height="11" uuid="b2b54b1b-2826-4058-9319-a7d2f9010b11">
+				<reportElement x="210" y="312" width="108" height="11" uuid="b2b54b1b-2826-4058-9319-a7d2f9010b11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1571,7 +1571,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Ruang Non Resusitasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="328" width="108" height="11" uuid="dd6880ad-44ca-4c59-afa1-71f912714251">
+				<reportElement x="210" y="328" width="108" height="11" uuid="dd6880ad-44ca-4c59-afa1-71f912714251">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1581,7 +1581,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[Klinik Umum 24 Jam]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="229" y="345" width="108" height="11" uuid="45c12df4-a902-4248-8570-11cea792521e">
+				<reportElement x="210" y="345" width="108" height="11" uuid="45c12df4-a902-4248-8570-11cea792521e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Top">
@@ -1591,13 +1591,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[DOA (Death On Arrival)]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Opaque" x="212" y="296" width="11" height="11" uuid="2d551d9a-063a-49af-915b-f9454264a79f"/>
+				<reportElement mode="Opaque" x="193" y="296" width="11" height="11" uuid="2d551d9a-063a-49af-915b-f9454264a79f"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement mode="Transparent" x="212" y="296" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="1c9b20f8-dbad-4c0e-94b8-6de419165f91"/>
+				<reportElement mode="Transparent" x="193" y="296" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="1c9b20f8-dbad-4c0e-94b8-6de419165f91"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -1605,13 +1605,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{resus}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Opaque" x="212" y="312" width="11" height="11" uuid="e0109256-43c4-4bde-904b-69dbd5458f71"/>
+				<reportElement mode="Opaque" x="193" y="312" width="11" height="11" uuid="e0109256-43c4-4bde-904b-69dbd5458f71"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement mode="Transparent" x="212" y="312" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="2c0bf3e0-caef-4692-adb0-16c738e8ee06"/>
+				<reportElement mode="Transparent" x="193" y="312" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="2c0bf3e0-caef-4692-adb0-16c738e8ee06"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -1619,13 +1619,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{nonresus}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Opaque" x="212" y="328" width="11" height="11" uuid="67dcf465-9af8-4f67-a5cb-79758d233306"/>
+				<reportElement mode="Opaque" x="193" y="328" width="11" height="11" uuid="67dcf465-9af8-4f67-a5cb-79758d233306"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement mode="Transparent" x="212" y="328" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="1a818ff5-c938-4497-adc7-961dfec08390"/>
+				<reportElement mode="Transparent" x="193" y="328" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="1a818ff5-c938-4497-adc7-961dfec08390"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -1633,13 +1633,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{klinik}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Opaque" x="212" y="345" width="11" height="11" uuid="7ca70d7e-5eb9-48e0-900b-77f5ed049f5d"/>
+				<reportElement mode="Opaque" x="193" y="345" width="11" height="11" uuid="7ca70d7e-5eb9-48e0-900b-77f5ed049f5d"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement mode="Transparent" x="212" y="345" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="c3f1366c-e1ba-4618-bcec-a66c3e835175"/>
+				<reportElement mode="Transparent" x="193" y="345" width="11" height="11" forecolor="#000000" backcolor="#FFFFFF" uuid="c3f1366c-e1ba-4618-bcec-a66c3e835175"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 					<paragraph lineSpacing="Single"/>
@@ -1647,7 +1647,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$F{doa}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="358" y="374" width="196" height="11" uuid="f7ebb1f1-9297-432d-a63b-598c12a739d0">
+				<reportElement x="335" y="374" width="183" height="11" uuid="f7ebb1f1-9297-432d-a63b-598c12a739d0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1658,13 +1658,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["( "+$F{petgas}+" )"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="390" width="557" height="1" uuid="53702a63-1f38-4d5b-afe0-750cd2a7387f"/>
+				<reportElement x="0" y="390" width="520" height="1" uuid="53702a63-1f38-4d5b-afe0-750cd2a7387f"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="556" y="0" width="1" height="390" uuid="c1ad758e-6bb0-46a9-9cfb-9bf0bb2b8a93"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="0" width="1" height="390" uuid="c1ad758e-6bb0-46a9-9cfb-9bf0bb2b8a93"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1700,13 +1700,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="352" y="279" width="1" height="111" uuid="30370c39-2522-4c00-be9e-dcede7551830"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="333" y="279" width="1" height="111" uuid="30370c39-2522-4c00-be9e-dcede7551830"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="202" y="279" width="1" height="111" uuid="19d314fe-c6f4-4380-b530-cfebc7e89cc2"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="183" y="279" width="1" height="111" uuid="19d314fe-c6f4-4380-b530-cfebc7e89cc2"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1736,13 +1736,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA[$P{total01}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="123" width="557" height="1" uuid="3b725606-ce66-43e5-8f16-4941690eef3a"/>
+				<reportElement x="0" y="123" width="519" height="1" uuid="3b725606-ce66-43e5-8f16-4941690eef3a"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Opaque" x="1" y="124" width="554" height="12" backcolor="#F0F0DC" uuid="b492e06a-3d25-4828-9bb1-9163acfa932b">
+				<reportElement mode="Opaque" x="1" y="124" width="518" height="12" backcolor="#F0F0DC" uuid="b492e06a-3d25-4828-9bb1-9163acfa932b">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -1753,13 +1753,13 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<text><![CDATA[ANTROPOMETRI]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="136" width="557" height="1" uuid="65145d96-9ae2-48a3-bb8f-f475bd716638"/>
+				<reportElement x="0" y="136" width="519" height="1" uuid="65145d96-9ae2-48a3-bb8f-f475bd716638"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="3" y="138" width="252" height="11" uuid="8b8536b0-0f67-4301-a5d3-3c38d06e71fd">
+				<reportElement x="3" y="138" width="220" height="11" uuid="8b8536b0-0f67-4301-a5d3-3c38d06e71fd">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
@@ -1770,7 +1770,7 @@ INNER JOIN pegawai pg ON nik=ti.nip_petugas WHERE ti.no_rawat='2023/07/31/000001
 				<textFieldExpression><![CDATA["Berat Badan : "+$F{bb}+" Kg."]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="276" y="138" width="252" height="11" uuid="b94bc4fd-3c91-42ad-a813-f311c751d076">
+				<reportElement x="235" y="138" width="247" height="11" uuid="b94bc4fd-3c91-42ad-a813-f311c751d076">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
 				</reportElement>
