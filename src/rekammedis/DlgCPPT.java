@@ -59,8 +59,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         initComponents();
 
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. CPPT",
-            "Jam CPPT", "Bagian", "Hasil Pemeriksaan", "Instruksi Nakes", "Verifikasi", 
-            "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam"};
+            "Jam CPPT", "Bagian", "Hasil Pemeriksaan", "Instruksi Nakes", "Verifikasi",
+            "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -72,7 +72,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbCPPT.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbCPPT.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 17; i++) {
             TableColumn column = tbCPPT.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -108,6 +108,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -1290,9 +1293,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
                     + "DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tglcppt, c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, "
-                    + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt from cppt c "
-                    + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai pg on pg.nik=c.nip_dpjp where "
+                    + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, "
+                    + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data from cppt c inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=c.nip_dpjp where "
                     + "c.tgl_cppt between ? and ? and c.no_rawat like ? or "
                     + "c.tgl_cppt between ? and ? and p.no_rkm_medis like ? or "
                     + "c.tgl_cppt between ? and ? and p.nm_pasien like ? or "
@@ -1338,7 +1341,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("nm_pasien"), 
                         rs.getString("tgllhr"),
                         rs.getString("tglcppt"),
-                        rs.getString("jam_cppt"),
+                        rs.getString("jam_cppt_data"),
                         rs.getString("bagian"),
                         rs.getString("hasil_pemeriksaan"),
                         rs.getString("instruksi_nakes"),
@@ -1348,7 +1351,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("tgl_cppt"),
                         rs.getString("nip_dpjp"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("cek_jam")                        
+                        rs.getString("cek_jam"),
+                        rs.getString("jam_cppt")
                     });
                 }
             } catch (Exception e) {
@@ -1402,9 +1406,9 @@ public class DlgCPPT extends javax.swing.JDialog {
             cmbVerifikasi.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString());
             status = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString();
             cekjam = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString();
-            cmbJam.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().substring(6, 8));
+            cmbJam.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString().substring(6, 8));
 
             if (cekjam.equals("ya")) {
                 ChkJam.setSelected(true);
