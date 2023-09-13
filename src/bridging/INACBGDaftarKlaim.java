@@ -38,6 +38,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     private JsonNode root;
     private int cekKlaim = 0, x = 0, i = 0;
     private ApiEKLAIM_inacbg mbak_eka = new ApiEKLAIM_inacbg();
+    private PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
 
     /**
      * Creates new form DlgSpesialis
@@ -2649,7 +2650,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     }
     
     private void klaimBaruJKN() {
-        PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
         cekSEP = "";
         cekKlaim = 0;
         cekSEP = Sequel.cariIsi("SELECT no_sep FROM eklaim_new_claim WHERE no_sep='" + nosep_klaim.getText() + "' and tglsep='" + tglSep + "'");
@@ -2805,7 +2805,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     }
     
     private void klaimBaruLAINYA() {
-        PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
+//        PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
         cekSEP = "";
         cekKlaim = 0;
         cekSEP = Sequel.cariIsi("SELECT no_rawat FROM eklaim_generate_claim WHERE no_rawat='" + noRawat.getText() + "' and payor_id='" + kd_payor + "'");
@@ -2985,7 +2985,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     }
     
     private void klaimLamaJKN() {
-        PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
         cekKlaim = 0;
         cekKlaim = Sequel.cariInteger("select count(-1) from eklaim_set_claim where no_sep='" + nosep_klaim.getText() + "' and date(tgl_masuk)='" + tglSep + "'");
 
@@ -3043,7 +3042,6 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     }
 
     private void klaimLamaLAINYA() {
-        PengajuanKlaimINACBGrz ajukan = new PengajuanKlaimINACBGrz(null, false);
         cekKlaim = 0;
         cekKlaim = Sequel.cariInteger("select count(-1) from eklaim_set_claim where no_sep='" + nosep_klaim.getText() + "'");
 

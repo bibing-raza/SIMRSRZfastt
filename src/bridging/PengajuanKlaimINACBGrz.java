@@ -87,6 +87,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             reh8 = 0, reh9 = 0, reh10 = 0, reh11 = 0, reh12 = 0, reh13 = 0,
             obt1 = 0, obt2 = 0, obt3 = 0,
             obt4 = 0, obt5 = 0, obt6 = 0;
+    private DlgDiagnosaPenyakit diagnosa = new DlgDiagnosaPenyakit(null, false);
 
     /**
      * Creates new form DlgRujuk
@@ -5101,7 +5102,6 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void ppDiagnosaBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppDiagnosaBtnPrintActionPerformed
-        DlgDiagnosaPenyakit diagnosa = new DlgDiagnosaPenyakit(null, false);
         //kalau kode payor 3 adalah JKN
         if (kodePayor.equals("3")) {
             if (norm.getText().equals("") || norawat.equals("")) {

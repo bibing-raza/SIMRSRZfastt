@@ -146,7 +146,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     public DlgCariDokter dokter2 = new DlgCariDokter(null, false);
     public DlgCariPoli poliklinik = new DlgCariPoli(null, false);
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
-//    public Timer tRefreshPoli, tRefreshAntrian;
+    private DlgDiagnosaPenyakit resep = new DlgDiagnosaPenyakit(null, false);
 
     /**
      * Creates new form DlgReg
@@ -4996,7 +4996,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Masukkan diagnosa lewat kamar inap..!!!");
             } else {
-                DlgDiagnosaPenyakit resep = new DlgDiagnosaPenyakit(null, false);
                 resep.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.isCek();

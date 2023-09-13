@@ -38,7 +38,7 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
-    private String where = "";
+    private String where = "", dialog_simpan = "";
 
     /**
      * @param parent
@@ -231,6 +231,11 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         MnTIRiwayatSemuaDepo2 = new javax.swing.JMenuItem();
         MnTIRiwayatSemuaDepo3 = new javax.swing.JMenuItem();
         MnLapPakaiBekalFarmasi = new javax.swing.JMenuItem();
+        MnLapRiwayat2 = new javax.swing.JMenu();
+        MnRiwayatSetiapDepoAllPay = new javax.swing.JMenuItem();
+        MnRiwayatSetiapDepoBpjs = new javax.swing.JMenuItem();
+        MnRiwayatSetiapDepoUmum = new javax.swing.JMenuItem();
+        MnRiwayatSetiapDepoLainnya = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
         tbDokter = new widget.Table();
@@ -446,6 +451,67 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnLapPakaiBekalFarmasi);
+
+        MnLapRiwayat2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
+        MnLapRiwayat2.setText("Lap. Rekap Pemakaian Obat");
+        MnLapRiwayat2.setToolTipText("");
+        MnLapRiwayat2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLapRiwayat2.setName("MnLapRiwayat2"); // NOI18N
+        MnLapRiwayat2.setPreferredSize(new java.awt.Dimension(60, 30));
+
+        MnRiwayatSetiapDepoAllPay.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRiwayatSetiapDepoAllPay.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnRiwayatSetiapDepoAllPay.setText("Semua Bayar");
+        MnRiwayatSetiapDepoAllPay.setToolTipText("");
+        MnRiwayatSetiapDepoAllPay.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MnRiwayatSetiapDepoAllPay.setName("MnRiwayatSetiapDepoAllPay"); // NOI18N
+        MnRiwayatSetiapDepoAllPay.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnRiwayatSetiapDepoAllPay.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRiwayatSetiapDepoAllPayActionPerformed(evt);
+            }
+        });
+        MnLapRiwayat2.add(MnRiwayatSetiapDepoAllPay);
+
+        MnRiwayatSetiapDepoBpjs.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRiwayatSetiapDepoBpjs.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnRiwayatSetiapDepoBpjs.setText("BPJS");
+        MnRiwayatSetiapDepoBpjs.setName("MnRiwayatSetiapDepoBpjs"); // NOI18N
+        MnRiwayatSetiapDepoBpjs.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnRiwayatSetiapDepoBpjs.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRiwayatSetiapDepoBpjsActionPerformed(evt);
+            }
+        });
+        MnLapRiwayat2.add(MnRiwayatSetiapDepoBpjs);
+
+        MnRiwayatSetiapDepoUmum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRiwayatSetiapDepoUmum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnRiwayatSetiapDepoUmum.setText("Umum");
+        MnRiwayatSetiapDepoUmum.setToolTipText("");
+        MnRiwayatSetiapDepoUmum.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
+        MnRiwayatSetiapDepoUmum.setName("MnRiwayatSetiapDepoUmum"); // NOI18N
+        MnRiwayatSetiapDepoUmum.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnRiwayatSetiapDepoUmum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRiwayatSetiapDepoUmumActionPerformed(evt);
+            }
+        });
+        MnLapRiwayat2.add(MnRiwayatSetiapDepoUmum);
+
+        MnRiwayatSetiapDepoLainnya.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRiwayatSetiapDepoLainnya.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnRiwayatSetiapDepoLainnya.setText("Lainnya");
+        MnRiwayatSetiapDepoLainnya.setName("MnRiwayatSetiapDepoLainnya"); // NOI18N
+        MnRiwayatSetiapDepoLainnya.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnRiwayatSetiapDepoLainnya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRiwayatSetiapDepoLainnyaActionPerformed(evt);
+            }
+        });
+        MnLapRiwayat2.add(MnRiwayatSetiapDepoLainnya);
+
+        jPopupMenu1.add(MnLapRiwayat2);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -846,14 +912,14 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             JOptionPane.showMessageDialog(null, "Pilih/isi dulu salah satu lokasi depo farmasi nya..!!!");
             btnBarang1.requestFocus();
         } else {
-            
+
             where = "";
-            if(TCari.getText().trim().equals("")){
+            if (TCari.getText().trim().equals("")) {
                 where = "";
-            }else{
-                where = "where a.nama_brng like '%"+ TCari.getText().trim() +"%'";
+            } else {
+                where = "where a.nama_brng like '%" + TCari.getText().trim() + "%'";
             }
-            
+
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -885,7 +951,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "and r.kd_bangsal = '" + KdGudang.getText() + "' "
                     + "and r.posisi = 'OPNAME' "
                     + "group by r.kode_brng,r.posisi) as a "
-                    + ") "+ where +" ORDER BY a.keterangan,a.nama_brng",
+                    + ") " + where + " ORDER BY a.keterangan,a.nama_brng",
                     param);
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -893,12 +959,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     private void MnRiwayatSemuaDepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatSemuaDepoActionPerformed
         where = "";
-            if(TCari.getText().trim().equals("")){
-                where = "";
-            }else{
-                where = "where a.nama_brng like '%"+ TCari.getText().trim() +"%'";
-            }        
-        
+        if (TCari.getText().trim().equals("")) {
+            where = "";
+        } else {
+            where = "where a.nama_brng like '%" + TCari.getText().trim() + "%'";
+        }
+
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
@@ -927,7 +993,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 + "where r.tanggal BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
                 + "and r.posisi = 'OPNAME' "
                 + "group by r.kode_brng,r.posisi) as a "
-                + ") "+ where +" ORDER BY a.keterangan,a.nama_brng", param);
+                + ") " + where + " ORDER BY a.keterangan,a.nama_brng", param);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnRiwayatSemuaDepoActionPerformed
 
@@ -937,12 +1003,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             btnBarang1.requestFocus();
         } else {
             where = "";
-            if(TCari.getText().trim().equals("")){
+            if (TCari.getText().trim().equals("")) {
                 where = "";
-            }else{
-                where = "where a.nama_brng like '%"+ TCari.getText().trim() +"%'";
-            }  
-            
+            } else {
+                where = "where a.nama_brng like '%" + TCari.getText().trim() + "%'";
+            }
+
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -983,19 +1049,19 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + " GROUP BY r.kode_brng"
                     + " order by tanggal,jam"
                     + " ) as d on d.kode_brng = a.kode_brng"
-                    + " ) "+ where +"  order by a.nama_brng", param);
+                    + " ) " + where + "  order by a.nama_brng", param);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnTIRiwayatPerDepoActionPerformed
 
     private void MnTIRiwayatSemuaDepoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTIRiwayatSemuaDepoActionPerformed
         where = "";
-            if(TCari.getText().trim().equals("")){
-                where = "";
-            }else{
-                where = "where a.nama_brng like '%"+ TCari.getText().trim() +"%'";
-            }
-            
+        if (TCari.getText().trim().equals("")) {
+            where = "";
+        } else {
+            where = "where a.nama_brng like '%" + TCari.getText().trim() + "%'";
+        }
+
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
@@ -1086,7 +1152,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 + "		jam  "
                 + "	) AS d ON d.kode_brng = a.kode_brng and d.kd_bangsal = a.kd_bangsal "
                 + ")  "
-                + " "+ where +" ORDER BY "
+                + " " + where + " ORDER BY "
                 + "a.nama_brng", param);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnTIRiwayatSemuaDepoActionPerformed
@@ -1323,10 +1389,113 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 + "WHERE d.tgl_perawatan BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' AND d. STATUS = 'RALAN' AND d.kd_bangsal = 'APT01' GROUP BY d.kode_brng) AS f ON f.kode_brng = a.kode_brng "
                 + "LEFT JOIN (SELECT b.kode_brng, b.nama_brng, sum(d.jumlah) jumlah, d.h_beli FROM penjualan p INNER JOIN detailjual d ON d.nota_jual = p.nota_jual "
                 + "INNER JOIN databarang b ON b.kode_brng = d.kode_brng WHERE p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' GROUP BY d.kode_brng) AS g ON g.kode_brng = a.kode_brng) "
-//                + "Where IFNULL(b.jumlah, 0) > 0 OR IFNULL(c.jumlah, 0) > 0 OR IFNULL(d.jumlah, 0) > 0 OR IFNULL(e.jumlah, 0) > 0 OR IFNULL(f.jumlah, 0) > 0 OR IFNULL(g.jumlah, 0) > 0 "
+                //                + "Where IFNULL(b.jumlah, 0) > 0 OR IFNULL(c.jumlah, 0) > 0 OR IFNULL(d.jumlah, 0) > 0 OR IFNULL(e.jumlah, 0) > 0 OR IFNULL(f.jumlah, 0) > 0 OR IFNULL(g.jumlah, 0) > 0 "
                 + "ORDER BY a.nama_brng", param);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnLapPakaiBekalFarmasiActionPerformed
+
+    private void MnRiwayatSetiapDepoAllPayActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatSetiapDepoAllPayActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean(
+                    "select a.kode_brng 'Kode', a.nama_brng 'Nama Obat', a.kode_sat 'Satuan', round (a.h_beli) 'Harga Beli',  "
+                    + "ifnull(b.Apotek_IGD,0)+ifnull(c.jml,0) 'Apotek IGD',ifnull(b.Apotek_Sentral,0) 'Apotek Sentral',ifnull(b.Gudang_Penerimaan,0)+ifnull(d.Gudang_Penerimaan,0) 'Gudang Penerimaan', "
+                    + "ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(d.Gudang_Farmasi_Ruangan,0) 'Gudang Farmasi Ruangan',ifnull(b.Apotek_IBS,0) 'Apotek IBS', "
+                    + "ifnull(b.Apotek_IGD,0)+ifnull(c.jml,0) + ifnull(b.Apotek_Sentral,0)+ifnull(b.Gudang_Penerimaan,0)+ifnull(d.Gudang_Penerimaan,0)+ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(d.Gudang_Farmasi_Ruangan,0)+ifnull(b.Apotek_IBS,0) 'Total' from "
+                    + "((select kode_brng, nama_brng, h_beli, kode_sat from databarang where status = '1') as a "
+                    + "left join "
+                    + "(select kode_brng, ifnull( SUM( CASE WHEN kd_bangsal = 'APT01' THEN jml END ), 0 ) 'Apotek_IGD',"
+                    + "ifnull( sum( CASE WHEN kd_bangsal = 'APT02' THEN jml END ), 0 ) 'Apotek_Sentral',"
+                    + "ifnull( sum( CASE WHEN kd_bangsal = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',"
+                    + "ifnull( sum( CASE WHEN kd_bangsal = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan',"
+                    + "ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' "
+                    + "from detail_pemberian_obat where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' group by kode_brng) as b on b.kode_brng = a.kode_brng "
+                    + "left join "
+                    + "(select d.kode_brng, d.jumlah jml from detailjual d  "
+                    + "inner join penjualan p on p.nota_jual = d.nota_jual "
+                    + "where p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' group by d.kode_brng) as c on c.kode_brng = a.kode_brng "
+                    + "left join "
+                    + "(select kode_brng, ifnull( sum( CASE WHEN kd_bangsal_dr = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',"
+                    + "ifnull( sum( CASE WHEN kd_bangsal_dr = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan' "
+                    + "from utd_pengambilan_medis where tanggal between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' group by kode_brng) as d on d.kode_brng = a.kode_brng "
+                    + ") ORDER BY a.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnRiwayatSetiapDepoAllPayActionPerformed
+
+    private void MnRiwayatSetiapDepoBpjsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatSetiapDepoBpjsActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean(
+                    "select a.kode_brng 'Kode', a.nama_brng 'Nama Obat', a.kode_sat 'Satuan', round (a.h_beli) 'Harga Beli',  "
+                    + "ifnull(b.Apotek_IGD,0) 'Apotek IGD',ifnull(b.Apotek_Sentral,0) 'Apotek Sentral',ifnull(b.Gudang_Penerimaan,0) 'Gudang Penerimaan', "
+                    + "ifnull(b.Gudang_Farmasi_Ruangan,0) 'Gudang Farmasi Ruangan',ifnull(b.Apotek_IBS,0) 'Apotek IBS', "
+                    + "ifnull(b.Apotek_IGD,0)+ ifnull(b.Apotek_Sentral,0)+ifnull(b.Gudang_Penerimaan,0)+ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(b.Apotek_IBS,0) 'Total' from "
+                    + "((select kode_brng, nama_brng, h_beli, kode_sat from databarang where status = '1') as a "
+                    + "left join "
+                    + "(select kode_brng, ifnull( SUM( CASE WHEN kd_bangsal = 'APT01' THEN jml END ), 0 ) 'Apotek_IGD',ifnull( sum( CASE WHEN kd_bangsal = 'APT02' THEN jml END ), 0 ) 'Apotek_Sentral',ifnull( sum( CASE WHEN kd_bangsal = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',ifnull( sum( CASE WHEN kd_bangsal = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan',ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' from detail_pemberian_obat  "
+                    + "inner join reg_periksa on reg_periksa.no_rawat = detail_pemberian_obat.no_rawat "
+                    + "where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.kd_pj = 'B01' group by kode_brng) as b on b.kode_brng = a.kode_brng "
+                    + ") ORDER BY a.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnRiwayatSetiapDepoBpjsActionPerformed
+
+    private void MnRiwayatSetiapDepoUmumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatSetiapDepoUmumActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean(
+                    "select a.kode_brng 'Kode', a.nama_brng 'Nama Obat', a.kode_sat 'Satuan', round (a.h_beli) 'Harga Beli',  "
+                    + "ifnull(b.Apotek_IGD,0) 'Apotek IGD',ifnull(b.Apotek_Sentral,0) 'Apotek Sentral',ifnull(b.Gudang_Penerimaan,0) 'Gudang Penerimaan', "
+                    + "ifnull(b.Gudang_Farmasi_Ruangan,0) 'Gudang Farmasi Ruangan',ifnull(b.Apotek_IBS,0) 'Apotek IBS', "
+                    + "ifnull(b.Apotek_IGD,0)+ ifnull(b.Apotek_Sentral,0)+ifnull(b.Gudang_Penerimaan,0)+ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(b.Apotek_IBS,0) 'Total' from "
+                    + "((select kode_brng, nama_brng, h_beli, kode_sat from databarang where status = '1') as a "
+                    + "left join "
+                    + "(select kode_brng, ifnull( SUM( CASE WHEN kd_bangsal = 'APT01' THEN jml END ), 0 ) 'Apotek_IGD',ifnull( sum( CASE WHEN kd_bangsal = 'APT02' THEN jml END ), 0 ) 'Apotek_Sentral',ifnull( sum( CASE WHEN kd_bangsal = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',ifnull( sum( CASE WHEN kd_bangsal = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan',ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' from detail_pemberian_obat  "
+                    + "inner join reg_periksa on reg_periksa.no_rawat = detail_pemberian_obat.no_rawat "
+                    + "where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.kd_pj = 'U01' group by kode_brng) as b on b.kode_brng = a.kode_brng "
+                    + ") ORDER BY a.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnRiwayatSetiapDepoUmumActionPerformed
+
+    private void MnRiwayatSetiapDepoLainnyaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRiwayatSetiapDepoLainnyaActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean(
+                    "select a.kode_brng 'Kode', a.nama_brng 'Nama Obat', a.kode_sat 'Satuan', round (a.h_beli) 'Harga Beli',  "
+                    + "ifnull(b.Apotek_IGD,0) 'Apotek IGD',ifnull(b.Apotek_Sentral,0) 'Apotek Sentral',ifnull(b.Gudang_Penerimaan,0) 'Gudang Penerimaan', "
+                    + "ifnull(b.Gudang_Farmasi_Ruangan,0) 'Gudang Farmasi Ruangan',ifnull(b.Apotek_IBS,0) 'Apotek IBS', "
+                    + "ifnull(b.Apotek_IGD,0)+ ifnull(b.Apotek_Sentral,0)+ifnull(b.Gudang_Penerimaan,0)+ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(b.Apotek_IBS,0) 'Total' from "
+                    + "((select kode_brng, nama_brng, h_beli, kode_sat from databarang where status = '1') as a "
+                    + "left join "
+                    + "(select kode_brng, ifnull( SUM( CASE WHEN kd_bangsal = 'APT01' THEN jml END ), 0 ) 'Apotek_IGD',ifnull( sum( CASE WHEN kd_bangsal = 'APT02' THEN jml END ), 0 ) 'Apotek_Sentral',ifnull( sum( CASE WHEN kd_bangsal = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',ifnull( sum( CASE WHEN kd_bangsal = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan',ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' from detail_pemberian_obat  "
+                    + "inner join reg_periksa on reg_periksa.no_rawat = detail_pemberian_obat.no_rawat "
+                    + "where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and (reg_periksa.kd_pj <> 'U01' and reg_periksa.kd_pj <> 'B01') group by kode_brng) as b on b.kode_brng = a.kode_brng "
+                    + ") ORDER BY a.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnRiwayatSetiapDepoLainnyaActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1354,12 +1523,17 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private javax.swing.JMenuItem MnLapPakaiBekalFarmasi;
     private javax.swing.JMenu MnLapRiwayat;
     private javax.swing.JMenu MnLapRiwayat1;
+    private javax.swing.JMenu MnLapRiwayat2;
     private javax.swing.JMenuItem MnRiwayatPerDepo;
     private javax.swing.JMenuItem MnRiwayatPerDepo0;
     private javax.swing.JMenuItem MnRiwayatPerDepo1;
     private javax.swing.JMenuItem MnRiwayatPerDepo2;
     private javax.swing.JMenuItem MnRiwayatPerDepo3;
     private javax.swing.JMenuItem MnRiwayatSemuaDepo;
+    private javax.swing.JMenuItem MnRiwayatSetiapDepoAllPay;
+    private javax.swing.JMenuItem MnRiwayatSetiapDepoBpjs;
+    private javax.swing.JMenuItem MnRiwayatSetiapDepoLainnya;
+    private javax.swing.JMenuItem MnRiwayatSetiapDepoUmum;
     private javax.swing.JMenuItem MnTIRiwayatPerDepo;
     private javax.swing.JMenuItem MnTIRiwayatSemuaDepo;
     private javax.swing.JMenuItem MnTIRiwayatSemuaDepo0;

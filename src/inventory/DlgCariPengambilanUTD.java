@@ -134,6 +134,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         MnLapPemakaianPerRuang = new javax.swing.JMenuItem();
         MnLapPemakaianRuangPerTahun = new javax.swing.JMenuItem();
         MnLapInOut = new javax.swing.JMenuItem();
+        MnLapPemakaianCetakExcel = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbKamar = new widget.Table();
@@ -164,6 +165,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         MnLapPemakaianSemuaRuang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapPemakaianSemuaRuang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnLapPemakaianSemuaRuang.setText("Lap. Pemakaian Semua Ruang/Unit");
+        MnLapPemakaianSemuaRuang.setEnabled(false);
         MnLapPemakaianSemuaRuang.setName("MnLapPemakaianSemuaRuang"); // NOI18N
         MnLapPemakaianSemuaRuang.setPreferredSize(new java.awt.Dimension(240, 80));
         MnLapPemakaianSemuaRuang.addActionListener(new java.awt.event.ActionListener() {
@@ -176,6 +178,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         MnLapPemakaianPerRuang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapPemakaianPerRuang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnLapPemakaianPerRuang.setText("Lap. Pemakaian Per Ruang/Unit");
+        MnLapPemakaianPerRuang.setEnabled(false);
         MnLapPemakaianPerRuang.setName("MnLapPemakaianPerRuang"); // NOI18N
         MnLapPemakaianPerRuang.setPreferredSize(new java.awt.Dimension(240, 80));
         MnLapPemakaianPerRuang.addActionListener(new java.awt.event.ActionListener() {
@@ -188,6 +191,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         MnLapPemakaianRuangPerTahun.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapPemakaianRuangPerTahun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnLapPemakaianRuangPerTahun.setText("Laporan Pemakaian Ruangan Per Tahun");
+        MnLapPemakaianRuangPerTahun.setEnabled(false);
         MnLapPemakaianRuangPerTahun.setName("MnLapPemakaianRuangPerTahun"); // NOI18N
         MnLapPemakaianRuangPerTahun.setPreferredSize(new java.awt.Dimension(240, 80));
         MnLapPemakaianRuangPerTahun.addActionListener(new java.awt.event.ActionListener() {
@@ -200,6 +204,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         MnLapInOut.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLapInOut.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnLapInOut.setText("Laporan Pemasukan dan Pengeluartan Gudang Farmasi Ruangan (EXCEL)");
+        MnLapInOut.setEnabled(false);
         MnLapInOut.setName("MnLapInOut"); // NOI18N
         MnLapInOut.setPreferredSize(new java.awt.Dimension(240, 80));
         MnLapInOut.addActionListener(new java.awt.event.ActionListener() {
@@ -208,6 +213,18 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnLapInOut);
+
+        MnLapPemakaianCetakExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLapPemakaianCetakExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnLapPemakaianCetakExcel.setText("Lap. Pemakaian Semua Ruang/Unit Excel");
+        MnLapPemakaianCetakExcel.setName("MnLapPemakaianCetakExcel"); // NOI18N
+        MnLapPemakaianCetakExcel.setPreferredSize(new java.awt.Dimension(240, 80));
+        MnLapPemakaianCetakExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLapPemakaianCetakExcelActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnLapPemakaianCetakExcel);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -249,7 +266,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         panelisi3.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-03-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -264,7 +281,7 @@ public final class DlgCariPengambilanUTD extends javax.swing.JDialog {
         panelisi3.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-03-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -648,6 +665,28 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_MnLapInOutActionPerformed
 
+    private void MnLapPemakaianCetakExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapPemakaianCetakExcelActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+            dialog_simpan = Valid.openDialog();
+            if (!dialog_simpan.equals("the user cancelled the operation")) {
+                if (Valid.MyReportToExcelBoolean("select utd_pengambilan_medis.kode_brng 'Kode Barang',databarang.nama_brng 'Nama Barang',"
+                + "utd_pengambilan_medis.jml 'Jumlah',utd_pengambilan_medis.hargabeli 'Harga Beli',"
+                + "utd_pengambilan_medis.total 'Total',concat(utd_pengambilan_medis.kd_bangsal_dr,' ',bangsal.nm_bangsal) 'Gudang Asal',utd_pengambilan_medis.tanggal 'Tanggal',"
+                + "utd_pengambilan_medis.keterangan 'Keterangan',databarang.kode_sat 'Satuan' from utd_pengambilan_medis inner join databarang inner join bangsal "
+                + "on utd_pengambilan_medis.kode_brng=databarang.kode_brng and utd_pengambilan_medis.kd_bangsal_dr=bangsal.kd_bangsal "
+                + "where utd_pengambilan_medis.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59' and utd_pengambilan_medis.kode_brng like '%" + TCari.getText().trim() + "%' or "
+                + "utd_pengambilan_medis.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59' and databarang.nama_brng like '%" + TCari.getText().trim() + "%' or "
+                + "utd_pengambilan_medis.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59' and utd_pengambilan_medis.kd_bangsal_dr like '%" + TCari.getText().trim() + "%' or "
+                + "utd_pengambilan_medis.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59' and bangsal.nm_bangsal like '%" + TCari.getText().trim() + "%' or "
+                + "utd_pengambilan_medis.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + " 00:00:00' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + " 23:59:59' and utd_pengambilan_medis.keterangan like '%" + TCari.getText().trim() + "%' order by utd_pengambilan_medis.tanggal", dialog_simpan) == true) {
+                    JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+                }
+            }
+    }//GEN-LAST:event_MnLapPemakaianCetakExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -675,6 +714,7 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Label LCount;
     private widget.Label LTotal;
     private javax.swing.JMenuItem MnLapInOut;
+    private javax.swing.JMenuItem MnLapPemakaianCetakExcel;
     private javax.swing.JMenuItem MnLapPemakaianPerRuang;
     private javax.swing.JMenuItem MnLapPemakaianRuangPerTahun;
     private javax.swing.JMenuItem MnLapPemakaianSemuaRuang;
