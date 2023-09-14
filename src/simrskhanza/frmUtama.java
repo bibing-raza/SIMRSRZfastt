@@ -348,13 +348,6 @@ import rekammedis.DlgRekamPsikologisPerkawinan;
 import rekammedis.MasterDataDinkes;
 import rekammedis.MasterMasalahKeperawatan;
 import rekammedis.MasterFaktorResikoIGD;
-import rekammedis.MasterTriaseMacamKasus;
-import rekammedis.MasterTriasePemeriksaan;
-import rekammedis.MasterTriaseSkala1;
-import rekammedis.MasterTriaseSkala2;
-import rekammedis.MasterTriaseSkala3;
-import rekammedis.MasterTriaseSkala4;
-import rekammedis.MasterTriaseSkala5;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
@@ -852,14 +845,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnLaporanFarmasi = new widget.ButtonBig();
         btnMasterMasalahKeperawatan = new widget.ButtonBig();
         btnPenilaianAwalKeperawatanRalan = new widget.ButtonBig();
-        btnMasterTriaseSkala1 = new widget.ButtonBig();
-        btnMasterTriaseSkala2 = new widget.ButtonBig();
-        btnMasterTriaseSkala3 = new widget.ButtonBig();
-        btnMasterTriaseSkala4 = new widget.ButtonBig();
-        btnMasterTriaseSkala5 = new widget.ButtonBig();
         btnDataTriaseIGD = new widget.ButtonBig();
-        btnMasterTriasePemeriksaan = new widget.ButtonBig();
-        btnMasterTriaseMacamKasus = new widget.ButtonBig();
         btnMasterCaraBayar = new widget.ButtonBig();
         btnDataPersalinan = new widget.ButtonBig();
         btnPasienCorona = new widget.ButtonBig();
@@ -927,6 +913,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenMedikDewasaRanap = new widget.ButtonBig();
         btnPemberianObat = new widget.ButtonBig();
         btnCPPT = new widget.ButtonBig();
+        btnSpirometri = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5239,71 +5226,6 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPenilaianAwalKeperawatanRalan);
 
-        btnMasterTriaseSkala1.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseSkala1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/cpr.png"))); // NOI18N
-        btnMasterTriaseSkala1.setText("Master Triase Skala 1");
-        btnMasterTriaseSkala1.setIconTextGap(0);
-        btnMasterTriaseSkala1.setName("btnMasterTriaseSkala1"); // NOI18N
-        btnMasterTriaseSkala1.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseSkala1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseSkala1ActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseSkala1);
-
-        btnMasterTriaseSkala2.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseSkala2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_emergency_45491.png"))); // NOI18N
-        btnMasterTriaseSkala2.setText("Master Triase Skala 2");
-        btnMasterTriaseSkala2.setIconTextGap(0);
-        btnMasterTriaseSkala2.setName("btnMasterTriaseSkala2"); // NOI18N
-        btnMasterTriaseSkala2.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseSkala2.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseSkala2ActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseSkala2);
-
-        btnMasterTriaseSkala3.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseSkala3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
-        btnMasterTriaseSkala3.setText("Master Triase Skala 3");
-        btnMasterTriaseSkala3.setIconTextGap(0);
-        btnMasterTriaseSkala3.setName("btnMasterTriaseSkala3"); // NOI18N
-        btnMasterTriaseSkala3.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseSkala3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseSkala3ActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseSkala3);
-
-        btnMasterTriaseSkala4.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseSkala4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_Male-User-Warning_49595.png"))); // NOI18N
-        btnMasterTriaseSkala4.setText("Master Triase Skala 4");
-        btnMasterTriaseSkala4.setIconTextGap(0);
-        btnMasterTriaseSkala4.setName("btnMasterTriaseSkala4"); // NOI18N
-        btnMasterTriaseSkala4.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseSkala4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseSkala4ActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseSkala4);
-
-        btnMasterTriaseSkala5.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseSkala5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/user-group-new.png"))); // NOI18N
-        btnMasterTriaseSkala5.setText("Master Triase Skala 5");
-        btnMasterTriaseSkala5.setIconTextGap(0);
-        btnMasterTriaseSkala5.setName("btnMasterTriaseSkala5"); // NOI18N
-        btnMasterTriaseSkala5.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseSkala5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseSkala5ActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseSkala5);
-
         btnDataTriaseIGD.setForeground(new java.awt.Color(0, 0, 0));
         btnDataTriaseIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_h2_19724.png"))); // NOI18N
         btnDataTriaseIGD.setText("Data Triase IGD");
@@ -5316,32 +5238,6 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         Panelmenu.add(btnDataTriaseIGD);
-
-        btnMasterTriasePemeriksaan.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriasePemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_stethoscope_38717.png"))); // NOI18N
-        btnMasterTriasePemeriksaan.setText("Master Triase Pemeriksaan");
-        btnMasterTriasePemeriksaan.setIconTextGap(0);
-        btnMasterTriasePemeriksaan.setName("btnMasterTriasePemeriksaan"); // NOI18N
-        btnMasterTriasePemeriksaan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriasePemeriksaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriasePemeriksaanActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriasePemeriksaan);
-
-        btnMasterTriaseMacamKasus.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterTriaseMacamKasus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_briefcase_45523.png"))); // NOI18N
-        btnMasterTriaseMacamKasus.setText("Master Triase Macam Kasus");
-        btnMasterTriaseMacamKasus.setIconTextGap(0);
-        btnMasterTriaseMacamKasus.setName("btnMasterTriaseMacamKasus"); // NOI18N
-        btnMasterTriaseMacamKasus.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterTriaseMacamKasus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterTriaseMacamKasusActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnMasterTriaseMacamKasus);
 
         btnMasterCaraBayar.setForeground(new java.awt.Color(0, 0, 0));
         btnMasterCaraBayar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1485357524_Company.png"))); // NOI18N
@@ -6214,6 +6110,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnCPPT);
 
+        btnSpirometri.setForeground(new java.awt.Color(0, 0, 0));
+        btnSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/spirometry.png"))); // NOI18N
+        btnSpirometri.setText("Spirometri");
+        btnSpirometri.setIconTextGap(0);
+        btnSpirometri.setName("btnSpirometri"); // NOI18N
+        btnSpirometri.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSpirometri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSpirometriActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSpirometri);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6222,7 +6131,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/09/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/09/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11330,66 +11239,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPenilaianAwalKeperawatanRalanActionPerformed
 
-    private void btnMasterTriaseSkala1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseSkala1ActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseSkala1 form = new MasterTriaseSkala1(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseSkala1ActionPerformed
-
-    private void btnMasterTriaseSkala2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseSkala2ActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseSkala2 form = new MasterTriaseSkala2(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseSkala2ActionPerformed
-
-    private void btnMasterTriaseSkala3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseSkala3ActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseSkala3 form = new MasterTriaseSkala3(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseSkala3ActionPerformed
-
-    private void btnMasterTriaseSkala4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseSkala4ActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseSkala4 form = new MasterTriaseSkala4(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseSkala4ActionPerformed
-
-    private void btnMasterTriaseSkala5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseSkala5ActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseSkala5 form = new MasterTriaseSkala5(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseSkala5ActionPerformed
-
     private void btnDataTriaseIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataTriaseIGDActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -11402,30 +11251,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnDataTriaseIGDActionPerformed
-
-    private void btnMasterTriasePemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriasePemeriksaanActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriasePemeriksaan form = new MasterTriasePemeriksaan(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriasePemeriksaanActionPerformed
-
-    private void btnMasterTriaseMacamKasusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterTriaseMacamKasusActionPerformed
-        isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        MasterTriaseMacamKasus form = new MasterTriaseMacamKasus(this, false);
-        form.isCek();
-        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        form.setLocationRelativeTo(PanelUtama);
-        form.setVisible(true);
-        DlgHome.dispose();
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterTriaseMacamKasusActionPerformed
 
     private void btnMasterCaraBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterCaraBayarActionPerformed
         isTutup();
@@ -12360,6 +12185,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnCPPTActionPerformed
 
+    private void btnSpirometriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSpirometriActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgSpirometri aplikasi = new DlgSpirometri(this, false);
+        aplikasi.isCek();
+        aplikasi.ChkInput.setSelected(false);
+        aplikasi.isForm(); 
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSpirometriActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12590,13 +12429,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterKeluhanPsikologis;
     private widget.ButtonBig btnMasterMasalahKeperawatan;
     private widget.ButtonBig btnMasterRencanaTritmenPsikologis;
-    private widget.ButtonBig btnMasterTriaseMacamKasus;
-    private widget.ButtonBig btnMasterTriasePemeriksaan;
-    private widget.ButtonBig btnMasterTriaseSkala1;
-    private widget.ButtonBig btnMasterTriaseSkala2;
-    private widget.ButtonBig btnMasterTriaseSkala3;
-    private widget.ButtonBig btnMasterTriaseSkala4;
-    private widget.ButtonBig btnMasterTriaseSkala5;
     private widget.ButtonBig btnMerkInventaris;
     private widget.ButtonBig btnMonevAsuhanGizi;
     private widget.ButtonBig btnMonitoringKlaimBPJS;
@@ -12746,6 +12578,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSirkulasi2;
     private widget.ButtonBig btnSirkulasiBerkas;
     private widget.ButtonBig btnSirkulasiInventaris;
+    private widget.ButtonBig btnSpirometri;
     private widget.ButtonBig btnStokObatPasien;
     private widget.ButtonBig btnSuplier;
     private widget.ButtonBig btnSuplierIPSRS;
@@ -14408,6 +14241,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
+            if (akses.getkemenkes_sitt()== true) {
+                Panelmenu.add(btnSpirometri);
+                jmlmenu++;
+            }
+                    
             if (akses.getcppt()== true) {
                 Panelmenu.add(btnCPPT);
                 jmlmenu++;
@@ -14592,44 +14430,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 Panelmenu.add(btnPenilaianAwalKeperawatanKebidananRalan);
                 jmlmenu++;
             }
-
-            if (akses.getmaster_triase_skala1() == true) {
-                Panelmenu.add(btnMasterTriaseSkala1);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_skala2() == true) {
-                Panelmenu.add(btnMasterTriaseSkala2);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_skala3() == true) {
-                Panelmenu.add(btnMasterTriaseSkala3);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_skala4() == true) {
-                Panelmenu.add(btnMasterTriaseSkala4);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_skala5() == true) {
-                Panelmenu.add(btnMasterTriaseSkala5);
-                jmlmenu++;
-            }
-
+            
             if (akses.getdata_triase_igd() == true) {
                 Panelmenu.add(btnDataTriaseIGD);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_pemeriksaan() == true) {
-                Panelmenu.add(btnMasterTriasePemeriksaan);
-                jmlmenu++;
-            }
-
-            if (akses.getmaster_triase_macamkasus() == true) {
-                Panelmenu.add(btnMasterTriaseMacamKasus);
                 jmlmenu++;
             }
 
@@ -14900,11 +14703,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getkemenkes_sitt() == true) {
+            Panelmenu.add(btnSpirometri);
+            jmlmenu++;
+        }
+
         if (akses.getcppt() == true) {
             Panelmenu.add(btnCPPT);
             jmlmenu++;
         }
-        
+
         if (akses.getpemberian_obat() == true) {
             Panelmenu.add(btnPemberianObat);
             jmlmenu++;
@@ -15105,43 +14913,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
 
-        if (akses.getmaster_triase_skala1() == true) {
-            Panelmenu.add(btnMasterTriaseSkala1);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_skala2() == true) {
-            Panelmenu.add(btnMasterTriaseSkala2);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_skala3() == true) {
-            Panelmenu.add(btnMasterTriaseSkala3);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_skala4() == true) {
-            Panelmenu.add(btnMasterTriaseSkala4);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_skala5() == true) {
-            Panelmenu.add(btnMasterTriaseSkala5);
-            jmlmenu++;
-        }
-
         if (akses.getdata_triase_igd() == true) {
             Panelmenu.add(btnDataTriaseIGD);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_pemeriksaan() == true) {
-            Panelmenu.add(btnMasterTriasePemeriksaan);
-            jmlmenu++;
-        }
-
-        if (akses.getmaster_triase_macamkasus() == true) {
-            Panelmenu.add(btnMasterTriaseMacamKasus);
             jmlmenu++;
         }
 
@@ -16819,6 +16592,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (akses.getkemenkes_sitt()== true) {
+            if (btnSpirometri.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSpirometri);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getcppt()== true) {
             if (btnCPPT.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCPPT);
@@ -17148,58 +16928,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
 
-        if (akses.getmaster_triase_skala1() == true) {
-            if (btnMasterTriaseSkala1.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseSkala1);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_skala2() == true) {
-            if (btnMasterTriaseSkala2.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseSkala2);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_skala3() == true) {
-            if (btnMasterTriaseSkala3.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseSkala3);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_skala4() == true) {
-            if (btnMasterTriaseSkala4.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseSkala4);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_skala5() == true) {
-            if (btnMasterTriaseSkala5.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseSkala5);
-                jmlmenu++;
-            }
-        }
-
         if (akses.getdata_triase_igd() == true) {
             if (btnDataTriaseIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnDataTriaseIGD);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_pemeriksaan() == true) {
-            if (btnMasterTriasePemeriksaan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriasePemeriksaan);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getmaster_triase_macamkasus() == true) {
-            if (btnMasterTriaseMacamKasus.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterTriaseMacamKasus);
                 jmlmenu++;
             }
         }

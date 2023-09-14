@@ -42,6 +42,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.DateFormat;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
@@ -111,11 +112,11 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     private ResultSet rskasir, rsumurpasien, rspasienboking, rspasien, rsdiagnosa, rsprosedur, 
             rsdokter, rsMati, rsRiwKunj, rs, rsCek, rsLaprm, rsFakIGD, rsRes;
     private final Properties prop = new Properties();    
-    private Date cal = new Date();
+    private Date cal = new Date();    
     private String umur = "0", sttsumur = "Th", cekSEPboking = "", tglklaim = "", drdpjp = "", poli = "", crBayar = "", diagnosa_ok = "",
-            sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis ", cekPOLI = "", namadokter = "", nik = "", aktifjadwal = "",
+            sql = " pasien_mati.no_rkm_medis=pasien.no_rkm_medis ", cekPOLI = "", namadokter = "", nik = "", aktifjadwal = "", 
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
-            kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "", 
+            kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "",
             faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "";
     private String bangsal = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), nonota = "", URUTNOREG = "",
             sqlpsotomatis2 = "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -671,6 +672,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnTeridentifikasiTB = new javax.swing.JMenuItem();
         MnDataKanker = new javax.swing.JMenuItem();
         MnNomorTB = new javax.swing.JMenuItem();
+        MnSpirometri = new javax.swing.JMenuItem();
         ppProgramPRB = new javax.swing.JMenuItem();
         MnPemeriksaanKlinisLabHIV = new javax.swing.JMenuItem();
         MnTerapiAntiretroviralHIV = new javax.swing.JMenuItem();
@@ -1769,6 +1771,21 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnInputData.add(MnNomorTB);
+
+        MnSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSpirometri.setText("Spirometri");
+        MnSpirometri.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSpirometri.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSpirometri.setIconTextGap(5);
+        MnSpirometri.setName("MnSpirometri"); // NOI18N
+        MnSpirometri.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnSpirometri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSpirometriBtnPrintActionPerformed(evt);
+            }
+        });
+        MnInputData.add(MnSpirometri);
 
         ppProgramPRB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppProgramPRB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3070,7 +3087,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3923,7 +3940,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4160,7 +4177,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4179,7 +4196,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7615,6 +7632,50 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnLihatDataCPPTActionPerformed
 
+    private void MnSpirometriBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSpirometriBtnPrintActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("PAR")) {
+            JOptionPane.showMessageDialog(null, "Pemeriksaan spirometri hanya utk. pasien poliklinik paru saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from spirometri s inner join reg_periksa r on r.no_rawat=s.no_rawat where r.no_rkm_medis='" + NoRM.getText() + "'") == 0) {
+                DlgSpirometri form = new DlgSpirometri(null, false);
+                form.setData(TNoRw.getText(), NoRM.getText(), Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + NoRM.getText() + "'"),
+                        "Ralan", kdpoli.getText());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.ChkInput.setSelected(true);
+                form.TCari.setText(TNoRw.getText());
+                form.tampil();
+                form.isForm();
+                form.isCek();
+                form.setVisible(true);
+            } else {
+                if (Sequel.cariInteger("select count(-1) from spirometri where no_rawat='" + TNoRw.getText() + "' and tgl_habis_berlaku>=now()") > 0) {
+                    JOptionPane.showMessageDialog(null, "Data hasil pemeriksaan spirometri masih bisa dipakai untuk pengobatan...!!!");
+                    //cetak spirometri
+                } else {
+                    DlgSpirometri form = new DlgSpirometri(null, false);
+                    form.setData(TNoRw.getText(), NoRM.getText(), Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + NoRM.getText() + "'"),
+                            "Ralan", kdpoli.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.ChkInput.setSelected(true);
+                    form.TCari.setText(TNoRw.getText());
+                    form.tampil();
+                    form.isForm();
+                    form.isCek();
+                    form.setVisible(true);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnSpirometriBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -7762,6 +7823,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenu MnRujukan;
     private javax.swing.JMenuItem MnSEPBPJS;
     private javax.swing.JMenuItem MnSensusParu;
+    private javax.swing.JMenuItem MnSpirometri;
     private javax.swing.JMenu MnStatus;
     private javax.swing.JMenuItem MnStatusPasienAllKunjungan;
     private javax.swing.JMenuItem MnSudah;
