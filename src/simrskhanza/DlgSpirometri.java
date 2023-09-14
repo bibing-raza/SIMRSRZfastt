@@ -245,6 +245,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         Tkesimpulan = new widget.TextArea();
         jLabel28 = new widget.Label();
         cmbDokter = new widget.ComboBox();
+        jLabel31 = new widget.Label();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSpirometri = new widget.Table();
@@ -576,14 +577,14 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Ttb);
-        Ttb.setBounds(423, 38, 40, 23);
+        Ttb.setBounds(423, 38, 60, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel11.setText("Cm.    Berat Badan :");
         jLabel11.setName("jLabel11"); // NOI18N
         FormInput.add(jLabel11);
-        jLabel11.setBounds(467, 38, 100, 23);
+        jLabel11.setBounds(487, 38, 100, 23);
 
         Tbb.setForeground(new java.awt.Color(0, 0, 0));
         Tbb.setName("Tbb"); // NOI18N
@@ -593,7 +594,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tbb);
-        Tbb.setBounds(570, 38, 40, 23);
+        Tbb.setBounds(590, 38, 60, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -601,7 +602,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel12.setToolTipText("");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(614, 38, 30, 23);
+        jLabel12.setBounds(654, 38, 30, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tempat Pemeriksaan :");
@@ -922,6 +923,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
         });
         FormInput.add(cmbDokter);
         cmbDokter.setBounds(145, 302, 290, 23);
+
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel31.setText("Terhitung utk. 6 bulan kedepan");
+        jLabel31.setName("jLabel31"); // NOI18N
+        FormInput.add(jLabel31);
+        jLabel31.setBounds(890, 150, 160, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1312,6 +1320,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel30;
+    private widget.Label jLabel31;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
