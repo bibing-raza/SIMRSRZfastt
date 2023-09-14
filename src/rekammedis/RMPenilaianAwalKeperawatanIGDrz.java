@@ -4738,10 +4738,10 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getdata_triase_igd());
-        BtnHapus.setEnabled(akses.getdata_triase_igd());
-        BtnPrint.setEnabled(akses.getdata_triase_igd());
-        BtnEdit.setEnabled(akses.getdata_triase_igd());
+        BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnPrint.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         
         if (akses.getjml2() >= 1) {            
             BtnPerawat.setEnabled(false);
@@ -4917,11 +4917,11 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps1 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
-                    + "rp.tgl_registrasi, IFNULL(pr.tensi,'') td, IFNULL(pr.nadi,'') nadi, IFNULL(pr.respirasi,'') nafas, "
-                    + "ifnull(pr.tinggi,'') tb, ifnull(pr.berat,'') bb, ifnull(pr.keluhan,'') keluhan, IFNULL(pr.suhu_tubuh,'') suhu, "
+                    + "rp.tgl_registrasi, IFNULL(ti.td,'') td, IFNULL(ti.nadi,'') nadi, IFNULL(ti.napas,'') nafas, "
+                    + "ifnull(ti.tb,'') tb, ifnull(ti.bb,'') bb, ifnull(ti.keluhan_utama,'') keluhan, IFNULL(ti.temperatur,'') suhu, "
                     + "rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis inner join dokter d on d.kd_dokter=rp.kd_dokter "
-                    + "LEFT JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat WHERE rp.no_rawat=?");
+                    + "LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat=?");
             try {
                 ps1.setString(1, TNoRw.getText());
                 rs1 = ps1.executeQuery();
@@ -4930,12 +4930,14 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                     TPasien.setText(rs1.getString("nm_pasien"));
                     Ttgl_lahir.setText(rs1.getString("tgl_lahir"));
                     Tkeluhan.setText(rs1.getString("keluhan"));
+                    
                     td.setText(rs1.getString("td"));
                     nadi.setText(rs1.getString("nadi"));
                     napas.setText(rs1.getString("nafas"));
                     suhu.setText(rs1.getString("suhu"));
                     bb.setText(rs1.getString("bb"));
                     tb.setText(rs1.getString("tb"));
+                    
                     Tstts_nikah.setText(rs1.getString("stts_nikah"));
                     Tpekerjaan.setText(rs1.getString("pekerjaan"));
                     KdDokter.setText(rs1.getString("kd_dokter"));

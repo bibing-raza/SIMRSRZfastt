@@ -367,8 +367,8 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         pernapasan.setDocument(new batasInput((int) 7).getKata(pernapasan));
         temperatur.setDocument(new batasInput((int) 7).getKata(temperatur));
         saturasi.setDocument(new batasInput((int) 7).getKata(saturasi));
-        bb.setDocument(new batasInput((int) 3).getKata(bb));
-        tb.setDocument(new batasInput((int) 3).getKata(tb));
+        bb.setDocument(new batasInput((int) 7).getKata(bb));
+        tb.setDocument(new batasInput((int) 7).getKata(tb));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){

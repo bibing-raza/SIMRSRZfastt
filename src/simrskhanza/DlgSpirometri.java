@@ -670,31 +670,31 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(710, 10, 80, 23);
+        jLabel17.setBounds(700, 10, 100, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("VC :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(710, 38, 80, 23);
+        jLabel18.setBounds(700, 38, 100, 23);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("FVC :");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(710, 66, 80, 23);
+        jLabel19.setBounds(700, 66, 100, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("FEV1 :");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(710, 94, 80, 23);
+        jLabel20.setBounds(700, 94, 100, 23);
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("FEV1 / FVC :");
         jLabel21.setName("jLabel21"); // NOI18N
         FormInput.add(jLabel21);
-        jLabel21.setBounds(710, 122, 80, 23);
+        jLabel21.setBounds(700, 122, 100, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -702,7 +702,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel22.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput.add(jLabel22);
-        jLabel22.setBounds(795, 10, 80, 23);
+        jLabel22.setBounds(805, 10, 80, 23);
 
         TukurVC.setForeground(new java.awt.Color(0, 0, 0));
         TukurVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -713,7 +713,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TukurVC);
-        TukurVC.setBounds(795, 38, 80, 23);
+        TukurVC.setBounds(805, 38, 80, 23);
 
         TukurFVC.setForeground(new java.awt.Color(0, 0, 0));
         TukurFVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -724,7 +724,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TukurFVC);
-        TukurFVC.setBounds(795, 66, 80, 23);
+        TukurFVC.setBounds(805, 66, 80, 23);
 
         TukurFEV1.setForeground(new java.awt.Color(0, 0, 0));
         TukurFEV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -735,7 +735,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TukurFEV1);
-        TukurFEV1.setBounds(795, 94, 80, 23);
+        TukurFEV1.setBounds(805, 94, 80, 23);
 
         TukurFEV1_FVC.setForeground(new java.awt.Color(0, 0, 0));
         TukurFEV1_FVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -746,7 +746,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TukurFEV1_FVC);
-        TukurFEV1_FVC.setBounds(795, 122, 80, 23);
+        TukurFEV1_FVC.setBounds(805, 122, 80, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -754,7 +754,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel23.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(880, 10, 80, 23);
+        jLabel23.setBounds(890, 10, 80, 23);
 
         TpredVC.setForeground(new java.awt.Color(0, 0, 0));
         TpredVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -765,7 +765,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpredVC);
-        TpredVC.setBounds(882, 38, 80, 23);
+        TpredVC.setBounds(890, 38, 80, 23);
 
         TpredFVC.setForeground(new java.awt.Color(0, 0, 0));
         TpredFVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -776,7 +776,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpredFVC);
-        TpredFVC.setBounds(882, 66, 80, 23);
+        TpredFVC.setBounds(890, 66, 80, 23);
 
         TpredFEV1.setForeground(new java.awt.Color(0, 0, 0));
         TpredFEV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -787,7 +787,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpredFEV1);
-        TpredFEV1.setBounds(882, 94, 80, 23);
+        TpredFEV1.setBounds(890, 94, 80, 23);
 
         TpredFEV1_FVC.setForeground(new java.awt.Color(0, 0, 0));
         TpredFEV1_FVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -798,7 +798,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpredFEV1_FVC);
-        TpredFEV1_FVC.setBounds(882, 122, 80, 23);
+        TpredFEV1_FVC.setBounds(890, 122, 80, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -806,7 +806,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel24.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(966, 10, 80, 23);
+        jLabel24.setBounds(976, 10, 80, 23);
 
         TpersenVC.setForeground(new java.awt.Color(0, 0, 0));
         TpersenVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -817,7 +817,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenVC);
-        TpersenVC.setBounds(976, 38, 60, 23);
+        TpersenVC.setBounds(976, 38, 80, 23);
 
         TpersenFVC.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -828,7 +828,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFVC);
-        TpersenFVC.setBounds(976, 66, 60, 23);
+        TpersenFVC.setBounds(976, 66, 80, 23);
 
         TpersenFEV1.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFEV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -839,7 +839,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFEV1);
-        TpersenFEV1.setBounds(976, 94, 60, 23);
+        TpersenFEV1.setBounds(976, 94, 80, 23);
 
         TpersenFEV1_FVC.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFEV1_FVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -850,19 +850,19 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFEV1_FVC);
-        TpersenFEV1_FVC.setBounds(976, 122, 60, 23);
+        TpersenFEV1_FVC.setBounds(976, 122, 80, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Tgl. Periksa :");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput.add(jLabel25);
-        jLabel25.setBounds(710, 150, 80, 23);
+        jLabel25.setBounds(700, 150, 100, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Berlaku s.d Tgl. :");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput.add(jLabel26);
-        jLabel26.setBounds(700, 178, 90, 23);
+        jLabel26.setBounds(700, 178, 100, 23);
 
         tglPeriksa.setEditable(false);
         tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2023" }));
@@ -876,13 +876,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(tglPeriksa);
-        tglPeriksa.setBounds(795, 150, 90, 23);
+        tglPeriksa.setBounds(805, 150, 90, 23);
 
         TtglBerlaku.setEditable(false);
         TtglBerlaku.setForeground(new java.awt.Color(0, 0, 0));
         TtglBerlaku.setName("TtglBerlaku"); // NOI18N
         FormInput.add(TtglBerlaku);
-        TtglBerlaku.setBounds(795, 178, 210, 23);
+        TtglBerlaku.setBounds(805, 178, 210, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Kesimpulan :");
@@ -929,7 +929,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel31.setText("Terhitung utk. 6 bulan kedepan");
         jLabel31.setName("jLabel31"); // NOI18N
         FormInput.add(jLabel31);
-        jLabel31.setBounds(890, 150, 160, 23);
+        jLabel31.setBounds(900, 150, 160, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1212,23 +1212,24 @@ public class DlgSpirometri extends javax.swing.JDialog {
         } else if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu datanya sesuai tgl. cppt...!!!!");
         } else {
-//            Map<String, Object> param = new HashMap<>();
-//            param.put("namars", akses.getnamars());
-//            param.put("logo", Sequel.cariGambar("select logo from setting"));
-//
-//            if (status.equals("Ralan")) {
-//                param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
-//            } else {
-//                param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (RAWAT INAP)");
-//            }
-//
-//            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
-//                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
-//                + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
-//                + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
-//                + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-//                + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
-//                + "AND c. STATUS = 'Ralan' ORDER BY c.waktu_simpan", param);
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_periksa from spirometri where no_rawat='" + TNoRw.getText() + "'")));
+            param.put("tglberlaku", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_habis_berlaku from spirometri where no_rawat='" + TNoRw.getText() + "'")));
+
+            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+                    "select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
+                    + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(s.tb,' Cm.') tb, concat(s.bb,' Kg.') bb, s.keluhan, "
+                    + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
+                    + "s.prediksi_vc, s.prediksi_fvc, s.prediksi_fev1, s.prediksi_fev1_fvc, s.persen_vc, s.persen_fvc, s.persen_fev1, "
+                    + "s.persen_fev1_fvc, s.kesimpulan, pg.nama nmdokter from spirometri s inner join reg_periksa rp on rp.no_rawat=s.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=s.kd_dokter where s.no_rawat='" + TNoRw.getText() + "'", param);
             tampil();
             emptTeks();
         }
