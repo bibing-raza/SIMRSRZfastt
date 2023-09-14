@@ -144,11 +144,11 @@ public class DlgSpirometri extends javax.swing.JDialog {
         TpredVC.setDocument(new batasInput((byte) 10).getKata(TpredVC));
         TpredFVC.setDocument(new batasInput((byte) 10).getKata(TpredFVC));
         TpredFEV1.setDocument(new batasInput((byte) 10).getKata(TpredFEV1));
-        TpredFEV1_FVC.setDocument(new batasInput((byte) 10).getKata(TpredFEV1_FVC));
-        TpersenVC.setDocument(new batasInput((byte) 4).getKata(TpersenVC));
-        TpersenFVC.setDocument(new batasInput((byte) 4).getKata(TpersenFVC));
-        TpersenFEV1.setDocument(new batasInput((byte) 4).getKata(TpersenFEV1));
-        TpersenFEV1_FVC.setDocument(new batasInput((byte) 4).getKata(TpersenFEV1_FVC));
+        TpredFEV1_FVC.setDocument(new batasInput((byte) 10).getKata(TpredFEV1_FVC));        
+        TpersenVC.setDocument(new batasInput((byte) 8).getKata(TpersenVC));
+        TpersenFVC.setDocument(new batasInput((byte) 8).getKata(TpersenFVC));
+        TpersenFEV1.setDocument(new batasInput((byte) 8).getKata(TpersenFEV1));
+        TpersenFEV1_FVC.setDocument(new batasInput((byte) 8).getKata(TpersenFEV1_FVC));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -817,7 +817,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenVC);
-        TpersenVC.setBounds(978, 38, 56, 23);
+        TpersenVC.setBounds(976, 38, 60, 23);
 
         TpersenFVC.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -828,7 +828,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFVC);
-        TpersenFVC.setBounds(978, 66, 56, 23);
+        TpersenFVC.setBounds(976, 66, 60, 23);
 
         TpersenFEV1.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFEV1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -839,7 +839,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFEV1);
-        TpersenFEV1.setBounds(978, 94, 56, 23);
+        TpersenFEV1.setBounds(976, 94, 60, 23);
 
         TpersenFEV1_FVC.setForeground(new java.awt.Color(0, 0, 0));
         TpersenFEV1_FVC.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -850,7 +850,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             }
         });
         FormInput.add(TpersenFEV1_FVC);
-        TpersenFEV1_FVC.setBounds(978, 122, 56, 23);
+        TpersenFEV1_FVC.setBounds(976, 122, 60, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Tgl. Periksa :");
