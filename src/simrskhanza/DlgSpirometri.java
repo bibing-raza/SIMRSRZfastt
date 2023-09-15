@@ -134,8 +134,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
         tbSpirometri.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        Ttb.setDocument(new batasInput((int) 3).getKata(Ttb));
-        Tbb.setDocument(new batasInput((int) 3).getKata(Tbb));
+        Ttb.setDocument(new batasInput((int) 7).getKata(Ttb));
+        Tbb.setDocument(new batasInput((int) 7).getKata(Tbb));
         TkebiasaanRokok.setDocument(new batasInput((int) 150).getKata(TkebiasaanRokok));
         TukurVC.setDocument(new batasInput((byte) 10).getKata(TukurVC));
         TukurFVC.setDocument(new batasInput((byte) 10).getKata(TukurFVC));
@@ -407,7 +407,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel29);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -421,7 +421,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel30);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -865,7 +865,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel26.setBounds(700, 178, 100, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -916,11 +916,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
         cmbDokter.setForeground(new java.awt.Color(0, 0, 0));
         cmbDokter.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbDokter.setName("cmbDokter"); // NOI18N
-        cmbDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDokterActionPerformed(evt);
-            }
-        });
         FormInput.add(cmbDokter);
         cmbDokter.setBounds(145, 302, 290, 23);
 
@@ -968,7 +963,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
-        } else {            
+        } else {
+            if (cmbDokter.getSelectedIndex() == 0) {
+                kodedok = "-";
+            } else {
+                kodedok = Sequel.cariIsi("select nik from pegawai where nama like '%" + cmbDokter.getSelectedItem().toString() + "%'");
+            }
+
             Sequel.menyimpan("spirometri", "'" + TNoRw.getText() + "','" + TTmptPeriksa.getText() + "','" + Ttb.getText() + "',"
                     + "'" + Tbb.getText() + "','" + Tkeluhan.getText() + "','" + TkebiasaanRokok.getText() + "','" + TriwAsma.getText() + "',"
                     + "'" + TukurVC.getText() + "','" + TukurFVC.getText() + "','" + TukurFEV1.getText() + "','" + TukurFEV1_FVC.getText() + "',"
@@ -1005,7 +1006,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
-        } else {          
+        } else {
+            if (cmbDokter.getSelectedIndex() == 0) {
+                kodedok = "-";
+            } else {
+                kodedok = Sequel.cariIsi("select nik from pegawai where nama like '%" + cmbDokter.getSelectedItem().toString() + "%'");
+            }
+            
             if (tbSpirometri.getSelectedRow() > -1) {
                 Sequel.mengedit("spirometri", "no_rawat=?", "tmpt_pemeriksaan=?, tb=?, bb=?, "
                         + "keluhan=?, kebiasaan_merokok=?, riwayat_asma=?, pengukuran_vc=?, pengukuran_fvc=?, "
@@ -1223,7 +1230,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
             param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_periksa from spirometri where no_rawat='" + TNoRw.getText() + "'")));
             param.put("tglberlaku", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_habis_berlaku from spirometri where no_rawat='" + TNoRw.getText() + "'")));
 
-            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
                     "select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
                     + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(s.tb,' Cm.') tb, concat(s.bb,' Kg.') bb, s.keluhan, "
                     + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
@@ -1234,10 +1241,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
             emptTeks();
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
-
-    private void cmbDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDokterActionPerformed
-        kodedok = Sequel.cariIsi("select nik from pegawai where nama like '%" + cmbDokter.getSelectedItem().toString() + "%'");
-    }//GEN-LAST:event_cmbDokterActionPerformed
 
     /**
     * @param args the command line arguments
