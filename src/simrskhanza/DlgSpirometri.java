@@ -260,7 +260,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         MnCetakHasil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCetakHasil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCetakHasil.setName("MnCetakHasil"); // NOI18N
-        MnCetakHasil.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnCetakHasil.setPreferredSize(new java.awt.Dimension(190, 26));
         MnCetakHasil.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakHasilActionPerformed(evt);
@@ -983,6 +983,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
                     + "'" + Tkesimpulan.getText() + "','" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',"
                     + "'" + Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)") + "',"
                     + "'" + kodedok + "'", "Spirometri Pasien");
+
+            DTPCari1.setDate(tglPeriksa.getDate());
             emptTeks();
             tampil();
         }
@@ -1031,6 +1033,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
                             Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)"), kodedok,
                             tbSpirometri.getValueAt(tbSpirometri.getSelectedRow(), 0).toString()
                         });
+                
+                DTPCari1.setDate(tglPeriksa.getDate());
                 tampil();
                 emptTeks();
             }
@@ -1224,6 +1228,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
         } else if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan klik salah satu datanya pada tabel...!!!!");
             tbSpirometri.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from spirometri where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data hasil pemeriksaan spirometri pasien An. " + TPasien.getText() + " belum tersimpan...!!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
@@ -1639,6 +1645,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         Tkesimpulan.setText("");
         cmbDokter.setSelectedIndex(0);
         Ttb.requestFocus();
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select ifnull(tgl_periksa,date(now())) from spirometri where no_rawat='" + norw + "'"));
         TtglBerlaku.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)")) + "");
     }
 }
