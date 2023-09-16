@@ -14286,12 +14286,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
-            if (akses.getdata_triase_igd() == true) {
+            if (akses.getresep_dokter() == true) {
                 Panelmenu.add(btnAssesmenMedikIGD);
                 jmlmenu++;
             }
             
-            if (akses.getdata_triase_igd() == true) {
+            if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
                 Panelmenu.add(btnAssesmenKeperawatanIGD);
                 jmlmenu++;
             }
@@ -14838,12 +14838,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getdata_triase_igd() == true) {
+        if (akses.getresep_dokter() == true) {
             Panelmenu.add(btnAssesmenMedikIGD);
             jmlmenu++;
         }
 
-        if (akses.getdata_triase_igd() == true) {
+        if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
             Panelmenu.add(btnAssesmenKeperawatanIGD);
             jmlmenu++;
         }
@@ -16732,14 +16732,14 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
-        if (akses.getdata_triase_igd()== true) {
+        if (akses.getresep_dokter()== true) {
             if (btnAssesmenMedikIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAssesmenMedikIGD);
                 jmlmenu++;
             }
         }
         
-        if (akses.getdata_triase_igd()== true) {
+        if (akses.getpenilaian_awal_keperawatan_ralan()== true) {
             if (btnAssesmenKeperawatanIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAssesmenKeperawatanIGD);
                 jmlmenu++;

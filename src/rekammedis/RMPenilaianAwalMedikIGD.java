@@ -5951,10 +5951,10 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }    
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getdata_triase_igd());
-        BtnHapus.setEnabled(akses.getdata_triase_igd());
-        BtnEdit.setEnabled(akses.getdata_triase_igd());
-        BtnPrint.setEnabled(akses.getdata_triase_igd());
+        BtnSimpan.setEnabled(akses.getresep_dokter());
+        BtnHapus.setEnabled(akses.getresep_dokter());
+        BtnEdit.setEnabled(akses.getresep_dokter());
+        BtnPrint.setEnabled(akses.getresep_dokter());
         BtnResep.setEnabled(akses.getresep_dokter());
         
         if (akses.getjml2() >= 1) {            

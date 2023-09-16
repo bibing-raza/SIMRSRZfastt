@@ -38,8 +38,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private int i = 0, x = 0;
     private String kodedok = "";
     
@@ -1217,8 +1217,10 @@ public class DlgSpirometri extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
         } else if (TNoRw.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu datanya sesuai tgl. cppt...!!!!");
+            JOptionPane.showMessageDialog(null, "Silahkan klik salah satu datanya pada tabel...!!!!");
+            tbSpirometri.requestFocus();
         } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -1227,18 +1229,63 @@ public class DlgSpirometri extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_periksa from spirometri where no_rawat='" + TNoRw.getText() + "'")));
-            param.put("tglberlaku", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_habis_berlaku from spirometri where no_rawat='" + TNoRw.getText() + "'")));
 
-            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
-                    "select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
-                    + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(s.tb,' Cm.') tb, concat(s.bb,' Kg.') bb, s.keluhan, "
-                    + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
-                    + "s.prediksi_vc, s.prediksi_fvc, s.prediksi_fev1, s.prediksi_fev1_fvc, s.persen_vc, s.persen_fvc, s.persen_fev1, "
-                    + "s.persen_fev1_fvc, s.kesimpulan, pg.nama nmdokter from spirometri s inner join reg_periksa rp on rp.no_rawat=s.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=s.kd_dokter where s.no_rawat='" + TNoRw.getText() + "'", param);
+            try {
+                Sequel.queryu("delete from temporary1");
+                ps1 = koneksi.prepareStatement("select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
+                        + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(if(s.tb='','-',s.tb),' Cm.') tb, concat(if(s.bb='','-',s.bb),' Kg.') bb, s.keluhan, "
+                        + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
+                        + "s.prediksi_vc, s.prediksi_fvc, s.prediksi_fev1, s.prediksi_fev1_fvc, s.persen_vc, s.persen_fvc, s.persen_fev1, "
+                        + "s.persen_fev1_fvc, s.kesimpulan, pg.nama nmdokter, s.tgl_periksa, s.tgl_habis_berlaku from spirometri s "
+                        + "inner join reg_periksa rp on rp.no_rawat=s.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai pg on pg.nik=s.kd_dokter where s.no_rawat='" + TNoRw.getText() + "'");
+                try {
+                    rs1 = ps1.executeQuery();
+                    if (rs1.next()) {
+                        //report page header
+                        param.put("tmpt_periksa", rs1.getString("tmpt_pemeriksaan"));
+                        param.put("norm", rs1.getString("no_rkm_medis"));
+                        param.put("nmpasien", rs1.getString("nm_pasien"));
+                        param.put("jenkel", rs1.getString("jk"));
+                        param.put("usia", rs1.getString("usia"));
+                        param.put("tb", rs1.getString("tb"));
+                        param.put("bb", rs1.getString("bb"));
+                        //report detail band 1
+                        Sequel.menyimpan("temporary1", "'Keluhan',':','" + rs1.getString("keluhan") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Keluhan");
+                        Sequel.menyimpan("temporary1", "'Kebiasaan Merokok',':','" + rs1.getString("kebiasaan_merokok") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Kebiasaan Merokok");
+                        Sequel.menyimpan("temporary1", "'Riwayat Asma',':','" + rs1.getString("riwayat_asma") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Riwayat Asma");
+                        //report detail band 2
+                        Sequel.menyimpan("temporary1", "'','','','Paramater','Pengukuran\n(Measurement)','Prediksi\n(Predicted)','% Prediksi\n(% Predicted)','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Judul");
+                        Sequel.menyimpan("temporary1", "'','','','VC','" + rs1.getString("pengukuran_vc") + "','" + rs1.getString("prediksi_vc") + "','" + rs1.getString("persen_vc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri VC");
+                        Sequel.menyimpan("temporary1", "'','','','FVC','" + rs1.getString("pengukuran_fvc") + "','" + rs1.getString("prediksi_fvc") + "','" + rs1.getString("persen_fvc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FVC");
+                        Sequel.menyimpan("temporary1", "'','','','FEV1','" + rs1.getString("pengukuran_fev1") + "','" + rs1.getString("prediksi_fev1") + "','" + rs1.getString("persen_fev1") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FEV1");
+                        Sequel.menyimpan("temporary1", "'','','','FEV1 / FVC','" + rs1.getString("pengukuran_fev1_fvc") + "','" + rs1.getString("prediksi_fev1_fvc") + "','" + rs1.getString("persen_fev1_fvc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FEV1 / FVC");
+                        //report detail band 3
+                        Sequel.menyimpan("temporary1", "'','','','','','','','KESIMPULAN',':','" + rs1.getString("kesimpulan") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri KESIMPULAN");
+                        //report summary
+                        param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(rs1.getString("tgl_periksa")));
+                        param.put("tglberlaku", Valid.SetTglINDONESIA(rs1.getString("tgl_habis_berlaku")));
+                        param.put("nmdokter", rs1.getString("nmdokter"));
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notif : " + e);
+                } finally {
+                    if (rs1 != null) {
+                        rs1.close();
+                    }
+                    if (ps1 != null) {
+                        ps1.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            }
+
+//            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+//                    "select * from temporary1", param);
             tampil();
             emptTeks();
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
