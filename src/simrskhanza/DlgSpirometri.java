@@ -171,6 +171,8 @@ public class DlgSpirometri extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnCetakHasil = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -178,7 +180,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
-        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
@@ -249,6 +250,23 @@ public class DlgSpirometri extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSpirometri = new widget.Table();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnCetakHasil.setBackground(new java.awt.Color(255, 255, 254));
+        MnCetakHasil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakHasil.setText("Cetak Hasil Pemeriksaan");
+        MnCetakHasil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakHasil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakHasil.setName("MnCetakHasil"); // NOI18N
+        MnCetakHasil.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnCetakHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakHasilActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakHasil);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -343,20 +361,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
-        BtnPrint.setText("Cetak");
-        BtnPrint.setToolTipText("Alt+T");
-        BtnPrint.setName("BtnPrint"); // NOI18N
-        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrintActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnPrint);
-
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -407,7 +411,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel29);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -421,7 +425,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel30);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -865,7 +869,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         jLabel26.setBounds(700, 178, 100, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -938,6 +942,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbSpirometri.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
+        tbSpirometri.setComponentPopupMenu(jPopupMenu1);
         tbSpirometri.setName("tbSpirometri"); // NOI18N
         tbSpirometri.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1212,7 +1217,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
-    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+    private void MnCetakHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakHasilActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
@@ -1231,7 +1236,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
             param.put("logo", Sequel.cariGambar("select logo from setting"));
 
             try {
-                Sequel.queryu("delete from temporary1");
                 ps1 = koneksi.prepareStatement("select s.tmpt_pemeriksaan, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "
                         + "concat(rp.umurdaftar,' ',rp.sttsumur) usia, concat(if(s.tb='','-',s.tb),' Cm.') tb, concat(if(s.bb='','-',s.bb),' Kg.') bb, s.keluhan, "
                         + "s.kebiasaan_merokok, s.riwayat_asma, s.pengukuran_vc, s.pengukuran_fvc, s.pengukuran_fev1, s.pengukuran_fev1_fvc, "
@@ -1242,7 +1246,6 @@ public class DlgSpirometri extends javax.swing.JDialog {
                 try {
                     rs1 = ps1.executeQuery();
                     if (rs1.next()) {
-                        //report page header
                         param.put("tmpt_periksa", rs1.getString("tmpt_pemeriksaan"));
                         param.put("norm", rs1.getString("no_rkm_medis"));
                         param.put("nmpasien", rs1.getString("nm_pasien"));
@@ -1250,19 +1253,27 @@ public class DlgSpirometri extends javax.swing.JDialog {
                         param.put("usia", rs1.getString("usia"));
                         param.put("tb", rs1.getString("tb"));
                         param.put("bb", rs1.getString("bb"));
-                        //report detail band 1
-                        Sequel.menyimpan("temporary1", "'Keluhan',':','" + rs1.getString("keluhan") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Keluhan");
-                        Sequel.menyimpan("temporary1", "'Kebiasaan Merokok',':','" + rs1.getString("kebiasaan_merokok") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Kebiasaan Merokok");
-                        Sequel.menyimpan("temporary1", "'Riwayat Asma',':','" + rs1.getString("riwayat_asma") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Riwayat Asma");
-                        //report detail band 2
-                        Sequel.menyimpan("temporary1", "'','','','Paramater','Pengukuran\n(Measurement)','Prediksi\n(Predicted)','% Prediksi\n(% Predicted)','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri Judul");
-                        Sequel.menyimpan("temporary1", "'','','','VC','" + rs1.getString("pengukuran_vc") + "','" + rs1.getString("prediksi_vc") + "','" + rs1.getString("persen_vc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri VC");
-                        Sequel.menyimpan("temporary1", "'','','','FVC','" + rs1.getString("pengukuran_fvc") + "','" + rs1.getString("prediksi_fvc") + "','" + rs1.getString("persen_fvc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FVC");
-                        Sequel.menyimpan("temporary1", "'','','','FEV1','" + rs1.getString("pengukuran_fev1") + "','" + rs1.getString("prediksi_fev1") + "','" + rs1.getString("persen_fev1") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FEV1");
-                        Sequel.menyimpan("temporary1", "'','','','FEV1 / FVC','" + rs1.getString("pengukuran_fev1_fvc") + "','" + rs1.getString("prediksi_fev1_fvc") + "','" + rs1.getString("persen_fev1_fvc") + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri FEV1 / FVC");
-                        //report detail band 3
-                        Sequel.menyimpan("temporary1", "'','','','','','','','KESIMPULAN',':','" + rs1.getString("kesimpulan") + "','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Spiromeri KESIMPULAN");
-                        //report summary
+                        
+                        param.put("keluhan", rs1.getString("keluhan"));
+                        param.put("kebiasaan_merokok", rs1.getString("kebiasaan_merokok"));
+                        param.put("riwayat_asma", rs1.getString("riwayat_asma"));
+                        
+                        param.put("ukur_vc", rs1.getString("pengukuran_vc"));
+                        param.put("ukur_fvc", rs1.getString("pengukuran_fvc"));
+                        param.put("ukur_fev1", rs1.getString("pengukuran_fev1"));
+                        param.put("ukur_fev1fvc", rs1.getString("pengukuran_fev1_fvc"));
+                        
+                        param.put("pred_vc", rs1.getString("prediksi_vc"));
+                        param.put("pred_fvc", rs1.getString("prediksi_fvc"));
+                        param.put("pred_fev1", rs1.getString("prediksi_fev1"));
+                        param.put("pred_fev1fvc", rs1.getString("prediksi_fev1_fvc"));
+                        
+                        param.put("persen_vc", rs1.getString("persen_vc"));
+                        param.put("persen_fvc", rs1.getString("persen_fvc"));
+                        param.put("persen_fev1", rs1.getString("persen_fev1"));
+                        param.put("persen_fev1fvc", rs1.getString("persen_fev1_fvc"));
+                        
+                        param.put("kesimpulan", rs1.getString("kesimpulan")+"\n\n");
                         param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(rs1.getString("tgl_periksa")));
                         param.put("tglberlaku", Valid.SetTglINDONESIA(rs1.getString("tgl_habis_berlaku")));
                         param.put("nmdokter", rs1.getString("nmdokter"));
@@ -1281,13 +1292,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
                 System.out.println("Notif : " + e);
             }
 
-//            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
-//                    "select * from temporary1", param);
+            Valid.MyReport("rptSpirometri.jasper", "report", "::[ Laporan Hasil Pemeriksaan Spirometri ]::",
+                    "select date(now())", param);
             tampil();
             emptTeks();
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_BtnPrintActionPerformed
+    }//GEN-LAST:event_MnCetakHasilActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1312,13 +1323,13 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
-    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkInput;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnCetakHasil;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
@@ -1378,6 +1389,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollPane2;
