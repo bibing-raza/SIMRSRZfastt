@@ -838,7 +838,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
                     + "'" + jlhSisaObat.getText() + "','Ralan','" + Sequel.cariIsi("select now()") + "','" + kdobat + "'", "Pemberian Obat");
             
-            TCari.setText(TNoRW.getText());
             tampil();
             emptTeks();
         }
@@ -905,7 +904,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString()
                         });
                 
-                TCari.setText(TNoRW.getText());
                 tampil();
                 emptTeks();
             }
@@ -1315,7 +1313,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 System.out.println("Notifikasi : " + e);
             }
             
-            TCari.setText(TNoRW.getText());
             tampil();
             emptTeks();
         }
@@ -1557,6 +1554,5 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmpasien);
-        TCari.setText(norw);
     }
 }
