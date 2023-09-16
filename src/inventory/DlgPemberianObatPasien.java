@@ -837,6 +837,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + dosis.getText() + "','" + caraPemberian.getText() + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
                     + "'" + jlhSisaObat.getText() + "','Ralan','" + Sequel.cariIsi("select now()") + "','" + kdobat + "'", "Pemberian Obat");
+            
+            TCari.setText(TNoRW.getText());
             tampil();
             emptTeks();
         }
@@ -902,6 +904,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             jlhSisaObat.getText(), kdobat,
                             tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString()
                         });
+                
+                TCari.setText(TNoRW.getText());
                 tampil();
                 emptTeks();
             }
@@ -953,8 +957,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-       emptTeks();
-       tampil();
+        TCari.setText("");
+        emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
@@ -1309,6 +1314,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
+            
+            TCari.setText(TNoRW.getText());
+            tampil();
+            emptTeks();
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -1483,7 +1492,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbMnt.setSelectedIndex(0);
         cmbDtk.setSelectedIndex(0);
         jlhSisaObat.setText("");
-        TCari.setText("");
         cmbHlm.setSelectedIndex(0);
         nmObat.requestFocus();
     }
@@ -1549,5 +1557,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmpasien);
+        TCari.setText(norw);
     }
 }

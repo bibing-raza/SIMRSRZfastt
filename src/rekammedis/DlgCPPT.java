@@ -913,6 +913,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "'" + cmbVerifikasi.getSelectedItem().toString() + "','" + kddpjp.getText() + "','Ralan',"
                     + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "'", "CPPT IGD");
+            
+            TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
         }
@@ -966,6 +968,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                             tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString()
                         });
+                
+                TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
             }
@@ -1008,8 +1012,9 @@ public class DlgCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-       emptTeks();
-       tampil();
+        TCari.setText("");
+        emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
@@ -1085,6 +1090,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             TCari.requestFocus();
         } else if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu datanya sesuai tgl. cppt...!!!!");
+        } else if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data cppt pasien tersebut belum disimpan...!!!!");
         } else {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -1103,6 +1110,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
                     + "AND c. STATUS = 'Ralan' ORDER BY c.waktu_simpan", param);
+            
+            TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
         }
@@ -1386,7 +1395,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         kddpjp.setText("");
         nmdpjp.setText("");
         cmbVerifikasi.setSelectedIndex(0);
-        TCari.setText("");
         tglCppt.requestFocus();
     }
 
@@ -1515,5 +1523,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TNoRw.setText(norw);
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
+        TCari.setText(norw);
     }
 }
