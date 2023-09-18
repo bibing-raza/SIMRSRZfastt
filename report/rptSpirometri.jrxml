@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Created with Jaspersoft Studio version 6.5.0.final using JasperReports Library version 6.5.0  -->
+<!-- Created with Jaspersoft Studio version 6.8.0.final using JasperReports Library version 6.8.0-2ed8dfabb690ff337a5797129f2cd92902b0c87b  -->
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20" uuid="540c42c6-d1e8-4183-926f-9febc9881102">
 	<property name="ireport.zoom" value="1.818181818181852"/>
 	<property name="ireport.x" value="0"/>
@@ -688,7 +688,7 @@
 				<textFieldExpression><![CDATA[$P{tglsurat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="310" y="0" width="37" height="11" uuid="97e44580-d1f3-40f2-9c84-52db32aa68a4"/>
+				<reportElement x="310" y="5" width="37" height="11" uuid="97e44580-d1f3-40f2-9c84-52db32aa68a4"/>
 				<textElement>
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
@@ -696,7 +696,7 @@
 				<text><![CDATA[Catatan :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="310" y="10" width="195" height="52" uuid="8413cfd3-449c-4830-977f-46c6b9f13424"/>
+				<reportElement x="310" y="15" width="195" height="34" uuid="8413cfd3-449c-4830-977f-46c6b9f13424"/>
 				<textElement>
 					<font fontName="Tahoma" size="7" isItalic="true"/>
 				</textElement>
@@ -709,6 +709,14 @@
 				</textElement>
 				<textFieldExpression><![CDATA[$P{nmdokter}]]></textFieldExpression>
 			</textField>
+			<rectangle radius="4">
+				<reportElement mode="Transparent" x="307" y="2" width="203" height="58" uuid="adf89835-c70b-4abb-8d9a-da386c197de0">
+					<property name="com.jaspersoft.studio.unit.width" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</rectangle>
 		</band>
 	</summary>
 </jasperReport>

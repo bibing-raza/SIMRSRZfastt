@@ -1524,5 +1524,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
         TCari.setText(norw);
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
+        DTPCari2.setDate(new Date());
     }
 }
