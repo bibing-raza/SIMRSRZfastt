@@ -53,7 +53,6 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgDiagnosaPenyakit;
-import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanRadiologi;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
@@ -2654,7 +2653,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -2869,7 +2868,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2883,7 +2882,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3576,7 +3575,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll29.setName("Scroll29"); // NOI18N
         Scroll29.setOpaque(true);
 
-        tbPeriksaLab.setAutoCreateRowSorter(true);
         tbPeriksaLab.setToolTipText("Silahkan klik untuk memilih data yang mau dihapus");
         tbPeriksaLab.setComponentPopupMenu(jPopupMenu1);
         tbPeriksaLab.setName("tbPeriksaLab"); // NOI18N
@@ -4820,7 +4818,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -7004,19 +7002,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             } else {
-//                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                DlgPermintaanLaboratorium dlgro = new DlgPermintaanLaboratorium(null, false);
-//                dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                dlgro.setLocationRelativeTo(internalFrame1);
-//                dlgro.emptTeks();
-//                dlgro.isCek();
-//                dlgro.setNoRm(TNoRw.getText(), "Ralan");
-//                dlgro.setVisible(true);
-//                this.setCursor(Cursor.getDefaultCursor());
-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPermintaanLabRAZA lab = new DlgPermintaanLabRAZA(null, false);
-                lab.setSize(978, 631);
+                lab.setSize(978, internalFrame1.getHeight() - 40);
                 lab.setLocationRelativeTo(internalFrame1);
                 lab.isPasien(TNoRw.getText());
                 lab.AutoNomerMinta();

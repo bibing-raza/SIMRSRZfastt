@@ -72,7 +72,6 @@ import laporan.DlgHasilExpertiseRadiologi;
 import laporan.DlgHasilLIS;
 import permintaan.DlgCariPermintaanLab;
 import permintaan.DlgCariPermintaanRadiologi;
-import permintaan.DlgPermintaanLaboratorium;
 import permintaan.DlgPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
 import permintaan.DlgSuratKeteranganDokter;
@@ -3088,7 +3087,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3941,7 +3940,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4178,7 +4177,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4197,7 +4196,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5418,19 +5417,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             } else {
-//                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                DlgPermintaanLaboratorium dlgro = new DlgPermintaanLaboratorium(null, false);
-//                dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                dlgro.setLocationRelativeTo(internalFrame1);
-//                dlgro.emptTeks();
-//                dlgro.isCek();
-//                dlgro.setNoRm(TNoRw.getText(), "Ralan");
-//                dlgro.setVisible(true);
-//                this.setCursor(Cursor.getDefaultCursor());
-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPermintaanLabRAZA lab = new DlgPermintaanLabRAZA(null, false);
-                lab.setSize(978, 631);
+                lab.setSize(978, internalFrame1.getHeight() - 40);
                 lab.setLocationRelativeTo(internalFrame1);
                 lab.isPasien(TNoRw.getText());
                 lab.AutoNomerMinta();
