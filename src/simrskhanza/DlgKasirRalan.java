@@ -1,5 +1,6 @@
 package simrskhanza;
 
+import permintaan.DlgPermintaanLabRAZA;
 import bridging.BPJSCekKartu;
 import bridging.BPJSDataSEP;
 import bridging.BPJSProgramPRB;
@@ -1394,7 +1395,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnCariPermintaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCariPermintaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCariPermintaanLab.setText("Cari Permintaan Laboratorium");
-        MnCariPermintaanLab.setEnabled(false);
         MnCariPermintaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCariPermintaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCariPermintaanLab.setIconTextGap(5);
@@ -5425,6 +5425,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 lab.AutoNomerMinta();
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
+                lab.isCek();
                 lab.tampil();
                 lab.tampilItemLab();
                 lab.setVisible(true);
@@ -5776,7 +5777,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             DlgCariPermintaanLab cariLab = new DlgCariPermintaanLab(null, false);
             cariLab.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             cariLab.setLocationRelativeTo(internalFrame1);
-            cariLab.isCek("Ralan", TNoRw.getText());
+            cariLab.isCek(TNoRw.getText(), "Ralan");
             cariLab.TCari.setText(TNoRw.getText());
             cariLab.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
@@ -8242,7 +8243,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnAssesmenMedikIGD.setEnabled(akses.getdata_triase_igd());
         MnTransferSerahTerimaIGD.setEnabled(akses.getdata_triase_igd());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
-//        MnCariPermintaanLab.setEnabled(var.getperiksa_lab());
+        MnCariPermintaanLab.setEnabled(akses.getperiksa_lab());
         MnPermintaanRadiologi.setEnabled(akses.getpermintaan_radiologi());
 //        MnCariPermintaanRad.setEnabled(var.getperiksa_radiologi());
         ppPasienCorona.setEnabled(akses.getpasien_corona());

@@ -11,6 +11,7 @@
  */
 package simrskhanza;
 
+import permintaan.DlgPermintaanLabRAZA;
 import bridging.BPJSApi;
 import inventory.DlgResepObat;
 import laporan.DlgDataHAIs;
@@ -12517,12 +12518,13 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPermintaanLabRAZA lab = new DlgPermintaanLabRAZA(null, false);
-                lab.setSize(978, 631);
+                lab.setSize(978, internalFrame1.getHeight() - 40);
                 lab.setLocationRelativeTo(internalFrame1);
                 lab.isPasien(norawat.getText());
                 lab.AutoNomerMinta();
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
+                lab.isCek();
                 lab.tampil();
                 lab.tampilItemLab();
                 lab.setVisible(true);

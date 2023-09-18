@@ -11,6 +11,7 @@
  */
 package simrskhanza;
 
+import permintaan.DlgPermintaanLabRAZA;
 import bridging.ICareRiwayatPerawatan;
 import inventory.DlgPemberianObat;
 import fungsi.WarnaTable;
@@ -438,7 +439,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             } else if (i == 4) {
                 column.setPreferredWidth(75);
             } else if (i == 5) {
-//                column.setPreferredWidth(70);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 6) {
@@ -5464,32 +5464,49 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 TotalNominal();
             }
         } else if (TabRawat.getSelectedIndex() == 1) {
-            if (tabModePemeriksaanDr.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-                TNoRw.requestFocus();
-            } else if (TPasien.getText().trim().equals("")) {
-                JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
-            } else if (!(TPasien.getText().trim().equals(""))) {
-                orang1 = "";
-                nmOrang1 = "";
-                orang1 = Sequel.cariIsi("select kd_dokter from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'");
-                nmOrang1 = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + orang1 + "'");
+            if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
+                if (tabModePemeriksaanDr.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+                    TNoRw.requestFocus();
+                } else if (TPasien.getText().trim().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
+                } else if (!(TPasien.getText().trim().equals(""))) {
+                    orang1 = "";
+                    nmOrang1 = "";
+                    orang1 = Sequel.cariIsi("select kd_dokter from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'");
+                    nmOrang1 = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + orang1 + "'");
 
-                if (orang1.equals(akses.getkode()) || (akses.getkode().equals("Admin Utama"))) {
-                    for (i = 0; i < tbPemeriksaanDr.getRowCount(); i++) {
-                        if (tbPemeriksaanDr.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='" + tbPemeriksaanDr.getValueAt(i, 1).toString() + "'");
-                        } else {
-                            JOptionPane.showMessageDialog(rootPane, "Conteng dulu datanya...!!");
-                            BtnBatalActionPerformed(evt);
+                    if (orang1.equals(akses.getkode()) || (akses.getkode().equals("Admin Utama"))) {
+                        for (i = 0; i < tbPemeriksaanDr.getRowCount(); i++) {
+                            if (tbPemeriksaanDr.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='" + tbPemeriksaanDr.getValueAt(i, 1).toString() + "'");
+                            } else {
+                                JOptionPane.showMessageDialog(rootPane, "Conteng dulu datanya...!!");
+                                BtnBatalActionPerformed(evt);
+                            }
                         }
+                    } else {
+                        JOptionPane.showMessageDialog(rootPane, "Yang bisa menghapus hanya " + nmOrang1 + ", krn. beliau yang menyimpan datanya.");
+                        BtnBatalActionPerformed(evt);
                     }
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Yang bisa menghapus hanya " + nmOrang1 + ", krn. beliau yang menyimpan datanya.");
-                    BtnBatalActionPerformed(evt);
+                    tampilPemeriksaanDokter();
                 }
-                tampilPemeriksaanDokter();
+            } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
+                if (tabModeLab1.getRowCount() == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+                } else if (noiD.equals("") && noMinta.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data permintaan periksa Lab. dengan mengklik data pada tabel...!!!");
+                    tbPeriksaLab.requestFocus();
+                } else if (diperiksa.equals("SUDAH")) {
+                    JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. yg sdh diperiksa tidak dapat dihapus..!!!");
+                } else {
+                    Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
+                    noiD = "";
+                    noMinta = "";
+                    tampilMintaLab1();
+                }
             }
+            
         } else if (TabRawat.getSelectedIndex() == 2) {
             if (tabModePemeriksaanPr.getRowCount() == 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
@@ -7097,7 +7114,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else if (diperiksa.equals("SUDAH")) {
                 JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. yg sdh diperiksa tidak dapat dihapus..!!!");
             } else {
-//                Sequel.queryu("DELETE FROM permintaan_detail_permintaan_lab WHERE noorder='" + noordeR + "' and id_template='" + noiD + "'");
                 Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
             }
 
@@ -9266,16 +9282,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         noiD = "";
         noMinta = "";
         diperiksa = "";
-//
-//        if (tbPeriksaLab.getSelectedRow() != -1) {
-//            noordeR = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 6).toString();
-//            noiD = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 7).toString();
-//        }
-
         if (tbPeriksaLab.getSelectedRow() != -1) {
             diperiksa = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 4).toString();
             noiD = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 5).toString();
-            noMinta = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 6).toString();            
+            noMinta = tbPeriksaLab.getValueAt(tbPeriksaLab.getSelectedRow(), 6).toString();
         }
     }
 

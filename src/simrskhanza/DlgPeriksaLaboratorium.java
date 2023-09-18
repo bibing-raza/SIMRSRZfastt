@@ -486,7 +486,6 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Pilihan");
@@ -502,7 +501,6 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppSemua.setBackground(new java.awt.Color(255, 255, 255));
         ppSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppSemua.setText("Pilih Semua");
@@ -801,7 +799,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         NmPtg.setBounds(546, 42, 195, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2021" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2023" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -816,21 +814,18 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         CmbJam.setForeground(new java.awt.Color(0, 0, 0));
         CmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         CmbJam.setName("CmbJam"); // NOI18N
-        CmbJam.setOpaque(false);
         PanelInput.add(CmbJam);
         CmbJam.setBounds(608, 72, 45, 23);
 
         CmbMenit.setForeground(new java.awt.Color(0, 0, 0));
         CmbMenit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbMenit.setName("CmbMenit"); // NOI18N
-        CmbMenit.setOpaque(false);
         PanelInput.add(CmbMenit);
         CmbMenit.setBounds(655, 72, 45, 23);
 
         CmbDetik.setForeground(new java.awt.Color(0, 0, 0));
         CmbDetik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbDetik.setName("CmbDetik"); // NOI18N
-        CmbDetik.setOpaque(false);
         PanelInput.add(CmbDetik);
         CmbDetik.setBounds(702, 72, 45, 23);
 
@@ -1111,9 +1106,9 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         chkPermintaan.setBounds(800, 12, 200, 23);
 
         BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/peminjaman.png"))); // NOI18N
         BtnSimpan1.setMnemonic('C');
-        BtnSimpan1.setText("Simpan Cek");
+        BtnSimpan1.setText("Verifikasi");
         BtnSimpan1.setToolTipText("Alt+C");
         BtnSimpan1.setName("BtnSimpan1"); // NOI18N
         BtnSimpan1.setPreferredSize(new java.awt.Dimension(100, 30));
