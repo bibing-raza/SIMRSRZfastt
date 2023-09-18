@@ -7310,7 +7310,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if ((Sequel.cariInteger("select count(-1)  from triase_igd where no_rawat = '" + TNoRw.getText() + "'") == 0) || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)) {
+                if ((Sequel.cariInteger("select count(-1)  from triase_igd where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                        || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                        || (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
                     RMTriaseIGD form = new RMTriaseIGD(null, false);
@@ -7357,7 +7359,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if ((Sequel.cariInteger("select count(-1)  from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "'") == 0) || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)) {
+                if ((Sequel.cariInteger("select count(-1)  from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                        || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                        || (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
                     RMPenilaianAwalMedikIGD form = new RMPenilaianAwalMedikIGD(null, false);
@@ -7404,7 +7408,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if ((Sequel.cariInteger("select count(-1)  from penilaian_awal_keperawatan_igdrz where no_rawat = '" + TNoRw.getText() + "'") == 0) || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)) {
+                if ((Sequel.cariInteger("select count(-1)  from penilaian_awal_keperawatan_igdrz where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                        || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                        || (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     akses.setform("DlgKasirRalan");
                     RMPenilaianAwalKeperawatanIGDrz form = new RMPenilaianAwalKeperawatanIGDrz(null, false);
