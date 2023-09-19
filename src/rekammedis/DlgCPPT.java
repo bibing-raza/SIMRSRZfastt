@@ -242,6 +242,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         DTPCari1 = new widget.Tanggal();
         jLabel21 = new widget.Label();
         DTPCari2 = new widget.Tanggal();
+        jLabel15 = new widget.Label();
+        cmbRawat = new widget.ComboBox();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -404,7 +406,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Catatan Perkembangan Pasien Terintegrasi (CPPT) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Catatan Perkembangan Pasien Terintegrasi (CPPT) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -548,7 +550,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -562,12 +564,24 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari2);
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Jns. Rawat :");
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(jLabel15);
+
+        cmbRawat.setForeground(new java.awt.Color(0, 0, 0));
+        cmbRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "R. Jalan", "R. Inap" }));
+        cmbRawat.setName("cmbRawat"); // NOI18N
+        cmbRawat.setPreferredSize(new java.awt.Dimension(77, 23));
+        panelGlass9.add(cmbRawat);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
@@ -822,7 +836,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnInstruksi.setBounds(825, 186, 100, 23);
 
         tglCppt.setEditable(false);
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-09-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -910,9 +924,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
                     + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
                     + "'" + TBagian.getText() + "','" + THasil.getText() + "','" + TInstruksi.getText() + "',"
-                    + "'" + cmbVerifikasi.getSelectedItem().toString() + "','" + kddpjp.getText() + "','Ralan',"
+                    + "'" + cmbVerifikasi.getSelectedItem().toString() + "','" + kddpjp.getText() + "',"
+                    + "'" + Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "',"
                     + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
-                    + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "'", "CPPT IGD");
+                    + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "'", "CPPT Pasien");
             
             TCari.setText(TNoRw.getText());
             tampil();
@@ -1096,21 +1111,42 @@ public class DlgCPPT extends javax.swing.JDialog {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-            if (status.equals("Ralan")) {
-                param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
-            } else {
-                param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (RAWAT INAP)");
+            if (cmbRawat.getSelectedIndex() == 1) {
+                if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data cppt IGD pasien tersebut masih belum ada disimpan...!!!!");
+                } else {                    
+                    param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
+                            + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
+                            + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
+                            + "AND c.STATUS = 'Ralan' ORDER BY c.waktu_simpan", param);
+                }
+            } else if (cmbRawat.getSelectedIndex() == 2) {
+                if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ranap'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data cppt rawat inap pasien tersebut masih belum ada disimpan...!!!!");
+                } else {
+                    param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (RAWAT INAP)");
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
+                            + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
+                            + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
+                            + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
+                            + "AND c.STATUS = 'Ranap' ORDER BY c.waktu_simpan", param);
+                }
+            } else if (cmbRawat.getSelectedIndex() == 0) {
+                param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI");
+                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT ]::",
+                        "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
+                        + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
+                        + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
+                        + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' ORDER BY c.waktu_simpan", param);
             }
-            
-            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
-                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
-                    + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
-                    + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
-                    + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                    + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
-                    + "AND c. STATUS = 'Ralan' ORDER BY c.waktu_simpan", param);
-            
+
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
@@ -1265,6 +1301,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbRawat;
     private widget.ComboBox cmbVerifikasi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
@@ -1273,6 +1310,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
+    private widget.Label jLabel15;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel3;
@@ -1300,20 +1338,49 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
-                    + "DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tglcppt, c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, "
-                    + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, "
-                    + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data from cppt c inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=c.nip_dpjp where "
-                    + "c.tgl_cppt between ? and ? and c.no_rawat like ? or "
-                    + "c.tgl_cppt between ? and ? and p.no_rkm_medis like ? or "
-                    + "c.tgl_cppt between ? and ? and p.nm_pasien like ? or "
-                    + "c.tgl_cppt between ? and ? and c.bagian like ? or "
-                    + "c.tgl_cppt between ? and ? and c.hasil_pemeriksaan like ? or "
-                    + "c.tgl_cppt between ? and ? and c.instruksi_nakes like ? or "
-                    + "c.tgl_cppt between ? and ? and c.verifikasi like ? or "
-                    + "c.tgl_cppt between ? and ? and pg.nama like ? or "
-                    + "c.tgl_cppt between ? and ? and c.status like ? order by c.waktu_simpan desc");
+            if (cmbRawat.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
+                        + "DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tglcppt, c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, "
+                        + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, "
+                        + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data from cppt c inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=c.nip_dpjp where "
+                        + "c.tgl_cppt between ? and ? and c.no_rawat like ? or "
+                        + "c.tgl_cppt between ? and ? and p.no_rkm_medis like ? or "
+                        + "c.tgl_cppt between ? and ? and p.nm_pasien like ? or "
+                        + "c.tgl_cppt between ? and ? and c.bagian like ? or "
+                        + "c.tgl_cppt between ? and ? and c.hasil_pemeriksaan like ? or "
+                        + "c.tgl_cppt between ? and ? and c.instruksi_nakes like ? or "
+                        + "c.tgl_cppt between ? and ? and c.verifikasi like ? or "
+                        + "c.tgl_cppt between ? and ? and pg.nama like ? order by c.waktu_simpan desc");
+            } else if (cmbRawat.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
+                        + "DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tglcppt, c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, "
+                        + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, "
+                        + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data from cppt c inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=c.nip_dpjp where "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.no_rawat like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and p.no_rkm_medis like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and p.nm_pasien like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.bagian like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.hasil_pemeriksaan like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.instruksi_nakes like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.verifikasi like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and pg.nama like ? order by c.waktu_simpan desc");
+            } else if (cmbRawat.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
+                        + "DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tglcppt, c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, "
+                        + "c.verifikasi, pg.nama nmdpjp, c.status, c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, "
+                        + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data from cppt c inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=c.nip_dpjp where "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.no_rawat like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.no_rkm_medis like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.nm_pasien like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.bagian like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.hasil_pemeriksaan like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.instruksi_nakes like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.verifikasi like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and pg.nama like ? order by c.waktu_simpan desc");
+            }
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1338,10 +1405,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 ps.setString(21, "%" + TCari.getText().trim() + "%");
                 ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(24, "%" + TCari.getText().trim() + "%");
-                ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(27, "%" + TCari.getText().trim() + "%");
+                ps.setString(24, "%" + TCari.getText().trim() + "%");                
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -1437,6 +1501,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 cmbMnt.setEnabled(false);
                 cmbDtk.setEnabled(false);
             }
+            
+            if (status.equals("Ralan")) {
+                cmbRawat.setSelectedIndex(1);
+            } else if (status.equals("Ranap")) {
+                cmbRawat.setSelectedIndex(2);
+            }
         }
     }
     
@@ -1524,7 +1594,14 @@ public class DlgCPPT extends javax.swing.JDialog {
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
         TCari.setText(norw);
+        status = Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norw + "'");
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         DTPCari2.setDate(new Date());
+
+        if (status.equals("Ralan")) {
+            cmbRawat.setSelectedIndex(1);
+        } else if (status.equals("Ranap")) {
+            cmbRawat.setSelectedIndex(2);
+        }
     }
 }
