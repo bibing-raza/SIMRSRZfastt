@@ -310,7 +310,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jam();
 
         tabModeResepObat = new DefaultTableModel(null, new Object[]{
-            "P", "No.Rawat", "Nama Obat", "Status", "ID"}) {
+            "P", "No.Rawat", "Nama Obat", "Tgl. Resep", "Jam Input", "Status", "ID"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -320,7 +320,8 @@ public final class DlgCariObat extends javax.swing.JDialog {
                 return a;
             }
             Class[] types = new Class[]{
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -333,28 +334,23 @@ public final class DlgCariObat extends javax.swing.JDialog {
         tbResepObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbResepObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < 7; i++) {
             TableColumn column = tbResepObat.getColumnModel().getColumn(i);
-            switch (i) {
-                case 0:
-                    column.setPreferredWidth(20);
-                    break;
-                case 1:
-                    column.setPreferredWidth(105);
-                    break;
-                case 2:
-                    column.setPreferredWidth(400);
-                    break;
-                case 3:
-                    column.setPreferredWidth(50);
-                    break;
-                case 4:
-//                    column.setPreferredWidth(1);
-                    column.setMinWidth(0);
-                    column.setMaxWidth(0);
-                    break;
-                default:
-                    break;
+            if (i == 0) {
+                column.setPreferredWidth(20);
+            } else if (i == 1) {
+                column.setPreferredWidth(105);
+            } else if (i == 2) {
+                column.setPreferredWidth(400);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(50);
+            } else if (i == 6) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -420,7 +416,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppBersihkan.setBackground(new java.awt.Color(255, 255, 255));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Bersihkan Jumlah");
@@ -436,7 +431,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         });
         Popup.add(ppBersihkan);
 
-        ppStok.setBackground(new java.awt.Color(255, 255, 255));
         ppStok.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppStok.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppStok.setText("Tampilkan Semua Stok");
@@ -452,7 +446,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         });
         Popup.add(ppStok);
 
-        MnCetakResepDokter.setBackground(new java.awt.Color(255, 255, 255));
         MnCetakResepDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakResepDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnCetakResepDokter.setText("Cetak Resep Dokter");
@@ -766,7 +759,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2022" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-09-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -782,7 +775,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam.setName("cmbJam"); // NOI18N
-        cmbJam.setOpaque(false);
         cmbJam.setPreferredSize(new java.awt.Dimension(50, 23));
         cmbJam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -795,7 +787,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt.setName("cmbMnt"); // NOI18N
-        cmbMnt.setOpaque(false);
         cmbMnt.setPreferredSize(new java.awt.Dimension(50, 23));
         cmbMnt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -808,7 +799,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk.setName("cmbDtk"); // NOI18N
-        cmbDtk.setOpaque(false);
         cmbDtk.setPreferredSize(new java.awt.Dimension(50, 23));
         cmbDtk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -874,7 +864,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         Scroll3.setViewportView(tbResepObat);
 
         FormInput.add(Scroll3);
-        Scroll3.setBounds(10, 110, 620, 150);
+        Scroll3.setBounds(10, 110, 750, 150);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("No.Rawat :");
@@ -2403,15 +2393,20 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     public void tampil_resep() {
         Valid.tabelKosong(tabModeResepObat);
         try {
-            ps = koneksi.prepareStatement("select c.no_rawat,c.nama_obat, c.`status`, c.noId from catatan_resep c "
-                    + "where c.no_rawat like '%" + TNoRw.getText().trim() + "%'");
+            ps = koneksi.prepareStatement("select c.no_rawat,c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
+                    + "c.jam_perawatan from catatan_resep c where c.no_rawat like '%" + TNoRw.getText().trim() + "%'");
             chkResepObat.setSelected(false);
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabModeResepObat.addRow(new Object[]{false, rs.getString(1),
-                        rs.getString(2),
-                        rs.getString(3), rs.getString(4)
+                    tabModeResepObat.addRow(new Object[]{
+                        false, 
+                        rs.getString("no_rawat"),
+                        rs.getString("nama_obat"),
+                        rs.getString("tgl"), 
+                        rs.getString("jam_perawatan"),
+                        rs.getString("status"),
+                        rs.getString("noId")
                     });
                 }
             } catch (Exception e) {

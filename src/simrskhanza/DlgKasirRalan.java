@@ -7625,7 +7625,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 akses.setform("DlgKasirRalan");
                 DlgCPPT form = new DlgCPPT(null, false);
                 form.isCek();
-                form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText());
+                form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -8242,9 +8242,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnAssesmenMedikIGD.setEnabled(akses.getdata_triase_igd());
         MnTransferSerahTerimaIGD.setEnabled(akses.getdata_triase_igd());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
-        MnCariPermintaanLab.setEnabled(akses.getperiksa_lab());
+        MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnPermintaanRadiologi.setEnabled(akses.getpermintaan_radiologi());
-        MnCariPermintaanRad.setEnabled(akses.getperiksa_radiologi());
+        MnCariPermintaanRad.setEnabled(akses.getpermintaan_radiologi());
         ppPasienCorona.setEnabled(akses.getpasien_corona());
         ppPerawatanCorona.setEnabled(akses.getpasien_corona());
         ppSuratKontrol.setEnabled(akses.getRencanaKontrolJKN());

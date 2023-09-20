@@ -28,7 +28,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
-    private int i = 0, x = 0, cekSudah = 0;
+    private int i = 0, x = 0, cekSudah = 0, pilihan = 0;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private String norw = "", nominta = "", jnsrwt = "", sttsrawat = "";
@@ -42,7 +42,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No.Rawat", "No. RM", "Nama Pasien", "No. Permintaan", "Tgl. Permintaan",
-            "Jam", "Jns. Rawat"
+            "Jam", "Jns. Rawat", "sttsperiksa"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -54,7 +54,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -72,13 +72,16 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 6) {
                 column.setPreferredWidth(70);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabMode1 = new DefaultTableModel(null, new Object[]{
             "No.", "No. Permintaan", "Nama Pemeriksaan", "Tgl. Permintaan",
-            "Jam", "Diperiksa", "Dokter Perujuk"
+            "Jam", "Diperiksa", "Dokter Perujuk", "norawat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -90,7 +93,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbPermintaan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPermintaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbPermintaan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -106,6 +109,9 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
                 column.setPreferredWidth(75);
             } else if (i == 6) {
                 column.setPreferredWidth(220);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPermintaan.setDefaultRenderer(Object.class, new WarnaTable());
@@ -153,6 +159,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         LCount = new widget.Label();
         panelisi1 = new widget.panelisi();
         BtnCari = new widget.Button();
+        BtnHapus = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -165,7 +172,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiSudah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnVerifikasiSudah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifikasiSudah.setName("MnVerifikasiSudah"); // NOI18N
-        MnVerifikasiSudah.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnVerifikasiSudah.setPreferredSize(new java.awt.Dimension(170, 26));
         MnVerifikasiSudah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifikasiSudahActionPerformed(evt);
@@ -180,7 +187,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiBatal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnVerifikasiBatal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifikasiBatal.setName("MnVerifikasiBatal"); // NOI18N
-        MnVerifikasiBatal.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnVerifikasiBatal.setPreferredSize(new java.awt.Dimension(170, 26));
         MnVerifikasiBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifikasiBatalActionPerformed(evt);
@@ -358,6 +365,25 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnHapusKeyPressed(evt);
+            }
+        });
+        panelisi1.add(BtnHapus);
+
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -520,6 +546,60 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_MnVerifikasiBatalActionPerformed
 
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        if (pilihan == 1) {
+            if (tbPasien.getSelectedRow() != -1) {
+                if (norw.equals("")) {
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+                    tbPasien.requestFocus();
+                } else if (Sequel.cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norw + "' and status_periksa='sudah'") > 0) {
+                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan laboratorium sudah diperiksa...!!!!");
+                } else {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + norw + "'");
+                        tampilPasien();
+                        Valid.tabelKosong(tabMode1);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data permintaan pemeriksaan laboratorium...!!!!");
+                TCari.requestFocus();
+            }
+        } else if (pilihan == 2) {
+            if (tbPermintaan.getSelectedRow() != -1) {
+                if (nominta.equals("") && (tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(),7).toString().equals(""))) {
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+                    tbPermintaan.requestFocus();
+                } else if (tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(),5).toString().equals("SUDAH")) {
+                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan laboratorium sudah diperiksa...!!!!");
+                } else {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 7).toString() + "' "
+                                + "and no_minta='" + nominta + "'");
+                        tampilPasien();
+                        tampilPemeriksaan();
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data permintaan pemeriksaan laboratorium...!!!!");
+                TCari.requestFocus();
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan laboratorium belum dipilih...!!!!");
+            TCari.requestFocus();
+        }
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnHapusActionPerformed(null);
+        } else {
+            Valid.pindah(evt, TCari, BtnAll);
+        }
+    }//GEN-LAST:event_BtnHapusKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -539,6 +619,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnVerifikasiBatal;
@@ -566,7 +647,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT pl.no_rawat, p.no_rkm_medis, p.nm_pasien, pl.no_minta, date_format(pl.tgl_permintaan,'%d-%m-%Y') tglmnta, "
-                    + "pl.jam_permintaan, pl.status_rawat from permintaan_lab_raza pl inner join reg_periksa rp on rp.no_rawat=pl.no_rawat "
+                    + "pl.jam_permintaan, pl.status_rawat, pl.status_periksa from permintaan_lab_raza pl inner join reg_periksa rp on rp.no_rawat=pl.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and pl.no_rawat like ? or "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and p.no_rkm_medis like ? or "
@@ -599,7 +680,8 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         rs.getString("no_minta"),
                         rs.getString("tglmnta"),
                         rs.getString("jam_permintaan"),
-                        rs.getString("status_rawat")
+                        rs.getString("status_rawat"),
+                        rs.getString("status_periksa")
                     });
                 }
             } catch (Exception e) {
@@ -638,7 +720,8 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         rs1.getString("tglminta"),
                         rs1.getString("jam_permintaan"),
                         rs1.getString("status_periksa"),
-                        rs1.getString("nmdokter")
+                        rs1.getString("nmdokter"),
+                        rs1.getString("no_rawat")
                     });
                     x++;
                 }
@@ -660,6 +743,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private void getData() {
         norw = "";
         sttsrawat = "";
+        pilihan = 1;
         if(tbPasien.getSelectedRow()!= -1){
             norw = tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString();
             sttsrawat = tbPasien.getValueAt(tbPasien.getSelectedRow(),6).toString();
@@ -670,6 +754,8 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     public void isCek(String norwt, String jnsrawat){
         jnsrwt = jnsrawat;
         MnVerifikasiSudah.setEnabled(akses.getperiksa_lab());
+        MnVerifikasiBatal.setEnabled(akses.getperiksa_lab());
+        BtnHapus.setEnabled(akses.getpermintaan_lab());
         
         TCari.setText(norwt);
         Valid.SetTgl(Tgl1, Sequel.cariIsi("select ifnull(tgl_registrasi,date(now())) from reg_periksa where no_rawat='" + norwt + "'"));
@@ -678,6 +764,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     
     private void getdataItem() {
         nominta = "";
+        pilihan = 2;
         if (tbPermintaan.getSelectedRow() != -1) {
             nominta = tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString();
         }

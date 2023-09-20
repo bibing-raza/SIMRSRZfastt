@@ -5504,10 +5504,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 } else if (diperiksa.equals("SUDAH")) {
                     JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. yg sdh diperiksa tidak dapat dihapus..!!!");
                 } else {
-                    Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
-                    noiD = "";
-                    noMinta = "";
-                    tampilMintaLab1();
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
+                        noiD = "";
+                        noMinta = "";
+                        tampilMintaLab1();
+                    }
                 }
             } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
                 if (tabModeRad1.getRowCount() == 0) {
@@ -5520,8 +5523,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         + "where pp.noorder='" + noordeR1 + "' and pr.tgl_sampel='0000-00-00' and pr.jam_sampel='00:00:00'") == 0) {
                     JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
                 } else {
-                    Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + noordeR1 + "' and kd_jenis_prw='" + noiD1 + "'");
-                    tampilMintaRad1();
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + noordeR1 + "' and kd_jenis_prw='" + noiD1 + "'");
+                        tampilMintaRad1();
+                    }
                 }
             }
             

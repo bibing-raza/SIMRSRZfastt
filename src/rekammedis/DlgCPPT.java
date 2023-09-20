@@ -49,7 +49,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private ResultSet rs, rrs1, rrs2;
     private int x = 0, pilihan = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String status = "", cekjam = "";
+    private String status = "", cekjam = "", statusOK = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -920,12 +920,17 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else {
                 cekjam = "tidak";
             }
+            
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                statusOK = "Ralan";
+            } else if (status.equals("ranap")) {
+                statusOK = "Ranap";
+            }
 
             Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
                     + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
                     + "'" + TBagian.getText() + "','" + THasil.getText() + "','" + TInstruksi.getText() + "',"
-                    + "'" + cmbVerifikasi.getSelectedItem().toString() + "','" + kddpjp.getText() + "',"
-                    + "'" + Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "',"
+                    + "'" + cmbVerifikasi.getSelectedItem().toString() + "','" + kddpjp.getText() + "','" + statusOK + "',"
                     + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "'", "CPPT Pasien");
             
@@ -1463,7 +1468,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }
 
     private void getData() {
-        status = "";
+        statusOK = "";
         cekjam = "";
         if (tbCPPT.getSelectedRow() != -1) {
             TNoRw.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 0).toString());
@@ -1476,7 +1481,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             kddpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString());
             nmdpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString());
             cmbVerifikasi.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString());
-            status = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString();
+            statusOK = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString();
             cekjam = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString();
             cmbJam.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString().substring(3, 5));
@@ -1502,9 +1507,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 cmbDtk.setEnabled(false);
             }
             
-            if (status.equals("Ralan")) {
+            if (statusOK.equals("Ralan")) {
                 cmbRawat.setSelectedIndex(1);
-            } else if (status.equals("Ranap")) {
+            } else if (statusOK.equals("Ranap")) {
                 cmbRawat.setSelectedIndex(2);
             }
         }
@@ -1589,19 +1594,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw, String norm, String nmpasien) {
+    public void setData(String norw, String norm, String nmpasien, String sttsrawat) {
         TNoRw.setText(norw);
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
-        TCari.setText(norw);
-        status = Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + norw + "'");
+        TCari.setText(norw); 
+        status = sttsrawat;
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         DTPCari2.setDate(new Date());
 
-        if (status.equals("Ralan")) {
+        if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)")) {
             cmbRawat.setSelectedIndex(1);
-        } else if (status.equals("Ranap")) {
+        } else if (sttsrawat.equals("ranap")) {
             cmbRawat.setSelectedIndex(2);
+        } else {
+            cmbRawat.setSelectedIndex(0);
         }
     }
 }

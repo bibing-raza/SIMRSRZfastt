@@ -12809,7 +12809,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
 
-            if (akses.getperiksa_lab() == true) {
+            if (akses.getpermintaan_lab() == true) {
                 Panelmenu.add(btnPermintaanLab);
                 jmlmenu++;
             }
@@ -15031,7 +15031,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
 
-        if (akses.getperiksa_lab() == true) {
+        if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnPermintaanLab);
             jmlmenu++;
         }
@@ -17101,7 +17101,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
 
-        if (akses.getperiksa_lab() == true) {
+        if (akses.getpermintaan_lab() == true) {
             if (btnPermintaanLab.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPermintaanLab);
                 jmlmenu++;
