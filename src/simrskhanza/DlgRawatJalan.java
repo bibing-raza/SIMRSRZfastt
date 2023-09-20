@@ -7132,13 +7132,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else if (diperiksa.equals("SUDAH")) {
                 JOptionPane.showMessageDialog(null, "Item permintaan pemeriksaan Lab. yg sdh diperiksa tidak dapat dihapus..!!!");
             } else {
-                Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noiD + "' and no_minta='" + noMinta + "'");
+                    noiD = "";
+                    noMinta = "";
+                    tampilMintaLab1();
+                }
             }
 
-            noiD = "";
-            noMinta = "";
-            tampilMintaLab1();
-            
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data permintaan periksa Lab. dengan mengklik data pada tabel...!!!");
             TabPemeriksaanDokter.setSelectedIndex(1);
@@ -7156,10 +7158,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     + "where pp.noorder='" + noordeR1 + "' and pr.tgl_sampel='0000-00-00' and pr.jam_sampel='00:00:00'") == 0) {
                 JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
             } else {
-                Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + noordeR1 + "' and kd_jenis_prw='" + noiD1 + "'");
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + noordeR1 + "' and kd_jenis_prw='" + noiD1 + "'");
+                    tampilMintaRad1();
+                }
             }
-
-            tampilMintaRad1();
+            
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data permintaan periksa Radiologi dengan mengklik data pada tabel...!!!");
             TabPemeriksaanDokter.setSelectedIndex(2);
