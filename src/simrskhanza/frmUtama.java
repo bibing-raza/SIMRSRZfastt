@@ -398,7 +398,6 @@ public class frmUtama extends javax.swing.JFrame {
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
     private String coder_nik = "", pilihpage = "", judulform = "", host = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
-    private final DlgReg reg = new DlgReg(null, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
     /**
@@ -7031,7 +7030,8 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void BtnToolRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolRegActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    isTutup();    
+    isTutup();
+    DlgReg reg = new DlgReg(null, false);
     reg.emptTeks();
     reg.isCek();
     reg.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
