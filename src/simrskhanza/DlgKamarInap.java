@@ -11968,13 +11968,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
             ringkasan.TNmDokter.requestFocus();
             ringkasan.setPasien(norawat.getText());
-            ringkasan.setSize(1098, 550);
+            ringkasan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             ringkasan.setLocationRelativeTo(internalFrame1);
             ringkasan.setVisible(true);
-            ringkasan.tampil();
-            ringkasan.ChkInput.setSelected(true);
-            ringkasan.isForm();
-            ringkasan.FormInput.setSelectedIndex(0);
+            ringkasan.TabRingkasan.setSelectedIndex(0);
         }
     }//GEN-LAST:event_MnRingkasanPulangActionPerformed
 

@@ -51,7 +51,6 @@ import keuangan.Jurnal;
 import laporan.DlgLaporanFarmasi;
 import simrskhanza.DlgCariObatPenyakit;
 import simrskhanza.DlgPasien;
-import simrskhanza.DlgRingkasanPulangRanap;
 
 /**
  *
