@@ -129,7 +129,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
             pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "", skorAsesIGD = "",
             TotSkorGZD = "", TotSkorGZA = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
-    private DlgRawatInap rawatinap = new DlgRawatInap(null, false);    
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
 
     /**
@@ -7638,7 +7637,8 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
                 if (rs2.next()) {
                     if (Sequel.cariRegistrasi(rs2.getString("no_rawat2")) > 0) {
                         JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
-                    } else {                        
+                    } else {
+                        DlgRawatInap rawatinap = new DlgRawatInap(null, false); 
                         akses.setform("DlgKamarInap");
                         rawatinap.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                         rawatinap.setLocationRelativeTo(internalFrame1);
@@ -7670,7 +7670,8 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
     } else {
         if (Sequel.cariRegistrasi(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
-        } else {            
+        } else {
+            DlgRawatInap rawatinap = new DlgRawatInap(null, false); 
             akses.setform("DlgKamarInap");
             rawatinap.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             rawatinap.setLocationRelativeTo(internalFrame1);
