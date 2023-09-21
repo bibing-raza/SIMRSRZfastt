@@ -149,6 +149,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     public DlgCariPoli poliklinik = new DlgCariPoli(null, false);
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private DlgDiagnosaPenyakit resep = new DlgDiagnosaPenyakit(null, false);
+    private DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
 
     /**
      * Creates new form DlgReg
@@ -8901,8 +8902,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         + "where (r.tgl_registrasi BETWEEN (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 7 DAY)) and (select DATE_sub(DATE_FORMAT(now(),'%Y-%m-%d'),INTERVAL 1 DAY))) and kd_poli ='" + kdpoli.getText() + "' "
                         + "and (IFNULL(d.no_rawat,'-') = '-' and IFNULL(s.no_rawat,'-') = '-' and IFNULL(p.no_rawat,'-') = '-')");
 
-                if (cekDiag == 0) {
-                    DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
+                if (cekDiag == 0) {                    
                     akses.setform("DlgKasirRalan");
                     dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgrwjl2.setLocationRelativeTo(internalFrame1);
@@ -8923,7 +8923,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     tbRiwayatKunj.requestFocus();
                 }
             } else {
-                DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
                 akses.setform("DlgKasirRalan");
                 dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgrwjl2.setLocationRelativeTo(internalFrame1);
@@ -8935,7 +8934,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 dlgrwjl2.isCek();
             }
         } else {
-            DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
             akses.setform("DlgKasirRalan");
             dlgrwjl2.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwjl2.setLocationRelativeTo(internalFrame1);
