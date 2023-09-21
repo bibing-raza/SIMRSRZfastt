@@ -397,7 +397,10 @@ public class frmUtama extends javax.swing.JFrame {
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
     private String coder_nik = "", pilihpage = "", judulform = "", host = "";
-
+    private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
+    private final DlgReg reg = new DlgReg(null, false);
+    private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
+    private final DlgIGD igd = new DlgIGD(this, false);  
     /**
      * Creates new form frmUtama
      */
@@ -6131,7 +6134,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19/09/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21/09/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6962,8 +6965,7 @@ public class frmUtama extends javax.swing.JFrame {
 
     private void BtnToolKamnapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKamnapActionPerformed
         isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgKamarInap kamarinap = new DlgKamarInap(null, false);
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));        
         kamarinap.isCek();
         kamarinap.emptTeks();
         kamarinap.setCariKosong();
@@ -7016,7 +7018,6 @@ private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKasirActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     isTutup();
-    DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     akses.tRefreshAntrian.start();
     kasirralan.isCek();
     kasirralan.empttext();
@@ -7030,8 +7031,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void BtnToolRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolRegActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    isTutup();
-    DlgReg reg = new DlgReg(null, false);
+    isTutup();    
     reg.emptTeks();
     reg.isCek();
     reg.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
@@ -8715,8 +8715,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void btnIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnIGDActionPerformed
         isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgIGD igd = new DlgIGD(this, false);        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));              
         igd.emptTeks();
         igd.isCek();
         igd.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());

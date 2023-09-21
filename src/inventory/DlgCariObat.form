@@ -84,9 +84,6 @@
         </Property>
         <Property name="name" type="java.lang.String" value="Kd2" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="Kd2KeyPressed"/>
-      </Events>
     </Component>
     <Component class="widget.TextBox" name="Tanggal">
       <Properties>
@@ -119,9 +116,6 @@
         </Property>
         <Property name="name" type="java.lang.String" value="TStok" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TStokKeyPressed"/>
-      </Events>
     </Component>
     <Component class="widget.TextBox" name="TNoRm">
       <Properties>
@@ -130,9 +124,6 @@
         </Property>
         <Property name="name" type="java.lang.String" value="TNoRm" noResource="true"/>
       </Properties>
-      <Events>
-        <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="TNoRmKeyPressed"/>
-      </Events>
     </Component>
   </NonVisualComponents>
   <Properties>
@@ -1033,24 +1024,25 @@
                     <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="chkResepObatActionPerformed"/>
                   </Events>
                 </Component>
-                <Component class="widget.Button" name="BtnUpdate">
+                <Component class="widget.Button" name="BtnVerif">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                      <Image iconType="3" name="/picture/save-16x16.png"/>
+                      <Image iconType="3" name="/picture/42a.png"/>
                     </Property>
                     <Property name="mnemonic" type="int" value="85"/>
                     <Property name="text" type="java.lang.String" value="Verifikasi Resep"/>
                     <Property name="toolTipText" type="java.lang.String" value="Alt+U"/>
-                    <Property name="name" type="java.lang.String" value="BtnUpdate" noResource="true"/>
+                    <Property name="iconTextGap" type="int" value="7"/>
+                    <Property name="name" type="java.lang.String" value="BtnVerif" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
                       <Dimension value="[140, 23]"/>
                     </Property>
                   </Properties>
                   <Events>
-                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnUpdateActionPerformed"/>
+                    <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="BtnVerifActionPerformed"/>
                   </Events>
                 </Component>
                 <Component class="widget.Button" name="BtnCekResep">

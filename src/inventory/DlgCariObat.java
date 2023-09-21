@@ -52,7 +52,6 @@ import widget.Button;
  * @author dosen
  */
 public final class DlgCariObat extends javax.swing.JDialog {
-
     private final DefaultTableModel tabModeobat, tabModeResepObat;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -411,7 +410,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         tbResepObat = new widget.Table();
         panelisi4 = new widget.panelisi();
         chkResepObat = new widget.CekBox();
-        BtnUpdate = new widget.Button();
+        BtnVerif = new widget.Button();
         BtnCekResep = new widget.Button();
 
         Popup.setName("Popup"); // NOI18N
@@ -464,11 +463,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         Kd2.setHighlighter(null);
         Kd2.setName("Kd2"); // NOI18N
-        Kd2.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                Kd2KeyPressed(evt);
-            }
-        });
 
         Tanggal.setHighlighter(null);
         Tanggal.setName("Tanggal"); // NOI18N
@@ -481,19 +475,9 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
         TStok.setHighlighter(null);
         TStok.setName("TStok"); // NOI18N
-        TStok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TStokKeyPressed(evt);
-            }
-        });
 
         TNoRm.setHighlighter(null);
         TNoRm.setName("TNoRm"); // NOI18N
-        TNoRm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRmKeyPressed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -887,19 +871,20 @@ public final class DlgCariObat extends javax.swing.JDialog {
         });
         panelisi4.add(chkResepObat);
 
-        BtnUpdate.setForeground(new java.awt.Color(0, 0, 0));
-        BtnUpdate.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnUpdate.setMnemonic('U');
-        BtnUpdate.setText("Verifikasi Resep");
-        BtnUpdate.setToolTipText("Alt+U");
-        BtnUpdate.setName("BtnUpdate"); // NOI18N
-        BtnUpdate.setPreferredSize(new java.awt.Dimension(140, 23));
-        BtnUpdate.addActionListener(new java.awt.event.ActionListener() {
+        BtnVerif.setForeground(new java.awt.Color(0, 0, 0));
+        BtnVerif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnVerif.setMnemonic('U');
+        BtnVerif.setText("Verifikasi Resep");
+        BtnVerif.setToolTipText("Alt+U");
+        BtnVerif.setIconTextGap(7);
+        BtnVerif.setName("BtnVerif"); // NOI18N
+        BtnVerif.setPreferredSize(new java.awt.Dimension(140, 23));
+        BtnVerif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUpdateActionPerformed(evt);
+                BtnVerifActionPerformed(evt);
             }
         });
-        panelisi4.add(BtnUpdate);
+        panelisi4.add(BtnVerif);
 
         BtnCekResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnCekResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -1334,10 +1319,6 @@ public final class DlgCariObat extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbObatKeyPressed
 
-    private void Kd2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Kd2KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_Kd2KeyPressed
-
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
@@ -1362,7 +1343,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         cekCat = 0;
         cekCat = Sequel.cariInteger("Select count(-1) from catatan_resep where no_rawat = '" + TNoRw.getText() + "' and status = 'BELUM'");
         if (cekCat > 0) {
-            JOptionPane.showMessageDialog(null, "Ada Catatan Resep Dari Dokter, Silakan Update Catatan Dokter");
+            JOptionPane.showMessageDialog(null, "Ada catatan resep dari dokter, Silakan verifikasi resepnya dulu..!!");
+            BtnVerif.requestFocus();
         } else {
             try {
                 isSetBangsal();
@@ -1474,7 +1456,6 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 LPpn.setText("0");
                 LTotalTagihan.setText("0");
                 if (ChkNoResep.isSelected() == true) {
-
                     DlgResepObat resep = new DlgResepObat(null, false);
                     resep.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     resep.setLocationRelativeTo(internalFrame1);
@@ -1610,22 +1591,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         // TODO add your handling code here:
     }//GEN-LAST:event_ChkJlnActionPerformed
 
-    private void TStokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TStokKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TStokKeyPressed
-
-    private void TNoRmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRmKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TNoRmKeyPressed
-
-    private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+    private void BtnVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifActionPerformed
         x = 0;
         for (i = 0; i < tbResepObat.getRowCount(); i++) {
             if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
                 x++;
             }
         }
-        
+
         if (x == 0) {
             JOptionPane.showMessageDialog(null, "Conteng dulu untuk verifikasi resepnya..!!!!");
             tbResepObat.requestFocus();
@@ -1638,16 +1611,15 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         stat = "DILUAR";
                     }
                     Sequel.queryu("update catatan_resep set status = '" + stat + "' where no_rawat='" + tbResepObat.getValueAt(i, 1).toString() + "' "
-                            + "and noId='" + tbResepObat.getValueAt(i, 4).toString() + "'");
+                            + "and noId='" + tbResepObat.getValueAt(i, 6).toString() + "'");
                 }
                 isPsien();
                 tampil_resep();
-
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
         }
-    }//GEN-LAST:event_BtnUpdateActionPerformed
+    }//GEN-LAST:event_BtnVerifActionPerformed
 
     private void BtnCekResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekResepActionPerformed
         isPsien();
@@ -1718,7 +1690,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Button BtnSeek5;
     private widget.Button BtnSimpan;
     private widget.Button BtnTambah;
-    private widget.Button BtnUpdate;
+    private widget.Button BtnVerif;
     private widget.CekBox ChkJln;
     private widget.CekBox ChkNoResep;
     private widget.Tanggal DTPTgl;

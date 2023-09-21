@@ -150,6 +150,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
     public DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private DlgDiagnosaPenyakit resep = new DlgDiagnosaPenyakit(null, false);
     private DlgRawatJalan dlgrwjl2 = new DlgRawatJalan(null, false);
+    private DlgPemberianObat dlgrwinap = new DlgPemberianObat(null, false);
 
     /**
      * Creates new form DlgReg
@@ -4877,8 +4878,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     } else {
         if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
-        } else {
-            DlgPemberianObat dlgrwinap = new DlgPemberianObat(null, false);
+        } else {            
             dlgrwinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwinap.setLocationRelativeTo(internalFrame1);
             dlgrwinap.isCek();

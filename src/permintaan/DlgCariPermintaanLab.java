@@ -741,6 +741,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }
     
     private void getData() {
+        pilihan = 0;
         norw = "";
         sttsrawat = "";
         pilihan = 1;
@@ -763,6 +764,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }
     
     private void getdataItem() {
+        pilihan = 0;
         nominta = "";
         pilihan = 2;
         if (tbPermintaan.getSelectedRow() != -1) {
