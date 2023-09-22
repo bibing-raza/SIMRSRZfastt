@@ -394,7 +394,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 200));
 
         panelisi1.setName("panelisi1"); // NOI18N
-        panelisi1.setPreferredSize(new java.awt.Dimension(870, 1367));
+        panelisi1.setPreferredSize(new java.awt.Dimension(870, 1343));
         panelisi1.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -617,13 +617,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll17.setViewportView(TRingkasanRiwayat);
 
         panelisi1.add(Scroll17);
-        Scroll17.setBounds(135, 276, 590, 80);
+        Scroll17.setBounds(135, 275, 590, 80);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Ringkasan Riwayat ");
         jLabel17.setName("jLabel17"); // NOI18N
         panelisi1.add(jLabel17);
-        jLabel17.setBounds(0, 276, 130, 23);
+        jLabel17.setBounds(0, 275, 130, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Penyakit :");
@@ -646,13 +646,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll26.setViewportView(TPemeriksaanFisik);
 
         panelisi1.add(Scroll26);
-        Scroll26.setBounds(135, 362, 590, 80);
+        Scroll26.setBounds(135, 360, 590, 80);
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Pemeriksaan Fisik :");
         jLabel40.setName("jLabel40"); // NOI18N
         panelisi1.add(jLabel40);
-        jLabel40.setBounds(0, 362, 130, 23);
+        jLabel40.setBounds(0, 360, 130, 23);
 
         Scroll18.setName("Scroll18"); // NOI18N
         Scroll18.setOpaque(true);
@@ -669,19 +669,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll18.setViewportView(TPemeriksaanPenunjang);
 
         panelisi1.add(Scroll18);
-        Scroll18.setBounds(135, 448, 590, 80);
+        Scroll18.setBounds(135, 445, 590, 80);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Pemeriksaan Penunjang");
         jLabel19.setName("jLabel19"); // NOI18N
         panelisi1.add(jLabel19);
-        jLabel19.setBounds(0, 448, 130, 23);
+        jLabel19.setBounds(0, 445, 130, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Diagnostik :");
         jLabel20.setName("jLabel20"); // NOI18N
         panelisi1.add(jLabel20);
-        jLabel20.setBounds(0, 464, 130, 23);
+        jLabel20.setBounds(0, 461, 130, 23);
 
         Scroll19.setName("Scroll19"); // NOI18N
         Scroll19.setOpaque(true);
@@ -698,25 +698,25 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll19.setViewportView(TTerapiPengobatan);
 
         panelisi1.add(Scroll19);
-        Scroll19.setBounds(135, 535, 590, 80);
+        Scroll19.setBounds(135, 530, 590, 80);
 
         jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setText("Terapi Pengobatan ");
         jLabel21.setName("jLabel21"); // NOI18N
         panelisi1.add(jLabel21);
-        jLabel21.setBounds(0, 535, 130, 23);
+        jLabel21.setBounds(0, 530, 130, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("selama dirawat & efek ");
         jLabel22.setName("jLabel22"); // NOI18N
         panelisi1.add(jLabel22);
-        jLabel22.setBounds(0, 549, 130, 23);
+        jLabel22.setBounds(0, 544, 130, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("samping (bila ada) :");
         jLabel23.setName("jLabel23"); // NOI18N
         panelisi1.add(jLabel23);
-        jLabel23.setBounds(0, 563, 130, 23);
+        jLabel23.setBounds(0, 558, 130, 23);
 
         Scroll20.setName("Scroll20"); // NOI18N
         Scroll20.setOpaque(true);
@@ -733,19 +733,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll20.setViewportView(TDiagUtama);
 
         panelisi1.add(Scroll20);
-        Scroll20.setBounds(135, 621, 590, 80);
+        Scroll20.setBounds(135, 615, 590, 80);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Diagnosa Utama/ ");
         jLabel28.setName("jLabel28"); // NOI18N
         panelisi1.add(jLabel28);
-        jLabel28.setBounds(0, 621, 130, 23);
+        jLabel28.setBounds(0, 615, 130, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Primer :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelisi1.add(jLabel24);
-        jLabel24.setBounds(0, 635, 130, 23);
+        jLabel24.setBounds(0, 628, 130, 23);
 
         Scroll21.setName("Scroll21"); // NOI18N
         Scroll21.setOpaque(true);
@@ -762,13 +762,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll21.setViewportView(TDiagSekunder);
 
         panelisi1.add(Scroll21);
-        Scroll21.setBounds(135, 708, 590, 80);
+        Scroll21.setBounds(135, 700, 590, 80);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Diagnosa Sekunder :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelisi1.add(jLabel25);
-        jLabel25.setBounds(0, 708, 130, 23);
+        jLabel25.setBounds(0, 700, 130, 23);
 
         Scroll22.setName("Scroll22"); // NOI18N
         Scroll22.setOpaque(true);
@@ -785,13 +785,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll22.setViewportView(TTindakan);
 
         panelisi1.add(Scroll22);
-        Scroll22.setBounds(135, 795, 590, 80);
+        Scroll22.setBounds(135, 786, 590, 80);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Tindakan Prosedur :");
         jLabel26.setName("jLabel26"); // NOI18N
         panelisi1.add(jLabel26);
-        jLabel26.setBounds(0, 795, 130, 23);
+        jLabel26.setBounds(0, 786, 130, 23);
 
         Scroll23.setName("Scroll23"); // NOI18N
         Scroll23.setOpaque(true);
@@ -808,13 +808,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll23.setViewportView(TKeadaanumum);
 
         panelisi1.add(Scroll23);
-        Scroll23.setBounds(135, 882, 590, 80);
+        Scroll23.setBounds(135, 871, 590, 80);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Keadaan Umum :");
         jLabel27.setName("jLabel27"); // NOI18N
         panelisi1.add(jLabel27);
-        jLabel27.setBounds(0, 882, 130, 23);
+        jLabel27.setBounds(0, 871, 130, 23);
 
         Scroll24.setName("Scroll24"); // NOI18N
         Scroll24.setOpaque(true);
@@ -831,19 +831,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll24.setViewportView(TKesadaran);
 
         panelisi1.add(Scroll24);
-        Scroll24.setBounds(135, 970, 590, 80);
+        Scroll24.setBounds(135, 957, 590, 80);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Kesadaran :");
         jLabel29.setName("jLabel29"); // NOI18N
         panelisi1.add(jLabel29);
-        jLabel29.setBounds(0, 970, 130, 23);
+        jLabel29.setBounds(0, 957, 130, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Tanda Vital :");
         jLabel30.setName("jLabel30"); // NOI18N
         panelisi1.add(jLabel30);
-        jLabel30.setBounds(0, 1057, 130, 23);
+        jLabel30.setBounds(0, 1040, 130, 23);
 
         TTensi.setForeground(new java.awt.Color(0, 0, 0));
         TTensi.setToolTipText("");
@@ -855,13 +855,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TTensi);
-        TTensi.setBounds(135, 1075, 90, 23);
+        TTensi.setBounds(135, 1057, 90, 23);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Suhu :");
         jLabel31.setName("jLabel31"); // NOI18N
         panelisi1.add(jLabel31);
-        jLabel31.setBounds(277, 1075, 50, 23);
+        jLabel31.setBounds(277, 1057, 50, 23);
 
         TSuhu.setForeground(new java.awt.Color(0, 0, 0));
         TSuhu.setToolTipText("");
@@ -873,13 +873,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TSuhu);
-        TSuhu.setBounds(334, 1075, 90, 23);
+        TSuhu.setBounds(334, 1057, 90, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Nadi :");
         jLabel32.setName("jLabel32"); // NOI18N
         panelisi1.add(jLabel32);
-        jLabel32.setBounds(455, 1075, 50, 23);
+        jLabel32.setBounds(455, 1057, 50, 23);
 
         TNadi.setForeground(new java.awt.Color(0, 0, 0));
         TNadi.setToolTipText("");
@@ -891,19 +891,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TNadi);
-        TNadi.setBounds(510, 1075, 90, 23);
+        TNadi.setBounds(510, 1057, 90, 23);
 
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText("Tekanan darah :");
         jLabel49.setName("jLabel49"); // NOI18N
         panelisi1.add(jLabel49);
-        jLabel49.setBounds(0, 1075, 130, 23);
+        jLabel49.setBounds(0, 1057, 130, 23);
 
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setText("Frekuensi Nafas :");
         jLabel33.setName("jLabel33"); // NOI18N
         panelisi1.add(jLabel33);
-        jLabel33.setBounds(0, 1103, 130, 23);
+        jLabel33.setBounds(0, 1085, 130, 23);
 
         TFrekuensiNafas.setForeground(new java.awt.Color(0, 0, 0));
         TFrekuensiNafas.setToolTipText("");
@@ -915,13 +915,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TFrekuensiNafas);
-        TFrekuensiNafas.setBounds(135, 1103, 90, 23);
+        TFrekuensiNafas.setBounds(135, 1085, 90, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("GCS :");
         jLabel37.setName("jLabel37"); // NOI18N
         panelisi1.add(jLabel37);
-        jLabel37.setBounds(277, 1103, 50, 23);
+        jLabel37.setBounds(277, 1085, 50, 23);
 
         Tgcs.setForeground(new java.awt.Color(0, 0, 0));
         Tgcs.setToolTipText("");
@@ -933,13 +933,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(Tgcs);
-        Tgcs.setBounds(334, 1103, 235, 23);
+        Tgcs.setBounds(334, 1085, 235, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Pengobatan Lanjutan :");
         jLabel34.setName("jLabel34"); // NOI18N
         panelisi1.add(jLabel34);
-        jLabel34.setBounds(0, 1131, 130, 23);
+        jLabel34.setBounds(0, 1113, 130, 23);
 
         cmbLanjutan.setForeground(new java.awt.Color(0, 0, 0));
         cmbLanjutan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Poliklinik", "RS Lain", "Puskesmas", "Dokter Luar" }));
@@ -956,17 +956,16 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(cmbLanjutan);
-        cmbLanjutan.setBounds(135, 1131, 110, 23);
+        cmbLanjutan.setBounds(135, 1113, 110, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Nama Dokter :");
         jLabel35.setName("jLabel35"); // NOI18N
         panelisi1.add(jLabel35);
-        jLabel35.setBounds(250, 1131, 90, 23);
+        jLabel35.setBounds(250, 1113, 90, 23);
 
         TDokterLuar.setForeground(new java.awt.Color(0, 0, 0));
         TDokterLuar.setToolTipText("");
-        TDokterLuar.setHighlighter(null);
         TDokterLuar.setName("TDokterLuar"); // NOI18N
         TDokterLuar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -974,7 +973,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TDokterLuar);
-        TDokterLuar.setBounds(344, 1131, 380, 23);
+        TDokterLuar.setBounds(344, 1113, 380, 23);
 
         chkTglKontrol.setBackground(new java.awt.Color(242, 242, 242));
         chkTglKontrol.setBorder(null);
@@ -992,7 +991,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(chkTglKontrol);
-        chkTglKontrol.setBounds(0, 1159, 130, 23);
+        chkTglKontrol.setBounds(0, 1141, 130, 23);
 
         TglKontrol.setEditable(false);
         TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2023" }));
@@ -1005,13 +1004,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TglKontrol);
-        TglKontrol.setBounds(135, 1159, 90, 23);
+        TglKontrol.setBounds(135, 1141, 90, 23);
 
         jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setText("Kondisi Waktu Pulang :");
         jLabel41.setName("jLabel41"); // NOI18N
         panelisi1.add(jLabel41);
-        jLabel41.setBounds(230, 1159, 130, 23);
+        jLabel41.setBounds(230, 1141, 130, 23);
 
         TKondisiPulang.setEditable(false);
         TKondisiPulang.setForeground(new java.awt.Color(0, 0, 0));
@@ -1019,13 +1018,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         TKondisiPulang.setHighlighter(null);
         TKondisiPulang.setName("TKondisiPulang"); // NOI18N
         panelisi1.add(TKondisiPulang);
-        TKondisiPulang.setBounds(365, 1159, 360, 23);
+        TKondisiPulang.setBounds(365, 1141, 360, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Catatan Penting ");
         jLabel36.setName("jLabel36"); // NOI18N
         panelisi1.add(jLabel36);
-        jLabel36.setBounds(0, 1187, 130, 23);
+        jLabel36.setBounds(0, 1169, 130, 23);
 
         Scroll25.setName("Scroll25"); // NOI18N
         Scroll25.setOpaque(true);
@@ -1042,19 +1041,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll25.setViewportView(TCatatan);
 
         panelisi1.add(Scroll25);
-        Scroll25.setBounds(135, 1187, 590, 80);
+        Scroll25.setBounds(135, 1169, 590, 80);
 
         jLabel39.setForeground(new java.awt.Color(0, 0, 0));
         jLabel39.setText("(kondisi saat ini) :");
         jLabel39.setName("jLabel39"); // NOI18N
         panelisi1.add(jLabel39);
-        jLabel39.setBounds(0, 1202, 130, 23);
+        jLabel39.setBounds(0, 1184, 130, 23);
 
         jLabel42.setForeground(new java.awt.Color(0, 0, 0));
         jLabel42.setText("Terapi Pulang :");
         jLabel42.setName("jLabel42"); // NOI18N
         panelisi1.add(jLabel42);
-        jLabel42.setBounds(0, 1274, 130, 23);
+        jLabel42.setBounds(0, 1253, 130, 23);
 
         Scroll27.setName("Scroll27"); // NOI18N
         Scroll27.setOpaque(true);
@@ -1071,35 +1070,35 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll27.setViewportView(TTerapiPulang);
 
         panelisi1.add(Scroll27);
-        Scroll27.setBounds(135, 1274, 590, 80);
+        Scroll27.setBounds(135, 1253, 590, 80);
 
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel50.setText("mmHg");
         jLabel50.setName("jLabel50"); // NOI18N
         panelisi1.add(jLabel50);
-        jLabel50.setBounds(232, 1075, 40, 23);
+        jLabel50.setBounds(232, 1057, 40, 23);
 
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel51.setText("x/menit");
         jLabel51.setName("jLabel51"); // NOI18N
         panelisi1.add(jLabel51);
-        jLabel51.setBounds(232, 1103, 40, 23);
+        jLabel51.setBounds(232, 1085, 40, 23);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
         jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel52.setText("°C");
         jLabel52.setName("jLabel52"); // NOI18N
         panelisi1.add(jLabel52);
-        jLabel52.setBounds(430, 1075, 30, 23);
+        jLabel52.setBounds(430, 1057, 30, 23);
 
         jLabel53.setForeground(new java.awt.Color(0, 0, 0));
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel53.setText("x/menit");
         jLabel53.setName("jLabel53"); // NOI18N
         panelisi1.add(jLabel53);
-        jLabel53.setBounds(605, 1075, 40, 23);
+        jLabel53.setBounds(605, 1057, 40, 23);
 
         Scroll2.setViewportView(panelisi1);
 

@@ -1343,6 +1343,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 //                            dlgobtjalan.setDokter(kodedokter, namadokter);
 //                        }
                     dlgobtjalan.tampilobat();
+                    dlgobtjalan.tampil_resep();
                     dlgobtjalan.setLocationRelativeTo(internalFrame1);
                     dlgobtjalan.setVisible(true);
                 } else {
