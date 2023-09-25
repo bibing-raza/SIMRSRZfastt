@@ -1060,7 +1060,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        tanggal = " returjual.tgl_retur between '" + Valid.SetTgl(TglRetur1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TglRetur2.getSelectedItem() + "") + "' ";
+                                                                            tanggal = " returjual.tgl_retur between '" + Valid.SetTgl(TglRetur1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TglRetur2.getSelectedItem() + "") + "' ";
         noret = "";
         ptg = "";
         sat = "";
@@ -1124,45 +1124,19 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     if (!NoNota.getText().equals("")) {
                         nonot = " and detreturjual.nota_jual='" + NoNota.getText() + "' ";
                     }
-//                    ps2=koneksi.prepareStatement("select detreturjual.nota_jual,detreturjual.kode_brng,databarang.nama_brng, "+
-//                            "detreturjual.kode_sat,kodesatuan.satuan,detreturjual.h_retur,detreturjual.jml_retur, "+
-//                            "detreturjual.subtotal from detreturjual inner join databarang inner join kodesatuan "+
-//                            " on detreturjual.kode_brng=databarang.kode_brng "+
-//                            " and detreturjual.kode_sat=kodesatuan.kode_sat where "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_brng like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and databarang.nama_brng like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_sat like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.no_retur_jual like '%"+TCari.getText()+"%' or "+
-//                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and kodesatuan.satuan like '%"+TCari.getText()+"%' order by detreturjual.kode_brng  ");
-                    ps2 = koneksi.prepareStatement("select detreturjual.nota_jual,detreturjual.kode_brng,databarang.nama_brng, "
-                            + "detreturjual.kode_sat,kodesatuan.satuan,detreturjual.h_retur,detreturjual.jml_retur, "
-                            + "detreturjual.subtotal from returjual inner join petugas inner join pasien inner join bangsal "
-                            + " inner join detreturjual inner join databarang inner join kodesatuan "
-                            + " on detreturjual.kode_brng=databarang.kode_brng "
-                            + " and returjual.kd_bangsal=bangsal.kd_bangsal "
-                            + " and returjual.no_rkm_medis=pasien.no_rkm_medis "
-                            + " and detreturjual.kode_sat=kodesatuan.kode_sat "
-                            + " and returjual.no_retur_jual=detreturjual.no_retur_jual "
-                            + " and returjual.nip=petugas.nip where "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and detreturjual.kode_brng like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and databarang.nama_brng like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and detreturjual.nota_jual like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and detreturjual.kode_sat like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and detreturjual.nota_jual like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and detreturjual.no_retur_jual like '%" + TCari.getText() + "%' or "
-                            + " detreturjual.no_retur_jual='" + rs.getString(1) + "' " + sat + bar + nonot + " and kodesatuan.satuan like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and returjual.nip like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and petugas.nama like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and detreturjual.kode_brng like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and databarang.nama_brng like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and pasien.no_rkm_medis like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and pasien.nm_pasien like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and bangsal.nm_bangsal like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and detreturjual.nota_jual like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and kodesatuan.satuan like '%" + TCari.getText() + "%' or "
-                            + tanggal + noret + ptg + sat + bar + " and detreturjual.kode_sat like '%" + TCari.getText() + "%'order by detreturjual.kode_brng  ");
+                    ps2=koneksi.prepareStatement("select detreturjual.nota_jual,detreturjual.kode_brng,databarang.nama_brng, "+
+                            "detreturjual.kode_sat,kodesatuan.satuan,detreturjual.h_retur,detreturjual.jml_retur, "+
+                            "detreturjual.subtotal from detreturjual inner join databarang inner join kodesatuan "+
+                            " on detreturjual.kode_brng=databarang.kode_brng "+
+                            " and detreturjual.kode_sat=kodesatuan.kode_sat where "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_brng like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and databarang.nama_brng like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_sat like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.no_retur_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and kodesatuan.satuan like '%"+TCari.getText()+"%' order by detreturjual.kode_brng  ");
+
                     try {
                         subtotal = 0;
                         no = 1;
