@@ -116,18 +116,16 @@ public class DlgKamarInap extends javax.swing.JDialog {
             hariawal = Sequel.cariIsi("select hariawal from set_jam_minimal"), pilihancetak = "",
             nonota = "", kdDiag = "", tgm = "", key3 = "", host = "";
     private PreparedStatement ps, pscaripiutang, psdiagnosa, psibu, psanak, pstarif, psdpjp, psDok, psPet, psDP, psDH,
-            pscariumur, pspersalinan, pspersalinan1, psGZburuk, psAPS, psFar, psRad, psLab, psKos, psLaprm, psRes, psFakIGD;
-    private ResultSet rs, rs2, rs3, rs4, rs6, rsAPS, rsFar, rsRad, rsLab, rsKos, rsDok, rsPet, rsDP, rsDH, rsLaprm, rsRes, rsFakIGD;
+            pscariumur, pspersalinan, pspersalinan1, psGZburuk, psAPS, psFar, psRad, psLab, psKos, psLaprm;
+    private ResultSet rs, rs2, rs3, rs4, rs6, rsAPS, rsFar, rsRad, rsLab, rsKos, rsDok, rsPet, rsDP, rsDH, rsLaprm;
     private int i, x, sudah = 0, cekAda = 0, row = 0, cekDb = 0, cekKamar = 0, cekOperasi = 0, cekUsia = 0, cekRuang = 0, cekSEP = 0,
             cekPr = 0, cekDr = 0, cekDrPr = 0, cekTinPers = 0, cekKamar2 = 0, cekOperasi2 = 0, diagnosa_cek = 0, cekInapDR = 0, cekInapPR = 0,
-            g = 0, gb = 0, cekBonGZ = 0, cekjampersal = 0, cekjamkesda = 0, cekPXbpjs = 0, cekInapDRPR = 0, totskorTriase = 0, skorGZ1 = 0,
-            skorYaGZ1 = 0, skorGZ2 = 0, skor = 0;
+            g = 0, gb = 0, cekBonGZ = 0, cekjampersal = 0, cekjamkesda = 0, cekPXbpjs = 0, cekInapDRPR = 0;
     private double lama = Sequel.cariIsiAngka("select lamajam from set_jam_minimal"), persenbayi = Sequel.cariInteger("select bayi from set_jam_minimal");
     private String dokterranap = "", bangsal = "", diagnosa_akhir = Sequel.cariIsi("select diagnosaakhir from set_jam_minimal"), cekKelamin = "",
             namakamar = "", umur = "0", sttsumur = "Th", cekAPS = "", norawatAPS = "", cekdokter = "", dpjpObgyn = "", noSrtMati = "", usernya = "",
             kdAPS = "", diagnosa_ok = "", cekDataPersalinan = "", cekRMbayi = "", kamarCovid = "", cekHR = "", nmgedung = "", sepJKD = "", noLPJiun = "",
-            pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "", skorAsesIGD = "",
-            TotSkorGZD = "", TotSkorGZA = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "";
+            pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
 
@@ -13480,7 +13478,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }//GEN-LAST:event_MnInputDataAMDActionPerformed
 
     private void MnLihatDataAMDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataAMDActionPerformed
-        // TODO add your handling code here:
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat.getText() + "'") > 0) {
+                cetakAsesmenMedikDewasa();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asesmen medik dewasa tidak ditemukan...!!!");
+                tbKamIn.requestFocus();
+            }
+        }
     }//GEN-LAST:event_MnLihatDataAMDActionPerformed
 
     private void MnSpirometriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSpirometriActionPerformed
@@ -16239,770 +16249,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
     
-    private void cetakDataTriase() {
-        totskorTriase = 0;
-        try {
-            psLaprm = koneksi.prepareStatement("select * from triase_igd where no_rawat='" + norawat.getText() + "'");
-            try {
-                rsLaprm = psLaprm.executeQuery();
-                while (rsLaprm.next()) {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-                    if (rsLaprm.getString("alasan_kedatangan").equals("")) {
-                        param.put("alasan_kedatangan", "-");
-                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Datang Sendiri") || rsLaprm.getString("alasan_kedatangan").equals("Polisi")) {
-                        param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan"));
-                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Rujukan, dari")) {
-                        param.put("alasan_kedatangan", "Rujukan, dari : " + rsLaprm.getString("rujukan_dari"));
-                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Dijemput oleh")) {
-                        param.put("alasan_kedatangan", "Dijemput oleh : " + rsLaprm.getString("dijemput_oleh"));
-                    }
-
-                    if (rsLaprm.getString("kendaraan").equals("")) {
-                        param.put("kendaraan", "-");
-                    } else if (rsLaprm.getString("kendaraan").equals("Ambulance")) {
-                        param.put("kendaraan", rsLaprm.getString("kendaraan"));
-                    } else if (rsLaprm.getString("kendaraan").equals("Kendaraan bukan ambulance")) {
-                        param.put("kendaraan", "Kendaraan bukan ambulance, jelaskan : " + rsLaprm.getString("bukan_ambulan"));
-                    }
-
-                    if (rsLaprm.getString("kll_tunggal").equals("ya")) {
-                        param.put("kll_tunggal", "KLL Tunggal Tempat Kejadian " + rsLaprm.getString("kll_tunggal_tmpt_kejadian") + " Tanggal Kejadian "
-                                + Sequel.cariIsi("select date_format(kll_tunggal_tanggal,'%d-%m-%Y    Pukul : %H:%i') from triase_igd "
-                                        + "where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("kll_tunggal", "KLL Tunggal");
-                    }
-
-                    if (rsLaprm.getString("kll_versus").equals("ya")) {
-                        param.put("kll", "KLL " + rsLaprm.getString("versus1") + " Vs. " + rsLaprm.getString("versus2") + " Tempat Kejadian "
-                                + rsLaprm.getString("kll_tmpt_kejadian") + " Tanggal Kejadian " + Sequel.cariIsi("select date_format(kll_tanggal,'%d-%m-%Y    Pukul : %H:%i') from triase_igd "
-                                + "where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("kll", "KLL");
-                    }
-
-                    if (rsLaprm.getString("jatuh").equals("ya")) {
-                        param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : " + rsLaprm.getString("ket_jatuh"));
-                    } else {
-                        param.put("jatuh", "Jatuh dari ketinggian,");
-                    }
-
-                    if (rsLaprm.getString("luka_bakar").equals("ya")) {
-                        param.put("luka", "Luka bakar, Jelaskan : " + rsLaprm.getString("ket_luka_bakar"));
-                    } else {
-                        param.put("luka", "Luka bakar,");
-                    }
-
-                    if (rsLaprm.getString("trauma_listrik").equals("ya")) {
-                        param.put("trauma_listrik", "Trauma listrik, Jelaskan : " + rsLaprm.getString("ket_trauma_listrik"));
-                    } else {
-                        param.put("trauma_listrik", "Trauma listrik,");
-                    }
-
-                    if (rsLaprm.getString("trauma_zat_kimia").equals("ya")) {
-                        param.put("trauma_zat", "Trauma zat kimia, Jelaskan : " + rsLaprm.getString("ket_trauma_zat_kimia"));
-                    } else {
-                        param.put("trauma_zat", "Trauma zat kimia,");
-                    }
-
-                    if (rsLaprm.getString("trauma_lain").equals("ya")) {
-                        param.put("trauma_lain", "Trauma lainnya (" + rsLaprm.getString("ket_trauma_lain") + ")");
-                    } else {
-                        param.put("trauma_lain", "Trauma lainnya");
-                    }
-
-                    if (rsLaprm.getString("pacs1").equals("ya")) {
-                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 1");
-                    } else if (rsLaprm.getString("pacs2").equals("ya")) {
-                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 2");
-                    } else if (rsLaprm.getString("pacs3").equals("ya")) {
-                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 3");
-                    } else if (rsLaprm.getString("pacs4").equals("ya")) {
-                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 4");
-                    } else {
-                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : -");
-                    }
-                    
-                    totskorTriase = Integer.parseInt(rsLaprm.getString("total_skor"));
-                    if (totskorTriase >= 5) {
-                        param.put("total5", "V");
-                        param.put("total24", "");
-                        param.put("total01", "");
-                    } else if (totskorTriase >= 2 && totskorTriase <= 4) {
-                        param.put("total5", "");
-                        param.put("total24", "V");
-                        param.put("total01", "");
-                    } else if (totskorTriase >= 0 && totskorTriase <= 1) {
-                        param.put("total5", "");
-                        param.put("total24", "");
-                        param.put("total01", "V");
-                    } else {
-                        param.put("total5", "");
-                        param.put("total24", "");
-                        param.put("total01", "");
-                    }
-
-                    Valid.MyReport("rptTriaseIGD.jasper", "report", "::[ Laporan Data Triase IGD ]::",
-                            "SELECT ti.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(ti.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') kontak_awal, "
-                            + "if(ti.cara_masuk='','-',ti.cara_masuk) cr_msk, ti.sudah_terpasang, concat('Nama : ',ti.nm_pengantar,'    No. Telp : ',ti.telp_pengantar) iden_pengntar, "
-                            + "ti.kasus, ti.keluhan_utama, if(ti.kesadaran='','KESADARAN : -',concat('KESADARAN : ',ti.kesadaran)) kesadaran, ti.td, ti.nadi, ti.napas, ti.temperatur, "
-                            + "ti.saturasi, ti.nyeri, ti.vas, if(ti.skor0_sadar_penuh='ya','V','') skor0_sadar, if(ti.skor0_100='ya','V','') skor0_100, if(ti.skor0_101='ya','V','') skor0_101, "
-                            + "if(ti.skor0_19='ya','V','') skor0_19, if(ti.skor0_35_3='ya','V','') skor0_35, if(ti.skor0_96_100='ya','V','') skor0_96, if(ti.skor1_102='ya','V','') skor1_102, "
-                            + "if(ti.skor1_20_21='ya','V','') skor1_20, if(ti.skor1_94_95='ya','V','') skor1_94, if(ti.skor2_99='ya','V','') skor2_99, if(ti.skor2_22='ya','V','') skor2_22, "
-                            + "if(ti.skor2_92_93='ya','V','') skor2_92, if(ti.skor3_selain='ya','V','') skor3_selain, if(ti.skor3_35_3='ya','V','') skor3_35, if(ti.skor3_92='ya','V','') skor3_92, "
-                            + "ti.catatan, ti.pukul, if(ti.triase_resusitasi='ya','V','') resus, if(ti.triase_non_resusitasi='ya','V','') nonresus, if(ti.triase_klinik='ya','V','') klinik, "
-                            + "if(ti.triase_doa='ya','V','') doa, pg.nama petgas, if(ti.kll_tunggal='ya','V','') kll_tunggal, if(ti.kll_versus='ya','V','') kll_versus, if(ti.jatuh='ya','V','') jatuh, "
-                            + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain "
-                            + "from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsLaprm != null) {
-                    rsLaprm.close();
-                }
-                if (psLaprm != null) {
-                    psLaprm.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void cetakAsesMedikIGD() {
-        skorAsesIGD = "";
-        try {
-            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_keluar_igd,'%H:%i:%s') jamklr from penilaian_awal_medis_igd where no_rawat='" + norawat.getText() + "'");
-            try {
-                rsLaprm = psLaprm.executeQuery();
-                while (rsLaprm.next()) {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    
-                    //hitung skor
-                    int A, B, C, D, E, hasil;
-                    A = Integer.parseInt(rsLaprm.getString("frekuensi_nafas"));
-                    B = Integer.parseInt(rsLaprm.getString("retraksi"));
-                    C = Integer.parseInt(rsLaprm.getString("sianosis"));
-                    D = Integer.parseInt(rsLaprm.getString("air_entry"));
-                    E = Integer.parseInt(rsLaprm.getString("merintih"));
-
-                    hasil = 0;
-                    hasil = A + B + C + D + E;
-                    skorAsesIGD = Valid.SetAngka2(hasil);
-                    param.put("jlhSkor", skorAsesIGD);
-
-                    if (rsLaprm.getString("meninggal").equals("ya")) {
-                        param.put("jam_meninggal", rsLaprm.getString("jam_meninggal"));
-                    } else {
-                        param.put("jam_meninggal", "-");
-                    }
-                    
-                    if (rsLaprm.getString("cek_jam_keluar").equals("ya")) {
-                        param.put("jam_keluar", rsLaprm.getString("jamklr"));
-                    } else {
-                        param.put("jam_keluar", "-");
-                    }
-
-                    Valid.MyReport("rptCetakPenilaianAwalMedisIGD.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
-                            + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
-                            + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
-                            + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
-                            + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
-                            + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
-                            + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
-                            + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
-                            + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
-                            + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
-                            + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
-                            + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
-                            + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
-                            + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
-                            + "pa.rencana_asuhan_diharapkan, pg1.nama pemberi_edukasi, pa.penerima_edukasi, pg2.nama nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
-                            + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
-                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, pa.nadi_2, pa.akral_2 "
-                            + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
-                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
-                            + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
-                            + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-
-                    Valid.MyReport("rptCetakPenilaianAwalMedisIGD1.jasper", "report", "::[ Laporan Penilaian Awal Medis IGD hal. 2 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
-                            + "date_format(pa.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') mulai_penanganan, if(pa.cervival='ya','V','') cer, "
-                            + "if(pa.rjp='ya','V','') rjp, if(pa.defribilasi='ya','V','') def, if(pa.intubasi='ya','V','') intu, if(pa.vtp='ya','V','') vtp, if(pa.dekompresi='ya','V','') dek, "
-                            + "if(pa.balut='ya','V','') bal, if(pa.kateter='ya','V','') kat, if(pa.ngt='ya','V','') ngt, if(pa.infus='ya','V','') infs, if(pa.obat='ya','V','') obt, pa.ket_obat, "
-                            + "if(pa.tidak_ada='ya','V','') tdk, if(pa.gangguan_jalan_nafas='ya','V','') ggnfs, if(pa.paten='ya','V','') pat, if(pa.obstruksi_partial='ya','V','') obsp, if(pa.data_obstruksi_partial='','-',pa.data_obstruksi_partial) data_obsp, "
-                            + "if(pa.obstruksi_total='ya','V','') obst, if(pa.trauma_jalan_nafas='ya','V','') trauma_jln_nfs, pa.trauma, if(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, "
-                            + "if(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, "
-                            + "pa.kesimpulan_pernafasan, pa.nadi_1, pa.kulit_mukosa, pa.akral_1, pa.crt, pa.kesimpulan_sirkulasi, pa.cukup_bulan, pa.cairan_amnion, pa.pernafasan_menangis, pa.tonus, "
-                            + "pa.skor_apgar, pa.gcs_e, pa.pupil, pa.diameter_kanan, pa.reflek_cahaya, pa.meningeal_sign, pa.literasi, if(pa.deformitas='ya','V','') defo, if(pa.contusio='ya','V','') con, "
-                            + "if(pa.penetrasi='ya','V','') pen, if(pa.tenderness='ya','V','') ten, if(pa.swelling='ya','V','') swe, if(pa.ekskoriasi='ya','V','') eks, if(pa.abrasi='ya','V','') abr, "
-                            + "if(pa.burn='ya','V','') bur, if(pa.laserasi='ya','V','') las, if(pa.tidak_tampak_jelas='ya','V','') tdk_tmpk, pa.frekuensi_nafas, pa.retraksi, pa.sianosis, pa.air_entry, "
-                            + "pa.merintih, pa.Alergi, if(pa.hipertensi='ya','V','') hip, if(pa.diabetes='ya','V','') dm, if(pa.jantung='ya','V','') jan, pa.riwayat_penyakit_lain, "
-                            + "if(pa.merokok='ya','V','') mer, pa.kebiasaan_lain, pa.anamnesis, pa.pemeriksaan_fisik, pa.konjungtiva, pa.sklera, pa.bibir_lidah, pa.mukosa, pa.deviasi, pa.jvp, "
-                            + "pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.survei_punggung, pa.survei_ekstremitas, pa.laboratorium, pa.x_ray, "
-                            + "pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, "
-                            + "pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, "
-                            + "date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, "
-                            + "pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri "
-                            + "from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat "
-                            + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi "
-                            + "left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat "
-                            + "left join pegawai pg4 on pg4.nik=pa.nip_dpjp where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsLaprm != null) {
-                    rsLaprm.close();
-                }
-                if (psLaprm != null) {
-                    psLaprm.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void cetakAsesKepIGD() {
-        try {
-            psLaprm = koneksi.prepareStatement("select * from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat.getText() + "'");
-            try {
-                rsLaprm = psLaprm.executeQuery();
-                while (rsLaprm.next()) {
-                    if (rsLaprm.getString("gizi_dewasa1").equals("Tidak")) {
-                        skorGZ1 = 0;
-                    } else if (rsLaprm.getString("gizi_dewasa1").equals("Tidak Tahu/tidak yakin (ada tanda : baju menjadi longgar)")) {
-                        skorGZ1 = 1;
-                    } else if (rsLaprm.getString("gizi_dewasa1").equals("Ya, ada penurunan BB sebanyak")) {
-                        skorGZ1 = 0;
-                    }
-
-                    if (rsLaprm.getString("gizi_dewasa1ya").equals("-")) {
-                        skorYaGZ1 = 0;
-                    } else if (rsLaprm.getString("gizi_dewasa1ya").equals("1 - 5 Kg")) {
-                        skorYaGZ1 = 1;
-                    } else if (rsLaprm.getString("gizi_dewasa1ya").equals("6 - 10 Kg")) {
-                        skorYaGZ1 = 2;
-                    } else if (rsLaprm.getString("gizi_dewasa1ya").equals("11 - 15 Kg")) {
-                        skorYaGZ1 = 3;
-                    } else if (rsLaprm.getString("gizi_dewasa1ya").equals("15 Kg")) {
-                        skorYaGZ1 = 4;
-                    } else if (rsLaprm.getString("gizi_dewasa1ya").equals("Tidak tahu berapa Kg penurunanya")) {
-                        skorYaGZ1 = 2;
-                    }
-
-                    if (rsLaprm.getString("gizi_dewasa2").equals("Tidak")) {
-                        skorGZ2 = 0;
-                    } else if (rsLaprm.getString("gizi_dewasa2").equals("Ya")) {
-                        skorGZ2 = 1;
-                    }
-                    
-                    //hitung skor skrining
-                    int A1, B1, C1, TotD, A2, B2, C2, D2, TotA;
-                    A1 = skorGZ1;
-                    B1 = skorYaGZ1;
-                    C1 = skorGZ2;
-
-                    A2 = Integer.parseInt(rsLaprm.getString("gizi_anak1"));
-                    B2 = Integer.parseInt(rsLaprm.getString("gizi_anak2"));
-                    C2 = Integer.parseInt(rsLaprm.getString("gizi_anak3"));
-                    D2 = Integer.parseInt(rsLaprm.getString("gizi_anak_penyakit"));
-
-                    TotD = 0;
-                    TotA = 0;
-
-                    TotD = A1 + B1 + C1;
-                    TotA = A2 + B2 + C2 + D2;
-                    TotSkorGZD = Valid.SetAngka2(TotD);
-                    TotSkorGZA = Valid.SetAngka2(TotA);
-
-                    if (rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                        kesimpulanGZanak = "";
-                        if (TotD == 0 || TotD == 1) {
-                            kesimpulanGZDewasa = "0 - 1 : tidak beresiko malnutrisi";
-                        } else if (TotD >= 2) {
-                            kesimpulanGZDewasa = ">= 2 : beresiko malnutrisi, perlu pemantauan lanjutan oleh Tim Gizi/Dietisien";
-                        }
-                    }
-
-                    if (rsLaprm.getString("skrining_gizi").equals("anak")) {
-                        kesimpulanGZDewasa = "";
-                        if (TotA == 0) {
-                            kesimpulanGZanak = "0 : tidak beresiko malnutrisi";
-                        } else if (TotA >= 1 && TotA <= 3) {
-                            kesimpulanGZanak = "1 - 3 : resiko malnutrisi sedang, perlu pemantauan";
-                        } else if (TotA >= 4) {
-                            kesimpulanGZanak = ">= 4 : resiko malnutrisi berat, perlu pemantauan lanjutan oleh Tim Gizi/Dietisien";
-                        }
-                    }
-
-                    //tindakan pencegahan resiko jatuh
-                    if (rsLaprm.getString("cegah_resiko_jatuh").equals("Dewasa")) {
-                        TabTindakanPencegahan.setSelectedIndex(0);
-                        if (rsLaprm.getString("tindakan_pencegahan").equals("A")) {
-                            TabPencegahanDewasa.setSelectedIndex(0);
-                        } else if (rsLaprm.getString("tindakan_pencegahan").equals("B")) {
-                            TabPencegahanDewasa.setSelectedIndex(1);
-                        } else if (rsLaprm.getString("tindakan_pencegahan").equals("C")) {
-                            TabPencegahanDewasa.setSelectedIndex(2);
-                        } else {
-                            TabPencegahanDewasa.setSelectedIndex(0);
-                        }
-                    } else if (rsLaprm.getString("cegah_resiko_jatuh").equals("Anak")) {
-                        TabTindakanPencegahan.setSelectedIndex(1);
-                        if (rsLaprm.getString("tindakan_pencegahan").equals("A")) {
-                            TabPencegahanAnak.setSelectedIndex(0);
-                        } else if (rsLaprm.getString("tindakan_pencegahan").equals("B")) {
-                            TabPencegahanAnak.setSelectedIndex(1);
-                        } else {
-                            TabPencegahanAnak.setSelectedIndex(0);
-                        }
-                    } else {
-                        TabTindakanPencegahan.setSelectedIndex(0);
-                        TabPencegahanDewasa.setSelectedIndex(0);
-                    }
-
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-                    if (rsLaprm.getString("skrining_gizi").equals("anak")) {
-                        param.put("jenisSkrining", "ANAK (berdasarkan modifikasi form STRONG Kids)");
-                        param.put("kalimatSkrining", "1. Terdapat penurunan BB atau BB menetap (pada bayi < 1 tahun) selama >= 2 bulan                 Skor (" + rsLaprm.getString("gizi_anak1") + ")\n\n"
-                                + "2. Terdapat tanda-tanda klinis gangguan gizi (tampak kurus, gemuk, pendek, edema, moon face,   Skor (" + rsLaprm.getString("gizi_anak2") + ")\n"
-                                + "tampak tua, iga gambang, baggy pant, anoreksia) selama 1 bulan terakhir\n\n"
-                                + "3. Terdapat salah satu penyakit/kondisi yg. beresiko mengakibatkan malnutrisi berikut :                 Skor (" + rsLaprm.getString("gizi_anak3") + ")\n"
-                                + "* Diare berat (> 5x/hari) dan atau muntah (> 3x/hari)\n"
-                                + "* Penurunan asupan makanan selama lebih dari 7 hari\n\n"
-                                + "Terdapat penyakit-penyakit / keadaan yg. meningkatkan resiko malnutrisi antara lain :                   Skor (" + rsLaprm.getString("gizi_anak_penyakit") + ")\n"
-                                + "* Diare kronik > 2 minggu                          * Penyakit hati/ginjal kronik\n"
-                                + "* Penyakit jantung bawaan (tersangka)        * TB Paru\n"
-                                + "* Infeksi HIV (tersangka)                            * Renca/paska operasimayor\n"
-                                + "* Kelainan anatomi bawaan                         * Luka bakar luas\n"
-                                + "* Kelainan metabolisme bawaan                  * Terpasang stoma\n"
-                                + "* Retardasi mental                                     * Trauma\n"
-                                + "* Keterlambatan perkembangan                  * Lain-lain : " + rsLaprm.getString("gizi_anak_penyakit_lain") + "\n"
-                                + "* Kanker (tersangka)\n"
-                                + "_______________________________________________________________________\n"
-                                + "Total Skor : (" + TotSkorGZA + ")\n"
-                                + "Kesimpulan Skrining Gizi Anak :\n"
-                                + kesimpulanGZanak + "\n");
-                        param.put("resikoJatuh", "Anak (Skala Humpty Dumpty)");
-                        param.put("tindakanRJ", "ANAK");
-                        if (TabPencegahanAnak.getSelectedIndex() == 0) {
-                            param.put("JudultindakanRJ", "Pencegahan Umum (A)");
-                            param.put("IsitindakanRJ", anakA.getText());
-                        } else if (TabPencegahanAnak.getSelectedIndex() == 1) {
-                            param.put("JudultindakanRJ", "Pencegahan Resiko Tinggi (B)");
-                            param.put("IsitindakanRJ", anakB.getText());
-                        }
-
-                    } else if (rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                        param.put("jenisSkrining", "DEWASA (Modifikasi MST)");
-                        param.put("kalimatSkrining", "1. Apakah pasien mengalami penurunan BB yang tidak direncanakan/tidak diinginkan dalam 6 bulan terakhir ?\n"
-                                + rsLaprm.getString("gizi_dewasa1") + "   Skor (" + skorGZ1 + ")\n"
-                                + rsLaprm.getString("gizi_dewasa1ya") + "   Skor (" + skorYaGZ1 + ")\n\n"
-                                + "2. Apakah asupan makan pasien berkurang karena penurunan nafsu makan / kesulitan menerima makanan ?\n"
-                                + rsLaprm.getString("gizi_dewasa2") + "   Skor (" + skorGZ2 + ")\n"
-                                + "_______________________________________________________________________\n"
-                                + "Total Skor : (" + TotSkorGZD + ")\n"
-                                + "Kesimpulan Skrining Gizi Dewasa :\n"
-                                + kesimpulanGZDewasa + "\n");
-                        param.put("resikoJatuh", "Dewasa (Skala Morse)");
-                        param.put("tindakanRJ", "DEWASA");
-                        if (TabPencegahanDewasa.getSelectedIndex() == 0) {
-                            param.put("JudultindakanRJ", "Pencegahan Umum (A)");
-                            param.put("IsitindakanRJ", dewasaA.getText());
-                        } else if (TabPencegahanDewasa.getSelectedIndex() == 1) {
-                            param.put("JudultindakanRJ", "Pencegahan Resiko Sedang (B)");
-                            param.put("IsitindakanRJ", dewasaB.getText());
-                        } else if (TabPencegahanDewasa.getSelectedIndex() == 2) {
-                            param.put("JudultindakanRJ", "Pencegahan Resiko Tinggi (C)");
-                            param.put("IsitindakanRJ", dewasaC.getText());
-                        }
-
-                    } else if (!rsLaprm.getString("skrining_gizi").equals("anak") && !rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                        param.put("jenisSkrining", "");
-                        param.put("kalimatSkrining", "");
-                        param.put("resikoJatuh", "");
-                        param.put("tindakanRJ", "");
-                        param.put("JudultindakanRJ", "");
-                        param.put("IsitindakanRJ", "");
-                    }
-
-                    //data faktor resiko
-                    try {
-                        faktorresikoigd = "";
-                        psFakIGD = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
-                                + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_igd_resiko pm ON pm.kode_resiko = m.kode_resiko "
-                                + "WHERE pm.no_rawat=? ORDER BY pm.kode_resiko");
-                        try {
-                            psFakIGD.setString(1, rsLaprm.getString("no_rawat"));
-                            rsFakIGD = psFakIGD.executeQuery();
-                            while (rsFakIGD.next()) {
-                                faktorresikoigd = rsFakIGD.getString("resiko") + "\n" + faktorresikoigd;
-                            }
-
-                            if (faktorresikoigd.endsWith("\n")) {
-                                faktorresikoigd = faktorresikoigd.substring(0, faktorresikoigd.length() - 1);
-                            }
-
-                        } catch (Exception e) {
-                            System.out.println("Notif : " + e);
-                        } finally {
-                            if (rsFakIGD != null) {
-                                rsFakIGD.close();
-                            }
-                            if (psFakIGD != null) {
-                                psFakIGD.close();
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notif : " + e);
-                    }
-                    
-                    //cek faktor resiko                    
-                    try {
-                        Valid.tabelKosong(tabModeResiko);
-                        if (rsLaprm.getString("skrining_gizi").equals("anak")) {
-                            psRes = koneksi.prepareStatement("select m.kode_resiko, m.faktor_resiko, m.skala, m.skor, m.asesmen FROM master_faktor_resiko_igd m "
-                                    + "INNER JOIN penilaian_awal_keperawatan_igd_resiko pa ON pa.kode_resiko = m.kode_resiko "
-                                    + "WHERE m.asesmen = 'anak' and pa.no_rawat=? ORDER BY pa.kode_resiko");
-                        } else if (rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                            psRes = koneksi.prepareStatement("select m.kode_resiko, m.faktor_resiko, m.skala, m.skor, m.asesmen FROM master_faktor_resiko_igd m "
-                                    + "INNER JOIN penilaian_awal_keperawatan_igd_resiko pa ON pa.kode_resiko = m.kode_resiko "
-                                    + "WHERE m.asesmen = 'dewasa' and pa.no_rawat=? ORDER BY pa.kode_resiko");
-                        } else {
-                            psRes = koneksi.prepareStatement("select m.kode_resiko, m.faktor_resiko, m.skala, m.skor, m.asesmen FROM master_faktor_resiko_igd m "
-                                    + "INNER JOIN penilaian_awal_keperawatan_igd_resiko pa ON pa.kode_resiko = m.kode_resiko "
-                                    + "WHERE pa.no_rawat=? ORDER BY pa.kode_resiko");
-                        }
-                        try {
-                            psRes.setString(1, rsLaprm.getString("no_rawat"));
-                            rsRes = psRes.executeQuery();
-                            while (rsRes.next()) {
-                                tabModeResiko.addRow(new Object[]{
-                                    true,
-                                    rsRes.getString("kode_resiko"),
-                                    rsRes.getString("asesmen"),
-                                    rsRes.getString("faktor_resiko"),
-                                    rsRes.getString("skala"),
-                                    rsRes.getString("skor")
-                                });
-                            }
-                        } catch (Exception e) {
-                            System.out.println("Notif : " + e);
-                        } finally {
-                            if (rsRes != null) {
-                                rsRes.close();
-                            }
-                            if (psRes != null) {
-                                psRes.close();
-                            }
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notif : " + e);
-                    }
-                    
-                    //hitung skor faktor resiko
-                    skor = 0;
-                    for (i = 0; i < tbFaktorResiko.getRowCount(); i++) {
-                        if (tbFaktorResiko.getValueAt(i, 0).toString().equals("true")) {
-                            skor = skor + Integer.parseInt(tbFaktorResiko.getValueAt(i, 5).toString());
-                        }
-                    }
-
-                    TotSkorRJ = Valid.SetAngka2(skor);
-                    if (!rsLaprm.getString("skrining_gizi").equals("dewasa") && !rsLaprm.getString("skrining_gizi").equals("anak")) {
-                        TotSkorRJ = "0";
-                        kesimpulanResikoJatuh = "";
-                    }
-
-                    //asesmen dewasa
-                    if (rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                        if (skor >= 45) {
-                            kesimpulanResikoJatuh = "Resiko Tinggi : >= 45, pasang kancing berwarna kuning";
-                        } else if (skor >= 25 && skor <= 44) {
-                            kesimpulanResikoJatuh = "Resiko Sedang : 25-44, pasang kancing berwarna kuning";
-                        } else if (skor >= 0 && skor <= 24) {
-                            kesimpulanResikoJatuh = "Resiko Rendah : 0-24";
-                        }
-                    }
-
-                    //asesmen anak
-                    if (rsLaprm.getString("skrining_gizi").equals("anak")) {
-                        if (skor >= 12) {
-                            kesimpulanResikoJatuh = "Resiko Tinggi : >= 12, pasang kancing penanda berwarna kuning";
-                        } else if (skor >= 7 && skor <= 11) {
-                            kesimpulanResikoJatuh = "Resiko Rendah : 7-11";
-                        } else if (skor >= 0 && skor <= 6) {
-                            kesimpulanResikoJatuh = "";
-                        }
-                    }
-
-                    if (!rsLaprm.getString("skrining_gizi").equals("anak") && !rsLaprm.getString("skrining_gizi").equals("dewasa")) {
-                        param.put("dataResiko", "");
-                        param.put("TotSkorResikoJatuh", "");
-                        param.put("KesResikoJatuh", "");
-                    } else {
-                        param.put("dataResiko", faktorresikoigd);
-                        param.put("TotSkorResikoJatuh", "Total Skor : (" + TotSkorRJ + ")");
-                        param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh :\n" + kesimpulanResikoJatuh);
-                    }
-
-                    Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD1.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 2 ]::",
-                            "SELECT if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
-                            + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
-                            + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.skala_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, "
-                            + "if(pa.identifikasi1='ya','V','') iden1, if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, "
-                            + "if(pa.identifikasi6='ya','V','') iden6, if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
-                            + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp, concat('Tanggal, ',date_format(pa.tgl_verifikasi,'%d-%m-%Y'),'   Jam ',TIME_FORMAT(pa.tgl_verifikasi,'%H:%i:%S')) tglverif, "
-                            + "pg1.nama dr_dpjp, pg2.nama perawat from penilaian_awal_keperawatan_igdrz pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg1 on pg1.nik=pa.nip_dpjp inner join pegawai pg2 on pg2.nik=pa.nip_perawat where "
-                            + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-
-                    Valid.MyReport("rptCetakPenilaianAwalKeperawatanIGD.jasper", "report", "::[ Laporan Penilaian Awal Keperawatan IGD hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, concat('Tanggal : ', date_format(pa.tanggal,'%d-%m-%Y'),', Pukul : ',time_format(pa.tanggal,'%H:%i-%S')) tgl, "
-                            + "pa.keluhan_utama, pa.td tensi, pa.nadi, pa.nafas, pa.suhu, pa.bb, pa.tb, pa.asesmen_psikologis psikologis, if(pa.masalah_perilaku='Ada',concat(pa.masalah_perilaku,', Sebutkan : ',pa.sebutkan_perilaku),pa.masalah_perilaku) perilaku, "
-                            + "p.stts_nikah, pa.hubungan_pasien hubungan, if(pa.tempat_tinggal='Lainnya',concat(pa.tempat_tinggal,', ',pa.lainya_tempt_tgl),pa.tempat_tinggal) tmpttgl, p.pekerjaan, "
-                            + "pa.alat_bantu, if(pa.cacat_tubuh='Ada',concat(pa.cacat_tubuh,', ',pa.ada_cacat_tubuh),pa.cacat_tubuh) cacat, "
-                            + "pa.riwayat_alergi, if(pa.alergi_obat='ya','V','') aler_obat, if(pa.alergi_obat='ya',pa.reaksi_alergi_obat,'') reak_obat, if(pa.alergi_makanan='ya','V','') aler_mak, "
-                            + "if(pa.alergi_makanan='ya',pa.reaksi_alergi_makanan,'') reak_mak, if(pa.alergi_lainnya='ya','V','') aler_lain, if(pa.alergi_lainnya='ya',pa.reaksi_alergi_lainnya,'') reak_lain, "
-                            + "if(pa.pin_kancing='ya','V','') pin, pa.alergi_diberitahukan, if(pa.nyeri='Ya',concat(pa.nyeri,', Lokasi : ',pa.ya_nyeri_lokasi),pa.nyeri) nyeri, pa.jenis_nyeri, "
-                            + "if(pa.provocation='Lainnya',concat(pa.provocation,', ',pa.provocation_lain),pa.provocation) provokes, if(pa.quality='Lainnya',concat(pa.quality,', ',pa.quality_lain),pa.quality) quality, "
-                            + "pa.radiation radiasi, pa.severity severity_nyeri, concat(pa.time,', Lama : ',pa.time_lama) time_nyeri, pa.diagnosa_keperawatan, pa.tindakan_keperawatan, pa.evaluasi_keperawatan, if(pa.identifikasi1='ya','V','') iden1, "
-                            + "if(pa.identifikasi2='ya','V','') iden2, if(pa.identifikasi3='ya','V','') iden3, if(pa.identifikasi4='ya','V','') iden4, if(pa.identifikasi5='ya','V','') iden5, if(pa.identifikasi6='ya','V','') iden6, "
-                            + "if(pa.identifikasi7='ya','V','') iden7, if(pa.identifikasi8='ya','V','') iden8, if(pa.identifikasi9='ya','V','') iden9, if(pa.identifikasi10='ya','V','') iden10, "
-                            + "if(pa.manajer_pelayanan='ya','V','') mpp, if(pa.discharge_planing='ya','V','') dp from penilaian_awal_keperawatan_igdrz pa "
-                            + "inner join reg_periksa rp on rp.no_rawat=pa.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                            + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsLaprm != null) {
-                    rsLaprm.close();
-                }
-                if (psLaprm != null) {
-                    psLaprm.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
-    private void cetakAsesMedikObs() {
-        try {
-            psLaprm = koneksi.prepareStatement("select * from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat.getText() + "'");
-            try {
-                rsLaprm = psLaprm.executeQuery();
-                while (rsLaprm.next()) {
-                    Map<String, Object> param = new HashMap<>();
-                    param.put("namars", akses.getnamars());
-                    param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-                    if (rsLaprm.getString("cek_mengeluh_perut").equals("ya")) {
-                        param.put("perut_mules", "Pasien mengeluh perut mules/nyeri mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_mengeluh_perut,'%d-%m-%Y'),', jam : ',time_format(tgl_mengeluh_perut,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("perut_mules", "Pasien mengeluh perut mules/nyeri mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("keluar_lendir").equals("Ya")) {
-                        param.put("keluar_lendir", "Keluar lendir darah : " + rsLaprm.getString("keluar_lendir") + ", mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_lendir_ya,'%d-%m-%Y'),', jam : ',time_format(tgl_lendir_ya,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("keluar_lendir", "Keluar lendir darah : " + rsLaprm.getString("keluar_lendir") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("keluar_air").equals("Ya")) {
-                        param.put("keluar_air", "Keluar air-air : " + rsLaprm.getString("keluar_air") + ", " + rsLaprm.getString("keluar_air_ya") + " mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_air_ya,'%d-%m-%Y'),', jam : ',time_format(tgl_air_ya,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("keluar_air", "Keluar air-air : " + rsLaprm.getString("keluar_air") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("mengeluh_pusing").equals("Ya")) {
-                        param.put("mengeluh_pusing", "Pasien mengeluh pusing : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_pusing,'%d-%m-%Y'),', jam : ',time_format(tgl_pusing,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("mengeluh_pusing", "Pasien mengeluh pusing : " + rsLaprm.getString("mengeluh_pusing") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("nyeri_ulu_hati").equals("Ya")) {
-                        param.put("nyeri_ulu", "Nyeri Ulu Hati : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_nyeri,'%d-%m-%Y'),', jam : ',time_format(tgl_nyeri,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("nyeri_ulu", "Nyeri Ulu Hati : " + rsLaprm.getString("nyeri_ulu_hati") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("pandangan_kabur").equals("Ya")) {
-                        param.put("pandangan", "Pandangan kabur : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_pandangan,'%d-%m-%Y'),', jam : ',time_format(tgl_pandangan,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("pandangan", "Pandangan kabur : " + rsLaprm.getString("pandangan_kabur") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("mual_muntah").equals("Ya")) {
-                        param.put("mual", "Mual/Muntah : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_mual_muntah,'%d-%m-%Y'),', jam : ',time_format(tgl_mual_muntah,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("mual", "Mual/Muntah : " + rsLaprm.getString("mual_muntah") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("batuk_pilek").equals("Ya")) {
-                        param.put("batuk", "Batuk/Pilek : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_batuk_pilek,'%d-%m-%Y'),', jam : ',time_format(tgl_batuk_pilek,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("batuk", "Batuk/Pilek : " + rsLaprm.getString("batuk_pilek") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("demam").equals("Ya")) {
-                        param.put("demam", "Demam : Ya, mulai tgl. "
-                                + Sequel.cariIsi("select concat(date_format(tgl_demam,'%d-%m-%Y'),', jam : ',time_format(tgl_demam,'%H:%i')) "
-                                        + "from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("demam", "Demam : " + rsLaprm.getString("demam") + ", mulai tgl. -, jam : -");
-                    }
-
-                    if (rsLaprm.getString("pil").equals("ya")) {
-                        param.put("cek_pil", "V");
-                        param.put("pil", "Pil, lama : " + rsLaprm.getString("lama_pil") + " " + rsLaprm.getString("satuan_pil"));
-                    } else {
-                        param.put("cek_pil", "");
-                        param.put("pil", "Pil, lama : -");
-                    }
-
-                    if (rsLaprm.getString("suntik_1_bln").equals("ya")) {
-                        param.put("cek_suntik1", "V");
-                        param.put("suntik1", "Suntik 1 bulan, lama : " + rsLaprm.getString("lama_1_bln") + " " + rsLaprm.getString("satuan_suntik1"));
-                    } else {
-                        param.put("cek_suntik1", "");
-                        param.put("suntik1", "Suntik 1 bulan, lama : -");
-                    }
-
-                    if (rsLaprm.getString("suntik_3_bln").equals("ya")) {
-                        param.put("cek_suntik3", "V");
-                        param.put("suntik3", "Suntik 3 bulan, lama : " + rsLaprm.getString("lama_3_bln") + " " + rsLaprm.getString("satuan_suntik3"));
-                    } else {
-                        param.put("cek_suntik3", "");
-                        param.put("suntik3", "Suntik 3 bulan, lama : -");
-                    }
-
-                    if (rsLaprm.getString("implan").equals("ya")) {
-                        param.put("cek_implan", "V");
-                        param.put("implan", "Implant, lama : " + rsLaprm.getString("lama_implan") + " " + rsLaprm.getString("satuan_implan"));
-                    } else {
-                        param.put("cek_implan", "");
-                        param.put("implan", "Implant, lama : -");
-                    }
-
-                    if (!rsLaprm.getString("uk_usg").equals("")) {
-                        param.put("uk_usg", "UK (USG) : " + rsLaprm.getString("uk_usg") + " minggu, tgl. USG : "
-                                + Sequel.cariIsi("select date_format(tgl_usg,'%d-%m-%Y') from penilaian_awal_medis_obstetri_ralan where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    } else {
-                        param.put("uk_usg", "UK (USG) : - minggu, tgl. USG : -");
-                    }
-
-                    if (rsLaprm.getString("cara_datang").equals("Sendiri")) {
-                        param.put("cara_datang", rsLaprm.getString("cara_datang"));
-                    } else if (rsLaprm.getString("cara_datang").equals("Rujukan Bidan/BPM")) {
-                        param.put("cara_datang", rsLaprm.getString("cara_datang") + " : " + rsLaprm.getString("ket_rujukan_bidan"));
-                    } else if (rsLaprm.getString("cara_datang").equals("PKM")) {
-                        param.put("cara_datang", rsLaprm.getString("cara_datang") + " : " + rsLaprm.getString("ket_pkm"));
-                    } else if (rsLaprm.getString("cara_datang").equals("SpOG")) {
-                        param.put("cara_datang", rsLaprm.getString("ket_spog") + " SPOG");
-                    } else if (rsLaprm.getString("cara_datang").equals("RS Lain")) {
-                        param.put("cara_datang", rsLaprm.getString("cara_datang") + " : " + rsLaprm.getString("ket_rs_lain"));
-                    } else {
-                        param.put("cara_datang", "-");
-                    }
-
-                    if (rsLaprm.getString("his_kontraksi").equals("ya")) {
-                        param.put("cek_his", "V");
-                        param.put("his", "His/kontraksi : " + rsLaprm.getString("ket_his_kontraksi") + " x/10 mnt");
-                    } else {
-                        param.put("cek_his", "");
-                        param.put("his", "His/kontraksi : ....  x/10 mnt");
-                    }
-
-                    if (rsLaprm.getString("meninggal").equals("ya")) {
-                        param.put("jam_meninggal", rsLaprm.getString("jam_meninggal"));
-                    } else {
-                        param.put("jam_meninggal", "-");
-                    }
-
-                    Valid.MyReport("rptCetakPenilaianAwalMedisObstetriRalan.jasper", "report", "::[ Laporan Asesmen Medik Obstetri hal. 1 ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllhr, "
-                            + "CONCAT('Tanggal : ',DATE_FORMAT(pa.tanggal,'%d-%m-%Y'),'  Pukul : ',TIME_FORMAT(pa.tanggal,'%H:%i')) mulai_penang, "
-                            + "IF(pa.cervival='ya','V','') cer, IF(pa.rjp='ya','V','') rjp, IF(pa.defribilasi='ya','V','') def, IF(pa.intubasi='ya','V','') intu, IF(pa.vtp='ya','V','') vtp, "
-                            + "IF(pa.dekompresi='ya','V','') dek, IF(pa.balut='ya','V','') bal, IF(pa.kateter='ya','V','') kat, IF(pa.ngt='ya','V','') ngt, IF(pa.infus='ya','V','') inf, "
-                            + "IF(pa.obat='ya','V','') obt, IF(pa.tidak_ada='ya','V','') tdk_ada, pa.ket_obat, IF(pa.gangguan_jalan_nafas='ya','V','') ggnfs, IF(pa.paten='ya','V','') pat, "
-                            + "IF(pa.obstruksi_partial='ya','V','') obsp, pa.data_obstruksi_partial, IF(pa.obstruksi_total='ya','V','') obst, IF(pa.trauma_jalan_nafas='ya','V','') traumajln, "
-                            + "pa.trauma, IF(pa.resiko_aspirasi='ya','V','') res, pa.aspirasi, IF(pa.benda_asing='ya','V','') ben, pa.ket_benda_asing, pa.kesimpulan_jalan_nafas, "
-                            + "pa.pernafasan, pa.data_pernafasan, pa.gerakan_dada, pa.tipe_pernafasan, pa.kesimpulan_pernafasan, pa.nadi, pa.kulit_mukosa, "
-                            + "pa.akral, pa.crt, pa.kesimpulan_sirkulasi, pa.gcs_e, pa.gcs_v, pa.gcs_m, pa.pupil, pa.diameter_kanan, pa.diameter_kiri, pa.reflek_cahaya, "
-                            + "pa.meningeal_sign, pa.lateralisasi, IF(pa.deformitas='ya','V','') def, IF(pa.contusio='ya','V','') con, IF(pa.penerima_edukasi='ya','V','') pen, "
-                            + "IF(pa.tenderness='ya','V','') ten, IF(pa.swelling='ya','V','') swe, IF(pa.ekskoriasi='ya','V','') eks, IF(pa.abrasi='ya','V','') abr, "
-                            + "IF(pa.burn='ya','V','') bur, IF(pa.laserasi='ya','V','') las, IF(pa.tidak_tampak_jelas='ya','V','') tdktampak, pa.alasan_masuk, "
-                            + "pa.dengan_gr, pa.dengan_pr, pa.dengan_a, pa.hamil, pa.ket_dengan, "
-                            + "IF(pa.periksa_bidan='Ya',CONCAT('Periksa ketempat bidan : Ya, Hasil / Riwayat Pemeriksaan Bidan : ',pa.hasil_periksa_bidan),CONCAT('Periksa ketempat bidan : ',pa.periksa_bidan,', Hasil / Riwayat Pemeriksaan Bidan : -')) prksa_bidan, "
-                            + "IF(pa.riw_jalan_jauh='Ya',CONCAT('Riwayat perjalanan jauh : Ya, ',pa.ket_riw_jalan_jauh),CONCAT('Riwayat perjalanan jauh : ',pa.riw_jalan_jauh,', -')) riw_jln_jauh, "
-                            + "pa.os_anc_bidan, pa.dengan_spog1, pa.jml_spog1, pa.dengan_spog2, pa.jml_spog2, IF(pa.hipertensi1='ya','V','') hip1, "
-                            + "IF(pa.diabetes1='ya','V','') dm1, IF(pa.jantung1='ya','V','') jan1, IF(pa.asma1='ya','V','') asm1, IF(pa.lainnya1='ya','V','') lain1, "
-                            + "pa.ket_lainnya1, IF(pa.hipertensi2='ya','V','') hip2, IF(pa.diabetes2='ya','V','') dm2, IF(pa.jantung2='ya','V','') jan2, IF(pa.asma2='ya','V','') asm2, "
-                            + "IF(pa.lainnya2='ya','V','') lain2, pa.ket_lainnya2, pa.riw_ginekologi, pa.riwayat_kb_lain, pa.hpht, pa.hpl, pa.uk, pa.bb_blm_hamil, "
-                            + "pa.bb_stlh_hamil, pa.tbi, pa.bmi, pa.lila, IF(pa.dismenorhoe='ya','V','') dismen, IF(pa.spoting='ya','V','') spot, IF(pa.menorrhagia='ya','V','') menor, "
-                            + "IF(pa.metrohagia='ya','V','') metro, pa.keluhan_lain, pa.leopold1, pa.leopold2, pa.leopold3, pa.leopold4, IF(pa.nyeri_tekan='ya','V','') nyeri, "
-                            + "IF(pa.bandle_ring='ya','V','') band FROM penilaian_awal_medis_obstetri_ralan pa INNER JOIN reg_periksa rp ON rp.no_rawat=pa.no_rawat "
-                            + "INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis where pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-
-                    Valid.MyReport("rptCetakPenilaianAwalMedisObstetriRalan1.jasper", "report", "::[ Laporan Asesmen Medik Obstetri hal. 2 ]::",
-                            "SELECT pa.tfu, pa.taksiran_bb_janin, IF(pa.teratur='ya','V','')teratur, IF(pa.tdk_teratur='ya','V','')tdkteratur, IF(pa.trs_menerus='ya','V','')trsmenerus, "
-                            + "pa.durasi, IF(pa.kuat='ya','V','')kuat, IF(pa.sedang='ya','V','')sedang, IF(pa.lemah='ya','V','')lemah, pa.auskultasi, IF(pa.bersih='ya','V','')bersih, "
-                            + "IF(pa.oedema='ya','V','')odema, IF(pa.ruptur='ya','V','')ruptur, IF(pa.candiloma='ya','V','')candi, pa.pemeriksaan_genitalia_lain, pa.inspeksi, pa.konsistensi, "
-                            + "pa.periksa_dlm_obstetri, pa.inspekulum, pa.diagnosis_sementara, pa.icd_10, pa.rencana_instruksi, pa.planing, pa.telah_diberikan_informasi_edukasi, "
-                            + "pa.rencana_asuhan_diharapkan, p1.nama pemberi_edukasi, pa.penerima_edukasi, p2.nama nmdokter, DATE_FORMAT(pa.tgl_keluar_ponek,'%d-%m-%Y, JAM KELUAR : %H:%i') tglkeluar, "
-                            + "pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, "
-                            + "pa.spo2, pa.gcs_pulang, p3.nama nmbidan, p4.nama nmdpjp FROM penilaian_awal_medis_obstetri_ralan pa "
-                            + "inner join pegawai p1 on p1.nik=pa.nip_pemberi_edukasi inner join pegawai p2 on p2.nik=pa.nip_dokter "
-                            + "inner join pegawai p3 on p3.nik=pa.nip_bidan inner join pegawai p4 on p4.nik=pa.nip_dpjp where "
-                            + "pa.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsLaprm != null) {
-                    rsLaprm.close();
-                }
-                if (psLaprm != null) {
-                    psLaprm.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
-    }
-    
     private void cetakTransferSerahTerimaIGD() {        
         try {
             psLaprm = koneksi.prepareStatement("select * from transfer_serah_terima_pasien_igd where no_rawat='" + norawat.getText() + "'");
@@ -17199,6 +16445,53 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                 "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
                                 + "and status='Ralan' ORDER BY waktu_simpan desc", param);
                     }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cetakAsesmenMedikDewasa() {
+        try {
+            psLaprm = koneksi.prepareStatement("select * from asesmen_medik_dewasa_ranap where no_rawat='" + norawat.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("ruangan", Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar") + "'"));
+                    param.put("riw_penyakit_skrng", rsLaprm.getString("riw_penyakit_sekarang"));
+                    param.put("riw_alergi", rsLaprm.getString("riw_alergi"));
+
+                    Valid.MyReport("rptCetakAsesmenMedikDewasaRanap.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
+                            "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
+                            + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
+                            + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
+                            + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
+                            + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
+                            + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
+                            + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
+                            + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
+                            + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
+                            + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
+                            + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
+                            + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
+                            + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
+                            + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk "
+                            + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                            + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
+                            + "am.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
