@@ -3421,22 +3421,24 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             param.put("namars", akses.getnamars());            
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("ruangan", TRuangan.getText());
+            param.put("riw_penyakit_skrng", Triw_penyakit_sekarang.getText());
+            param.put("riw_alergi", Triw_alergi.getText());
 
             Valid.MyReport("rptCetakAsesmenMedikDewasaRanap.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
                     "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
                     + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
-                    + "if(am.rujukan='ya','V','') rujukan, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
+                    + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
                     + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
                     + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
                     + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
                     + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
-                    + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, am.pernah_dirawat, am.ket_kapan, "
-                    + "am.ket_dimana, am.diagnosis, if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
+                    + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
+                    + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
                     + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
-                    + "if(am.nyeri='ya','V','') nyeri, am.ket_lokasi, am.ket_intensitas, am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, "
-                    + "am.gcs_m, am.gcs_v, if(am.tindakan_resus='ya','V','') tndk_resus, am.bb, am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, "
-                    + "am.suhu_rektal, am.mata_anemis, am.ikterik, am.pupil, am.diameter_kanan, am.diameter_kiri, am.udem_palpebra, am.tonsil, am.faring, "
-                    + "am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.ket_ada_kelenjar) kel_limfe, am.kaku_kuduk "
+                    + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
+                    + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
+                    + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
+                    + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk "
                     + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
                     + "am.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
