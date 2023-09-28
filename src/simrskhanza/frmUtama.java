@@ -902,7 +902,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnKasusPersalinanDinkes = new widget.ButtonBig();
         btnPenilaianTambahanGeriatri = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanGeriatri = new widget.ButtonBig();
-        btnMasterFaktorResikoIGD = new widget.ButtonBig();
+        btnMasterFaktorResikoIGDkebidanan = new widget.ButtonBig();
         btnAssesmenKeperawatanIGD = new widget.ButtonBig();
         btnAssesmenMedikIGD = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanMata = new widget.ButtonBig();
@@ -5943,18 +5943,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPenilaianAwalMedisRalanGeriatri);
 
-        btnMasterFaktorResikoIGD.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterFaktorResikoIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
-        btnMasterFaktorResikoIGD.setText("Master Faktor Resiko IGD");
-        btnMasterFaktorResikoIGD.setIconTextGap(0);
-        btnMasterFaktorResikoIGD.setName("btnMasterFaktorResikoIGD"); // NOI18N
-        btnMasterFaktorResikoIGD.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterFaktorResikoIGD.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterFaktorResikoIGDkebidanan.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterFaktorResikoIGDkebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
+        btnMasterFaktorResikoIGDkebidanan.setText("Master Faktor Resiko IGD & Kebidanan");
+        btnMasterFaktorResikoIGDkebidanan.setIconTextGap(0);
+        btnMasterFaktorResikoIGDkebidanan.setName("btnMasterFaktorResikoIGDkebidanan"); // NOI18N
+        btnMasterFaktorResikoIGDkebidanan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterFaktorResikoIGDkebidanan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterFaktorResikoIGDActionPerformed(evt);
+                btnMasterFaktorResikoIGDkebidananActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnMasterFaktorResikoIGD);
+        Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
 
         btnAssesmenKeperawatanIGD.setForeground(new java.awt.Color(0, 0, 0));
         btnAssesmenKeperawatanIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_AMBULANCE-transport-health_care-transportation-urgency_6007988.png"))); // NOI18N
@@ -6133,7 +6133,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21/09/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/09/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7030,7 +7030,7 @@ private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
 private void BtnToolRegActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolRegActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    isTutup();
+    isTutup();    
     DlgReg reg = new DlgReg(null, false);
     reg.emptTeks();
     reg.isCek();
@@ -11998,7 +11998,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPenilaianAwalMedisRalanGeriatriActionPerformed
 
-    private void btnMasterFaktorResikoIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterFaktorResikoIGDActionPerformed
+    private void btnMasterFaktorResikoIGDkebidananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterFaktorResikoIGDkebidananActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         MasterFaktorResikoIGD form = new MasterFaktorResikoIGD(this, false);
@@ -12008,7 +12008,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         form.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterFaktorResikoIGDActionPerformed
+    }//GEN-LAST:event_btnMasterFaktorResikoIGDkebidananActionPerformed
 
     private void btnAssesmenKeperawatanIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenKeperawatanIGDActionPerformed
         isTutup();
@@ -12419,7 +12419,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterAturanPakai;
     private widget.ButtonBig btnMasterCaraBayar;
     private widget.ButtonBig btnMasterDTD;
-    private widget.ButtonBig btnMasterFaktorResikoIGD;
+    private widget.ButtonBig btnMasterFaktorResikoIGDkebidanan;
     private widget.ButtonBig btnMasterFaskes;
     private widget.ButtonBig btnMasterJabatanKomite;
     private widget.ButtonBig btnMasterKasusPersalinanDinkes;
@@ -14299,7 +14299,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
             
             if (akses.getdata_triase_igd() == true) {
-                Panelmenu.add(btnMasterFaktorResikoIGD);
+                Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
                 jmlmenu++;
             }
             
@@ -14851,7 +14851,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getdata_triase_igd() == true) {
-            Panelmenu.add(btnMasterFaktorResikoIGD);
+            Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
             jmlmenu++;
         }
         
@@ -16751,8 +16751,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getdata_triase_igd()== true) {
-            if (btnMasterFaktorResikoIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterFaktorResikoIGD);
+            if (btnMasterFaktorResikoIGDkebidanan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
                 jmlmenu++;
             }
         }

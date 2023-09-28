@@ -456,9 +456,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TNmDokter" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1075,9 +1072,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TTensi" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1085,7 +1079,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="865" y="495" width="90" height="23"/>
+                              <AbsoluteConstraints x="865" y="495" width="70" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1099,7 +1093,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1010" y="495" width="50" height="23"/>
+                              <AbsoluteConstraints x="990" y="495" width="50" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1109,9 +1103,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TSuhu" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1119,7 +1110,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1065" y="495" width="90" height="23"/>
+                              <AbsoluteConstraints x="1045" y="495" width="70" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1133,7 +1124,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1185" y="495" width="50" height="23"/>
+                              <AbsoluteConstraints x="1145" y="495" width="50" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1143,9 +1134,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TNadi" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1153,7 +1141,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1240" y="495" width="90" height="23"/>
+                              <AbsoluteConstraints x="1200" y="495" width="70" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1191,9 +1179,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TFrekuensiNafas" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1201,7 +1186,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="865" y="525" width="90" height="23"/>
+                              <AbsoluteConstraints x="865" y="525" width="70" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1215,7 +1200,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1010" y="525" width="50" height="23"/>
+                              <AbsoluteConstraints x="990" y="525" width="50" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1225,9 +1210,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="Tgcs" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1235,7 +1217,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1065" y="525" width="235" height="23"/>
+                              <AbsoluteConstraints x="1045" y="525" width="235" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1309,7 +1291,7 @@
                           </Events>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1065" y="555" width="380" height="23"/>
+                              <AbsoluteConstraints x="1065" y="555" width="385" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1346,7 +1328,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="27-09-2023"/>
+                                <StringItem index="0" value="28-09-2023"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1383,9 +1365,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TKondisiPulang" noResource="true"/>
                           </Properties>
                           <Constraints>
@@ -1503,7 +1482,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="960" y="495" width="40" height="23"/>
+                              <AbsoluteConstraints x="940" y="495" width="40" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1518,7 +1497,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="960" y="525" width="40" height="23"/>
+                              <AbsoluteConstraints x="940" y="525" width="40" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1533,7 +1512,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1160" y="495" width="30" height="23"/>
+                              <AbsoluteConstraints x="1120" y="495" width="30" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1548,7 +1527,7 @@
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="1335" y="495" width="40" height="23"/>
+                              <AbsoluteConstraints x="1275" y="495" width="40" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1572,9 +1551,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="Tedukasi" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1605,12 +1581,12 @@
                             <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
-                            <Property name="text" type="java.lang.String" value="Png. Jawab Pasien :"/>
+                            <Property name="text" type="java.lang.String" value="Penanggung Jawab Pasien :"/>
                             <Property name="name" type="java.lang.String" value="jLabel56" noResource="true"/>
                           </Properties>
                           <Constraints>
                             <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                              <AbsoluteConstraints x="730" y="160" width="130" height="23"/>
+                              <AbsoluteConstraints x="690" y="160" width="170" height="23"/>
                             </Constraint>
                           </Constraints>
                         </Component>
@@ -1620,9 +1596,6 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="toolTipText" type="java.lang.String" value=""/>
-                            <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-                              <ComponentRef name="null"/>
-                            </Property>
                             <Property name="name" type="java.lang.String" value="TKlgPasien" noResource="true"/>
                           </Properties>
                           <Events>
@@ -1722,7 +1695,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="27-09-2023"/>
+                            <StringItem index="0" value="28-09-2023"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1750,7 +1723,7 @@
                       <Properties>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="27-09-2023"/>
+                            <StringItem index="0" value="28-09-2023"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

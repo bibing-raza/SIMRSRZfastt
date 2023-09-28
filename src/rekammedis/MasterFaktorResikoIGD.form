@@ -33,14 +33,13 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Data Master Resiko Jatuh (IGD) ]::">
+            <TitledBorder title="::[ Data Master Resiko Jatuh (IGD &amp; Kebidanan) ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder thickness="3">
                   <Color PropertyName="color" blue="ff" green="99" red="0" type="rgb"/>
                 </LineBorder>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -499,9 +498,10 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="2">
+                  <StringArray count="3">
                     <StringItem index="0" value="Dewasa"/>
                     <StringItem index="1" value="Anak"/>
+                    <StringItem index="2" value="Kebidanan"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbAsesmen" noResource="true"/>
@@ -511,7 +511,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="543" y="38" width="80" height="23"/>
+                  <AbsoluteConstraints x="543" y="38" width="90" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>

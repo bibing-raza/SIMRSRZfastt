@@ -538,7 +538,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         TNmDokter.setForeground(new java.awt.Color(0, 0, 0));
         TNmDokter.setToolTipText("");
-        TNmDokter.setHighlighter(null);
         TNmDokter.setName("TNmDokter"); // NOI18N
         TNmDokter.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -859,7 +858,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         TTensi.setForeground(new java.awt.Color(0, 0, 0));
         TTensi.setToolTipText("");
-        TTensi.setHighlighter(null);
         TTensi.setName("TTensi"); // NOI18N
         TTensi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -867,17 +865,16 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TTensi);
-        TTensi.setBounds(865, 495, 90, 23);
+        TTensi.setBounds(865, 495, 70, 23);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Suhu :");
         jLabel31.setName("jLabel31"); // NOI18N
         panelisi1.add(jLabel31);
-        jLabel31.setBounds(1010, 495, 50, 23);
+        jLabel31.setBounds(990, 495, 50, 23);
 
         TSuhu.setForeground(new java.awt.Color(0, 0, 0));
         TSuhu.setToolTipText("");
-        TSuhu.setHighlighter(null);
         TSuhu.setName("TSuhu"); // NOI18N
         TSuhu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -885,17 +882,16 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TSuhu);
-        TSuhu.setBounds(1065, 495, 90, 23);
+        TSuhu.setBounds(1045, 495, 70, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setText("Nadi :");
         jLabel32.setName("jLabel32"); // NOI18N
         panelisi1.add(jLabel32);
-        jLabel32.setBounds(1185, 495, 50, 23);
+        jLabel32.setBounds(1145, 495, 50, 23);
 
         TNadi.setForeground(new java.awt.Color(0, 0, 0));
         TNadi.setToolTipText("");
-        TNadi.setHighlighter(null);
         TNadi.setName("TNadi"); // NOI18N
         TNadi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -903,7 +899,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TNadi);
-        TNadi.setBounds(1240, 495, 90, 23);
+        TNadi.setBounds(1200, 495, 70, 23);
 
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setText("Tekanan darah :");
@@ -919,7 +915,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         TFrekuensiNafas.setForeground(new java.awt.Color(0, 0, 0));
         TFrekuensiNafas.setToolTipText("");
-        TFrekuensiNafas.setHighlighter(null);
         TFrekuensiNafas.setName("TFrekuensiNafas"); // NOI18N
         TFrekuensiNafas.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -927,17 +922,16 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TFrekuensiNafas);
-        TFrekuensiNafas.setBounds(865, 525, 90, 23);
+        TFrekuensiNafas.setBounds(865, 525, 70, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setText("GCS :");
         jLabel37.setName("jLabel37"); // NOI18N
         panelisi1.add(jLabel37);
-        jLabel37.setBounds(1010, 525, 50, 23);
+        jLabel37.setBounds(990, 525, 50, 23);
 
         Tgcs.setForeground(new java.awt.Color(0, 0, 0));
         Tgcs.setToolTipText("");
-        Tgcs.setHighlighter(null);
         Tgcs.setName("Tgcs"); // NOI18N
         Tgcs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -945,7 +939,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(Tgcs);
-        Tgcs.setBounds(1065, 525, 235, 23);
+        Tgcs.setBounds(1045, 525, 235, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Pengobatan Lanjutan :");
@@ -985,7 +979,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(TDokterLuar);
-        TDokterLuar.setBounds(1065, 555, 380, 23);
+        TDokterLuar.setBounds(1065, 555, 385, 23);
 
         chkTglKontrol.setBackground(new java.awt.Color(242, 242, 242));
         chkTglKontrol.setBorder(null);
@@ -1006,7 +1000,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 585, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2023" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1027,7 +1021,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         TKondisiPulang.setEditable(false);
         TKondisiPulang.setForeground(new java.awt.Color(0, 0, 0));
         TKondisiPulang.setToolTipText("");
-        TKondisiPulang.setHighlighter(null);
         TKondisiPulang.setName("TKondisiPulang"); // NOI18N
         panelisi1.add(TKondisiPulang);
         TKondisiPulang.setBounds(1090, 585, 360, 23);
@@ -1089,28 +1082,28 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel50.setText("mmHg");
         jLabel50.setName("jLabel50"); // NOI18N
         panelisi1.add(jLabel50);
-        jLabel50.setBounds(960, 495, 40, 23);
+        jLabel50.setBounds(940, 495, 40, 23);
 
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel51.setText("x/menit");
         jLabel51.setName("jLabel51"); // NOI18N
         panelisi1.add(jLabel51);
-        jLabel51.setBounds(960, 525, 40, 23);
+        jLabel51.setBounds(940, 525, 40, 23);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
         jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel52.setText("°C");
         jLabel52.setName("jLabel52"); // NOI18N
         panelisi1.add(jLabel52);
-        jLabel52.setBounds(1160, 495, 30, 23);
+        jLabel52.setBounds(1120, 495, 30, 23);
 
         jLabel53.setForeground(new java.awt.Color(0, 0, 0));
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel53.setText("x/menit");
         jLabel53.setName("jLabel53"); // NOI18N
         panelisi1.add(jLabel53);
-        jLabel53.setBounds(1335, 495, 40, 23);
+        jLabel53.setBounds(1275, 495, 40, 23);
 
         jLabel54.setForeground(new java.awt.Color(0, 0, 0));
         jLabel54.setText("Edukasi Yang Diberikan :");
@@ -1120,7 +1113,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         Tedukasi.setForeground(new java.awt.Color(0, 0, 0));
         Tedukasi.setToolTipText("");
-        Tedukasi.setHighlighter(null);
         Tedukasi.setName("Tedukasi"); // NOI18N
         Tedukasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1137,14 +1129,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel55.setBounds(730, 145, 130, 23);
 
         jLabel56.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel56.setText("Png. Jawab Pasien :");
+        jLabel56.setText("Penanggung Jawab Pasien :");
         jLabel56.setName("jLabel56"); // NOI18N
         panelisi1.add(jLabel56);
-        jLabel56.setBounds(730, 160, 130, 23);
+        jLabel56.setBounds(690, 160, 170, 23);
 
         TKlgPasien.setForeground(new java.awt.Color(0, 0, 0));
         TKlgPasien.setToolTipText("");
-        TKlgPasien.setHighlighter(null);
         TKlgPasien.setName("TKlgPasien"); // NOI18N
         TKlgPasien.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1195,7 +1186,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel38);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1209,7 +1200,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel46.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel46);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

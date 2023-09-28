@@ -5012,7 +5012,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                         + "asesmen = 'dewasa' and skala like ? order by kode_resiko");
             } else {
                 ps2 = koneksi.prepareStatement("select kode_resiko, faktor_resiko, skala, skor, asesmen from master_faktor_resiko_igd where "
-                        + "faktor_resiko like ? or skala like ? order by kode_resiko");
+                        + "asesmen in ('dewasa','anak') and faktor_resiko like ? or "
+                        + "asesmen in ('dewasa','anak') and skala like ? order by kode_resiko");
             }
             try {
                 ps2.setString(1, "%" + TCariResiko.getText().trim() + "%");
