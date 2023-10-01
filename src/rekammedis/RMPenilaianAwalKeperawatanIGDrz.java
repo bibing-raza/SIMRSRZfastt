@@ -61,7 +61,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rs3, rs4, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8;
     private int i = 0, x = 0, skor = 0, pilihan = 0, cekHasilRad = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private MasterFaktorResikoIGD resikoIGD = new MasterFaktorResikoIGD(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);        
     private String nip = "", skrining_gz = "", gz_anak1 = "", gz_anak2 = "", gz_anak3 = "", gz_anak4 = "",
             aler_obat = "", aler_mak = "", aler_lain = "", pin = "", iden1 = "", iden2 = "", iden3 = "", iden4 = "",
@@ -605,7 +604,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TCariResiko = new widget.TextBox();
         BtnCariResiko = new widget.Button();
         BtnAllResiko = new widget.Button();
-        BtnTambahResiko = new widget.Button();
         jLabel65 = new widget.Label();
         TabTindakanPencegahan = new javax.swing.JTabbedPane();
         panelBiasa6 = new widget.PanelBiasa();
@@ -963,7 +961,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2023 08:59:15" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023 23:54:50" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -1824,19 +1822,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(BtnAllResiko);
         BtnAllResiko.setBounds(331, 965, 28, 23);
 
-        BtnTambahResiko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
-        BtnTambahResiko.setMnemonic('3');
-        BtnTambahResiko.setToolTipText("Alt+3");
-        BtnTambahResiko.setName("BtnTambahResiko"); // NOI18N
-        BtnTambahResiko.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnTambahResiko.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnTambahResikoActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnTambahResiko);
-        BtnTambahResiko.setBounds(363, 965, 28, 23);
-
         jLabel65.setForeground(new java.awt.Color(0, 0, 0));
         jLabel65.setText("TINDAKAN PENCEGAHAN RESIKO JATUH :");
         jLabel65.setName("jLabel65"); // NOI18N
@@ -2562,7 +2547,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2023 08:59:17" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023 23:54:51" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2858,7 +2843,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2873,7 +2858,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3873,15 +3858,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAllResikoKeyPressed
 
-    private void BtnTambahResikoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahResikoActionPerformed
-        akses.setform("RMPenilaianAwalKeperawatanIGDrz");
-        resikoIGD.isCek();
-        resikoIGD.setSize(731, internalFrame1.getHeight() - 40);
-        resikoIGD.setLocationRelativeTo(internalFrame1);
-        resikoIGD.setAlwaysOnTop(false);
-        resikoIGD.setVisible(true);
-    }//GEN-LAST:event_BtnTambahResikoActionPerformed
-
     private void Tsebutkan_cacatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tsebutkan_cacatKeyPressed
         Valid.pindah(evt, cmbCacat, cmbRiwayat);
     }//GEN-LAST:event_Tsebutkan_cacatKeyPressed
@@ -4248,7 +4224,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnSebutkan;
     private widget.Button BtnSimpan;
-    private widget.Button BtnTambahResiko;
     private widget.Button BtnTindakan;
     public widget.CekBox ChkGZanak1;
     public widget.CekBox ChkGZanak2;
@@ -4958,6 +4933,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             System.out.println("Notif : " + e);
         }
     }
+    
     private void hitungSkorGZ() {
         int A1, B1, C1, TotD, A2, B2, C2, D2, TotA;
         A1 = Integer.parseInt(skorGZ1.getText());
