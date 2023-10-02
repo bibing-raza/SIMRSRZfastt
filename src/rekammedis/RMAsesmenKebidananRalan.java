@@ -40,12 +40,15 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2;
-    private ResultSet rs, rs1, rs2;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4;
+    private ResultSet rs, rs1, rs2, rs3, rs4;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
-    private String wktSimpan = "", kdpoli = "", nipPerawat = "", nipDokter = "", nipBidan="";
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private String wktSimpan = "", kdpoli = "", nipPerawat = "", nipDokter = "", nipBidan = "", alergiObat = "", alergiMakan = "",
+            alergiLain = "", gelang = "", diagnosa = "", tindakan = "", obat = "", rehab = "", diet = "", menejemen = "", lainSebutkan = "",
+            pasien = "", klgPasien = "", tidakBeri = "", jam = "", iden1 = "", iden2 = "", iden3 = "", iden4 = "", iden5 = "", iden6 = "",
+            iden7 = "", iden8 = "", iden9 = "", iden10 = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -1443,7 +1446,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         TsttsKawin.setForeground(new java.awt.Color(0, 0, 0));
         TsttsKawin.setName("TsttsKawin"); // NOI18N
         FormInput.add(TsttsKawin);
-        TsttsKawin.setBounds(125, 549, 200, 23);
+        TsttsKawin.setBounds(125, 549, 240, 23);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
         jLabel52.setText("Jumlah Perkawinan :");
@@ -1626,7 +1629,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbEkonomi);
-        cmbEkonomi.setBounds(125, 689, 93, 23);
+        cmbEkonomi.setBounds(125, 689, 95, 23);
 
         TsttsEkonomi.setForeground(new java.awt.Color(0, 0, 0));
         TsttsEkonomi.setName("TsttsEkonomi"); // NOI18N
@@ -4327,31 +4330,25 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(new Date());
-        
+        isPasien();
+        tampil();
     }
     
     public void isCek(){
         BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan()); 
+        
         if(akses.getjml2()>=1){
-//            KdPetugas.setEditable(false);
-//            BtnDokter.setEnabled(false);
-//            KdPetugas.setText(akses.getkode());
-//            Sequel.cariIsi("select nama from petugas where nip=?", NmPetugas,KdPetugas.getText());
-//            if(NmPetugas.getText().equals("")){
-//                KdPetugas.setText("");
-//                JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
-//            }
+            BtnBidan.setEnabled(false);
+            nipBidan = akses.getkode();            
+            Sequel.cariIsi("select nama from pegawai where nik=?", TnmBidan, nipBidan);
+            if (TnmBidan.getText().equals("")) {
+                nipBidan = "";
+            }
         }            
     }
 
-    public void setTampil(){
-       TabRawat.setSelectedIndex(1);
-       tampil();
-    }
-    
     private void hapus() {
         if (Sequel.queryu2tf("delete from penilaian_awal_keperawatan_kebidanan where no_rawat=?", 1, new String[]{
             tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
@@ -4503,6 +4500,386 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cekData() {
+        if (chkAlergiObat.isSelected() == true) {
+            alergiObat = "ya";
+        } else {
+            alergiObat = "tidak";
+        }
+        
+        if (chkAlergiMakanan.isSelected() == true) {
+            alergiMakan = "ya";
+        } else {
+            alergiMakan = "tidak";
+        }
+        
+        if (chkAlergiLain.isSelected() == true) {
+            alergiLain = "ya";
+        } else {
+            alergiLain = "tidak";
+        }
+        
+        if (chkGelang.isSelected() == true) {
+            gelang = "ya";
+        } else {
+            gelang = "tidak";
+        }
+        
+        if (chkDiagnosa.isSelected() == true) {
+            diagnosa = "ya";
+        } else {
+            diagnosa = "tidak";
+        }
+        
+        if (chkTindakan.isSelected() == true) {
+            tindakan = "ya";
+        } else {
+            tindakan = "tidak";
+        }
+        
+        if (chkObat.isSelected() == true) {
+            obat = "ya";
+        } else {
+            obat = "tidak";
+        }
+        
+        if (chkRehab.isSelected() == true) {
+            rehab = "ya";
+        } else {
+            rehab = "tidak";
+        }
+        
+        if (chkDiet.isSelected() == true) {
+            diet = "ya";
+        } else {
+            diet = "tidak";
+        }
+        
+        if (chkManajemen.isSelected() == true) {
+            menejemen = "ya";
+        } else {
+            menejemen = "tidak";
+        }
+        
+        if (chkLain.isSelected() == true) {
+            lainSebutkan = "ya";
+        } else {
+            lainSebutkan = "tidak";
+        }
+        
+        if (chkPasien.isSelected() == true) {
+            pasien = "ya";
+        } else {
+            pasien = "tidak";
+        }
+        
+        if (chkKlgPasien.isSelected() == true) {
+            klgPasien = "ya";
+        } else {
+            klgPasien = "tidak";
+        }
+        
+        if (chkTdkBeriEdukasi.isSelected() == true) {
+            tidakBeri = "ya";
+        } else {
+            tidakBeri = "tidak";
+        }
+        
+        if (ChkJam.isSelected() == true) {
+            jam = "ya";
+        } else {
+            jam = "tidak";
+        }
+        
+        if (chkIden1.isSelected() == true) {
+            iden1 = "ya";
+        } else {
+            iden1 = "tidak";
+        }
+        
+        if (chkIden2.isSelected() == true) {
+            iden2 = "ya";
+        } else {
+            iden2 = "tidak";
+        }
+        
+        if (chkIden3.isSelected() == true) {
+            iden3 = "ya";
+        } else {
+            iden3 = "tidak";
+        }
+        
+        if (chkIden4.isSelected() == true) {
+            iden4 = "ya";
+        } else {
+            iden4 = "tidak";
+        }
+        
+        if (chkIden5.isSelected() == true) {
+            iden5 = "ya";
+        } else {
+            iden5 = "tidak";
+        }
+        
+        if (chkIden6.isSelected() == true) {
+            iden6 = "ya";
+        } else {
+            iden6 = "tidak";
+        }
+        
+        if (chkIden7.isSelected() == true) {
+            iden7 = "ya";
+        } else {
+            iden7 = "tidak";
+        }
+        
+        if (chkIden8.isSelected() == true) {
+            iden8 = "ya";
+        } else {
+            iden8 = "tidak";
+        }
+        
+        if (chkIden9.isSelected() == true) {
+            iden9 = "ya";
+        } else {
+            iden9 = "tidak";
+        }
+        
+        if (chkIden10.isSelected() == true) {
+            iden10 = "ya";
+        } else {
+            iden10 = "tidak";
+        }
+    }
+    
+    private void dataCek() {
+        if (alergiObat.equals("ya")) {
+            chkAlergiObat.setSelected(true);
+        } else {
+            chkAlergiObat.setSelected(false);
+        }
+        
+        if (alergiMakan.equals("ya")) {
+            chkAlergiMakanan.setSelected(true);
+        } else {
+            chkAlergiMakanan.setSelected(false);
+        }
+        
+        if (alergiLain.equals("ya")) {
+            chkAlergiLain.setSelected(true);
+        } else {
+            chkAlergiLain.setSelected(false);
+        }
+        
+        if (gelang.equals("ya")) {
+            chkGelang.setSelected(true);
+        } else {
+            chkGelang.setSelected(false);
+        }
+        
+        if (diagnosa.equals("ya")) {
+            chkDiagnosa.setSelected(true);
+        } else {
+            chkDiagnosa.setSelected(false);
+        }
+        
+        if (tindakan.equals("ya")) {
+            chkTindakan.setSelected(true);
+        } else {
+            chkTindakan.setSelected(false);
+        }
+
+        if (obat.equals("ya")) {
+            chkObat.setSelected(true);
+        } else {
+            chkObat.setSelected(false);
+        }
+
+        if (rehab.equals("ya")) {
+            chkRehab.setSelected(true);
+        } else {
+            chkRehab.setSelected(false);
+        }
+
+        if (diet.equals("ya")) {
+            chkDiet.setSelected(true);
+        } else {
+            chkDiet.setSelected(false);
+        }
+         
+        if (menejemen.equals("ya")) {
+            chkManajemen.setSelected(true);
+        } else {
+            chkManajemen.setSelected(false);
+        }
+        
+        if (lainSebutkan.equals("ya")) {
+            chkLain.setSelected(true);
+        } else {
+            chkLain.setSelected(false);
+        }
+            
+        if (pasien.equals("ya")) {
+            chkPasien.setSelected(true);
+        } else {
+            chkPasien.setSelected(false);
+        }
+            
+        if (klgPasien.equals("ya")) {
+            chkKlgPasien.setSelected(true);
+        } else {
+            chkKlgPasien.setSelected(false);
+        }
+            
+        if (tidakBeri.equals("ya")) {
+            chkTdkBeriEdukasi.setSelected(true);
+        } else {
+            chkTdkBeriEdukasi.setSelected(false);
+        }
+        
+        if (jam.equals("ya")) {
+            ChkJam.setSelected(true);
+        } else {
+            ChkJam.setSelected(false);
+        }
+            
+        //identifikasi
+        if (iden1.equals("ya")) {
+            chkIden1.setSelected(true);
+        } else {
+            chkIden1.setSelected(false);
+        }
+
+        if (iden2.equals("ya")) {
+            chkIden2.setSelected(true);
+        } else {
+            chkIden2.setSelected(false);
+        }
+
+        if (iden3.equals("ya")) {
+            chkIden3.setSelected(true);
+        } else {
+            chkIden3.setSelected(false);
+        }
+
+        if (iden4.equals("ya")) {
+            chkIden4.setSelected(true);
+        } else {
+            chkIden4.setSelected(false);
+        }
+
+        if (iden5.equals("ya")) {
+            chkIden5.setSelected(true);
+        } else {
+            chkIden5.setSelected(false);
+        }
+
+        if (iden6.equals("ya")) {
+            chkIden6.setSelected(true);
+        } else {
+            chkIden6.setSelected(false);
+        }
+
+        if (iden7.equals("ya")) {
+            chkIden7.setSelected(true);
+        } else {
+            chkIden7.setSelected(false);
+        }
+
+        if (iden8.equals("ya")) {
+            chkIden8.setSelected(true);
+        } else {
+            chkIden8.setSelected(false);
+        }
+
+        if (iden9.equals("ya")) {
+            chkIden9.setSelected(true);
+        } else {
+            chkIden9.setSelected(false);
+        }
+
+        if (iden10.equals("ya")) {
+            chkIden10.setSelected(true);
+        } else {
+            chkIden10.setSelected(false);
+        }
+
+        hitungSkorGZ();
+        //faktor resiko
+        try {
+            Valid.tabelKosong(tabModeResiko);
+            ps3 = koneksi.prepareStatement("select m.kode_resiko, m.faktor_resiko, m.skala, m.skor, m.asesmen FROM master_faktor_resiko_igd m "
+                    + "INNER JOIN penilaian_resiko_jatuh_kebidanan pr ON pr.kode_resiko = m.kode_resiko "
+                    + "WHERE m.asesmen = 'kebidanan' and pr.no_rawat=? ORDER BY pr.kode_resiko");
+            try {
+                ps3.setString(1, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabModeResiko.addRow(new Object[]{
+                        true,
+                        rs3.getString("kode_resiko"),
+                        rs3.getString("asesmen"),
+                        rs3.getString("faktor_resiko"),
+                        rs3.getString("skala"),
+                        rs3.getString("skor")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+        hitungSkorRJ();
+    }
+    
+    private void isPasien() {
+        try {
+            ps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, concat(rp.umurdaftar,' ',rp.sttsumur) umurPx, "
+                    + "ifnull(p.pekerjaan,'-') pekerjaanPx, p.agama, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamatPx, "
+                    + "if(p.keluarga='SUAMI',p.namakeluarga,'') nmSuami, if(p.keluarga='SUAMI',ifnull(p.umur_pj,''),'') umurSuami, "
+                    + "if(p.keluarga='SUAMI',ifnull(p.pekerjaanpj,''),'') pekerjaanSuami, p.stts_nikah, rp.tgl_registrasi from reg_periksa rp "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=p.kd_kel "
+                    + "inner join kecamatan kc on kc.kd_kec=p.kd_kec inner join kabupaten kb on kb.kd_kab=p.kd_kab where rp.no_rawat=?");
+            try {
+                ps4.setString(1, TNoRw.getText());
+                rs4 = ps4.executeQuery();
+                if (rs4.next()) {
+                    TNoRM.setText(rs4.getString("no_rkm_medis"));
+                    TPasien.setText(rs4.getString("nm_pasien"));
+                    TglLahir.setText(rs4.getString("tgllahir"));
+                    TumurPx.setText(rs4.getString("umurPx"));
+                    TpekerjaanPx.setText(rs4.getString("pekerjaanPx"));
+                    TagamaPx.setText(rs4.getString("agama"));
+                    TalamatPx.setText(rs4.getString("alamatPx"));
+                    TnmSuami.setText(rs4.getString("nmSuami"));
+                    TumurSuami.setText(rs4.getString("umurSuami"));
+                    TpekerjaanSuami.setText(rs4.getString("pekerjaanSuami"));
+                    TsttsKawin.setText(rs4.getString("stts_nikah"));
+                    DTPCari1.setDate(rs4.getDate("tgl_registrasi"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
         }
     }
 }
