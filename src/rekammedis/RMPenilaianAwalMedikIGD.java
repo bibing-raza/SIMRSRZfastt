@@ -5961,7 +5961,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             BtnDpjp.setEnabled(false);            
             kddpjp.setText(akses.getkode());
             kddokter.setText(akses.getkode());
-            Sequel.cariIsi("select nama from petugas where user_id=?", nmdpjp, kddpjp.getText());
+            Sequel.cariIsi("select nama from petugas where nip=?", nmdpjp, kddpjp.getText());
             nmdokter.setText(nmdpjp.getText());
             if (nmdpjp.getText().equals("")) {
                 kddpjp.setText("");

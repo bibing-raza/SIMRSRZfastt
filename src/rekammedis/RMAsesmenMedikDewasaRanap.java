@@ -4961,8 +4961,8 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         
         if (akses.getjml2() >= 1) {            
             BtnDpjp.setEnabled(false);            
-            kddpjp.setText(akses.getkode());            
-            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", nmdpjp, kddpjp.getText());            
+            kddpjp.setText(akses.getkode());              
+            Sequel.cariIsi("select nama from petugas where nip=?", nmdpjp, kddpjp.getText());
             if (nmdpjp.getText().equals("")) {
                 kddpjp.setText("");                
                 JOptionPane.showMessageDialog(null, "User login bukan dokter...!!");

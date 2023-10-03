@@ -6421,7 +6421,7 @@ private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
     pilihan = 1;
     akses.setform("DlgReg");
     if (aktifjadwal.equals("aktif")) {
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getkode().equals("Admin Utama") || kdpoli.getText().equals("UMUM")) {
             dokter.isCek();
             dokter.TCari.requestFocus();
             dokter.setSize(1041, 332);

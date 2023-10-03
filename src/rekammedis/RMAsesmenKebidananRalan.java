@@ -57,9 +57,21 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        tabMode=new DefaultTableModel(null,new Object[]{
-            "No.Rawat", "No.RM", "Nama Pasien", "J.K.", "Agama", "Bahasa"
-        }){
+        tabMode = new DefaultTableModel(null, new Object[]{
+            "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Ruang/Poli/Inst.", "Tgl. Asesmen", "Umur Pasien",
+            "Pekerjaan Pasien", "Agama", "Alamat Pasien", "Status Nikah", "Nama Perawat", "Nama Bidan", "Nama Dokter",
+            "kd_poli", "tgl_asesmen", "nm_suami", "umur_suami", "pekerjaan_suami", "alamat_suami", "agama_suami", "keadaan_umum", "tensi", "nadi",
+            "respirasi", "suhu", "kesadaran", "spo2", "g", "p", "a", "jml_kawin_istri", "jml_kawin_suami", "usia_perkawinan", "id_usia_kawin", "keluarga_terdekat",
+            "hub_keluarga_terdekat", "tinggal_dengan", "tinggal_dengan_lain", "curiga_penganiayaan", "kegiatan_ibadah", "status_emosional", "status_ekonomi",
+            "status_ekonomi_lain", "nyeri", "nyeri_ya_lokasi", "jenis", "provocation", "provocation_lain", "quality", "quality_lain", "radiation", "severity",
+            "time", "time_lama", "skala_nyeri", "skrining_gizi1", "skrining_gizi1_ya", "skrining_gizi2", "riwayat_alergi", "alergi_obat", "reaksi_alergi_obat",
+            "alergi_makanan", "reaksi_alergi_makanan", "alergi_lainnya", "reaksi_alergi_lainnya", "gelang_tanda", "alergi_diberitahukan", "alat_bantu", "prothesis",
+            "cacat_tubuh", "adl", "riw_jatuh_3bulan", "nip_perawat", "hambatan_pembelajaran", "hambatan_ya", "hambatan_ya_lainya", "penerjemah", "penerjemah_ya",
+            "bahasa_isyarat", "diagnosa_menejemen_penyakit", "tindakan_keperawatan", "ket_tindakan_keperawatan", "obat_obatan", "rehabilitasi", "diet_nutrisi",
+            "manajemen_nyeri", "lain_lain", "ket_lain_lain", "edukasi_pasien", "edukasi_keluarga_pasien", "edukasi_nm_keluarga_pasien", "tidak_memberi_edukasi",
+            "ket_tidak_memberi_edukasi", "tanggal", "jam", "cek_jam", "nip_dokter", "identifikasi1", "identifikasi2", "identifikasi3", "identifikasi4", "identifikasi5",
+            "identifikasi6", "identifikasi7", "identifikasi8", "identifikasi9", "identifikasi10", "manajer_pelayanan", "discharge_planing", "nip_bidan"
+        }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         
@@ -67,20 +79,327 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 6; i++) {
+        for (i = 0; i < 111; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
                 column.setPreferredWidth(65);
             } else if (i == 2) {
-                column.setPreferredWidth(160);
+                column.setPreferredWidth(200);
             } else if (i == 3) {
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(75);
             } else if (i == 4) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(110);
             } else if (i == 5) {
+                column.setPreferredWidth(120);
+            } else if (i == 6) {
                 column.setPreferredWidth(90);
+            } else if (i == 7) {
+                column.setPreferredWidth(200);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(250);
+            } else if (i == 10) {
+                column.setPreferredWidth(90);
+            } else if (i == 11) {
+                column.setPreferredWidth(250);
+            } else if (i == 12) {
+                column.setPreferredWidth(250);
+            } else if (i == 13) {
+                column.setPreferredWidth(250);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 18) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 29) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 30) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 31) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 32) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 33) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 34) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 35) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 36) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 39) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 40) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 41) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 42) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 43) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 44) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 45) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 46) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 47) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 48) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 49) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 50) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 51) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 52) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 53) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 54) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 55) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 56) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 57) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 58) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 59) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 60) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 61) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 62) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 63) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 64) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 65) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 66) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 67) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 68) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 69) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 70) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 71) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 72) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 73) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 74) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 75) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 76) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 77) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 78) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 79) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 80) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 81) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 82) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 83) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 84) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 85) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 86) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 87) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 88) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 89) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 90) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 91) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 92) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 93) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 94) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 95) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 96) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 97) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 98) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 99) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 100) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 101) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 102) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 103) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 104) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 105) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 106) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 107) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 108) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 109) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 110) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -3432,8 +3751,20 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data riwayat kehamilan pada tabel...!!!!");
             tbRiwayat.requestFocus();
         } else {
-            tabModeRiwayat.removeRow(tbRiwayat.getSelectedRow());
-            BtnSimpanRiwActionPerformed(null);
+            tabModeRiwayat.removeRow(tbRiwayat.getSelectedRow());            
+            tabModeRiwayat.addRow(new Object[]{
+                TNoRw.getText(), 
+                TthnPartus.getText(), 
+                TtmptPartus.getText(),
+                TumurHamil.getText(), 
+                TjnsPersalinan.getText(),
+                TpenPersalinan.getText(),
+                Tpenyulit.getText(),
+                cmbJK.getSelectedItem().toString(),
+                TbrtLahir.getText(),
+                TkeadaanAnk.getText(),
+                wktSimpan});
+            BtnBatalRiwActionPerformed(null);
         }
     }//GEN-LAST:event_BtnGantiRiwActionPerformed
 
@@ -4102,75 +4433,194 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.no_rawat,p.no_rkm_medis,p.nm_pasien,IF(p.jk='L','Laki-Laki','Perempuan') jk,p.tgl_lahir,p.agama,bp.nama_bahasa,pk.cacat_fisik,pk.tanggal,"
-                    + "pk.informasi,pk.td,pk.nadi,pk.rr,pk.suhu,pk.bb,pk.tb,pk.nadi,pk.rr,pk.suhu,pk.gcs,pk.bb,"
-                    + "pk.tb,pk.bmi,pk.lila,pk.tfu,pk.tbj,pk.letak,pk.presentasi,pk.penurunan,pk.his,pk.kekuatan,pk.lamanya,pk.bjj,"
-                    + "pk.ket_bjj,pk.portio,pk.serviks,pk.ketuban,pk.hodge,pk.inspekulo,pk.ket_inspekulo,pk.ctg,pk.ket_ctg,pk.usg,pk.ket_usg,pk.lab,"
-                    + "pk.ket_lab,pk.lakmus,pk.ket_lakmus,pk.panggul,pk.keluhan_utama,pk.umur,pk.lama,pk.banyaknya,pk.haid,pk.siklus,pk.ket_siklus,pk.ket_siklus1,"
-                    + "pk.status,pk.kali,pk.usia1,pk.ket1,pk.usia2,pk.ket2,pk.usia3,pk.ket3,pk.hpht,pk.usia_kehamilan,pk.tp,pk.imunisasi,"
-                    + "pk.ket_imunisasi,pk.g,pk.p,pk.a,pk.hidup,pk.ginekologi,pk.kebiasaan,pk.ket_kebiasaan,pk.kebiasaan1,pk.ket_kebiasaan1,pk.kebiasaan2,"
-                    + "pk.ket_kebiasaan2,pk.kebiasaan3,pk.kb,pk.ket_kb,pk.komplikasi,pk.ket_komplikasi,pk.berhenti,pk.alasan,pk.alat_bantu,pk.ket_bantu,"
-                    + "pk.prothesa,pk.ket_pro,pk.adl,pk.status_psiko,pk.ket_psiko,pk.hub_keluarga,pk.tinggal_dengan,pk.ket_tinggal,pk.ekonomi,pk.budaya,"
-                    + "pk.ket_budaya,pk.edukasi,pk.ket_edukasi,pk.berjalan_a,pk.berjalan_b,pk.berjalan_c,pk.hasil,pk.lapor,pk.ket_lapor,pk.sg1,"
-                    + "pk.nilai1,pk.sg2,pk.nilai2,pk.total_hasil,pk.nyeri,pk.provokes,pk.ket_provokes,pk.quality,pk.ket_quality,pk.lokasi,"
-                    + "pk.menyebar,pk.skala_nyeri,pk.durasi,pk.nyeri_hilang,pk.ket_nyeri,pk.pada_dokter,pk.ket_dokter,pk.masalah,pk.tindakan,pk.nip,pt.nama "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN penilaian_awal_keperawatan_kebidanan pk ON rp.no_rawat = pk.no_rawat "
-                    + "INNER JOIN petugas pt ON pk.nip = pt.nip INNER JOIN bahasa_pasien bp ON bp.id = p.bahasa_pasien WHERE "
-                    + "pk.tanggal BETWEEN ? AND ? "
-                    + (TCari.getText().trim().equals("") ? "" : " and (rp.no_rawat like ? or p.no_rkm_medis like ? or p.nm_pasien like ? or pk.nip like ? or  pt.nama like ?)")
-                    + " ORDER BY pk.tanggal");
-            
+            ps = koneksi.prepareStatement("select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, pl.nm_poli, "
+                    + "date_format(ak.tgl_asesmen,'%d-%m-%Y %H:%i') tglases, concat(rp.umurdaftar,' ',rp.sttsumur) umurPx, ifnull(p.pekerjaan,'-') pekerjaanPx, "
+                    + "p.agama, concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamatPx, p.stts_nikah, pg1.nama nmperawat, pg2.nama nmbidan, "
+                    + "pg3.nama nmdokter, ak.* from reg_periksa rp inner join asesmen_kebidanan_ralan ak on ak.no_rawat=rp.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=ak.kd_poli "
+                    + "inner join kelurahan kl on kl.kd_kel=p.kd_kel inner join kecamatan kc on kc.kd_kec=p.kd_kec "
+                    + "inner join kabupaten kb on kb.kd_kab=p.kd_kab inner join pegawai pg1 on pg1.nik=ak.nip_perawat "
+                    + "inner join pegawai pg2 on pg2.nik=ak.nip_bidan inner join pegawai pg3 on pg1.nik=ak.nip_dokter where "
+                    + "date(ak.tgl_asesmen) between ? and ? and ak.no_rawat like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and p.no_rkm_medis like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and p.nm_pasien like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and pl.nm_poli like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and concat(rp.umurdaftar,' ',rp.sttsumur) like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and p.pekerjaan like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and p.agama like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and p.stts_nikah like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and pg1.nama like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and pg2.nama like ? or "
+                    + "date(ak.tgl_asesmen) between ? and ? and pg3.nama like ? order by ak.tgl_asesmen desc");            
             try {
-                ps.setString(1,Valid.SetTgl(DTPCari1.getSelectedItem()+"")+" 00:00:00");
-                ps.setString(2,Valid.SetTgl(DTPCari2.getSelectedItem()+"")+" 23:59:59");
-                if(!TCari.getText().equals("")){
-                    ps.setString(3,"%"+TCari.getText()+"%");
-                    ps.setString(4,"%"+TCari.getText()+"%");
-                    ps.setString(5,"%"+TCari.getText()+"%");
-                    ps.setString(6,"%"+TCari.getText()+"%");
-                    ps.setString(7,"%"+TCari.getText()+"%");
-                }   
-                rs=ps.executeQuery();
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText().trim() + "%");
+                ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(24, "%" + TCari.getText().trim() + "%");                
+                ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(27, "%" + TCari.getText().trim() + "%");                
+                ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(30, "%" + TCari.getText().trim() + "%");
+                ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(33, "%" + TCari.getText().trim() + "%");
+                ps.setString(34, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(35, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(36, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
                 while(rs.next()){
                     tabMode.addRow(new String[]{
-                        rs.getString("no_rawat"),rs.getString("no_rkm_medis"),rs.getString("nm_pasien"),rs.getString("jk"),rs.getString("agama"),rs.getString("nama_bahasa"),rs.getString("cacat_fisik"),
-                        rs.getString("tgl_lahir"),rs.getString("tanggal"),rs.getString("informasi"),rs.getString("td"),rs.getString("nadi"),rs.getString("rr"),rs.getString("suhu"),
-                        rs.getString("gcs"),rs.getString("bb"),rs.getString("tb"),rs.getString("lila"),rs.getString("bmi"),rs.getString("tfu"),rs.getString("tbj"),rs.getString("letak"),
-                        rs.getString("presentasi"),rs.getString("penurunan"),rs.getString("his"),rs.getString("kekuatan"),rs.getString("lamanya"),rs.getString("bjj"),rs.getString("ket_bjj"),
-                        rs.getString("portio"),rs.getString("serviks"),rs.getString("ketuban"),rs.getString("hodge"),rs.getString("inspekulo"),rs.getString("ket_inspekulo"),rs.getString("ctg"),
-                        rs.getString("ket_ctg"),rs.getString("usg"),rs.getString("ket_usg"),rs.getString("lab"),rs.getString("ket_lab"),rs.getString("lakmus"),rs.getString("ket_lakmus"),
-                        rs.getString("panggul"),rs.getString("keluhan_utama"),rs.getString("umur"),rs.getString("lama"),rs.getString("banyaknya"),rs.getString("haid"),rs.getString("siklus"),
-                        rs.getString("ket_siklus"),rs.getString("ket_siklus1"),rs.getString("status"),rs.getString("kali"),rs.getString("usia1"),rs.getString("ket1"),rs.getString("usia2"),
-                        rs.getString("ket2"),rs.getString("usia3"),rs.getString("ket3"),rs.getString("hpht"),rs.getString("usia_kehamilan"),rs.getString("tp"),rs.getString("imunisasi"),
-                        rs.getString("ket_imunisasi"),rs.getString("g"),rs.getString("P"),rs.getString("a"),rs.getString("hidup"),rs.getString("ginekologi"),rs.getString("kebiasaan"),
-                        rs.getString("ket_kebiasaan"),rs.getString("kebiasaan1"),rs.getString("ket_kebiasaan1"),rs.getString("kebiasaan2"),rs.getString("ket_kebiasaan2"),rs.getString("kebiasaan3"),
-                        rs.getString("kb"),rs.getString("ket_kb"),rs.getString("komplikasi"),rs.getString("ket_komplikasi"),rs.getString("berhenti"),rs.getString("alasan"),rs.getString("alat_bantu"),
-                        rs.getString("ket_bantu"),rs.getString("prothesa"),rs.getString("ket_pro"),rs.getString("adl"),rs.getString("status_psiko"),rs.getString("ket_psiko"),rs.getString("hub_keluarga"),
-                        rs.getString("tinggal_dengan"),rs.getString("ket_tinggal"),rs.getString("ekonomi"),rs.getString("budaya"),rs.getString("ket_budaya"),rs.getString("edukasi"),
-                        rs.getString("ket_edukasi"),rs.getString("berjalan_a"),rs.getString("berjalan_b"),rs.getString("berjalan_c"),rs.getString("hasil"),rs.getString("lapor"),rs.getString("ket_lapor"),
-                        rs.getString("sg1"),rs.getString("nilai1"),rs.getString("sg2"),rs.getString("nilai2"),rs.getString("total_hasil"),rs.getString("nyeri"),rs.getString("provokes"),
-                        rs.getString("ket_provokes"),rs.getString("quality"),rs.getString("ket_quality"),rs.getString("lokasi"),rs.getString("menyebar"),rs.getString("skala_nyeri"),
-                        rs.getString("durasi"),rs.getString("nyeri_hilang"),rs.getString("ket_nyeri"),rs.getString("pada_dokter"),rs.getString("ket_dokter"),rs.getString("masalah"),
-                        rs.getString("tindakan"),rs.getString("nip"),rs.getString("nama")
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("tgllahir"),
+                        rs.getString("nm_poli"),
+                        rs.getString("tglases"),
+                        rs.getString("umurPx"),
+                        rs.getString("pekerjaanPx"),
+                        rs.getString("agama"),
+                        rs.getString("alamatPx"),
+                        rs.getString("stts_nikah"),
+                        rs.getString("nmperawat"),
+                        rs.getString("nmbidan"),
+                        rs.getString("nmdokter"),                        
+                        rs.getString("kd_poli"),
+                        rs.getString("tgl_asesmen"),
+                        rs.getString("nm_suami"),
+                        rs.getString("umur_suami"),
+                        rs.getString("pekerjaan_suami"),
+                        rs.getString("alamat_suami"),
+                        rs.getString("agama_suami"),
+                        rs.getString("keadaan_umum"),                        
+                        rs.getString("tensi"),
+                        rs.getString("nadi"),
+                        rs.getString("respirasi"),
+                        rs.getString("suhu"),
+                        rs.getString("kesadaran"),
+                        rs.getString("spo2"),
+                        rs.getString("g"),
+                        rs.getString("p"),
+                        rs.getString("a"),
+                        rs.getString("jml_kawin_istri"),
+                        rs.getString("jml_kawin_suami"),
+                        rs.getString("usia_perkawinan"),
+                        rs.getString("id_usia_kawin"),
+                        rs.getString("keluarga_terdekat"),
+                        rs.getString("hub_keluarga_terdekat"),
+                        rs.getString("tinggal_dengan"),
+                        rs.getString("tinggal_dengan_lain"),
+                        rs.getString("curiga_penganiayaan"),
+                        rs.getString("kegiatan_ibadah"),
+                        rs.getString("status_emosional"),
+                        rs.getString("status_ekonomi"),
+                        rs.getString("status_ekonomi_lain"),
+                        rs.getString("nyeri"),
+                        rs.getString("nyeri_ya_lokasi"),
+                        rs.getString("jenis"),
+                        rs.getString("provocation"),
+                        rs.getString("provocation_lain"),
+                        rs.getString("quality"),
+                        rs.getString("quality_lain"),
+                        rs.getString("radiation"),
+                        rs.getString("severity"),
+                        rs.getString("time"),
+                        rs.getString("time_lama"),
+                        rs.getString("skala_nyeri"),
+                        rs.getString("skrining_gizi1"),
+                        rs.getString("skrining_gizi1_ya"),
+                        rs.getString("skrining_gizi2"),
+                        rs.getString("riwayat_alergi"),
+                        rs.getString("alergi_obat"),                        
+                        rs.getString("reaksi_alergi_obat"),
+                        rs.getString("alergi_makanan"),
+                        rs.getString("reaksi_alergi_makanan"),
+                        rs.getString("alergi_lainnya"),
+                        rs.getString("reaksi_alergi_lainnya"),
+                        rs.getString("gelang_tanda"),
+                        rs.getString("alergi_diberitahukan"),
+                        rs.getString("alat_bantu"),                        
+                        rs.getString("prothesis"),
+                        rs.getString("cacat_tubuh"),
+                        rs.getString("adl"),
+                        rs.getString("riw_jatuh_3bulan"),
+                        rs.getString("nip_perawat"),
+                        rs.getString("hambatan_pembelajaran"),
+                        rs.getString("hambatan_ya"),
+                        rs.getString("hambatan_ya_lainya"),
+                        rs.getString("penerjemah"),
+                        rs.getString("penerjemah_ya"),
+                        rs.getString("bahasa_isyarat"),
+                        rs.getString("diagnosa_menejemen_penyakit"),
+                        rs.getString("tindakan_keperawatan"),
+                        rs.getString("ket_tindakan_keperawatan"),
+                        rs.getString("obat_obatan"),
+                        rs.getString("rehabilitasi"),
+                        rs.getString("diet_nutrisi"),
+                        rs.getString("manajemen_nyeri"),
+                        rs.getString("lain_lain"),
+                        rs.getString("ket_lain_lain"),
+                        rs.getString("edukasi_pasien"),
+                        rs.getString("edukasi_keluarga_pasien"),
+                        rs.getString("edukasi_nm_keluarga_pasien"),
+                        rs.getString("tidak_memberi_edukasi"),
+                        rs.getString("ket_tidak_memberi_edukasi"),
+                        rs.getString("tanggal"),
+                        rs.getString("jam"),
+                        rs.getString("cek_jam"),
+                        rs.getString("nip_dokter"),
+                        rs.getString("identifikasi1"),
+                        rs.getString("identifikasi2"),
+                        rs.getString("identifikasi3"),
+                        rs.getString("identifikasi4"),
+                        rs.getString("identifikasi5"),
+                        rs.getString("identifikasi6"),
+                        rs.getString("identifikasi7"),
+                        rs.getString("identifikasi8"),
+                        rs.getString("identifikasi9"),
+                        rs.getString("identifikasi10"),
+                        rs.getString("manajer_pelayanan"),
+                        rs.getString("discharge_planing"),
+                        rs.getString("nip_bidan")
                     });
                 }
             } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rs!=null){
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
             }
-            
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText("" + tabMode.getRowCount());
     }
 
     public void emptTeks() {

@@ -1516,6 +1516,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ChkJln.setSelected(true);
         Sequel.insertClosingStok();
         if (noresep.equals("")) {
             tampilobat();
