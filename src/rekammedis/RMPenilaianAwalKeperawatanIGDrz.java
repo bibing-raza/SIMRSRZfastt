@@ -85,7 +85,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             "tindakan_keperawatan", "evaluasi_keperawatan", "identifikasi1", "identifikasi2", "identifikasi3", "identifikasi4",
             "identifikasi5", "identifikasi6", "identifikasi7", "identifikasi8", "identifikasi9", "identifikasi10", "manajer_pelayanan",
             "discharge_planing", "tgl_verifikasi", "nip_dpjp", "nip_perawat", "tglasesmen", "nmperawat", "nmdpjp", "sttsnikah", "pekerjaan",
-            "skala_nyeri"
+            "skala_nyeri", "ket_radiation"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -97,7 +97,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 76; i++) {
+        for (i = 0; i < 77; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -307,6 +307,9 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 75) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 76) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -719,6 +722,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         BtnDiagnosa = new widget.Button();
         BtnTindakan = new widget.Button();
         BtnEvaluasi = new widget.Button();
+        Tradiation = new widget.TextBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -961,7 +965,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023 23:54:50" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023 14:59:49" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -2270,6 +2274,11 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         cmbRadia.setForeground(new java.awt.Color(0, 0, 0));
         cmbRadia.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
         cmbRadia.setName("cmbRadia"); // NOI18N
+        cmbRadia.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRadiaActionPerformed(evt);
+            }
+        });
         FormInput.add(cmbRadia);
         cmbRadia.setBounds(280, 1550, 60, 23);
 
@@ -2547,7 +2556,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023 23:54:51" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023 14:59:50" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2801,6 +2810,18 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(BtnEvaluasi);
         BtnEvaluasi.setBounds(860, 2072, 100, 23);
 
+        Tradiation.setForeground(new java.awt.Color(0, 0, 0));
+        Tradiation.setToolTipText("Alt+C");
+        Tradiation.setName("Tradiation"); // NOI18N
+        Tradiation.setPreferredSize(new java.awt.Dimension(140, 23));
+        Tradiation.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TradiationKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tradiation);
+        Tradiation.setBounds(347, 1550, 510, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTriase.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2843,7 +2864,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2858,7 +2879,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4166,7 +4187,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
 
             if (cekHasilRad >= 1) {
-                akses.setform("RMTransferSerahTerimaIGD");
+                akses.setform("RMPenilaianAwalKeperawatanIGDrz");
                 DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
                 form.WindowHasil.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.WindowHasil.setLocationRelativeTo(internalFrame1);
@@ -4184,6 +4205,21 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
+
+    private void TradiationKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TradiationKeyPressed
+        Valid.pindah(evt, cmbRadia, cmbSevere);
+    }//GEN-LAST:event_TradiationKeyPressed
+
+    private void cmbRadiaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRadiaActionPerformed
+        if (cmbRadia.getSelectedIndex() == 1) {
+            Tradiation.setText("");
+            Tradiation.setEnabled(true);
+            Tradiation.requestFocus();
+        } else {
+            Tradiation.setText("");
+            Tradiation.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbRadiaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -4267,6 +4303,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private widget.TextBox Tpekerjaan;
     private widget.TextBox Tprovo;
     private widget.TextBox Tquality;
+    private widget.TextBox Tradiation;
     private widget.TextBox Tsebutkan;
     private widget.TextBox Tsebutkan_cacat;
     private widget.TextBox Tstts_nikah;
@@ -4572,7 +4609,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                         rs.getString("dpjp"),
                         rs.getString("stts_nikah"),
                         rs.getString("pekerjaan"),
-                        rs.getString("skala_nyeri")
+                        rs.getString("skala_nyeri"),
+                        rs.getString("ket_radiation")
                     });
                 }
             } catch (Exception e) {
@@ -4702,6 +4740,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         cmbSkala.setSelectedIndex(0);        
         BtnSebutkan.setEnabled(false);
         Valid.tabelKosong(tabMode1);
+        Tradiation.setText("");
+        Tradiation.setEnabled(false);
     }
     
     public void setNoRm(String norwt, Date tgl2) {
@@ -4829,6 +4869,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             nm_perawat.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 71).toString());
             NmDokter.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 72).toString());
             cmbSkala.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 75).toString());
+            Tradiation.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 76).toString());
             dataCek();
         }
     }
@@ -4860,7 +4901,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 + "pin_kancing=?, alergi_diberitahukan=?, nyeri=?, ya_nyeri_lokasi=?, jenis_nyeri=?, provocation=?, provocation_lain=?, quality=?, quality_lain=?, radiation=?, severity=?, "
                 + "time=?, time_lama=?, diagnosa_keperawatan=?, tindakan_keperawatan=?, evaluasi_keperawatan=?, identifikasi1=?, identifikasi2=?, identifikasi3=?, identifikasi4=?, "
                 + "identifikasi5=?, identifikasi6=?, identifikasi7=?, identifikasi8=?, identifikasi9=?, identifikasi10=?, manajer_pelayanan=?, discharge_planing=?, tgl_verifikasi=?, "
-                + "nip_dpjp=?, nip_perawat=?, skala_nyeri=?", 69, new String[]{
+                + "nip_dpjp=?, nip_perawat=?, skala_nyeri=?, ket_radiation=?", 70, new String[]{
                     TNoRw.getText(), Valid.SetTgl(tgl_asesmen.getSelectedItem() + "") + " " + tgl_asesmen.getSelectedItem().toString().substring(11, 19), Tkeluhan.getText(), td.getText(), 
                     nadi.getText(), napas.getText(), suhu.getText(), bb.getText(), tb.getText(), cmbAsesmen.getSelectedItem().toString(), cmbPerilaku.getSelectedItem().toString(), Tsebutkan.getText(), 
                     cmbHub_pasien.getSelectedItem().toString(), cmbTempat_tgl.getSelectedItem().toString(), Ttmpt_tgl_lain.getText(), skrining_gz, cmbDewasaGZ1.getSelectedItem().toString(), 
@@ -4870,7 +4911,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                     cmbNyeri.getSelectedItem().toString(), Tnyeri.getText(), cmbJenis.getSelectedItem().toString(), cmbProvo.getSelectedItem().toString(), Tprovo.getText(), cmbQuality.getSelectedItem().toString(), 
                     Tquality.getText(), cmbRadia.getSelectedItem().toString(), cmbSevere.getSelectedItem().toString(), cmbTime.getSelectedItem().toString(), cmbLama.getSelectedItem().toString(), 
                     Tdiagnosis.getText(), Ttindakan.getText(), Tevaluasi.getText(), iden1, iden2, iden3, iden4, iden5, iden6, iden7, iden8, iden9, iden10, mpp, dp,
-                    Valid.SetTgl(TglVerif.getSelectedItem() + "") + " " + TglVerif.getSelectedItem().toString().substring(11, 19), KdDokter.getText(), nip, cmbSkala.getSelectedItem().toString(),
+                    Valid.SetTgl(TglVerif.getSelectedItem() + "") + " " + TglVerif.getSelectedItem().toString().substring(11, 19), KdDokter.getText(), nip,
+                    cmbSkala.getSelectedItem().toString(), Tradiation.getText(),
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
             Sequel.meghapus("penilaian_awal_keperawatan_igd_resiko", "no_rawat", 
@@ -5189,7 +5231,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     
     private void simpan() {
         cekData();
-        if (Sequel.menyimpantf("penilaian_awal_keperawatan_igdrz", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 68, new String[]{
+        if (Sequel.menyimpantf("penilaian_awal_keperawatan_igdrz", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 70, new String[]{
             TNoRw.getText(), Valid.SetTgl(tgl_asesmen.getSelectedItem() + "") + " " + tgl_asesmen.getSelectedItem().toString().substring(11, 19), Tkeluhan.getText(), td.getText(), nadi.getText(), napas.getText(),
             suhu.getText(), bb.getText(), tb.getText(), cmbAsesmen.getSelectedItem().toString(), cmbPerilaku.getSelectedItem().toString(), Tsebutkan.getText(), cmbHub_pasien.getSelectedItem().toString(),
             cmbTempat_tgl.getSelectedItem().toString(), Ttmpt_tgl_lain.getText(), skrining_gz, cmbDewasaGZ1.getSelectedItem().toString(), cmbDewasaYaGZ1.getSelectedItem().toString(), cmbDewasaGZ2.getSelectedItem().toString(),
@@ -5198,7 +5240,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             cmbNyeri.getSelectedItem().toString(), Tnyeri.getText(), cmbJenis.getSelectedItem().toString(), cmbProvo.getSelectedItem().toString(), Tprovo.getText(), cmbQuality.getSelectedItem().toString(), Tquality.getText(),
             cmbRadia.getSelectedItem().toString(), cmbSevere.getSelectedItem().toString(), cmbTime.getSelectedItem().toString(), cmbLama.getSelectedItem().toString(), Tdiagnosis.getText(), Ttindakan.getText(), Tevaluasi.getText(),
             iden1, iden2, iden3, iden4, iden5, iden6, iden7, iden8, iden9, iden10, mpp, dp, Valid.SetTgl(TglVerif.getSelectedItem() + "") + " " + TglVerif.getSelectedItem().toString().substring(11, 19),
-            KdDokter.getText(), nip, cmbSkala.getSelectedItem().toString()
+            KdDokter.getText(), nip, cmbSkala.getSelectedItem().toString(), Sequel.cariIsi("select now()"), Tradiation.getText()
         }) == true) {
             for (i = 0; i < tbFaktorResiko.getRowCount(); i++) {
                 if (tbFaktorResiko.getValueAt(i, 0).toString().equals("true")) {
@@ -5405,6 +5447,13 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             chkDP.setSelected(true);
         } else {
             chkDP.setSelected(false);
+        }
+        
+        //radiation
+        if (cmbRadia.getSelectedIndex() == 1) {
+            Tradiation.setEnabled(true);
+        } else {
+            Tradiation.setEnabled(false);
         }
         
         //faktor resiko

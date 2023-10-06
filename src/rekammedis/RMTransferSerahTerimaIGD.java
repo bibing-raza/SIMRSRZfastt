@@ -74,8 +74,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             kd_kamar_pindah = "", resepDipilih = "", cekResep = "", tglResep = "", status_kmr = "",
             tglPemberianObat = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "",
-            ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", 
-            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "";
+            ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "",
+            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", status = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -651,7 +651,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkLainya = new widget.CekBox();
         Tket_lain = new widget.TextBox();
         jLabel44 = new widget.Label();
-        TDiagnosa = new widget.TextBox();
         jLabel45 = new widget.Label();
         jLabel46 = new widget.Label();
         tgl_infus = new widget.Tanggal();
@@ -699,6 +698,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnDiagnosa = new widget.Button();
         BtnRekom = new widget.Button();
         ChkLab = new widget.CekBox();
+        ChkIGD = new widget.CekBox();
+        scrollPane15 = new widget.ScrollPane();
+        TDiagnosa = new widget.TextArea();
+        jLabel43 = new widget.Label();
+        jLabel49 = new widget.Label();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTransfer = new widget.Table();
@@ -916,7 +920,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis");
         FormInput.setComponentPopupMenu(jPopupMenu2);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 1186));
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 1233));
         FormInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1059,11 +1063,12 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Tnm_kamar.setForeground(new java.awt.Color(0, 0, 0));
         Tnm_kamar.setName("Tnm_kamar"); // NOI18N
         FormInput.add(Tnm_kamar);
-        Tnm_kamar.setBounds(136, 207, 599, 23);
+        Tnm_kamar.setBounds(136, 207, 440, 23);
 
         btnKamar1.setForeground(new java.awt.Color(0, 0, 0));
         btnKamar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnKamar1.setMnemonic('1');
+        btnKamar1.setText("Rg. Rawat Inap");
         btnKamar1.setToolTipText("Alt+1");
         btnKamar1.setName("btnKamar1"); // NOI18N
         btnKamar1.addActionListener(new java.awt.event.ActionListener() {
@@ -1072,7 +1077,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnKamar1);
-        btnKamar1.setBounds(735, 207, 28, 23);
+        btnKamar1.setBounds(641, 207, 122, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tgl. / Jam Pindah :");
@@ -1080,7 +1085,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023 21:03:51" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023 14:31:49" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -1674,29 +1679,18 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel44);
         jLabel44.setBounds(0, 787, 130, 23);
 
-        TDiagnosa.setBackground(new java.awt.Color(245, 250, 240));
-        TDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
-        TDiagnosa.setName("TDiagnosa"); // NOI18N
-        TDiagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TDiagnosaKeyPressed(evt);
-            }
-        });
-        FormInput.add(TDiagnosa);
-        TDiagnosa.setBounds(136, 787, 626, 23);
-
         jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setText("TINDAKAN MEDIS YANG SUDAH DILAKUKAN");
         jLabel45.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel45.setName("jLabel45"); // NOI18N
         FormInput.add(jLabel45);
-        jLabel45.setBounds(0, 817, 260, 23);
+        jLabel45.setBounds(0, 864, 260, 23);
 
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText("Alat Bantu Yang Masih Terpasang :");
         jLabel46.setName("jLabel46"); // NOI18N
         FormInput.add(jLabel46);
-        jLabel46.setBounds(0, 832, 190, 23);
+        jLabel46.setBounds(0, 879, 190, 23);
 
         tgl_infus.setEditable(false);
         tgl_infus.setDisplayFormat("dd-MM-yyyy");
@@ -1707,7 +1701,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_infus);
-        tgl_infus.setBounds(136, 854, 100, 23);
+        tgl_infus.setBounds(136, 901, 100, 23);
 
         tgl_kateter.setEditable(false);
         tgl_kateter.setDisplayFormat("dd-MM-yyyy");
@@ -1718,7 +1712,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_kateter);
-        tgl_kateter.setBounds(136, 884, 100, 23);
+        tgl_kateter.setBounds(136, 931, 100, 23);
 
         tgl_ngt.setEditable(false);
         tgl_ngt.setDisplayFormat("dd-MM-yyyy");
@@ -1729,7 +1723,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_ngt);
-        tgl_ngt.setBounds(136, 914, 100, 23);
+        tgl_ngt.setBounds(136, 961, 100, 23);
 
         tgl_oksigen.setEditable(false);
         tgl_oksigen.setDisplayFormat("dd-MM-yyyy");
@@ -1740,7 +1734,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_oksigen);
-        tgl_oksigen.setBounds(320, 854, 100, 23);
+        tgl_oksigen.setBounds(320, 901, 100, 23);
 
         tgl_drain.setEditable(false);
         tgl_drain.setDisplayFormat("dd-MM-yyyy");
@@ -1751,7 +1745,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_drain);
-        tgl_drain.setBounds(320, 884, 100, 23);
+        tgl_drain.setBounds(320, 931, 100, 23);
 
         Talat_lain.setBackground(new java.awt.Color(245, 250, 240));
         Talat_lain.setForeground(new java.awt.Color(0, 0, 0));
@@ -1762,7 +1756,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Talat_lain);
-        Talat_lain.setBounds(320, 914, 335, 23);
+        Talat_lain.setBounds(320, 961, 335, 23);
 
         tgl_alat_lain.setEditable(false);
         tgl_alat_lain.setDisplayFormat("dd-MM-yyyy");
@@ -1773,13 +1767,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(tgl_alat_lain);
-        tgl_alat_lain.setBounds(660, 914, 100, 23);
+        tgl_alat_lain.setBounds(660, 961, 100, 23);
 
         jLabel57.setForeground(new java.awt.Color(0, 0, 0));
         jLabel57.setText("Rekomendasi :");
         jLabel57.setName("jLabel57"); // NOI18N
         FormInput.add(jLabel57);
-        jLabel57.setBounds(0, 944, 130, 23);
+        jLabel57.setBounds(0, 991, 130, 23);
 
         scrollPane13.setName("scrollPane13"); // NOI18N
 
@@ -1796,13 +1790,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         scrollPane13.setViewportView(Trekomendasi);
 
         FormInput.add(scrollPane13);
-        scrollPane13.setBounds(136, 944, 630, 80);
+        scrollPane13.setBounds(136, 991, 630, 80);
 
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
         jLabel58.setText("Alasan Pindah Rg. :");
         jLabel58.setName("jLabel58"); // NOI18N
         FormInput.add(jLabel58);
-        jLabel58.setBounds(0, 1030, 130, 23);
+        jLabel58.setBounds(0, 1077, 130, 23);
 
         Talasan_pindah.setBackground(new java.awt.Color(245, 250, 240));
         Talasan_pindah.setForeground(new java.awt.Color(0, 0, 0));
@@ -1813,7 +1807,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Talasan_pindah);
-        Talasan_pindah.setBounds(136, 1030, 626, 23);
+        Talasan_pindah.setBounds(136, 1077, 626, 23);
 
         ChkLain_alat.setBackground(new java.awt.Color(255, 255, 250));
         ChkLain_alat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1832,19 +1826,19 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkLain_alat);
-        ChkLain_alat.setBounds(236, 914, 80, 23);
+        ChkLain_alat.setBounds(236, 961, 80, 23);
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("Disetujui :");
         jLabel59.setName("jLabel59"); // NOI18N
         FormInput.add(jLabel59);
-        jLabel59.setBounds(0, 1060, 130, 23);
+        jLabel59.setBounds(0, 1107, 130, 23);
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setText("Nama Pasien/Keluarga :");
         jLabel60.setName("jLabel60"); // NOI18N
         FormInput.add(jLabel60);
-        jLabel60.setBounds(136, 1060, 125, 23);
+        jLabel60.setBounds(136, 1107, 125, 23);
 
         Tnm_pasienKlg.setBackground(new java.awt.Color(245, 250, 240));
         Tnm_pasienKlg.setForeground(new java.awt.Color(0, 0, 0));
@@ -1855,20 +1849,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tnm_pasienKlg);
-        Tnm_pasienKlg.setBounds(266, 1060, 496, 23);
+        Tnm_pasienKlg.setBounds(266, 1107, 496, 23);
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("Nama Dokter :");
         jLabel61.setName("jLabel61"); // NOI18N
         FormInput.add(jLabel61);
-        jLabel61.setBounds(136, 1090, 125, 23);
+        jLabel61.setBounds(136, 1137, 125, 23);
 
         Tnm_dokter.setEditable(false);
         Tnm_dokter.setBackground(new java.awt.Color(245, 250, 240));
         Tnm_dokter.setForeground(new java.awt.Color(0, 0, 0));
         Tnm_dokter.setName("Tnm_dokter"); // NOI18N
         FormInput.add(Tnm_dokter);
-        Tnm_dokter.setBounds(266, 1090, 470, 23);
+        Tnm_dokter.setBounds(266, 1137, 470, 23);
 
         btnDokter.setForeground(new java.awt.Color(0, 0, 0));
         btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1881,20 +1875,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnDokter);
-        btnDokter.setBounds(735, 1090, 28, 23);
+        btnDokter.setBounds(735, 1137, 28, 23);
 
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("Yang Menyerahkan :");
         jLabel62.setName("jLabel62"); // NOI18N
         FormInput.add(jLabel62);
-        jLabel62.setBounds(136, 1120, 125, 23);
+        jLabel62.setBounds(136, 1167, 125, 23);
 
         Tnm_petugas1.setEditable(false);
         Tnm_petugas1.setBackground(new java.awt.Color(245, 250, 240));
         Tnm_petugas1.setForeground(new java.awt.Color(0, 0, 0));
         Tnm_petugas1.setName("Tnm_petugas1"); // NOI18N
         FormInput.add(Tnm_petugas1);
-        Tnm_petugas1.setBounds(266, 1120, 470, 23);
+        Tnm_petugas1.setBounds(266, 1167, 470, 23);
 
         btnPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1907,20 +1901,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPetugas1);
-        btnPetugas1.setBounds(735, 1120, 28, 23);
+        btnPetugas1.setBounds(735, 1167, 28, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Yang Menerima :");
         jLabel63.setName("jLabel63"); // NOI18N
         FormInput.add(jLabel63);
-        jLabel63.setBounds(136, 1150, 125, 23);
+        jLabel63.setBounds(136, 1197, 125, 23);
 
         Tnm_petugas2.setEditable(false);
         Tnm_petugas2.setBackground(new java.awt.Color(245, 250, 240));
         Tnm_petugas2.setForeground(new java.awt.Color(0, 0, 0));
         Tnm_petugas2.setName("Tnm_petugas2"); // NOI18N
         FormInput.add(Tnm_petugas2);
-        Tnm_petugas2.setBounds(266, 1150, 470, 23);
+        Tnm_petugas2.setBounds(266, 1197, 470, 23);
 
         btnPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         btnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1933,7 +1927,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPetugas2);
-        btnPetugas2.setBounds(735, 1150, 28, 23);
+        btnPetugas2.setBounds(735, 1197, 28, 23);
 
         Tket_ctg.setBackground(new java.awt.Color(245, 250, 240));
         Tket_ctg.setForeground(new java.awt.Color(0, 0, 0));
@@ -1996,7 +1990,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkDrain);
-        ChkDrain.setBounds(236, 884, 80, 23);
+        ChkDrain.setBounds(236, 931, 80, 23);
 
         ChkOksigen.setBackground(new java.awt.Color(255, 255, 250));
         ChkOksigen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2015,7 +2009,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkOksigen);
-        ChkOksigen.setBounds(236, 854, 80, 23);
+        ChkOksigen.setBounds(236, 901, 80, 23);
 
         ChkNGT.setBackground(new java.awt.Color(255, 255, 250));
         ChkNGT.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2034,7 +2028,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkNGT);
-        ChkNGT.setBounds(0, 914, 130, 23);
+        ChkNGT.setBounds(0, 961, 130, 23);
 
         ChkKateter.setBackground(new java.awt.Color(255, 255, 250));
         ChkKateter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2053,7 +2047,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkKateter);
-        ChkKateter.setBounds(0, 884, 130, 23);
+        ChkKateter.setBounds(0, 931, 130, 23);
 
         ChkInfus.setBackground(new java.awt.Color(255, 255, 250));
         ChkInfus.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2072,7 +2066,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkInfus);
-        ChkInfus.setBounds(0, 854, 130, 23);
+        ChkInfus.setBounds(0, 901, 130, 23);
 
         scrollPane14.setName("scrollPane14"); // NOI18N
 
@@ -2202,7 +2196,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnRekom);
-        BtnRekom.setBounds(770, 944, 100, 23);
+        BtnRekom.setBounds(770, 991, 100, 23);
 
         ChkLab.setBackground(new java.awt.Color(255, 255, 250));
         ChkLab.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2217,6 +2211,56 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkLab.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkLab);
         ChkLab.setBounds(20, 637, 90, 23);
+
+        ChkIGD.setBackground(new java.awt.Color(255, 255, 250));
+        ChkIGD.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkIGD.setForeground(new java.awt.Color(0, 0, 0));
+        ChkIGD.setText("IGD");
+        ChkIGD.setBorderPainted(true);
+        ChkIGD.setBorderPaintedFlat(true);
+        ChkIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkIGD.setName("ChkIGD"); // NOI18N
+        ChkIGD.setOpaque(false);
+        ChkIGD.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkIGD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkIGDActionPerformed(evt);
+            }
+        });
+        FormInput.add(ChkIGD);
+        ChkIGD.setBounds(580, 207, 50, 23);
+
+        scrollPane15.setName("scrollPane15"); // NOI18N
+
+        TDiagnosa.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TDiagnosa.setColumns(20);
+        TDiagnosa.setRows(5);
+        TDiagnosa.setName("TDiagnosa"); // NOI18N
+        TDiagnosa.setPreferredSize(new java.awt.Dimension(162, 200));
+        TDiagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TDiagnosaKeyPressed(evt);
+            }
+        });
+        scrollPane15.setViewportView(TDiagnosa);
+
+        FormInput.add(scrollPane15);
+        scrollPane15.setBounds(136, 787, 626, 70);
+
+        jLabel43.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel43.setText("(Diagnosa Medis) ");
+        jLabel43.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel43.setName("jLabel43"); // NOI18N
+        FormInput.add(jLabel43);
+        jLabel43.setBounds(0, 143, 130, 23);
+
+        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setText("(Diagnosa Keperawatan) ");
+        jLabel49.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
+        jLabel49.setName("jLabel49"); // NOI18N
+        FormInput.add(jLabel49);
+        jLabel49.setBounds(0, 800, 130, 23);
 
         ScrollTriase1.setViewportView(FormInput);
 
@@ -2260,7 +2304,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2275,7 +2319,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2490,7 +2534,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 63, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 64, new String[]{
                         TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                         Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
                         Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
@@ -2500,7 +2544,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
                         Valid.SetTgl(tgl_drain.getSelectedItem() + ""), alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(),
                         Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
-                        oksigen, drain, lab
+                        oksigen, drain, lab, Sequel.cariIsi("select now()")
                     }) == true) {
                 TCari.setText(TNoRw.getText());
                 emptTeks();
@@ -2815,10 +2859,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void Tket_lainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tket_lainKeyPressed
         Valid.pindah(evt, Tket_lain, TDiagnosa);
     }//GEN-LAST:event_Tket_lainKeyPressed
-
-    private void TDiagnosaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDiagnosaKeyPressed
-        Valid.pindah(evt, TDiagnosa, tgl_infus);
-    }//GEN-LAST:event_TDiagnosaKeyPressed
 
     private void Talat_lainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Talat_lainKeyPressed
         Valid.pindah(evt, Talat_lain, tgl_alat_lain);
@@ -3194,6 +3234,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         beriObat.setVisible(true);
     }//GEN-LAST:event_BtnBeriObatActionPerformed
 
+    private void ChkIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkIGDActionPerformed
+        if (ChkIGD.isSelected() == true) {
+            kd_kamar = "IGDK";
+            Tnm_kamar.setText("IGD");
+        } else {
+            kd_kamar = "";
+            Tnm_kamar.setText("");
+        }
+    }//GEN-LAST:event_ChkIGDActionPerformed
+
+    private void TDiagnosaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TDiagnosaKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TDiagnosaKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3239,6 +3293,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     public widget.CekBox ChkFotoA;
     public widget.CekBox ChkFotoC;
     public widget.CekBox ChkFotoG;
+    public widget.CekBox ChkIGD;
     public widget.CekBox ChkInfus;
     public widget.CekBox ChkKateter;
     public widget.CekBox ChkLab;
@@ -3262,7 +3317,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ScrollPane ScrollTriase1;
     private widget.TextBox TCari;
     private widget.TextBox TCari2;
-    private widget.TextBox TDiagnosa;
+    private widget.TextArea TDiagnosa;
     private widget.TextBox TIdObat;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
@@ -3342,11 +3397,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel40;
     private widget.Label jLabel41;
     private widget.Label jLabel42;
+    private widget.Label jLabel43;
     private widget.Label jLabel44;
     private widget.Label jLabel45;
     private widget.Label jLabel46;
     private widget.Label jLabel47;
     private widget.Label jLabel48;
+    private widget.Label jLabel49;
     private widget.Label jLabel5;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
@@ -3373,6 +3430,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ScrollPane scrollPane12;
     private widget.ScrollPane scrollPane13;
     private widget.ScrollPane scrollPane14;
+    private widget.ScrollPane scrollPane15;
     private widget.ScrollPane scrollPane9;
     private widget.TextBox spo2;
     private widget.TextBox suhu;
@@ -3598,12 +3656,37 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Tnm_dokter.setText("-");
         Tnm_petugas1.setText("-");
         Tnm_petugas2.setText("-");
+        ChkIGD.setSelected(false);
+        
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            btnKamar1.setEnabled(false);
+            ChkIGD.setEnabled(true);            
+        } else if (status.equals("ranap")) {
+            btnKamar1.setEnabled(true);
+            ChkIGD.setEnabled(false);            
+        } else {
+            btnKamar1.setEnabled(true);
+            ChkIGD.setEnabled(true); 
+        }
     }
     
-    public void setNoRm(String norwt, Date tgl2) {
+    public void setNoRm(String norwt, Date tgl2, String statusrwt) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
+        status = statusrwt;
+        ChkIGD.setSelected(false);
+        
+        if (statusrwt.equals("IGD (Ralan)") || statusrwt.equals("IGD (Ranap)")) {
+            btnKamar1.setEnabled(false);
+            ChkIGD.setEnabled(true);            
+        } else if (statusrwt.equals("ranap")) {
+            btnKamar1.setEnabled(true);
+            ChkIGD.setEnabled(false);            
+        } else {
+            btnKamar1.setEnabled(true);
+            ChkIGD.setEnabled(true); 
+        }
         isRawat();
         tampil();
     }
@@ -3776,7 +3859,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         try {
             ps1 = koneksi.prepareStatement("select rp.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
                     + "rp.tgl_registrasi, IFNULL(pr.td,'') td, IFNULL(pr.nadi,'') nadi, IFNULL(pr.suhu,'') suhu, IFNULL(pr.nafas,'') nafas, "
-                    + "ifnull(pa.diag_medis_sementara,'') diagnosa, ifnull(pr.skala_nyeri,'') skala FROM reg_periksa rp "
+                    + "ifnull(pa.diag_medis_sementara,'') diag_medis, ifnull(pr.skala_nyeri,'') skala, ifnull(pr.diagnosa_keperawatan,'') diag_perawat FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "LEFT JOIN penilaian_awal_medis_igd pa ON pa.no_rawat = rp.no_rawat "
                     + "left join penilaian_awal_keperawatan_igdrz pr on pr.no_rawat=rp.no_rawat WHERE rp.no_rawat = ?");
@@ -3793,8 +3876,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     nadi.setText(rs1.getString("nadi"));
                     rr.setText(rs1.getString("nafas"));
                     suhu.setText(rs1.getString("suhu"));
-                    Tdiagnosis.setText(rs1.getString("diagnosa"));
+                    Tdiagnosis.setText(rs1.getString("diag_medis"));
                     nyeri.setText(rs1.getString("skala"));
+                    TDiagnosa.setText(rs1.getString("diag_perawat"));
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

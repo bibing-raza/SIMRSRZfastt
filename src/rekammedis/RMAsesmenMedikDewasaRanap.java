@@ -5010,7 +5010,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private void simpan() {
         cekData();
         if (Sequel.menyimpantf("asesmen_medik_dewasa_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 104, new String[]{
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 105, new String[]{
             TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
             Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
             Tkeluhan.getText(), Triw_penyakit_sekarang.getText(), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
@@ -5022,7 +5022,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(), 
             Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Thsl_pemeriksaan.getText(), Tdiagnosa1.getText(), Tdiagnosa2.getText(), 
             Tdiagnosa3.getText(), Tdiagnosa4.getText(), Trencana_kerja.getText(), Trencana_pulang.getText(), Tcatatan.getText(), Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19), 
-            kddpjp.getText(), TPemFisikLain.getText()
+            kddpjp.getText(), TPemFisikLain.getText(), Sequel.cariIsi("select now()")
         }) == true) {
             Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
             TCari.setText(TNoRw.getText());                      

@@ -4890,7 +4890,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                 + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
 
             if (cekHasilRad >= 1) {
-                akses.setform("RMTransferSerahTerimaIGD");
+                akses.setform("RMPenilaianAwalMedikIGD");
                 DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
                 form.WindowHasil.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.WindowHasil.setLocationRelativeTo(internalFrame1);
@@ -5882,15 +5882,13 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
     private void isRawat() {
         try {
-            ps = koneksi.prepareStatement("select rp.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-Laki','Perempuan') jk, "
-                    + "p.tgl_lahir, p.agama, bp.nama_bahasa, rp.tgl_registrasi, p.stts_nikah, p.pekerjaan, "
-                    + "p.pnd, pj.png_jawab, ifnull(r.rujuk_ke,'') rujuk_ke, ifnull(r.keterangan,'') ket_rujuk, "
-                    + "ifnull(pm.jam,'00:00:00') jam_mati, IFNULL(pa.td, '') td, "
-                    + "IFNULL(pa.nafas, '') nafas, IFNULL(pa.suhu, '') suhu FROM reg_periksa rp "
+            ps = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF (p.jk = 'L','Laki-Laki','Perempuan') jk, "
+                    + "p.tgl_lahir, p.agama, bp.nama_bahasa, rp.tgl_registrasi, p.stts_nikah, p.pekerjaan, p.pnd, "
+                    + "pj.png_jawab, ifnull(r.rujuk_ke, '') rujuk_ke, ifnull(r.keterangan, '') ket_rujuk, ifnull(pm.jam, '00:00:00') jam_mati, "
+                    + "IFNULL(ti.td, '') td, IFNULL(ti.nadi, '') nadi, IFNULL(ti.napas, '') nafas, IFNULL(ti.temperatur, '') suhu FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN bahasa_pasien bp ON bp.id = p.bahasa_pasien "
-                    + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj left join rujuk r on r.no_rawat=rp.no_rawat "
-                    + "left join pasien_mati pm on pm.no_rkm_medis=rp.no_rkm_medis LEFT JOIN penilaian_awal_keperawatan_igdrz pa ON pa.no_rawat = rp.no_rawat "
-                    + "WHERE rp.no_rawat = ?");
+                    + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj LEFT JOIN rujuk r ON r.no_rawat = rp.no_rawat "
+                    + "LEFT JOIN pasien_mati pm ON pm.no_rkm_medis = rp.no_rkm_medis LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
             try {
                 ps.setString(1, TNoRw.getText());
                 rs = ps.executeQuery();
@@ -5904,6 +5902,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                     TAlasanDirujuk.setText(rs.getString("ket_rujuk"));
                     
                     Ttd.setText(rs.getString("td"));
+                    Thr.setText(rs.getString("nadi"));
                     Trr.setText(rs.getString("nafas"));
                     Ttemp.setText(rs.getString("suhu"));
                     
@@ -6070,7 +6069,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         cekData();
         BtnJumlahActionPerformed(null);
         if (Sequel.menyimpantf("penilaian_awal_medis_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 125, new String[]{
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 126, new String[]{
             TNoRw.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), cervical, rjp, defribrilasi, intubasi, vtp, dekompresi, balut, kateter, ngt, infus, obat,
             TObat.getText(), tidakada, paten, obsP, cmbObstruksi.getSelectedItem().toString(), obsT, traumaJlnNfs, cmbTrauma.getSelectedItem().toString(), resikoAspirasi, cmbResiko.getSelectedItem().toString(), bendaAsing, TBendaAsing.getText(),
             cmbKesJalanNafas.getSelectedItem().toString(), cmbPernapasan.getSelectedItem().toString(), cmbReguler.getSelectedItem().toString(), cmbGerakanDada.getSelectedItem().toString(), cmbTipePernapasan.getSelectedItem().toString(), 
@@ -6084,8 +6083,9 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             Trencana.getText(), kdpetugas.getText(), nmpenerima.getText(), kddokter.getText(), Valid.SetTgl(TglKeluar.getSelectedItem() + "") + " " + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
             cmbRuangan.getSelectedItem().toString(), Tindikasi.getText(), Tdipulangkan.getText(), Tdirujuk.getText(), TAlasanDirujuk.getText(), meninggal, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
             Tpenyebab.getText(), Tku.getText(), Ttd.getText(), Thr.getText(), Trr.getText(), Ttemp.getText(), Tspo2.getText(), Tgcs.getText(), KdPerawat.getText(), kddpjp.getText(), Tket_gambar.getText(), TgcsV.getText(), TgcsM.getText(), 
-            TDiam_kiri.getText(), ganggnafas, cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString(), jamkeluar
+            TDiam_kiri.getText(), ganggnafas, cmbNadi2.getSelectedItem().toString(), cmbAkral2.getSelectedItem().toString(), jamkeluar, Sequel.cariIsi("select now()")
         }) == true) {
+            Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
             TCari.setText(TNoRw.getText());
             Ttd.setText("");
             Trr.setText("");

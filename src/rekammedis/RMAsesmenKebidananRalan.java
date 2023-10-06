@@ -4185,6 +4185,11 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         Tibu.setForeground(new java.awt.Color(0, 0, 0));
         Tibu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         Tibu.setName("Tibu"); // NOI18N
+        Tibu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TibuKeyPressed(evt);
+            }
+        });
         FormInput.add(Tibu);
         Tibu.setBounds(260, 650, 40, 23);
 
@@ -4220,6 +4225,11 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         TjmlSpog1.setForeground(new java.awt.Color(0, 0, 0));
         TjmlSpog1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TjmlSpog1.setName("TjmlSpog1"); // NOI18N
+        TjmlSpog1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TjmlSpog1KeyPressed(evt);
+            }
+        });
         FormInput.add(TjmlSpog1);
         TjmlSpog1.setBounds(385, 678, 40, 23);
 
@@ -4255,6 +4265,11 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         TjmlSpog2.setForeground(new java.awt.Color(0, 0, 0));
         TjmlSpog2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TjmlSpog2.setName("TjmlSpog2"); // NOI18N
+        TjmlSpog2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TjmlSpog2KeyPressed(evt);
+            }
+        });
         FormInput.add(TjmlSpog2);
         TjmlSpog2.setBounds(385, 706, 40, 23);
 
@@ -4290,6 +4305,11 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         TjmlSpog3.setForeground(new java.awt.Color(0, 0, 0));
         TjmlSpog3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TjmlSpog3.setName("TjmlSpog3"); // NOI18N
+        TjmlSpog3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TjmlSpog3KeyPressed(evt);
+            }
+        });
         FormInput.add(TjmlSpog3);
         TjmlSpog3.setBounds(785, 706, 40, 23);
 
@@ -4325,7 +4345,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         Thpht.setBounds(125, 758, 110, 23);
 
         jLabel170.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel170.setText("HPHT :");
+        jLabel170.setText("HPL :");
         jLabel170.setName("jLabel170"); // NOI18N
         FormInput.add(jLabel170);
         jLabel170.setBounds(235, 758, 50, 23);
@@ -4812,7 +4832,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
     }//GEN-LAST:event_TpKeyPressed
 
     private void TaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TaKeyPressed
-        Valid.pindah(evt, Tp, TthnPartus);
+        Valid.pindah(evt, Tp, Thamil);
     }//GEN-LAST:event_TaKeyPressed
 
     private void TthnPartusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TthnPartusKeyPressed
@@ -5368,11 +5388,11 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbCaraDatangActionPerformed
 
     private void ThamilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ThamilKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Ta, Tdengan);
     }//GEN-LAST:event_ThamilKeyPressed
 
     private void TdenganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdenganKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Thamil, cmbPerut);
     }//GEN-LAST:event_TdenganKeyPressed
 
     private void cmbPerutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPerutActionPerformed
@@ -5579,40 +5599,56 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbIbuActionPerformed
 
     private void TnmSpog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmSpog1KeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Tibu, TjmlSpog1);
     }//GEN-LAST:event_TnmSpog1KeyPressed
 
     private void TnmSpog2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmSpog2KeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, TjmlSpog1, TjmlSpog2);
     }//GEN-LAST:event_TnmSpog2KeyPressed
 
     private void TnmSpog3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmSpog3KeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, TjmlSpog2, TjmlSpog3);
     }//GEN-LAST:event_TnmSpog3KeyPressed
 
     private void ThphtKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ThphtKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, TjmlSpog3, Thpl);
     }//GEN-LAST:event_ThphtKeyPressed
 
     private void ThplKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ThplKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Thpht, Tuk);
     }//GEN-LAST:event_ThplKeyPressed
 
     private void TukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TukKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Thpl, TbbBlmHamil);
     }//GEN-LAST:event_TukKeyPressed
 
     private void TbbBlmHamilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbBlmHamilKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, Tuk, TbbTerakhir);
     }//GEN-LAST:event_TbbBlmHamilKeyPressed
 
     private void TbbTerakhirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbTerakhirKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, TbbBlmHamil, Ttbi);
     }//GEN-LAST:event_TbbTerakhirKeyPressed
 
     private void TtbiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtbiKeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_TtbiKeyPressed
+
+    private void TibuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TibuKeyPressed
+        Valid.pindah(evt, cmbIbu, TnmSpog1);
+    }//GEN-LAST:event_TibuKeyPressed
+
+    private void TjmlSpog1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjmlSpog1KeyPressed
+        Valid.pindah(evt, TnmSpog1, TnmSpog2);
+    }//GEN-LAST:event_TjmlSpog1KeyPressed
+
+    private void TjmlSpog2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjmlSpog2KeyPressed
+        Valid.pindah(evt, TnmSpog2, TnmSpog3);
+    }//GEN-LAST:event_TjmlSpog2KeyPressed
+
+    private void TjmlSpog3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjmlSpog3KeyPressed
+        Valid.pindah(evt, TnmSpog3, Thpht);
+    }//GEN-LAST:event_TjmlSpog3KeyPressed
 
     /**
     * @param args the command line arguments
