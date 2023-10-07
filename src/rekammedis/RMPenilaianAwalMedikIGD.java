@@ -5640,8 +5640,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         TketRencana.setEnabled(false);        
         Tedukasi.setText("");
         Trencana.setText("");
-        kdpetugas.setText("");
-        nmpetugas.setText("");
+        kdpetugas.setText("-");
+        nmpetugas.setText("-");
         nmpenerima.setText("");
         TglKeluar.setDate(new Date());
         cmbRuangan.setSelectedIndex(0);
