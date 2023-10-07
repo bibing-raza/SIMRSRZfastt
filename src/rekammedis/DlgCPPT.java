@@ -68,7 +68,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt",
             "Jenis PPA", "Nama PPA", "Jenis Bagian", "nipppa", "cek_serah_terima", "tgl_serah_terima",
             "cek_jam_serah_terima", "jam_serah_terima", "nmkonsulen1", "nmkonsulen2", "nipkonsulen1", "nipkonsulen2",
-            "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima"
+            "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima", "cppt_shift"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -81,7 +81,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbCPPT.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbCPPT.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 32; i++) {
+        for (int i = 0; i < 33; i++) {
             TableColumn column = tbCPPT.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -163,6 +163,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 31) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 32) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -351,6 +354,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         DTPCari2 = new widget.Tanggal();
         jLabel15 = new widget.Label();
         cmbRawat = new widget.ComboBox();
+        jLabel25 = new widget.Label();
+        cmbSiftCppt = new widget.ComboBox();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -412,6 +417,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         nmTerima = new widget.TextBox();
         BtnTerima = new widget.Button();
         ChkSamaPPA = new widget.CekBox();
+        jLabel24 = new widget.Label();
+        cmbSift = new widget.ComboBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -747,7 +754,24 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "R. Jalan", "R. Inap" }));
         cmbRawat.setName("cmbRawat"); // NOI18N
         cmbRawat.setPreferredSize(new java.awt.Dimension(77, 23));
+        cmbRawat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbRawatActionPerformed(evt);
+            }
+        });
         panelGlass9.add(cmbRawat);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Shift :");
+        jLabel25.setName("jLabel25"); // NOI18N
+        jLabel25.setPreferredSize(new java.awt.Dimension(45, 23));
+        panelGlass9.add(jLabel25);
+
+        cmbSiftCppt.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSiftCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3" }));
+        cmbSiftCppt.setName("cmbSiftCppt"); // NOI18N
+        cmbSiftCppt.setPreferredSize(new java.awt.Dimension(40, 23));
+        panelGlass9.add(cmbSiftCppt);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
@@ -1306,6 +1330,18 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass7.add(ChkSamaPPA);
         ChkSamaPPA.setBounds(820, 437, 160, 23);
 
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("CPPT Shift :");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass7.add(jLabel24);
+        jLabel24.setBounds(525, 38, 80, 23);
+
+        cmbSift.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSift.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "1", "2", "3" }));
+        cmbSift.setName("cmbSift"); // NOI18N
+        panelGlass7.add(cmbSift);
+        cmbSift.setBounds(612, 38, 40, 23);
+
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -1358,7 +1394,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "'" + cmbPPA.getSelectedItem().toString() + "','" + nipppa + "','" + cmbBagian.getSelectedItem().toString() + "',"
                     + "'" + serahterima + "','" + Valid.SetTgl(tglserah.getSelectedItem() + "") + "','" + jamserahterima + "',"
                     + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
-                    + "'" + nipkonsul1 + "','" + nipkonsul2 + "','" + nipSerah.getText() + "','" + nipTerima.getText() + "'", "CPPT Pasien");
+                    + "'" + nipkonsul1 + "','" + nipkonsul2 + "','" + nipSerah.getText() + "','" + nipTerima.getText() + "',"
+                    + "'" + cmbSift.getSelectedItem().toString() + "'", "CPPT Pasien");
             
             TCari.setText(TNoRw.getText());
             tampil();
@@ -1422,14 +1459,14 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Sequel.mengedit("cppt", "waktu_simpan=?", "tgl_cppt=?, hasil_pemeriksaan=?, "
                         + "instruksi_nakes=?, verifikasi=?, nip_dpjp=?, cek_jam=?, jam_cppt=?, jenis_ppa=?, nip_ppa=?, jenis_bagian=?, "
                         + "cek_serah_terima=?, tgl_serah_terima=?, cek_jam_serah_terima=?, jam_serah_terima=?, nip_konsulen1=?, "
-                        + "nip_konsulen2=?, nip_petugas_serah=?, nip_petugas_terima=?", 19, new String[]{
+                        + "nip_konsulen2=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?", 20, new String[]{
                             Valid.SetTgl(tglCppt.getSelectedItem() + ""), THasil.getText(), TInstruksi.getText(),
                             cmbVerifikasi.getSelectedItem().toString(), kddpjp.getText(), cekjam,
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                             cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(), serahterima,
                             Valid.SetTgl(tglserah.getSelectedItem() + ""), jamserahterima,
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), nipkonsul1, nipkonsul2,
-                            nipSerah.getText(), nipTerima.getText(),
+                            nipSerah.getText(), nipTerima.getText(), cmbSift.getSelectedItem().toString(),
                             tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
                         });
                 
@@ -1904,6 +1941,16 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkSamaPPAActionPerformed
 
+    private void cmbRawatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRawatActionPerformed
+        if (cmbRawat.getSelectedIndex() == 2) {
+            cmbSiftCppt.setSelectedIndex(0);
+            cmbSiftCppt.setEnabled(true);
+        } else {
+            cmbSiftCppt.setSelectedIndex(0);
+            cmbSiftCppt.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbRawatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1970,6 +2017,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbPPA;
     private widget.ComboBox cmbRawat;
+    private widget.ComboBox cmbSift;
+    private widget.ComboBox cmbSiftCppt;
     private widget.ComboBox cmbVerifikasi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
@@ -1987,6 +2036,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.Label jLabel25;
     private widget.Label jLabel3;
     private widget.Label jLabel36;
     private widget.Label jLabel4;
@@ -2028,7 +2079,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data, c.jenis_ppa, pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, "
                         + "c.cek_serah_terima, c.tgl_serah_terima, c.cek_jam_serah_terima, c.jam_serah_terima, pg2.nama nmkonsulen1, "
                         + "pg3.nama nmkonsulen2, c.nip_konsulen1, c.nip_konsulen2, pg4.nama petugasSerah, pg5.nama petugasTerima, "
-                        + "c.nip_petugas_serah, c.nip_petugas_terima from cppt c "
+                        + "c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join pegawai pg on pg.nik=c.nip_dpjp inner join pegawai pg1 on pg1.nik=c.nip_ppa "
                         + "inner join pegawai pg2 on pg2.nik=c.nip_konsulen1 inner join pegawai pg3 on pg3.nik=c.nip_konsulen2 "
@@ -2048,7 +2099,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data, c.jenis_ppa, pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, "
                         + "c.cek_serah_terima, c.tgl_serah_terima, c.cek_jam_serah_terima, c.jam_serah_terima, pg2.nama nmkonsulen1, "
                         + "pg3.nama nmkonsulen2, c.nip_konsulen1, c.nip_konsulen2, pg4.nama petugasSerah, pg5.nama petugasTerima, "
-                        + "c.nip_petugas_serah, c.nip_petugas_terima from cppt c "
+                        + "c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join pegawai pg on pg.nik=c.nip_dpjp inner join pegawai pg1 on pg1.nik=c.nip_ppa "
                         + "inner join pegawai pg2 on pg2.nik=c.nip_konsulen1 inner join pegawai pg3 on pg3.nik=c.nip_konsulen2 "
@@ -2068,19 +2119,19 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "if(c.cek_jam='ya',c.jam_cppt,'-') jam_cppt_data, c.jenis_ppa, pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, "
                         + "c.cek_serah_terima, c.tgl_serah_terima, c.cek_jam_serah_terima, c.jam_serah_terima, pg2.nama nmkonsulen1, "
                         + "pg3.nama nmkonsulen2, c.nip_konsulen1, c.nip_konsulen2, pg4.nama petugasSerah, pg5.nama petugasTerima, "
-                        + "c.nip_petugas_serah, c.nip_petugas_terima from cppt c "
+                        + "c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join pegawai pg on pg.nik=c.nip_dpjp inner join pegawai pg1 on pg1.nik=c.nip_ppa "
                         + "inner join pegawai pg2 on pg2.nik=c.nip_konsulen1 inner join pegawai pg3 on pg3.nik=c.nip_konsulen2 "
                         + "inner join pegawai pg4 on pg4.nik=c.nip_petugas_serah inner join pegawai pg5 on pg5.nik=c.nip_petugas_terima where "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.no_rawat like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.no_rkm_medis like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.nm_pasien like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.hasil_pemeriksaan like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.instruksi_nakes like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.verifikasi like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.jenis_bagian like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and pg.nama like ? order by c.waktu_simpan desc");
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and c.no_rawat like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and p.no_rkm_medis like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and p.nm_pasien like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and c.hasil_pemeriksaan like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and c.instruksi_nakes like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and c.verifikasi like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and c.jenis_bagian like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift='" + cmbSiftCppt.getSelectedItem() + "' and pg.nama like ? order by c.waktu_simpan desc");
             }
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -2141,7 +2192,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("petugasSerah"),
                         rs.getString("petugasTerima"),
                         rs.getString("nip_petugas_serah"),
-                        rs.getString("nip_petugas_terima")
+                        rs.getString("nip_petugas_terima"),
+                        rs.getString("cppt_shift")
                     });
                 }
             } catch (Exception e) {
@@ -2204,6 +2256,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnTerima.setEnabled(false);
         ChkSamaPPA.setSelected(false);
         ChkSamaPPA.setEnabled(false);
+        cmbSift.setSelectedIndex(0);
+        cmbSiftCppt.setSelectedIndex(0);
     }
 
     private void getData() {
@@ -2248,6 +2302,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmTerima.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 29).toString());
             nipSerah.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 30).toString());
             nipTerima.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 31).toString());
+            cmbSift.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 32).toString());
             dataCek();
         }
     }
@@ -2348,6 +2403,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmppa.setText("-");
             nmppa.setEnabled(false);
             BtnPPA.setEnabled(false);
+            cmbSift.setEnabled(false);
+            cmbSiftCppt.setEnabled(false);
         } else if (sttsrawat.equals("ranap")) {
             cmbRawat.setSelectedIndex(2);
             cmbPPA.setSelectedIndex(0);
@@ -2356,6 +2413,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmppa.setText("-");
             nmppa.setEnabled(true);
             BtnPPA.setEnabled(true);
+            cmbSift.setEnabled(true);
+            cmbSiftCppt.setEnabled(true);
         } else {
             cmbRawat.setSelectedIndex(0);
             cmbPPA.setSelectedIndex(0);
@@ -2364,6 +2423,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmppa.setText("-");
             nmppa.setEnabled(true);
             BtnPPA.setEnabled(true);
+            cmbSift.setEnabled(true);
+            cmbSiftCppt.setEnabled(false);
         }
     }
     
