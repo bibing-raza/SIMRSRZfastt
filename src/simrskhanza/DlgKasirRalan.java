@@ -7651,7 +7651,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
                 akses.setform("DlgKasirRalan");
                 beriObat.isCek();
-                beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText());
+                beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
                 beriObat.setSize(914, internalFrame1.getHeight() - 40);
                 beriObat.setLocationRelativeTo(internalFrame1);
                 beriObat.setAlwaysOnTop(false);
@@ -8334,7 +8334,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
         MnAssesmenKeperawatanIGD.setEnabled(akses.getdata_triase_igd());
         MnAssesmenMedikIGD.setEnabled(akses.getdata_triase_igd());
-        MnTransferSerahTerimaIGD.setEnabled(akses.getdata_triase_igd());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnPermintaanRadiologi.setEnabled(akses.getpermintaan_radiologi());
@@ -8361,6 +8360,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnSuratKeteranganDokter.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnCekRujukanJKN.setEnabled(akses.getbpjs_cek_kartu());
         MnAsesmenMedikObstetri.setEnabled(akses.getpenilaian_awal_medis_ralan_kebidanan());
+        MnInputDataTransferSerahTerimaIGD.setEnabled(akses.getpemberian_obat());
         MnPemberianObat.setEnabled(akses.getpemberian_obat());
         MnCPPTIGD.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
@@ -9877,11 +9877,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("diagnosis", rsLaprm.getString("diagnosis"));
                     param.put("tglmasuk", Sequel.cariIsi("select date_format(tgl_masuk,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
                     
-                    if (rsLaprm.getString("kd_kamar_msk").equals("IGDK")) {
+                    if (rsLaprm.getString("kd_kamar_msk").equals("")) {
+                        param.put("ruangkamar", "");
+                    } else if (rsLaprm.getString("kd_kamar_msk").equals("IGDK")) {
                         param.put("ruangkamar", Sequel.cariIsi("SELECT nm_poli FROM poliklinik WHERE kd_poli='" + rsLaprm.getString("kd_kamar_msk") + "'"));
                     } else {
                         param.put("ruangkamar", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_msk") + "'"));
-                    }                    
+                    }               
                     
                     param.put("tgljampindah", Sequel.cariIsi("select date_format(tgl_jam_pindah,'%d-%m-%Y / %H:%i') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
                     param.put("ruangkamarpindah", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_pindah") + "'"));

@@ -42,11 +42,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
+    private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, psLaprm;
     private ResultSet rs, rs1, rsLaprm;
     private int x = 0;
-    private String kdobat = "";
+    private String kdobat = "", status = "", statusOK = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -833,10 +833,17 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } else if (nmObat.getText().trim().equals("")) {
             Valid.textKosong(nmObat, "Nama Obat");
         } else {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                statusOK = "Ralan";
+            } else if (status.equals("ranap")) {
+                statusOK = "Ranap";
+            }
+            
             Sequel.menyimpan("pemberian_obat", "'" + TNoRW.getText() + "','" + nmObat.getText() + "',"
                     + "'" + dosis.getText() + "','" + caraPemberian.getText() + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + jlhSisaObat.getText() + "','Ralan','" + Sequel.cariIsi("select now()") + "','" + kdobat + "'", "Pemberian Obat");
+                    + "'" + jlhSisaObat.getText() + "','" + statusOK + "','" + Sequel.cariIsi("select now()") + "',"
+                    + "'" + kdobat + "'", "Pemberian Obat");
             
             tampil();
             emptTeks();
@@ -1119,13 +1126,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         param.put("konsulen2", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_konsulen2") + "'"));
                         param.put("diagnosis", rsLaprm.getString("diagnosis"));
                         param.put("tglmasuk", Sequel.cariIsi("select date_format(tgl_masuk,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                        
-                        if (rsLaprm.getString("kd_kamar_msk").equals("IGDK")) {
+
+                        if (rsLaprm.getString("kd_kamar_msk").equals("")) {
+                            param.put("ruangkamar", "");
+                        } else if (rsLaprm.getString("kd_kamar_msk").equals("IGDK")) {
                             param.put("ruangkamar", Sequel.cariIsi("SELECT nm_poli FROM poliklinik WHERE kd_poli='" + rsLaprm.getString("kd_kamar_msk") + "'"));
                         } else {
                             param.put("ruangkamar", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_msk") + "'"));
                         }
-                        
+
                         param.put("tgljampindah", Sequel.cariIsi("select date_format(tgl_jam_pindah,'%d-%m-%Y / %H:%i') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
                         param.put("ruangkamarpindah", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_pindah") + "'"));
                         param.put("alasanranap", rsLaprm.getString("alasan_ranap"));
@@ -1295,15 +1304,29 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             param.put("tgllainalat", "-");
                         }
 
-                        if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
-                                + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
-                            Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                                    "SELECT date(now())", param);
-                        } else {
-                            Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                                    "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
-                                    + "and status='Ralan' ORDER BY waktu_simpan desc", param);
+                        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                            if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
+                                Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                                        "SELECT date(now())", param);
+                            } else {
+                                Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
+                                        + "and status='Ralan' ORDER BY waktu_simpan desc", param);
+                            }
+                        } else if (status.equals("ranap")) {
+                            if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ranap'") == 0) {
+                                Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
+                                        "SELECT date(now())", param);
+                            } else {
+                                Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
+                                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
+                                        + "and status='Ranap' ORDER BY waktu_simpan desc", param);
+                            }
                         }
+                        
+                        
                     }
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
@@ -1556,9 +1579,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw, String norm, String nmpasien) {
+    public void setData(String norw, String norm, String nmpasien, String sttsrawat) {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
+        status = sttsrawat;
         TNmPasien.setText(nmpasien);
     }
 }

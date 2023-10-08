@@ -1000,7 +1000,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 585, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1186,7 +1186,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel38);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1200,7 +1200,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel46.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel46);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1951,7 +1951,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextBox TTglMsk;
     private widget.TextBox TTglPulang;
     private widget.TextArea TTindakan;
-    public widget.TabPane TabRingkasan;
+    private widget.TabPane TabRingkasan;
     private widget.TextBox Tdpjp;
     private widget.TextBox Tedukasi;
     private widget.TextBox Tgcs;
@@ -2319,5 +2319,11 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void isCek() {
+        BtnSimpan.setEnabled(akses.getringkasanpulangranap());
+        BtnHapus.setEnabled(akses.getringkasanpulangranap());
+        BtnGanti.setEnabled(akses.getringkasanpulangranap());
     }
 }

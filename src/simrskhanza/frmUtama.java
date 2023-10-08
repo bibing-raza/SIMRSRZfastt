@@ -909,7 +909,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnPenilaianAwalMedisRalanMata = new widget.ButtonBig();
         btnSuratIstirahatSakit = new widget.ButtonBig();
         btnSuratKeteranganSakit = new widget.ButtonBig();
-        btnTransferSerahTerimaIGD = new widget.ButtonBig();
+        btnTransferSerahTerimaPasien = new widget.ButtonBig();
         btnSuratKeteranganNAPZA = new widget.ButtonBig();
         btnSuratKeteranganRohani = new widget.ButtonBig();
         btnSuratKeteranganDokter = new widget.ButtonBig();
@@ -6023,18 +6023,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnSuratKeteranganSakit);
 
-        btnTransferSerahTerimaIGD.setForeground(new java.awt.Color(0, 0, 0));
-        btnTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816189_arrow_down.png"))); // NOI18N
-        btnTransferSerahTerimaIGD.setText("Transfer & Serah Terima IGD");
-        btnTransferSerahTerimaIGD.setIconTextGap(0);
-        btnTransferSerahTerimaIGD.setName("btnTransferSerahTerimaIGD"); // NOI18N
-        btnTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
+        btnTransferSerahTerimaPasien.setForeground(new java.awt.Color(0, 0, 0));
+        btnTransferSerahTerimaPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816189_arrow_down.png"))); // NOI18N
+        btnTransferSerahTerimaPasien.setText("Transfer & Serah Terima Pasien");
+        btnTransferSerahTerimaPasien.setIconTextGap(0);
+        btnTransferSerahTerimaPasien.setName("btnTransferSerahTerimaPasien"); // NOI18N
+        btnTransferSerahTerimaPasien.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTransferSerahTerimaPasien.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnTransferSerahTerimaIGDActionPerformed(evt);
+                btnTransferSerahTerimaPasienActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnTransferSerahTerimaIGD);
+        Panelmenu.add(btnTransferSerahTerimaPasien);
 
         btnSuratKeteranganNAPZA.setForeground(new java.awt.Color(0, 0, 0));
         btnSuratKeteranganNAPZA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
@@ -6148,7 +6148,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29/09/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08/10/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7032,6 +7032,7 @@ private void BtnMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 private void BtnToolKasirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnToolKasirActionPerformed
     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
     isTutup();
+//    DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     akses.tRefreshAntrian.start();
     kasirralan.isCek();
     kasirralan.empttext();
@@ -12093,7 +12094,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSuratKeteranganSakitActionPerformed
 
-    private void btnTransferSerahTerimaIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferSerahTerimaIGDActionPerformed
+    private void btnTransferSerahTerimaPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferSerahTerimaPasienActionPerformed
         isTutup();
         DlgHome.dispose();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -12104,7 +12105,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         aplikasi.setLocationRelativeTo(PanelUtama);
         aplikasi.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnTransferSerahTerimaIGDActionPerformed
+    }//GEN-LAST:event_btnTransferSerahTerimaPasienActionPerformed
 
     private void btnSuratKeteranganNAPZAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratKeteranganNAPZAActionPerformed
         isTutup();
@@ -12635,7 +12636,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnToolLab;
     private widget.ButtonBig btnToolRad;
     private widget.ButtonBig btnTracker;
-    private widget.ButtonBig btnTransferSerahTerimaIGD;
+    private widget.ButtonBig btnTransferSerahTerimaPasien;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
     private widget.ButtonBig btnUTDKomponenDarah;
@@ -14327,8 +14328,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
-            if (akses.getdata_triase_igd() == true) {
-                Panelmenu.add(btnTransferSerahTerimaIGD);
+            if (akses.getpemberian_obat() == true) {
+                Panelmenu.add(btnTransferSerahTerimaPasien);
                 jmlmenu++;
             }
             
@@ -14884,8 +14885,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getdata_triase_igd() == true) {
-            Panelmenu.add(btnTransferSerahTerimaIGD);
+        if (akses.getpemberian_obat() == true) {
+            Panelmenu.add(btnTransferSerahTerimaPasien);
             jmlmenu++;
         }
         
@@ -16789,9 +16790,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
-        if (akses.getdata_triase_igd()== true) {
-            if (btnTransferSerahTerimaIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnTransferSerahTerimaIGD);
+        if (akses.getpemberian_obat()== true) {
+            if (btnTransferSerahTerimaPasien.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnTransferSerahTerimaPasien);
                 jmlmenu++;
             }
         }

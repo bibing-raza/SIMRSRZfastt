@@ -5651,8 +5651,6 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         TAlasanDirujuk.setText("");
         Tpenyebab.setText("");
         Tku.setText("");
-        Thr.setText("");
-        Tspo2.setText("");
         Tgcs.setText("");
         emptTeksBayi();
         
@@ -5885,10 +5883,11 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             ps = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF (p.jk = 'L','Laki-Laki','Perempuan') jk, "
                     + "p.tgl_lahir, p.agama, bp.nama_bahasa, rp.tgl_registrasi, p.stts_nikah, p.pekerjaan, p.pnd, "
                     + "pj.png_jawab, ifnull(r.rujuk_ke, '') rujuk_ke, ifnull(r.keterangan, '') ket_rujuk, ifnull(pm.jam, '00:00:00') jam_mati, "
-                    + "IFNULL(ti.td, '') td, IFNULL(ti.nadi, '') nadi, IFNULL(ti.napas, '') nafas, IFNULL(ti.temperatur, '') suhu FROM reg_periksa rp "
-                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN bahasa_pasien bp ON bp.id = p.bahasa_pasien "
-                    + "INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj LEFT JOIN rujuk r ON r.no_rawat = rp.no_rawat "
-                    + "LEFT JOIN pasien_mati pm ON pm.no_rkm_medis = rp.no_rkm_medis LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
+                    + "IFNULL(ti.td, '') td, IFNULL(ti.nadi, '') nadi, IFNULL(ti.napas, '') nafas, IFNULL(ti.temperatur, '') suhu, "
+                    + "IFNULL(ti.saturasi, '') spo2 FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN bahasa_pasien bp ON bp.id = p.bahasa_pasien INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
+                    + "LEFT JOIN rujuk r ON r.no_rawat = rp.no_rawat LEFT JOIN pasien_mati pm ON pm.no_rkm_medis = rp.no_rkm_medis "
+                    + "LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
             try {
                 ps.setString(1, TNoRw.getText());
                 rs = ps.executeQuery();
@@ -5905,6 +5904,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                     Thr.setText(rs.getString("nadi"));
                     Trr.setText(rs.getString("nafas"));
                     Ttemp.setText(rs.getString("suhu"));
+                    Tspo2.setText(rs.getString("spo2"));
                     
                     if (Sequel.cariInteger("select count(-1) from pasien_mati where no_rkm_medis='" + rs.getString("no_rkm_medis") + "'") == 0) {
                         ChkMeninggal.setSelected(false);

@@ -75,7 +75,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             tglPemberianObat = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "",
-            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", status = "";
+            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", status = "", nmKamar = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -617,20 +617,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         cmbKesadaran = new widget.ComboBox();
         jLabel29 = new widget.Label();
         jLabel30 = new widget.Label();
-        td = new widget.TextBox();
+        Ttd = new widget.TextBox();
         jLabel31 = new widget.Label();
-        spo2 = new widget.TextBox();
+        Tspo2 = new widget.TextBox();
         jLabel32 = new widget.Label();
         jLabel33 = new widget.Label();
-        nadi = new widget.TextBox();
+        Tnadi = new widget.TextBox();
         jLabel34 = new widget.Label();
         jLabel35 = new widget.Label();
-        nyeri = new widget.TextBox();
+        TskalaNyeri = new widget.TextBox();
         jLabel36 = new widget.Label();
-        suhu = new widget.TextBox();
+        Tsuhu = new widget.TextBox();
         jLabel37 = new widget.Label();
         jLabel38 = new widget.Label();
-        rr = new widget.TextBox();
+        Trr = new widget.TextBox();
         jLabel39 = new widget.Label();
         jLabel40 = new widget.Label();
         cmbResiko = new widget.ComboBox();
@@ -703,6 +703,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         TDiagnosa = new widget.TextArea();
         jLabel43 = new widget.Label();
         jLabel49 = new widget.Label();
+        jLabel50 = new widget.Label();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTransfer = new widget.Table();
@@ -893,7 +894,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Transfer & Serah Terima Pasien IGD ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Transfer & Serah Terima Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -1085,7 +1086,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023 14:31:49" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-10-2023 11:29:23" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -1313,15 +1314,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel30);
         jLabel30.setBounds(136, 527, 50, 23);
 
-        td.setForeground(new java.awt.Color(0, 0, 0));
-        td.setName("td"); // NOI18N
-        td.addKeyListener(new java.awt.event.KeyAdapter() {
+        Ttd.setForeground(new java.awt.Color(0, 0, 0));
+        Ttd.setName("Ttd"); // NOI18N
+        Ttd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tdKeyPressed(evt);
+                TtdKeyPressed(evt);
             }
         });
-        FormInput.add(td);
-        td.setBounds(190, 527, 70, 23);
+        FormInput.add(Ttd);
+        Ttd.setBounds(190, 527, 70, 23);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("SPO2 :");
@@ -1329,15 +1330,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel31);
         jLabel31.setBounds(136, 557, 50, 23);
 
-        spo2.setForeground(new java.awt.Color(0, 0, 0));
-        spo2.setName("spo2"); // NOI18N
-        spo2.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tspo2.setForeground(new java.awt.Color(0, 0, 0));
+        Tspo2.setName("Tspo2"); // NOI18N
+        Tspo2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                spo2KeyPressed(evt);
+                Tspo2KeyPressed(evt);
             }
         });
-        FormInput.add(spo2);
-        spo2.setBounds(190, 557, 70, 23);
+        FormInput.add(Tspo2);
+        Tspo2.setBounds(190, 557, 70, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1350,86 +1351,86 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel33.setText("Nadi :");
         jLabel33.setName("jLabel33"); // NOI18N
         FormInput.add(jLabel33);
-        jLabel33.setBounds(310, 527, 30, 23);
+        jLabel33.setBounds(310, 527, 40, 23);
 
-        nadi.setForeground(new java.awt.Color(0, 0, 0));
-        nadi.setName("nadi"); // NOI18N
-        nadi.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tnadi.setForeground(new java.awt.Color(0, 0, 0));
+        Tnadi.setName("Tnadi"); // NOI18N
+        Tnadi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                nadiKeyPressed(evt);
+                TnadiKeyPressed(evt);
             }
         });
-        FormInput.add(nadi);
-        nadi.setBounds(345, 527, 70, 23);
+        FormInput.add(Tnadi);
+        Tnadi.setBounds(355, 527, 70, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel34.setText("x/menit");
         jLabel34.setName("jLabel34"); // NOI18N
         FormInput.add(jLabel34);
-        jLabel34.setBounds(420, 527, 40, 23);
+        jLabel34.setBounds(430, 527, 40, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
         jLabel35.setText("Skala Nyeri :");
         jLabel35.setName("jLabel35"); // NOI18N
         FormInput.add(jLabel35);
-        jLabel35.setBounds(270, 557, 70, 23);
+        jLabel35.setBounds(480, 557, 70, 23);
 
-        nyeri.setForeground(new java.awt.Color(0, 0, 0));
-        nyeri.setName("nyeri"); // NOI18N
-        nyeri.addKeyListener(new java.awt.event.KeyAdapter() {
+        TskalaNyeri.setForeground(new java.awt.Color(0, 0, 0));
+        TskalaNyeri.setName("TskalaNyeri"); // NOI18N
+        TskalaNyeri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                nyeriKeyPressed(evt);
+                TskalaNyeriKeyPressed(evt);
             }
         });
-        FormInput.add(nyeri);
-        nyeri.setBounds(345, 557, 410, 23);
+        FormInput.add(TskalaNyeri);
+        TskalaNyeri.setBounds(555, 557, 70, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Suhu :");
         jLabel36.setName("jLabel36"); // NOI18N
         FormInput.add(jLabel36);
-        jLabel36.setBounds(465, 527, 40, 23);
+        jLabel36.setBounds(310, 557, 40, 23);
 
-        suhu.setForeground(new java.awt.Color(0, 0, 0));
-        suhu.setName("suhu"); // NOI18N
-        suhu.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tsuhu.setForeground(new java.awt.Color(0, 0, 0));
+        Tsuhu.setName("Tsuhu"); // NOI18N
+        Tsuhu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                suhuKeyPressed(evt);
+                TsuhuKeyPressed(evt);
             }
         });
-        FormInput.add(suhu);
-        suhu.setBounds(510, 527, 70, 23);
+        FormInput.add(Tsuhu);
+        Tsuhu.setBounds(355, 557, 70, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel37.setText("°C");
         jLabel37.setName("jLabel37"); // NOI18N
         FormInput.add(jLabel37);
-        jLabel37.setBounds(585, 527, 20, 23);
+        jLabel37.setBounds(430, 557, 20, 23);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("RR :");
         jLabel38.setName("jLabel38"); // NOI18N
         FormInput.add(jLabel38);
-        jLabel38.setBounds(605, 527, 30, 23);
+        jLabel38.setBounds(480, 527, 70, 23);
 
-        rr.setForeground(new java.awt.Color(0, 0, 0));
-        rr.setName("rr"); // NOI18N
-        rr.addKeyListener(new java.awt.event.KeyAdapter() {
+        Trr.setForeground(new java.awt.Color(0, 0, 0));
+        Trr.setName("Trr"); // NOI18N
+        Trr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                rrKeyPressed(evt);
+                TrrKeyPressed(evt);
             }
         });
-        FormInput.add(rr);
-        rr.setBounds(640, 527, 70, 23);
+        FormInput.add(Trr);
+        Trr.setBounds(555, 527, 70, 23);
 
         jLabel39.setForeground(new java.awt.Color(0, 0, 0));
         jLabel39.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel39.setText("x/menit");
         jLabel39.setName("jLabel39"); // NOI18N
         FormInput.add(jLabel39);
-        jLabel39.setBounds(715, 527, 40, 23);
+        jLabel39.setBounds(630, 527, 40, 23);
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Skore Resiko Jatuh :");
@@ -1453,7 +1454,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel41.setText("Kriteria Transfer :");
         jLabel41.setName("jLabel41"); // NOI18N
         FormInput.add(jLabel41);
-        jLabel41.setBounds(245, 587, 95, 23);
+        jLabel41.setBounds(245, 587, 105, 23);
 
         cmbKriteria.setForeground(new java.awt.Color(0, 0, 0));
         cmbKriteria.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "0", "1", "2", "3" }));
@@ -1465,7 +1466,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbKriteria);
-        cmbKriteria.setBounds(345, 587, 45, 23);
+        cmbKriteria.setBounds(355, 587, 45, 23);
 
         jLabel42.setForeground(new java.awt.Color(0, 0, 0));
         jLabel42.setText("PEMERIKSAAN PENUNJANG YANG SUDAH DILAKUKAN");
@@ -1542,7 +1543,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkFotoA.setOpaque(false);
         ChkFotoA.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkFotoA);
-        ChkFotoA.setBounds(175, 667, 100, 23);
+        ChkFotoA.setBounds(175, 637, 100, 23);
 
         ChkSpiri.setBackground(new java.awt.Color(255, 255, 250));
         ChkSpiri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1556,7 +1557,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkSpiri.setOpaque(false);
         ChkSpiri.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkSpiri);
-        ChkSpiri.setBounds(175, 697, 100, 23);
+        ChkSpiri.setBounds(175, 667, 100, 23);
 
         ChkEcho.setBackground(new java.awt.Color(255, 255, 250));
         ChkEcho.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1570,7 +1571,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkEcho.setOpaque(false);
         ChkEcho.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkEcho);
-        ChkEcho.setBounds(175, 727, 100, 23);
+        ChkEcho.setBounds(175, 697, 100, 23);
 
         ChkUSG.setBackground(new java.awt.Color(255, 255, 250));
         ChkUSG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1584,7 +1585,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkUSG.setOpaque(false);
         ChkUSG.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkUSG);
-        ChkUSG.setBounds(175, 757, 100, 23);
+        ChkUSG.setBounds(175, 727, 100, 23);
 
         ChkCTscan.setBackground(new java.awt.Color(255, 255, 250));
         ChkCTscan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1603,7 +1604,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkCTscan);
-        ChkCTscan.setBounds(285, 667, 70, 23);
+        ChkCTscan.setBounds(285, 637, 70, 23);
 
         ChkEndos.setBackground(new java.awt.Color(255, 255, 250));
         ChkEndos.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1622,7 +1623,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkEndos);
-        ChkEndos.setBounds(285, 697, 70, 23);
+        ChkEndos.setBounds(285, 667, 70, 23);
 
         ChkCTG.setBackground(new java.awt.Color(255, 255, 250));
         ChkCTG.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1641,7 +1642,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkCTG);
-        ChkCTG.setBounds(285, 727, 70, 23);
+        ChkCTG.setBounds(285, 697, 70, 23);
 
         ChkLainya.setBackground(new java.awt.Color(255, 255, 250));
         ChkLainya.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1660,7 +1661,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkLainya);
-        ChkLainya.setBounds(285, 757, 70, 23);
+        ChkLainya.setBounds(285, 727, 70, 23);
 
         Tket_lain.setBackground(new java.awt.Color(245, 250, 240));
         Tket_lain.setForeground(new java.awt.Color(0, 0, 0));
@@ -1671,7 +1672,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tket_lain);
-        Tket_lain.setBounds(362, 757, 400, 23);
+        Tket_lain.setBounds(362, 727, 400, 23);
 
         jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setText("Diagnosa :");
@@ -1938,7 +1939,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tket_ctg);
-        Tket_ctg.setBounds(362, 727, 400, 23);
+        Tket_ctg.setBounds(362, 697, 400, 23);
 
         Tket_endos.setBackground(new java.awt.Color(245, 250, 240));
         Tket_endos.setForeground(new java.awt.Color(0, 0, 0));
@@ -1949,7 +1950,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tket_endos);
-        Tket_endos.setBounds(362, 697, 400, 23);
+        Tket_endos.setBounds(362, 667, 400, 23);
 
         Tket_ctscan.setBackground(new java.awt.Color(245, 250, 240));
         Tket_ctscan.setForeground(new java.awt.Color(0, 0, 0));
@@ -1960,7 +1961,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tket_ctscan);
-        Tket_ctscan.setBounds(362, 667, 400, 23);
+        Tket_ctscan.setBounds(362, 637, 400, 23);
 
         tgl_transfer.setEditable(false);
         tgl_transfer.setDisplayFormat("dd-MM-yyyy");
@@ -2262,6 +2263,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel49);
         jLabel49.setBounds(0, 800, 130, 23);
 
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel50.setText("%");
+        jLabel50.setName("jLabel50"); // NOI18N
+        FormInput.add(jLabel50);
+        jLabel50.setBounds(265, 557, 40, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTST.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2304,7 +2312,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2319,7 +2327,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2534,11 +2542,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 64, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 64, new String[]{
                         TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                         Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
                         Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
-                        td.getText(), nadi.getText(), suhu.getText(), rr.getText(), spo2.getText(), nyeri.getText(), cmbResiko.getSelectedItem().toString(),
+                        Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
                         cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
                         endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
                         Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
@@ -2832,29 +2840,29 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Valid.pindah(evt, gcsm, cmbKesadaran);
     }//GEN-LAST:event_gcsvKeyPressed
 
-    private void tdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tdKeyPressed
-        Valid.pindah(evt, cmbKesadaran, nadi);
-    }//GEN-LAST:event_tdKeyPressed
+    private void TtdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtdKeyPressed
+        Valid.pindah(evt, cmbKesadaran, Tnadi);
+    }//GEN-LAST:event_TtdKeyPressed
 
-    private void nadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nadiKeyPressed
-        Valid.pindah(evt, td, suhu);
-    }//GEN-LAST:event_nadiKeyPressed
+    private void TnadiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnadiKeyPressed
+        Valid.pindah(evt, Ttd, Tsuhu);
+    }//GEN-LAST:event_TnadiKeyPressed
 
-    private void suhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_suhuKeyPressed
-        Valid.pindah(evt, nadi, rr);
-    }//GEN-LAST:event_suhuKeyPressed
+    private void TsuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TsuhuKeyPressed
+        Valid.pindah(evt, Tnadi, Trr);
+    }//GEN-LAST:event_TsuhuKeyPressed
 
-    private void rrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rrKeyPressed
-        Valid.pindah(evt, suhu, spo2);
-    }//GEN-LAST:event_rrKeyPressed
+    private void TrrKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TrrKeyPressed
+        Valid.pindah(evt, Tsuhu, Tspo2);
+    }//GEN-LAST:event_TrrKeyPressed
 
-    private void spo2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spo2KeyPressed
-        Valid.pindah(evt, rr, nyeri);
-    }//GEN-LAST:event_spo2KeyPressed
+    private void Tspo2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tspo2KeyPressed
+        Valid.pindah(evt, Trr, TskalaNyeri);
+    }//GEN-LAST:event_Tspo2KeyPressed
 
-    private void nyeriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nyeriKeyPressed
-        Valid.pindah(evt, spo2, cmbResiko);
-    }//GEN-LAST:event_nyeriKeyPressed
+    private void TskalaNyeriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskalaNyeriKeyPressed
+        Valid.pindah(evt, Tspo2, cmbResiko);
+    }//GEN-LAST:event_TskalaNyeriKeyPressed
 
     private void Tket_lainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tket_lainKeyPressed
         Valid.pindah(evt, Tket_lain, TDiagnosa);
@@ -3227,7 +3235,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
         akses.setform("RMTransferSerahTerima");
         beriObat.isCek();
-        beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
+        beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),status);
         beriObat.setSize(914, internalFrame1.getHeight() - 40);
         beriObat.setLocationRelativeTo(internalFrame1);
         beriObat.setAlwaysOnTop(false);
@@ -3335,6 +3343,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox Tket_ctscan;
     private widget.TextBox Tket_endos;
     private widget.TextBox Tket_lain;
+    private widget.TextBox Tnadi;
     private widget.TextBox Tnm_dokter;
     private widget.TextBox Tnm_kamar;
     private widget.TextBox Tnm_kamar_pindah;
@@ -3344,6 +3353,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextArea Trekomendasi;
     private widget.TextArea Triw_alergi;
     private widget.TextArea Triw_penyakit;
+    private widget.TextBox Trr;
+    private widget.TextBox TskalaNyeri;
+    private widget.TextBox Tspo2;
+    private widget.TextBox Tsuhu;
+    private widget.TextBox Ttd;
     private widget.TextArea Ttemplate;
     private javax.swing.JDialog WindowTemplate;
     private widget.Button btnDPJP;
@@ -3405,6 +3419,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel48;
     private widget.Label jLabel49;
     private widget.Label jLabel5;
+    private widget.Label jLabel50;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
     private widget.Label jLabel59;
@@ -3418,13 +3433,10 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu2;
-    private widget.TextBox nadi;
     private widget.TextBox noIdObat;
-    private widget.TextBox nyeri;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.panelisi panelisi5;
-    private widget.TextBox rr;
     private widget.ScrollPane scrollPane10;
     private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane12;
@@ -3432,11 +3444,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.ScrollPane scrollPane14;
     private widget.ScrollPane scrollPane15;
     private widget.ScrollPane scrollPane9;
-    private widget.TextBox spo2;
-    private widget.TextBox suhu;
     private widget.Table tbTemplate;
     private widget.Table tbTransfer;
-    private widget.TextBox td;
     private widget.Tanggal tgl_alat_lain;
     private widget.Tanggal tgl_drain;
     private widget.Tanggal tgl_infus;
@@ -3449,8 +3458,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox tgllahir;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {        
+    public void tampil() {
         Valid.tabelKosong(tabMode);
+        nmKamar = "";
         try {
             ps = koneksi.prepareStatement("select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
                     + "d.nm_dokter dpjp, date_format(ts.tgl_masuk,'%d-%m-%Y') tglmsk, date_format(tgl_jam_pindah,'%d-%m-%Y %H:%i') tgljampndh, "
@@ -3477,9 +3487,18 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 ps.setString(12, "%" + TCari.getText().trim() + "%");
                 ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(15, "%" + TCari.getText().trim() + "%");                
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    if (rs.getString("kd_kamar_msk").equals("")) {
+                        nmKamar = "";
+                    } else if (rs.getString("kd_kamar_msk").equals("IGDK")) {
+                        nmKamar = "IGD";
+                    } else {
+                        nmKamar = Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE "
+                                + "k.kd_kamar='" + rs.getString("kd_kamar_msk") + "'");
+                    }
+
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
@@ -3490,7 +3509,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         Sequel.cariIsi("select ifnull(nama,'-') from pegawai where nik='" + rs.getString("nip_konsulen2") + "'"),
                         rs.getString("diagnosis"),
                         rs.getString("tglmsk"),
-                        Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + rs.getString("kd_kamar_msk") + "'"),
+                        nmKamar,
                         rs.getString("tgljampndh"),
                         Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + rs.getString("kd_kamar_pindah") + "'"),
                         rs.getString("alasan_ranap"),
@@ -3518,7 +3537,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         rs.getString("spo2"),
                         rs.getString("skala_nyeri"),
                         rs.getString("resiko_jatuh"),
-                        rs.getString("kriteria_transfer"),                        
+                        rs.getString("kriteria_transfer"),
                         rs.getString("ekg"),
                         rs.getString("thoraks_foto"),
                         rs.getString("foto_cervikal"),
@@ -3596,8 +3615,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         gcse.setText("");
         gcsm.setText("");
         gcsv.setText("");
-        cmbKesadaran.setSelectedIndex(0);        
-        spo2.setText("");        
+        cmbKesadaran.setSelectedIndex(0);
         cmbResiko.setSelectedIndex(0);
         cmbKriteria.setSelectedIndex(0);
         ChkLab.setSelected(false);
@@ -3692,10 +3710,10 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getdata_triase_igd());
-        BtnHapus.setEnabled(akses.getdata_triase_igd());
-        BtnPrint.setEnabled(akses.getdata_triase_igd());
-        BtnEdit.setEnabled(akses.getdata_triase_igd());
+        BtnSimpan.setEnabled(akses.getpemberian_obat());
+        BtnHapus.setEnabled(akses.getpemberian_obat());
+        BtnPrint.setEnabled(akses.getpemberian_obat());
+        BtnEdit.setEnabled(akses.getpemberian_obat());
         BtnBeriObat.setEnabled(akses.getpemberian_obat());
     }
     
@@ -3759,12 +3777,12 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             gcsm.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 27).toString());
             gcsv.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 28).toString());
             cmbKesadaran.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 29).toString());
-            td.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 30).toString());
-            nadi.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 31).toString());
-            suhu.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 32).toString());
-            rr.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 33).toString());
-            spo2.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 34).toString());
-            nyeri.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 35).toString());
+            Ttd.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 30).toString());
+            Tnadi.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 31).toString());
+            Tsuhu.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 32).toString());
+            Trr.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 33).toString());
+            Tspo2.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 34).toString());
+            TskalaNyeri.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 35).toString());
             cmbResiko.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 36).toString());            
             cmbKriteria.setSelectedItem(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 37).toString());
             ekg = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 38).toString();
@@ -3838,7 +3856,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                     Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
                     Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
-                    td.getText(), nadi.getText(), suhu.getText(), rr.getText(), spo2.getText(), nyeri.getText(), cmbResiko.getSelectedItem().toString(),
+                    Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
                     cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
                     endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
                     Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
@@ -3858,11 +3876,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps1 = koneksi.prepareStatement("select rp.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
-                    + "rp.tgl_registrasi, IFNULL(pr.td,'') td, IFNULL(pr.nadi,'') nadi, IFNULL(pr.suhu,'') suhu, IFNULL(pr.nafas,'') nafas, "
-                    + "ifnull(pa.diag_medis_sementara,'') diag_medis, ifnull(pr.skala_nyeri,'') skala, ifnull(pr.diagnosa_keperawatan,'') diag_perawat FROM reg_periksa rp "
+                    + "rp.tgl_registrasi, IFNULL(ti.td,'') td, IFNULL(ti.nadi,'') nadi, IFNULL(ti.temperatur, '') suhu, "
+                    + "IFNULL(ti.napas, '') nafas, IFNULL(ti.saturasi, '') spo2, ifnull(pa.diag_medis_sementara,'') diag_medis, "
+                    + "ifnull(pr.skala_nyeri,'') skala, ifnull(pr.diagnosa_keperawatan,'') diag_perawat FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "LEFT JOIN penilaian_awal_medis_igd pa ON pa.no_rawat = rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_igdrz pr on pr.no_rawat=rp.no_rawat WHERE rp.no_rawat = ?");
+                    + "left join penilaian_awal_keperawatan_igdrz pr on pr.no_rawat=rp.no_rawat "
+                    + "left join triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
             try {
                 ps1.setString(1, TNoRw.getText());
                 rs1 = ps1.executeQuery();
@@ -3872,12 +3892,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
                     tgllahir.setText(rs1.getString("tgl_lahir"));
                     
-                    td.setText(rs1.getString("td"));
-                    nadi.setText(rs1.getString("nadi"));
-                    rr.setText(rs1.getString("nafas"));
-                    suhu.setText(rs1.getString("suhu"));
+                    Ttd.setText(rs1.getString("td"));
+                    Tnadi.setText(rs1.getString("nadi"));
+                    Trr.setText(rs1.getString("nafas"));
+                    Tsuhu.setText(rs1.getString("suhu"));
+                    Tspo2.setText(rs1.getString("spo2"));
                     Tdiagnosis.setText(rs1.getString("diag_medis"));
-                    nyeri.setText(rs1.getString("skala"));
+                    TskalaNyeri.setText(rs1.getString("skala"));
                     TDiagnosa.setText(rs1.getString("diag_perawat"));
                 }
             } catch (Exception e) {
@@ -4035,12 +4056,12 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             param.put("gcsm", gcsm.getText());
             param.put("gcsv", gcsv.getText());
             param.put("kesadaran", cmbKesadaran.getSelectedItem().toString());
-            param.put("tensi", td.getText());
-            param.put("nadi", nadi.getText());
-            param.put("suhu", suhu.getText());
-            param.put("rr", rr.getText());
-            param.put("spo2", spo2.getText());
-            param.put("nyeri", nyeri.getText());
+            param.put("tensi", Ttd.getText());
+            param.put("nadi", Tnadi.getText());
+            param.put("suhu", Tsuhu.getText());
+            param.put("rr", Trr.getText());
+            param.put("spo2", Tspo2.getText());
+            param.put("nyeri", TskalaNyeri.getText());
             param.put("resikojatuh", cmbResiko.getSelectedItem().toString());
             param.put("kriteria", cmbKriteria.getSelectedItem().toString());
             param.put("diagnosa", TDiagnosa.getText());
@@ -4191,14 +4212,26 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("tgllainalat", "-");
             }
 
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
-                    + "no_rawat='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' and status='Ralan'") == 0) {
-                Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                        "SELECT date(now())", param);
-            } else {
-                Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
-                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' "
-                        + "and status='Ralan' ORDER BY waktu_simpan desc", param);
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                        + "no_rawat='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' and status='Ralan'") == 0) {
+                    Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                            "SELECT date(now())", param);
+                } else {
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' "
+                            + "and status='Ralan' ORDER BY waktu_simpan desc", param);
+                }
+            } else if (status.equals("ranap")) {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
+                        + "no_rawat='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' and status='Ranap'") == 0) {
+                    Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
+                            "SELECT date(now())", param);
+                } else {
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
+                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 0).toString() + "' "
+                            + "and status='Ranap' ORDER BY waktu_simpan desc", param);
+                }
             }
 
             emptTeks();
@@ -4344,6 +4377,32 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             ChkLain_alat.setSelected(false);
             Talat_lain.setEnabled(false);
             tgl_alat_lain.setEnabled(false);
+        }
+        
+        //ruangan kamar asal
+        if (kd_kamar.equals("")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                ChkIGD.setSelected(false);
+                ChkIGD.setEnabled(true);
+                btnKamar1.setEnabled(false);
+            } else if (status.equals("ranap")) {
+                ChkIGD.setSelected(false);
+                ChkIGD.setEnabled(false);
+                btnKamar1.setEnabled(true);
+            } else {
+                ChkIGD.setSelected(false);
+                ChkIGD.setEnabled(true);
+                btnKamar1.setEnabled(true);
+            }
+
+        } else if (kd_kamar.equals("IGDK")) {
+            ChkIGD.setSelected(true);
+            ChkIGD.setEnabled(true);
+            btnKamar1.setEnabled(false);
+        } else {
+            ChkIGD.setSelected(false);
+            ChkIGD.setEnabled(false);
+            btnKamar1.setEnabled(true);
         }
     }
     
