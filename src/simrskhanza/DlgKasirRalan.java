@@ -10293,11 +10293,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
         Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
-                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllhr, "
-                + "if(c.cek_jam='ya',concat(date_format(c.tgl_cppt, '%d-%m-%Y'),', ',date_format(c.jam_cppt, '%H:%i')),date_format(c.tgl_cppt, '%d-%m-%Y')) tglcppt, "
-                + "c.bagian, c.hasil_pemeriksaan, c.instruksi_nakes, concat('(',c.verifikasi,') - ',pg.nama) verif "
+                "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
+                + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
+                + "ifnull(if(c.jenis_bagian='','-',if(c.jenis_bagian='Dokter IGD',c.jenis_bagian,if(c.jenis_bagian='DPJP',concat(c.jenis_bagian,' Konsulen : ',pg1.nama ),concat(c.jenis_bagian,' - ',c.jenis_ppa,' : ',pg2.nama)))),'-') bagian_cppt, "
+                + "c.hasil_pemeriksaan, c.instruksi_nakes, concat('(', c.verifikasi,') - ',pg.nama) verif, "
+                + "if(c.serah_terima_cppt='ya',concat('\n\nMenyerahkan : ',pg3.nama),'') ptgsSerah, if(c.serah_terima_cppt='ya',concat('Menerima : ',pg4.nama),'') ptgsTerima "
                 + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp WHERE c.no_rawat = '" + TNoRw.getText() + "' "
-                + "AND c.STATUS='Ralan' ORDER BY c.waktu_simpan", param);
+                + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
+                + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' ORDER BY c.waktu_simpan", param);
     }
 }
