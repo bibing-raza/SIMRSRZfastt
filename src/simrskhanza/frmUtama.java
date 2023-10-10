@@ -6148,7 +6148,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08/10/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/10/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12192,6 +12192,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgCPPT aplikasi = new DlgCPPT(this, false);
         aplikasi.isCek();
+        aplikasi.setUtama();
         aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         aplikasi.setLocationRelativeTo(PanelUtama);
         aplikasi.setVisible(true);

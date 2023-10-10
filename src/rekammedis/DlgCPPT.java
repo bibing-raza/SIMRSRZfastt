@@ -1078,7 +1078,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel14.setBounds(505, 381, 60, 23);
 
         cmbVerifikasi.setForeground(new java.awt.Color(0, 0, 0));
-        cmbVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Belum", "Sudah" }));
+        cmbVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Belum", "Sudah" }));
         cmbVerifikasi.setName("cmbVerifikasi"); // NOI18N
         panelGlass7.add(cmbVerifikasi);
         cmbVerifikasi.setBounds(570, 381, 65, 23);
@@ -1181,7 +1181,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel4.setBounds(0, 353, 180, 23);
 
         cmbPPA.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA" }));
+        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA" }));
         cmbPPA.setName("cmbPPA"); // NOI18N
         panelGlass7.add(cmbPPA);
         cmbPPA.setBounds(186, 353, 95, 23);
@@ -1218,7 +1218,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel17.setBounds(0, 325, 180, 23);
 
         cmbBagian.setForeground(new java.awt.Color(0, 0, 0));
-        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Dokter IGD", "DPJP", "PPA" }));
+        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP", "PPA" }));
         cmbBagian.setName("cmbBagian"); // NOI18N
         cmbBagian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1347,7 +1347,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSift.setBounds(612, 38, 40, 23);
 
         cmbSertim.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSertim.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
+        cmbSertim.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Ya", "Tidak" }));
         cmbSertim.setName("cmbSertim"); // NOI18N
         cmbSertim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2885,5 +2885,11 @@ public class DlgCPPT extends javax.swing.JDialog {
                 BtnCloseIn6ActionPerformed(null);
             }
         }
+    }
+    
+    public void setUtama() {
+        cmbRawat.setSelectedIndex(2);
+        cmbSiftCppt.setSelectedIndex(0);
+        cmbSiftCppt.setEnabled(true);
     }
 }
