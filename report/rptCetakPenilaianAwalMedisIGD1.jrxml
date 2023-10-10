@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="0ad1de82-d66d-494b-bdc9-496918b97a08">
 	<property name="ireport.zoom" value="1.8181818181818545"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="590"/>
+	<property name="ireport.y" value="398"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
 	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
@@ -28,7 +28,8 @@ pa.lnn, pa.tiroid, pa.survei_jantung, pa.survei_paru, pa.survei_abdomen, pa.surv
 pa.ecg, pa.ct_scan, pa.usg, pa.lainnya_penunjang, pa.diag_medis_sementara, pa.icd_10, pa.rencana_instruksi, pa.ket_rencana_instruksi, pa.telah_diberikan_informasi_edukasi, 
 pa.rencana_asuhan_diharapkan, ifnull(pg1.nama,'-') pemberi_edukasi, pa.penerima_edukasi, ifnull(pg2.nama,'-') nm_dokter, date_format(pa.tgl_keluar_igd,'%d-%m-%Y') tglkeluar, 
 date_format(pa.tgl_keluar_igd,'%H:%i') jamkeluar, pa.opname_diruang, pa.indikasi_msk, pa.dipulangkan_kontrol_ke, pa.dirujuk_ke, pa.alasan_dirujuk, pa.penyebab, 
-pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri 
+pa.k_u, pa.td, pa.hr, pa.rr, pa.temp, pa.spo2, pa.gcs_pulang, pg3.nama nm_perawat, pg4.nama nm_dpjp, ifnull(pa.ket_gambar,'-') ket_gambar, pa.gcs_v, pa.gcs_m, pa.diameter_kiri, 
+SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ) renc1, SUBSTRING_INDEX( pa.ket_rencana_instruksi, SUBSTRING_INDEX( pa.ket_rencana_instruksi, '\n', 5 ),- 1 ) renc2 
 from penilaian_awal_medis_igd pa inner join reg_periksa rp on rp.no_rawat=pa.no_rawat 
 inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg1 on pg1.nik=pa.nip_pemberi_edukasi 
 left join pegawai pg2 on pg2.nik=pa.nip_dokter left join pegawai pg3 on pg3.nik=pa.nip_perawat 
@@ -166,6 +167,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 	<field name="nadi_1" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="nadi_1"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_awal_medis_igd"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="kulit_mukosa" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="kulit_mukosa"/>
@@ -175,6 +177,7 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 	<field name="akral_1" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="akral_1"/>
 		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_awal_medis_igd"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="crt" class="java.lang.String">
 		<property name="com.jaspersoft.studio.field.label" value="crt"/>
@@ -568,6 +571,8 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 		<property name="com.jaspersoft.studio.field.tree.path" value="penilaian_awal_medis_igd"/>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="renc1" class="java.lang.String"/>
+	<field name="renc2" class="java.lang.String"/>
 	<title>
 		<band height="361">
 			<staticText>
@@ -1409,12 +1414,12 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 				<text><![CDATA[RENCANA / INSTRUKSI :]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="9" y="12" width="510" height="12" uuid="5dd6923d-3153-4f6e-b9f4-e5e62e4f3ad1"/>
+				<reportElement x="9" y="12" width="252" height="12" uuid="5dd6923d-3153-4f6e-b9f4-e5e62e4f3ad1"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{rencana_instruksi} +" : "+$F{ket_rencana_instruksi}+"\n"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{rencana_instruksi} +" :\n"+$F{renc1}+"\n"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="27" uuid="94aae4e5-0918-42fb-a796-dbcf3fab9969"/>
@@ -1428,6 +1433,14 @@ left join pegawai pg4 on pg4.nik=pa.nip_dpjp limit 5]]>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="264" y="12" width="252" height="12" uuid="d10e69fd-2b18-475f-979d-6b531458592c"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{renc2}+"\n"]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="24">
 			<line>

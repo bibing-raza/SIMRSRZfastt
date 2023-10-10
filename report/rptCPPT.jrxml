@@ -16,7 +16,8 @@
 date_format( c.tgl_cppt, '%d-%m-%Y' )) tglcppt, c.bagian,
 ifnull(if(c.jenis_bagian='','-',if(c.jenis_bagian='Dokter IGD',c.jenis_bagian,if(c.jenis_bagian='DPJP',concat(c.jenis_bagian,' Konsulen : ',pg1.nama ),concat(c.jenis_bagian,' - ',c.jenis_ppa,' : ',pg2.nama)))),'-') bagian_cppt,
 c.hasil_pemeriksaan, c.instruksi_nakes, concat( '(', c.verifikasi, ') - ', pg.nama ) verif , 
-if(c.serah_terima_cppt='ya',concat('\n\nMenyerahkan : ',pg3.nama),'') ptgsSerah, if(c.serah_terima_cppt='ya',concat('Menerima : ',pg4.nama),'') ptgsTerima
+if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, 
+if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima 
 FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis
 INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa 
 LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima WHERE c.no_rawat = '2023/09/01/000001' AND c. STATUS = 'Ralan' ORDER BY c.waktu_simpan]]>
@@ -245,7 +246,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[HASIL PEMERIKSAAN, ANALISA, RENCANA, PENATALAKSAAAN PASIEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="277" y="29" width="134" height="33" uuid="52a6ee58-268f-4cf4-979a-b8a155a91d8b">
+				<reportElement x="277" y="29" width="128" height="33" uuid="52a6ee58-268f-4cf4-979a-b8a155a91d8b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -255,7 +256,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[INSTRUKSI TENAGA KESEHATAN TERMASUK PASCA BEDAH/PROSEDUR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="413" y="29" width="106" height="33" uuid="6aeb4eed-792f-47ef-9c99-5c4ecfa3ba48">
+				<reportElement x="411" y="29" width="105" height="33" uuid="6aeb4eed-792f-47ef-9c99-5c4ecfa3ba48">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -295,7 +296,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="412" y="29" width="1" height="33" uuid="5edb11ad-93b2-45e7-8e99-318867b6940f"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="406" y="29" width="1" height="33" uuid="5edb11ad-93b2-45e7-8e99-318867b6940f"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -327,14 +328,14 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<textFieldExpression><![CDATA[$F{hasil_pemeriksaan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="278" y="0" width="133" height="11" uuid="09fea1a6-f47a-4f17-90dc-1cf98ed0ff49"/>
+				<reportElement x="278" y="0" width="127" height="11" uuid="09fea1a6-f47a-4f17-90dc-1cf98ed0ff49"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{instruksi_nakes}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="416" y="0" width="104" height="11" uuid="2329630c-7005-40e1-9836-1811e83b8635"/>
+				<reportElement x="409" y="0" width="110" height="11" uuid="2329630c-7005-40e1-9836-1811e83b8635"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -365,7 +366,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="412" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="db844ac8-2d7a-4696-89bd-c60b16beb1b1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="406" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="db844ac8-2d7a-4696-89bd-c60b16beb1b1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -390,11 +391,11 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<textFieldExpression><![CDATA[$F{bagian_cppt}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="416" y="11" width="104" height="11" forecolor="#0033CC" uuid="304d91e5-bf44-4335-ba8c-7d8a1b2e08cb"/>
+				<reportElement x="409" y="11" width="110" height="11" forecolor="#CC0033" uuid="304d91e5-bf44-4335-ba8c-7d8a1b2e08cb"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ptgsSerah}+"\n"+$F{ptgsTerima}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{ptgsSerah}+"\n\n"+$F{ptgsTerima}+"\n"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
