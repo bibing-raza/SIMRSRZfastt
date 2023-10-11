@@ -17169,7 +17169,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17196,7 +17196,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         
@@ -17221,7 +17221,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17243,7 +17243,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                        + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' ORDER BY c.waktu_simpan", param);
+                        + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17268,7 +17268,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' "
-                        + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY c.waktu_simpan", param);
+                        + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17293,7 +17293,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         }
@@ -17319,7 +17319,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                    + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ralan' ORDER BY c.waktu_simpan", param);
+                    + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ralan' ORDER BY c.tgl_cppt, c.jam_cppt", param);
             BtnCloseIn6ActionPerformed(null);
         }
     }
@@ -17348,7 +17348,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         
@@ -17375,7 +17375,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         
@@ -17400,7 +17400,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         
@@ -17423,7 +17423,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                        + "WHERE c.no_rawat = '" + norawat.getText() + "' ORDER BY c.waktu_simpan", param);
+                        + "WHERE c.no_rawat = '" + norawat.getText() + "' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17449,7 +17449,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
 
@@ -17474,7 +17474,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
         }

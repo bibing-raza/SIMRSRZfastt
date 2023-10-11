@@ -66,8 +66,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. CPPT",
             "Jam CPPT", "Hasil Pemeriksaan", "Instruksi Nakes", "Verifikasi",
             "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt",
-            "Jenis PPA", "Nama PPA", "Jenis Bagian", "nipppa", "serah_terima_cppt", "nmkonsulen", "nipkonsulen",
-            "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima", "cppt_shift", "jam_serah_terima"
+            "Jenis PPA", "Nama PPA", "Jenis Bagian", "nipppa", "serah_terima_cppt", "nmkonsulen", 
+            "nipkonsulen", "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima", 
+            "Shift", "jam_serah_terima"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -150,8 +151,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 27) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(60);
             } else if (i == 28) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -552,6 +552,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Ttemplate.setRows(5);
         Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Ttemplate.setName("Ttemplate"); // NOI18N
+        Ttemplate.setPreferredSize(new java.awt.Dimension(210, 2000));
         Scroll3.setViewportView(Ttemplate);
 
         jPanel1.add(Scroll3);
@@ -870,9 +871,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass9.add(jLabel25);
 
         cmbSiftCppt.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSiftCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3" }));
+        cmbSiftCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "Semua" }));
         cmbSiftCppt.setName("cmbSiftCppt"); // NOI18N
-        cmbSiftCppt.setPreferredSize(new java.awt.Dimension(40, 23));
+        cmbSiftCppt.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(cmbSiftCppt);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -2208,8 +2209,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.instruksi_nakes like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and c.jenis_bagian like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and pg.nama like ? order by c.waktu_simpan desc");
-            } else if (cmbRawat.getSelectedIndex() == 1) {
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
+            } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() != 4) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
                         + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
@@ -2226,7 +2227,26 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.instruksi_nakes like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.jenis_bagian like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and pg.nama like ? order by c.waktu_simpan desc");
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and pg.nama like ? "
+                        + "order by c.tgl_cppt desc, c.jam_cppt desc");
+            } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() == 4) {
+                ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
+                        + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
+                        + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
+                        + "pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, c.serah_terima_cppt, pg2.nama nmkonsulen, c.nip_konsulen, pg3.nama petugasSerah, "
+                        + "pg4.nama petugasTerima, c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift, c.jam_serah_terima FROM cppt c "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp INNER JOIN pegawai pg1 ON pg1.nik = c.nip_ppa "
+                        + "INNER JOIN pegawai pg2 ON pg2.nik = c.nip_konsulen INNER JOIN pegawai pg3 ON pg3.nik = c.nip_petugas_serah "
+                        + "INNER JOIN pegawai pg4 ON pg4.nik = c.nip_petugas_terima where "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.no_rawat like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.no_rkm_medis like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and p.nm_pasien like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.hasil_pemeriksaan like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.instruksi_nakes like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.verifikasi like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and c.jenis_bagian like ? or "
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
             } else if (cmbRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -2244,7 +2264,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.instruksi_nakes like ? or "
                         + "c.tgl_cppt between ? and ? and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.jenis_bagian like ? or "
-                        + "c.tgl_cppt between ? and ? and pg.nama like ? order by c.waktu_simpan desc");
+                        + "c.tgl_cppt between ? and ? and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
             }
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -2517,7 +2537,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             cmbSiftCppt.setEnabled(true);
             
             if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norw + "' and status='ranap'") > 0) {
-                cmbSiftCppt.setSelectedItem(Sequel.cariIsi("select cppt_shift from cppt where no_rawat='" + norw + "' and status='ranap'"));
+                cmbSiftCppt.setSelectedIndex(4);
             } else {
                 cmbSiftCppt.setSelectedIndex(0);
             }
@@ -2611,7 +2631,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' "
-                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2641,7 +2661,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2670,7 +2690,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' "
                         + "and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2695,7 +2715,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                        + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' ORDER BY c.waktu_simpan", param);
+                        + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2723,7 +2743,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' "
-                        + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY c.waktu_simpan", param);
+                        + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2751,7 +2771,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ranap' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2780,7 +2800,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                    + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' ORDER BY c.waktu_simpan", param);
+                    + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' ORDER BY c.tgl_cppt, c.jam_cppt", param);
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
@@ -2812,7 +2832,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2842,7 +2862,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2870,7 +2890,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.waktu_simpan", param);
+                        + "and cppt_shift like '%" + cmbSiftPetugas.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2896,7 +2916,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                        + "WHERE c.no_rawat = '" + TNoRw.getText() + "' ORDER BY c.waktu_simpan", param);
+                        + "WHERE c.no_rawat = '" + TNoRw.getText() + "' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2925,7 +2945,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' "
                         + "and tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -2953,7 +2973,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
                         + "WHERE c.no_rawat = '" + TNoRw.getText() + "' and tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
-                        + "ORDER BY c.waktu_simpan", param);
+                        + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
