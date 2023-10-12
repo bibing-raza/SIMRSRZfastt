@@ -54,7 +54,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String status = "", cekjam = "", statusOK = "", nipppa = "", kdItemrad = "", itemDipilih = "",
-            tglRad = "", jamRad = "", jamkeluar = "", nipkonsulen = "";
+            tglRad = "", jamRad = "", jamkeluar = "", nipkonsulen = "", dapatobat = "", obatsesuai = "",
+            obatefektif = "", obataman = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -304,6 +305,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnCeklisFarmasi = new javax.swing.JMenuItem();
+        MnPemberianDiet = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         panelisi4 = new widget.panelisi();
@@ -330,6 +334,14 @@ public class DlgCPPT extends javax.swing.JDialog {
         tglB = new widget.Tanggal();
         cmbTanggal = new widget.ComboBox();
         jLabel50 = new widget.Label();
+        WindowFarmasi = new javax.swing.JDialog();
+        internalFrame11 = new widget.InternalFrame();
+        BtnCloseIn7 = new widget.Button();
+        BtnBaca1 = new widget.Button();
+        ChkDapatObat = new widget.CekBox();
+        ChkObatSesuai = new widget.CekBox();
+        ChkObatEfektif = new widget.CekBox();
+        ChkObatAman = new widget.CekBox();
         internalFrame1 = new widget.InternalFrame();
         TabCPPT = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -388,6 +400,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbJam1 = new widget.ComboBox();
         cmbMnt1 = new widget.ComboBox();
         cmbDtk1 = new widget.ComboBox();
+        BtnUlangiHasil = new widget.Button();
+        BtnUlangiInstruksi = new widget.Button();
+        jLabel26 = new widget.Label();
+        jLabel27 = new widget.Label();
         internalFrame3 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
         tbCPPT = new widget.Table();
@@ -445,6 +461,38 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnHasilPemeriksaanRad);
+
+        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnCeklisFarmasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCeklisFarmasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCeklisFarmasi.setText("Ceklist Farmasi");
+        MnCeklisFarmasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCeklisFarmasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCeklisFarmasi.setIconTextGap(5);
+        MnCeklisFarmasi.setName("MnCeklisFarmasi"); // NOI18N
+        MnCeklisFarmasi.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnCeklisFarmasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCeklisFarmasiActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnCeklisFarmasi);
+
+        MnPemberianDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPemberianDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPemberianDiet.setText("Pemberian Diet Gizi");
+        MnPemberianDiet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPemberianDiet.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPemberianDiet.setIconTextGap(5);
+        MnPemberianDiet.setName("MnPemberianDiet"); // NOI18N
+        MnPemberianDiet.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnPemberianDiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPemberianDietActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnPemberianDiet);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -675,6 +723,98 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         WindowCPPT.getContentPane().add(internalFrame10, java.awt.BorderLayout.CENTER);
 
+        WindowFarmasi.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowFarmasi.setName("WindowFarmasi"); // NOI18N
+        WindowFarmasi.setUndecorated(true);
+        WindowFarmasi.setResizable(false);
+
+        internalFrame11.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ceklist Pemantauan Penggunaan Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame11.setName("internalFrame11"); // NOI18N
+        internalFrame11.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame11.setLayout(null);
+
+        BtnCloseIn7.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn7.setMnemonic('U');
+        BtnCloseIn7.setText("Tutup");
+        BtnCloseIn7.setToolTipText("Alt+U");
+        BtnCloseIn7.setName("BtnCloseIn7"); // NOI18N
+        BtnCloseIn7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn7ActionPerformed(evt);
+            }
+        });
+        internalFrame11.add(BtnCloseIn7);
+        BtnCloseIn7.setBounds(150, 90, 90, 30);
+
+        BtnBaca1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaca1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnBaca1.setMnemonic('U');
+        BtnBaca1.setText("Simpan");
+        BtnBaca1.setToolTipText("Alt+U");
+        BtnBaca1.setName("BtnBaca1"); // NOI18N
+        BtnBaca1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBaca1ActionPerformed(evt);
+            }
+        });
+        internalFrame11.add(BtnBaca1);
+        BtnBaca1.setBounds(40, 90, 90, 30);
+
+        ChkDapatObat.setBackground(new java.awt.Color(255, 255, 250));
+        ChkDapatObat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkDapatObat.setForeground(new java.awt.Color(0, 0, 0));
+        ChkDapatObat.setText("Dapat Obat ");
+        ChkDapatObat.setBorderPainted(true);
+        ChkDapatObat.setBorderPaintedFlat(true);
+        ChkDapatObat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkDapatObat.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        ChkDapatObat.setName("ChkDapatObat"); // NOI18N
+        ChkDapatObat.setPreferredSize(new java.awt.Dimension(175, 23));
+        internalFrame11.add(ChkDapatObat);
+        ChkDapatObat.setBounds(20, 27, 100, 23);
+
+        ChkObatSesuai.setBackground(new java.awt.Color(255, 255, 250));
+        ChkObatSesuai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkObatSesuai.setForeground(new java.awt.Color(0, 0, 0));
+        ChkObatSesuai.setText("Obat Sesuai");
+        ChkObatSesuai.setBorderPainted(true);
+        ChkObatSesuai.setBorderPaintedFlat(true);
+        ChkObatSesuai.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkObatSesuai.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        ChkObatSesuai.setName("ChkObatSesuai"); // NOI18N
+        ChkObatSesuai.setPreferredSize(new java.awt.Dimension(175, 23));
+        internalFrame11.add(ChkObatSesuai);
+        ChkObatSesuai.setBounds(20, 55, 100, 23);
+
+        ChkObatEfektif.setBackground(new java.awt.Color(255, 255, 250));
+        ChkObatEfektif.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkObatEfektif.setForeground(new java.awt.Color(0, 0, 0));
+        ChkObatEfektif.setText("Obat Efektif");
+        ChkObatEfektif.setBorderPainted(true);
+        ChkObatEfektif.setBorderPaintedFlat(true);
+        ChkObatEfektif.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkObatEfektif.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        ChkObatEfektif.setName("ChkObatEfektif"); // NOI18N
+        ChkObatEfektif.setPreferredSize(new java.awt.Dimension(175, 23));
+        internalFrame11.add(ChkObatEfektif);
+        ChkObatEfektif.setBounds(150, 27, 100, 23);
+
+        ChkObatAman.setBackground(new java.awt.Color(255, 255, 250));
+        ChkObatAman.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkObatAman.setForeground(new java.awt.Color(0, 0, 0));
+        ChkObatAman.setText("Obat Aman");
+        ChkObatAman.setBorderPainted(true);
+        ChkObatAman.setBorderPaintedFlat(true);
+        ChkObatAman.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkObatAman.setHorizontalTextPosition(javax.swing.SwingConstants.LEFT);
+        ChkObatAman.setName("ChkObatAman"); // NOI18N
+        ChkObatAman.setPreferredSize(new java.awt.Dimension(175, 23));
+        internalFrame11.add(ChkObatAman);
+        ChkObatAman.setBounds(150, 55, 100, 23);
+
+        WindowFarmasi.getContentPane().add(internalFrame11, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -715,19 +855,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel3.setText("Nama DPJP Utama :");
         jLabel3.setName("jLabel3"); // NOI18N
         FormInput.add(jLabel3);
-        jLabel3.setBounds(0, 297, 180, 23);
+        jLabel3.setBounds(0, 597, 180, 23);
 
         kddpjp.setEditable(false);
         kddpjp.setForeground(new java.awt.Color(0, 0, 0));
         kddpjp.setName("kddpjp"); // NOI18N
         FormInput.add(kddpjp);
-        kddpjp.setBounds(186, 297, 130, 23);
+        kddpjp.setBounds(186, 597, 130, 23);
 
         nmdpjp.setEditable(false);
         nmdpjp.setForeground(new java.awt.Color(0, 0, 0));
         nmdpjp.setName("nmdpjp"); // NOI18N
         FormInput.add(nmdpjp);
-        nmdpjp.setBounds(320, 297, 460, 23);
+        nmdpjp.setBounds(320, 597, 460, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pasien :");
@@ -758,7 +898,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDPJP);
-        BtnDPJP.setBounds(784, 297, 28, 23);
+        BtnDPJP.setBounds(784, 597, 28, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
@@ -779,7 +919,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel10.setBounds(0, 66, 180, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Rencana, Penatalaksanaan Pasien ");
+        jLabel11.setText("Rencana, Penatalaksanaan ");
         jLabel11.setName("jLabel11"); // NOI18N
         FormInput.add(jLabel11);
         jLabel11.setBounds(0, 80, 180, 23);
@@ -790,7 +930,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         THasil.setColumns(20);
         THasil.setRows(5);
         THasil.setName("THasil"); // NOI18N
-        THasil.setPreferredSize(new java.awt.Dimension(162, 2000));
+        THasil.setPreferredSize(new java.awt.Dimension(162, 4000));
         THasil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 THasilKeyPressed(evt);
@@ -799,19 +939,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         scrollPane2.setViewportView(THasil);
 
         FormInput.add(scrollPane2);
-        scrollPane2.setBounds(185, 66, 630, 110);
+        scrollPane2.setBounds(185, 66, 630, 337);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Instruksi Tenaga Kesehatan :");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(0, 181, 180, 23);
+        jLabel12.setBounds(0, 410, 180, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Termasuk Pasca Bedah/Prosedur  ");
+        jLabel13.setText("Termasuk Pasca Bedah  ");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(0, 196, 180, 23);
+        jLabel13.setBounds(0, 424, 180, 23);
 
         scrollPane3.setName("scrollPane3"); // NOI18N
 
@@ -828,19 +968,19 @@ public class DlgCPPT extends javax.swing.JDialog {
         scrollPane3.setViewportView(TInstruksi);
 
         FormInput.add(scrollPane3);
-        scrollPane3.setBounds(185, 181, 630, 110);
+        scrollPane3.setBounds(185, 410, 630, 180);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Verifikasi :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(505, 381, 60, 23);
+        jLabel14.setBounds(505, 681, 60, 23);
 
         cmbVerifikasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Belum", "Sudah" }));
         cmbVerifikasi.setName("cmbVerifikasi"); // NOI18N
         FormInput.add(cmbVerifikasi);
-        cmbVerifikasi.setBounds(570, 381, 65, 23);
+        cmbVerifikasi.setBounds(570, 681, 65, 23);
 
         BtnHasil.setForeground(new java.awt.Color(0, 0, 0));
         BtnHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -870,7 +1010,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnInstruksi);
-        BtnInstruksi.setBounds(825, 181, 100, 23);
+        BtnInstruksi.setBounds(825, 410, 100, 23);
 
         tglCppt.setEditable(false);
         tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-10-2023" }));
@@ -937,7 +1077,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel4.setText("Jenis PPA :");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
-        jLabel4.setBounds(0, 353, 180, 23);
+        jLabel4.setBounds(0, 653, 180, 23);
 
         cmbPPA.setForeground(new java.awt.Color(0, 0, 0));
         cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA" }));
@@ -948,19 +1088,20 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbPPA);
-        cmbPPA.setBounds(186, 353, 95, 23);
+        cmbPPA.setBounds(186, 653, 95, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Nama PPA :");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(280, 353, 70, 23);
+        jLabel16.setBounds(280, 653, 70, 23);
 
         nmppa.setEditable(false);
         nmppa.setForeground(new java.awt.Color(0, 0, 0));
+        nmppa.setComponentPopupMenu(jPopupMenu2);
         nmppa.setName("nmppa"); // NOI18N
         FormInput.add(nmppa);
-        nmppa.setBounds(355, 353, 425, 23);
+        nmppa.setBounds(355, 653, 425, 23);
 
         BtnPPA.setForeground(new java.awt.Color(0, 0, 0));
         BtnPPA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -973,13 +1114,13 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPPA);
-        BtnPPA.setBounds(784, 353, 28, 23);
+        BtnPPA.setBounds(784, 653, 28, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Jenis Bagian :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(0, 325, 180, 23);
+        jLabel17.setBounds(0, 625, 180, 23);
 
         cmbBagian.setForeground(new java.awt.Color(0, 0, 0));
         cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP (K)", "PPA" }));
@@ -990,19 +1131,19 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbBagian);
-        cmbBagian.setBounds(186, 325, 85, 23);
+        cmbBagian.setBounds(186, 625, 85, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("DPJP Konsulen :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(270, 325, 90, 23);
+        jLabel18.setBounds(270, 625, 90, 23);
 
         nmKonsulen.setEditable(false);
         nmKonsulen.setForeground(new java.awt.Color(0, 0, 0));
         nmKonsulen.setName("nmKonsulen"); // NOI18N
         FormInput.add(nmKonsulen);
-        nmKonsulen.setBounds(365, 325, 415, 23);
+        nmKonsulen.setBounds(365, 625, 415, 23);
 
         BtnKonsulen.setForeground(new java.awt.Color(0, 0, 0));
         BtnKonsulen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1015,25 +1156,25 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnKonsulen);
-        BtnKonsulen.setBounds(784, 325, 28, 23);
+        BtnKonsulen.setBounds(784, 625, 28, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Petugas Yang Menyerahkan :");
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput.add(jLabel22);
-        jLabel22.setBounds(0, 409, 180, 23);
+        jLabel22.setBounds(0, 709, 180, 23);
 
         nipSerah.setEditable(false);
         nipSerah.setForeground(new java.awt.Color(0, 0, 0));
         nipSerah.setName("nipSerah"); // NOI18N
         FormInput.add(nipSerah);
-        nipSerah.setBounds(186, 409, 130, 23);
+        nipSerah.setBounds(186, 709, 130, 23);
 
         nmSerah.setEditable(false);
         nmSerah.setForeground(new java.awt.Color(0, 0, 0));
         nmSerah.setName("nmSerah"); // NOI18N
         FormInput.add(nmSerah);
-        nmSerah.setBounds(320, 409, 460, 23);
+        nmSerah.setBounds(320, 709, 460, 23);
 
         BtnSerah.setForeground(new java.awt.Color(0, 0, 0));
         BtnSerah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1046,25 +1187,25 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnSerah);
-        BtnSerah.setBounds(784, 409, 28, 23);
+        BtnSerah.setBounds(784, 709, 28, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Petugas Yang Menerima :");
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(0, 437, 180, 23);
+        jLabel23.setBounds(0, 737, 180, 23);
 
         nipTerima.setEditable(false);
         nipTerima.setForeground(new java.awt.Color(0, 0, 0));
         nipTerima.setName("nipTerima"); // NOI18N
         FormInput.add(nipTerima);
-        nipTerima.setBounds(186, 437, 130, 23);
+        nipTerima.setBounds(186, 737, 130, 23);
 
         nmTerima.setEditable(false);
         nmTerima.setForeground(new java.awt.Color(0, 0, 0));
         nmTerima.setName("nmTerima"); // NOI18N
         FormInput.add(nmTerima);
-        nmTerima.setBounds(320, 437, 460, 23);
+        nmTerima.setBounds(320, 737, 460, 23);
 
         BtnTerima.setForeground(new java.awt.Color(0, 0, 0));
         BtnTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1077,7 +1218,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnTerima);
-        BtnTerima.setBounds(784, 437, 28, 23);
+        BtnTerima.setBounds(784, 737, 28, 23);
 
         ChkSamaPPA.setBackground(new java.awt.Color(255, 255, 250));
         ChkSamaPPA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1096,7 +1237,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkSamaPPA);
-        ChkSamaPPA.setBounds(640, 381, 160, 23);
+        ChkSamaPPA.setBounds(640, 681, 160, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("CPPT Shift :");
@@ -1119,19 +1260,19 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbSertim);
-        cmbSertim.setBounds(186, 381, 60, 23);
+        cmbSertim.setBounds(186, 681, 60, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Serah Terima CPPT :");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
-        jLabel9.setBounds(0, 381, 180, 23);
+        jLabel9.setBounds(0, 681, 180, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Jam Serah Terima :");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(250, 381, 100, 23);
+        jLabel20.setBounds(250, 681, 100, 23);
 
         cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1142,7 +1283,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbJam1);
-        cmbJam1.setBounds(355, 381, 45, 23);
+        cmbJam1.setBounds(355, 681, 45, 23);
 
         cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1153,7 +1294,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbMnt1);
-        cmbMnt1.setBounds(406, 381, 45, 23);
+        cmbMnt1.setBounds(406, 681, 45, 23);
 
         cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1164,7 +1305,49 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbDtk1);
-        cmbDtk1.setBounds(458, 381, 45, 23);
+        cmbDtk1.setBounds(458, 681, 45, 23);
+
+        BtnUlangiHasil.setForeground(new java.awt.Color(0, 0, 0));
+        BtnUlangiHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnUlangiHasil.setMnemonic('2');
+        BtnUlangiHasil.setText("Ulangi");
+        BtnUlangiHasil.setToolTipText("Alt+2");
+        BtnUlangiHasil.setName("BtnUlangiHasil"); // NOI18N
+        BtnUlangiHasil.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnUlangiHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUlangiHasilActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnUlangiHasil);
+        BtnUlangiHasil.setBounds(825, 96, 100, 23);
+
+        BtnUlangiInstruksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnUlangiInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnUlangiInstruksi.setMnemonic('2');
+        BtnUlangiInstruksi.setText("Ulangi");
+        BtnUlangiInstruksi.setToolTipText("Alt+2");
+        BtnUlangiInstruksi.setName("BtnUlangiInstruksi"); // NOI18N
+        BtnUlangiInstruksi.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnUlangiInstruksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUlangiInstruksiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnUlangiInstruksi);
+        BtnUlangiInstruksi.setBounds(825, 440, 100, 23);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Pasien ");
+        jLabel26.setName("jLabel26"); // NOI18N
+        FormInput.add(jLabel26);
+        jLabel26.setBounds(0, 94, 180, 23);
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("/Prosedur  ");
+        jLabel27.setName("jLabel27"); // NOI18N
+        FormInput.add(jLabel27);
+        jLabel27.setBounds(0, 438, 180, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1615,6 +1798,9 @@ public class DlgCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_tbCPPTKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        MnCeklisFarmasi.setEnabled(false);
+        MnPemberianDiet.setEnabled(false);
+        
         if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabCPPT.setSelectedIndex(1);
             tampil();
@@ -2083,9 +2269,23 @@ public class DlgCPPT extends javax.swing.JDialog {
         if (cmbPPA.getSelectedIndex() == 0) {
             BtnPPA.setEnabled(false);
             cmbSertim.setEnabled(false);
+            MnCeklisFarmasi.setEnabled(false);
+            MnPemberianDiet.setEnabled(false);
+        } else if (cmbPPA.getSelectedIndex() == 3) {
+            BtnPPA.setEnabled(true);
+            cmbSertim.setEnabled(true);
+            MnCeklisFarmasi.setEnabled(true);
+            MnPemberianDiet.setEnabled(false);
+        } else if (cmbPPA.getSelectedIndex() == 4) {
+            BtnPPA.setEnabled(true);
+            cmbSertim.setEnabled(true);
+            MnCeklisFarmasi.setEnabled(false);
+            MnPemberianDiet.setEnabled(true);
         } else {
             BtnPPA.setEnabled(true);
             cmbSertim.setEnabled(true);
+            MnCeklisFarmasi.setEnabled(false);
+            MnPemberianDiet.setEnabled(false);
         }
     }//GEN-LAST:event_cmbPPAActionPerformed
 
@@ -2094,6 +2294,90 @@ public class DlgCPPT extends javax.swing.JDialog {
             tampil();
         }
     }//GEN-LAST:event_TabCPPTMouseClicked
+
+    private void BtnCloseIn7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn7ActionPerformed
+        WindowFarmasi.dispose();
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+    }//GEN-LAST:event_BtnCloseIn7ActionPerformed
+
+    private void BtnBaca1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaca1ActionPerformed
+        dapatobat = "";
+        obatsesuai = "";
+        obatefektif = "";
+        obataman = "";
+        
+        if (ChkDapatObat.isSelected() == true) {
+            dapatobat = "- Dapat Obat : YA\n";
+        } else {
+            dapatobat = "- Dapat Obat : TIDAK\n";
+        }
+        
+        if (ChkObatSesuai.isSelected() == true) {
+            obatsesuai = "- Obat Sesuai : YA\n";
+        } else {
+            obatsesuai = "- Obat Sesuai : TIDAK\n";
+        }
+        
+        if (ChkObatEfektif.isSelected() == true) {
+            obatefektif = "- Obat Efektif : YA\n";
+        } else {
+            obatefektif = "- Obat Efektif : TIDAK\n";
+        }
+        
+        if (ChkObatAman.isSelected() == true) {
+            obataman = "- Obat Efektif : YA\n";
+        } else {
+            obataman = "- Obat Efektif : TIDAK";
+        }
+        
+        THasil.setText("");
+        THasil.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+        BtnCloseIn7ActionPerformed(null);
+        
+    }//GEN-LAST:event_BtnBaca1ActionPerformed
+
+    private void MnCeklisFarmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiActionPerformed
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+        
+        WindowFarmasi.setSize(300, 141);
+        WindowFarmasi.setLocationRelativeTo(internalFrame1);
+        WindowFarmasi.setAlwaysOnTop(false);
+        WindowFarmasi.setVisible(true);
+    }//GEN-LAST:event_MnCeklisFarmasiActionPerformed
+
+    private void MnPemberianDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianDietActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnPemberianDietActionPerformed
+
+    private void BtnUlangiHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUlangiHasilActionPerformed
+        if (THasil.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan masih kosong/belum terisi...!!!");
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin hasil pemeriksaan akan hapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                THasil.setText("");
+                THasil.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_BtnUlangiHasilActionPerformed
+
+    private void BtnUlangiInstruksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUlangiInstruksiActionPerformed
+        if (TInstruksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Instruksi tenaga kesehatan masih kosong/belum terisi...!!!");
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin instruksi tenaga kesehatan akan hapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                TInstruksi.setText("");
+                TInstruksi.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_BtnUlangiInstruksiActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2114,11 +2398,13 @@ public class DlgCPPT extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnBaca;
+    private widget.Button BtnBaca1;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn6;
+    private widget.Button BtnCloseIn7;
     private widget.Button BtnCopas;
     private widget.Button BtnDPJP;
     private widget.Button BtnEdit;
@@ -2132,14 +2418,22 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnSerah;
     private widget.Button BtnSimpan;
     private widget.Button BtnTerima;
+    private widget.Button BtnUlangiHasil;
+    private widget.Button BtnUlangiInstruksi;
+    public widget.CekBox ChkDapatObat;
     public widget.CekBox ChkJam;
+    public widget.CekBox ChkObatAman;
+    public widget.CekBox ChkObatEfektif;
+    public widget.CekBox ChkObatSesuai;
     public widget.CekBox ChkSamaPPA;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnCeklisFarmasi;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
+    private javax.swing.JMenuItem MnPemberianDiet;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
@@ -2153,6 +2447,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JTabbedPane TabCPPT;
     private widget.TextArea Ttemplate;
     private javax.swing.JDialog WindowCPPT;
+    private javax.swing.JDialog WindowFarmasi;
     private javax.swing.JDialog WindowTemplate;
     private widget.ComboBox cmbBagian;
     private widget.ComboBox cmbDtk;
@@ -2172,6 +2467,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ComboBox cmbVerifikasi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
+    private widget.InternalFrame internalFrame11;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame5;
@@ -2191,6 +2487,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel23;
     private widget.Label jLabel24;
     private widget.Label jLabel25;
+    private widget.Label jLabel26;
+    private widget.Label jLabel27;
     private widget.Label jLabel3;
     private widget.Label jLabel36;
     private widget.Label jLabel4;
@@ -2205,6 +2503,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private widget.TextBox kddpjp;
     private widget.TextBox nipSerah;
     private widget.TextBox nipTerima;
@@ -2412,6 +2711,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbJam1.setSelectedIndex(0);
         cmbMnt1.setSelectedIndex(0);
         cmbDtk1.setSelectedIndex(0);
+        MnCeklisFarmasi.setEnabled(false);
+        MnPemberianDiet.setEnabled(false);
     }
 
     private void getData() {
