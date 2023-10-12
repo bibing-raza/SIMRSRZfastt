@@ -706,6 +706,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
+        FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 780));
         FormInput.setLayout(null);
@@ -981,7 +982,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel17.setBounds(0, 325, 180, 23);
 
         cmbBagian.setForeground(new java.awt.Color(0, 0, 0));
-        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP", "PPA" }));
+        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP (K)", "PPA" }));
         cmbBagian.setName("cmbBagian"); // NOI18N
         cmbBagian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -1920,9 +1921,9 @@ public class DlgCPPT extends javax.swing.JDialog {
             nipkonsulen = "-";
             nmKonsulen.setText("-");
             cmbPPA.setSelectedIndex(0);
+            cmbSertim.setSelectedIndex(0);
             nipppa = "-";
             nmppa.setText("-");
-            cmbPPA.setSelectedIndex(0);
 
             if (cmbBagian.getSelectedIndex() == 3) {
                 JOptionPane.showMessageDialog(rootPane, "Jenis bagian PPA hanya untuk pengisian CPPT rawat inap..!!!");
@@ -1934,31 +1935,26 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else {
                 BtnKonsulen.setEnabled(false);
             }
-        } else if (status.equals("ranap")) {
-            nipkonsulen = "-";
-            nmKonsulen.setText("-");
-            cmbPPA.setSelectedIndex(0);
-            cmbSertim.setSelectedIndex(0);
-            nipppa = "-";
-            nmppa.setText("-");
-            
-            if (cmbBagian.getSelectedIndex() == 2) {                
-                BtnKonsulen.setEnabled(true);
-                cmbPPA.setEnabled(false);
-                cmbSertim.setEnabled(false);
-                BtnPPA.setEnabled(false);
-            } else if (cmbBagian.getSelectedIndex() == 3) {
-                BtnKonsulen.setEnabled(false);
-                cmbPPA.setEnabled(true);
-                cmbSertim.setEnabled(false);
-                BtnPPA.setEnabled(false);
-            } else {
-                BtnKonsulen.setEnabled(false);
-                cmbPPA.setEnabled(false);
-                cmbSertim.setEnabled(false);
-                BtnPPA.setEnabled(false);
-            }
-        }
+        } 
+        
+//        else if (status.equals("ranap")) {
+//            if (cmbBagian.getSelectedIndex() == 2) {                
+//                BtnKonsulen.setEnabled(true);
+//                cmbPPA.setEnabled(false);
+//                cmbSertim.setEnabled(false);
+//                BtnPPA.setEnabled(false);
+//            } else if (cmbBagian.getSelectedIndex() == 3) {
+//                BtnKonsulen.setEnabled(false);
+//                cmbPPA.setEnabled(true);
+//                cmbSertim.setEnabled(false);
+//                BtnPPA.setEnabled(false);
+//            } else {
+//                BtnKonsulen.setEnabled(false);
+//                cmbPPA.setEnabled(false);
+//                cmbSertim.setEnabled(false);
+//                BtnPPA.setEnabled(false);
+//            }
+//        }
     }//GEN-LAST:event_cmbBagianActionPerformed
 
     private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
@@ -2382,7 +2378,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         LCount.setText("" + tabMode.getRowCount());
     }
 
-    private void emptTeks() {
+    public void emptTeks() {
         tglCppt.setDate(new Date());
         ChkJam.setSelected(false);
         cmbJam.setSelectedIndex(0);
@@ -2581,6 +2577,14 @@ public class DlgCPPT extends javax.swing.JDialog {
                 cmbSiftCppt.setSelectedIndex(4);
             } else {
                 cmbSiftCppt.setSelectedIndex(0);
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + norw + "'") > 0) {
+                kddpjp.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + norw + "'"));
+                nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
+            } else {
+                kddpjp.setText("-");
+                nmdpjp.setText("-");
             }
         } else {
             cmbRawat.setSelectedIndex(2);

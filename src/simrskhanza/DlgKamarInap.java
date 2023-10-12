@@ -13878,6 +13878,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKamarInap");
                 DlgCPPT form = new DlgCPPT(null, false);
+                form.emptTeks();
                 form.isCek();
                 form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "ranap");
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

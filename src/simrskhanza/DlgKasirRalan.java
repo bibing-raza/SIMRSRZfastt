@@ -7676,6 +7676,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKasirRalan");
                 DlgCPPT form = new DlgCPPT(null, false);
+                form.emptTeks();
                 form.isCek();
                 form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
