@@ -2324,7 +2324,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbEkonomi);
-        cmbEkonomi.setBounds(125, 1385, 95, 23);
+        cmbEkonomi.setBounds(125, 1385, 93, 23);
 
         TsttsEkonomi.setForeground(new java.awt.Color(0, 0, 0));
         TsttsEkonomi.setName("TsttsEkonomi"); // NOI18N
@@ -4797,7 +4797,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkPil);
-        chkPil.setBounds(110, 922, 75, 23);
+        chkPil.setBounds(110, 922, 71, 23);
 
         TlamaPil.setForeground(new java.awt.Color(0, 0, 0));
         TlamaPil.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -4808,7 +4808,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(TlamaPil);
-        TlamaPil.setBounds(188, 922, 40, 23);
+        TlamaPil.setBounds(185, 922, 40, 23);
 
         cmbPil.setBackground(new java.awt.Color(245, 253, 240));
         cmbPil.setForeground(new java.awt.Color(0, 0, 0));
@@ -4816,7 +4816,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         cmbPil.setLightWeightPopupEnabled(false);
         cmbPil.setName("cmbPil"); // NOI18N
         FormInput.add(cmbPil);
-        cmbPil.setBounds(235, 922, 60, 23);
+        cmbPil.setBounds(230, 922, 60, 23);
 
         chkSuntik1.setBackground(new java.awt.Color(255, 255, 250));
         chkSuntik1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -4835,7 +4835,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkSuntik1);
-        chkSuntik1.setBounds(110, 950, 134, 23);
+        chkSuntik1.setBounds(110, 950, 130, 23);
 
         TlamaSuntik1.setForeground(new java.awt.Color(0, 0, 0));
         TlamaSuntik1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -4846,7 +4846,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
             }
         });
         FormInput.add(TlamaSuntik1);
-        TlamaSuntik1.setBounds(247, 950, 40, 23);
+        TlamaSuntik1.setBounds(243, 950, 40, 23);
 
         cmbSuntik1.setBackground(new java.awt.Color(245, 253, 240));
         cmbSuntik1.setForeground(new java.awt.Color(0, 0, 0));
@@ -4854,7 +4854,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         cmbSuntik1.setLightWeightPopupEnabled(false);
         cmbSuntik1.setName("cmbSuntik1"); // NOI18N
         FormInput.add(cmbSuntik1);
-        cmbSuntik1.setBounds(294, 950, 60, 23);
+        cmbSuntik1.setBounds(290, 950, 60, 23);
 
         scrollInput.setViewportView(FormInput);
 
