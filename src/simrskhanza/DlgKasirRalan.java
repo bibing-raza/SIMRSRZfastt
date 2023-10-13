@@ -8332,9 +8332,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnPenilaianAwalMedisRalanMata.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
         MnStatusPasienAllKunjungan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnSuratTindakanDokter.setEnabled(akses.getdiagnosa_pasien());
-        MnDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
-        MnAssesmenKeperawatanIGD.setEnabled(akses.getdata_triase_igd());
-        MnAssesmenMedikIGD.setEnabled(akses.getdata_triase_igd());
+        MnInputDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnPermintaanRadiologi.setEnabled(akses.getpermintaan_radiologi());
@@ -8367,6 +8365,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnInputDataKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
+        MnInputDataAsesmenMedikObstetri.setEnabled(akses.getresep_dokter());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getkode().equals("Admin Utama")) {
             ppProgramPRB.setEnabled(true);
