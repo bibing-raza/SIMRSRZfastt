@@ -36,26 +36,32 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilLIS;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
+import simrskhanza.DlgCariDiet;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.DlgCariJumlahPemberianDiet;
 import simrskhanza.DlgCariPeriksaRadiologi;
+import simrskhanza.DlgPemberianDiet;
 
 /**
  *
  * @author dosen
  */
 public class DlgCPPT extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
-    private PreparedStatement ps, pps1, pps2;
-    private ResultSet rs, rrs1, rrs2;
-    private int x = 0, pilihan = 0, cekHasilRad = 0;
+    private PreparedStatement ps, pps1, pps2, pspasien, psdiet;
+    private ResultSet rs, rrs1, rrs2, rspasien, rsdiet;
+    private int i = 0, x = 0, pilihan = 0, cekHasilRad = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private DlgCariDiet diet = new DlgCariDiet(null, false);
+    private DlgCariJumlahPemberianDiet jlhberi = new DlgCariJumlahPemberianDiet(null, false);
     private String status = "", cekjam = "", statusOK = "", nipppa = "", kdItemrad = "", itemDipilih = "",
             tglRad = "", jamRad = "", jamkeluar = "", nipkonsulen = "", dapatobat = "", obatsesuai = "",
-            obatefektif = "", obataman = "";
+            obatefektif = "", obataman = "", waktuSimpanDiet = "", kemasan = "", dataDiet = "", jnsRawat = "",
+            kdUnit = "", instruksiDiet = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -182,6 +188,36 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         }
         tbTemplate.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode2 = new DefaultTableModel(null, new Object[]{
+            "kd_diet", "Nama Diet", "Jns. Makanan", "Jlh. Pemberian", "waktusimpan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+
+        tbDiet.setModel(tabMode2);
+        tbDiet.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbDiet.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 5; i++) {
+            TableColumn column = tbDiet.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(180);
+            } else if (i == 2) {
+                column.setPreferredWidth(140);
+            } else if (i == 3) {
+                column.setPreferredWidth(100);
+            } else if (i == 4) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbDiet.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
 
@@ -207,6 +243,130 @@ public class DlgCPPT extends javax.swing.JDialog {
                 }
             });
         }
+        
+        diet.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgCPPT")) {
+                    if (diet.getTable().getSelectedRow() != -1) {
+                        kddiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 0).toString());
+                        nmdiet.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 1).toString());
+                        jnsMakanan.setText(diet.getTable().getValueAt(diet.getTable().getSelectedRow(), 2).toString());
+                        
+                        if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
+                            kdberi.setText("-");
+                            jumlahBeri.setText("");
+                            jumlahBeri.setEditable(true);
+                            cmbSatuan.setEnabled(true);
+                            jumlahBeri.requestFocus();
+                        } else {
+                            jumlahBeri.setEditable(false);
+                            cmbSatuan.setEnabled(false);
+                            btnJumlahBeri.requestFocus();
+                        }
+                    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+        
+        diet.getTable().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (akses.getform().equals("DlgCPPT")) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        diet.dispose();
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
+        
+        jlhberi.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgCPPT")) {
+                    if (jlhberi.getTable().getSelectedRow() != -1) {
+                        kdberi.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 0).toString());
+                        jumlahBeri.setText(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 1).toString());
+                        cmbSatuan.setSelectedItem(jlhberi.getTable().getValueAt(jlhberi.getTable().getSelectedRow(), 2).toString());
+                    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+        
+        jlhberi.getTable().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {
+            }
+
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (akses.getform().equals("DlgCPPT")) {
+                    if (e.getKeyCode() == KeyEvent.VK_SPACE) {
+                        jlhberi.dispose();
+                    }
+                }
+            }
+
+            @Override
+            public void keyReleased(KeyEvent e) {
+            }
+        });
         
         petugas.addWindowListener(new WindowListener() {
             @Override
@@ -305,23 +465,24 @@ public class DlgCPPT extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
+        MnDataPemberianDiet = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnCeklisFarmasi = new javax.swing.JMenuItem();
         MnPemberianDiet = new javax.swing.JMenuItem();
         MnTindakan = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
+        jPanel1 = new javax.swing.JPanel();
+        Scroll1 = new widget.ScrollPane();
+        tbTemplate = new widget.Table();
+        Scroll3 = new widget.ScrollPane();
+        Ttemplate = new widget.TextArea();
         panelisi4 = new widget.panelisi();
         jLabel36 = new widget.Label();
         TCari1 = new widget.TextBox();
         BtnCari1 = new widget.Button();
         BtnCopas = new widget.Button();
         BtnCloseIn1 = new widget.Button();
-        jPanel1 = new javax.swing.JPanel();
-        Scroll1 = new widget.ScrollPane();
-        tbTemplate = new widget.Table();
-        Scroll3 = new widget.ScrollPane();
-        Ttemplate = new widget.TextArea();
         WindowCPPT = new javax.swing.JDialog();
         internalFrame10 = new widget.InternalFrame();
         BtnCloseIn6 = new widget.Button();
@@ -344,6 +505,47 @@ public class DlgCPPT extends javax.swing.JDialog {
         ChkObatEfektif = new widget.CekBox();
         ChkObatAman = new widget.CekBox();
         ChkSemua = new widget.CekBox();
+        WindowDiet = new javax.swing.JDialog();
+        internalFrame12 = new widget.InternalFrame();
+        internalFrame15 = new widget.InternalFrame();
+        BtnPilihDiet = new widget.Button();
+        BtnHapusPilihan = new widget.Button();
+        BtnGanti = new widget.Button();
+        Scroll5 = new widget.ScrollPane();
+        tbDiet = new widget.Table();
+        internalFrame14 = new widget.InternalFrame();
+        internalFrame16 = new widget.InternalFrame();
+        BtnSimpan1 = new widget.Button();
+        BtnBatal1 = new widget.Button();
+        BtnKeluar1 = new widget.Button();
+        FormInput1 = new widget.PanelBiasa();
+        cekWaktu = new widget.CekBox();
+        cekDietPagi = new widget.CekBox();
+        cekDietSiang = new widget.CekBox();
+        cekDietSore = new widget.CekBox();
+        cekKemasan = new widget.CekBox();
+        jLabel28 = new widget.Label();
+        jLabel29 = new widget.Label();
+        DTPTgl = new widget.Tanggal();
+        WindowDataDiet = new javax.swing.JDialog();
+        internalFrame9 = new widget.InternalFrame();
+        panelGlass7 = new widget.panelisi();
+        nmdiet = new widget.TextBox();
+        kddiet = new widget.TextBox();
+        jLabel46 = new widget.Label();
+        jnsMakanan = new widget.TextBox();
+        jLabel48 = new widget.Label();
+        kdberi = new widget.TextBox();
+        jumlahBeri = new widget.TextBox();
+        cmbSatuan = new widget.ComboBox();
+        btnDiet = new widget.Button();
+        btnJumlahBeri = new widget.Button();
+        jLabel51 = new widget.Label();
+        panelGlass11 = new widget.panelisi();
+        BtnSimpan2 = new widget.Button();
+        BtnEdit1 = new widget.Button();
+        BtnCloseIn3 = new widget.Button();
+        TKd = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         TabCPPT = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -406,6 +608,11 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnUlangiInstruksi = new widget.Button();
         jLabel26 = new widget.Label();
         jLabel27 = new widget.Label();
+        BtnHapusDPJP = new widget.Button();
+        BtnHapusKonsulen = new widget.Button();
+        BtnHapusPPA = new widget.Button();
+        BtnHapusSerah = new widget.Button();
+        BtnHapusTerima = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
         tbCPPT = new widget.Table();
@@ -464,6 +671,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHasilPemeriksaanRad);
 
+        MnDataPemberianDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDataPemberianDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDataPemberianDiet.setText("Data Pemberian Diet");
+        MnDataPemberianDiet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDataPemberianDiet.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDataPemberianDiet.setIconTextGap(5);
+        MnDataPemberianDiet.setName("MnDataPemberianDiet"); // NOI18N
+        MnDataPemberianDiet.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnDataPemberianDiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDataPemberianDietActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDataPemberianDiet);
+
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
         MnCeklisFarmasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -520,6 +742,41 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame5.setName("internalFrame5"); // NOI18N
         internalFrame5.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame5.setLayout(new java.awt.BorderLayout());
+
+        jPanel1.setName("jPanel1"); // NOI18N
+        jPanel1.setOpaque(false);
+        jPanel1.setPreferredSize(new java.awt.Dimension(816, 250));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
+
+        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
+        tbTemplate.setName("tbTemplate"); // NOI18N
+        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbTemplateMouseClicked(evt);
+            }
+        });
+        Scroll1.setViewportView(tbTemplate);
+
+        jPanel1.add(Scroll1);
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        Ttemplate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Baca Template Dipilih ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Ttemplate.setColumns(20);
+        Ttemplate.setRows(5);
+        Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Ttemplate.setName("Ttemplate"); // NOI18N
+        Ttemplate.setPreferredSize(new java.awt.Dimension(210, 4000));
+        Scroll3.setViewportView(Ttemplate);
+
+        jPanel1.add(Scroll3);
+
+        internalFrame5.add(jPanel1, java.awt.BorderLayout.CENTER);
 
         panelisi4.setBackground(new java.awt.Color(255, 150, 255));
         panelisi4.setName("panelisi4"); // NOI18N
@@ -590,42 +847,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         panelisi4.add(BtnCloseIn1);
 
-        internalFrame5.add(panelisi4, java.awt.BorderLayout.CENTER);
-
-        jPanel1.setName("jPanel1"); // NOI18N
-        jPanel1.setOpaque(false);
-        jPanel1.setPreferredSize(new java.awt.Dimension(816, 250));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
-
-        Scroll1.setName("Scroll1"); // NOI18N
-        Scroll1.setOpaque(true);
-        Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
-
-        tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
-        tbTemplate.setName("tbTemplate"); // NOI18N
-        tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbTemplateMouseClicked(evt);
-            }
-        });
-        Scroll1.setViewportView(tbTemplate);
-
-        jPanel1.add(Scroll1);
-
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
-
-        Ttemplate.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Baca Template Dipilih ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Ttemplate.setColumns(20);
-        Ttemplate.setRows(5);
-        Ttemplate.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Ttemplate.setName("Ttemplate"); // NOI18N
-        Ttemplate.setPreferredSize(new java.awt.Dimension(210, 2000));
-        Scroll3.setViewportView(Ttemplate);
-
-        jPanel1.add(Scroll3);
-
-        internalFrame5.add(jPanel1, java.awt.BorderLayout.PAGE_START);
+        internalFrame5.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
         WindowTemplate.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
@@ -697,7 +919,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnBaca.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -713,7 +935,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -849,6 +1071,442 @@ public class DlgCPPT extends javax.swing.JDialog {
         ChkSemua.setBounds(20, 83, 100, 23);
 
         WindowFarmasi.getContentPane().add(internalFrame11, java.awt.BorderLayout.CENTER);
+
+        WindowDiet.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowDiet.setName("WindowDiet"); // NOI18N
+        WindowDiet.setUndecorated(true);
+        WindowDiet.setResizable(false);
+
+        internalFrame12.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pemberian Diet Harian Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame12.setName("internalFrame12"); // NOI18N
+        internalFrame12.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame12.setLayout(new java.awt.BorderLayout());
+
+        internalFrame15.setName("internalFrame15"); // NOI18N
+        internalFrame15.setPreferredSize(new java.awt.Dimension(55, 45));
+        internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        BtnPilihDiet.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPilihDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPilihDiet.setMnemonic('P');
+        BtnPilihDiet.setText("Pilihan Diet");
+        BtnPilihDiet.setToolTipText("Alt+P");
+        BtnPilihDiet.setGlassColor(new java.awt.Color(0, 153, 153));
+        BtnPilihDiet.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnPilihDiet.setName("BtnPilihDiet"); // NOI18N
+        BtnPilihDiet.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnPilihDiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPilihDietActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnPilihDiet);
+
+        BtnHapusPilihan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusPilihan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapusPilihan.setMnemonic('H');
+        BtnHapusPilihan.setText("Hapus Dipilih");
+        BtnHapusPilihan.setToolTipText("Alt+H");
+        BtnHapusPilihan.setGlassColor(new java.awt.Color(0, 153, 153));
+        BtnHapusPilihan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnHapusPilihan.setName("BtnHapusPilihan"); // NOI18N
+        BtnHapusPilihan.setPreferredSize(new java.awt.Dimension(115, 30));
+        BtnHapusPilihan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusPilihanActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnHapusPilihan);
+
+        BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGanti.setMnemonic('G');
+        BtnGanti.setText("Ganti Dipilih");
+        BtnGanti.setToolTipText("Alt+G");
+        BtnGanti.setGlassColor(new java.awt.Color(0, 153, 153));
+        BtnGanti.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnGanti.setName("BtnGanti"); // NOI18N
+        BtnGanti.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnGanti.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGantiActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnGanti);
+
+        internalFrame12.add(internalFrame15, java.awt.BorderLayout.PAGE_START);
+
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Diet yang dipilih/ditentukan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll5.setName("Scroll5"); // NOI18N
+        Scroll5.setOpaque(true);
+
+        tbDiet.setAutoCreateRowSorter(true);
+        tbDiet.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/diperbaiki");
+        tbDiet.setName("tbDiet"); // NOI18N
+        tbDiet.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDietMouseClicked(evt);
+            }
+        });
+        tbDiet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbDietKeyPressed(evt);
+            }
+        });
+        Scroll5.setViewportView(tbDiet);
+
+        internalFrame12.add(Scroll5, java.awt.BorderLayout.CENTER);
+
+        internalFrame14.setName("internalFrame14"); // NOI18N
+        internalFrame14.setPreferredSize(new java.awt.Dimension(55, 120));
+        internalFrame14.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame14.setLayout(new java.awt.BorderLayout());
+
+        internalFrame16.setName("internalFrame16"); // NOI18N
+        internalFrame16.setPreferredSize(new java.awt.Dimension(55, 45));
+        internalFrame16.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame16.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+
+        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
+        BtnSimpan1.setText("Simpan");
+        BtnSimpan1.setToolTipText("Alt+S");
+        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
+        BtnSimpan1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan1ActionPerformed(evt);
+            }
+        });
+        BtnSimpan1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnSimpan1KeyPressed(evt);
+            }
+        });
+        internalFrame16.add(BtnSimpan1);
+
+        BtnBatal1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBatal1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBatal1.setMnemonic('B');
+        BtnBatal1.setText("Baru");
+        BtnBatal1.setToolTipText("Alt+B");
+        BtnBatal1.setName("BtnBatal1"); // NOI18N
+        BtnBatal1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnBatal1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBatal1ActionPerformed(evt);
+            }
+        });
+        BtnBatal1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnBatal1KeyPressed(evt);
+            }
+        });
+        internalFrame16.add(BtnBatal1);
+
+        BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
+        BtnKeluar1.setText("Keluar");
+        BtnKeluar1.setToolTipText("Alt+K");
+        BtnKeluar1.setName("BtnKeluar1"); // NOI18N
+        BtnKeluar1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar1ActionPerformed(evt);
+            }
+        });
+        BtnKeluar1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKeluar1KeyPressed(evt);
+            }
+        });
+        internalFrame16.add(BtnKeluar1);
+
+        internalFrame14.add(internalFrame16, java.awt.BorderLayout.PAGE_END);
+
+        FormInput1.setName("FormInput1"); // NOI18N
+        FormInput1.setPreferredSize(new java.awt.Dimension(160, 70));
+        FormInput1.setLayout(null);
+
+        cekWaktu.setBackground(new java.awt.Color(242, 242, 242));
+        cekWaktu.setBorder(null);
+        cekWaktu.setForeground(new java.awt.Color(0, 0, 0));
+        cekWaktu.setText("Semua Waktu Diet");
+        cekWaktu.setBorderPainted(true);
+        cekWaktu.setBorderPaintedFlat(true);
+        cekWaktu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekWaktu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekWaktu.setName("cekWaktu"); // NOI18N
+        cekWaktu.setOpaque(false);
+        cekWaktu.setPreferredSize(new java.awt.Dimension(100, 23));
+        cekWaktu.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                cekWaktuItemStateChanged(evt);
+            }
+        });
+        cekWaktu.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                cekWaktuMouseClicked(evt);
+            }
+        });
+        cekWaktu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cekWaktuActionPerformed(evt);
+            }
+        });
+        FormInput1.add(cekWaktu);
+        cekWaktu.setBounds(330, 12, 125, 23);
+
+        cekDietPagi.setBackground(new java.awt.Color(242, 242, 242));
+        cekDietPagi.setBorder(null);
+        cekDietPagi.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietPagi.setText("Diet Pagi");
+        cekDietPagi.setBorderPainted(true);
+        cekDietPagi.setBorderPaintedFlat(true);
+        cekDietPagi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietPagi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietPagi.setName("cekDietPagi"); // NOI18N
+        cekDietPagi.setOpaque(false);
+        cekDietPagi.setPreferredSize(new java.awt.Dimension(100, 23));
+        FormInput1.add(cekDietPagi);
+        cekDietPagi.setBounds(90, 12, 70, 23);
+
+        cekDietSiang.setBackground(new java.awt.Color(242, 242, 242));
+        cekDietSiang.setBorder(null);
+        cekDietSiang.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietSiang.setText("Diet Siang");
+        cekDietSiang.setBorderPainted(true);
+        cekDietSiang.setBorderPaintedFlat(true);
+        cekDietSiang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietSiang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietSiang.setName("cekDietSiang"); // NOI18N
+        cekDietSiang.setOpaque(false);
+        cekDietSiang.setPreferredSize(new java.awt.Dimension(100, 23));
+        FormInput1.add(cekDietSiang);
+        cekDietSiang.setBounds(170, 12, 70, 23);
+
+        cekDietSore.setBackground(new java.awt.Color(242, 242, 242));
+        cekDietSore.setBorder(null);
+        cekDietSore.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietSore.setText("Diet Sore");
+        cekDietSore.setBorderPainted(true);
+        cekDietSore.setBorderPaintedFlat(true);
+        cekDietSore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietSore.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietSore.setName("cekDietSore"); // NOI18N
+        cekDietSore.setOpaque(false);
+        cekDietSore.setPreferredSize(new java.awt.Dimension(100, 23));
+        FormInput1.add(cekDietSore);
+        cekDietSore.setBounds(250, 12, 70, 23);
+
+        cekKemasan.setBackground(new java.awt.Color(242, 242, 242));
+        cekKemasan.setBorder(null);
+        cekKemasan.setForeground(new java.awt.Color(0, 0, 0));
+        cekKemasan.setText("Disajikan Seperti Biasa");
+        cekKemasan.setBorderPainted(true);
+        cekKemasan.setBorderPaintedFlat(true);
+        cekKemasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekKemasan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekKemasan.setName("cekKemasan"); // NOI18N
+        cekKemasan.setOpaque(false);
+        cekKemasan.setPreferredSize(new java.awt.Dimension(100, 23));
+        cekKemasan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cekKemasanActionPerformed(evt);
+            }
+        });
+        FormInput1.add(cekKemasan);
+        cekKemasan.setBounds(190, 40, 250, 23);
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Waktu Diet :");
+        jLabel28.setName("jLabel28"); // NOI18N
+        FormInput1.add(jLabel28);
+        jLabel28.setBounds(0, 12, 80, 23);
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Tanggal :");
+        jLabel29.setName("jLabel29"); // NOI18N
+        FormInput1.add(jLabel29);
+        jLabel29.setBounds(0, 40, 80, 23);
+
+        DTPTgl.setEditable(false);
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
+        DTPTgl.setDisplayFormat("dd-MM-yyyy");
+        DTPTgl.setName("DTPTgl"); // NOI18N
+        DTPTgl.setOpaque(false);
+        DTPTgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                DTPTglKeyPressed(evt);
+            }
+        });
+        FormInput1.add(DTPTgl);
+        DTPTgl.setBounds(90, 40, 90, 23);
+
+        internalFrame14.add(FormInput1, java.awt.BorderLayout.PAGE_START);
+
+        internalFrame12.add(internalFrame14, java.awt.BorderLayout.PAGE_END);
+
+        WindowDiet.getContentPane().add(internalFrame12, java.awt.BorderLayout.CENTER);
+
+        WindowDataDiet.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowDataDiet.setName("WindowDataDiet"); // NOI18N
+        WindowDataDiet.setUndecorated(true);
+        WindowDataDiet.setResizable(false);
+
+        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pilihan Diet ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame9.setName("internalFrame9"); // NOI18N
+        internalFrame9.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame9.setLayout(new java.awt.BorderLayout());
+
+        panelGlass7.setName("panelGlass7"); // NOI18N
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 100));
+        panelGlass7.setLayout(null);
+
+        nmdiet.setEditable(false);
+        nmdiet.setForeground(new java.awt.Color(0, 0, 0));
+        nmdiet.setName("nmdiet"); // NOI18N
+        panelGlass7.add(nmdiet);
+        nmdiet.setBounds(197, 10, 200, 23);
+
+        kddiet.setEditable(false);
+        kddiet.setForeground(new java.awt.Color(0, 0, 0));
+        kddiet.setName("kddiet"); // NOI18N
+        panelGlass7.add(kddiet);
+        kddiet.setBounds(113, 10, 80, 23);
+
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Jenis Makanan : ");
+        jLabel46.setName("jLabel46"); // NOI18N
+        panelGlass7.add(jLabel46);
+        jLabel46.setBounds(0, 37, 110, 23);
+
+        jnsMakanan.setEditable(false);
+        jnsMakanan.setForeground(new java.awt.Color(0, 0, 0));
+        jnsMakanan.setName("jnsMakanan"); // NOI18N
+        panelGlass7.add(jnsMakanan);
+        jnsMakanan.setBounds(113, 37, 283, 23);
+
+        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setText("Jumlah Pemberian : ");
+        jLabel48.setName("jLabel48"); // NOI18N
+        panelGlass7.add(jLabel48);
+        jLabel48.setBounds(0, 64, 110, 23);
+
+        kdberi.setEditable(false);
+        kdberi.setForeground(new java.awt.Color(0, 0, 0));
+        kdberi.setName("kdberi"); // NOI18N
+        panelGlass7.add(kdberi);
+        kdberi.setBounds(113, 64, 80, 23);
+
+        jumlahBeri.setEditable(false);
+        jumlahBeri.setForeground(new java.awt.Color(0, 0, 0));
+        jumlahBeri.setName("jumlahBeri"); // NOI18N
+        panelGlass7.add(jumlahBeri);
+        jumlahBeri.setBounds(197, 64, 130, 23);
+
+        cmbSatuan.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSatuan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbSatuan.setName("cmbSatuan"); // NOI18N
+        cmbSatuan.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass7.add(cmbSatuan);
+        cmbSatuan.setBounds(332, 64, 65, 23);
+
+        btnDiet.setForeground(new java.awt.Color(0, 0, 0));
+        btnDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDiet.setMnemonic('X');
+        btnDiet.setToolTipText("Alt+X");
+        btnDiet.setName("btnDiet"); // NOI18N
+        btnDiet.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDietActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(btnDiet);
+        btnDiet.setBounds(400, 10, 28, 23);
+
+        btnJumlahBeri.setForeground(new java.awt.Color(0, 0, 0));
+        btnJumlahBeri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnJumlahBeri.setMnemonic('X');
+        btnJumlahBeri.setToolTipText("Alt+X");
+        btnJumlahBeri.setName("btnJumlahBeri"); // NOI18N
+        btnJumlahBeri.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJumlahBeriActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(btnJumlahBeri);
+        btnJumlahBeri.setBounds(400, 64, 28, 23);
+
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Nama Diet : ");
+        jLabel51.setName("jLabel51"); // NOI18N
+        panelGlass7.add(jLabel51);
+        jLabel51.setBounds(0, 10, 110, 23);
+
+        internalFrame9.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 150));
+        panelGlass11.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 5));
+
+        BtnSimpan2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan2.setMnemonic('S');
+        BtnSimpan2.setText("Simpan");
+        BtnSimpan2.setToolTipText("Alt+S");
+        BtnSimpan2.setName("BtnSimpan2"); // NOI18N
+        BtnSimpan2.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnSimpan2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan2ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnSimpan2);
+
+        BtnEdit1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnEdit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnEdit1.setMnemonic('G');
+        BtnEdit1.setText("Ganti");
+        BtnEdit1.setToolTipText("Alt+G");
+        BtnEdit1.setName("BtnEdit1"); // NOI18N
+        BtnEdit1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnEdit1ActionPerformed(evt);
+            }
+        });
+        BtnEdit1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnEdit1KeyPressed(evt);
+            }
+        });
+        panelGlass11.add(BtnEdit1);
+
+        BtnCloseIn3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn3.setMnemonic('U');
+        BtnCloseIn3.setText("Tutup");
+        BtnCloseIn3.setToolTipText("Alt+U");
+        BtnCloseIn3.setName("BtnCloseIn3"); // NOI18N
+        BtnCloseIn3.setPreferredSize(new java.awt.Dimension(90, 30));
+        BtnCloseIn3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn3ActionPerformed(evt);
+            }
+        });
+        panelGlass11.add(BtnCloseIn3);
+
+        internalFrame9.add(panelGlass11, java.awt.BorderLayout.CENTER);
+
+        WindowDataDiet.getContentPane().add(internalFrame9, java.awt.BorderLayout.CENTER);
+
+        TKd.setEditable(false);
+        TKd.setForeground(new java.awt.Color(0, 0, 0));
+        TKd.setName("TKd"); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1050,7 +1708,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnInstruksi.setBounds(825, 390, 100, 23);
 
         tglCppt.setEditable(false);
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -1385,6 +2043,71 @@ public class DlgCPPT extends javax.swing.JDialog {
         FormInput.add(jLabel27);
         jLabel27.setBounds(0, 418, 180, 23);
 
+        BtnHapusDPJP.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusDPJP.setToolTipText("Hapus DPJP Utama");
+        BtnHapusDPJP.setName("BtnHapusDPJP"); // NOI18N
+        BtnHapusDPJP.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusDPJP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusDPJPActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusDPJP);
+        BtnHapusDPJP.setBounds(825, 577, 28, 23);
+
+        BtnHapusKonsulen.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusKonsulen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusKonsulen.setToolTipText("Hapus DPJP Konsulen");
+        BtnHapusKonsulen.setName("BtnHapusKonsulen"); // NOI18N
+        BtnHapusKonsulen.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusKonsulen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusKonsulenActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusKonsulen);
+        BtnHapusKonsulen.setBounds(825, 605, 28, 23);
+
+        BtnHapusPPA.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusPPA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusPPA.setToolTipText("Hapus Nama PPA");
+        BtnHapusPPA.setName("BtnHapusPPA"); // NOI18N
+        BtnHapusPPA.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusPPA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusPPAActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusPPA);
+        BtnHapusPPA.setBounds(825, 633, 28, 23);
+
+        BtnHapusSerah.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusSerah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusSerah.setToolTipText("Hapus Nama Petugas Yang Menyerahkan");
+        BtnHapusSerah.setName("BtnHapusSerah"); // NOI18N
+        BtnHapusSerah.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusSerah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusSerahActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusSerah);
+        BtnHapusSerah.setBounds(825, 689, 28, 23);
+
+        BtnHapusTerima.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusTerima.setToolTipText("Hapus Nama Petugas Yang Menerima");
+        BtnHapusTerima.setName("BtnHapusTerima"); // NOI18N
+        BtnHapusTerima.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusTerima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusTerimaActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnHapusTerima);
+        BtnHapusTerima.setBounds(825, 717, 28, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -1437,7 +2160,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1451,7 +2174,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1837,6 +2560,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnCeklisFarmasi.setEnabled(false);
         MnPemberianDiet.setEnabled(false);
         MnTindakan.setEnabled(false);
+        Sequel.cariIsiComboDB("select satuan from diet_master_pemberian group by satuan", cmbSatuan);
     }//GEN-LAST:event_formWindowOpened
 
     private void tbCPPTKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbCPPTKeyReleased
@@ -1916,7 +2640,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         pilihan = 1;
         tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Hasil Pemeriksaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        WindowTemplate.setSize(998, 325);
+        WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -1931,7 +2655,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         pilihan = 2;
         tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Instruksi Nakes ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        WindowTemplate.setSize(998, 325);
+        WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
@@ -2397,7 +3121,11 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_MnCeklisFarmasiActionPerformed
 
     private void MnPemberianDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianDietActionPerformed
-        // TODO add your handling code here:
+        BtnBatal1ActionPerformed(null);
+        WindowDiet.setSize(500, 600);
+        WindowDiet.setLocationRelativeTo(internalFrame1);
+        WindowDiet.setAlwaysOnTop(false);
+        WindowDiet.setVisible(true);
     }//GEN-LAST:event_MnPemberianDietActionPerformed
 
     private void BtnUlangiHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUlangiHasilActionPerformed
@@ -2442,6 +3170,354 @@ public class DlgCPPT extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_MnTindakanActionPerformed
 
+    private void BtnHapusDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusDPJPActionPerformed
+        kddpjp.setText("-");
+        nmdpjp.setText("-");
+    }//GEN-LAST:event_BtnHapusDPJPActionPerformed
+
+    private void BtnHapusKonsulenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusKonsulenActionPerformed
+        nipkonsulen = "-";
+        nmKonsulen.setText("-");
+    }//GEN-LAST:event_BtnHapusKonsulenActionPerformed
+
+    private void BtnHapusPPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusPPAActionPerformed
+        nipppa = "-";
+        nmppa.setText("-");
+    }//GEN-LAST:event_BtnHapusPPAActionPerformed
+
+    private void BtnHapusSerahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSerahActionPerformed
+        nipSerah.setText("-");
+        nmSerah.setText("-");
+    }//GEN-LAST:event_BtnHapusSerahActionPerformed
+
+    private void BtnHapusTerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusTerimaActionPerformed
+        nipTerima.setText("-");
+        nmTerima.setText("-");
+    }//GEN-LAST:event_BtnHapusTerimaActionPerformed
+
+    private void cekWaktuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cekWaktuItemStateChanged
+        if (cekWaktu.isSelected() == true) {
+            cekWaktu.setText("Semua Waktu Diet");
+            cekDietPagi.setSelected(true);
+            cekDietSiang.setSelected(true);
+            cekDietSore.setSelected(true);
+        } else if (cekWaktu.isSelected() == false) {
+            cekWaktu.setText("Waktu Diet BERBEDA");
+            cekDietPagi.setSelected(false);
+            cekDietSiang.setSelected(false);
+            cekDietSore.setSelected(false);
+        }
+    }//GEN-LAST:event_cekWaktuItemStateChanged
+
+    private void cekWaktuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekWaktuMouseClicked
+        if (cekWaktu.isSelected() == true) {
+            cekWaktu.setText("Semua Waktu Diet");
+            cekDietPagi.setSelected(true);
+            cekDietSiang.setSelected(true);
+            cekDietSore.setSelected(true);
+        } else if (cekWaktu.isSelected() == false) {
+            cekWaktu.setText("Waktu Diet BERBEDA");
+            cekDietPagi.setSelected(false);
+            cekDietSiang.setSelected(false);
+            cekDietSore.setSelected(false);
+        }
+    }//GEN-LAST:event_cekWaktuMouseClicked
+
+    private void cekWaktuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekWaktuActionPerformed
+        if (cekWaktu.isSelected() == true) {
+            cekWaktu.setText("Semua Waktu Diet");
+            cekDietPagi.setSelected(true);
+            cekDietSiang.setSelected(true);
+            cekDietSore.setSelected(true);
+        } else if (cekWaktu.isSelected() == false) {
+            cekWaktu.setText("Waktu Diet BERBEDA");
+            cekDietPagi.setSelected(false);
+            cekDietSiang.setSelected(false);
+            cekDietSore.setSelected(false);
+        }
+    }//GEN-LAST:event_cekWaktuActionPerformed
+
+    private void cekKemasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekKemasanActionPerformed
+        if (cekKemasan.isSelected() == true) {
+            cekKemasan.setText("Dikemas Dengan KOTAKAN");
+        } else if (cekKemasan.isSelected() == false) {
+            cekKemasan.setText("Disajikan Seperti Biasa");
+        }
+    }//GEN-LAST:event_cekKemasanActionPerformed
+
+    private void tbDietKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDietKeyPressed
+        if (tabMode2.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getDiet();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_tbDietKeyPressed
+
+    private void tbDietMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDietMouseClicked
+        if (tabMode2.getRowCount() != 0) {
+            try {
+                getDiet();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbDietMouseClicked
+
+    private void BtnPilihDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihDietActionPerformed
+        kddiet.setText("");
+        nmdiet.setText("");
+        jnsMakanan.setText("");
+        kdberi.setText("");
+        jumlahBeri.setText("");
+        cmbSatuan.setSelectedIndex(0);
+        jumlahBeri.setEditable(false);
+        cmbSatuan.setEnabled(false);
+        BtnSimpan2.setEnabled(true);
+        BtnEdit1.setEnabled(false);
+
+        WindowDataDiet.setSize(458, 168);
+        WindowDataDiet.setLocationRelativeTo(internalFrame12);
+        WindowDataDiet.setVisible(true);
+        WindowDataDiet.requestFocus();
+    }//GEN-LAST:event_BtnPilihDietActionPerformed
+
+    private void BtnHapusPilihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusPilihanActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Diet yang dipilih/ditentukan belum ada...!!");
+            BtnPilihDiet.requestFocus();
+        } else if (waktuSimpanDiet.equals("")) {
+            JOptionPane.showMessageDialog(null, "Belum ada data diet yang dipilih pada tabel...!!!!");
+            tbDiet.requestFocus();
+        } else if (tbDiet.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data dietnya pada tabel...!!!!");
+            tbDiet.requestFocus();
+        } else {
+            tabMode2.removeRow(tbDiet.getSelectedRow());
+            kddiet.setText("");
+            nmdiet.setText("");
+            jnsMakanan.setText("");
+            kdberi.setText("");
+            jumlahBeri.setText("");
+            cmbSatuan.setSelectedIndex(0);
+            jumlahBeri.setEditable(false);
+            cmbSatuan.setEnabled(false);
+            BtnHapusPilihan.requestFocus();
+        }
+    }//GEN-LAST:event_BtnHapusPilihanActionPerformed
+
+    private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Diet yang dipilih/ditentukan belum ada...!!");
+            BtnPilihDiet.requestFocus();
+        } else if (waktuSimpanDiet.equals("")) {
+            JOptionPane.showMessageDialog(null, "Belum ada data diet yang dipilih pada tabel...!!!!");
+            tbDiet.requestFocus();
+        } else if (tbDiet.getSelectedRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data dietnya pada tabel...!!!!");
+            tbDiet.requestFocus();
+        } else {
+            jumlahBeri.setText("");
+            cmbSatuan.setSelectedIndex(0);
+            BtnSimpan2.setEnabled(false);
+            BtnEdit1.setEnabled(true);
+
+            WindowDataDiet.setSize(458, 168);
+            WindowDataDiet.setLocationRelativeTo(internalFrame12);
+            WindowDataDiet.setVisible(true);
+            WindowDataDiet.requestFocus();
+
+            if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
+                kdberi.setText("-");
+                jumlahBeri.setEditable(true);
+                cmbSatuan.setEnabled(true);
+                jumlahBeri.requestFocus();
+            } else {
+                kdberi.setText("");
+                jumlahBeri.setEditable(false);
+                cmbSatuan.setEnabled(false);
+                btnJumlahBeri.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_BtnGantiActionPerformed
+
+    private void btnDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDietActionPerformed
+        akses.setform("DlgCPPT");
+        diet.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        diet.setLocationRelativeTo(internalFrame1);
+        diet.setVisible(true);
+        diet.TCari.requestFocus();
+    }//GEN-LAST:event_btnDietActionPerformed
+
+    private void btnJumlahBeriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJumlahBeriActionPerformed
+        akses.setform("DlgCPPT");
+        jlhberi.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        jlhberi.setLocationRelativeTo(internalFrame1);
+        jlhberi.tampil();
+        jlhberi.setVisible(true);
+        jlhberi.TCari.requestFocus();
+    }//GEN-LAST:event_btnJumlahBeriActionPerformed
+
+    private void BtnSimpan2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan2ActionPerformed
+        if (kddiet.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis dietnya...!!!!");
+        } else if (kdberi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis jlh. pemberian dietnya...!!!!");
+        } else {
+            if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
+                if (jumlahBeri.getText().trim().equals("-") || jumlahBeri.getText().trim().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Jlh. pemberian diet harus diisi dg. benar...!!!!");
+                } else if (cmbSatuan.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Pilih salah satu satuan jlh. pemberian dietnya dg. benar...!!!!");
+                } else {
+                    if (Sequel.cariInteger("select count(-1) from diet_master_pemberian where nm_pemberian='" + jumlahBeri.getText() + "' and satuan='" + cmbSatuan.getSelectedItem().toString() + "'") == 0) {
+                        kdberi.setText("");
+                        Valid.autoNomer("diet_master_pemberian", "DP", 4, kdberi);
+                        Sequel.menyimpan("diet_master_pemberian", "'" + kdberi.getText() + "','" + jumlahBeri.getText() + "','" + cmbSatuan.getSelectedItem() + "','1'", "Jumlah Pemberian Diet");
+                        tabMode2.addRow(new Object[]{kddiet.getText(), nmdiet.getText(), jnsMakanan.getText(),
+                            jumlahBeri.getText() + " " + cmbSatuan.getSelectedItem(), Sequel.cariIsi("select now()")});
+                        BtnCloseIn3ActionPerformed(null);
+                    } else {
+                        tabMode2.addRow(new Object[]{kddiet.getText(), nmdiet.getText(), jnsMakanan.getText(),
+                            jumlahBeri.getText() + " " + cmbSatuan.getSelectedItem(), Sequel.cariIsi("select now()")});
+                        BtnCloseIn3ActionPerformed(null);
+                    }
+                }
+            } else {
+                tabMode2.addRow(new Object[]{kddiet.getText(), nmdiet.getText(), jnsMakanan.getText(),
+                    jumlahBeri.getText() + " " + cmbSatuan.getSelectedItem(), Sequel.cariIsi("select now()")});
+                BtnCloseIn3ActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_BtnSimpan2ActionPerformed
+
+    private void BtnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEdit1ActionPerformed
+        if (kdberi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis jlh. pemberian dietnya...!!!!");
+        } else {
+            if (nmdiet.getText().equals("F75") || nmdiet.getText().equals("F100") || nmdiet.getText().equals("F135")) {
+                if (jumlahBeri.getText().trim().equals("-") || jumlahBeri.getText().trim().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Jlh. pemberian diet harus diisi dg. benar...!!!!");
+                } else if (cmbSatuan.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(null, "Pilih salah satu satuan jlh. pemberian dietnya dg. benar...!!!!");
+                } else {
+                    tabMode2.removeRow(tbDiet.getSelectedRow());
+                    tabMode2.addRow(new Object[]{kddiet.getText(), nmdiet.getText(), jnsMakanan.getText(),
+                        jumlahBeri.getText() + " " + cmbSatuan.getSelectedItem(), Sequel.cariIsi("select now()")});
+                    BtnCloseIn3ActionPerformed(null);
+                }
+            } else {
+                tabMode2.removeRow(tbDiet.getSelectedRow());
+                tabMode2.addRow(new Object[]{kddiet.getText(), nmdiet.getText(), jnsMakanan.getText(),
+                    jumlahBeri.getText() + " " + cmbSatuan.getSelectedItem(), Sequel.cariIsi("select now()")});
+                BtnCloseIn3ActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_BtnEdit1ActionPerformed
+
+    private void BtnEdit1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEdit1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnEditActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnEdit1KeyPressed
+
+    private void BtnCloseIn3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn3ActionPerformed
+        kddiet.setText("");
+        nmdiet.setText("");
+        jnsMakanan.setText("");
+        kdberi.setText("");
+        jumlahBeri.setText("");
+        waktuSimpanDiet = "";
+        cmbSatuan.setSelectedIndex(0);
+        jumlahBeri.setEditable(false);
+        cmbSatuan.setEnabled(false);
+        WindowDataDiet.dispose();
+    }//GEN-LAST:event_BtnCloseIn3ActionPerformed
+
+    private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "pasien");
+        } else if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data diet belum terisi...!!");
+        } else {
+            kemasan = "";
+            if (cekKemasan.isSelected() == true) {
+                kemasan = "kotak";
+            } else if (cekKemasan.isSelected() == false) {
+                kemasan = "biasa";
+            }
+            
+            if (jnsRawat.equals("Ranap")) {
+                simpanDietINAP();
+            } else if (jnsRawat.equals("Ralan")) {
+                simpanDietJALAN();
+            }
+        }
+    }//GEN-LAST:event_BtnSimpan1ActionPerformed
+
+    private void BtnSimpan1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpan1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnSimpanActionPerformed(null);
+        } else {
+            Valid.pindah(evt, TPasien, BtnBatal);
+        }
+    }//GEN-LAST:event_BtnSimpan1KeyPressed
+
+    private void BtnBatal1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatal1ActionPerformed
+        Valid.tabelKosong(tabMode2);
+        DTPTgl.setDate(new Date());
+        cekWaktu.setSelected(false);
+        cekDietPagi.setSelected(false);
+        cekDietSiang.setSelected(false);
+        cekDietSore.setSelected(false);
+        cekKemasan.setSelected(false);
+        waktuSimpanDiet = "";
+        
+        if (cekKemasan.isSelected() == true) {
+            cekKemasan.setText("Dikemas Dengan KOTAKAN");
+        } else if (cekKemasan.isSelected() == false) {
+            cekKemasan.setText("Disajikan Seperti Biasa");
+        }
+    }//GEN-LAST:event_BtnBatal1ActionPerformed
+
+    private void BtnBatal1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatal1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            emptTeks();
+        }
+    }//GEN-LAST:event_BtnBatal1KeyPressed
+
+    private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
+        WindowDiet.dispose();
+        BtnBatal1ActionPerformed(null);
+    }//GEN-LAST:event_BtnKeluar1ActionPerformed
+
+    private void BtnKeluar1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluar1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            WindowDiet.dispose();
+        }
+    }//GEN-LAST:event_BtnKeluar1KeyPressed
+
+    private void MnDataPemberianDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataPemberianDietActionPerformed
+        if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Pasien belum dip[ilih..!!!!");
+        } else {
+            DlgPemberianDiet rawatinap = new DlgPemberianDiet(null, false);
+            rawatinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            rawatinap.setLocationRelativeTo(internalFrame1);
+            rawatinap.emptTeks();
+            rawatinap.cekWaktu.setSelected(true);
+            rawatinap.TCari.setText("");
+            rawatinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+            rawatinap.isCek();
+            rawatinap.setVisible(true);
+        }
+    }//GEN-LAST:event_MnDataPemberianDietActionPerformed
+
+    private void DTPTglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPTglKeyPressed
+        Valid.pindah(evt, TCari, DTPTgl);
+    }//GEN-LAST:event_DTPTglKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2462,23 +3538,37 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBaca;
     private widget.Button BtnBatal;
+    private widget.Button BtnBatal1;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCloseIn1;
+    private widget.Button BtnCloseIn3;
     private widget.Button BtnCloseIn6;
     private widget.Button BtnCloseIn7;
     private widget.Button BtnCopas;
     private widget.Button BtnDPJP;
     private widget.Button BtnEdit;
+    private widget.Button BtnEdit1;
+    private widget.Button BtnGanti;
     private widget.Button BtnHapus;
+    private widget.Button BtnHapusDPJP;
+    private widget.Button BtnHapusKonsulen;
+    private widget.Button BtnHapusPPA;
+    private widget.Button BtnHapusPilihan;
+    private widget.Button BtnHapusSerah;
+    private widget.Button BtnHapusTerima;
     private widget.Button BtnHasil;
     private widget.Button BtnInstruksi;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKeluar1;
     private widget.Button BtnKonsulen;
     private widget.Button BtnPPA;
+    private widget.Button BtnPilihDiet;
     private widget.Button BtnPrint;
     private widget.Button BtnSerah;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSimpan1;
+    private widget.Button BtnSimpan2;
     private widget.Button BtnSimpanCeklis;
     private widget.Button BtnTerima;
     private widget.Button BtnUlangiHasil;
@@ -2492,9 +3582,12 @@ public class DlgCPPT extends javax.swing.JDialog {
     public widget.CekBox ChkSemua;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
+    private widget.Tanggal DTPTgl;
     private widget.PanelBiasa FormInput;
+    private widget.PanelBiasa FormInput1;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCeklisFarmasi;
+    private javax.swing.JMenuItem MnDataPemberianDiet;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private javax.swing.JMenuItem MnPemberianDiet;
@@ -2502,18 +3595,29 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll5;
     private widget.TextBox TCari;
     private widget.TextBox TCari1;
     private widget.TextArea THasil;
     private widget.TextArea TInstruksi;
+    private widget.TextBox TKd;
     private widget.TextBox TNoRm;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private javax.swing.JTabbedPane TabCPPT;
     private widget.TextArea Ttemplate;
     private javax.swing.JDialog WindowCPPT;
+    private javax.swing.JDialog WindowDataDiet;
+    private javax.swing.JDialog WindowDiet;
     private javax.swing.JDialog WindowFarmasi;
     private javax.swing.JDialog WindowTemplate;
+    private widget.Button btnDiet;
+    private widget.Button btnJumlahBeri;
+    private widget.CekBox cekDietPagi;
+    private widget.CekBox cekDietSiang;
+    private widget.CekBox cekDietSore;
+    private widget.CekBox cekKemasan;
+    public widget.CekBox cekWaktu;
     private widget.ComboBox cmbBagian;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbDtk1;
@@ -2524,6 +3628,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbPPA;
     private widget.ComboBox cmbRawat;
+    private widget.ComboBox cmbSatuan;
     private widget.ComboBox cmbSertim;
     private widget.ComboBox cmbSift;
     private widget.ComboBox cmbSiftCppt;
@@ -2533,9 +3638,14 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame11;
+    private widget.InternalFrame internalFrame12;
+    private widget.InternalFrame internalFrame14;
+    private widget.InternalFrame internalFrame15;
+    private widget.InternalFrame internalFrame16;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame5;
+    private widget.InternalFrame internalFrame9;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
     private widget.Label jLabel12;
@@ -2554,14 +3664,19 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
+    private widget.Label jLabel28;
+    private widget.Label jLabel29;
     private widget.Label jLabel3;
     private widget.Label jLabel36;
     private widget.Label jLabel4;
     private widget.Label jLabel42;
+    private widget.Label jLabel46;
     private widget.Label jLabel47;
+    private widget.Label jLabel48;
     private widget.Label jLabel49;
     private widget.Label jLabel5;
     private widget.Label jLabel50;
+    private widget.Label jLabel51;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -2569,21 +3684,29 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
+    private widget.TextBox jnsMakanan;
+    private widget.TextBox jumlahBeri;
+    private widget.TextBox kdberi;
+    private widget.TextBox kddiet;
     private widget.TextBox kddpjp;
     private widget.TextBox nipSerah;
     private widget.TextBox nipTerima;
     private widget.TextBox nmKonsulen;
     private widget.TextBox nmSerah;
     private widget.TextBox nmTerima;
+    private widget.TextBox nmdiet;
     private widget.TextBox nmdpjp;
     private widget.TextBox nmppa;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelisi4;
     private widget.ScrollPane scrollInput;
     private widget.ScrollPane scrollPane2;
     private widget.ScrollPane scrollPane3;
     private widget.Table tbCPPT;
+    private widget.Table tbDiet;
     private widget.Table tbTemplate;
     private widget.Tanggal tglA;
     private widget.Tanggal tglB;
@@ -2906,6 +4029,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         status = sttsrawat;
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         DTPCari2.setDate(new Date());
+        isRawat();
         
         if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)")) {
             cmbRawat.setSelectedIndex(0);
@@ -3422,5 +4546,188 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbRawat.setSelectedIndex(2);
         cmbSiftCppt.setSelectedIndex(0);
         cmbSiftCppt.setEnabled(true);
+    }
+    
+    private void getDiet() {
+        waktuSimpanDiet = "";
+        if (tbDiet.getSelectedRow() != -1) {
+            kddiet.setText(tbDiet.getValueAt(tbDiet.getSelectedRow(), 0).toString());
+            nmdiet.setText(tbDiet.getValueAt(tbDiet.getSelectedRow(), 1).toString());
+            jnsMakanan.setText(tbDiet.getValueAt(tbDiet.getSelectedRow(), 2).toString());
+            waktuSimpanDiet = tbDiet.getValueAt(tbDiet.getSelectedRow(), 4).toString();
+        }
+    }
+    
+    private void simpanDietINAP() {
+        if ((cekDietPagi.isSelected() == false) && (cekDietSiang.isSelected() == false) && (cekDietSore.isSelected() == false)) {
+            JOptionPane.showMessageDialog(null, "Waktu diet harus dipilih...!!!!");
+        } else {
+            dietOK();
+            if (cekDietPagi.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Pagi','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ranap_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Pagi','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet pagi");
+                }
+            }
+            if (cekDietSiang.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Siang','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ranap_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Siang','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet siang");
+                }
+            }
+            if (cekDietSore.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Sore','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ranap_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Sore','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet sore");
+                }
+            }
+            dataDietnya();
+            BtnKeluar1ActionPerformed(null);
+        }  
+    }
+    
+    private void dietOK() {
+        dataDiet = "";
+        TKd.setText("");
+        
+        for (i = 0; i < tbDiet.getRowCount(); i++) {
+            if (dataDiet.equals("")) {
+                dataDiet = tbDiet.getValueAt(i, 1).toString() + " " + tbDiet.getValueAt(i, 3).toString();
+            } else {
+                dataDiet = dataDiet + " + " + tbDiet.getValueAt(i, 1).toString() + " " + tbDiet.getValueAt(i, 3).toString();
+            }
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from diet where nama_diet='" + dataDiet + "'") == 0) {
+            Valid.autoNomer("diet", "DB", 4, TKd);
+            Sequel.menyimpan("diet", "'" + TKd.getText() + "','" + dataDiet + "','UMUM','1'", "Data diet pasien");
+        } else {
+            TKd.setText(Sequel.cariIsi("select kd_diet from diet where nama_diet='" + dataDiet + "'"));
+        }
+    }
+    
+    private void isRawat() {
+        try {
+            pspasien = koneksi.prepareStatement("select date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, rp.status_lanjut, rp.kd_poli from reg_periksa rp "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rspasien = pspasien.executeQuery();
+                while (rspasien.next()) {
+                    jnsRawat = rspasien.getString("status_lanjut");
+
+                    if (jnsRawat.equals("Ralan")) {
+                        kdUnit = rspasien.getString("kd_poli");
+                    } else if (jnsRawat.equals("Ranap")) {
+                        kdUnit = "";
+                        kdUnit = Sequel.cariIsi("select kd_kamar from kamar_inap where no_rawat='" + TNoRw.getText() + "' order by tgl_masuk desc limit 1");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rspasien != null) {
+                    rspasien.close();
+                }
+                if (pspasien != null) {
+                    pspasien.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void simpanDietJALAN() {
+        if ((cekDietPagi.isSelected() == false) && (cekDietSiang.isSelected() == false) && (cekDietSore.isSelected() == false)) {
+            JOptionPane.showMessageDialog(null, "Waktu diet harus dipilih...!!!!");
+        } else {
+            dietOK();
+            if (cekDietPagi.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet_ralan", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Pagi','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ralan_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Pagi','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet pagi");
+                }
+            }
+            if (cekDietSiang.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet_ralan", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Siang','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ralan_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Siang','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet siang");
+                }
+            }
+            if (cekDietSore.isSelected() == true) {
+                Sequel.menyimpan("detail_beri_diet_ralan", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                        + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Sore','"
+                        + TKd.getText() + "','" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "data");
+
+                for (i = 0; i < tbDiet.getRowCount(); i++) {
+                    Sequel.menyimpan("diet_ralan_daftar_rincian", "'" + TNoRw.getText() + "','" + kdUnit + "','"
+                            + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','Sore','"
+                            + tbDiet.getValueAt(i, 0).toString() + "','" + tbDiet.getValueAt(i, 3).toString() + "',"
+                            + "'" + Sequel.cariIsi("SELECT NOW()") + "','" + kemasan + "'", "diet sore");
+                }
+            }
+            dataDietnya();
+            BtnKeluar1ActionPerformed(null);
+        }
+    }
+    
+    private void dataDietnya() {
+        instruksiDiet = "";
+        try {
+            psdiet = koneksi.prepareStatement("SELECT concat('Waktu ',db.waktu,' : ') wkt, d.nama_diet FROM detail_beri_diet db "
+                    + "INNER JOIN diet d on db.kd_diet = d.kd_diet WHERE "
+                    + "db.tanggal='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "' AND db.no_rawat LIKE '%" + TNoRw.getText() + "%' "
+                    + "ORDER BY db.tanggal, d.nama_diet");
+            try {
+                rsdiet = psdiet.executeQuery();
+                while (rsdiet.next()) {
+                    if (instruksiDiet.equals("")) {
+                        instruksiDiet = rsdiet.getString("wkt") + " " + rsdiet.getString("nama_diet");
+                    } else {
+                        instruksiDiet = instruksiDiet + "\n" + rsdiet.getString("wkt") + " " + rsdiet.getString("nama_diet");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        if (TInstruksi.getText().equals("")) {
+            TInstruksi.setText("Diet Harian Pasien :\n" + instruksiDiet);
+        } else {
+            TInstruksi.setText(TInstruksi.getText() + "\n\nDiet Harian Pasien :\n" + instruksiDiet);
+        }
     }
 }
