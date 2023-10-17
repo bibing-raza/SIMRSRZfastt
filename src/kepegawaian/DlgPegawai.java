@@ -344,7 +344,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Pegawai/Karyawan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Pegawai/Karyawan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -575,7 +575,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 102, 105, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2021" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -781,8 +781,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel30);
         jLabel30.setBounds(680, 102, 70, 23);
 
-        DTPmulaiKJ.setEditable(false);
-        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2021" }));
+        DTPmulaiKJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
         DTPmulaiKJ.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKJ.setName("DTPmulaiKJ"); // NOI18N
         DTPmulaiKJ.setOpaque(false);
@@ -902,8 +901,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
         FormInput.add(jLabel38);
         jLabel38.setBounds(0, 282, 105, 23);
 
-        DTPmulaiKontrak.setEditable(false);
-        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-08-2021" }));
+        DTPmulaiKontrak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2021" }));
         DTPmulaiKontrak.setDisplayFormat("dd-MM-yyyy");
         DTPmulaiKontrak.setName("DTPmulaiKontrak"); // NOI18N
         DTPmulaiKontrak.setOpaque(false);
@@ -976,7 +974,6 @@ public final class DlgPegawai extends javax.swing.JDialog {
 
         TabPegawai.setBackground(new java.awt.Color(250, 255, 245));
         TabPegawai.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabPegawai.setForeground(new java.awt.Color(0, 0, 0));
         TabPegawai.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TabPegawai.setName("TabPegawai"); // NOI18N
         TabPegawai.addMouseListener(new java.awt.event.MouseAdapter() {

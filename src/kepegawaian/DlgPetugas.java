@@ -266,7 +266,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        MnRestore.setBackground(new java.awt.Color(255, 255, 255));
         MnRestore.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRestore.setForeground(new java.awt.Color(60, 80, 50));
         MnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -638,7 +637,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
         CmbJk.setBounds(109, 72, 140, 23);
 
         TNm.setForeground(new java.awt.Color(0, 0, 0));
-        TNm.setHighlighter(null);
         TNm.setName("TNm"); // NOI18N
         TNm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -678,8 +676,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 102, 105, 23);
 
-        DTPLahir.setEditable(false);
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-07-2023" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-07-2023" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -752,7 +749,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
         TJbtn.setBounds(603, 102, 242, 23);
 
         TAlmt.setForeground(new java.awt.Color(0, 0, 0));
-        TAlmt.setHighlighter(null);
         TAlmt.setName("TAlmt"); // NOI18N
         TAlmt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -774,7 +770,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
         TTlp.setBounds(515, 72, 150, 23);
 
         TNip.setForeground(new java.awt.Color(0, 0, 0));
-        TNip.setHighlighter(null);
         TNip.setName("TNip"); // NOI18N
         TNip.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
