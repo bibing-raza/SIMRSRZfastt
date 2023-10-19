@@ -402,7 +402,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabModeLab1 = new DefaultTableModel(null, new Object[]{
-            "No.","Nama Pemeriksaan Lab.","Tgl. Permintaan","Jam Permintaan","Diperiksa","norawat","No. Permintaan"}) {
+            "No.", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Diperiksa", "norawat", "No. Permintaan", "CITO"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -414,7 +414,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -426,7 +426,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbPeriksaLab.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPeriksaLab.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbPeriksaLab.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(35);
@@ -443,6 +443,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 6) {
                 column.setPreferredWidth(115);
+            } else if (i == 7) {
+                column.setPreferredWidth(50);
             }
         }
         tbPeriksaLab.setDefaultRenderer(Object.class, new WarnaTable());
@@ -12729,7 +12731,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         Valid.tabelKosong(tabModeLab1);
         try {
             psLab1 = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                    + "p.status_periksa, p.no_rawat, p.no_minta FROM permintaan_lab_raza p inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                    + "p.status_periksa, p.no_rawat, p.no_minta, p.cito FROM permintaan_lab_raza p inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
                     + "p.status_rawat='Ralan' and p.no_rawat='" + TNoRw.getText() + "' order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             try {
                 rsLab1 = psLab1.executeQuery();
@@ -12742,7 +12744,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rsLab1.getString("jam_permintaan"),
                         rsLab1.getString("status_periksa"),
                         rsLab1.getString("no_rawat"),
-                        rsLab1.getString("no_minta")
+                        rsLab1.getString("no_minta"),
+                        rsLab1.getString("cito")
                     });
                     x1++;
                 }

@@ -13936,7 +13936,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else {
             DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
             ringkasan.emptTeks();
-            ringkasan.TNmDokter.requestFocus();
             ringkasan.isCek();
             ringkasan.setPasien(norawat.getText());
             ringkasan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -17293,8 +17292,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + rsLaprm.getString("no_rawat") + "'")));
                     }
 
-                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where stts_pulang not in ('-','Pindah Kamar') and no_rawat='" + rsLaprm.getString("no_rawat") + "'")));
-                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select date_format(jam_keluar,'%H:%i') jam from kamar_inap where stts_pulang not in ('-','Pindah Kamar') and no_rawat='" + rsLaprm.getString("no_rawat") + "'") + " WITA");
+                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(now(),'%H:%i')") + " WITA");
 
                     Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
                             "select date(now())", param);
