@@ -1321,6 +1321,8 @@ public final class DlgCariObat extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        ChkJln.setSelected(true);
+        DTPTgl.setDate(new Date());
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
@@ -1475,6 +1477,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
             } catch (Exception ex) {
                 System.out.println(ex);
             }
+            ChkJln.setSelected(true);
+            DTPTgl.setDate(new Date());
         }
     }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1517,6 +1521,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         ChkJln.setSelected(true);
+        DTPTgl.setDate(new Date());
         Sequel.insertClosingStok();
         if (noresep.equals("")) {
             tampilobat();
