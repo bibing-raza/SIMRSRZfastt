@@ -85,6 +85,7 @@ import rekammedis.DlgRekamPsikologisAnak;
 import rekammedis.DlgRekamPsikologisDewasa;
 import rekammedis.DlgRekamPsikologisPerkawinan;
 import rekammedis.DlgTerapiAntiretroviralHIV;
+import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenKebidananRalan;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
@@ -7895,9 +7896,25 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else {
             if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") > 0) {
                 if (akses.getadmin() == true) {
-                    JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                    if (TNoRw.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                    } else {
+                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        verif.setLocationRelativeTo(internalFrame1);
+                        verif.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                        verif.setVisible(true);
+                    }
                 } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))) {
-                    JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                    if (TNoRw.getText().equals("")) {
+                        JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                    } else {
+                        DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                        verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        verif.setLocationRelativeTo(internalFrame1);
+                        verif.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                        verif.setVisible(true);
+                    }
                 } else {
                     JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
                 }
@@ -8468,6 +8485,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnInputDataTransferSerahTerimaIGD.setEnabled(akses.getpemberian_obat());
         MnPemberianObat.setEnabled(akses.getpemberian_obat());
         MnCPPTIGD.setEnabled(akses.getcppt());
+        MnVerifCPPT.setEnabled(akses.getcppt());
         MnInputDataAssesmenMedikIGD.setEnabled(akses.getresep_dokter());
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnInputDataKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());

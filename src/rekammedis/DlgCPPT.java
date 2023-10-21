@@ -2386,7 +2386,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame8.add(BtnHapusDPJP);
-        BtnHapusDPJP.setBounds(825, 8, 28, 23);
+        BtnHapusDPJP.setBounds(821, 8, 28, 23);
 
         BtnHapusKonsulen.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusKonsulen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2399,7 +2399,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame8.add(BtnHapusKonsulen);
-        BtnHapusKonsulen.setBounds(825, 36, 28, 23);
+        BtnHapusKonsulen.setBounds(821, 36, 28, 23);
 
         BtnKonsulen.setForeground(new java.awt.Color(0, 0, 0));
         BtnKonsulen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2496,7 +2496,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame8.add(BtnHapusPPA);
-        BtnHapusPPA.setBounds(825, 64, 28, 23);
+        BtnHapusPPA.setBounds(821, 64, 28, 23);
 
         ChkSamaPPA.setBackground(new java.awt.Color(255, 255, 250));
         ChkSamaPPA.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2615,7 +2615,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame8.add(BtnHapusSerah);
-        BtnHapusSerah.setBounds(825, 120, 28, 23);
+        BtnHapusSerah.setBounds(821, 120, 28, 23);
 
         BtnHapusTerima.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapusTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2628,7 +2628,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame8.add(BtnHapusTerima);
-        BtnHapusTerima.setBounds(825, 148, 28, 23);
+        BtnHapusTerima.setBounds(821, 148, 28, 23);
 
         BtnTerima.setForeground(new java.awt.Color(0, 0, 0));
         BtnTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -4107,7 +4107,7 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void MnDataPemberianDietActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataPemberianDietActionPerformed
         if (TNoRw.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Pasien belum dip[ilih..!!!!");
+            JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
         } else {
             DlgPemberianDiet rawatinap = new DlgPemberianDiet(null, false);
             rawatinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -4390,17 +4390,49 @@ public class DlgCPPT extends javax.swing.JDialog {
     private void BtnVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifActionPerformed
         if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
             if (akses.getadmin() == true) {
-                JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                if (TNoRw.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                } else {
+                    DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                    verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    verif.setLocationRelativeTo(internalFrame1);
+                    verif.setData(TNoRw.getText(), status);
+                    verif.setVisible(true);
+                }
             } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))) {
-                JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                if (TNoRw.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                } else {
+                    DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                    verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    verif.setLocationRelativeTo(internalFrame1);
+                    verif.setData(TNoRw.getText(), status);
+                    verif.setVisible(true);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
             }
         } else if (status.equals("ranap")) {
             if (akses.getadmin() == true) {
-                JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                if (TNoRw.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                } else {
+                    DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                    verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    verif.setLocationRelativeTo(internalFrame1);
+                    verif.setData(TNoRw.getText(), status);
+                    verif.setVisible(true);
+                }
             } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"))) {
-                JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                if (TNoRw.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Pasien belum dipilih..!!!!");
+                } else {
+                    DlgVerifikasiCPPT verif = new DlgVerifikasiCPPT(null, false);
+                    verif.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    verif.setLocationRelativeTo(internalFrame1);
+                    verif.setData(TNoRw.getText(), status);
+                    verif.setVisible(true);
+                }
             } else {
                 JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
             }
