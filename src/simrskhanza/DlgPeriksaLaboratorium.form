@@ -601,7 +601,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="19-09-2023"/>
+                        <StringItem index="0" value="21-10-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1265,7 +1265,7 @@
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="800" y="40" width="510" height="262"/>
+                      <AbsoluteConstraints x="800" y="40" width="560" height="262"/>
                     </Constraint>
                   </Constraints>
 
@@ -1303,7 +1303,7 @@
                   </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="1125" y="12" width="140" height="23"/>
+                      <AbsoluteConstraints x="1125" y="12" width="149" height="23"/>
                     </Constraint>
                   </Constraints>
                 </Component>

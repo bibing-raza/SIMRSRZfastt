@@ -707,6 +707,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnCPPTIGD = new javax.swing.JMenu();
         MnInputDataCPPT = new javax.swing.JMenuItem();
         MnLihatDataCPPT = new javax.swing.JMenuItem();
+        MnVerifCPPT = new javax.swing.JMenuItem();
         MnAsesmenKebidanan = new javax.swing.JMenu();
         MnInputDataKebidanan = new javax.swing.JMenuItem();
         MnLihatDataKebidanan = new javax.swing.JMenuItem();
@@ -2226,7 +2227,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataCPPT.setIconTextGap(5);
         MnInputDataCPPT.setName("MnInputDataCPPT"); // NOI18N
-        MnInputDataCPPT.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
         MnInputDataCPPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataCPPTActionPerformed(evt);
@@ -2243,13 +2244,30 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataCPPT.setIconTextGap(5);
         MnLihatDataCPPT.setName("MnLihatDataCPPT"); // NOI18N
-        MnLihatDataCPPT.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
         MnLihatDataCPPT.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataCPPTActionPerformed(evt);
             }
         });
         MnCPPTIGD.add(MnLihatDataCPPT);
+
+        MnVerifCPPT.setBackground(new java.awt.Color(255, 255, 254));
+        MnVerifCPPT.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnVerifCPPT.setForeground(new java.awt.Color(50, 50, 50));
+        MnVerifCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnVerifCPPT.setText("Verifikasi CPPT");
+        MnVerifCPPT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnVerifCPPT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnVerifCPPT.setIconTextGap(5);
+        MnVerifCPPT.setName("MnVerifCPPT"); // NOI18N
+        MnVerifCPPT.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnVerifCPPT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnVerifCPPTActionPerformed(evt);
+            }
+        });
+        MnCPPTIGD.add(MnVerifCPPT);
 
         MnRMGawatDarurat.add(MnCPPTIGD);
 
@@ -3139,7 +3157,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3992,7 +4010,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4229,7 +4247,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4248,7 +4266,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7868,6 +7886,28 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         JOptionPane.showMessageDialog(null, "Segera tayang (Comming Soon)...!!!");
     }//GEN-LAST:event_MnLihatDataKebidananActionPerformed
 
+    private void MnVerifCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifCPPTActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and STATUS='Ralan'") > 0) {
+                if (akses.getadmin() == true) {
+                    JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                } else if (akses.getkode().equals(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'"))) {
+                    JOptionPane.showMessageDialog(null, "Proses disiapkan form nya...!!!");
+                } else {
+                    JOptionPane.showMessageDialog(null, "Verifikasi CPPT hanya dilakukan oleh DPJP pasien tersebut...!!!");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Data CPPT IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnVerifCPPTActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8032,6 +8072,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenu MnTindakanRalan;
     private javax.swing.JMenu MnTransferSerahTerimaIGD;
+    private javax.swing.JMenuItem MnVerifCPPT;
     private widget.TextBox NmDokter;
     private widget.TextBox NoRM;
     private widget.ScrollPane Scroll1;

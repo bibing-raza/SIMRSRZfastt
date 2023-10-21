@@ -30,6 +30,7 @@ import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgMasterFaskes;
 
 /**
@@ -44,6 +45,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, psPasien, psLab;
     private ResultSet rs, rsPasien, rsLab;
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private int i = 0, x = 0, jlhOrder = 0, cekSudah = 0, cekDRinap = 0;
     private String kddokter = "", sttsRawat = "", kdPoli = "", cekNORW = "",
             cekNOMINTA = "", diperiksa = "", kddokterFIX = "", cito = "";
@@ -152,6 +154,43 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
                 public void changedUpdate(DocumentEvent e) {tampil();}
             });
         } 
+        
+        dokter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgPermintaanLabRAZA")) {
+                    if (dokter.getTable().getSelectedRow() != -1) {
+                        kddokterFIX = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                        drPerujuk.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                        btnDokter.requestFocus();
+                    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
     }
  
     /** This method is called from within the constructor to
@@ -196,6 +235,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         Scroll6 = new widget.ScrollPane();
         diagnos = new widget.TextArea();
         chkCito = new widget.CekBox();
+        btnDokter = new widget.Button();
         jPanel1 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
@@ -493,7 +533,20 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         chkCito.setOpaque(false);
         chkCito.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(chkCito);
-        chkCito.setBounds(770, 226, 60, 23);
+        chkCito.setBounds(767, 226, 60, 23);
+
+        btnDokter.setForeground(new java.awt.Color(0, 0, 0));
+        btnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDokter.setMnemonic('2');
+        btnDokter.setToolTipText("Alt+2");
+        btnDokter.setName("btnDokter"); // NOI18N
+        btnDokter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDokterActionPerformed(evt);
+            }
+        });
+        FormInput.add(btnDokter);
+        btnDokter.setBounds(762, 198, 28, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -855,6 +908,15 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         AutoNomerMinta();        
     }//GEN-LAST:event_BtnBaruActionPerformed
 
+    private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
+        akses.setform("DlgPermintaanLabRAZA");
+        dokter.isCek();
+        dokter.setSize(1041, internalFrame1.getHeight() - 40);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setAlwaysOnTop(false);
+        dokter.setVisible(true);
+    }//GEN-LAST:event_btnDokterActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -886,6 +948,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
     private widget.ScrollPane Scroll6;
     private widget.TextBox TAlamat;
     private widget.TextBox TCari;
+    private widget.Button btnDokter;
     public widget.CekBox chkCito;
     private widget.TextArea diagnos;
     private widget.TextBox drPerujuk;

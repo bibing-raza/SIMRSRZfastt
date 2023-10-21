@@ -189,9 +189,9 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         }
         tbTarif.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode3=new DefaultTableModel(null,new Object[]{
-            "No.","Cek","Nama Pemeriksaan Lab.","Tgl. Permintaan","Jam Permintaan","Diperiksa","norawat","nominta"
-            }){
+        tabMode3=new DefaultTableModel(null, new Object[]{
+            "No.", "Cek", "CITO", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Diperiksa", "norawat", "nominta"
+        }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
                 if (colIndex==1) {
@@ -203,37 +203,39 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
                  java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class,
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class
+                 java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbMintaPeriksa.setModel(tabMode3);
-
         tbMintaPeriksa.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMintaPeriksa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbMintaPeriksa.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(28);
             } else if (i == 1) {
                 column.setPreferredWidth(30);
             } else if (i == 2) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(50);
             } else if (i == 3) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(200);
             } else if (i == 4) {
                 column.setPreferredWidth(85);
             } else if (i == 5) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(85);
             } else if (i == 6) {
+                column.setPreferredWidth(55);
+            } else if (i == 7) {
 //                column.setPreferredWidth(65);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 7) {
+            } else if (i == 8) {
 //                column.setPreferredWidth(65);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -799,7 +801,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         NmPtg.setBounds(546, 42, 195, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2023" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2023" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1075,7 +1077,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         Scroll2.setViewportView(tbMintaPeriksa);
 
         PanelInput.add(Scroll2);
-        Scroll2.setBounds(800, 40, 510, 262);
+        Scroll2.setBounds(800, 40, 560, 262);
 
         BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -1090,7 +1092,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
             }
         });
         PanelInput.add(BtnCari3);
-        BtnCari3.setBounds(1125, 12, 140, 23);
+        BtnCari3.setBounds(1125, 12, 149, 23);
 
         chkPermintaan.setForeground(new java.awt.Color(0, 0, 0));
         chkPermintaan.setText("Conteng semua item permintaan Lab.");
@@ -1822,13 +1824,14 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         try {
             for (i3 = 0; i3 < tbMintaPeriksa.getRowCount(); i3++) {
                 if (tbMintaPeriksa.getValueAt(i3, 1).toString().equals("true")) {
-                    if (tbMintaPeriksa.getValueAt(i3, 5).toString().equals("SUDAH")) {
+                    if (tbMintaPeriksa.getValueAt(i3, 6).toString().equals("SUDAH")) {
                         cekPeriksa = "BELUM";
                     } else {
                         cekPeriksa = "SUDAH";
                     }
                     Sequel.queryu("update permintaan_lab_raza set status_periksa = '" + cekPeriksa + "' where "
-                            + "no_rawat='" + tbMintaPeriksa.getValueAt(i3, 6).toString() + "' and no_minta='" + tbMintaPeriksa.getValueAt(i3, 7).toString() + "'");
+                            + "no_rawat='" + tbMintaPeriksa.getValueAt(i3, 7).toString() + "' and "
+                            + "no_minta='" + tbMintaPeriksa.getValueAt(i3, 8).toString() + "'");
                 }
             }
             tampilMintaPeriksa();
@@ -2963,12 +2966,14 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         try {
             if (status.equals("Ralan")) {
                 psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta FROM permintaan_lab_raza p inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito FROM permintaan_lab_raza p "
+                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
                         + "p.status_rawat='Ralan' and p.tgl_permintaan ='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and "
                         + "p.no_rawat='" + TNoRw.getText() + "' order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             } else if (status.equals("Ranap")) {
                 psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta FROM permintaan_lab_raza p inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito FROM permintaan_lab_raza p "
+                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
                         + "p.status_rawat='Ranap' and p.tgl_permintaan ='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and "
                         + "p.no_rawat='" + TNoRw.getText() + "' order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             }
@@ -2979,6 +2984,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 while (rsOrder.next()) {
                     tabMode3.addRow(new Object[]{
                         i3 + ".", false,
+                        rsOrder.getString("cito"),
                         rsOrder.getString("nm_pemeriksaan"),
                         rsOrder.getString("tglminta"),
                         rsOrder.getString("jam_permintaan"),
