@@ -1359,6 +1359,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ganti.setLocationRelativeTo(internalFrame1);
                 ganti.setData(TNoRw.getText(), kodeobat, tglrsp, jamrsp, "transaksi_rs");
                 ganti.setVisible(true);
+
+                tampilObat();
+                for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                    if (tbItemObat.getValueAt(i, 1).equals(TNoRw.getText())) {
+                        tbItemObat.setValueAt(Boolean.FALSE, i, 0);
+                    }
+                }
             }
         }        
     }//GEN-LAST:event_MnAturanPakaiActionPerformed
