@@ -1814,7 +1814,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
 
         internalFrame6.setBorder(null);
         internalFrame6.setName("internalFrame6"); // NOI18N
-        internalFrame6.setLayout(new java.awt.GridLayout());
+        internalFrame6.setLayout(new java.awt.GridLayout(1, 0));
 
         TabRawat.setBackground(new java.awt.Color(250, 255, 245));
         TabRawat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
@@ -2203,13 +2203,13 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(TTensi);
-        TTensi.setBounds(645, 5, 60, 23);
+        TTensi.setBounds(648, 5, 60, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Berat(Kg) :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelGlass12.add(jLabel25);
-        jLabel25.setBounds(705, 5, 70, 23);
+        jLabel25.setBounds(715, 5, 60, 23);
 
         TBerat.setForeground(new java.awt.Color(0, 0, 0));
         TBerat.setHighlighter(null);
@@ -2276,7 +2276,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(TNadi);
-        TNadi.setBounds(645, 33, 60, 23);
+        TNadi.setBounds(648, 33, 60, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Alergi :");
@@ -2327,7 +2327,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             }
         });
         panelGlass12.add(TGCS);
-        TGCS.setBounds(645, 60, 110, 23);
+        TGCS.setBounds(648, 60, 110, 23);
 
         internalFrame5.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
 

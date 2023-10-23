@@ -1461,7 +1461,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                         + "c.status, d.nm_dokter, c.noID from catatan_resep_ranap c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat "
                         + "inner join dokter d on d.kd_dokter = c.kd_dokter where "
-                        + "r.status_lanjut='ranap' and c.tgl_perawatan between ? and ? and c.no_rawat = ? and c.nama_obat like ? "
+                        + "c.tgl_perawatan between ? and ? and c.no_rawat = ? and c.nama_obat like ? "
                         + "order by c.noId");
             }
             try {
