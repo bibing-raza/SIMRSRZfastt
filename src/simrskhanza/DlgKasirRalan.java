@@ -7436,7 +7436,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     akses.setform("DlgKasirRalan");
                     RMPenilaianAwalMedikIGD form = new RMPenilaianAwalMedikIGD(null, false);
                     form.isCek();
-                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate());
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
                     form.emptTeks();
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
@@ -7450,7 +7450,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         akses.setform("DlgKasirRalan");
                         RMPenilaianAwalMedikIGD form = new RMPenilaianAwalMedikIGD(null, false);
                         form.isCek();
-                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate());
+                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
                         form.emptTeks();
                         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         form.setLocationRelativeTo(internalFrame1);
@@ -7658,7 +7658,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             akses.setform("DlgKasirRalan");
             DlgCatatanResep form = new DlgCatatanResep(null, false);
             form.isCek();
-            form.setData(TNoRw.getText(), kdpoli.getText());
+            form.setData(TNoRw.getText(), kdpoli.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);

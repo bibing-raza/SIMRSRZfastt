@@ -63,7 +63,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             ngt = "", infus = "", obat = "", tidakada = "", paten = "", obsP = "", deformitas = "", contusio = "", penetrasi = "", tenderness = "",
             swelling = "", ekskoriasi = "", abrasi = "", burn = "", laserasi = "", tdk_tmpk_jls = "", obsT = "", traumaJlnNfs = "", resikoAspirasi = "",
             bendaAsing = "", hipertensi = "", dm = "", jantung = "", merokok = "", meninggal = "", ganggnafas = "", kdItemrad = "", itemDipilih = "",
-            tglRad = "", jamRad = "", jamkeluar = "";
+            tglRad = "", jamRad = "", jamkeluar = "", status = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -4599,7 +4599,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             akses.setform("RMPenilaianAwalMedikIGD");
             DlgCatatanResep form = new DlgCatatanResep(null, false);
             form.isCek();
-            form.setData(TNoRw.getText(), Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+            form.setData(TNoRw.getText(), Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), status);
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -5942,10 +5942,11 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         }
     }
     
-    public void setNoRm(String norwt, Date tgl2) {
+    public void setNoRm(String norwt, Date tgl2, String sttsrwt) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
+        status = sttsrwt;
         isRawat();
         tampil();        
     }    

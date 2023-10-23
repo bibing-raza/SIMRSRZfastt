@@ -933,6 +933,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPeriksaRadiologi = new javax.swing.JMenuItem();
         MnOperasi = new javax.swing.JMenuItem();
         MnObat = new javax.swing.JMenu();
+        MnCatatanResep = new javax.swing.JMenuItem();
         MnPemberianObat = new javax.swing.JMenuItem();
         MnInputResep = new javax.swing.JMenuItem();
         MnNoResep = new javax.swing.JMenuItem();
@@ -2056,6 +2057,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnObat.setName("MnObat"); // NOI18N
         MnObat.setOpaque(true);
         MnObat.setPreferredSize(new java.awt.Dimension(220, 26));
+
+        MnCatatanResep.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCatatanResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCatatanResep.setText("Resep Dokter");
+        MnCatatanResep.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCatatanResep.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCatatanResep.setIconTextGap(5);
+        MnCatatanResep.setName("MnCatatanResep"); // NOI18N
+        MnCatatanResep.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnCatatanResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCatatanResepActionPerformed(evt);
+            }
+        });
+        MnObat.add(MnCatatanResep);
 
         MnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -14282,6 +14298,32 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnVerifCPPTActionPerformed
 
+    private void MnCatatanResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCatatanResepActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (Sequel.cariRegistrasi(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 0) {
+                JOptionPane.showMessageDialog(null, "Pasiennya sudah pulang dari rawat inap & kwitansi/nota pembayaran sudah tersimpan oleh kasir...!!!");
+                tbKamIn.requestFocus();
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKamarInap");
+                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                form.isCek();
+                form.setData(norawat.getText(), nmgedung, "ranap");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnCatatanResepActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -14399,6 +14441,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenu MnCPPT;
     private javax.swing.JMenuItem MnCariPermintaanLab;
     private javax.swing.JMenuItem MnCariPermintaanRad;
+    private javax.swing.JMenuItem MnCatatanResep;
     private javax.swing.JMenu MnCetakKelengkapanInap;
     private javax.swing.JMenuItem MnCovid;
     private javax.swing.JMenuItem MnDPJP;
