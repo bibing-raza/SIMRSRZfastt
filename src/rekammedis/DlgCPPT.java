@@ -4475,20 +4475,16 @@ public class DlgCPPT extends javax.swing.JDialog {
                     this.setCursor(Cursor.getDefaultCursor());
                 }
             } else if (status.equals("ranap")) {
-                if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
-                    JOptionPane.showMessageDialog(null, "Pasiennya sudah pulang dari rawat inap & kwitansi/nota pembayaran sudah tersimpan oleh kasir...!!!");
-                } else {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    akses.setform("DlgCPPT");
-                    DlgCatatanResep form = new DlgCatatanResep(null, false);
-                    form.isCek();
-                    form.setData(TNoRw.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdUnit + "'"), "ranap");
-                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    form.setLocationRelativeTo(internalFrame1);
-                    form.setVisible(true);
-                    BtnCariActionPerformed(null);
-                    this.setCursor(Cursor.getDefaultCursor());
-                }
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgCPPT");
+                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                form.isCek();
+                form.setData(TNoRw.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdUnit + "'"), "ranap");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_BtnResepActionPerformed

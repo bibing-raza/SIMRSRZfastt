@@ -7,6 +7,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCatatanResep;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -47,7 +48,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private ResultSet rs, rsPasien, rsdiag, rspros;
     private int i = 0, x = 0;
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "";
+    private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "", kodekamar = "";
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -340,6 +341,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
         BtnAll = new widget.Button();
+        BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -1364,6 +1366,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
+        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setMnemonic('R');
+        BtnResep.setText("Resep Obat");
+        BtnResep.setToolTipText("Alt+R");
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResep);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -1937,6 +1953,24 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
 
+    private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
+        kodekamar = "";
+        kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRW.getText() + "' "
+                + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("DlgRingkasanPulangRanap");
+        DlgCatatanResep form = new DlgCatatanResep(null, false);
+        form.isCek();
+        form.setData(TNoRW.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kodekamar + "'"), "ranap");
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        BtnCariActionPerformed(null);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnResepActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1961,6 +1995,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakRingkasan;

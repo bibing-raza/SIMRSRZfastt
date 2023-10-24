@@ -190,7 +190,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         tbTarif.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode3=new DefaultTableModel(null, new Object[]{
-            "No.", "Cek", "CITO", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Diperiksa", "norawat", "nominta"
+            "No.", "Cek", "CITO", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Diperiksa", "norawat", "nominta", "Dokter Perujuk"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -203,7 +203,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
                  java.lang.Object.class, java.lang.Boolean.class, java.lang.Object.class,
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class, java.lang.Object.class
+                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -215,7 +215,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         tbMintaPeriksa.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMintaPeriksa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbMintaPeriksa.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(28);
@@ -239,6 +239,8 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
 //                column.setPreferredWidth(65);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setPreferredWidth(200);
             }
         }
         tbMintaPeriksa.setDefaultRenderer(Object.class, new WarnaTable());
@@ -2966,13 +2968,13 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         try {
             if (status.equals("Ralan")) {
                 psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito FROM permintaan_lab_raza p "
+                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito, d.nm_dokter FROM permintaan_lab_raza p "
                         + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
                         + "p.status_rawat='Ralan' and p.tgl_permintaan ='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and "
                         + "p.no_rawat='" + TNoRw.getText() + "' order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             } else if (status.equals("Ranap")) {
                 psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito FROM permintaan_lab_raza p "
+                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito, d.nm_dokter FROM permintaan_lab_raza p "
                         + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
                         + "p.status_rawat='Ranap' and p.tgl_permintaan ='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and "
                         + "p.no_rawat='" + TNoRw.getText() + "' order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
@@ -2990,7 +2992,8 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rsOrder.getString("jam_permintaan"),
                         rsOrder.getString("status_periksa"),
                         rsOrder.getString("no_rawat"),
-                        rsOrder.getString("no_minta")
+                        rsOrder.getString("no_minta"),
+                        rsOrder.getString("nm_dokter")
                     });
                     i3++;
                 }

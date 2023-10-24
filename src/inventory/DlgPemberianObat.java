@@ -1288,7 +1288,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
             akses.setform("DlgPemberianObat");
             if (akses.getkode().equals("Admin Utama")) {
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                    dlgobt.setNoRm(TNoRw.getText());
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();
@@ -1328,7 +1328,7 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 //                    }              
 //                }else{ 
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                    dlgobt.setNoRm(TNoRw.getText());
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();

@@ -7785,7 +7785,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                         DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                                         dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                                         dlgobt.setLocationRelativeTo(internalFrame1);
-                                        dlgobt.setNoRm(rs2.getString("no_rawat2"), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                                        dlgobt.setNoRm(rs2.getString("no_rawat2"));
                                         dlgobt.isCek();
                                         dlgobt.tampil();
                                         dlgobt.setVisible(true);
@@ -7822,7 +7822,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgobt.setLocationRelativeTo(internalFrame1);
-                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                            dlgobt.setNoRm(norawat.getText());
                             dlgobt.isCek();
                             dlgobt.tampil();
                             dlgobt.setVisible(true);
@@ -7892,7 +7892,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                         DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                                         dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                                         dlgobt.setLocationRelativeTo(internalFrame1);
-                                        dlgobt.setNoRm(rs2.getString("no_rawat2"), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                                        dlgobt.setNoRm(rs2.getString("no_rawat2"));
                                         dlgobt.isCek();
                                         dlgobt.tampil();
                                         dlgobt.setVisible(true);
@@ -7928,7 +7928,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgobt.setLocationRelativeTo(internalFrame1);
-                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                            dlgobt.setNoRm(norawat.getText());
                             dlgobt.isCek();
                             dlgobt.tampil();
                             dlgobt.setVisible(true);
@@ -8404,7 +8404,12 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     diagnosa_ok = "";
     diagnosa_cek = 0;
     diagnosa_cek = Sequel.cariInteger("select count(1) cek from kamar_inap where no_rawat='" + norawat.getText() + "'");
-    cekdokter = Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + norawat.getText() + "'");
+    
+    if (Sequel.cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat.getText() + "'") > 0) {
+        cekdokter = Sequel.cariIsi("select dokter_perujuk from permintaan_lab_raza where no_rawat='" + norawat.getText() + "'");
+    } else {
+        cekdokter = Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + norawat.getText() + "'");
+    }
 
     if (diagnosa_cek == 0) {
         diagnosa_ok = "-";
@@ -14306,21 +14311,16 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKamIn.requestFocus();
         } else {
-            if (Sequel.cariRegistrasi(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 0) {
-                JOptionPane.showMessageDialog(null, "Pasiennya sudah pulang dari rawat inap & kwitansi/nota pembayaran sudah tersimpan oleh kasir...!!!");
-                tbKamIn.requestFocus();
-            } else {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgKamarInap");
-                DlgCatatanResep form = new DlgCatatanResep(null, false);
-                form.isCek();
-                form.setData(norawat.getText(), nmgedung, "ranap");
-                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                BtnCariActionPerformed(null);
-                this.setCursor(Cursor.getDefaultCursor());
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKamarInap");
+            DlgCatatanResep form = new DlgCatatanResep(null, false);
+            form.isCek();
+            form.setData(norawat.getText(), nmgedung, "ranap");
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnCatatanResepActionPerformed
 

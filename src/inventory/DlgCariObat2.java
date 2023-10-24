@@ -972,6 +972,8 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        ChkJln.setSelected(true);
+        DTPTgl.setDate(new Date());
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
@@ -1162,6 +1164,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 JOptionPane.showMessageDialog(null, "Maaf, gagal menyimpan data. Kemungkinan ada data yang sama dimasukkan sebelumnya?\nKapasitas belum dimasukkan...!");
             }
         }
+        ChkJln.setSelected(true);
+        DTPTgl.setDate(new Date());
     }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1326,6 +1330,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     System.out.println("Notifikasi : " + e);
                 }
             }
+        } else {
+            JOptionPane.showMessageDialog(null, "Resep sudah terverifikasi semua..!!!!");
         }
     }//GEN-LAST:event_BtnVerifActionPerformed
 
@@ -1335,6 +1341,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }//GEN-LAST:event_BtnCekResepActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        ChkJln.setSelected(true);
+        DTPTgl.setDate(new Date());
         Sequel.insertClosingStok();
         isPsien();
         tampil_resep();
@@ -1743,13 +1751,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         TCari.requestFocus();
     }
 
-    public void setNoRm(String norwt, Date tanggal, String jam, String menit, String detik, boolean status) {
-        TNoRw.setText(norwt);
-        DTPTgl.setDate(tanggal);
-        cmbJam.setSelectedItem(jam);
-        cmbMnt.setSelectedItem(menit);
-        cmbDtk.setSelectedItem(detik);
-        ChkJln.setSelected(status);
+    public void setNoRm(String norwt) {
+        TNoRw.setText(norwt);        
         KdPj.setText(Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?", norwt));
         kelas.setText(Sequel.cariIsi(
                 "select kamar.kelas from kamar inner join kamar_inap on kamar.kd_kamar=kamar_inap.kd_kamar "
@@ -1862,7 +1865,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         try {
             ps = koneksi.prepareStatement("select c.no_rawat,c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
                     + "c.jam_perawatan from catatan_resep_ranap c where c.no_rawat like '%" + TNoRw.getText().trim() + "%' "
-                    + "and tgl_perawatan=DATE(NOW()) order by noId desc");
+                    + "order by status, noId desc");
             chkResepObat.setSelected(false);
             try {
                 rs = ps.executeQuery();

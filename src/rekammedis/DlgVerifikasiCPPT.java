@@ -6,6 +6,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCatatanResep;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -40,7 +41,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private int i = 0, x = 0;
-    private String status = "";
+    private String status = "", kodekamar = "";
     private Boolean conteng;
     
     /** Creates new form DlgPemberianInfus
@@ -148,6 +149,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         jLabel21 = new widget.Label();
         tglCppt2 = new widget.Tanggal();
         BtnCari = new widget.Button();
+        BtnResep = new widget.Button();
         BtnConteng = new widget.Button();
         BtnHapus = new widget.Button();
         BtnBatal = new widget.Button();
@@ -333,6 +335,20 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnCari);
+
+        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setMnemonic('R');
+        BtnResep.setText("Resep Obat");
+        BtnResep.setToolTipText("Alt+R");
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResep);
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -561,6 +577,30 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
+    private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("DlgVerifikasiCPPT");
+        DlgCatatanResep form = new DlgCatatanResep(null, false);
+        form.isCek();
+        
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            form.setData(TNoRw.getText(), "IGDK", status);
+        } else if (status.equals("ranap")) {
+            kodekamar = "";
+            kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+            form.setData(TNoRw.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k "
+                    + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kodekamar + "'"), status);
+        }        
+        
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        BtnCariActionPerformed(null);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnResepActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -583,6 +623,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private widget.Button BtnConteng;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;

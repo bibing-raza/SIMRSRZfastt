@@ -826,7 +826,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             akses.setform("DlgDashboardEresep");
             if (akses.getkode().equals("Admin Utama")) {
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(norawat, tglCari1.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
+                    dlgobt.setNoRm(norawat);
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();
@@ -850,7 +850,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 }
             } else {
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(norawat, tglCari1.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
+                    dlgobt.setNoRm(norawat);
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();

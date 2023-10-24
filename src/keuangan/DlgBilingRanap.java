@@ -3003,7 +3003,7 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                         if (akses.getberi_obat() == true) {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.isCek();
-                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setNoRm(TNoRw.getText());
                             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                             dlgobt.tampil();
                             dlgobt.setLocationRelativeTo(internalFrame1);
@@ -3046,7 +3046,7 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                         if (akses.getberi_obat() == true) {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.isCek();
-                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setNoRm(TNoRw.getText());
                             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                             dlgobt.tampil();
                             dlgobt.setLocationRelativeTo(internalFrame1);
@@ -3155,7 +3155,7 @@ private void tbBillingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         if (akses.getberi_obat() == true) {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.isCek();
-                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setNoRm(TNoRw.getText());
                             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                             dlgobt.tampil();
                             dlgobt.setLocationRelativeTo(internalFrame1);
@@ -3198,7 +3198,7 @@ private void tbBillingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                         if (akses.getberi_obat() == true) {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.isCek();
-                            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+                            dlgobt.setNoRm(TNoRw.getText());
                             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                             dlgobt.tampil();
                             dlgobt.setLocationRelativeTo(internalFrame1);
@@ -3284,7 +3284,7 @@ private void MnInputObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
             akses.setform("DLgBilingRanap");
             dlgobt.isCek();
-            dlgobt.setNoRm(TNoRw.getText(), DTPTgl.getDate(), "00", "00", "00", true);
+            dlgobt.setNoRm(TNoRw.getText());
             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgobt.tampil();
             dlgobt.setLocationRelativeTo(internalFrame1);
@@ -4123,7 +4123,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
             akses.setform("DLgBilingRanap");
             dlgobt.isCek();
-            dlgobt.setNoRm(norawatbayi, DTPTgl.getDate(), "00", "00", "00", true);
+            dlgobt.setNoRm(norawatbayi);
             dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgobt.tampil();
             dlgobt.setLocationRelativeTo(internalFrame1);
