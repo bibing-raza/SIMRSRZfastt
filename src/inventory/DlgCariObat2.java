@@ -1319,48 +1319,57 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }//GEN-LAST:event_TNoRmKeyPressed
 
     private void chkResepObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkResepObatActionPerformed
-        for (i = 0; i < tbResepObat.getRowCount(); i++) {
-            if (chkResepObat.isSelected() == true) {
-                tbResepObat.setValueAt(Boolean.TRUE, i, 0);
-            } else if (chkResepObat.isSelected() == false) {
-                tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+        if (tabModeResepObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data masih kosong. Tidak ada data yang bisa diconteng...!!!!");
+            chkResepObat.setSelected(false);
+        } else {
+            for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                if (chkResepObat.isSelected() == true) {
+                    tbResepObat.setValueAt(Boolean.TRUE, i, 0);
+                } else if (chkResepObat.isSelected() == false) {
+                    tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+                }
             }
         }
     }//GEN-LAST:event_chkResepObatActionPerformed
 
     private void BtnVerifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVerifActionPerformed
-        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + TNoRw.getText() + "' and status='BELUM'") > 0) {
-            x = 0;
-            for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                    x++;
-                }
-            }
-
-            if (x == 0) {
-                JOptionPane.showMessageDialog(null, "Conteng dulu untuk verifikasi resepnya..!!!!");
-                tbResepObat.requestFocus();
-            } else {
-                try {
-                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                            stat = "SUDAH";
-                        } else {
-                            stat = "DILUAR";
-                        }
-                        Sequel.queryu("update catatan_resep_ranap set status = '" + stat + "' where no_rawat='" + tbResepObat.getValueAt(i, 1).toString() + "' "
-                                + "and noId='" + tbResepObat.getValueAt(i, 6).toString() + "'");
-                    }
-                    isPsien();
-                    tampil_resep();
-                    chkResepObat.setSelected(false);
-                    chkResepBelum.setSelected(false);
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                }
-            }
+        if (tabModeResepObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data masih kosong. Tidak ada resep yang diverifikasi...!!!!");
         } else {
-            JOptionPane.showMessageDialog(null, "Resep sudah terverifikasi semua..!!!!");
+            if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + TNoRw.getText() + "' and status='BELUM'") > 0) {
+                x = 0;
+                for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                    if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                        x++;
+                    }
+                }
+
+                if (x == 0) {
+                    JOptionPane.showMessageDialog(null, "Conteng dulu untuk verifikasi resepnya..!!!!");
+                    tbResepObat.requestFocus();
+                } else {
+                    try {
+                        for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                            if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                                stat = "SUDAH";
+                            } else {
+                                stat = "DILUAR";
+                            }
+                            Sequel.queryu("update catatan_resep_ranap set status = '" + stat + "' where no_rawat='" + tbResepObat.getValueAt(i, 1).toString() + "' "
+                                    + "and noId='" + tbResepObat.getValueAt(i, 6).toString() + "'");
+                        }
+                        isPsien();
+                        tampil_resep();
+                        chkResepObat.setSelected(false);
+                        chkResepBelum.setSelected(false);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Resep sudah terverifikasi semua..!!!!");
+            }
         }
     }//GEN-LAST:event_BtnVerifActionPerformed
 
@@ -1390,7 +1399,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 JOptionPane.showMessageDialog(null, "Utk. mencetak resep obat silahkan conteng item yg. dipilih...!!!!");
                 tbResepObat.requestFocus();
                 tampil_resep();
-            } else if (conteng > 1) {
+            } else if (conteng > 0) {
                 idObat = "";
                 for (i = 0; i < tbResepObat.getRowCount(); i++) {
                     if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
@@ -1425,15 +1434,33 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }//GEN-LAST:event_BtnCetakActionPerformed
 
     private void chkResepBelumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkResepBelumActionPerformed
-        for (i = 0; i < tbResepObat.getRowCount(); i++) {
-            if (chkResepBelum.isSelected() == true) {
+        if (tabModeResepObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data masih kosong. Tidak ada data yang bisa diconteng...!!!!");
+            chkResepBelum.setSelected(false);
+        } else {
+            //cek status belum dulu
+            x = 0;
+            for (i = 0; i < tbResepObat.getRowCount(); i++) {
                 if (tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
-                    tbResepObat.setValueAt(Boolean.TRUE, i, 0);
-                } else {
-                    tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+                    x++;
                 }
-            } else if (chkResepBelum.isSelected() == false) {
-                tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+            }
+            
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Item resep obat dg. status BELUM tidak ditemukan...!!!!");
+                chkResepBelum.setSelected(false);
+            } else if (x > 0) {
+                for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                    if (chkResepBelum.isSelected() == true) {
+                        if (tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
+                            tbResepObat.setValueAt(Boolean.TRUE, i, 0);
+                        }
+                    } else if (chkResepBelum.isSelected() == false) {
+                        if (tbResepObat.getValueAt(i, 5).toString().equals("BELUM")) {
+                            tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+                        }
+                    }
+                }
             }
         }
     }//GEN-LAST:event_chkResepBelumActionPerformed

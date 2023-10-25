@@ -864,7 +864,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnINACBGjknBelumDiklaim = new widget.ButtonBig();
         btnInputKodeICD = new widget.ButtonBig();
         btnKendaliMutuKendaliBiayaINACBG = new widget.ButtonBig();
-        btnDashboardeResep = new widget.ButtonBig();
+        btnDashboardeResepRalan = new widget.ButtonBig();
         btnCekSEPInternalBPJS = new widget.ButtonBig();
         btnSPRIbpjsVclaim = new widget.ButtonBig();
         btnCekFingerPrinBPJS = new widget.ButtonBig();
@@ -918,6 +918,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnCPPT = new widget.ButtonBig();
         btnSpirometri = new widget.ButtonBig();
         btnAsesmenKebidananRalan = new widget.ButtonBig();
+        btnDashboardeResepRanap = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5438,18 +5439,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnKendaliMutuKendaliBiayaINACBG);
 
-        btnDashboardeResep.setForeground(new java.awt.Color(0, 0, 0));
-        btnDashboardeResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/monitor.png"))); // NOI18N
-        btnDashboardeResep.setText("Dashboard e-Resep");
-        btnDashboardeResep.setIconTextGap(0);
-        btnDashboardeResep.setName("btnDashboardeResep"); // NOI18N
-        btnDashboardeResep.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnDashboardeResep.addActionListener(new java.awt.event.ActionListener() {
+        btnDashboardeResepRalan.setForeground(new java.awt.Color(0, 0, 0));
+        btnDashboardeResepRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/monitor.png"))); // NOI18N
+        btnDashboardeResepRalan.setText("Dashboard e-Resep Rawat Jalan");
+        btnDashboardeResepRalan.setIconTextGap(0);
+        btnDashboardeResepRalan.setName("btnDashboardeResepRalan"); // NOI18N
+        btnDashboardeResepRalan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDashboardeResepRalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDashboardeResepActionPerformed(evt);
+                btnDashboardeResepRalanActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnDashboardeResep);
+        Panelmenu.add(btnDashboardeResepRalan);
 
         btnCekSEPInternalBPJS.setForeground(new java.awt.Color(0, 0, 0));
         btnCekSEPInternalBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/vclaim.png"))); // NOI18N
@@ -6140,6 +6141,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenKebidananRalan);
 
+        btnDashboardeResepRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnDashboardeResepRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/monitor_hijau.png"))); // NOI18N
+        btnDashboardeResepRanap.setText("Dashboard e-Resep Rawat Inap");
+        btnDashboardeResepRanap.setIconTextGap(0);
+        btnDashboardeResepRanap.setName("btnDashboardeResepRanap"); // NOI18N
+        btnDashboardeResepRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnDashboardeResepRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDashboardeResepRanapActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnDashboardeResepRanap);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6148,7 +6162,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/10/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/10/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6193,11 +6207,11 @@ public class frmUtama extends javax.swing.JFrame {
         setTitle("::[ Khanza Hospital Management System 2017 ]::");
         setIconImages(null);
         addComponentListener(new java.awt.event.ComponentAdapter() {
-            public void componentResized(java.awt.event.ComponentEvent evt) {
-                formComponentResized(evt);
-            }
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 formComponentMoved(evt);
+            }
+            public void componentResized(java.awt.event.ComponentEvent evt) {
+                formComponentResized(evt);
             }
         });
         addWindowStateListener(new java.awt.event.WindowStateListener() {
@@ -6206,11 +6220,11 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowOpened(java.awt.event.WindowEvent evt) {
-                formWindowOpened(evt);
-            }
             public void windowClosed(java.awt.event.WindowEvent evt) {
                 formWindowClosed(evt);
+            }
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
             }
         });
 
@@ -11506,7 +11520,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnKendaliMutuKendaliBiayaINACBGActionPerformed
 
-    private void btnDashboardeResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardeResepActionPerformed
+    private void btnDashboardeResepRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardeResepRalanActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgDashboardEresep eResep = new DlgDashboardEresep(this, false);
@@ -11518,7 +11532,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         eResep.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnDashboardeResepActionPerformed
+    }//GEN-LAST:event_btnDashboardeResepRalanActionPerformed
 
     private void btnCekSEPInternalBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCekSEPInternalBPJSActionPerformed
         isTutup();
@@ -12226,6 +12240,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenKebidananRalanActionPerformed
 
+    private void btnDashboardeResepRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDashboardeResepRanapActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgDashboardEresepRanap eResep = new DlgDashboardEresepRanap(this, false);
+        eResep.emptTeks();
+        eResep.tampil();
+        eResep.isCek();
+        eResep.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        eResep.setLocationRelativeTo(PanelUtama);
+        eResep.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnDashboardeResepRanapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12350,7 +12378,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnClosingKasir;
     private widget.ButtonBig btnDaftarPermintaanResep;
     private widget.ButtonBig btnDaruratStok;
-    private widget.ButtonBig btnDashboardeResep;
+    private widget.ButtonBig btnDashboardeResepRalan;
+    private widget.ButtonBig btnDashboardeResepRanap;
     private widget.ButtonBig btnDataGiziBuruk;
     private widget.ButtonBig btnDataHAIs;
     private widget.ButtonBig btnDataJabatan;
@@ -13059,7 +13088,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
 
             if (akses.getdashboard_eResep() == true) {
-                Panelmenu.add(btnDashboardeResep);
+                Panelmenu.add(btnDashboardeResepRalan);
+                jmlmenu++;
+            }
+            
+            if (akses.getdashboard_eResep() == true) {
+                Panelmenu.add(btnDashboardeResepRanap);
                 jmlmenu++;
             }
 
@@ -15062,7 +15096,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getdashboard_eResep() == true) {
-            Panelmenu.add(btnDashboardeResep);
+            Panelmenu.add(btnDashboardeResepRalan);
+            jmlmenu++;
+        }
+        
+        if (akses.getdashboard_eResep() == true) {
+            Panelmenu.add(btnDashboardeResepRanap);
             jmlmenu++;
         }
 
@@ -16883,8 +16922,15 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getdashboard_eResep() == true) {
-            if (btnDashboardeResep.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnDashboardeResep);
+            if (btnDashboardeResepRalan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnDashboardeResepRalan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getdashboard_eResep() == true) {
+            if (btnDashboardeResepRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnDashboardeResepRanap);
                 jmlmenu++;
             }
         }

@@ -61,7 +61,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", status = "";
+    private String norawat = "", norm = "";
     public Timer tEresep;
 
     /**
@@ -339,7 +339,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
 
         jPopupMenu.setName("jPopupMenu"); // NOI18N
 
-        MnCetakResepThermal.setBackground(new java.awt.Color(255, 255, 255));
         MnCetakResepThermal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakResepThermal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakResepThermal.setText("Resep Kertas Thermal");
@@ -355,7 +354,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         });
         jPopupMenu.add(MnCetakResepThermal);
 
-        MnCetakResepA5.setBackground(new java.awt.Color(255, 255, 255));
         MnCetakResepA5.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakResepA5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakResepA5.setText("Resep Kertas HVS/A5");
@@ -371,7 +369,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         });
         jPopupMenu.add(MnCetakResepA5);
 
-        MnDataPemberianObat.setBackground(new java.awt.Color(255, 255, 255));
         MnDataPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataPemberianObat.setText("Data Pemberian Obat");
@@ -387,7 +384,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         });
         jPopupMenu.add(MnDataPemberianObat);
 
-        MnInputPemberianObat.setBackground(new java.awt.Color(255, 255, 255));
         MnInputPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInputPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInputPemberianObat.setText("Input Pemberian Obat");
@@ -416,7 +412,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Dashboard e-Resep Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Dashboard e-Resep Pasien Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -436,7 +432,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         panelGlass9.add(jLabel23);
 
         tglCari1.setEditable(false);
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2022" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2022" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -451,7 +447,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         panelGlass9.add(jLabel24);
 
         tglCari2.setEditable(false);
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-08-2022" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-09-2022" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -825,52 +821,23 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         } else {
             akses.setform("DlgDashboardEresep");
             if (akses.getkode().equals("Admin Utama")) {
-                if (status.equals("ranap")) {
-                    dlgobt.setNoRm(norawat, tglCari1.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
-                    dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    dlgobt.isCek();
-                    dlgobt.tampil();
-                    dlgobt.setLocationRelativeTo(internalFrame1);
-                    dlgobt.setVisible(true);
-                } else if (status.equals("ralan")) {
-                    dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
-                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
-                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
-                    dlgobtjalan.isCek();
-//                    if(!namadokter.equals("")){
-//                        dlgobtjalan.setDokter(kodedokter, namadokter);
-//                    }
-                    dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    dlgobtjalan.tampilobat();
-                    dlgobtjalan.tampil_resep();
-                    dlgobtjalan.setLocationRelativeTo(internalFrame1);
-                    dlgobtjalan.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Hanya bisa lewat Kasir Ralan atau Kamar Inap");
-                }
+                dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
+                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
+                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
+                dlgobtjalan.isCek();
+                dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                dlgobtjalan.tampilobat();
+                dlgobtjalan.tampil_resep();
+                dlgobtjalan.setLocationRelativeTo(internalFrame1);
+                dlgobtjalan.setVisible(true);
             } else {
-                if (status.equals("ranap")) {
-                    dlgobt.setNoRm(norawat, tglCari1.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
-                    dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    dlgobt.isCek();
-                    dlgobt.tampil();
-                    dlgobt.setLocationRelativeTo(internalFrame1);
-                    dlgobt.setVisible(true);
-                } else if (status.equals("ralan")) {
-                    dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
-                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
-                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
-                    dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    dlgobtjalan.isCek();
-//                        if(!namadokter.equals("")){
-//                            dlgobtjalan.setDokter(kodedokter, namadokter);
-//                        }
-                    dlgobtjalan.tampilobat();
-                    dlgobtjalan.setLocationRelativeTo(internalFrame1);
-                    dlgobtjalan.setVisible(true);
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Hanya bisa lewat Kasir Ralan atau Kamar Inap");
-                }
+                dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
+                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
+                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
+                dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                dlgobtjalan.isCek();
+                dlgobtjalan.tampilobat();
+                dlgobtjalan.setLocationRelativeTo(internalFrame1);
             }
         }
     }//GEN-LAST:event_MnInputPemberianObatActionPerformed
@@ -1061,13 +1028,11 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private void getData() {
         norawat = "";
         norm = "";
-        status = "";
         TdataQRresep.setText("");
         
         if (tbPasien.getSelectedRow() != -1) {
             norawat = tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString();
             norm = tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString();
-            status = "ralan";
             tampilResep();
             tampilQR();
         }
