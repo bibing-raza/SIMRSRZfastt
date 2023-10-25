@@ -4461,19 +4461,15 @@ public class DlgCPPT extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-                if (TNoRw.getText().trim().equals("")) {
-                    Valid.textKosong(TNoRw, "Nama Pasien");
-                } else {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    akses.setform("DlgCPPT");
-                    DlgCatatanResep form = new DlgCatatanResep(null, false);
-                    form.isCek();
-                    form.setData(TNoRw.getText(), kdUnit, status);
-                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    form.setLocationRelativeTo(internalFrame1);
-                    form.setVisible(true);
-                    this.setCursor(Cursor.getDefaultCursor());
-                }
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgCPPT");
+                DlgCatatanResep form = new DlgCatatanResep(null, false);
+                form.isCek();
+                form.setData(TNoRw.getText(), kdUnit, status);
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
             } else if (status.equals("ranap")) {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgCPPT");
@@ -4483,7 +4479,6 @@ public class DlgCPPT extends javax.swing.JDialog {
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
-                BtnCariActionPerformed(null);
                 this.setCursor(Cursor.getDefaultCursor());
             }
         }

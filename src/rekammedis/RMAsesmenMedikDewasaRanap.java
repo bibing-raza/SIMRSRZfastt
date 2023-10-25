@@ -4223,7 +4223,6 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);
-        BtnCariActionPerformed(null);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnResepActionPerformed
 
