@@ -1940,6 +1940,18 @@ public final class sekuel {
         }
         return dicari;
     }
+    
+    public String FolderQRresepRanap() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERQRRESEPRANAP").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        return dicari;
+    }
 
     public String cariFolder() {
         dicari = "";
@@ -1972,6 +1984,19 @@ public final class sekuel {
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             dicari = prop.getProperty("FOLDERPRINTQRRESEP").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
+    
+    public String cariFolderPrintResepRanap() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERPRINTQRRESEPRANAP").toString();
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);

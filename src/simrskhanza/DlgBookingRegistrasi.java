@@ -13,6 +13,7 @@ import bridging.BPJSDataSEP;
 import bridging.BPJSRujukanKeluar;
 import bridging.BPJSSuratKontrol;
 import bridging.DlgSKDPBPJS;
+import bridging.ICareRiwayatPerawatan;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
@@ -22,9 +23,11 @@ import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
 import informasi.InformasiJadwal;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Dimension;
+import java.awt.event.ActionEvent;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
@@ -41,11 +44,38 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import static javafx.concurrent.Worker.State.FAILED;
+import javafx.embed.swing.JFXPanel;
+import javafx.print.PageLayout;
+import javafx.print.PageOrientation;
+import javafx.print.Paper;
+import javafx.print.Printer;
+import javafx.print.PrinterJob;
+import javafx.scene.Node;
+import javafx.scene.Scene;
+import javafx.scene.transform.Scale;
+import javafx.scene.web.PopupFeatures;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebEvent;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Callback;
+import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.JProgressBar;
 import javax.swing.JTable;
+import javax.swing.JTextField;
+import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import static jdk.internal.net.http.common.Log.headers;
 import org.bouncycastle.util.Strings;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -68,6 +98,9 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, pskelengkapanBPJS, psPasien, ps3;
     private ResultSet rs, rskelengkapanBPJS, rsPasien, rs3;
+    private WebEngine engine;
+    private final JFXPanel jfxPanel = new JFXPanel();
+    private final JPanel panel = new JPanel(new BorderLayout());
     private int i = 0, pilihan = 1, cekDataPlg = 0, x = 0, n = 0;
     private BPJSApi api = new BPJSApi();
     public DlgCariDokter2 dokter = new DlgCariDokter2(null, false);
@@ -87,10 +120,10 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     public DlgSuku suku = new DlgSuku(null, false);
     private String URUTNOREG = "", status = "", no_rawat = "", umur = "", sttsumur = "", no_peserta = "", user = "", 
             tglkkl = "0000-00-00", URL = "", utc = "", pembi = "", kdpnjg = "", SEPkontrol = "", tglPulangInap = "",
-            flag = "", asesmen = "", jkel = "", cekPembi = "", cekFlag = "", cekKDpen = "", cekAses = "", cekRujukan = "";
+            flag = "", asesmen = "", jkel = "", cekPembi = "", cekFlag = "", cekKDpen = "", cekAses = "", cekRujukan = "",
+            link = "";
     private LocalDate date1, date2;
-//    private Date date = new Date();
-//    private Date date2 = new Date(), timeIn, timeOut, dateIn, dateOut;
+    private final JProgressBar progressBar = new JProgressBar();
 
     /**
      * Creates new form DlgPemberianInfus
@@ -101,6 +134,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     public DlgBookingRegistrasi(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
         WindowCariNoRujuk.setSize(874, 250);
 
         tabMode = new DefaultTableModel(null, new Object[]{
@@ -1241,12 +1275,14 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                             FormInput.setEnabledAt(1, true);
                             FormInput.setEnabledAt(2, true);
                             FormInput.setEnabledAt(3, true);
+                            tampilCekFinger();
                         } else if ((!kdpnj.getText().equals("B01") || (!kdpnj.getText().equals("A03")))) {
                             FormInput.setEnabledAt(1, false);
                             FormInput.setEnabledAt(2, false);
                             FormInput.setEnabledAt(3, false);
                             FormInput.setSelectedIndex(0);
                             emptKelengkapanSEP();
+                            
                         }
                     }
                 }
@@ -1311,6 +1347,11 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         }
 
         cekLAYAN();
+        try {
+            link = koneksiDB.URLCEKFINGERPRINT();
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+        }
     }
 
     /**
@@ -1364,6 +1405,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         kdsuku = new widget.TextBox();
         kdbahasa = new widget.TextBox();
         cekKelengkapanSEP = new widget.TextBox();
+        txtURL = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbBoking = new widget.Table();
@@ -1434,6 +1476,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         ChkNoTelp = new widget.CekBox();
         jLabel35 = new widget.Label();
         label_hari = new widget.TextArea();
+        PanelContent = new widget.panelisi();
         internalFrame3 = new widget.InternalFrame();
         panelisi2 = new widget.panelisi();
         jLabel8 = new widget.Label();
@@ -1678,7 +1721,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -1941,6 +1984,16 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         cekKelengkapanSEP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cekKelengkapanSEPKeyPressed(evt);
+            }
+        });
+
+        txtURL.setEditable(false);
+        txtURL.setForeground(new java.awt.Color(0, 0, 0));
+        txtURL.setHighlighter(null);
+        txtURL.setName("txtURL"); // NOI18N
+        txtURL.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtURLKeyPressed(evt);
             }
         });
 
@@ -2211,7 +2264,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2235,7 +2288,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2257,7 +2310,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2281,7 +2334,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2339,7 +2392,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         });
 
         internalFrame2.setName("internalFrame2"); // NOI18N
-        internalFrame2.setLayout(new java.awt.BorderLayout());
+        internalFrame2.setLayout(new java.awt.GridLayout(1, 2));
 
         panelisi1.setName("panelisi1"); // NOI18N
         panelisi1.setLayout(null);
@@ -2451,7 +2504,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2710,7 +2763,12 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         panelisi1.add(label_hari);
         label_hari.setBounds(607, 64, 350, 85);
 
-        internalFrame2.add(panelisi1, java.awt.BorderLayout.CENTER);
+        internalFrame2.add(panelisi1);
+
+        PanelContent.setName("PanelContent"); // NOI18N
+        PanelContent.setPreferredSize(new java.awt.Dimension(55, 55));
+        PanelContent.setLayout(new java.awt.BorderLayout());
+        internalFrame2.add(PanelContent);
 
         FormInput.addTab(".: Data Booking", internalFrame2);
 
@@ -2834,7 +2892,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3445,7 +3503,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-08-2023" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -5029,6 +5087,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         //        Valid.pindah(evt,COB,LokasiLaka);
     }//GEN-LAST:event_label_pesanKeyPressed
 
+    private void txtURLKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtURLKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtURLKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -5124,6 +5186,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox NoRujukan;
     private widget.TextBox NoSEPSuplesi;
     private widget.TextBox NoTelp;
+    private widget.panelisi PanelContent;
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPopupMenu Popup;
     private javax.swing.JPopupMenu Popup1;
@@ -5260,6 +5323,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public widget.Table tbRiwayat;
     private widget.TextBox tglMati;
     private widget.ComboBox tujuanKun;
+    private widget.TextBox txtURL;
     private widget.ComboBox verif_data;
     // End of variables declaration//GEN-END:variables
 
@@ -5380,6 +5444,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         TanggalBooking.setDate(new Date());
         TanggalPeriksa.setDate(new Date());
         label_pesan.setText("");
+        loadURL("");
+        initComponents2();
         cekHariLibur();
         isNomer();
         emptKelengkapanSEP();
@@ -5477,6 +5543,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 //            isForm();
             label_cetak.setVisible(true);
             statusSEP.setVisible(true);
+            tampilCekFinger();
         }
     }
 
@@ -6526,5 +6593,101 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             label_hari.setText(Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + Valid.SetTgl(TanggalPeriksa.getSelectedItem() + "") + "'"));
             label_hari.setForeground(Color.RED);
         }
+    }
+    
+    private void tampilCekFinger() {
+        try {
+            if (TNoRM.getText().equals("")) {
+                loadURL("");
+                initComponents2();
+            } else {
+                if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
+                    loadURL(link + "" + TNoRM.getText());
+                    initComponents2();
+                } else {
+                    loadURL("");
+                    initComponents2();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
+        } 
+    }
+    
+    private void initComponents2() {           
+        panel.add(jfxPanel, BorderLayout.CENTER);        
+        PanelContent.setLayout(new BorderLayout());
+        PanelContent.add(panel);
+    }
+    
+    public void loadURL(String url) {
+        try {            
+            createScene();
+        } catch (Exception e) {
+        }
+
+        Platform.runLater(() -> {
+            try {
+                engine.load(url);
+            } catch (Exception exception) {
+                engine.load(url);
+            }
+        });
+    }
+    
+    private void createScene() {   
+        Platform.runLater(new Runnable() {
+
+            public void run() {
+                WebView view = new WebView();
+                
+                engine = view.getEngine();
+                engine.setJavaScriptEnabled(true);
+                
+                engine.setCreatePopupHandler(new Callback<PopupFeatures, WebEngine>() {
+                    @Override
+                    public WebEngine call(PopupFeatures p) {
+                        Stage stage = new Stage(StageStyle.TRANSPARENT);
+                        return view.getEngine();
+                    }
+                });
+                
+                engine.getLoadWorker().exceptionProperty().addListener((ObservableValue<? extends Throwable> o, Throwable old, final Throwable value) -> {
+                    if (engine.getLoadWorker().getState() == FAILED) {
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(
+                                    panel,
+                                    (value != null) ?
+                                            engine.getLocation() + "\n" + value.getMessage() :
+                                            engine.getLocation() + "\nUnexpected Video.",
+                                    "Loading Video...",
+                                    JOptionPane.ERROR_MESSAGE);
+                        });
+                    }
+                });                
+                
+                engine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+                    @Override
+                    public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
+                        if (newState == Worker.State.SUCCEEDED) {
+                            try {
+                                if (engine.getLocation().replaceAll(link + "" + TNoRM.getText(), "").contains(link + "" + TNoRM.getText())) {
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//                                    Valid.panggilUrlRAZA(engine.getLocation().replaceAll(link + "" + TNoRM.getText(), ""));
+                                    engine.executeScript("history.back()");
+                                    setCursor(Cursor.getDefaultCursor());
+                                } else if (engine.getLocation().replaceAll(link + "" + TNoRM.getText(), "").contains(link + "" + TNoRM.getText())) {
+                                    dispose();
+                                }
+                            } catch (Exception ex) {
+                                System.out.println("Notifikasi : "+ex);
+                            }
+                        } 
+                    }
+                });
+                
+                jfxPanel.setScene(new Scene(view));
+            }
+        });
     }
 }

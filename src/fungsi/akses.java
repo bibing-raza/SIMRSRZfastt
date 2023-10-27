@@ -20,7 +20,7 @@ public final class akses {
     private static ResultSet rs, rs2;
 
     private static String kode = "", kdbangsal = "", namars = "", alamatrs = "", kabupatenrs = "", propinsirs = "", kontakrs = "", emailrs = "",
-            form = "", namauser = "", jenisLoket = "", nomorLoket = "";
+            form = "", namauser = "", jenisLoket = "", nomorLoket = "", hasilPeriksaLab = "";
     private static int jml1 = 0, jml2 = 0, lebar = 0, tinggi = 0;
     private static boolean aktif = false, admin = false, user = false, vakum = false, aplikasi = false, penyakit = false, obat_penyakit = false, dokter = false, jadwal_praktek = false, petugas = false, pasien = false, registrasi = false,
             tindakan_ralan = false, kamar_inap = false, tindakan_ranap = false, operasi = false, rujukan_keluar = false, rujukan_masuk = false, beri_obat = false,
@@ -1652,6 +1652,10 @@ public final class akses {
         }
     }
 
+    public static void setHasilPeriksaLab(String hasilnya) {
+        akses.hasilPeriksaLab = hasilnya;
+    }
+
     public static int getjml1() {
         return akses.jml1;
     }
@@ -2150,6 +2154,10 @@ public final class akses {
 
     public static String getNomorLoket() {
         return akses.nomorLoket;
+    }
+    
+    public static String getHasilPeriksaLab() {
+        return akses.hasilPeriksaLab;
     }
 
     public static void setkdbangsal(String kdbangsal) {

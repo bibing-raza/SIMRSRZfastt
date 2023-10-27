@@ -442,27 +442,27 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 if (akses.getform().equals("RMTransferSerahTerima")) {
                     if (kamar.getTable().getSelectedRow() != -1) {
                         if (pilihan == 1) {
-                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
-                            if (!status_kmr.equals("KOSONG")) {
-                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
-                                kd_kamar = "";
-                                Tnm_kamar.setText("");
-                            } else {
-                                kd_kamar = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
-                                Tnm_kamar.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar + "'"));
-                                tgl_pindah.requestFocus();
-                            }
+//                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
+//                            if (!status_kmr.equals("KOSONG")) {
+//                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
+//                                kd_kamar = "";
+//                                Tnm_kamar.setText("");
+//                            } else {
+                            kd_kamar = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
+                            Tnm_kamar.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar + "'"));
+                            tgl_pindah.requestFocus();
+//                            }
                         } else if (pilihan == 2) {
-                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
-                            if (!status_kmr.equals("KOSONG")) {
-                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
-                                kd_kamar_pindah = "";
-                                Tnm_kamar_pindah.setText("");
-                            } else {
-                                kd_kamar_pindah = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
-                                Tnm_kamar_pindah.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar_pindah + "'"));
-                                Talasan_ranap.requestFocus();
-                            }
+//                            status_kmr = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 6).toString();
+//                            if (!status_kmr.equals("KOSONG")) {
+//                                JOptionPane.showMessageDialog(null, "Silahkan pilih kamar yang kosong...!!!");
+//                                kd_kamar_pindah = "";
+//                                Tnm_kamar_pindah.setText("");
+//                            } else {
+                            kd_kamar_pindah = kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(), 1).toString();
+                            Tnm_kamar_pindah.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kd_kamar_pindah + "'"));
+                            Talasan_ranap.requestFocus();
+//                            }
                         }
                     }
                 }

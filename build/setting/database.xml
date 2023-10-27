@@ -46,7 +46,9 @@
     <entry key="FOLDER">/home/unitSIMRS/Pictures/</entry>
 	<entry key="FOLDERPRINT">/home/unitSIMRS/Pictures/QR.jpg</entry>
     <entry key="FOLDERQRRESEP">/home/oye/Documents/DEVELOP_SIMRS/dist/setting/</entry>
-	<entry key="FOLDERPRINTQRRESEP">/home/oye/Documents/DEVELOP_SIMRS/dist/setting/QRresep.jpg</entry>	
+	<entry key="FOLDERPRINTQRRESEP">/home/oye/Documents/DEVELOP_SIMRS/dist/setting/QRresep.jpg</entry>
+	<entry key="FOLDERQRRESEPRANAP">D://gambarQR/</entry>
+	<entry key="FOLDERPRINTQRRESEPRANAP">D://gambarQR/QRresepRanap.jpg</entry>
     <entry key="AKTIFKANTRACKSQL">no</entry>	
 	<entry key="HOSTWSADAM">http://192.168.0.204:2310/adam-lis/bridging_sim_rs/registrasi</entry>
     <entry key="URLAPICORONA">http://sirs.yankes.kemkes.go.id/fo/index.php</entry>
@@ -69,4 +71,5 @@
     <entry key="SECRETKEYAPIICARE">sama isinya dengan SECRETKEYAPIBPJS</entry>
     <entry key="CONSIDAPIICARE">sama isinya dengan CONSIDAPIBPJS</entry>
     <entry key="USERKEYAPIICARE">sama isinya dengan USERKEYAPIBPJS</entry>
+    <entry key="URLCEKFINGERPRINT">http://ip addres server/cekfp/?cari=no rekam medisnya</entry>
 </properties>

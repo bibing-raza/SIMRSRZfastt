@@ -543,12 +543,15 @@ public class DlgCPPT extends javax.swing.JDialog {
         jPopupMenu3 = new javax.swing.JPopupMenu();
         MnTemplateS = new javax.swing.JMenuItem();
         MnUlangiS = new javax.swing.JMenuItem();
+        MnPasteLabS = new javax.swing.JMenuItem();
         jPopupMenu4 = new javax.swing.JPopupMenu();
         MnTemplateO = new javax.swing.JMenuItem();
         MnUlangiO = new javax.swing.JMenuItem();
+        MnPasteLabO = new javax.swing.JMenuItem();
         jPopupMenu5 = new javax.swing.JPopupMenu();
         MnTemplateA = new javax.swing.JMenuItem();
         MnUlangiA = new javax.swing.JMenuItem();
+        MnPasteLabA = new javax.swing.JMenuItem();
         jPopupMenu6 = new javax.swing.JPopupMenu();
         MnTemplateP = new javax.swing.JMenuItem();
         MnUlangiP = new javax.swing.JMenuItem();
@@ -669,6 +672,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnUlangiInstruksi = new widget.Button();
         jLabel26 = new widget.Label();
         jLabel27 = new widget.Label();
+        BtnPasteLab = new widget.Button();
         internalFrame6 = new widget.InternalFrame();
         scrollPane4 = new widget.ScrollPane();
         TSubjektif = new widget.TextArea();
@@ -897,6 +901,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         jPopupMenu3.add(MnUlangiS);
 
+        MnPasteLabS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPasteLabS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        MnPasteLabS.setText("Paste Hasil Lab.");
+        MnPasteLabS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPasteLabS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPasteLabS.setIconTextGap(5);
+        MnPasteLabS.setName("MnPasteLabS"); // NOI18N
+        MnPasteLabS.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnPasteLabS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPasteLabSActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnPasteLabS);
+
         jPopupMenu4.setName("jPopupMenu4"); // NOI18N
 
         MnTemplateO.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -929,6 +948,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         jPopupMenu4.add(MnUlangiO);
 
+        MnPasteLabO.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPasteLabO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        MnPasteLabO.setText("Paste Hasil Lab.");
+        MnPasteLabO.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPasteLabO.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPasteLabO.setIconTextGap(5);
+        MnPasteLabO.setName("MnPasteLabO"); // NOI18N
+        MnPasteLabO.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnPasteLabO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPasteLabOActionPerformed(evt);
+            }
+        });
+        jPopupMenu4.add(MnPasteLabO);
+
         jPopupMenu5.setName("jPopupMenu5"); // NOI18N
 
         MnTemplateA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -960,6 +994,21 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         jPopupMenu5.add(MnUlangiA);
+
+        MnPasteLabA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPasteLabA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        MnPasteLabA.setText("Paste Hasil Lab.");
+        MnPasteLabA.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPasteLabA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPasteLabA.setIconTextGap(5);
+        MnPasteLabA.setName("MnPasteLabA"); // NOI18N
+        MnPasteLabA.setPreferredSize(new java.awt.Dimension(120, 26));
+        MnPasteLabA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPasteLabAActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(MnPasteLabA);
 
         jPopupMenu6.setName("jPopupMenu6"); // NOI18N
 
@@ -1179,7 +1228,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnBaca.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1195,7 +1244,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -1594,7 +1643,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1801,7 +1850,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1815,7 +1864,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2129,6 +2178,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame4.add(jLabel27);
         jLabel27.setBounds(0, 323, 180, 23);
 
+        BtnPasteLab.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteLab.setMnemonic('L');
+        BtnPasteLab.setText("Paste Hasil Lab.");
+        BtnPasteLab.setToolTipText("Alt+L");
+        BtnPasteLab.setName("BtnPasteLab"); // NOI18N
+        BtnPasteLab.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteLabActionPerformed(evt);
+            }
+        });
+        internalFrame4.add(BtnPasteLab);
+        BtnPasteLab.setBounds(825, 70, 140, 23);
+
         TabPilihan.addTab("SOAP Pilihan 1", internalFrame4);
 
         internalFrame6.setBorder(null);
@@ -2231,7 +2295,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel8.setBounds(0, 38, 180, 23);
 
         tglCppt.setEditable(false);
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -2719,7 +2783,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2733,7 +2797,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4484,6 +4548,70 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnResepActionPerformed
 
+    private void BtnPasteLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteLabActionPerformed
+        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+        
+//        if (akses.getHasilPeriksaLab().equals("")) {
+//            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
+//        } else {
+//            if (THasil.getText().equals("")) {
+//                THasil.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            } else {
+//                THasil.setText(THasil.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            }
+//        }
+    }//GEN-LAST:event_BtnPasteLabActionPerformed
+
+    private void MnPasteLabSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasteLabSActionPerformed
+        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+        
+//        if (akses.getHasilPeriksaLab().equals("")) {
+//            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
+//        } else {
+//            if (TSubjektif.getText().equals("")) {
+//                TSubjektif.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            } else {
+//                TSubjektif.setText(TSubjektif.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            }
+//        }
+    }//GEN-LAST:event_MnPasteLabSActionPerformed
+
+    private void MnPasteLabOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasteLabOActionPerformed
+        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+        
+//        if (akses.getHasilPeriksaLab().equals("")) {
+//            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
+//        } else {
+//            if (TObjektif.getText().equals("")) {
+//                TObjektif.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            } else {
+//                TObjektif.setText(TObjektif.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            }
+//        }
+    }//GEN-LAST:event_MnPasteLabOActionPerformed
+
+    private void MnPasteLabAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasteLabAActionPerformed
+        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+
+//        if (akses.getHasilPeriksaLab().equals("")) {
+//            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
+//        } else {
+//            if (TAsesmen.getText().equals("")) {
+//                TAsesmen.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            } else {
+//                TAsesmen.setText(TAsesmen.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getHasilPeriksaLab());
+//                akses.setHasilPeriksaLab("");
+//            }
+//        }
+    }//GEN-LAST:event_MnPasteLabAActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4533,6 +4661,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnKeluar1;
     private widget.Button BtnKonsulen;
     private widget.Button BtnPPA;
+    private widget.Button BtnPasteLab;
     private widget.Button BtnPilihDiet;
     private widget.Button BtnPrint;
     private widget.Button BtnResep;
@@ -4567,6 +4696,9 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
+    private javax.swing.JMenuItem MnPasteLabA;
+    private javax.swing.JMenuItem MnPasteLabO;
+    private javax.swing.JMenuItem MnPasteLabS;
     private javax.swing.JMenuItem MnPemberianDiet;
     private javax.swing.JMenuItem MnTemplateA;
     private javax.swing.JMenuItem MnTemplateO;

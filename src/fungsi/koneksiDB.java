@@ -365,4 +365,14 @@ public final class koneksiDB {
         }
         return var;
     }
+    
+    public static String URLCEKFINGERPRINT() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = prop.getProperty("URLCEKFINGERPRINT");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
 }

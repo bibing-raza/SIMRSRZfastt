@@ -39,9 +39,9 @@ public class DlgHasilLIS extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps, ps1, ps2, ps3;
     private ResultSet rs, rs1, rs2, rs3;
-    private int i = 0;
+    private int i = 0, x = 0;
     private String norawat = "", noLIS = "", cekLIS = "", ketLIS = "", tglLIS = "", jamLIS = "",
-            drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", nmpas = "", nomorrm = "";
+            drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", nmpas = "", nomorrm = "", hasilDipilih = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -89,33 +89,50 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         }
         tbLIS.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1 = new DefaultTableModel(null, new Object[]{"Jenis Pemeriksaan/Item", "Nilai Hasil", 
-            "Satuan", "Flag Kode", "Nilai Rujukan", "Waktu Selesai", "Metode Pemeriksaan"}) {
+        tabMode1 = new DefaultTableModel(null, new Object[]{
+            "Cek", "Jenis Pemeriksaan/Item", "Nilai Hasil", "Satuan", "Flag Kode", "Nilai Rujukan", "Waktu Selesai", "Metode Pemeriksaan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
         };
         tbHasil.setModel(tabMode1);
         tbHasil.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbHasil.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             TableColumn column = tbHasil.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(250);
             } else if (i == 2) {
                 column.setPreferredWidth(75);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(90);
             } else if (i == 4) {
                 column.setPreferredWidth(75);
             } else if (i == 5) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(90);
             } else if (i == 6) {
                 column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbHasil.setDefaultRenderer(Object.class, new WarnaTable());
@@ -155,6 +172,9 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         tbHasil = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
+        BtnConteng = new widget.Button();
+        BtnHapus = new widget.Button();
+        BtnCopy = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         PanelInput = new javax.swing.JPanel();
@@ -180,8 +200,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbHasil.setAutoCreateRowSorter(true);
-        tbHasil.setToolTipText("");
+        tbHasil.setToolTipText("Silahkan conteng item hasil pemeriksaan yang akan di copy");
         tbHasil.setName("tbHasil"); // NOI18N
         Scroll.setViewportView(tbHasil);
 
@@ -195,6 +214,48 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 9));
+
+        BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
+        BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnConteng.setMnemonic('G');
+        BtnConteng.setText("Conteng Semua");
+        BtnConteng.setToolTipText("Alt+G");
+        BtnConteng.setName("BtnConteng"); // NOI18N
+        BtnConteng.setPreferredSize(new java.awt.Dimension(150, 30));
+        BtnConteng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnContengActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnConteng);
+
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHapus.setMnemonic('M');
+        BtnHapus.setText("Hapus Conteng");
+        BtnHapus.setToolTipText("Alt+M");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnHapus);
+
+        BtnCopy.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopy.setMnemonic('U');
+        BtnCopy.setText("Copy Hasil");
+        BtnCopy.setToolTipText("Alt+U");
+        BtnCopy.setName("BtnCopy"); // NOI18N
+        BtnCopy.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCopy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCopyActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnCopy);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -409,6 +470,72 @@ public class DlgHasilLIS extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
+    private void BtnContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContengActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
+        } else {            
+            tampilLIS();
+            for (i = 0; i < tbHasil.getRowCount(); i++) {
+                tbHasil.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_BtnContengActionPerformed
+
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
+        } else {
+            tampilLIS();
+            for (i = 0; i < tbHasil.getRowCount(); i++) {
+                tbHasil.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
+    private void BtnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopyActionPerformed
+        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+
+//        if (tabMode1.getRowCount() == 0) {
+//            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
+//        } else {
+//            //cek conteng
+//            x = 0;
+//            for (i = 0; i < tbHasil.getRowCount(); i++) {
+//                if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
+//                    x++;
+//                }
+//            }
+//            
+//            if (x == 0) {
+//                JOptionPane.showMessageDialog(null, "Silahkan conteng hasil pemeriksaan lab. yang dipilih utk. di copy..!!!!");
+//                tbHasil.requestFocus();
+//            } else {
+//                try {
+//                    for (i = 0; i < tbHasil.getRowCount(); i++) {
+//                        if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
+//                            if (hasilDipilih.equals("")) {
+//                                hasilDipilih = tbHasil.getValueAt(i, 1).toString() + " Nilai Hasil : "
+//                                        + tbHasil.getValueAt(i, 2).toString() + ", Satuan : "
+//                                        + tbHasil.getValueAt(i, 3).toString() + ", Nilai Rujukan : "
+//                                        + tbHasil.getValueAt(i, 5).toString();
+//                            } else {
+//                                hasilDipilih = hasilDipilih + "\n" + tbHasil.getValueAt(i, 1).toString() + " Nilai Hasil : "
+//                                        + tbHasil.getValueAt(i, 2).toString() + ", Satuan : "
+//                                        + tbHasil.getValueAt(i, 3).toString() + ", Nilai Rujukan : "
+//                                        + tbHasil.getValueAt(i, 5).toString();
+//                            }
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    System.out.println("Notifikasi : " + e);
+//                }
+//
+//                akses.setHasilPeriksaLab(hasilDipilih);
+//                BtnKeluarActionPerformed(null);
+//            }
+//        }
+    }//GEN-LAST:event_BtnCopyActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -428,6 +555,9 @@ public class DlgHasilLIS extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
+    private widget.Button BtnConteng;
+    private widget.Button BtnCopy;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.PanelBiasa FormInput;
     private javax.swing.JPanel PanelInput;
@@ -549,7 +679,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
             while (rs1.next()) {    
                 Sequel.menyimpan("temporary_lis", "'" + rs1.getString("kategori_pemeriksaan_nama") + "','','','',"
                         + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Kategori Pemeriksaan");
-                tabMode1.addRow(new Object[]{rs1.getString("kategori_pemeriksaan_nama")});
+                tabMode1.addRow(new Object[]{false, rs1.getString("kategori_pemeriksaan_nama")});
 
                 ps2.setString(1, noLIS);
                 ps2.setString(2, rs1.getString("kategori_pemeriksaan_nama"));
@@ -557,7 +687,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
                 while (rs2.next()) {
                     Sequel.menyimpan("temporary_lis", "'   " + rs2.getString("sub_kategori_pemeriksaan_nama") + "','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Sub Kategori Pemeriksaan");
-                    tabMode1.addRow(new Object[]{"   "+rs2.getString("sub_kategori_pemeriksaan_nama")});
+                    tabMode1.addRow(new Object[]{false, "   "+rs2.getString("sub_kategori_pemeriksaan_nama")});
                     
                     ps3.setString(1, noLIS);
                     ps3.setString(2, rs2.getString("sub_kategori_pemeriksaan_nama"));
@@ -574,6 +704,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
                                 + "'" + Valid.mysql_real_escape_string(rs3.getString("metode")) + "',"
                                 + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Hasil Pemeriksaan");
                         tabMode1.addRow(new Object[]{
+                            false,
                             "     " + rs3.getString("pemeriksaan_nama"),
                             rs3.getString("nilai_hasil"),
                             rs3.getString("satuan"),
