@@ -44,7 +44,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private PreparedStatement ps1, ps2, psFar, psTglBO, psRiwIO, psR2;
     private ResultSet rs1, rs2, rsFar, rsTglBO, rsRiwIO, rsR2;
     private int i = 0, x = 0, j = 0, cekResep = 0;
-    private String tglPemberianObat = "", resepDipilih = "", tglResep = "", kodepoli = "", status = "", jnsKunjungan = "", jamberiobat = "";
+    private String tglPemberianObat = "", resepDipilih = "", tglResep = "", kodepoli = "", status = "", 
+            jnsKunjungan = "", jamberiobat = "";
 
     /**
      * Creates new form DlgPemberianObat
@@ -1093,27 +1094,69 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         } else if (!TPasien.getText().trim().equals("")) {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
                     || jnsKunjungan.equals("Ralan") || status.equals("Ralan")) {
+                //cek conteng
+                x = 0;
                 for (i = 0; i < tbResepObat.getRowCount(); i++) {
                     if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.queryu("delete from catatan_resep where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
-                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
-                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
-                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                        x++;
                     }
                 }
+
+                if (x == 0) {
+                    JOptionPane.showMessageDialog(null, "Silahkan conteng dulu item resep obatnya..!!!!");
+                    tbResepObat.requestFocus();
+                } else {
+                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")
+                                && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
+                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa dihapus,     \n"
+                                    + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                        } else {
+                            if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.queryu("delete from catatan_resep where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                        + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                        + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                        + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                            }
+                        }
+                    }
+
+                    TResepObat.setText("");
+                    tampilResepObat();
+                }
+
             } else if (status.equals("ranap") || jnsKunjungan.equals("Ranap")) {
+                //cek conteng
+                x = 0;
                 for (i = 0; i < tbResepObat.getRowCount(); i++) {
                     if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.queryu("delete from catatan_resep_ranap where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
-                                + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
-                                + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
-                                + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                        x++;
                     }
+                }
+
+                if (x == 0) {
+                    JOptionPane.showMessageDialog(null, "Silahkan conteng dulu item resep obatnya..!!!!");
+                    tbResepObat.requestFocus();
+                } else {
+                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")
+                                && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
+                            JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa dihapus,     \n"
+                                    + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                        } else {
+                            if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.queryu("delete from catatan_resep_ranap where no_rawat='" + tbResepObat.getValueAt(i, 1).toString()
+                                        + "' and tgl_perawatan='" + tbResepObat.getValueAt(i, 2).toString()
+                                        + "' and jam_perawatan='" + tbResepObat.getValueAt(i, 3).toString()
+                                        + "' and noId='" + tbResepObat.getValueAt(i, 7).toString() + "'");
+                            }
+                        }
+                    }
+
+                    TResepObat.setText("");
+                    tampilResepObat();
                 }
             }
-            
-            TResepObat.setText("");
-            tampilResepObat();
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1128,22 +1171,34 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
                     || jnsKunjungan.equals("Ralan") || status.equals("Ralan")) {
                 if (tbResepObat.getSelectedRow() > -1) {
-                    Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
-                            "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
-                            + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
-                    TResepObat.setText("");
-                    tampilResepObat();
+                    if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
+                            || tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("DILUAR")) {
+                        JOptionPane.showMessageDialog(null, "Untuk resep yang sudah diverifikasi apotek tdk. bisa diperbaiki,     \n"
+                                + "Silakan klik tombol simpan sbg. resep baru/lanjutan...!!!!");
+                    } else {
+                        Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
+                                "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
+                                + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
+                        TResepObat.setText("");
+                        tampilResepObat();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
                     TCari.requestFocus();
                 }
             } else if (status.equals("ranap") || jnsKunjungan.equals("Ranap")) {
                 if (tbResepObat.getSelectedRow() > -1) {
-                    Sequel.mengedit("catatan_resep_ranap", "noId='" + TIdObat.getText() + "'",
-                            "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
-                            + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
-                    TResepObat.setText("");
-                    tampilResepObat();
+                    if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
+                            || tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("DILUAR")) {
+                        JOptionPane.showMessageDialog(null, "Untuk resep yang sudah diverifikasi apotek tdk. bisa diperbaiki,     \n"
+                                + "Silakan klik tombol simpan sbg. resep baru/lanjutan...!!!!");
+                    } else {
+                        Sequel.mengedit("catatan_resep_ranap", "noId='" + TIdObat.getText() + "'",
+                                "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
+                                + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
+                        TResepObat.setText("");
+                        tampilResepObat();
+                    }
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
                     TCari.requestFocus();
@@ -1307,8 +1362,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
                 x = JOptionPane.showConfirmDialog(null, "Resep terakhir pada tgl. " + Valid.SetTglINDONESIA(tglResep) + " apakah akan dicopy...?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
-                    tampilItemResepRanap(tglResep, TNoRw.getText(),
-                            Sequel.cariIsi("SELECT jam_perawatan FROM catatan_resep_ranap where no_rawat='" + TNoRw.getText() + "' ORDER BY noId DESC LIMIT 1"));
+                    tampilItemResepRanap(tglResep, TNoRw.getText());
 
                     for (i = 0; i < tbItemResep.getRowCount(); i++) {
                         tbItemResep.setValueAt(Boolean.TRUE, i, 0);
@@ -1748,15 +1802,14 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         }
     }
     
-    private void tampilItemResepRanap(String tglresep, String norw, String jam) {
+    private void tampilItemResepRanap(String tglresep, String norw) {
         Valid.tabelKosong(tabModeResep2);
         try {
             psR2 = koneksi.prepareStatement("select c.no_rawat, c.tgl_perawatan, c.jam_perawatan, c.nama_obat, c.status, "
                     + "d.nm_dokter, c.noID FROM catatan_resep_ranap c "
                     + "INNER JOIN reg_periksa r ON r.no_rawat = c.no_rawat "
                     + "INNER JOIN dokter d ON d.kd_dokter = c.kd_dokter	WHERE "
-                    + "r.status_lanjut='ranap' AND c.tgl_perawatan='" + tglresep + "' "
-                    + "AND c.jam_perawatan='" + jam + "' AND c.no_rawat = '" + norw + "' ORDER BY c.noId");
+                    + "r.status_lanjut='ranap' AND c.tgl_perawatan='" + tglresep + "' AND c.no_rawat = '" + norw + "' ORDER BY c.noId");
             try {
                 rsR2 = psR2.executeQuery();
                 while (rsR2.next()) {
