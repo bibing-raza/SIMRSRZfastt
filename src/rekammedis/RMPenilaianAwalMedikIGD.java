@@ -920,6 +920,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         cmbJam1 = new widget.ComboBox();
         cmbMnt1 = new widget.ComboBox();
         cmbDtk1 = new widget.ComboBox();
+        BtnCopyAnam = new widget.Button();
+        BtnCopyRencana = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPenilaian = new widget.Table();
@@ -1653,7 +1655,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023 10:55:46" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:19:12" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3802,6 +3804,36 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(cmbDtk1);
         cmbDtk1.setBounds(240, 2030, 45, 23);
 
+        BtnCopyAnam.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCopyAnam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopyAnam.setMnemonic('U');
+        BtnCopyAnam.setText("Copy Anamnesis");
+        BtnCopyAnam.setToolTipText("Alt+U");
+        BtnCopyAnam.setName("BtnCopyAnam"); // NOI18N
+        BtnCopyAnam.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCopyAnam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCopyAnamActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnCopyAnam);
+        BtnCopyAnam.setBounds(797, 730, 150, 23);
+
+        BtnCopyRencana.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCopyRencana.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnCopyRencana.setMnemonic('U');
+        BtnCopyRencana.setText("Copy Rencana/Instruksi");
+        BtnCopyRencana.setToolTipText("Alt+U");
+        BtnCopyRencana.setName("BtnCopyRencana"); // NOI18N
+        BtnCopyRencana.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCopyRencana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCopyRencanaActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnCopyRencana);
+        BtnCopyRencana.setBounds(65, 1805, 190, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -3843,7 +3875,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3857,7 +3889,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4993,6 +5025,30 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         AutoCompleteDecorator.decorate(cmbDtk1);
     }//GEN-LAST:event_cmbDtk1MouseReleased
 
+    private void BtnCopyAnamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopyAnamActionPerformed
+        if (TAnamnesis.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Data anamnesis belum terisi..!!");
+        } else {
+            if (!akses.getPasteData().equals("")) {
+                akses.setCopyData(TAnamnesis.getText() + " " + akses.getPasteData());
+            } else {
+                akses.setCopyData(TAnamnesis.getText());
+            }
+        }
+    }//GEN-LAST:event_BtnCopyAnamActionPerformed
+
+    private void BtnCopyRencanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopyRencanaActionPerformed
+        if (TketRencana.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Data rencana / instruksi belum terisi..!!");
+        } else {
+            if (!akses.getPasteData().equals("")) {
+                akses.setCopyData(akses.getPasteData() + " " + TketRencana.getText());
+            } else {
+                akses.setCopyData(TketRencana.getText());
+            }
+        }
+    }//GEN-LAST:event_BtnCopyRencanaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5023,6 +5079,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.Button BtnCari1;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCopas;
+    private widget.Button BtnCopyAnam;
+    private widget.Button BtnCopyRencana;
     private widget.Button BtnDiagnosa;
     private widget.Button BtnDokter;
     private widget.Button BtnDpjp;
@@ -5674,7 +5732,8 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         cmbJam1.setEnabled(false);
         cmbMnt1.setEnabled(false);
         cmbDtk1.setEnabled(false);
-        hitungSkorDowne();
+        hitungSkorDowne();        
+        akses.setCopyData("");
     }
 
     private void getData() {

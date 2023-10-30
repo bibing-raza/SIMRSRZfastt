@@ -275,6 +275,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         Tjk = new widget.TextBox();
         jLabel10 = new widget.Label();
         Tcara_byr = new widget.TextBox();
+        jLabel11 = new widget.Label();
+        LCount = new widget.Label();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnHapus = new widget.Button();
@@ -389,7 +391,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-10-2023" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2023" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -405,7 +407,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-10-2023" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2023" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -506,6 +508,21 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         Tcara_byr.setName("Tcara_byr"); // NOI18N
         panelGlass13.add(Tcara_byr);
         Tcara_byr.setBounds(465, 38, 210, 23);
+
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Record :");
+        jLabel11.setName("jLabel11"); // NOI18N
+        jLabel11.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass13.add(jLabel11);
+        jLabel11.setBounds(820, 66, 65, 23);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass13.add(LCount);
+        LCount.setBounds(889, 66, 50, 23);
 
         internalFrame1.add(panelGlass13, java.awt.BorderLayout.PAGE_START);
 
@@ -1410,6 +1427,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.CekBox ChkPoli1;
     private widget.Tanggal DTPCariA;
     private widget.Tanggal DTPCariB;
+    private widget.Label LCount;
     private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnSemuanya;
     private javax.swing.JPanel PanelInput1;
@@ -1431,6 +1449,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.TextBox TtglLahir;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
+    private widget.Label jLabel11;
     private widget.Label jLabel5;
     private widget.Label jLabel53;
     private widget.Label jLabel54;
@@ -1555,7 +1574,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
-        }        
+        }
+        LCount.setText("" + tabModeResepObat.getRowCount());
     }
     
     private void isFormRiwayatObat() {

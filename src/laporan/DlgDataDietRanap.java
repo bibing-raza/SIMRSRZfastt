@@ -142,11 +142,11 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cetak Data Diet Makanan Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cetak Data Diet Makanan Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Ruang Perawatan :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Ruang Perawatan :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
         Scroll.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -190,7 +190,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         cmbPrin.setForeground(new java.awt.Color(0, 0, 0));
         cmbPrin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Bon Diet PerRuangan", "Form Ketepatan", "Label Diet PerRuangan", "Label PerWaktu Diet Semua Ruangan", "Bon Diet Semua Ruangan" }));
         cmbPrin.setName("cmbPrin"); // NOI18N
-        cmbPrin.setOpaque(false);
         cmbPrin.setPreferredSize(new java.awt.Dimension(210, 23));
         panelGlass8.add(cmbPrin);
 
@@ -295,7 +294,7 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel99);
 
         tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-03-2023" }));
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2023" }));
         tglDiet.setDisplayFormat("dd-MM-yyyy");
         tglDiet.setName("tglDiet"); // NOI18N
         tglDiet.setOpaque(false);
@@ -311,7 +310,6 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
         cmbWaktu.setForeground(new java.awt.Color(0, 0, 0));
         cmbWaktu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Semua", "Pagi", "Siang", "Sore" }));
         cmbWaktu.setName("cmbWaktu"); // NOI18N
-        cmbWaktu.setOpaque(false);
         cmbWaktu.setPreferredSize(new java.awt.Dimension(65, 23));
         cmbWaktu.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -944,6 +942,14 @@ public final class DlgDataDietRanap extends javax.swing.JDialog {
     private void PrinLabelDietRuanganInap() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("alamatrs", akses.getalamatrs());
+        param.put("kotars", akses.getkabupatenrs());
+        param.put("propinsirs", akses.getpropinsirs());
+        param.put("kontakrs", akses.getkontakrs());
+        param.put("emailrs", akses.getemailrs());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));
+        
         if (cmbWaktu.getSelectedIndex() == 1) {
             param.put("ruangan", "Semua Kelas Rawat" + ", Tgl. Pemberian Diet : " + tglDiet.getSelectedItem()+", Semua Waktu Diet");
             Valid.MyReport("rptlabeldietRanapAll.jasper", "report", "::[ Label Diet Gizi Pasien Semua Ruangan Inap Semua Waktu Diet ]::",

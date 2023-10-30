@@ -45,8 +45,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, psLaprm;
     private ResultSet rs, rs1, rsLaprm;
-    private int x = 0;
-    private String kdobat = "", status = "", statusOK = "";
+    private int x = 0, i = 0;
+    private String kdobat = "", status = "", statusOK = "", dataDipilih = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -55,42 +55,63 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian", "Jadwal Pemberian",
+        Object[] row = {"Cek","No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian", "Jadwal Pemberian",
             "Jlh. Sisa Obat", "Status", "wkt_simpan", "Tgl. Pemberian", "kodeobat"};
         tabMode=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+              @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
         };
 
         tbObat.setModel(tabMode);
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 13; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(105);
+                column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(105);
             } else if (i == 2) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(65);
             } else if (i == 3) {
                 column.setPreferredWidth(220);
             } else if (i == 4) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(220);
             } else if (i == 5) {
-                column.setPreferredWidth(170);
+                column.setPreferredWidth(80);
             } else if (i == 6) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(170);
             } else if (i == 7) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 8) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(120);
             } else if (i == 9) {
+                column.setPreferredWidth(70);
+            } else if (i == 10) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 10) {
-                column.setPreferredWidth(85);
             } else if (i == 11) {
+                column.setPreferredWidth(85);
+            } else if (i == 12) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -159,6 +180,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu = new javax.swing.JPopupMenu();
+        MnContengSemua = new javax.swing.JMenuItem();
+        MnHapusConteng = new javax.swing.JMenuItem();
+        MnCopy = new javax.swing.JMenuItem();
         WindowObat = new javax.swing.JDialog();
         internalFrame6 = new widget.InternalFrame();
         panelisi6 = new widget.panelisi();
@@ -219,6 +244,53 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbDtk = new widget.ComboBox();
         jLabel10 = new widget.Label();
         jlhSisaObat = new widget.TextBox();
+
+        jPopupMenu.setName("jPopupMenu"); // NOI18N
+
+        MnContengSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSemua.setText("Conteng Semua");
+        MnContengSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSemua.setIconTextGap(5);
+        MnContengSemua.setName("MnContengSemua"); // NOI18N
+        MnContengSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnContengSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSemuaActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnContengSemua);
+
+        MnHapusConteng.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusConteng.setText("Hapus Conteng");
+        MnHapusConteng.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusConteng.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusConteng.setIconTextGap(5);
+        MnHapusConteng.setName("MnHapusConteng"); // NOI18N
+        MnHapusConteng.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnHapusConteng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusContengActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnHapusConteng);
+
+        MnCopy.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCopy.setText("Copy Pemberian Obat");
+        MnCopy.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopy.setIconTextGap(5);
+        MnCopy.setName("MnCopy"); // NOI18N
+        MnCopy.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnCopy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopyActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnCopy);
 
         WindowObat.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowObat.setName("WindowObat"); // NOI18N
@@ -421,6 +493,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbObat.setComponentPopupMenu(jPopupMenu);
         tbObat.setName("tbObat"); // NOI18N
         tbObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1363,6 +1436,71 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void MnContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemuaActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat pasien belum ada...!!!!");
+        } else {            
+            tampil();
+            for (i = 0; i < tbObat.getRowCount(); i++) {
+                tbObat.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnContengSemuaActionPerformed
+
+    private void MnHapusContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat pasien belum ada...!!!!");
+        } else {
+            tampil();
+            for (i = 0; i < tbObat.getRowCount(); i++) {
+                tbObat.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnHapusContengActionPerformed
+
+    private void MnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopyActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data pemberian obat pasien masih kosong...!!!!");
+        } else {
+            //cek conteng
+            x = 0;
+            for (i = 0; i < tbObat.getRowCount(); i++) {
+                if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                    x++;
+                }
+            }
+
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng data pemberian obat pasien yang dipilih utk. di copy..!!!!");
+                tbObat.requestFocus();
+            } else {
+                try {
+                    for (i = 0; i < tbObat.getRowCount(); i++) {
+                        if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                            if (dataDipilih.equals("")) {
+                                dataDipilih = tbObat.getValueAt(i, 4).toString() + ", Dosis : "
+                                        + tbObat.getValueAt(i, 5).toString() + ", Cara Pemberian : "
+                                        + tbObat.getValueAt(i, 6).toString() + ", Jdwl. Pemberian : "
+                                        + tbObat.getValueAt(i, 7).toString();
+                            } else {
+                                dataDipilih = dataDipilih + "\n" + tbObat.getValueAt(i, 4).toString() + ", Dosis : "
+                                        + tbObat.getValueAt(i, 5).toString() + ", Cara Pemberian : "
+                                        + tbObat.getValueAt(i, 6).toString() + ", Jdwl. Pemberian : "
+                                        + tbObat.getValueAt(i, 7).toString();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+
+                akses.setCopyData(dataDipilih);
+                JOptionPane.showMessageDialog(null, "Data pemberian obat berhasil di copy..!!!!");
+                MnHapusContengActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_MnCopyActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1392,6 +1530,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnContengSemua;
+    private javax.swing.JMenuItem MnCopy;
+    private javax.swing.JMenuItem MnHapusConteng;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.TextBox TCari;
@@ -1425,6 +1566,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu;
     private widget.TextBox jlhSisaObat;
     private widget.TextBox nmObat;
     private widget.TextBox nmdpjp;
@@ -1486,7 +1628,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 ps.setString(9, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new String[]{
+                    tabMode.addRow(new Object[]{
+                        false,
                         rs.getString("no_rawat"), 
                         rs.getString("no_rkm_medis"), 
                         rs.getString("nm_pasien"),
@@ -1533,17 +1676,17 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private void getData() {
         kdobat = "";
         if(tbObat.getSelectedRow()!= -1){
-            TNoRW.setText(tbObat.getValueAt(tbObat.getSelectedRow(),0).toString());
-            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-            TNmPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
-            nmObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            dosis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            caraPemberian.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            cmbJam.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 6).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 6).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 6).toString().substring(6, 8));
-            jlhSisaObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),7).toString());
-            kdobat = tbObat.getValueAt(tbObat.getSelectedRow(),11).toString();
+            TNoRW.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
+            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
+            TNmPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
+            nmObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
+            dosis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
+            caraPemberian.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
+            cmbJam.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(6, 8));
+            jlhSisaObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
+            kdobat = tbObat.getValueAt(tbObat.getSelectedRow(),12).toString();
         }
     }
     

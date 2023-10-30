@@ -397,6 +397,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel56 = new widget.Label();
         TKlgPasien = new widget.TextBox();
         jLabel57 = new widget.Label();
+        BtnPasteLab = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbRingkasan = new widget.Table();
@@ -1439,6 +1440,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         panelisi1.add(jLabel57);
         jLabel57.setBounds(720, 465, 140, 23);
 
+        BtnPasteLab.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteLab.setMnemonic('L');
+        BtnPasteLab.setText("Paste Hasil Lab.");
+        BtnPasteLab.setToolTipText("Alt+L");
+        BtnPasteLab.setName("BtnPasteLab"); // NOI18N
+        BtnPasteLab.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteLabActionPerformed(evt);
+            }
+        });
+        panelisi1.add(BtnPasteLab);
+        BtnPasteLab.setBounds(0, 491, 140, 23);
+
         Scroll2.setViewportView(panelisi1);
 
         internalFrame2.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -2311,6 +2327,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Segera tayang (Comming Soon)...!!!");
     }//GEN-LAST:event_MnAsesmenKebidananActionPerformed
 
+    private void BtnPasteLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteLabActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
+        } else {
+            if (TPemeriksaanPenunjang.getText().equals("")) {
+                TPemeriksaanPenunjang.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                TPemeriksaanPenunjang.setText(TPemeriksaanPenunjang.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteLabActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2335,6 +2365,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPasteLab;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnVerif;

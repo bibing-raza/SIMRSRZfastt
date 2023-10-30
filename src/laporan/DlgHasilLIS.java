@@ -493,47 +493,43 @@ public class DlgHasilLIS extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopyActionPerformed
-        JOptionPane.showMessageDialog(null, "Belum selesai, masih proses penyempurnaan SIMRS..!!!");
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
+        } else {
+            //cek conteng
+            x = 0;
+            for (i = 0; i < tbHasil.getRowCount(); i++) {
+                if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
+                    x++;
+                }
+            }
+            
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng hasil pemeriksaan lab. yang dipilih utk. di copy..!!!!");
+                tbHasil.requestFocus();
+            } else {
+                try {
+                    for (i = 0; i < tbHasil.getRowCount(); i++) {
+                        if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
+                            if (hasilDipilih.equals("")) {
+                                hasilDipilih = tbHasil.getValueAt(i, 1).toString() + " "
+                                        + tbHasil.getValueAt(i, 2).toString() + " "
+                                        + tbHasil.getValueAt(i, 3).toString();
+                            } else {
+                                hasilDipilih = hasilDipilih + "\n" + tbHasil.getValueAt(i, 1).toString() + " "
+                                        + tbHasil.getValueAt(i, 2).toString() + " "
+                                        + tbHasil.getValueAt(i, 3).toString();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
 
-//        if (tabMode1.getRowCount() == 0) {
-//            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
-//        } else {
-//            //cek conteng
-//            x = 0;
-//            for (i = 0; i < tbHasil.getRowCount(); i++) {
-//                if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-//                    x++;
-//                }
-//            }
-//            
-//            if (x == 0) {
-//                JOptionPane.showMessageDialog(null, "Silahkan conteng hasil pemeriksaan lab. yang dipilih utk. di copy..!!!!");
-//                tbHasil.requestFocus();
-//            } else {
-//                try {
-//                    for (i = 0; i < tbHasil.getRowCount(); i++) {
-//                        if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-//                            if (hasilDipilih.equals("")) {
-//                                hasilDipilih = tbHasil.getValueAt(i, 1).toString() + " Nilai Hasil : "
-//                                        + tbHasil.getValueAt(i, 2).toString() + ", Satuan : "
-//                                        + tbHasil.getValueAt(i, 3).toString() + ", Nilai Rujukan : "
-//                                        + tbHasil.getValueAt(i, 5).toString();
-//                            } else {
-//                                hasilDipilih = hasilDipilih + "\n" + tbHasil.getValueAt(i, 1).toString() + " Nilai Hasil : "
-//                                        + tbHasil.getValueAt(i, 2).toString() + ", Satuan : "
-//                                        + tbHasil.getValueAt(i, 3).toString() + ", Nilai Rujukan : "
-//                                        + tbHasil.getValueAt(i, 5).toString();
-//                            }
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println("Notifikasi : " + e);
-//                }
-//
-//                akses.setHasilPeriksaLab(hasilDipilih);
-//                BtnKeluarActionPerformed(null);
-//            }
-//        }
+                akses.setCopyData(hasilDipilih);
+                BtnKeluarActionPerformed(null);
+            }
+        }
     }//GEN-LAST:event_BtnCopyActionPerformed
 
     /**
@@ -679,7 +675,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
             while (rs1.next()) {    
                 Sequel.menyimpan("temporary_lis", "'" + rs1.getString("kategori_pemeriksaan_nama") + "','','','',"
                         + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Kategori Pemeriksaan");
-                tabMode1.addRow(new Object[]{false, rs1.getString("kategori_pemeriksaan_nama")});
+                tabMode1.addRow(new Object[]{false, rs1.getString("kategori_pemeriksaan_nama"), "", "", "", "", "", ""});
 
                 ps2.setString(1, noLIS);
                 ps2.setString(2, rs1.getString("kategori_pemeriksaan_nama"));
@@ -687,7 +683,7 @@ public class DlgHasilLIS extends javax.swing.JDialog {
                 while (rs2.next()) {
                     Sequel.menyimpan("temporary_lis", "'   " + rs2.getString("sub_kategori_pemeriksaan_nama") + "','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Sub Kategori Pemeriksaan");
-                    tabMode1.addRow(new Object[]{false, "   "+rs2.getString("sub_kategori_pemeriksaan_nama")});
+                    tabMode1.addRow(new Object[]{false, "   "+rs2.getString("sub_kategori_pemeriksaan_nama"), "", "", "", "", "", ""});
                     
                     ps3.setString(1, noLIS);
                     ps3.setString(2, rs2.getString("sub_kategori_pemeriksaan_nama"));

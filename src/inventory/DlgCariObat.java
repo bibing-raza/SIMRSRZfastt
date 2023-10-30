@@ -309,7 +309,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jam();
 
         tabModeResepObat = new DefaultTableModel(null, new Object[]{
-            "P", "No.Rawat", "Nama Obat", "Tgl. Resep", "Jam Input", "Status", "ID"}) {
+            "P", "No.Rawat", "Nama Obat", "Tgl. Resep", "Jam Input", "Status", "ID", "Nama Dokter"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -320,7 +320,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
             }
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -333,7 +333,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         tbResepObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbResepObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbResepObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -350,6 +350,8 @@ public final class DlgCariObat extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 7) {
+                column.setPreferredWidth(250);
             }
         }
         tbResepObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -417,6 +419,8 @@ public final class DlgCariObat extends javax.swing.JDialog {
         label14 = new widget.Label();
         cmbKertas = new widget.ComboBox();
         BtnCetak = new widget.Button();
+        jLabel9 = new widget.Label();
+        LCountRalan = new widget.Label();
 
         Popup.setName("Popup"); // NOI18N
 
@@ -753,7 +757,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
         jLabel8.setBounds(4, 10, 55, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -943,6 +947,19 @@ public final class DlgCariObat extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnCetak);
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Record :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelisi4.add(jLabel9);
+
+        LCountRalan.setForeground(new java.awt.Color(0, 0, 0));
+        LCountRalan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCountRalan.setText("0");
+        LCountRalan.setName("LCountRalan"); // NOI18N
+        LCountRalan.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelisi4.add(LCountRalan);
 
         FormInput.add(panelisi4, java.awt.BorderLayout.PAGE_END);
 
@@ -1814,6 +1831,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.ComboBox Jeniskelas;
     private widget.TextBox Kd2;
     private widget.TextBox KdPj;
+    private widget.Label LCountRalan;
     private widget.Label LPpn;
     private widget.Label LTotal;
     private widget.Label LTotalTagihan;
@@ -1839,6 +1857,7 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private widget.Label label12;
     private widget.Label label13;
     private widget.Label label14;
@@ -2439,12 +2458,14 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         Valid.tabelKosong(tabModeResepObat);
         try {
             if (cmbStatus.getSelectedIndex() == 3) {
-                ps = koneksi.prepareStatement("select no_rawat, nama_obat, status, noId, date_format(tgl_perawatan,'%d-%m-%Y') tgl, "
-                        + "jam_perawatan from catatan_resep where no_rawat like '%" + TNoRw.getText().trim() + "%' order by status, noId desc");
+                ps = koneksi.prepareStatement("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
+                        + "c.jam_perawatan, d.nm_dokter from catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter where "
+                        + "c.no_rawat like '%" + TNoRw.getText().trim() + "%' order by c.status, c.noId desc");
             } else {
-                ps = koneksi.prepareStatement("select no_rawat, nama_obat, status, noId, date_format(tgl_perawatan,'%d-%m-%Y') tgl, "
-                        + "jam_perawatan from catatan_resep where no_rawat like '%" + TNoRw.getText().trim() + "%' and "
-                        + "status like '%" + cmbStatus.getSelectedItem().toString() + "%' order by status, noId desc");
+                ps = koneksi.prepareStatement("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
+                        + "c.jam_perawatan, d.nm_dokter from catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter where "
+                        + "c.no_rawat like '%" + TNoRw.getText().trim() + "%' and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' "
+                        + "order by c.status, c.noId desc");
             }
             chkResepObat.setSelected(false);
             try {
@@ -2457,7 +2478,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
                         rs.getString("tgl"), 
                         rs.getString("jam_perawatan"),
                         rs.getString("status"),
-                        rs.getString("noId")
+                        rs.getString("noId"),
+                        rs.getString("nm_dokter")
                     });
                 }
             } catch (Exception e) {
@@ -2474,5 +2496,6 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             System.out.println("Notifikasi : " + e);
             chkResepObat.setSelected(false);
         }
+        LCountRalan.setText("" + tabModeResepObat.getRowCount());        
     }
 }
