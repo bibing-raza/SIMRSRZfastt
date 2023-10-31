@@ -824,13 +824,19 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             tbPasien.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat) > 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
-            } else {
                 DlgPemberianObat formobat = new DlgPemberianObat(null, false);
                 formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 formobat.setLocationRelativeTo(internalFrame1);
                 formobat.isCek();
                 formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
+                formobat.tampilPO();
+                formobat.setVisible(true);
+            } else {
+                DlgPemberianObat formobat = new DlgPemberianObat(null, false);
+                formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                formobat.setLocationRelativeTo(internalFrame1);
+                formobat.isCek();
+                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan");
                 formobat.tampilPO();
                 formobat.setVisible(true);
             }

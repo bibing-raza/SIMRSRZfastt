@@ -72,4 +72,7 @@
     <entry key="CONSIDAPIICARE">sama isinya dengan CONSIDAPIBPJS</entry>
     <entry key="USERKEYAPIICARE">sama isinya dengan USERKEYAPIBPJS</entry>
     <entry key="URLCEKFINGERPRINT">http://ip addres server/cekfp/?cari=no rekam medisnya</entry>
+    <entry key="NOTIFAPOTEK">no</entry>
+    <entry key="NOTIFLABORATORIUM">no</entry>
+    <entry key="NOTIFRADIOLOGI">no</entry>
 </properties>

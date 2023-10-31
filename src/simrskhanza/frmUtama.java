@@ -235,6 +235,7 @@ import keuangan.DlgRekening;
 import keuangan.DlgRekeningTahun;
 import bridging.ReklasifikasiRalan;
 import bridging.ReklasifikasiRanap;
+import fungsi.BackgroundMusic;
 import grafikanalisa.GrafikDemografiRegistrasi;
 import grafikanalisa.GrafikKunjunganPerBulan;
 import grafikanalisa.GrafikKunjunganPerDokter;
@@ -262,7 +263,10 @@ import inventory.DlgPemberianObat;
 import inventory.DlgPemberianObatPasien;
 import inventory.DlgPenjualanPerTanggal;
 import inventory.DlgRiwayatBarangMedis;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.awt.event.KeyListener;
+import javax.swing.Timer;
 import javax.swing.event.DocumentEvent;
 import kepegawaian.DlgCariPetugas;
 import kepegawaian.DlgPegawai;
@@ -397,10 +401,12 @@ public class frmUtama extends javax.swing.JFrame {
     private ResultSet rs;
     private final Properties prop = new Properties();
     private int jmlmenu = 0, grid = 0, tinggi = 0, i = 0;
-    private String coder_nik = "", pilihpage = "", judulform = "", host = "";
+    private String coder_nik = "", pilihpage = "", judulform = "", host = "", cek = "", cekApt = "";
     private final DlgKasirRalan kasirralan = new DlgKasirRalan(this, false);
     private final DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private final DlgIGD igd = new DlgIGD(this, false);  
+    private BackgroundMusic music;
+    
     /**
      * Creates new form frmUtama
      */
@@ -488,7 +494,13 @@ public class frmUtama extends javax.swing.JFrame {
                 }
             });
         }
-
+        
+        cekApotek();
+        cekNotifApotek();
+        cekNotifLab();
+        cekNotifRad();
+        otomatisRefreshNotif();
+        akses.tRefreshNotif.start();
     }
 
     public static frmUtama getInstance() {
@@ -496,7 +508,7 @@ public class frmUtama extends javax.swing.JFrame {
             myInstance = new frmUtama();
         }
 
-        return myInstance;
+        return myInstance;        
     }
 
     //private DlgMenu menu=new DlgMenu(this,false); 
@@ -934,6 +946,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnToolLab = new widget.ButtonBig();
         btnToolRad = new widget.ButtonBig();
         BtnToolJualObat = new widget.ButtonBig();
+        BtnDasboard = new widget.ButtonBig();
         jSeparator9 = new javax.swing.JSeparator();
         BtnToolKamnap = new widget.ButtonBig();
         BtnToolKasir = new widget.ButtonBig();
@@ -947,7 +960,7 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblTgl = new javax.swing.JLabel();
-        jSeparator3 = new javax.swing.JSeparator();
+        jSeparator6 = new javax.swing.JSeparator();
         footer_lbl_update = new javax.swing.JLabel();
         PanelUtama = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
@@ -6162,7 +6175,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/10/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/10/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6410,6 +6423,25 @@ public class frmUtama extends javax.swing.JFrame {
         });
         internalFrame1.add(BtnToolJualObat);
 
+        BtnDasboard.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDasboard.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Pills.png"))); // NOI18N
+        BtnDasboard.setMnemonic('S');
+        BtnDasboard.setText("Dashboard e-Resep");
+        BtnDasboard.setToolTipText("Alt+S");
+        BtnDasboard.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnDasboard.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        BtnDasboard.setIconTextGap(3);
+        BtnDasboard.setMargin(new java.awt.Insets(1, 2, 1, 0));
+        BtnDasboard.setName("BtnDasboard"); // NOI18N
+        BtnDasboard.setPreferredSize(new java.awt.Dimension(137, 40));
+        BtnDasboard.setVerticalTextPosition(javax.swing.SwingConstants.CENTER);
+        BtnDasboard.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDasboardActionPerformed(evt);
+            }
+        });
+        internalFrame1.add(BtnDasboard);
+
         jSeparator9.setBackground(new java.awt.Color(150, 170, 125));
         jSeparator9.setForeground(new java.awt.Color(170, 190, 145));
         jSeparator9.setOrientation(javax.swing.SwingConstants.VERTICAL);
@@ -6560,13 +6592,13 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setPreferredSize(new java.awt.Dimension(100, 23));
         internalFrame4.add(lblTgl);
 
-        jSeparator3.setBackground(new java.awt.Color(170, 190, 145));
-        jSeparator3.setForeground(new java.awt.Color(170, 190, 145));
-        jSeparator3.setOrientation(javax.swing.SwingConstants.VERTICAL);
-        jSeparator3.setName("jSeparator3"); // NOI18N
-        jSeparator3.setOpaque(true);
-        jSeparator3.setPreferredSize(new java.awt.Dimension(1, 20));
-        internalFrame4.add(jSeparator3);
+        jSeparator6.setBackground(new java.awt.Color(170, 190, 145));
+        jSeparator6.setForeground(new java.awt.Color(170, 190, 145));
+        jSeparator6.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator6.setName("jSeparator6"); // NOI18N
+        jSeparator6.setOpaque(true);
+        jSeparator6.setPreferredSize(new java.awt.Dimension(1, 20));
+        internalFrame4.add(jSeparator6);
 
         footer_lbl_update.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         footer_lbl_update.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -6575,7 +6607,7 @@ public class frmUtama extends javax.swing.JFrame {
         footer_lbl_update.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         footer_lbl_update.setIconTextGap(3);
         footer_lbl_update.setName("footer_lbl_update"); // NOI18N
-        footer_lbl_update.setPreferredSize(new java.awt.Dimension(740, 23));
+        footer_lbl_update.setPreferredSize(new java.awt.Dimension(540, 23));
         internalFrame4.add(footer_lbl_update);
 
         getContentPane().add(internalFrame4, java.awt.BorderLayout.PAGE_END);
@@ -12254,6 +12286,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnDashboardeResepRanapActionPerformed
 
+    private void BtnDasboardActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDasboardActionPerformed
+        isTutup();
+        FlayMenu.removeAll();
+        FlayMenu.add(btnDashboardeResepRalan);
+        FlayMenu.add(btnDashboardeResepRanap);
+        btnDashboardeResepRalan.setEnabled(akses.getdashboard_eResep());
+        btnDashboardeResepRanap.setEnabled(akses.getdashboard_eResep());
+        FlayMenu.setVisible(true);
+    }//GEN-LAST:event_BtnDasboardActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12267,6 +12309,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.Button BtnCancel;
     private widget.ButtonBig BtnClose;
     private widget.Button BtnClosePass;
+    private widget.ButtonBig BtnDasboard;
     private widget.ButtonBig BtnDpjp;
     private widget.ButtonBig BtnJadwal;
     private widget.ButtonBig BtnLog;
@@ -12707,9 +12750,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JMenu jMenu3;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
-    private javax.swing.JSeparator jSeparator3;
     private javax.swing.JSeparator jSeparator4;
     private javax.swing.JSeparator jSeparator5;
+    private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel kdUser;
@@ -19324,6 +19367,109 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
         }
+    }
+    
+    private void notifAlarm() {
+        try {
+            music = new BackgroundMusic("./suara/paman_pentol.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+
+    private void otomatisRefreshNotif() {
+        ActionListener taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                //------------------------------------------------------------------------------------------------------------------------------------------------
+                if (akses.getNotifApotek().equals("yes")) {
+                    //jika apotek sentral ranap
+                    if (akses.getkdbangsal().equals("APT02")) {
+                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                            notifAlarm();
+                        }
+
+                    //jika apotek igd
+                    } else if (akses.getkdbangsal().equals("APT01")) {
+                        if (Sequel.cariInteger("select count(-1) from catatan_resep c inner join reg_periksa r on r.no_rawat=c.no_rawat where "
+                                + "r.status_lanjut='Ralan' and c.status='belum' and r.kd_poli='igdk' and "
+                                + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
+                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                            notifAlarm();
+                        }
+                    } 
+                }
+
+                //------------------------------------------------------------------------------------------------------------------------------------------------
+                if (akses.getNotifLab().equals("yes")) {
+                    if (Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza where status_rawat='Ralan' and status_periksa='belum' and "
+                            + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
+                            || Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza where status_rawat='Ranap' and status_periksa='belum' and "
+                                    + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                        notifAlarm();
+                    } 
+                }
+
+                //------------------------------------------------------------------------------------------------------------------------------------------------
+//                if (akses.getNotifRad().equals("yes")) {
+
+//                }
+            }
+        };
+        // Timer
+        //interval 1000 ms = 1 detik
+        //interval 30000 ms = 30 detik atau setngah menit
+        //interval 180000 ms = 3 menit atau setngah menit
+        akses.tRefreshNotif = new Timer(180000, taskPerformer);
+    }
+    
+    private void cekNotifApotek() {
+        cek = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            cek = prop.getProperty("NOTIFAPOTEK").toString();
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }        
+        akses.setNotifApotek(cek);
+    }
+    
+    private void cekNotifLab() {
+        cek = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            cek = prop.getProperty("NOTIFLABORATORIUM").toString();
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }        
+        akses.setNotifLab(cek);
+    }
+    
+    private void cekNotifRad() {
+        cek = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            cek = prop.getProperty("NOTIFRADIOLOGI").toString();
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }        
+        akses.setNotifRad(cek);
+    }
+
+    private void cekApotek() {
+        cekApt = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            cekApt = prop.getProperty("APOTEK").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        akses.setkdbangsal(cekApt);
     }
 
 }

@@ -802,7 +802,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             tbPasien.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat) > 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+                DlgPemberianObat formobat = new DlgPemberianObat(null, false);
+                formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                formobat.setLocationRelativeTo(internalFrame1);
+                formobat.isCek();
+                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
+                formobat.tampilPO();
+                formobat.setVisible(true);
             } else {
                 DlgPemberianObat formobat = new DlgPemberianObat(null, false);
                 formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -820,25 +826,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Pilih dulu salah satu data pasiennya pada tabel..!!!");
         } else {
             akses.setform("DlgDashboardEresep");
-            if (akses.getkode().equals("Admin Utama")) {
-                dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
-                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
-                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
-                dlgobtjalan.isCek();
-                dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                dlgobtjalan.tampilobat();
-                dlgobtjalan.tampil_resep();
-                dlgobtjalan.setLocationRelativeTo(internalFrame1);
-                dlgobtjalan.setVisible(true);
-            } else {
-                dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
-                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
-                        Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
-                dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                dlgobtjalan.isCek();
-                dlgobtjalan.tampilobat();
-                dlgobtjalan.setLocationRelativeTo(internalFrame1);
-            }
+            dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
+                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
+            dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            dlgobtjalan.isCek();
+            dlgobtjalan.tampilobat();
+            dlgobtjalan.setLocationRelativeTo(internalFrame1);
         }
     }//GEN-LAST:event_MnInputPemberianObatActionPerformed
 
@@ -957,7 +951,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                     + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or "
                     + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
                     + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_tlp like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and d.nm_dokter like ? "
+                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and d.nm_dokter like ? or "
+                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and pl.nm_poli like ? "
                     + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
 
             try {
@@ -985,7 +980,12 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 ps.setString(22, Valid.SetTgl(tglCari2.getSelectedItem() + ""));
                 ps.setString(23, "%" + kdpoli.getText().trim() + "%");
                 ps.setString(24, "%" + kdpnj.getText().trim() + "%");
-                ps.setString(25, "%" + TCari.getText().trim() + "%");
+                ps.setString(25, "%" + TCari.getText().trim() + "%");                
+                ps.setString(26, Valid.SetTgl(tglCari1.getSelectedItem() + ""));
+                ps.setString(27, Valid.SetTgl(tglCari2.getSelectedItem() + ""));
+                ps.setString(28, "%" + kdpoli.getText().trim() + "%");
+                ps.setString(29, "%" + kdpnj.getText().trim() + "%");
+                ps.setString(30, "%" + TCari.getText().trim() + "%");       
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{

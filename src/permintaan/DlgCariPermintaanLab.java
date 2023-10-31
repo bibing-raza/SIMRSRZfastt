@@ -28,10 +28,10 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
-    private int i = 0, x = 0, cekSudah = 0, pilihan = 0;
+    private int i = 0, x = 0, cekSudah = 0, pilihan = 0, diagnosa_cek = 0;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private String norw = "", nominta = "", jnsrwt = "", sttsrawat = "";
+    private String norw = "", nominta = "", jnsrwt = "", sttsrawat = "", diagnosa_ok = "", cekdokter = "";
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -141,6 +141,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnVerifikasiSudah = new javax.swing.JMenuItem();
         MnVerifikasiBatal = new javax.swing.JMenuItem();
+        MnPeriksaLab = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
@@ -194,6 +195,21 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnVerifikasiBatal);
+
+        MnPeriksaLab.setBackground(new java.awt.Color(255, 255, 254));
+        MnPeriksaLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPeriksaLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPeriksaLab.setText("Periksa Laboratorium");
+        MnPeriksaLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPeriksaLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPeriksaLab.setName("MnPeriksaLab"); // NOI18N
+        MnPeriksaLab.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnPeriksaLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPeriksaLabActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnPeriksaLab);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -600,6 +616,77 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_BtnHapusKeyPressed
 
+    private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPeriksaLabActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norw.equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan menklik data pada tabel...!!!");
+            tbPasien.requestFocus();
+        } else {
+            diagnosa_ok = "";
+            cekdokter = "";
+            diagnosa_cek = 0;
+
+            if (tbPasien.getValueAt(tbPasien.getSelectedRow(), 6).toString().equals("Ranap")) {
+                diagnosa_cek = Sequel.cariInteger("select count(1) cek from kamar_inap where no_rawat='" + norw + "'");
+                if (diagnosa_cek == 0) {
+                    diagnosa_ok = "-";
+                } else {
+                    diagnosa_ok = Sequel.cariIsi("select diagnosa_awal from kamar_inap where no_rawat='" + norw + "'");
+                }
+
+                if (Sequel.cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norw + "'") > 0) {
+                    cekdokter = Sequel.cariIsi("select dokter_perujuk from permintaan_lab_raza where no_rawat='" + norw + "'");
+                } else {
+                    cekdokter = Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + norw + "'");
+                }
+
+                if (Sequel.cariRegistrasi(tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString()) > 0) {
+                    JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
+                } else {
+                    akses.setform("DlgCariPermintaanLab");
+                    DlgPeriksaLaboratorium periksalab = new DlgPeriksaLaboratorium(null, false);
+                    periksalab.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                    periksalab.setLocationRelativeTo(internalFrame1);
+                    periksalab.emptTeks();
+                    periksalab.KodePerujuk.setText(cekdokter);
+                    periksalab.setNoRm(norw, "Ranap", "-", diagnosa_ok, Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki "
+                            + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal where "
+                            + "ki.no_rawat='" + norw + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+                    periksalab.tampiltarif();
+                    periksalab.tampil();
+                    periksalab.tampilMintaPeriksa();
+                    periksalab.isCek();
+                    periksalab.setVisible(true);
+                    periksalab.fokus();
+                }
+            } else {
+                diagnosa_cek = Sequel.cariInteger("select count(1) cek from pemeriksaan_ralan where no_rawat='" + norw + "'");
+                if (diagnosa_cek == 0) {
+                    diagnosa_ok = "-";
+                } else {
+                    diagnosa_ok = Sequel.cariIsi("select diagnosa from pemeriksaan_ralan where no_rawat='" + norw + "'");
+                }
+
+                akses.setform("DlgCariPermintaanLab");
+                DlgPeriksaLaboratorium periksalab = new DlgPeriksaLaboratorium(null, false);
+                periksalab.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                periksalab.setLocationRelativeTo(internalFrame1);
+                periksalab.emptTeks();
+                periksalab.KodePerujuk.setText(Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norw + "'"));
+                periksalab.setNoRm(norw, "Ralan", diagnosa_ok, "-", Sequel.cariIsi("select p.nm_poli from reg_periksa r "
+                        + "inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + norw + "'"));
+                periksalab.tampiltarif();
+                periksalab.tampilMintaPeriksa();
+                periksalab.tampil();
+                periksalab.isCek();
+                periksalab.setVisible(true);
+                periksalab.fokus();
+            }
+        }
+    }//GEN-LAST:event_MnPeriksaLabActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -622,6 +709,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnVerifikasiBatal;
     private javax.swing.JMenuItem MnVerifikasiSudah;
     public widget.TextBox TCari;

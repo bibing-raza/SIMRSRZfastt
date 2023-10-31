@@ -20,7 +20,7 @@ public final class akses {
     private static ResultSet rs, rs2;
 
     private static String kode = "", kdbangsal = "", namars = "", alamatrs = "", kabupatenrs = "", propinsirs = "", kontakrs = "", emailrs = "",
-            form = "", namauser = "", jenisLoket = "", nomorLoket = "", CopyData = "";
+            form = "", namauser = "", jenisLoket = "", nomorLoket = "", CopyData = "", notifLab = "", notifRad = "", notifApotek = "";
     private static int jml1 = 0, jml2 = 0, lebar = 0, tinggi = 0;
     private static boolean aktif = false, admin = false, user = false, vakum = false, aplikasi = false, penyakit = false, obat_penyakit = false, dokter = false, jadwal_praktek = false, petugas = false, pasien = false, registrasi = false,
             tindakan_ralan = false, kamar_inap = false, tindakan_ranap = false, operasi = false, rujukan_keluar = false, rujukan_masuk = false, beri_obat = false,
@@ -81,7 +81,7 @@ public final class akses {
             ikhtisar_perawatan_hiv = false, survey_kepuasan = false, kemenkes_kanker = false, aktivasi_bridging = false, operator_antrian = false, penilaian_awal_medis_ralan_tht = false,
             rekam_psikologis = false, penilaian_pasien_geriatri = false, penilaian_awal_medis_ralan_mata = false, surat_sakit = false, surat_keterangan_kir_mcu = false, asesmen_medik_dewasa_ranap = false,
             pemberian_obat = false, cppt = false;
-    public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri;
+    public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri, tRefreshNotif;
 
     public static void setData(String user, String pass) {
         try {
@@ -2151,6 +2151,18 @@ public final class akses {
     public static String getJenisLoket() {
         return akses.jenisLoket;
     }
+    
+    public static String getNotifLab() {
+        return akses.notifLab;
+    }
+    
+    public static String getNotifRad() {
+        return akses.notifRad;
+    }
+    
+    public static String getNotifApotek() {
+        return akses.notifApotek;
+    }
 
     public static String getNomorLoket() {
         return akses.nomorLoket;
@@ -2158,6 +2170,18 @@ public final class akses {
     
     public static String getPasteData() {
         return akses.CopyData;
+    }
+    
+    public static void setNotifApotek(String cek) {
+        akses.notifApotek = cek;
+    }
+    
+    public static void setNotifLab(String cek) {
+        akses.notifLab = cek;
+    }
+    
+    public static void setNotifRad(String cek) {
+        akses.notifRad = cek;
     }
 
     public static void setkdbangsal(String kdbangsal) {
