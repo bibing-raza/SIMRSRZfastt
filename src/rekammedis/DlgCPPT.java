@@ -758,6 +758,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel26 = new widget.Label();
         jLabel27 = new widget.Label();
         BtnPasteHasil = new widget.Button();
+        BtnPasteInstruksi = new widget.Button();
         internalFrame6 = new widget.InternalFrame();
         scrollPane4 = new widget.ScrollPane();
         TSubjektif = new widget.TextArea();
@@ -2695,6 +2696,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         });
         internalFrame4.add(BtnPasteHasil);
         BtnPasteHasil.setBounds(825, 70, 100, 23);
+
+        BtnPasteInstruksi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteInstruksi.setMnemonic('L');
+        BtnPasteInstruksi.setText("Paste");
+        BtnPasteInstruksi.setToolTipText("Alt+L");
+        BtnPasteInstruksi.setName("BtnPasteInstruksi"); // NOI18N
+        BtnPasteInstruksi.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteInstruksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteInstruksiActionPerformed(evt);
+            }
+        });
+        internalFrame4.add(BtnPasteInstruksi);
+        BtnPasteInstruksi.setBounds(825, 355, 100, 23);
 
         TabPilihan.addTab("SOAP Pilihan 1", internalFrame4);
 
@@ -5486,6 +5502,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Segera tayang (Comming Soon)...!!!");
     }//GEN-LAST:event_MnLihatDataKebidananActionPerformed
 
+    private void BtnPasteInstruksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteInstruksiActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu data yg. dipilih..!!!!");
+        } else {
+            if (TInstruksi.getText().equals("")) {
+                TInstruksi.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                TInstruksi.setText(TInstruksi.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteInstruksiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5536,6 +5566,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnKonsulen;
     private widget.Button BtnPPA;
     private widget.Button BtnPasteHasil;
+    private widget.Button BtnPasteInstruksi;
     private widget.Button BtnPilihDiet;
     private widget.Button BtnPrint;
     private widget.Button BtnResep;

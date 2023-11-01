@@ -12277,7 +12277,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgDashboardEresepRanap eResep = new DlgDashboardEresepRanap(this, false);
         eResep.emptTeks();
-        eResep.tampil();
+        eResep.tampilAwal();
         eResep.isCek();
         eResep.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         eResep.setLocationRelativeTo(PanelUtama);
@@ -19369,7 +19369,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
     }
     
-    private void notifAlarm() {
+    private void notifAlarmLain() {
         try {
             music = new BackgroundMusic("./suara/paman_pentol.mp3");
             music.start();
@@ -19378,7 +19378,27 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             System.out.println(ex);
         }
     }
-
+    
+    private void notifAlarmIGD() {
+        try {
+            music = new BackgroundMusic("./suara/resep_IGD.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void notifAlarmResepRanap() {
+        try {
+            music = new BackgroundMusic("./suara/resep_rawat_inap.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
     private void otomatisRefreshNotif() {
         ActionListener taskPerformer = new ActionListener() {
             @Override
@@ -19389,17 +19409,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                     if (akses.getkdbangsal().equals("APT02")) {
                         if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
                                 + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
-                            notifAlarm();
+                            notifAlarmLain();
                         }
 
                     //jika apotek igd
                     } else if (akses.getkdbangsal().equals("APT01")) {
                         if (Sequel.cariInteger("select count(-1) from catatan_resep c inner join reg_periksa r on r.no_rawat=c.no_rawat where "
                                 + "r.status_lanjut='Ralan' and c.status='belum' and r.kd_poli='igdk' and "
-                                + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
-                                || Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
+                                + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                            notifAlarmIGD();
+                        }
+                        
+                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
                                         + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
-                            notifAlarm();
+                            notifAlarmResepRanap();
                         }
                     } 
                 }
@@ -19410,7 +19433,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                             + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
                             || Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza where status_rawat='Ranap' and status_periksa='belum' and "
                                     + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
-                        notifAlarm();
+                        notifAlarmLain();
                     } 
                 }
 

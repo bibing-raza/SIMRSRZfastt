@@ -252,6 +252,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSemuanya = new javax.swing.JMenuItem();
         MnDibatalkan = new javax.swing.JMenuItem();
+        MnDiCopy = new javax.swing.JMenuItem();
         noIdObat = new widget.TextBox();
         TIdObat = new widget.TextBox();
         Scroll35 = new widget.ScrollPane();
@@ -341,6 +342,21 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnDibatalkan);
 
+        MnDiCopy.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDiCopy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        MnDiCopy.setText("Resep Di Copy");
+        MnDiCopy.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDiCopy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDiCopy.setIconTextGap(5);
+        MnDiCopy.setName("MnDiCopy"); // NOI18N
+        MnDiCopy.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnDiCopy.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDiCopyActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDiCopy);
+
         noIdObat.setForeground(new java.awt.Color(0, 0, 0));
         noIdObat.setHighlighter(null);
         noIdObat.setName("noIdObat"); // NOI18N
@@ -391,7 +407,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2023" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2023" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -407,7 +423,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2023" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2023" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1286,7 +1302,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                 + "inner join reg_periksa r on r.no_rawat = c.no_rawat inner join dokter d on d.kd_dokter = c.kd_dokter "
                                 + "INNER JOIN poliklinik pl on pl.kd_poli=r.kd_poli INNER JOIN pasien p on p.no_rkm_medis=r.no_rkm_medis "
                                 + "INNER JOIN kelurahan kl on kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc on kc.kd_kec=p.kd_kec "
-                                + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='" + TNoRw.getText() + "' and c.noId in (" + resepDipilih + ") order by c.noId", param);
+                                + "INNER JOIN kabupaten kb on kb.kd_kab=p.kd_kab where c.no_rawat ='" + TNoRw.getText() + "' and "
+                                + "c.noId in (" + resepDipilih + ") order by c.noId", param);
                         this.setCursor(Cursor.getDefaultCursor());
                     }
                 } else if (status.equals("ranap") || jnsKunjungan.equals("Ranap")) {
@@ -1398,6 +1415,44 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_tbItemResepKeyPressed
 
+    private void MnDiCopyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDiCopyActionPerformed
+        if (tabModeResepObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, Item resep obat masih kosong...!!!!");
+            tbResepObat.requestFocus();
+        } else {
+            //cek conteng
+            x = 0;
+            for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                    x++;
+                }
+            }
+
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu resep yang dipilih utk. di copy..!!!!");
+                tbResepObat.requestFocus();
+            } else {
+                try {
+                    for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                        if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                            if (resepDipilih.equals("")) {
+                                resepDipilih = tbResepObat.getValueAt(i, 4).toString();
+                            } else {
+                                resepDipilih = resepDipilih + "\n" + tbResepObat.getValueAt(i, 4).toString();
+                            }
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+
+                akses.setCopyData(resepDipilih);
+                JOptionPane.showMessageDialog(null, "Resep yang dipilih berhasil di copy..!!!!");
+                MnDibatalkanActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_MnDiCopyActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1428,6 +1483,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Tanggal DTPCariA;
     private widget.Tanggal DTPCariB;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnDiCopy;
     private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnSemuanya;
     private javax.swing.JPanel PanelInput1;

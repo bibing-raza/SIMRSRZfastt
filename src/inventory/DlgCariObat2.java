@@ -2266,14 +2266,14 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
                         + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
                         + "WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' "
-                        + "ORDER BY c.status, c.noId DESC");
+                        + "ORDER BY c.status, c.noId");
             } else {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, "
                         + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
                         + "FROM catatan_resep_ranap c inner join dokter d on d.kd_dokter=c.kd_dokter "
                         + "where c.no_rawat like '%" + TNoRw.getText().trim() + "%' "
                         + "and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' "
-                        + "order by c.status, c.noId desc");
+                        + "order by c.status, c.noId");
             }            
             chkResepObat.setSelected(false);
             try {
@@ -2315,14 +2315,14 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                         + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
                         + "FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter "
                         + "WHERE c.no_rawat LIKE '%" + TNoRw.getText().trim() + "%' "
-                        + "ORDER BY c.status, c.noId DESC");
+                        + "ORDER BY c.status, c.noId");
             } else {
                 ps1 = koneksi.prepareStatement("SELECT c.no_rawat, c.nama_obat, c.STATUS, c.noId, "
                         + "date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, c.jam_perawatan, d.nm_dokter "
                         + "FROM catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter "
                         + "where c.no_rawat like '%" + TNoRw.getText().trim() + "%' "
                         + "and c.status like '%" + cmbStatus1.getSelectedItem().toString() + "%' "
-                        + "order by c.status, c.noId desc");
+                        + "order by c.status, c.noId");
             }            
             chkResepObat1.setSelected(false);
             try {

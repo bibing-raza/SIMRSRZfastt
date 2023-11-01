@@ -2460,12 +2460,12 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             if (cmbStatus.getSelectedIndex() == 3) {
                 ps = koneksi.prepareStatement("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
                         + "c.jam_perawatan, d.nm_dokter from catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter where "
-                        + "c.no_rawat like '%" + TNoRw.getText().trim() + "%' order by c.status, c.noId desc");
+                        + "c.no_rawat like '%" + TNoRw.getText().trim() + "%' order by c.status, c.noId");
             } else {
                 ps = koneksi.prepareStatement("select c.no_rawat, c.nama_obat, c.status, c.noId, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl, "
                         + "c.jam_perawatan, d.nm_dokter from catatan_resep c inner join dokter d on d.kd_dokter=c.kd_dokter where "
                         + "c.no_rawat like '%" + TNoRw.getText().trim() + "%' and c.status like '%" + cmbStatus.getSelectedItem().toString() + "%' "
-                        + "order by c.status, c.noId desc");
+                        + "order by c.status, c.noId");
             }
             chkResepObat.setSelected(false);
             try {

@@ -780,7 +780,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             }
             
             if (x == 0) {
-                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu item obat yg. dipilih utk. QR code nya...!!");
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu item obat yg. dipilih...!!");
                 tampilResep();
                 tbdaftarResep.requestFocus();
             } else if (x > 1) {
@@ -935,6 +935,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuang);
+        tampilAwal();
     }//GEN-LAST:event_formWindowOpened
 
     private void MnContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemuaActionPerformed
@@ -1134,7 +1135,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private widget.Tanggal tglCari2;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil() {
+    private void tampil() {
         Valid.tabelKosong(tabMode);
         Valid.tabelKosong(tabMode1);
         ((Painter) gambarQR).setImage("");
@@ -1202,6 +1203,87 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                     ps.setString(18, "%" + cmbRuang.getSelectedItem().toString() + "%");
                     ps.setString(19, "%" + kdpnj.getText().trim() + "%");
                     ps.setString(20, "%" + TCari.getText().trim() + "%");
+                }
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new Object[]{
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("pasienya"),
+                        rs.getString("no_tlp"),
+                        rs.getString("nm_gedung"),
+                        rs.getString("png_jawab"),
+                        rs.getString("jlh_item_obat"),
+                        rs.getString("status")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("simrskhanza.DlgDashboardEresepRanap.tampil() : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void tampilAwal() {
+        Valid.tabelKosong(tabMode);
+        Valid.tabelKosong(tabMode1);
+        ((Painter) gambarQR).setImage("");
+        try {
+            if (cmbRuang.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
+                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and cr.no_rawat like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_rkm_medis like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_tlp like ? "
+                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+            } else {
+                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
+                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and cr.no_rawat like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
+                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_tlp like ? "
+                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+            }
+
+            try {
+                if (cmbRuang.getSelectedIndex() == 0) {
+                    ps.setString(1, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(2, "%" + TCari.getText().trim() + "%");
+                    ps.setString(3, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(4, "%" + TCari.getText().trim() + "%");
+                    ps.setString(5, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps.setString(7, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(8, "%" + TCari.getText().trim() + "%");
+                } else {
+                    ps.setString(1, "%" + cmbRuang.getSelectedItem().toString() + "%");
+                    ps.setString(2, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(3, "%" + TCari.getText().trim() + "%");
+                    ps.setString(4, "%" + cmbRuang.getSelectedItem().toString() + "%");
+                    ps.setString(5, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(6, "%" + TCari.getText().trim() + "%");
+                    ps.setString(7, "%" + cmbRuang.getSelectedItem().toString() + "%");
+                    ps.setString(8, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(9, "%" + TCari.getText().trim() + "%");
+                    ps.setString(10, "%" + cmbRuang.getSelectedItem().toString() + "%");
+                    ps.setString(11, "%" + kdpnj.getText().trim() + "%");
+                    ps.setString(12, "%" + TCari.getText().trim() + "%");
                 }
                 rs = ps.executeQuery();
                 while (rs.next()) {

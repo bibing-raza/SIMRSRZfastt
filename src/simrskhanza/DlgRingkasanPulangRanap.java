@@ -1289,7 +1289,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2023" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1443,7 +1443,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnPasteLab.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
         BtnPasteLab.setMnemonic('L');
-        BtnPasteLab.setText("Paste Hasil Lab.");
+        BtnPasteLab.setText("Paste");
         BtnPasteLab.setToolTipText("Alt+L");
         BtnPasteLab.setName("BtnPasteLab"); // NOI18N
         BtnPasteLab.setPreferredSize(new java.awt.Dimension(28, 23));
@@ -1453,7 +1453,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnPasteLab);
-        BtnPasteLab.setBounds(0, 491, 140, 23);
+        BtnPasteLab.setBounds(40, 491, 90, 23);
 
         Scroll2.setViewportView(panelisi1);
 
@@ -2332,10 +2332,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
         } else {
             if (TPemeriksaanPenunjang.getText().equals("")) {
-                TPemeriksaanPenunjang.setText("Hasil Pemeriksaan  Lab. :\n" + akses.getPasteData());
+                TPemeriksaanPenunjang.setText(akses.getPasteData());
                 akses.setCopyData("");
             } else {
-                TPemeriksaanPenunjang.setText(TPemeriksaanPenunjang.getText() + "\n\nHasil Pemeriksaan  Lab. :\n" + akses.getPasteData());
+                TPemeriksaanPenunjang.setText(TPemeriksaanPenunjang.getText() + "\n\n" + akses.getPasteData());
                 akses.setCopyData("");
             }
         }
