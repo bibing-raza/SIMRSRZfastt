@@ -133,6 +133,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             TotSkorRJ = "", kesimpulanResikoJatuh = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
 
     /**
      * Creates new form DlgKamarInap
@@ -482,6 +483,43 @@ public class DlgKamarInap extends javax.swing.JDialog {
             @Override
             public void changedUpdate(DocumentEvent e) {
                 isjml();
+            }
+        });
+        
+        dokter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {;
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgKamarInap")) {
+                    if (dokter.getTable().getSelectedRow() != -1) {
+                        kddpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString());
+                        nmdpjp.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                        btnDPJP.requestFocus();                        
+                    }
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
             }
         });
 
@@ -1323,6 +1361,14 @@ public class DlgKamarInap extends javax.swing.JDialog {
         tglB = new widget.Tanggal();
         cmbTanggal = new widget.ComboBox();
         jLabel50 = new widget.Label();
+        WindowDPJPranap = new javax.swing.JDialog();
+        internalFrame15 = new widget.InternalFrame();
+        BtnCloseIn10 = new widget.Button();
+        BtnSimpan6 = new widget.Button();
+        jLabel52 = new widget.Label();
+        kddpjp = new widget.TextBox();
+        nmdpjp = new widget.TextBox();
+        btnDPJP = new widget.Button();
         TabTindakanPencegahan = new javax.swing.JTabbedPane();
         panelBiasa6 = new widget.PanelBiasa();
         TabPencegahanDewasa = new javax.swing.JTabbedPane();
@@ -6514,6 +6560,77 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel50.setBounds(0, 60, 90, 23);
 
         WindowCPPT.getContentPane().add(internalFrame10, java.awt.BorderLayout.CENTER);
+
+        WindowDPJPranap.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowDPJPranap.setName("WindowDPJPranap"); // NOI18N
+        WindowDPJPranap.setUndecorated(true);
+        WindowDPJPranap.setResizable(false);
+
+        internalFrame15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ DPJP Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame15.setName("internalFrame15"); // NOI18N
+        internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame15.setLayout(null);
+
+        BtnCloseIn10.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn10.setMnemonic('U');
+        BtnCloseIn10.setText("Tutup");
+        BtnCloseIn10.setToolTipText("Alt+U");
+        BtnCloseIn10.setName("BtnCloseIn10"); // NOI18N
+        BtnCloseIn10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn10ActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnCloseIn10);
+        BtnCloseIn10.setBounds(480, 60, 100, 30);
+
+        BtnSimpan6.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpan6.setMnemonic('S');
+        BtnSimpan6.setText("Simpan");
+        BtnSimpan6.setToolTipText("Alt+S");
+        BtnSimpan6.setName("BtnSimpan6"); // NOI18N
+        BtnSimpan6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan6ActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnSimpan6);
+        BtnSimpan6.setBounds(370, 60, 100, 30);
+
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Nama DPJP :");
+        jLabel52.setName("jLabel52"); // NOI18N
+        internalFrame15.add(jLabel52);
+        jLabel52.setBounds(0, 32, 77, 23);
+
+        kddpjp.setEditable(false);
+        kddpjp.setForeground(new java.awt.Color(0, 0, 0));
+        kddpjp.setName("kddpjp"); // NOI18N
+        internalFrame15.add(kddpjp);
+        kddpjp.setBounds(81, 32, 100, 23);
+
+        nmdpjp.setEditable(false);
+        nmdpjp.setForeground(new java.awt.Color(0, 0, 0));
+        nmdpjp.setName("nmdpjp"); // NOI18N
+        internalFrame15.add(nmdpjp);
+        nmdpjp.setBounds(183, 32, 380, 23);
+
+        btnDPJP.setForeground(new java.awt.Color(0, 0, 0));
+        btnDPJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        btnDPJP.setMnemonic('7');
+        btnDPJP.setToolTipText("ALt+7");
+        btnDPJP.setName("btnDPJP"); // NOI18N
+        btnDPJP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnDPJPActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(btnDPJP);
+        btnDPJP.setBounds(565, 32, 28, 23);
+
+        WindowDPJPranap.getContentPane().add(internalFrame15, java.awt.BorderLayout.CENTER);
 
         TabTindakanPencegahan.setBackground(new java.awt.Color(255, 255, 254));
         TabTindakanPencegahan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -13988,14 +14105,30 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKamIn.requestFocus();
         } else {
-            DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
-            ringkasan.emptTeks();
-            ringkasan.isCek();
-            ringkasan.setPasien(norawat.getText());
-            ringkasan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            ringkasan.setLocationRelativeTo(internalFrame1);
-            ringkasan.setVisible(true);
-            BtnCariActionPerformed(null);
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + norawat.getText() + "'") == 0) {
+                x = JOptionPane.showConfirmDialog(rootPane, "DPJP pasien ini belum ditentukan, apakah DPJP nya akan dipilih dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    WindowDPJPranap.setSize(615, 110);
+                    WindowDPJPranap.setLocationRelativeTo(internalFrame1);
+                    WindowDPJPranap.setVisible(true);
+                    kddpjp.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + norawat.getText() + "'"));
+                    if (kddpjp.getText().equals("")) {
+                        nmdpjp.setText("");
+                    } else {
+                        nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
+                    }
+                    btnDPJP.requestFocus();
+                }
+            } else {
+                DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
+                ringkasan.emptTeks();
+                ringkasan.isCek();
+                ringkasan.setPasien(norawat.getText());
+                ringkasan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                ringkasan.setLocationRelativeTo(internalFrame1);
+                ringkasan.setVisible(true);
+                BtnCariActionPerformed(null);
+            }
         }
     }//GEN-LAST:event_MnInputDataRingkasanActionPerformed
 
@@ -14337,6 +14470,40 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnCatatanResepActionPerformed
 
+    private void BtnCloseIn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn10ActionPerformed
+        WindowDPJPranap.dispose();
+        kddpjp.setText("");
+        nmdpjp.setText("");
+    }//GEN-LAST:event_BtnCloseIn10ActionPerformed
+
+    private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
+        if (kddpjp.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya...!");
+            btnDPJP.requestFocus();
+        } else {
+            Sequel.simpanReplaceInto("dpjp_ranap", "'" + norawat.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
+            
+            DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
+            ringkasan.emptTeks();
+            ringkasan.isCek();
+            ringkasan.setPasien(norawat.getText());
+            ringkasan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            ringkasan.setLocationRelativeTo(internalFrame1);
+            ringkasan.setVisible(true);
+            BtnCariActionPerformed(null);
+            BtnCloseIn10ActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnSimpan6ActionPerformed
+
+    private void btnDPJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDPJPActionPerformed
+        akses.setform("DlgKamarInap");        
+        dokter.emptTeks();
+        dokter.isCek();
+        dokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setVisible(true);
+    }//GEN-LAST:event_btnDPJPActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -14368,6 +14535,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button BtnCloseGabung;
     private widget.Button BtnCloseIn;
     private widget.Button BtnCloseIn1;
+    private widget.Button BtnCloseIn10;
     private widget.Button BtnCloseIn11;
     private widget.Button BtnCloseIn12;
     private widget.Button BtnCloseIn13;
@@ -14404,6 +14572,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button BtnSimpan3;
     private widget.Button BtnSimpan4;
     private widget.Button BtnSimpan5;
+    private widget.Button BtnSimpan6;
     public widget.Button BtnSimpan7;
     private widget.Button BtnSimpan8;
     private widget.Button BtnSimpan9;
@@ -14627,6 +14796,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Tanggal Tglsurat1;
     private javax.swing.JDialog WindowCPPT;
     private javax.swing.JDialog WindowCaraBayar;
+    private javax.swing.JDialog WindowDPJPranap;
     private javax.swing.JDialog WindowDiagnosaAwal;
     public javax.swing.JDialog WindowGiziBuruk;
     private javax.swing.JDialog WindowInputKamar;
@@ -14648,6 +14818,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.TextBox bbu;
     private widget.Button btnBangsalCari;
     private widget.Button btnBayar;
+    private widget.Button btnDPJP;
     private widget.Button btnDiagnosa;
     private widget.Button btnFaskes;
     private widget.Button btnKamar;
@@ -14700,6 +14871,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.InternalFrame internalFrame12;
     public widget.InternalFrame internalFrame13;
     private widget.InternalFrame internalFrame14;
+    private widget.InternalFrame internalFrame15;
     private widget.InternalFrame internalFrame16;
     private widget.InternalFrame internalFrame17;
     private widget.InternalFrame internalFrame18;
@@ -14767,6 +14939,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Label jLabel49;
     private widget.Label jLabel50;
     private widget.Label jLabel51;
+    private widget.Label jLabel52;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel64;
@@ -14807,6 +14980,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private widget.TextBox jnsBayar;
     private widget.TextBox kdAkses;
+    private widget.TextBox kddpjp;
     private widget.TextBox kdkamar;
     private widget.TextBox kdkamarpindah;
     private widget.TextBox kdpenjab;
@@ -14814,6 +14988,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.TextBox ket1;
     private widget.TextBox ketAPS;
     private widget.TextBox leukosit;
+    private widget.TextBox nmdpjp;
     private widget.TextBox nmpasangan;
     private widget.TextBox nmpenjab;
     private widget.TextBox nmpxGB;

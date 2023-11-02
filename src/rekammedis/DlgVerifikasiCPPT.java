@@ -124,6 +124,9 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnCopyHasil = new javax.swing.JMenuItem();
+        MnCopyInstruksi = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
         jLabel4 = new widget.Label();
@@ -155,6 +158,38 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnSimpan = new widget.Button();
         BtnKeluar = new widget.Button();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnCopyHasil.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopyHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCopyHasil.setText("Copy Hasil");
+        MnCopyHasil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopyHasil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopyHasil.setIconTextGap(5);
+        MnCopyHasil.setName("MnCopyHasil"); // NOI18N
+        MnCopyHasil.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCopyHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopyHasilActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCopyHasil);
+
+        MnCopyInstruksi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopyInstruksi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCopyInstruksi.setText("Copy Instruksi");
+        MnCopyInstruksi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopyInstruksi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopyInstruksi.setIconTextGap(5);
+        MnCopyInstruksi.setName("MnCopyInstruksi"); // NOI18N
+        MnCopyInstruksi.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCopyInstruksi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopyInstruksiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCopyInstruksi);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -246,6 +281,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         Tinstruksi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Tinstruksi.setColumns(20);
         Tinstruksi.setRows(5);
+        Tinstruksi.setComponentPopupMenu(jPopupMenu1);
         Tinstruksi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Tinstruksi.setName("Tinstruksi"); // NOI18N
         scrollPane4.setViewportView(Tinstruksi);
@@ -259,6 +295,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         Thasil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Thasil.setColumns(20);
         Thasil.setRows(5);
+        Thasil.setComponentPopupMenu(jPopupMenu1);
         Thasil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         Thasil.setName("Thasil"); // NOI18N
         scrollPane5.setViewportView(Thasil);
@@ -296,7 +333,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         jLabel8.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass8.add(jLabel8);
 
-        tglCppt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        tglCppt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2023" }));
         tglCppt1.setDisplayFormat("dd-MM-yyyy");
         tglCppt1.setName("tglCppt1"); // NOI18N
         tglCppt1.setOpaque(false);
@@ -310,7 +347,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel21);
 
-        tglCppt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
+        tglCppt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2023" }));
         tglCppt2.setDisplayFormat("dd-MM-yyyy");
         tglCppt2.setName("tglCppt2"); // NOI18N
         tglCppt2.setOpaque(false);
@@ -600,6 +637,24 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnResepActionPerformed
 
+    private void MnCopyHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopyHasilActionPerformed
+        if (Thasil.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data hasil pemeriksaan masih kosong/belum terisi...!!!");
+        } else {
+            akses.setCopyData(Thasil.getText());
+            BtnKeluarActionPerformed(null);
+        }
+    }//GEN-LAST:event_MnCopyHasilActionPerformed
+
+    private void MnCopyInstruksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopyInstruksiActionPerformed
+        if (Tinstruksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Data instruksi tenaga kesehatan masih kosong/belum terisi...!!!");
+        } else {
+            akses.setCopyData(Tinstruksi.getText());
+            BtnKeluarActionPerformed(null);
+        }
+    }//GEN-LAST:event_MnCopyInstruksiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -624,6 +679,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
+    private javax.swing.JMenuItem MnCopyHasil;
+    private javax.swing.JMenuItem MnCopyInstruksi;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.TextBox TNoRm;
@@ -642,6 +699,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
     private widget.Label jLabel4;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;

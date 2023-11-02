@@ -64,7 +64,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             "Dokter Pengirim", "Cara Bayar", "Alasan Masuk Dirawat", "Ringkasan Riwayat Penyakit", "Pemeriksaan Fisik", "Pemeriksaan Penunjang Diagnostik",
             "Terapi Pengobatan", "Diagnosa Utama/Primer", "Diagnosa Sekunder", "Tindakan Prosedur", "Kondisi Wkt. Pulang", "Keadaan Umum", "Kesadaran", "GCS",
             "Tekanan Darah", "Suhu", "Nadi", "Frekuensi Nafas", "Catatan Penting", "Terapi Pulang", "Pengobatan Lanjutan", "Dokter Luar", "Tgl. Kontrol Poli",
-            "Nama DPJP Pasien", "cektgl", "edukasi", "png_jawab_px", "nip_penyimpan"
+            "Nama DPJP Pasien", "cektgl", "edukasi", "png_jawab_px", "nip_penyimpan", "hasil_pemeriksaan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -76,7 +76,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         tbRingkasan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbRingkasan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 36; i++) {
+        for (i = 0; i < 37; i++) {
             TableColumn column = tbRingkasan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -152,6 +152,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 35) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 36) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -397,7 +400,14 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel56 = new widget.Label();
         TKlgPasien = new widget.TextBox();
         jLabel57 = new widget.Label();
-        BtnPasteLab = new widget.Button();
+        BtnPastePenunjang = new widget.Button();
+        jLabel38 = new widget.Label();
+        jLabel46 = new widget.Label();
+        jLabel58 = new widget.Label();
+        jLabel59 = new widget.Label();
+        Scroll28 = new widget.ScrollPane();
+        THasil = new widget.TextArea();
+        BtnPasteHasil = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbRingkasan = new widget.Table();
@@ -705,7 +715,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         panelisi1.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis");
         panelisi1.setComponentPopupMenu(jPopupMenu1);
         panelisi1.setName("panelisi1"); // NOI18N
-        panelisi1.setPreferredSize(new java.awt.Dimension(1087, 1177));
+        panelisi1.setPreferredSize(new java.awt.Dimension(1087, 1340));
         panelisi1.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -969,7 +979,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll18.setViewportView(TPemeriksaanPenunjang);
 
         panelisi1.add(Scroll18);
-        Scroll18.setBounds(135, 445, 590, 720);
+        Scroll18.setBounds(135, 445, 590, 880);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Pemeriksaan Penunjang");
@@ -1289,7 +1299,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-10-2023" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2023" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1318,7 +1328,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel36.setText("Catatan Penting ");
         jLabel36.setName("jLabel36"); // NOI18N
         panelisi1.add(jLabel36);
-        jLabel36.setBounds(730, 912, 130, 23);
+        jLabel36.setBounds(730, 1075, 130, 23);
 
         Scroll25.setName("Scroll25"); // NOI18N
         Scroll25.setOpaque(true);
@@ -1335,19 +1345,19 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll25.setViewportView(TCatatan);
 
         panelisi1.add(Scroll25);
-        Scroll25.setBounds(865, 912, 590, 70);
+        Scroll25.setBounds(865, 1075, 590, 71);
 
         jLabel39.setForeground(new java.awt.Color(0, 0, 0));
         jLabel39.setText("(kondisi saat ini) :");
         jLabel39.setName("jLabel39"); // NOI18N
         panelisi1.add(jLabel39);
-        jLabel39.setBounds(730, 927, 130, 23);
+        jLabel39.setBounds(730, 1090, 130, 23);
 
         jLabel42.setForeground(new java.awt.Color(0, 0, 0));
         jLabel42.setText("Terapi Pulang :");
         jLabel42.setName("jLabel42"); // NOI18N
         panelisi1.add(jLabel42);
-        jLabel42.setBounds(730, 987, 130, 23);
+        jLabel42.setBounds(730, 1150, 130, 23);
 
         Scroll27.setName("Scroll27"); // NOI18N
         Scroll27.setOpaque(true);
@@ -1364,7 +1374,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Scroll27.setViewportView(TTerapiPulang);
 
         panelisi1.add(Scroll27);
-        Scroll27.setBounds(865, 987, 590, 175);
+        Scroll27.setBounds(865, 1150, 590, 175);
 
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1440,20 +1450,76 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         panelisi1.add(jLabel57);
         jLabel57.setBounds(720, 465, 140, 23);
 
-        BtnPasteLab.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPasteLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
-        BtnPasteLab.setMnemonic('L');
-        BtnPasteLab.setText("Paste");
-        BtnPasteLab.setToolTipText("Alt+L");
-        BtnPasteLab.setName("BtnPasteLab"); // NOI18N
-        BtnPasteLab.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnPasteLab.addActionListener(new java.awt.event.ActionListener() {
+        BtnPastePenunjang.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPastePenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPastePenunjang.setMnemonic('L');
+        BtnPastePenunjang.setText("Paste");
+        BtnPastePenunjang.setToolTipText("Alt+L");
+        BtnPastePenunjang.setName("BtnPastePenunjang"); // NOI18N
+        BtnPastePenunjang.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPastePenunjang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPasteLabActionPerformed(evt);
+                BtnPastePenunjangActionPerformed(evt);
             }
         });
-        panelisi1.add(BtnPasteLab);
-        BtnPasteLab.setBounds(40, 491, 90, 23);
+        panelisi1.add(BtnPastePenunjang);
+        BtnPastePenunjang.setBounds(40, 491, 90, 23);
+
+        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel38.setText("Hasil Pemeriksaan, :");
+        jLabel38.setName("jLabel38"); // NOI18N
+        panelisi1.add(jLabel38);
+        jLabel38.setBounds(730, 912, 130, 23);
+
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Analisa, Rencana,  ");
+        jLabel46.setName("jLabel46"); // NOI18N
+        panelisi1.add(jLabel46);
+        jLabel46.setBounds(730, 927, 130, 23);
+
+        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel58.setText("Penatalaksanaan  ");
+        jLabel58.setName("jLabel58"); // NOI18N
+        panelisi1.add(jLabel58);
+        jLabel58.setBounds(730, 942, 130, 23);
+
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Pasien  ");
+        jLabel59.setName("jLabel59"); // NOI18N
+        panelisi1.add(jLabel59);
+        jLabel59.setBounds(730, 957, 130, 23);
+
+        Scroll28.setName("Scroll28"); // NOI18N
+        Scroll28.setOpaque(true);
+
+        THasil.setColumns(20);
+        THasil.setRows(5);
+        THasil.setName("THasil"); // NOI18N
+        THasil.setPreferredSize(new java.awt.Dimension(190, 10000));
+        THasil.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                THasilKeyPressed(evt);
+            }
+        });
+        Scroll28.setViewportView(THasil);
+
+        panelisi1.add(Scroll28);
+        Scroll28.setBounds(865, 919, 590, 150);
+
+        BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteHasil.setMnemonic('L');
+        BtnPasteHasil.setText("Paste");
+        BtnPasteHasil.setToolTipText("Alt+L");
+        BtnPasteHasil.setName("BtnPasteHasil"); // NOI18N
+        BtnPasteHasil.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteHasilActionPerformed(evt);
+            }
+        });
+        panelisi1.add(BtnPasteHasil);
+        BtnPasteHasil.setBounds(780, 987, 80, 23);
 
         Scroll2.setViewportView(panelisi1);
 
@@ -1725,7 +1791,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "'" + TTensi.getText() + "','" + TSuhu.getText() + "','" + TNadi.getText() + "','" + TFrekuensiNafas.getText() + "','" + TCatatan.getText() + "',"
                     + "'" + TTerapiPulang.getText() + "','" + cmbLanjutan.getSelectedItem().toString() + "','" + kontrolPoli + "',"
                     + "'" + TNmDokter.getText() + "','" + Tgcs.getText() + "','" + TTindakan.getText() + "','" + TDokterLuar.getText() + "',"
-                    + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "'", "Ringkasan Pulang Pasien Rawat Inap");
+                    + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "'", "Ringkasan Pulang Pasien Rawat Inap");
             
             emptTeks();
             tampil();
@@ -1785,7 +1851,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
                         + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
                         + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
-                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "'");
+                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
 
                 tampil();
                 emptTeks();
@@ -2327,7 +2393,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         JOptionPane.showMessageDialog(null, "Segera tayang (Comming Soon)...!!!");
     }//GEN-LAST:event_MnAsesmenKebidananActionPerformed
 
-    private void BtnPasteLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteLabActionPerformed
+    private void BtnPastePenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPastePenunjangActionPerformed
         if (akses.getPasteData().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan lab. yg. dipilih..!!!!");
         } else {
@@ -2339,7 +2405,27 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 akses.setCopyData("");
             }
         }
-    }//GEN-LAST:event_BtnPasteLabActionPerformed
+    }//GEN-LAST:event_BtnPastePenunjangActionPerformed
+
+    private void THasilKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_THasilKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            TCatatan.requestFocus();
+        }
+    }//GEN-LAST:event_THasilKeyPressed
+
+    private void BtnPasteHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteHasilActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu hasil pemeriksaan..!!!!");
+        } else {
+            if (THasil.getText().equals("")) {
+                THasil.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                THasil.setText(THasil.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteHasilActionPerformed
 
     /**
     * @param args the command line arguments
@@ -2365,7 +2451,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
-    private widget.Button BtnPasteLab;
+    private widget.Button BtnPasteHasil;
+    private widget.Button BtnPastePenunjang;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnVerif;
@@ -2394,6 +2481,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.ScrollPane Scroll25;
     private widget.ScrollPane Scroll26;
     private widget.ScrollPane Scroll27;
+    private widget.ScrollPane Scroll28;
     private widget.ScrollPane Scroll8;
     private widget.TextArea TAlasanDirawat;
     private widget.TextBox TCaraBayar;
@@ -2403,6 +2491,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextArea TDiagUtama;
     private widget.TextBox TDokterLuar;
     private widget.TextBox TFrekuensiNafas;
+    private widget.TextArea THasil;
     private widget.TextBox TJK;
     private widget.TextArea TKeadaanumum;
     private widget.TextArea TKesadaran;
@@ -2471,6 +2560,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
+    private widget.Label jLabel38;
     private widget.Label jLabel39;
     private widget.Label jLabel4;
     private widget.Label jLabel40;
@@ -2479,6 +2569,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Label jLabel43;
     private widget.Label jLabel44;
     private widget.Label jLabel45;
+    private widget.Label jLabel46;
     private widget.Label jLabel47;
     private widget.Label jLabel48;
     private widget.Label jLabel49;
@@ -2490,6 +2581,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Label jLabel55;
     private widget.Label jLabel56;
     private widget.Label jLabel57;
+    private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.PanelBiasa panelBiasa10;
@@ -2513,7 +2606,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "DATE_FORMAT(ki.tgl_keluar,'%d-%m-%Y') tgl_pulang, IF(rr.nm_dokter_pengirim='','-',rr.nm_dokter_pengirim) dr_pengirim, pj.png_jawab, rr.alasan_masuk_dirawat, rr.ringkasan_riwayat_penyakit, "
                     + "rr.pemeriksaan_fisik, rr.pemeriksaan_penunjang, rr.terapi_pengobatan, rr.diagnosa_utama, rr.diagnosa_sekunder, rr.tindakan_prosedur, ki.stts_pulang, rr.keadaan_umum, rr.kesadaran, rr.gcs, rr.tekanan_darah, "
                     + "rr.suhu, rr.nadi, rr.frekuensi_nafas, rr.catatan_penting, rr.terapi_pulang, rr.pengobatan_dilanjutkan, rr.dokter_luar_lanjutan dr_luar, rr.tgl_kontrol_poliklinik tgl_kontrol, d.nm_dokter dpjp, "
-                    + "rr.cek_tgl_kontrol, rr.edukasi, rr.penanggung_jwb_pasien, rr.nip_penyimpan FROM ringkasan_pulang_ranap rr "
+                    + "rr.cek_tgl_kontrol, rr.edukasi, rr.penanggung_jwb_pasien, rr.nip_penyimpan, ifnull(rr.hasil_pemeriksaan,'') hasil_pemeriksaan FROM ringkasan_pulang_ranap rr "
                     + "INNER JOIN kamar_inap ki on ki.no_rawat=rr.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "INNER JOIN reg_periksa rp on rp.no_rawat=rr.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "INNER JOIN dpjp_ranap dr on dr.no_rawat=ki.no_rawat INNER JOIN dokter d on d.kd_dokter=dr.kd_dokter where "
@@ -2616,7 +2709,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         rs.getString("cek_tgl_kontrol"),
                         rs.getString("edukasi"),
                         rs.getString("penanggung_jwb_pasien"),
-                        rs.getString("nip_penyimpan")
+                        rs.getString("nip_penyimpan"),
+                        rs.getString("hasil_pemeriksaan")
                     });                    
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -2673,6 +2767,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         TglKontrol.setEnabled(false);
         Tedukasi.setText("");
         TKlgPasien.setText("");
+        THasil.setText("");
     }
 
     private void getData() {
@@ -2713,6 +2808,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             cekTgl = tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 32).toString();            
             Tedukasi.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 33).toString());
             TKlgPasien.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 34).toString());
+            THasil.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 36).toString());
             
             if (cekTgl.equals("tidak")) {
                 chkTglKontrol.setSelected(false);

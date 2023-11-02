@@ -451,7 +451,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         tabModeRad1 = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "Jns. Pemeriksaan Radiologi", "Tgl. Permintaan",
-            "Jam", "Dokter yg. meminta", "No. Order", "ID. Template", "Diperiksa", "Tgl. Periksa", "Jam Periksa"}) {
+            "Jam", "Dokter yg. meminta", "No. Order", "ID. Template", "Diperiksa"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -463,8 +463,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -476,7 +475,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbPeriksaRad.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPeriksaRad.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbPeriksaRad.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -497,11 +496,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 7) {
                 column.setPreferredWidth(65);
-            } else if (i == 8) {
-                column.setPreferredWidth(80);
-            } else if (i == 9) {
-                column.setPreferredWidth(80);
-            }
+            } 
         }
         tbPeriksaRad.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -5520,9 +5515,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 } else if (noordeR1.equals("") && (noiD1.equals(""))) {
                     JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data permintaan periksa Radiologi dengan mengklik data pada tabel...!!!");
                     tbPeriksaRad.requestFocus();
-                } else if (Sequel.cariInteger("select count(-1) from permintaan_pemeriksaan_radiologi pp "
-                        + "inner join permintaan_radiologi pr on pr.noorder=pp.noorder "
-                        + "where pp.noorder='" + noordeR1 + "' and pr.tgl_sampel='0000-00-00' and pr.jam_sampel='00:00:00'") == 0) {
+                } else if (Sequel.cariInteger("select count(-1) from permintaan_pemeriksaan_radiologi pp inner join permintaan_radiologi pr on pr.noorder=pp.noorder "
+                        + "where pp.noorder='" + noordeR1 + "' and pr.status='Sudah'") > 0) {
                     JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
                 } else {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -12808,9 +12802,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         Valid.tabelKosong(tabModeRad1);
         try {
             psRad1 = koneksi.prepareStatement("SELECT pr.no_rawat, jpr.nm_perawatan, DATE_FORMAT(pr.tgl_permintaan,'%d-%m-%Y') tgl_permintaan, "
-                    + "IF (pr.jam_permintaan = '00:00:00','',pr.jam_permintaan) jam_permintaan, d.nm_dokter, pr.noorder, "
-                    + "ppr.kd_jenis_prw, if(pr.tgl_sampel='0000-00-00','Belum','Sudah') diperiksa, if(pr.tgl_sampel='0000-00-00','-',date_format(pr.tgl_sampel,'%d-%m-%Y')) tglperiksa, "
-                    + "if(pr.jam_sampel='00:00:00','-',date_format(pr.jam_sampel,'%H:%i:%s')) jamperiksa FROM permintaan_radiologi pr INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat "
+                    + "IF(pr.jam_permintaan='00:00:00','',pr.jam_permintaan) jam_permintaan, d.nm_dokter, pr.noorder, "
+                    + "ppr.kd_jenis_prw, pr.status FROM permintaan_radiologi pr INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat "
                     + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN permintaan_pemeriksaan_radiologi ppr on ppr.noorder=pr.noorder "
                     + "INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=ppr.kd_jenis_prw INNER JOIN dokter d on d.kd_dokter=pr.dokter_perujuk "
                     + "WHERE pr.tgl_permintaan BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
@@ -12826,9 +12819,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rsRad1.getString("nm_dokter"),
                         rsRad1.getString("noorder"),
                         rsRad1.getString("kd_jenis_prw"),
-                        rsRad1.getString("diperiksa"),
-                        rsRad1.getString("tglperiksa"),
-                        rsRad1.getString("jamperiksa")
+                        rsRad1.getString("status")
                     });
                 }
             } catch (Exception e) {

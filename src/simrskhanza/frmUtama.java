@@ -499,7 +499,9 @@ public class frmUtama extends javax.swing.JFrame {
         cekNotifApotek();
         cekNotifLab();
         cekNotifRad();
-        otomatisRefreshNotif();
+        otomatisRefreshNotifApt();
+        otomatisRefreshNotifLab();
+        otomatisRefreshNotifRad();
         akses.tRefreshNotif.start();
     }
 
@@ -6175,7 +6177,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/10/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01/11/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6620,7 +6622,7 @@ public class frmUtama extends javax.swing.JFrame {
         scrollPane1.setName("scrollPane1"); // NOI18N
 
         PanelWall.setBackground(new java.awt.Color(29, 29, 29));
-        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/wallpaper.jpg"))); // NOI18N
+        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/underconstruction.jpg"))); // NOI18N
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
         PanelWall.setBorder(javax.swing.BorderFactory.createEmptyBorder(20, 0, 0, 0));
         PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
@@ -19419,11 +19421,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
     }
     
-    private void otomatisRefreshNotif() {
+    private void otomatisRefreshNotifApt() {
         ActionListener taskPerformer = new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-                //------------------------------------------------------------------------------------------------------------------------------------------------
                 if (akses.getNotifApotek().equals("yes")) {
                     //jika apotek sentral ranap
                     if (akses.getkdbangsal().equals("APT02")) {
@@ -19446,8 +19447,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                         }
                     } 
                 }
-
-                //------------------------------------------------------------------------------------------------------------------------------------------------
+            }
+        };
+        // Timer
+        //interval 1000 ms = 1 detik
+        //interval 30000 ms = 30 detik atau setngah menit
+        //interval 600000 ms = 10 menit atau setngah menit
+        akses.tRefreshNotif = new Timer(600000, taskPerformer);
+    }
+    
+    private void otomatisRefreshNotifLab() {
+        ActionListener taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 if (akses.getNotifLab().equals("yes")) {
                     if (Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza where status_rawat='Ralan' and status_periksa='belum' and "
                             + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
@@ -19456,8 +19468,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                         notifAlarmLab();
                     } 
                 }
-
-                //------------------------------------------------------------------------------------------------------------------------------------------------
+            }
+        };
+        // Timer
+        //interval 1000 ms = 1 detik
+        //interval 30000 ms = 30 detik atau setngah menit
+        //interval 300000 ms = 5 menit atau setngah menit
+        akses.tRefreshNotif = new Timer(300000, taskPerformer);
+    }
+    
+    private void otomatisRefreshNotifRad() {
+        ActionListener taskPerformer = new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
                 if (akses.getNotifRad().equals("yes")) {
                     if (Sequel.cariInteger("SELECT count(-1) FROM permintaan_radiologi where status='Belum' and "
                             + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
@@ -19469,8 +19492,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         // Timer
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
-        //interval 180000 ms = 3 menit atau setngah menit
-        akses.tRefreshNotif = new Timer(180000, taskPerformer);
+        //interval 300000 ms = 5 menit atau setngah menit
+        akses.tRefreshNotif = new Timer(300000, taskPerformer);
     }
     
     private void cekNotifApotek() {

@@ -669,10 +669,8 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                 Sequel.queryu("delete from temporary_permintaan_radiologi");
                 try {
                     ps2 = koneksi.prepareStatement(
-                            "select permintaan_pemeriksaan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan "
-                            + "from permintaan_pemeriksaan_radiologi inner join jns_perawatan_radiologi on "
-                            + "permintaan_pemeriksaan_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw "
-                            + "where permintaan_pemeriksaan_radiologi.noorder=?");
+                            "SELECT pp.kd_jenis_prw, jp.nm_perawatan FROM permintaan_pemeriksaan_radiologi pp "
+                            + "INNER JOIN jns_perawatan_radiologi jp ON pp.kd_jenis_prw = jp.kd_jenis_prw WHERE pp.noorder=?");
                     try {
                         ps2.setString(1, tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
                         rs2 = ps2.executeQuery();
@@ -708,7 +706,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                 param.put("jkel", Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') jk from pasien where no_rkm_medis=? ", norm));
                 param.put("umur", Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur,'.') umur from reg_periksa where no_rkm_medis=?", norm));
                 param.put("lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis=? ", norm));
-                param.put("pengirim", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 10).toString());
+                param.put("pengirim", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 6).toString());
                 param.put("tanggal", Valid.SetTgl3(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 3).toString()));
                 param.put("alamat", Sequel.cariIsi("select concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat from pasien "
                         + "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
@@ -893,8 +891,9 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                         Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
                             "Belum", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString()
                         });
+                        CmbPeriksa.setSelectedIndex(0);
                         tampil();
-                        tampil2(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+                        tampil2(CmbPeriksa.getSelectedItem().toString());
                         pilihan = 0;
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -924,8 +923,9 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                         Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
                             "Sudah", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString()
                         });
+                        CmbPeriksa.setSelectedIndex(1);
                         tampil();
-                        tampil2(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+                        tampil2(CmbPeriksa.getSelectedItem().toString());
                         pilihan = 0;
                         this.setCursor(Cursor.getDefaultCursor());
                     }
