@@ -1448,7 +1448,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
                 akses.setCopyData(resepDipilih);
                 JOptionPane.showMessageDialog(null, "Resep yang dipilih berhasil di copy..!!!!");
-                MnDibatalkanActionPerformed(null);
+                BtnKeluarActionPerformed(null);
             }
         }
     }//GEN-LAST:event_MnDiCopyActionPerformed
