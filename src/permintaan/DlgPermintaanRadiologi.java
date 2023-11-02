@@ -614,9 +614,9 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }//GEN-LAST:event_btnCariPeriksaActionPerformed
 
     private void btnCariPeriksaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnCariPeriksaKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             tampil();
-        }else{
+        } else {
             Valid.pindah(evt, TCariPeriksa, BtnAllPeriksa);
         }
     }//GEN-LAST:event_btnCariPeriksaKeyPressed
@@ -697,9 +697,9 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 if (reply == JOptionPane.YES_OPTION) {
                     try {
                         koneksi.setAutoCommit(false);
-                        if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?,?,?,?", "No.Permintaan", 9, new String[]{
+                        if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?", "No.Permintaan", 6, new String[]{
                             TNoPermintaan.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"),
-                            Sequel.cariIsi("select time(now())"), "0000-00-00", "00:00:00", "0000-00-00", "00:00:00", KodePerujuk.getText()
+                            Sequel.cariIsi("select time(now())"), KodePerujuk.getText(), "Belum"
                         }) == true) {
                             for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                                 if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
@@ -725,9 +725,9 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     if (reply == JOptionPane.YES_OPTION) {
                         try {
                             koneksi.setAutoCommit(false);
-                            if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?,?,?,?", "No.Permintaan", 9, new String[]{
+                            if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?", "No.Permintaan", 6, new String[]{
                                 TNoPermintaan.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"),
-                                Sequel.cariIsi("select time(now())"), "0000-00-00", "00:00:00", "0000-00-00", "00:00:00", KodePerujuk.getText()
+                                Sequel.cariIsi("select time(now())"), KodePerujuk.getText(), "Belum"
                             }) == true) {
                                 for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
                                     if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
@@ -789,8 +789,7 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             Valid.textKosong(TCariPeriksa, "Data Permintaan");
         } else if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi belum tersimpan...!!!!");
-        } else if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' "
-                + "and tgl_sampel='0000-00-00' and jam_sampel='00:00:00'") == 0) {
+        } else if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' and status='Sudah'") > 0) {
             JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
         } else {
             Sequel.AutoComitFalse();
@@ -798,8 +797,7 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             try {
                 ps1 = koneksi.prepareStatement("SELECT pp.kd_jenis_prw, jp.nm_perawatan FROM permintaan_pemeriksaan_radiologi pp "
                         + "INNER JOIN jns_perawatan_radiologi jp ON pp.kd_jenis_prw = jp.kd_jenis_prw "
-                        + "inner join permintaan_radiologi pr on pr.noorder=pp.noorder where "
-                        + "pr.tgl_sampel='0000-00-00' and pr.jam_sampel='00:00:00' and pr.no_rawat = '" + TNoRw.getText() + "'");
+                        + "inner join permintaan_radiologi pr on pr.noorder=pp.noorder where pr.status='Belum' and pr.no_rawat = '" + TNoRw.getText() + "'");
                 try {
                     rs1 = ps1.executeQuery();
                     x = 1;
@@ -825,7 +823,7 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             }
             Sequel.AutoComitTrue();
             Map<String, Object> param = new HashMap<>();
-            param.put("noperiksa", Sequel.cariIsi("select noorder from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "'"));
+            param.put("noperiksa", Sequel.cariIsi("select noorder from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' and status='Belum'"));
             param.put("norm", TNoRM.getText());
             param.put("pekerjaan", Sequel.cariIsi("select pekerjaan from pasien where no_rkm_medis=?", TNoRM.getText()));
             param.put("noktp", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis=?", TNoRM.getText()));
@@ -834,11 +832,13 @@ private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             param.put("umur", Umur.getText());
             param.put("lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis=? ", TNoRM.getText()));
             param.put("pengirim", NmPerujuk.getText());
-            param.put("tanggal", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' limit 1")));
+            param.put("tanggal", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_permintaan from permintaan_radiologi where "
+                    + "no_rawat='" + TNoRw.getText() + "' and status='Belum' limit 1")));
             param.put("alamat", Alamat.getText());
             param.put("kamar", kamar);
             param.put("namakamar", namakamar);
-            param.put("jam", Sequel.cariIsi("select date_format(jam_permintaan,'%H:%i') from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' limit 1"));
+            param.put("jam", Sequel.cariIsi("select date_format(jam_permintaan,'%H:%i') from permintaan_radiologi where "
+                    + "no_rawat='" + TNoRw.getText() + "' and status='Belum' limit 1"));
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
             param.put("kotars", akses.getkabupatenrs());

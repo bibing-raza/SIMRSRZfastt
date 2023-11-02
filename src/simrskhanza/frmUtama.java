@@ -19399,6 +19399,26 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
     }
     
+    private void notifAlarmLab() {
+        try {
+            music = new BackgroundMusic("./suara/permintaan_periksa_laboratorium_diterima.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void notifAlarmRad() {
+        try {
+            music = new BackgroundMusic("./suara/permintaan_periksa_radiologi_diterima.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
     private void otomatisRefreshNotif() {
         ActionListener taskPerformer = new ActionListener() {
             @Override
@@ -19409,7 +19429,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                     if (akses.getkdbangsal().equals("APT02")) {
                         if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
                                 + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
-                            notifAlarmLain();
+                            notifAlarmResepRanap();
                         }
 
                     //jika apotek igd
@@ -19433,14 +19453,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                             + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0
                             || Sequel.cariInteger("SELECT count(-1) FROM permintaan_lab_raza where status_rawat='Ranap' and status_periksa='belum' and "
                                     + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
-                        notifAlarmLain();
+                        notifAlarmLab();
                     } 
                 }
 
                 //------------------------------------------------------------------------------------------------------------------------------------------------
-//                if (akses.getNotifRad().equals("yes")) {
-
-//                }
+                if (akses.getNotifRad().equals("yes")) {
+                    if (Sequel.cariInteger("SELECT count(-1) FROM permintaan_radiologi where status='Belum' and "
+                            + "tgl_permintaan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                        notifAlarmRad();
+                    }
+                }
             }
         };
         // Timer

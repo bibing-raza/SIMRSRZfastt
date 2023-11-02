@@ -1252,6 +1252,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                                     tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
                                     KodePj.getText(), status, "Belum", "-"
                                 }) == true) {
+                                    Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
+                                        "Sudah", noorder
+                                    });
                                     ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                                     ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
                                     ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
@@ -1328,6 +1331,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                                     tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
                                     KodePj.getText(), status, "Belum", "-"
                                 }) == true) {
+                                    Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
+                                        "Sudah", noorder
+                                    });
                                     ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
                                     ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
                                     ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
@@ -1383,7 +1389,6 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 //                }
                 }
             }
-
         }
     }//GEN-LAST:event_BtnSimpanActionPerformed
 
