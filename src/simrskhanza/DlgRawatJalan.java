@@ -5522,6 +5522,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
                         Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + noordeR1 + "' and kd_jenis_prw='" + noiD1 + "'");
+                        if (Sequel.cariInteger("select count(-1) from permintaan_pemeriksaan_radiologi where noorder='" + noordeR1 + "'") == 0) {
+                            Sequel.queryu("DELETE FROM permintaan_radiologi WHERE noorder='" + noordeR1 + "'");
+                        }
                         tampilMintaRad1();
                     }
                 }

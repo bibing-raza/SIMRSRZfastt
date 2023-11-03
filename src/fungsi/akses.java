@@ -81,7 +81,7 @@ public final class akses {
             ikhtisar_perawatan_hiv = false, survey_kepuasan = false, kemenkes_kanker = false, aktivasi_bridging = false, operator_antrian = false, penilaian_awal_medis_ralan_tht = false,
             rekam_psikologis = false, penilaian_pasien_geriatri = false, penilaian_awal_medis_ralan_mata = false, surat_sakit = false, surat_keterangan_kir_mcu = false, asesmen_medik_dewasa_ranap = false,
             pemberian_obat = false, cppt = false;
-    public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri, tRefreshNotif;
+    public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri, tRefreshNotifApotek, tRefreshNotifLab, tRefreshNotifRad;
 
     public static void setData(String user, String pass) {
         try {

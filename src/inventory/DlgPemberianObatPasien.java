@@ -948,7 +948,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
-                    tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString()
+                    tbObat.getValueAt(tbObat.getSelectedRow(), 10).toString()
                 }) == true) {
                     tampil();
                     emptTeks();
@@ -981,7 +981,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             nmObat.getText(), dosis.getText(), caraPemberian.getText(),
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                             jlhSisaObat.getText(), kdobat,
-                            tbObat.getValueAt(tbObat.getSelectedRow(), 9).toString()
+                            tbObat.getValueAt(tbObat.getSelectedRow(), 10).toString()
                         });
                 
                 tampil();

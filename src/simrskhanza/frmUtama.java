@@ -499,10 +499,13 @@ public class frmUtama extends javax.swing.JFrame {
         cekNotifApotek();
         cekNotifLab();
         cekNotifRad();
+        
         otomatisRefreshNotifApt();
+        akses.tRefreshNotifApotek.start();
         otomatisRefreshNotifLab();
+        akses.tRefreshNotifLab.start();
         otomatisRefreshNotifRad();
-        akses.tRefreshNotif.start();
+        akses.tRefreshNotifRad.start();        
     }
 
     public static frmUtama getInstance() {
@@ -19453,7 +19456,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
         //interval 600000 ms = 10 menit atau setngah menit
-        akses.tRefreshNotif = new Timer(600000, taskPerformer);
+        akses.tRefreshNotifApotek = new Timer(600000, taskPerformer);
     }
     
     private void otomatisRefreshNotifLab() {
@@ -19474,7 +19477,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
         //interval 300000 ms = 5 menit atau setngah menit
-        akses.tRefreshNotif = new Timer(300000, taskPerformer);
+        akses.tRefreshNotifLab = new Timer(300000, taskPerformer);
     }
     
     private void otomatisRefreshNotifRad() {
@@ -19493,7 +19496,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         //interval 1000 ms = 1 detik
         //interval 30000 ms = 30 detik atau setngah menit
         //interval 300000 ms = 5 menit atau setngah menit
-        akses.tRefreshNotif = new Timer(300000, taskPerformer);
+        akses.tRefreshNotifRad = new Timer(300000, taskPerformer);
     }
     
     private void cekNotifApotek() {

@@ -4082,26 +4082,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else {
                 BtnKonsulen.setEnabled(false);
             }
-        } 
-        
-//        else if (status.equals("ranap")) {
-//            if (cmbBagian.getSelectedIndex() == 2) {                
-//                BtnKonsulen.setEnabled(true);
-//                cmbPPA.setEnabled(false);
-//                cmbSertim.setEnabled(false);
-//                BtnPPA.setEnabled(false);
-//            } else if (cmbBagian.getSelectedIndex() == 3) {
-//                BtnKonsulen.setEnabled(false);
-//                cmbPPA.setEnabled(true);
-//                cmbSertim.setEnabled(false);
-//                BtnPPA.setEnabled(false);
-//            } else {
-//                BtnKonsulen.setEnabled(false);
-//                cmbPPA.setEnabled(false);
-//                cmbSertim.setEnabled(false);
-//                BtnPPA.setEnabled(false);
-//            }
-//        }
+        }
     }//GEN-LAST:event_cmbBagianActionPerformed
 
     private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
@@ -4228,7 +4209,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSertim.setSelectedIndex(0);
         
         if (cmbPPA.getSelectedIndex() == 0) {
-            BtnPPA.setEnabled(false);
+            BtnPPA.setEnabled(true);
             cmbSertim.setEnabled(false);
             MnCeklisFarmasi.setEnabled(false);
             MnPemberianDiet.setEnabled(false);
