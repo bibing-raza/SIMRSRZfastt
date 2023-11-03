@@ -17450,7 +17450,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
                             + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
                             + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
-                            + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk "
+                            + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi "
                             + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                             + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
                             + "am.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);

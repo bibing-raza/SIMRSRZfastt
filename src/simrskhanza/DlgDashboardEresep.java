@@ -1,5 +1,6 @@
 package simrskhanza;
 
+import fungsi.BackgroundMusic;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -63,6 +64,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private String norawat = "", norm = "", idObat = "";
     public Timer tEresep;
+    private BackgroundMusic music;
 
     /**
      * Creates new form DlgPemberianInfus
@@ -314,6 +316,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnDataPemberianObat = new javax.swing.JMenuItem();
         MnInputPemberianObat = new javax.swing.JMenuItem();
+        MnCekNotif = new javax.swing.JMenuItem();
         TdataQRresep = new widget.TextArea();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
@@ -502,6 +505,21 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnInputPemberianObat);
+
+        MnCekNotif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        MnCekNotif.setText("Cek Notif Apotek IGD");
+        MnCekNotif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCekNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCekNotif.setIconTextGap(5);
+        MnCekNotif.setName("MnCekNotif"); // NOI18N
+        MnCekNotif.setPreferredSize(new java.awt.Dimension(160, 26));
+        MnCekNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCekNotifActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCekNotif);
 
         TdataQRresep.setColumns(20);
         TdataQRresep.setRows(5);
@@ -1190,6 +1208,10 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnCetakResepBilActionPerformed
 
+    private void MnCekNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifActionPerformed
+        notifAlarmApotekIGD();
+    }//GEN-LAST:event_MnCekNotifActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1212,6 +1234,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPoli;
     public widget.CekBox ChkAutoRefres;
+    private javax.swing.JMenuItem MnCekNotif;
     private javax.swing.JMenuItem MnCetakResepA5;
     private javax.swing.JMenuItem MnCetakResepBil;
     private javax.swing.JMenuItem MnCetakResepThermal;
@@ -1400,6 +1423,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     public void isCek() {
         MnDataPemberianObat.setEnabled(akses.getberi_obat());
         MnInputPemberianObat.setEnabled(akses.getberi_obat());
+        MnCekNotif.setEnabled(akses.getadmin());
         TCari.requestFocus();
     }
     
@@ -1545,5 +1569,15 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     
     private void cetak(String str) {
         System.out.println(str);
+    }
+    
+    private void notifAlarmApotekIGD() {
+        try {
+            music = new BackgroundMusic("./suara/resep_IGD.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }

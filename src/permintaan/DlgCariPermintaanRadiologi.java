@@ -1,4 +1,5 @@
 package permintaan;
+import fungsi.BackgroundMusic;
 import keuangan.Jurnal;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
@@ -34,6 +35,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
     private PreparedStatement ps, ps2;
     private ResultSet rs, rs2;
     private String norm = "", kamar = "", namakamar = "", diagnosa = "", kdjenis = "", nominta = "";
+    private BackgroundMusic music;
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -160,6 +162,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         MnVerifSudah = new javax.swing.JMenuItem();
         MnBarcodePermintaan = new javax.swing.JMenuItem();
         MnBarcodePermintaan1 = new javax.swing.JMenuItem();
+        MnCekNotif = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel2 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -249,6 +252,18 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnBarcodePermintaan1);
+
+        MnCekNotif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        MnCekNotif.setText("Cek Notif Radiologi");
+        MnCekNotif.setName("MnCekNotif"); // NOI18N
+        MnCekNotif.setPreferredSize(new java.awt.Dimension(200, 28));
+        MnCekNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCekNotifActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCekNotif);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -941,6 +956,10 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_MnVerifSudahActionPerformed
 
+    private void MnCekNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifActionPerformed
+        notifAlarmRad();
+    }//GEN-LAST:event_MnCekNotifActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -968,6 +987,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
     private widget.Label LCount;
     private javax.swing.JMenuItem MnBarcodePermintaan;
     private javax.swing.JMenuItem MnBarcodePermintaan1;
+    private javax.swing.JMenuItem MnCekNotif;
     private javax.swing.JMenuItem MnCetakHasilRadiologi;
     private javax.swing.JMenuItem MnVerifBelum;
     private javax.swing.JMenuItem MnVerifSudah;
@@ -1148,6 +1168,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
         MnVerifBelum.setEnabled(akses.getperiksa_radiologi());
         MnVerifSudah.setEnabled(akses.getperiksa_radiologi());
         BtnHapus.setEnabled(akses.getpermintaan_radiologi());
+        MnCekNotif.setEnabled(akses.getadmin());
     }
     
     public void setPasien(String pasien){
@@ -1162,6 +1183,16 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
             nominta = tbItem.getValueAt(tbItem.getSelectedRow(), 0).toString();
             kdjenis = tbItem.getValueAt(tbItem.getSelectedRow(), 8).toString();
             pilihan = 2;
+        }
+    }
+    
+    private void notifAlarmRad() {
+        try {
+            music = new BackgroundMusic("./suara/permintaan_periksa_radiologi_diterima.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
 }

@@ -411,10 +411,11 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         jLabel10 = new widget.Label();
         BtnCari = new widget.Button();
         BtnKeluar = new widget.Button();
+        jLabel3 = new widget.Label();
+        ketAktif = new widget.Label();
         FormInput = new javax.swing.JPanel();
         ChkInput = new widget.CekBox();
         PanelInput = new widget.PanelBiasa();
-        jLabel3 = new widget.Label();
         TNoRw = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TPasien = new widget.TextBox();
@@ -453,19 +454,21 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         labelUnit = new widget.Label();
         unitAsal = new widget.TextBox();
         jLabel4 = new widget.Label();
-        ketAktif = new widget.Label();
-        Scroll2 = new widget.ScrollPane();
-        tbMintaPeriksa = new widget.Table();
-        BtnCari3 = new widget.Button();
-        chkPermintaan = new widget.CekBox();
-        BtnSimpan1 = new widget.Button();
         PanelCariUtama = new javax.swing.JPanel();
+        PanelPemeriksaan = new javax.swing.JPanel();
         Scroll = new widget.ScrollPane();
         tbPemeriksaan = new widget.Table();
         panelGlass11 = new widget.panelisi();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari2 = new widget.Button();
+        PanelPermintaan = new javax.swing.JPanel();
+        Scroll3 = new widget.ScrollPane();
+        tbMintaPeriksa = new widget.Table();
+        panelGlass12 = new widget.panelisi();
+        chkPermintaan = new widget.CekBox();
+        BtnSimpan1 = new widget.Button();
+        BtnCari3 = new widget.Button();
 
         Penjab.setEditable(false);
         Penjab.setFocusTraversalPolicyProvider(true);
@@ -675,6 +678,21 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
+        jLabel3.setForeground(new java.awt.Color(0, 51, 255));
+        jLabel3.setText("Bridging LIS : ");
+        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel3.setName("jLabel3"); // NOI18N
+        jLabel3.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass8.add(jLabel3);
+
+        ketAktif.setForeground(new java.awt.Color(0, 51, 255));
+        ketAktif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ketAktif.setText("-");
+        ketAktif.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ketAktif.setName("ketAktif"); // NOI18N
+        ketAktif.setPreferredSize(new java.awt.Dimension(250, 23));
+        panelGlass8.add(ketAktif);
+
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
         FormInput.setName("FormInput"); // NOI18N
@@ -708,13 +726,6 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setPreferredSize(new java.awt.Dimension(560, 168));
         PanelInput.setLayout(null);
-
-        jLabel3.setForeground(new java.awt.Color(0, 51, 255));
-        jLabel3.setText("Bridging LIS : ");
-        jLabel3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel3.setName("jLabel3"); // NOI18N
-        PanelInput.add(jLabel3);
-        jLabel3.setBounds(800, 305, 90, 23);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
@@ -803,7 +814,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         NmPtg.setBounds(546, 42, 195, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-10-2023" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1058,77 +1069,6 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 12, 92, 23);
 
-        ketAktif.setForeground(new java.awt.Color(0, 51, 255));
-        ketAktif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ketAktif.setText("-");
-        ketAktif.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ketAktif.setName("ketAktif"); // NOI18N
-        PanelInput.add(ketAktif);
-        ketAktif.setBounds(895, 305, 210, 23);
-
-        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Permintaan pemeriksaan Lab. yang diminta ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Scroll2.setName("Scroll2"); // NOI18N
-
-        tbMintaPeriksa.setToolTipText("");
-        tbMintaPeriksa.setName("tbMintaPeriksa"); // NOI18N
-        tbMintaPeriksa.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbMintaPeriksaMouseClicked(evt);
-            }
-        });
-        Scroll2.setViewportView(tbMintaPeriksa);
-
-        PanelInput.add(Scroll2);
-        Scroll2.setBounds(800, 40, 560, 262);
-
-        BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari3.setMnemonic('1');
-        BtnCari3.setText("Lihat Permintaan");
-        BtnCari3.setToolTipText("Alt+1");
-        BtnCari3.setName("BtnCari3"); // NOI18N
-        BtnCari3.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnCari3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCari3ActionPerformed(evt);
-            }
-        });
-        PanelInput.add(BtnCari3);
-        BtnCari3.setBounds(1125, 12, 149, 23);
-
-        chkPermintaan.setForeground(new java.awt.Color(0, 0, 0));
-        chkPermintaan.setText("Conteng semua item permintaan Lab.");
-        chkPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkPermintaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkPermintaan.setName("chkPermintaan"); // NOI18N
-        chkPermintaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkPermintaanActionPerformed(evt);
-            }
-        });
-        PanelInput.add(chkPermintaan);
-        chkPermintaan.setBounds(800, 12, 200, 23);
-
-        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/peminjaman.png"))); // NOI18N
-        BtnSimpan1.setMnemonic('C');
-        BtnSimpan1.setText("Verifikasi");
-        BtnSimpan1.setToolTipText("Alt+C");
-        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
-        BtnSimpan1.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpan1ActionPerformed(evt);
-            }
-        });
-        BtnSimpan1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnSimpan1KeyPressed(evt);
-            }
-        });
-        PanelInput.add(BtnSimpan1);
-        BtnSimpan1.setBounds(1010, 12, 110, 23);
-
         FormInput.add(PanelInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
@@ -1136,7 +1076,12 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelCariUtama.setName("PanelCariUtama"); // NOI18N
         PanelCariUtama.setOpaque(false);
         PanelCariUtama.setPreferredSize(new java.awt.Dimension(100, 143));
-        PanelCariUtama.setLayout(new java.awt.BorderLayout(1, 1));
+        PanelCariUtama.setLayout(new java.awt.GridLayout(1, 2));
+
+        PanelPemeriksaan.setName("PanelPemeriksaan"); // NOI18N
+        PanelPemeriksaan.setOpaque(false);
+        PanelPemeriksaan.setPreferredSize(new java.awt.Dimension(100, 143));
+        PanelPemeriksaan.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setComponentPopupMenu(Popup);
         Scroll.setName("Scroll"); // NOI18N
@@ -1147,7 +1092,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         tbPemeriksaan.setName("tbPemeriksaan"); // NOI18N
         Scroll.setViewportView(tbPemeriksaan);
 
-        PanelCariUtama.add(Scroll, java.awt.BorderLayout.CENTER);
+        PanelPemeriksaan.add(Scroll, java.awt.BorderLayout.CENTER);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
         panelGlass11.setPreferredSize(new java.awt.Dimension(44, 43));
@@ -1161,7 +1106,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
 
         TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(625, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(400, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -1187,7 +1132,84 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         });
         panelGlass11.add(BtnCari2);
 
-        PanelCariUtama.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
+        PanelPemeriksaan.add(panelGlass11, java.awt.BorderLayout.PAGE_START);
+
+        PanelCariUtama.add(PanelPemeriksaan);
+
+        PanelPermintaan.setName("PanelPermintaan"); // NOI18N
+        PanelPermintaan.setOpaque(false);
+        PanelPermintaan.setPreferredSize(new java.awt.Dimension(100, 143));
+        PanelPermintaan.setLayout(new java.awt.BorderLayout(1, 1));
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Permintaan pemeriksaan Lab. yang diminta ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll3.setComponentPopupMenu(Popup);
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbMintaPeriksa.setToolTipText("");
+        tbMintaPeriksa.setName("tbMintaPeriksa"); // NOI18N
+        tbMintaPeriksa.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbMintaPeriksaMouseClicked(evt);
+            }
+        });
+        Scroll3.setViewportView(tbMintaPeriksa);
+
+        PanelPermintaan.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 43));
+        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 9));
+
+        chkPermintaan.setForeground(new java.awt.Color(0, 0, 0));
+        chkPermintaan.setText("Conteng semua item permintaan Lab.");
+        chkPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkPermintaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkPermintaan.setName("chkPermintaan"); // NOI18N
+        chkPermintaan.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkPermintaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPermintaanActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(chkPermintaan);
+
+        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/peminjaman.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('C');
+        BtnSimpan1.setText("Verifikasi");
+        BtnSimpan1.setToolTipText("Alt+C");
+        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
+        BtnSimpan1.setPreferredSize(new java.awt.Dimension(120, 23));
+        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan1ActionPerformed(evt);
+            }
+        });
+        BtnSimpan1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnSimpan1KeyPressed(evt);
+            }
+        });
+        panelGlass12.add(BtnSimpan1);
+
+        BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari3.setMnemonic('1');
+        BtnCari3.setText("Lihat Permintaan");
+        BtnCari3.setToolTipText("Alt+1");
+        BtnCari3.setName("BtnCari3"); // NOI18N
+        BtnCari3.setPreferredSize(new java.awt.Dimension(150, 23));
+        BtnCari3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari3ActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnCari3);
+
+        PanelPermintaan.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
+
+        PanelCariUtama.add(PanelPermintaan);
 
         internalFrame1.add(PanelCariUtama, java.awt.BorderLayout.CENTER);
 
@@ -1892,12 +1914,14 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox NmPtg;
     private javax.swing.JPanel PanelCariUtama;
     private widget.PanelBiasa PanelInput;
+    private javax.swing.JPanel PanelPemeriksaan;
+    private javax.swing.JPanel PanelPermintaan;
     private widget.TextBox Pemeriksaan;
     private widget.TextBox Penjab;
     private javax.swing.JPopupMenu Popup;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
-    private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll3;
     private widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
@@ -1929,6 +1953,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox ketKlinis;
     private widget.Label labelUnit;
     private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass8;
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppSemua;

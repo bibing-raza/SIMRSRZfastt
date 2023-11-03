@@ -1,4 +1,5 @@
 package permintaan;
+import fungsi.BackgroundMusic;
 import keuangan.Jurnal;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
@@ -32,6 +33,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     private String norw = "", nominta = "", jnsrwt = "", sttsrawat = "", diagnosa_ok = "", cekdokter = "";
+    private BackgroundMusic music;
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -142,6 +144,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiSudah = new javax.swing.JMenuItem();
         MnVerifikasiBatal = new javax.swing.JMenuItem();
         MnPeriksaLab = new javax.swing.JMenuItem();
+        MnCekNotif = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
@@ -210,6 +213,21 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnPeriksaLab);
+
+        MnCekNotif.setBackground(new java.awt.Color(255, 255, 254));
+        MnCekNotif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        MnCekNotif.setText("Cek Notif Laboratorium");
+        MnCekNotif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCekNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCekNotif.setName("MnCekNotif"); // NOI18N
+        MnCekNotif.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnCekNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCekNotifActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCekNotif);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -687,6 +705,10 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_MnPeriksaLabActionPerformed
 
+    private void MnCekNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifActionPerformed
+        notifAlarmLab();
+    }//GEN-LAST:event_MnCekNotifActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -709,6 +731,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnCekNotif;
     private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnVerifikasiBatal;
     private javax.swing.JMenuItem MnVerifikasiSudah;
@@ -845,6 +868,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         MnVerifikasiSudah.setEnabled(akses.getperiksa_lab());
         MnVerifikasiBatal.setEnabled(akses.getperiksa_lab());
         BtnHapus.setEnabled(akses.getpermintaan_lab());
+        MnCekNotif.setEnabled(akses.getadmin());
         
         TCari.setText(norwt);
         Valid.SetTgl(Tgl1, Sequel.cariIsi("select ifnull(tgl_registrasi,date(now())) from reg_periksa where no_rawat='" + norwt + "'"));
@@ -857,6 +881,16 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         pilihan = 2;
         if (tbPermintaan.getSelectedRow() != -1) {
             nominta = tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString();
+        }
+    }
+    
+    private void notifAlarmLab() {
+        try {
+            music = new BackgroundMusic("./suara/permintaan_periksa_laboratorium_diterima.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
         }
     }
 }

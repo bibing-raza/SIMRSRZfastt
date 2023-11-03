@@ -1,5 +1,6 @@
 package simrskhanza;
 
+import fungsi.BackgroundMusic;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -61,6 +62,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private int i = 0, x = 0;
     private String norawat = "", norm = "", idObat = "";
     public Timer tEresep;
+    private BackgroundMusic music;
 
     /**
      * Creates new form DlgPemberianInfus
@@ -253,6 +255,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         jPopupMenu = new javax.swing.JPopupMenu();
         MnDataPemberianObat = new javax.swing.JMenuItem();
         MnInputPemberianObat = new javax.swing.JMenuItem();
+        MnCekNotif = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnContengSemua = new javax.swing.JMenuItem();
         MnHapusConteng = new javax.swing.JMenuItem();
@@ -303,7 +306,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         MnDataPemberianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDataPemberianObat.setIconTextGap(5);
         MnDataPemberianObat.setName("MnDataPemberianObat"); // NOI18N
-        MnDataPemberianObat.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnDataPemberianObat.setPreferredSize(new java.awt.Dimension(190, 26));
         MnDataPemberianObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDataPemberianObatActionPerformed(evt);
@@ -318,13 +321,28 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         MnInputPemberianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputPemberianObat.setIconTextGap(5);
         MnInputPemberianObat.setName("MnInputPemberianObat"); // NOI18N
-        MnInputPemberianObat.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnInputPemberianObat.setPreferredSize(new java.awt.Dimension(190, 26));
         MnInputPemberianObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputPemberianObatActionPerformed(evt);
             }
         });
         jPopupMenu.add(MnInputPemberianObat);
+
+        MnCekNotif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekNotif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        MnCekNotif.setText("Cek Notif Resep Ranap");
+        MnCekNotif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCekNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCekNotif.setIconTextGap(5);
+        MnCekNotif.setName("MnCekNotif"); // NOI18N
+        MnCekNotif.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnCekNotif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCekNotifActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnCekNotif);
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -455,7 +473,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel23);
 
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -469,7 +487,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel24);
 
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -1073,6 +1091,10 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnQRcodeActionPerformed
 
+    private void MnCekNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifActionPerformed
+        notifAlarmResepRanap();
+    }//GEN-LAST:event_MnCekNotifActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1095,6 +1117,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnQRcode;
     public widget.CekBox ChkAutoRefres;
+    private javax.swing.JMenuItem MnCekNotif;
     private javax.swing.JMenuItem MnCetakResepA5;
     private javax.swing.JMenuItem MnCetakResepBil;
     private javax.swing.JMenuItem MnCetakResepThermal;
@@ -1384,6 +1407,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     public void isCek() {
         MnDataPemberianObat.setEnabled(akses.getberi_obat());
         MnInputPemberianObat.setEnabled(akses.getberi_obat());
+        MnCekNotif.setEnabled(akses.getadmin());
         TCari.requestFocus();
     }
     
@@ -1539,5 +1563,15 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     
     private void cetak(String str) {
         System.out.println(str);
+    }
+    
+    private void notifAlarmResepRanap() {
+        try {
+            music = new BackgroundMusic("./suara/resep_rawat_inap.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
     }
 }
