@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="38296499-61a2-42cd-b5b0-36ef96f9006c">
 	<property name="ireport.zoom" value="1.8181818181818215"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="167"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
@@ -34,7 +34,7 @@ if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_l
 if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, 
 am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, 
 am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, am.udem_palpebra, am.tonsil, am.faring, 
-am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk 
+am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi 
 from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis 
 inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor]]>
 	</queryString>
@@ -213,6 +213,9 @@ inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on
 	</field>
 	<field name="kel_limfe" class="java.lang.String"/>
 	<field name="kaku_kuduk" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="saturasi" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
@@ -1386,7 +1389,7 @@ inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on
 					<font fontName="Tahoma" size="8" isBold="false"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{udem_palpebra}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{udem_palpebra}+",    Saturasi O2 : "+$F{saturasi}+" %"]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="223" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="aed10df2-6d12-449b-bfba-5f40ecde3821"/>

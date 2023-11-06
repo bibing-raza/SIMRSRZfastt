@@ -2212,8 +2212,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'")));
             }
 
-            param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
-            param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(now(),'%H:%i')") + " WITA");
+            param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where "
+                    + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1")));
+            param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(jam_keluar,'%H:%i') from kamar_inap where "
+                    + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
 
             Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
                     "select date(now())", param);
@@ -2610,36 +2612,36 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "INNER JOIN kamar_inap ki on ki.no_rawat=rr.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "INNER JOIN reg_periksa rp on rp.no_rawat=rr.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "INNER JOIN dpjp_ranap dr on dr.no_rawat=ki.no_rawat INNER JOIN dokter d on d.kd_dokter=dr.kd_dokter where "
-                    + "rr.no_rawat like ? or "
-                    + "p.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or "
-                    + "IF (p.jk = 'L','Laki-laki','Perempuan') like ? or "
-                    + "b.nm_bangsal like ? or "
-                    + "IF (rr.nm_dokter_pengirim = '','-',rr.nm_dokter_pengirim) like ? or "
-                    + "pj.png_jawab like ? or "
-                    + "rr.alasan_masuk_dirawat like ? or "
-                    + "rr.ringkasan_riwayat_penyakit like ? or "
-                    + "rr.pemeriksaan_fisik like ? or "
-                    + "rr.pemeriksaan_penunjang like ? or "
-                    + "rr.terapi_pengobatan like ? or "
-                    + "rr.diagnosa_utama like ? or "
-                    + "rr.diagnosa_sekunder like ? or "
-                    + "rr.tindakan_prosedur like ? or "
-                    + "ki.stts_pulang like ? or "
-                    + "rr.keadaan_umum like ? or "
-                    + "rr.kesadaran like ? or "
-                    + "rr.gcs like ? or "
-                    + "rr.tekanan_darah like ? or "
-                    + "rr.suhu like ? or "
-                    + "rr.nadi like ? or "
-                    + "rr.frekuensi_nafas like ? or "
-                    + "rr.catatan_penting like ? or "
-                    + "rr.terapi_pulang like ? or "
-                    + "rr.pengobatan_dilanjutkan like ? or "
-                    + "rr.dokter_luar_lanjutan like ? or "
-                    + "rr.tgl_kontrol_poliklinik like ? or "
-                    + "d.nm_dokter like ? or "
-                    + "rr.penanggung_jwb_pasien like ? ORDER BY rr.no_rawat DESC LIMIT 50");
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.no_rawat like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and p.no_rkm_medis like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and p.nm_pasien like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and IF (p.jk = 'L','Laki-laki','Perempuan') like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_bangsal like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and IF (rr.nm_dokter_pengirim = '','-',rr.nm_dokter_pengirim) like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and pj.png_jawab like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.alasan_masuk_dirawat like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.ringkasan_riwayat_penyakit like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.pemeriksaan_fisik like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.pemeriksaan_penunjang like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.terapi_pengobatan like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.diagnosa_utama like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.diagnosa_sekunder like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.tindakan_prosedur like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and ki.stts_pulang like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.keadaan_umum like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.kesadaran like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.gcs like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.tekanan_darah like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.suhu like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.nadi like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.frekuensi_nafas like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.catatan_penting like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.terapi_pulang like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.pengobatan_dilanjutkan like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.dokter_luar_lanjutan like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.tgl_kontrol_poliklinik like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and d.nm_dokter like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.penanggung_jwb_pasien like ? ORDER BY ki.tgl_masuk desc, ki.jam_masuk desc, rr.no_rawat desc LIMIT 100");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
@@ -2835,7 +2837,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "b.nm_bangsal, pj.png_jawab, ki.stts_pulang, ifnull(d.nm_dokter,'-') dpjp from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "inner join penjab pj ON pj.kd_pj = rp.kd_pj left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat left join dokter d on d.kd_dokter=dr.kd_dokter where "
-                    + "rp.no_rawat like '%" + TNoRW.getText() + "%' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");            
+                    + "rp.no_rawat like '%" + TNoRW.getText() + "%' and ki.stts_pulang<>'Pindah Kamar' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");            
             try {
                 rsPasien = psPasien.executeQuery();              
                 while (rsPasien.next()) {
