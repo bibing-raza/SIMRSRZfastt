@@ -643,6 +643,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPeriksaLab = new javax.swing.JMenuItem();
         MnPeriksaRadiologi = new javax.swing.JMenuItem();
         MnOperasi = new javax.swing.JMenuItem();
+        MnJadwalOperasi = new javax.swing.JMenuItem();
         MnObatRalan = new javax.swing.JMenu();
         MnCatatanResep = new javax.swing.JMenuItem();
         MnReturJual = new javax.swing.JMenuItem();
@@ -1060,6 +1061,21 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnTindakanRalan.add(MnOperasi);
+
+        MnJadwalOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnJadwalOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnJadwalOperasi.setText("Jadwal Operasi");
+        MnJadwalOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnJadwalOperasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnJadwalOperasi.setIconTextGap(5);
+        MnJadwalOperasi.setName("MnJadwalOperasi"); // NOI18N
+        MnJadwalOperasi.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnJadwalOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnJadwalOperasiActionPerformed(evt);
+            }
+        });
+        MnTindakanRalan.add(MnJadwalOperasi);
 
         jPopupMenu1.add(MnTindakanRalan);
 
@@ -3205,7 +3221,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -3918,7 +3934,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         panelisi5.add(BtnCekKode);
-        BtnCekKode.setBounds(290, 10, 70, 23);
+        BtnCekKode.setBounds(295, 10, 70, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Nama Pasien : ");
@@ -4194,7 +4210,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4217,13 +4233,13 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
 
-        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         tglPeriksaBPJS.setDisplayFormat("dd-MM-yyyy");
         tglPeriksaBPJS.setName("tglPeriksaBPJS"); // NOI18N
         tglPeriksaBPJS.setOpaque(false);
         tglPeriksaBPJS.setPreferredSize(new java.awt.Dimension(90, 23));
 
-        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         tglrujukanbpjs.setDisplayFormat("dd-MM-yyyy");
         tglrujukanbpjs.setName("tglrujukanbpjs"); // NOI18N
         tglrujukanbpjs.setOpaque(false);
@@ -4263,7 +4279,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBokingBPJS.setHighlighter(null);
         norwBokingBPJS.setName("norwBokingBPJS"); // NOI18N
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -4483,7 +4499,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4502,7 +4518,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8188,6 +8204,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         emptTeksBokingBPJS();
 
         if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'") > 0) {
+            cekStatusCetak = Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking='" + kdbokingbpjs.getText() + "'");
+
             if (tglCekbpjs.equals(Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""))) {
                 cekPasienBokingBPJS();
 //            nomorAutoBPJS();
@@ -8197,12 +8215,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 if (kdpenjabbpjs.equals("B01") || (kdpenjabbpjs.equals("A03"))) {
                     if (cekDaftar >= 1) {
                         JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah terdaftar pada hari ini...!!!");
+                        BtnCloseIn2ActionPerformed(null);
 
                         if (cekStatusCetak.equals("SUDAH")) {
                             JOptionPane.showMessageDialog(null, "Pasien sudah mencetak SEP, untuk rujukan intern antar poliklinik      \n"
                                     + "silakan konfirmasi keloket pendaftaran...!!!");
-                        } else {
-                            JOptionPane.showMessageDialog(null, "SEP BPJS tidak berhasil dibikinkan, silahkan konfirmasi dg. petugas SIPO/loket pendaftaran...!!!");
+                            BtnCloseIn2ActionPerformed(null);
                         }
 
                     } else {
@@ -8216,11 +8234,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                         } else if (cekStatusCetak.equals("GAGAL")) {
                             JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah membatalkan proses bookingnya, silakan mendaftar lagi keloket pendaftaran..!!!");
+                            BtnCloseIn2ActionPerformed(null);
                         }
                     }
 
                 } else {
                     JOptionPane.showMessageDialog(null, "Menu/fitur ini hanya untuk melayani kode booking pasien BPJS saja...!!");
+                    BtnCloseIn2ActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Tanggal periksa tidak sama dengan tanggal hari ini...!!");
@@ -8247,6 +8267,28 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private void BtnCekKodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekKodeActionPerformed
         cekKodeBokingBPJS();
     }//GEN-LAST:event_BtnCekKodeActionPerformed
+
+    private void MnJadwalOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnJadwalOperasiActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+            TCari.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
+            } else {
+                DlgJadwalOperasi jadwal = new DlgJadwalOperasi(null, false);
+                jadwal.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                jadwal.setLocationRelativeTo(internalFrame1);
+                jadwal.emptTeks();
+                jadwal.isCek();
+                jadwal.setData(TNoRw.getText());
+                jadwal.setVisible(true);
+            }
+        }
+    }//GEN-LAST:event_MnJadwalOperasiActionPerformed
 
     /**
      * @param args the command line arguments
@@ -8353,6 +8395,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnInputDataKebidanan;
     private javax.swing.JMenuItem MnInputDataTransferSerahTerimaIGD;
     private javax.swing.JMenuItem MnInputDataTriaseIGD;
+    private javax.swing.JMenuItem MnJadwalOperasi;
     private javax.swing.JMenuItem MnKamarInap;
     private javax.swing.JMenu MnKemenkes;
     private javax.swing.JMenuItem MnKlaimCOVID;
@@ -8777,6 +8820,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnResepFarmasi.setEnabled(akses.getresep_dokter());
         MnPeriksaRadiologi.setEnabled(akses.getperiksa_radiologi());
         MnOperasi.setEnabled(akses.getoperasi());
+        MnJadwalOperasi.setEnabled(akses.getoperasi());
         MnNoResep.setEnabled(akses.getresep_obat());
         MnReturJual.setEnabled(akses.getresep_obat());
         //MnBilling.setEnabled(var.getbilling_ralan());
@@ -10819,8 +10863,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     tglperiksabpjs.setText(Valid.SetTglINDONESIA(rsCekBooking.getString("tanggal_periksa")));
                     politujuanbpjs.setText(rsCekBooking.getString("nm_poli"));
                     nmdokterbpjs.setText(rsCekBooking.getString("nm_dokter"));
-                    Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking=?", cekStatusCetak, kdbokingbpjs.getText());
-
                 } else {
                     JOptionPane.showMessageDialog(null, "Kode Booking tidak ditemukan, silakan ulangi lagi...!!");
                 }
@@ -10842,8 +10884,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 kdpenjabbpjs = rsCekPasien.getString("kd_pj");
                 kddokterbpjs = rsCekPasien.getString("kd_dokter");
             }
-
-            JOptionPane.showMessageDialog(null, "Berhasil cek Pasien Booking");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
         }
@@ -10972,7 +11012,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 tujuanKunKirim = "2";
             }
 
-            Sequel.cariIsi("select kd_rujukan from master_nama_rujukan where kode_faskes_bpjs='" + kdppkrujukSEP + "' ", kode_rujukanya);
+            kode_rujukanya = Sequel.cariIsi("select kd_rujukan from master_nama_rujukan where kode_faskes_bpjs='" + kdppkrujukSEP + "'");
             System.out.println("Berhasil cek data kelengkapan SEP yang akan dikirim ke WS 2.0");
         } catch (Exception e) {
             JOptionPane.showMessageDialog(null, e.toString());
@@ -11084,7 +11124,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 System.out.println("Proses mapping selesai, data nomor rawat berhasil dikirim ke SEP (Pengajuan Finger Print)..!!");
             } else {
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
-                JOptionPane.showMessageDialog(null, nameNode.path("message").asText());
+                System.out.println("Pesan : " + nameNode.path("message").asText());
             }
         } catch (Exception ex) {
             System.out.println("Notifikasi Bridging : " + ex);
@@ -11141,7 +11181,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 System.out.println("Proses aproval finger print selesai, data nomor rawat berhasil dikirim ke SEP..!!");
             } else {
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
-                JOptionPane.showMessageDialog(null, nameNode.path("message").asText());
+                System.out.println("Pesan : " + nameNode.path("message").asText());
             }
         } catch (Exception ex) {
             System.out.println("Notifikasi Bridging : " + ex);
@@ -11178,7 +11218,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     + "\"penanggungJawab\":\"" + pJawab + "\""
                     + "},"
                     //sampai sini ------------
-                    + "\"noMR\":\"" + norm.getText() + "\","
+                    + "\"noMR\":\"" + normbpjs + "\","
                     + "\"rujukan\":{"
                     + "\"asalRujukan\":\"" + AsalRujukan.getSelectedItem().toString().substring(0, 1) + "\","
                     + "\"tglRujukan\":\"" + Valid.SetTgl(tglrujukanbpjs.getSelectedItem() + "") + "\","
@@ -11376,7 +11416,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 }
 
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_cetak_sep='GAGAL',no_rawat='" + norwBokingBPJS.getText() + "'");
-                JOptionPane.showMessageDialog(null, nameNode.path("message").asText());
+                System.out.println("Pesan : " + nameNode.path("message").asText());
             }
         } catch (Exception ex) {
             System.out.println("Notifikasi Bridging : " + ex);
