@@ -933,7 +933,7 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         cmbTerlaksana.setSelectedIndex(0);
         tglOperasi.setDate(new Date());
         DTPCari1.setDate(new Date());
-        DTPCari2.setDate(new Date());
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 60 day)"));
         btnPasien.setEnabled(true);
         TCari.setText("");
         autoNomorBooking();
