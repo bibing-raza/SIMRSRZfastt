@@ -5369,12 +5369,27 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
                 JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Gunakan billing Ranap..!!!");
             } else {
-                DlgTagihanOperasi dlgro = new DlgTagihanOperasi(null, false);
-                dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                dlgro.setLocationRelativeTo(internalFrame1);
-                dlgro.setNoRm(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 3).toString() + ", " + tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 4).toString(), "Ralan");
-                dlgro.setVisible(true);
-                dlgro.fokus();
+                if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + NoRM.getText() + "'") > 0) {
+                    Sequel.mengedit("jadwal_operasi", "nomr='" + NoRM.getText() + "'", "no_rawat='" + TNoRw.getText() + "', last_update='" + Sequel.cariIsi("select now()") + "'");
+
+                    DlgTagihanOperasi dlgro = new DlgTagihanOperasi(null, false);
+                    dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    dlgro.setLocationRelativeTo(internalFrame1);
+                    dlgro.setNoRm(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 3).toString() + ", " + tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 4).toString(), "Ralan");
+                    dlgro.setVisible(true);
+                    dlgro.fokus();
+                } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + NoRM.getText() + "'") == 0) {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Pasien ini belum dijadwalkan operasi, apakah akan dijadwalkan dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        DlgJadwalOperasi jadwal = new DlgJadwalOperasi(null, false);
+                        jadwal.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        jadwal.setLocationRelativeTo(internalFrame1);
+                        jadwal.emptTeks();
+                        jadwal.isCek();
+                        jadwal.setData(NoRM.getText());
+                        jadwal.setVisible(true);
+                    }
+                }
             }
         }
     }//GEN-LAST:event_MnOperasiActionPerformed
@@ -8284,7 +8299,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 jadwal.setLocationRelativeTo(internalFrame1);
                 jadwal.emptTeks();
                 jadwal.isCek();
-                jadwal.setData(TNoRw.getText());
+                jadwal.setData(NoRM.getText());
                 jadwal.setVisible(true);
             }
         }

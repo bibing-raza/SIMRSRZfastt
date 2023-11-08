@@ -936,6 +936,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSpirometri = new widget.ButtonBig();
         btnAsesmenKebidananRalan = new widget.ButtonBig();
         btnDashboardeResepRanap = new widget.ButtonBig();
+        btnJadwalOperasi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6171,6 +6172,19 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         Panelmenu.add(btnDashboardeResepRanap);
+
+        btnJadwalOperasi.setForeground(new java.awt.Color(0, 0, 0));
+        btnJadwalOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Edit-Male-User.png"))); // NOI18N
+        btnJadwalOperasi.setText("Jadwal Operasi");
+        btnJadwalOperasi.setIconTextGap(0);
+        btnJadwalOperasi.setName("btnJadwalOperasi"); // NOI18N
+        btnJadwalOperasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnJadwalOperasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnJadwalOperasiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnJadwalOperasi);
 
         scrollPane2.setViewportView(Panelmenu);
 
@@ -12301,6 +12315,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         FlayMenu.setVisible(true);
     }//GEN-LAST:event_BtnDasboardActionPerformed
 
+    private void btnJadwalOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnJadwalOperasiActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgJadwalOperasi jadwal = new DlgJadwalOperasi(this, false);
+        jadwal.emptTeks();        
+        jadwal.isCek();
+        jadwal.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        jadwal.setLocationRelativeTo(PanelUtama);
+        jadwal.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnJadwalOperasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12488,6 +12515,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnInputPenjualan;
     private widget.ButtonBig btnInventaris;
     private widget.ButtonBig btnJMDetailDokter;
+    private widget.ButtonBig btnJadwalOperasi;
     private widget.ButtonBig btnJadwalPegawai;
     private widget.ButtonBig btnJadwalTambahan;
     private widget.ButtonBig btnJamPresensi;
@@ -12908,6 +12936,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getjadwal_praktek() == true) {
                 Panelmenu.add(BtnJadwal);
+                jmlmenu++;
+            }
+            
+            if (akses.getoperasi() == true) {
+                Panelmenu.add(btnJadwalOperasi);
                 jmlmenu++;
             }
 
@@ -14818,6 +14851,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getoperasi() == true) {
+            Panelmenu.add(btnJadwalOperasi);
+            jmlmenu++;
+        }
+        
         if (akses.getpenilaian_awal_keperawatan_kebidanan() == true) {
             Panelmenu.add(btnAsesmenKebidananRalan);
             jmlmenu++;
@@ -16717,6 +16755,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (akses.getoperasi()== true) {
+            if (btnJadwalOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnJadwalOperasi);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getpenilaian_awal_keperawatan_kebidanan()== true) {
             if (btnAsesmenKebidananRalan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAsesmenKebidananRalan);
