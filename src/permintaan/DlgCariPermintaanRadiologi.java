@@ -32,9 +32,9 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private int i, x = 0, pilihan =0;
-    private PreparedStatement ps, ps2;
-    private ResultSet rs, rs2;
-    private String norm = "", kamar = "", namakamar = "", diagnosa = "", kdjenis = "", nominta = "";
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
+    private String norm = "", kamar = "", namakamar = "", waktusimpan = "", nominta = "";
     private BackgroundMusic music;
     
     /** Creates new form DlgProgramStudi
@@ -45,8 +45,8 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         initComponents();
         
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No. Permintaan", "No. Rawat", "Pasien", "Permintaan", "Jam",
-            "Kode Dokter", "Dokter Perujuk", "Status", "Poli/Ruangan", "Cara Bayar"
+            "No. Permintaan", "No. Rawat", "Pasien", "Tanggal", "Jam",
+            "Kode Dokter", "Dokter Perujuk", "Status", "Poli/Ruangan", "Cara Bayar", "Diterima Oleh"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -58,14 +58,14 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         tbPermintaan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPermintaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbPermintaan.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
             } else if (i == 1) {
                 column.setPreferredWidth(105);
             } else if (i == 2) {
-                column.setPreferredWidth(400);
+                column.setPreferredWidth(300);
             } else if (i == 3) {
                 column.setPreferredWidth(75);
             } else if (i == 4) {
@@ -76,18 +76,20 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(210);
             } else if (i == 7) {
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(75);
             } else if (i == 8) {
                 column.setPreferredWidth(200);
             } else if (i == 9) {
                 column.setPreferredWidth(120);
+            } else if (i == 10) {
+                column.setPreferredWidth(200);
             }
         }
         tbPermintaan.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode2 = new DefaultTableModel(null, new Object[]{
-            "No. Permintaan", "No. Rawat", "Pasien", "Pemeriksaan", "Permintaan",
-            "Jam", "Kode Dokter", "Dokter Perujuk", "kd_jenis_prw", "Status"
+            "No. Permintaan", "No. Rawat", "Nama Pemeriksaan", "Tgl. Permintaan",
+            "Jam", "Dokter Perujuk", "Status", "Diterima Oleh", "waktu_simpan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -99,32 +101,28 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         tbItem.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbItem.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbItem.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(100);
             } else if (i == 1) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
-            } else if (i == 3) {
                 column.setPreferredWidth(150);
+            } else if (i == 3) {
+                column.setPreferredWidth(90);
             } else if (i == 4) {
                 column.setPreferredWidth(75);
             } else if (i == 5) {
-                column.setPreferredWidth(75);
-            } else if (i == 6) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 7) {
                 column.setPreferredWidth(210);
+            } else if (i == 6) {
+                column.setPreferredWidth(75);
+            } else if (i == 7) {
+                column.setPreferredWidth(200);
             } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 9) {
-                column.setPreferredWidth(50);
             }
         }
         tbItem.setDefaultRenderer(Object.class, new WarnaTable());
@@ -163,7 +161,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnCetakHasilRadiologi = new javax.swing.JMenuItem();
         MnVerifBelum = new javax.swing.JMenuItem();
-        MnVerifSudah = new javax.swing.JMenuItem();
+        MnVerifDiterima = new javax.swing.JMenuItem();
         MnBarcodePermintaan = new javax.swing.JMenuItem();
         MnBarcodePermintaan1 = new javax.swing.JMenuItem();
         MnCekNotif = new javax.swing.JMenuItem();
@@ -221,17 +219,17 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnVerifBelum);
 
-        MnVerifSudah.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnVerifSudah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnVerifSudah.setText("Verifikasi Menjadi SUDAH");
-        MnVerifSudah.setName("MnVerifSudah"); // NOI18N
-        MnVerifSudah.setPreferredSize(new java.awt.Dimension(200, 28));
-        MnVerifSudah.addActionListener(new java.awt.event.ActionListener() {
+        MnVerifDiterima.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnVerifDiterima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnVerifDiterima.setText("Verifikasi Menjadi DITERIMA");
+        MnVerifDiterima.setName("MnVerifDiterima"); // NOI18N
+        MnVerifDiterima.setPreferredSize(new java.awt.Dimension(200, 28));
+        MnVerifDiterima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnVerifSudahActionPerformed(evt);
+                MnVerifDiterimaActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnVerifSudah);
+        jPopupMenu1.add(MnVerifDiterima);
 
         MnBarcodePermintaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBarcodePermintaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -332,9 +330,9 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         panelGlass8.add(label12);
 
         CmbPeriksa.setForeground(new java.awt.Color(0, 0, 0));
-        CmbPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum", "Sudah" }));
+        CmbPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Belum", "Diterima", "Semua" }));
         CmbPeriksa.setName("CmbPeriksa"); // NOI18N
-        CmbPeriksa.setPreferredSize(new java.awt.Dimension(65, 23));
+        CmbPeriksa.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(CmbPeriksa);
 
         label10.setForeground(new java.awt.Color(0, 0, 0));
@@ -553,11 +551,11 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }//GEN-LAST:event_Tgl2KeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
@@ -608,12 +606,14 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 if (tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString().trim().equals("")) {
                     Valid.textKosong(TCari, "No. Permintaan");
                 } else if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString() + "' "
-                        + "and status='Sudah'") > 0) {
-                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
+                        + "and status='Diterima'") > 0) {
+                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diterima...!!!!");
                 } else {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
                         Sequel.meghapus("permintaan_radiologi", "noorder", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+                        
+                        Valid.tabelKosong(tabMode2);
                         pilihan = 0;
                         tampil();
                         tampil2(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
@@ -626,16 +626,16 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
         } else if (pilihan == 2) {
             if (tbItem.getSelectedRow() != -1) {
-                if (nominta.equals("") && (kdjenis.equals(""))) {
+                if (nominta.equals("") && waktusimpan.equals("")) {
                     JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data permintaan periksa Radiologi dengan mengklik data pada tabel...!!!");
                     tbItem.requestFocus();
-                } else if (Sequel.cariInteger("select count(-1) from permintaan_pemeriksaan_radiologi pp "
-                        + "inner join permintaan_radiologi pr on pr.noorder=pp.noorder where pp.noorder='" + nominta + "' and pr.status='Sudah'") > 0) {
-                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diperiksa...!!!!");
+                } else if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where noorder='" + nominta + "' and "
+                        + "status='Diterima' and waktu_simpan='" + waktusimpan + "'") > 0) {
+                    JOptionPane.showMessageDialog(null, "Data permintaan pemeriksaan radiologi sudah diterima...!!!!");
                 } else {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
-                        Sequel.queryu("DELETE FROM permintaan_pemeriksaan_radiologi WHERE noorder='" + nominta + "' and kd_jenis_prw='" + kdjenis + "'");
+                        Sequel.queryu("DELETE FROM permintaan_radiologi WHERE noorder='" + nominta + "' and waktu_simpan='" + waktusimpan + "'");
                         pilihan = 0;
                         tampil();
                         tampil2(nominta);                        
@@ -684,78 +684,78 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
             if (tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString().trim().equals("")) {
                 Valid.textKosong(TCari, "No.Permintaan");
             } else {
-                Sequel.AutoComitFalse();
-                Sequel.queryu("delete from temporary_permintaan_radiologi");
-                try {
-                    ps2 = koneksi.prepareStatement(
-                            "SELECT pp.kd_jenis_prw, jp.nm_perawatan FROM permintaan_pemeriksaan_radiologi pp "
-                            + "INNER JOIN jns_perawatan_radiologi jp ON pp.kd_jenis_prw = jp.kd_jenis_prw WHERE pp.noorder=?");
-                    try {
-                        ps2.setString(1, tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
-                        rs2 = ps2.executeQuery();
-                        x = 1;
-                        while (rs2.next()) {
-                            Sequel.menyimpan("temporary_permintaan_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", 38, new String[]{
-                                "0", rs2.getString("kd_jenis_prw"), x + ".", rs2.getString("nm_perawatan"),
-                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
-                            });
-                            x++;
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notif 2 : " + e);
-                    } finally {
-                        if (rs2 != null) {
-                            rs2.close();
-                        }
-                        if (ps2 != null) {
-                            ps2.close();
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notif : " + e);
-                }
-                Sequel.AutoComitTrue();
-                Map<String, Object> param = new HashMap<>();
-                param.put("noperiksa", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
-                norm = Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
-                param.put("norm", norm);
-                param.put("pekerjaan", Sequel.cariIsi("select pekerjaan from pasien where no_rkm_medis=?", norm));
-                param.put("noktp", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis=?", norm));
-                param.put("namapasien", Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=? ", norm));
-                param.put("jkel", Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') jk from pasien where no_rkm_medis=? ", norm));
-                param.put("umur", Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur,'.') umur from reg_periksa where no_rkm_medis=?", norm));
-                param.put("lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis=? ", norm));
-                param.put("pengirim", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 6).toString());
-                param.put("tanggal", Valid.SetTgl3(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 3).toString()));
-                param.put("alamat", Sequel.cariIsi("select concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat from pasien "
-                        + "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where no_rkm_medis=? ", norm));
-                kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat=? order by tgl_masuk desc limit 1", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
-                if (!kamar.equals("")) {
-                    namakamar = kamar + ", " + Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
-                            + " where kamar.kd_kamar=? ", kamar);
-                    kamar = "Kamar";
-                } else if (kamar.equals("")) {
-                    kamar = "Poliklinik";
-                    namakamar = Sequel.cariIsi("select nm_poli from poliklinik inner join reg_periksa on poliklinik.kd_poli=reg_periksa.kd_poli "
-                            + "where reg_periksa.no_rawat=?", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
-                }
-                diagnosa = Sequel.cariIsi("select diagnosa_awal from kamar_inap where no_rawat=?", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
-                param.put("kamar", kamar);
-                param.put("namakamar", namakamar);
-                param.put("diagnosa", diagnosa);
-                param.put("jam", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 4).toString());
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-                Valid.MyReport("rptPermintaanRadiologi.jasper", "report", "::[ Permintaan Radiologi ]::",
-                        "select no, temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, "
-                        + "temp13, temp14, temp14, temp15, temp16 from temporary_permintaan_radiologi order by no asc", param);
+//                Sequel.AutoComitFalse();
+//                Sequel.queryu("delete from temporary_permintaan_radiologi");
+//                try {
+//                    ps2 = koneksi.prepareStatement(
+//                            "SELECT pp.kd_jenis_prw, jp.nm_perawatan FROM permintaan_pemeriksaan_radiologi pp "
+//                            + "INNER JOIN jns_perawatan_radiologi jp ON pp.kd_jenis_prw = jp.kd_jenis_prw WHERE pp.noorder=?");
+//                    try {
+//                        ps2.setString(1, tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+//                        rs2 = ps2.executeQuery();
+//                        x = 1;
+//                        while (rs2.next()) {
+//                            Sequel.menyimpan("temporary_permintaan_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", 38, new String[]{
+//                                "0", rs2.getString("kd_jenis_prw"), x + ".", rs2.getString("nm_perawatan"),
+//                                "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+//                            });
+//                            x++;
+//                        }
+//                    } catch (Exception e) {
+//                        System.out.println("Notif 2 : " + e);
+//                    } finally {
+//                        if (rs2 != null) {
+//                            rs2.close();
+//                        }
+//                        if (ps2 != null) {
+//                            ps2.close();
+//                        }
+//                    }
+//                } catch (Exception e) {
+//                    System.out.println("Notif : " + e);
+//                }
+//                Sequel.AutoComitTrue();
+//                Map<String, Object> param = new HashMap<>();
+//                param.put("noperiksa", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+//                norm = Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
+//                param.put("norm", norm);
+//                param.put("pekerjaan", Sequel.cariIsi("select pekerjaan from pasien where no_rkm_medis=?", norm));
+//                param.put("noktp", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis=?", norm));
+//                param.put("namapasien", Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=? ", norm));
+//                param.put("jkel", Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') jk from pasien where no_rkm_medis=? ", norm));
+//                param.put("umur", Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur,'.') umur from reg_periksa where no_rkm_medis=?", norm));
+//                param.put("lahir", Sequel.cariIsi("select DATE_FORMAT(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis=? ", norm));
+//                param.put("pengirim", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 6).toString());
+//                param.put("tanggal", Valid.SetTgl3(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 3).toString()));
+//                param.put("alamat", Sequel.cariIsi("select concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat from pasien "
+//                        + "inner join kelurahan inner join kecamatan inner join kabupaten on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
+//                        + "pasien.kd_kab=kabupaten.kd_kab where no_rkm_medis=? ", norm));
+//                kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat=? order by tgl_masuk desc limit 1", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
+//                if (!kamar.equals("")) {
+//                    namakamar = kamar + ", " + Sequel.cariIsi("select nm_bangsal from bangsal inner join kamar on bangsal.kd_bangsal=kamar.kd_bangsal "
+//                            + " where kamar.kd_kamar=? ", kamar);
+//                    kamar = "Kamar";
+//                } else if (kamar.equals("")) {
+//                    kamar = "Poliklinik";
+//                    namakamar = Sequel.cariIsi("select nm_poli from poliklinik inner join reg_periksa on poliklinik.kd_poli=reg_periksa.kd_poli "
+//                            + "where reg_periksa.no_rawat=?", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
+//                }
+//                diagnosa = Sequel.cariIsi("select diagnosa_awal from kamar_inap where no_rawat=?", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString());
+//                param.put("kamar", kamar);
+//                param.put("namakamar", namakamar);
+//                param.put("diagnosa", diagnosa);
+//                param.put("jam", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 4).toString());
+//                param.put("namars", akses.getnamars());
+//                param.put("alamatrs", akses.getalamatrs());
+//                param.put("kotars", akses.getkabupatenrs());
+//                param.put("propinsirs", akses.getpropinsirs());
+//                param.put("kontakrs", akses.getkontakrs());
+//                param.put("emailrs", akses.getemailrs());
+//                param.put("logo", Sequel.cariGambar("select logo from setting"));
+//
+//                Valid.MyReport("rptPermintaanRadiologi.jasper", "report", "::[ Permintaan Radiologi ]::",
+//                        "select no, temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, "
+//                        + "temp13, temp14, temp14, temp15, temp16 from temporary_permintaan_radiologi order by no asc", param);
             }
             this.setCursor(Cursor.getDefaultCursor());
         } else {
@@ -811,6 +811,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.isCek();
                             dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ranap");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+                            dlgro.tampil();
                             dlgro.setVisible(true);
                             pilihan = 0;
                             this.setCursor(Cursor.getDefaultCursor());
@@ -823,6 +824,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                             dlgro.isCek();
                             dlgro.setNoRm(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString(), "Ralan");
                             dlgro.setOrder(tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString());
+                            dlgro.tampil();
                             dlgro.setVisible(true);
                             pilihan = 0;
                             this.setCursor(Cursor.getDefaultCursor());
@@ -912,7 +914,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                         });
                         CmbPeriksa.setSelectedIndex(0);
                         tampil();
-                        tampil2(CmbPeriksa.getSelectedItem().toString());
+                        tampil2(Kd2.getText());
                         pilihan = 0;
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -928,7 +930,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
         }
     }//GEN-LAST:event_MnVerifBelumActionPerformed
 
-    private void MnVerifSudahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifSudahActionPerformed
+    private void MnVerifDiterimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifDiterimaActionPerformed
         if (pilihan == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan klik & pilih dulu data permintaannya pada tabel...!!!!");
             tbPermintaan.requestFocus();
@@ -940,11 +942,11 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                     } else {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
-                            "Sudah", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString()
+                            "Diterima", tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 0).toString()
                         });
                         CmbPeriksa.setSelectedIndex(1);
                         tampil();
-                        tampil2(CmbPeriksa.getSelectedItem().toString());
+                        tampil2(Kd2.getText());
                         pilihan = 0;
                         this.setCursor(Cursor.getDefaultCursor());
                     }
@@ -958,7 +960,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                 TCari.requestFocus();
             }
         }
-    }//GEN-LAST:event_MnVerifSudahActionPerformed
+    }//GEN-LAST:event_MnVerifDiterimaActionPerformed
 
     private void MnCekNotifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifActionPerformed
         notifAlarmRad();
@@ -994,7 +996,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
     private javax.swing.JMenuItem MnCekNotif;
     private javax.swing.JMenuItem MnCetakHasilRadiologi;
     private javax.swing.JMenuItem MnVerifBelum;
-    private javax.swing.JMenuItem MnVerifSudah;
+    private javax.swing.JMenuItem MnVerifDiterima;
     public widget.TextBox TCari;
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
@@ -1018,16 +1020,37 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select pr.noorder, pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, pr.tgl_permintaan, "
-                    + "IF(pr.jam_permintaan='00:00:00','',pr.jam_permintaan) jam_permintaan, pr.dokter_perujuk, "
-                    + "d.nm_dokter, pr.status FROM permintaan_radiologi pr INNER JOIN reg_periksa rp on rp.no_rawat=pr.no_rawat "
-                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN dokter d on d.kd_dokter=pr.dokter_perujuk WHERE "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND pr.noorder LIKE ? OR "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND pr.no_rawat LIKE ? OR "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND rp.no_rkm_medis LIKE ? OR "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND d.nm_dokter LIKE ? "
-                    + "ORDER BY pr.tgl_permintaan, pr.jam_permintaan");
+            if (CmbPeriksa.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement("SELECT pr.noorder, pr.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(pr.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                        + "IF(pr.jam_permintaan='00:00:00','',pr.jam_permintaan) jam_permintaan, pr.dokter_perujuk, "
+                        + "d.nm_dokter, pr.status, pr.dari_unit, pj.png_jawab, if(pr.status='Diterima',pg.nama,'-') nmPetugas "
+                        + "FROM permintaan_radiologi pr INNER JOIN reg_periksa rp ON rp.no_rawat = pr.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = pr.dokter_perujuk "
+                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join pegawai pg on pg.nik=pr.nip_penerima WHERE "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND pr.noorder LIKE ? OR "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND pr.no_rawat LIKE ? OR "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND rp.no_rkm_medis LIKE ? OR "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND d.nm_dokter LIKE ? or "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND pr.dari_unit LIKE ? or "
+                        + "pr.tgl_permintaan BETWEEN ? AND ? AND if(pr.status='Diterima',pg.nama,'-') LIKE ? "
+                        + "group by pr.noorder, pr.no_rawat ORDER BY pr.tgl_permintaan, pr.jam_permintaan");
+            } else {
+                ps = koneksi.prepareStatement("SELECT pr.noorder, pr.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(pr.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                        + "IF(pr.jam_permintaan='00:00:00','',pr.jam_permintaan) jam_permintaan, pr.dokter_perujuk, "
+                        + "d.nm_dokter, pr.status, pr.dari_unit, pj.png_jawab, if(pr.status='Diterima',pg.nama,'-') nmPetugas "
+                        + "FROM permintaan_radiologi pr INNER JOIN reg_periksa rp ON rp.no_rawat = pr.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = pr.dokter_perujuk "
+                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join pegawai pg on pg.nik=pr.nip_penerima WHERE "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND pr.noorder LIKE ? OR "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND pr.no_rawat LIKE ? OR "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND rp.no_rkm_medis LIKE ? OR "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND d.nm_dokter LIKE ? or "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND pr.dari_unit LIKE ? or "
+                        + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan BETWEEN ? AND ? AND if(pr.status='Diterima',pg.nama,'-') LIKE ? "
+                        + "group by pr.noorder, pr.no_rawat ORDER BY pr.tgl_permintaan, pr.jam_permintaan");
+            }
             try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
@@ -1044,42 +1067,28 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
                 ps.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
                 ps.setString(15, "%" + TCari.getText() + "%");
+                ps.setString(16, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText() + "%"); 
+                ps.setString(19, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
                         rs.getString("noorder"), 
                         rs.getString("no_rawat"), 
-                        rs.getString("no_rkm_medis") + " "+ rs.getString("nm_pasien"), 
-                        rs.getString("tgl_permintaan"), 
+                        rs.getString("no_rkm_medis") + " - "+ rs.getString("nm_pasien"), 
+                        rs.getString("tglMinta"), 
                         rs.getString("jam_permintaan"),                        
                         rs.getString("dokter_perujuk"), 
                         rs.getString("nm_dokter"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        rs.getString("dari_unit"),
+                        rs.getString("png_jawab"),
+                        rs.getString("nmPetugas")
                     });
-                    
-                    ps2 = koneksi.prepareStatement("SELECT pp.kd_jenis_prw, jp.nm_perawatan FROM permintaan_pemeriksaan_radiologi pp "
-                            + "INNER JOIN jns_perawatan_radiologi jp ON pp.kd_jenis_prw = jp.kd_jenis_prw WHERE pp.noorder=?");
-                    try {
-                        ps2.setString(1, rs.getString("noorder"));
-                        rs2 = ps2.executeQuery();
-                        while (rs2.next()) {
-                            tabMode.addRow(new Object[]{
-                                "", "", rs2.getString("nm_perawatan"), "", "", "", "", "", "", "", ""
-                            });
-                        }
-                    } catch (Exception e) {
-                        System.out.println("Notif 2 : " + e);
-                    } finally {
-                        if (rs2 != null) {
-                            rs2.close();
-                        }
-                        if (ps2 != null) {
-                            ps2.close();
-                        }
-                    }
                 }
-                rs.last();
-                LCount.setText("" + rs.getRow());
             } catch (Exception e) {
                 System.out.println("Notif : " + e);
             } finally {
@@ -1098,56 +1107,55 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
     private void tampil2(String order) {
         Valid.tabelKosong(tabMode2);
         try {
-            ps = koneksi.prepareStatement("select pr.noorder, pr.no_rawat, rp.no_rkm_medis, p.nm_pasien, jp.nm_perawatan, pr.tgl_permintaan, "
-                    + "IF(pr.jam_permintaan = '00:00:00', '', pr.jam_permintaan ) jam_permintaan, pr.dokter_perujuk, d.nm_dokter, pp.kd_jenis_prw, "
-                    + "pr.status FROM permintaan_radiologi pr INNER JOIN reg_periksa rp on pr.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pasien p on rp.no_rkm_medis = p.no_rkm_medis INNER JOIN permintaan_pemeriksaan_radiologi pp on pr.noorder = pp.noorder "
-                    + "INNER JOIN jns_perawatan_radiologi jp on jp.kd_jenis_prw = pp.kd_jenis_prw INNER JOIN dokter d on pr.dokter_perujuk = d.kd_dokter WHERE "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and pr.no_rawat like ? or "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and rp.no_rkm_medis like ? or "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and p.nm_pasien like ? or "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and jp.nm_perawatan like ? or "
-                    + "pr.status='" + CmbPeriksa.getSelectedItem().toString() + "' and pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and d.nm_dokter like ? "
+            ps1 = koneksi.prepareStatement("SELECT pr.noorder, pr.no_rawat, pr.nm_pemeriksaan, date_format(pr.tgl_permintaan,'%d-%m-%Y') tglMinta, "
+                    + "IF(pr.jam_permintaan='00:00:00','',pr.jam_permintaan) jam_permintaan, d.nm_dokter, pr.status, "
+                    + "if(pr.status='Diterima',pg.nama,'-') nmPetugas, pr.waktu_simpan FROM permintaan_radiologi pr "
+                    + "INNER JOIN reg_periksa rp ON pr.no_rawat = rp.no_rawat INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN dokter d ON pr.dokter_perujuk = d.kd_dokter inner join pegawai pg on pg.nik=pr.nip_penerima WHERE "
+                    + "pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and pr.no_rawat like ? or "
+                    + "pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and rp.no_rkm_medis like ? or "
+                    + "pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and p.nm_pasien like ? or "
+                    + "pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and pr.nm_pemeriksaan like ? or "
+                    + "pr.tgl_permintaan between ? and ? and pr.noorder='" + order + "' and d.nm_dokter like ? "
                     + "order by pr.tgl_permintaan,pr.jam_permintaan");
             try {
-                ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(3, "%" + TCari.getText() + "%");
-                ps.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(6, "%" + TCari.getText() + "%");
-                ps.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(9, "%" + TCari.getText() + "%");
-                ps.setString(10, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(11, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(12, "%" + TCari.getText() + "%");
-                ps.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(15, "%" + TCari.getText() + "%");
-                rs = ps.executeQuery();
-                while (rs.next()) {
+                ps1.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps1.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps1.setString(3, "%" + TCari.getText() + "%");
+                ps1.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps1.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps1.setString(6, "%" + TCari.getText() + "%");
+                ps1.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps1.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps1.setString(9, "%" + TCari.getText() + "%");
+                ps1.setString(10, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps1.setString(11, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps1.setString(12, "%" + TCari.getText() + "%");
+                ps1.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps1.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps1.setString(15, "%" + TCari.getText() + "%");
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
                     tabMode2.addRow(new String[]{
-                        rs.getString("noorder"),
-                        rs.getString("no_rawat"),
-                        rs.getString("no_rkm_medis") + " " + rs.getString("nm_pasien"),
-                        rs.getString("nm_perawatan"),
-                        rs.getString("tgl_permintaan"),
-                        rs.getString("jam_permintaan"),
-                        rs.getString("dokter_perujuk"),
-                        rs.getString("nm_dokter"),
-                        rs.getString("kd_jenis_prw"),
-                        rs.getString("status")
+                        rs1.getString("noorder"),
+                        rs1.getString("no_rawat"),
+                        rs1.getString("nm_pemeriksaan"),
+                        rs1.getString("tglMinta"),
+                        rs1.getString("jam_permintaan"),
+                        rs1.getString("nm_dokter"),
+                        rs1.getString("status"),
+                        rs1.getString("nmPetugas"),
+                        rs1.getString("waktu_simpan")
                     });
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);
             } finally {
-                if (rs != null) {
-                    rs.close();
+                if (rs1 != null) {
+                    rs1.close();
                 }
-                if (ps != null) {
-                    ps.close();
+                if (ps1 != null) {
+                    ps1.close();
                 }
             }
             LCount.setText("" + tabMode2.getRowCount());
@@ -1170,7 +1178,7 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
         MnCetakHasilRadiologi.setEnabled(akses.getpermintaan_radiologi());
         BtnPeriksa.setEnabled(akses.getperiksa_radiologi());
         MnVerifBelum.setEnabled(akses.getperiksa_radiologi());
-        MnVerifSudah.setEnabled(akses.getperiksa_radiologi());
+        MnVerifDiterima.setEnabled(akses.getperiksa_radiologi());
         BtnHapus.setEnabled(akses.getpermintaan_radiologi());
         MnCekNotif.setEnabled(akses.getadmin());
     }
@@ -1182,10 +1190,11 @@ private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:ev
     private void getDataItem() {
         pilihan = 0;
         nominta = "";
-        kdjenis = "";
+        waktusimpan = "";
+        
         if (tbItem.getSelectedRow() != -1) {
             nominta = tbItem.getValueAt(tbItem.getSelectedRow(), 0).toString();
-            kdjenis = tbItem.getValueAt(tbItem.getSelectedRow(), 8).toString();
+            waktusimpan = tbItem.getValueAt(tbItem.getSelectedRow(), 8).toString();
             pilihan = 2;
         }
     }

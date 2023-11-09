@@ -55,7 +55,7 @@
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnVerifBelumActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="MnVerifSudah">
+        <MenuItem class="javax.swing.JMenuItem" name="MnVerifDiterima">
           <Properties>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
@@ -63,14 +63,14 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/picture/category.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Verifikasi Menjadi SUDAH"/>
-            <Property name="name" type="java.lang.String" value="MnVerifSudah" noResource="true"/>
+            <Property name="text" type="java.lang.String" value="Verifikasi Menjadi DITERIMA"/>
+            <Property name="name" type="java.lang.String" value="MnVerifDiterima" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
               <Dimension value="[200, 28]"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnVerifSudahActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnVerifDiterimaActionPerformed"/>
           </Events>
         </MenuItem>
         <MenuItem class="javax.swing.JMenuItem" name="MnBarcodePermintaan">
@@ -288,14 +288,15 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="2">
+                      <StringArray count="3">
                         <StringItem index="0" value="Belum"/>
-                        <StringItem index="1" value="Sudah"/>
+                        <StringItem index="1" value="Diterima"/>
+                        <StringItem index="2" value="Semua"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="CmbPeriksa" noResource="true"/>
                     <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-                      <Dimension value="[65, 23]"/>
+                      <Dimension value="[80, 23]"/>
                     </Property>
                   </Properties>
                 </Component>

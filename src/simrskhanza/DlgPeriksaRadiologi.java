@@ -47,16 +47,15 @@ import keuangan.Jurnal;
  * @author dosen
  */
 public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
-
-    private DefaultTableModel tabMode, tabMode2;
+    private DefaultTableModel tabMode, tabMode1, tabMode2;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
     private Jurnal jur = new Jurnal();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private PreparedStatement psset_tarif, pssetpj, pspemeriksaan, pspemeriksaan2, pspemeriksaan3, pspemeriksaan4, psbhp, psrekening;
-    private ResultSet rs, rsset_tarif, rssetpj, rsrekening;
+    private PreparedStatement psset_tarif, pssetpj, pspemeriksaan, pspemeriksaan2, pspemeriksaan3, pspemeriksaan4, psbhp, psrekening, ps1;
+    private ResultSet rs, rsset_tarif, rssetpj, rsrekening, rs1;
     private boolean[] pilih;
     private String[] kode, nama, kodebarang, namabarang, satuan;
     private double[] jumlah, total, bagian_rs, bhp, tarif_perujuk, tarif_tindakan_dokter, tarif_tindakan_petugas, kso, menejemen;
@@ -64,8 +63,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private String noorder = "", kelas_radiologi = "Yes", kelas = "", cara_bayar_radiologi = "Yes", pilihan = "", pemeriksaan = "", status = "";
     private double ttl = 0, item = 0;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
-    private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "",
-            Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "",
+    private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "", cekPetugas = "",
+            Utang_Jasa_Medik_Dokter_Radiologi_Ranap = "", Beban_Jasa_Medik_Petugas_Radiologi_Ranap = "", cekPeriksa = "",
             Utang_Jasa_Medik_Petugas_Radiologi_Ranap = "", Beban_Kso_Radiologi_Ranap = "", Utang_Kso_Radiologi_Ranap = "",
             HPP_Persediaan_Radiologi_Rawat_Inap = "", Persediaan_BHP_Radiologi_Rawat_Inap = "", kdPenjab = "", kdPoli = "";
 
@@ -100,9 +99,8 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbPemeriksaan.setModel(tabMode);
-
-        //tbObat.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbObat.getBackground()));
         tbPemeriksaan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPemeriksaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -167,10 +165,64 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         }
 
         tbBHPRadiologi.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode1 = new DefaultTableModel(null, new Object[]{
+            "Cek", "Status", "No. Permintaan", "Nama Pemeriksaan", "Dokter Perujuk", "Tanggal", "Jam", "Poli/Ruangan", "norawat"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, 
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+
+        tbPermintaan.setModel(tabMode1);
+        tbPermintaan.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbPermintaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 9; i++) {
+            TableColumn column = tbPermintaan.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(70);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setPreferredWidth(200);
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(75);
+            } else if (i == 6) {
+                column.setPreferredWidth(75);
+            } else if (i == 7) {
+                column.setPreferredWidth(200);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+
+        tbPermintaan.setDefaultRenderer(Object.class, new WarnaTable());
 
         TNoRw.setDocument(new batasInput((byte) 17).getKata(TNoRw));
         KdPtg.setDocument(new batasInput((byte) 20).getKata(KdPtg));
         KodePerujuk.setDocument(new batasInput((byte) 20).getKata(KodePerujuk));
+        
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCariPeriksa.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
@@ -398,6 +450,13 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         BtnTambahPeriksa = new widget.Button();
         Scroll2 = new widget.ScrollPane();
         tbPemeriksaan = new widget.Table();
+        jPanel4 = new javax.swing.JPanel();
+        panelisi6 = new widget.panelisi();
+        chkPermintaan = new widget.CekBox();
+        BtnSimpan1 = new widget.Button();
+        BtnCari3 = new widget.Button();
+        Scroll1 = new widget.ScrollPane();
+        tbPermintaan = new widget.Table();
         jPanel2 = new javax.swing.JPanel();
         panelisi4 = new widget.panelisi();
         label9 = new widget.Label();
@@ -615,7 +674,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         NmPtg.setBounds(546, 42, 195, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-01-2021" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-11-2023" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -630,21 +689,18 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         CmbJam.setForeground(new java.awt.Color(0, 0, 0));
         CmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         CmbJam.setName("CmbJam"); // NOI18N
-        CmbJam.setOpaque(false);
         PanelInput.add(CmbJam);
         CmbJam.setBounds(614, 72, 42, 23);
 
         CmbMenit.setForeground(new java.awt.Color(0, 0, 0));
         CmbMenit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbMenit.setName("CmbMenit"); // NOI18N
-        CmbMenit.setOpaque(false);
         PanelInput.add(CmbMenit);
         CmbMenit.setBounds(659, 72, 42, 23);
 
         CmbDetik.setForeground(new java.awt.Color(0, 0, 0));
         CmbDetik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         CmbDetik.setName("CmbDetik"); // NOI18N
-        CmbDetik.setOpaque(false);
         PanelInput.add(CmbDetik);
         CmbDetik.setBounds(704, 72, 42, 23);
 
@@ -742,9 +798,9 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         jPanel1.setName("jPanel1"); // NOI18N
         jPanel1.setOpaque(false);
         jPanel1.setPreferredSize(new java.awt.Dimension(816, 102));
-        jPanel1.setLayout(new java.awt.GridLayout(1, 2));
+        jPanel1.setLayout(new java.awt.GridLayout(1, 3));
 
-        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Pemeriksaan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Pemeriksaan", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
         jPanel3.setPreferredSize(new java.awt.Dimension(300, 102));
@@ -855,7 +911,83 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
 
         jPanel1.add(jPanel3);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: BHP Radiologi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Permintaan Pemeriksaan Radiologi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        jPanel4.setName("jPanel4"); // NOI18N
+        jPanel4.setOpaque(false);
+        jPanel4.setPreferredSize(new java.awt.Dimension(350, 102));
+        jPanel4.setLayout(new java.awt.BorderLayout(1, 1));
+
+        panelisi6.setBorder(null);
+        panelisi6.setName("panelisi6"); // NOI18N
+        panelisi6.setPreferredSize(new java.awt.Dimension(100, 43));
+        panelisi6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 4, 9));
+
+        chkPermintaan.setForeground(new java.awt.Color(0, 0, 0));
+        chkPermintaan.setText("Conteng semua");
+        chkPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkPermintaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkPermintaan.setName("chkPermintaan"); // NOI18N
+        chkPermintaan.setPreferredSize(new java.awt.Dimension(110, 23));
+        chkPermintaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkPermintaanActionPerformed(evt);
+            }
+        });
+        panelisi6.add(chkPermintaan);
+
+        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/peminjaman.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('C');
+        BtnSimpan1.setText("Verifikasi");
+        BtnSimpan1.setToolTipText("Alt+C");
+        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
+        BtnSimpan1.setPreferredSize(new java.awt.Dimension(120, 23));
+        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan1ActionPerformed(evt);
+            }
+        });
+        panelisi6.add(BtnSimpan1);
+
+        BtnCari3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari3.setMnemonic('1');
+        BtnCari3.setText("Lihat Permintaan");
+        BtnCari3.setToolTipText("Alt+1");
+        BtnCari3.setName("BtnCari3"); // NOI18N
+        BtnCari3.setPreferredSize(new java.awt.Dimension(150, 23));
+        BtnCari3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari3ActionPerformed(evt);
+            }
+        });
+        panelisi6.add(BtnCari3);
+
+        jPanel4.add(panelisi6, java.awt.BorderLayout.PAGE_END);
+
+        Scroll1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(245, 255, 235)));
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        tbPermintaan.setToolTipText("");
+        tbPermintaan.setName("tbPermintaan"); // NOI18N
+        tbPermintaan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbPermintaanMouseClicked(evt);
+            }
+        });
+        tbPermintaan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbPermintaanKeyPressed(evt);
+            }
+        });
+        Scroll1.setViewportView(tbPermintaan);
+
+        jPanel4.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        jPanel1.add(jPanel4);
+
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: BHP Radiologi", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 102));
@@ -1233,160 +1365,14 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             if (cekBhp == 0) {
                 JOptionPane.showMessageDialog(null, "Silakan Isi Pemakaian BHP Radiologi");
             } else {
-                if (akses.getkode().equals("Admin Utama")) {
-                    int reply = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan disimpan ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (reply == JOptionPane.YES_OPTION) {
-                        ChkJln.setSelected(false);
-                        ttljmdokter = 0;
-                        ttljmpetugas = 0;
-                        ttlkso = 0;
-                        ttlpendapatan = 0;
-                        Sequel.AutoComitFalse();
-                        for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
-                            if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                                if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
-                                    TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""),
-                                    CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(), KodePerujuk.getText(),
-                                    tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
-                                    tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
-                                    tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                                    KodePj.getText(), status, "Belum", "-"
-                                }) == true) {
-                                    Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
-                                        "Sudah", noorder
-                                    });
-                                    ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
-                                    ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
-                                    ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
-                                    ttlpendapatan = ttlpendapatan + Double.parseDouble(tbPemeriksaan.getValueAt(i, 3).toString());
-                                }
-                            }
-                        }
-
-                        ttlbhp = 0;
-                        for (i = 0; i < tbBHPRadiologi.getRowCount(); i++) {
-                            if (Valid.SetAngka(tbBHPRadiologi.getValueAt(i, 0).toString()) > 0) {
-                                if (Sequel.menyimpantf2("beri_bhp_radiologi", "?,?,?,?,?,?,?,?", "BHP", 8, new String[]{
-                                    TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
-                                    tbBHPRadiologi.getValueAt(i, 1).toString(), tbBHPRadiologi.getValueAt(i, 3).toString(), tbBHPRadiologi.getValueAt(i, 0).toString(),
-                                    tbBHPRadiologi.getValueAt(i, 4).toString(), Double.toString(Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()))
-                                }) == true) {
-                                    ttlbhp = ttlbhp + (Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()));
-                                    Sequel.mengedit("ipsrsbarang", "kode_brng=?", "stok=stok-?", 2, new String[]{
-                                        tbBHPRadiologi.getValueAt(i, 0).toString(), tbBHPRadiologi.getValueAt(i, 1).toString()
-                                    });
-                                }
-                            }
-                        }
-
-                        if (status.equals("Ranap")) {
-                            Sequel.queryu("delete from tampjurnal");
-                            if (ttlpendapatan > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Suspen_Piutang_Radiologi_Ranap + "','Suspen Piutang Radiologi Ranap','" + ttlpendapatan + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Radiologi_Ranap + "','Pendapatan Radiologi Rawat Inap','0','" + ttlpendapatan + "'", "Rekening");
-                            }
-                            if (ttljmdokter > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Dokter_Radiologi_Ranap + "','Beban Jasa Medik Dokter Radiologi Ranap','" + ttljmdokter + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Dokter_Radiologi_Ranap + "','Utang Jasa Medik Dokter Radiologi Ranap','0','" + ttljmdokter + "'", "Rekening");
-                            }
-                            if (ttljmpetugas > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Petugas_Radiologi_Ranap + "','Beban Jasa Medik Petugas Radiologi Ranap','" + ttljmpetugas + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Petugas_Radiologi_Ranap + "','Utang Jasa Medik Petugas Radiologi Ranap','0','" + ttljmpetugas + "'", "Rekening");
-                            }
-                            if (ttlbhp > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + HPP_Persediaan_Radiologi_Rawat_Inap + "','HPP Persediaan Radiologi Rawat Inap','" + ttlbhp + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Persediaan_BHP_Radiologi_Rawat_Inap + "','Persediaan BHP Radiologi Rawat Inap','0','" + ttlbhp + "'", "Rekening");
-                            }
-                            if (ttlkso > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Kso_Radiologi_Ranap + "','Beban KSO Radiologi Ranap','" + ttlkso + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Kso_Radiologi_Ranap + "','Utang KSO Radiologi Ranap','0','" + ttlkso + "'", "Rekening");
-                            }
-                            jur.simpanJurnal(TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN " + TPasien.getText() + " DIPOSTING OLEH " + akses.getkode());
-                        }
-                        Sequel.AutoComitTrue();
-                        ChkJln.setSelected(true);
-                        JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
-                        isReset();
+                if (tbPermintaan.getRowCount() != 0) {
+                    if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where noorder='" + noorder + "' and status='Belum'") > 0) {
+                        JOptionPane.showMessageDialog(null, "Silakan verifikasi dulu semua item permintaan pemeriksaan radiologinya..!!");
+                    } else {
+                        simpan();
                     }
                 } else {
-//                if(Sequel.cariRegistrasi(TNoRw.getText())>0){
-//                    JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, data tidak boleh dihapus.\nSilahkan hubungi bagian kasir/keuangan ..!!");
-//                    TCariPeriksa.requestFocus();
-//                }else{
-                    int reply = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan disimpan ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (reply == JOptionPane.YES_OPTION) {
-                        ChkJln.setSelected(false);
-                        ttljmdokter = 0;
-                        ttljmpetugas = 0;
-                        ttlkso = 0;
-                        ttlpendapatan = 0;
-                        Sequel.AutoComitFalse();
-                        for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
-                            if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                                if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
-                                    TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""),
-                                    CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(), KodePerujuk.getText(),
-                                    tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
-                                    tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
-                                    tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
-                                    KodePj.getText(), status, "Belum", "-"
-                                }) == true) {
-                                    Sequel.mengedit("permintaan_radiologi", "noorder=?", "status=?", 2, new String[]{
-                                        "Sudah", noorder
-                                    });
-                                    ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
-                                    ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
-                                    ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
-                                    ttlpendapatan = ttlpendapatan + Double.parseDouble(tbPemeriksaan.getValueAt(i, 3).toString());
-                                }
-                            }
-                        }
-                        ttlbhp = 0;
-                        for (i = 0; i < tbBHPRadiologi.getRowCount(); i++) {
-                            if (Valid.SetAngka(tbBHPRadiologi.getValueAt(i, 0).toString()) > 0) {
-                                if (Sequel.menyimpantf2("beri_bhp_radiologi", "?,?,?,?,?,?,?,?", "BHP", 8, new String[]{
-                                    TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
-                                    tbBHPRadiologi.getValueAt(i, 1).toString(), tbBHPRadiologi.getValueAt(i, 3).toString(), tbBHPRadiologi.getValueAt(i, 0).toString(),
-                                    tbBHPRadiologi.getValueAt(i, 4).toString(), Double.toString(Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()))
-                                }) == true) {
-                                    ttlbhp = ttlbhp + (Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()));
-                                    Sequel.mengedit("ipsrsbarang", "kode_brng=?", "stok=stok-?", 2, new String[]{
-                                        tbBHPRadiologi.getValueAt(i, 0).toString(), tbBHPRadiologi.getValueAt(i, 1).toString()
-                                    });
-                                }
-                            }
-                        }
-
-                        if (status.equals("Ranap")) {
-                            Sequel.queryu("delete from tampjurnal");
-                            if (ttlpendapatan > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Suspen_Piutang_Radiologi_Ranap + "','Suspen Piutang Radiologi Ranap','" + ttlpendapatan + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Radiologi_Ranap + "','Pendapatan Radiologi Rawat Inap','0','" + ttlpendapatan + "'", "Rekening");
-                            }
-                            if (ttljmdokter > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Dokter_Radiologi_Ranap + "','Beban Jasa Medik Dokter Radiologi Ranap','" + ttljmdokter + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Dokter_Radiologi_Ranap + "','Utang Jasa Medik Dokter Radiologi Ranap','0','" + ttljmdokter + "'", "Rekening");
-                            }
-                            if (ttljmpetugas > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Petugas_Radiologi_Ranap + "','Beban Jasa Medik Petugas Radiologi Ranap','" + ttljmpetugas + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Petugas_Radiologi_Ranap + "','Utang Jasa Medik Petugas Radiologi Ranap','0','" + ttljmpetugas + "'", "Rekening");
-                            }
-                            if (ttlbhp > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + HPP_Persediaan_Radiologi_Rawat_Inap + "','HPP Persediaan Radiologi Rawat Inap','" + ttlbhp + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Persediaan_BHP_Radiologi_Rawat_Inap + "','Persediaan BHP Radiologi Rawat Inap','0','" + ttlbhp + "'", "Rekening");
-                            }
-                            if (ttlkso > 0) {
-                                Sequel.menyimpan("tampjurnal", "'" + Beban_Kso_Radiologi_Ranap + "','Beban KSO Radiologi Ranap','" + ttlkso + "','0'", "Rekening");
-                                Sequel.menyimpan("tampjurnal", "'" + Utang_Kso_Radiologi_Ranap + "','Utang KSO Radiologi Ranap','0','" + ttlkso + "'", "Rekening");
-                            }
-                            jur.simpanJurnal(TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN " + TPasien.getText() + " DIPOSTING OLEH " + akses.getkode());
-                        }
-                        Sequel.AutoComitTrue();
-                        ChkJln.setSelected(true);
-                        JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
-                        isReset();
-                    }
-//                }
+                    simpan();
                 }
             }
         }
@@ -1446,6 +1432,64 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         // TODO add your handling code here:
     }//GEN-LAST:event_TCariPeriksaActionPerformed
 
+    private void tbPermintaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPermintaanMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbPermintaanMouseClicked
+
+    private void tbPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPermintaanKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbPermintaanKeyPressed
+
+    private void chkPermintaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkPermintaanActionPerformed
+        for (i = 0; i < tbPermintaan.getRowCount(); i++) {
+            if (chkPermintaan.isSelected() == true) {
+                tbPermintaan.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+
+        for (i = 0; i < tbPermintaan.getRowCount(); i++) {
+            if (chkPermintaan.isSelected() == false) {
+                tbPermintaan.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+
+    }//GEN-LAST:event_chkPermintaanActionPerformed
+
+    private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
+        cekPetugas = "";
+        if (akses.getkode().equals("Admin Utama")) {
+            cekPetugas = "-";
+        } else {
+            cekPetugas = akses.getkode();
+        }
+        
+        try {
+            for (i = 0; i < tbPermintaan.getRowCount(); i++) {
+                if (tbPermintaan.getValueAt(i, 0).toString().equals("true")) {
+                    if (tbPermintaan.getValueAt(i, 1).toString().equals("Diterima")) {
+                        cekPeriksa = "Belum";
+                    } else {
+                        cekPeriksa = "Diterima";
+                    }
+                    Sequel.mengedit("permintaan_radiologi",
+                            "no_rawat='" + tbPermintaan.getValueAt(i, 8).toString() + "' and "
+                            + "noorder='" + tbPermintaan.getValueAt(i, 2).toString() + "'",
+                            "status = '" + cekPeriksa + "', nip_penerima='" + cekPetugas + "'");
+                }
+            }
+            tampilMinta(noorder);
+            chkPermintaan.setSelected(false);
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }//GEN-LAST:event_BtnSimpan1ActionPerformed
+
+    private void BtnCari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari3ActionPerformed
+        chkPermintaan.setSelected(false);
+        tampilMinta(noorder);
+    }//GEN-LAST:event_BtnCari3ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1467,8 +1511,10 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.Button BtnAllPeriksa;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCari3;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSimpan1;
     private widget.Button BtnTambahBhp;
     private widget.Button BtnTambahPeriksa;
     private widget.CekBox ChkInput;
@@ -1485,6 +1531,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.TextBox NmPtg;
     private widget.PanelBiasa PanelInput;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.TextBox TCariBhp;
     private widget.TextBox TCariPeriksa;
@@ -1497,6 +1544,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private widget.Button btnDokter;
     private widget.Button btnDokterPj;
     private widget.Button btnPetugas;
+    private widget.CekBox chkPermintaan;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel12;
@@ -1508,13 +1556,16 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPanel jPanel4;
     private widget.Label label10;
     private widget.Label label9;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelisi4;
     private widget.panelisi panelisi5;
+    private widget.panelisi panelisi6;
     private widget.Table tbBHPRadiologi;
     private widget.Table tbPemeriksaan;
+    private widget.Table tbPermintaan;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
@@ -1910,164 +1961,196 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
     public void setOrder(String order) {
         noorder = order;
-        tampil(order);
+        tampilMinta(order);
+    }
+    
+    private void tampilMinta(String noMinta) {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT pr.status, pr.noorder, pr.nm_pemeriksaan, d.nm_dokter, "
+                    + "DATE_FORMAT(pr.tgl_permintaan,'%d-%m-%Y') tglMinta, pr.jam_permintaan, pr.dari_unit, "
+                    + "pr.no_rawat from permintaan_radiologi pr inner join dokter d on d.kd_dokter=pr.dokter_perujuk where "
+                    + "pr.no_rawat='" + TNoRw.getText() + "' and pr.noorder='" + noMinta + "' order by pr.tgl_permintaan, pr.jam_permintaan");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode1.addRow(new Object[]{
+                        false,
+                        rs1.getString("status"),
+                        rs1.getString("noorder"),
+                        rs1.getString("nm_pemeriksaan"),
+                        rs1.getString("nm_dokter"),
+                        rs1.getString("tglMinta"),
+                        rs1.getString("jam_permintaan"),
+                        rs1.getString("dari_unit"),
+                        rs1.getString("no_rawat")
+                    });
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            } catch (Exception e) {
+                System.out.println("simrskhanza.DlgPeriksaRadiologi.tampilMinta() : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 
-    public void tampil(String order) {
-        try {
-            jml = 0;
-            for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
-                if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                    jml++;
-                }
-            }
-
-            pilih = null;
-            pilih = new boolean[jml];
-            kode = null;
-            kode = new String[jml];
-            nama = null;
-            nama = new String[jml];
-            total = null;
-            total = new double[jml];
-            bagian_rs = null;
-            bagian_rs = new double[jml];
-            bhp = null;
-            bhp = new double[jml];
-            tarif_perujuk = null;
-            tarif_perujuk = new double[jml];
-            tarif_tindakan_dokter = null;
-            tarif_tindakan_dokter = new double[jml];
-            tarif_tindakan_petugas = null;
-            tarif_tindakan_petugas = new double[jml];
-            kso = null;
-            kso = new double[jml];
-            menejemen = null;
-            menejemen = new double[jml];
-
-            index = 0;
-            for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
-                if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
-                    pilih[index] = true;
-                    kode[index] = tbPemeriksaan.getValueAt(i, 1).toString();
-                    nama[index] = tbPemeriksaan.getValueAt(i, 2).toString();
-                    total[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 3).toString());
-                    bagian_rs[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 4).toString());
-                    bhp[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 5).toString());
-                    tarif_perujuk[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString());
-                    tarif_tindakan_dokter[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
-                    tarif_tindakan_petugas[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
-                    kso[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
-                    menejemen[index] = Double.parseDouble(tbPemeriksaan.getValueAt(i, 10).toString());
-                    index++;
-                }
-            }
-
-            Valid.tabelKosong(tabMode);
-            for (i = 0; i < jml; i++) {
-                tabMode.addRow(new Object[]{pilih[i], kode[i], nama[i], total[i], bagian_rs[i], bhp[i], tarif_perujuk[i], tarif_tindakan_dokter[i], tarif_tindakan_petugas[i], kso[i], menejemen[i]});
-            }
-
-            if (cara_bayar_radiologi.equals("Yes") && kelas_radiologi.equals("No")) {
-                pspemeriksaan = koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"
-                        + "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"
-                        + "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"
-                        + "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "
-                        + "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and jns_perawatan_radiologi.nm_perawatan like ? "
-                        + "order by jns_perawatan_radiologi.kd_jenis_prw");
-            } else if (cara_bayar_radiologi.equals("No") && kelas_radiologi.equals("No")) {
-                pspemeriksaan2 = koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"
-                        + "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"
-                        + "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"
-                        + "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "
-                        + "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.kd_jenis_prw like ? or "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and jns_perawatan_radiologi.nm_perawatan like ?  "
-                        + "order by jns_perawatan_radiologi.kd_jenis_prw");
-            } else if (cara_bayar_radiologi.equals("Yes") && kelas_radiologi.equals("Yes")) {
-                pspemeriksaan3 = koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"
-                        + "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"
-                        + "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"
-                        + "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "
-                        + "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kd_pj=? or jns_perawatan_radiologi.kd_pj='-') and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ? "
-                        + "order by jns_perawatan_radiologi.kd_jenis_prw");
-            } else if (cara_bayar_radiologi.equals("No") && kelas_radiologi.equals("Yes")) {
-                pspemeriksaan4 = koneksi.prepareStatement(
-                        "select jns_perawatan_radiologi.kd_jenis_prw,jns_perawatan_radiologi.nm_perawatan,jns_perawatan_radiologi.total_byr,"
-                        + "jns_perawatan_radiologi.bagian_rs,jns_perawatan_radiologi.bhp,jns_perawatan_radiologi.tarif_perujuk,"
-                        + "jns_perawatan_radiologi.tarif_tindakan_dokter,jns_perawatan_radiologi.tarif_tindakan_petugas,"
-                        + "jns_perawatan_radiologi.kso,jns_perawatan_radiologi.menejemen,penjab.png_jawab "
-                        + "from jns_perawatan_radiologi inner join penjab inner join permintaan_pemeriksaan_radiologi on penjab.kd_pj=jns_perawatan_radiologi.kd_pj and jns_perawatan_radiologi.kd_jenis_prw=permintaan_pemeriksaan_radiologi.kd_jenis_prw where "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.kd_jenis_prw like ? or "
-                        + " permintaan_pemeriksaan_radiologi.noorder=? and jns_perawatan_radiologi.status='1' and (jns_perawatan_radiologi.kelas=? or jns_perawatan_radiologi.kelas='-') and jns_perawatan_radiologi.nm_perawatan like ?  "
-                        + "order by jns_perawatan_radiologi.kd_jenis_prw");
-            }
-            try {
-                if (cara_bayar_radiologi.equals("Yes") && kelas_radiologi.equals("No")) {
-                    pspemeriksaan.setString(1, order);
-                    pspemeriksaan.setString(2, kdPenjab);
-                    pspemeriksaan.setString(3, "%" + TCariPeriksa.getText().trim() + "%");
-                    pspemeriksaan.setString(4, order);
-                    pspemeriksaan.setString(5, kdPenjab);
-                    pspemeriksaan.setString(6, "%" + TCariPeriksa.getText().trim() + "%");
-                    rs = pspemeriksaan.executeQuery();
-                } else if (cara_bayar_radiologi.equals("No") && kelas_radiologi.equals("No")) {
-                    pspemeriksaan2.setString(1, order);
-                    pspemeriksaan2.setString(2, "%" + TCariPeriksa.getText().trim() + "%");
-                    pspemeriksaan2.setString(3, order);
-                    pspemeriksaan2.setString(4, "%" + TCariPeriksa.getText().trim() + "%");
-                    rs = pspemeriksaan2.executeQuery();
-                } else if (cara_bayar_radiologi.equals("Yes") && kelas_radiologi.equals("Yes")) {
-                    pspemeriksaan3.setString(1, order);
-                    pspemeriksaan3.setString(2, kdPenjab);
-                    pspemeriksaan3.setString(3, kelas.trim());
-                    pspemeriksaan3.setString(4, "%" + TCariPeriksa.getText().trim() + "%");
-                    pspemeriksaan3.setString(5, order);
-                    pspemeriksaan3.setString(6, kdPenjab);
-                    pspemeriksaan3.setString(7, kelas.trim());
-                    pspemeriksaan3.setString(8, "%" + TCariPeriksa.getText().trim() + "%");
-                    rs = pspemeriksaan3.executeQuery();
-                } else if (cara_bayar_radiologi.equals("No") && kelas_radiologi.equals("Yes")) {
-                    pspemeriksaan4.setString(1, order);
-                    pspemeriksaan4.setString(2, kelas.trim());
-                    pspemeriksaan4.setString(3, "%" + TCariPeriksa.getText().trim() + "%");
-                    pspemeriksaan4.setString(4, order);
-                    pspemeriksaan4.setString(5, kelas.trim());
-                    pspemeriksaan4.setString(6, "%" + TCariPeriksa.getText().trim() + "%");
-                    rs = pspemeriksaan4.executeQuery();
+    private void simpan() {
+        if (akses.getkode().equals("Admin Utama")) {
+            int reply = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan disimpan ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                ChkJln.setSelected(false);
+                ttljmdokter = 0;
+                ttljmpetugas = 0;
+                ttlkso = 0;
+                ttlpendapatan = 0;
+                Sequel.AutoComitFalse();
+                for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
+                    if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
+                            TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""),
+                            CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(), KodePerujuk.getText(),
+                            tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
+                            tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
+                            tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
+                            KodePj.getText(), status, "Belum", "-"
+                        }) == true) {
+                            ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
+                            ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
+                            ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
+                            ttlpendapatan = ttlpendapatan + Double.parseDouble(tbPemeriksaan.getValueAt(i, 3).toString());
+                        }
+                    }
                 }
 
-                while (rs.next()) {
-                    tabMode.addRow(new Object[]{false, rs.getString(1), rs.getString(2), rs.getDouble(3), rs.getDouble(4), rs.getDouble(5), rs.getDouble(6), rs.getDouble(7), rs.getDouble(8), rs.getDouble(9), rs.getDouble(10)});
+                ttlbhp = 0;
+                for (i = 0; i < tbBHPRadiologi.getRowCount(); i++) {
+                    if (Valid.SetAngka(tbBHPRadiologi.getValueAt(i, 0).toString()) > 0) {
+                        if (Sequel.menyimpantf2("beri_bhp_radiologi", "?,?,?,?,?,?,?,?", "BHP", 8, new String[]{
+                            TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
+                            tbBHPRadiologi.getValueAt(i, 1).toString(), tbBHPRadiologi.getValueAt(i, 3).toString(), tbBHPRadiologi.getValueAt(i, 0).toString(),
+                            tbBHPRadiologi.getValueAt(i, 4).toString(), Double.toString(Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()))
+                        }) == true) {
+                            ttlbhp = ttlbhp + (Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()));
+                            Sequel.mengedit("ipsrsbarang", "kode_brng=?", "stok=stok-?", 2, new String[]{
+                                tbBHPRadiologi.getValueAt(i, 0).toString(), tbBHPRadiologi.getValueAt(i, 1).toString()
+                            });
+                        }
+                    }
                 }
-            } catch (Exception e) {
-                System.out.println("Notifikasi 1 : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
+
+                if (status.equals("Ranap")) {
+                    Sequel.queryu("delete from tampjurnal");
+                    if (ttlpendapatan > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Suspen_Piutang_Radiologi_Ranap + "','Suspen Piutang Radiologi Ranap','" + ttlpendapatan + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Radiologi_Ranap + "','Pendapatan Radiologi Rawat Inap','0','" + ttlpendapatan + "'", "Rekening");
+                    }
+                    if (ttljmdokter > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Dokter_Radiologi_Ranap + "','Beban Jasa Medik Dokter Radiologi Ranap','" + ttljmdokter + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Dokter_Radiologi_Ranap + "','Utang Jasa Medik Dokter Radiologi Ranap','0','" + ttljmdokter + "'", "Rekening");
+                    }
+                    if (ttljmpetugas > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Petugas_Radiologi_Ranap + "','Beban Jasa Medik Petugas Radiologi Ranap','" + ttljmpetugas + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Petugas_Radiologi_Ranap + "','Utang Jasa Medik Petugas Radiologi Ranap','0','" + ttljmpetugas + "'", "Rekening");
+                    }
+                    if (ttlbhp > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + HPP_Persediaan_Radiologi_Rawat_Inap + "','HPP Persediaan Radiologi Rawat Inap','" + ttlbhp + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Persediaan_BHP_Radiologi_Rawat_Inap + "','Persediaan BHP Radiologi Rawat Inap','0','" + ttlbhp + "'", "Rekening");
+                    }
+                    if (ttlkso > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Kso_Radiologi_Ranap + "','Beban KSO Radiologi Ranap','" + ttlkso + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Kso_Radiologi_Ranap + "','Utang KSO Radiologi Ranap','0','" + ttlkso + "'", "Rekening");
+                    }
+                    jur.simpanJurnal(TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN " + TPasien.getText() + " DIPOSTING OLEH " + akses.getkode());
                 }
-                if (pspemeriksaan != null) {
-                    pspemeriksaan.close();
-                }
-                if (pspemeriksaan2 != null) {
-                    pspemeriksaan2.close();
-                }
-                if (pspemeriksaan3 != null) {
-                    pspemeriksaan3.close();
-                }
-                if (pspemeriksaan4 != null) {
-                    pspemeriksaan4.close();
-                }
+                Sequel.AutoComitTrue();
+                ChkJln.setSelected(true);
+                JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
+                isReset();
             }
-        } catch (Exception e) {
-            System.out.println("Notifikasi 2 : " + e);
+        } else {
+//                if(Sequel.cariRegistrasi(TNoRw.getText())>0){
+//                    JOptionPane.showMessageDialog(rootPane,"Data billing sudah terverifikasi, data tidak boleh dihapus.\nSilahkan hubungi bagian kasir/keuangan ..!!");
+//                    TCariPeriksa.requestFocus();
+//                }else{
+            int reply = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan disimpan ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (reply == JOptionPane.YES_OPTION) {
+                ChkJln.setSelected(false);
+                ttljmdokter = 0;
+                ttljmpetugas = 0;
+                ttlkso = 0;
+                ttlpendapatan = 0;
+                Sequel.AutoComitFalse();
+                for (i = 0; i < tbPemeriksaan.getRowCount(); i++) {
+                    if (tbPemeriksaan.getValueAt(i, 0).toString().equals("true")) {
+                        if (Sequel.menyimpantf2("periksa_radiologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Pemeriksaan", 18, new String[]{
+                            TNoRw.getText(), KdPtg.getText(), tbPemeriksaan.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""),
+                            CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(), KodePerujuk.getText(),
+                            tbPemeriksaan.getValueAt(i, 4).toString(), tbPemeriksaan.getValueAt(i, 5).toString(), tbPemeriksaan.getValueAt(i, 6).toString(),
+                            tbPemeriksaan.getValueAt(i, 7).toString(), tbPemeriksaan.getValueAt(i, 8).toString(), tbPemeriksaan.getValueAt(i, 9).toString(),
+                            tbPemeriksaan.getValueAt(i, 10).toString(), tbPemeriksaan.getValueAt(i, 3).toString(),
+                            KodePj.getText(), status, "Belum", "-"
+                        }) == true) {
+                            ttljmdokter = ttljmdokter + Double.parseDouble(tbPemeriksaan.getValueAt(i, 6).toString()) + Double.parseDouble(tbPemeriksaan.getValueAt(i, 7).toString());
+                            ttljmpetugas = ttljmpetugas + Double.parseDouble(tbPemeriksaan.getValueAt(i, 8).toString());
+                            ttlkso = ttlkso + Double.parseDouble(tbPemeriksaan.getValueAt(i, 9).toString());
+                            ttlpendapatan = ttlpendapatan + Double.parseDouble(tbPemeriksaan.getValueAt(i, 3).toString());
+                        }
+                    }
+                }
+                ttlbhp = 0;
+                for (i = 0; i < tbBHPRadiologi.getRowCount(); i++) {
+                    if (Valid.SetAngka(tbBHPRadiologi.getValueAt(i, 0).toString()) > 0) {
+                        if (Sequel.menyimpantf2("beri_bhp_radiologi", "?,?,?,?,?,?,?,?", "BHP", 8, new String[]{
+                            TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
+                            tbBHPRadiologi.getValueAt(i, 1).toString(), tbBHPRadiologi.getValueAt(i, 3).toString(), tbBHPRadiologi.getValueAt(i, 0).toString(),
+                            tbBHPRadiologi.getValueAt(i, 4).toString(), Double.toString(Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()))
+                        }) == true) {
+                            ttlbhp = ttlbhp + (Double.parseDouble(tbBHPRadiologi.getValueAt(i, 4).toString()) * Double.parseDouble(tbBHPRadiologi.getValueAt(i, 0).toString()));
+                            Sequel.mengedit("ipsrsbarang", "kode_brng=?", "stok=stok-?", 2, new String[]{
+                                tbBHPRadiologi.getValueAt(i, 0).toString(), tbBHPRadiologi.getValueAt(i, 1).toString()
+                            });
+                        }
+                    }
+                }
+
+                if (status.equals("Ranap")) {
+                    Sequel.queryu("delete from tampjurnal");
+                    if (ttlpendapatan > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Suspen_Piutang_Radiologi_Ranap + "','Suspen Piutang Radiologi Ranap','" + ttlpendapatan + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Radiologi_Ranap + "','Pendapatan Radiologi Rawat Inap','0','" + ttlpendapatan + "'", "Rekening");
+                    }
+                    if (ttljmdokter > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Dokter_Radiologi_Ranap + "','Beban Jasa Medik Dokter Radiologi Ranap','" + ttljmdokter + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Dokter_Radiologi_Ranap + "','Utang Jasa Medik Dokter Radiologi Ranap','0','" + ttljmdokter + "'", "Rekening");
+                    }
+                    if (ttljmpetugas > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Jasa_Medik_Petugas_Radiologi_Ranap + "','Beban Jasa Medik Petugas Radiologi Ranap','" + ttljmpetugas + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Jasa_Medik_Petugas_Radiologi_Ranap + "','Utang Jasa Medik Petugas Radiologi Ranap','0','" + ttljmpetugas + "'", "Rekening");
+                    }
+                    if (ttlbhp > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + HPP_Persediaan_Radiologi_Rawat_Inap + "','HPP Persediaan Radiologi Rawat Inap','" + ttlbhp + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Persediaan_BHP_Radiologi_Rawat_Inap + "','Persediaan BHP Radiologi Rawat Inap','0','" + ttlbhp + "'", "Rekening");
+                    }
+                    if (ttlkso > 0) {
+                        Sequel.menyimpan("tampjurnal", "'" + Beban_Kso_Radiologi_Ranap + "','Beban KSO Radiologi Ranap','" + ttlkso + "','0'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + Utang_Kso_Radiologi_Ranap + "','Utang KSO Radiologi Ranap','0','" + ttlkso + "'", "Rekening");
+                    }
+                    jur.simpanJurnal(TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMERIKSAAN RADIOLOGI RAWAT INAP PASIEN " + TPasien.getText() + " DIPOSTING OLEH " + akses.getkode());
+                }
+                Sequel.AutoComitTrue();
+                ChkJln.setSelected(true);
+                JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
+                isReset();
+            }
+//                }
         }
     }
 
