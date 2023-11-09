@@ -5801,11 +5801,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             } else {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPermintaanRadiologi dlgro = new DlgPermintaanRadiologi(null, false);
-                dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                dlgro.setSize(978, internalFrame1.getHeight() - 40);
                 dlgro.setLocationRelativeTo(internalFrame1);
                 dlgro.emptTeks();
                 dlgro.isCek();
-                dlgro.setNoRm(TNoRw.getText(), "Ralan");
+                dlgro.setNoRm(TNoRw.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
                 dlgro.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
             }
@@ -11328,8 +11328,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     + "}";
 
             simpanBackupSEPAwal();
-            //jeda 2 detik
-            Thread.sleep(2000);
+            //jeda 3 detik
+            Thread.sleep(3000);
             System.out.println("Pesan SEP Backup : Berhasil menyimpan data ketabel bridging_sep_backup (Waktu : " + Sequel.cariIsi("select date_format(now(),'%d-%m-%Y %H:%i:%s')") + ") ...!!!");
 
             HttpEntity requestEntity = new HttpEntity(requestJson, headers);

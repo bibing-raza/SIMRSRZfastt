@@ -59,8 +59,8 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
         initComponents();
 
         tabMode=new DefaultTableModel(null,new Object[]{
-            "No.","Kode Rujukan","Kode Faskes","Nama Faskes/Perujuk","Status","Tipe Faskes","Alamatnya",
-            }){
+            "No.", "Kode Rujukan", "Kode Faskes", "Nama Faskes/Perujuk", "Status", "Tipe Faskes", "Alamatnya", "No. Telpon"
+        }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
                 if (colIndex==0) {
@@ -71,40 +71,43 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
              Class[] types = new Class[] {
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                  java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class
+                 java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbFaskes.setModel(tabMode);
-
         tbFaskes.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbFaskes.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 7; i++) {
+        for (i = 0; i < 8; i++) {
             TableColumn column = tbFaskes.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(80);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(80);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(250);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(70);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(120);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(350);
+            } else if (i == 7) {
+                column.setPreferredWidth(100);
             }
         }
         tbFaskes.setDefaultRenderer(Object.class, new WarnaTable());
 
-
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        TNoTelp.setDocument(new batasInput((int) 16).getKata(TNoTelp));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -207,6 +210,8 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
         jLabel13 = new widget.Label();
         cmbTipe = new widget.ComboBox();
         cmbStatus = new widget.ComboBox();
+        jLabel14 = new widget.Label();
+        TNoTelp = new widget.TextBox();
 
         kdstatus.setForeground(new java.awt.Color(0, 0, 0));
         kdstatus.setHighlighter(null);
@@ -244,14 +249,13 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Data Faskes/Perujuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Data Faskes/Perujuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbFaskes.setAutoCreateRowSorter(true);
         tbFaskes.setToolTipText("Silahkan klik untuk memilih data yang ataupun dihapus");
         tbFaskes.setName("tbFaskes"); // NOI18N
         tbFaskes.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -581,6 +585,18 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
         FormInput.add(cmbStatus);
         cmbStatus.setBounds(102, 100, 90, 23);
 
+        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel14.setText("No. Telpn : ");
+        jLabel14.setName("jLabel14"); // NOI18N
+        FormInput.add(jLabel14);
+        jLabel14.setBounds(192, 100, 75, 23);
+
+        TNoTelp.setForeground(new java.awt.Color(0, 0, 0));
+        TNoTelp.setFocusTraversalPolicyProvider(true);
+        TNoTelp.setName("TNoTelp"); // NOI18N
+        FormInput.add(TNoTelp);
+        TNoTelp.setBounds(270, 100, 150, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
@@ -608,7 +624,8 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
             BtnFaskes.requestFocus();
         } else {
             Sequel.menyimpan("master_nama_rujukan", "'0','" + nmfaskes.getText() + "','" + kdstatus.getText() + "',"
-                    + "'" + kdfaskes.getText() + "','" + cmbTipe.getSelectedItem() + "','" + alamat.getText() + "'", "Master data faskes/perujuk");
+                    + "'" + kdfaskes.getText() + "','" + cmbTipe.getSelectedItem() + "','" + alamat.getText() + "',"
+                    + "'" + TNoTelp.getText() + "'", "Master data faskes/perujuk");
             emptTeks();
             tampil();
         }
@@ -644,7 +661,7 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
         } else {
             Sequel.mengedit("master_nama_rujukan", "kd_rujukan='" + kdrujukan.getText() + "'", "nama_rujukan='" + nmfaskes.getText() + "', "
                     + "status='" + kdstatus.getText() + "', kode_faskes_bpjs='" + kdfaskes.getText() + "', tipe_faskes='" + cmbTipe.getSelectedItem() + "',"
-                    + "alamat_faskes='" + alamat.getText() + "' ");
+                    + "alamat_faskes='" + alamat.getText() + "',no_tlp='" + TNoTelp.getText() + "' ");
             emptTeks();
             tampil();
         }
@@ -842,6 +859,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
+    private widget.TextBox TNoTelp;
     private widget.TextBox alamat;
     private javax.swing.ButtonGroup buttonGroup1;
     private widget.TextBox cekkdfaskes;
@@ -851,6 +869,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
+    private widget.Label jLabel14;
     private widget.Label jLabel4;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
@@ -869,7 +888,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT kd_rujukan, kode_faskes_bpjs, nama_rujukan, "
-                    +"IF(status='0','Non Aktif','Aktif') stts, tipe_faskes, alamat_faskes FROM master_nama_rujukan where "
+                    +"IF(status='0','Non Aktif','Aktif') stts, tipe_faskes, alamat_faskes, no_tlp FROM master_nama_rujukan where "
                     + " kode_faskes_bpjs like ? or "
                     + " nama_rujukan like ? or "
                     + " IF(status='0','Non Aktif','Aktif') like ? or "
@@ -894,7 +913,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rs.getString(3),
                         rs.getString(4),
                         rs.getString(5),
-                        rs.getString(6)
+                        rs.getString(6),
+                        rs.getString(7)
                     });
                     g++;
                 }
@@ -925,6 +945,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         kdstatus.setText("");
         kdrujukan.setText("");
         cekkdfaskes.setText("");
+        TNoTelp.setText("");
         BtnFaskes.requestFocus();
     }
 
@@ -936,6 +957,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             cmbTipe.setSelectedItem(tbFaskes.getValueAt(tbFaskes.getSelectedRow(),5).toString());
             cmbStatus.setSelectedItem(tbFaskes.getValueAt(tbFaskes.getSelectedRow(),4).toString());
             alamat.setText(tbFaskes.getValueAt(tbFaskes.getSelectedRow(),6).toString());
+            TNoTelp.setText(tbFaskes.getValueAt(tbFaskes.getSelectedRow(),7).toString());
             
             if (cmbStatus.getSelectedItem().equals("Aktif")) {
                 kdstatus.setText("1");

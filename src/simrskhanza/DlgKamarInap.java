@@ -71,6 +71,7 @@ import javax.swing.table.TableColumn;
 import keuangan.DlgBilingRanap;
 import keuangan.DlgLhtPiutang;
 import laporan.DlgDataDietRanap;
+import laporan.DlgHasilExpertiseRadiologi;
 import laporan.DlgHasilLIS;
 import laporan.DlgKaruRanap;
 import org.springframework.http.HttpEntity;
@@ -1015,7 +1016,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnNonCovid = new javax.swing.JMenuItem();
         MnIdentitasPasien = new javax.swing.JMenuItem();
         MnRincianObat = new javax.swing.JMenuItem();
-        MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnRM2D = new javax.swing.JMenuItem();
         MnSensusRanap = new javax.swing.JMenuItem();
         MnDietMakanan = new javax.swing.JMenuItem();
@@ -1109,6 +1109,9 @@ public class DlgKamarInap extends javax.swing.JDialog {
         ppCatatanPasien = new javax.swing.JMenuItem();
         ppPerawatanCorona = new javax.swing.JMenuItem();
         MnNomorTB = new javax.swing.JMenuItem();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenu();
+        MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
+        MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         MnBilling = new javax.swing.JMenuItem();
         MnDeposit = new javax.swing.JMenuItem();
         MnUpdateHari = new javax.swing.JMenuItem();
@@ -2744,21 +2747,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
         });
         MnLaporan.add(MnRincianObat);
 
-        MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
-        MnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanLab.setIconTextGap(5);
-        MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
-        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(240, 26));
-        MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanLabActionPerformed(evt);
-            }
-        });
-        MnLaporan.add(MnHasilPemeriksaanLab);
-
         MnRM2D.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRM2D.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRM2D.setText("Asesment Pasien IGD");
@@ -4094,6 +4082,48 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnRekamMedis.add(MnNomorTB);
 
         jPopupMenu1.add(MnRekamMedis);
+
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setOpaque(true);
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(220, 26));
+
+        MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanLab.setText("Pemeriksaan Laboratorium");
+        MnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanLab.setIconTextGap(5);
+        MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
+        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanLabActionPerformed(evt);
+            }
+        });
+        MnHasilPemeriksaanPenunjang.add(MnHasilPemeriksaanLab);
+
+        MnHasilPemeriksaanRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanRad.setText("Pemeriksaan Radiologi");
+        MnHasilPemeriksaanRad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanRad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanRad.setIconTextGap(5);
+        MnHasilPemeriksaanRad.setName("MnHasilPemeriksaanRad"); // NOI18N
+        MnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnHasilPemeriksaanRad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanRadActionPerformed(evt);
+            }
+        });
+        MnHasilPemeriksaanPenunjang.add(MnHasilPemeriksaanRad);
+
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
 
         MnBilling.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBilling.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -13171,11 +13201,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             } else {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPermintaanRadiologi dlgro = new DlgPermintaanRadiologi(null, false);
-                dlgro.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                dlgro.setSize(978, internalFrame1.getHeight() - 40);
                 dlgro.setLocationRelativeTo(internalFrame1);
                 dlgro.emptTeks();
                 dlgro.isCek();
-                dlgro.setNoRm(norawat.getText(), "Ranap");
+                dlgro.setNoRm(norawat.getText(), ruangrawat.getText());
                 dlgro.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
             }
@@ -14012,19 +14042,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnSuratKeteranganSakitActionPerformed
 
-    private void MnHasilPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanLabActionPerformed
-        if (Sequel.cariInteger("select count(1) cek from lis_reg where no_rawat='" + norawat.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium (LIS) tidak ditemukan ...!!!!");
-            tbKamIn.requestFocus();
-        } else {
-            DlgHasilLIS lis = new DlgHasilLIS(null, false);
-            lis.setSize(914, internalFrame1.getHeight() - 40);
-            lis.setLocationRelativeTo(internalFrame1);
-            lis.setData(norawat.getText(), TPasien.getText(), TNoRM.getText());
-            lis.setVisible(true);
-        }        
-    }//GEN-LAST:event_MnHasilPemeriksaanLabActionPerformed
-
     private void MnPindahNyangkutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPindahNyangkutActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
@@ -14621,6 +14638,48 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnUpdateJadwalOperasiActionPerformed
 
+    private void MnHasilPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanLabActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(1) cek from lis_reg where no_rawat='" + norawat.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium (LIS) tidak ditemukan ...!!!!");
+                tbKamIn.requestFocus();
+            } else {
+                DlgHasilLIS lis = new DlgHasilLIS(null, false);
+                lis.setSize(914, internalFrame1.getHeight() - 40);
+                lis.setLocationRelativeTo(internalFrame1);
+                lis.setData(norawat.getText(), TPasien.getText(), TNoRM.getText());
+                lis.setVisible(true);
+                BtnCariActionPerformed(null);
+            }
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanLabActionPerformed
+
+    private void MnHasilPemeriksaanRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanRadActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKamarInap");
+            DlgHasilExpertiseRadiologi form = new DlgHasilExpertiseRadiologi(null, false);
+            form.setSize(914, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRM.getText());
+            form.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -14765,6 +14824,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnHapusSEPdidatabase;
     private javax.swing.JMenuItem MnHapusTagihanOperasi;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
+    private javax.swing.JMenu MnHasilPemeriksaanPenunjang;
+    private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private javax.swing.JMenuItem MnIdentitasPasien;
     private javax.swing.JMenuItem MnIndividuPx;
     private javax.swing.JMenuItem MnInputDataAMD;

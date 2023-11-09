@@ -937,6 +937,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenKebidananRalan = new widget.ButtonBig();
         btnDashboardeResepRanap = new widget.ButtonBig();
         btnJadwalOperasi = new widget.ButtonBig();
+        btnBangsal = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6186,6 +6187,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnJadwalOperasi);
 
+        btnBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        btnBangsal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/Home.png"))); // NOI18N
+        btnBangsal.setText("Bangsal Rawat Inap");
+        btnBangsal.setIconTextGap(0);
+        btnBangsal.setName("btnBangsal"); // NOI18N
+        btnBangsal.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnBangsal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBangsalActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnBangsal);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6194,7 +6208,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/11/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/11/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12328,6 +12342,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnJadwalOperasiActionPerformed
 
+    private void btnBangsalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBangsalActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgBangsal bangsal = new DlgBangsal(this, false);
+        bangsal.emptTeks();
+        bangsal.isCek();
+        bangsal.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        bangsal.setLocationRelativeTo(PanelUtama);
+        bangsal.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnBangsalActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12392,6 +12419,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAssesmenMedikIGD;
     private widget.ButtonBig btnBPJSSEP;
     private widget.ButtonBig btnBPJScekRiwayatRujukanPcare;
+    private widget.ButtonBig btnBangsal;
     private widget.ButtonBig btnBarangCSSD;
     private widget.ButtonBig btnBarangInventaris;
     private widget.ButtonBig btnBarangIpsrs;
@@ -13371,6 +13399,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         } else if (cmbMenu.getSelectedIndex() == 5) {
             jmlmenu = 0;
+            if (akses.getadmin()== true) {
+                Panelmenu.add(btnBangsal);
+                jmlmenu++;
+            }
+            
             if (akses.getinventaris_jenis() == true) {
                 Panelmenu.add(btnJenisInventaris);
                 jmlmenu++;
@@ -14851,6 +14884,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnBangsal);
+            jmlmenu++;
+        }
+
         if (akses.getoperasi() == true) {
             Panelmenu.add(btnJadwalOperasi);
             jmlmenu++;
@@ -16755,6 +16793,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (akses.getadmin()== true) {
+            if (btnBangsal.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnBangsal);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getoperasi()== true) {
             if (btnJadwalOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnJadwalOperasi);

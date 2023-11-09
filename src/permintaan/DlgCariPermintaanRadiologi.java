@@ -46,7 +46,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Permintaan", "No. Rawat", "Pasien", "Permintaan", "Jam",
-            "Kode Dokter", "Dokter Perujuk", "Status"
+            "Kode Dokter", "Dokter Perujuk", "Status", "Poli/Ruangan", "Cara Bayar"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -58,7 +58,7 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
         tbPermintaan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPermintaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbPermintaan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(90);
@@ -77,6 +77,10 @@ public class DlgCariPermintaanRadiologi extends javax.swing.JDialog {
                 column.setPreferredWidth(210);
             } else if (i == 7) {
                 column.setPreferredWidth(50);
+            } else if (i == 8) {
+                column.setPreferredWidth(200);
+            } else if (i == 9) {
+                column.setPreferredWidth(120);
             }
         }
         tbPermintaan.setDefaultRenderer(Object.class, new WarnaTable());

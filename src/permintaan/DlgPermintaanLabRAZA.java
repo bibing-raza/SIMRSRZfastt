@@ -680,7 +680,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
             
             Sequel.menyimpan("permintaan_lab_raza", "'" + noRW.getText() + "'," + "'" + Sequel.cariIsi("select date(now())") + "',"
                     + "'" + Sequel.cariIsi("select time(now())") + "','" + kddokterFIX + "','" + nmPemeriksaan.getText() + "',"
-                    + "'" + sttsRawat + "','" + noMinta.getText() + "','BELUM','" + cito + "'", "Permintaan Lab.");
+                    + "'" + sttsRawat + "','" + noMinta.getText() + "','BELUM','" + cito + "','" + nmUnit.getText() + "'", "Permintaan Lab.");
             
             BtnBaruActionPerformed(null);
             tampil();            

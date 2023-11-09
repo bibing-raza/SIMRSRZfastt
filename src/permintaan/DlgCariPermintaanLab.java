@@ -44,7 +44,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No.Rawat", "No. RM", "Nama Pasien", "No. Permintaan", "Tgl. Permintaan",
-            "Jam", "Jns. Rawat", "sttsperiksa"
+            "Jam", "Jns. Rawat", "sttsperiksa", "Poli/Ruangan", "Cara Bayar"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -56,7 +56,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -77,12 +77,16 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 8) {
+                column.setPreferredWidth(200);
+            } else if (i == 9) {
+                column.setPreferredWidth(120);
             }
         }
         tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
 
         tabMode1 = new DefaultTableModel(null, new Object[]{
-            "No.", "No. Permintaan", "Nama Pemeriksaan", "Tgl. Permintaan",
+            "No.", "Cito", "No. Permintaan", "Nama Pemeriksaan", "Tgl. Permintaan",
             "Jam", "Diperiksa", "Dokter Perujuk", "norawat"
         }) {
             @Override
@@ -95,23 +99,25 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         tbPermintaan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbPermintaan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbPermintaan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(40);
             } else if (i == 2) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(115);
             } else if (i == 3) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(250);
             } else if (i == 4) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(100);
             } else if (i == 5) {
                 column.setPreferredWidth(75);
             } else if (i == 6) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(75);
             } else if (i == 7) {
+                column.setPreferredWidth(220);
+            } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -145,6 +151,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiBatal = new javax.swing.JMenuItem();
         MnPeriksaLab = new javax.swing.JMenuItem();
         MnCekNotif = new javax.swing.JMenuItem();
+        MnCetakPermintaan = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
@@ -228,6 +235,21 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnCekNotif);
+
+        MnCetakPermintaan.setBackground(new java.awt.Color(255, 255, 254));
+        MnCetakPermintaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakPermintaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnCetakPermintaan.setText("Cetak Permintaan Lab.");
+        MnCetakPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakPermintaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakPermintaan.setName("MnCetakPermintaan"); // NOI18N
+        MnCetakPermintaan.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnCetakPermintaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakPermintaanActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakPermintaan);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -709,6 +731,10 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         notifAlarmLab();
     }//GEN-LAST:event_MnCekNotifActionPerformed
 
+    private void MnCetakPermintaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_MnCetakPermintaanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -732,6 +758,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnKeluar;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCekNotif;
+    private javax.swing.JMenuItem MnCetakPermintaan;
     private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnVerifikasiBatal;
     private javax.swing.JMenuItem MnVerifikasiSudah;
@@ -758,13 +785,14 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT pl.no_rawat, p.no_rkm_medis, p.nm_pasien, pl.no_minta, date_format(pl.tgl_permintaan,'%d-%m-%Y') tglmnta, "
-                    + "pl.jam_permintaan, pl.status_rawat, pl.status_periksa from permintaan_lab_raza pl inner join reg_periksa rp on rp.no_rawat=pl.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "pl.jam_permintaan, pl.status_rawat, pl.status_periksa, pl.dari_unit, pj.png_jawab FROM permintaan_lab_raza pl "
+                    + "INNER JOIN reg_periksa rp ON rp.no_rawat=pl.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
+                    + "INNER JOIN penjab pj ON pj.kd_pj=rp.kd_pj WHERE "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and pl.no_rawat like ? or "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and p.no_rkm_medis like ? or "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and p.nm_pasien like ? or "
                     + "pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and pl.no_minta like ? "
-                    + "GROUP BY pl.no_rawat order by pl.tgl_permintaan desc, pl.jam_permintaan desc ");
+                    + "GROUP BY pl.no_rawat order by pl.tgl_permintaan desc, pl.jam_permintaan desc");
             try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
@@ -792,7 +820,9 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         rs.getString("tglmnta"),
                         rs.getString("jam_permintaan"),
                         rs.getString("status_rawat"),
-                        rs.getString("status_periksa")
+                        rs.getString("status_periksa"),
+                        rs.getString("dari_unit"),
+                        rs.getString("png_jawab")
                     });
                 }
             } catch (Exception e) {
@@ -814,8 +844,8 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private void tampilPemeriksaan() {
         Valid.tabelKosong(tabMode1);
         try {
-            ps1 = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                    + "p.status_periksa, p.no_rawat, pg.nama nmdokter, p.no_minta FROM permintaan_lab_raza p "
+            ps1 = koneksi.prepareStatement("SELECT UPPER(p.cito) cito, p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, "
+                    + "p.jam_permintaan, p.status_periksa, p.no_rawat, pg.nama nmdokter, p.no_minta FROM permintaan_lab_raza p "
                     + "inner join pegawai pg on pg.nik=p.dokter_perujuk where p.no_rawat like ? and p.status_rawat like ? "
                     + "order by p.tgl_permintaan desc, p.jam_permintaan desc");
             try {
@@ -826,6 +856,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 while (rs1.next()) {
                     tabMode1.addRow(new Object[]{
                         x + ".",
+                        rs1.getString("cito"),
                         rs1.getString("no_minta"),
                         rs1.getString("nm_pemeriksaan"),
                         rs1.getString("tglminta"),
@@ -880,7 +911,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         nominta = "";
         pilihan = 2;
         if (tbPermintaan.getSelectedRow() != -1) {
-            nominta = tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 1).toString();
+            nominta = tbPermintaan.getValueAt(tbPermintaan.getSelectedRow(), 2).toString();
         }
     }
     

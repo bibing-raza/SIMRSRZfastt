@@ -55,7 +55,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
         this.setLocation(10,10);
         setSize(545,599);
 
-        Object[] row={"P","Kode Kamar","Nama Kamar","Inisial Ruangan","Nama Gedung"};
+        Object[] row={"P","Kode Kamar","Nama Kamar","Inisial Ruangan","Nama Gedung","No. Telpon"};
         
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){
@@ -66,7 +66,8 @@ public final class DlgBangsal extends javax.swing.JDialog {
                 return a;
              }
              Class[] types = new Class[] {
-                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, 
+                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -75,33 +76,34 @@ public final class DlgBangsal extends javax.swing.JDialog {
         };
 
         tbBangsal.setModel(tabMode);
-        //tampil();
-
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 5; i++) {
+        for (i = 0; i < 6; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(80);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(300);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(90);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(120);
+            } else if (i == 5) {
+                column.setPreferredWidth(100);
             }
         }
 
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TKd.setDocument(new batasInput((byte)5).getKata(TKd));
-        TNm.setDocument(new batasInput((byte)30).getKata(TNm));
-        TInisial.setDocument(new batasInput((byte)3).getKata(TInisial));
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        TKd.setDocument(new batasInput((byte) 5).getKata(TKd));
+        TNm.setDocument(new batasInput((byte) 30).getKata(TNm));
+        TInisial.setDocument(new batasInput((byte) 3).getKata(TInisial));
+        TNoTelp.setDocument(new batasInput((int) 16).getKata(TNoTelp));
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -154,10 +156,11 @@ public final class DlgBangsal extends javax.swing.JDialog {
         TInisial = new widget.TextBox();
         jLabel8 = new widget.Label();
         CmbGedung = new widget.ComboBox();
+        jLabel9 = new widget.Label();
+        TNoTelp = new widget.TextBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnRestore.setBackground(new java.awt.Color(255, 255, 255));
         MnRestore.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRestore.setForeground(new java.awt.Color(60, 80, 50));
         MnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -184,7 +187,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Kamar ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Bangsal Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -413,14 +416,14 @@ public final class DlgBangsal extends javax.swing.JDialog {
         internalFrame1.add(jPanel1, java.awt.BorderLayout.PAGE_END);
 
         panelGlass8.setName("panelGlass8"); // NOI18N
-        panelGlass8.setPreferredSize(new java.awt.Dimension(44, 47));
+        panelGlass8.setPreferredSize(new java.awt.Dimension(44, 75));
         panelGlass8.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Kode Kamar :");
         jLabel3.setName("jLabel3"); // NOI18N
         panelGlass8.add(jLabel3);
-        jLabel3.setBounds(0, 12, 85, 23);
+        jLabel3.setBounds(0, 10, 100, 23);
 
         TKd.setForeground(new java.awt.Color(0, 0, 0));
         TKd.setName("TKd"); // NOI18N
@@ -430,7 +433,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(TKd);
-        TKd.setBounds(88, 12, 100, 23);
+        TKd.setBounds(103, 10, 100, 23);
 
         TNm.setForeground(new java.awt.Color(0, 0, 0));
         TNm.setFocusTraversalPolicyProvider(true);
@@ -441,43 +444,42 @@ public final class DlgBangsal extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(TNm);
-        TNm.setBounds(325, 12, 295, 23);
+        TNm.setBounds(300, 10, 295, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Nama Kamar :");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass8.add(jLabel4);
-        jLabel4.setBounds(230, 12, 92, 23);
+        jLabel4.setBounds(205, 10, 90, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Inisial Ruangan :");
         jLabel5.setName("jLabel5"); // NOI18N
         panelGlass8.add(jLabel5);
-        jLabel5.setBounds(630, 12, 90, 23);
+        jLabel5.setBounds(0, 38, 100, 23);
 
         TInisial.setForeground(new java.awt.Color(0, 0, 0));
         TInisial.setName("TInisial"); // NOI18N
         TInisial.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                TInisialKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TInisialKeyPressed(evt);
             }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                TInisialKeyTyped(evt);
+            }
         });
         panelGlass8.add(TInisial);
-        TInisial.setBounds(730, 12, 60, 23);
+        TInisial.setBounds(103, 38, 60, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Nama Gedung :");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass8.add(jLabel8);
-        jLabel8.setBounds(795, 12, 80, 23);
+        jLabel8.setBounds(165, 38, 90, 23);
 
         CmbGedung.setForeground(new java.awt.Color(0, 0, 0));
         CmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "AL-HAKIM/PARU", "ANAK", "AR-RAUDAH ATAS", "AR-RAUDAH BAWAH", "AS-SAMI", "BEDAH", "BERSALIN", "ICU", "RKPD", "VIP", "ZAAL" }));
         CmbGedung.setName("CmbGedung"); // NOI18N
-        CmbGedung.setOpaque(false);
         CmbGedung.setPreferredSize(new java.awt.Dimension(95, 23));
         CmbGedung.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -490,7 +492,19 @@ public final class DlgBangsal extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(CmbGedung);
-        CmbGedung.setBounds(879, 12, 150, 23);
+        CmbGedung.setBounds(260, 38, 150, 23);
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("No. Telpn :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        panelGlass8.add(jLabel9);
+        jLabel9.setBounds(410, 38, 70, 23);
+
+        TNoTelp.setForeground(new java.awt.Color(0, 0, 0));
+        TNoTelp.setFocusTraversalPolicyProvider(true);
+        TNoTelp.setName("TNoTelp"); // NOI18N
+        panelGlass8.add(TNoTelp);
+        TNoTelp.setBounds(485, 38, 150, 23);
 
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_START);
 
@@ -515,12 +529,13 @@ public final class DlgBangsal extends javax.swing.JDialog {
         } else if (TInisial.getText().trim().equals("")) {
             Valid.textKosong(TInisial, "inisial ruangan");
         } else {
-            if (Sequel.menyimpantf("bangsal", "?,?,?,?,?", "Kode Kamar", 5, new String[]{
+            if (Sequel.menyimpantf("bangsal", "?,?,?,?,?,?", "Kode Kamar", 6, new String[]{
                 TKd.getText(),
                 TNm.getText(),
                 "1",
                 TInisial.getText(),
-                CmbGedung.getSelectedItem().toString()
+                CmbGedung.getSelectedItem().toString(),
+                TNoTelp.getText()
             }) == true) {
                 tampil();
                 emptTeks();
@@ -575,8 +590,8 @@ public final class DlgBangsal extends javax.swing.JDialog {
             Valid.textKosong(TInisial,"inisial ruangan");
         }else{
             if(tbBangsal.getSelectedRow()>-1){
-                Sequel.mengedit("bangsal", "kd_bangsal=?", "nm_bangsal=?,kd_bangsal=?,inisial_label_gizi=?,nm_gedung=?", 5, new String[]{
-                    TNm.getText(),TKd.getText(),TInisial.getText(),CmbGedung.getSelectedItem().toString(),
+                Sequel.mengedit("bangsal", "kd_bangsal=?", "nm_bangsal=?,kd_bangsal=?,inisial_label_gizi=?,nm_gedung=?,no_tlp=?", 6, new String[]{
+                    TNm.getText(),TKd.getText(),TInisial.getText(),CmbGedung.getSelectedItem().toString(), TNoTelp.getText(),
                     tbBangsal.getValueAt(tbBangsal.getSelectedRow(), 1).toString()});
                 if(tabMode.getRowCount()!=0){tampil();}
                 emptTeks();
@@ -757,6 +772,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
     private widget.TextBox TInisial;
     private widget.TextBox TKd;
     private widget.TextBox TNm;
+    private widget.TextBox TNoTelp;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
@@ -764,6 +780,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass5;
@@ -775,7 +792,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try{
-            ps = koneksi.prepareStatement("select kd_bangsal, nm_bangsal, inisial_label_gizi, nm_gedung from bangsal where "
+            ps = koneksi.prepareStatement("select kd_bangsal, nm_bangsal, inisial_label_gizi, nm_gedung, no_tlp from bangsal where "
                     + "status='1' and kd_bangsal like ? or "
                     + "status='1' and inisial_label_gizi like ? or "
                     + "status='1' and nm_gedung like ? or "
@@ -791,7 +808,8 @@ public final class DlgBangsal extends javax.swing.JDialog {
                         rs.getString("kd_bangsal"),
                         rs.getString("nm_bangsal"),
                         rs.getString("inisial_label_gizi"),
-                        rs.getString("nm_gedung")
+                        rs.getString("nm_gedung"),
+                        rs.getString("no_tlp")
                     });
                 }
             } catch (Exception e) {
@@ -816,6 +834,7 @@ public final class DlgBangsal extends javax.swing.JDialog {
         TNm.setText("");
         TCari.setText("");
         TInisial.setText("");
+        TNoTelp.setText("");
         CmbGedung.setSelectedIndex(0);
         TKd.requestFocus();
         Valid.autoNomer(" bangsal ","B",4,TKd);
@@ -826,7 +845,8 @@ public final class DlgBangsal extends javax.swing.JDialog {
             TKd.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),1).toString());
             TNm.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),2).toString());
             TInisial.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),3).toString());
-            CmbGedung.setSelectedItem(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),4).toString());            
+            CmbGedung.setSelectedItem(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),4).toString());
+            TNoTelp.setText(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),5).toString());
         }
     }
     
@@ -836,6 +856,12 @@ public final class DlgBangsal extends javax.swing.JDialog {
 
     public JTable getTable(){
         return tbBangsal;
+    }
+    
+    public void isCek() {
+        BtnSimpan.setEnabled(akses.getadmin());
+        BtnHapus.setEnabled(akses.getadmin());
+        BtnEdit.setEnabled(akses.getadmin());
     }
 
 }

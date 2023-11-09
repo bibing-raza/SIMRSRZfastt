@@ -38,10 +38,10 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import kepegawaian.DlgCariPetugas;
 import keuangan.DlgKamar;
+import laporan.DlgHasilExpertiseRadiologi;
 import laporan.DlgHasilLIS;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
-import simrskhanza.DlgCariPeriksaRadiologi;
 
 /**
  *
@@ -54,14 +54,13 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6;
-    private int i = 0, x = 0, pilihan = 0, cekHasilRad = 0;
+    private int i = 0, x = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     public DlgKamar kamar = new DlgKamar(null, false);
     private String rujukan = "", dtg_sendiri = "", diantar = "", hipertensi1 = "", dm1 = "", pjk = "",
             asma1 = "", strok = "", liver = "", ginjal = "", tb = "", lain1 = "", hipertensi2 = "", dm2 = "",
-            jantung = "", asma2 = "", lain2 = "", nyeri = "", resus = "", reguler = "", ireguler = "", kdItemrad = "",
-            itemDipilih = "", tglRad = "", jamRad = "", kodekamar = "";
+            jantung = "", asma2 = "", lain2 = "", nyeri = "", resus = "", reguler = "", ireguler = "", kodekamar = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -4074,37 +4073,14 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-            cekHasilRad = 0;
-            kdItemrad = "";
-            itemDipilih = "";
-            tglRad = "";
-            jamRad = "";
-
-            tglRad = Sequel.cariIsi("select tgl_periksa from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            jamRad = Sequel.cariIsi("select jam from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            kdItemrad = Sequel.cariIsi("select kd_jenis_prw from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                    + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-            itemDipilih = Sequel.cariIsi("select nm_perawatan from jns_perawatan_radiologi where kd_jenis_prw='" + kdItemrad + "'");
-            cekHasilRad = Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                    + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-
-            if (cekHasilRad >= 1) {
-                akses.setform("RMAsesmenMedikDewasaRanap");
-                DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
-                form.WindowHasil.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.WindowHasil.setLocationRelativeTo(internalFrame1);
-                form.isCek();
-                form.setData(TNoRw.getText(), kdItemrad, itemDipilih, "OK", TNoRM.getText(), TPasien.getText(), tglRad, jamRad,
-                        Sequel.cariIsi("select diagnosa_awal from kamar_inap where no_rawat='" + TNoRw.getText() + "' order by tgl_masuk, jam_masuk limit 1"),
-                        TRuangan.getText(),
-                        Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.kd_dokter where pr.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.dokter_perujuk where pr.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where "
-                                + "kd_rujukan='" + Sequel.cariIsi("select ifnull(kd_rujukan,'') from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") + "'"));
-                form.WindowHasil.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan radiologi (expertise) tidak ditemukan ...!!!!");
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMAsesmenMedikDewasaRanap");
+            DlgHasilExpertiseRadiologi form = new DlgHasilExpertiseRadiologi(null, false);
+            form.setSize(914, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRM.getText());
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
 

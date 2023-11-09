@@ -7343,8 +7343,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     + "}";
             
             simpanBackupSEPAwal();
-            //jeda 2 detik
-            Thread.sleep(2000);
+            //jeda 3 detik
+            Thread.sleep(3000);
             System.out.println("Pesan SEP Backup : Berhasil menyimpan data ketabel bridging_sep_backup (Waktu : " + Sequel.cariIsi("select date_format(now(),'%d-%m-%Y %H:%i:%s')") + ") ...!!!");
             
             System.out.println("ini mengirim : " + requestJson);
