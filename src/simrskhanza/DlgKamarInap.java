@@ -8671,8 +8671,9 @@ private void MnOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     if (Sequel.cariRegistrasi(rs2.getString("no_rawat2")) > 0) {
                         JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
                     } else {
-                        if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "'") > 0) {
-                            Sequel.mengedit("jadwal_operasi", "nomr='" + TNoRM.getText() + "'", "no_rawat='" + norawat.getText() + "', last_update='" + Sequel.cariIsi("select now()") + "'");
+                        if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "' and no_rawat='-'") > 0) {
+                            Sequel.mengedit("jadwal_operasi", "nomr='" + TNoRM.getText() + "' and no_rawat='-'",
+                                    "no_rawat='" + norawat.getText() + "', last_update='" + Sequel.cariIsi("select now()") + "'");
                             
                             DlgTagihanOperasi dlgro = new DlgTagihanOperasi(null, false);
                             dlgro.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
@@ -8680,7 +8681,7 @@ private void MnOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             dlgro.setNoRm(rs2.getString("no_rawat2"), rs2.getString("no_rkm_medis") + ", " + rs2.getString("nm_pasien"), "Ranap");
                             dlgro.setVisible(true);
                             dlgro.fokus();
-                        } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "'") == 0) {
+                        } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "' and no_rawat='-'") == 0) {
                             x = JOptionPane.showConfirmDialog(rootPane, "Pasien ini belum dijadwalkan operasi, apakah akan dijadwalkan dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                             if (x == JOptionPane.YES_OPTION) {
                                 DlgJadwalOperasi jadwal = new DlgJadwalOperasi(null, false);
@@ -8715,8 +8716,9 @@ private void MnOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         if (Sequel.cariRegistrasi(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 0) {
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, data tidak boleh dihapus/diubah. Silahkan hubungi bagian kasir/keuangan ..!!");
         } else {
-            if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "'") > 0) {
-                Sequel.mengedit("jadwal_operasi", "nomr='" + TNoRM.getText() + "'", "no_rawat='" + norawat.getText() + "', last_update='" + Sequel.cariIsi("select now()") + "'");
+            if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "' and no_rawat='-'") > 0) {
+                Sequel.mengedit("jadwal_operasi", "nomr='" + TNoRM.getText() + "' and no_rawat='-'",
+                        "no_rawat='" + norawat.getText() + "', last_update='" + Sequel.cariIsi("select now()") + "'");
 
                 DlgTagihanOperasi dlgro = new DlgTagihanOperasi(null, false);
                 dlgro.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
@@ -8724,7 +8726,7 @@ private void MnOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 dlgro.setNoRm(norawat.getText(), TNoRM.getText() + ", " + TPasien.getText(), "Ranap");
                 dlgro.setVisible(true);
                 dlgro.fokus();
-            } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "'") == 0) {
+            } else if (Sequel.cariInteger("select count(-1) from jadwal_operasi where nomr='" + TNoRM.getText() + "' and no_rawat='-'") == 0) {
                 x = JOptionPane.showConfirmDialog(rootPane, "Pasien ini belum dijadwalkan operasi, apakah akan dijadwalkan dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     DlgJadwalOperasi jadwal = new DlgJadwalOperasi(null, false);
