@@ -975,7 +975,8 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 + "/" + Valid.SetTgl(tglOperasi.getSelectedItem() + "").substring(0, 4), 4, TNoBoking);
     }
 
-    public void setData(String norm) {        
+    public void setData(String norm, String norw) {
+        TNoRw.setText(norw);
         TNoRm.setText(norm);
         Tpasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"));
         TNoPeserta.setText(Sequel.cariIsi("select no_peserta from pasien where no_rkm_medis='" + norm + "'"));
