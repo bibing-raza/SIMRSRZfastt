@@ -5775,7 +5775,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 lab.setSize(978, internalFrame1.getHeight() - 40);
                 lab.setLocationRelativeTo(internalFrame1);
                 lab.isPasien(TNoRw.getText());
-                lab.AutoNomerMinta();
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
                 lab.isCek();

@@ -156,7 +156,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiBatal = new javax.swing.JMenuItem();
         MnPeriksaLab = new javax.swing.JMenuItem();
         MnCekNotif = new javax.swing.JMenuItem();
-        MnCetakPermintaan = new javax.swing.JMenuItem();
+        MnCetakPermintaanTermal = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         scrollPane1 = new widget.ScrollPane();
@@ -188,7 +188,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiDiterima.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnVerifikasiDiterima.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifikasiDiterima.setName("MnVerifikasiDiterima"); // NOI18N
-        MnVerifikasiDiterima.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnVerifikasiDiterima.setPreferredSize(new java.awt.Dimension(230, 26));
         MnVerifikasiDiterima.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifikasiDiterimaActionPerformed(evt);
@@ -203,7 +203,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnVerifikasiBatal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnVerifikasiBatal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnVerifikasiBatal.setName("MnVerifikasiBatal"); // NOI18N
-        MnVerifikasiBatal.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnVerifikasiBatal.setPreferredSize(new java.awt.Dimension(230, 26));
         MnVerifikasiBatal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnVerifikasiBatalActionPerformed(evt);
@@ -218,7 +218,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnPeriksaLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnPeriksaLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPeriksaLab.setName("MnPeriksaLab"); // NOI18N
-        MnPeriksaLab.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnPeriksaLab.setPreferredSize(new java.awt.Dimension(230, 26));
         MnPeriksaLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPeriksaLabActionPerformed(evt);
@@ -233,7 +233,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         MnCekNotif.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCekNotif.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCekNotif.setName("MnCekNotif"); // NOI18N
-        MnCekNotif.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnCekNotif.setPreferredSize(new java.awt.Dimension(230, 26));
         MnCekNotif.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCekNotifActionPerformed(evt);
@@ -241,20 +241,20 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCekNotif);
 
-        MnCetakPermintaan.setBackground(new java.awt.Color(255, 255, 254));
-        MnCetakPermintaan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakPermintaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
-        MnCetakPermintaan.setText("Cetak Permintaan Lab.");
-        MnCetakPermintaan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCetakPermintaan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCetakPermintaan.setName("MnCetakPermintaan"); // NOI18N
-        MnCetakPermintaan.setPreferredSize(new java.awt.Dimension(170, 26));
-        MnCetakPermintaan.addActionListener(new java.awt.event.ActionListener() {
+        MnCetakPermintaanTermal.setBackground(new java.awt.Color(255, 255, 254));
+        MnCetakPermintaanTermal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakPermintaanTermal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnCetakPermintaanTermal.setText("Cetak Permintaan (Kertas Thermal)");
+        MnCetakPermintaanTermal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakPermintaanTermal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakPermintaanTermal.setName("MnCetakPermintaanTermal"); // NOI18N
+        MnCetakPermintaanTermal.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnCetakPermintaanTermal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakPermintaanActionPerformed(evt);
+                MnCetakPermintaanTermalActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnCetakPermintaan);
+        jPopupMenu1.add(MnCetakPermintaanTermal);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -568,7 +568,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
     private void MnVerifikasiDiterimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifikasiDiterimaActionPerformed
         if (nokirim.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu nama item pemeriksaan Lab. yg. akan diverifikasi..!!!");
+            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data permintaan pemeriksaan Lab. yg. akan diverifikasi..!!!");
             tbPermintaan.requestFocus();
         } else {
             Sequel.mengedit("permintaan_lab_raza", "no_kirim='" + nokirim + "'", "status_periksa='Diterima'");
@@ -599,7 +599,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
     private void MnVerifikasiBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifikasiBatalActionPerformed
         if (nokirim.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu nama item pemeriksaan Lab. yg. akan diverifikasi..!!!");
+            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data permintaan pemeriksaan Lab. yg. akan diverifikasi..!!!");
             tbPermintaan.requestFocus();
         } else {
             Sequel.mengedit("permintaan_lab_raza", "no_kirim='" + nokirim + "'", "status_periksa='BELUM'");
@@ -668,7 +668,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
             TCari.requestFocus();
         } else if (nokirim.equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan menklik data pada tabel...!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbPasien.requestFocus();
         } else {
             diagnosa_ok = "";
@@ -694,7 +694,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                 } else {
                     akses.setform("DlgCariPermintaanLab");
                     DlgPeriksaLaboratorium periksalab = new DlgPeriksaLaboratorium(null, false);
-                    periksalab.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                    periksalab.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     periksalab.setLocationRelativeTo(internalFrame1);
                     periksalab.emptTeks();
                     periksalab.KodePerujuk.setText(cekdokter);
@@ -738,9 +738,29 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         notifAlarmLab();
     }//GEN-LAST:event_MnCekNotifActionPerformed
 
-    private void MnCetakPermintaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_MnCetakPermintaanActionPerformed
+    private void MnCetakPermintaanTermalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPermintaanTermalActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (nokirim.equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data permintaan pemeriksaan Lab. yg. akan dicetak..!!!");
+            tbPermintaan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("norawat", norw);
+            param.put("nokirim", nokirim);
+            param.put("norm", tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString());
+            param.put("nmpasien", tbPasien.getValueAt(tbPasien.getSelectedRow(), 2).toString());
+            param.put("tgl", tbPasien.getValueAt(tbPasien.getSelectedRow(), 4).toString());
+            param.put("jam", tbPasien.getValueAt(tbPasien.getSelectedRow(), 5).toString());
+            param.put("unit", tbPasien.getValueAt(tbPasien.getSelectedRow(), 8).toString());
+            param.put("carabayar", tbPasien.getValueAt(tbPasien.getSelectedRow(), 9).toString());
+            Valid.MyReport("rptStrukPermintaanLab.jasper", "report", "::[ Struk Permintaan Pemeriksaan Lab. (Kertas Thermal) ]::",
+                    "SELECT nm_pemeriksaan from permintaan_lab_raza where no_kirim='" + nokirim + "' order by no_minta", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnCetakPermintaanTermalActionPerformed
 
     /**
     * @param args the command line arguments
@@ -765,7 +785,7 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.Button BtnKeluar;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCekNotif;
-    private javax.swing.JMenuItem MnCetakPermintaan;
+    private javax.swing.JMenuItem MnCetakPermintaanTermal;
     private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnVerifikasiBatal;
     private javax.swing.JMenuItem MnVerifikasiDiterima;

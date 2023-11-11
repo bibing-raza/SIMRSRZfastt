@@ -27,7 +27,7 @@
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="name" type="java.lang.String" value="MnVerifikasiDiterima" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[170, 26]"/>
+              <Dimension value="[230, 26]"/>
             </Property>
           </Properties>
           <Events>
@@ -50,7 +50,7 @@
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="name" type="java.lang.String" value="MnVerifikasiBatal" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[170, 26]"/>
+              <Dimension value="[230, 26]"/>
             </Property>
           </Properties>
           <Events>
@@ -73,7 +73,7 @@
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="name" type="java.lang.String" value="MnPeriksaLab" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[170, 26]"/>
+              <Dimension value="[230, 26]"/>
             </Property>
           </Properties>
           <Events>
@@ -96,14 +96,14 @@
             <Property name="horizontalTextPosition" type="int" value="4"/>
             <Property name="name" type="java.lang.String" value="MnCekNotif" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[170, 26]"/>
+              <Dimension value="[230, 26]"/>
             </Property>
           </Properties>
           <Events>
             <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnCekNotifActionPerformed"/>
           </Events>
         </MenuItem>
-        <MenuItem class="javax.swing.JMenuItem" name="MnCetakPermintaan">
+        <MenuItem class="javax.swing.JMenuItem" name="MnCetakPermintaanTermal">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="fe" green="ff" red="ff" type="rgb"/>
@@ -114,16 +114,16 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/picture/PrinterSettings.png"/>
             </Property>
-            <Property name="text" type="java.lang.String" value="Cetak Permintaan Lab."/>
+            <Property name="text" type="java.lang.String" value="Cetak Permintaan (Kertas Thermal)"/>
             <Property name="horizontalAlignment" type="int" value="2"/>
             <Property name="horizontalTextPosition" type="int" value="4"/>
-            <Property name="name" type="java.lang.String" value="MnCetakPermintaan" noResource="true"/>
+            <Property name="name" type="java.lang.String" value="MnCetakPermintaanTermal" noResource="true"/>
             <Property name="preferredSize" type="java.awt.Dimension" editor="org.netbeans.beaninfo.editors.DimensionEditor">
-              <Dimension value="[170, 26]"/>
+              <Dimension value="[230, 26]"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnCetakPermintaanActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="MnCetakPermintaanTermalActionPerformed"/>
           </Events>
         </MenuItem>
       </SubComponents>

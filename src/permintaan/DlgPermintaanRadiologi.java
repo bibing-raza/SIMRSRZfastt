@@ -796,7 +796,6 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
                     Sequel.cariIsi("select time(now())"), kdDokter.getText(), "Belum", TnmUnit.getText(), TnmPemeriksaan.getText(), "-","Menunggu"
                 }) == true) {
                     
-                    nokirim = "";
                     tampilNomor();
                     tampilPermintaan("Menunggu");
                     TnmPemeriksaan.setText("");
@@ -971,10 +970,9 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
             tbNomor.requestFocus();
         } else {
             if (nokirim.equals("Menunggu")) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Permintaan pemeriksaan belum terkirim, apakah akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                x = JOptionPane.showConfirmDialog(rootPane, "Semua permintaan pemeriksaan yg. belum terkirim akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
-                    Sequel.queryu("delete from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                            + "no_kirim='Menunggu' and tgl_permintaan='" + tgl + "' and jam_permintaan='" + jam + "'");
+                    Sequel.queryu("delete from permintaan_radiologi where no_rawat='" + TNoRw.getText() + "' and no_kirim='Menunggu'");
                 
                     tampilNomor();
                     Valid.tabelKosong(tabMode1);
@@ -1256,7 +1254,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
                 rs1 = ps1.executeQuery();
                 x = 1;
                 while (rs1.next()) {
-                    tabMode1.addRow(new Object[]{
+                    tabMode1.addRow(new String[]{
                         x + ".",
                         rs1.getString("nm_pemeriksaan"),
                         rs1.getString("tglminta"),
@@ -1296,7 +1294,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
                 rs2 = ps2.executeQuery();
                 x = 1;
                 while (rs2.next()) {
-                    tabMode2.addRow(new Object[]{
+                    tabMode2.addRow(new String[]{
                         x + ".",
                         rs2.getString("no_kirim"),
                         rs2.getString("tglminta"),

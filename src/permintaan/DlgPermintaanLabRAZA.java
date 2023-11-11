@@ -58,7 +58,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No.", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Diperiksa",
+            "No.", "Nama Pemeriksaan Lab.", "Tgl. Permintaan", "Jam Permintaan", "Status",
             "norawat", "kddokter", "No. Permintaan", "CITO", "No. Kirim"
         }) {
             @Override
@@ -796,7 +796,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
                 noRW.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("select time(now())"), kddokterFIX,
                 nmPemeriksaan.getText(), sttsRawat, noMinta.getText(), "BELUM", cito, nmUnit.getText(), "-", "Menunggu"
             }) == true) {
-                nokirim = "";
+                
                 tampilNomor();
                 tampil("Menunggu");
                 nmPemeriksaan.setText("");
@@ -1005,10 +1005,9 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
             tbNomor.requestFocus();
         } else {
             if (nokirim.equals("Menunggu")) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Permintaan pemeriksaan belum terkirim, apakah akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                x = JOptionPane.showConfirmDialog(rootPane, "Semua permintaan pemeriksaan yg. belum terkirim akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
-                    Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' and "
-                        + "no_kirim='Menunggu' and tgl_permintaan='" + tgl + "' and jam_permintaan='" + jam + "'");
+                    Sequel.queryu("delete from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' and no_kirim='Menunggu'");
 
                     tampilNomor();
                     Valid.tabelKosong(tabMode);

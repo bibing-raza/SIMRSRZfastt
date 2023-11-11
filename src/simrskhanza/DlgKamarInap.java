@@ -13173,7 +13173,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 lab.setSize(978, internalFrame1.getHeight() - 40);
                 lab.setLocationRelativeTo(internalFrame1);
                 lab.isPasien(norawat.getText());
-                lab.AutoNomerMinta();
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
                 lab.isCek();
