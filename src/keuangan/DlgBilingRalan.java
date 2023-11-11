@@ -3629,7 +3629,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             periksalab.KodePerujuk.setText(cekdokter);
             periksalab.tampiltarif();
             periksalab.tampil();
-            periksalab.tampilMintaPeriksa();
             periksalab.isCek();
             periksalab.setAlwaysOnTop(false);
             periksalab.setVisible(true);
@@ -3646,7 +3645,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 periksalab.KodePerujuk.setText(cekdokter);
                 periksalab.tampiltarif();
                 periksalab.tampil();
-                periksalab.tampilMintaPeriksa();
                 periksalab.isCek();
                 periksalab.setAlwaysOnTop(false);
                 periksalab.setVisible(true);

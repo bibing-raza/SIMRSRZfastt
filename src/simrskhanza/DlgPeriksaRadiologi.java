@@ -60,7 +60,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
     private String[] kode, nama, kodebarang, namabarang, satuan;
     private double[] jumlah, total, bagian_rs, bhp, tarif_perujuk, tarif_tindakan_dokter, tarif_tindakan_petugas, kso, menejemen;
     private int jml = 0, i = 0, index = 0, cekBhp = 0;
-    private String noorder = "", kelas_radiologi = "Yes", kelas = "", cara_bayar_radiologi = "Yes", pilihan = "", pemeriksaan = "", status = "";
+    private String nokirim = "", kelas_radiologi = "Yes", kelas = "", cara_bayar_radiologi = "Yes", pilihan = "", pemeriksaan = "", status = "";
     private double ttl = 0, item = 0;
     private double ttljmdokter = 0, ttljmpetugas = 0, ttlkso = 0, ttlpendapatan = 0, ttlbhp = 0;
     private String Suspen_Piutang_Radiologi_Ranap = "", Radiologi_Ranap = "", Beban_Jasa_Medik_Dokter_Radiologi_Ranap = "", cekPetugas = "",
@@ -167,7 +167,7 @@ public final class DlgPeriksaRadiologi extends javax.swing.JDialog {
         tbBHPRadiologi.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
-            "Cek", "Status", "No. Permintaan", "Nama Pemeriksaan", "Dokter Perujuk", "Tanggal", "Jam", "Poli/Ruangan", "norawat"
+            "Cek", "Status", "No. Kirim", "Nama Pemeriksaan", "Dokter Perujuk", "Tanggal", "Jam", "Poli/Ruangan", "norawat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -1366,7 +1366,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 JOptionPane.showMessageDialog(null, "Silakan Isi Pemakaian BHP Radiologi");
             } else {
                 if (tbPermintaan.getRowCount() != 0) {
-                    if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where noorder='" + noorder + "' and status='Belum'") > 0) {
+                    if (Sequel.cariInteger("select count(-1) from permintaan_radiologi where no_kirim='" + nokirim + "' and status='Belum'") > 0) {
                         JOptionPane.showMessageDialog(null, "Silakan verifikasi dulu semua item permintaan pemeriksaan radiologinya..!!");
                     } else {
                         simpan();
@@ -1473,11 +1473,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                     }
                     Sequel.mengedit("permintaan_radiologi",
                             "no_rawat='" + tbPermintaan.getValueAt(i, 8).toString() + "' and "
-                            + "noorder='" + tbPermintaan.getValueAt(i, 2).toString() + "'",
+                            + "no_kirim='" + tbPermintaan.getValueAt(i, 2).toString() + "'",
                             "status = '" + cekPeriksa + "', nip_penerima='" + cekPetugas + "'");
                 }
             }
-            tampilMinta(noorder);
+            tampilMinta(nokirim);
             chkPermintaan.setSelected(false);
 
         } catch (Exception e) {
@@ -1487,7 +1487,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
     private void BtnCari3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari3ActionPerformed
         chkPermintaan.setSelected(false);
-        tampilMinta(noorder);
+        tampilMinta(nokirim);
     }//GEN-LAST:event_BtnCari3ActionPerformed
 
     /**
@@ -1959,9 +1959,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         TCariPeriksa.requestFocus();
     }
 
-    public void setOrder(String order) {
-        noorder = order;
-        tampilMinta(order);
+    public void setOrder(String nomorkirim) {
+        nokirim = nomorkirim;
+        tampilMinta(nomorkirim);
     }
     
     private void tampilMinta(String noMinta) {
@@ -1969,15 +1969,15 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         try {
             ps1 = koneksi.prepareStatement("SELECT pr.status, pr.noorder, pr.nm_pemeriksaan, d.nm_dokter, "
                     + "DATE_FORMAT(pr.tgl_permintaan,'%d-%m-%Y') tglMinta, pr.jam_permintaan, pr.dari_unit, "
-                    + "pr.no_rawat from permintaan_radiologi pr inner join dokter d on d.kd_dokter=pr.dokter_perujuk where "
-                    + "pr.no_rawat='" + TNoRw.getText() + "' and pr.noorder='" + noMinta + "' order by pr.tgl_permintaan, pr.jam_permintaan");
+                    + "pr.no_rawat, pr.no_kirim from permintaan_radiologi pr inner join dokter d on d.kd_dokter=pr.dokter_perujuk where "
+                    + "pr.no_rawat='" + TNoRw.getText() + "' and pr.no_kirim='" + noMinta + "' order by pr.tgl_permintaan, pr.jam_permintaan");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
                     tabMode1.addRow(new Object[]{
                         false,
                         rs1.getString("status"),
-                        rs1.getString("noorder"),
+                        rs1.getString("no_kirim"),
                         rs1.getString("nm_pemeriksaan"),
                         rs1.getString("nm_dokter"),
                         rs1.getString("tglMinta"),

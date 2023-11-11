@@ -7033,7 +7033,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 lab.AutoNomerMinta();
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
-                lab.tampil();
                 lab.tampilItemLab();
                 lab.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());

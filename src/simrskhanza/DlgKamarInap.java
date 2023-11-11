@@ -8651,7 +8651,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         periksalab.setNoRm(rs2.getString("no_rawat2"), "Ranap", "-", diagnosa_ok, ruangrawat.getText());
                         periksalab.tampiltarif();
                         periksalab.tampil();
-                        periksalab.tampilMintaPeriksa();
                         periksalab.isCek();
                         periksalab.setVisible(true);
                         periksalab.fokus();
@@ -8687,7 +8686,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             periksalab.setNoRm(norawat.getText(), "Ranap", "-", diagnosa_ok, ruangrawat.getText());
             periksalab.tampiltarif();
             periksalab.tampil();
-            periksalab.tampilMintaPeriksa();
             periksalab.isCek();
             periksalab.setVisible(true);
             periksalab.fokus();
@@ -13179,7 +13177,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
                 lab.isCek();
-                lab.tampil();
                 lab.tampilItemLab();
                 lab.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());

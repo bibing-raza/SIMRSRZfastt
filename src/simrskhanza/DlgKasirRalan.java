@@ -5058,7 +5058,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             periksalab.KodePerujuk.setText(kddokter.getText());
             periksalab.setNoRm(TNoRw.getText(), "Ralan", diagnosa_ok, "-", Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
             periksalab.tampiltarif();
-            periksalab.tampilMintaPeriksa();
             periksalab.tampil();
             periksalab.isCek();
             periksalab.setVisible(true);
@@ -5780,7 +5779,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 lab.nmPemeriksaan.setText("");
                 lab.nmPemeriksaan.requestFocus();
                 lab.isCek();
-                lab.tampil();
                 lab.tampilItemLab();
                 lab.setVisible(true);
                 this.setCursor(Cursor.getDefaultCursor());
