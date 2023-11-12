@@ -17815,10 +17815,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.flag_hapus='tidak' and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' "
                         + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -17841,10 +17843,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.flag_hapus='tidak' "
                         + "and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
                         + "and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
@@ -17867,10 +17871,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
                         + "and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -17890,10 +17896,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
@@ -17914,10 +17922,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.flag_hapus='tidak' "
                         + "and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -17939,10 +17949,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ranap' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and c.flag_hapus='tidak' "
                         + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -17966,10 +17978,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                    + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                    + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                    + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                     + "WHERE c.no_rawat = '" + norawat.getText() + "' AND c.STATUS='Ralan' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
             BtnCloseIn6ActionPerformed(null);
         }
@@ -17994,10 +18008,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' and c.flag_hapus='tidak' "
                         + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -18020,10 +18036,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.flag_hapus='tidak' "
                         + "and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
                         + "and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' ORDER BY c.tgl_cppt, c.jam_cppt", param);
@@ -18046,10 +18064,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
                         + "and c.cppt_shift like '%" + cmbSift.getSelectedItem().toString() + "%' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
@@ -18070,10 +18090,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);
             }
@@ -18094,10 +18116,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.flag_hapus='tidak' "
                         + "and c.tgl_cppt between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' "
                         + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
@@ -18120,10 +18144,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
+                        + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
+                        + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                         + "WHERE c.no_rawat = '" + norawat.getText() + "' and c.tgl_cppt='" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' and c.flag_hapus='tidak' "
                         + "ORDER BY c.tgl_cppt, c.jam_cppt", param);
                 BtnCloseIn6ActionPerformed(null);

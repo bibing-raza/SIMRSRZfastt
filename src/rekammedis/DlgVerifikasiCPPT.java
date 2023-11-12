@@ -819,14 +819,15 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString().equals("ya")) {
                 if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString().equals("-")) {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "\n\n"
-                            + "KONFIRMASI TERAPI VIA TELPON :\n\n"
+                            + "KONFIRMASI TERAPI VIA TELEPON :\n\n"
                             + "Tgl. Konfirmasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
                             + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString() + " WITA\n"
                             + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString() + "\n"
                             + "DPJP : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 18).toString());
                 } else {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "\n\n"
-                            + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString() + ")\n\n" + "KONFIRMASI TERAPI VIA TELPON :\n\n"
+                            + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString() + ")\n\n"
+                            + "KONFIRMASI TERAPI VIA TELEPON :\n\n"
                             + "Tgl. Konfirmasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
                             + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString() + " WITA\n"
                             + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString() + "\n"
