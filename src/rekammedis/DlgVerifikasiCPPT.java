@@ -53,8 +53,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
 
         tabMode=new DefaultTableModel(null, new Object[]{
             "Cek","Verifikasi", "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
-            "Nama PPA", "Shift", "hasil", "instruksi", "wkt_simpan", "konfirmasi_terapi", "tgl_konfirmasi", 
-            "jam_konfirmasi", "tgl_verifikasi", "jam_verifikasi", "nmpetugasKonfir", "nmdpjpKonfir"
+            "Nama PPA", "Shift", "hasil", "instruksi", "wkt_simpan", "konfirmasi_terapi", "tgl_lapor", 
+            "jam_lapor", "tgl_verifikasi", "jam_verifikasi", "nmpetugasKonfir", "nmdpjpKonfir"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -740,8 +740,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
-                        + "c.instruksi_nakes, c.waktu_simpan, c.konfirmasi_terapi, DATE_FORMAT(c.tgl_konfirmasi,'%d-%m-%Y') tgl_konfirmasi, "
-                        + "time_format(c.jam_konfirmasi,'%H:%i') jam_konfir, DATE_FORMAT(c.tgl_verifikasi,'%d-%m-%Y') tgl_verifikasi, "
+                        + "c.instruksi_nakes, c.waktu_simpan, c.konfirmasi_terapi, DATE_FORMAT(c.tgl_lapor,'%d-%m-%Y') tgl_lapor, "
+                        + "time_format(c.jam_lapor,'%H:%i') jam_lapor, DATE_FORMAT(c.tgl_verifikasi,'%d-%m-%Y') tgl_verifikasi, "
                         + "time_format(c.jam_verifikasi,'%H:%i') jam_verif, pg3.nama petugasKonfir, pg4.nama dpjpKonfir from cppt c "
                         + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
                         + "inner join pegawai pg2 on pg2.nik=c.nip_ppa "
@@ -751,8 +751,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             } else if (status.equals("ranap")) {
                 ps = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                         + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
-                        + "c.instruksi_nakes, c.waktu_simpan, c.konfirmasi_terapi, DATE_FORMAT(c.tgl_konfirmasi,'%d-%m-%Y') tgl_konfirmasi, "
-                        + "time_format(c.jam_konfirmasi,'%H:%i') jam_konfir, DATE_FORMAT(c.tgl_verifikasi,'%d-%m-%Y') tgl_verifikasi, "
+                        + "c.instruksi_nakes, c.waktu_simpan, c.konfirmasi_terapi, DATE_FORMAT(c.tgl_lapor,'%d-%m-%Y') tgl_lapor, "
+                        + "time_format(c.jam_lapor,'%H:%i') jam_lapor, DATE_FORMAT(c.tgl_verifikasi,'%d-%m-%Y') tgl_verifikasi, "
                         + "time_format(c.jam_verifikasi,'%H:%i') jam_verif, pg3.nama petugasKonfir, pg4.nama dpjpKonfir from cppt c "
                         + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
                         + "inner join pegawai pg2 on pg2.nik=c.nip_ppa "
@@ -786,8 +786,8 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                         rs.getString("instruksi_nakes"),
                         rs.getString("waktu_simpan"),
                         rs.getString("konfirmasi_terapi"),
-                        rs.getString("tgl_konfirmasi"),
-                        rs.getString("jam_konfir"),
+                        rs.getString("tgl_lapor"),
+                        rs.getString("jam_lapor"),
                         rs.getString("tgl_verifikasi"),
                         rs.getString("jam_verif"),
                         rs.getString("petugasKonfir"),
@@ -819,16 +819,16 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
             if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString().equals("ya")) {
                 if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString().equals("-")) {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "\n\n"
-                            + "KONFIRMASI TERAPI VIA TELEPON :\n\n"
-                            + "Tgl. Konfirmasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n"
+                            + "Tgl. Lapor : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
                             + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString() + " WITA\n"
                             + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString() + "\n"
                             + "DPJP : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 18).toString());
                 } else {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "\n\n"
                             + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString() + ")\n\n"
-                            + "KONFIRMASI TERAPI VIA TELEPON :\n\n"
-                            + "Tgl. Konfirmasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n"
+                            + "Tgl. Lapor : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + " WITA\n"
                             + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString() + " WITA\n"
                             + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString() + "\n"
                             + "DPJP : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 18).toString());

@@ -104,6 +104,7 @@ import rekammedis.RMTriaseIGD;
 import rekammedis.RMPenilaianAwalMedisRalanMata;
 import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
+import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 
 /**
@@ -740,6 +741,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPenilaianAwalMedisRalanTHT = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisRalanMata = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetri = new javax.swing.JMenuItem();
+        ppPersetujuanTindakan = new javax.swing.JMenuItem();
         ppRekamPsikologis = new javax.swing.JMenuItem();
         ppRekamPsikologiPerkawinan = new javax.swing.JMenuItem();
         MnSuratTindakanDokter = new javax.swing.JMenuItem();
@@ -2525,6 +2527,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         MnRekamMedis.add(MnPenilaianAwalMedis);
 
+        ppPersetujuanTindakan.setBackground(new java.awt.Color(255, 255, 254));
+        ppPersetujuanTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPersetujuanTindakan.setText("Persetujuan/Penolakan Tindakan");
+        ppPersetujuanTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPersetujuanTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPersetujuanTindakan.setIconTextGap(5);
+        ppPersetujuanTindakan.setName("ppPersetujuanTindakan"); // NOI18N
+        ppPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(230, 26));
+        ppPersetujuanTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPersetujuanTindakanBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(ppPersetujuanTindakan);
+
         ppRekamPsikologis.setBackground(new java.awt.Color(255, 255, 254));
         ppRekamPsikologis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppRekamPsikologis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3237,7 +3255,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4226,7 +4244,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4249,13 +4267,13 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
 
-        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglPeriksaBPJS.setDisplayFormat("dd-MM-yyyy");
         tglPeriksaBPJS.setName("tglPeriksaBPJS"); // NOI18N
         tglPeriksaBPJS.setOpaque(false);
         tglPeriksaBPJS.setPreferredSize(new java.awt.Dimension(90, 23));
 
-        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglrujukanbpjs.setDisplayFormat("dd-MM-yyyy");
         tglrujukanbpjs.setName("tglrujukanbpjs"); // NOI18N
         tglrujukanbpjs.setOpaque(false);
@@ -4295,7 +4313,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBokingBPJS.setHighlighter(null);
         norwBokingBPJS.setName("norwBokingBPJS"); // NOI18N
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -4515,7 +4533,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4534,7 +4552,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8340,6 +8358,29 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnUpdateJadwalOperasiActionPerformed
 
+    private void ppPersetujuanTindakanBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPersetujuanTindakanBtnPrintActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKasirRalan");
+                RMTindakanKedokteran form = new RMTindakanKedokteran(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), "Ralan");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_ppPersetujuanTindakanBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8674,6 +8715,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem ppCekPaseinMati;
     private javax.swing.JMenuItem ppPasienCorona;
     private javax.swing.JMenuItem ppPerawatanCorona;
+    private javax.swing.JMenuItem ppPersetujuanTindakan;
     private javax.swing.JMenuItem ppProgramPRB;
     private javax.swing.JMenuItem ppRekamPsikologiPerkawinan;
     private javax.swing.JMenuItem ppRekamPsikologis;
@@ -8937,6 +8979,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnInputDataAssesmenKeperawatanIGD.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnInputDataKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         MnInputDataAsesmenMedikObstetri.setEnabled(akses.getresep_dokter());
+        ppPersetujuanTindakan.setEnabled(akses.getcppt());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getkode().equals("Admin Utama")) {
             ppProgramPRB.setEnabled(true);
@@ -10873,7 +10916,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                 + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                 + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                 + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                 + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                 + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "

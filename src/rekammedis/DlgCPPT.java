@@ -65,7 +65,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             obatsesuai = "", obatefektif = "", obataman = "", waktuSimpanDiet = "", kemasan = "", dataDiet = "", jnsRawat = "",
             kdUnit = "", instruksiDiet = "", siftppa = "", soap = "", hasil_pemeriksaan = "", instruksi_nakes = "",
             skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorRJ = "", 
-            kesimpulanResikoJatuh = "", TotSkorGZD = "", TotSkorGZA = "", cekKonfir = "", tglkonfir = "", tglverif = "";
+            kesimpulanResikoJatuh = "", TotSkorGZD = "", TotSkorGZA = "", cekKonfir = "", tgllapor = "", tglverif = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -80,7 +80,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             "Jenis PPA", "Nama PPA", "Jenis Bagian", "nipppa", "serah_terima_cppt", "nmkonsulen", 
             "nipkonsulen", "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima",
             "Shift", "jam_serah_terima", "pilihan_soap", "subjektif", "objektif", "asesmen", "planing",
-            "konfirmasi_terapi", "tgl_konfirmasi", "jam_konfirmasi", "tgl_verifikasi", "jam_verifikasi",
+            "konfirmasi_terapi", "tgl_konfirmasi", "jam_konfirmasi", "tgl_lapor", "jam_lapor",
             "nip_petugas_konfir", "nip_dpjp_konfir", "nmpetugasKonfir", "nmdpjpKonfir"
         };
         tabMode = new DefaultTableModel(null, row) {
@@ -860,7 +860,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel23 = new widget.Label();
         ChkKonfirmasi = new widget.CekBox();
         jLabel35 = new widget.Label();
-        tglKonfirmasi = new widget.Tanggal();
+        tglLapor = new widget.Tanggal();
         jLabel37 = new widget.Label();
         cmbJam2 = new widget.ComboBox();
         cmbMnt2 = new widget.ComboBox();
@@ -3330,22 +3330,22 @@ public class DlgCPPT extends javax.swing.JDialog {
         ChkKonfirmasi.setBounds(770, 8, 180, 23);
 
         jLabel35.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel35.setText("Tgl. Konfirmasi :");
+        jLabel35.setText("Tgl. Lapor :");
         jLabel35.setName("jLabel35"); // NOI18N
         internalFrame8.add(jLabel35);
         jLabel35.setBounds(770, 36, 90, 23);
 
-        tglKonfirmasi.setEditable(false);
-        tglKonfirmasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
-        tglKonfirmasi.setDisplayFormat("dd-MM-yyyy");
-        tglKonfirmasi.setName("tglKonfirmasi"); // NOI18N
-        tglKonfirmasi.setOpaque(false);
-        tglKonfirmasi.setPreferredSize(new java.awt.Dimension(90, 23));
-        internalFrame8.add(tglKonfirmasi);
-        tglKonfirmasi.setBounds(867, 36, 90, 23);
+        tglLapor.setEditable(false);
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglLapor.setDisplayFormat("dd-MM-yyyy");
+        tglLapor.setName("tglLapor"); // NOI18N
+        tglLapor.setOpaque(false);
+        tglLapor.setPreferredSize(new java.awt.Dimension(90, 23));
+        internalFrame8.add(tglLapor);
+        tglLapor.setBounds(867, 36, 90, 23);
 
         jLabel37.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel37.setText("Jam Konfirmasi :");
+        jLabel37.setText("Jam Lapor :");
         jLabel37.setName("jLabel37"); // NOI18N
         internalFrame8.add(jLabel37);
         jLabel37.setBounds(958, 36, 100, 23);
@@ -3876,11 +3876,11 @@ public class DlgCPPT extends javax.swing.JDialog {
             
             if (ChkKonfirmasi.isSelected() == true) {
                 cekKonfir = "ya";
-                tglkonfir = Valid.SetTgl(tglKonfirmasi.getSelectedItem() + "");
+                tgllapor = Valid.SetTgl(tglLapor.getSelectedItem() + "");
                 tglverif = Valid.SetTgl(tglVerifikasi.getSelectedItem() + "");
             } else {
                 cekKonfir = "tidak";
-                tglkonfir = "0000-00-00";
+                tgllapor = "0000-00-00";
                 tglverif = "00:00:00";
             }
 
@@ -3895,7 +3895,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "'" + nipTerima.getText() + "','" + siftppa + "',"
                     + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
                     + "'tidak','-','" + soap + "','" + TSubjektif.getText() + "','" + TObjektif.getText() + "','" + TAsesmen.getText() + "',"
-                    + "'" + TPlaning.getText() + "','" + cekKonfir + "','" + tglkonfir + "',"
+                    + "'" + TPlaning.getText() + "','" + cekKonfir + "','" + tgllapor + "',"
                     + "'" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
                     + "'" + tglverif + "','" + cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem() + "',"
                     + "'" + nipPetugasKonfir.getText() + "','" + nipKonfirDpjp.getText() + "'", "CPPT Pasien");
@@ -3980,11 +3980,11 @@ public class DlgCPPT extends javax.swing.JDialog {
             
             if (ChkKonfirmasi.isSelected() == true) {
                 cekKonfir = "ya";
-                tglkonfir = Valid.SetTgl(tglKonfirmasi.getSelectedItem() + "");
+                tgllapor = Valid.SetTgl(tglLapor.getSelectedItem() + "");
                 tglverif = Valid.SetTgl(tglVerifikasi.getSelectedItem() + "");
             } else {
                 cekKonfir = "tidak";
-                tglkonfir = "0000-00-00";
+                tgllapor = "0000-00-00";
                 tglverif = "00:00:00";
             }
 
@@ -3992,14 +3992,14 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Sequel.mengedit("cppt", "waktu_simpan=?", "tgl_cppt=?, hasil_pemeriksaan=?, "
                         + "instruksi_nakes=?, nip_dpjp=?, cek_jam=?, jam_cppt=?, jenis_ppa=?, nip_ppa=?, jenis_bagian=?, "
                         + "serah_terima_cppt=?, nip_konsulen=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?, jam_serah_terima=?, "
-                        + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?, konfirmasi_terapi=?, tgl_konfirmasi=?, "
-                        + "jam_konfirmasi=?, tgl_verifikasi=?, jam_verifikasi=?, nip_petugas_konfir=?, nip_dpjp_konfir=?", 28, new String[]{
+                        + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?, konfirmasi_terapi=?, tgl_lapor=?, "
+                        + "jam_lapor=?, tgl_verifikasi=?, jam_verifikasi=?, nip_petugas_konfir=?, nip_dpjp_konfir=?", 28, new String[]{
                             Valid.SetTgl(tglCppt.getSelectedItem() + ""), hasil_pemeriksaan, instruksi_nakes,
                             kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                             cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
                             cmbSertim.getSelectedItem().toString(), nipkonsulen, nipSerah.getText(), nipTerima.getText(),
                             cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                            soap, TSubjektif.getText(), TObjektif.getText(), TAsesmen.getText(), TPlaning.getText(), cekKonfir, tglkonfir,
+                            soap, TSubjektif.getText(), TObjektif.getText(), TAsesmen.getText(), TPlaning.getText(), cekKonfir, tgllapor,
                             cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), tglverif,
                             cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(), nipPetugasKonfir.getText(),
                             nipKonfirDpjp.getText(),
@@ -5767,7 +5767,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPasteInstruksiActionPerformed
 
     private void ChkKonfirmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkKonfirmasiActionPerformed
-        tglKonfirmasi.setDate(new Date());
+        tglLapor.setDate(new Date());
         cmbJam2.setSelectedIndex(0);
         cmbMnt2.setSelectedIndex(0);
         cmbDtk2.setSelectedIndex(0);
@@ -5778,7 +5778,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbDtk3.setSelectedIndex(0);
         
         if(ChkKonfirmasi.isSelected() == true) {
-            tglKonfirmasi.setEnabled(true);
+            tglLapor.setEnabled(true);
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
@@ -5799,7 +5799,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmKonfirDpjp.setText(nmdpjp.getText());
 
         } else {
-            tglKonfirmasi.setEnabled(false);
+            tglLapor.setEnabled(false);
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
@@ -6179,7 +6179,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Tanggal tglA;
     private widget.Tanggal tglB;
     private widget.Tanggal tglCppt;
-    private widget.Tanggal tglKonfirmasi;
+    private widget.Tanggal tglLapor;
     private widget.Tanggal tglVerifikasi;
     // End of variables declaration//GEN-END:variables
 
@@ -6192,7 +6192,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
                         + "pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, c.serah_terima_cppt, pg2.nama nmkonsulen, c.nip_konsulen, pg3.nama petugasSerah, "
                         + "pg4.nama petugasTerima, c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift, c.jam_serah_terima, c.pilihan_soap, "
-                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_konfirmasi, c.jam_konfirmasi, c.tgl_verifikasi, "
+                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_lapor, c.jam_lapor, c.tgl_verifikasi, "
                         + "c.jam_verifikasi, c.nip_petugas_konfir, c.nip_dpjp_konfir, pg5.nama petugasKonfir, pg6.nama dpjpKonfir FROM cppt c "
                         + "INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp INNER JOIN pegawai pg1 ON pg1.nik = c.nip_ppa "
@@ -6214,7 +6214,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
                         + "pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, c.serah_terima_cppt, pg2.nama nmkonsulen, c.nip_konsulen, pg3.nama petugasSerah, "
                         + "pg4.nama petugasTerima, c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift, c.jam_serah_terima, c.pilihan_soap, "
-                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_konfirmasi, c.jam_konfirmasi, c.tgl_verifikasi, "
+                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_lapor, c.jam_lapor, c.tgl_verifikasi, "
                         + "c.jam_verifikasi, c.nip_petugas_konfir, c.nip_dpjp_konfir, pg5.nama petugasKonfir, pg6.nama dpjpKonfir FROM cppt c "
                         + "INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp INNER JOIN pegawai pg1 ON pg1.nik = c.nip_ppa "
@@ -6237,7 +6237,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
                         + "pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, c.serah_terima_cppt, pg2.nama nmkonsulen, c.nip_konsulen, pg3.nama petugasSerah, "
                         + "pg4.nama petugasTerima, c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift, c.jam_serah_terima, c.pilihan_soap, "
-                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_konfirmasi, c.jam_konfirmasi, c.tgl_verifikasi, "
+                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_lapor, c.jam_lapor, c.tgl_verifikasi, "
                         + "c.jam_verifikasi, c.nip_petugas_konfir, c.nip_dpjp_konfir, pg5.nama petugasKonfir, pg6.nama dpjpKonfir FROM cppt c "
                         + "INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp INNER JOIN pegawai pg1 ON pg1.nik = c.nip_ppa "
@@ -6259,7 +6259,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt, c.nip_dpjp, c.waktu_simpan, c.cek_jam, c.jam_cppt, IF(c.cek_jam = 'ya', c.jam_cppt, '-') jam_cppt_data, c.jenis_ppa, "
                         + "pg1.nama nmppa, c.jenis_bagian, c.nip_ppa, c.serah_terima_cppt, pg2.nama nmkonsulen, c.nip_konsulen, pg3.nama petugasSerah, "
                         + "pg4.nama petugasTerima, c.nip_petugas_serah, c.nip_petugas_terima, c.cppt_shift, c.jam_serah_terima, c.pilihan_soap, "
-                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_konfirmasi, c.jam_konfirmasi, c.tgl_verifikasi, "
+                        + "c.subjektif, c.objektif, c.asesmen, c.planing, c.konfirmasi_terapi, c.tgl_lapor, c.jam_lapor, c.tgl_verifikasi, "
                         + "c.jam_verifikasi, c.nip_petugas_konfir, c.nip_dpjp_konfir, pg5.nama petugasKonfir, pg6.nama dpjpKonfir FROM cppt c "
                         + "INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp INNER JOIN pegawai pg1 ON pg1.nik = c.nip_ppa "
@@ -6342,8 +6342,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("asesmen"),
                         rs.getString("planing"),
                         rs.getString("konfirmasi_terapi"),
-                        rs.getString("tgl_konfirmasi"),
-                        rs.getString("jam_konfirmasi"),
+                        rs.getString("tgl_lapor"),
+                        rs.getString("jam_lapor"),
                         rs.getString("tgl_verifikasi"),
                         rs.getString("jam_verifikasi"),
                         rs.getString("nip_petugas_konfir"),
@@ -6411,7 +6411,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         TabPilihan.setEnabledAt(0, true);
         TabPilihan.setEnabledAt(1, false);
         ChkKonfirmasi.setSelected(false);
-        tglKonfirmasi.setDate(new Date());
+        tglLapor.setDate(new Date());
         cmbJam2.setSelectedIndex(0);
         cmbMnt2.setSelectedIndex(0);
         cmbDtk2.setSelectedIndex(0);
@@ -6423,7 +6423,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         nmPetugasKonfir.setText("-");
         nipKonfirDpjp.setText("-");
         nmKonfirDpjp.setText("-");
-        tglKonfirmasi.setEnabled(false);
+        tglLapor.setEnabled(false);
         cmbJam2.setEnabled(false);
         cmbMnt2.setEnabled(false);
         cmbDtk2.setEnabled(false);
@@ -6492,10 +6492,10 @@ public class DlgCPPT extends javax.swing.JDialog {
             nmKonfirDpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 42).toString());
             
             if (cekKonfir.equals("ya")) {
-                Valid.SetTgl(tglKonfirmasi, tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 35).toString());
+                Valid.SetTgl(tglLapor, tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 35).toString());
                 Valid.SetTgl(tglVerifikasi, tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 37).toString());
             } else {
-                tglKonfirmasi.setDate(new Date());
+                tglLapor.setDate(new Date());
                 tglVerifikasi.setDate(new Date());
             }
             dataCek();
@@ -6818,7 +6818,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         //cek konfirmasi terapi
         if (cekKonfir.equals("ya")) {
             ChkKonfirmasi.setSelected(true);
-            tglKonfirmasi.setEnabled(true);
+            tglLapor.setEnabled(true);
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
@@ -6834,7 +6834,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             BtnHapusKonfirDpjp.setEnabled(true);
         } else {
             ChkKonfirmasi.setSelected(false);
-            tglKonfirmasi.setEnabled(false);
+            tglLapor.setEnabled(false);
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
@@ -6883,7 +6883,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -6914,7 +6914,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -6945,7 +6945,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -6974,7 +6974,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7003,7 +7003,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7034,7 +7034,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7066,7 +7066,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                     + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                    + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                    + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7099,7 +7099,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7130,7 +7130,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7161,7 +7161,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7190,7 +7190,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7219,7 +7219,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -7250,7 +7250,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "

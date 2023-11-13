@@ -90,6 +90,7 @@ import rekammedis.DlgMonevAsuhanGizi;
 import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMPenilaianAwalMedikIGD;
+import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgRingkasanPulangRanap;
@@ -1096,6 +1097,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnInputDataTransferSerahTerima = new javax.swing.JMenuItem();
         MnLihatDataTransferSerahTerima = new javax.swing.JMenuItem();
         MnPemberianObatPasien = new javax.swing.JMenuItem();
+        MnPersetujuanTindakan = new javax.swing.JMenuItem();
         MnSpirometri = new javax.swing.JMenuItem();
         MnAssesmenAsuhanGizi = new javax.swing.JMenuItem();
         MnMonevAsuhanGizi = new javax.swing.JMenuItem();
@@ -1851,7 +1853,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         TglMati.setEditable(false);
         TglMati.setForeground(new java.awt.Color(0, 0, 153));
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -3886,6 +3888,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         MnRekamMedis.add(MnTransferSerahTerimaPasien);
 
+        MnPersetujuanTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPersetujuanTindakan.setText("Persetujuan/Penolakan Tindakan");
+        MnPersetujuanTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPersetujuanTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPersetujuanTindakan.setIconTextGap(5);
+        MnPersetujuanTindakan.setName("MnPersetujuanTindakan"); // NOI18N
+        MnPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnPersetujuanTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPersetujuanTindakanActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnPersetujuanTindakan);
+
         MnSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSpirometri.setText("Spirometri");
@@ -4751,7 +4768,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame7.add(jLabel37);
         jLabel37.setBounds(0, 20, 110, 23);
 
-        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         Tglsurat.setDisplayFormat("dd-MM-yyyy");
         Tglsurat.setName("Tglsurat"); // NOI18N
         Tglsurat.setOpaque(false);
@@ -4879,7 +4896,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame18.add(jLabel105);
         jLabel105.setBounds(0, 20, 110, 23);
 
-        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         Tglsurat1.setDisplayFormat("dd-MM-yyyy");
         Tglsurat1.setName("Tglsurat1"); // NOI18N
         Tglsurat1.setOpaque(false);
@@ -4982,7 +4999,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame8.add(jLabel43);
         jLabel43.setBounds(10, 20, 120, 23);
 
-        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         TglMati1.setDisplayFormat("dd-MM-yyyy");
         TglMati1.setName("TglMati1"); // NOI18N
         TglMati1.setOpaque(false);
@@ -5236,7 +5253,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel91.setName("jLabel91"); // NOI18N
         panelGlass9.add(jLabel91);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -5254,7 +5271,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel92.setName("jLabel92"); // NOI18N
         panelGlass9.add(jLabel92);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -6122,7 +6139,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame11.add(jLabel51);
         jLabel51.setBounds(0, 25, 130, 23);
 
-        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         TglRegRalan.setDisplayFormat("dd-MM-yyyy");
         TglRegRalan.setName("TglRegRalan"); // NOI18N
         TglRegRalan.setOpaque(false);
@@ -6580,7 +6597,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnBaca.setBounds(97, 95, 130, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -6596,7 +6613,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -6837,7 +6854,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         statusSEP.setPreferredSize(new java.awt.Dimension(207, 23));
 
         tglMasukInap.setEditable(false);
-        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         tglMasukInap.setDisplayFormat("dd-MM-yyyy");
         tglMasukInap.setName("tglMasukInap"); // NOI18N
         tglMasukInap.setOpaque(false);
@@ -7123,7 +7140,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelCari.setPreferredSize(new java.awt.Dimension(44, 43));
         panelCari.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 2, 9));
 
-        R1.setBackground(new java.awt.Color(240, 250, 230));
+        R1.setBackground(new java.awt.Color(242, 242, 242));
         R1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R1);
         R1.setSelected(true);
@@ -7134,7 +7151,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R1.setPreferredSize(new java.awt.Dimension(95, 23));
         panelCari.add(R1);
 
-        R2.setBackground(new java.awt.Color(240, 250, 230));
+        R2.setBackground(new java.awt.Color(242, 242, 242));
         R2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R2);
         R2.setText("Tgl.Masuk :");
@@ -7144,7 +7161,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -7168,7 +7185,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7185,7 +7202,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         });
         panelCari.add(DTPCari2);
 
-        R3.setBackground(new java.awt.Color(240, 250, 230));
+        R3.setBackground(new java.awt.Color(242, 242, 242));
         R3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup1.add(R3);
         R3.setText("Pulang :");
@@ -7195,7 +7212,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(75, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -7219,7 +7236,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-11-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -14676,6 +14693,29 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
 
+    private void MnPersetujuanTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPersetujuanTindakanActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (tbKamIn.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKamarInap");
+                RMTindakanKedokteran form = new RMTindakanKedokteran(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "Ranap");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPersetujuanTindakanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -14864,6 +14904,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnPeriksaRadiologi;
     private javax.swing.JMenu MnPermintaan;
+    private javax.swing.JMenuItem MnPersetujuanTindakan;
     private javax.swing.JMenuItem MnPindahNyangkut;
     private javax.swing.JMenuItem MnPindahTransaksi;
     private javax.swing.JMenuItem MnPrinterBaru;
@@ -15801,6 +15842,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnInputDataTransferSerahTerima.setEnabled(akses.getpemberian_obat());
         MnPemberianObatPasien.setEnabled(akses.getpemberian_obat());
         MnInputDataAMD.setEnabled(akses.getasesmen_medik_dewasa_ranap());
+        MnPersetujuanTindakan.setEnabled(akses.getcppt());
     }
 
     private void updateHari() {
@@ -17816,7 +17858,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17844,7 +17886,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17872,7 +17914,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17897,7 +17939,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17923,7 +17965,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17950,7 +17992,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -17979,7 +18021,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                     + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                    + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                    + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                     + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                     + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18009,7 +18051,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18037,7 +18079,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18065,7 +18107,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18091,7 +18133,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18117,7 +18159,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
@@ -18145,7 +18187,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELEPON :\nTgl. Konfirmasi : ',date_format(c.tgl_konfirmasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_konfirmasi,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                        + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Konfirmasi : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
                         + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                         + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
