@@ -56,7 +56,8 @@ public class ApiLIS {
     
     public void kirim(String noRawatLIS, String Tglperiksa, String jamPeriksa, 
             String diagnosa, String ketKlinis, String kdDokter, String kdUnit, String kdPenjab,
-            String nmDokter, String nmUnit, String nmPenjab) {
+            String nmDokter, String nmUnit, String nmPenjab, String noTelpDokter, String kdFasilitas, String nmFasilitas,
+            String alamtFasilitas, String noTelpFasilitas) {
         try {
 //            ps = koneksi.prepareStatement(
 //                    "select rp.no_rkm_medis, p.nm_pasien, p.jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur) umur, p.alamat, "
@@ -147,10 +148,15 @@ public class ApiLIS {
                             + "},"
                                 + "\"kode_dokter_pengirim\": \"" + kdDokter + "\","
                                 + "\"nama_dokter_pengirim\": \"" + nmDokter + "\","
+                                + "\"phone_dokter\": \"" + noTelpDokter + "\","
                                 + "\"kode_unit_asal\": \"" + kdUnit + "\","
                                 + "\"nama_unit_asal\": \"" + nmUnit + "\","
                                 + "\"kode_penjamin\": \"" + kdPenjab + "\","
                                 + "\"nama_penjamin\": \"" + nmPenjab + "\","
+                                + "\"id_fasilitas\": \"" + kdFasilitas + "\","
+                                + "\"fasilitas\": \"" + nmFasilitas + "\","
+                                + "\"alamat\": \"" + alamtFasilitas + "\","
+                                + "\"no_telp_perujuk\": \"" + noTelpFasilitas + "\","
                             + "\"tindakan\": ["
                                 + requestJson2
                                     + "]"
@@ -193,37 +199,6 @@ public class ApiLIS {
             }
         }
     }
-    
-//    public void ambil(String nopermintaan) {
-//        try{
-//            headers = new HttpHeaders();
-//            headers.setContentType(MediaType.APPLICATION_JSON);
-//            headers.add("Content-Type","application/json;charset=UTF-8");
-//            headers.add("x-api-key",KEY);
-//            requestEntity = new HttpEntity(headers);
-//            stringbalik=getRest().exchange(URL+"/get/"+nopermintaan, HttpMethod.GET, requestEntity, String.class).getBody();
-//            System.out.println("JSON : "+stringbalik);
-//            root = mapper.readTree(stringbalik);
-//            response = root.path("tpas");
-//            Sequel.queryu("truncate table temporary_permintaan_lab");
-//            if(response.isArray()){
-//                for(JsonNode list:response){
-//                    Sequel.menyimpan("temporary_permintaan_lab","'0','"+root.path("id_kunjungan").asText()+"','"+
-//                            list.path("nmdisplay").asText()+"','"+
-//                            list.path("hasil").asText()+"','"+
-//                            list.path("nn").asText()+"','"+
-//                            list.path("satuan").asText()+"','"+
-//                            list.path("keterangan").asText()+"','"+
-//                            list.path("tindakan_id").asText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Periksa Lab"); 
-//                }
-//            }
-//        } catch (Exception ex) {
-//            System.out.println("Notifikasi : "+ex);
-//            if(ex.toString().contains("UnknownHostException")||ex.toString().contains("404")){
-//                JOptionPane.showMessageDialog(null,"Koneksi ke server LICA terputus...!");
-//            }
-//        }
-//    }
     
     public RestTemplate getRest() throws NoSuchAlgorithmException, KeyManagementException {
         SSLContext sslContext = SSLContext.getInstance("SSL");

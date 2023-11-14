@@ -3731,14 +3731,14 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         } else if (cekKeLIS >= 1) {
             JOptionPane.showMessageDialog(null, "Data pemeriksaan Lab. dg. no. rawat " + Kd2.getText() + ", No. Lab. " + nolab + ", tgl. periksa Lab. " + tglPeriksa + ", jam " + jamPeriksa + " sudah dikirim ke LIS");
         } else {
-            if (Sequel.cariIsi("select aktivasi_LIS from set_pjlab").equals("1")) {
-                mas_lis.kirim(Kd2.getText(), tglPeriksa, jamPeriksa, diagnosa_ok, ketklinis.getText(), kddokter, kdunit, kdpenjab,
-                        dokter_pengirim.getText(), nm_unit, caraByr.getText());
-                tampil();
-            } else {
-                JOptionPane.showMessageDialog(null, "Bridging dengan alat laboratorium (LIS) belum diaktifkan...!!!");
-                tampil();
-            }
+//            if (Sequel.cariIsi("select aktivasi_LIS from set_pjlab").equals("1")) {
+//                mas_lis.kirim(Kd2.getText(), tglPeriksa, jamPeriksa, diagnosa_ok, ketklinis.getText(), kddokter, kdunit, kdpenjab,
+//                        dokter_pengirim.getText(), nm_unit, caraByr.getText());
+//                tampil();
+//            } else {
+//                JOptionPane.showMessageDialog(null, "Bridging dengan alat laboratorium (LIS) belum diaktifkan...!!!");
+//                tampil();
+//            }
         }
     }//GEN-LAST:event_MnKirimLISActionPerformed
 

@@ -58,25 +58,13 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        tabMode=new DefaultTableModel(null,new Object[]{
+        tabMode = new DefaultTableModel(null, new Object[]{
             "No.", "Kode Rujukan", "Kode Faskes", "Nama Faskes/Perujuk", "Status", "Tipe Faskes", "Alamatnya", "No. Telpon"
         }) {
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){
-                boolean a = false;
-                if (colIndex==0) {
-                    a=true;
-                }
-                return a;
-             }
-             Class[] types = new Class[] {
-                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                 java.lang.Object.class, java.lang.Object.class
-             };
-             @Override
-             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-             }
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         
         tbFaskes.setModel(tabMode);
@@ -249,7 +237,7 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Master Data Faskes/Perujuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Master Data Faskes/Perujuk ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -723,10 +711,14 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbFaskesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFaskesMouseClicked
-        if(tabMode.getRowCount()!=0){
+        if (tabMode.getRowCount() != 0) {
             try {
                 getData();
             } catch (java.lang.NullPointerException e) {
+            }
+
+            if (evt.getClickCount() == 2) {
+                dispose();
             }
         }
 }//GEN-LAST:event_tbFaskesMouseClicked
@@ -739,6 +731,10 @@ public class DlgMasterFaskes extends javax.swing.JDialog {
                 } catch (java.lang.NullPointerException e) {
                 }
             }
+            
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                dispose();
+            } 
         }
 }//GEN-LAST:event_tbFaskesKeyPressed
 
@@ -853,7 +849,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkInput;
+    public widget.CekBox ChkInput;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
@@ -967,18 +963,28 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }
     
-    private void isForm(){
-        if(ChkInput.isSelected()==true){
+    public void isForm() {
+        if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH,185));
-            FormInput.setVisible(true);      
+            PanelInput.setPreferredSize(new Dimension(WIDTH, 185));
+            FormInput.setVisible(true);
             ChkInput.setVisible(true);
-        }else if(ChkInput.isSelected()==false){           
-            ChkInput.setVisible(false);            
-            PanelInput.setPreferredSize(new Dimension(WIDTH,20));
-            FormInput.setVisible(false);      
+        } else if (ChkInput.isSelected() == false) {
+            ChkInput.setVisible(false);
+            PanelInput.setPreferredSize(new Dimension(WIDTH, 20));
+            FormInput.setVisible(false);
             ChkInput.setVisible(true);
         }
+    }
+    
+    public void isCek() {
+        BtnSimpan.setEnabled(akses.getadmin());
+        BtnGanti.setEnabled(akses.getadmin());
+        BtnFaskes.setEnabled(akses.getadmin());
+    }
+    
+    public JTable getTable(){
+        return tbFaskes;
     }
 
 }

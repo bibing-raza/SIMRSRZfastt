@@ -10,11 +10,7 @@
  * and open the template in10:28:56 PM
  */
 package simrskhanza;
-import inventory.DlgResepObat;
-import inventory.DlgPemberianObat;
 import bridging.BPJSDataSEP;
-import bridging.CoronaPasien;
-import bridging.DlgSKDPBPJS;
 import bridging.INACBGPerawatanCorona;
 import bridging.InhealthDataSJP;
 import bridging.SisruteRujukanKeluar;
@@ -69,15 +65,9 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.DlgLhtPiutang;
-import laporan.DlgDataHAIs;
 import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgHasilLIS;
-import permintaan.DlgPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
-import rekammedis.RMPenilaianAwalKeperawatanRalan;
-import rekammedis.RMTriaseIGD;
-import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
-import rekammedis.RMPenilaianAwalMedikIGD;
 
 /**
  *
@@ -93,13 +83,10 @@ public final class DlgIGD extends javax.swing.JDialog {
     public DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
     public DlgBahasa bahasa = new DlgBahasa(null, false);
     public DlgSuku suku = new DlgSuku(null, false);
-    public DlgKabupaten kab = new DlgKabupaten(null, false);
-    public DlgKecamatan kec = new DlgKecamatan(null, false);
-    public DlgKelurahan kel = new DlgKelurahan(null, false);
-    private PreparedStatement ps, ps2, ps3, pscaripiutang, psAPS, psK;
-    private ResultSet rs, rsAPS, rsK;
+    private PreparedStatement ps, ps2, ps3, pscaripiutang, psAPS;
+    private ResultSet rs, rsAPS;
     private int pilihan = 0, i = 0, cekRujuk = 0, x, cekjampersal = 0, cekjamkesda = 0, cekinap = 0, 
-            cekNRWSurat = 0, diagnosa_cek = 0, cekUmur = 0;
+            diagnosa_cek = 0, cekUmur = 0;
     private Date cal = new Date();
     private Properties prop = new Properties();
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
@@ -308,9 +295,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         THbngn.setDocument(new batasInput((byte) 20).getKata(THbngn));
         TAlmt.setDocument(new batasInput((byte) 60).getKata(TAlmt));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        umurPJ.setDocument(new batasInput((byte) 3).getOnlyAngka(umurPJ));
-        alamatPJ.setDocument(new batasInput((int) 200).getKata(alamatPJ));
-        nmPJ.setDocument(new batasInput((int) 200).getKata(nmPJ));
         Tumur.setDocument(new batasInput((byte) 3).getOnlyAngka(Tumur));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
@@ -399,120 +383,6 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         
-        kel.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgIGD")) {
-                    kdKel = "";
-                    if (kel.getTable().getSelectedRow() != -1) {
-                        nmkel.setText(kel.getTable().getValueAt(kel.getTable().getSelectedRow(), 0).toString());
-                        kdKel = Sequel.cariIsi("select kd_kel from kelurahan where nm_kel='" + nmkel.getText() + "'");
-                        BtnKecamatan.requestFocus();
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        kec.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgIGD")) {
-                    kdKec = "";
-                    if (kec.getTable().getSelectedRow() != -1) {
-                        nmkec.setText(kec.getTable().getValueAt(kec.getTable().getSelectedRow(), 0).toString());
-                        kdKec = Sequel.cariIsi("select kd_kec from kecamatan where nm_kec='" + nmkec.getText() + "'");
-                        btnKab.requestFocus();
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-        
-        kab.addWindowListener(new WindowListener() {
-            @Override
-            public void windowOpened(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosing(WindowEvent e) {
-            }
-
-            @Override
-            public void windowClosed(WindowEvent e) {
-                if (akses.getform().equals("DlgIGD")) {
-                    kdKab = "";
-                    if (kab.getTable().getSelectedRow() != -1) {
-                        nmkab.setText(kab.getTable().getValueAt(kab.getTable().getSelectedRow(), 0).toString());
-                        kdKab = Sequel.cariIsi("select kd_kab from kabupaten where nm_kab='" + nmkab.getText() + "'");
-                        hubungan.requestFocus();
-                    }
-                }
-            }
-
-            @Override
-            public void windowIconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeiconified(WindowEvent e) {
-            }
-
-            @Override
-            public void windowActivated(WindowEvent e) {
-            }
-
-            @Override
-            public void windowDeactivated(WindowEvent e) {
-            }
-        });
-
         pasien.getTable().addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
@@ -950,7 +820,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnlembarRM521 = new javax.swing.JMenuItem();
         MnlembarRM6 = new javax.swing.JMenuItem();
         MnlembarLabel = new javax.swing.JMenuItem();
-        CtkSuratTindakanDokter = new javax.swing.JMenuItem();
         MnSuratAPS = new javax.swing.JMenuItem();
         MnSuratIstirahatSakit = new javax.swing.JMenuItem();
         MnCetakRegister = new javax.swing.JMenuItem();
@@ -967,14 +836,12 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnCheckList6 = new javax.swing.JMenuItem();
         MnCheckList7 = new javax.swing.JMenuItem();
         MnBridging = new javax.swing.JMenu();
-        ppPasienCorona = new javax.swing.JMenuItem();
         MnSEP = new javax.swing.JMenuItem();
         MnSJP = new javax.swing.JMenuItem();
         MnSEPJamkesda = new javax.swing.JMenuItem();
         MnJAMPERSAL = new javax.swing.JMenuItem();
         MnRujukSisrute = new javax.swing.JMenuItem();
         MnEditKematian = new javax.swing.JMenuItem();
-        MnSuratTindakanDokter = new javax.swing.JMenuItem();
         MnCatatanPasien = new javax.swing.JMenuItem();
         MnRiwayat = new javax.swing.JMenuItem();
         MnPetugasReg = new javax.swing.JMenuItem();
@@ -1040,48 +907,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel98 = new widget.Label();
         TCari1 = new widget.TextBox();
         BtnCari5 = new widget.Button();
-        DlgSuratTindakanDokter = new javax.swing.JDialog();
-        internalFrame9 = new widget.InternalFrame();
-        Panel1 = new javax.swing.JPanel();
-        nmPJ = new widget.TextBox();
-        jLabel46 = new widget.Label();
-        TglSuratTindakan = new widget.Tanggal();
-        jLabel12 = new widget.Label();
-        CmbJam1 = new widget.ComboBox();
-        CmbMenit1 = new widget.ComboBox();
-        CmbDetik1 = new widget.ComboBox();
-        jLabel47 = new widget.Label();
-        umurPJ = new widget.TextBox();
-        jLabel48 = new widget.Label();
-        jLabel49 = new widget.Label();
-        jkPJ = new widget.ComboBox();
-        jLabel50 = new widget.Label();
-        alamatPJ = new widget.TextBox();
-        nmkel = new widget.TextBox();
-        jLabel51 = new widget.Label();
-        jLabel52 = new widget.Label();
-        nmkec = new widget.TextBox();
-        nmkab = new widget.TextBox();
-        jLabel53 = new widget.Label();
-        jLabel54 = new widget.Label();
-        hubungan = new widget.ComboBox();
-        jLabel55 = new widget.Label();
-        jnsSurat = new widget.ComboBox();
-        jLabel56 = new widget.Label();
-        tindakanDokter = new widget.TextBox();
-        jLabel57 = new widget.Label();
-        alasanTolak = new widget.TextBox();
-        jLabel58 = new widget.Label();
-        BtnKelurahan = new widget.Button();
-        BtnKecamatan = new widget.Button();
-        BtnKabupaten = new widget.Button();
-        ChkJln1 = new widget.CekBox();
-        Panel2 = new javax.swing.JPanel();
-        BtnSimpan3 = new widget.Button();
-        BtnGantiSurat = new widget.Button();
-        BtnHapusSurat = new widget.Button();
-        BtnCetakSurat = new widget.Button();
-        BtnCloseIn4 = new widget.Button();
         DlgGantiUmurReg = new javax.swing.JDialog();
         internalFrame10 = new widget.InternalFrame();
         BtnCloseIn5 = new widget.Button();
@@ -2070,21 +1895,6 @@ public final class DlgIGD extends javax.swing.JDialog {
 
         jMenu4.add(MnIdentitasRM);
 
-        CtkSuratTindakanDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        CtkSuratTindakanDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        CtkSuratTindakanDokter.setText("Surat Tindakan Kedokteran");
-        CtkSuratTindakanDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        CtkSuratTindakanDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        CtkSuratTindakanDokter.setIconTextGap(5);
-        CtkSuratTindakanDokter.setName("CtkSuratTindakanDokter"); // NOI18N
-        CtkSuratTindakanDokter.setPreferredSize(new java.awt.Dimension(190, 26));
-        CtkSuratTindakanDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CtkSuratTindakanDokterActionPerformed(evt);
-            }
-        });
-        jMenu4.add(CtkSuratTindakanDokter);
-
         MnSuratAPS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSuratAPS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSuratAPS.setText("Surat Pernyataan APS IGD");
@@ -2319,22 +2129,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnBridging.setOpaque(true);
         MnBridging.setPreferredSize(new java.awt.Dimension(240, 26));
 
-        ppPasienCorona.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppPasienCorona.setForeground(new java.awt.Color(50, 50, 50));
-        ppPasienCorona.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        ppPasienCorona.setText("Pasien Corona Kemenkes");
-        ppPasienCorona.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppPasienCorona.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppPasienCorona.setIconTextGap(5);
-        ppPasienCorona.setName("ppPasienCorona"); // NOI18N
-        ppPasienCorona.setPreferredSize(new java.awt.Dimension(180, 26));
-        ppPasienCorona.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppPasienCoronaBtnPrintActionPerformed(evt);
-            }
-        });
-        MnBridging.add(ppPasienCorona);
-
         MnSEP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSEP.setText("Bridging SEP BPJS");
@@ -2426,21 +2220,6 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnEditKematian);
-
-        MnSuratTindakanDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSuratTindakanDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSuratTindakanDokter.setText("Surat Tindakan Kedokteran");
-        MnSuratTindakanDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSuratTindakanDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSuratTindakanDokter.setIconTextGap(5);
-        MnSuratTindakanDokter.setName("MnSuratTindakanDokter"); // NOI18N
-        MnSuratTindakanDokter.setPreferredSize(new java.awt.Dimension(240, 26));
-        MnSuratTindakanDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratTindakanDokterActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnSuratTindakanDokter);
 
         MnCatatanPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCatatanPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3246,458 +3025,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         BtnCari5.setBounds(310, 157, 130, 23);
 
         DlgAPS.getContentPane().add(internalFrame16, java.awt.BorderLayout.CENTER);
-
-        DlgSuratTindakanDokter.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
-        DlgSuratTindakanDokter.setName("DlgSuratTindakanDokter"); // NOI18N
-        DlgSuratTindakanDokter.setUndecorated(true);
-        DlgSuratTindakanDokter.setResizable(false);
-
-        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Tindakan Kedokteran ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        internalFrame9.setName("internalFrame9"); // NOI18N
-        internalFrame9.setWarnaBawah(new java.awt.Color(245, 250, 240));
-        internalFrame9.setLayout(new java.awt.BorderLayout());
-
-        Panel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 220, 220)));
-        Panel1.setName("Panel1"); // NOI18N
-        Panel1.setOpaque(false);
-        Panel1.setPreferredSize(new java.awt.Dimension(816, 300));
-        Panel1.setLayout(null);
-
-        nmPJ.setForeground(new java.awt.Color(0, 0, 0));
-        nmPJ.setHighlighter(null);
-        nmPJ.setName("nmPJ"); // NOI18N
-        nmPJ.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmPJKeyPressed(evt);
-            }
-        });
-        Panel1.add(nmPJ);
-        nmPJ.setBounds(155, 10, 480, 23);
-
-        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel46.setText("Nama Penanggung Jwb. :");
-        jLabel46.setName("jLabel46"); // NOI18N
-        Panel1.add(jLabel46);
-        jLabel46.setBounds(0, 10, 150, 23);
-
-        TglSuratTindakan.setEditable(false);
-        TglSuratTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2023" }));
-        TglSuratTindakan.setDisplayFormat("dd-MM-yyyy");
-        TglSuratTindakan.setName("TglSuratTindakan"); // NOI18N
-        TglSuratTindakan.setOpaque(false);
-        TglSuratTindakan.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                TglSuratTindakanItemStateChanged(evt);
-            }
-        });
-        TglSuratTindakan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TglSuratTindakanKeyPressed(evt);
-            }
-        });
-        Panel1.add(TglSuratTindakan);
-        TglSuratTindakan.setBounds(155, 262, 100, 23);
-
-        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Jam :");
-        jLabel12.setName("jLabel12"); // NOI18N
-        Panel1.add(jLabel12);
-        jLabel12.setBounds(261, 262, 30, 23);
-
-        CmbJam1.setForeground(new java.awt.Color(0, 0, 0));
-        CmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        CmbJam1.setName("CmbJam1"); // NOI18N
-        CmbJam1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CmbJam1KeyPressed(evt);
-            }
-        });
-        Panel1.add(CmbJam1);
-        CmbJam1.setBounds(295, 262, 45, 23);
-
-        CmbMenit1.setForeground(new java.awt.Color(0, 0, 0));
-        CmbMenit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        CmbMenit1.setName("CmbMenit1"); // NOI18N
-        CmbMenit1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CmbMenit1KeyPressed(evt);
-            }
-        });
-        Panel1.add(CmbMenit1);
-        CmbMenit1.setBounds(345, 262, 45, 23);
-
-        CmbDetik1.setForeground(new java.awt.Color(0, 0, 0));
-        CmbDetik1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        CmbDetik1.setName("CmbDetik1"); // NOI18N
-        CmbDetik1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                CmbDetik1ActionPerformed(evt);
-            }
-        });
-        CmbDetik1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                CmbDetik1KeyPressed(evt);
-            }
-        });
-        Panel1.add(CmbDetik1);
-        CmbDetik1.setBounds(395, 262, 45, 23);
-
-        jLabel47.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel47.setText("Umur :");
-        jLabel47.setName("jLabel47"); // NOI18N
-        Panel1.add(jLabel47);
-        jLabel47.setBounds(0, 38, 150, 23);
-
-        umurPJ.setForeground(new java.awt.Color(0, 0, 0));
-        umurPJ.setHighlighter(null);
-        umurPJ.setName("umurPJ"); // NOI18N
-        umurPJ.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                umurPJKeyPressed(evt);
-            }
-        });
-        Panel1.add(umurPJ);
-        umurPJ.setBounds(155, 38, 50, 23);
-
-        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel48.setText("Tahun");
-        jLabel48.setName("jLabel48"); // NOI18N
-        Panel1.add(jLabel48);
-        jLabel48.setBounds(208, 38, 40, 23);
-
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel49.setText("Jenis Kelamin :");
-        jLabel49.setName("jLabel49"); // NOI18N
-        Panel1.add(jLabel49);
-        jLabel49.setBounds(260, 38, 80, 23);
-
-        jkPJ.setForeground(new java.awt.Color(0, 0, 0));
-        jkPJ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Laki-laki", "Perempuan" }));
-        jkPJ.setName("jkPJ"); // NOI18N
-        jkPJ.setPreferredSize(new java.awt.Dimension(55, 28));
-        jkPJ.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jkPJKeyPressed(evt);
-            }
-        });
-        Panel1.add(jkPJ);
-        jkPJ.setBounds(345, 38, 100, 23);
-
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel50.setText("Alamat :");
-        jLabel50.setName("jLabel50"); // NOI18N
-        Panel1.add(jLabel50);
-        jLabel50.setBounds(0, 66, 150, 23);
-
-        alamatPJ.setForeground(new java.awt.Color(0, 0, 0));
-        alamatPJ.setHighlighter(null);
-        alamatPJ.setName("alamatPJ"); // NOI18N
-        alamatPJ.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                alamatPJKeyPressed(evt);
-            }
-        });
-        Panel1.add(alamatPJ);
-        alamatPJ.setBounds(155, 66, 480, 23);
-
-        nmkel.setEditable(false);
-        nmkel.setForeground(new java.awt.Color(0, 0, 0));
-        nmkel.setHighlighter(null);
-        nmkel.setName("nmkel"); // NOI18N
-        nmkel.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmkelKeyPressed(evt);
-            }
-        });
-        Panel1.add(nmkel);
-        nmkel.setBounds(155, 94, 340, 23);
-
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel51.setText("Kelurahan :");
-        jLabel51.setName("jLabel51"); // NOI18N
-        Panel1.add(jLabel51);
-        jLabel51.setBounds(0, 94, 150, 23);
-
-        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel52.setText("Kecamatan :");
-        jLabel52.setName("jLabel52"); // NOI18N
-        Panel1.add(jLabel52);
-        jLabel52.setBounds(0, 122, 150, 23);
-
-        nmkec.setEditable(false);
-        nmkec.setForeground(new java.awt.Color(0, 0, 0));
-        nmkec.setHighlighter(null);
-        nmkec.setName("nmkec"); // NOI18N
-        nmkec.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmkecKeyPressed(evt);
-            }
-        });
-        Panel1.add(nmkec);
-        nmkec.setBounds(155, 122, 340, 23);
-
-        nmkab.setEditable(false);
-        nmkab.setForeground(new java.awt.Color(0, 0, 0));
-        nmkab.setHighlighter(null);
-        nmkab.setName("nmkab"); // NOI18N
-        nmkab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmkabKeyPressed(evt);
-            }
-        });
-        Panel1.add(nmkab);
-        nmkab.setBounds(155, 150, 340, 23);
-
-        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel53.setText("Kabupaten :");
-        jLabel53.setName("jLabel53"); // NOI18N
-        Panel1.add(jLabel53);
-        jLabel53.setBounds(0, 150, 150, 23);
-
-        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel54.setText("Hubungan dg. Pasien :");
-        jLabel54.setName("jLabel54"); // NOI18N
-        Panel1.add(jLabel54);
-        jLabel54.setBounds(0, 178, 150, 23);
-
-        hubungan.setForeground(new java.awt.Color(0, 0, 0));
-        hubungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Saudara", "Ayah", "Ibu", "Anak", "Suami", "Istri", "Sepupu", "Pasien Sendiri", "Paman", "Bibi", "Kakek", "Nenek", "Teman", "Tetangga", "Ipar", "Besan", "Menantu", "Mertua", "Keponakan" }));
-        hubungan.setName("hubungan"); // NOI18N
-        hubungan.setPreferredSize(new java.awt.Dimension(55, 28));
-        hubungan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                hubunganKeyPressed(evt);
-            }
-        });
-        Panel1.add(hubungan);
-        hubungan.setBounds(155, 178, 110, 23);
-
-        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel55.setText("Jenis Surat :");
-        jLabel55.setName("jLabel55"); // NOI18N
-        Panel1.add(jLabel55);
-        jLabel55.setBounds(270, 178, 70, 23);
-
-        jnsSurat.setForeground(new java.awt.Color(0, 0, 0));
-        jnsSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "PERSETUJUAN", "PENOLAKAN" }));
-        jnsSurat.setName("jnsSurat"); // NOI18N
-        jnsSurat.setPreferredSize(new java.awt.Dimension(55, 28));
-        jnsSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jnsSuratActionPerformed(evt);
-            }
-        });
-        jnsSurat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jnsSuratKeyPressed(evt);
-            }
-        });
-        Panel1.add(jnsSurat);
-        jnsSurat.setBounds(345, 178, 110, 23);
-
-        jLabel56.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel56.setText("Tindakan Kedokteran :");
-        jLabel56.setName("jLabel56"); // NOI18N
-        Panel1.add(jLabel56);
-        jLabel56.setBounds(0, 206, 150, 23);
-
-        tindakanDokter.setForeground(new java.awt.Color(0, 0, 0));
-        tindakanDokter.setHighlighter(null);
-        tindakanDokter.setName("tindakanDokter"); // NOI18N
-        tindakanDokter.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tindakanDokterKeyPressed(evt);
-            }
-        });
-        Panel1.add(tindakanDokter);
-        tindakanDokter.setBounds(155, 206, 480, 23);
-
-        jLabel57.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel57.setText("Alasan Penolakan :");
-        jLabel57.setName("jLabel57"); // NOI18N
-        Panel1.add(jLabel57);
-        jLabel57.setBounds(0, 234, 150, 23);
-
-        alasanTolak.setForeground(new java.awt.Color(0, 0, 0));
-        alasanTolak.setHighlighter(null);
-        alasanTolak.setName("alasanTolak"); // NOI18N
-        alasanTolak.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                alasanTolakKeyPressed(evt);
-            }
-        });
-        Panel1.add(alasanTolak);
-        alasanTolak.setBounds(155, 234, 480, 23);
-
-        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel58.setText("Tgl. Surat :");
-        jLabel58.setName("jLabel58"); // NOI18N
-        Panel1.add(jLabel58);
-        jLabel58.setBounds(0, 262, 150, 23);
-
-        BtnKelurahan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKelurahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKelurahan.setMnemonic('2');
-        BtnKelurahan.setToolTipText("ALt+2");
-        BtnKelurahan.setName("BtnKelurahan"); // NOI18N
-        BtnKelurahan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKelurahanActionPerformed(evt);
-            }
-        });
-        Panel1.add(BtnKelurahan);
-        BtnKelurahan.setBounds(500, 94, 28, 23);
-
-        BtnKecamatan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKecamatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKecamatan.setMnemonic('3');
-        BtnKecamatan.setToolTipText("ALt+3");
-        BtnKecamatan.setName("BtnKecamatan"); // NOI18N
-        BtnKecamatan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKecamatanActionPerformed(evt);
-            }
-        });
-        Panel1.add(BtnKecamatan);
-        BtnKecamatan.setBounds(500, 122, 28, 23);
-
-        BtnKabupaten.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKabupaten.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
-        BtnKabupaten.setMnemonic('4');
-        BtnKabupaten.setToolTipText("ALt+4");
-        BtnKabupaten.setName("BtnKabupaten"); // NOI18N
-        BtnKabupaten.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKabupatenActionPerformed(evt);
-            }
-        });
-        Panel1.add(BtnKabupaten);
-        BtnKabupaten.setBounds(500, 150, 28, 23);
-
-        ChkJln1.setBackground(new java.awt.Color(235, 255, 235));
-        ChkJln1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(195, 215, 195)));
-        ChkJln1.setForeground(new java.awt.Color(0, 0, 0));
-        ChkJln1.setSelected(true);
-        ChkJln1.setBorderPainted(true);
-        ChkJln1.setBorderPaintedFlat(true);
-        ChkJln1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        ChkJln1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkJln1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkJln1.setName("ChkJln1"); // NOI18N
-        ChkJln1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkJln1ActionPerformed(evt);
-            }
-        });
-        Panel1.add(ChkJln1);
-        ChkJln1.setBounds(445, 262, 23, 23);
-
-        internalFrame9.add(Panel1, java.awt.BorderLayout.PAGE_START);
-
-        Panel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(227, 220, 220)));
-        Panel2.setName("Panel2"); // NOI18N
-        Panel2.setOpaque(false);
-        Panel2.setPreferredSize(new java.awt.Dimension(816, 60));
-        Panel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 8, 9));
-
-        BtnSimpan3.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpan3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
-        BtnSimpan3.setMnemonic('S');
-        BtnSimpan3.setText("Simpan");
-        BtnSimpan3.setToolTipText("Alt+S");
-        BtnSimpan3.setName("BtnSimpan3"); // NOI18N
-        BtnSimpan3.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnSimpan3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpan3ActionPerformed(evt);
-            }
-        });
-        BtnSimpan3.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnSimpan3KeyPressed(evt);
-            }
-        });
-        Panel2.add(BtnSimpan3);
-
-        BtnGantiSurat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGantiSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
-        BtnGantiSurat.setMnemonic('G');
-        BtnGantiSurat.setText("Ganti");
-        BtnGantiSurat.setToolTipText("Alt+G");
-        BtnGantiSurat.setName("BtnGantiSurat"); // NOI18N
-        BtnGantiSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGantiSuratActionPerformed(evt);
-            }
-        });
-        BtnGantiSurat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnGantiSuratKeyPressed(evt);
-            }
-        });
-        Panel2.add(BtnGantiSurat);
-
-        BtnHapusSurat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHapusSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapusSurat.setMnemonic('H');
-        BtnHapusSurat.setText("Hapus");
-        BtnHapusSurat.setToolTipText("Alt+H");
-        BtnHapusSurat.setName("BtnHapusSurat"); // NOI18N
-        BtnHapusSurat.setPreferredSize(new java.awt.Dimension(76, 30));
-        BtnHapusSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusSuratActionPerformed(evt);
-            }
-        });
-        BtnHapusSurat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnHapusSuratKeyPressed(evt);
-            }
-        });
-        Panel2.add(BtnHapusSurat);
-
-        BtnCetakSurat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCetakSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnCetakSurat.setMnemonic('C');
-        BtnCetakSurat.setText("Cetak");
-        BtnCetakSurat.setToolTipText("Alt+C");
-        BtnCetakSurat.setName("BtnCetakSurat"); // NOI18N
-        BtnCetakSurat.setPreferredSize(new java.awt.Dimension(73, 30));
-        BtnCetakSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCetakSuratActionPerformed(evt);
-            }
-        });
-        BtnCetakSurat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCetakSuratKeyPressed(evt);
-            }
-        });
-        Panel2.add(BtnCetakSurat);
-
-        BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn4.setMnemonic('U');
-        BtnCloseIn4.setText("Tutup");
-        BtnCloseIn4.setToolTipText("Alt+U");
-        BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
-        BtnCloseIn4.setPreferredSize(new java.awt.Dimension(73, 30));
-        BtnCloseIn4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCloseIn4ActionPerformed(evt);
-            }
-        });
-        BtnCloseIn4.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCloseIn4KeyPressed(evt);
-            }
-        });
-        Panel2.add(BtnCloseIn4);
-
-        internalFrame9.add(Panel2, java.awt.BorderLayout.CENTER);
-
-        DlgSuratTindakanDokter.getContentPane().add(internalFrame9, java.awt.BorderLayout.CENTER);
 
         DlgGantiUmurReg.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgGantiUmurReg.setName("DlgGantiUmurReg"); // NOI18N
@@ -7386,401 +6713,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnCtkJmpKeyPressed
 
-    private void BtnCloseIn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn4ActionPerformed
-        DlgSuratTindakanDokter.dispose();
-        emptSuratTindakan();
-    }//GEN-LAST:event_BtnCloseIn4ActionPerformed
-
-    private void BtnCloseIn4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCloseIn4KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCloseIn4KeyPressed
-
-    private void nmPJKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmPJKeyPressed
-        Valid.pindah(evt, nmPJ, umurPJ);
-    }//GEN-LAST:event_nmPJKeyPressed
-
-    private void TglSuratTindakanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TglSuratTindakanItemStateChanged
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TglSuratTindakanItemStateChanged
-
-    private void TglSuratTindakanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TglSuratTindakanKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TglSuratTindakanKeyPressed
-
-    private void BtnGantiSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiSuratActionPerformed
-        if (TNoRM.getText().trim().equals("")) {
-            Valid.textKosong(TNoRM, "Nama Pasien");
-        } else if (nmPJ.getText().trim().equals("")) {
-            Valid.textKosong(nmPJ, "Nama Penanggung Jawab");
-        } else if (umurPJ.getText().trim().equals("")) {
-            Valid.textKosong(umurPJ, "Umur Penanggung Jawab");
-        } else if (alamatPJ.getText().trim().equals("")) {
-            Valid.textKosong(alamatPJ, "Alamat Penanggung Jawab");
-        } else if (nmkel.getText().trim().equals("") || nmkec.getText().trim().equals("") || nmkab.getText().trim().equals("")) {
-            Valid.textKosong(nmkel, "Nama kelurahan, kecamatan, kabupaten");
-        } else if (tindakanDokter.getText().trim().equals("")) {
-            Valid.textKosong(tindakanDokter, "Tindakan Kedokteran");
-        } else {
-            kelaminPJ = "";
-            cekSurat = "";
-
-            if (jkPJ.getSelectedItem().toString().equals("Laki-laki")) {
-                kelaminPJ = "L";
-            } else {
-                kelaminPJ = "P";
-            }
-            
-            Sequel.mengedit("surat_tindakan_kedokteran", "no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'",
-                    "tgl_surat='" + Valid.SetTgl(TglSuratTindakan.getSelectedItem() + "") + "', jam_surat='" + CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem() + "',"
-                    + "nm_penjab='" + nmPJ.getText() + "', umur_penjab='" + umurPJ.getText() + "', jk_penjab='" + kelaminPJ + "', alamat_penjab='" + alamatPJ.getText() + "', "
-                    + "kd_kel='" + kdKel + "', kd_kec='" + kdKec + "', kd_kab='" + kdKab + "', hubungan_dg_pasien='" + hubungan.getSelectedItem() + "', "
-                    + "jns_surat='" + jnsSurat.getSelectedItem() + "', nm_tindakan_kedokteran='" + tindakanDokter.getText() + "', alasan_penolakan='" + alasanTolak.getText() + "'");
-            
-            Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "namakeluarga='" + nmPJ.getText() + "',alamatpj='" + alamatPJ.getText() + "',"
-                    + "kelurahanpj='" + kdKel + "', kecamatanpj='" + kdKec + "', kabupatenpj='" + kdKab + "', keluarga='" + hubungan.getSelectedItem() + "'");
-            
-            cekSurat = Sequel.cariIsi("select jns_surat from surat_tindakan_kedokteran where no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-            if (cekSurat.equals("PERSETUJUAN")) {
-                Sequel.mengedit("surat_tindakan_kedokteran", "no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'", "alasan_penolakan='-'");
-            }
-            
-            emptSuratTindakan();
-        }
-    }//GEN-LAST:event_BtnGantiSuratActionPerformed
-
-    private void BtnGantiSuratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiSuratKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnGantiSuratKeyPressed
-
-    private void CmbJam1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbJam1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbJam1KeyPressed
-
-    private void CmbMenit1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbMenit1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbMenit1KeyPressed
-
-    private void CmbDetik1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbDetik1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDetik1KeyPressed
-
-    private void BtnHapusSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusSuratActionPerformed
-        if (TNoRM.getText().trim().equals("")) {
-            Valid.textKosong(TNoRM, "Nama Pasien");
-        } else {
-            Sequel.queryu("DELETE FROM surat_tindakan_kedokteran WHERE no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-            DlgSuratTindakanDokter.dispose();
-            emptSuratTindakan();
-        }
-    }//GEN-LAST:event_BtnHapusSuratActionPerformed
-
-    private void BtnHapusSuratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusSuratKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnHapusSuratKeyPressed
-
-    private void BtnCetakSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakSuratActionPerformed
-        cekNRWSurat = 0;
-        cekNRWSurat = Sequel.cariInteger("select count(1) cek from surat_tindakan_kedokteran where no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-        cekSuratTindakan(norwSurat.getText());
-        
-        if (TNoRM.getText().trim().equals("")) {
-            Valid.textKosong(TNoRM, "Nama Pasien");
-        } else if (nmPJ.getText().trim().equals("")) {
-            Valid.textKosong(nmPJ, "Nama Penanggung Jawab");
-        } else if (cekNRWSurat == 0) {
-            JOptionPane.showMessageDialog(null, "Data Persetujuan/Penolakan Tindakan Medis Kedokteran tdk. ditemukan pada kunjungan yg. dimaksud...!!!!");
-            nmPJ.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            
-            if (jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-                Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.kasus_tindakan='Ralan' and s.no_rawat='" + norwSurat.getText() + "' and s.jns_surat='" + jnsSurat.getSelectedItem() + "'", param);
-            } else {
-                Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.kasus_tindakan='Ralan' and s.no_rawat='" + norwSurat.getText() + "' and s.jns_surat='" + jnsSurat.getSelectedItem() + "'", param);
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-            DlgSuratTindakanDokter.dispose();
-            emptSuratTindakan();
-            emptTeks();
-        }
-    }//GEN-LAST:event_BtnCetakSuratActionPerformed
-
-    private void BtnCetakSuratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCetakSuratKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCetakSuratKeyPressed
-
-    private void umurPJKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_umurPJKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_umurPJKeyPressed
-
-    private void jkPJKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jkPJKeyPressed
-//        Valid.pindah(evt,TanggalKunjungan,AlasanKedatangan);
-    }//GEN-LAST:event_jkPJKeyPressed
-
-    private void alamatPJKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_alamatPJKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alamatPJKeyPressed
-
-    private void nmkelKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmkelKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nmkelKeyPressed
-
-    private void nmkecKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmkecKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nmkecKeyPressed
-
-    private void nmkabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmkabKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nmkabKeyPressed
-
-    private void hubunganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hubunganKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hubunganKeyPressed
-
-    private void jnsSuratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnsSuratKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jnsSuratKeyPressed
-
-    private void tindakanDokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tindakanDokterKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tindakanDokterKeyPressed
-
-    private void alasanTolakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_alasanTolakKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_alasanTolakKeyPressed
-
-    private void BtnSimpan3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan3ActionPerformed
-        cekNRWSurat = 0;
-        cekNRWSurat = Sequel.cariInteger("select count(1) cek from surat_tindakan_kedokteran where no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-        
-        if (TNoRM.getText().trim().equals("")) {
-            Valid.textKosong(TNoRM, "Nama Pasien");
-        } else if (nmPJ.getText().trim().equals("")) {
-            Valid.textKosong(nmPJ, "Nama Penanggung Jawab");
-        } else if (umurPJ.getText().trim().equals("")) {
-            Valid.textKosong(umurPJ, "Umur Penanggung Jawab");
-        } else if (alamatPJ.getText().trim().equals("")) {
-            Valid.textKosong(alamatPJ, "Alamat Penanggung Jawab");
-        } else if (nmkel.getText().trim().equals("") || nmkec.getText().trim().equals("") || nmkab.getText().trim().equals("")) {
-            Valid.textKosong(nmkel, "Nama kelurahan, kecamatan, kabupaten");
-        } else if (tindakanDokter.getText().trim().equals("")) {
-            Valid.textKosong(tindakanDokter, "Tindakan Kedokteran");
-        } else if (cekNRWSurat >= 1) {
-            JOptionPane.showMessageDialog(null, "Data sudah pernah tersimpan, jika melakukan perubahan data klik tombol ganti...!!!");
-            BtnGantiSurat.requestFocus();
-        } else {
-            kelaminPJ = "";
-
-            if (jkPJ.getSelectedItem().toString().equals("Laki-laki")) {
-                kelaminPJ = "L";
-            } else {
-                kelaminPJ = "P";
-            }
-
-            Sequel.menyimpan("surat_tindakan_kedokteran", "'" + norwSurat.getText() + "','" + Valid.SetTgl(TglSuratTindakan.getSelectedItem() + "") + "',"
-                    + "'" + CmbJam1.getSelectedItem() + ":" + CmbMenit1.getSelectedItem() + ":" + CmbDetik1.getSelectedItem() + "',"
-                    + "'" + nmPJ.getText() + "','" + umurPJ.getText() + "','" + kelaminPJ + "','" + alamatPJ.getText() + "','" + kdKel + "','" + kdKec + "',"
-                    + "'" + kdKab + "','" + hubungan.getSelectedItem() + "','" + jnsSurat.getSelectedItem() + "','Ralan','" + tindakanDokter.getText() + "',"
-                    + "'" + alasanTolak.getText() + "' ", "Surat Tindakan Kedokteran");
-
-            Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "namakeluarga='" + nmPJ.getText() + "',alamatpj='" + alamatPJ.getText() + "',"
-                    + "kelurahanpj='" + kdKel + "', kecamatanpj='" + kdKec + "', kabupatenpj='" + kdKab + "', keluarga='" + hubungan.getSelectedItem() + "'");
-
-            emptSuratTindakan();
-        }
-    }//GEN-LAST:event_BtnSimpan3ActionPerformed
-
-    private void BtnSimpan3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpan3KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnSimpanActionPerformed(null);
-        } else {
-            Valid.pindah(evt, kdpnj, BtnBatal);
-        }
-    }//GEN-LAST:event_BtnSimpan3KeyPressed
-
-    private void BtnKelurahanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKelurahanActionPerformed
-        akses.setform("DlgIGD");
-        kel.setSize(703, 384);
-        kel.setLocationRelativeTo(internalFrame1);
-        kel.setVisible(true);
-        kel.TCari.requestFocus();
-    }//GEN-LAST:event_BtnKelurahanActionPerformed
-
-    private void BtnKecamatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKecamatanActionPerformed
-        akses.setform("DlgIGD");
-        kec.setSize(703, 384);
-        kec.setLocationRelativeTo(internalFrame1);
-        kec.setVisible(true);
-        kec.TCari.requestFocus();
-    }//GEN-LAST:event_BtnKecamatanActionPerformed
-
-    private void BtnKabupatenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKabupatenActionPerformed
-        akses.setform("DlgIGD");
-        kab.setSize(703, 384);
-        kab.setLocationRelativeTo(internalFrame1);
-        kab.setVisible(true);
-        kab.TCari.requestFocus();
-    }//GEN-LAST:event_BtnKabupatenActionPerformed
-
-    private void ChkJln1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJln1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChkJln1ActionPerformed
-
-    private void CmbDetik1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CmbDetik1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_CmbDetik1ActionPerformed
-
-    private void jnsSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jnsSuratActionPerformed
-        if (jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-//            alasanTolak.setText("-");
-            alasanTolak.setEnabled(false);
-            BtnSimpan3.requestFocus();
-        } else {
-//            alasanTolak.setText("");
-            alasanTolak.setEnabled(true);
-            alasanTolak.requestFocus();
-        }
-    }//GEN-LAST:event_jnsSuratActionPerformed
-
-    private void MnSuratTindakanDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratTindakanDokterActionPerformed
-        cekNRWSurat = 0;
-        cekNRWSurat = Sequel.cariInteger("select count(1) cek from surat_tindakan_kedokteran where no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-        
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
-            TCari.requestFocus();
-        } else if (TNoRM.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbregistrasiIGD.requestFocus();
-        } else {
-            DlgSuratTindakanDokter.setSize(674, 373);
-            DlgSuratTindakanDokter.setLocationRelativeTo(internalFrame1);
-            DlgSuratTindakanDokter.setVisible(true);
-            
-            if (cekNRWSurat == 0) {
-                TglSuratTindakan.setDate(new Date());
-            } else {
-                cekSuratTindakan(norwSurat.getText());
-            }
-
-            nmPJ.setText(Sequel.cariIsi("select namakeluarga from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-            nmPJ.requestFocus();
-
-            if (jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-                alasanTolak.setText("-");                
-                alasanTolak.setEnabled(false);
-            } else {
-                alasanTolak.setText("");
-                alasanTolak.setEnabled(true);
-            }
-        }
-    }//GEN-LAST:event_MnSuratTindakanDokterActionPerformed
-
-    private void CtkSuratTindakanDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CtkSuratTindakanDokterActionPerformed
-        cekNRWSurat = 0;
-        cekNRWSurat = Sequel.cariInteger("select count(1) cek from surat_tindakan_kedokteran where no_rawat='" + norwSurat.getText() + "' and kasus_tindakan='Ralan'");
-        cekSuratTindakan(norwSurat.getText());
-        
-        if (cekNRWSurat == 0) {
-            JOptionPane.showMessageDialog(null, "Data Persetujuan/Penolakan Tindakan Medis Kedokteran tdk. ditemukan pada kunjungan yg. dimaksud...!!!!");
-            tbregistrasiIGD.requestFocus();
-        } else if (TNoRM.getText().trim().equals("") || TNoID.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Pilih dulu salah satu nama pasien pada tabel...!!!!");
-            tbregistrasiIGD.requestFocus();
-        } else if (nmPJ.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Pilih dulu salah satu nama pasien pada tabel...!!!!");
-            tbregistrasiIGD.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-
-            if (jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-                Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.kasus_tindakan='Ralan' and s.no_rawat='" + norwSurat.getText() + "' and s.jns_surat='" + jnsSurat.getSelectedItem() + "'", param);
-            } else {
-                Valid.MyReport("rptTolakTindakanDokter.jasper", "report", "::[ Lembar Formulir Penolakan Tindakan Kedokteran ]::",
-                        "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
-                        + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
-                        + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
-                        + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
-                        + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
-                        + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
-                        + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
-                        + "WHERE s.kasus_tindakan='Ralan' and s.no_rawat='" + norwSurat.getText() + "' and s.jns_surat='" + jnsSurat.getSelectedItem() + "'", param);
-            }
-            this.setCursor(Cursor.getDefaultCursor());
-            DlgSuratTindakanDokter.dispose();
-            emptSuratTindakan();
-            emptTeks();
-        }
-    }//GEN-LAST:event_CtkSuratTindakanDokterActionPerformed
-
-    private void ppPasienCoronaBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPasienCoronaBtnPrintActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data pasien sudah habis...!!!!");
-            TNoRM.requestFocus();
-        } else if (TPasien.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu data pasien dengan mengklik data pada tabel...!!!");
-            tbregistrasiIGD.requestFocus();
-        } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            CoronaPasien form = new CoronaPasien(null, false);
-            form.setPasien(TNoRM.getText(), tglDaftar, "IGD");
-            form.isCek();
-            form.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            form.Inisial.requestFocus();
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_ppPasienCoronaBtnPrintActionPerformed
-
     private void MnPrinterBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPrinterBaruActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data registrasi sudah habis...!!!!");
@@ -8106,12 +7038,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnCari;
     private widget.Button BtnCari5;
     private widget.Button BtnCetakMati;
-    private widget.Button BtnCetakSurat;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn11;
     private widget.Button BtnCloseIn2;
     private widget.Button BtnCloseIn3;
-    private widget.Button BtnCloseIn4;
     private widget.Button BtnCloseIn5;
     private widget.Button BtnCtkJkd;
     private widget.Button BtnCtkJmp;
@@ -8119,18 +7049,13 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnDokterINAP;
     private widget.Button BtnEdit;
     private widget.Button BtnGantiMati;
-    private widget.Button BtnGantiSurat;
     private widget.Button BtnGantiUmur;
     private widget.Button BtnGantijkd;
     private widget.Button BtnGantijmp;
     private widget.Button BtnHapus;
     private widget.Button BtnHapusMati;
-    private widget.Button BtnHapusSurat;
-    private widget.Button BtnKabupaten;
-    private widget.Button BtnKecamatan;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar3;
-    private widget.Button BtnKelurahan;
     private widget.Button BtnPasien;
     private widget.Button BtnPrint;
     private widget.Button BtnPrint3;
@@ -8138,16 +7063,10 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
     private widget.Button BtnSimpan2;
-    private widget.Button BtnSimpan3;
     private widget.Button BtnSuku;
     private widget.CekBox ChkDtgSendiri;
     private widget.CekBox ChkInput;
-    private widget.CekBox ChkJln1;
     private widget.CekBox ChkTracker;
-    private widget.ComboBox CmbDetik1;
-    private widget.ComboBox CmbJam1;
-    private widget.ComboBox CmbMenit1;
-    private javax.swing.JMenuItem CtkSuratTindakanDokter;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private javax.swing.JDialog DlgAPS;
@@ -8156,7 +7075,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JDialog DlgJamkesda;
     private javax.swing.JDialog DlgJampersal;
     private javax.swing.JDialog DlgMati;
-    public javax.swing.JDialog DlgSuratTindakanDokter;
     private widget.PanelBiasa FormInput;
     private widget.ComboBox JnsnoID;
     private widget.TextBox Kabupaten2;
@@ -8227,7 +7145,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem MnSJP;
     private javax.swing.JMenuItem MnSuratAPS;
     private javax.swing.JMenuItem MnSuratIstirahatSakit;
-    private javax.swing.JMenuItem MnSuratTindakanDokter;
     private javax.swing.JMenuItem MnTindakanRawatJalan;
     private javax.swing.JMenuItem MnlembarCover;
     private javax.swing.JMenuItem MnlembarLabel;
@@ -8243,8 +7160,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem MrkKojico;
     private javax.swing.JMenuItem MrkOlean;
     private widget.TextBox NoBalasan;
-    private javax.swing.JPanel Panel1;
-    private javax.swing.JPanel Panel2;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll5;
@@ -8264,12 +7179,9 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Tanggal TglMati;
     private widget.Tanggal TglSurat;
     private widget.Tanggal TglSurat1;
-    public widget.Tanggal TglSuratTindakan;
     private widget.Tanggal Ttgl_lahir;
     private widget.TextBox Tumur;
-    private widget.TextBox alamatPJ;
     private widget.TextBox alasanAPS;
-    public widget.TextBox alasanTolak;
     private widget.Button btnKab;
     private widget.Button btnKec;
     private widget.Button btnKel;
@@ -8286,7 +7198,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.ComboBox cmbSttsUmur;
     private widget.ComboBox cmbTindakan;
     private widget.ComboBox cmbTrauma;
-    private widget.ComboBox hubungan;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame16;
@@ -8294,10 +7205,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.InternalFrame internalFrame6;
     private widget.InternalFrame internalFrame7;
     private widget.InternalFrame internalFrame8;
-    private widget.InternalFrame internalFrame9;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
-    private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
@@ -8327,19 +7236,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel43;
     private widget.Label jLabel44;
     private widget.Label jLabel45;
-    private widget.Label jLabel46;
-    private widget.Label jLabel47;
-    private widget.Label jLabel48;
-    private widget.Label jLabel49;
-    private widget.Label jLabel50;
-    private widget.Label jLabel51;
-    private widget.Label jLabel52;
-    private widget.Label jLabel53;
-    private widget.Label jLabel54;
-    private widget.Label jLabel55;
-    private widget.Label jLabel56;
-    private widget.Label jLabel57;
-    private widget.Label jLabel58;
     private widget.Label jLabel59;
     private widget.Label jLabel6;
     private widget.Label jLabel60;
@@ -8354,8 +7250,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu.Separator jSeparator2;
     private widget.TextBox jam;
-    private widget.ComboBox jkPJ;
-    public widget.ComboBox jnsSurat;
     private widget.TextBox kdbahasa;
     private widget.TextBox kddokter;
     private widget.TextBox kddrINAP;
@@ -8365,11 +7259,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.TextBox ket;
     private widget.TextBox ketAPS;
     private widget.TextBox kode_rujukanya;
-    public widget.TextBox nmPJ;
     private widget.TextBox nmbahasa;
-    private widget.TextBox nmkab;
-    private widget.TextBox nmkec;
-    private widget.TextBox nmkel;
     private widget.TextBox nmpnj;
     private widget.TextBox nmsuku;
     private widget.TextBox noRawatDataIGD;
@@ -8388,17 +7278,14 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem ppGrafikPerTanggal;
     private javax.swing.JMenuItem ppGrafikPerdokter;
     private javax.swing.JMenuItem ppGrafikPerpoli;
-    private javax.swing.JMenuItem ppPasienCorona;
     private widget.TextBox rmMati;
     private widget.TextBox sepJkd;
     private widget.TextBox sepJmp;
     private widget.Table tbAPS;
     private widget.Table tbregistrasiIGD;
     private widget.TextBox tgl;
-    private widget.TextBox tindakanDokter;
     private widget.Label tulisan_tanggal;
     private widget.TextBox umurDaftar;
-    private widget.TextBox umurPJ;
     private widget.TextBox unitIGD;
     // End of variables declaration//GEN-END:variables
 
@@ -8843,7 +7730,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         MnRujuk.setEnabled(akses.getrujukan_keluar());
         MnRujukMasuk.setEnabled(akses.getrujukan_masuk());
         MnCatatanPasien.setEnabled(akses.getcatatan_pasien());
-        ppPasienCorona.setEnabled(akses.getpasien_corona());
         MnHasilPemeriksaanLab.setEnabled(akses.getigd());
     }
 
@@ -9121,72 +8007,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 Sequel.mengedit("ralan_aps", "no_rawat='" + TNoRw.getText() + "'", "kd_aps='" + kdAPS + "',keterangan='" + ketAPS.getText() + "' ");
             }
         }    
-    }
-    
-    private void emptSuratTindakan() {
-        nmPJ.setText("");
-        umurPJ.setText("");
-        jkPJ.setSelectedIndex(0);
-        alamatPJ.setText("");
-        nmkel.setText("");
-        nmkec.setText("");
-        nmkab.setText("");
-        hubungan.setSelectedIndex(0);
-        jnsSurat.setSelectedIndex(0);
-        tindakanDokter.setText("");
-        ChkJln1.setSelected(true);
-        
-        if (jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-            alasanTolak.setText("-");
-            alasanTolak.setEnabled(false);
-        } else {
-            alasanTolak.setText("");
-            alasanTolak.setEnabled(true);
-        }
-    }
-    
-    public void cekSuratTindakan(String nrSurat) {
-        kdKel = "";
-        kdKec = "";
-        kdKab = "";
-        
-        try {
-            psK = koneksi.prepareStatement("select tgl_surat, nm_penjab, umur_penjab, if(jk_penjab='L','Laki-laki','Perempuan') jk, alamat_penjab, "
-                    + "kd_kel, kd_kec, kd_kab, hubungan_dg_pasien, jns_surat, kasus_tindakan, nm_tindakan_kedokteran, "
-                    + "alasan_penolakan from surat_tindakan_kedokteran where no_rawat='" + nrSurat + "' and kasus_tindakan='Ralan'");
-
-            try {
-                rsK = psK.executeQuery();
-                while (rsK.next()) {
-                    nmPJ.setText(rsK.getString("nm_penjab"));
-                    umurPJ.setText(rsK.getString("umur_penjab"));
-                    jkPJ.setSelectedItem(rsK.getString("jk"));
-                    alamatPJ.setText(rsK.getString("alamat_penjab"));
-                    kdKel = rsK.getString("kd_kel");
-                    kdKec = rsK.getString("kd_kec");
-                    kdKab = rsK.getString("kd_kab");
-                    nmkel.setText(Sequel.cariIsi("select nm_kel from kelurahan where kd_kel='" + kdKel + "'"));
-                    nmkec.setText(Sequel.cariIsi("select nm_kec from kecamatan where kd_kec='" + kdKec + "'"));
-                    nmkab.setText(Sequel.cariIsi("select nm_kab from kabupaten where kd_kab='" + kdKab + "'"));
-                    hubungan.setSelectedItem(rsK.getString("hubungan_dg_pasien"));
-                    jnsSurat.setSelectedItem(rsK.getString("jns_surat"));
-                    tindakanDokter.setText(rsK.getString("nm_tindakan_kedokteran"));                    
-                    alasanTolak.setText(rsK.getString("alasan_penolakan"));
-                    Valid.SetTgl(TglSuratTindakan, rsK.getString("tgl_surat"));
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rsK != null) {
-                    rsK.close();
-                }
-                if (psK != null) {
-                    psK.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-        }
     }
     
     public void tampil() {

@@ -744,7 +744,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         ppPersetujuanTindakan = new javax.swing.JMenuItem();
         ppRekamPsikologis = new javax.swing.JMenuItem();
         ppRekamPsikologiPerkawinan = new javax.swing.JMenuItem();
-        MnSuratTindakanDokter = new javax.swing.JMenuItem();
         MnIkhtisarPerawatanHIV = new javax.swing.JMenuItem();
         ppRiwayat = new javax.swing.JMenuItem();
         ppCekPaseinMati = new javax.swing.JMenuItem();
@@ -2575,21 +2574,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnRekamMedis.add(ppRekamPsikologiPerkawinan);
-
-        MnSuratTindakanDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSuratTindakanDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSuratTindakanDokter.setText("Surat Tindakan Kedokteran");
-        MnSuratTindakanDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSuratTindakanDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSuratTindakanDokter.setIconTextGap(5);
-        MnSuratTindakanDokter.setName("MnSuratTindakanDokter"); // NOI18N
-        MnSuratTindakanDokter.setPreferredSize(new java.awt.Dimension(230, 26));
-        MnSuratTindakanDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSuratTindakanDokterActionPerformed(evt);
-            }
-        });
-        MnRekamMedis.add(MnSuratTindakanDokter);
 
         MnIkhtisarPerawatanHIV.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnIkhtisarPerawatanHIV.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -6200,43 +6184,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnCariPermintaanRadActionPerformed
 
-    private void MnSuratTindakanDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratTindakanDokterActionPerformed
-        cekSuratTindakan = 0;
-        cekSuratTindakan = Sequel.cariInteger("select count(1) cek from surat_tindakan_kedokteran where no_rawat='" + TNoRw.getText() + "' and kasus_tindakan='Ralan'");
-
-        if (tabModekasir.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
-            TCari.requestFocus();
-        } else if (NoRM.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbKasirRalan.requestFocus();
-        } else {
-            DlgIGD surat = new DlgIGD(null, false);
-            surat.DlgSuratTindakanDokter.setSize(674, 373);
-            surat.DlgSuratTindakanDokter.setLocationRelativeTo(internalFrame1);
-            surat.norwSurat.setText(TNoRw.getText());
-            surat.TNoRM.setText(NoRM.getText());
-            surat.DlgSuratTindakanDokter.setVisible(true);
-
-            if (cekSuratTindakan == 0) {
-                surat.TglSuratTindakan.setDate(new Date());
-            } else {
-                surat.cekSuratTindakan(TNoRw.getText());
-            }
-
-            surat.nmPJ.setText(Sequel.cariIsi("select namakeluarga from pasien where no_rkm_medis='" + NoRM.getText() + "'"));
-            surat.nmPJ.requestFocus();
-
-            if (surat.jnsSurat.getSelectedItem().toString().equals("PERSETUJUAN")) {
-                surat.alasanTolak.setText("-");
-                surat.alasanTolak.setEnabled(false);
-            } else {
-                surat.alasanTolak.setText("");
-                surat.alasanTolak.setEnabled(true);
-            }
-        }
-    }//GEN-LAST:event_MnSuratTindakanDokterActionPerformed
-
     private void ppPasienCoronaBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPasienCoronaBtnPrintActionPerformed
         if (tabModekasir.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data pasien sudah habis...!!!!");
@@ -8550,7 +8497,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnSuratKeteranganNapza;
     private javax.swing.JMenuItem MnSuratKeteranganRohani;
     private javax.swing.JMenuItem MnSuratPengantarRanap;
-    private javax.swing.JMenuItem MnSuratTindakanDokter;
     private javax.swing.JMenuItem MnTerapiAntiretroviralHIV;
     private javax.swing.JMenuItem MnTeridentifikasiTB;
     private javax.swing.JMenu MnTindakanRalan;
@@ -8943,7 +8889,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnPenilaianAwalMedisRalanGeriatri.setEnabled(akses.getpenilaian_pasien_geriatri());
         MnPenilaianAwalMedisRalanMata.setEnabled(akses.getpenilaian_awal_medis_ralan_mata());
         MnStatusPasienAllKunjungan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        MnSuratTindakanDokter.setEnabled(akses.getdiagnosa_pasien());
         MnInputDataTriaseIGD.setEnabled(akses.getdata_triase_igd());
         MnPermintaanLab.setEnabled(akses.getpermintaan_lab());
         MnCariPermintaanLab.setEnabled(akses.getpermintaan_lab());
