@@ -2097,7 +2097,8 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            
+            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbTindakan.getValueAt(tbTindakan.getSelectedRow(), 11).toString()) + " Pukul ");
+
             if (cmbTindakan.getSelectedIndex() == 0) {
                 Valid.MyReport("rptSetujuTindakanDokter.jasper", "report", "::[ Lembar Formulir Persetujuan Tindakan Kedokteran ]::",
                         "SELECT s.nm_penjab, CONCAT(s.umur_penjab,' Thn. / ',IF(s.jk_penjab='L','Laki-laki','Perempuan')) umur_pj, "
@@ -2123,6 +2124,16 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         + "INNER JOIN kabupaten kb1 on kb1.kd_kab=s.kd_kab INNER JOIN kabupaten kb2 on kb2.kd_kab=p.kd_kab "
                         + "WHERE s.waktu_simpan='" + wktSimpan + "' and s.jns_surat='" + cmbTindakan.getSelectedItem() + "'", param);
             }
+            
+            Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
+                    "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, "
+                    + "s.isi_info_tatacara, s.isi_info_tatacara, s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, "
+                    + "s.isi_info_alternatif, s.isi_info_lainlain, time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo from surat_tindakan_kedokteran s "
+                    + "inner join reg_periksa rp on rp.no_rawat=s.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join dokter d on d.kd_dokter=s.nip_dokter_pelaksana inner join pegawai pg on pg.nik=s.nip_pemberi_info "
+                    + "where s.waktu_simpan'" + wktSimpan + "'", param);
+
             this.setCursor(Cursor.getDefaultCursor());
             TCari.setText(TNoRw.getText());
             tampil();
