@@ -58,13 +58,7 @@ public class ApiLIS {
             String diagnosa, String ketKlinis, String kdDokter, String kdUnit, String kdPenjab,
             String nmDokter, String nmUnit, String nmPenjab, String noTelpDokter, String kdFasilitas, String nmFasilitas,
             String alamtFasilitas, String noTelpFasilitas) {
-        try {
-//            ps = koneksi.prepareStatement(
-//                    "select rp.no_rkm_medis, p.nm_pasien, p.jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur) umur, p.alamat, "
-//                    + "if(p.no_tlp='','0',p.no_tlp) notel, p.tgl_lahir, pl.no_rawat, ifnull(p.no_ktp,'-') noKTP from pasien p "
-//                    + "INNER JOIN reg_periksa rp on rp.no_rkm_medis=p.no_rkm_medis INNER JOIN periksa_lab pl on pl.no_rawat=rp.no_rawat "
-//                    + "where pl.no_rawat='" + noRawatAdam + "' GROUP BY pl.no_rawat");
-            
+        try {           
             ps = koneksi.prepareStatement(
                     "select rp.no_rkm_medis, p.nm_pasien, p.jk, CONCAT(rp.umurdaftar,' ',rp.sttsumur) umur, p.alamat, "
                     + "if(p.no_tlp='','0',p.no_tlp) notel, p.tgl_lahir, pl.no_rawat from pasien p "
@@ -106,30 +100,7 @@ public class ApiLIS {
                         }
                     }
 
-                    requestJson=
-//                            "{"
-//                                + "\"registrasi\": {"
-//                                + "\"no_reg_rs\": \"" + noRawatAdam + "\","
-//                                + "\"diagnosa_awal\": \"" + diagnosa + "\","
-//                                + "\"keterangan_klinis\": \"" + ketKlinis + "\""
-//                            + "},"
-//                                    + "\"pasien\": {"
-//                                        + "\"nama\": \"" + rs.getString("nm_pasien") + "\","
-//                                        + "\"no_rm\": \"" + rs.getString("no_rkm_medis") + "\","
-//                                        + "\"jenis_kelamin\": \"" + rs.getString("jk") + "\","
-//                                        + "\"alamat\": \"" + rs.getString("alamat") + "\","
-//                                        + "\"no_telphone\": \"" + rs.getString("notel") + "\","
-//                                        + "\"tanggal_lahir\": \"" + rs.getString("tgl_lahir") + "\","
-//                                        + "\"nik\": \"" + rs.getString("noKTP") + "\""
-//                            + "},"
-//                                + "\"kode_dokter_pengirim\": \"" + kdDokter + "\","
-//                                + "\"kode_unit_asal\": \"" + kdUnit + "\","
-//                                + "\"kode_penjamin\": \"" + kdPenjab + "\","
-//                            + "\"tindakan\": ["
-//                                + requestJson2
-//                                    + "]"
-//                            + "}";
-                    
+                    requestJson = 
                             "{"
                                 + "\"registrasi\": {"
                                 + "\"no_reg_rs\": \"" + noRawatLIS + "\","
@@ -175,7 +146,7 @@ public class ApiLIS {
                     } else {
                         Sequel.menyimpanIgnore("lis_reg", "'" + root.path("payload").path("no_lab").asText() + "','" + noRawatLIS + "','" + Tglperiksa + "',"
                                 + "'" + jamPeriksa + "','" + kdDokter + "','" + kdUnit + "','" + diagnosa + "','" + ketKlinis + "',Now(), '" + requestJson + "','1'", "Berhasil LIS");
-                        JOptionPane.showMessageDialog(null,"Data berhasil terkirim ke alat Laboratorium...!!!");
+                        System.out.println("Data berhasil terkirim ke alat Laboratorium...!!!");
                     }
 
                 }

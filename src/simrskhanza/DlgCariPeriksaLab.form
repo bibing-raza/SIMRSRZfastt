@@ -1484,9 +1484,12 @@
                 <Component class="widget.Label" name="jLabel29">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="33" green="0" red="ff" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="No. Telp. Dokter : "/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
                     <Property name="name" type="java.lang.String" value="jLabel29" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -1498,7 +1501,10 @@
                 <Component class="widget.TextBox" name="TnoTelpDokter">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="33" green="0" red="ff" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="TnoTelpDokter" noResource="true"/>
                   </Properties>
@@ -1574,9 +1580,12 @@
                 <Component class="widget.Label" name="jLabel31">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="99" green="0" red="99" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="No. Tlpn. Perujuk : "/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
                     <Property name="name" type="java.lang.String" value="jLabel31" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -1588,7 +1597,10 @@
                 <Component class="widget.TextBox" name="TnoTlpnFaskes">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="99" green="0" red="99" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="TnoTlpnFaskes" noResource="true"/>
                   </Properties>
@@ -1645,9 +1657,12 @@
                 <Component class="widget.Label" name="jLabel33">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="cc" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="text" type="java.lang.String" value="No. Telp. Pasien : "/>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
+                    </Property>
                     <Property name="name" type="java.lang.String" value="jLabel33" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -1659,7 +1674,10 @@
                 <Component class="widget.TextBox" name="TnoTelpPx">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="0" red="0" type="rgb"/>
+                      <Color blue="cc" green="0" red="0" type="rgb"/>
+                    </Property>
+                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
+                      <Font name="Tahoma" size="11" style="1"/>
                     </Property>
                     <Property name="name" type="java.lang.String" value="TnoTelpPx" noResource="true"/>
                   </Properties>
@@ -2503,7 +2521,7 @@
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="14-11-2023"/>
+                    <StringItem index="0" value="15-11-2023"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

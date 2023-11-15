@@ -107,7 +107,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(105);
             } else if (i == 4) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 5) {
                 column.setPreferredWidth(220);
             } else if (i == 6) {
@@ -2105,7 +2105,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
                         + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
                         + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
+                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
                         + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
                         + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
@@ -2117,7 +2117,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         + "CONCAT(s.alamat_penjab,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) alamat_pj, s.hubungan_dg_pasien selaku, s.jns_surat, "
                         + "s.nm_tindakan_kedokteran, s.alasan_penolakan, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'. / ',IF(p.jk='L','Laki-laki','Perempuan')) umur_px, "
                         + "CONCAT(p.alamat,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) alamat_px, "
-                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%h:%m %p'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
+                        + "CONCAT('Martapura, ',DATE_FORMAT(s.tgl_surat,'%d-%m-%Y'),' Pukul ',DATE_FORMAT(s.jam_surat,'%H:%i'),' WITA') tgl_surat FROM surat_tindakan_kedokteran s "
                         + "INNER JOIN reg_periksa rp on rp.no_rawat=s.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "INNER JOIN kelurahan kl1 on kl1.kd_kel=s.kd_kel INNER JOIN kelurahan kl2 on kl2.kd_kel=p.kd_kel "
                         + "INNER JOIN kecamatan kc1 on kc1.kd_kec=s.kd_kec INNER JOIN kecamatan kc2 on kc2.kd_kec=p.kd_kec "
@@ -2126,13 +2126,12 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
             
             Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-                    "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, "
-                    + "s.isi_info_tatacara, s.isi_info_tatacara, s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, "
-                    + "s.isi_info_alternatif, s.isi_info_lainlain, time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo from surat_tindakan_kedokteran s "
-                    + "inner join reg_periksa rp on rp.no_rawat=s.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join dokter d on d.kd_dokter=s.nip_dokter_pelaksana inner join pegawai pg on pg.nik=s.nip_pemberi_info "
-                    + "where s.waktu_simpan'" + wktSimpan + "'", param);
+                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
+                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
+                    + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
+                    + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
+                    + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
 
             this.setCursor(Cursor.getDefaultCursor());
             TCari.setText(TNoRw.getText());
@@ -3399,14 +3398,37 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                 while (rsCek.next()) {
                     nmPJ.setText(rsCek.getString("namakeluarga"));
                     umurPJ.setText(rsCek.getString("umur_pj"));
-                    jkPJ.setSelectedItem(rsCek.getString("jenkel"));
-                    alamatPJ.setText(rsCek.getString("alamatpj"));
-                    kdkel = rsCek.getString("kelurahanpj");
-                    kdkec = rsCek.getString("kecamatanpj");
-                    kdkab = rsCek.getString("kabupatenpj");
-                    nmkel.setText(Sequel.cariIsi("select nm_kel from kelurahan where kd_kel='" + kdkel + "'"));
-                    nmkec.setText(Sequel.cariIsi("select nm_kec from kecamatan where kd_kec='" + kdkec + "'"));
-                    nmkab.setText(Sequel.cariIsi("select nm_kab from kabupaten where kd_kab='" + kdkab + "'"));
+                    jkPJ.setSelectedItem(rsCek.getString("jenkel"));                    
+                    
+                    if (rsCek.getString("alamatpj").equals("ALAMAT") || rsCek.getString("alamatpj").equals("alamat")) {
+                        alamatPJ.setText("");
+                    } else {
+                        alamatPJ.setText(rsCek.getString("alamatpj"));
+                    }
+                    
+                    if (rsCek.getString("kelurahanpj").equals("KELURAHAN") || rsCek.getString("kelurahanpj").equals("kelurahan")) {
+                        nmkel.setText("-");
+                        kdkel = "0";
+                    } else {
+                        nmkel.setText(rsCek.getString("kelurahanpj"));
+                        kdkel = Sequel.cariIsi("select kd_kel from kelurahan where nm_kel='" + nmkel.getText() + "'");
+                    }
+                    
+                    if (rsCek.getString("kecamatanpj").equals("KECAMATAN") || rsCek.getString("kecamatanpj").equals("kecamatan")) {
+                        nmkec.setText("-");
+                        kdkec = "0";
+                    } else {
+                        nmkec.setText(rsCek.getString("kecamatanpj"));
+                        kdkec = Sequel.cariIsi("select kd_kec from kecamatan where nm_kec='" + nmkec.getText() + "'");
+                    }
+                    
+                    if (rsCek.getString("kabupatenpj").equals("KABUPATEN") || rsCek.getString("kabupatenpj").equals("kabupaten")) {
+                        nmkab.setText("-");
+                        kdkab = "0";
+                    } else {
+                        nmkab.setText(rsCek.getString("kabupatenpj"));
+                        kdkab = Sequel.cariIsi("select kd_kab from kabupaten where nm_kab='" + nmkab.getText() + "'");
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);

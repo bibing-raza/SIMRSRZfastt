@@ -27,6 +27,7 @@ import simrskhanza.DlgReg;
 import java.io.*;
 import javax.swing.*;
 import javax.swing.filechooser.*;
+import simrskhanza.DlgPenanggungJawab;
 
 public class DlgFeeVisitDokter extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3,
@@ -37,7 +38,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    public DlgReg reg = new DlgReg(null, false);
+    private DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
     private int i = 0, jmlvisit = 0, jmlbyphone = 0, ttljmlvisit = 0, ttljmlbyphone = 0, x = 0;
     private double visit = 0, ttlvisit = 0, byphone = 0, ttlbyphone = 0, bruto = 0, ttlbruto = 0,
             jasa = 0, ttljasa = 0, uangrs = 0, ttluangrs = 0, tarifvisit = 0, tarifbyphone;
@@ -517,7 +518,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {}
         });
         
-        reg.pasien.penjab.addWindowListener(new WindowListener() {
+        penjab.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
             }
@@ -529,9 +530,9 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (akses.getform().equals("DlgFeeVisitDokter")) {
-                    if (reg.pasien.penjab.getTable().getSelectedRow() != -1) {
-                        kdpenjab.setText(reg.pasien.penjab.getTable().getValueAt(reg.pasien.penjab.getTable().getSelectedRow(), 1).toString());
-                        nmpenjab.setText(reg.pasien.penjab.getTable().getValueAt(reg.pasien.penjab.getTable().getSelectedRow(), 2).toString());
+                    if (penjab.getTable().getSelectedRow() != -1) {
+                        kdpenjab.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(), 1).toString());
+                        nmpenjab.setText(penjab.getTable().getValueAt(penjab.getTable().getSelectedRow(), 2).toString());
                     }
                     kdpenjab.requestFocus();
                 }
@@ -554,7 +555,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
             }
         });
 
-        reg.pasien.penjab.getTable().addKeyListener(new KeyListener() {
+        penjab.getTable().addKeyListener(new KeyListener() {
             @Override
             public void keyTyped(KeyEvent e) {
             }
@@ -563,7 +564,7 @@ public class DlgFeeVisitDokter extends javax.swing.JDialog {
             public void keyPressed(KeyEvent e) {
                 if (akses.getform().equals("DlgFeeVisitDokter")) {
                     if (e.getKeyCode() == KeyEvent.VK_SPACE) {
-                        reg.pasien.penjab.dispose();
+                        penjab.dispose();
                     }
                 }
             }
@@ -1524,11 +1525,11 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void btnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBayarActionPerformed
         akses.setform("DlgFeeVisitDokter");
-        reg.pasien.penjab.emptTeks();
-        reg.pasien.penjab.isCek();
-        reg.pasien.penjab.setSize(882, 470);
-        reg.pasien.penjab.setLocationRelativeTo(internalFrame1);
-        reg.pasien.penjab.setVisible(true);
+        penjab.emptTeks();
+        penjab.isCek();
+        penjab.setSize(882, 470);
+        penjab.setLocationRelativeTo(internalFrame1);
+        penjab.setVisible(true);
     }//GEN-LAST:event_btnBayarActionPerformed
 
     private void cmbRuanganMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbRuanganMouseClicked

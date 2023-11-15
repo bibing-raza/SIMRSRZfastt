@@ -1060,27 +1060,31 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 12, 102, 23);
 
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setForeground(new java.awt.Color(255, 0, 51));
         jLabel17.setText("No. Tlpn. Dokter : ");
+        jLabel17.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel17.setName("jLabel17"); // NOI18N
         PanelInput.add(jLabel17);
-        jLabel17.setBounds(520, 72, 100, 23);
+        jLabel17.setBounds(520, 72, 110, 23);
 
-        TnoTlpnDokter.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTlpnDokter.setForeground(new java.awt.Color(255, 0, 51));
+        TnoTlpnDokter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTlpnDokter.setName("TnoTlpnDokter"); // NOI18N
         PanelInput.add(TnoTlpnDokter);
-        TnoTlpnDokter.setBounds(622, 72, 120, 23);
+        TnoTlpnDokter.setBounds(632, 72, 110, 23);
 
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setForeground(new java.awt.Color(0, 0, 204));
         jLabel18.setText("No. Tlpn. : ");
+        jLabel18.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel18.setName("jLabel18"); // NOI18N
         PanelInput.add(jLabel18);
-        jLabel18.setBounds(560, 12, 60, 23);
+        jLabel18.setBounds(560, 12, 70, 23);
 
-        TnoTlpnPasien.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTlpnPasien.setForeground(new java.awt.Color(0, 0, 204));
+        TnoTlpnPasien.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTlpnPasien.setName("TnoTlpnPasien"); // NOI18N
         PanelInput.add(TnoTlpnPasien);
-        TnoTlpnPasien.setBounds(622, 12, 120, 23);
+        TnoTlpnPasien.setBounds(632, 12, 110, 23);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Faskes Perujuk :");
@@ -1094,16 +1098,18 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
         PanelInput.add(TnmFaskes);
         TnmFaskes.setBounds(209, 192, 280, 23);
 
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setForeground(new java.awt.Color(153, 0, 153));
         jLabel20.setText("No. Tlpn. Perujuk : ");
+        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel20.setName("jLabel20"); // NOI18N
         PanelInput.add(jLabel20);
-        jLabel20.setBounds(520, 192, 100, 23);
+        jLabel20.setBounds(520, 192, 110, 23);
 
-        TnoTlpnFaskes.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTlpnFaskes.setForeground(new java.awt.Color(153, 0, 153));
+        TnoTlpnFaskes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTlpnFaskes.setName("TnoTlpnFaskes"); // NOI18N
         PanelInput.add(TnoTlpnFaskes);
-        TnoTlpnFaskes.setBounds(622, 192, 120, 23);
+        TnoTlpnFaskes.setBounds(632, 192, 110, 23);
 
         btnFaskes.setForeground(new java.awt.Color(0, 0, 0));
         btnFaskes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2700,7 +2706,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     if (Sequel.cariIsi("select aktivasi_LIS from set_pjlab").equals("1")) {
                         kirimDataLIS();
                     }
-                    JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
+                    System.out.println("Proses simpan selesai...!");
                     isReset();
                 } catch (Exception e) {
                     System.out.println(e);

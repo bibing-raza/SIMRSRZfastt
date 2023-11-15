@@ -1421,13 +1421,15 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi4.add(TnmPenjab);
         TnmPenjab.setBounds(363, 150, 200, 23);
 
-        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setForeground(new java.awt.Color(255, 0, 51));
         jLabel29.setText("No. Telp. Dokter : ");
+        jLabel29.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel29.setName("jLabel29"); // NOI18N
         panelisi4.add(jLabel29);
         jLabel29.setBounds(0, 150, 115, 23);
 
-        TnoTelpDokter.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTelpDokter.setForeground(new java.awt.Color(255, 0, 51));
+        TnoTelpDokter.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTelpDokter.setName("TnoTelpDokter"); // NOI18N
         panelisi4.add(TnoTelpDokter);
         TnoTelpDokter.setBounds(115, 150, 122, 23);
@@ -1463,13 +1465,15 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi4.add(btnFaskes);
         btnFaskes.setBounds(530, 206, 28, 23);
 
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setForeground(new java.awt.Color(153, 0, 153));
         jLabel31.setText("No. Tlpn. Perujuk : ");
+        jLabel31.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel31.setName("jLabel31"); // NOI18N
         panelisi4.add(jLabel31);
         jLabel31.setBounds(0, 234, 115, 23);
 
-        TnoTlpnFaskes.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTlpnFaskes.setForeground(new java.awt.Color(153, 0, 153));
+        TnoTlpnFaskes.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTlpnFaskes.setName("TnoTlpnFaskes"); // NOI18N
         panelisi4.add(TnoTlpnFaskes);
         TnoTlpnFaskes.setBounds(115, 234, 120, 23);
@@ -1492,13 +1496,15 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         panelisi4.add(Kd2);
         Kd2.setBounds(115, 10, 122, 23);
 
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setForeground(new java.awt.Color(0, 0, 204));
         jLabel33.setText("No. Telp. Pasien : ");
+        jLabel33.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel33.setName("jLabel33"); // NOI18N
         panelisi4.add(jLabel33);
         jLabel33.setBounds(352, 38, 100, 23);
 
-        TnoTelpPx.setForeground(new java.awt.Color(0, 0, 0));
+        TnoTelpPx.setForeground(new java.awt.Color(0, 0, 204));
+        TnoTelpPx.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TnoTelpPx.setName("TnoTelpPx"); // NOI18N
         panelisi4.add(TnoTelpPx);
         TnoTelpPx.setBounds(454, 38, 109, 23);
@@ -4034,7 +4040,8 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
             JOptionPane.showMessageDialog(null, "Keterangan klinis harus diisi, jika memang tdk. ada isi dengan tanda (-)");
             ketklinis.requestFocus();
         } else if (cekKeLIS >= 1) {
-            JOptionPane.showMessageDialog(null, "Data pemeriksaan Lab. dg. no. rawat " + Kd2.getText() + ", No. Lab. " + nolab + ", tgl. periksa Lab. " + tglPeriksa + ", jam " + jamPeriksa + " sudah dikirim ke LIS");
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan Lab. dg. no. rawat " + Kd2.getText() + ", No. Lab. " + nolab + ",      \n"
+                    + "tgl. periksa Lab. " + tglPeriksa + ", jam " + jamPeriksa + " sudah dikirim ke LIS...!!");
         } else {
             if (Sequel.cariIsi("select aktivasi_LIS from set_pjlab").equals("1")) {
                 TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + Kd2.getText() + "'"));
@@ -4195,7 +4202,7 @@ private void tbLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbL
         }
 
         tampil();
-        JOptionPane.showMessageDialog(null, "Data telah terkirim ke alat pemeriksaan LIS...!!!!");
+        System.out.println("Data telah terkirim ke alat pemeriksaan LIS...!!!!");
         WindowKirimLIS.dispose();
         emptTeksLIS();
     }//GEN-LAST:event_BtnKirimActionPerformed
