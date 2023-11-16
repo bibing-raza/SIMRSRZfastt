@@ -32,7 +32,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
     private int i = 0, x = 0, cekSudah = 0, pilihan = 0, diagnosa_cek = 0;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private String norw = "", nominta = "", jnsrwt = "", sttsrawat = "", diagnosa_ok = "", cekdokter = "", nokirim = "";
+    private String norw = "", nominta = "", diagnosa_ok = "", cekdokter = "", nokirim = "";
     private BackgroundMusic music;
     
     /** Creates new form DlgProgramStudi
@@ -44,7 +44,7 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No.Rawat", "No. RM", "Nama Pasien", "No. Permintaan", "Tgl. Permintaan",
-            "Jam", "Jns. Rawat", "sttsperiksa", "Poli/Ruangan", "Cara Bayar", "No. Kirim", "Diterima Oleh"
+            "Jam", "Jns. Rawat", "sttsperiksa", "Poli/Rg. Rawat", "Cara Bayar", "No. Kirim", "Diterima Oleh"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -72,7 +72,8 @@ public class DlgCariPermintaanLab extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(70);
             } else if (i == 6) {
-                column.setPreferredWidth(70);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -816,28 +817,24 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     + "if(pl.status_periksa='Diterima',pg.nama,'-') nmPetugas FROM permintaan_lab_raza pl "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat=pl.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
                     + "INNER JOIN penjab pj ON pj.kd_pj=rp.kd_pj inner join pegawai pg on pg.nik=pl.nip_penerima WHERE "
-                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and pl.no_rawat like ? or "
-                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and p.no_rkm_medis like ? or "
-                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and p.nm_pasien like ? or "
-                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.status_rawat like ? and pl.no_minta like ? "
+                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.no_rawat like ? or "
+                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and p.no_rkm_medis like ? or "
+                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and p.nm_pasien like ? or "
+                    + "pl.no_kirim<>'Menunggu' and pl.tgl_permintaan between ? and ? and pl.no_minta like ? "
                     + "GROUP BY pl.no_rawat, pl.no_kirim order by pl.tgl_permintaan desc, pl.jam_permintaan desc");
             try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(3, "%" + jnsrwt + "%");
-                ps.setString(4, "%" + TCari.getText() + "%");
-                ps.setString(5, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(6, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(7, "%" + jnsrwt + "%");
-                ps.setString(8, "%" + TCari.getText() + "%");
-                ps.setString(9, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(10, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(11, "%" + jnsrwt + "%");
+                ps.setString(3, "%" + TCari.getText() + "%");
+                ps.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText() + "%");
+                ps.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText() + "%");
+                ps.setString(10, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
                 ps.setString(12, "%" + TCari.getText() + "%");
-                ps.setString(13, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(14, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(15, "%" + jnsrwt + "%");
-                ps.setString(16, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -876,12 +873,11 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         try {
             ps1 = koneksi.prepareStatement("SELECT UPPER(p.cito) cito, p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, "
                     + "p.jam_permintaan, p.status_periksa, p.no_rawat, pg.nama nmdokter, p.no_minta, p.no_kirim FROM permintaan_lab_raza p "
-                    + "inner join pegawai pg on pg.nik=p.dokter_perujuk where p.no_rawat like ? and p.status_rawat like ? and p.no_kirim like ? "
+                    + "inner join pegawai pg on pg.nik=p.dokter_perujuk where p.no_rawat like ? and p.no_kirim like ? "
                     + "order by p.tgl_permintaan desc, p.jam_permintaan desc");
             try {
                 ps1.setString(1, "%" + norw + "%");
-                ps1.setString(2, "%" + sttsrawat + "%");
-                ps1.setString(3, "%" + nokirim + "%");
+                ps1.setString(2, "%" + nokirim + "%");
                 rs1 = ps1.executeQuery();
                 x = 1;
                 while (rs1.next()) {
@@ -917,20 +913,17 @@ private void tbPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private void getData() {
         pilihan = 0;
         norw = "";
-        sttsrawat = "";
         nokirim = "";
         pilihan = 1;
         
         if(tbPasien.getSelectedRow()!= -1){
             norw = tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString();
-            sttsrawat = tbPasien.getValueAt(tbPasien.getSelectedRow(),6).toString();
             nokirim = tbPasien.getValueAt(tbPasien.getSelectedRow(),10).toString();
             tampilPemeriksaan();
         }
     }
     
-    public void isCek(String norwt, String jnsrawat){
-        jnsrwt = jnsrawat;
+    public void isCek(String norwt){
         MnVerifikasiDiterima.setEnabled(akses.getperiksa_lab());
         MnVerifikasiBatal.setEnabled(akses.getperiksa_lab());
         BtnHapus.setEnabled(akses.getpermintaan_lab());

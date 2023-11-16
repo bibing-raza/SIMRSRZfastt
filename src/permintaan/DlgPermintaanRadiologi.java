@@ -146,7 +146,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(35);
             } else if (i == 1) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(104);
             } else if (i == 2) {
                 column.setPreferredWidth(90);
             } else if (i == 3) {
@@ -161,7 +161,7 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(80);
             } 
         }
         tbNomor.setDefaultRenderer(Object.class, new WarnaTable());

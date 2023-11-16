@@ -136,7 +136,7 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         
         tabMode2 = new DefaultTableModel(null, new Object[]{
             "No.", "No. Kirim", "Tgl. Permintaan", "Jam Permintaan", "'tgl_permintaan",
-            "jam_permintaan", "status", "Status Kirim"
+            "jam_permintaan", "status", "Status Kirim", "Pada Saat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -147,12 +147,12 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         tbNomor.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbNomor.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             TableColumn column = tbNomor.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(35);
             } else if (i == 1) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(104);
             } else if (i == 2) {
                 column.setPreferredWidth(90);
             } else if (i == 3) {
@@ -167,7 +167,9 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(80);
+            } else if (i == 8) {
+                column.setPreferredWidth(70);
             } 
         }
         tbNomor.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1220,37 +1222,18 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             if (cmbStatus.getSelectedIndex() == 2) {
-                if (sttsRawat.equals("Ralan")) {
-                    ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                            + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
-                            + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                            + "p.status_rawat='Ralan' and p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' "
-                            + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-                } else {
-                    ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                            + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
-                            + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                            + "p.status_rawat='Ranap' and p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' "
-                            + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-                }
+                ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
+                        + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
+                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                        + "p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' "
+                        + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             } else {
-                if (sttsRawat.equals("Ralan")) {
-                    ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                            + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
-                            + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                            + "p.status_rawat='Ralan' and p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' "
-                            + "and p.status_periksa='" + cmbStatus.getSelectedItem() + "' "
-                            + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-                } else {
-                    ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                            + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
-                            + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                            + "p.status_rawat='Ranap' and p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' "
-                            + "and p.status_periksa='" + cmbStatus.getSelectedItem() + "' "
-                            + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-                }
+                ps = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
+                        + "p.status_periksa, p.no_rawat, p.dokter_perujuk, d.nm_dokter, p.no_minta, p.cito, p.no_kirim FROM permintaan_lab_raza p "
+                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                        + "p.no_rawat='" + noRW.getText() + "' and p.no_kirim like '%" + nomorKrm + "%' and p.status_periksa='" + cmbStatus.getSelectedItem() + "' "
+                        + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             }
-
             try {                
                 rs = ps.executeQuery();
                 x = 1;
@@ -1455,8 +1438,8 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
         try {            
             ps1 = koneksi.prepareStatement("SELECT no_kirim, DATE_FORMAT(tgl_permintaan,'%d-%m-%Y') tglminta, "
                     + "time_format(jam_permintaan,'%H:%i') jam, tgl_permintaan, jam_permintaan, status_periksa, "
-                    + "if(no_kirim='Menunggu','Masih Proses','Terkirim') stts_kirim from permintaan_lab_raza where "
-                    + "no_rawat='" + noRW.getText() + "' group by no_kirim "
+                    + "if(no_kirim='Menunggu','Masih Proses','Terkirim') stts_kirim, if(status_rawat='Ralan','R. Jalan','R. Inap') rawat "
+                    + "from permintaan_lab_raza where no_rawat='" + noRW.getText() + "' group by no_kirim "
                     + "order by tgl_permintaan desc, jam_permintaan desc");
             try {
                 rs1 = ps1.executeQuery();
@@ -1470,7 +1453,8 @@ public class DlgPermintaanLabRAZA extends javax.swing.JDialog {
                         rs1.getString("tgl_permintaan"),
                         rs1.getString("jam_permintaan"),
                         rs1.getString("status_periksa"),
-                        rs1.getString("stts_kirim")
+                        rs1.getString("stts_kirim"),
+                        rs1.getString("rawat")
                     });
                     x++;
                 }                

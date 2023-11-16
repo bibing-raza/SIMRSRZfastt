@@ -6158,7 +6158,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             DlgCariPermintaanLab cariLab = new DlgCariPermintaanLab(null, false);
             cariLab.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             cariLab.setLocationRelativeTo(internalFrame1);
-            cariLab.isCek(TNoRw.getText(), "Ralan");
+            cariLab.isCek(TNoRw.getText());
             cariLab.TCari.setText(TNoRw.getText());
             cariLab.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

@@ -13,14 +13,12 @@ package simrskhanza;
 
 import permintaan.DlgPermintaanLabRAZA;
 import bridging.ICareRiwayatPerawatan;
-import inventory.DlgPemberianObat;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
-import inventory.DlgPeresepanDokter;
 import java.awt.Color;
 import java.awt.Cursor;
 import java.awt.Desktop;
@@ -55,19 +53,14 @@ import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgDiagnosaPenyakit;
 import permintaan.DlgPermintaanRadiologi;
-import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
-import rekammedis.RMPenilaianAwalMedikIGD;
 import rekammedis.RMPenilaianAwalMedikObstetriRalan;
 import rekammedis.RMPenilaianAwalMedisRalanGeriatri;
 import rekammedis.RMPenilaianAwalMedisRalanMata;
 import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMTindakanKedokteran;
-import rekammedis.RMTransferSerahTerimaIGD;
-import rekammedis.RMTriaseIGD;
-
 /**
  *
  * @author dosen

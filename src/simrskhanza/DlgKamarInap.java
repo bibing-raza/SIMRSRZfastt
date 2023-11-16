@@ -12614,7 +12614,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             DlgCariPermintaanLab cariLab = new DlgCariPermintaanLab(null, false);
             cariLab.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             cariLab.setLocationRelativeTo(internalFrame1);
-            cariLab.isCek(norawat.getText(), "Ranap");
+            cariLab.isCek(norawat.getText());
             cariLab.TCari.setText(norawat.getText());
             cariLab.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

@@ -2488,32 +2488,22 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     public void kirimDataLIS() {
-        mas_lis.kirim(TNoRw.getText(),
-                Valid.SetTgl(Tanggal.getSelectedItem() + ""),
+        mas_lis.kirim(TNoRw.getText(), Valid.SetTgl(Tanggal.getSelectedItem() + ""),
                 CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
-                diagnosa_dokter.getText(), ketKlinis.getText(), KodePerujuk.getText(), kdUnit, kdPenjab,
-                NmPerujuk.getText(), nm_unit, nm_penjab, TnoTlpnDokter.getText(), kdFaskes.getText(), 
-                TnmFaskes.getText(), alamatPerujuk, TnoTlpnFaskes.getText()
+                diagnosa_dokter.getText(), ketKlinis.getText(), KodePerujuk.getText(), 
+                kdUnit, kdPenjab, NmPerujuk.getText(), nm_unit, nm_penjab, TnoTlpnDokter.getText(), 
+                kdFaskes.getText(), TnmFaskes.getText(), alamatPerujuk, TnoTlpnFaskes.getText()
         );
     }
     
-    private void tampilMintaPeriksa(String nomorKrm) {     
+    private void tampilMintaPeriksa(String nomorKrm) {
         Valid.tabelKosong(tabMode3);
         try {
-            if (status.equals("Ralan")) {
-                psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito, d.nm_dokter, p.no_kirim FROM permintaan_lab_raza p "
-                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                        + "p.status_rawat='Ralan' and p.no_kirim ='" + nomorKrm + "' and p.no_rawat='" + TNoRw.getText() + "' "
-                        + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-            } else if (status.equals("Ranap")) {
-                psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
-                        + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito, d.nm_dokter, p.no_kirim FROM permintaan_lab_raza p "
-                        + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
-                        + "p.status_rawat='Ranap' and p.no_kirim ='" + nomorKrm + "' and p.no_rawat='" + TNoRw.getText() + "' "
-                        + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
-            }
-
+            psOrder = koneksi.prepareStatement("SELECT p.nm_pemeriksaan, date_format(p.tgl_permintaan,'%d-%m-%Y') tglminta, p.jam_permintaan, "
+                    + "p.status_periksa, p.no_rawat, p.no_minta, UPPER(p.cito) cito, d.nm_dokter, p.no_kirim FROM permintaan_lab_raza p "
+                    + "inner join dokter d on d.kd_dokter=p.dokter_perujuk where "
+                    + "p.no_kirim ='" + nomorKrm + "' and p.no_rawat='" + TNoRw.getText() + "' "
+                    + "order by p.status_periksa, p.tgl_permintaan desc, p.jam_permintaan desc");
             try {
                 rsOrder = psOrder.executeQuery();
                 i3 = 1;
