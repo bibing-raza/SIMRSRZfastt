@@ -8046,7 +8046,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         dialog_simpan = Valid.openDialog();
         Valid.MyReportToExcel("SELECT p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(bs.tglsep,'%d-%m-%Y') 'Tgl. SEP', "
-                + "bs.no_sep 'No. SEP', d.nm_dokter 'Dokter Poliklinik' FROM bridging_sep bs "
+                + "bs.no_sep 'No. SEP', d.nm_dokter 'Dokter Poliklinik', pl.nm_poli 'Poliklinik/Inst.' FROM bridging_sep bs "
                 + "INNER JOIN reg_periksa rp on rp.no_rawat=bs.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                 + "INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli "
                 + "WHERE bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
