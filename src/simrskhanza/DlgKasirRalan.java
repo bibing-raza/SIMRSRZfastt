@@ -7833,7 +7833,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
                     form.emptTeks();
                     form.isCek();
-                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), 
+                            kdpoli.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
@@ -7847,7 +7848,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
                         form.emptTeks();
                         form.isCek();
-                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(),
+                                kdpoli.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
                         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         form.setLocationRelativeTo(internalFrame1);
                         form.setVisible(true);
@@ -7868,10 +7870,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
         } else {
-            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") > 0) {
                 cetakTransferSerahTerimaIGD();
             } else {
-                JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien IGD tidak ditemukan...!!!");
+                JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien rawat jalan/IGD tidak ditemukan...!!!");
                 tbKasirRalan.requestFocus();
             }
         }
@@ -7995,8 +7997,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
                 akses.setform("DlgKasirRalan");
+                beriObat.emptTeks();
                 beriObat.isCek();
-                beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                beriObat.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(),
+                        Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
                 beriObat.setSize(914, internalFrame1.getHeight() - 40);
                 beriObat.setLocationRelativeTo(internalFrame1);
                 beriObat.setAlwaysOnTop(false);
@@ -10421,7 +10425,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
     private void cetakTransferSerahTerimaIGD() {
         try {
-            psLaprm = koneksi.prepareStatement("select * from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'");
+            psLaprm = koneksi.prepareStatement("select *, date_format(tgl_masuk,'%d-%m-%Y') tglmsk, date_format(tgl_jam_pindah,'%d-%m-%Y / %H:%i') jampindah, "
+                    + "date_format(tgl_infus,'%d-%m-%Y') tglinfus, date_format(tgl_kateter,'%d-%m-%Y') tglkateter, date_format(tgl_ngt,'%d-%m-%Y') tglngt, "
+                    + "date_format(tgl_oksigen,'%d-%m-%Y') tgloksigen, date_format(tgl_drain,'%d-%m-%Y') tgldrain, date_format(tgl_alat_lain,'%d-%m-%Y') tglalat "
+                    + "from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and status='Ralan' order by waktu_simpan desc limit 1");
             try {
                 rsLaprm = psLaprm.executeQuery();
                 while (rsLaprm.next()) {
@@ -10435,17 +10442,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("konsulen1", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_konsulen1") + "'"));
                     param.put("konsulen2", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_konsulen2") + "'"));
                     param.put("diagnosis", rsLaprm.getString("diagnosis"));
-                    param.put("tglmasuk", Sequel.cariIsi("select date_format(tgl_masuk,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
-                    
-                    if (rsLaprm.getString("kd_kamar_msk").equals("")) {
-                        param.put("ruangkamar", "");
-                    } else if (rsLaprm.getString("kd_kamar_msk").equals("IGDK")) {
-                        param.put("ruangkamar", Sequel.cariIsi("SELECT nm_poli FROM poliklinik WHERE kd_poli='" + rsLaprm.getString("kd_kamar_msk") + "'"));
-                    } else {
-                        param.put("ruangkamar", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_msk") + "'"));
-                    }               
-                    
-                    param.put("tgljampindah", Sequel.cariIsi("select date_format(tgl_jam_pindah,'%d-%m-%Y / %H:%i') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                    param.put("tglmasuk", rsLaprm.getString("tglmsk"));                    
+                    param.put("ruangkamar", Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'"));                    
+                    param.put("tgljampindah", rsLaprm.getString("jampindah"));
                     param.put("ruangkamarpindah", Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_pindah") + "'"));
                     param.put("alasanranap", rsLaprm.getString("alasan_ranap"));
                     param.put("keluhan", rsLaprm.getString("keluhan"));
@@ -10470,13 +10469,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     param.put("nmdokter", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_dokter_setuju") + "'"));
                     param.put("ygmenyerahkan", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_menyerahkan") + "'"));
                     param.put("ygmenerima", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_menerima") + "'"));
-                    param.put("tgltransferserah",
-                            Sequel.cariIsi("select date_format(tgl_serah_terima_transfer,'%d') from transfer_serah_terima_pasien_igd where "
-                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "'") + " "
-                            + Sequel.bulanINDONESIA("select date_format(tgl_serah_terima_transfer,'%m') from transfer_serah_terima_pasien_igd where "
-                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "'") + " "
-                            + Sequel.cariIsi("select date_format(tgl_serah_terima_transfer,'%Y') from transfer_serah_terima_pasien_igd where "
-                                    + "no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                    param.put("tgltransferserah",Valid.SetTglINDONESIA(rsLaprm.getString("tgl_serah_terima_transfer")));                    
 
                     if (rsLaprm.getString("lab").equals("ya")) {
                         param.put("lab", "V");
@@ -10566,7 +10559,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("infus").equals("ya")) {
                         param.put("infus", "V");
-                        param.put("tglinfus", Sequel.cariIsi("select date_format(tgl_infus,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tglinfus", rsLaprm.getString("tglinfus"));
                     } else {
                         param.put("infus", "");
                         param.put("tglinfus", "-");
@@ -10574,7 +10567,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("kateter").equals("ya")) {
                         param.put("kateter", "V");
-                        param.put("tglkateter", Sequel.cariIsi("select date_format(tgl_kateter,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tglkateter", rsLaprm.getString("tglkateter"));
                     } else {
                         param.put("kateter", "");
                         param.put("tglkateter", "-");
@@ -10582,7 +10575,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("ngt").equals("ya")) {
                         param.put("ngt", "V");
-                        param.put("tglngt", Sequel.cariIsi("select date_format(tgl_ngt,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tglngt", rsLaprm.getString("tglngt"));
                     } else {
                         param.put("ngt", "");
                         param.put("tglngt", "-");
@@ -10590,7 +10583,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("oksigen").equals("ya")) {
                         param.put("oksigen", "V");
-                        param.put("tgloksigen", Sequel.cariIsi("select date_format(tgl_oksigen,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tgloksigen", rsLaprm.getString("tgloksigen"));
                     } else {
                         param.put("oksigen", "");
                         param.put("tgloksigen", "-");
@@ -10598,7 +10591,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (rsLaprm.getString("drain").equals("ya")) {
                         param.put("drain", "V");
-                        param.put("tgldrain", Sequel.cariIsi("select date_format(tgl_drain,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tgldrain", rsLaprm.getString("tgldrain"));
                     } else {
                         param.put("drain", "");
                         param.put("tgldrain", "-");
@@ -10607,7 +10600,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     if (rsLaprm.getString("lainya_alat").equals("ya")) {
                         param.put("lainalat", "V");
                         param.put("nmalatlain", rsLaprm.getString("nm_alat_lain"));
-                        param.put("tgllainalat", Sequel.cariIsi("select date_format(tgl_alat_lain,'%d-%m-%Y') from transfer_serah_terima_pasien_igd where no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                        param.put("tgllainalat", rsLaprm.getString("tglalat"));
                     } else {
                         param.put("lainalat", "");
                         param.put("nmalatlain", "-");
@@ -10616,12 +10609,14 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                     if (Sequel.cariInteger("select count(-1) from pemberian_obat where "
                             + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ralan'") == 0) {
-                        Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                        Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
                                 "SELECT date(now())", param);
                     } else {
-                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien IGD ]::",
+                        Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
                                 "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
-                                + "and status='Ralan' ORDER BY waktu_simpan desc", param);
+                                + "and status='Ralan' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli "
+                                        + "WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' "
+                                + "ORDER BY waktu_simpan desc", param);
                     }
                 }
             } catch (Exception e) {

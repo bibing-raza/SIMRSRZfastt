@@ -636,7 +636,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnLihatDataAssesmenKeperawatanIGD = new javax.swing.JMenuItem();
         MnTransferSerahTerimaIGD = new javax.swing.JMenu();
         MnInputDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
-        MnLihatDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnPemberianObat = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetriIGD = new javax.swing.JMenu();
         MnInputDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
@@ -1150,23 +1149,6 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         MnTransferSerahTerimaIGD.add(MnInputDataTransferSerahTerimaIGD);
-
-        MnLihatDataTransferSerahTerimaIGD.setBackground(new java.awt.Color(255, 255, 254));
-        MnLihatDataTransferSerahTerimaIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setForeground(new java.awt.Color(50, 50, 50));
-        MnLihatDataTransferSerahTerimaIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setText("Lihat Data");
-        MnLihatDataTransferSerahTerimaIGD.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnLihatDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnLihatDataTransferSerahTerimaIGD.setIconTextGap(5);
-        MnLihatDataTransferSerahTerimaIGD.setName("MnLihatDataTransferSerahTerimaIGD"); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
-        MnLihatDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnLihatDataTransferSerahTerimaIGDActionPerformed(evt);
-            }
-        });
-        MnTransferSerahTerimaIGD.add(MnLihatDataTransferSerahTerimaIGD);
 
         MnPemberianObat.setBackground(new java.awt.Color(255, 255, 254));
         MnPemberianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1689,7 +1671,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCetakCPPT.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1705,7 +1687,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2104,7 +2086,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2311,7 +2293,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2325,7 +2307,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2877,7 +2859,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel8.setBounds(0, 38, 180, 23);
 
         tglCppt.setEditable(false);
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -3336,7 +3318,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(770, 36, 90, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -3390,7 +3372,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(770, 64, 90, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -3580,7 +3562,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3594,7 +3576,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3850,7 +3832,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 cekjam = "tidak";
             }
             
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
                 statusOK = "Ralan";
             } else if (status.equals("ranap")) {
                 statusOK = "Ranap";
@@ -5571,9 +5553,16 @@ public class DlgCPPT extends javax.swing.JDialog {
                 form.emptTeks();
                 form.isCek();
                 if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "IGD (Ralan)");
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "IGD (Ralan)", "IGDK", "IGD");
+                } else if (status.equals("ralan")) {
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ralan",
+                            Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + TNoRw.getText() + "'"));
                 } else if (status.equals("ranap")) {
-                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ranap");
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ranap",
+                            Sequel.cariIsi("select kd_kamar from kamar_inap where no_rawat='" + TNoRw.getText() + "' order by tgl_masuk desc, jam_masuk desc limit 1"),
+                            Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                 }
                 
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -5590,7 +5579,26 @@ public class DlgCPPT extends javax.swing.JDialog {
                         RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
                         form.emptTeks();
                         form.isCek();
-                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "IGD (Ralan)");
+                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "IGD (Ralan)", "IGDK", "IGD");
+                        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        form.setLocationRelativeTo(internalFrame1);
+                        form.setVisible(true);
+                        this.setCursor(Cursor.getDefaultCursor());
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, Data Tidak Bisa Diganti !!!");
+                    }
+                } else if (status.equals("ralan")) {
+                    if ((Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' "
+                                    + "and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)) {
+                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        akses.setform("DlgCPPT");
+                        RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
+                        form.emptTeks();
+                        form.isCek();
+                        form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ralan",
+                                Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                                Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + TNoRw.getText() + "'"));
                         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         form.setLocationRelativeTo(internalFrame1);
                         form.setVisible(true);
@@ -5604,7 +5612,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                     RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);;
                     form.emptTeks();
                     form.isCek();
-                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ranap");
+                    form.setNoRm(TNoRw.getText(), DTPCari2.getDate(), "ranap",
+                            Sequel.cariIsi("select kd_kamar from kamar_inap where no_rawat='" + TNoRw.getText() + "' order by tgl_masuk desc, jam_masuk desc limit 1"),
+                            Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);
@@ -5614,18 +5625,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnInputDataTransferSerahTerimaIGDActionPerformed
 
-    private void MnLihatDataTransferSerahTerimaIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTransferSerahTerimaIGDActionPerformed
-        if (TNoRw.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-        } else {
-            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                cetakTransferSerahTerimaIGD();
-            } else {
-                JOptionPane.showMessageDialog(null, "Data transfer & serah terima pasien IGD tidak ditemukan...!!!");
-            }
-        }
-    }//GEN-LAST:event_MnLihatDataTransferSerahTerimaIGDActionPerformed
-
     private void MnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPemberianObatActionPerformed
         if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
@@ -5634,11 +5633,16 @@ public class DlgCPPT extends javax.swing.JDialog {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
                 akses.setform("DlgCPPT");
+                beriObat.emptTeks();
                 beriObat.isCek();
                 if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "IGD (Ralan)");
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "IGD (Ralan)", "IGD");
+                } else if (status.equals("ralan")) {
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ralan",
+                            Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + TNoRw.getText() + "'"));
                 } else if (status.equals("ranap")) {
-                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ranap");
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ranap", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                 }
                 beriObat.setSize(914, internalFrame1.getHeight() - 40);
                 beriObat.setLocationRelativeTo(internalFrame1);
@@ -5650,8 +5654,22 @@ public class DlgCPPT extends javax.swing.JDialog {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
                     akses.setform("DlgCPPT");
+                    beriObat.emptTeks();
                     beriObat.isCek();
-                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "IGD (Ralan)");
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "IGD (Ralan)", "IGD");
+                    beriObat.setSize(914, internalFrame1.getHeight() - 40);
+                    beriObat.setLocationRelativeTo(internalFrame1);
+                    beriObat.setAlwaysOnTop(false);
+                    beriObat.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else if (status.equals("ralan")) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
+                    akses.setform("DlgCPPT");
+                    beriObat.emptTeks();
+                    beriObat.isCek();
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ralan",
+                            Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + TNoRw.getText() + "'"));
                     beriObat.setSize(914, internalFrame1.getHeight() - 40);
                     beriObat.setLocationRelativeTo(internalFrame1);
                     beriObat.setAlwaysOnTop(false);
@@ -5661,8 +5679,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
                     akses.setform("DlgCPPT");
+                    beriObat.emptTeks();
                     beriObat.isCek();
-                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ranap");
+                    beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ranap",
+                            Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+                                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                     beriObat.setSize(914, internalFrame1.getHeight() - 40);
                     beriObat.setLocationRelativeTo(internalFrame1);
                     beriObat.setAlwaysOnTop(false);
@@ -5980,7 +6002,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGD;
     private javax.swing.JMenuItem MnLihatDataAssesmenMedikIGD;
     private javax.swing.JMenuItem MnLihatDataKebidanan;
-    private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGD;
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnPasteLabA;
     private javax.swing.JMenuItem MnPasteLabO;
@@ -6694,7 +6715,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         DTPCari2.setDate(new Date());
         isRawat();
         
-        if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)")) {
+        if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)") || sttsrawat.equals("ralan")) {
             cmbRawat.setSelectedIndex(0);
             cmbPPA.setSelectedIndex(0);
             cmbPPA.setEnabled(false);
