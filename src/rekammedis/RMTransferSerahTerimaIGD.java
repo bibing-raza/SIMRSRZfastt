@@ -75,7 +75,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             tglPemberianObat = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
-            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", status = "", nmKamar = "";
+            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", posisi = "", nmKamar = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -92,7 +92,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             "foto_genu", "foto_abdomen", "spiritometri", "echo", "usg", "ct_scan", "ket_ct_scan", "endoskopi", "ket_endoskopi", "ctg", "ket_ctg", "lainnya",
             "ket_lainnya", "diagnosa", "tgl_infus", "tgl_kateter", "tgl_ngt", "tgl_oksigen", "tgl_drain", "lainya_alat", "tgl_alat_lain", "nm_alat_lain",
             "rekomendasi", "alasan_pindah_ruangan", "nm_pasien_keluarga", "nip_dokter_setuju", "nip_menyerahkan", "nip_menerima", "tgl_serah_terima_transfer",
-            "infus", "kateter", "ngt", "oksigen", "drain", "lab", "waktu_simpan"
+            "infus", "kateter", "ngt", "oksigen", "drain", "lab", "waktu_simpan", "status"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -104,7 +104,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tbTransfer.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbTransfer.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 77; i++) {
+        for (i = 0; i < 78; i++) {
             TableColumn column = tbTransfer.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -321,6 +321,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 76) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 77) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -3258,7 +3261,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             akses.setform("RMTransferSerahTerima");
             beriObat.emptTeks();
             beriObat.isCek();
-            beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), status, Tnm_kamar.getText());
+            beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), posisi, Tnm_kamar.getText());
             beriObat.setSize(914, internalFrame1.getHeight() - 40);
             beriObat.setLocationRelativeTo(internalFrame1);
             beriObat.setAlwaysOnTop(false);
@@ -3602,7 +3605,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         rs.getString("oksigen"),
                         rs.getString("drain"),
                         rs.getString("lab"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("status")
                     });
                 }
             } catch (Exception e) {
@@ -3702,11 +3706,12 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Tnm_petugas1.setText("-");
         Tnm_petugas2.setText("-");
         ChkIGD.setSelected(false);
+        statusOK = "";
         
-        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+        if (posisi.equals("IGD (Ralan)") || posisi.equals("IGD (Ranap)") || posisi.equals("ralan")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(true);            
-        } else if (status.equals("ranap")) {
+        } else if (posisi.equals("ranap")) {
             btnKamar1.setEnabled(true);
             ChkIGD.setEnabled(false);            
         } else {
@@ -3715,24 +3720,24 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         }
     }
     
-    public void setNoRm(String norwt, Date tgl2, String statusrwt, String kdunit, String nmunit) {
+    public void setNoRm(String norwt, Date tgl2, String posisidata, String kdunit, String nmunit) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
-        status = statusrwt;
+        posisi = posisidata;
         ChkIGD.setSelected(false);
         kd_kamar = kdunit;
         Tnm_kamar.setText(nmunit);
         
-        if (statusrwt.equals("IGD (Ralan)") || statusrwt.equals("IGD (Ranap)")) {
+        if (posisidata.equals("IGD (Ralan)") || posisidata.equals("IGD (Ranap)")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(true);
             statusOK = "Ralan";
-        } else if (statusrwt.equals("ralan")) {
+        } else if (posisidata.equals("ralan")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(false);
             statusOK = "Ralan";
-        } else if (statusrwt.equals("ranap")) {
+        } else if (posisidata.equals("ranap")) {
             btnKamar1.setEnabled(true);
             ChkIGD.setEnabled(false);
             statusOK = "Ranap";
@@ -3832,6 +3837,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             drain = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 74).toString();
             lab = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 75).toString();
             wktSimpan = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 76).toString();
+            statusOK = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 77).toString();
             dataCek();
         }
     }
@@ -4218,24 +4224,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("tgllainalat", "-");
             }
 
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
-                if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ralan'") == 0) {
-                    Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
-                            "SELECT date(now())", param);
-                } else {
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
-                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
-                            + "and status='Ralan' ORDER BY waktu_simpan desc", param);
-                }
-            } else if (status.equals("ranap")) {
-                if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='Ranap'") == 0) {
-                    Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
-                            "SELECT date(now())", param);
-                } else {
-                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
-                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
-                            + "and status='Ranap' ORDER BY waktu_simpan desc", param);
-                }
+            if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0) {
+                Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                        "SELECT date(now())", param);
+            } else {
+                Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
+                        + "and status='" + statusOK + "' ORDER BY waktu_simpan desc", param);
             }
 
             emptTeks();
@@ -4385,11 +4380,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         
         //ruangan kamar asal
         if (kd_kamar.equals("")) {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            if (posisi.equals("IGD (Ralan)") || posisi.equals("IGD (Ranap)")) {
                 ChkIGD.setSelected(false);
                 ChkIGD.setEnabled(true);
                 btnKamar1.setEnabled(false);
-            } else if (status.equals("ranap")) {
+            } else if (posisi.equals("ralan")) {
+                ChkIGD.setSelected(false);
+                ChkIGD.setEnabled(false);
+                btnKamar1.setEnabled(false);
+            } else if (posisi.equals("ranap")) {
                 ChkIGD.setSelected(false);
                 ChkIGD.setEnabled(false);
                 btnKamar1.setEnabled(true);
@@ -4642,5 +4641,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         drain = "";
         lab = "";
         wktSimpan = "";
+        statusOK = "";
     }
 }
