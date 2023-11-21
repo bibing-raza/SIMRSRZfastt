@@ -27,7 +27,7 @@ public class WarnaTableKhusus extends DefaultTableCellRenderer {
         }
         
         if (!table.getValueAt(row, kolom).toString().equals("")) {
-            component.setBackground(new Color(255,255,51));
+            component.setBackground(new Color(204,255,204));
         }
         return component;
     }
