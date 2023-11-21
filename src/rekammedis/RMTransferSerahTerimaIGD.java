@@ -3262,7 +3262,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             beriObat.emptTeks();
             beriObat.isCek();
             beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), posisi, Tnm_kamar.getText());
-            beriObat.setSize(914, internalFrame1.getHeight() - 40);
+            beriObat.setSize(1007, internalFrame1.getHeight() - 40);
             beriObat.setLocationRelativeTo(internalFrame1);
             beriObat.setAlwaysOnTop(false);
             beriObat.setVisible(true);

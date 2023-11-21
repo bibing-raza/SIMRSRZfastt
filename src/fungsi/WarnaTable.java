@@ -15,15 +15,17 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Owner
  */
 public class WarnaTable extends DefaultTableCellRenderer {
+    private int kolom = 6;
+    
     @Override
-    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column){
+    public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
         Component component = super.getTableCellRendererComponent(table, value, isSelected, hasFocus, row, column);
-        if (row % 2 == 1){
+        if (row % 2 == 1) {
 //            component.setBackground(new Color(248,253,243));
             component.setBackground(new Color(244,255,255));
-        }else{
-            component.setBackground(new Color(255,255,255));
-        } 
+        } else {
+            component.setBackground(new Color(255, 255, 255));
+        }
         return component;
     }
 

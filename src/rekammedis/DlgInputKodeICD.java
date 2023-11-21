@@ -722,7 +722,6 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnSimpanQTYinadrg.setBackground(new java.awt.Color(255, 255, 255));
         MnSimpanQTYinadrg.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSimpanQTYinadrg.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSimpanQTYinadrg.setText("Simpan Jumlah Prosedur INADRG");
@@ -762,7 +761,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Kode ICD-10 & ICD-9-CM Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Kode ICD-10 & ICD-9-CM Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -782,7 +781,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -797,7 +796,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1156,7 +1155,6 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
         cmbDiagPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "STATISTIK", "INADRG" }));
         cmbDiagPro.setSelectedIndex(1);
         cmbDiagPro.setName("cmbDiagPro"); // NOI18N
-        cmbDiagPro.setOpaque(false);
         cmbDiagPro.setPreferredSize(new java.awt.Dimension(308, 23));
         FormInput.add(cmbDiagPro);
         cmbDiagPro.setBounds(152, 145, 85, 23);
@@ -1170,7 +1168,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
         jPanel1.setPreferredSize(new java.awt.Dimension(816, 102));
         jPanel1.setLayout(new java.awt.GridLayout(1, 2));
 
-        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Data Kunjungan Pasien Rawat Jalan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel4.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Data Kunjungan Pasien Rawat Jalan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel4.setName("jPanel4"); // NOI18N
         jPanel4.setOpaque(false);
         jPanel4.setPreferredSize(new java.awt.Dimension(250, 102));
@@ -1271,7 +1269,7 @@ public class DlgInputKodeICD extends javax.swing.JDialog {
 
         jPanel1.add(jPanel4);
 
-        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Diagnosa & Prosedur Tindakan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jPanel2.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(237, 242, 232)), ".: Diagnosa & Prosedur Tindakan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         jPanel2.setName("jPanel2"); // NOI18N
         jPanel2.setOpaque(false);
         jPanel2.setPreferredSize(new java.awt.Dimension(350, 102));
@@ -2111,38 +2109,58 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT rp.no_rawat, DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_kun, rp.jam_reg, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),')') nm_pasien, "
-                    + "pl.nm_poli, pj.png_jawab, IF(dp.no_rawat IS NULL,'Belum Ada','Ada') diag_icd_10, IFNULL(pr1.diagnosa,'-') diag_resum_dr, IFNULL(pr2.diagnosa,'-') diag_resum_pr, rp.tgl_registrasi, rp.kd_pj, rp.kd_poli, "
-                    + "IFNULL(pr1.keluhan,'-') keluhan_dr, IFNULL(pr2.keluhan,'-') keluhan_pr, IFNULL(pr1.rincian_tindakan,'-') tindakan_dr, IFNULL(pr2.rincian_tindakan,'-') tindakan_pr "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
+            ps = koneksi.prepareStatement("SELECT rp.no_rawat, DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_kun, rp.jam_reg, rp.no_rkm_medis, "
+                    + "concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),')') nm_pasien, pl.nm_poli, pj.png_jawab, "
+                    + "IF(dp.no_rawat IS NULL,'Belum Ada','Ada') diag_icd_10, IFNULL(pr1.diagnosa,'-') diag_resum_dr, IFNULL(pr2.diagnosa,'-') diag_resum_pr, "
+                    + "rp.tgl_registrasi, rp.kd_pj, rp.kd_poli, IFNULL(pr1.keluhan,'-') keluhan_dr, IFNULL(pr2.keluhan,'-') keluhan_pr, "
+                    + "IFNULL(pr1.rincian_tindakan,'-') tindakan_dr, IFNULL(pr2.rincian_tindakan,'-') tindakan_pr FROM reg_periksa rp "
+                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                     + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj LEFT JOIN pemeriksaan_ralan pr1 ON pr1.no_rawat=rp.no_rawat "
                     + "LEFT JOIN pemeriksaan_ralan_petugas pr2 ON pr2.no_rawat=rp.no_rawat LEFT JOIN diagnosa_pasien dp ON dp.no_rawat=rp.no_rawat WHERE "
-                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and rp.no_rawat like ? or "
-                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or "
-                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and p.nm_pasien like ? or "
-                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and IF(dp.no_rawat IS NULL,'Belum Ada','Ada') like ? "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and rp.no_rawat like ? or "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and p.nm_pasien like ? or "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and IF(dp.no_rawat IS NULL,'Belum Ada','Ada') like ? or "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and pr1.diagnosa like ? or "
+                    + "rp.status_lanjut = 'Ralan' AND rp.kd_poli not in ('laa','lab','rad','-') and (dp.prioritas=1 OR IFNULL(dp.prioritas,'-')='-') AND "
+                    + "rp.tgl_registrasi BETWEEN ? AND ? and rp.kd_pj like ? and rp.kd_poli like ? and pr2.diagnosa like ? "
                     + "ORDER BY rp.tgl_registrasi DESC, rp.jam_reg DESC");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(3, "%" + kdpenjab + "%");
                 ps.setString(4, "%" + kdpoli + "%");
-                ps.setString(5, "%" + TCari.getText().trim() + "%");                
+                ps.setString(5, "%" + TCari.getText().trim() + "%");
                 ps.setString(6, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(7, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(8, "%" + kdpenjab + "%");
                 ps.setString(9, "%" + kdpoli + "%");
-                ps.setString(10, "%" + TCari.getText().trim() + "%");                
+                ps.setString(10, "%" + TCari.getText().trim() + "%");
                 ps.setString(11, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(12, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(13, "%" + kdpenjab + "%");
                 ps.setString(14, "%" + kdpoli + "%");
-                ps.setString(15, "%" + TCari.getText().trim() + "%");                
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
                 ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(18, "%" + kdpenjab + "%");
                 ps.setString(19, "%" + kdpoli + "%");
                 ps.setString(20, "%" + TCari.getText().trim() + "%");                
+                ps.setString(21, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(22, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(23, "%" + kdpenjab + "%");
+                ps.setString(24, "%" + kdpoli + "%");
+                ps.setString(25, "%" + TCari.getText().trim() + "%");                
+                ps.setString(26, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(27, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(28, "%" + kdpenjab + "%");
+                ps.setString(29, "%" + kdpoli + "%");
+                ps.setString(30, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
