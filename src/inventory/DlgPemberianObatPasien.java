@@ -1154,6 +1154,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        WindowObat.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -1717,6 +1718,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         status = sttsrawat;
         TNmPasien.setText(nmpasien);
         nmUnit.setText(unit);
+        TCari.setText(norw);
         
         if (akses.getadmin() == true) {
             nipPetugas = "-";

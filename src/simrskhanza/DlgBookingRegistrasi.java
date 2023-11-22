@@ -13,6 +13,7 @@ import bridging.BPJSDataSEP;
 import bridging.BPJSRujukanKeluar;
 import bridging.BPJSSuratKontrol;
 import bridging.DlgSKDPBPJS;
+import bridging.DlgVerifikasiKodeBoking;
 import bridging.ICareRiwayatPerawatan;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -121,7 +122,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
     private String URUTNOREG = "", status = "", no_rawat = "", umur = "", sttsumur = "", no_peserta = "", user = "", 
             tglkkl = "0000-00-00", URL = "", utc = "", pembi = "", kdpnjg = "", SEPkontrol = "", tglPulangInap = "",
             flag = "", asesmen = "", jkel = "", cekPembi = "", cekFlag = "", cekKDpen = "", cekAses = "", cekRujukan = "",
-            link = "";
+            link = "", cekKodePJ = "";
     private LocalDate date1, date2;
     private final JProgressBar progressBar = new JProgressBar();
 
@@ -1369,6 +1370,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         MnCetakKodeQR = new javax.swing.JMenuItem();
         MnTidakjadibatal = new javax.swing.JMenuItem();
         MnSEP = new javax.swing.JMenuItem();
+        MnVerifikasi = new javax.swing.JMenuItem();
         MnSttsCetakSEP = new javax.swing.JMenu();
         Mnsudah = new javax.swing.JMenuItem();
         Mnbelum = new javax.swing.JMenuItem();
@@ -1644,6 +1646,21 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         });
         Popup.add(MnSEP);
 
+        MnVerifikasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnVerifikasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnVerifikasi.setText("Verifikasi Kode Booking BPJS");
+        MnVerifikasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnVerifikasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnVerifikasi.setIconTextGap(5);
+        MnVerifikasi.setName("MnVerifikasi"); // NOI18N
+        MnVerifikasi.setPreferredSize(new java.awt.Dimension(200, 28));
+        MnVerifikasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnVerifikasiActionPerformed(evt);
+            }
+        });
+        Popup.add(MnVerifikasi);
+
         MnSttsCetakSEP.setBackground(new java.awt.Color(248, 253, 243));
         MnSttsCetakSEP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSttsCetakSEP.setText("Update Status Cetak SEP");
@@ -1721,7 +1738,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -2264,7 +2281,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2288,7 +2305,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2310,7 +2327,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2334,7 +2351,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2504,7 +2521,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2892,7 +2909,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3503,7 +3520,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-10-2023" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-10-2023" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -5091,6 +5108,29 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_txtURLKeyPressed
 
+    private void MnVerifikasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnVerifikasiActionPerformed
+        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking='" + kdboking.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Kode booking tidak ditemukan, silahkan klik salah satu datanya pada tabel...!!!!");
+            tbBoking.requestFocus();
+        } else {
+            cekKodePJ = "";
+            cekKodePJ = Sequel.cariIsi("select kd_pj from booking_registrasi where kd_booking='" + kdboking.getText() + "'");
+            if (cekKodePJ.equals("B01") || cekKodePJ.equals("A03")) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgBookingRegistrasi");
+                DlgVerifikasiKodeBoking form = new DlgVerifikasiKodeBoking(null, false);
+                form.emptTeksBokingBPJS();
+                form.setData(kdboking.getText());
+                form.setSize(460, 235);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Verifikasi hanya utk. kode booking pasien BPJS...!!!!");
+            }
+        }
+    }//GEN-LAST:event_MnVerifikasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -5168,6 +5208,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private javax.swing.JMenuItem MnSEP;
     private javax.swing.JMenu MnSttsCetakSEP;
     private javax.swing.JMenuItem MnTidakjadibatal;
+    private javax.swing.JMenuItem MnVerifikasi;
     private javax.swing.JMenuItem Mnbelum;
     private javax.swing.JMenuItem Mngagal;
     private javax.swing.JMenuItem Mnsudah;
