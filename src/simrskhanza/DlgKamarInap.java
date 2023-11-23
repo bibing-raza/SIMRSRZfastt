@@ -11485,7 +11485,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             if (cmbJnsTran.isEnabled() == false) {
                 if (ChkRMranap.isSelected() == true) {
                     RMranapGantiNoRawat();
-                } 
+                    
+                    WindowPindahkanTransaksi.dispose();
+                    JOptionPane.showMessageDialog(null, "Proses pemindahan semua data rekam medis Rawat Inap BERHASIL dilakukan ke no. rawat " + TNoRwTujuan.getText() + "...!!");
+                    tampil();
+                    emptTeks();
+                }
                 
 //                if (ChkRMralan.isSelected() == true) {
 //                
@@ -11493,6 +11498,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 
                 if (ChkRMigd.isSelected() == true) {
                     RMigdGantiNoRawat();
+                    
+                    WindowPindahkanTransaksi.dispose();
+                    JOptionPane.showMessageDialog(null, "Proses pemindahan semua data rekam medis IGD BERHASIL dilakukan ke no. rawat " + TNoRwTujuan.getText() + "...!!");
+                    tampil();
+                    emptTeks();
                 }
                 
 //                if (ChkRMranap.isSelected() == true && ChkRMralan.isSelected() == true && ChkRMigd.isSelected() == true) {
@@ -11506,6 +11516,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 if (ChkRMranap.isSelected() == true && ChkRMigd.isSelected() == true) {
                     RMigdGantiNoRawat();
                     RMranapGantiNoRawat();
+                    
+                    WindowPindahkanTransaksi.dispose();
+                    JOptionPane.showMessageDialog(null, "Proses pemindahan semua data rekam medis IGD & Rawat Inap BERHASIL dilakukan ke no. rawat " + TNoRwTujuan.getText() + "...!!");
+                    tampil();
+                    emptTeks();
                 }
                 
 //                if (ChkRMralan.isSelected() == true && ChkRMigd.isSelected() == true) {
@@ -17487,11 +17502,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Sequel.mengedit("surat_tindakan_kedokteran", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         Sequel.mengedit("permintaan_lab_raza", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         Sequel.mengedit("permintaan_radiologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-        
-        WindowPindahkanTransaksi.dispose();
-        JOptionPane.showMessageDialog(null, "Proses pemindahan semua data rekam medis IGD BERHASIL dilakukan ke no. rawat " + TNoRwTujuan.getText() + "...!!");
-        tampil();
-        emptTeks();
     }
     
     private void RMranapGantiNoRawat() {
@@ -17505,10 +17515,5 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Sequel.mengedit("data_persalinan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         Sequel.mengedit("permintaan_lab_raza", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         Sequel.mengedit("permintaan_radiologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-        
-        WindowPindahkanTransaksi.dispose();
-        JOptionPane.showMessageDialog(null, "Proses pemindahan semua data rekam medis Rawat Inap BERHASIL dilakukan ke no. rawat " + TNoRwTujuan.getText() + "...!!");
-        tampil();
-        emptTeks();
     }
 }
