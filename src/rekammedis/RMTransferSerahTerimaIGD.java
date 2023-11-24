@@ -3261,7 +3261,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             akses.setform("RMTransferSerahTerima");
             beriObat.emptTeks();
             beriObat.isCek();
-            beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), posisi, Tnm_kamar.getText());
+            if (kd_kamar.equals("")) {
+                beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), posisi,
+                        Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + TNoRw.getText() + "' order by waktu_simpan desc limit 1"));
+            } else {
+                beriObat.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), posisi, Tnm_kamar.getText());
+            }
+            
             beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             beriObat.setLocationRelativeTo(internalFrame1);
             beriObat.setAlwaysOnTop(false);
@@ -3636,7 +3642,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tgl_transfer.setDate(new Date());
         tgl_masuk.setDate(new Date());
         Tdiagnosis.setText("");
-        Tnm_kamar.setText("");
         tgl_pindah.setDate(new Date());
         Tnm_kamar_pindah.setText("");
         Talasan_ranap.setText("");
