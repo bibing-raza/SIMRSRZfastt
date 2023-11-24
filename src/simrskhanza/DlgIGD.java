@@ -2524,7 +2524,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel41.setBounds(10, 20, 120, 23);
 
         TglMati.setEditable(false);
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -2750,7 +2750,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -2879,7 +2879,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel45.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -3070,7 +3070,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel59.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -3407,7 +3407,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3421,7 +3421,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3486,13 +3486,13 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel4.setText("No. Rawat : ");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
-        jLabel4.setBounds(0, 42, 77, 23);
+        jLabel4.setBounds(170, 12, 77, 23);
 
         TDokter.setEditable(false);
         TDokter.setForeground(new java.awt.Color(0, 0, 0));
         TDokter.setName("TDokter"); // NOI18N
         FormInput.add(TDokter);
-        TDokter.setBounds(154, 102, 210, 23);
+        TDokter.setBounds(154, 72, 225, 23);
 
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setName("TNoRw"); // NOI18N
@@ -3502,19 +3502,19 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNoRw);
-        TNoRw.setBounds(81, 42, 190, 23);
+        TNoRw.setBounds(250, 12, 130, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Reg. : ");
         jLabel8.setName("jLabel8"); // NOI18N
         FormInput.add(jLabel8);
-        jLabel8.setBounds(0, 72, 77, 23);
+        jLabel8.setBounds(0, 42, 77, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("dr. IGD : ");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(0, 102, 77, 23);
+        jLabel13.setBounds(0, 72, 77, 23);
         jLabel13.getAccessibleContext().setAccessibleDescription("");
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
@@ -3527,7 +3527,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel21.setText("Almt Png. Jwb :");
         jLabel21.setName("jLabel21"); // NOI18N
         FormInput.add(jLabel21);
-        jLabel21.setBounds(396, 72, 100, 23);
+        jLabel21.setBounds(416, 72, 80, 23);
 
         TPngJwb.setForeground(new java.awt.Color(0, 0, 0));
         TPngJwb.setHighlighter(null);
@@ -3548,7 +3548,7 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNoID);
-        TNoID.setBounds(499, 12, 120, 23);
+        TNoID.setBounds(615, 12, 120, 23);
 
         TNoReg.setForeground(new java.awt.Color(0, 0, 0));
         TNoReg.setHighlighter(null);
@@ -3559,13 +3559,13 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(TNoReg);
-        TNoReg.setBounds(81, 12, 120, 23);
+        TNoReg.setBounds(81, 12, 60, 23);
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("No. ID Sesuai dg. :");
         jLabel7.setName("jLabel7"); // NOI18N
         FormInput.add(jLabel7);
-        jLabel7.setBounds(280, 12, 100, 23);
+        jLabel7.setBounds(396, 12, 100, 23);
 
         TAlmt.setForeground(new java.awt.Color(0, 0, 0));
         TAlmt.setHighlighter(null);
@@ -3589,14 +3589,14 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPasien);
-        BtnPasien.setBounds(852, 12, 28, 23);
+        BtnPasien.setBounds(968, 12, 28, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
-        TPasien.setBounds(623, 12, 224, 23);
+        TPasien.setBounds(739, 12, 224, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Hubungan :");
@@ -3619,7 +3619,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         kddokter.setForeground(new java.awt.Color(0, 0, 0));
         kddokter.setName("kddokter"); // NOI18N
         FormInput.add(kddokter);
-        kddokter.setBounds(81, 102, 70, 23);
+        kddokter.setBounds(81, 72, 70, 23);
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -3632,7 +3632,7 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDokter);
-        BtnDokter.setBounds(366, 102, 28, 23);
+        BtnDokter.setBounds(380, 72, 28, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Status :");
@@ -3651,7 +3651,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel18.setText("Jenis Bayar :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(396, 102, 100, 23);
+        jLabel18.setBounds(416, 102, 80, 23);
 
         kdpnj.setEditable(false);
         kdpnj.setForeground(new java.awt.Color(0, 0, 0));
@@ -3699,7 +3699,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel23.setText("Asal Rujukan :");
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(396, 132, 100, 23);
+        jLabel23.setBounds(416, 132, 80, 23);
 
         btnPenjab1.setForeground(new java.awt.Color(0, 0, 0));
         btnPenjab1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -3724,7 +3724,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         ChkTracker.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         ChkTracker.setName("ChkTracker"); // NOI18N
         FormInput.add(ChkTracker);
-        ChkTracker.setBounds(203, 12, 23, 23);
+        ChkTracker.setBounds(145, 12, 23, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Tindkn. Lanjut :");
@@ -3780,7 +3780,7 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkDtgSendiri);
-        ChkDtgSendiri.setBounds(887, 12, 310, 23);
+        ChkDtgSendiri.setBounds(1003, 12, 190, 23);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Trauma :");
@@ -3840,7 +3840,7 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(JnsnoID);
-        JnsnoID.setBounds(385, 12, 110, 23);
+        JnsnoID.setBounds(500, 12, 110, 23);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Suku/Bangsa : ");
@@ -3945,25 +3945,25 @@ public final class DlgIGD extends javax.swing.JDialog {
         tulisan_tanggal.setText("tulisan_tanggal");
         tulisan_tanggal.setName("tulisan_tanggal"); // NOI18N
         FormInput.add(tulisan_tanggal);
-        tulisan_tanggal.setBounds(81, 72, 300, 23);
+        tulisan_tanggal.setBounds(81, 42, 270, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("dr. R. Inap : ");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(0, 132, 77, 23);
+        jLabel14.setBounds(0, 102, 77, 23);
 
         kddrINAP.setEditable(false);
         kddrINAP.setForeground(new java.awt.Color(0, 0, 0));
         kddrINAP.setName("kddrINAP"); // NOI18N
         FormInput.add(kddrINAP);
-        kddrINAP.setBounds(81, 132, 70, 23);
+        kddrINAP.setBounds(81, 102, 70, 23);
 
         TDrINAP.setEditable(false);
         TDrINAP.setForeground(new java.awt.Color(0, 0, 0));
         TDrINAP.setName("TDrINAP"); // NOI18N
         FormInput.add(TDrINAP);
-        TDrINAP.setBounds(154, 132, 210, 23);
+        TDrINAP.setBounds(154, 102, 225, 23);
 
         BtnDokterINAP.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokterINAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -3976,25 +3976,25 @@ public final class DlgIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDokterINAP);
-        BtnDokterINAP.setBounds(366, 132, 28, 23);
+        BtnDokterINAP.setBounds(380, 102, 28, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Rencana : ");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(0, 162, 77, 23);
+        jLabel16.setBounds(0, 132, 77, 23);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Rg. Rawat   ");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(0, 177, 77, 23);
+        jLabel19.setBounds(0, 147, 77, 23);
 
         TRencanaRuang.setEditable(false);
         TRencanaRuang.setForeground(new java.awt.Color(0, 0, 0));
         TRencanaRuang.setName("TRencanaRuang"); // NOI18N
         FormInput.add(TRencanaRuang);
-        TRencanaRuang.setBounds(81, 162, 310, 23);
+        TRencanaRuang.setBounds(81, 132, 330, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 

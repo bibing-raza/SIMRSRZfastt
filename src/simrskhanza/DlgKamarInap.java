@@ -131,7 +131,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             kdAPS = "", diagnosa_ok = "", cekDataPersalinan = "", cekRMbayi = "", kamarCovid = "", cekHR = "", nmgedung = "", sepJKD = "", noLPJiun = "",
             pilihMenu = "", noRwNew = "", kdSttsPlg = "", desSttsPlg = "", tglJiun = "", utc = "", URL = "", requestJson, tglplgbpjs = "", tindakan = "",
             diagsekunder = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "", faktorresikoigd = "",
-            TotSkorRJ = "", kesimpulanResikoJatuh = "";
+            TotSkorRJ = "", kesimpulanResikoJatuh = "", tglPemberianObat = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
     private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
@@ -16141,15 +16141,20 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         param.put("tgllainalat", "-");
                     }
 
-                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ranap'") == 0) {
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ranap'") == 0
+                            || Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + rsLaprm.getString("no_rawat") + "' "
+                                    + "and status='Ranap' and nm_unit='" + Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k "
+                                            + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_msk") + "'") + "'") == 0) {
                         Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
                                 "SELECT date(now())", param);
                     } else {
+                        tglPemberianObat = "";
+                        tglPemberianObat = Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + rsLaprm.getString("no_rawat") + "' and status='Ranap'");
                         Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Inap ]::",
                                 "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
                                 + "and status='Ranap' and nm_unit='" + Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k "
                                         + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rsLaprm.getString("kd_kamar_msk") + "'") + "' "
-                                + "ORDER BY waktu_simpan desc", param);
+                                + "and tgl_pemberian='" + tglPemberianObat + "' ORDER BY waktu_simpan desc", param);
                     }
                 }
             } catch (Exception e) {

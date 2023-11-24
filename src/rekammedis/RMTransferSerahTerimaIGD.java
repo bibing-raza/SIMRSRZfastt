@@ -2548,24 +2548,31 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         } else if (kd_kamar.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Ruang/Kamar harus diisi dulu..!!");
         } else {
-            cekData();
-            if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 65, new String[]{
-                        TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
-                        Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
-                        Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
-                        Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
-                        cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
-                        endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
-                        Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
-                        Valid.SetTgl(tgl_drain.getSelectedItem() + ""), alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(),
-                        Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
-                        oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
-                    }) == true) {
+            if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' and kd_kamar_msk='" + kd_kamar + "'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data transfer & serah terima pasien dari ruang/kamar " + Tnm_kamar.getText() + " sudah tersimpan..!!");
                 TCari.setText(TNoRw.getText());
-                emptTeks();
                 tampil();
                 TabRawat.setSelectedIndex(1);
+            } else {
+                cekData();
+                if (Sequel.menyimpantf("transfer_serah_terima_pasien_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 65, new String[]{
+                            TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
+                            Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
+                            Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
+                            Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
+                            cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
+                            endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
+                            Valid.SetTgl(tgl_kateter.getSelectedItem() + ""), Valid.SetTgl(tgl_ngt.getSelectedItem() + ""), Valid.SetTgl(tgl_oksigen.getSelectedItem() + ""),
+                            Valid.SetTgl(tgl_drain.getSelectedItem() + ""), alat_lain, Valid.SetTgl(tgl_alat_lain.getSelectedItem() + ""), Talat_lain.getText(), Trekomendasi.getText(),
+                            Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
+                            oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
+                        }) == true) {
+                    TCari.setText(TNoRw.getText());
+                    emptTeks();
+                    tampil();
+                    TabRawat.setSelectedIndex(1);
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -3273,7 +3280,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             beriObat.setAlwaysOnTop(false);
             beriObat.setVisible(true);
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih & klik dulu datanya pada tabel..!!");
+            TCari.setText(TNoRw.getText());
+            tampil();
+            TabRawat.setSelectedIndex(1);
+            tbTransfer.requestFocus();
         }
     }//GEN-LAST:event_BtnBeriObatActionPerformed
 
@@ -4088,10 +4099,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             param.put("nmdokter", Tnm_dokter.getText());
             param.put("ygmenyerahkan", Tnm_petugas1.getText());
             param.put("ygmenerima", Tnm_petugas2.getText());
-            param.put("tgltransferserah", tgl_transfer.getSelectedItem().toString().substring(0, 2) + " " 
-                    + Sequel.bulanINDONESIA("select date_format(tgl_serah_terima_transfer,'%m') from transfer_serah_terima_pasien_igd where "
-                            + "no_rawat='" + TNoRw.getText() + "' and waktu_simpan='" + wktSimpan + "'") + " "
-                    + tgl_transfer.getSelectedItem().toString().substring(6, 10));
+            param.put("tgltransferserah", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_serah_terima_transfer from transfer_serah_terima_pasien_igd "
+                    + "where no_rawat='" + TNoRw.getText() + "' and waktu_simpan='" + wktSimpan + "'")));
             
             if (ChkLab.isSelected() == true) {
                 param.put("lab", "V");
@@ -4229,13 +4238,24 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 param.put("tgllainalat", "-");
             }
 
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0) {
+            if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'") == 0
+                    || Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "' "
+                            + "and nm_unit='" + Tnm_kamar.getText() + "'") == 0) {
                 Valid.MyReport("rptTransferPasienIGDnonResep.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
                         "SELECT date(now())", param);
             } else {
-                Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
-                        "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
-                        + "and status='" + statusOK + "' ORDER BY waktu_simpan desc", param);
+                if (statusOK.equals("Ralan")) {
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
+                            + "and status='" + statusOK + "' ORDER BY waktu_simpan desc", param);
+                } else {
+                    tglPemberianObat = "";
+                    tglPemberianObat = Sequel.cariIsi("SELECT MAX(tgl_pemberian) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and status='" + statusOK + "'");
+                    Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien ]::",
+                            "SELECT * FROM pemberian_obat WHERE no_rawat ='" + TNoRw.getText() + "' and nm_unit='" + Tnm_kamar.getText() + "' "
+                            + "and status='" + statusOK + "' and tgl_pemberian='" + tglPemberianObat + "' "
+                            + "ORDER BY waktu_simpan desc", param);
+                }
             }
 
             emptTeks();

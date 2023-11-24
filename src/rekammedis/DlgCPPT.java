@@ -5670,7 +5670,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ranap", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                             + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
                 }
-                beriObat.setSize(914, internalFrame1.getHeight() - 40);
+                beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 beriObat.setLocationRelativeTo(internalFrame1);
                 beriObat.setAlwaysOnTop(false);
                 beriObat.setVisible(true);
@@ -5683,7 +5683,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     beriObat.emptTeks();
                     beriObat.isCek();
                     beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "IGD (Ralan)", "IGD");
-                    beriObat.setSize(914, internalFrame1.getHeight() - 40);
+                    beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     beriObat.setLocationRelativeTo(internalFrame1);
                     beriObat.setAlwaysOnTop(false);
                     beriObat.setVisible(true);
@@ -5696,7 +5696,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     beriObat.isCek();
                     beriObat.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), "ralan",
                             Sequel.cariIsi("select p.nm_poli from reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli where r.no_rawat='" + TNoRw.getText() + "'"));
-                    beriObat.setSize(914, internalFrame1.getHeight() - 40);
+                    beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     beriObat.setLocationRelativeTo(internalFrame1);
                     beriObat.setAlwaysOnTop(false);
                     beriObat.setVisible(true);
@@ -5711,7 +5711,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
                                     + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
-                    beriObat.setSize(914, internalFrame1.getHeight() - 40);
+                    beriObat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     beriObat.setLocationRelativeTo(internalFrame1);
                     beriObat.setAlwaysOnTop(false);
                     beriObat.setVisible(true);

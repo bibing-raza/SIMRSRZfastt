@@ -2019,6 +2019,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tgl_beri.setDate(new Date());
         Tjlh.setText("");
         cmbObat.setSelectedIndex(0);
+        cmbJnsObat.setSelectedIndex(0);
         nmObat.requestFocus();
     }
 
