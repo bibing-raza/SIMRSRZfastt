@@ -5120,7 +5120,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 akses.setform("DlgBookingRegistrasi");
                 DlgVerifikasiKodeBoking form = new DlgVerifikasiKodeBoking(null, false);
                 form.emptTeksBokingBPJS();
-                form.setData(kdboking.getText());
+                form.setData(kdboking.getText(), "ya");
                 form.setSize(460, 235);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

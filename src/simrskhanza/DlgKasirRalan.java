@@ -2164,7 +2164,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnInputDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnInputDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnInputDataTransferSerahTerimaIGD.setName("MnInputDataTransferSerahTerimaIGD"); // NOI18N
-        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnInputDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
         MnInputDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnInputDataTransferSerahTerimaIGDActionPerformed(evt);
@@ -2181,7 +2181,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTransferSerahTerimaIGD.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnLihatDataTransferSerahTerimaIGD.setIconTextGap(5);
         MnLihatDataTransferSerahTerimaIGD.setName("MnLihatDataTransferSerahTerimaIGD"); // NOI18N
-        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnLihatDataTransferSerahTerimaIGD.setPreferredSize(new java.awt.Dimension(98, 26));
         MnLihatDataTransferSerahTerimaIGD.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnLihatDataTransferSerahTerimaIGDActionPerformed(evt);

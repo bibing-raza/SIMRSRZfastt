@@ -22,6 +22,7 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
+import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -60,7 +61,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
             usernya = "", nmpasienSEP = "", TglLahir = "", JenisPeserta = "", JK = "", NoKartu = "", NoTelp = "", tglkll = "", Ket = "",
             NoSEPSuplesi = "", KdProv = "", NmProv = "", KdKab = "", NmKab = "", KdKec = "", NmKec = "", noSurat = "", Kddpjp = "",
             NmDPJP = "", nmrujukan = "", kode_rujukanya = "", kdppkrujukSEP = "", URUTNOREGbpjs = "", kdPengajuan = "", kdAproval = "",
-            utc = "", URL = "", requestJson, respons = "", LokasiLaka = "";
+            utc = "", URL = "", requestJson, respons = "", LokasiLaka = "", cekSipo = "", norawat = "", statusSEP = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -68,6 +69,12 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     public DlgVerifikasiKodeBoking(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+        } catch (Exception e) {
+            System.out.println("SEP XML : "+e);
+        }
     }
 
     /** This method is called from within the constructor to
@@ -106,6 +113,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         nmdokterbpjs = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         BtnSimpan = new widget.Button();
+        BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
 
         tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2023" }));
@@ -281,6 +289,20 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         });
         jPanel1.add(BtnSimpan);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus Registrasi");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(150, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        jPanel1.add(BtnHapus);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -308,41 +330,22 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        cekKodeBokingBPJS();
-        emptTeksBokingBPJS();
-
-        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'") > 0) {
-            cekStatusCetak = Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking='" + kdbokingbpjs.getText() + "'");
-
-            if (tglCekbpjs.equals(Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""))) {
-                cekPasienBokingBPJS();
-//            nomorAutoBPJS();
-                umurPasienBPJS();
-                cekDaftar = Sequel.cariInteger("SELECT count(1) cek FROM booking_registrasi WHERE kd_booking='" + kdbokingbpjs.getText() + "' and no_rawat<>'-'");
-
-                if (kdpenjabbpjs.equals("B01") || (kdpenjabbpjs.equals("A03"))) {
-                    if (cekDaftar > 0 && cekStatusCetak.equals("SUDAH")) {
-                        JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah terdaftar pada hari ini & sudah mencetak SEP...!!!");
-                        BtnKeluarActionPerformed(null);
-                    } else if (cekDaftar == 0 && cekStatusCetak.equals("BELUM")) {
-                        cekKelengkapanSEP();
-                        if (simpanRegistrasiBPJS() == true) {
-                            cekFingerPrin();
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Registrasi Gagal, Silakan Coba Lagi...!!!");
-                        }
-                    } else if (cekDaftar == 0 && cekStatusCetak.equals("GAGAL")) {
-                        JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah membatalkan proses bookingnya, silakan mendaftar lagi keloket pendaftaran..!!!");
-                        BtnKeluarActionPerformed(null);
-                    }
-
-                } else {
-                    JOptionPane.showMessageDialog(null, "Menu/fitur ini hanya untuk melayani kode booking pasien BPJS saja...!!");
-                    BtnKeluarActionPerformed(null);
+        statusSEP = "";
+        if (cekSipo.equals("ya")) {
+            statusSEP = Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking='" + kdbokingbpjs.getText() + "'");
+            if (statusSEP.equals("SUDAH")) {
+                JOptionPane.showMessageDialog(null, "SEP BPJS sudah berhasil diproses...!!!!");
+            } else if (statusSEP.equals("GAGAL")) {
+                JOptionPane.showMessageDialog(null, "Lakukan proses hapus registrasi dulu, kemudian klik tombol simpan utk. SEP gagal proses...!!");
+                BtnHapus.requestFocus();
+            } else if (statusSEP.equals("BELUM")) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data verifikasi mau disimpan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    simpanVerifikasi();
                 }
-            } else {
-                JOptionPane.showMessageDialog(null, "Tanggal periksa tidak sama dengan tanggal hari ini...!!");
             }
+        } else {
+            simpanVerifikasi();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -378,6 +381,23 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         cekKodeBokingBPJS();
     }//GEN-LAST:event_BtnCekKodeActionPerformed
 
+    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
+        statusSEP = "";
+        if (cekSipo.equals("ya")) {
+            statusSEP = Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking='" + kdbokingbpjs.getText() + "'");
+            if (statusSEP.equals("SUDAH")) {
+                JOptionPane.showMessageDialog(null, "SEP BPJS sudah berhasil diproses...!!!!");
+            } else if (statusSEP.equals("BELUM")) {
+                JOptionPane.showMessageDialog(null, "Langsung klik tombol simpan, tombol hapus tdk. berfungsi utk. SEP yg. belum diproses...!!!!");
+            } else if (statusSEP.equals("GAGAL")) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    hapusReg();
+                }
+            }
+        }
+    }//GEN-LAST:event_BtnHapusActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -397,6 +417,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ComboBox AsalRujukan;
     private widget.Button BtnCekKode;
+    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.ComboBox COB;
@@ -439,6 +460,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         TNoRegBPJS.setText("");
         norwBokingBPJS.setText("");
         TanggalSEP.setDate(new Date());
+        BtnHapus.setEnabled(false);
     }
     
     private void cekKodeBokingBPJS() {
@@ -1049,8 +1071,75 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String kode) {
+    public void setData(String kode, String sipo) {
         kdbokingbpjs.setText(kode);
+        cekSipo = sipo;
         cekKodeBokingBPJS();
+        
+        if (sipo.equals("ya")) {
+            BtnHapus.setEnabled(true);
+        } else {
+            BtnHapus.setEnabled(false);
+        }
+    }
+    
+    private void simpanVerifikasi() {
+        cekKodeBokingBPJS();
+        emptTeksBokingBPJS();
+
+        if (Sequel.cariInteger("select count(-1) from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'") > 0) {
+            cekStatusCetak = Sequel.cariIsi("select status_cetak_sep from kelengkapan_booking_sep_bpjs where kd_booking='" + kdbokingbpjs.getText() + "'");
+
+            if (tglCekbpjs.equals(Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""))) {
+                cekPasienBokingBPJS();
+                umurPasienBPJS();
+                cekDaftar = Sequel.cariInteger("SELECT count(1) cek FROM booking_registrasi WHERE kd_booking='" + kdbokingbpjs.getText() + "' and no_rawat<>'-'");
+
+                if (kdpenjabbpjs.equals("B01") || (kdpenjabbpjs.equals("A03"))) {
+                    if (cekDaftar > 0 && cekStatusCetak.equals("SUDAH")) {
+                        JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah terdaftar pada hari ini & sudah mencetak SEP...!!!");
+                        BtnKeluarActionPerformed(null);
+                    } else if (cekDaftar == 0 && cekStatusCetak.equals("BELUM")) {
+                        cekKelengkapanSEP();
+                        if (simpanRegistrasiBPJS() == true) {
+                            cekFingerPrin();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Registrasi Gagal, Silakan Coba Lagi...!!!");
+                        }
+                    } else if (cekDaftar == 0 && cekStatusCetak.equals("GAGAL")) {
+                        JOptionPane.showMessageDialog(null, "Pasien dg. kode booking " + kdbokingbpjs.getText() + " telah membatalkan proses bookingnya, silakan mendaftar lagi keloket pendaftaran..!!!");
+                        BtnKeluarActionPerformed(null);
+                    }
+
+                } else {
+                    JOptionPane.showMessageDialog(null, "Menu/fitur ini hanya untuk melayani kode booking pasien BPJS saja...!!");
+                    BtnKeluarActionPerformed(null);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Tanggal periksa tidak sama dengan tanggal hari ini...!!");
+            }
+        }
+    }
+    
+    private void hapusReg() {
+        norawat = "";
+        norawat = Sequel.cariIsi("select no_rawat from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'");
+
+        Sequel.meghapus("rujuk_masuk", "no_rawat", norawat);
+        Sequel.meghapus("rujuk", "no_rawat", norawat);
+        Sequel.meghapus("pasien_mati", "no_rkm_medis", Sequel.cariIsi("select no_rkm_medis from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'"));
+        Sequel.meghapus("reg_rujukan_intern", "no_rawat_ke", norawat);
+        Sequel.meghapus("reg_periksa", "no_rawat", norawat);
+        Sequel.menyimpan("history_user", "Now(),'" + norawat + "','" + akses.getkode() + "','Registrasi SIPO','Hapus'");
+        
+        Sequel.mengedit("booking_registrasi", "kd_booking='" + kdbokingbpjs.getText() + "'",
+                "status_booking='Menunggu', no_rawat='-'");
+        Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + kdbokingbpjs.getText() + "'",
+                "status_cetak_sep='BELUM', no_rawat='-'");
+
+        if (akses.getadmin() == true) {
+            Sequel.meghapus("nota_inap", "no_rawat", norawat);
+            Sequel.meghapus("nota_jalan", "no_rawat", norawat);
+        }
     }
 }
