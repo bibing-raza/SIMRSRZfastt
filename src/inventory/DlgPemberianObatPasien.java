@@ -46,11 +46,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1;
-    private ResultSet rs, rs1;
+    private PreparedStatement ps, ps1, ps2, ps3;
+    private ResultSet rs, rs1, rs2, rs3;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private int x = 0, i = 0;
-    private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", nipPetugas = "";
+    private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", nipPetugas = "", waktuSimpan = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -59,9 +59,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"Cek", "No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian/Rute", "Jadwal Pemberian",
+        Object[] row = {"Cek", "No. Rawat", "No. RM", "Nama Pasien", "Nama Obat", "Dosis", "Cara Pemberian/Rute", "Jam",
             "Jlh. Sisa Obat", "Status", "wkt_simpan", "Tgl. Pemberian", "kodeobat", "tgl_pemberian", "Rg. Rawat/Inst.", "Jlh. Obat",
-            "Pemberian Obat", "Nama Petugas", "nip_petugas"
+            "Pemberian Obat", "Nama Petugas", "nip_petugas", "wkt_simpan"
         };
         tabMode=new DefaultTableModel(null,row){
               @Override
@@ -79,7 +79,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -92,7 +92,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < 20; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -109,11 +109,12 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(170);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(60);
             } else if (i == 8) {
                 column.setPreferredWidth(120);
             } else if (i == 9) {
-                column.setPreferredWidth(70);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 10) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -134,6 +135,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } else if (i == 17) {
                 column.setPreferredWidth(200);
             } else if (i == 18) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -284,8 +288,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
-        jLabel7 = new widget.Label();
-        LCount = new widget.Label();
         panelGlass7 = new widget.panelisi();
         jLabel3 = new widget.Label();
         jLabel4 = new widget.Label();
@@ -797,7 +799,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -811,7 +813,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -883,19 +885,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass9.add(BtnAll);
-
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Record :");
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(65, 23));
-        panelGlass9.add(jLabel7);
-
-        LCount.setForeground(new java.awt.Color(0, 0, 0));
-        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount.setText("0");
-        LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
-        panelGlass9.add(LCount);
 
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -1541,9 +1530,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             WindowCetak.setLocationRelativeTo(internalFrame1);
             WindowCetak.setAlwaysOnTop(false);
             WindowCetak.setVisible(true);
-            
-            cmbJnsRawat.setSelectedIndex(0);
             cmbJnsObat1.setSelectedItem(cmbJnsObat.getSelectedItem());
+            
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                cmbJnsRawat.setSelectedIndex(0);
+            } else if (status.equals("ranap")) {
+                cmbJnsRawat.setSelectedIndex(1);
+            }
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -1731,7 +1724,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnSimpan;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
-    private widget.Label LCount;
     private javax.swing.JMenuItem MnContengSemua;
     private javax.swing.JMenuItem MnCopy;
     private javax.swing.JMenuItem MnHapusConteng;
@@ -1782,7 +1774,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Label jLabel52;
     private widget.Label jLabel53;
     private widget.Label jLabel6;
-    private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
@@ -1810,82 +1801,40 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             if (cmbHlm.getSelectedIndex() == 6) {
-                if(cmbJnsObat.getSelectedIndex() == 0) {
-                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                            + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.tgl_pemberian,'%d-%m-%Y') tglObat, "
-                            + "po.kode_brng, po.tgl_pemberian, po.nm_unit, po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas from pemberian_obat po "
-                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg on pg.nik=po.nip_petugas where "
+                if (cmbJnsObat.getSelectedIndex() == 0) {
+                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien from pemberian_obat po "
+                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                             + "po.tgl_pemberian between ? and ? and p.no_rkm_medis like ? or "
                             + "po.tgl_pemberian between ? and ? and p.nm_pasien like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.nama_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.dosis like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.cara_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jadwal_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jlh_sisa_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.status like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.nm_unit like ? or "
-                            + "po.tgl_pemberian between ? and ? and pg.nama like ? or "
                             + "po.tgl_pemberian between ? and ? and po.no_rawat like ? "
-                            + "order by po.waktu_simpan desc");
+                            + "group by po.no_rawat order by po.status, po.tgl_pemberian, po.jadwal_pemberian");
                 } else {
-                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                            + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.tgl_pemberian,'%d-%m-%Y') tglObat, "
-                            + "po.kode_brng, po.tgl_pemberian, po.nm_unit, po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas from pemberian_obat po "
-                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg on pg.nik=po.nip_petugas where "
+                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien from pemberian_obat po "
+                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and p.no_rkm_medis like ? or "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and p.nm_pasien like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.nama_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.dosis like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.cara_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.jadwal_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.jlh_sisa_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.status like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.nm_unit like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and pg.nama like ? or "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.no_rawat like ? "
-                            + "order by po.waktu_simpan desc");
+                            + "group by po.no_rawat order by po.status, po.tgl_pemberian, po.jadwal_pemberian");
                 }
-                
+
             } else {
                 if (cmbJnsObat.getSelectedIndex() == 0) {
-                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                            + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.tgl_pemberian,'%d-%m-%Y') tglObat, "
-                            + "po.kode_brng, po.tgl_pemberian, po.nm_unit, po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas from pemberian_obat po "
-                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg on pg.nik=po.nip_petugas where "
+                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien from pemberian_obat po "
+                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                             + "po.tgl_pemberian between ? and ? and p.no_rkm_medis like ? or "
                             + "po.tgl_pemberian between ? and ? and p.nm_pasien like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.nama_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.dosis like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.cara_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jadwal_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jlh_sisa_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.status like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.nm_unit like ? or "
-                            + "po.tgl_pemberian between ? and ? and pg.nama like ? or "
                             + "po.tgl_pemberian between ? and ? and po.no_rawat like ? "
-                            + "order by po.waktu_simpan desc limit " + cmbHlm.getSelectedItem().toString() + "");
+                            + "group by po.no_rawat order by po.status, po.tgl_pemberian, po.jadwal_pemberian "
+                            + "limit " + cmbHlm.getSelectedItem().toString() + "");
                 } else {
-                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien, po.nama_obat, po.dosis, po.cara_pemberian, "
-                            + "po.jadwal_pemberian, po.jlh_sisa_obat, po.status, po.waktu_simpan, date_format(po.tgl_pemberian,'%d-%m-%Y') tglObat, "
-                            + "po.kode_brng, po.tgl_pemberian, po.nm_unit, po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas from pemberian_obat po "
-                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                            + "inner join pegawai pg on pg.nik=po.nip_petugas where "
+                    ps = koneksi.prepareStatement("SELECT po.no_rawat, p.no_rkm_medis, p.nm_pasien from pemberian_obat po "
+                            + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and p.no_rkm_medis like ? or "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and p.nm_pasien like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.nama_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.dosis like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.cara_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.jadwal_pemberian like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.jlh_sisa_obat like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.status like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.nm_unit like ? or "
-                            + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and pg.nama like ? or "
                             + "po.tgl_pemberian between ? and ? and po.jenis_obat like ? and po.no_rawat like ? "
-                            + "order by po.waktu_simpan desc limit " + cmbHlm.getSelectedItem().toString() + "");
-                }                
+                            + "group by po.no_rawat order by po.status, po.tgl_pemberian, po.jadwal_pemberian "
+                            + "limit " + cmbHlm.getSelectedItem().toString() + "");
+                }
             }
             try {
                 if (cmbJnsObat.getSelectedIndex() == 0) {
@@ -1898,30 +1847,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                     ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                     ps.setString(9, "%" + TCari.getText().trim() + "%");
-                    ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(12, "%" + TCari.getText().trim() + "%");
-                    ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(15, "%" + TCari.getText().trim() + "%");
-                    ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(18, "%" + TCari.getText().trim() + "%");
-                    ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(21, "%" + TCari.getText().trim() + "%");
-                    ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(24, "%" + TCari.getText().trim() + "%");
-                    ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(27, "%" + TCari.getText().trim() + "%");
-                    ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(30, "%" + TCari.getText().trim() + "%");
-                    ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(33, "%" + TCari.getText().trim() + "%");
                 } else {
                     ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                     ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1935,62 +1860,86 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     ps.setString(10, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                     ps.setString(11, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
                     ps.setString(12, "%" + TCari.getText().trim() + "%");
-                    ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(15, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(16, "%" + TCari.getText().trim() + "%");
-                    ps.setString(17, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(18, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(19, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(20, "%" + TCari.getText().trim() + "%");
-                    ps.setString(21, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(22, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(23, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(24, "%" + TCari.getText().trim() + "%");
-                    ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(27, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(28, "%" + TCari.getText().trim() + "%");
-                    ps.setString(29, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(30, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(31, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(32, "%" + TCari.getText().trim() + "%");
-                    ps.setString(33, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(34, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(35, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(36, "%" + TCari.getText().trim() + "%");
-                    ps.setString(37, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(38, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(39, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(40, "%" + TCari.getText().trim() + "%");
-                    ps.setString(41, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                    ps.setString(42, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                    ps.setString(43, "%" + cmbJnsObat.getSelectedItem().toString() + "%");
-                    ps.setString(44, "%" + TCari.getText().trim() + "%");
-                }                
+                }
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
                         false,
-                        rs.getString("no_rawat"), 
-                        rs.getString("no_rkm_medis"), 
-                        rs.getString("nm_pasien"),
-                        rs.getString("nama_obat"),
-                        rs.getString("dosis"),
-                        rs.getString("cara_pemberian"),
-                        rs.getString("jadwal_pemberian"),
-                        rs.getString("jlh_sisa_obat"),
-                        rs.getString("status"),
-                        rs.getString("waktu_simpan"),
-                        rs.getString("tglObat"),
-                        rs.getString("kode_brng"),                        
-                        rs.getString("tgl_pemberian"),
-                        rs.getString("nm_unit"),
-                        rs.getString("jlh_obat"),
-                        rs.getString("jenis_obat"),                        
-                        rs.getString("nmpetugas"),
-                        rs.getString("nip_petugas")
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"), ":",
+                        "", "", "", "", "", "", "", "", "", "", "", "", "", ""
                     });
+
+                    if (cmbHlm.getSelectedIndex() == 6) {
+                        if (cmbJnsObat.getSelectedIndex() == 0) {
+                            ps2 = koneksi.prepareStatement("SELECT po.nama_obat, po.dosis, po.cara_pemberian, time_format(po.jadwal_pemberian,'%H:%i') jam, po.jlh_sisa_obat, "
+                                    + "po.STATUS, date_format( po.tgl_pemberian, '%d-%m-%Y' ) tglObat, po.kode_brng, po.tgl_pemberian, po.nm_unit, "
+                                    + "po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas, po.waktu_simpan "
+                                    + "FROM pemberian_obat po INNER JOIN pegawai pg ON pg.nik = po.nip_petugas where "
+                                    + "po.tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and po.no_rawat='" + rs.getString("no_rawat") + "' order by po.status, po.tgl_pemberian, po.jadwal_pemberian");
+                        } else {
+                            ps2 = koneksi.prepareStatement("SELECT po.nama_obat, po.dosis, po.cara_pemberian, time_format(po.jadwal_pemberian,'%H:%i') jam, po.jlh_sisa_obat, "
+                                    + "po.STATUS, date_format( po.tgl_pemberian, '%d-%m-%Y' ) tglObat, po.kode_brng, po.tgl_pemberian, po.nm_unit, "
+                                    + "po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas, po.waktu_simpan "
+                                    + "FROM pemberian_obat po INNER JOIN pegawai pg ON pg.nik = po.nip_petugas where "
+                                    + "po.tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and po.jenis_obat='" + cmbJnsObat.getSelectedItem().toString() + "' and po.no_rawat='" + rs.getString("no_rawat") + "' "
+                                    + "order by po.status, po.tgl_pemberian, po.jadwal_pemberian");
+                        }
+
+                    } else {
+                        if (cmbJnsObat.getSelectedIndex() == 0) {
+                            ps2 = koneksi.prepareStatement("SELECT po.nama_obat, po.dosis, po.cara_pemberian, time_format(po.jadwal_pemberian,'%H:%i') jam, po.jlh_sisa_obat, "
+                                    + "po.STATUS, date_format( po.tgl_pemberian, '%d-%m-%Y' ) tglObat, po.kode_brng, po.tgl_pemberian, po.nm_unit, "
+                                    + "po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas, po.waktu_simpan "
+                                    + "FROM pemberian_obat po INNER JOIN pegawai pg ON pg.nik = po.nip_petugas where "
+                                    + "po.tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and po.no_rawat='" + rs.getString("no_rawat") + "' order by po.status, po.tgl_pemberian, po.jadwal_pemberian "
+                                    + "limit " + cmbHlm.getSelectedItem().toString() + "");
+                        } else {
+                            ps2 = koneksi.prepareStatement("SELECT po.nama_obat, po.dosis, po.cara_pemberian, time_format(po.jadwal_pemberian,'%H:%i') jam, po.jlh_sisa_obat, "
+                                    + "po.STATUS, date_format( po.tgl_pemberian, '%d-%m-%Y' ) tglObat, po.kode_brng, po.tgl_pemberian, po.nm_unit, "
+                                    + "po.jlh_obat, po.jenis_obat, pg.nama nmpetugas, po.nip_petugas, po.waktu_simpan "
+                                    + "FROM pemberian_obat po INNER JOIN pegawai pg ON pg.nik = po.nip_petugas where "
+                                    + "po.tgl_pemberian between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                                    + "and po.jenis_obat='" + cmbJnsObat.getSelectedItem().toString() + "' and po.no_rawat='" + rs.getString("no_rawat") + "' "
+                                    + "order by po.status, po.tgl_pemberian, po.jadwal_pemberian limit " + cmbHlm.getSelectedItem().toString() + "");
+                        }
+                    }
+                    try {
+                        rs2 = ps2.executeQuery();
+                        while (rs2.next()) {
+                            tabMode.addRow(new Object[]{
+                                false, "", "", "",
+                                rs2.getString("nama_obat"),
+                                rs2.getString("dosis"),
+                                rs2.getString("cara_pemberian"),
+                                rs2.getString("jam"),
+                                rs2.getString("jlh_sisa_obat"),
+                                rs2.getString("status"),
+                                rs2.getString("waktu_simpan"),
+                                rs2.getString("tglObat"),
+                                rs2.getString("kode_brng"),
+                                rs2.getString("tgl_pemberian"),
+                                rs2.getString("nm_unit"),
+                                rs2.getString("jlh_obat"),
+                                rs2.getString("jenis_obat"),
+                                rs2.getString("nmpetugas"),
+                                rs2.getString("nip_petugas")
+                            });
+                        }
+                    } catch (Exception e) {
+                        System.out.println(e);
+                    } finally {
+                        if (rs2 != null) {
+                            rs2.close();
+                        }
+                        if (ps2 != null) {
+                            ps2.close();
+                        }
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);
@@ -2005,7 +1954,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-        LCount.setText("" + tabMode.getRowCount());
     }
 
     public void emptTeks() {
@@ -2028,25 +1976,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private void getData() {
         kdobat = "";
         nipPetugas = "";
+        waktuSimpan = "";
         
         if(tbObat.getSelectedRow()!= -1){
-            TNoRW.setText(tbObat.getValueAt(tbObat.getSelectedRow(),1).toString());
-            TNoRM.setText(tbObat.getValueAt(tbObat.getSelectedRow(),2).toString());
-            TNmPasien.setText(tbObat.getValueAt(tbObat.getSelectedRow(),3).toString());
-            nmObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),4).toString());
-            dosis.setText(tbObat.getValueAt(tbObat.getSelectedRow(),5).toString());
-            caraPemberian.setText(tbObat.getValueAt(tbObat.getSelectedRow(),6).toString());
-            cmbJam.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(), 7).toString().substring(6, 8));
-            jlhSisaObat.setText(tbObat.getValueAt(tbObat.getSelectedRow(),8).toString());
-            kdobat = tbObat.getValueAt(tbObat.getSelectedRow(),12).toString();
-            Valid.SetTgl(tgl_beri, tbObat.getValueAt(tbObat.getSelectedRow(),13).toString());
-            nmUnit.setText(tbObat.getValueAt(tbObat.getSelectedRow(),14).toString());
-            Tjlh.setText(tbObat.getValueAt(tbObat.getSelectedRow(),15).toString());
-            cmbObat.setSelectedItem(tbObat.getValueAt(tbObat.getSelectedRow(),16).toString());
-            Tpetugas.setText(tbObat.getValueAt(tbObat.getSelectedRow(),17).toString());
-            nipPetugas = tbObat.getValueAt(tbObat.getSelectedRow(),18).toString();
+            waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(),10).toString();
+            tampilData();
         }
     }
     
@@ -2104,6 +2038,49 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } else {
             nipPetugas = akses.getkode();
             Tpetugas.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPetugas + "'"));
+        }
+    }
+    
+    private void tampilData() {
+        try {
+            ps3 = koneksi.prepareStatement("select *, p.no_rkm_medis, p.nm_pasien, pg.nama from pemberian_obat po "
+                    + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "INNER JOIN pegawai pg ON pg.nik = po.nip_petugas "
+                    + "where po.waktu_simpan='" + waktuSimpan + "'");
+            try {
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    TNoRW.setText(rs3.getString("no_rawat"));
+                    TNoRM.setText(rs3.getString("no_rkm_medis"));
+                    TNmPasien.setText(rs3.getString("nm_pasien"));
+                    nmObat.setText(rs3.getString("nama_obat"));
+                    kdobat = rs3.getString("kode_brng");
+                    Tjlh.setText(rs3.getString("jlh_obat"));
+                    dosis.setText(rs3.getString("dosis"));
+                    caraPemberian.setText(rs3.getString("cara_pemberian"));
+                    Valid.SetTgl(tgl_beri, rs3.getString("tgl_pemberian"));
+                    cmbJam.setSelectedItem(rs3.getString("jadwal_pemberian").substring(0, 2));
+                    cmbMnt.setSelectedItem(rs3.getString("jadwal_pemberian").substring(3, 5));
+                    cmbDtk.setSelectedItem(rs3.getString("jadwal_pemberian").substring(6, 8));
+                    jlhSisaObat.setText(rs3.getString("jlh_sisa_obat"));
+                    nmUnit.setText(rs3.getString("nm_unit"));
+                    cmbObat.setSelectedItem(rs3.getString("jenis_obat"));
+                    nipPetugas = rs3.getString("nip_petugas");
+                    Tpetugas.setText(rs3.getString("nama"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }
