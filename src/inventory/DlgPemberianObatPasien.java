@@ -317,6 +317,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         Tpetugas = new widget.TextBox();
         BtnPetugas = new widget.Button();
+        BtnSimpanAtas = new widget.Button();
+        BtnBaruAtas = new widget.Button();
 
         jPopupMenu.setName("jPopupMenu"); // NOI18N
 
@@ -1126,6 +1128,34 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass7.add(BtnPetugas);
         BtnPetugas.setBounds(660, 158, 28, 23);
 
+        BtnSimpanAtas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpanAtas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
+        BtnSimpanAtas.setMnemonic('X');
+        BtnSimpanAtas.setToolTipText("Alt+X");
+        BtnSimpanAtas.setGlassColor(new java.awt.Color(51, 102, 255));
+        BtnSimpanAtas.setName("BtnSimpanAtas"); // NOI18N
+        BtnSimpanAtas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpanAtasActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(BtnSimpanAtas);
+        BtnSimpanAtas.setBounds(524, 100, 28, 23);
+
+        BtnBaruAtas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnBaruAtas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Cancel-2-16x16.png"))); // NOI18N
+        BtnBaruAtas.setMnemonic('Z');
+        BtnBaruAtas.setToolTipText("Alt+Z");
+        BtnBaruAtas.setGlassColor(new java.awt.Color(255, 102, 102));
+        BtnBaruAtas.setName("BtnBaruAtas"); // NOI18N
+        BtnBaruAtas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnBaruAtasActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(BtnBaruAtas);
+        BtnBaruAtas.setBounds(560, 100, 28, 23);
+
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -1691,6 +1721,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());        
     }//GEN-LAST:event_BtnCetakLapActionPerformed
 
+    private void BtnSimpanAtasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanAtasActionPerformed
+        BtnSimpanActionPerformed(null);
+    }//GEN-LAST:event_BtnSimpanAtasActionPerformed
+
+    private void BtnBaruAtasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBaruAtasActionPerformed
+        emptTeks();
+    }//GEN-LAST:event_BtnBaruAtasActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1709,6 +1747,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
+    private widget.Button BtnBaruAtas;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
@@ -1722,6 +1761,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnPetugas;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSimpanAtas;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private javax.swing.JMenuItem MnContengSemua;
