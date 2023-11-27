@@ -1785,14 +1785,17 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TKlgPasien.setText(TKlgPasien.getText());
             }
             
-            Sequel.menyimpan("ringkasan_pulang_ranap", "'" + TNoRW.getText() + "','" + TAlasanDirawat.getText() + "','" + TRingkasanRiwayat.getText() + "',"
-                    + "'" + TPemeriksaanFisik.getText() + "','" + TPemeriksaanPenunjang.getText() + "','" + TTerapiPengobatan.getText() + "',"
-                    + "'" + TDiagUtama.getText() + "','" + TDiagSekunder.getText() + "','" + TKeadaanumum.getText() + "','" + TKesadaran.getText() + "',"
-                    + "'" + TTensi.getText() + "','" + TSuhu.getText() + "','" + TNadi.getText() + "','" + TFrekuensiNafas.getText() + "','" + TCatatan.getText() + "',"
-                    + "'" + TTerapiPulang.getText() + "','" + cmbLanjutan.getSelectedItem().toString() + "','" + kontrolPoli + "',"
-                    + "'" + TNmDokter.getText() + "','" + Tgcs.getText() + "','" + TTindakan.getText() + "','" + TDokterLuar.getText() + "',"
-                    + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "'", "Ringkasan Pulang Pasien Rawat Inap");
-            
+            try {
+                Sequel.menyimpan("ringkasan_pulang_ranap", "'" + TNoRW.getText() + "','" + TAlasanDirawat.getText() + "','" + TRingkasanRiwayat.getText() + "',"
+                        + "'" + TPemeriksaanFisik.getText() + "','" + Valid.mysql_real_escape_string(TPemeriksaanPenunjang.getText()) + "','" + TTerapiPengobatan.getText() + "',"
+                        + "'" + TDiagUtama.getText() + "','" + TDiagSekunder.getText() + "','" + TKeadaanumum.getText() + "','" + TKesadaran.getText() + "',"
+                        + "'" + TTensi.getText() + "','" + TSuhu.getText() + "','" + TNadi.getText() + "','" + TFrekuensiNafas.getText() + "','" + TCatatan.getText() + "',"
+                        + "'" + TTerapiPulang.getText() + "','" + cmbLanjutan.getSelectedItem().toString() + "','" + kontrolPoli + "',"
+                        + "'" + TNmDokter.getText() + "','" + Tgcs.getText() + "','" + TTindakan.getText() + "','" + TDokterLuar.getText() + "',"
+                        + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "'", "Ringkasan Pulang Pasien Rawat Inap");
+            } catch (Exception e) {
+                System.out.println("Simpan Ringkasan Pulang Pasien : " + e);
+            }
             emptTeks();
             tampil();
             TabRingkasan.setSelectedIndex(1);
@@ -1841,23 +1844,27 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TKlgPasien.setText(TKlgPasien.getText());
             }
 
-            if (akses.getkode().equals(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString())) {
-                Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRW.getText() + "'", "alasan_masuk_dirawat='" + TAlasanDirawat.getText() + "', "
-                        + "ringkasan_riwayat_penyakit='" + TRingkasanRiwayat.getText() + "', pemeriksaan_fisik='" + TPemeriksaanFisik.getText() + "', "
-                        + "pemeriksaan_penunjang='" + TPemeriksaanPenunjang.getText() + "',terapi_pengobatan='" + TTerapiPengobatan.getText() + "',"
-                        + "diagnosa_utama='" + TDiagUtama.getText() + "',diagnosa_sekunder='" + TDiagSekunder.getText() + "',keadaan_umum='" + TKeadaanumum.getText() + "',"
-                        + "kesadaran='" + TKesadaran.getText() + "',tekanan_darah='" + TTensi.getText() + "',suhu='" + TSuhu.getText() + "',nadi='" + TNadi.getText() + "',"
-                        + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
-                        + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
-                        + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
-                        + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
-                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
+            try {
+                if (akses.getkode().equals(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString())) {
+                    Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRW.getText() + "'", "alasan_masuk_dirawat='" + TAlasanDirawat.getText() + "', "
+                            + "ringkasan_riwayat_penyakit='" + TRingkasanRiwayat.getText() + "', pemeriksaan_fisik='" + TPemeriksaanFisik.getText() + "', "
+                            + "pemeriksaan_penunjang='" + Valid.mysql_real_escape_string(TPemeriksaanPenunjang.getText()) + "',terapi_pengobatan='" + TTerapiPengobatan.getText() + "',"
+                            + "diagnosa_utama='" + TDiagUtama.getText() + "',diagnosa_sekunder='" + TDiagSekunder.getText() + "',keadaan_umum='" + TKeadaanumum.getText() + "',"
+                            + "kesadaran='" + TKesadaran.getText() + "',tekanan_darah='" + TTensi.getText() + "',suhu='" + TSuhu.getText() + "',nadi='" + TNadi.getText() + "',"
+                            + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
+                            + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
+                            + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
+                            + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
+                            + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
 
-                tampil();
-                emptTeks();
-                TabRingkasan.setSelectedIndex(1);
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, data hanya bisa diperbaiki oleh " + Sequel.cariIsi("select nama from petugas where nip='" + tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString() + "'"));
+                    tampil();
+                    emptTeks();
+                    TabRingkasan.setSelectedIndex(1);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Maaf, data hanya bisa diperbaiki oleh " + Sequel.cariIsi("select nama from petugas where nip='" + tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString() + "'"));
+                }
+            } catch (Exception e) {
+                System.out.println("Ganti Ringkasan Pulang Pasien : " + e);
             }
         }
 }//GEN-LAST:event_BtnGantiActionPerformed

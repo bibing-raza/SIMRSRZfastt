@@ -1174,7 +1174,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + Tjlh.getText() + "','" + cmbObat.getSelectedItem().toString() + "','" + nipPetugas + "'", "Pemberian Obat");
             
             tampil();
-            emptTeks();
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                emptTeks();
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 

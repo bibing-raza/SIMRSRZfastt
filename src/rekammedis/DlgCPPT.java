@@ -3880,21 +3880,25 @@ public class DlgCPPT extends javax.swing.JDialog {
                 System.out.println("Jeda 0,5 detik, untuk simppan ulang");
             }
 
-            Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
-                    + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
-                    + "'-','" + hasil_pemeriksaan + "','" + instruksi_nakes + "',"
-                    + "'Belum','" + kddpjp.getText() + "','" + statusOK + "',"
-                    + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
-                    + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + cmbPPA.getSelectedItem().toString() + "','" + nipppa + "','" + cmbBagian.getSelectedItem().toString() + "',"
-                    + "'" + cmbSertim.getSelectedItem().toString() + "','" + nipkonsulen + "','" + nipSerah.getText() + "',"
-                    + "'" + nipTerima.getText() + "','" + siftppa + "',"
-                    + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
-                    + "'tidak','-','" + soap + "','" + TSubjektif.getText() + "','" + TObjektif.getText() + "','" + TAsesmen.getText() + "',"
-                    + "'" + TPlaning.getText() + "','" + cekKonfir + "','" + tgllapor + "',"
-                    + "'" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
-                    + "'" + tglverif + "','" + cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem() + "',"
-                    + "'" + nipPetugasKonfir.getText() + "','" + nipKonfirDpjp.getText() + "'", "CPPT Pasien");
+            try {
+                Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
+                        + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
+                        + "'-','" + Valid.mysql_real_escape_string(hasil_pemeriksaan) + "','" + Valid.mysql_real_escape_string(instruksi_nakes) + "',"
+                        + "'Belum','" + kddpjp.getText() + "','" + statusOK + "',"
+                        + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
+                        + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
+                        + "'" + cmbPPA.getSelectedItem().toString() + "','" + nipppa + "','" + cmbBagian.getSelectedItem().toString() + "',"
+                        + "'" + cmbSertim.getSelectedItem().toString() + "','" + nipkonsulen + "','" + nipSerah.getText() + "',"
+                        + "'" + nipTerima.getText() + "','" + siftppa + "',"
+                        + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
+                        + "'tidak','-','" + soap + "','" + TSubjektif.getText() + "','" + TObjektif.getText() + "','" + TAsesmen.getText() + "',"
+                        + "'" + TPlaning.getText() + "','" + cekKonfir + "','" + tgllapor + "',"
+                        + "'" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
+                        + "'" + tglverif + "','" + cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem() + "',"
+                        + "'" + nipPetugasKonfir.getText() + "','" + nipKonfirDpjp.getText() + "'", "CPPT Pasien");
+            } catch (Exception e) {
+                System.out.println("Simpan CPPT : " + e);
+            }
 
             TCari.setText(TNoRw.getText());
             cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
@@ -3984,29 +3988,33 @@ public class DlgCPPT extends javax.swing.JDialog {
                 tglverif = "00:00:00";
             }
 
-            if (tbCPPT.getSelectedRow() > -1) {
-                Sequel.mengedit("cppt", "waktu_simpan=?", "tgl_cppt=?, hasil_pemeriksaan=?, "
-                        + "instruksi_nakes=?, nip_dpjp=?, cek_jam=?, jam_cppt=?, jenis_ppa=?, nip_ppa=?, jenis_bagian=?, "
-                        + "serah_terima_cppt=?, nip_konsulen=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?, jam_serah_terima=?, "
-                        + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?, konfirmasi_terapi=?, tgl_lapor=?, "
-                        + "jam_lapor=?, tgl_verifikasi=?, jam_verifikasi=?, nip_petugas_konfir=?, nip_dpjp_konfir=?", 28, new String[]{
-                            Valid.SetTgl(tglCppt.getSelectedItem() + ""), hasil_pemeriksaan, instruksi_nakes,
-                            kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                            cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
-                            cmbSertim.getSelectedItem().toString(), nipkonsulen, nipSerah.getText(), nipTerima.getText(),
-                            cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                            soap, TSubjektif.getText(), TObjektif.getText(), TAsesmen.getText(), TPlaning.getText(), cekKonfir, tgllapor,
-                            cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), tglverif,
-                            cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(), nipPetugasKonfir.getText(),
-                            nipKonfirDpjp.getText(),
-                            tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
-                        });
+            try {
+                if (tbCPPT.getSelectedRow() > -1) {
+                    Sequel.mengedit("cppt", "waktu_simpan=?", "tgl_cppt=?, hasil_pemeriksaan=?, "
+                            + "instruksi_nakes=?, nip_dpjp=?, cek_jam=?, jam_cppt=?, jenis_ppa=?, nip_ppa=?, jenis_bagian=?, "
+                            + "serah_terima_cppt=?, nip_konsulen=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?, jam_serah_terima=?, "
+                            + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?, konfirmasi_terapi=?, tgl_lapor=?, "
+                            + "jam_lapor=?, tgl_verifikasi=?, jam_verifikasi=?, nip_petugas_konfir=?, nip_dpjp_konfir=?", 28, new String[]{
+                                Valid.SetTgl(tglCppt.getSelectedItem() + ""), Valid.mysql_real_escape_string(hasil_pemeriksaan), Valid.mysql_real_escape_string(instruksi_nakes),
+                                kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
+                                cmbSertim.getSelectedItem().toString(), nipkonsulen, nipSerah.getText(), nipTerima.getText(),
+                                cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                                soap, TSubjektif.getText(), TObjektif.getText(), TAsesmen.getText(), TPlaning.getText(), cekKonfir, tgllapor,
+                                cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), tglverif,
+                                cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(), nipPetugasKonfir.getText(),
+                                nipKonfirDpjp.getText(),
+                                tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
+                            });
 
-                TCari.setText(TNoRw.getText());
-                cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
-                tampil();
-                emptTeks();
-                TabCPPT.setSelectedIndex(1);
+                    TCari.setText(TNoRw.getText());
+                    cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
+                    tampil();
+                    emptTeks();
+                    TabCPPT.setSelectedIndex(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Ganti CPPT : " + e);
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
