@@ -2074,6 +2074,31 @@ public final class validasi {
         return cek_string;
     }
     
+    public static String mysql_real_escape_stringERM(String stringnya) throws Exception {
+        if (stringnya == null) {
+            return null;
+        }
+
+        if (stringnya.replaceAll("[a-zA-Z0-9_!@#$%^&*()-=+~.;:,\\Q[\\E\\Q]\\E<>{}\\/? ]", "").length() < 1) {
+            return stringnya;
+        }
+
+        cek_string = stringnya;
+        cek_string = cek_string.replaceAll("\\\\", "\\\\\\\\");
+//        cek_string = cek_string.replaceAll("\\n", "\\\\n");
+        cek_string = cek_string.replaceAll("\\r", "\\\\r");
+        cek_string = cek_string.replaceAll("\\t", "\\\\t");
+        cek_string = cek_string.replaceAll("\\00", "\\\\0");
+        cek_string = cek_string.replaceAll("'", "\\'");
+        cek_string = cek_string.replaceAll("\\\"", "\\\\\"");
+
+        if (cek_string.replaceAll("[a-zA-Z0-9_!@#$%^&*()-=+~.;:,\\Q[\\E\\Q]\\E<>{}\\/?\\\\\"' ]", "").length() < 1) {
+            return cek_string;
+        }
+
+        return cek_string;
+    }
+    
     public boolean MyReportToExcelBoolean(String qry1, String nm_filenya) {
         try {
             ps1 = connect.prepareStatement(qry1);

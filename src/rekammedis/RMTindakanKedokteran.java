@@ -970,7 +970,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
         jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel48.setText("Tahun            Jenis Kelamin :");
+        jLabel48.setText("Tahun    Jns. Kel. Png. Jwb :");
         jLabel48.setName("jLabel48"); // NOI18N
         FormInput.add(jLabel48);
         jLabel48.setBounds(505, 48, 140, 23);
@@ -1149,7 +1149,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2023" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1533,7 +1533,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2023" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1601,7 +1601,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2023" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1901,7 +1901,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1916,7 +1916,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

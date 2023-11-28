@@ -3883,7 +3883,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             try {
                 Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
                         + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
-                        + "'-','" + Valid.mysql_real_escape_string(hasil_pemeriksaan) + "','" + Valid.mysql_real_escape_string(instruksi_nakes) + "',"
+                        + "'-','" + Valid.mysql_real_escape_stringERM(hasil_pemeriksaan) + "','" + Valid.mysql_real_escape_stringERM(instruksi_nakes) + "',"
                         + "'Belum','" + kddpjp.getText() + "','" + statusOK + "',"
                         + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
                         + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
@@ -3891,8 +3891,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "'" + cmbSertim.getSelectedItem().toString() + "','" + nipkonsulen + "','" + nipSerah.getText() + "',"
                         + "'" + nipTerima.getText() + "','" + siftppa + "',"
                         + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
-                        + "'tidak','-','" + soap + "','" + TSubjektif.getText() + "','" + TObjektif.getText() + "','" + TAsesmen.getText() + "',"
-                        + "'" + TPlaning.getText() + "','" + cekKonfir + "','" + tgllapor + "',"
+                        + "'tidak','-','" + soap + "','" + Valid.mysql_real_escape_stringERM(TSubjektif.getText()) + "',"
+                        + "'" + Valid.mysql_real_escape_stringERM(TObjektif.getText()) + "','" + Valid.mysql_real_escape_stringERM(TAsesmen.getText()) + "',"
+                        + "'" + Valid.mysql_real_escape_stringERM(TPlaning.getText()) + "','" + cekKonfir + "','" + tgllapor + "',"
                         + "'" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
                         + "'" + tglverif + "','" + cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem() + "',"
                         + "'" + nipPetugasKonfir.getText() + "','" + nipKonfirDpjp.getText() + "'", "CPPT Pasien");
@@ -3995,12 +3996,13 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + "serah_terima_cppt=?, nip_konsulen=?, nip_petugas_serah=?, nip_petugas_terima=?, cppt_shift=?, jam_serah_terima=?, "
                             + "pilihan_soap=?, subjektif=?, objektif=?, asesmen=?, planing=?, konfirmasi_terapi=?, tgl_lapor=?, "
                             + "jam_lapor=?, tgl_verifikasi=?, jam_verifikasi=?, nip_petugas_konfir=?, nip_dpjp_konfir=?", 28, new String[]{
-                                Valid.SetTgl(tglCppt.getSelectedItem() + ""), Valid.mysql_real_escape_string(hasil_pemeriksaan), Valid.mysql_real_escape_string(instruksi_nakes),
+                                Valid.SetTgl(tglCppt.getSelectedItem() + ""), Valid.mysql_real_escape_stringERM(hasil_pemeriksaan), Valid.mysql_real_escape_stringERM(instruksi_nakes),
                                 kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                                 cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
                                 cmbSertim.getSelectedItem().toString(), nipkonsulen, nipSerah.getText(), nipTerima.getText(),
                                 cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                                soap, TSubjektif.getText(), TObjektif.getText(), TAsesmen.getText(), TPlaning.getText(), cekKonfir, tgllapor,
+                                soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
+                                Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText()), cekKonfir, tgllapor,
                                 cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), tglverif,
                                 cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(), nipPetugasKonfir.getText(),
                                 nipKonfirDpjp.getText(),
