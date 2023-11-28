@@ -3873,13 +3873,6 @@ public class DlgCPPT extends javax.swing.JDialog {
                 tglverif = "00:00:00";
             }
             
-            //jeda 0,5 detik
-            try {
-                Thread.sleep(500);
-            } catch (Exception e) {
-                System.out.println("Jeda 0,5 detik, untuk simppan ulang");
-            }
-
             try {
                 Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
                         + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
