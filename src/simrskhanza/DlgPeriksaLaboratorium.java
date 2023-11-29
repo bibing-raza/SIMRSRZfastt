@@ -1312,7 +1312,6 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
                     if (Sequel.cariInteger("select count(-1) from permintaan_lab_raza where no_kirim='" + noorder + "' and status_periksa='BELUM'") > 0) {
                         JOptionPane.showMessageDialog(null, "Silakan verifikasi dulu semua item permintaan pemeriksaan laboratoriumnya..!!");
                     } else {
-                        simpan();
                         Sequel.mengedit("petugas", "nip='" + KodePerujuk.getText() + "'", "no_telp='" + TnoTlpnDokter.getText() + "'");
                         Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + TnoTlpnPasien.getText() + "'");
                         
@@ -1323,9 +1322,9 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
                         if (!kdUnit.equals(kdFaskes.getText())) {
                             Sequel.mengedit("master_nama_rujukan", "kd_rujukan='" + kdFaskes.getText() + "'", "no_tlp='" + TnoTlpnFaskes.getText() + "'");
                         }
+                        simpan();
                     }
                 } else {
-                    simpan();
                     Sequel.mengedit("petugas", "nip='" + KodePerujuk.getText() + "'", "no_telp='" + TnoTlpnDokter.getText() + "'");
                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "no_tlp='" + TnoTlpnPasien.getText() + "'");
 
@@ -1336,6 +1335,7 @@ public final class DlgPeriksaLaboratorium extends javax.swing.JDialog {
                     if (!kdUnit.equals(kdFaskes.getText())) {
                         Sequel.mengedit("master_nama_rujukan", "kd_rujukan='" + kdFaskes.getText() + "'", "no_tlp='" + TnoTlpnFaskes.getText() + "'");
                     }
+                    simpan();
                 }
             }
         }
