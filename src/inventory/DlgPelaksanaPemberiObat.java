@@ -38,12 +38,12 @@ import kepegawaian.DlgCariPetugas;
  * @author dosen
  */
 public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabMode, tabMode1;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private int x = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipPetugas1 = "", nipPetugas2 = "", nipPetugas3 = "", nipPetugas4 = "", nipPetugas5 = "",
@@ -133,7 +133,52 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }
         }
-        tbPelaksana.setDefaultRenderer(Object.class, new WarnaTable());       
+        tbPelaksana.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode1 = new DefaultTableModel(null, new Object[]{
+            "Nama Obat", "Jns. Obat", "Dosis", "Cara Pemberian/Rute", "Tgl. Beri",
+            "Jam 1", "Jam 2", "Jam 3", "Jam 4", "Jam 5", "Jam 6", "Jam 7", "Jam 8"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbObat.setModel(tabMode1);
+        tbObat.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 13; i++) {
+            TableColumn column = tbObat.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(250);
+            } else if (i == 1) {
+                column.setPreferredWidth(60);
+            } else if (i == 2) {
+                column.setPreferredWidth(60);
+            } else if (i == 3) {
+                column.setPreferredWidth(130);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(50);
+            } else if (i == 6) {
+                column.setPreferredWidth(50);
+            } else if (i == 7) {
+                column.setPreferredWidth(50);
+            } else if (i == 8) {
+                column.setPreferredWidth(50);
+            } else if (i == 9) {
+                column.setPreferredWidth(50);
+            } else if (i == 10) {
+                column.setPreferredWidth(50);
+            } else if (i == 11) {
+                column.setPreferredWidth(50);
+            } else if (i == 12) {
+                column.setPreferredWidth(50);
+            }
+        }
+        tbObat.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
                 
@@ -266,6 +311,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        panelGlass10 = new widget.panelisi();
         panelGlass7 = new widget.panelisi();
         jLabel5 = new widget.Label();
         TNoRW = new widget.TextBox();
@@ -315,6 +361,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         nmUnit = new widget.TextBox();
         jLabel12 = new widget.Label();
         tgl_beri = new widget.Tanggal();
+        BtnObat = new widget.Button();
+        Scroll1 = new widget.ScrollPane();
+        tbObat = new widget.Table();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -561,6 +610,10 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+
+        panelGlass10.setName("panelGlass10"); // NOI18N
+        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass10.setLayout(new java.awt.GridLayout(1, 2));
 
         panelGlass7.setName("panelGlass7"); // NOI18N
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 300));
@@ -1046,7 +1099,34 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         panelGlass7.add(tgl_beri);
         tgl_beri.setBounds(530, 38, 100, 23);
 
-        internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+        BtnObat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnObat.setMnemonic('L');
+        BtnObat.setText("Lihat Obat");
+        BtnObat.setToolTipText("Tampilkan Data Obat Pada Tabel Disebelah Ini");
+        BtnObat.setGlassColor(new java.awt.Color(0, 204, 255));
+        BtnObat.setName("BtnObat"); // NOI18N
+        BtnObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnObatActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(BtnObat);
+        BtnObat.setBounds(635, 38, 110, 23);
+
+        panelGlass10.add(panelGlass7);
+
+        Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Daftar Item Obat Terjadwal Sesuai Tgl. Pemberian ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        tbObat.setToolTipText("");
+        tbObat.setName("tbObat"); // NOI18N
+        Scroll1.setViewportView(tbObat);
+
+        panelGlass10.add(Scroll1);
+
+        internalFrame1.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -1064,8 +1144,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                     + "'" + nipPetugas1 + "', '" + nipPetugas2 + "', '" + nipPetugas3 + "', '" + nipPetugas4 + "', "
                     + "'" + nipPetugas5 + "', '" + nipPetugas6 + "', '" + nipPetugas7 + "', '" + nipPetugas8 + "'", "Petugas Pelaksana Pemberian Obat");
             
-            tampil();
+            Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
             emptTeks();
+            tampil();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1130,8 +1211,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                         wktSimpan
                     });
 
-            tampil();
+            Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
             emptTeks();
+            tampil();
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -1473,6 +1555,12 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSaya8ActionPerformed
 
+    private void BtnObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObatActionPerformed
+        tampilObat();
+        nmUnit.setText(Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + TNoRW.getText() + "' and "
+                + "tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' order by waktu_simpan desc limit 1"));
+    }//GEN-LAST:event_BtnObatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1504,6 +1592,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private widget.Button BtnHapus7;
     private widget.Button BtnHapus8;
     private widget.Button BtnKeluar;
+    private widget.Button BtnObat;
     private widget.Button BtnPetugas1;
     private widget.Button BtnPetugas2;
     private widget.Button BtnPetugas3;
@@ -1517,6 +1606,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
     private widget.TextBox TCari;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
@@ -1555,9 +1645,11 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox nmUnit;
+    private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
+    private widget.Table tbObat;
     private widget.Table tbPelaksana;
     private widget.Tanggal tgl_beri;
     // End of variables declaration//GEN-END:variables
@@ -1788,12 +1880,62 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw, String norm, String nmpasien, Date tglPemberian) {
+    public void setData(String norw, String norm, String nmpasien, Date tglPemberian, String sttsrwt) {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmpasien);        
         tgl_beri.setDate(tglPemberian);
         DTPCari1.setDate(tglPemberian);
-        nmUnit.setText(Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + norw + "' and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'"));
+        nmUnit.setText(Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + norw + "' and "
+                + "tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and status like '%" + sttsrwt + "%' "
+                + "order by waktu_simpan desc limit 1"));
+        tampilObat();
+    }
+    
+    private void tampilObat() {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT nama_obat, jenis_obat, dosis, cara_pemberian, date_format(tgl_pemberian,'%d-%m-%Y') tgl_beri, "
+                    + "if(cek_jam1='ya',time_format(jadwal_pemberian,'%H:%i'),'') jam1, "
+                    + "if(cek_jam2='ya',time_format(jadwal_pemberian2,'%H:%i'),'') jam2, "
+                    + "if(cek_jam3='ya',time_format(jadwal_pemberian3,'%H:%i'),'') jam3, "
+                    + "if(cek_jam4='ya',time_format(jadwal_pemberian4,'%H:%i'),'') jam4, "
+                    + "if(cek_jam5='ya',time_format(jadwal_pemberian5,'%H:%i'),'') jam5, "
+                    + "if(cek_jam6='ya',time_format(jadwal_pemberian6,'%H:%i'),'') jam6, "
+                    + "if(cek_jam7='ya',time_format(jadwal_pemberian7,'%H:%i'),'') jam7, "
+                    + "if(cek_jam8='ya',time_format(jadwal_pemberian8,'%H:%i'),'') jam8 FROM pemberian_obat where "
+                    + "tgl_pemberian = '" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "' order by waktu_simpan");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode1.addRow(new Object[]{
+                        rs1.getString("nama_obat"),
+                        rs1.getString("jenis_obat"),
+                        rs1.getString("dosis"),
+                        rs1.getString("cara_pemberian"),
+                        rs1.getString("tgl_beri"),
+                        rs1.getString("jam1"),
+                        rs1.getString("jam2"),
+                        rs1.getString("jam3"),
+                        rs1.getString("jam4"),
+                        rs1.getString("jam5"),
+                        rs1.getString("jam6"),
+                        rs1.getString("jam7"),
+                        rs1.getString("jam8")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

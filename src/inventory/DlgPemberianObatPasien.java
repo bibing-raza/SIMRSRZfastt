@@ -954,13 +954,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel3.setText("Nama Obat :");
         jLabel3.setName("jLabel3"); // NOI18N
         panelGlass7.add(jLabel3);
-        jLabel3.setBounds(0, 38, 130, 23);
+        jLabel3.setBounds(0, 66, 130, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Dosis :");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass7.add(jLabel4);
-        jLabel4.setBounds(0, 66, 130, 23);
+        jLabel4.setBounds(0, 122, 130, 23);
 
         nmObat.setForeground(new java.awt.Color(0, 0, 0));
         nmObat.setName("nmObat"); // NOI18N
@@ -970,7 +970,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(nmObat);
-        nmObat.setBounds(134, 38, 362, 23);
+        nmObat.setBounds(134, 66, 460, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Pasien :");
@@ -1006,13 +1006,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnObat);
-        BtnObat.setBounds(498, 38, 28, 23);
+        BtnObat.setBounds(602, 66, 28, 23);
 
         TNmPasien.setEditable(false);
         TNmPasien.setForeground(new java.awt.Color(0, 0, 0));
         TNmPasien.setName("TNmPasien"); // NOI18N
         panelGlass7.add(TNmPasien);
-        TNmPasien.setBounds(333, 10, 350, 23);
+        TNmPasien.setBounds(333, 10, 297, 23);
 
         dosis.setForeground(new java.awt.Color(0, 0, 0));
         dosis.setName("dosis"); // NOI18N
@@ -1022,13 +1022,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(dosis);
-        dosis.setBounds(134, 66, 100, 23);
+        dosis.setBounds(134, 122, 100, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cara Pemberian/Rute :");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass7.add(jLabel8);
-        jLabel8.setBounds(235, 66, 140, 23);
+        jLabel8.setBounds(0, 94, 130, 23);
 
         caraPemberian.setForeground(new java.awt.Color(0, 0, 0));
         caraPemberian.setName("caraPemberian"); // NOI18N
@@ -1038,7 +1038,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(caraPemberian);
-        caraPemberian.setBounds(380, 66, 300, 23);
+        caraPemberian.setBounds(134, 94, 315, 23);
 
         cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1077,7 +1077,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel10.setText("Jumlah (Sisa Obat) :");
         jLabel10.setName("jLabel10"); // NOI18N
         panelGlass7.add(jLabel10);
-        jLabel10.setBounds(0, 94, 130, 23);
+        jLabel10.setBounds(235, 122, 110, 23);
 
         jlhSisaObat.setForeground(new java.awt.Color(0, 0, 0));
         jlhSisaObat.setName("jlhSisaObat"); // NOI18N
@@ -1087,7 +1087,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(jlhSisaObat);
-        jlhSisaObat.setBounds(134, 94, 100, 23);
+        jlhSisaObat.setBounds(350, 122, 100, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Tgl. Pemberian :");
@@ -1105,36 +1105,36 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel13.setText("Rg. Rawat/Poli/Inst :");
         jLabel13.setName("jLabel13"); // NOI18N
         panelGlass7.add(jLabel13);
-        jLabel13.setBounds(0, 122, 130, 23);
+        jLabel13.setBounds(0, 38, 130, 23);
 
         nmUnit.setEditable(false);
         nmUnit.setForeground(new java.awt.Color(0, 0, 0));
         nmUnit.setName("nmUnit"); // NOI18N
         panelGlass7.add(nmUnit);
-        nmUnit.setBounds(134, 122, 320, 23);
+        nmUnit.setBounds(134, 38, 496, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Jumlah : ");
         jLabel14.setName("jLabel14"); // NOI18N
         panelGlass7.add(jLabel14);
-        jLabel14.setBounds(530, 38, 60, 23);
+        jLabel14.setBounds(450, 94, 100, 23);
 
         Tjlh.setForeground(new java.awt.Color(0, 0, 0));
         Tjlh.setName("Tjlh"); // NOI18N
         panelGlass7.add(Tjlh);
-        Tjlh.setBounds(593, 38, 90, 23);
+        Tjlh.setBounds(554, 94, 76, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Pemberian Obat :");
+        jLabel15.setText("Pemberian Obat : ");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass7.add(jLabel15);
-        jLabel15.setBounds(235, 94, 140, 23);
+        jLabel15.setBounds(450, 122, 100, 23);
 
         cmbObat.setForeground(new java.awt.Color(0, 0, 0));
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI" }));
         cmbObat.setName("cmbObat"); // NOI18N
         panelGlass7.add(cmbObat);
-        cmbObat.setBounds(380, 94, 76, 23);
+        cmbObat.setBounds(554, 122, 76, 23);
 
         chkJam1.setBackground(new java.awt.Color(242, 242, 242));
         chkJam1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1500,6 +1500,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         BtnPetugas.setMnemonic('P');
         BtnPetugas.setText("Petugas Yang Melaksanakan");
         BtnPetugas.setToolTipText("Alt+P");
+        BtnPetugas.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnPetugas.setName("BtnPetugas"); // NOI18N
         BtnPetugas.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -1513,7 +1514,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas);
-        BtnPetugas.setBounds(240, 150, 210, 23);
+        BtnPetugas.setBounds(240, 150, 220, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -2308,7 +2309,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             DlgPelaksanaPemberiObat petugas = new DlgPelaksanaPemberiObat(null, false);
             petugas.emptTeks();
             petugas.isCek();
-            petugas.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), tgl_beri.getDate());
+            petugas.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), tgl_beri.getDate(), "");
             petugas.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             petugas.setLocationRelativeTo(internalFrame1);
             petugas.setVisible(true);
