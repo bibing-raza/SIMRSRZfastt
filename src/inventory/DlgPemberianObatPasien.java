@@ -971,7 +971,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -985,7 +985,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1063,7 +1063,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
-        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 243));
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 385));
         panelGlass7.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1165,7 +1165,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam1);
-        cmbJam1.setBounds(780, 10, 47, 23);
+        cmbJam1.setBounds(730, 150, 47, 23);
 
         cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1176,7 +1176,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt1);
-        cmbMnt1.setBounds(835, 10, 47, 23);
+        cmbMnt1.setBounds(785, 150, 47, 23);
 
         cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1187,7 +1187,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk1);
-        cmbDtk1.setBounds(890, 10, 47, 23);
+        cmbDtk1.setBounds(840, 150, 47, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Jumlah (Sisa Obat) :");
@@ -1209,13 +1209,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel12.setText("Tgl. Pemberian :");
         jLabel12.setName("jLabel12"); // NOI18N
         panelGlass7.add(jLabel12);
-        jLabel12.setBounds(456, 94, 120, 23);
+        jLabel12.setBounds(635, 122, 90, 23);
 
         tgl_beri.setEditable(false);
         tgl_beri.setDisplayFormat("dd-MM-yyyy");
         tgl_beri.setName("tgl_beri"); // NOI18N
         panelGlass7.add(tgl_beri);
-        tgl_beri.setBounds(580, 94, 100, 23);
+        tgl_beri.setBounds(730, 122, 100, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Rg. Rawat/Poli/Inst :");
@@ -1253,16 +1253,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbObat.setBounds(380, 94, 76, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Petugas Pelaksana :");
+        jLabel16.setText("Petugas (Jam 1) :");
         jLabel16.setName("jLabel16"); // NOI18N
         panelGlass7.add(jLabel16);
-        jLabel16.setBounds(940, 10, 110, 23);
+        jLabel16.setBounds(0, 150, 130, 23);
 
         Tpetugas1.setEditable(false);
         Tpetugas1.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas1.setName("Tpetugas1"); // NOI18N
         panelGlass7.add(Tpetugas1);
-        Tpetugas1.setBounds(1056, 10, 300, 23);
+        Tpetugas1.setBounds(134, 150, 300, 23);
 
         BtnPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1275,7 +1275,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas1);
-        BtnPetugas1.setBounds(1358, 10, 28, 23);
+        BtnPetugas1.setBounds(440, 150, 28, 23);
 
         chkJam1.setBackground(new java.awt.Color(242, 242, 242));
         chkJam1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1291,7 +1291,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam1);
-        chkJam1.setBounds(685, 10, 90, 23);
+        chkJam1.setBounds(635, 150, 90, 23);
 
         chkJam2.setBackground(new java.awt.Color(242, 242, 242));
         chkJam2.setForeground(new java.awt.Color(0, 0, 0));
@@ -1307,7 +1307,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam2);
-        chkJam2.setBounds(685, 38, 90, 23);
+        chkJam2.setBounds(635, 178, 90, 23);
 
         cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1318,7 +1318,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam2);
-        cmbJam2.setBounds(780, 38, 47, 23);
+        cmbJam2.setBounds(730, 178, 47, 23);
 
         cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1329,7 +1329,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt2);
-        cmbMnt2.setBounds(835, 38, 47, 23);
+        cmbMnt2.setBounds(785, 178, 47, 23);
 
         cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1340,7 +1340,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk2);
-        cmbDtk2.setBounds(890, 38, 47, 23);
+        cmbDtk2.setBounds(840, 178, 47, 23);
 
         chkJam3.setBackground(new java.awt.Color(242, 242, 242));
         chkJam3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1356,7 +1356,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam3);
-        chkJam3.setBounds(685, 66, 90, 23);
+        chkJam3.setBounds(635, 206, 90, 23);
 
         cmbJam3.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1367,7 +1367,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam3);
-        cmbJam3.setBounds(780, 66, 47, 23);
+        cmbJam3.setBounds(730, 206, 47, 23);
 
         cmbMnt3.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1378,7 +1378,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt3);
-        cmbMnt3.setBounds(835, 66, 47, 23);
+        cmbMnt3.setBounds(785, 206, 47, 23);
 
         cmbDtk3.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1389,7 +1389,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk3);
-        cmbDtk3.setBounds(890, 66, 47, 23);
+        cmbDtk3.setBounds(840, 206, 47, 23);
 
         chkJam4.setBackground(new java.awt.Color(242, 242, 242));
         chkJam4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1405,7 +1405,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam4);
-        chkJam4.setBounds(685, 94, 90, 23);
+        chkJam4.setBounds(635, 234, 90, 23);
 
         cmbJam4.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1416,7 +1416,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam4);
-        cmbJam4.setBounds(780, 94, 47, 23);
+        cmbJam4.setBounds(730, 234, 47, 23);
 
         cmbMnt4.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1427,7 +1427,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt4);
-        cmbMnt4.setBounds(835, 94, 47, 23);
+        cmbMnt4.setBounds(785, 234, 47, 23);
 
         cmbDtk4.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1438,7 +1438,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk4);
-        cmbDtk4.setBounds(890, 94, 47, 23);
+        cmbDtk4.setBounds(840, 234, 47, 23);
 
         chkJam5.setBackground(new java.awt.Color(242, 242, 242));
         chkJam5.setForeground(new java.awt.Color(0, 0, 0));
@@ -1454,7 +1454,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam5);
-        chkJam5.setBounds(685, 122, 90, 23);
+        chkJam5.setBounds(635, 262, 90, 23);
 
         chkJam6.setBackground(new java.awt.Color(242, 242, 242));
         chkJam6.setForeground(new java.awt.Color(0, 0, 0));
@@ -1470,7 +1470,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam6);
-        chkJam6.setBounds(685, 150, 90, 23);
+        chkJam6.setBounds(635, 290, 90, 23);
 
         chkJam7.setBackground(new java.awt.Color(242, 242, 242));
         chkJam7.setForeground(new java.awt.Color(0, 0, 0));
@@ -1486,7 +1486,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam7);
-        chkJam7.setBounds(685, 178, 90, 23);
+        chkJam7.setBounds(635, 318, 90, 23);
 
         chkJam8.setBackground(new java.awt.Color(242, 242, 242));
         chkJam8.setForeground(new java.awt.Color(0, 0, 0));
@@ -1502,7 +1502,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam8);
-        chkJam8.setBounds(685, 206, 90, 23);
+        chkJam8.setBounds(635, 346, 90, 23);
 
         cmbJam5.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1513,7 +1513,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam5);
-        cmbJam5.setBounds(780, 122, 47, 23);
+        cmbJam5.setBounds(730, 262, 47, 23);
 
         cmbJam6.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1524,7 +1524,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam6);
-        cmbJam6.setBounds(780, 150, 47, 23);
+        cmbJam6.setBounds(730, 290, 47, 23);
 
         cmbJam7.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1535,7 +1535,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam7);
-        cmbJam7.setBounds(780, 178, 47, 23);
+        cmbJam7.setBounds(730, 318, 47, 23);
 
         cmbJam8.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1546,7 +1546,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam8);
-        cmbJam8.setBounds(780, 206, 47, 23);
+        cmbJam8.setBounds(730, 346, 47, 23);
 
         cmbMnt8.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1557,7 +1557,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt8);
-        cmbMnt8.setBounds(835, 206, 47, 23);
+        cmbMnt8.setBounds(785, 346, 47, 23);
 
         cmbMnt7.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1568,7 +1568,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt7);
-        cmbMnt7.setBounds(835, 178, 47, 23);
+        cmbMnt7.setBounds(785, 318, 47, 23);
 
         cmbMnt6.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1579,7 +1579,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt6);
-        cmbMnt6.setBounds(835, 150, 47, 23);
+        cmbMnt6.setBounds(785, 290, 47, 23);
 
         cmbMnt5.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1590,7 +1590,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt5);
-        cmbMnt5.setBounds(835, 122, 47, 23);
+        cmbMnt5.setBounds(785, 262, 47, 23);
 
         cmbDtk5.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1601,7 +1601,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk5);
-        cmbDtk5.setBounds(890, 122, 47, 23);
+        cmbDtk5.setBounds(840, 262, 47, 23);
 
         cmbDtk6.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1612,7 +1612,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk6);
-        cmbDtk6.setBounds(890, 150, 47, 23);
+        cmbDtk6.setBounds(840, 290, 47, 23);
 
         cmbDtk7.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1623,7 +1623,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk7);
-        cmbDtk7.setBounds(890, 178, 47, 23);
+        cmbDtk7.setBounds(840, 318, 47, 23);
 
         cmbDtk8.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1634,7 +1634,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk8);
-        cmbDtk8.setBounds(890, 206, 47, 23);
+        cmbDtk8.setBounds(840, 346, 47, 23);
 
         chkSaya1.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1650,19 +1650,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya1);
-        chkSaya1.setBounds(1430, 10, 100, 23);
+        chkSaya1.setBounds(520, 150, 100, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setText("Petugas Pelaksana :");
+        jLabel22.setText("Petugas (Jam 2) :");
         jLabel22.setName("jLabel22"); // NOI18N
         panelGlass7.add(jLabel22);
-        jLabel22.setBounds(940, 38, 110, 23);
+        jLabel22.setBounds(0, 178, 130, 23);
 
         Tpetugas2.setEditable(false);
         Tpetugas2.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas2.setName("Tpetugas2"); // NOI18N
         panelGlass7.add(Tpetugas2);
-        Tpetugas2.setBounds(1056, 38, 300, 23);
+        Tpetugas2.setBounds(134, 178, 300, 23);
 
         BtnPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1675,19 +1675,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas2);
-        BtnPetugas2.setBounds(1358, 38, 28, 23);
+        BtnPetugas2.setBounds(440, 178, 28, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Petugas Pelaksana :");
+        jLabel23.setText("Petugas (Jam 3) :");
         jLabel23.setName("jLabel23"); // NOI18N
         panelGlass7.add(jLabel23);
-        jLabel23.setBounds(940, 66, 110, 23);
+        jLabel23.setBounds(0, 206, 130, 23);
 
         Tpetugas3.setEditable(false);
         Tpetugas3.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas3.setName("Tpetugas3"); // NOI18N
         panelGlass7.add(Tpetugas3);
-        Tpetugas3.setBounds(1056, 66, 300, 23);
+        Tpetugas3.setBounds(134, 206, 300, 23);
 
         BtnPetugas3.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1700,19 +1700,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas3);
-        BtnPetugas3.setBounds(1358, 66, 28, 23);
+        BtnPetugas3.setBounds(440, 206, 28, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Petugas Pelaksana :");
+        jLabel24.setText("Petugas (Jam 4) :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelGlass7.add(jLabel24);
-        jLabel24.setBounds(940, 94, 110, 23);
+        jLabel24.setBounds(0, 234, 130, 23);
 
         Tpetugas4.setEditable(false);
         Tpetugas4.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas4.setName("Tpetugas4"); // NOI18N
         panelGlass7.add(Tpetugas4);
-        Tpetugas4.setBounds(1056, 94, 300, 23);
+        Tpetugas4.setBounds(134, 234, 300, 23);
 
         BtnPetugas4.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1725,19 +1725,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas4);
-        BtnPetugas4.setBounds(1358, 94, 28, 23);
+        BtnPetugas4.setBounds(440, 234, 28, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Petugas Pelaksana :");
+        jLabel25.setText("Petugas (Jam 5) :");
         jLabel25.setName("jLabel25"); // NOI18N
         panelGlass7.add(jLabel25);
-        jLabel25.setBounds(940, 122, 110, 23);
+        jLabel25.setBounds(0, 262, 130, 23);
 
         Tpetugas5.setEditable(false);
         Tpetugas5.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas5.setName("Tpetugas5"); // NOI18N
         panelGlass7.add(Tpetugas5);
-        Tpetugas5.setBounds(1056, 122, 300, 23);
+        Tpetugas5.setBounds(134, 262, 300, 23);
 
         BtnPetugas5.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1750,19 +1750,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas5);
-        BtnPetugas5.setBounds(1358, 122, 28, 23);
+        BtnPetugas5.setBounds(440, 262, 28, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Petugas Pelaksana :");
+        jLabel26.setText("Petugas (Jam 6) :");
         jLabel26.setName("jLabel26"); // NOI18N
         panelGlass7.add(jLabel26);
-        jLabel26.setBounds(940, 150, 110, 23);
+        jLabel26.setBounds(0, 290, 130, 23);
 
         Tpetugas6.setEditable(false);
         Tpetugas6.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas6.setName("Tpetugas6"); // NOI18N
         panelGlass7.add(Tpetugas6);
-        Tpetugas6.setBounds(1056, 150, 300, 23);
+        Tpetugas6.setBounds(134, 290, 300, 23);
 
         BtnPetugas6.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1775,19 +1775,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas6);
-        BtnPetugas6.setBounds(1358, 150, 28, 23);
+        BtnPetugas6.setBounds(440, 290, 28, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("Petugas Pelaksana :");
+        jLabel27.setText("Petugas (Jam 7) :");
         jLabel27.setName("jLabel27"); // NOI18N
         panelGlass7.add(jLabel27);
-        jLabel27.setBounds(940, 178, 110, 23);
+        jLabel27.setBounds(0, 318, 130, 23);
 
         Tpetugas7.setEditable(false);
         Tpetugas7.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas7.setName("Tpetugas7"); // NOI18N
         panelGlass7.add(Tpetugas7);
-        Tpetugas7.setBounds(1056, 178, 300, 23);
+        Tpetugas7.setBounds(134, 318, 300, 23);
 
         BtnPetugas7.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1800,19 +1800,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas7);
-        BtnPetugas7.setBounds(1358, 178, 28, 23);
+        BtnPetugas7.setBounds(440, 318, 28, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel28.setText("Petugas Pelaksana :");
+        jLabel28.setText("Petugas (Jam 8) :");
         jLabel28.setName("jLabel28"); // NOI18N
         panelGlass7.add(jLabel28);
-        jLabel28.setBounds(940, 206, 110, 23);
+        jLabel28.setBounds(0, 346, 130, 23);
 
         Tpetugas8.setEditable(false);
         Tpetugas8.setForeground(new java.awt.Color(0, 0, 0));
         Tpetugas8.setName("Tpetugas8"); // NOI18N
         panelGlass7.add(Tpetugas8);
-        Tpetugas8.setBounds(1056, 206, 300, 23);
+        Tpetugas8.setBounds(134, 346, 300, 23);
 
         BtnPetugas8.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1825,7 +1825,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas8);
-        BtnPetugas8.setBounds(1358, 206, 28, 23);
+        BtnPetugas8.setBounds(440, 346, 28, 23);
 
         BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1838,7 +1838,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus1);
-        BtnHapus1.setBounds(1393, 10, 28, 23);
+        BtnHapus1.setBounds(480, 150, 28, 23);
 
         BtnHapus2.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1851,7 +1851,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus2);
-        BtnHapus2.setBounds(1393, 38, 28, 23);
+        BtnHapus2.setBounds(480, 178, 28, 23);
 
         BtnHapus3.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1864,7 +1864,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus3);
-        BtnHapus3.setBounds(1393, 66, 28, 23);
+        BtnHapus3.setBounds(480, 206, 28, 23);
 
         BtnHapus4.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1877,7 +1877,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus4);
-        BtnHapus4.setBounds(1393, 94, 28, 23);
+        BtnHapus4.setBounds(480, 234, 28, 23);
 
         BtnHapus5.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1890,7 +1890,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus5);
-        BtnHapus5.setBounds(1393, 122, 28, 23);
+        BtnHapus5.setBounds(480, 262, 28, 23);
 
         BtnHapus6.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1903,7 +1903,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus6);
-        BtnHapus6.setBounds(1393, 150, 28, 23);
+        BtnHapus6.setBounds(480, 290, 28, 23);
 
         BtnHapus7.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1916,7 +1916,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus7);
-        BtnHapus7.setBounds(1393, 178, 28, 23);
+        BtnHapus7.setBounds(480, 318, 28, 23);
 
         BtnHapus8.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1929,7 +1929,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnHapus8);
-        BtnHapus8.setBounds(1393, 206, 28, 23);
+        BtnHapus8.setBounds(480, 346, 28, 23);
 
         chkSaya2.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya2.setForeground(new java.awt.Color(0, 0, 0));
@@ -1945,7 +1945,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya2);
-        chkSaya2.setBounds(1430, 38, 100, 23);
+        chkSaya2.setBounds(520, 178, 100, 23);
 
         chkSaya3.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1961,7 +1961,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya3);
-        chkSaya3.setBounds(1430, 66, 100, 23);
+        chkSaya3.setBounds(520, 206, 100, 23);
 
         chkSaya4.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1977,7 +1977,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya4);
-        chkSaya4.setBounds(1430, 94, 100, 23);
+        chkSaya4.setBounds(520, 234, 100, 23);
 
         chkSaya5.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya5.setForeground(new java.awt.Color(0, 0, 0));
@@ -1993,7 +1993,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya5);
-        chkSaya5.setBounds(1430, 122, 100, 23);
+        chkSaya5.setBounds(520, 262, 100, 23);
 
         chkSaya6.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya6.setForeground(new java.awt.Color(0, 0, 0));
@@ -2009,7 +2009,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya6);
-        chkSaya6.setBounds(1430, 150, 100, 23);
+        chkSaya6.setBounds(520, 290, 100, 23);
 
         chkSaya7.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya7.setForeground(new java.awt.Color(0, 0, 0));
@@ -2025,7 +2025,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya7);
-        chkSaya7.setBounds(1430, 178, 100, 23);
+        chkSaya7.setBounds(520, 318, 100, 23);
 
         chkSaya8.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya8.setForeground(new java.awt.Color(0, 0, 0));
@@ -2041,7 +2041,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya8);
-        chkSaya8.setBounds(1430, 206, 100, 23);
+        chkSaya8.setBounds(520, 346, 100, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -2078,7 +2078,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
                     + "'" + jlhSisaObat.getText() + "','" + statusOK + "','" + Sequel.cariIsi("select now()") + "',"
                     + "'" + kdobatFix + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "','" + nmUnit.getText() + "',"
-                    + "'" + Tjlh.getText() + "','" + cmbObat.getSelectedItem().toString() + "','" + nipPetugas1 + "',"
+                    + "'" + Tjlh.getText() + "','" + cmbObat.getSelectedItem().toString() + "',"
                     + "'" + cekjam1 + "','" + cekjam2 + "','" + cekjam3 + "','" + cekjam4 + "',"
                     + "'" + cekjam5 + "','" + cekjam6 + "','" + cekjam7 + "','" + cekjam8 + "',"
                     + "'" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
@@ -2087,9 +2087,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem() + "',"
                     + "'" + cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem() + "',"
                     + "'" + cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem() + "',"
-                    + "'" + cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem() + "',"
-                    + "'" + nipPetugas2 + "','" + nipPetugas3 + "','" + nipPetugas4 + "','" + nipPetugas5 + "','" + nipPetugas6 + "',"
-                    + "'" + nipPetugas7 + "','" + nipPetugas8 + "'", "Pemberian Obat");
+                    + "'" + cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem() + "'", "Pemberian Obat");
             
             tampil();
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
@@ -2159,15 +2157,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 }
 
                 Sequel.mengedit("pemberian_obat", "waktu_simpan=?", "nama_obat=?, dosis=?, cara_pemberian=?, "
-                        + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?, tgl_pemberian=?, nm_unit=?, jlh_obat=?, jenis_obat=?, nip_petugas=?, "
+                        + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?, tgl_pemberian=?, nm_unit=?, jlh_obat=?, jenis_obat=?, "
                         + "cek_jam1=?, cek_jam2=?, cek_jam3=?, cek_jam4=?, cek_jam5=?, cek_jam6=?, cek_jam7=?, cek_jam8=?, "
                         + "jadwal_pemberian2=?, jadwal_pemberian3=?, jadwal_pemberian4=?, jadwal_pemberian5=?, jadwal_pemberian6=?, "
-                        + "jadwal_pemberian7=?, jadwal_pemberian8=?, nip_petugas2=?, nip_petugas3=?, nip_petugas4=?, nip_petugas5=?, "
-                        + "nip_petugas6=?, nip_petugas7=?, nip_petugas8=?", 34, new String[]{
+                        + "jadwal_pemberian7=?, jadwal_pemberian8=?", 26, new String[]{
                             nmObat.getText(), dosis.getText(), caraPemberian.getText(),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                             jlhSisaObat.getText(), kdobatFix, Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nmUnit.getText(), Tjlh.getText(),
-                            cmbObat.getSelectedItem().toString(), nipPetugas1, cekjam1, cekjam2, cekjam3, cekjam4, cekjam5, cekjam6, cekjam7, cekjam8,
+                            cmbObat.getSelectedItem().toString(), cekjam1, cekjam2, cekjam3, cekjam4, cekjam5, cekjam6, cekjam7, cekjam8,
                             cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
                             cmbJam3.getSelectedItem() + ":" + cmbMnt3.getSelectedItem() + ":" + cmbDtk3.getSelectedItem(),
                             cmbJam4.getSelectedItem() + ":" + cmbMnt4.getSelectedItem() + ":" + cmbDtk4.getSelectedItem(),
@@ -2175,7 +2172,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
                             cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
                             cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
-                            nipPetugas2, nipPetugas3, nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8,
                             tbObat.getValueAt(tbObat.getSelectedRow(), 39).toString()
                         });
 
@@ -2612,25 +2608,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam1.setSelectedIndex(0);
         cmbMnt1.setSelectedIndex(0);
         cmbDtk1.setSelectedIndex(0);
-        nipPetugas1 = "-";
-        Tpetugas1.setText("-");
-        chkSaya1.setSelected(false);
-
+        
         if (chkJam1.isSelected() == true) {            
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
-            BtnPetugas1.setEnabled(true);
-            BtnHapus1.setEnabled(true);
-            chkSaya1.setEnabled(true);
             cmbJam1.requestFocus();
         } else {
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
-            BtnPetugas1.setEnabled(false);
-            BtnHapus1.setEnabled(false);
-            chkSaya1.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam1ActionPerformed
 
@@ -2638,25 +2625,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam2.setSelectedIndex(0);
         cmbMnt2.setSelectedIndex(0);
         cmbDtk2.setSelectedIndex(0);
-        nipPetugas2 = "-";
-        Tpetugas2.setText("-");
-        chkSaya2.setSelected(false);
         
         if (chkJam2.isSelected() == true) {
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
-            BtnPetugas2.setEnabled(true);
-            BtnHapus2.setEnabled(true);
-            chkSaya2.setEnabled(true);
             cmbJam2.requestFocus();
         } else {
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
-            BtnPetugas2.setEnabled(false);
-            BtnHapus2.setEnabled(false);
-            chkSaya2.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam2ActionPerformed
 
@@ -2664,25 +2642,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam3.setSelectedIndex(0);
         cmbMnt3.setSelectedIndex(0);
         cmbDtk3.setSelectedIndex(0);
-        nipPetugas3 = "-";
-        Tpetugas3.setText("-");
-        chkSaya3.setSelected(false);
         
         if (chkJam3.isSelected() == true) {
             cmbJam3.setEnabled(true);
             cmbMnt3.setEnabled(true);
             cmbDtk3.setEnabled(true);
-            BtnPetugas3.setEnabled(true);
-            BtnHapus3.setEnabled(true);
-            chkSaya3.setEnabled(true);
             cmbJam3.requestFocus();
         } else {
             cmbJam3.setEnabled(false);
             cmbMnt3.setEnabled(false);
             cmbDtk3.setEnabled(false);
-            BtnPetugas3.setEnabled(false);
-            BtnHapus3.setEnabled(false);
-            chkSaya3.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam3ActionPerformed
 
@@ -2690,25 +2659,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam4.setSelectedIndex(0);
         cmbMnt4.setSelectedIndex(0);
         cmbDtk4.setSelectedIndex(0);
-        nipPetugas4 = "-";
-        Tpetugas4.setText("-");
-        chkSaya4.setSelected(false);
         
         if (chkJam4.isSelected() == true) {
             cmbJam4.setEnabled(true);
             cmbMnt4.setEnabled(true);
             cmbDtk4.setEnabled(true);
-            BtnPetugas4.setEnabled(true);
-            BtnHapus4.setEnabled(true);
-            chkSaya4.setEnabled(true);
             cmbJam4.requestFocus();
         } else {
             cmbJam4.setEnabled(false);
             cmbMnt4.setEnabled(false);
             cmbDtk4.setEnabled(false);
-            BtnPetugas4.setEnabled(false);
-            BtnHapus4.setEnabled(false);
-            chkSaya4.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam4ActionPerformed
 
@@ -2716,25 +2676,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam5.setSelectedIndex(0);
         cmbMnt5.setSelectedIndex(0);
         cmbDtk5.setSelectedIndex(0);
-        nipPetugas5 = "-";
-        Tpetugas5.setText("-");
-        chkSaya5.setSelected(false);
         
         if (chkJam5.isSelected() == true) {
             cmbJam5.setEnabled(true);
             cmbMnt5.setEnabled(true);
             cmbDtk5.setEnabled(true);
-            BtnPetugas5.setEnabled(true);
-            BtnHapus5.setEnabled(true);
-            chkSaya5.setEnabled(true);
             cmbJam5.requestFocus();
         } else {
             cmbJam5.setEnabled(false);
             cmbMnt5.setEnabled(false);
             cmbDtk5.setEnabled(false);
-            BtnPetugas5.setEnabled(false);
-            BtnHapus5.setEnabled(false);
-            chkSaya5.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam5ActionPerformed
 
@@ -2742,25 +2693,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam6.setSelectedIndex(0);
         cmbMnt6.setSelectedIndex(0);
         cmbDtk6.setSelectedIndex(0);
-        nipPetugas6 = "-";
-        Tpetugas6.setText("-");
-        chkSaya6.setSelected(false);
         
         if (chkJam6.isSelected() == true) {
             cmbJam6.setEnabled(true);
             cmbMnt6.setEnabled(true);
             cmbDtk6.setEnabled(true);
-            BtnPetugas6.setEnabled(true);
-            BtnHapus6.setEnabled(true);
-            chkSaya6.setEnabled(true);
             cmbJam6.requestFocus();
         } else {
             cmbJam6.setEnabled(false);
             cmbMnt6.setEnabled(false);
             cmbDtk6.setEnabled(false);
-            BtnPetugas6.setEnabled(false);
-            BtnHapus6.setEnabled(false);
-            chkSaya6.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam6ActionPerformed
 
@@ -2768,25 +2710,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam7.setSelectedIndex(0);
         cmbMnt7.setSelectedIndex(0);
         cmbDtk7.setSelectedIndex(0);
-        nipPetugas7 = "-";
-        Tpetugas7.setText("-");
-        chkSaya7.setSelected(false);
         
         if (chkJam7.isSelected() == true) {
             cmbJam7.setEnabled(true);
             cmbMnt7.setEnabled(true);
             cmbDtk7.setEnabled(true);
-            BtnPetugas7.setEnabled(true);
-            BtnHapus7.setEnabled(true);
-            chkSaya7.setEnabled(true);
             cmbJam7.requestFocus();
         } else {
             cmbJam7.setEnabled(false);
             cmbMnt7.setEnabled(false);
             cmbDtk7.setEnabled(false);
-            BtnPetugas7.setEnabled(false);
-            BtnHapus7.setEnabled(false);
-            chkSaya7.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam7ActionPerformed
 
@@ -2794,25 +2727,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam8.setSelectedIndex(0);
         cmbMnt8.setSelectedIndex(0);
         cmbDtk8.setSelectedIndex(0);
-        nipPetugas8 = "-";
-        Tpetugas8.setText("-");
-        chkSaya8.setSelected(false);
         
         if (chkJam8.isSelected() == true) {
             cmbJam8.setEnabled(true);
             cmbMnt8.setEnabled(true);
             cmbDtk8.setEnabled(true);
-            BtnPetugas8.setEnabled(true);
-            BtnHapus8.setEnabled(true);
-            chkSaya8.setEnabled(true);
             cmbJam8.requestFocus();
         } else {
             cmbJam8.setEnabled(false);
             cmbMnt8.setEnabled(false);
             cmbDtk8.setEnabled(false);
-            BtnPetugas8.setEnabled(false);
-            BtnHapus8.setEnabled(false);
-            chkSaya8.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam8ActionPerformed
 
@@ -3677,18 +3601,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     
     private void tampilData() {
         try {
-            ps3 = koneksi.prepareStatement("select *, p.no_rkm_medis, p.nm_pasien, pg1.nama ptgs1, pg2.nama ptgs2, pg3.nama ptgs3, "
-                    + "pg4.nama ptgs4, pg5.nama ptgs5, pg6.nama ptgs6, pg7.nama ptgs7, pg8.nama ptgs8 from pemberian_obat po "
+            ps3 = koneksi.prepareStatement("select *, p.no_rkm_medis, p.nm_pasien from pemberian_obat po "
                     + "inner join reg_periksa rp on rp.no_rawat=po.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN pegawai pg1 ON pg1.nik = po.nip_petugas "
-                    + "INNER JOIN pegawai pg2 ON pg2.nik = po.nip_petugas2 "
-                    + "INNER JOIN pegawai pg3 ON pg3.nik = po.nip_petugas3 "
-                    + "INNER JOIN pegawai pg4 ON pg4.nik = po.nip_petugas4 "
-                    + "INNER JOIN pegawai pg5 ON pg5.nik = po.nip_petugas5 "
-                    + "INNER JOIN pegawai pg6 ON pg6.nik = po.nip_petugas6 "
-                    + "INNER JOIN pegawai pg7 ON pg7.nik = po.nip_petugas7 "
-                    + "INNER JOIN pegawai pg8 ON pg8.nik = po.nip_petugas8 "
                     + "where po.waktu_simpan='" + waktuSimpan + "'");
             try {
                 rs3 = ps3.executeQuery();
@@ -3747,22 +3662,22 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     cmbMnt8.setSelectedItem(rs3.getString("jadwal_pemberian8").substring(3, 5));
                     cmbDtk8.setSelectedItem(rs3.getString("jadwal_pemberian8").substring(6, 8));
                     
-                    nipPetugas1 = rs3.getString("nip_petugas");
-                    Tpetugas1.setText(rs3.getString("ptgs1"));
-                    nipPetugas2 = rs3.getString("nip_petugas2");
-                    Tpetugas2.setText(rs3.getString("ptgs2"));
-                    nipPetugas3 = rs3.getString("nip_petugas3");
-                    Tpetugas3.setText(rs3.getString("ptgs3"));
-                    nipPetugas4 = rs3.getString("nip_petugas4");
-                    Tpetugas4.setText(rs3.getString("ptgs4"));
-                    nipPetugas5 = rs3.getString("nip_petugas5");
-                    Tpetugas5.setText(rs3.getString("ptgs5"));
-                    nipPetugas6 = rs3.getString("nip_petugas6");
-                    Tpetugas6.setText(rs3.getString("ptgs6"));
-                    nipPetugas7 = rs3.getString("nip_petugas7");
-                    Tpetugas7.setText(rs3.getString("ptgs7"));
-                    nipPetugas8 = rs3.getString("nip_petugas8");
-                    Tpetugas8.setText(rs3.getString("ptgs8"));
+//                    nipPetugas1 = rs3.getString("nip_petugas");
+//                    Tpetugas1.setText(rs3.getString("ptgs1"));
+//                    nipPetugas2 = rs3.getString("nip_petugas2");
+//                    Tpetugas2.setText(rs3.getString("ptgs2"));
+//                    nipPetugas3 = rs3.getString("nip_petugas3");
+//                    Tpetugas3.setText(rs3.getString("ptgs3"));
+//                    nipPetugas4 = rs3.getString("nip_petugas4");
+//                    Tpetugas4.setText(rs3.getString("ptgs4"));
+//                    nipPetugas5 = rs3.getString("nip_petugas5");
+//                    Tpetugas5.setText(rs3.getString("ptgs5"));
+//                    nipPetugas6 = rs3.getString("nip_petugas6");
+//                    Tpetugas6.setText(rs3.getString("ptgs6"));
+//                    nipPetugas7 = rs3.getString("nip_petugas7");
+//                    Tpetugas7.setText(rs3.getString("ptgs7"));
+//                    nipPetugas8 = rs3.getString("nip_petugas8");
+//                    Tpetugas8.setText(rs3.getString("ptgs8"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3835,17 +3750,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
-            BtnPetugas1.setEnabled(true);
-            BtnHapus1.setEnabled(true);
-            chkSaya1.setEnabled(true);
         } else {
             chkJam1.setSelected(false);
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
-            BtnPetugas1.setEnabled(false);
-            BtnHapus1.setEnabled(false);
-            chkSaya1.setEnabled(false);
         }
         
         if (cekjam2.equals("ya")) {
@@ -3853,17 +3762,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
-            BtnPetugas2.setEnabled(true);
-            BtnHapus2.setEnabled(true);
-            chkSaya2.setEnabled(true);
         } else {
             chkJam2.setSelected(false);
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
-            BtnPetugas2.setEnabled(false);
-            BtnHapus2.setEnabled(false);
-            chkSaya2.setEnabled(false);
         }
         
         if (cekjam3.equals("ya")) {
@@ -3871,17 +3774,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam3.setEnabled(true);
             cmbMnt3.setEnabled(true);
             cmbDtk3.setEnabled(true);
-            BtnPetugas3.setEnabled(true);
-            BtnHapus3.setEnabled(true);
-            chkSaya3.setEnabled(true);
         } else {
             chkJam3.setSelected(false);
             cmbJam3.setEnabled(false);
             cmbMnt3.setEnabled(false);
             cmbDtk3.setEnabled(false);
-            BtnPetugas3.setEnabled(false);
-            BtnHapus3.setEnabled(false);
-            chkSaya3.setEnabled(false);
         }
         
         if (cekjam4.equals("ya")) {
@@ -3889,17 +3786,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam4.setEnabled(true);
             cmbMnt4.setEnabled(true);
             cmbDtk4.setEnabled(true);
-            BtnPetugas4.setEnabled(true);
-            BtnHapus4.setEnabled(true);
-            chkSaya4.setEnabled(true);
         } else {
             chkJam4.setSelected(false);
             cmbJam4.setEnabled(false);
             cmbMnt4.setEnabled(false);
             cmbDtk4.setEnabled(false);
-            BtnPetugas4.setEnabled(false);
-            BtnHapus4.setEnabled(false);
-            chkSaya4.setEnabled(false);
         }
         
         if (cekjam5.equals("ya")) {
@@ -3907,17 +3798,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam5.setEnabled(true);
             cmbMnt5.setEnabled(true);
             cmbDtk5.setEnabled(true);
-            BtnPetugas5.setEnabled(true);
-            BtnHapus5.setEnabled(true);
-            chkSaya5.setEnabled(true);
         } else {
             chkJam5.setSelected(false);
             cmbJam5.setEnabled(false);
             cmbMnt5.setEnabled(false);
             cmbDtk5.setEnabled(false);
-            BtnPetugas5.setEnabled(false);
-            BtnHapus5.setEnabled(false);
-            chkSaya5.setEnabled(false);
         }
         
         if (cekjam6.equals("ya")) {
@@ -3925,17 +3810,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam6.setEnabled(true);
             cmbMnt6.setEnabled(true);
             cmbDtk6.setEnabled(true);
-            BtnPetugas6.setEnabled(true);
-            BtnHapus6.setEnabled(true);
-            chkSaya6.setEnabled(true);
         } else {
             chkJam6.setSelected(false);
             cmbJam6.setEnabled(false);
             cmbMnt6.setEnabled(false);
             cmbDtk6.setEnabled(false);
-            BtnPetugas6.setEnabled(false);
-            BtnHapus6.setEnabled(false);
-            chkSaya6.setEnabled(false);
         }
         
         if (cekjam7.equals("ya")) {
@@ -3943,17 +3822,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam7.setEnabled(true);
             cmbMnt7.setEnabled(true);
             cmbDtk7.setEnabled(true);
-            BtnPetugas7.setEnabled(true);
-            BtnHapus7.setEnabled(true);
-            chkSaya7.setEnabled(true);
         } else {
             chkJam7.setSelected(false);
             cmbJam7.setEnabled(false);
             cmbMnt7.setEnabled(false);
             cmbDtk7.setEnabled(false);
-            BtnPetugas7.setEnabled(false);
-            BtnHapus7.setEnabled(false);
-            chkSaya7.setEnabled(false);
         }
         
         if (cekjam8.equals("ya")) {
@@ -3961,17 +3834,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam8.setEnabled(true);
             cmbMnt8.setEnabled(true);
             cmbDtk8.setEnabled(true);
-            BtnPetugas8.setEnabled(true);
-            BtnHapus8.setEnabled(true);
-            chkSaya8.setEnabled(true);
         } else {
             chkJam8.setSelected(false);
             cmbJam8.setEnabled(false);
             cmbMnt8.setEnabled(false);
             cmbDtk8.setEnabled(false);
-            BtnPetugas8.setEnabled(false);
-            BtnHapus8.setEnabled(false);
-            chkSaya8.setEnabled(false);
         }
         
         if (nipPetugas1.equals(akses.getkode())) {
