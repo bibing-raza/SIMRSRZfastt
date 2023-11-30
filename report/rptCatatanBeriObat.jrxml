@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
-	<property name="ireport.zoom" value="2.200000000000007"/>
-	<property name="ireport.x" value="661"/>
+	<property name="ireport.zoom" value="1.8181818181818248"/>
+	<property name="ireport.x" value="332"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
@@ -20,13 +20,29 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="ruangan" class="java.lang.String"/>
 	<parameter name="pemberian" class="java.lang.String"/>
+	<parameter name="pelaksana" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT concat(po.jenis_obat,' - ',po.nama_obat) nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, date_format(po.tgl_pemberian,'%d-%m-%Y') tglberi, 
-time_format(po.jadwal_pemberian,'%H:%i') jam, po.jlh_sisa_obat, pg.nama nmpetugas, p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, 
-concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur FROM pemberian_obat po 
-inner join reg_periksa rp on rp.no_rawat=po.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis 
-inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
+		<![CDATA[SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, 
+po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian,'%d-%m-%Y')) tglberi, 
+if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, 
+if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, 
+if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, 
+if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8,	
+po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat = po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis LIMIT 10]]>
 	</queryString>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<property name="com.jaspersoft.studio.field.name" value="no_rkm_medis"/>
+		<property name="com.jaspersoft.studio.field.label" value="no_rkm_medis"/>
+		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nmpasien" class="java.lang.String"/>
+	<field name="umur" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_obat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="nama_obat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -38,161 +54,17 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 	</field>
 	<field name="rute" class="java.lang.String"/>
 	<field name="tglberi" class="java.lang.String"/>
-	<field name="jam" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
+	<field name="jam1" class="java.lang.String"/>
+	<field name="jam2" class="java.lang.String"/>
+	<field name="jam3" class="java.lang.String"/>
+	<field name="jam4" class="java.lang.String"/>
+	<field name="jam5" class="java.lang.String"/>
+	<field name="jam6" class="java.lang.String"/>
+	<field name="jam7" class="java.lang.String"/>
+	<field name="jam8" class="java.lang.String"/>
 	<field name="jlh_sisa_obat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nmpetugas" class="java.lang.String"/>
-	<field name="no_rkm_medis" class="java.lang.String">
-		<property name="com.jaspersoft.studio.field.name" value="no_rkm_medis"/>
-		<property name="com.jaspersoft.studio.field.label" value="no_rkm_medis"/>
-		<property name="com.jaspersoft.studio.field.tree.path" value="pasien"/>
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="nmpasien" class="java.lang.String"/>
-	<field name="umur" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<group name="grup nama obat">
-		<groupExpression><![CDATA[$F{nama_obat}]]></groupExpression>
-		<groupHeader>
-			<band height="12">
-				<textField isStretchWithOverflow="true">
-					<reportElement x="4" y="0" width="258" height="12" uuid="2b3f9d8c-0085-4924-9e01-49c86db35911"/>
-					<textElement>
-						<font fontName="Tahoma" size="8"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{nama_obat}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="82293274-44b5-4f89-b9c8-b19b963e859f"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="266" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0a25f354-e100-4a34-9798-2d38b5ecaeb6"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="766" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="89a66227-d04f-46e3-a88a-6922c3ae62f2"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="725" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="5e66dc6a-42f0-4bda-83fc-34d7251dd9d3"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="314" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="ec72e184-a2ba-446d-a133-e3d6a963941c"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="365" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="4acc7071-f559-4d30-81a8-41db82bed99d"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="445" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="90b28fd1-5e92-4616-9920-61f71f9df6d8"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="502" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c605e13f-d415-462d-bd05-a979c9dd9d5e"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="553" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="4d15dd44-7f40-4e61-a722-4207273c2928"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-			</band>
-		</groupHeader>
-	</group>
-	<group name="grup tgl beri">
-		<groupExpression><![CDATA[$F{tglberi}]]></groupExpression>
-		<groupHeader>
-			<band height="12">
-				<textField isStretchWithOverflow="true">
-					<reportElement x="446" y="0" width="55" height="12" uuid="7bb06f99-fce3-46b5-8c43-dd30b60aeb8e"/>
-					<textElement textAlignment="Center">
-						<font fontName="Tahoma" size="8"/>
-						<paragraph lineSpacing="Single"/>
-					</textElement>
-					<textFieldExpression><![CDATA[$F{tglberi}]]></textFieldExpression>
-				</textField>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e8d4d4c9-8a91-49f6-901e-6add2bf3239b"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="266" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="5e53a9bb-55c7-4df1-9717-e8441e26ed04"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="314" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1880d39d-b459-4d23-8576-0e9320b4fe3a"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="365" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c6c451d3-94ab-448f-b571-fa035009734c"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="445" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="afd5f9cc-2d00-4ba9-8c0b-f4f08ed3fd6e"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="502" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b3350b2d-ee8c-450e-8b0e-869c5833b86d"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="553" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="c3667375-d378-446a-99b2-7bcaf932295c"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="725" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="eceb987d-4c8c-4160-b24f-66e9995e1634"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-				<line>
-					<reportElement stretchType="RelativeToTallestObject" x="766" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d8fde45a-86f6-44a0-8c08-a9e58ae1e863"/>
-					<graphicElement>
-						<pen lineWidth="0.75"/>
-					</graphicElement>
-				</line>
-			</band>
-		</groupHeader>
-	</group>
 	<title>
 		<band height="81">
 			<textField>
@@ -401,9 +273,9 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 		</band>
 	</title>
 	<pageHeader>
-		<band height="12">
+		<band height="23">
 			<staticText>
-				<reportElement x="0" y="0" width="266" height="11" uuid="97e06d64-598d-4997-b47f-cc7fe584c4ab">
+				<reportElement x="0" y="0" width="248" height="22" uuid="97e06d64-598d-4997-b47f-cc7fe584c4ab">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -413,7 +285,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<text><![CDATA[NAMA OBAT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="266" y="0" width="48" height="11" uuid="cf267042-b455-4aaa-bc8a-d214ba44a05b">
+				<reportElement x="249" y="0" width="48" height="22" uuid="cf267042-b455-4aaa-bc8a-d214ba44a05b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -423,7 +295,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<text><![CDATA[JLH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="315" y="0" width="50" height="11" uuid="09728c81-e21b-4aaa-867d-f9aa6c6c6432">
+				<reportElement x="298" y="0" width="51" height="22" uuid="09728c81-e21b-4aaa-867d-f9aa6c6c6432">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -433,7 +305,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<text><![CDATA[DOSIS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="366" y="0" width="79" height="11" uuid="54d079df-cd93-4a68-8575-83e127655567">
+				<reportElement x="350" y="0" width="79" height="22" uuid="54d079df-cd93-4a68-8575-83e127655567">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -443,17 +315,173 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<text><![CDATA[RUTE]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="446" y="0" width="55" height="11" uuid="09fcc803-d82c-4cd0-9bd1-1f759486bf13">
+				<reportElement x="431" y="11" width="35" height="11" uuid="e88369e1-2233-4267-94df-1645acfd8e8a">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[TGL./JAM]]></text>
+				<text><![CDATA[JAM 1]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="502" y="0" width="51" height="11" uuid="e88369e1-2233-4267-94df-1645acfd8e8a">
+				<reportElement x="467" y="11" width="35" height="11" uuid="b8bc7a1c-5736-4cec-b39c-d596827056da">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 2]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="502" y="11" width="35" height="11" uuid="f14cd1cf-0606-4ef0-babb-808f2c4c47b7">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 3]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="22" width="767" height="1" uuid="662fa9ae-715b-43ec-9fd1-da12f1ccacd7">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="23" uuid="75a0e4d0-e9c1-452d-a423-03ed5c1be752"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="248" y="0" width="1" height="23" uuid="7722a52a-8cc4-4ac7-8e52-6c7518e56636"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="297" y="0" width="1" height="23" uuid="446989d7-382e-4975-8d22-910f1ad7f4c2"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="349" y="0" width="1" height="23" uuid="75b2b726-6c21-4d89-9f1f-d36e6db2fbbe"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="430" y="0" width="1" height="23" uuid="f52a099c-02c8-405e-8656-18fb71609058"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="466" y="11" width="1" height="12" uuid="c2d64c8d-164a-403e-b05d-9cc95b89b4c3"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="501" y="11" width="1" height="12" uuid="e958eb68-5724-4e19-95d0-385651f61e33"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="717" y="11" width="1" height="12" uuid="42e7bc3a-61ce-4b3f-a356-e58db50c8a12"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="537" y="11" width="1" height="12" uuid="7c948675-99fa-45f5-9e98-ca4bcd095c4e"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="538" y="11" width="35" height="11" uuid="db5442b2-9c84-4d98-ad4c-cea7be2be772">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 4]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="573" y="11" width="1" height="12" uuid="9c520c70-47e1-4368-b49e-c3387b0dd726"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="574" y="11" width="35" height="11" uuid="75d2ade9-f044-4fce-873e-cdca2758dad2">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 5]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="609" y="11" width="1" height="12" uuid="fe1403d6-7baf-47d0-80f4-a6290b5f0381"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="610" y="11" width="35" height="11" uuid="42a14def-0b09-4e02-812a-d5e05bfbd6d4">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 6]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="646" y="11" width="35" height="11" uuid="dad6278a-944c-4c61-bf6f-a8d1f76e4bdc">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 7]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="645" y="11" width="1" height="12" uuid="34bfaa46-a4f7-4c9a-98b8-3feeeac56412"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="682" y="11" width="35" height="11" uuid="b05f30f8-5f78-4384-9730-8a4ab8e9c72e">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[JAM 8]]></text>
+			</staticText>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="681" y="11" width="1" height="12" uuid="f28f6704-2dea-46ae-86b4-fe6f1e5c7aff"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="718" y="11" width="48" height="11" uuid="23f1b173-e661-4ddc-8031-5527001bef5b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -462,84 +490,24 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				</textElement>
 				<text><![CDATA[SISA OBAT]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="553" y="0" width="172" height="11" uuid="b8bc7a1c-5736-4cec-b39c-d596827056da">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[NAMA PETUGAS]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="726" y="0" width="40" height="11" uuid="f14cd1cf-0606-4ef0-babb-808f2c4c47b7">
-					<property name="com.jaspersoft.studio.unit.height" value="px"/>
-				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle">
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<text><![CDATA[PARAF]]></text>
-			</staticText>
 			<line>
-				<reportElement x="0" y="11" width="767" height="1" uuid="662fa9ae-715b-43ec-9fd1-da12f1ccacd7">
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="0" width="1" height="23" uuid="377f3a9d-b8ea-4149-9eef-0bd60ee347d3"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="431" y="-1" width="335" height="12" uuid="70317fa4-c468-47b5-b301-cab0f71bd900"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{tglberi}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="431" y="11" width="335" height="1" uuid="5a33f71e-ba49-4fc1-8941-2df25f6e3d42">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="12" uuid="75a0e4d0-e9c1-452d-a423-03ed5c1be752"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="266" y="0" width="1" height="12" uuid="7722a52a-8cc4-4ac7-8e52-6c7518e56636"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="314" y="0" width="1" height="12" uuid="446989d7-382e-4975-8d22-910f1ad7f4c2"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="365" y="0" width="1" height="12" uuid="75b2b726-6c21-4d89-9f1f-d36e6db2fbbe"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="445" y="0" width="1" height="12" uuid="ca087a44-b2d8-4d08-87e2-2995ed187e89"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="502" y="0" width="1" height="12" uuid="f52a099c-02c8-405e-8656-18fb71609058"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="553" y="0" width="1" height="12" uuid="c2d64c8d-164a-403e-b05d-9cc95b89b4c3"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="725" y="0" width="1" height="12" uuid="e958eb68-5724-4e19-95d0-385651f61e33"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="0" width="1" height="12" uuid="42e7bc3a-61ce-4b3f-a356-e58db50c8a12"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -555,7 +523,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="502" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e6008988-0414-4ce3-8ecb-61ed25086a5c"/>
+				<reportElement stretchType="RelativeToTallestObject" x="430" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e6008988-0414-4ce3-8ecb-61ed25086a5c"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -567,7 +535,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="269" y="0" width="43" height="12" uuid="1c281ab6-4de0-4448-a4b5-07813e85e64f"/>
+				<reportElement x="252" y="0" width="43" height="12" uuid="1c281ab6-4de0-4448-a4b5-07813e85e64f"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -575,7 +543,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<textFieldExpression><![CDATA[$F{jlh_obat}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="317" y="0" width="46" height="12" uuid="27d80e2e-75e1-46f0-a26a-0e0a55c62285"/>
+				<reportElement x="301" y="0" width="46" height="12" uuid="27d80e2e-75e1-46f0-a26a-0e0a55c62285"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -583,7 +551,7 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<textFieldExpression><![CDATA[$F{dosis}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="369" y="0" width="73" height="12" uuid="b7c84a3b-158d-45de-97e5-ed91f44ef6c4"/>
+				<reportElement x="353" y="0" width="73" height="12" uuid="b7c84a3b-158d-45de-97e5-ed91f44ef6c4"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
@@ -591,71 +559,252 @@ inner join pegawai pg on pg.nik=po.nip_petugas LIMIT 10]]>
 				<textFieldExpression><![CDATA[$F{rute}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="446" y="0" width="55" height="12" uuid="70317fa4-c468-47b5-b301-cab0f71bd900"/>
+				<reportElement x="431" y="0" width="35" height="12" uuid="d2ca67c7-0d4f-4523-be54-3710828a96a5"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{jam1}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="505" y="0" width="48" height="12" uuid="d2ca67c7-0d4f-4523-be54-3710828a96a5"/>
+				<reportElement x="467" y="0" width="35" height="12" uuid="a96a8fee-09e7-42c1-a2c9-fcff2faafdb6"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam2}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="248" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0ab5238b-cdb7-4c00-92ac-cfbba5f033d3"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="297" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f5f32fe4-2892-49f5-ab82-689c86e3ca3f"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="349" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1bd82c34-04c2-4f4a-8061-8a82f93d69d8"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="466" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f4c459ae-5280-4b18-b51c-3d103cb04bd6"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="501" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="47187b70-7ca1-4c7f-acf8-4a9e3f9b0292"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="717" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d4d24465-6d4f-42d1-8128-03abba4c0e4f"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="4" y="0" width="240" height="12" uuid="2b3f9d8c-0085-4924-9e01-49c86db35911"/>
 				<textElement>
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jenis_obat}+" "+$F{nama_obat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="502" y="0" width="35" height="12" uuid="702b28ba-7953-4467-a9f4-06b70e12cf33"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam3}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="537" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="7e4ad280-ba7f-458a-a560-78ec9057de38"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="538" y="0" width="35" height="12" uuid="168f12c6-937c-483e-ac2c-b2498984f2fa"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam4}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="573" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="92fc9784-eee4-4fcd-95b4-ee590850cc74"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="574" y="0" width="35" height="12" uuid="5094616e-94ed-44ed-a7af-694298672d69"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam5}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="610" y="0" width="35" height="12" uuid="512c7b41-f6cf-4611-b1bd-359ef56f453b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam6}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="609" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a3e569ac-3be3-44be-bd12-bbeb559d9b24"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="645" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="dca1a6ef-8e6b-4e66-b213-6294d40e5586"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="646" y="0" width="35" height="12" uuid="8766e3ca-d241-49df-a221-2e9f2490f3ac"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam7}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement stretchType="RelativeToTallestObject" x="681" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f04dacc5-dfc8-4867-87af-f524f90ae8f2"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="682" y="0" width="35" height="12" uuid="ddd00585-aa4c-4fb7-a8fb-910f1980cf5b"/>
+				<textElement textAlignment="Center">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{jam8}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="720" y="0" width="44" height="12" uuid="21c58f77-3a75-483e-93cf-aabd41c91ff1"/>
+				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$F{jlh_sisa_obat}]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="556" y="0" width="169" height="12" uuid="a96a8fee-09e7-42c1-a2c9-fcff2faafdb6"/>
-				<textElement>
-					<font fontName="Tahoma" size="8"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$F{nmpetugas}]]></textFieldExpression>
-			</textField>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="266" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="0ab5238b-cdb7-4c00-92ac-cfbba5f033d3"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="314" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f5f32fe4-2892-49f5-ab82-689c86e3ca3f"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="365" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="1bd82c34-04c2-4f4a-8061-8a82f93d69d8"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="445" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="eb78aae2-08f6-442a-b0ad-d596ae1803ef"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="553" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="f4c459ae-5280-4b18-b51c-3d103cb04bd6"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="725" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="47187b70-7ca1-4c7f-acf8-4a9e3f9b0292"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="766" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="d4d24465-6d4f-42d1-8128-03abba4c0e4f"/>
+				<reportElement stretchType="RelativeToTallestObject" x="766" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cea2b97b-6bdc-4c9a-ac18-1b4eaed0a4f9"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 		</band>
 	</detail>
+	<summary>
+		<band height="158">
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="430" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="64a96189-3ea0-439c-b41f-8d603127dc24"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="537" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="facd3fa5-38eb-430b-b9e8-6fa737a06a85"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="717" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cd6f492d-0af0-4292-b647-e645f5e15759"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3979d480-5aa5-4732-9278-9f51a5dce9d6"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b45dec7c-2cb5-4d0c-8a12-be4120b1d320"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="501" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a4845012-b208-449f-ac09-a1c2f6e3da42"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="609" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="63910da9-9da2-4b16-8ea4-eb863d3d93b4"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="645" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9ae20a21-61d5-4a3b-9df2-672c36785fad"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="681" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fd3fcb60-4e3d-49a2-b00c-74b0801bc21b"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="466" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9e288755-f95d-41ea-9404-dd466691e6d9"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="573" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a9d9ff40-d9d7-4561-aa6d-956989f7ab73"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="0" y="0" width="426" height="18" uuid="cb4f328f-ea1b-4a07-a269-e27ecfc2066c">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<text><![CDATA[PARAF]]></text>
+			</staticText>
+			<line>
+				<reportElement x="0" y="18" width="767" height="1" uuid="3a640b4d-0536-4462-817d-d8331a824fdf">
+					<property name="com.jaspersoft.studio.unit.y" value="px"/>
+				</reportElement>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="16" y="25" width="415" height="125" uuid="4af966b2-cbae-4f6b-b834-498f99aa9a3c"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{pelaksana}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>

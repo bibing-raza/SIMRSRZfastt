@@ -261,6 +261,7 @@ import inventory.DlgDaftarPermintaanResep;
 import inventory.DlgGolongan;
 import inventory.DlgKategori;
 import inventory.DlgObatPerTanggal;
+import inventory.DlgPelaksanaPemberiObat;
 import inventory.DlgPemberianObat;
 import inventory.DlgPemberianObatPasien;
 import inventory.DlgPenjualanPerTanggal;
@@ -945,6 +946,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnJadwalOperasi = new widget.ButtonBig();
         btnBangsal = new widget.ButtonBig();
         btnPersetujuanTindakan = new widget.ButtonBig();
+        btnPetugasPelaksanaPemberianObat = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6207,6 +6209,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPersetujuanTindakan);
 
+        btnPetugasPelaksanaPemberianObat.setForeground(new java.awt.Color(0, 0, 0));
+        btnPetugasPelaksanaPemberianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/surgeon.png"))); // NOI18N
+        btnPetugasPelaksanaPemberianObat.setText("Petugas Pelaksana Pemberian Obat");
+        btnPetugasPelaksanaPemberianObat.setIconTextGap(0);
+        btnPetugasPelaksanaPemberianObat.setName("btnPetugasPelaksanaPemberianObat"); // NOI18N
+        btnPetugasPelaksanaPemberianObat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPetugasPelaksanaPemberianObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPetugasPelaksanaPemberianObatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPetugasPelaksanaPemberianObat);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6215,7 +6230,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22/11/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/11/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12277,6 +12292,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPersetujuanTindakanActionPerformed
 
+    private void btnPetugasPelaksanaPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPetugasPelaksanaPemberianObatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgPelaksanaPemberiObat aplikasi = new DlgPelaksanaPemberiObat(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPetugasPelaksanaPemberianObatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12562,6 +12590,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPermintaanRadiologi;
     private widget.ButtonBig btnPersetujuanTindakan;
     private widget.ButtonBig btnPerusahaan;
+    private widget.ButtonBig btnPetugasPelaksanaPemberianObat;
     private widget.ButtonBig btnPiutang;
     private widget.ButtonBig btnPiutangBelumLunas;
     private widget.ButtonBig btnPiutangPerCaraBayar;
@@ -13098,6 +13127,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu = 0;
             if (akses.getpemberian_obat()== true) {
                 Panelmenu.add(btnPemberianObat);
+                jmlmenu++;
+            }
+            
+            if (akses.getpemberian_obat()== true) {
+                Panelmenu.add(btnPetugasPelaksanaPemberianObat);
                 jmlmenu++;
             }
             
@@ -14836,6 +14870,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpemberian_obat() == true) {
             Panelmenu.add(btnPemberianObat);
+            jmlmenu++;
+        }
+
+        if (akses.getpemberian_obat() == true) {
+            Panelmenu.add(btnPetugasPelaksanaPemberianObat);
             jmlmenu++;
         }
         
@@ -16758,6 +16797,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpemberian_obat()== true) {
             if (btnPemberianObat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPemberianObat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getpemberian_obat()== true) {
+            if (btnPetugasPelaksanaPemberianObat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPetugasPelaksanaPemberianObat);
                 jmlmenu++;
             }
         }

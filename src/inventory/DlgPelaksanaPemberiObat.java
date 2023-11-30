@@ -1138,6 +1138,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             Valid.textKosong(TNoRW, "Pasien");
         } else if (nipPetugas1.equals("-")) {
             Valid.textKosong(Tpetugas1, "Nama Petugas Pelaksana (Jam 1) ");
+        } else if (Sequel.cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + TNoRW.getText() + "' "
+                + "and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'") > 0) {
+            JOptionPane.showMessageDialog(rootPane, "Petugas pelaksana pemberian obat utk. tgl. " + tgl_beri.getSelectedItem() + " An. Pasien " + TNmPasien.getText() + " sudah tersimpan..!!");
         } else {
             Sequel.menyimpan("pelaksana_pemberian_obat",
                     "'" + TNoRW.getText() + "','" + Sequel.cariIsi("select now()") + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
@@ -1264,7 +1267,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyReleased
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-       emptTeks();
+       TCari.setText("");
        tampil();
 }//GEN-LAST:event_BtnAllActionPerformed
 
@@ -1886,6 +1889,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         TNmPasien.setText(nmpasien);        
         tgl_beri.setDate(tglPemberian);
         DTPCari1.setDate(tglPemberian);
+        TCari.setText(norw);
         nmUnit.setText(Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + norw + "' and "
                 + "tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and status like '%" + sttsrwt + "%' "
                 + "order by waktu_simpan desc limit 1"));
