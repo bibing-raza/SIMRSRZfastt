@@ -399,9 +399,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbDtk7 = new widget.ComboBox();
         cmbDtk8 = new widget.ComboBox();
         BtnPetugas = new widget.Button();
-        BtnResep = new widget.Button();
+        panelGlass11 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
         tbResep = new widget.Table();
+        panelGlass12 = new widget.panelisi();
+        BtnResep = new widget.Button();
+        jLabel9 = new widget.Label();
+        LCount = new widget.Label();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
@@ -1321,28 +1325,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass7.add(BtnPetugas);
         BtnPetugas.setBounds(240, 150, 220, 23);
 
-        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
-        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
-        BtnResep.setMnemonic('R');
-        BtnResep.setText("Lihat Resep >>");
-        BtnResep.setToolTipText("Alt+R");
-        BtnResep.setGlassColor(new java.awt.Color(0, 153, 0));
-        BtnResep.setName("BtnResep"); // NOI18N
-        BtnResep.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnResep.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnResepActionPerformed(evt);
-            }
-        });
-        BtnResep.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnResepKeyPressed(evt);
-            }
-        });
-        panelGlass7.add(BtnResep);
-        BtnResep.setBounds(470, 150, 150, 23);
-
         panelGlass10.add(panelGlass7);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass11.setLayout(new java.awt.BorderLayout());
 
         Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Lihat Resep Dokter ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll2.setName("Scroll2"); // NOI18N
@@ -1358,7 +1345,48 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         Scroll2.setViewportView(tbResep);
 
-        panelGlass10.add(Scroll2);
+        panelGlass11.add(Scroll2, java.awt.BorderLayout.CENTER);
+
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 9));
+
+        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setMnemonic('R');
+        BtnResep.setText("Lihat Resep");
+        BtnResep.setToolTipText("Lihat Resep Dokter Pada Tabel Disebelah Ini, Sesuaikan Dengan Tgl. Pemberian");
+        BtnResep.setGlassColor(new java.awt.Color(0, 153, 0));
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(140, 26));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        BtnResep.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnResepKeyPressed(evt);
+            }
+        });
+        panelGlass12.add(BtnResep);
+
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel9.setText("Record :");
+        jLabel9.setName("jLabel9"); // NOI18N
+        jLabel9.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass12.add(jLabel9);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass12.add(LCount);
+
+        panelGlass11.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+
+        panelGlass10.add(panelGlass11);
 
         internalFrame1.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
 
@@ -2506,6 +2534,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnSimpan;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
+    private widget.Label LCount;
     private javax.swing.JMenuItem MnContengSemua;
     private javax.swing.JMenuItem MnCopy;
     private javax.swing.JMenuItem MnHapusConteng;
@@ -2584,6 +2613,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Label jLabel53;
     private widget.Label jLabel6;
     private widget.Label jLabel8;
+    private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu;
     private widget.TextBox jlhSisaObat;
@@ -2593,6 +2623,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.TextBox nmpasien;
     private widget.TextBox norm;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
@@ -3173,5 +3205,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+        LCount.setText("" + tabMode2.getRowCount());
     }
 }

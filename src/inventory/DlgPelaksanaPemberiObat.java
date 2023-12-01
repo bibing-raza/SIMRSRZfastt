@@ -375,9 +375,13 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         nmUnit = new widget.TextBox();
         jLabel12 = new widget.Label();
         tgl_beri = new widget.Tanggal();
-        BtnObat = new widget.Button();
+        panelGlass11 = new widget.panelisi();
         Scroll1 = new widget.ScrollPane();
         tbObat = new widget.Table();
+        panelGlass12 = new widget.panelisi();
+        BtnObat = new widget.Button();
+        jLabel8 = new widget.Label();
+        LCount1 = new widget.Label();
 
         WindowCetak.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowCetak.setName("WindowCetak"); // NOI18N
@@ -628,7 +632,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -642,7 +646,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1211,22 +1215,11 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         panelGlass7.add(tgl_beri);
         tgl_beri.setBounds(530, 38, 100, 23);
 
-        BtnObat.setForeground(new java.awt.Color(0, 0, 0));
-        BtnObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnObat.setMnemonic('L');
-        BtnObat.setText("Lihat Obat");
-        BtnObat.setToolTipText("Tampilkan Data Obat Pada Tabel Disebelah Ini");
-        BtnObat.setGlassColor(new java.awt.Color(0, 204, 255));
-        BtnObat.setName("BtnObat"); // NOI18N
-        BtnObat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnObatActionPerformed(evt);
-            }
-        });
-        panelGlass7.add(BtnObat);
-        BtnObat.setBounds(635, 38, 110, 23);
-
         panelGlass10.add(panelGlass7);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass11.setLayout(new java.awt.BorderLayout());
 
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Daftar Item Obat Terjadwal Sesuai Tgl. Pemberian ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
@@ -1236,7 +1229,43 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         tbObat.setName("tbObat"); // NOI18N
         Scroll1.setViewportView(tbObat);
 
-        panelGlass10.add(Scroll1);
+        panelGlass11.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 9));
+
+        BtnObat.setForeground(new java.awt.Color(0, 0, 0));
+        BtnObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnObat.setMnemonic('L');
+        BtnObat.setText("Lihat Obat");
+        BtnObat.setToolTipText("Tampilkan Data Obat Pada Tabel Disebelah Ini");
+        BtnObat.setGlassColor(new java.awt.Color(0, 153, 0));
+        BtnObat.setName("BtnObat"); // NOI18N
+        BtnObat.setPreferredSize(new java.awt.Dimension(140, 26));
+        BtnObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnObatActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnObat);
+
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel8.setText("Record :");
+        jLabel8.setName("jLabel8"); // NOI18N
+        jLabel8.setPreferredSize(new java.awt.Dimension(65, 23));
+        panelGlass12.add(jLabel8);
+
+        LCount1.setForeground(new java.awt.Color(0, 0, 0));
+        LCount1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount1.setText("0");
+        LCount1.setName("LCount1"); // NOI18N
+        LCount1.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass12.add(LCount1);
+
+        panelGlass11.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+
+        panelGlass10.add(panelGlass11);
 
         internalFrame1.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
 
@@ -1285,7 +1314,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (wktSimpan.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datany pada tabel..!!");
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tbPelaksana.requestFocus();
         } else {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
@@ -1316,7 +1345,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         } else if (nipPetugas1.equals("-")) {
             Valid.textKosong(Tpetugas1, "Nama Petugas Pelaksana (Jam 1) ");
         } else if (wktSimpan.equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datany pada tabel..!!");
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tbPelaksana.requestFocus();
         } else {
             Sequel.mengedit("pelaksana_pemberian_obat", "waktu_simpan=?", "tgl_pemberian=?, nip_petugas_jam1=?, nip_petugas_jam2=?, "
@@ -1926,6 +1955,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
+    private widget.Label LCount1;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.TextBox TCari;
@@ -1971,9 +2001,12 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
+    private widget.Label jLabel8;
     private javax.swing.JPanel jPanel3;
     private widget.TextBox nmUnit;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
@@ -2268,5 +2301,6 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+        LCount1.setText("" + tabMode1.getRowCount());
     }
 }
