@@ -57,7 +57,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private PreparedStatement ps, pps1, pps2, pps3, pps4, pps5, pps6, pspasien, psdiet, psrestor, psLaprm, psFakIGD, psRes;
     private ResultSet rs, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rspasien, rsdiet, rsrestor, rsLaprm, rsFakIGD, rsRes;
-    private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0;
+    private int i = 0, x = 0, pilihan = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, paste = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDiet diet = new DlgCariDiet(null, false);
@@ -653,17 +653,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnTemplateS = new javax.swing.JMenuItem();
         MnUlangiS = new javax.swing.JMenuItem();
         MnPasteLabS = new javax.swing.JMenuItem();
+        MnCeklisFarmasiS = new javax.swing.JMenuItem();
         jPopupMenu4 = new javax.swing.JPopupMenu();
         MnTemplateO = new javax.swing.JMenuItem();
         MnUlangiO = new javax.swing.JMenuItem();
         MnPasteLabO = new javax.swing.JMenuItem();
+        MnCeklisFarmasiO = new javax.swing.JMenuItem();
         jPopupMenu5 = new javax.swing.JPopupMenu();
         MnTemplateA = new javax.swing.JMenuItem();
         MnUlangiA = new javax.swing.JMenuItem();
         MnPasteLabA = new javax.swing.JMenuItem();
+        MnCeklisFarmasiA = new javax.swing.JMenuItem();
         jPopupMenu6 = new javax.swing.JPopupMenu();
         MnTemplateP = new javax.swing.JMenuItem();
         MnUlangiP = new javax.swing.JMenuItem();
+        MnCeklisFarmasiP = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         jPanel1 = new javax.swing.JPanel();
@@ -1323,7 +1327,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnTemplateS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTemplateS.setIconTextGap(5);
         MnTemplateS.setName("MnTemplateS"); // NOI18N
-        MnTemplateS.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnTemplateS.setPreferredSize(new java.awt.Dimension(130, 26));
         MnTemplateS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTemplateSActionPerformed(evt);
@@ -1338,7 +1342,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnUlangiS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnUlangiS.setIconTextGap(5);
         MnUlangiS.setName("MnUlangiS"); // NOI18N
-        MnUlangiS.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnUlangiS.setPreferredSize(new java.awt.Dimension(130, 26));
         MnUlangiS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnUlangiSActionPerformed(evt);
@@ -1353,13 +1357,28 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnPasteLabS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPasteLabS.setIconTextGap(5);
         MnPasteLabS.setName("MnPasteLabS"); // NOI18N
-        MnPasteLabS.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnPasteLabS.setPreferredSize(new java.awt.Dimension(130, 26));
         MnPasteLabS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPasteLabSActionPerformed(evt);
             }
         });
         jPopupMenu3.add(MnPasteLabS);
+
+        MnCeklisFarmasiS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCeklisFarmasiS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCeklisFarmasiS.setText("Ceklist Farmasi");
+        MnCeklisFarmasiS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCeklisFarmasiS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCeklisFarmasiS.setIconTextGap(5);
+        MnCeklisFarmasiS.setName("MnCeklisFarmasiS"); // NOI18N
+        MnCeklisFarmasiS.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCeklisFarmasiS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCeklisFarmasiSActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnCeklisFarmasiS);
 
         jPopupMenu4.setName("jPopupMenu4"); // NOI18N
 
@@ -1370,7 +1389,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnTemplateO.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTemplateO.setIconTextGap(5);
         MnTemplateO.setName("MnTemplateO"); // NOI18N
-        MnTemplateO.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnTemplateO.setPreferredSize(new java.awt.Dimension(130, 26));
         MnTemplateO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTemplateOActionPerformed(evt);
@@ -1385,7 +1404,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnUlangiO.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnUlangiO.setIconTextGap(5);
         MnUlangiO.setName("MnUlangiO"); // NOI18N
-        MnUlangiO.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnUlangiO.setPreferredSize(new java.awt.Dimension(130, 26));
         MnUlangiO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnUlangiOActionPerformed(evt);
@@ -1400,13 +1419,28 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnPasteLabO.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPasteLabO.setIconTextGap(5);
         MnPasteLabO.setName("MnPasteLabO"); // NOI18N
-        MnPasteLabO.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnPasteLabO.setPreferredSize(new java.awt.Dimension(130, 26));
         MnPasteLabO.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPasteLabOActionPerformed(evt);
             }
         });
         jPopupMenu4.add(MnPasteLabO);
+
+        MnCeklisFarmasiO.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCeklisFarmasiO.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCeklisFarmasiO.setText("Ceklist Farmasi");
+        MnCeklisFarmasiO.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCeklisFarmasiO.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCeklisFarmasiO.setIconTextGap(5);
+        MnCeklisFarmasiO.setName("MnCeklisFarmasiO"); // NOI18N
+        MnCeklisFarmasiO.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCeklisFarmasiO.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCeklisFarmasiOActionPerformed(evt);
+            }
+        });
+        jPopupMenu4.add(MnCeklisFarmasiO);
 
         jPopupMenu5.setName("jPopupMenu5"); // NOI18N
 
@@ -1417,7 +1451,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnTemplateA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTemplateA.setIconTextGap(5);
         MnTemplateA.setName("MnTemplateA"); // NOI18N
-        MnTemplateA.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnTemplateA.setPreferredSize(new java.awt.Dimension(130, 26));
         MnTemplateA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTemplateAActionPerformed(evt);
@@ -1432,7 +1466,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnUlangiA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnUlangiA.setIconTextGap(5);
         MnUlangiA.setName("MnUlangiA"); // NOI18N
-        MnUlangiA.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnUlangiA.setPreferredSize(new java.awt.Dimension(130, 26));
         MnUlangiA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnUlangiAActionPerformed(evt);
@@ -1447,13 +1481,28 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnPasteLabA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnPasteLabA.setIconTextGap(5);
         MnPasteLabA.setName("MnPasteLabA"); // NOI18N
-        MnPasteLabA.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnPasteLabA.setPreferredSize(new java.awt.Dimension(130, 26));
         MnPasteLabA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnPasteLabAActionPerformed(evt);
             }
         });
         jPopupMenu5.add(MnPasteLabA);
+
+        MnCeklisFarmasiA.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCeklisFarmasiA.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCeklisFarmasiA.setText("Ceklist Farmasi");
+        MnCeklisFarmasiA.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCeklisFarmasiA.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCeklisFarmasiA.setIconTextGap(5);
+        MnCeklisFarmasiA.setName("MnCeklisFarmasiA"); // NOI18N
+        MnCeklisFarmasiA.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCeklisFarmasiA.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCeklisFarmasiAActionPerformed(evt);
+            }
+        });
+        jPopupMenu5.add(MnCeklisFarmasiA);
 
         jPopupMenu6.setName("jPopupMenu6"); // NOI18N
 
@@ -1464,7 +1513,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnTemplateP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnTemplateP.setIconTextGap(5);
         MnTemplateP.setName("MnTemplateP"); // NOI18N
-        MnTemplateP.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnTemplateP.setPreferredSize(new java.awt.Dimension(130, 26));
         MnTemplateP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnTemplatePActionPerformed(evt);
@@ -1479,13 +1528,28 @@ public class DlgCPPT extends javax.swing.JDialog {
         MnUlangiP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnUlangiP.setIconTextGap(5);
         MnUlangiP.setName("MnUlangiP"); // NOI18N
-        MnUlangiP.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnUlangiP.setPreferredSize(new java.awt.Dimension(130, 26));
         MnUlangiP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnUlangiPActionPerformed(evt);
             }
         });
         jPopupMenu6.add(MnUlangiP);
+
+        MnCeklisFarmasiP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCeklisFarmasiP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCeklisFarmasiP.setText("Ceklist Farmasi");
+        MnCeklisFarmasiP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCeklisFarmasiP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCeklisFarmasiP.setIconTextGap(5);
+        MnCeklisFarmasiP.setName("MnCeklisFarmasiP"); // NOI18N
+        MnCeklisFarmasiP.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCeklisFarmasiP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCeklisFarmasiPActionPerformed(evt);
+            }
+        });
+        jPopupMenu6.add(MnCeklisFarmasiP);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -1673,7 +1737,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCetakCPPT.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1689,7 +1753,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2088,7 +2152,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2295,7 +2359,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2309,7 +2373,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2861,7 +2925,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel8.setBounds(0, 38, 180, 23);
 
         tglCppt.setEditable(false);
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -3325,7 +3389,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(770, 36, 90, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -3379,7 +3443,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(770, 64, 90, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -3569,7 +3633,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3583,7 +3647,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4565,14 +4629,45 @@ public class DlgCPPT extends javax.swing.JDialog {
         } else {
             obataman = "- Obat Aman : TIDAK";
         }
-        
-        if (THasil.getText().equals("")) {
-            THasil.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
-        } else {
-            THasil.setText(THasil.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+
+        if (cmbSoap.getSelectedIndex() == 0) {
+            if (THasil.getText().equals("")) {
+                THasil.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+            } else {
+                THasil.setText(THasil.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+            }
+            BtnCloseIn7ActionPerformed(null);
+        } else if (cmbSoap.getSelectedIndex() == 1) {
+            if (paste == 1) {
+                if (TSubjektif.getText().equals("")) {
+                    TSubjektif.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                } else {
+                    TSubjektif.setText(TSubjektif.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                }
+                BtnCloseIn7ActionPerformed(null);
+            } else if (paste == 2) {
+                if (TObjektif.getText().equals("")) {
+                    TObjektif.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                } else {
+                    TObjektif.setText(TObjektif.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                }
+                BtnCloseIn7ActionPerformed(null);
+            } else if (paste == 3) {
+                if (TAsesmen.getText().equals("")) {
+                    TAsesmen.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                } else {
+                    TAsesmen.setText(TAsesmen.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                }
+                BtnCloseIn7ActionPerformed(null);
+            } else if (paste == 4) {
+                if (TPlaning.getText().equals("")) {
+                    TPlaning.setText("Pemantauan Penggunaan Obat :\n\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                } else {
+                    TPlaning.setText(TPlaning.getText() + "\n\nPemantauan Penggunaan Obat :\n" + dapatobat + obatsesuai + obatefektif + obataman);
+                }
+                BtnCloseIn7ActionPerformed(null);
+            }
         }
-        BtnCloseIn7ActionPerformed(null);
-        
     }//GEN-LAST:event_BtnSimpanCeklisActionPerformed
 
     private void MnCeklisFarmasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiActionPerformed
@@ -5957,6 +6052,62 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_cmbSiftActionPerformed
 
+    private void MnCeklisFarmasiSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiSActionPerformed
+        paste = 1;
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+        ChkSemua.setSelected(false);
+        
+        WindowFarmasi.setSize(300, 172);
+        WindowFarmasi.setLocationRelativeTo(internalFrame1);
+        WindowFarmasi.setAlwaysOnTop(false);
+        WindowFarmasi.setVisible(true);
+    }//GEN-LAST:event_MnCeklisFarmasiSActionPerformed
+
+    private void MnCeklisFarmasiOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiOActionPerformed
+        paste = 2;
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+        ChkSemua.setSelected(false);
+
+        WindowFarmasi.setSize(300, 172);
+        WindowFarmasi.setLocationRelativeTo(internalFrame1);
+        WindowFarmasi.setAlwaysOnTop(false);
+        WindowFarmasi.setVisible(true);
+    }//GEN-LAST:event_MnCeklisFarmasiOActionPerformed
+
+    private void MnCeklisFarmasiAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiAActionPerformed
+        paste = 3;
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+        ChkSemua.setSelected(false);
+
+        WindowFarmasi.setSize(300, 172);
+        WindowFarmasi.setLocationRelativeTo(internalFrame1);
+        WindowFarmasi.setAlwaysOnTop(false);
+        WindowFarmasi.setVisible(true);
+    }//GEN-LAST:event_MnCeklisFarmasiAActionPerformed
+
+    private void MnCeklisFarmasiPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCeklisFarmasiPActionPerformed
+        paste = 4;
+        ChkDapatObat.setSelected(false);
+        ChkObatSesuai.setSelected(false);
+        ChkObatEfektif.setSelected(false);
+        ChkObatAman.setSelected(false);
+        ChkSemua.setSelected(false);
+
+        WindowFarmasi.setSize(300, 172);
+        WindowFarmasi.setLocationRelativeTo(internalFrame1);
+        WindowFarmasi.setAlwaysOnTop(false);
+        WindowFarmasi.setVisible(true);
+    }//GEN-LAST:event_MnCeklisFarmasiPActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -6047,6 +6198,10 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenu MnAssesmenKeperawatanIGD;
     private javax.swing.JMenu MnAssesmenMedikIGD;
     private javax.swing.JMenuItem MnCeklisFarmasi;
+    private javax.swing.JMenuItem MnCeklisFarmasiA;
+    private javax.swing.JMenuItem MnCeklisFarmasiO;
+    private javax.swing.JMenuItem MnCeklisFarmasiP;
+    private javax.swing.JMenuItem MnCeklisFarmasiS;
     private javax.swing.JMenuItem MnDataPemberianDiet;
     private javax.swing.JMenuItem MnDataSampah;
     private javax.swing.JMenu MnDataTriaseIGD;
