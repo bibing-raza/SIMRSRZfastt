@@ -53,8 +53,8 @@ public final class DlgRawatInap extends javax.swing.JDialog {
     //public DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private DlgPasien pasien = new DlgPasien(null, false);
     public  DlgCariDokter dokter_umum=new DlgCariDokter(null,false);
-    private PreparedStatement ps, ps2, ps3, ps4, psrekening, pstarif, psdiagnosa, pscppt;
-    private ResultSet rs, rsrekening, rscppt;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, psrekening, pstarif, psdiagnosa, pscppt;
+    private ResultSet rs, rs5, rsrekening, rscppt;
     private Date date = new Date();
     private Date date2 = new Date();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -65,7 +65,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             Utang_Jasa_Medik_Dokter_Tindakan_Ranap = "", Beban_Jasa_Medik_Paramedis_Tindakan_Ranap = "",
             Utang_Jasa_Medik_Paramedis_Tindakan_Ranap = "", Beban_KSO_Tindakan_Ranap = "", kd_pj, kamar, tgl_m, kdDiag = "", tgm = "",
             tglmasuk, jammasuk, Utang_KSO_Tindakan_Ranap = "", hariawal = Sequel.cariIsi("select hariawal from set_jam_minimal"),
-            now = dateFormat.format(date), diag_awal, key = "", cekdpjp = "";
+            now = dateFormat.format(date), diag_awal, key = "", cekdpjp = "", dataKonfirmasi = "";
 
     /**
      * Creates new form DlgRawatInap
@@ -357,8 +357,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         
         tabModeCppt=new DefaultTableModel(null, new Object[]{
             "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
-            "Nama PPA", "Shift", "hasil", "instruksi", "konfirmasi_terapi", "tgl_lapor",
-            "jam_lapor", "tgl_verifikasi", "jam_verifikasi", "nmpetugasKonfir", "nmdpjpKonfir"
+            "Nama PPA", "Shift", "hasil", "instruksi", "no_rawat", "tgl_cppt", "jam_cppt"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -370,7 +369,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         tbCPPT.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbCPPT.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 12; i++) {
             TableColumn column = tbCPPT.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(70);
@@ -379,7 +378,8 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 4) {
                 column.setPreferredWidth(80);
             } else if (i == 5) {
@@ -401,19 +401,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 12) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 13) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 14) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 15) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            }
+            } 
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
 
@@ -5334,13 +5322,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         try {
             pscppt = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
                     + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
-                    + "c.instruksi_nakes, c.waktu_simpan, c.konfirmasi_terapi, DATE_FORMAT(c.tgl_lapor,'%d-%m-%Y') tgl_lapor, "
-                    + "time_format(c.jam_lapor,'%H:%i') jam_lapor, DATE_FORMAT(c.tgl_verifikasi,'%d-%m-%Y') tgl_verifikasi, "
-                    + "time_format(c.jam_verifikasi,'%H:%i') jam_verif, pg3.nama petugasKonfir, pg4.nama dpjpKonfir from cppt c "
+                    + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
                     + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
-                    + "inner join pegawai pg2 on pg2.nik=c.nip_ppa "
-                    + "INNER JOIN pegawai pg3 ON pg3.nik = c.nip_petugas_konfir "
-                    + "INNER JOIN pegawai pg4 ON pg4.nik = c.nip_dpjp_konfir where "
+                    + "inner join pegawai pg2 on pg2.nik=c.nip_ppa where "
                     + "c.flag_hapus='tidak' and c.status='ranap' and c.no_rawat='" + TNoRw.getText() + "' order by c.tgl_cppt, c.jam_cppt");
             try {
                 rscppt = pscppt.executeQuery();                
@@ -5355,13 +5339,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rscppt.getString("cppt_shift"),
                         rscppt.getString("hasil_pemeriksaan"),
                         rscppt.getString("instruksi_nakes"),
-                        rscppt.getString("konfirmasi_terapi"),
-                        rscppt.getString("tgl_lapor"),
-                        rscppt.getString("jam_lapor"),
-                        rscppt.getString("tgl_verifikasi"),
-                        rscppt.getString("jam_verif"),
-                        rscppt.getString("petugasKonfir"),
-                        rscppt.getString("dpjpKonfir")
+                        rscppt.getString("no_rawat"),
+                        rscppt.getString("tgl_cppt"),
+                        rscppt.getString("jam_cppt")
                     });
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -5381,27 +5361,31 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
     
     private void getDataCppt() {
+        dataKonfirmasi = "";
+        
         if (tbCPPT.getSelectedRow() != -1) {
             Thasil.setText("Tgl. CPPT : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 0).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 1).toString() + " WITA\n\n"
                     + "" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString());
             
             //konfirmasi terapi
-            if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString().equals("ya")) {
+            if (Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where "
+                    + "no_rawat='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString() + "' "
+                    + "and tgl_cppt='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "' "
+                    + "and cppt_shift='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + "' "
+                    + "and jam_cppt='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString() + "'") > 0) {
+
+                tampilKonfirmasi(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString());
+                
                 if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().equals("-")) {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString() + "\n\n"
-                            + "KONFIRMASI TERAPI VIA TELP. :\n\n"
-                            + "Tgl. Lapor : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString() + " WITA\n"
-                            + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + " WITA\n"
-                            + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 4).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + "\n"
-                            + "DPJP : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString());
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n" + dataKonfirmasi);
                 } else {
                     Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString() + "\n\n"
                             + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString() + ")\n\n"
-                            + "KONFIRMASI TERAPI VIA TELP. :\n\n"
-                            + "Tgl. Lapor : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString() + " WITA\n"
-                            + "Tgl. Verifikasi : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString() + " WITA\n"
-                            + "Nama " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 4).toString() + " : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString() + "\n"
-                            + "DPJP : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString());
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n" + dataKonfirmasi);
                 }
             } else {
                 if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().equals("-")) {
@@ -5411,6 +5395,43 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString() + ")");
                 }
             }
+        }
+    }
+    
+    private void tampilKonfirmasi(String norwt, String tglcppt, String sift, String jamcppt) {
+        try {
+            ps5 = koneksi.prepareStatement("select pg1.nama ptgs, date_format(ck.tgl_lapor,'%d-%m-%Y') tgllapor, time_format(ck.jam_lapor,'%H:%i') jamlapor, "
+                    + "pg2.nama dpjp, date_format(ck.tgl_verifikasi,'%d-%m-%Y') tglverif, time_format(ck.jam_verifikasi,'%H:%i') jamverif from cppt_konfirmasi_terapi ck "
+                    + "inner join pegawai pg1 on pg1.nik=ck.nip_petugas_konfir inner join pegawai pg2 on pg2.nik=ck.nip_dpjp_konfir where "
+                    + "ck.no_rawat = '" + norwt + "' and ck.tgl_cppt='" + tglcppt + "' and ck.cppt_shift='" + sift + "' "
+                    + "and ck.jam_cppt='" + jamcppt + "' order by ck.waktu_simpan");
+            try {
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    if (dataKonfirmasi.equals("")) {
+                        dataKonfirmasi = "Tgl. Lapor : " + rs5.getString("tgllapor") + ", Jam : " + rs5.getString("jamlapor") + " WITA\n"
+                                + "Tgl. Verifikasi : " + rs5.getString("tglverif") + ", Jam : " + rs5.getString("jamverif") + " WITA\n"
+                                + "Nama Petugas : " + rs5.getString("ptgs") + "\n"
+                                + "Dengan DPJP : " + rs5.getString("dpjp");
+                    } else {
+                        dataKonfirmasi = dataKonfirmasi + "\n\nTgl. Lapor : " + rs5.getString("tgllapor") + ", Jam : " + rs5.getString("jamlapor") + " WITA\n"
+                                + "Tgl. Verifikasi : " + rs5.getString("tglverif") + ", Jam : " + rs5.getString("jamverif") + " WITA\n"
+                                + "Nama Petugas : " + rs5.getString("ptgs") + "\n"
+                                + "Dengan DPJP : " + rs5.getString("dpjp");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

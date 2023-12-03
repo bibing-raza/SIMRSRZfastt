@@ -62,7 +62,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Rg. Rawat/Poli/Inst.", "Tgl. Pemberian", 
             "Petugas Pelaksana (Jam 1)", "Petugas Pelaksana (Jam 2)", "Petugas Pelaksana (Jam 3)", "Petugas Pelaksana (Jam 4)",
             "Petugas Pelaksana (Jam 5)", "Petugas Pelaksana (Jam 6)", "Petugas Pelaksana (Jam 7)", "Petugas Pelaksana (Jam 8)",
-            "nip1", "nip2", "nip3", "nip4", "nip5", "nip6", "nip7", "nip8", "tgl_pemberian", "waktuSimpan"
+            "nip1", "nip2", "nip3", "nip4", "nip5", "nip6", "nip7", "nip8", "tgl_pemberian", "nm_unit", "waktuSimpan"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -76,7 +76,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         tbPelaksana.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPelaksana.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 24; i++) {
             TableColumn column = tbPelaksana.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -132,6 +132,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1277,20 +1280,25 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRW.getText().trim().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
+        } else if (nmUnit.getText().equals("")) {
+            Valid.textKosong(nmUnit, "Rg. Rawat/Poli/Inst.");
         } else if (nipPetugas1.equals("-")) {
-            Valid.textKosong(Tpetugas1, "Nama Petugas Pelaksana (Jam 1) ");
-        } else if (Sequel.cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + TNoRW.getText() + "' "
-                + "and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'") > 0) {
-            JOptionPane.showMessageDialog(rootPane, "Petugas pelaksana pemberian obat utk. tgl. " + tgl_beri.getSelectedItem() + " An. Pasien " + TNmPasien.getText() + " sudah tersimpan..!!");
+            Valid.textKosong(Tpetugas1, "Nama Petugas Pelaksana (Jam 1)");
         } else {
-            Sequel.menyimpan("pelaksana_pemberian_obat",
-                    "'" + TNoRW.getText() + "','" + Sequel.cariIsi("select now()") + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
-                    + "'" + nipPetugas1 + "', '" + nipPetugas2 + "', '" + nipPetugas3 + "', '" + nipPetugas4 + "', "
-                    + "'" + nipPetugas5 + "', '" + nipPetugas6 + "', '" + nipPetugas7 + "', '" + nipPetugas8 + "'", "Petugas Pelaksana Pemberian Obat");
-            
-            Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
-            emptTeks();
-            tampil();
+            if (Sequel.cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + TNoRW.getText() + "' "
+                    + "and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and nm_unit='" + nmUnit.getText() + "'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Petugas pelaksana pemberian obat utk. tgl. " + tgl_beri.getSelectedItem() + " An. Pasien " + TNmPasien.getText() + " di " + nmUnit.getText() + " sudah tersimpan..!!");
+            } else {
+                Sequel.menyimpan("pelaksana_pemberian_obat",
+                        "'" + TNoRW.getText() + "','" + Sequel.cariIsi("select now()") + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
+                        + "'" + nipPetugas1 + "', '" + nipPetugas2 + "', '" + nipPetugas3 + "', '" + nipPetugas4 + "', "
+                        + "'" + nipPetugas5 + "', '" + nipPetugas6 + "', '" + nipPetugas7 + "', '" + nipPetugas8 + "', "
+                        + "'" + nmUnit.getText() + "'", "Petugas Pelaksana Pemberian Obat");
+
+                Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
+                emptTeks();
+                tampil();
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1349,9 +1357,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             tbPelaksana.requestFocus();
         } else {
             Sequel.mengedit("pelaksana_pemberian_obat", "waktu_simpan=?", "tgl_pemberian=?, nip_petugas_jam1=?, nip_petugas_jam2=?, "
-                    + "nip_petugas_jam3=?, nip_petugas_jam4=?, nip_petugas_jam5=?, nip_petugas_jam6=?, nip_petugas_jam7=?, nip_petugas_jam8=?", 10, new String[]{
+                    + "nip_petugas_jam3=?, nip_petugas_jam4=?, nip_petugas_jam5=?, nip_petugas_jam6=?, nip_petugas_jam7=?, nip_petugas_jam8=?, nm_unit=?", 11, new String[]{
                         Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nipPetugas1, nipPetugas2, nipPetugas3, 
-                        nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8,
+                        nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8, nmUnit.getText(),
                         wktSimpan
                     });
 
@@ -1708,13 +1716,15 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (TNoRW.getText().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
+        } else if (nmUnit.getText().equals("")) {
+            Valid.textKosong(nmUnit, "Rg. Rawat/Poli/Inst.");
         } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRW.getText() + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Data pemberian obat dg. no. rawat pasien tersebut belum tersimpan...!!!!");
         } else if (Sequel.cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + TNoRW.getText() + "' "
                 + "and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Cek lagi tgl. pemberiannya utk. memastikan petugas yang melaksanakan pemberian obat...!!!!");
         } else {
-            if (tabMode.getRowCount() != 0) {
+            if (tbPelaksana.getSelectedRow() > -1) {
                 WindowCetak.setSize(598, 105);
                 WindowCetak.setLocationRelativeTo(internalFrame1);
                 WindowCetak.setAlwaysOnTop(false);
@@ -1728,6 +1738,8 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                 } else if (!nmUnit.getText().equals("IGD")) {
                     cmbJnsRawat.setSelectedIndex(1);
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu..!!!!");
             }
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
@@ -1751,159 +1763,178 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("pelaksana", Sequel.cariIsi("SELECT concat('Keterangan : \n',"
-            + "if(nip_petugas_jam1='-','',concat(' - Petugas Pelaksana (Jam 1) : ',pg1.nama)),'\n',"
-            + "if(nip_petugas_jam2='-','',concat(' - Petugas Pelaksana (Jam 2) : ',pg2.nama)),'\n',"
-            + "if(nip_petugas_jam3='-','',concat(' - Petugas Pelaksana (Jam 3) : ',pg3.nama)),'\n',"
-            + "if(nip_petugas_jam4='-','',concat(' - Petugas Pelaksana (Jam 4) : ',pg4.nama)),'\n',"
-            + "if(nip_petugas_jam5='-','',concat(' - Petugas Pelaksana (Jam 5) : ',pg5.nama)),'\n',"
-            + "if(nip_petugas_jam6='-','',concat(' - Petugas Pelaksana (Jam 6) : ',pg6.nama)),'\n',"
-            + "if(nip_petugas_jam7='-','',concat(' - Petugas Pelaksana (Jam 7) : ',pg7.nama)),'\n',"
-            + "if(nip_petugas_jam8='-','',concat(' - Petugas Pelaksana (Jam 8) : ',pg8.nama))) petugas "
-            + "FROM pelaksana_pemberian_obat pp inner join pegawai pg1 on pg1.nik=pp.nip_petugas_jam1 "
-            + "inner join pegawai pg2 on pg2.nik=pp.nip_petugas_jam2 inner join pegawai pg3 on pg3.nik=pp.nip_petugas_jam3 "
-            + "inner join pegawai pg4 on pg4.nik=pp.nip_petugas_jam4 inner join pegawai pg5 on pg5.nik=pp.nip_petugas_jam5 "
-            + "inner join pegawai pg6 on pg6.nik=pp.nip_petugas_jam6 inner join pegawai pg7 on pg7.nik=pp.nip_petugas_jam7 "
-            + "inner join pegawai pg8 on pg8.nik=pp.nip_petugas_jam8 WHERE pp.no_rawat='" + TNoRW.getText() + "' "
-            + "and pp.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' GROUP BY pp.no_rawat, pp.tgl_pemberian order by pp.waktu_simpan desc"));
+        
+        //semua rawat
+        if (cmbJnsRawat.getSelectedIndex() == 2) {
+            param.put("ruangan", "Semua");
+            param.put("pelaksana", "Keterangan : -");
 
-    //semua rawat
-    if (cmbJnsRawat.getSelectedIndex() == 2) {
-        param.put("ruangan", "Semua");
-        if (cmbJnsObat1.getSelectedIndex() == 0) {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
-                + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        } else {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
-                + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        }
+            if (cmbJnsObat1.getSelectedIndex() == 0) {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
+                            + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            } else {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
+                            + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            }
 
-        //rawat jalan
+            //rawat jalan
         } else if (cmbJnsRawat.getSelectedIndex() == 0) {
             param.put("ruangan", Sequel.cariIsi("select nm_unit from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and no_rawat='" + TNoRW.getText() + "' and nm_unit='IGD' order by waktu_simpan desc limit 1"));
-        if (cmbJnsObat1.getSelectedIndex() == 0) {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
-                + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        } else {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and po.no_rawat='" + TNoRW.getText() + "' "
-                + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        }
+                    + "and no_rawat='" + TNoRW.getText() + "' and nm_unit='IGD' order by waktu_simpan desc limit 1"));
+            param.put("pelaksana", Sequel.cariIsi("SELECT concat('Keterangan : \n',"
+                    + "if(nip_petugas_jam1='-','',concat(' - Petugas Pelaksana (Jam 1) : ',pg1.nama)),'\n',"
+                    + "if(nip_petugas_jam2='-','',concat(' - Petugas Pelaksana (Jam 2) : ',pg2.nama)),'\n',"
+                    + "if(nip_petugas_jam3='-','',concat(' - Petugas Pelaksana (Jam 3) : ',pg3.nama)),'\n',"
+                    + "if(nip_petugas_jam4='-','',concat(' - Petugas Pelaksana (Jam 4) : ',pg4.nama)),'\n',"
+                    + "if(nip_petugas_jam5='-','',concat(' - Petugas Pelaksana (Jam 5) : ',pg5.nama)),'\n',"
+                    + "if(nip_petugas_jam6='-','',concat(' - Petugas Pelaksana (Jam 6) : ',pg6.nama)),'\n',"
+                    + "if(nip_petugas_jam7='-','',concat(' - Petugas Pelaksana (Jam 7) : ',pg7.nama)),'\n',"
+                    + "if(nip_petugas_jam8='-','',concat(' - Petugas Pelaksana (Jam 8) : ',pg8.nama))) petugas "
+                    + "FROM pelaksana_pemberian_obat pp inner join pegawai pg1 on pg1.nik=pp.nip_petugas_jam1 "
+                    + "inner join pegawai pg2 on pg2.nik=pp.nip_petugas_jam2 inner join pegawai pg3 on pg3.nik=pp.nip_petugas_jam3 "
+                    + "inner join pegawai pg4 on pg4.nik=pp.nip_petugas_jam4 inner join pegawai pg5 on pg5.nik=pp.nip_petugas_jam5 "
+                    + "inner join pegawai pg6 on pg6.nik=pp.nip_petugas_jam6 inner join pegawai pg7 on pg7.nik=pp.nip_petugas_jam7 "
+                    + "inner join pegawai pg8 on pg8.nik=pp.nip_petugas_jam8 WHERE pp.no_rawat='" + TNoRW.getText() + "' "
+                    + "and pp.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and pp.nm_unit='" + nmUnit.getText() + "' order by pp.waktu_simpan desc"));
 
-        //rawat inap
+            if (cmbJnsObat1.getSelectedIndex() == 0) {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
+                            + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            } else {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                            + "and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and po.no_rawat='" + TNoRW.getText() + "' "
+                            + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            }
+
+            //rawat inap
         } else if (cmbJnsRawat.getSelectedIndex() == 1) {
             param.put("ruangan", Sequel.cariIsi("select nm_unit from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and no_rawat='" + TNoRW.getText() + "' and nm_unit<>'IGD' order by waktu_simpan desc limit 1"));
-        if (cmbJnsObat1.getSelectedIndex() == 0) {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
-                + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        } else {
-            if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
-                + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
-        } else {
-            param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
-            Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
-                "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
-                + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
-            tampil();
-            emptTeks();
-            WindowCetak.dispose();
-        }
-        }
+                    + "and no_rawat='" + TNoRW.getText() + "' and nm_unit<>'IGD' order by waktu_simpan desc limit 1"));
+            param.put("pelaksana", Sequel.cariIsi("SELECT concat('Keterangan : \n',"
+                    + "if(nip_petugas_jam1='-','',concat(' - Petugas Pelaksana (Jam 1) : ',pg1.nama)),'\n',"
+                    + "if(nip_petugas_jam2='-','',concat(' - Petugas Pelaksana (Jam 2) : ',pg2.nama)),'\n',"
+                    + "if(nip_petugas_jam3='-','',concat(' - Petugas Pelaksana (Jam 3) : ',pg3.nama)),'\n',"
+                    + "if(nip_petugas_jam4='-','',concat(' - Petugas Pelaksana (Jam 4) : ',pg4.nama)),'\n',"
+                    + "if(nip_petugas_jam5='-','',concat(' - Petugas Pelaksana (Jam 5) : ',pg5.nama)),'\n',"
+                    + "if(nip_petugas_jam6='-','',concat(' - Petugas Pelaksana (Jam 6) : ',pg6.nama)),'\n',"
+                    + "if(nip_petugas_jam7='-','',concat(' - Petugas Pelaksana (Jam 7) : ',pg7.nama)),'\n',"
+                    + "if(nip_petugas_jam8='-','',concat(' - Petugas Pelaksana (Jam 8) : ',pg8.nama))) petugas "
+                    + "FROM pelaksana_pemberian_obat pp inner join pegawai pg1 on pg1.nik=pp.nip_petugas_jam1 "
+                    + "inner join pegawai pg2 on pg2.nik=pp.nip_petugas_jam2 inner join pegawai pg3 on pg3.nik=pp.nip_petugas_jam3 "
+                    + "inner join pegawai pg4 on pg4.nik=pp.nip_petugas_jam4 inner join pegawai pg5 on pg5.nik=pp.nip_petugas_jam5 "
+                    + "inner join pegawai pg6 on pg6.nik=pp.nip_petugas_jam6 inner join pegawai pg7 on pg7.nik=pp.nip_petugas_jam7 "
+                    + "inner join pegawai pg8 on pg8.nik=pp.nip_petugas_jam8 WHERE pp.no_rawat='" + TNoRW.getText() + "' "
+                    + "and pp.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and pp.nm_unit='" + nmUnit.getText() + "' order by pp.waktu_simpan desc"));
+            
+            if (cmbJnsObat1.getSelectedIndex() == 0) {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
+                            + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            } else {
+                if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                        + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
+                } else {
+                    param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
+                            "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
+                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
+                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
+                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
+                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
+                            + "po.jlh_sisa_obat FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
+                            + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
+                    tampil();
+                    emptTeks();
+                    WindowCetak.dispose();
+                }
+            }
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCetakLapActionPerformed
@@ -2022,7 +2053,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             ps = koneksi.prepareStatement("select pp.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(pp.tgl_pemberian,'%d-%m-%Y') tglberi, "
                     + "pg1.nama ptg1, pg2.nama ptg2, pg3.nama ptg3, pg4.nama ptg4, pg5.nama ptg5, pg6.nama ptg6, pg7.nama ptg7, pg8.nama ptg8, "
                     + "pp.nip_petugas_jam1, pp.nip_petugas_jam2, pp.nip_petugas_jam3, pp.nip_petugas_jam4, pp.nip_petugas_jam5, pp.nip_petugas_jam6, "
-                    + "pp.nip_petugas_jam7, pp.nip_petugas_jam8, pp.tgl_pemberian, pp.waktu_simpan from pelaksana_pemberian_obat pp "
+                    + "pp.nip_petugas_jam7, pp.nip_petugas_jam8, pp.tgl_pemberian, pp.nm_unit, pp.waktu_simpan from pelaksana_pemberian_obat pp "
                     + "inner join reg_periksa rp on rp.no_rawat=pp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "inner join pegawai pg1 on pg1.nik=pp.nip_petugas_jam1 inner join pegawai pg2 on pg2.nik=pp.nip_petugas_jam2 "
                     + "inner join pegawai pg3 on pg3.nik=pp.nip_petugas_jam3 inner join pegawai pg4 on pg4.nik=pp.nip_petugas_jam4 "
@@ -2079,7 +2110,8 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                         rs.getString("no_rawat"), 
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + rs.getString("no_rawat") + "' and tgl_pemberian='" + rs.getString("tgl_pemberian") + "'"),
+                        Sequel.cariIsi("select nm_unit from pemberian_obat where no_rawat='" + rs.getString("no_rawat") + "' and "
+                        + "tgl_pemberian='" + rs.getString("tgl_pemberian") + "' and nm_unit='" + rs.getString("nm_unit") + "'"),
                         rs.getString("tglberi"),
                         rs.getString("ptg1"),
                         rs.getString("ptg2"),
@@ -2098,7 +2130,8 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                         rs.getString("nip_petugas_jam7"),
                         rs.getString("nip_petugas_jam8"),                        
                         rs.getString("tgl_pemberian"),
-                        rs.getString("waktu_simpan")                        
+                        rs.getString("nm_unit"),
+                        rs.getString("waktu_simpan")
                     });
                 }
             } catch (Exception e) {
@@ -2181,7 +2214,8 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             nipPetugas6 = tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 18).toString();
             nipPetugas7 = tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 19).toString();
             nipPetugas8 = tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 20).toString();
-            wktSimpan = tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 22).toString();
+            nmUnit.setText(tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 22).toString());
+            wktSimpan = tbPelaksana.getValueAt(tbPelaksana.getSelectedRow(), 23).toString();
             dataCek();
             tampilObat();
         }

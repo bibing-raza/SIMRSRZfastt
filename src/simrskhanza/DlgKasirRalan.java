@@ -10576,6 +10576,21 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
+        
+        if (Sequel.cariInteger("SELECT count(-1) cek FROM cppt c "
+                + "inner join cppt_konfirmasi_terapi ck on ck.no_rawat=c.no_rawat and ck.tgl_cppt=c.tgl_cppt and ck.jam_cppt=c.jam_cppt and ck.cppt_shift=c.cppt_shift "
+                + "inner JOIN pegawai pg1 ON pg1.nik = ck.nip_petugas_konfir inner JOIN pegawai pg2 ON pg2.nik = ck.nip_dpjp_konfir WHERE "
+                + "c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' and c.flag_hapus='tidak'") == 0) {
+            param.put("konfirmasi_terapi", "");
+        } else {
+            param.put("konfirmasi_terapi", "KONFIRMASI TERAPI VIA TELP. :\n" + Sequel.cariIsi("SELECT concat('Tgl. Lapor : ',date_format(ck.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(ck.jam_lapor,'%H:%i WITA'),'\nTgl. Verif : ',"
+                    + "date_format(ck.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(ck.jam_verifikasi,'%H:%i WITA'),'\nPetugas,\n\n\n\n(',"
+                    + "pg1.nama,')\n\nDengan DPJP,\n\n\n\n(',pg2.nama,')\n---------------------------------------\n') FROM cppt c "
+                    + "inner join cppt_konfirmasi_terapi ck on ck.no_rawat=c.no_rawat and ck.tgl_cppt=c.tgl_cppt and ck.jam_cppt=c.jam_cppt and ck.cppt_shift=c.cppt_shift "
+                    + "inner JOIN pegawai pg1 ON pg1.nik = ck.nip_petugas_konfir inner JOIN pegawai pg2 ON pg2.nik = ck.nip_dpjp_konfir WHERE "
+                    + "c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' and c.flag_hapus='tidak' ORDER BY ck.waktu_simpan"));
+        }
+        
         Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
                 "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                 + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
@@ -10584,12 +10599,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                 + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                 + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
-                + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, "
-                + "if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor : ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi "
+                + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima "
                 + "FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                 + "INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa "
                 + "LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima "
-                + "LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir "
                 + "WHERE c.no_rawat = '" + TNoRw.getText() + "' AND c.STATUS='Ralan' and c.flag_hapus='tidak' ORDER BY c.tgl_cppt, c.jam_cppt", param);
     }
 }
