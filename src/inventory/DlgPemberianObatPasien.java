@@ -64,7 +64,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         Object[] row = {"Cek", "No. Rawat", "No. RM", "Nama Pasien", "","Rg. Rawat/Inst./Poli", "Nama Obat", "Jns. Obat", 
             "Jumlah", "Dosis", "Cara Pemberian/Rute", "Tgl. Beri", 
-            "Jam 1", "Jam 2", "Jam 3", "Jam 4", "Jam 5", "Jam 6", "Jam 7", "Jam 8",
+            "Jam 1", "Ket. 1", "Jam 2", "Ket. 2", "Jam 3", "Ket. 3", "Jam 4", "Ket. 4", 
+            "Jam 5", "Ket. 5", "Jam 6", "Ket. 6", "Jam 7", "Ket. 7", "Jam 8", "Ket. 8",
             "Jlh. Sisa Obat", "kode_brng", "tgl_pemberian",
             "cek_jam1", "cek_jam2", "cek_jam3", "cek_jam4", "cek_jam5", "cek_jam6", "cek_jam7", "cek_jam8",
             "jadwal_pemberian", "jadwal_pemberian2", "jadwal_pemberian3", "jadwal_pemberian4", "jadwal_pemberian5",
@@ -104,7 +105,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,                
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -117,7 +121,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 66; i++) {
+        for (int i = 0; i < 74; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -146,45 +150,37 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setPreferredWidth(55);
             } else if (i == 13) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(80);
             } else if (i == 14) {
                 column.setPreferredWidth(55);
             } else if (i == 15) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(80);
             } else if (i == 16) {
                 column.setPreferredWidth(55);
             } else if (i == 17) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(80);
             } else if (i == 18) {
                 column.setPreferredWidth(55);
             } else if (i == 19) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(80);
             } else if (i == 20) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(55);
             } else if (i == 21) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 22) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(55);
             } else if (i == 23) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 24) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(55);
             } else if (i == 25) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 26) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(55);
             } else if (i == 27) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 28) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(90);
             } else if (i == 29) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -294,6 +290,30 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 65) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 66) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 67) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 68) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 69) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 70) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 71) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 72) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 73) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -411,6 +431,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         caraPemberian.setDocument(new batasInput((int) 180).getKata(caraPemberian));
         jlhSisaObat.setDocument(new batasInput((int) 20).getKata(jlhSisaObat));
         Tjlh.setDocument(new batasInput((int) 10).getKata(Tjlh));
+        Tket1.setDocument(new batasInput((byte) 100).getKata(Tket1));
+        Tket2.setDocument(new batasInput((byte) 100).getKata(Tket2));
+        Tket3.setDocument(new batasInput((byte) 100).getKata(Tket3));
+        Tket4.setDocument(new batasInput((byte) 100).getKata(Tket4));
+        Tket5.setDocument(new batasInput((byte) 100).getKata(Tket5));
+        Tket6.setDocument(new batasInput((byte) 100).getKata(Tket6));
+        Tket7.setDocument(new batasInput((byte) 100).getKata(Tket7));
+        Tket8.setDocument(new batasInput((byte) 100).getKata(Tket8));        
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
 
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -542,6 +570,22 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbDtk7 = new widget.ComboBox();
         cmbDtk8 = new widget.ComboBox();
         BtnPetugas = new widget.Button();
+        jLabel11 = new widget.Label();
+        jLabel16 = new widget.Label();
+        jLabel23 = new widget.Label();
+        jLabel24 = new widget.Label();
+        Tket1 = new widget.TextBox();
+        Tket2 = new widget.TextBox();
+        Tket3 = new widget.TextBox();
+        Tket4 = new widget.TextBox();
+        jLabel25 = new widget.Label();
+        jLabel26 = new widget.Label();
+        jLabel27 = new widget.Label();
+        jLabel28 = new widget.Label();
+        Tket5 = new widget.TextBox();
+        Tket6 = new widget.TextBox();
+        Tket7 = new widget.TextBox();
+        Tket8 = new widget.TextBox();
         panelGlass11 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
         tbResep = new widget.Table();
@@ -1012,7 +1056,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam1);
-        cmbJam1.setBounds(200, 178, 47, 23);
+        cmbJam1.setBounds(95, 178, 47, 23);
 
         cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1023,7 +1067,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt1);
-        cmbMnt1.setBounds(253, 178, 47, 23);
+        cmbMnt1.setBounds(147, 178, 47, 23);
 
         cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1034,7 +1078,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk1);
-        cmbDtk1.setBounds(306, 178, 47, 23);
+        cmbDtk1.setBounds(199, 178, 47, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Jumlah (Sisa Obat) :");
@@ -1113,7 +1157,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam1);
-        chkJam1.setBounds(107, 178, 90, 23);
+        chkJam1.setBounds(0, 178, 90, 23);
 
         chkJam2.setBackground(new java.awt.Color(242, 242, 242));
         chkJam2.setForeground(new java.awt.Color(0, 0, 0));
@@ -1129,7 +1173,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam2);
-        chkJam2.setBounds(107, 206, 90, 23);
+        chkJam2.setBounds(0, 206, 90, 23);
 
         cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1140,7 +1184,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam2);
-        cmbJam2.setBounds(200, 206, 47, 23);
+        cmbJam2.setBounds(95, 206, 47, 23);
 
         cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1151,7 +1195,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt2);
-        cmbMnt2.setBounds(253, 206, 47, 23);
+        cmbMnt2.setBounds(147, 206, 47, 23);
 
         cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1162,7 +1206,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk2);
-        cmbDtk2.setBounds(306, 206, 47, 23);
+        cmbDtk2.setBounds(199, 206, 47, 23);
 
         chkJam3.setBackground(new java.awt.Color(242, 242, 242));
         chkJam3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1178,7 +1222,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam3);
-        chkJam3.setBounds(107, 234, 90, 23);
+        chkJam3.setBounds(0, 234, 90, 23);
 
         cmbJam3.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1189,7 +1233,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam3);
-        cmbJam3.setBounds(200, 234, 47, 23);
+        cmbJam3.setBounds(95, 234, 47, 23);
 
         cmbMnt3.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1200,7 +1244,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt3);
-        cmbMnt3.setBounds(253, 234, 47, 23);
+        cmbMnt3.setBounds(147, 234, 47, 23);
 
         cmbDtk3.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1211,7 +1255,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk3);
-        cmbDtk3.setBounds(306, 234, 47, 23);
+        cmbDtk3.setBounds(199, 234, 47, 23);
 
         chkJam4.setBackground(new java.awt.Color(242, 242, 242));
         chkJam4.setForeground(new java.awt.Color(0, 0, 0));
@@ -1227,7 +1271,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam4);
-        chkJam4.setBounds(107, 262, 90, 23);
+        chkJam4.setBounds(0, 262, 90, 23);
 
         cmbJam4.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1238,7 +1282,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam4);
-        cmbJam4.setBounds(200, 262, 47, 23);
+        cmbJam4.setBounds(95, 262, 47, 23);
 
         cmbMnt4.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1249,7 +1293,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt4);
-        cmbMnt4.setBounds(253, 262, 47, 23);
+        cmbMnt4.setBounds(147, 262, 47, 23);
 
         cmbDtk4.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1260,7 +1304,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk4);
-        cmbDtk4.setBounds(306, 262, 47, 23);
+        cmbDtk4.setBounds(199, 262, 47, 23);
 
         chkJam5.setBackground(new java.awt.Color(242, 242, 242));
         chkJam5.setForeground(new java.awt.Color(0, 0, 0));
@@ -1276,7 +1320,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam5);
-        chkJam5.setBounds(370, 178, 90, 23);
+        chkJam5.setBounds(390, 178, 70, 23);
 
         chkJam6.setBackground(new java.awt.Color(242, 242, 242));
         chkJam6.setForeground(new java.awt.Color(0, 0, 0));
@@ -1292,7 +1336,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam6);
-        chkJam6.setBounds(370, 206, 90, 23);
+        chkJam6.setBounds(390, 206, 70, 23);
 
         chkJam7.setBackground(new java.awt.Color(242, 242, 242));
         chkJam7.setForeground(new java.awt.Color(0, 0, 0));
@@ -1308,7 +1352,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam7);
-        chkJam7.setBounds(370, 234, 90, 23);
+        chkJam7.setBounds(390, 234, 70, 23);
 
         chkJam8.setBackground(new java.awt.Color(242, 242, 242));
         chkJam8.setForeground(new java.awt.Color(0, 0, 0));
@@ -1324,7 +1368,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkJam8);
-        chkJam8.setBounds(370, 262, 90, 23);
+        chkJam8.setBounds(390, 262, 70, 23);
 
         cmbJam5.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1473,6 +1517,94 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelGlass7.add(BtnPetugas);
         BtnPetugas.setBounds(240, 150, 220, 23);
+
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("Ket : ");
+        jLabel11.setName("jLabel11"); // NOI18N
+        panelGlass7.add(jLabel11);
+        jLabel11.setBounds(245, 178, 37, 23);
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Ket : ");
+        jLabel16.setName("jLabel16"); // NOI18N
+        panelGlass7.add(jLabel16);
+        jLabel16.setBounds(245, 206, 37, 23);
+
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("Ket : ");
+        jLabel23.setName("jLabel23"); // NOI18N
+        panelGlass7.add(jLabel23);
+        jLabel23.setBounds(245, 234, 37, 23);
+
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Ket : ");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass7.add(jLabel24);
+        jLabel24.setBounds(245, 262, 37, 23);
+
+        Tket1.setForeground(new java.awt.Color(0, 0, 0));
+        Tket1.setName("Tket1"); // NOI18N
+        panelGlass7.add(Tket1);
+        Tket1.setBounds(283, 178, 100, 23);
+
+        Tket2.setForeground(new java.awt.Color(0, 0, 0));
+        Tket2.setName("Tket2"); // NOI18N
+        panelGlass7.add(Tket2);
+        Tket2.setBounds(283, 206, 100, 23);
+
+        Tket3.setForeground(new java.awt.Color(0, 0, 0));
+        Tket3.setName("Tket3"); // NOI18N
+        panelGlass7.add(Tket3);
+        Tket3.setBounds(283, 234, 100, 23);
+
+        Tket4.setForeground(new java.awt.Color(0, 0, 0));
+        Tket4.setName("Tket4"); // NOI18N
+        panelGlass7.add(Tket4);
+        Tket4.setBounds(283, 262, 100, 23);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Ket : ");
+        jLabel25.setName("jLabel25"); // NOI18N
+        panelGlass7.add(jLabel25);
+        jLabel25.setBounds(617, 178, 37, 23);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Ket : ");
+        jLabel26.setName("jLabel26"); // NOI18N
+        panelGlass7.add(jLabel26);
+        jLabel26.setBounds(617, 206, 37, 23);
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Ket : ");
+        jLabel27.setName("jLabel27"); // NOI18N
+        panelGlass7.add(jLabel27);
+        jLabel27.setBounds(617, 234, 37, 23);
+
+        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel28.setText("Ket : ");
+        jLabel28.setName("jLabel28"); // NOI18N
+        panelGlass7.add(jLabel28);
+        jLabel28.setBounds(617, 262, 37, 23);
+
+        Tket5.setForeground(new java.awt.Color(0, 0, 0));
+        Tket5.setName("Tket5"); // NOI18N
+        panelGlass7.add(Tket5);
+        Tket5.setBounds(655, 178, 100, 23);
+
+        Tket6.setForeground(new java.awt.Color(0, 0, 0));
+        Tket6.setName("Tket6"); // NOI18N
+        panelGlass7.add(Tket6);
+        Tket6.setBounds(655, 206, 100, 23);
+
+        Tket7.setForeground(new java.awt.Color(0, 0, 0));
+        Tket7.setName("Tket7"); // NOI18N
+        panelGlass7.add(Tket7);
+        Tket7.setBounds(655, 234, 100, 23);
+
+        Tket8.setForeground(new java.awt.Color(0, 0, 0));
+        Tket8.setName("Tket8"); // NOI18N
+        panelGlass7.add(Tket8);
+        Tket8.setBounds(655, 262, 100, 23);
 
         panelGlass10.add(panelGlass7);
 
@@ -1800,7 +1932,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(809, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
@@ -1850,7 +1982,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass14.setPreferredSize(new java.awt.Dimension(44, 300));
         panelGlass14.setLayout(new java.awt.BorderLayout());
 
-        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         scrollPane5.setName("scrollPane5"); // NOI18N
         scrollPane5.setPreferredSize(new java.awt.Dimension(212, 250));
 
@@ -1865,7 +1997,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         panelGlass14.add(scrollPane5, java.awt.BorderLayout.PAGE_START);
 
-        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Instruksi Tenaga Kesehatan Termasuk Pasca Bedah/Prosedur ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Instruksi Tenaga Kesehatan Termasuk Pasca Bedah/Prosedur ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         scrollPane4.setName("scrollPane4"); // NOI18N
         scrollPane4.setPreferredSize(new java.awt.Dimension(212, 250));
 
@@ -1928,7 +2060,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + cmbJam5.getSelectedItem() + ":" + cmbMnt5.getSelectedItem() + ":" + cmbDtk5.getSelectedItem() + "',"
                     + "'" + cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem() + "',"
                     + "'" + cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem() + "',"
-                    + "'" + cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem() + "'", "Pemberian Obat");
+                    + "'" + cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem() + "',"
+                    + "'" + Tket1.getText() + "','" + Tket2.getText() + "','" + Tket3.getText() + "','" + Tket4.getText() + "',"
+                    + "'" + Tket5.getText() + "','" + Tket6.getText() + "','" + Tket7.getText() + "','" + Tket8.getText() + "'", "Pemberian Obat");
             
             tampil();
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
@@ -1962,7 +2096,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
-                    tbObat.getValueAt(tbObat.getSelectedRow(), 39).toString()
+                    tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
                 }) == true) {
                     tampil();
                     emptTeks();
@@ -2001,7 +2135,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         + "jadwal_pemberian=?, jlh_sisa_obat=?, kode_brng=?, tgl_pemberian=?, nm_unit=?, jlh_obat=?, jenis_obat=?, "
                         + "cek_jam1=?, cek_jam2=?, cek_jam3=?, cek_jam4=?, cek_jam5=?, cek_jam6=?, cek_jam7=?, cek_jam8=?, "
                         + "jadwal_pemberian2=?, jadwal_pemberian3=?, jadwal_pemberian4=?, jadwal_pemberian5=?, jadwal_pemberian6=?, "
-                        + "jadwal_pemberian7=?, jadwal_pemberian8=?", 26, new String[]{
+                        + "jadwal_pemberian7=?, jadwal_pemberian8=?, ket1=?, ket2=?, ket3=?, ket4=?, ket5=?, ket6=?, ket7=?, ket8=?", 34, new String[]{
                             nmObat.getText(), dosis.getText(), caraPemberian.getText(),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                             jlhSisaObat.getText(), kdobatFix, Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nmUnit.getText(), Tjlh.getText(),
@@ -2013,7 +2147,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             cmbJam6.getSelectedItem() + ":" + cmbMnt6.getSelectedItem() + ":" + cmbDtk6.getSelectedItem(),
                             cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
                             cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
-                            tbObat.getValueAt(tbObat.getSelectedRow(), 39).toString()
+                            Tket1.getText(), Tket2.getText(), Tket3.getText(), Tket4.getText(),
+                            Tket5.getText(), Tket6.getText(), Tket7.getText(), Tket8.getText(),
+                            tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
                         });
 
                 tampil();
@@ -2318,12 +2454,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");                    
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
                             + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
                     tampil();
@@ -2338,12 +2478,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
                             + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
                     tampil();
@@ -2380,12 +2524,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
                             + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
                     tampil();
@@ -2400,12 +2548,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.nm_unit='IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
                             + "and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and po.no_rawat='" + TNoRW.getText() + "' "
                             + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
@@ -2443,12 +2595,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.no_rawat='" + TNoRW.getText() + "' "
                             + "order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
                     tampil();
@@ -2463,12 +2619,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
-                            + "po.jenis_obat, po.nama_obat, po.jlh_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
-                            + "if(po.cek_jam1='ya',time_format(po.jadwal_pemberian,'%H:%i'),'') jam1, if(po.cek_jam2='ya',time_format(po.jadwal_pemberian2,'%H:%i'),'') jam2, "
-                            + "if(po.cek_jam3='ya',time_format(po.jadwal_pemberian3,'%H:%i'),'') jam3, if(po.cek_jam4='ya',time_format(po.jadwal_pemberian4,'%H:%i'),'') jam4, "
-                            + "if(po.cek_jam5='ya',time_format(po.jadwal_pemberian5,'%H:%i'),'') jam5, if(po.cek_jam6='ya',time_format(po.jadwal_pemberian6,'%H:%i'),'') jam6, "
-                            + "if(po.cek_jam7='ya',time_format(po.jadwal_pemberian7,'%H:%i'),'') jam7, if(po.cek_jam8='ya',time_format(po.jadwal_pemberian8,'%H:%i'),'') jam8, "
-                            + "po.jlh_sisa_obat	FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
+                            + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
+                            + "if(po.cek_jam1='ya',concat(time_format(po.jadwal_pemberian,'%H:%i'),if(po.ket1<>'',concat('\n',po.ket1),'')),'') jam1, "
+                            + "if(po.cek_jam2='ya',concat(time_format(po.jadwal_pemberian2,'%H:%i'),if(po.ket2<>'',concat('\n',po.ket2),'')),'') jam2, "
+                            + "if(po.cek_jam3='ya',concat(time_format(po.jadwal_pemberian3,'%H:%i'),if(po.ket3<>'',concat('\n',po.ket3),'')),'') jam3, "
+                            + "if(po.cek_jam4='ya',concat(time_format(po.jadwal_pemberian4,'%H:%i'),if(po.ket4<>'',concat('\n',po.ket4),'')),'') jam4, "
+                            + "if(po.cek_jam5='ya',concat(time_format(po.jadwal_pemberian5,'%H:%i'),if(po.ket5<>'',concat('\n',po.ket5),'')),'') jam5, "
+                            + "if(po.cek_jam6='ya',concat(time_format(po.jadwal_pemberian6,'%H:%i'),if(po.ket6<>'',concat('\n',po.ket6),'')),'') jam6, "
+                            + "if(po.cek_jam7='ya',concat(time_format(po.jadwal_pemberian7,'%H:%i'),if(po.ket7<>'',concat('\n',po.ket7),'')),'') jam7, "
+                            + "if(po.cek_jam8='ya',concat(time_format(po.jadwal_pemberian8,'%H:%i'),if(po.ket8<>'',concat('\n',po.ket8),'')),'') jam8, po.jlh_sisa_obat "
+                            + "FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
                             + "po.nm_unit<>'IGD' and po.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and po.jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' "
                             + "and po.no_rawat='" + TNoRW.getText() + "' order by po.tgl_pemberian, po.waktu_simpan, po.nama_obat", param);
                     tampil();
@@ -2484,16 +2644,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam1.setSelectedIndex(0);
         cmbMnt1.setSelectedIndex(0);
         cmbDtk1.setSelectedIndex(0);
+        Tket1.setText("");
         
         if (chkJam1.isSelected() == true) {            
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
+            Tket1.setEnabled(true);
             cmbJam1.requestFocus();
         } else {
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
+            Tket1.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam1ActionPerformed
 
@@ -2501,16 +2664,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam2.setSelectedIndex(0);
         cmbMnt2.setSelectedIndex(0);
         cmbDtk2.setSelectedIndex(0);
+        Tket2.setText("");
         
         if (chkJam2.isSelected() == true) {
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
+            Tket2.setEnabled(true);
             cmbJam2.requestFocus();
         } else {
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
+            Tket2.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam2ActionPerformed
 
@@ -2518,16 +2684,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam3.setSelectedIndex(0);
         cmbMnt3.setSelectedIndex(0);
         cmbDtk3.setSelectedIndex(0);
+        Tket3.setText("");
         
         if (chkJam3.isSelected() == true) {
             cmbJam3.setEnabled(true);
             cmbMnt3.setEnabled(true);
             cmbDtk3.setEnabled(true);
+            Tket3.setEnabled(true);
             cmbJam3.requestFocus();
         } else {
             cmbJam3.setEnabled(false);
             cmbMnt3.setEnabled(false);
             cmbDtk3.setEnabled(false);
+            Tket3.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam3ActionPerformed
 
@@ -2535,16 +2704,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam4.setSelectedIndex(0);
         cmbMnt4.setSelectedIndex(0);
         cmbDtk4.setSelectedIndex(0);
+        Tket4.setText("");
         
         if (chkJam4.isSelected() == true) {
             cmbJam4.setEnabled(true);
             cmbMnt4.setEnabled(true);
             cmbDtk4.setEnabled(true);
+            Tket4.setEnabled(true);
             cmbJam4.requestFocus();
         } else {
             cmbJam4.setEnabled(false);
             cmbMnt4.setEnabled(false);
             cmbDtk4.setEnabled(false);
+            Tket4.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam4ActionPerformed
 
@@ -2552,16 +2724,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam5.setSelectedIndex(0);
         cmbMnt5.setSelectedIndex(0);
         cmbDtk5.setSelectedIndex(0);
+        Tket5.setText("");
         
         if (chkJam5.isSelected() == true) {
             cmbJam5.setEnabled(true);
             cmbMnt5.setEnabled(true);
             cmbDtk5.setEnabled(true);
+            Tket5.setEnabled(true);
             cmbJam5.requestFocus();
         } else {
             cmbJam5.setEnabled(false);
             cmbMnt5.setEnabled(false);
             cmbDtk5.setEnabled(false);
+            Tket5.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam5ActionPerformed
 
@@ -2569,16 +2744,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam6.setSelectedIndex(0);
         cmbMnt6.setSelectedIndex(0);
         cmbDtk6.setSelectedIndex(0);
+        Tket6.setText("");
         
         if (chkJam6.isSelected() == true) {
             cmbJam6.setEnabled(true);
             cmbMnt6.setEnabled(true);
             cmbDtk6.setEnabled(true);
+            Tket6.setEnabled(true);
             cmbJam6.requestFocus();
         } else {
             cmbJam6.setEnabled(false);
             cmbMnt6.setEnabled(false);
             cmbDtk6.setEnabled(false);
+            Tket6.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam6ActionPerformed
 
@@ -2586,16 +2764,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam7.setSelectedIndex(0);
         cmbMnt7.setSelectedIndex(0);
         cmbDtk7.setSelectedIndex(0);
+        Tket7.setText("");
         
         if (chkJam7.isSelected() == true) {
             cmbJam7.setEnabled(true);
             cmbMnt7.setEnabled(true);
             cmbDtk7.setEnabled(true);
+            Tket7.setEnabled(true);
             cmbJam7.requestFocus();
         } else {
             cmbJam7.setEnabled(false);
             cmbMnt7.setEnabled(false);
             cmbDtk7.setEnabled(false);
+            Tket7.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam7ActionPerformed
 
@@ -2603,16 +2784,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam8.setSelectedIndex(0);
         cmbMnt8.setSelectedIndex(0);
         cmbDtk8.setSelectedIndex(0);
+        Tket8.setText("");
         
         if (chkJam8.isSelected() == true) {
             cmbJam8.setEnabled(true);
             cmbMnt8.setEnabled(true);
             cmbDtk8.setEnabled(true);
+            Tket8.setEnabled(true);
             cmbJam8.requestFocus();
         } else {
             cmbJam8.setEnabled(false);
             cmbMnt8.setEnabled(false);
             cmbDtk8.setEnabled(false);
+            Tket8.setEnabled(false);
         }
     }//GEN-LAST:event_chkJam8ActionPerformed
 
@@ -2778,24 +2962,16 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     for (i = 0; i < tbObat.getRowCount(); i++) {
                         if (tbObat.getValueAt(i, 0).toString().equals("true")) {
                             Sequel.menyimpan("pemberian_obat",
-                                    "'" + tbObat.getValueAt(i, 40).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 41).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 42).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 43).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 44).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 45).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 46).toString() + "',"
-                                    + "'" + Sequel.cariIsi("select now()") + "',"
-                                    + "'" + tbObat.getValueAt(i, 47).toString() + "',"
-                                    + "'" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
-                                    + "'" + tbObat.getValueAt(i, 48).toString() + "',"
+                                    "'" + tbObat.getValueAt(i, 48).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 49).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 50).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 51).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 52).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 53).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 54).toString() + "',"
+                                    + "'" + Sequel.cariIsi("select now()") + "',"
                                     + "'" + tbObat.getValueAt(i, 55).toString() + "',"
+                                    + "'" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
                                     + "'" + tbObat.getValueAt(i, 56).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 57).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 58).toString() + "',"
@@ -2805,7 +2981,23 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                     + "'" + tbObat.getValueAt(i, 62).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 63).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 64).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 65).toString() + "'", "Pemberian Obat");
+                                    + "'" + tbObat.getValueAt(i, 65).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 66).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 67).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 68).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 69).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 70).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 71).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 72).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 73).toString() + "',"                                            
+                                    + "'" + tbObat.getValueAt(i, 13).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 15).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 17).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 19).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 21).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 23).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 25).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 27).toString() + "'", "Pemberian Obat");
                             
                             //jeda 1 detik
                             Thread.sleep(1000);
@@ -2901,6 +3093,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.TextArea Thasil;
     private widget.TextArea Tinstruksi;
     private widget.TextBox Tjlh;
+    private widget.TextBox Tket1;
+    private widget.TextBox Tket2;
+    private widget.TextBox Tket3;
+    private widget.TextBox Tket4;
+    private widget.TextBox Tket5;
+    private widget.TextBox Tket6;
+    private widget.TextBox Tket7;
+    private widget.TextBox Tket8;
     private widget.TextArea TketRencana;
     private javax.swing.JDialog WindowCetak;
     private javax.swing.JDialog WindowObat;
@@ -2946,16 +3146,24 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame5;
     private widget.InternalFrame internalFrame6;
     private widget.Label jLabel10;
+    private widget.Label jLabel11;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
+    private widget.Label jLabel16;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel22;
+    private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.Label jLabel25;
+    private widget.Label jLabel26;
+    private widget.Label jLabel27;
+    private widget.Label jLabel28;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel48;
@@ -3048,7 +3256,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"), ":",
-                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", ""
+                        "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
+                        "", "", "", "", "", "", "", ""
                     });
 
                     if (cmbJnsObat.getSelectedIndex() == 0) {
@@ -3096,14 +3305,22 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 rs2.getString("dosis"), 
                                 rs2.getString("cara_pemberian"), 
                                 rs2.getString("tgl_beri"), 
-                                rs2.getString("jam1"), 
-                                rs2.getString("jam2"), 
-                                rs2.getString("jam3"), 
-                                rs2.getString("jam4"), 
-                                rs2.getString("jam5"), 
-                                rs2.getString("jam6"), 
-                                rs2.getString("jam7"), 
-                                rs2.getString("jam8"), 
+                                rs2.getString("jam1"),
+                                rs2.getString("ket1"),
+                                rs2.getString("jam2"),
+                                rs2.getString("ket2"),
+                                rs2.getString("jam3"),
+                                rs2.getString("ket3"),
+                                rs2.getString("jam4"),
+                                rs2.getString("ket4"),
+                                rs2.getString("jam5"),
+                                rs2.getString("ket5"),
+                                rs2.getString("jam6"),
+                                rs2.getString("ket6"),
+                                rs2.getString("jam7"),
+                                rs2.getString("ket7"),
+                                rs2.getString("jam8"),
+                                rs2.getString("ket8"),
                                 rs2.getString("jlh_sisa_obat"), 
                                 rs2.getString("kode_brng"), 
                                 rs2.getString("tgl_pemberian"), 
@@ -3253,6 +3470,24 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbJam8.setEnabled(false);
         cmbMnt8.setEnabled(false);
         cmbDtk8.setEnabled(false);
+
+        Tket1.setText("");
+        Tket2.setText("");
+        Tket3.setText("");
+        Tket4.setText("");
+        Tket5.setText("");
+        Tket6.setText("");
+        Tket7.setText("");
+        Tket8.setText("");
+        
+        Tket1.setEnabled(false);
+        Tket2.setEnabled(false);
+        Tket3.setEnabled(false);
+        Tket4.setEnabled(false);
+        Tket5.setEnabled(false);
+        Tket6.setEnabled(false);
+        Tket7.setEnabled(false);
+        Tket8.setEnabled(false);
     }
 
     private void getData() {
@@ -3268,7 +3503,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cekjam8 = "";
         
         if(tbObat.getSelectedRow()!= -1){
-            waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(),39).toString();
+            waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(),47).toString();
             tampilData();
             dataCek();
         }
@@ -3387,6 +3622,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     cmbJam8.setSelectedItem(rs3.getString("jadwal_pemberian8").substring(0, 2));
                     cmbMnt8.setSelectedItem(rs3.getString("jadwal_pemberian8").substring(3, 5));
                     cmbDtk8.setSelectedItem(rs3.getString("jadwal_pemberian8").substring(6, 8));
+                    
+                    Tket1.setText(rs3.getString("ket1"));
+                    Tket2.setText(rs3.getString("ket2"));
+                    Tket3.setText(rs3.getString("ket3"));
+                    Tket4.setText(rs3.getString("ket4"));
+                    Tket5.setText(rs3.getString("ket5"));
+                    Tket6.setText(rs3.getString("ket6"));
+                    Tket7.setText(rs3.getString("ket7"));
+                    Tket8.setText(rs3.getString("ket8"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3459,11 +3703,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam1.setEnabled(true);
             cmbMnt1.setEnabled(true);
             cmbDtk1.setEnabled(true);
+            Tket1.setEnabled(true);
         } else {
             chkJam1.setSelected(false);
             cmbJam1.setEnabled(false);
             cmbMnt1.setEnabled(false);
             cmbDtk1.setEnabled(false);
+            Tket1.setEnabled(false);
         }
         
         if (cekjam2.equals("ya")) {
@@ -3471,11 +3717,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam2.setEnabled(true);
             cmbMnt2.setEnabled(true);
             cmbDtk2.setEnabled(true);
+            Tket2.setEnabled(true);
         } else {
             chkJam2.setSelected(false);
             cmbJam2.setEnabled(false);
             cmbMnt2.setEnabled(false);
             cmbDtk2.setEnabled(false);
+            Tket2.setEnabled(false);
         }
         
         if (cekjam3.equals("ya")) {
@@ -3483,11 +3731,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam3.setEnabled(true);
             cmbMnt3.setEnabled(true);
             cmbDtk3.setEnabled(true);
+            Tket3.setEnabled(true);
         } else {
             chkJam3.setSelected(false);
             cmbJam3.setEnabled(false);
             cmbMnt3.setEnabled(false);
             cmbDtk3.setEnabled(false);
+            Tket3.setEnabled(false);
         }
         
         if (cekjam4.equals("ya")) {
@@ -3495,11 +3745,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam4.setEnabled(true);
             cmbMnt4.setEnabled(true);
             cmbDtk4.setEnabled(true);
+            Tket4.setEnabled(true);
         } else {
             chkJam4.setSelected(false);
             cmbJam4.setEnabled(false);
             cmbMnt4.setEnabled(false);
             cmbDtk4.setEnabled(false);
+            Tket4.setEnabled(false);
         }
         
         if (cekjam5.equals("ya")) {
@@ -3507,11 +3759,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam5.setEnabled(true);
             cmbMnt5.setEnabled(true);
             cmbDtk5.setEnabled(true);
+            Tket5.setEnabled(true);
         } else {
             chkJam5.setSelected(false);
             cmbJam5.setEnabled(false);
             cmbMnt5.setEnabled(false);
             cmbDtk5.setEnabled(false);
+            Tket5.setEnabled(false);
         }
         
         if (cekjam6.equals("ya")) {
@@ -3519,11 +3773,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam6.setEnabled(true);
             cmbMnt6.setEnabled(true);
             cmbDtk6.setEnabled(true);
+            Tket6.setEnabled(true);
         } else {
             chkJam6.setSelected(false);
             cmbJam6.setEnabled(false);
             cmbMnt6.setEnabled(false);
             cmbDtk6.setEnabled(false);
+            Tket6.setEnabled(false);
         }
         
         if (cekjam7.equals("ya")) {
@@ -3531,11 +3787,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam7.setEnabled(true);
             cmbMnt7.setEnabled(true);
             cmbDtk7.setEnabled(true);
+            Tket7.setEnabled(true);
         } else {
             chkJam7.setSelected(false);
             cmbJam7.setEnabled(false);
             cmbMnt7.setEnabled(false);
             cmbDtk7.setEnabled(false);
+            Tket7.setEnabled(false);
         }
         
         if (cekjam8.equals("ya")) {
@@ -3543,11 +3801,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             cmbJam8.setEnabled(true);
             cmbMnt8.setEnabled(true);
             cmbDtk8.setEnabled(true);
+            Tket8.setEnabled(true);
         } else {
             chkJam8.setSelected(false);
             cmbJam8.setEnabled(false);
             cmbMnt8.setEnabled(false);
             cmbDtk8.setEnabled(false);
+            Tket8.setEnabled(false);
         }
     }
     
@@ -3726,7 +3986,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     public void isMenu() {
         if (ChkAccor.isSelected() == true) {
             ChkAccor.setVisible(false);
-            PanelAccor.setPreferredSize(new Dimension(809, HEIGHT));
+            PanelAccor.setPreferredSize(new Dimension(900, HEIGHT));
             FormMenu.setVisible(true);
             ChkAccor.setVisible(true);
             Thasil.setText("");

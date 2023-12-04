@@ -11,6 +11,7 @@
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="judul" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="konfirmasi_terapi" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), 
 date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, 
@@ -19,12 +20,11 @@ c.hasil_pemeriksaan,
 concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, 
 concat('(', c.verifikasi,') - ',pg.nama) verif, 
 if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, 
-if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima,
-if(c.konfirmasi_terapi='ya',concat('KONFIRMASI TERAPI VIA TELP. :\nTgl. Lapor: ',date_format(c.tgl_lapor,'%d-%m-%Y'),', Jam : ',time_format(c.jam_lapor,'%H:%i WITA'),'\nTgl. Verifikasi : ',date_format(c.tgl_verifikasi,'%d-%m-%Y'),', Jam : ',time_format(c.jam_verifikasi,'%H:%i WITA'),'\n\n',c.jenis_ppa,',\n\n\n\n(',pg5.nama,')\n\nDPJP,\n\n\n\n(',pg6.nama,')'),'') konfir_terapi  
+if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima  
 FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis 
 INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa 
 LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima
-LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON pg6.nik = c.nip_dpjp_konfir ]]>
+limit 1]]>
 	</queryString>
 	<field name="no_rkm_medis" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -47,7 +47,6 @@ LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON
 	<field name="verif" class="java.lang.String"/>
 	<field name="ptgsSerah" class="java.lang.String"/>
 	<field name="ptgsTerima" class="java.lang.String"/>
-	<field name="konfir_terapi" class="java.lang.String"/>
 	<title>
 		<band height="55">
 			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
@@ -337,7 +336,7 @@ LEFT JOIN pegawai pg5 ON pg5.nik = c.nip_petugas_konfir LEFT JOIN pegawai pg6 ON
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{instruksi_nakes}+"\n\n"+$F{konfir_terapi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{instruksi_nakes}+"\n\n"+$P{konfirmasi_terapi}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="409" y="0" width="110" height="11" uuid="2329630c-7005-40e1-9836-1811e83b8635"/>

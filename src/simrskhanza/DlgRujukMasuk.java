@@ -1332,6 +1332,11 @@ private void TAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_T
                 } catch (java.lang.NullPointerException e) {
                 }
             }
+            
+            if(evt.getClickCount()==2){
+                getData2();
+                WindowPerujuk.dispose();
+            }
         }       
     }//GEN-LAST:event_tbPerujukMouseClicked
 
