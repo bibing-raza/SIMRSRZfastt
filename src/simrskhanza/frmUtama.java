@@ -347,6 +347,7 @@ import presensi.DlgTemporaryPresensi;
 import rekammedis.DlgAssesmenGiziHarian;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgCPPT;
+import rekammedis.DlgCatatanTindakanKeperawatan;
 import rekammedis.DlgInputKodeICD;
 import rekammedis.DlgMasterDTD;
 import rekammedis.DlgMasterJabatanKomite;
@@ -947,6 +948,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnBangsal = new widget.ButtonBig();
         btnPersetujuanTindakan = new widget.ButtonBig();
         btnPetugasPelaksanaPemberianObat = new widget.ButtonBig();
+        btnCatatanTindakanKeperawatan = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6222,6 +6224,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPetugasPelaksanaPemberianObat);
 
+        btnCatatanTindakanKeperawatan.setForeground(new java.awt.Color(0, 0, 0));
+        btnCatatanTindakanKeperawatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist_pencil-o.png"))); // NOI18N
+        btnCatatanTindakanKeperawatan.setText("Catatan Tindakan Keperawatan");
+        btnCatatanTindakanKeperawatan.setIconTextGap(0);
+        btnCatatanTindakanKeperawatan.setName("btnCatatanTindakanKeperawatan"); // NOI18N
+        btnCatatanTindakanKeperawatan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnCatatanTindakanKeperawatan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCatatanTindakanKeperawatanActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnCatatanTindakanKeperawatan);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6230,7 +6245,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/11/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/12/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12305,6 +12320,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPetugasPelaksanaPemberianObatActionPerformed
 
+    private void btnCatatanTindakanKeperawatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCatatanTindakanKeperawatanActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgCatatanTindakanKeperawatan aplikasi = new DlgCatatanTindakanKeperawatan(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnCatatanTindakanKeperawatanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12390,6 +12418,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnCPPT;
     private widget.ButtonBig btnCashFlow;
     private widget.ButtonBig btnCatatanPasien;
+    private widget.ButtonBig btnCatatanTindakanKeperawatan;
     private widget.ButtonBig btnCekBPJSDiagnosa;
     private widget.ButtonBig btnCekBPJSFaskes;
     private widget.ButtonBig btnCekBPJSKartu;
@@ -13039,6 +13068,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu = 0;
             if (akses.getcppt() == true) {
                 Panelmenu.add(btnPersetujuanTindakan);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnCatatanTindakanKeperawatan);
                 jmlmenu++;
             }
             
@@ -14840,6 +14874,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         jmlmenu = 0;
         if (akses.getcppt() == true) {
             Panelmenu.add(btnPersetujuanTindakan);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnCatatanTindakanKeperawatan);
             jmlmenu++;
         }
         
@@ -16755,6 +16794,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnPersetujuanTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPersetujuanTindakan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnCatatanTindakanKeperawatan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnCatatanTindakanKeperawatan);
                 jmlmenu++;
             }
         }

@@ -10597,6 +10597,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     
     private void konfirmasiTerapi(String norw, String stts, String sift, String tgl1, String tgl2, String cek) {
         where_nya = "";
+        konfirmasi_terapi = "";
         try {
             //cetakcpptranap
             if (cek.equals("1")) {

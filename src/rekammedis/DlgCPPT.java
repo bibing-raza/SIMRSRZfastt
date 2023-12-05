@@ -7314,7 +7314,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     }
     
     private void cetakCPPTranap() {
-        konfirmasi_terapi = "";
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
@@ -8890,6 +8889,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     
     private void konfirmasiTerapi(String norw, String stts, String sift, String tgl1, String tgl2, String cek) {
         where_nya = "";
+        konfirmasi_terapi = "";
         try {
             //cetakcpptranap
             if (cek.equals("1")) {
