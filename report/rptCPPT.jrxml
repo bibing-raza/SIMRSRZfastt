@@ -11,20 +11,19 @@
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="judul" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
-	<parameter name="konfirmasi_terapi" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), 
+		<![CDATA[SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), 
 date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, 
 ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, 
 c.hasil_pemeriksaan, 
 concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, 
 concat('(', c.verifikasi,') - ',pg.nama) verif, 
 if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, 
-if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima  
+if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','konfirmasi_terapi','') datakonfirmasi  
 FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis 
 INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa 
 LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima
-limit 1]]>
+left join cppt_konfirmasi_terapi ck on ck.no_rawat=c.no_rawat and ck.tgl_cppt=c.tgl_cppt and ck.jam_cppt=c.jam_cppt and ck.cppt_shift=c.cppt_shift limit 1]]>
 	</queryString>
 	<field name="no_rkm_medis" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -47,6 +46,7 @@ limit 1]]>
 	<field name="verif" class="java.lang.String"/>
 	<field name="ptgsSerah" class="java.lang.String"/>
 	<field name="ptgsTerima" class="java.lang.String"/>
+	<field name="datakonfirmasi" class="java.lang.String"/>
 	<title>
 		<band height="55">
 			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
@@ -332,11 +332,11 @@ limit 1]]>
 				<textFieldExpression><![CDATA[$F{hasil_pemeriksaan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="278" y="0" width="127" height="11" uuid="09fea1a6-f47a-4f17-90dc-1cf98ed0ff49"/>
+				<reportElement x="278" y="0" width="127" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="09fea1a6-f47a-4f17-90dc-1cf98ed0ff49"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{instruksi_nakes}+"\n\n"+$P{konfirmasi_terapi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{instruksi_nakes}+"\n\n"+$F{datakonfirmasi}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="409" y="0" width="110" height="11" uuid="2329630c-7005-40e1-9836-1811e83b8635"/>

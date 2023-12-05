@@ -2095,13 +2095,37 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (tbObat.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
-                    tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
-                }) == true) {
-                    tampil();
-                    emptTeks();
+                //cek conteng
+                x = 0;
+                for (i = 0; i < tbObat.getRowCount(); i++) {
+                    if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                        x++;
+                    }
+                }
+
+                //jika tidak diconteng
+                if (x == 0) {
+                    if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
+                        tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
+                    }) == true) {
+                        tampil();
+                        emptTeks();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    }
+                //jika diconteng
                 } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                    try {
+                        for (i = 0; i < tbObat.getRowCount(); i++) {
+                            if (tbObat.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.meghapus("pemberian_obat", "waktu_simpan", tbObat.getValueAt(i, 47).toString());
+                            }
+                        }
+                        tampil();
+                        emptTeks();
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
                 }
             }
         } else {
