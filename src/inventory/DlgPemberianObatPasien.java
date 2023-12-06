@@ -3031,6 +3031,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
 
+                DTPCari1.setDate(tgl_beri.getDate());
                 JOptionPane.showMessageDialog(null, "Data pemberian obat berhasil di copy..!!!!");
                 tampil();
                 emptTeks();
@@ -3901,7 +3902,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             try {
                 rscppt = pscppt.executeQuery();                
                 while (rscppt.next()) {
-                    tabModeCppt.addRow(new Object[]{
+                    tabModeCppt.addRow(new String[]{
                         rscppt.getString("tgl"),
                         rscppt.getString("jam"),
                         rscppt.getString("jenis_bagian"),
