@@ -2105,13 +2105,17 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
                 //jika tidak diconteng
                 if (x == 0) {
-                    if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
-                        tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
-                    }) == true) {
-                        tampil();
-                        emptTeks();
+                    if (tbObat.getSelectedRow() > -1) {
+                        if (Sequel.queryu2tf("delete from pemberian_obat where waktu_simpan=?", 1, new String[]{
+                            tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
+                        }) == true) {
+                            tampil();
+                            emptTeks();
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                        }
                     } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                        JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu atau conteng dulu utk. menghapus data..!!");
                     }
                 //jika diconteng
                 } else {
