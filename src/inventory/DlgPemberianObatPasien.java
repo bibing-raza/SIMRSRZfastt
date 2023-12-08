@@ -44,7 +44,7 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author dosen
  */
 public class DlgPemberianObatPasien extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabModeCppt;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModeCppt;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -376,6 +376,46 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         }
         tbResep.setDefaultRenderer(Object.class, new WarnaTable());
         
+        tabMode3 = new DefaultTableModel(null, new Object[]{
+            "no_rawat", "Tgl. Beri", "Nama Obat", "Jns. Obat", "Nama Petugas 1", "Nama Petugas 2", "nip1", "nip2", "waktu_simpan"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbDouble.setModel(tabMode3);
+        tbDouble.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbDouble.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 9; i++) {
+            TableColumn column = tbDouble.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 1) {
+                column.setPreferredWidth(75);
+            } else if (i == 2) {
+                column.setPreferredWidth(200);
+            } else if (i == 3) {
+                column.setPreferredWidth(70);
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(220);
+            } else if (i == 6) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbDouble.setDefaultRenderer(Object.class, new WarnaTable());
+        
         tabModeCppt=new DefaultTableModel(null, new Object[]{
             "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
             "Nama PPA", "Shift", "hasil", "instruksi", "no_rawat", "tgl_cppt", "jam_cppt"
@@ -593,6 +633,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         BtnResep = new widget.Button();
         jLabel9 = new widget.Label();
         LCount = new widget.Label();
+        Scroll4 = new widget.ScrollPane();
+        tbDouble = new widget.Table();
         Scroll = new widget.ScrollPane();
         tbObat = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
@@ -1617,7 +1659,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
 
         tbResep.setToolTipText("klik salah satu data yang mau jadwalkan pemberiannya");
-        tbResep.setComponentPopupMenu(jPopupMenu);
         tbResep.setName("tbResep"); // NOI18N
         tbResep.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1661,6 +1702,22 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass12.add(LCount);
 
         panelGlass11.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Double Check Obat ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+        Scroll4.setPreferredSize(new java.awt.Dimension(460, 110));
+
+        tbDouble.setToolTipText("klik salah satu data yang mau diperbaiki/diganti/dihapus");
+        tbDouble.setName("tbDouble"); // NOI18N
+        tbDouble.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbDoubleMouseClicked(evt);
+            }
+        });
+        Scroll4.setViewportView(tbDouble);
+
+        panelGlass11.add(Scroll4, java.awt.BorderLayout.PAGE_START);
 
         panelGlass10.add(panelGlass11);
 
@@ -1839,7 +1896,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1853,7 +1910,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1962,7 +2019,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Scroll3.setOpaque(true);
 
         tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbCPPT.setComponentPopupMenu(jPopupMenu);
         tbCPPT.setName("tbCPPT"); // NOI18N
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -3068,6 +3124,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         isMenu();
     }//GEN-LAST:event_ChkAccorActionPerformed
 
+    private void tbDoubleMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbDoubleMouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbDoubleMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -3114,6 +3174,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
     private widget.TextBox TCari;
     private widget.TextBox TCari1;
     private widget.TextBox TNmPasien;
@@ -3227,6 +3288,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;
     private widget.Table tbCPPT;
+    private widget.Table tbDouble;
     private widget.Table tbFarmasi;
     private widget.Table tbObat;
     private widget.Table tbResep;

@@ -14,6 +14,7 @@
 	<parameter name="pasien" class="java.lang.String"/>
 	<parameter name="carabyr" class="java.lang.String"/>
 	<parameter name="ruangan" class="java.lang.String"/>
+	<parameter name="dokterPeresep" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT *, concat(DATE_FORMAT(tgl_perawatan,'%d-%m-%Y'),' / ',TIME_FORMAT(jam_perawatan,'%H:%i')) tgl from catatan_resep_ranap]]>
 	</queryString>
@@ -45,7 +46,7 @@
 		<band splitType="Stretch"/>
 	</background>
 	<title>
-		<band height="92" splitType="Stretch">
+		<band height="103" splitType="Stretch">
 			<textField>
 				<reportElement x="33" y="2" width="227" height="14" uuid="68d2ed21-0f65-4ea0-9150-05aea46cd13f"/>
 				<textElement textAlignment="Left">
@@ -107,6 +108,13 @@
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Rg. Rawat : "+$P{ruangan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="91" width="263" height="12" uuid="05b68ddd-2818-4af4-b649-bd7a9e67ee29"/>
+				<textElement>
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression><![CDATA["Nama Dokter : "+$P{dokterPeresep}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

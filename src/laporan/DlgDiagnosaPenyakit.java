@@ -1,5 +1,6 @@
 package laporan;
 
+import bridging.INACBGDaftarKlaim;
 import laporan.DlgPenyakit;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
@@ -586,6 +587,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnPrint = new widget.Button();
+        BtnKlaim = new widget.Button();
         BtnAll = new widget.Button();
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
@@ -794,6 +796,26 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnPrint);
 
+        BtnKlaim.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKlaim.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnKlaim.setMnemonic('P');
+        BtnKlaim.setText("Pengajuan Klaim JKN");
+        BtnKlaim.setToolTipText("Alt+P");
+        BtnKlaim.setGlassColor(new java.awt.Color(255, 204, 0));
+        BtnKlaim.setName("BtnKlaim"); // NOI18N
+        BtnKlaim.setPreferredSize(new java.awt.Dimension(170, 30));
+        BtnKlaim.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKlaimActionPerformed(evt);
+            }
+        });
+        BtnKlaim.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKlaimKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnKlaim);
+
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -858,7 +880,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -872,7 +894,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2007,6 +2029,31 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         tampilProsInadrg();
     }//GEN-LAST:event_MnSimpanQTYinadrgActionPerformed
 
+    private void BtnKlaimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKlaimActionPerformed
+        if (TNoRw.getText().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else if (!Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals("B01")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pengajuan klaim pasien BPJS saja...!!!");
+        } else if (tbDiagnosaPasien.getRowCount() == 0 && tbDiagnosaPasien1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Diagnosa utk. proses pengajuan klaim belum tersimpan...!!!");
+        } else if (Sequel.cariInteger("select count(-1) from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='1'") == 0) {
+            JOptionPane.showMessageDialog(null, "SEP nya belum ada utk. proses pengajuan klaim...!!!");
+        } else {
+            INACBGDaftarKlaim diklaim = new INACBGDaftarKlaim(null, false);
+            diklaim.isCek();
+            diklaim.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            diklaim.setLocationRelativeTo(internalFrame1);
+            diklaim.verifData();
+            diklaim.KlaimRAZA(TNoRw.getText(), Sequel.cariIsi("select no_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'"),
+                    "JKN", "3", Sequel.cariIsi("select tglsep from bridging_sep where no_rawat='" + TNoRw.getText() + "'"));
+            diklaim.setVisible(true);
+        }
+    }//GEN-LAST:event_BtnKlaimActionPerformed
+
+    private void BtnKlaimKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKlaimKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnKlaimKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -2032,6 +2079,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnCariProsedur;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKlaim;
     private widget.Button BtnPrint;
     private widget.Button BtnSeek4;
     private widget.Button BtnSimpan;
@@ -2357,6 +2405,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnHapus.setEnabled(akses.getdiagnosa_pasien());
 //        btnTambahPenyakit.setEnabled(var.getpenyakit());
         BtnPrint.setEnabled(akses.getdiagnosa_pasien());
+        BtnKlaim.setEnabled(akses.getinacbg_klaim_raza());
     }
 
     private void tampildiagnosa() {
