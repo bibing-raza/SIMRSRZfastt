@@ -2971,8 +2971,8 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             nosep_klaim.setText(noSyaratKlaim);
             cmbJnsKlaim.setSelectedIndex(1);
             TCari1.setText("");
-            tgl.setDate(1);
-            tglA.setDate(tgl);
+//            tgl.setDate(1);
+            tglA.setDate(new Date());
             tglB.setDate(new Date());
             kd_payor = kodepay;
             tglSep = tglsep;

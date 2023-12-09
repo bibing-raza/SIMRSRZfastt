@@ -1230,7 +1230,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel51.setBounds(0, 8, 80, 23);
 
         TtglCetak.setEditable(false);
-        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         TtglCetak.setDisplayFormat("dd-MM-yyyy");
         TtglCetak.setName("TtglCetak"); // NOI18N
         TtglCetak.setOpaque(false);
@@ -1239,7 +1239,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         TtglCetak.setBounds(82, 8, 95, 23);
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
         BtnPrint1.setMnemonic('T');
         BtnPrint1.setText("Cetak");
         BtnPrint1.setToolTipText("Alt+T");
@@ -1248,11 +1248,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         BtnPrint1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnPrint1ActionPerformed(evt);
-            }
-        });
-        BtnPrint1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnPrint1KeyPressed(evt);
             }
         });
         panelisi10.add(BtnPrint1);
@@ -1338,7 +1333,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1754,7 +1749,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1768,7 +1763,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3221,14 +3216,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         }        
     }//GEN-LAST:event_BtnPrint1ActionPerformed
 
-    private void BtnPrint1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrint1KeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnPrintActionPerformed(null);
-        } else {
-            Valid.pindah(evt, BtnHapus, BtnAll);
-        }
-    }//GEN-LAST:event_BtnPrint1KeyPressed
-
     /**
     * @param args the command line arguments
     */
@@ -3617,6 +3604,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmPasien);
+        TCari.setText(norw);
         tampilPagi();
         tampilSore();
         tampilMalam();
