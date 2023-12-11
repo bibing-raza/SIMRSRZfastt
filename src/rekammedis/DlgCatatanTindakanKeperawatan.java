@@ -3803,7 +3803,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         rsPagi.getString("no_rawat")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -3839,7 +3838,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         rsSore.getString("no_rawat")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -3875,7 +3873,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         rsMalam.getString("no_rawat")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -3907,7 +3904,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         rs3.getString("tanggal")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -4019,7 +4015,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         }
                     } 
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -4050,7 +4045,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         evaluasiPG = evaluasiPG + "\n" + rs5.getString("evaluasi_nyeri") + " : " + rs5.getString("ket_pagi");
                     }
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -4081,7 +4075,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         evaluasiSR = evaluasiSR + "\n" + rs6.getString("evaluasi_nyeri") + " : " + rs6.getString("ket_sore");
                     }
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
@@ -4112,7 +4105,6 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         evaluasiML = evaluasiML + "\n" + rs7.getString("evaluasi_nyeri") + " : " + rs7.getString("ket_malam");
                     }
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {

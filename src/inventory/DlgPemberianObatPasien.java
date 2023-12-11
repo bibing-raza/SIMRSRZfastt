@@ -2763,6 +2763,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where cek_dobel='ya' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                            + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat(" like '%%'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), "");
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+                    
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2788,6 +2796,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where cek_dobel='ya' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
+                            + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat(" like '%%'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), cmbJnsObat1.getSelectedItem().toString());
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+                    
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2835,6 +2851,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and cek_dobel='ya' and "
+                            + "tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat("='IGD'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), "");
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+                    
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2860,6 +2884,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and cek_dobel='ya' and "
+                            + "tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and "
+                            + "jenis_obat='" + cmbJnsObat1.getSelectedItem() + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat("='IGD'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), cmbJnsObat1.getSelectedItem().toString());
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -4631,7 +4664,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 + "__________________________________________________________________";
                     }
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             } finally {
