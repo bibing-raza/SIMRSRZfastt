@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
-	<property name="ireport.zoom" value="2.200000000000009"/>
+	<property name="ireport.zoom" value="1.241842646118315"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
@@ -21,6 +21,7 @@
 	<parameter name="ruangan" class="java.lang.String"/>
 	<parameter name="pemberian" class="java.lang.String"/>
 	<parameter name="pelaksana" class="java.lang.String"/>
+	<parameter name="dobel_cek" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, 
 po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, 
@@ -684,7 +685,7 @@ FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNE
 		</band>
 	</detail>
 	<summary>
-		<band height="158">
+		<band height="380">
 			<line>
 				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="336" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="64a96189-3ea0-439c-b41f-8d603127dc24"/>
 				<graphicElement>
@@ -770,11 +771,11 @@ FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNE
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="16" y="25" width="415" height="125" uuid="4af966b2-cbae-4f6b-b834-498f99aa9a3c"/>
+				<reportElement x="16" y="25" width="745" height="355" uuid="4af966b2-cbae-4f6b-b834-498f99aa9a3c"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{pelaksana}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pelaksana}+"\n\nDouble Check Obat : \n"+$P{dobel_cek}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

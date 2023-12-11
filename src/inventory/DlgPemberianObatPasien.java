@@ -48,13 +48,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, pscppt;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rscppt;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, pscppt;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rscppt;
     private int x = 0, i = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", waktuSimpan = "",
             cekjam1 = "", cekjam2 = "", cekjam3 = "", cekjam4 = "", cekjam5 = "", cekjam6 = "", cekjam7 = "", cekjam8 = "",
-            dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "";
+            dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "", dataDobelCek = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -2061,7 +2061,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2075,7 +2075,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2751,18 +2751,18 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        
+
         //semua rawat
         if (cmbJnsRawat.getSelectedIndex() == 2) {
             param.put("ruangan", "Semua");
             param.put("pelaksana", "Keterangan : -");
-            
+
             if (cmbJnsObat1.getSelectedIndex() == 0) {
                 if (Sequel.cariInteger("select count(-1) from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
                         + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
-                    param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");                    
+                    param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2808,7 +2808,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     WindowCetak.dispose();
                 }
             }
-            
+
             //rawat jalan
         } else if (cmbJnsRawat.getSelectedIndex() == 0) {
             param.put("ruangan", Sequel.cariIsi("select nm_unit from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
@@ -2828,7 +2828,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "inner join pegawai pg6 on pg6.nik=pp.nip_petugas_jam6 inner join pegawai pg7 on pg7.nik=pp.nip_petugas_jam7 "
                     + "inner join pegawai pg8 on pg8.nik=pp.nip_petugas_jam8 WHERE pp.no_rawat='" + TNoRW.getText() + "' "
                     + "and pp.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and pp.nm_unit='" + nmUnit.getText() + "' order by pp.waktu_simpan desc"));
-            
+
             if (cmbJnsObat1.getSelectedIndex() == 0) {
                 if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit='IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
                         + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
@@ -2881,7 +2881,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     WindowCetak.dispose();
                 }
             }
-            
+
             //rawat inap
         } else if (cmbJnsRawat.getSelectedIndex() == 1) {
             param.put("ruangan", Sequel.cariIsi("select nm_unit from pemberian_obat where tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
@@ -2901,13 +2901,21 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "inner join pegawai pg6 on pg6.nik=pp.nip_petugas_jam6 inner join pegawai pg7 on pg7.nik=pp.nip_petugas_jam7 "
                     + "inner join pegawai pg8 on pg8.nik=pp.nip_petugas_jam8 WHERE pp.no_rawat='" + TNoRW.getText() + "' "
                     + "and pp.tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and pp.nm_unit='" + nmUnit.getText() + "' order by pp.waktu_simpan desc"));
-            
+
             if (cmbJnsObat1.getSelectedIndex() == 0) {
                 if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' "
                         + "and no_rawat='" + TNoRW.getText() + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "SEMUA JENIS PEMBERIAN OBAT");
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and cek_dobel='ya' and "
+                            + "tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat("<>'IGD'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), "");
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2933,6 +2941,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(null, "Data tidak ditemukan, silahkan ulangi lagi...!!!!");
                 } else {
                     param.put("pemberian", "PEMBERIAN OBAT " + cmbJnsObat1.getSelectedItem());
+                    if (Sequel.cariInteger("select count(-1) from pemberian_obat where nm_unit<>'IGD' and cek_dobel='ya' and "
+                            + "tgl_pemberian='" + Valid.SetTgl(tgl_beriCetak.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "' "
+                            + "and jenis_obat='" + cmbJnsObat1.getSelectedItem() + "'") == 0) {
+                        param.put("dobel_cek", "");
+                    } else {
+                        DobelCekObat("<>'IGD'", Valid.SetTgl(tgl_beriCetak.getSelectedItem() + ""), cmbJnsObat1.getSelectedItem().toString());
+                        param.put("dobel_cek", dataDobelCek);
+                    }
+
                     Valid.MyReport("rptCatatanBeriObat.jasper", "report", "::[ Catatan Laporan Pemberian Obat Pasien ]::",
                             "SELECT p.no_rkm_medis, concat(p.nm_pasien,' (',p.jk,')') nmpasien, concat(rp.umurdaftar,' ',rp.sttsumur,', ',date_format(p.tgl_lahir,'%d/%m/%Y')) umur, "
                             + "po.jenis_obat, po.nama_obat, po.dosis, po.cara_pemberian rute, concat('TANGGAL : ',date_format(po.tgl_pemberian, '%d-%m-%Y' )) tglberi, "
@@ -2954,9 +2971,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 }
             }
         }
-        this.setCursor(Cursor.getDefaultCursor());        
+        this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnCetakLapActionPerformed
-
+        
     private void chkJam1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkJam1ActionPerformed
         cmbJam1.setSelectedIndex(0);
         cmbMnt1.setSelectedIndex(0);
@@ -4591,4 +4608,42 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             dataCek();
         }
     }
+
+    private void DobelCekObat(String unit, String tgl, String jnsObat) {
+        dataDobelCek = "";
+        try {
+            ps7 = koneksi.prepareStatement("select *, pg1.nama ptgs1, pg2.nama ptgs2 from pemberian_obat po "
+                    + "inner join pegawai pg1 on pg1.nik=po.nip_petugas1 inner join pegawai pg2 on pg2.nik=po.nip_petugas2 where "
+                    + "po.nm_unit" + unit + " and po.cek_dobel='ya' and po.tgl_pemberian='" + tgl + "' "
+                    + "and po.no_rawat='" + TNoRW.getText() + "' and po.jenis_obat like '%" + jnsObat + "%' order by po.waktu_simpan");
+            try {
+                rs7 = ps7.executeQuery();
+                while (rs7.next()) {
+                    if (dataDobelCek.equals("")) {
+                        dataDobelCek = rs7.getString("jenis_obat") + " - " + rs7.getString("nama_obat") + "\n"
+                                + "Petugas 1 : " + rs7.getString("ptgs1") + ", Paraf : ............\n\n"
+                                + "Petugas 2 : " + rs7.getString("ptgs2") + ", Paraf : ............\n"
+                                + "__________________________________________________________________";
+                    } else {
+                        dataDobelCek = dataDobelCek + "\n\n" + rs7.getString("jenis_obat") + " - " + rs7.getString("nama_obat") + "\n"
+                                + "Petugas 1 : " + rs7.getString("ptgs1") + ", Paraf : ............\n\n"
+                                + "Petugas 2 : " + rs7.getString("ptgs2") + ", Paraf : ............\n"
+                                + "__________________________________________________________________";
+                    }
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs7 != null) {
+                    rs7.close();
+                }
+                if (ps7 != null) {
+                    ps7.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }    
 }

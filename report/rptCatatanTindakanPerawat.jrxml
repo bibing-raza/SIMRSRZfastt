@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
-	<property name="ireport.zoom" value="2.0000000000000058"/>
+	<property name="ireport.zoom" value="1.6528925619834758"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
@@ -19,7 +19,6 @@
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="evaluasi" class="java.lang.String"/>
-	<parameter name="keterangan" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk,
 time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct
@@ -396,4 +395,15 @@ inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where ct.sift='sore' ORDER
 			</line>
 		</band>
 	</detail>
+	<summary>
+		<band height="488">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="7" y="0" width="510" height="488" uuid="1eb7878e-542f-4472-a734-0b423b31525d"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["\nEvaluasi Nyeri ("+$F{sift}+") : \n"+$P{evaluasi}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
 </jasperReport>
