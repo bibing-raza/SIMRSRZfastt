@@ -396,9 +396,9 @@ inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where ct.sift='sore' ORDER
 		</band>
 	</detail>
 	<summary>
-		<band height="488">
+		<band height="13">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="7" y="0" width="510" height="488" uuid="1eb7878e-542f-4472-a734-0b423b31525d"/>
+				<reportElement x="7" y="0" width="510" height="13" uuid="1eb7878e-542f-4472-a734-0b423b31525d"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 				</textElement>

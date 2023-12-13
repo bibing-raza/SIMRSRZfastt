@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="a563c598-597a-4e64-9789-3dacd4260e42">
-	<property name="ireport.zoom" value="1.241842646118315"/>
+	<property name="ireport.zoom" value="1.3660269107301466"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
@@ -685,69 +685,69 @@ FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNE
 		</band>
 	</detail>
 	<summary>
-		<band height="380">
+		<band height="39">
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="336" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="64a96189-3ea0-439c-b41f-8d603127dc24"/>
+				<reportElement x="336" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="64a96189-3ea0-439c-b41f-8d603127dc24"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="482" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="facd3fa5-38eb-430b-b9e8-6fa737a06a85"/>
+				<reportElement x="482" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="facd3fa5-38eb-430b-b9e8-6fa737a06a85"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="725" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cd6f492d-0af0-4292-b647-e645f5e15759"/>
+				<reportElement x="725" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="cd6f492d-0af0-4292-b647-e645f5e15759"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3979d480-5aa5-4732-9278-9f51a5dce9d6"/>
+				<reportElement x="0" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3979d480-5aa5-4732-9278-9f51a5dce9d6"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="766" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b45dec7c-2cb5-4d0c-8a12-be4120b1d320"/>
+				<reportElement x="766" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="b45dec7c-2cb5-4d0c-8a12-be4120b1d320"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="433" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a4845012-b208-449f-ac09-a1c2f6e3da42"/>
+				<reportElement x="433" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a4845012-b208-449f-ac09-a1c2f6e3da42"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="580" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="63910da9-9da2-4b16-8ea4-eb863d3d93b4"/>
+				<reportElement x="580" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="63910da9-9da2-4b16-8ea4-eb863d3d93b4"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="628" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9ae20a21-61d5-4a3b-9df2-672c36785fad"/>
+				<reportElement x="628" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9ae20a21-61d5-4a3b-9df2-672c36785fad"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="677" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fd3fcb60-4e3d-49a2-b00c-74b0801bc21b"/>
+				<reportElement x="677" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fd3fcb60-4e3d-49a2-b00c-74b0801bc21b"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="385" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9e288755-f95d-41ea-9404-dd466691e6d9"/>
+				<reportElement x="385" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="9e288755-f95d-41ea-9404-dd466691e6d9"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="531" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a9d9ff40-d9d7-4561-aa6d-956989f7ab73"/>
+				<reportElement x="531" y="0" width="1" height="18" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a9d9ff40-d9d7-4561-aa6d-956989f7ab73"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -771,7 +771,7 @@ FROM pemberian_obat po INNER JOIN reg_periksa rp ON rp.no_rawat=po.no_rawat INNE
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="16" y="25" width="745" height="355" uuid="4af966b2-cbae-4f6b-b834-498f99aa9a3c"/>
+				<reportElement x="16" y="25" width="745" height="13" uuid="4af966b2-cbae-4f6b-b834-498f99aa9a3c"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
