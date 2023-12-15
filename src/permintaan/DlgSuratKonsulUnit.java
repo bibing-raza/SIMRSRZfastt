@@ -18,6 +18,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
@@ -246,8 +247,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnCetakSurat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbKonsul = new widget.Table();
@@ -296,22 +295,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         BtnKamar = new widget.Button();
         label_status = new widget.Label();
 
-        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
-
-        MnCetakSurat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnCetakSurat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnCetakSurat.setText("Cetak Surat Keterangan NAPZA/Narkoba");
-        MnCetakSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnCetakSurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnCetakSurat.setName("MnCetakSurat"); // NOI18N
-        MnCetakSurat.setPreferredSize(new java.awt.Dimension(250, 26));
-        MnCetakSurat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnCetakSuratActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnCetakSurat);
-
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -329,7 +312,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbKonsul.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbKonsul.setComponentPopupMenu(jPopupMenu1);
         tbKonsul.setName("tbKonsul"); // NOI18N
         tbKonsul.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -977,75 +959,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusKeyPressed
 
-    private void MnCetakSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratActionPerformed
-        if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-            tbKonsul.requestFocus();
-        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
-                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
-        } else {
-//            if (tbKonsul.getSelectedRow() > -1) {
-//                Map<String, Object> param = new HashMap<>();
-//                param.put("namars", akses.getnamars());
-//                param.put("alamatrs", akses.getalamatrs());
-//                param.put("kotars", akses.getkabupatenrs());
-//                param.put("propinsirs", akses.getpropinsirs());
-//                param.put("kontakrs", akses.getkontakrs());
-//                param.put("emailrs", akses.getemailrs());
-//                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));                
-//                
-//                param.put("nosurat", "NOMOR : " + TkdKamarDari.getText());
-//                param.put("nama", TPasien.getText());
-//                param.put("ttl", TnmKamarDari.getText() + ", " + TkdKamarKe.getText());
-//                param.put("jk", TnmKamarKe.getText());
-//                param.put("pekerjaan", TPekerjaan.getText());
-//                param.put("tempattinggal", Ttmpt_tinggal.getText());
-//                param.put("permintaandari", TPermintaanDari.getText());
-//                param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
-//                param.put("keperluan", TPermintaan.getText());
-//                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
-//                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
-//                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
-//                param.put("nmdokter", TnmdokterMinta.getText());
-//                param.put("nipdokter", kddokter);
-//                
-//                if (tglsurat.equals("ya")) {
-//                    param.put("nosurattgl", TnoSuratDari.getText() + " tanggal "
-//                            + TtglMinta.getSelectedItem().toString().substring(0, 2) + " "
-//                            + Sequel.bulanINDONESIA("select date_format(tgl_surat_dari,'%m') from surat_keterangan_napza where "
-//                                    + "no_rawat='" + TNoRW.getText() + "'") + " " + TtglMinta.getSelectedItem().toString().substring(6, 10));
-//                } else {
-//                    param.put("nosurattgl", TnoSuratDari.getText());
-//                }
-//
-//                if (Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and thc='ya' and bzo='ya' "
-//                        + "and met='ya' and mop='ya' and coc='ya' and amp='ya'") == 0) {
-//                    Valid.MyReport("rptSuratNarkoba.jasper", "report", "::[ Surat Keterangan Narkoba ]::",
-//                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND thc='ya' UNION ALL "
-//                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND bzo='ya' UNION ALL "
-//                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND met='ya' UNION ALL "
-//                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND mop='ya' UNION ALL "
-//                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND coc='ya' UNION ALL "
-//                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND amp='ya'", param);
-//                } else {
-//                    Valid.MyReport("rptSuratNapza.jasper", "report", "::[ Surat Keterangan NAPZA ]::",
-//                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND thc='ya' UNION ALL "
-//                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND bzo='ya' UNION ALL "
-//                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND met='ya' UNION ALL "
-//                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND mop='ya' UNION ALL "
-//                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND coc='ya' UNION ALL "
-//                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND amp='ya'", param);
-//                }
-//            }
-
-            TCari.setText(TNoRW.getText());
-            tbKonsul.requestFocus();
-            emptTeks();
-            tampil();
-        }
-    }//GEN-LAST:event_MnCetakSuratActionPerformed
-
     private void TPermintaanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPermintaanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             BtnDokterMinta.requestFocus();
@@ -1079,23 +992,47 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             BtnBatal.requestFocus();
-        } else if (TNoRW.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel utk. mencetak laporan...!!!!");
-        } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data pemberian obat dg. no. rawat pasien tersebut belum tersimpan...!!!!");
-        } else if (tabMode.getRowCount() != 0) {
-//            WindowCetak.setSize(598, 105);
-//            WindowCetak.setLocationRelativeTo(internalFrame1);
-//            WindowCetak.setAlwaysOnTop(false);
-//            WindowCetak.setVisible(true);
-//            cmbJnsObat1.setSelectedItem(cmbJnsObat.getSelectedItem());
-//            tgl_beriCetak.setDate(tgl_beri.getDate());
-//
-//            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
-//                cmbJnsRawat.setSelectedIndex(0);
-//            } else if (status.equals("ranap")) {
-//                cmbJnsRawat.setSelectedIndex(1);
-//            }
+        } else {
+            if (tbKonsul.getSelectedRow() > -1) {
+                if (wktSimpan.equals("") && sttsJawab.equals("")) {
+                    JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+                } else {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("ruangan_dari", TnmKamarDari.getText());
+                    param.put("ruangan_ke", TnmKamarKe.getText());
+
+                    if (sttsJawab.equals("BELUM")) {
+                        Valid.MyReport("rptSuratKonsulRanapKosong.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
+                                "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
+                                + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
+                                + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
+                                + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
+                                + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
+                                + "where sk.waktu_simpan='" + wktSimpan + "'", param);
+                    } else {
+                        Valid.MyReport("rptSuratKonsulRanap.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
+                                "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(sk.tgl_minta,'%d-%m-%Y') tglminta, "
+                                + "time_format(sk.jam_minta,'%H:%i Wita') jamminta, sk.permintaan_konsul, d1.nm_dokter drMinta, sk.jawaban_konsul, "
+                                + "if(sk.status_dijawab='Belum','TANGGAL : -, JAM : -',concat('TANGGAL : ',date_format(sk.tgl_jawab,'%d-%m-%Y'),', JAM : ',time_format(sk.jam_jawab,'%H:%i'),' Wita')) tgljawab, "
+                                + "if(sk.status_dijawab='Belum','( ............................................ )',concat('(',d2.nm_dokter,')')) drJawab from surat_konsul_unit_ranap sk "
+                                + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                                + "inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on d2.kd_dokter=sk.nip_dokter_jawab "
+                                + "where sk.waktu_simpan='" + wktSimpan + "'", param);
+                    }
+
+                    TCari.setText(TNoRW.getText());
+                    tbKonsul.requestFocus();
+                    emptTeks();
+                    tampil();
+                    this.setCursor(Cursor.getDefaultCursor());
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
+            }
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -1137,7 +1074,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnCetakSurat;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll7;
     public widget.TextBox TCari;
@@ -1167,7 +1103,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label label_status;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
@@ -1302,8 +1237,16 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);
         TCari.setText(norw);
-        
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
         BtnKamar.requestFocus();
+        
+        if (Sequel.cariIsi("select ifnull(kd_dokter,'') from dokter where kd_dokter='" + akses.getkode() + "'").equals("")) {
+            kddokter = "-";
+            TnmdokterMinta.setText("-");
+        } else {
+            kddokter = akses.getkode();
+            TnmdokterMinta.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + akses.getkode() + "'"));
+        }
         
         try {
             ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien FROM reg_periksa rp "
