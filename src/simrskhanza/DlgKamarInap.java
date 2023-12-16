@@ -83,6 +83,7 @@ import permintaan.DlgCariPermintaanLab;
 import permintaan.DlgCariPermintaanRadiologi;
 import permintaan.DlgPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
+import permintaan.DlgSuratJawabanKonsul;
 import permintaan.DlgSuratKeteranganSakit;
 import permintaan.DlgSuratKonsulUnit;
 import rekammedis.DlgAssesmenGiziHarian;
@@ -13654,17 +13655,22 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (tbKamIn.getSelectedRow() != -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                akses.setform("DlgKamarInap");
-//                DlgSuratKonsulUnit form = new DlgSuratKonsulUnit(null, false);
-//                form.emptTeks();
-//                form.isCek();
-//                form.setData(norawat.getText(), kdkamar.getText(), ruangrawat.getText());
-//                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                form.setLocationRelativeTo(internalFrame1);
-//                form.setVisible(true);
-                BtnCariActionPerformed(null);
-                this.setCursor(Cursor.getDefaultCursor());
+                if (Sequel.cariInteger("select count(-1) from surat_konsul_unit_ranap where no_rawat='" + norawat.getText() + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Maaf, tidak ada surat konsul antar unit rawat inap yang akan dijawab...!!!");
+                    BtnCariActionPerformed(null);
+                } else {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKamarInap");
+                    DlgSuratJawabanKonsul form = new DlgSuratJawabanKonsul(null, false);
+                    form.emptTeks();
+                    form.isCek();
+                    form.setData(norawat.getText(), kdkamar.getText(), ruangrawat.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    BtnCariActionPerformed(null);
+                    this.setCursor(Cursor.getDefaultCursor());
+                }
             }
         }
     }//GEN-LAST:event_MnSuratJawabanKonsulActionPerformed

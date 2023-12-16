@@ -328,10 +328,12 @@ import parkir.DlgParkirMasuk;
 import permintaan.DlgCariPermintaanLab;
 import permintaan.DlgCariPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
+import permintaan.DlgSuratJawabanKonsul;
 import permintaan.DlgSuratKeteranganDokter;
 import permintaan.DlgSuratKeteranganNapza;
 import permintaan.DlgSuratKeteranganRohani;
 import permintaan.DlgSuratKeteranganSakit;
+import permintaan.DlgSuratKonsulUnit;
 import presensi.DlgBelum;
 import presensi.DlgBulanan;
 import presensi.DlgBulanan2;
@@ -949,6 +951,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnPersetujuanTindakan = new widget.ButtonBig();
         btnPetugasPelaksanaPemberianObat = new widget.ButtonBig();
         btnCatatanTindakanKeperawatan = new widget.ButtonBig();
+        btnSuratKonsulUnitRanap = new widget.ButtonBig();
+        btnSuratJawabanKonsulRanap = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -989,6 +993,7 @@ public class frmUtama extends javax.swing.JFrame {
         lbl_update = new javax.swing.JLabel();
         Scroll21 = new widget.ScrollPane();
         ket_update = new widget.TextArea();
+        jLabel13 = new javax.swing.JLabel();
         FlayMenu = new usu.widget.glass.PanelGlass();
         MenuBar = new widget.MenuBar();
         jMenu1 = new javax.swing.JMenu();
@@ -1005,6 +1010,7 @@ public class frmUtama extends javax.swing.JFrame {
         MnTarifKamar = new javax.swing.JMenuItem();
         MnTarifOperasi = new javax.swing.JMenuItem();
         MnTarifINACBG = new javax.swing.JMenuItem();
+        jMenu4 = new javax.swing.JMenu();
 
         DlgLogin.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         DlgLogin.setName("DlgLogin"); // NOI18N
@@ -6237,6 +6243,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnCatatanTindakanKeperawatan);
 
+        btnSuratKonsulUnitRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratKonsulUnitRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/email_open.png"))); // NOI18N
+        btnSuratKonsulUnitRanap.setText("Surat Konsul Antar Unit Ranap");
+        btnSuratKonsulUnitRanap.setIconTextGap(0);
+        btnSuratKonsulUnitRanap.setName("btnSuratKonsulUnitRanap"); // NOI18N
+        btnSuratKonsulUnitRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKonsulUnitRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratKonsulUnitRanapActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratKonsulUnitRanap);
+
+        btnSuratJawabanKonsulRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratJawabanKonsulRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/kwrite.png"))); // NOI18N
+        btnSuratJawabanKonsulRanap.setText("Surat Jawaban Konsul Unit");
+        btnSuratJawabanKonsulRanap.setIconTextGap(0);
+        btnSuratJawabanKonsulRanap.setName("btnSuratJawabanKonsulRanap"); // NOI18N
+        btnSuratJawabanKonsulRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratJawabanKonsulRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratJawabanKonsulRanapActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratJawabanKonsulRanap);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6245,7 +6277,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/12/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/12/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6755,7 +6787,16 @@ public class frmUtama extends javax.swing.JFrame {
         Scroll21.setViewportView(ket_update);
 
         panelJudul.add(Scroll21);
-        Scroll21.setBounds(120, 10, 720, 135);
+        Scroll21.setBounds(130, 10, 720, 135);
+
+        jLabel13.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
+        jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/yaski_icon.png"))); // NOI18N
+        jLabel13.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        jLabel13.setName("jLabel13"); // NOI18N
+        jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
+        panelJudul.add(jLabel13);
+        jLabel13.setBounds(25, 30, 100, 100);
 
         PanelWall.add(panelJudul, java.awt.BorderLayout.PAGE_END);
 
@@ -6941,6 +6982,30 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu3.add(MnTarifINACBG);
 
         MenuBar.add(jMenu3);
+
+        jMenu4.setBackground(new java.awt.Color(20, 0, 20));
+        jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/63.png"))); // NOI18N
+        jMenu4.setMnemonic('T');
+        jMenu4.setText("Tentang Program");
+        jMenu4.setToolTipText("Alt+T");
+        jMenu4.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jMenu4.setName("jMenu4"); // NOI18N
+        jMenu4.setPreferredSize(new java.awt.Dimension(160, 30));
+        jMenu4.addMenuListener(new javax.swing.event.MenuListener() {
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuDeselected(javax.swing.event.MenuEvent evt) {
+            }
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu4MenuSelected(evt);
+            }
+        });
+        jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jMenu4MouseClicked(evt);
+            }
+        });
+        MenuBar.add(jMenu4);
 
         setJMenuBar(MenuBar);
 
@@ -12333,6 +12398,50 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnCatatanTindakanKeperawatanActionPerformed
 
+    private void btnSuratKonsulUnitRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratKonsulUnitRanapActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgSuratKonsulUnit aplikasi = new DlgSuratKonsulUnit(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratKonsulUnitRanapActionPerformed
+
+    private void btnSuratJawabanKonsulRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratJawabanKonsulRanapActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgSuratJawabanKonsul aplikasi = new DlgSuratJawabanKonsul(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratJawabanKonsulRanapActionPerformed
+
+    private void jMenu4MenuSelected(javax.swing.event.MenuEvent evt) {//GEN-FIRST:event_jMenu4MenuSelected
+        isTutup();
+        DlgHome.dispose();
+        DlgAbout About = new DlgAbout(this, true);
+        About.setSize(PanelWall.getWidth(), PanelWall.getHeight());
+        About.setLocationRelativeTo(PanelWall);
+        About.setVisible(true);
+    }//GEN-LAST:event_jMenu4MenuSelected
+
+    private void jMenu4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jMenu4MouseClicked
+        isTutup();
+        DlgHome.dispose();
+        DlgAbout About = new DlgAbout(this, true);
+        About.setSize(PanelWall.getWidth(), PanelWall.getHeight());
+        About.setLocationRelativeTo(PanelWall);
+        About.setVisible(true);
+    }//GEN-LAST:event_jMenu4MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -12725,10 +12834,12 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSuplier;
     private widget.ButtonBig btnSuplierIPSRS;
     private widget.ButtonBig btnSuratIstirahatSakit;
+    private widget.ButtonBig btnSuratJawabanKonsulRanap;
     private widget.ButtonBig btnSuratKeteranganDokter;
     private widget.ButtonBig btnSuratKeteranganNAPZA;
     private widget.ButtonBig btnSuratKeteranganRohani;
     private widget.ButtonBig btnSuratKeteranganSakit;
+    private widget.ButtonBig btnSuratKonsulUnitRanap;
     private widget.ButtonBig btnSurveilansPD3I;
     private widget.ButtonBig btnSurveilansRalan;
     private widget.ButtonBig btnSurveilansRanap;
@@ -12781,6 +12892,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.Label jLabel10;
     private javax.swing.JLabel jLabel11;
     private widget.Label jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -12789,6 +12901,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;
+    private javax.swing.JMenu jMenu4;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
@@ -14425,6 +14538,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getpermintaan_lab()== true) {
+                Panelmenu.add(btnSuratKonsulUnitRanap);
+                jmlmenu++;
+            }
+            
+            if (akses.getpermintaan_lab()== true) {
+                Panelmenu.add(btnSuratJawabanKonsulRanap);
+                jmlmenu++;
+            }
+            
             if (akses.getsurat_keterangan_kir_mcu() == true) {
                 Panelmenu.add(btnSuratKeteranganDokter);
                 jmlmenu++;
@@ -14872,6 +14995,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getpermintaan_lab() == true) {
+            Panelmenu.add(btnSuratKonsulUnitRanap);
+            jmlmenu++;
+        }
+
+        if (akses.getpermintaan_lab() == true) {
+            Panelmenu.add(btnSuratJawabanKonsulRanap);
+            jmlmenu++;
+        }
+        
         if (akses.getcppt() == true) {
             Panelmenu.add(btnPersetujuanTindakan);
             jmlmenu++;
@@ -16791,6 +16924,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (akses.getpermintaan_lab()== true) {
+            if (btnSuratKonsulUnitRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratKonsulUnitRanap);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getpermintaan_lab()== true) {
+            if (btnSuratJawabanKonsulRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratJawabanKonsulRanap);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getcppt()== true) {
             if (btnPersetujuanTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPersetujuanTindakan);

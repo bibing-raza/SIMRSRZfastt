@@ -806,8 +806,10 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
             TPermintaan.requestFocus();
         } else {
             if (tbKonsul.getSelectedRow() > -1) {
-                if (sttsJawab.equals("Sudah")) {
+                if (sttsJawab.equals("SUDAH")) {
                     JOptionPane.showMessageDialog(null, "Permintaan konsul antar unit sudah dijawab, proses tidak dapat dilanjutkan..!!");
+                    tampil();
+                    emptTeks();
                 } else {
                     Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
                             "kd_kamar_ke=?, permintaan_konsul=?, tgl_minta=?, jam_minta=?, nip_dokter_minta=?", 6, new String[]{
@@ -931,8 +933,10 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbKonsul.getSelectedRow() > -1) {
-            if (sttsJawab.equals("Sudah")) {
+            if (sttsJawab.equals("SUDAH")) {
                 JOptionPane.showMessageDialog(null, "Permintaan konsul antar unit sudah dijawab, proses tidak dapat dilanjutkan..!!");
+                tampil();
+                emptTeks();
             } else {
                 x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {

@@ -1453,6 +1453,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkPrmrj = new widget.CekBox();
         jLabel44 = new widget.Label();
         Tspo2 = new widget.TextBox();
+        BtnPasteResep = new widget.Button();
         TabPemeriksaanDokter = new javax.swing.JTabbedPane();
         Scroll3 = new widget.ScrollPane();
         tbPemeriksaanDr = new widget.Table();
@@ -2778,7 +2779,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -2997,7 +2998,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3011,7 +3012,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3581,6 +3582,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TTerapi.setColumns(20);
         TTerapi.setRows(5);
         TTerapi.setName("TTerapi"); // NOI18N
+        TTerapi.setPreferredSize(new java.awt.Dimension(190, 1000));
         TTerapi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TTerapiKeyPressed(evt);
@@ -3661,6 +3663,21 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         FormInput2.add(Tspo2);
         Tspo2.setBounds(1070, 5, 42, 23);
+
+        BtnPasteResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnPasteResep.setMnemonic('R');
+        BtnPasteResep.setText("Resep");
+        BtnPasteResep.setToolTipText("Alt+R");
+        BtnPasteResep.setName("BtnPasteResep"); // NOI18N
+        BtnPasteResep.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPasteResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteResepActionPerformed(evt);
+            }
+        });
+        FormInput2.add(BtnPasteResep);
+        BtnPasteResep.setBounds(5, 260, 90, 26);
 
         Scroll36.setViewportView(FormInput2);
 
@@ -5004,7 +5021,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-11-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -8868,6 +8885,31 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_ppPersetujuanTindakanBtnPrintActionPerformed
+
+    private void BtnPasteResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteResepActionPerformed
+        tampilResepObat();
+        if (tabModeResepObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, resep obat belum ada, silahkan diresepkan dulu pasiennya...!!!");
+        } else {
+            contengResep();
+            for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                if (tbResepObat.getValueAt(i, 0).toString().equals("true")) {
+                    if (TTerapi.getText().equals("")) {
+                        TTerapi.setText(tbResepObat.getValueAt(i, 4).toString());
+                    } else {
+                        TTerapi.setText(TTerapi.getText() + "\n" + tbResepObat.getValueAt(i, 4).toString());
+                    }
+                }
+            }
+            
+            //conteng dihilangkan
+            for (i = 0; i < tbResepObat.getRowCount(); i++) {
+                if (tbResepObat.getValueAt(i, 1).equals(TNoRw.getText())) {
+                    tbResepObat.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_BtnPasteResepActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -8909,6 +8951,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnKeluar;
     private widget.Button BtnMenjawabRujukan;
     private widget.Button BtnPRMRJ;
+    private widget.Button BtnPasteResep;
     private widget.Button BtnPemeriksaanDR;
     private widget.Button BtnPemeriksaanPR;
     private widget.Button BtnPenilaianAwalMedisMata;
