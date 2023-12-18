@@ -6277,7 +6277,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/12/2023" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/12/2023" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6748,7 +6748,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel11.setName("jLabel11"); // NOI18N
         jLabel11.setPreferredSize(new java.awt.Dimension(430, 30));
         panelJudul.add(jLabel11);
-        jLabel11.setBounds(120, 180, 680, 20);
+        jLabel11.setBounds(210, 180, 680, 20);
 
         jLabel8.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -6758,7 +6758,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel8.setName("jLabel8"); // NOI18N
         jLabel8.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         panelJudul.add(jLabel8);
-        jLabel8.setBounds(30, 140, 820, 100);
+        jLabel8.setBounds(120, 140, 820, 100);
 
         lbl_update.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         lbl_update.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -6767,7 +6767,7 @@ public class frmUtama extends javax.swing.JFrame {
         lbl_update.setName("lbl_update"); // NOI18N
         lbl_update.setPreferredSize(new java.awt.Dimension(430, 30));
         panelJudul.add(lbl_update);
-        lbl_update.setBounds(120, 205, 680, 20);
+        lbl_update.setBounds(210, 205, 680, 20);
 
         Scroll21.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         Scroll21.setName("Scroll21"); // NOI18N
@@ -6787,7 +6787,7 @@ public class frmUtama extends javax.swing.JFrame {
         Scroll21.setViewportView(ket_update);
 
         panelJudul.add(Scroll21);
-        Scroll21.setBounds(130, 10, 720, 135);
+        Scroll21.setBounds(25, 10, 720, 135);
 
         jLabel13.setFont(new java.awt.Font("Tahoma", 2, 24)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -6796,7 +6796,7 @@ public class frmUtama extends javax.swing.JFrame {
         jLabel13.setName("jLabel13"); // NOI18N
         jLabel13.setVerticalTextPosition(javax.swing.SwingConstants.TOP);
         panelJudul.add(jLabel13);
-        jLabel13.setBounds(25, 30, 100, 100);
+        jLabel13.setBounds(25, 140, 100, 100);
 
         PanelWall.add(panelJudul, java.awt.BorderLayout.PAGE_END);
 

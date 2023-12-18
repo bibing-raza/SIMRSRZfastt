@@ -188,7 +188,9 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1 = new DefaultTableModel(null, new Object[]{"No. RM", "Nama Pasien", "Data Template"}) {
+        tabMode1 = new DefaultTableModel(null, new Object[]{"No. RM", "Nama Pasien", "Tgl. CPPT", "Jam CPPT", "Jns. PPA", 
+            "Sift", "Data Template"
+        }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -198,13 +200,21 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbTemplate.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbTemplate.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 3; i++) {
+        for (int i = 0; i < 7; i++) {
             TableColumn column = tbTemplate.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(60);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
+                column.setPreferredWidth(75);
+            } else if (i == 3) {
+                column.setPreferredWidth(75);
+            } else if (i == 4) {
+                column.setPreferredWidth(80);
+            } else if (i == 5) {
+                column.setPreferredWidth(50);
+            } else if (i == 6) {
                 column.setPreferredWidth(250);
             }
         }
@@ -3295,7 +3305,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel4.setBounds(0, 64, 180, 23);
 
         cmbPPA.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA" }));
+        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA", "DPJP" }));
         cmbPPA.setName("cmbPPA"); // NOI18N
         cmbPPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -4546,7 +4556,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         if(tabMode1.getRowCount() != 0) {
             try {
                 if (tbTemplate.getSelectedRow() != -1) {
-                    Ttemplate.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 2).toString());
+                    Ttemplate.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 6).toString());
                 }
             } catch (java.lang.NullPointerException e) {
             }
@@ -6829,7 +6839,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
             } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() != 4) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6850,7 +6860,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.jenis_ppa like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and pg.nama like ? "
-                        + "order by c.tgl_cppt desc, c.jam_cppt desc");
+                        + "order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
             } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() == 4) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6870,7 +6880,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
             } else if (cmbRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6890,7 +6900,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt desc, c.jam_cppt desc");
+                        + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
             }
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -7089,42 +7099,48 @@ public class DlgCPPT extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             if (pilihan == 1) {
-                pps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.hasil_pemeriksaan<>'' and p.no_rkm_medis like ? OR "
                         + "c.hasil_pemeriksaan<>'' and p.nm_pasien like ? OR "
                         + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.waktu_simpan desc limit 20");
             } else if (pilihan == 2) {
-                pps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.instruksi_nakes<>'' and p.no_rkm_medis like ? OR "
                         + "c.instruksi_nakes<>'' and p.nm_pasien like ? OR "
                         + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.waktu_simpan desc limit 20");
             } else if (pilihan == 3) {
-                pps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.subjektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.subjektif<>'' and p.nm_pasien like ? OR "
                         + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.waktu_simpan desc limit 20");
             } else if (pilihan == 4) {
-                pps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.objektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.objektif<>'' and p.nm_pasien like ? OR "
                         + "c.objektif<>'' and c.objektif like ? ORDER BY c.waktu_simpan desc limit 20");
             } else if (pilihan == 5) {
-                pps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.asesmen<>'' and p.no_rkm_medis like ? OR "
                         + "c.asesmen<>'' and p.nm_pasien like ? OR "
                         + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.waktu_simpan desc limit 20");
             } else if (pilihan == 6) {
-                pps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, c.* from cppt c "
+                pps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
+                        + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
                         + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.planing<>'' and p.no_rkm_medis like ? OR "
@@ -7142,6 +7158,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs1.getString("no_rkm_medis"),
                             rrs1.getString("nm_pasien"),
+                            rrs1.getString("tglcppt"),
+                            rrs1.getString("jam"),
+                            rrs1.getString("jenis_ppa"),
+                            rrs1.getString("cppt_shift"),
                             rrs1.getString("hasil_pemeriksaan")
                         });
                     }
@@ -7154,6 +7174,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs2.getString("no_rkm_medis"),
                             rrs2.getString("nm_pasien"),
+                            rrs2.getString("tglcppt"),
+                            rrs2.getString("jam"),
+                            rrs2.getString("jenis_ppa"),
+                            rrs2.getString("cppt_shift"),
                             rrs2.getString("instruksi_nakes")
                         });
                     }
@@ -7166,6 +7190,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs3.getString("no_rkm_medis"),
                             rrs3.getString("nm_pasien"),
+                            rrs3.getString("tglcppt"),
+                            rrs3.getString("jam"),
+                            rrs3.getString("jenis_ppa"),
+                            rrs3.getString("cppt_shift"),
                             rrs3.getString("subjektif")
                         });
                     }
@@ -7178,6 +7206,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs4.getString("no_rkm_medis"),
                             rrs4.getString("nm_pasien"),
+                            rrs4.getString("tglcppt"),
+                            rrs4.getString("jam"),
+                            rrs4.getString("jenis_ppa"),
+                            rrs4.getString("cppt_shift"),
                             rrs4.getString("objektif")
                         });
                     }
@@ -7190,6 +7222,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs5.getString("no_rkm_medis"),
                             rrs5.getString("nm_pasien"),
+                            rrs5.getString("tglcppt"),
+                            rrs5.getString("jam"),
+                            rrs5.getString("jenis_ppa"),
+                            rrs5.getString("cppt_shift"),
                             rrs5.getString("asesmen")
                         });
                     }
@@ -7202,6 +7238,10 @@ public class DlgCPPT extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rrs6.getString("no_rkm_medis"),
                             rrs6.getString("nm_pasien"),
+                            rrs6.getString("tglcppt"),
+                            rrs6.getString("jam"),
+                            rrs6.getString("jenis_ppa"),
+                            rrs6.getString("cppt_shift"),
                             rrs6.getString("planing")
                         });
                     }
