@@ -4500,7 +4500,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 1;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Hasil Pemeriksaan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -4508,6 +4507,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_BtnHasilActionPerformed
 
     private void BtnInstruksiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnInstruksiActionPerformed
@@ -4516,7 +4516,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 2;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Instruksi Nakes ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -4524,6 +4523,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_BtnInstruksiActionPerformed
 
     private void TCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari1KeyPressed
@@ -5555,7 +5555,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 3;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Subjektif ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -5563,6 +5562,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_MnTemplateSActionPerformed
 
     private void MnUlangiSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnUlangiSActionPerformed
@@ -5583,7 +5583,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 4;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Objektif ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -5591,6 +5590,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_MnTemplateOActionPerformed
 
     private void MnUlangiOActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnUlangiOActionPerformed
@@ -5611,7 +5611,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 5;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Asesmen ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -5619,6 +5618,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_MnTemplateAActionPerformed
 
     private void MnUlangiAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnUlangiAActionPerformed
@@ -5639,7 +5639,6 @@ public class DlgCPPT extends javax.swing.JDialog {
         TCari1.setText("");
 
         pilihan = 6;
-        tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Instruksi/Planning ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         WindowTemplate.setSize(998, internalFrame1.getHeight() - 40);
         WindowTemplate.setLocationRelativeTo(internalFrame1);
@@ -5647,6 +5646,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowTemplate.setVisible(true);
         TCari1.setText(TNoRm.getText());
         TCari1.requestFocus();
+        tampilTemplate();
     }//GEN-LAST:event_MnTemplatePActionPerformed
 
     private void MnUlangiPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnUlangiPActionPerformed
