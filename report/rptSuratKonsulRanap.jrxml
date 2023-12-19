@@ -18,8 +18,7 @@
 	<property name="com.jaspersoft.studio.unit.columnSpacing" value="pixel"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
-	<parameter name="ruangan_dari" class="java.lang.String"/>
-	<parameter name="ruangan_ke" class="java.lang.String"/>
+	<parameter name="unit" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[-- select * from surat_konsul_unit_ranap;
 -- select tgl_registrasi from reg_periksa where no_rawat='2023/12/13/000464';
@@ -255,7 +254,7 @@ inner join dokter d1 on d1.kd_dokter=sk.nip_dokter_minta inner join dokter d2 on
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression><![CDATA["Dari Unit : "+$P{ruangan_dari}+", Ke Unit : "+$P{ruangan_ke}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{unit}]]></textFieldExpression>
 			</textField>
 			<staticText>
 				<reportElement x="3" y="90" width="97" height="11" uuid="afeb7ea0-8b68-4414-8856-273e31a29e0c">

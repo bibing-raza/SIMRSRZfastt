@@ -13636,7 +13636,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 DlgSuratKonsulUnit form = new DlgSuratKonsulUnit(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(norawat.getText(), kdkamar.getText(), ruangrawat.getText());
+                form.setData(norawat.getText(), nmgedung);
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -13664,7 +13664,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     DlgSuratJawabanKonsul form = new DlgSuratJawabanKonsul(null, false);
                     form.emptTeks();
                     form.isCek();
-                    form.setData(norawat.getText(), kdkamar.getText(), ruangrawat.getText());
+                    form.setData(norawat.getText());
                     form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     form.setLocationRelativeTo(internalFrame1);
                     form.setVisible(true);

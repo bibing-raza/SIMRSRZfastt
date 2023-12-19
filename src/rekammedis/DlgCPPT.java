@@ -1686,6 +1686,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
         Scroll1.setPreferredSize(new java.awt.Dimension(452, 250));
 
+        tbTemplate.setAutoCreateRowSorter(true);
         tbTemplate.setToolTipText("Silahkan klik salah satu data yang akan dipakai");
         tbTemplate.setName("tbTemplate"); // NOI18N
         tbTemplate.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1853,7 +1854,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCetakCPPT.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1869,7 +1870,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2268,7 +2269,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2466,7 +2467,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2480,7 +2481,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3061,7 +3062,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -3543,7 +3544,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -3597,7 +3598,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -3874,6 +3875,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 200));
 
+        tbCPPT.setAutoCreateRowSorter(true);
         tbCPPT.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -3912,7 +3914,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3926,7 +3928,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6845,7 +6847,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
+                        + "c.tgl_cppt between ? and ? and c.status='Ralan' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, time(c.waktu_simpan) desc");
             } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() != 4) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6866,7 +6868,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and c.jenis_ppa like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.cppt_shift like '%" + cmbSiftCppt.getSelectedItem() + "%' and pg.nama like ? "
-                        + "order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
+                        + "order by c.tgl_cppt, time(c.waktu_simpan) desc");
             } else if (cmbRawat.getSelectedIndex() == 1 && cmbSiftCppt.getSelectedIndex() == 4) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6886,7 +6888,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
+                        + "c.tgl_cppt between ? and ? and c.status='Ranap' and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, time(c.waktu_simpan) desc");
             } else if (cmbRawat.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement("SELECT c.no_rawat, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT( p.tgl_lahir, '%d-%m-%Y' ) tgllhr, "
                         + "DATE_FORMAT( c.tgl_cppt, '%d-%m-%Y' ) tglcppt, c.hasil_pemeriksaan, c.instruksi_nakes, c.verifikasi, pg.nama nmdpjp, c.STATUS, "
@@ -6906,7 +6908,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.verifikasi like ? or "
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.jenis_bagian like ? or "
                         + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and c.jenis_ppa like ? or "
-                        + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, c.cppt_shift, c.jam_cppt");
+                        + "c.tgl_cppt between ? and ? and flag_hapus='tidak' and pg.nama like ? order by c.tgl_cppt, time(c.waktu_simpan) desc");
             }
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -7111,7 +7113,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.hasil_pemeriksaan<>'' and p.no_rkm_medis like ? OR "
                         + "c.hasil_pemeriksaan<>'' and p.nm_pasien like ? OR "
-                        + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             } else if (pilihan == 2) {
                 pps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7119,7 +7121,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.instruksi_nakes<>'' and p.no_rkm_medis like ? OR "
                         + "c.instruksi_nakes<>'' and p.nm_pasien like ? OR "
-                        + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             } else if (pilihan == 3) {
                 pps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7127,7 +7129,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.subjektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.subjektif<>'' and p.nm_pasien like ? OR "
-                        + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             } else if (pilihan == 4) {
                 pps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7135,7 +7137,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.objektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.objektif<>'' and p.nm_pasien like ? OR "
-                        + "c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             } else if (pilihan == 5) {
                 pps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7143,7 +7145,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.asesmen<>'' and p.no_rkm_medis like ? OR "
                         + "c.asesmen<>'' and p.nm_pasien like ? OR "
-                        + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             } else if (pilihan == 6) {
                 pps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7151,7 +7153,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.planing<>'' and p.no_rkm_medis like ? OR "
                         + "c.planing<>'' and p.nm_pasien like ? OR "
-                        + "c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, c.cppt_shift, c.jam_cppt limit 200");
+                        + "c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
             }
             
             try {

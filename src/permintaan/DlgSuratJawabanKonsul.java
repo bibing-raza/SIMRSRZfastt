@@ -61,11 +61,10 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Dari Rg. Rawat", "Ke Rg. Rawat", "Permintaan Konsul",
+        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Dari Unit", "Ke Unit", "Permintaan Konsul",
             "Tgl. Permintaan", "Jam Permintaan", "Dengan Dokter",
             "Jawaban Konsul", "Tgl. Jawaban", "Jam Jawaban", "Dijawab Oleh Dokter",
-            "kd_kamar_dari", "kd_kamar_ke", "tgl_minta", "jam_minta",
-            "nip_minta", "waktu_simpan", "Stts. Surat", 
+            "tgl_minta", "jam_minta", "nip_minta", "waktu_simpan", "Stts. Surat", 
             "tgl_jawab", "jam_jawab", "nip_jawab"
         };
         tabMode=new DefaultTableModel(null,row){
@@ -76,7 +75,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         tbKonsul.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKonsul.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 21; i++) {
             TableColumn column = tbKonsul.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -104,7 +103,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                 column.setPreferredWidth(90);
             } else if (i == 12) {
                 column.setPreferredWidth(220);
-            } else if (i == 13) {
+            }  else if (i == 13) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 14) {
@@ -117,20 +116,14 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 17) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(80);
             } else if (i == 18) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 19) {
-                column.setPreferredWidth(80);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 20) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 21) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 22) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -235,16 +228,12 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel3 = new widget.Label();
         jLabel4 = new widget.Label();
         TNoRW = new widget.TextBox();
-        TkdKamarDari = new widget.TextBox();
+        TunitDari = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TPasien = new widget.TextBox();
-        jLabel5 = new widget.Label();
-        TnmKamarDari = new widget.TextBox();
-        TnmKamarKe = new widget.TextBox();
         jLabel10 = new widget.Label();
         Tnmdokter = new widget.TextBox();
         BtnDokter = new widget.Button();
-        TkdKamarKe = new widget.TextBox();
         TtglJawab = new widget.Tanggal();
         Scroll7 = new widget.ScrollPane();
         TJawaban = new widget.TextArea();
@@ -264,6 +253,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         TjamMinta = new widget.TextBox();
         jLabel15 = new widget.Label();
         TnmDokterMinta = new widget.TextBox();
+        jLabel16 = new widget.Label();
+        TunitKe = new widget.TextBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -522,7 +513,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel3.setBounds(0, 10, 125, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Dari Rg. Rawat : ");
+        jLabel4.setText("Dari Unit : ");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass7.add(jLabel4);
         jLabel4.setBounds(0, 38, 125, 23);
@@ -533,11 +524,11 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         panelGlass7.add(TNoRW);
         TNoRW.setBounds(125, 10, 131, 23);
 
-        TkdKamarDari.setEditable(false);
-        TkdKamarDari.setForeground(new java.awt.Color(0, 0, 0));
-        TkdKamarDari.setName("TkdKamarDari"); // NOI18N
-        panelGlass7.add(TkdKamarDari);
-        TkdKamarDari.setBounds(125, 38, 120, 23);
+        TunitDari.setEditable(false);
+        TunitDari.setForeground(new java.awt.Color(0, 0, 0));
+        TunitDari.setName("TunitDari"); // NOI18N
+        panelGlass7.add(TunitDari);
+        TunitDari.setBounds(125, 38, 160, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
@@ -551,35 +542,17 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         panelGlass7.add(TPasien);
         TPasien.setBounds(335, 10, 360, 23);
 
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Ke Rg. Rawat : ");
-        jLabel5.setName("jLabel5"); // NOI18N
-        panelGlass7.add(jLabel5);
-        jLabel5.setBounds(0, 66, 125, 23);
-
-        TnmKamarDari.setEditable(false);
-        TnmKamarDari.setForeground(new java.awt.Color(0, 0, 0));
-        TnmKamarDari.setName("TnmKamarDari"); // NOI18N
-        panelGlass7.add(TnmKamarDari);
-        TnmKamarDari.setBounds(250, 38, 445, 23);
-
-        TnmKamarKe.setEditable(false);
-        TnmKamarKe.setForeground(new java.awt.Color(0, 0, 0));
-        TnmKamarKe.setName("TnmKamarKe"); // NOI18N
-        panelGlass7.add(TnmKamarKe);
-        TnmKamarKe.setBounds(250, 66, 445, 23);
-
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Jawaban Konsul : ");
         jLabel10.setName("jLabel10"); // NOI18N
         panelGlass7.add(jLabel10);
-        jLabel10.setBounds(0, 94, 125, 23);
+        jLabel10.setBounds(0, 66, 125, 23);
 
         Tnmdokter.setEditable(false);
         Tnmdokter.setForeground(new java.awt.Color(0, 0, 0));
         Tnmdokter.setName("Tnmdokter"); // NOI18N
         panelGlass7.add(Tnmdokter);
-        Tnmdokter.setBounds(125, 288, 540, 23);
+        Tnmdokter.setBounds(125, 260, 540, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter.setMnemonic('2');
@@ -592,13 +565,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnDokter);
-        BtnDokter.setBounds(670, 288, 28, 23);
-
-        TkdKamarKe.setEditable(false);
-        TkdKamarKe.setForeground(new java.awt.Color(0, 0, 0));
-        TkdKamarKe.setName("TkdKamarKe"); // NOI18N
-        panelGlass7.add(TkdKamarKe);
-        TkdKamarKe.setBounds(125, 66, 120, 23);
+        BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
         TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
@@ -606,7 +573,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
         panelGlass7.add(TtglJawab);
-        TtglJawab.setBounds(125, 260, 100, 23);
+        TtglJawab.setBounds(125, 232, 100, 23);
 
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
@@ -623,19 +590,19 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         Scroll7.setViewportView(TJawaban);
 
         panelGlass7.add(Scroll7);
-        Scroll7.setBounds(125, 94, 570, 160);
+        Scroll7.setBounds(125, 66, 570, 160);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Tgl. Jawaban : ");
         jLabel11.setName("jLabel11"); // NOI18N
         panelGlass7.add(jLabel11);
-        jLabel11.setBounds(0, 260, 125, 23);
+        jLabel11.setBounds(0, 232, 125, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Jam Jawaban : ");
         jLabel12.setName("jLabel12"); // NOI18N
         panelGlass7.add(jLabel12);
-        jLabel12.setBounds(230, 260, 100, 23);
+        jLabel12.setBounds(230, 232, 100, 23);
 
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -646,7 +613,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam);
-        cmbJam.setBounds(333, 260, 45, 23);
+        cmbJam.setBounds(333, 232, 45, 23);
 
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -657,7 +624,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMnt);
-        cmbMnt.setBounds(384, 260, 45, 23);
+        cmbMnt.setBounds(384, 232, 45, 23);
 
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -668,13 +635,13 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbDtk);
-        cmbDtk.setBounds(436, 260, 45, 23);
+        cmbDtk.setBounds(436, 232, 45, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Dijawab Oleh Dokter : ");
         jLabel13.setName("jLabel13"); // NOI18N
         panelGlass7.add(jLabel13);
-        jLabel13.setBounds(0, 288, 125, 23);
+        jLabel13.setBounds(0, 260, 125, 23);
 
         label_status.setForeground(new java.awt.Color(0, 0, 0));
         label_status.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -682,7 +649,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         label_status.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         label_status.setName("label_status"); // NOI18N
         panelGlass7.add(label_status);
-        label_status.setBounds(705, 288, 410, 23);
+        label_status.setBounds(125, 288, 540, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Permintaan Konsul : ");
@@ -738,6 +705,18 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         panelGlass7.add(TnmDokterMinta);
         TnmDokterMinta.setBounds(824, 232, 520, 23);
 
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Ke Unit : ");
+        jLabel16.setName("jLabel16"); // NOI18N
+        panelGlass7.add(jLabel16);
+        jLabel16.setBounds(290, 38, 60, 23);
+
+        TunitKe.setEditable(false);
+        TunitKe.setForeground(new java.awt.Color(0, 0, 0));
+        TunitKe.setName("TunitKe"); // NOI18N
+        panelGlass7.add(TunitKe);
+        TunitKe.setBounds(350, 38, 160, 23);
+
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
@@ -751,22 +730,20 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         } else if (TJawaban.getText().equals("")) {
             Valid.textKosong(TJawaban, "Kalimat Jawaban Konsul");
             TJawaban.requestFocus();
+        } else if (wktSimpan.equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         } else {
-            if (tbKonsul.getSelectedRow() > -1) {
-                Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
-                        "jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 6, new String[]{
-                            TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
-                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
-                            "Sudah",
-                            wktSimpan
-                        });
-                TCari.setText(TNoRW.getText());
-                tbKonsul.requestFocus();
-                emptTeks();
-                tampil();
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
-            }
+            Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
+                    "jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 6, new String[]{
+                        TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
+                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
+                        "Sudah",
+                        wktSimpan
+                    });
+            TCari.setText(TNoRW.getText());
+            tbKonsul.requestFocus();
+            emptTeks();
+            tampil();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -774,7 +751,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         if(evt.getKeyCode()==KeyEvent.VK_SPACE){
             BtnSimpanActionPerformed(null);
         }else{
-            Valid.pindah(evt,TkdKamarDari,BtnBatal);
+            Valid.pindah(evt,TunitDari,BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -928,8 +905,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("ruangan_dari", TnmKamarDari.getText());
-                    param.put("ruangan_ke", TnmKamarKe.getText());
+                    param.put("unit", "Dari Unit : " + TunitDari.getText() + ", Ke Unit : " + TunitKe.getText());
 
                     if (sttsJawab.equals("BELUM")) {
                         Valid.MyReport("rptSuratKonsulRanapKosong.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
@@ -1007,14 +983,12 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     private widget.TextBox TPasien;
     private widget.TextArea TPermintaan;
     private widget.TextBox TjamMinta;
-    private widget.TextBox TkdKamarDari;
-    private widget.TextBox TkdKamarKe;
     private widget.TextBox TnmDokterMinta;
-    private widget.TextBox TnmKamarDari;
-    private widget.TextBox TnmKamarKe;
     private widget.TextBox Tnmdokter;
     private widget.Tanggal TtglJawab;
     private widget.TextBox TtglMinta;
+    private widget.TextBox TunitDari;
+    private widget.TextBox TunitKe;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
@@ -1025,11 +999,11 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
+    private widget.Label jLabel16;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
-    private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -1085,8 +1059,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rs.getString("kd_kamar_dari") + "'"),
-                        Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + rs.getString("kd_kamar_ke") + "'"),
+                        rs.getString("unit_dari"),
+                        rs.getString("unit_ke"),
                         rs.getString("permintaan_konsul"),
                         rs.getString("tglminta"),
                         rs.getString("jamminta"),
@@ -1095,8 +1069,6 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                         rs.getString("tgljawab"),
                         rs.getString("jamjawab"),
                         rs.getString("drjawab"),
-                        rs.getString("kd_kamar_dari"),
-                        rs.getString("kd_kamar_ke"),
                         rs.getString("tgl_minta"),
                         rs.getString("jam_minta"),
                         rs.getString("nip_dokter_minta"),
@@ -1124,8 +1096,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        TkdKamarKe.setText("");
-        TnmKamarKe.setText("");
+        TunitKe.setText("");
         TJawaban.setText("");
         TtglJawab.setDate(new Date());
         cmbJam.setSelectedIndex(0);
@@ -1153,19 +1124,17 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             TNoRW.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString());
             TNoRM.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 1).toString());
             TPasien.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 2).toString());
-            TkdKamarDari.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 13).toString());
-            TnmKamarDari.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 3).toString());
-            TkdKamarKe.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 14).toString());
-            TnmKamarKe.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 4).toString());
+            TunitDari.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 3).toString());
+            TunitKe.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 4).toString());
             TJawaban.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 9).toString());
-            kddokter = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 22).toString();
+            kddokter = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 20).toString();
             Tnmdokter.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 12).toString());
             TPermintaan.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 5).toString());
             TnmDokterMinta.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 8).toString());
             TtglMinta.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 6).toString());
             TjamMinta.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 7).toString() + " Wita");
-            wktSimpan = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 18).toString();
-            sttsJawab = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString();
+            wktSimpan = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 16).toString();
+            sttsJawab = tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 17).toString();
             label_status.setText("Status Surat Konsul : " + sttsJawab + " TERJAWAB.");
             
             if (sttsJawab.equals("BELUM")) {
@@ -1174,10 +1143,10 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                 cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
                 cmbDtk.setSelectedIndex(0);
             } else {
-                Valid.SetTgl(TtglJawab, tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 20).toString());
-                cmbJam.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 21).toString().substring(0, 2));
-                cmbMnt.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 21).toString().substring(3, 5));
-                cmbDtk.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 21).toString().substring(6, 8));
+                Valid.SetTgl(TtglJawab, tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 18).toString());
+                cmbJam.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString().substring(0, 2));
+                cmbMnt.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString().substring(3, 5));
+                cmbDtk.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 19).toString().substring(6, 8));
 
             }
         }
@@ -1188,10 +1157,19 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
        BtnEdit.setEnabled(akses.getpermintaan_lab());
     }
     
-    public void setData(String norw, String kdkamar, String nmkamar) {
+    public void setData(String norw) {
         TNoRW.setText(norw);
-        TkdKamarDari.setText(kdkamar);
-        TnmKamarDari.setText(nmkamar);
+        TunitDari.setText(Sequel.cariIsi("select unit_dari from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        TunitKe.setText(Sequel.cariIsi("select unit_ke from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        TPermintaan.setText(Sequel.cariIsi("select permintaan_konsul from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        TnmDokterMinta.setText(Sequel.cariIsi("select d.nm_dokter from surat_konsul_unit_ranap s inner join dokter d on d.kd_dokter=s.nip_dokter_minta "
+                + "where s.no_rawat='" + norw + "' and s.status_dijawab='Belum'"));
+        TtglMinta.setText(Sequel.cariIsi("select date_format(tgl_minta,'%d-%m-%Y') from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        TjamMinta.setText(Sequel.cariIsi("select time_format(jam_minta,'%H:%i Wita') from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        label_status.setText("Status Surat Konsul : " + Sequel.cariIsi("select concat(upper(status_dijawab),' TERJAWAB.') from surat_konsul_unit_ranap "
+                + "where no_rawat='" + norw + "' and status_dijawab='Belum'"));
+        wktSimpan = Sequel.cariIsi("select waktu_simpan from surat_konsul_unit_ranap where no_rawat='" + norw + "' and status_dijawab='Belum'");
+        
         cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);

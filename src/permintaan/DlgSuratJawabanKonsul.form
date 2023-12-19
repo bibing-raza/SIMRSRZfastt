@@ -260,7 +260,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="16-12-2023"/>
+                        <StringItem index="0" value="19-12-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -288,7 +288,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="16-12-2023"/>
+                        <StringItem index="0" value="19-12-2023"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -436,7 +436,7 @@
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="text" type="java.lang.String" value="Dari Rg. Rawat : "/>
+                <Property name="text" type="java.lang.String" value="Dari Unit : "/>
                 <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
               </Properties>
               <Constraints>
@@ -459,17 +459,17 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="widget.TextBox" name="TkdKamarDari">
+            <Component class="widget.TextBox" name="TunitDari">
               <Properties>
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
-                <Property name="name" type="java.lang.String" value="TkdKamarDari" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="TunitDari" noResource="true"/>
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="38" width="120" height="23"/>
+                  <AbsoluteConstraints x="125" y="38" width="160" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -501,48 +501,6 @@
                 </Constraint>
               </Constraints>
             </Component>
-            <Component class="widget.Label" name="jLabel5">
-              <Properties>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="text" type="java.lang.String" value="Ke Rg. Rawat : "/>
-                <Property name="name" type="java.lang.String" value="jLabel5" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="66" width="125" height="23"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="widget.TextBox" name="TnmKamarDari">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="TnmKamarDari" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="250" y="38" width="445" height="23"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="widget.TextBox" name="TnmKamarKe">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="TnmKamarKe" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="250" y="66" width="445" height="23"/>
-                </Constraint>
-              </Constraints>
-            </Component>
             <Component class="widget.Label" name="jLabel10">
               <Properties>
                 <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -553,7 +511,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="94" width="125" height="23"/>
+                  <AbsoluteConstraints x="0" y="66" width="125" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -567,7 +525,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="288" width="540" height="23"/>
+                  <AbsoluteConstraints x="125" y="260" width="540" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -588,21 +546,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="670" y="288" width="28" height="23"/>
-                </Constraint>
-              </Constraints>
-            </Component>
-            <Component class="widget.TextBox" name="TkdKamarKe">
-              <Properties>
-                <Property name="editable" type="boolean" value="false"/>
-                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="0" green="0" red="0" type="rgb"/>
-                </Property>
-                <Property name="name" type="java.lang.String" value="TkdKamarKe" noResource="true"/>
-              </Properties>
-              <Constraints>
-                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="66" width="120" height="23"/>
+                  <AbsoluteConstraints x="670" y="260" width="28" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -611,7 +555,7 @@
                 <Property name="editable" type="boolean" value="false"/>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="16-12-2023"/>
+                    <StringItem index="0" value="19-12-2023"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -620,7 +564,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="260" width="100" height="23"/>
+                  <AbsoluteConstraints x="125" y="232" width="100" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -631,7 +575,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="94" width="570" height="160"/>
+                  <AbsoluteConstraints x="125" y="66" width="570" height="160"/>
                 </Constraint>
               </Constraints>
 
@@ -662,7 +606,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="260" width="125" height="23"/>
+                  <AbsoluteConstraints x="0" y="232" width="125" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -676,7 +620,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="230" y="260" width="100" height="23"/>
+                  <AbsoluteConstraints x="230" y="232" width="100" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -720,7 +664,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="333" y="260" width="45" height="23"/>
+                  <AbsoluteConstraints x="333" y="232" width="45" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -800,7 +744,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="384" y="260" width="45" height="23"/>
+                  <AbsoluteConstraints x="384" y="232" width="45" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -880,7 +824,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="436" y="260" width="45" height="23"/>
+                  <AbsoluteConstraints x="436" y="232" width="45" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -894,7 +838,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="0" y="288" width="125" height="23"/>
+                  <AbsoluteConstraints x="0" y="260" width="125" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -912,7 +856,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="705" y="288" width="410" height="23"/>
+                  <AbsoluteConstraints x="125" y="288" width="540" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
@@ -1036,6 +980,34 @@
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="824" y="232" width="520" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.Label" name="jLabel16">
+              <Properties>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="text" type="java.lang.String" value="Ke Unit : "/>
+                <Property name="name" type="java.lang.String" value="jLabel16" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="290" y="38" width="60" height="23"/>
+                </Constraint>
+              </Constraints>
+            </Component>
+            <Component class="widget.TextBox" name="TunitKe">
+              <Properties>
+                <Property name="editable" type="boolean" value="false"/>
+                <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
+                  <Color blue="0" green="0" red="0" type="rgb"/>
+                </Property>
+                <Property name="name" type="java.lang.String" value="TunitKe" noResource="true"/>
+              </Properties>
+              <Constraints>
+                <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
+                  <AbsoluteConstraints x="350" y="38" width="160" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
