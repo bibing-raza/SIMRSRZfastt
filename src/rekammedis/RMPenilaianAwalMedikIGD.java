@@ -4631,7 +4631,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             akses.setform("RMPenilaianAwalMedikIGD");
             DlgCatatanResep form = new DlgCatatanResep(null, false);
             form.isCek();
-            form.setData(TNoRw.getText(), Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), status);
+            form.setData(TNoRw.getText(), status);
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);

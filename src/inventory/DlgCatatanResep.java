@@ -899,7 +899,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh meresepkan obat...!!!!");
         } else {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
-                    || jnsKunjungan.equals("Ralan") || status.equals("Ralan")) {
+                    || jnsKunjungan.equals("Ralan") || status.equals("ralan")) {
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(noId,6),signed)),0) from catatan_resep where "
                         + "tgl_perawatan like '%" + Sequel.cariIsi("select year(now())") + "%' ",
                         Sequel.cariIsi("select year(now())"), 6, noIdObat);
@@ -1202,7 +1202,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Meskipun anda admin utama, tetaplah seorang dokter yang boleh merubah resepnya...!!!!");
         } else {
             if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
-                    || jnsKunjungan.equals("Ralan") || status.equals("Ralan")) {
+                    || jnsKunjungan.equals("Ralan") || status.equals("ralan")) {
                 if (tbResepObat.getSelectedRow() > -1) {
                     if (tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("SUDAH")
                             || tbResepObat.getValueAt(tbResepObat.getSelectedRow(), 5).toString().equals("DILUAR")) {
@@ -1532,9 +1532,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Table tbTglBeriObat;
     // End of variables declaration//GEN-END:variables
 
-    public void setData(String norw, String kodepl, String sttsrwt) {
+    public void setData(String norw, String sttsrwt) {
         TNoRw.setText(norw);
-        kodepoli = kodepl;
         status = sttsrwt;
         
         try {
@@ -1553,7 +1552,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                     jnsKunjungan = rs2.getString("status_lanjut");
                     
                     if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")
-                            || jnsKunjungan.equals("Ralan") || status.equals("Ralan")) {
+                            || jnsKunjungan.equals("Ralan") || status.equals("ralan")) {
                         DTPCariA.setDate(rs2.getDate("tgl_registrasi"));
                     } else if (status.equals("ranap") || jnsKunjungan.equals("Ranap")) {
                         DTPCariA.setDate(new Date());

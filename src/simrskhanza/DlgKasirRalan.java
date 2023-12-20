@@ -20,7 +20,7 @@ import inventory.DlgPemberianObat;
 import laporan.DlgDiagnosaPenyakit;
 import keuangan.DlgBilingRalan;
 import fungsi.WarnaTable;
-import fungsi.WarnaTableKhusus;
+import fungsi.WarnaTableKhusus1;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -236,7 +236,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         }
 //        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
-        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTableKhusus());
+        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTableKhusus1());
 
         tabModeMati = new DefaultTableModel(null, new Object[]{"Tanggal", "Jam", "No.RM.", "Nama Pasien", "J.K.", "Tmp.Lahir",
             "Tgl.Lahir", "G.D.", "Stts.Nikah", "Agama", "Keterangan", "Tempat Meninggal", "ICD-10", "Unit Asal", "tgl_lahir", "tgl_mati"}) {
@@ -7728,7 +7728,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             akses.setform("DlgKasirRalan");
             DlgCatatanResep form = new DlgCatatanResep(null, false);
             form.isCek();
-            form.setData(TNoRw.getText(), kdpoli.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+            form.setData(TNoRw.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);

@@ -632,14 +632,13 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         form.isCek();
         
         if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-            form.setData(TNoRw.getText(), "IGDK", status);
+            form.setData(TNoRw.getText(), status);
         } else if (status.equals("ranap")) {
             kodekamar = "";
             kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
                     + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
-            form.setData(TNoRw.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k "
-                    + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kodekamar + "'"), status);
+            form.setData(TNoRw.getText(), status);
         }        
         
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

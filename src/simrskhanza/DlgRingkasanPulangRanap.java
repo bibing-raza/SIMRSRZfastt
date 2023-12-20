@@ -2321,7 +2321,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         akses.setform("DlgRingkasanPulangRanap");
         DlgCatatanResep form = new DlgCatatanResep(null, false);
         form.isCek();
-        form.setData(TNoRW.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kodekamar + "'"), "ranap");
+        form.setData(TNoRW.getText(), "ranap");
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);

@@ -4227,7 +4227,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         akses.setform("RMAsesmenMedikDewasaRanap");
         DlgCatatanResep form = new DlgCatatanResep(null, false);
         form.isCek();
-        form.setData(TNoRw.getText(), Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kodekamar + "'"), "ranap");
+        form.setData(TNoRw.getText(), "ranap");
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);
@@ -4995,10 +4995,10 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         }
     }
     
-    public void setNoRm(String norwt, Date tgl2, String kdkmr) {
+    public void setNoRm(String norwt, String kdkmr) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
-        DTPCari2.setDate(tgl2);
+        DTPCari2.setDate(new Date());
         Tkdkamar.setText(kdkmr);
         TRuangan.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM bangsal b INNER JOIN kamar k ON k.kd_bangsal=b.kd_bangsal WHERE k.kd_kamar='" + kdkmr + "'"));
         isRawat();
