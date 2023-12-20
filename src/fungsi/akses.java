@@ -20,7 +20,8 @@ public final class akses {
     private static ResultSet rs, rs2;
 
     private static String kode = "", kdbangsal = "", namars = "", alamatrs = "", kabupatenrs = "", propinsirs = "", kontakrs = "", emailrs = "",
-            form = "", namauser = "", jenisLoket = "", nomorLoket = "", CopyData = "", notifLab = "", notifRad = "", notifApotek = "";
+            form = "", namauser = "", jenisLoket = "", nomorLoket = "", CopyData = "", notifLab = "", notifRad = "", notifApotek = "",
+            CopyData1 = "", CopyData2 = "", CopyData3 = "", CopyData4 = "", CopyData5 = "";
     private static int jml1 = 0, jml2 = 0, lebar = 0, tinggi = 0;
     private static boolean aktif = false, admin = false, user = false, vakum = false, aplikasi = false, penyakit = false, obat_penyakit = false, dokter = false, jadwal_praktek = false, petugas = false, pasien = false, registrasi = false,
             tindakan_ralan = false, kamar_inap = false, tindakan_ranap = false, operasi = false, rujukan_keluar = false, rujukan_masuk = false, beri_obat = false,
@@ -1655,6 +1656,26 @@ public final class akses {
     public static void setCopyData(String datanya) {
         akses.CopyData = datanya;
     }
+    
+    public static void setCopyData1(String datanya1) {
+        akses.CopyData1 = datanya1;
+    }
+    
+    public static void setCopyData2(String datanya2) {
+        akses.CopyData2 = datanya2;
+    }
+    
+    public static void setCopyData3(String datanya3) {
+        akses.CopyData3 = datanya3;
+    }
+    
+    public static void setCopyData4(String datanya4) {
+        akses.CopyData4 = datanya4;
+    }
+    
+    public static void setCopyData5(String datanya5) {
+        akses.CopyData5 = datanya5;
+    }
 
     public static int getjml1() {
         return akses.jml1;
@@ -2170,6 +2191,26 @@ public final class akses {
     
     public static String getPasteData() {
         return akses.CopyData;
+    }
+    
+    public static String getPasteData1() {
+        return akses.CopyData1;
+    }
+    
+    public static String getPasteData2() {
+        return akses.CopyData2;
+    }
+    
+    public static String getPasteData3() {
+        return akses.CopyData3;
+    }
+    
+    public static String getPasteData4() {
+        return akses.CopyData4;
+    }
+    
+    public static String getPasteData5() {
+        return akses.CopyData5;
     }
     
     public static void setNotifApotek(String cek) {
