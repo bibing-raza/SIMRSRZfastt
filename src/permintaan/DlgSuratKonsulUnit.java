@@ -129,6 +129,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     if (dokter.getTable().getSelectedRow() != -1) {
                         kddokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
                         TnmdokterMinta.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                        cmbUnitKe.setSelectedItem(Sequel.cariIsi("SELECT ifnull(s.nm_sps,'-') from dokter d inner join spesialis s on s.kd_sps=d.kd_sps "
+                                + "where d.kd_dokter='" + kddokter + "'"));
                         BtnDokterMinta.requestFocus();
                     }
                 }
@@ -210,7 +212,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         jLabel3 = new widget.Label();
         jLabel4 = new widget.Label();
         TNoRW = new widget.TextBox();
-        TunitDari = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TPasien = new widget.TextBox();
         jLabel5 = new widget.Label();
@@ -227,7 +228,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         cmbDtk = new widget.ComboBox();
         jLabel13 = new widget.Label();
         label_status = new widget.Label();
-        cmbUnit = new widget.ComboBox();
+        cmbUnitKe = new widget.ComboBox();
+        cmbUnitDari = new widget.ComboBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -399,7 +401,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -413,7 +415,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -451,9 +453,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 BtnCariKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                BtnCariKeyReleased(evt);
             }
         });
         panelGlass9.add(BtnCari);
@@ -516,12 +515,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         panelGlass7.add(TNoRW);
         TNoRW.setBounds(125, 10, 131, 23);
 
-        TunitDari.setEditable(false);
-        TunitDari.setForeground(new java.awt.Color(0, 0, 0));
-        TunitDari.setName("TunitDari"); // NOI18N
-        panelGlass7.add(TunitDari);
-        TunitDari.setBounds(125, 38, 230, 23);
-
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
@@ -566,7 +559,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         BtnDokterMinta.setBounds(670, 260, 28, 23);
 
         TtglMinta.setEditable(false);
-        TtglMinta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
+        TtglMinta.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-12-2023" }));
         TtglMinta.setDisplayFormat("dd-MM-yyyy");
         TtglMinta.setName("TtglMinta"); // NOI18N
         TtglMinta.setOpaque(false);
@@ -649,11 +642,17 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         panelGlass7.add(label_status);
         label_status.setBounds(705, 260, 410, 23);
 
-        cmbUnit.setForeground(new java.awt.Color(0, 0, 0));
-        cmbUnit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
-        cmbUnit.setName("cmbUnit"); // NOI18N
-        panelGlass7.add(cmbUnit);
-        cmbUnit.setBounds(422, 38, 160, 23);
+        cmbUnitKe.setForeground(new java.awt.Color(0, 0, 0));
+        cmbUnitKe.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbUnitKe.setName("cmbUnitKe"); // NOI18N
+        panelGlass7.add(cmbUnitKe);
+        cmbUnitKe.setBounds(422, 38, 200, 23);
+
+        cmbUnitDari.setForeground(new java.awt.Color(0, 0, 0));
+        cmbUnitDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbUnitDari.setName("cmbUnitDari"); // NOI18N
+        panelGlass7.add(cmbUnitDari);
+        cmbUnitDari.setBounds(125, 38, 190, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -665,15 +664,15 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRW.getText().trim().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
-        } else if (cmbUnit.getSelectedIndex() == 0) {
-            Valid.textKosong(cmbUnit, "Ke Unit");
-            cmbUnit.requestFocus();
+        } else if (cmbUnitKe.getSelectedIndex() == 0) {
+            Valid.textKosong(cmbUnitKe, "Ke Unit");
+            cmbUnitKe.requestFocus();
         } else if (TPermintaan.getText().equals("")) {
             Valid.textKosong(TPermintaan, "Kalimat Permintaan Konsul");
             TPermintaan.requestFocus();
         } else {
-            Sequel.menyimpan("surat_konsul_unit_ranap", "'" + TNoRW.getText() + "','" + TunitDari.getText() + "',"
-                    + "'" + cmbUnit.getSelectedItem().toString() + "','" + TPermintaan.getText() + "','" + Valid.SetTgl(TtglMinta.getSelectedItem() + "") + "',"
+            Sequel.menyimpan("surat_konsul_unit_ranap", "'" + TNoRW.getText() + "','" + cmbUnitDari.getSelectedItem().toString() + "',"
+                    + "'" + cmbUnitKe.getSelectedItem().toString() + "','" + TPermintaan.getText() + "','" + Valid.SetTgl(TtglMinta.getSelectedItem() + "") + "',"
                     + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
                     + "'" + kddokter + "','','0000-00-00','00:00:00','-','" + Sequel.cariIsi("select now()") + "','Belum'", "Surat Konsul Antar Unit");
             
@@ -685,10 +684,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TunitDari,BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -707,9 +704,9 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if (TNoRW.getText().trim().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
-        } else if (cmbUnit.getSelectedIndex() == 0) {
-            Valid.textKosong(cmbUnit, "Ke Unit");
-            cmbUnit.requestFocus();
+        } else if (cmbUnitKe.getSelectedIndex() == 0) {
+            Valid.textKosong(cmbUnitKe, "Ke Unit");
+            cmbUnitKe.requestFocus();
         } else if (TPermintaan.getText().equals("")) {
             Valid.textKosong(TPermintaan, "Kalimat Permintaan Konsul");
             TPermintaan.requestFocus();
@@ -721,10 +718,10 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     emptTeks();
                 } else {
                     Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
-                            "unit_ke=?, permintaan_konsul=?, tgl_minta=?, jam_minta=?, nip_dokter_minta=?", 6, new String[]{
-                                cmbUnit.getSelectedItem().toString(), TPermintaan.getText(), Valid.SetTgl(TtglMinta.getSelectedItem() + ""),
-                                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
-                                wktSimpan
+                            "unit_dari=?, unit_ke=?, permintaan_konsul=?, tgl_minta=?, jam_minta=?, nip_dokter_minta=?", 7, new String[]{
+                                cmbUnitDari.getSelectedItem().toString(), cmbUnitKe.getSelectedItem().toString(), TPermintaan.getText(), 
+                                Valid.SetTgl(TtglMinta.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
+                                kddokter, wktSimpan
                             });
                     TCari.setText(TNoRW.getText());
                     tbKonsul.requestFocus();
@@ -780,10 +777,6 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnCariKeyPressed
 
-    private void BtnCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyReleased
-        // TODO add your handling code here:
-}//GEN-LAST:event_BtnCariKeyReleased
-
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
        TCari.setText("");
        emptTeks();
@@ -818,7 +811,10 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
-        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbUnit);
+        Sequel.cariIsiComboDB("SELECT nm_sps from spesialis WHERE kd_sps not in ('-','S0021') and "
+                + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitDari);
+        Sequel.cariIsiComboDB("SELECT nm_sps from spesialis WHERE kd_sps not in ('-','S0021') and "
+                + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
     }//GEN-LAST:event_formWindowOpened
 
     private void tbKonsulKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbKonsulKeyReleased
@@ -904,7 +900,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     Map<String, Object> param = new HashMap<>();
                     param.put("namars", akses.getnamars());
                     param.put("logo", Sequel.cariGambar("select logo from setting"));
-                    param.put("unit", "Dari Unit : " + TunitDari.getText() + ", Ke Unit : " + cmbUnit.getSelectedItem().toString());
+                    param.put("unit", "Dari Unit : " + cmbUnitDari.getSelectedItem().toString() + ", Ke Unit : " + cmbUnitKe.getSelectedItem().toString());
 
                     if (sttsJawab.equals("BELUM")) {
                         Valid.MyReport("rptSuratKonsulRanapKosong.jasper", "report", "::[ Cetak Surat Konsul Antar Unit Rawat Inap ]::",
@@ -984,11 +980,11 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     private widget.TextArea TPermintaan;
     private widget.TextBox TnmdokterMinta;
     private widget.Tanggal TtglMinta;
-    private widget.TextBox TunitDari;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
-    private widget.ComboBox cmbUnit;
+    private widget.ComboBox cmbUnitDari;
+    private widget.ComboBox cmbUnitKe;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -1077,7 +1073,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        cmbUnit.setSelectedIndex(0);
+        cmbUnitDari.setSelectedIndex(0);
+        cmbUnitKe.setSelectedIndex(0);
         TPermintaan.setText("");
         TtglMinta.setDate(new Date());
         cmbJam.setSelectedIndex(0);
@@ -1101,8 +1098,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
             TNoRW.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString());
             TNoRM.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 1).toString());
             TPasien.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 2).toString());
-            TunitDari.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 3).toString());
-            cmbUnit.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 4).toString());
+            cmbUnitDari.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 3).toString());
+            cmbUnitKe.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 4).toString());
             TPermintaan.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 5).toString());
             Valid.SetTgl(TtglMinta, tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 9).toString());
             cmbJam.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 10).toString().substring(0, 2));
@@ -1122,9 +1119,8 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
        BtnHapus.setEnabled(akses.getpermintaan_lab());
     }
     
-    public void setData(String norw, String gedungDari) {
-        TNoRW.setText(norw);
-        TunitDari.setText(gedungDari);
+    public void setData(String norw) {
+        TNoRW.setText(norw);        
         cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);

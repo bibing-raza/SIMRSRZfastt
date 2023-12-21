@@ -15,6 +15,7 @@ import java.awt.event.WindowListener;
 import java.io.FileInputStream;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.util.Date;
 import java.util.Properties;
 import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
@@ -36,6 +37,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private int i = 0, x = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
+    private String stts = "", kdkamar = "", gedung = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -404,13 +406,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya...!");
             btnDPJP.requestFocus();
         } else {
-            Sequel.simpanReplaceInto("dpjp_ranap", "'" + akses.getPasteData1() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
+            Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRW.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
 
             akses.setform("DlgRMEranap");
             DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
             ringkasan.emptTeks();
             ringkasan.isCek();
-            ringkasan.setPasien(akses.getPasteData1());
+            ringkasan.setPasien(TNoRW.getText());
             ringkasan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             ringkasan.setLocationRelativeTo(internalFrame1);
             ringkasan.setVisible(true);
@@ -433,7 +435,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnAsesmenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -441,7 +443,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             RMAsesmenMedikDewasaRanap form = new RMAsesmenMedikDewasaRanap(null, false);
             form.emptTeks();
             form.isCek();
-            form.setNoRm(akses.getPasteData1(), akses.getPasteData2());
+            form.setNoRm(TNoRW.getText(), kdkamar);
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -450,7 +452,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnAsesmenActionPerformed
 
     private void BtnCPPTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCPPTActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -458,9 +460,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgCPPT form = new DlgCPPT(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(akses.getPasteData1(), akses.getPasteData3(),
-                    Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + akses.getPasteData3() + "'"), 
-                    akses.getPasteData());
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), stts);
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -469,16 +469,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCPPTActionPerformed
 
     private void BtnRingkasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRingkasanActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + akses.getPasteData1() + "'") == 0) {
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'") == 0) {
                 x = JOptionPane.showConfirmDialog(rootPane, "DPJP pasien ini belum ditentukan, apakah DPJP nya akan dipilih dulu..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     WindowDPJPranap.setSize(615, 110);
                     WindowDPJPranap.setLocationRelativeTo(internalFrame1);
                     WindowDPJPranap.setVisible(true);
-                    kddpjp.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + akses.getPasteData1() + "'"));
+                    kddpjp.setText(Sequel.cariIsi("select ifnull(kd_dokter,'') from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'"));
                     if (kddpjp.getText().equals("")) {
                         nmdpjp.setText("");
                     } else {
@@ -493,7 +493,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 DlgRingkasanPulangRanap ringkasan = new DlgRingkasanPulangRanap(null, false);
                 ringkasan.emptTeks();
                 ringkasan.isCek();
-                ringkasan.setPasien(akses.getPasteData1());
+                ringkasan.setPasien(TNoRW.getText());
                 ringkasan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 ringkasan.setLocationRelativeTo(internalFrame1);
                 ringkasan.setVisible(true);
@@ -502,7 +502,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnRingkasanActionPerformed
 
     private void BtnCTKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCTKActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -510,8 +510,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgCatatanTindakanKeperawatan form = new DlgCatatanTindakanKeperawatan(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(akses.getPasteData1(), akses.getPasteData3(), 
-                    Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + akses.getPasteData3() + "'"));
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText());
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -520,7 +519,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCTKActionPerformed
 
     private void BtnKonsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKonsulActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -528,7 +527,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgSuratKonsulUnit form = new DlgSuratKonsulUnit(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(akses.getPasteData1(), akses.getPasteData5());
+            form.setData(TNoRW.getText());
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -537,19 +536,18 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKonsulActionPerformed
 
     private void BtnJawabKonsulActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJawabKonsulActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            if (Sequel.cariInteger("select count(-1) from surat_konsul_unit_ranap where no_rawat='" + akses.getPasteData1() + "'") == 0) {
-                JOptionPane.showMessageDialog(null, "Maaf, tidak ada surat konsul antar unit rawat inap yang akan dijawab...!!!");
-                BtnKeluarActionPerformed(null);
+            if (Sequel.cariInteger("select count(-1) from surat_konsul_unit_ranap where no_rawat='" + TNoRW.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, tidak ada surat konsul antar unit rawat inap yang akan dijawab...!!!");                
             } else {
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgRMEranap");
                 DlgSuratJawabanKonsul form = new DlgSuratJawabanKonsul(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(akses.getPasteData1());
+                form.setData(TNoRW.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -559,7 +557,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnJawabKonsulActionPerformed
 
     private void BtnJadwalObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnJadwalObatActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -567,9 +565,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgPemberianObatPasien beriObat = new DlgPemberianObatPasien(null, false);
             beriObat.emptTeks();
             beriObat.isCek();
-            beriObat.setData(akses.getPasteData1(), akses.getPasteData3(),
-                    Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + akses.getPasteData3() + "'"), "ranap",
-                    akses.getPasteData4());
+            beriObat.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), stts, nmUnit.getText());
             beriObat.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             beriObat.setLocationRelativeTo(internalFrame1);
             beriObat.setAlwaysOnTop(false);
@@ -579,14 +575,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnJadwalObatActionPerformed
 
     private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
-        if (akses.getPasteData1().equals("")) {
+        if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRMEranap");
             DlgCatatanResep form = new DlgCatatanResep(null, false);
             form.isCek();
-            form.setData(akses.getPasteData1(), "ranap");
+            form.setData(TNoRW.getText(), stts);
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
@@ -595,13 +591,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnResepActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        akses.setCopyData("");
-        akses.setCopyData1("");
-        akses.setCopyData2("");
-        akses.setCopyData3("");
-        akses.setCopyData4("");
-        akses.setCopyData5("");
-
+        TNoRW.setText("");
+        TNoRM.setText("");
+        TNmPasien.setText("");
+        nmUnit.setText("");
+        stts = "";
+        kdkamar = "";        
+        gedung = "";
+        TtglMasuk.setText("");
         dispose();
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
@@ -663,11 +660,17 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnJawabKonsul.setEnabled(akses.getpermintaan_lab());
     }
     
-    public void setData(String norw, String norm, String nmpasien, String unit, String tglmsk) {
+    public void setData(String norw, String norm, String nmpasien,
+            String status, String kdkmr, String rgrawat, String nmgedung,
+            String tglmsk) {
+        
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmpasien);
-        nmUnit.setText(unit);
+        nmUnit.setText(rgrawat);
+        stts = status;
+        kdkamar = kdkmr;        
+        gedung = nmgedung;
         TtglMasuk.setText(tglmsk);
     }
 }

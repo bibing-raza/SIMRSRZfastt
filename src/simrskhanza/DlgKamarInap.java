@@ -6930,7 +6930,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         BangsalCari.setForeground(new java.awt.Color(0, 0, 0));
         BangsalCari.setName("BangsalCari"); // NOI18N
-        BangsalCari.setPreferredSize(new java.awt.Dimension(200, 23));
+        BangsalCari.setPreferredSize(new java.awt.Dimension(150, 23));
         BangsalCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 BangsalCariKeyPressed(evt);
@@ -6994,7 +6994,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+4");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -7013,7 +7013,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnIn.setText("Masuk");
         BtnIn.setToolTipText("Alt+M");
         BtnIn.setName("BtnIn"); // NOI18N
-        BtnIn.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnIn.setPreferredSize(new java.awt.Dimension(80, 30));
         BtnIn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnInActionPerformed(evt);
@@ -7032,7 +7032,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnOut.setText("Pulang");
         BtnOut.setToolTipText("Alt+U");
         BtnOut.setName("BtnOut"); // NOI18N
-        BtnOut.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnOut.setPreferredSize(new java.awt.Dimension(80, 30));
         BtnOut.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnOutActionPerformed(evt);
@@ -7051,7 +7051,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         btnPindah.setText("Pindah");
         btnPindah.setToolTipText("Alt+P");
         btnPindah.setName("btnPindah"); // NOI18N
-        btnPindah.setPreferredSize(new java.awt.Dimension(100, 30));
+        btnPindah.setPreferredSize(new java.awt.Dimension(95, 30));
         btnPindah.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnPindahActionPerformed(evt);
@@ -7070,7 +7070,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(120, 30));
+        BtnAll.setPreferredSize(new java.awt.Dimension(110, 30));
         BtnAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAllActionPerformed(evt);
@@ -7089,7 +7089,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(80, 30));
         BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnKeluarActionPerformed(evt);
@@ -7317,13 +7317,13 @@ public class DlgKamarInap extends javax.swing.JDialog {
         norawatCopy.setEditable(false);
         norawatCopy.setForeground(new java.awt.Color(0, 0, 0));
         norawatCopy.setName("norawatCopy"); // NOI18N
-        norawatCopy.setPreferredSize(new java.awt.Dimension(135, 23));
+        norawatCopy.setPreferredSize(new java.awt.Dimension(122, 23));
         norawatCopy.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                norawatCopyKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 norawatCopyKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                norawatCopyKeyTyped(evt);
             }
         });
         panelGlass11.add(norawatCopy);
@@ -7339,11 +7339,11 @@ public class DlgKamarInap extends javax.swing.JDialog {
         noRMCopy.setName("noRMCopy"); // NOI18N
         noRMCopy.setPreferredSize(new java.awt.Dimension(65, 23));
         noRMCopy.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                noRMCopyKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 noRMCopyKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                noRMCopyKeyTyped(evt);
             }
         });
         panelGlass11.add(noRMCopy);
@@ -7351,11 +7351,11 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnRME.setForeground(new java.awt.Color(0, 0, 0));
         BtnRME.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Prescription.png"))); // NOI18N
         BtnRME.setMnemonic('4');
-        BtnRME.setText("Rekam Medis Elektronik");
+        BtnRME.setText("e-Rekam Medis");
         BtnRME.setToolTipText("Alt+4");
         BtnRME.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnRME.setName("BtnRME"); // NOI18N
-        BtnRME.setPreferredSize(new java.awt.Dimension(200, 23));
+        BtnRME.setPreferredSize(new java.awt.Dimension(145, 23));
         BtnRME.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnRMEActionPerformed(evt);
@@ -13652,7 +13652,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 DlgSuratKonsulUnit form = new DlgSuratKonsulUnit(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(norawat.getText(), nmgedung);
+                form.setData(norawat.getText());
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -13703,10 +13703,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKamarInap");
                 DlgRMEranap form = new DlgRMEranap(null, false);
-                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(),
+                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(),
+                        "ranap", kdkamar.getText(), ruangrawat.getText(), nmgedung,
                         Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'")));
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-//                form.setSize(869, 286);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
                 BtnCariActionPerformed(null);
@@ -14478,13 +14478,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         norawatAPS = "";
         nmgedung = "";
         sepJKD = "";
-        
-        akses.setCopyData("");
-        akses.setCopyData1("");
-        akses.setCopyData2("");
-        akses.setCopyData3("");
-        akses.setCopyData4("");
-        akses.setCopyData5("");
 
         if (tbKamIn.getSelectedRow() != -1) {
             norawat.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString());
@@ -14560,13 +14553,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 noSrt1.setText(Sequel.cariIsi("SELECT no_surat FROM bridging_jampersal WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap'"));
                 sepJmp.setText(Sequel.cariIsi("SELECT no_sep FROM bridging_jampersal WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap'"));
             }
-            
-            akses.setCopyData("ranap");
-            akses.setCopyData1(norawat.getText());
-            akses.setCopyData2(kdkamar.getText());
-            akses.setCopyData3(TNoRM.getText());
-            akses.setCopyData4(ruangrawat.getText());
-            akses.setCopyData5(nmgedung);
         }
     }
 

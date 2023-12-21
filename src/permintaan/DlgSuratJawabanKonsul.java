@@ -148,6 +148,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                     if (dokter.getTable().getSelectedRow() != -1) {
                         kddokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
                         Tnmdokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                        TunitKe.setText(Sequel.cariIsi("SELECT ifnull(s.nm_sps,'-') from dokter d inner join spesialis s on s.kd_sps=d.kd_sps "
+                                + "where d.kd_dokter='" + kddokter + "'"));
                         BtnDokter.requestFocus();
                     }
                 }
@@ -407,7 +409,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -421,7 +423,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -528,7 +530,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         TunitDari.setForeground(new java.awt.Color(0, 0, 0));
         TunitDari.setName("TunitDari"); // NOI18N
         panelGlass7.add(TunitDari);
-        TunitDari.setBounds(125, 38, 160, 23);
+        TunitDari.setBounds(125, 38, 210, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
@@ -568,7 +570,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         BtnDokter.setBounds(670, 260, 28, 23);
 
         TtglJawab.setEditable(false);
-        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-12-2023" }));
+        TtglJawab.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-12-2023" }));
         TtglJawab.setDisplayFormat("dd-MM-yyyy");
         TtglJawab.setName("TtglJawab"); // NOI18N
         TtglJawab.setOpaque(false);
@@ -709,13 +711,13 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         jLabel16.setText("Ke Unit : ");
         jLabel16.setName("jLabel16"); // NOI18N
         panelGlass7.add(jLabel16);
-        jLabel16.setBounds(290, 38, 60, 23);
+        jLabel16.setBounds(340, 38, 50, 23);
 
         TunitKe.setEditable(false);
         TunitKe.setForeground(new java.awt.Color(0, 0, 0));
         TunitKe.setName("TunitKe"); // NOI18N
         panelGlass7.add(TunitKe);
-        TunitKe.setBounds(350, 38, 160, 23);
+        TunitKe.setBounds(390, 38, 240, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -734,8 +736,8 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         } else {
             Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
-                    "jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 6, new String[]{
-                        TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
+                    "unit_ke=?, jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 7, new String[]{
+                        TunitKe.getText(), TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
                         cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
                         "Sudah",
                         wktSimpan
