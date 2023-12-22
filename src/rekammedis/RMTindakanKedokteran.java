@@ -3566,23 +3566,26 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         alamatPJ.setText(rsCek.getString("alamatpj"));
                     }
                     
-                    if (rsCek.getString("kelurahanpj").equals("KELURAHAN") || rsCek.getString("kelurahanpj").equals("kelurahan")) {
+                    if (rsCek.getString("kelurahanpj").equals("KELURAHAN") || rsCek.getString("kelurahanpj").equals("kelurahan")
+                            || rsCek.getString("kelurahanpj").equals("SDA") || rsCek.getString("kelurahanpj").equals("sda")) {
                         nmkel.setText("-");
                         kdkel = "0";
                     } else {
                         nmkel.setText(rsCek.getString("kelurahanpj"));
                         kdkel = Sequel.cariIsi("select kd_kel from kelurahan where nm_kel='" + nmkel.getText() + "'");
                     }
-                    
-                    if (rsCek.getString("kecamatanpj").equals("KECAMATAN") || rsCek.getString("kecamatanpj").equals("kecamatan")) {
+
+                    if (rsCek.getString("kecamatanpj").equals("KECAMATAN") || rsCek.getString("kecamatanpj").equals("kecamatan")
+                            || rsCek.getString("kecamatanpj").equals("SDA") || rsCek.getString("kecamatanpj").equals("sda")) {
                         nmkec.setText("-");
                         kdkec = "0";
                     } else {
                         nmkec.setText(rsCek.getString("kecamatanpj"));
                         kdkec = Sequel.cariIsi("select kd_kec from kecamatan where nm_kec='" + nmkec.getText() + "'");
                     }
-                    
-                    if (rsCek.getString("kabupatenpj").equals("KABUPATEN") || rsCek.getString("kabupatenpj").equals("kabupaten")) {
+
+                    if (rsCek.getString("kabupatenpj").equals("KABUPATEN") || rsCek.getString("kabupatenpj").equals("kabupaten")
+                            || rsCek.getString("kabupatenpj").equals("SDA") || rsCek.getString("kabupatenpj").equals("sda")) {
                         nmkab.setText("-");
                         kdkab = "0";
                     } else {

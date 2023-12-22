@@ -12418,6 +12418,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         DlgSuratJawabanKonsul aplikasi = new DlgSuratJawabanKonsul(this, false);
         aplikasi.emptTeks();
         aplikasi.isCek();
+        aplikasi.isiCombo();
         aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         aplikasi.setLocationRelativeTo(PanelUtama);
         aplikasi.setVisible(true);
