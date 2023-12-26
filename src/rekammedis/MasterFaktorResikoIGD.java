@@ -63,13 +63,13 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(50);
             } else if (i == 1) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(370);
             } else if (i == 2) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(370);
             } else if (i == 3) {
                 column.setPreferredWidth(60);
             } else if (i == 4) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(120);
             }
         }
 
@@ -154,7 +154,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Master Resiko Jatuh (IGD & Kebidanan) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Master Resiko Jatuh (IGD, Kebidanan, Rawat Inap Dewasa) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -394,7 +394,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TNm);
-        TNm.setBounds(217, 10, 260, 23);
+        TNm.setBounds(217, 10, 460, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Skala :");
@@ -435,7 +435,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         jLabel9.setBounds(480, 38, 57, 23);
 
         cmbAsesmen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan" }));
+        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan", "Dewasa Ranap" }));
         cmbAsesmen.setName("cmbAsesmen"); // NOI18N
         cmbAsesmen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -443,7 +443,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbAsesmen);
-        cmbAsesmen.setBounds(543, 38, 90, 23);
+        cmbAsesmen.setBounds(543, 38, 130, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
