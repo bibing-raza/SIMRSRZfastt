@@ -3110,7 +3110,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             if (akses.getkode().equals("Admin Utama")) {
                 hapus();
             } else {
-                if (nip.equals(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 69).toString())) {
+                if (nip.equals(akses.getkode())) {
                     hapus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat yang bersangkutan..!!");
@@ -3136,7 +3136,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                     if (akses.getkode().equals("Admin Utama")) {
                         ganti();
                     } else {
-                        if (nip.equals(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 69).toString())) {
+                        if (nip.equals(akses.getkode())) {
                             ganti();
                         } else {
                             JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat yang bersangkutan..!!");
@@ -3151,7 +3151,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 if (akses.getkode().equals("Admin Utama")) {
                     ganti();
                 } else {
-                    if (nip.equals(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 69).toString())) {
+                    if (nip.equals(akses.getkode())) {
                         ganti();
                     } else {
                         JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat yang bersangkutan..!!");

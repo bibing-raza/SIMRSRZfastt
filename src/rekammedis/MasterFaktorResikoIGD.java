@@ -758,6 +758,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             TNm.setText(tbResiko.getValueAt(tbResiko.getSelectedRow(),1).toString());
             Tskala.setText(tbResiko.getValueAt(tbResiko.getSelectedRow(),2).toString());
             Tskor.setText(tbResiko.getValueAt(tbResiko.getSelectedRow(),3).toString());
+            cmbAsesmen.setSelectedItem(tbResiko.getValueAt(tbResiko.getSelectedRow(),4).toString());
         }
     }
     
