@@ -4,6 +4,11 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/rekammedis/DlgCPPT.java</file>
+            <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/rekammedis/RMAsesmenKeperawatanDewasaRanap.java</file>
+            <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/rekammedis/RMPenilaianAwalKeperawatanIGDrz.java</file>
+            <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/rekammedis/DlgRMEranap.java</file>
+            <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/simrskhanza/DlgKamarInap.java</file>
+            <file>file:/dataKU/ownCloud_project/SIMRSRZfastt/src/rekammedis/MasterFaktorResikoIGD.java</file>
         </group>
     </open-files>
 </project-private>
