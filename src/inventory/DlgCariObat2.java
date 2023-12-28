@@ -2533,6 +2533,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                                         * Double.parseDouble(tbObat.getValueAt(i, 1).toString()))), "Ranap", bangsal, "Belum", "-", String.valueOf(urut)
                                     }) == true) {
                                         isRawat();
+                                        Sequel.menyimpan("aturan_pakai", "?,?,?,?,?,?,?,?,?,?,?,?", 12, new String[]{
+                                            Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                            TNoRw.getText(), tbObat.getValueAt(i, 2).toString(), "", "", "", "", "", "", "", String.valueOf(urut)
+                                        });
+                                        
                                         ttljual = ttljual + Double.parseDouble(tbObat.getValueAt(i, 8).toString())
                                                 + Double.parseDouble(tbObat.getValueAt(i, 9).toString()) + (Double.parseDouble(tbObat.getValueAt(i, 6).toString())
                                                 * Double.parseDouble(tbObat.getValueAt(i, 1).toString()));
@@ -2569,6 +2574,11 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                                 * Double.parseDouble(tbObat.getValueAt(i, 1).toString()))), "Ranap", bangsal, "Belum", "-", String.valueOf(urut)
                             }) == true) {
                                 isRawat();
+                                Sequel.menyimpan("aturan_pakai", "?,?,?,?,?,?,?,?,?,?,?,?", 12, new String[]{
+                                    Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                    TNoRw.getText(), tbObat.getValueAt(i, 2).toString(), "", "", "", "", "", "", "", String.valueOf(urut)
+                                });
+
                                 ttljual = ttljual + Valid.roundUp(Double.parseDouble(tbObat.getValueAt(i, 8).toString())
                                         + Double.parseDouble(tbObat.getValueAt(i, 9).toString()) + (Double.parseDouble(tbObat.getValueAt(i, 6).toString())
                                         * Double.parseDouble(tbObat.getValueAt(i, 1).toString())), 100);

@@ -2,7 +2,7 @@
 <!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
 <properties>
     <comment>KhanzaHMS</comment>
-	<entry key="HOST">diisi dengan ip  addres server dienkrip dulu</entry> 
+	<entry key="HOST">diisi dengan ip addres server dienkrip dulu</entry> 
     <entry key="DATABASE">nama database dienkrip dulu</entry>
     <entry key="PORT">11.4</entry>
     <entry key="USER">user login database dienkrip dulu</entry>

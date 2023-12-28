@@ -1659,8 +1659,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             ps3 = koneksi.prepareStatement("select ap.no_rawat, ap.kode_brng, concat(p.no_rkm_medis,' - ',p.nm_pasien) pasien, date_format(ap.tgl_perawatan,'%d/%m/%Y') tgl, "
                     + "d.nama_brng, ap.aturan1, ap.aturan2, ap.aturan3, ap.waktu1, ap.waktu2, ap.keterangan, ap.waktu_simpan, ap.tgl_perawatan, "
                     + "ap.jam from aturan_pakai ap inner join databarang d on d.kode_brng=ap.kode_brng "
-                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where ap.no_rawat='" + TNoRw.getText() + "' "
-                    + "order by tgl_perawatan,jam,urutan");
+                    + "inner join reg_periksa rp on rp.no_rawat=ap.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                    + "ap.tgl_perawatan between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and ap.no_rawat='" + TNoRw.getText() + "' order by tgl_perawatan,jam,urutan");
             try {                
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {

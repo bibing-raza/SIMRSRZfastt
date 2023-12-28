@@ -2243,9 +2243,9 @@ private void MnCetakSuratMatiActionPerformed(java.awt.event.ActionEvent evt) {//
         thmati = Sequel.cariIsi("select date_format(tanggal,'/%Y') from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "'");
         blmati = Sequel.cariIsi("select date_format(tanggal,\"%m/%Y\") from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "'");
 
-        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(no_surat,3),signed)),0) from pasien_mati where "
+        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(no_surat,5),signed)),0) from pasien_mati where "
                 + "no_surat like '%" + thmati + "%' ", "/MR/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7)
-                + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4), 3, TNoSurat);
+                + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4), 5, TNoSurat);
 
         Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(reg_bulan,3),signed)),0) from pasien_mati where "
                 + "no_surat like '%" + blmati + "%' ", "", 3, TNoRegBulan);

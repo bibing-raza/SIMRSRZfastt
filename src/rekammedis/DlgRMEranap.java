@@ -620,18 +620,20 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-//            JOptionPane.showMessageDialog(null, "Sabarrr, masih proses belum selesai...!!!");
-            
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEranap");
-            RMAsesmenKeperawatanDewasaRanap form = new RMAsesmenKeperawatanDewasaRanap(null, false);
-            form.emptTeks();
-            form.isCek();
-            form.setNoRm(TNoRW.getText(), kdkamar);
-            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMAsesmenKeperawatanDewasaRanap form = new RMAsesmenKeperawatanDewasaRanap(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setNoRm(TNoRW.getText(), kdkamar);
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "sedikit lagi selesai, tinggal hasil print nya...!!!");
+            }
         }
     }//GEN-LAST:event_BtnAsesmenKeperawatanDewasaActionPerformed
 

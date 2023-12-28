@@ -610,6 +610,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         BtnLain = new widget.Button();
         jLabel78 = new widget.Label();
         cmbKategori = new widget.ComboBox();
+        chkSamaPelaksana = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTindakan = new widget.Table();
@@ -1264,7 +1265,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         nmpemberi.setForeground(new java.awt.Color(0, 0, 0));
         nmpemberi.setName("nmpemberi"); // NOI18N
         FormInput.add(nmpemberi);
-        nmpemberi.setBounds(240, 384, 370, 23);
+        nmpemberi.setBounds(240, 384, 305, 23);
 
         BtnPemberi.setForeground(new java.awt.Color(0, 0, 0));
         BtnPemberi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/download24.png"))); // NOI18N
@@ -1277,7 +1278,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPemberi);
-        BtnPemberi.setBounds(615, 384, 28, 23);
+        BtnPemberi.setBounds(550, 384, 28, 23);
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("Diagnosis Kerja/ :");
@@ -1689,7 +1690,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         chkSamaNama.setBackground(new java.awt.Color(242, 242, 242));
         chkSamaNama.setForeground(new java.awt.Color(0, 0, 0));
         chkSamaNama.setText("Sama Dengan Penanggung Jawab Pasien");
-        chkSamaNama.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkSamaNama.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkSamaNama.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         chkSamaNama.setName("chkSamaNama"); // NOI18N
         chkSamaNama.setOpaque(false);
@@ -1884,6 +1885,22 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         });
         FormInput.add(cmbKategori);
         cmbKategori.setBounds(527, 188, 140, 23);
+
+        chkSamaPelaksana.setBackground(new java.awt.Color(242, 242, 242));
+        chkSamaPelaksana.setForeground(new java.awt.Color(0, 0, 0));
+        chkSamaPelaksana.setText("Sama Dokter Dengan Pelaksana");
+        chkSamaPelaksana.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSamaPelaksana.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSamaPelaksana.setName("chkSamaPelaksana"); // NOI18N
+        chkSamaPelaksana.setOpaque(false);
+        chkSamaPelaksana.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSamaPelaksana.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSamaPelaksanaActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSamaPelaksana);
+        chkSamaPelaksana.setBounds(585, 384, 180, 23);
 
         ScrollTriase1.setViewportView(FormInput);
 
@@ -2836,6 +2853,16 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
+    private void chkSamaPelaksanaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSamaPelaksanaActionPerformed
+        if (chkSamaPelaksana.isSelected() == true) {
+            nip_pemberi.setText(kddokter_pelaksana.getText());
+            nmpemberi.setText(nmdokter_pelaksana.getText());
+        } else {
+            nip_pemberi.setText("");
+            nmpemberi.setText("");
+        }
+    }//GEN-LAST:event_chkSamaPelaksanaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2923,6 +2950,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
     private widget.TextBox alamatPJ;
     public widget.TextBox alasanTolak;
     private widget.CekBox chkSamaNama;
+    private widget.CekBox chkSamaPelaksana;
     public widget.ComboBox cmbKategori;
     public widget.ComboBox cmbTindakan;
     private widget.ComboBox hubungan;
@@ -3143,7 +3171,6 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         nmkec.setText("-");
         kdkab = "0";
         nmkab.setText("-");
-        jnsrawat = "";
         jk = "";
         wktSimpan = "";
         hubungan.setSelectedIndex(0);
@@ -3189,6 +3216,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         chkSamaNama.setSelected(false);
         cmbKategori.setSelectedIndex(0);
         cmbKategori.setEnabled(true);
+        chkSamaPelaksana.setSelected(false);
     }
     
     public void setData(String norwt, String norm, String nmpasien, String jnsrwt) {

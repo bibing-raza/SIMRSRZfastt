@@ -13770,19 +13770,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (tbKamIn.getSelectedRow() != -1) {
-//                JOptionPane.showMessageDialog(null, "Sabarrr, masih proses belum selesai...!!!");
+                JOptionPane.showMessageDialog(null, "sedikit lagi selesai, tinggal hasil print nya...!!!");
                 
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgKamarInap");
-                RMAsesmenKeperawatanDewasaRanap form = new RMAsesmenKeperawatanDewasaRanap(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setNoRm(norawat.getText(), kdkamar.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                BtnCariActionPerformed(null);
-                this.setCursor(Cursor.getDefaultCursor());
+//                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//                akses.setform("DlgKamarInap");
+//                RMAsesmenKeperawatanDewasaRanap form = new RMAsesmenKeperawatanDewasaRanap(null, false);
+//                form.emptTeks();
+//                form.isCek();
+//                form.setNoRm(norawat.getText(), kdkamar.getText());
+//                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+//                form.setLocationRelativeTo(internalFrame1);
+//                form.setVisible(true);
+//                BtnCariActionPerformed(null);
+//                this.setCursor(Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_MnInputDataAsesDewasaActionPerformed
