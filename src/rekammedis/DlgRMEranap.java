@@ -626,7 +626,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 RMAsesmenKeperawatanDewasaRanap form = new RMAsesmenKeperawatanDewasaRanap(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setNoRm(TNoRW.getText(), kdkamar);
+                form.setData(TNoRW.getText(), kdkamar);
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

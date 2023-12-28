@@ -1419,7 +1419,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel30.setText("x/mnt      BB Sebelum Sakit : ");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(660, 383, 137, 23);
+        jLabel30.setBounds(660, 383, 140, 23);
 
         TbbBelum.setBackground(new java.awt.Color(245, 250, 240));
         TbbBelum.setForeground(new java.awt.Color(0, 0, 0));
@@ -1517,7 +1517,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel36.setText("detik       SPO2 : ");
         jLabel36.setName("jLabel36"); // NOI18N
         FormInput.add(jLabel36);
-        jLabel36.setBounds(719, 411, 80, 23);
+        jLabel36.setBounds(719, 411, 81, 23);
 
         Tspo.setBackground(new java.awt.Color(245, 250, 240));
         Tspo.setForeground(new java.awt.Color(0, 0, 0));
@@ -2419,13 +2419,13 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         kesimpulanResikoDecu.setRows(5);
         kesimpulanResikoDecu.setName("kesimpulanResikoDecu"); // NOI18N
         FormInput.add(kesimpulanResikoDecu);
-        kesimpulanResikoDecu.setBounds(405, 1756, 270, 110);
+        kesimpulanResikoDecu.setBounds(405, 1756, 270, 80);
 
         jLabel98.setForeground(new java.awt.Color(0, 0, 0));
         jLabel98.setText("Total Skor Decubitus : ");
         jLabel98.setName("jLabel98"); // NOI18N
         FormInput.add(jLabel98);
-        jLabel98.setBounds(680, 1756, 120, 23);
+        jLabel98.setBounds(405, 1843, 120, 23);
 
         TotSkorDecu.setEditable(false);
         TotSkorDecu.setForeground(new java.awt.Color(0, 0, 0));
@@ -2434,7 +2434,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         TotSkorDecu.setFocusTraversalPolicyProvider(true);
         TotSkorDecu.setName("TotSkorDecu"); // NOI18N
         FormInput.add(TotSkorDecu);
-        TotSkorDecu.setBounds(802, 1756, 40, 23);
+        TotSkorDecu.setBounds(528, 1843, 40, 23);
 
         label13.setForeground(new java.awt.Color(0, 0, 0));
         label13.setText("Key Word :");
@@ -5082,8 +5082,6 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
-        kdkamar = "";
-        Truangan.setText("");
         TtglMsk.setDate(new Date());
         cmbJam.setSelectedIndex(0);
         cmbMnt.setSelectedIndex(0);
@@ -5091,7 +5089,6 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         cmbTiba.setSelectedIndex(0);
         TtibaLain.setText("");
         TtibaLain.setEnabled(false);
-        cmbMasuk.setSelectedIndex(0);
         Tkeluhan.setText("");
         cmbRiwAlergi.setSelectedIndex(0);
         alergiObat = "";
@@ -5166,10 +5163,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         cmbMandi.setSelectedIndex(0);
         cmbBerpindah.setSelectedIndex(0);
         Tkesimpulan.setText("");
-        TsttsNikah.setText("");
         TKlgDekat.setText("");
         Thubungan.setText("");
-        TnoTelp.setText("");
         cmbTinggal.setSelectedIndex(0);
         TtglDenganLain.setText("");
         TtglDenganLain.setEnabled(false);
@@ -5273,7 +5268,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         TnmPerawat.setText("-");
     }
     
-    public void setNoRm(String norwt, String kdkmr) {
+    public void setData(String norwt, String kdkmr) {
         TNoRw.setText(norwt);
         TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norwt + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));

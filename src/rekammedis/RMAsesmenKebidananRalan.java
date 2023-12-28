@@ -1735,7 +1735,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(label11);
         label11.setBounds(670, 150, 84, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:02" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:28" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3963,7 +3963,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel121);
         jLabel121.setBounds(260, 402, 90, 23);
 
-        Ttgl_perut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_perut.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_perut.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_perut.setName("Ttgl_perut"); // NOI18N
         Ttgl_perut.setOpaque(false);
@@ -4002,7 +4002,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel124);
         jLabel124.setBounds(260, 426, 90, 23);
 
-        Ttgl_lendir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_lendir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_lendir.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_lendir.setName("Ttgl_lendir"); // NOI18N
         Ttgl_lendir.setOpaque(false);
@@ -4041,7 +4041,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel127);
         jLabel127.setBounds(260, 454, 206, 23);
 
-        Ttgl_darah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_darah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_darah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_darah.setName("Ttgl_darah"); // NOI18N
         Ttgl_darah.setOpaque(false);
@@ -4080,7 +4080,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel130);
         jLabel130.setBounds(260, 482, 206, 23);
 
-        Ttgl_air.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_air.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_air.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_air.setName("Ttgl_air"); // NOI18N
         Ttgl_air.setOpaque(false);
@@ -4127,7 +4127,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel133);
         jLabel133.setBounds(260, 510, 90, 23);
 
-        Ttgl_pusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_pusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_pusing.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_pusing.setName("Ttgl_pusing"); // NOI18N
         Ttgl_pusing.setOpaque(false);
@@ -4166,7 +4166,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel136);
         jLabel136.setBounds(260, 538, 90, 23);
 
-        Ttgl_nyeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_nyeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_nyeri.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_nyeri.setName("Ttgl_nyeri"); // NOI18N
         Ttgl_nyeri.setOpaque(false);
@@ -4205,7 +4205,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel139);
         jLabel139.setBounds(260, 566, 90, 23);
 
-        Ttgl_pandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_pandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_pandangan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_pandangan.setName("Ttgl_pandangan"); // NOI18N
         Ttgl_pandangan.setOpaque(false);
@@ -4289,7 +4289,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel145);
         jLabel145.setBounds(725, 402, 90, 23);
 
-        Ttgl_mual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_mual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_mual.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_mual.setName("Ttgl_mual"); // NOI18N
         Ttgl_mual.setOpaque(false);
@@ -4328,7 +4328,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel148);
         jLabel148.setBounds(725, 426, 90, 23);
 
-        Ttgl_batuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_batuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_batuk.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_batuk.setName("Ttgl_batuk"); // NOI18N
         Ttgl_batuk.setOpaque(false);
@@ -4367,7 +4367,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(jLabel151);
         jLabel151.setBounds(725, 510, 90, 23);
 
-        Ttgl_demam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023 23:46:03" }));
+        Ttgl_demam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023 21:55:29" }));
         Ttgl_demam.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         Ttgl_demam.setName("Ttgl_demam"); // NOI18N
         Ttgl_demam.setOpaque(false);
@@ -5761,7 +5761,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         FormInput.add(cmbInspekulo);
         cmbInspekulo.setBounds(716, 1665, 58, 23);
 
-        jLabel226.setBackground(new java.awt.Color(255, 255, 51));
+        jLabel226.setBackground(new java.awt.Color(51, 255, 0));
         jLabel226.setForeground(new java.awt.Color(0, 0, 0));
         jLabel226.setText("Hasil : ");
         jLabel226.setName("jLabel226"); // NOI18N
@@ -5821,7 +5821,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5836,7 +5836,7 @@ public final class RMAsesmenKebidananRalan extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setForeground(new java.awt.Color(50, 70, 50));
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
