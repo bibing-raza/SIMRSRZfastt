@@ -67,7 +67,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
     private String nip = "", kdkamar = "", alergiObat = "", alergiMakanan = "", alergiLain = "", gelang = "", ibadah = "",
             obatObatan = "", perawatanLuka = "", manajemenNyeri = "", diet = "", fisio = "", hipertermi = "", nyeri = "", resiko = "",
             kelebihan = "", bersihkan = "", pola = "", gangguan = "", cemas = "", ketidakseimbangan = "", perubahan = "", penurunan = "",
-            kerusakan = "", intoleransi = "", kurang = "", perluMPP = "", perluDP = "", resikojatuh = "", resikodecubitus="";
+            kerusakan = "", intoleransi = "", kurang = "", perluMPP = "", perluDP = "", resikojatuh = "", resikodecubitus = "", skorFix = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -3538,6 +3538,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        skorFix = "";
+        
         if (tbAsesmen.getSelectedRow() > -1) {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -3559,25 +3561,27 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             
             if (alergiObat.equals("ya")) {
                 param.put("cekObat", "V");
+                param.put("alergiObat", TnmAlergiObat.getText() + ", Reaksi : " + TreaksiObat.getText());
             } else {
                 param.put("cekObat", "");
+                param.put("alergiObat", " - , Reaksi : -");
             }
             
             if (alergiMakanan.equals("ya")) {
                 param.put("cekMakan", "V");
+                param.put("alergiMakan", TnmAlergiMakanan.getText() + ", Reaksi : " + TreaksiMakanan.getText());
             } else {
                 param.put("cekMakan", "");
+                param.put("alergiMakan", " - , Reaksi : -");
             }
             
             if (alergiLain.equals("ya")) {
                 param.put("cekLain", "V");
+                param.put("alergiLain", TnmAlergiLain.getText() + ", Reaksi : " + TreaksiLain.getText());
             } else {
                 param.put("cekLain", "");
+                param.put("alergiLain", " - , Reaksi : -");
             }
-            
-            param.put("alergiObat", TnmAlergiObat.getText() + ", Reaksi : " + TreaksiObat.getText());
-            param.put("alergiMakan", TnmAlergiMakanan.getText() + ", Reaksi : " + TreaksiMakanan.getText());
-            param.put("alergiLain", TnmAlergiLain.getText() + ", Reaksi : " + TreaksiLain.getText());
             
             if (gelang.equals("ya")) {
                 param.put("gelang", "V");
@@ -3686,18 +3690,23 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             }
             
             param.put("emosi", cmbStatus.getSelectedItem().toString());
+
+            if (cmbGizi1.getSelectedIndex() == 2) {
+                skorFix = "\n" + cmbYaGizi1.getSelectedItem().toString() + "   Skor (" + skorYaGizi1.getText() + ")\n\n";
+            } else {
+                skorFix = "   Skor (" + skorGizi1.getText() + ")\n\n";
+            }
             param.put("kalimatSkrining", "1. Apakah pasien mengalami penurunan BB yang tidak direncanakan/tidak diinginkan dalam 6 bulan terakhir ?\n"
-                        + cmbGizi1.getSelectedItem().toString() + "   Skor (" + skorGizi1.getText() + ")\n"
-                        + cmbYaGizi1.getSelectedItem().toString() + "   Skor (" + skorYaGizi1.getText() + ")\n\n"
-                        + "2. Apakah asupan makan pasien berkurang karena penurunan nafsu makan / kesulitan menerima makanan ?\n"
-                        + cmbGizi2.getSelectedItem().toString() + "   Skor (" + skorGizi2.getText() + ")\n"
-                        + "_______________________________________________________________________\n"
-                        + "Total Skor : (" + TotSkorGizi.getText() + ")\n"
-                        + "Kesimpulan Skrining Gizi :\n"
-                        + kesimpulanGizi.getText() + "\n");            
+                    + cmbGizi1.getSelectedItem().toString() + "" + skorFix + ""
+                    + "2. Apakah asupan makan pasien berkurang karena penurunan nafsu makan / kesulitan menerima makanan ?\n"
+                    + cmbGizi2.getSelectedItem().toString() + "   Skor (" + skorGizi2.getText() + ")\n"
+                    + "_______________________________________________________________________\n"
+                    + "Total Skor : (" + TotSkorGizi.getText() + ")\n"
+                    + "Kesimpulan Skrining Gizi :\n"
+                    + kesimpulanGizi.getText() + "\n");
             param.put("skala", cmbSkala.getSelectedItem().toString());
             param.put("onset", Tonset.getText());
-            
+
             if (cmbProvo.getSelectedIndex() == 5) {
                 param.put("provo", cmbProvo.getSelectedItem().toString() + " (" + Tprovo.getText() + ")");
             } else {
@@ -3946,8 +3955,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             param.put("jamAsesmen", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " WITA");
             param.put("perawat", "(" + TnmPerawat.getText() + ")");
             
-            Valid.MyReport("rptAsesmenKeperawatanDewasa.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap ]::",
-                    "SELECT now()", param);
+            Valid.MyReport("rptAsesmenKeperawatanDewasa1.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 1 ]::",
+                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
