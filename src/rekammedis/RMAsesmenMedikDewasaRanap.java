@@ -79,7 +79,8 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             "faring", "lidah", "bibir", "jvp", "kelenjar_limfe", "ket_ada_kelenjar", "kaku_kuduk", "thoraks", "ket_asimetris", "cor_s1s2", "reguler", "ireguler",
             "murmur", "lain_lain", "suara_nafas", "ronchi", "ket_ronchi", "wheezing", "ket_wheezing", "distended", "meteorismus", "peristaltik", "asites", "nyeri_tekan",
             "lokasi", "hepar", "lien", "extremitas", "udem", "ket_udem", "hasil_pemeriksaan", "diagnosis1", "diagnosis2", "diagnosis3", "diagnosis4", "rencana_kerja",
-            "perencanaan_pemulangan", "catatan_penting", "tgl_dpjp", "nip_dpjp", "nmdokter_memeriksa", "nm_super", "pem_fisik_lain", "saturasi"
+            "perencanaan_pemulangan", "catatan_penting", "tgl_dpjp", "nip_dpjp", "nmdokter_memeriksa", "nm_super", "pem_fisik_lain", "saturasi", "diagnosis5", "diagnosis6",
+            "diagnosis7"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -88,7 +89,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         tbPenilaian.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPenilaian.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 114; i++) {
+        for (i = 0; i < 117; i++) {
             TableColumn column = tbPenilaian.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -422,6 +423,15 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 113) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 114) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 115) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 116) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -893,6 +903,12 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         label88 = new widget.Label();
         saturasi = new widget.TextBox();
         label89 = new widget.Label();
+        label90 = new widget.Label();
+        label91 = new widget.Label();
+        label92 = new widget.Label();
+        Tdiagnosa5 = new widget.TextBox();
+        Tdiagnosa6 = new widget.TextBox();
+        Tdiagnosa7 = new widget.TextBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPenilaian = new widget.Table();
@@ -1304,7 +1320,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023 08:11:41" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023 14:38:32" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1607,7 +1623,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label12);
         label12.setBounds(625, 360, 100, 23);
 
-        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023 08:11:41" }));
+        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023 14:38:32" }));
         TglAnamnesa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAnamnesa.setName("TglAnamnesa"); // NOI18N
         TglAnamnesa.setOpaque(false);
@@ -2958,7 +2974,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdiagnosa1);
-        Tdiagnosa1.setBounds(49, 1635, 805, 23);
+        Tdiagnosa1.setBounds(49, 1635, 380, 23);
 
         label79.setForeground(new java.awt.Color(0, 0, 0));
         label79.setText("1. ");
@@ -2982,7 +2998,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdiagnosa2);
-        Tdiagnosa2.setBounds(49, 1665, 805, 23);
+        Tdiagnosa2.setBounds(49, 1665, 380, 23);
 
         label81.setForeground(new java.awt.Color(0, 0, 0));
         label81.setText("3. ");
@@ -2999,7 +3015,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdiagnosa3);
-        Tdiagnosa3.setBounds(49, 1695, 805, 23);
+        Tdiagnosa3.setBounds(49, 1695, 380, 23);
 
         label82.setForeground(new java.awt.Color(0, 0, 0));
         label82.setText("4. ");
@@ -3016,7 +3032,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(Tdiagnosa4);
-        Tdiagnosa4.setBounds(49, 1725, 805, 23);
+        Tdiagnosa4.setBounds(49, 1725, 380, 23);
 
         label83.setForeground(new java.awt.Color(0, 0, 0));
         label83.setText("RENCANA KERJA DAN TERAPI :");
@@ -3100,7 +3116,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label86);
         label86.setBounds(625, 2075, 100, 23);
 
-        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023 08:11:42" }));
+        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023 14:38:33" }));
         TglDpjp.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglDpjp.setName("TglDpjp"); // NOI18N
         TglDpjp.setOpaque(false);
@@ -3268,6 +3284,57 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label89);
         label89.setBounds(210, 1053, 20, 23);
 
+        label90.setForeground(new java.awt.Color(0, 0, 0));
+        label90.setText("5. ");
+        label90.setName("label90"); // NOI18N
+        label90.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label90);
+        label90.setBounds(430, 1635, 26, 23);
+
+        label91.setForeground(new java.awt.Color(0, 0, 0));
+        label91.setText("6. ");
+        label91.setName("label91"); // NOI18N
+        label91.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label91);
+        label91.setBounds(430, 1665, 26, 23);
+
+        label92.setForeground(new java.awt.Color(0, 0, 0));
+        label92.setText("7. ");
+        label92.setName("label92"); // NOI18N
+        label92.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label92);
+        label92.setBounds(430, 1695, 26, 23);
+
+        Tdiagnosa5.setForeground(new java.awt.Color(0, 0, 0));
+        Tdiagnosa5.setName("Tdiagnosa5"); // NOI18N
+        Tdiagnosa5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Tdiagnosa5KeyPressed(evt);
+            }
+        });
+        FormInput.add(Tdiagnosa5);
+        Tdiagnosa5.setBounds(460, 1635, 395, 23);
+
+        Tdiagnosa6.setForeground(new java.awt.Color(0, 0, 0));
+        Tdiagnosa6.setName("Tdiagnosa6"); // NOI18N
+        Tdiagnosa6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Tdiagnosa6KeyPressed(evt);
+            }
+        });
+        FormInput.add(Tdiagnosa6);
+        Tdiagnosa6.setBounds(460, 1665, 395, 23);
+
+        Tdiagnosa7.setForeground(new java.awt.Color(0, 0, 0));
+        Tdiagnosa7.setName("Tdiagnosa7"); // NOI18N
+        Tdiagnosa7.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Tdiagnosa7KeyPressed(evt);
+            }
+        });
+        FormInput.add(Tdiagnosa7);
+        Tdiagnosa7.setBounds(460, 1695, 395, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -3309,7 +3376,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3324,7 +3391,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-10-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3528,7 +3595,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                     + "concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem, "
                     + "if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain, "
                     + "a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam, "
-                    + "p.nama dpjp from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
+                    + "p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7 from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
                     + "a.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
             
             emptTeks();            
@@ -4014,7 +4081,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     }//GEN-LAST:event_Tdiagnosa3KeyPressed
 
     private void Tdiagnosa4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tdiagnosa4KeyPressed
-        Valid.pindah(evt, Tdiagnosa3, Trencana_kerja);
+        Valid.pindah(evt, Tdiagnosa3, Tdiagnosa5);
     }//GEN-LAST:event_Tdiagnosa4KeyPressed
 
     private void Trencana_kerjaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Trencana_kerjaKeyPressed
@@ -4238,6 +4305,18 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Valid.pindah(evt, cmbUdem_palpe, Tjvp);
     }//GEN-LAST:event_saturasiKeyPressed
 
+    private void Tdiagnosa5KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tdiagnosa5KeyPressed
+        Valid.pindah(evt, Tdiagnosa4, Tdiagnosa6);
+    }//GEN-LAST:event_Tdiagnosa5KeyPressed
+
+    private void Tdiagnosa6KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tdiagnosa6KeyPressed
+        Valid.pindah(evt, Tdiagnosa5, Tdiagnosa7);
+    }//GEN-LAST:event_Tdiagnosa6KeyPressed
+
+    private void Tdiagnosa7KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tdiagnosa7KeyPressed
+        Valid.pindah(evt, Tdiagnosa6, Trencana_kerja);
+    }//GEN-LAST:event_Tdiagnosa7KeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -4329,6 +4408,9 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private widget.TextBox Tdiagnosa2;
     private widget.TextBox Tdiagnosa3;
     private widget.TextBox Tdiagnosa4;
+    private widget.TextBox Tdiagnosa5;
+    private widget.TextBox Tdiagnosa6;
+    private widget.TextBox Tdiagnosa7;
     private widget.TextBox Tdiagnosis;
     private widget.TextBox Tdiameter_kanan;
     private widget.TextBox Tdiameter_kiri;
@@ -4506,6 +4588,9 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private widget.Label label87;
     private widget.Label label88;
     private widget.Label label89;
+    private widget.Label label90;
+    private widget.Label label91;
+    private widget.Label label92;
     private widget.TextBox nmdokter_meriksa;
     private widget.TextBox nmdpjp;
     private widget.TextBox nmsuper;
@@ -4676,7 +4761,10 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                         rs.getString("nmdr_memeriksa"),
                         rs.getString("nm_super"),
                         rs.getString("pemeriksaan_fisik_lain"),
-                        rs.getString("saturasi")
+                        rs.getString("saturasi"),
+                        rs.getString("diagnosis5"),
+                        rs.getString("diagnosis6"),
+                        rs.getString("diagnosis7")
                     });
                 }
             } catch (Exception e) {
@@ -4815,6 +4903,9 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Tdiagnosa2.setText("");
         Tdiagnosa3.setText("");
         Tdiagnosa4.setText("");
+        Tdiagnosa5.setText("");
+        Tdiagnosa6.setText("");
+        Tdiagnosa7.setText("");
         Trencana_kerja.setText("");
         Trencana_pulang.setText("");
         Tcatatan.setText("");
@@ -4960,6 +5051,9 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             nmsuper.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 111).toString());
             TPemFisikLain.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 112).toString());
             saturasi.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 113).toString());
+            Tdiagnosa5.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 114).toString());
+            Tdiagnosa6.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 115).toString());
+            Tdiagnosa7.setText(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 116).toString());
             dataCek();
         }
     }
@@ -5036,7 +5130,8 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                 + "bb=?, tb=?, td=?, nadi=?, respirasi=?, suhu_axila=?, suhu_rektal=?, mata_anemis=?, ikterik=?, pupil=?, diameter_kanan=?, diameter_kiri=?, udem_palpebra=?, tonsil=?, faring=?, "
                 + "lidah=?, bibir=?, jvp=?, kelenjar_limfe=?, ket_ada_kelenjar=?, kaku_kuduk=?, thoraks=?, ket_asimetris=?, cor_s1s2=?, reguler=?, ireguler=?, murmur=?, lain_lain=?, suara_nafas=?, "
                 + "ronchi=?, ket_ronchi=?, wheezing=?, ket_wheezing=?, distended=?, meteorismus=?, peristaltik=?, asites=?, nyeri_tekan=?, lokasi=?, hepar=?, lien=?, extremitas=?, udem=?, ket_udem=?, "
-                + "hasil_pemeriksaan=?, diagnosis1=?, diagnosis2=?, diagnosis3=?, diagnosis4=?, rencana_kerja=?, perencanaan_pemulangan=?, catatan_penting=?, tgl_dpjp=?, nip_dpjp=?, pemeriksaan_fisik_lain=?, saturasi=?", 106, new String[]{
+                + "hasil_pemeriksaan=?, diagnosis1=?, diagnosis2=?, diagnosis3=?, diagnosis4=?, rencana_kerja=?, perencanaan_pemulangan=?, catatan_penting=?, tgl_dpjp=?, nip_dpjp=?, pemeriksaan_fisik_lain=?, "
+                + "saturasi=?, diagnosis5=?, diagnosis6=?, diagnosis7=?", 109, new String[]{
                     TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
                     Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
                     Tkeluhan.getText(), Triw_penyakit_sekarang.getText(), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
@@ -5048,7 +5143,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                     Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(),
                     Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Thsl_pemeriksaan.getText(), Tdiagnosa1.getText(), Tdiagnosa2.getText(),
                     Tdiagnosa3.getText(), Tdiagnosa4.getText(), Trencana_kerja.getText(), Trencana_pulang.getText(), Tcatatan.getText(), Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19),
-                    kddpjp.getText(), TPemFisikLain.getText(), saturasi.getText(),
+                    kddpjp.getText(), TPemFisikLain.getText(), saturasi.getText(), Tdiagnosa5.getText(), Tdiagnosa6.getText(), Tdiagnosa7.getText(),
                     tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
                 }) == true) {
             Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
@@ -5062,7 +5157,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     private void simpan() {
         cekData();
         if (Sequel.menyimpantf("asesmen_medik_dewasa_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 106, new String[]{
+                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 109, new String[]{
             TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
             Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
             Tkeluhan.getText(), Triw_penyakit_sekarang.getText(), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
@@ -5074,7 +5169,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(), 
             Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Thsl_pemeriksaan.getText(), Tdiagnosa1.getText(), Tdiagnosa2.getText(), 
             Tdiagnosa3.getText(), Tdiagnosa4.getText(), Trencana_kerja.getText(), Trencana_pulang.getText(), Tcatatan.getText(), Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19), 
-            kddpjp.getText(), TPemFisikLain.getText(), Sequel.cariIsi("select now()"), saturasi.getText()
+            kddpjp.getText(), TPemFisikLain.getText(), Sequel.cariIsi("select now()"), saturasi.getText(), Tdiagnosa5.getText(), Tdiagnosa6.getText(), Tdiagnosa7.getText()
         }) == true) {
             Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
             TCari.setText(TNoRw.getText());                      

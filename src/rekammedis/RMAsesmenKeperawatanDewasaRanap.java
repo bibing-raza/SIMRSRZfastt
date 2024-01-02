@@ -1004,7 +1004,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         FormInput.add(Truangan);
         Truangan.setBounds(136, 38, 420, 23);
 
-        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
+        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2023" }));
         TtglMsk.setDisplayFormat("dd-MM-yyyy");
         TtglMsk.setName("TtglMsk"); // NOI18N
         TtglMsk.setOpaque(false);
@@ -2034,7 +2034,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         TotSkorGizi.setBounds(680, 912, 40, 23);
 
         kesimpulanGizi.setEditable(false);
-        kesimpulanGizi.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi (Total Skor) : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanGizi.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan Skrining Gizi : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
         kesimpulanGizi.setColumns(20);
         kesimpulanGizi.setRows(5);
         kesimpulanGizi.setName("kesimpulanGizi"); // NOI18N
@@ -2978,7 +2978,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel95);
         jLabel95.setBounds(0, 2237, 100, 23);
 
-        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
+        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2023" }));
         TtglAses.setDisplayFormat("dd-MM-yyyy");
         TtglAses.setName("TtglAses"); // NOI18N
         TtglAses.setOpaque(false);
@@ -3207,7 +3207,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3221,7 +3221,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3597,10 +3597,10 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             param.put("temp", Ttemp.getText() + " °C");
             param.put("hr", Thr.getText() + " x/mnt");
             param.put("rr", Trr.getText() + " x/mnt");
-            param.put("BBbelum", TbbBelum.getText() + " Kg.");
-            param.put("BBmasuk", TbbMasuk.getText() + " Kg.");
-            param.put("tb", Ttb.getText() + " Cm.");
-            param.put("imt", Ttb.getText() + " Kg.");
+            param.put("BBbelum", TbbBelum.getText() + " Kg");
+            param.put("BBmasuk", TbbMasuk.getText() + " Kg");
+            param.put("tb", Ttb.getText() + " Cm");
+            param.put("imt", Timt.getText() + " Kg");
             param.put("crt", Tcrt.getText() + " detik");
             param.put("spo", Tspo.getText() + " %");
             
@@ -3701,9 +3701,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                     + "2. Apakah asupan makan pasien berkurang karena penurunan nafsu makan / kesulitan menerima makanan ?\n"
                     + cmbGizi2.getSelectedItem().toString() + "   Skor (" + skorGizi2.getText() + ")\n"
                     + "_______________________________________________________________________\n"
-                    + "Total Skor : (" + TotSkorGizi.getText() + ")\n"
-                    + "Kesimpulan Skrining Gizi :\n"
-                    + kesimpulanGizi.getText() + "\n");
+                    + "Total Skor : " + TotSkorGizi.getText() + ", Kesimpulan : " + kesimpulanGizi.getText() + "\n");
             param.put("skala", cmbSkala.getSelectedItem().toString());
             param.put("onset", Tonset.getText());
 
@@ -3957,6 +3955,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             
             Valid.MyReport("rptAsesmenKeperawatanDewasa1.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 1 ]::",
                     "SELECT now() tanggal", param);
+//            Valid.MyReport("rptAsesmenKeperawatanDewasa2.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 2 ]::",
+//                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
@@ -6093,7 +6093,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         if (Total == 0 || Total == 1) {
             kesimpulanGizi.setText("Pasien tidak beresiko malnutrisi");
         } else if (Total >= 2) {
-            kesimpulanGizi.setText(">= 2 : Pasien beresiko malnutrisi, konsul ke Ahli Gizi");
+            kesimpulanGizi.setText("Skor >= 2, pasien beresiko malnutrisi, konsul ke Ahli Gizi");
         }
     }
     
