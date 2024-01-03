@@ -3736,7 +3736,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             //faktor resiko jatuh
             try {
                 resikojatuh = "";
-                ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
+                ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor Resiko : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
                         + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_dewasa_ranap_resiko pm ON pm.kode_resiko = m.kode_resiko "
                         + "WHERE m.asesmen = 'Dewasa Ranap' and pm.no_rawat=? ORDER BY pm.kode_resiko");
                 try {
@@ -3765,8 +3765,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             }
             
             param.put("resikoJatuh", resikojatuh);
-            param.put("TotSkorResikoJatuh", "Total Skor : (" + TotSkorRJ.getText() + ")");
-            param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh :\n" + kesimpulanResikoJatuh.getText());
+            param.put("TotSkorResikoJatuh", "Total Skor : " + TotSkorRJ.getText());
+            param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh : " + kesimpulanResikoJatuh.getText());
 
             if (cmbTindakanCegah.getSelectedIndex() == 0) {
                 param.put("JudultindakanRJ", "Tindakan Pencegahan Resiko Jatuh");
@@ -3814,9 +3814,9 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             }
             
             param.put("resikoDecu", resikodecubitus);
-            param.put("TotSkorResikoDecu", "Total Skor : (" + TotSkorDecu.getText() + ")");
-            param.put("KesResikoDecu", "Kesimpulan Skor Resiko Decubitus :\n" + kesimpulanResikoDecu.getText());
-            param.put("nilai", cmbNilai.getSelectedItem().toString() + " : " + Tketerangan.getText());
+            param.put("TotSkorResikoDecu", "Total Skor : " + TotSkorDecu.getText());
+            param.put("KesResikoDecu", "Kesimpulan Skor Resiko Decubitus : " + kesimpulanResikoDecu.getText());
+            param.put("nilai", "(" + cmbNilai.getSelectedItem().toString() + ") " + Tketerangan.getText());
             
             if (obatObatan.equals("ya")) {
                 param.put("obat", "V");
@@ -3955,8 +3955,8 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             
             Valid.MyReport("rptAsesmenKeperawatanDewasa1.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 1 ]::",
                     "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenKeperawatanDewasa2.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptAsesmenKeperawatanDewasa2.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 2 ]::",
+                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
@@ -6107,11 +6107,11 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         
         TotSkorRJ.setText(Valid.SetAngka2(skor));
         if (skor > 45) {
-            kesimpulanResikoJatuh.setText("Resiko Tinggi : > 45, pasang kancing berwarna kuning");
+            kesimpulanResikoJatuh.setText("Resiko Tinggi (> 45), pasang kancing berwarna kuning");
         } else if (skor >= 25 && skor <= 45) {
-            kesimpulanResikoJatuh.setText("Resiko Sedang : 25-45, pasang kancing berwarna kuning");
+            kesimpulanResikoJatuh.setText("Resiko Sedang (25-45), pasang kancing berwarna kuning");
         } else if (skor >= 0 && skor <= 24) {
-            kesimpulanResikoJatuh.setText("Resiko Rendah : 0-24");
+            kesimpulanResikoJatuh.setText("Resiko Rendah (0-24)");
         }
     }
     

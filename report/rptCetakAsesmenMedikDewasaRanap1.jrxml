@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="952630b9-9688-430d-b265-a14bb1c2a650">
 	<property name="ireport.zoom" value="2.0000000000000377"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="352"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="hsl_pemeriksaan" class="java.lang.String"/>
 	<parameter name="rencana_krj" class="java.lang.String"/>
@@ -20,7 +20,7 @@ if(a.nyeri_tekan='','-',if(a.nyeri_tekan='Ada',concat('Ada, Lokasi : ',a.lokasi)
 concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem,
 if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain,
 a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam,
-p.nama dpjp from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp]]>
+p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7 from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp]]>
 	</queryString>
 	<field name="toraks" class="java.lang.String"/>
 	<field name="cor_s1s2" class="java.lang.String">
@@ -76,6 +76,15 @@ p.nama dpjp from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.ni
 	</field>
 	<field name="tgljam" class="java.lang.String"/>
 	<field name="dpjp" class="java.lang.String"/>
+	<field name="diagnosis5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnosis6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="diagnosis7" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="269">
 			<line>
@@ -557,7 +566,7 @@ p.nama dpjp from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.ni
 				<textFieldExpression><![CDATA[$P{hsl_pemeriksaan}]]></textFieldExpression>
 			</textField>
 		</band>
-		<band height="62">
+		<band height="95">
 			<staticText>
 				<reportElement x="3" y="8" width="177" height="11" uuid="a935e24d-e335-4038-841f-c5222ecb83af">
 					<property name="com.jaspersoft.studio.unit.width" value="px"/>
@@ -598,17 +607,38 @@ p.nama dpjp from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.ni
 				<textFieldExpression><![CDATA["4. "+$F{diagnosis4}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="62" uuid="8e367407-dff6-4ddc-a0b9-b3fd559226c5"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="0" width="1" height="95" uuid="8e367407-dff6-4ddc-a0b9-b3fd559226c5"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="62" uuid="9f65cb8d-537d-478a-99d4-7dfc2173d320"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="95" uuid="9f65cb8d-537d-478a-99d4-7dfc2173d320"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
+			<textField>
+				<reportElement x="6" y="84" width="513" height="11" uuid="44623cae-d1ee-4b93-8cae-6e14460efc9f"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["7. "+$F{diagnosis7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="62" width="513" height="11" uuid="fbe48ecb-1aa6-461b-9426-1998f8339677"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["5. "+$F{diagnosis5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="6" y="73" width="513" height="11" uuid="44e731b7-33eb-41a1-88b8-7224a97bd471"/>
+				<textElement>
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA["6. "+$F{diagnosis6}]]></textFieldExpression>
+			</textField>
 		</band>
 		<band height="30">
 			<staticText>

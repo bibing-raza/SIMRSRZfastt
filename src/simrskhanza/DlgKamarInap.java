@@ -17013,7 +17013,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     //faktor resiko jatuh
                     try {
                         resikojatuh = "";
-                        ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
+                        ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor Resiko : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
                                 + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_dewasa_ranap_resiko pm ON pm.kode_resiko = m.kode_resiko "
                                 + "WHERE m.asesmen = 'Dewasa Ranap' and pm.no_rawat=? ORDER BY pm.kode_resiko");
                         try {
@@ -17084,16 +17084,16 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
                     TotSkorRJ = Valid.SetAngka2(skor);
                     if (skor > 45) {
-                        kesimpulanResikoJatuh = "Resiko Tinggi : > 45, pasang kancing berwarna kuning";
+                        kesimpulanResikoJatuh = "Resiko Tinggi (> 45), pasang kancing berwarna kuning";
                     } else if (skor >= 25 && skor <= 45) {
-                        kesimpulanResikoJatuh = "Resiko Sedang : 25-45, pasang kancing berwarna kuning";
+                        kesimpulanResikoJatuh = "Resiko Sedang (25-45), pasang kancing berwarna kuning";
                     } else if (skor >= 0 && skor <= 24) {
-                        kesimpulanResikoJatuh = "Resiko Rendah : 0-24";
+                        kesimpulanResikoJatuh = "Resiko Rendah (0-24)";
                     }
                     
                     param.put("resikoJatuh", resikojatuh);
-                    param.put("TotSkorResikoJatuh", "Total Skor : (" + TotSkorRJ + ")");
-                    param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh :\n" + kesimpulanResikoJatuh);
+                    param.put("TotSkorResikoJatuh", "Total Skor : " + TotSkorRJ);
+                    param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh : " + kesimpulanResikoJatuh);
                    
                     //tindakan pencegahan resiko jatuh
                     if (rsLaprm.getString("tindakan_pencegahan").equals("A")) {
@@ -17193,8 +17193,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     }
 
                     param.put("resikoDecu", resikodecubitus);
-                    param.put("TotSkorResikoDecu", "Total Skor : (" + TotSkorDecu + ")");
-                    param.put("KesResikoDecu", "Kesimpulan Skor Resiko Decubitus :\n" + kesimpulanResikoDecu);
+                    param.put("TotSkorResikoDecu", "Total Skor : " + TotSkorDecu);
+                    param.put("KesResikoDecu", "Kesimpulan Skor Resiko Decubitus : " + kesimpulanResikoDecu);
 
                     //skala kekuatan otot
                     if (rsLaprm.getString("nilai_skala_kekuatan_otot").equals("-")) {
@@ -17212,7 +17212,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     } else if (rsLaprm.getString("nilai_skala_kekuatan_otot").equals("0/5")) {
                         ket_nilai = "Tidak ada kontraksi otot";
                     }
-                    param.put("nilai", rsLaprm.getString("nilai_skala_kekuatan_otot") + " : " + ket_nilai);
+                    param.put("nilai", "(" + rsLaprm.getString("nilai_skala_kekuatan_otot") + ") " + ket_nilai);
 
                     if (rsLaprm.getString("obat_obatan").equals("ya")) {
                         param.put("obat", "V");
@@ -17351,8 +17351,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
                     Valid.MyReport("rptAsesmenKeperawatanDewasa1.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 1 ]::",
                             "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenKeperawatanDewasa2.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
+                    Valid.MyReport("rptAsesmenKeperawatanDewasa2.jasper", "report", "::[ Asesmen Keperawatan Dewasa Rawat Inap Hal. 2 ]::",
+                            "SELECT now() tanggal", param);
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
