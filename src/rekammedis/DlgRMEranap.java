@@ -122,6 +122,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
+        BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
 
         WindowDPJPranap.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -268,6 +269,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenMedik.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
         BtnAsesmenMedik.setText("Asesmen Medik Dewasa");
+        BtnAsesmenMedik.setToolTipText("");
         BtnAsesmenMedik.setIconTextGap(0);
         BtnAsesmenMedik.setName("BtnAsesmenMedik"); // NOI18N
         BtnAsesmenMedik.setPreferredSize(new java.awt.Dimension(200, 90));
@@ -386,7 +388,21 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         internalFrame3.setName("internalFrame3"); // NOI18N
         internalFrame3.setPreferredSize(new java.awt.Dimension(12, 44));
-        internalFrame3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 7));
+        internalFrame3.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 9, 7));
+
+        BtnRefres.setForeground(new java.awt.Color(0, 0, 0));
+        BtnRefres.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnRefres.setMnemonic('R');
+        BtnRefres.setText("Refresh Rekam Medis");
+        BtnRefres.setToolTipText("Alt+R");
+        BtnRefres.setName("BtnRefres"); // NOI18N
+        BtnRefres.setPreferredSize(new java.awt.Dimension(186, 30));
+        BtnRefres.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnRefresActionPerformed(evt);
+            }
+        });
+        internalFrame3.add(BtnRefres);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -394,7 +410,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnKeluar.setText("Keluar");
         BtnKeluar.setToolTipText("Alt+K");
         BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(90, 30));
         BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnKeluarActionPerformed(evt);
@@ -633,6 +649,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenKeperawatanDewasaActionPerformed
 
+    private void BtnRefresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnRefresActionPerformed
+        tombolCek(TNoRW.getText());
+    }//GEN-LAST:event_BtnRefresActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -659,6 +679,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
+    private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnRingkasan;
     private widget.Button BtnSimpan6;
@@ -708,46 +729,60 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }
 
     private void tombolCek(String norawat) {
-        if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "' and date(tgl_asesmen)=date(now())") == 0) {
             BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenMedik.setToolTipText("Asesmen Medik Dewasa BELUM diisi oleh dokter..!!!");
         } else {
             BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenMedik.setToolTipText("Asesmen Medik Dewasa SUDAH diisi oleh dokter..!!!");
         }
 
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
             BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenKeperawatanDewasa.setToolTipText("Asesmen Keperawatan Dewasa BELUM diisi oleh petugas..!!!");
         } else {
             BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenKeperawatanDewasa.setToolTipText("Asesmen Keperawatan Dewasa SUDAH diisi oleh petugas..!!!");
         }
 
-        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and tgl_cppt=date(now())") == 0) {
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and tgl_cppt=date(now()) and flag_hapus='tidak'") == 0) {
             BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnCPPT.setToolTipText("CPPT untuk tanggal hari ini BELUM diisi oleh petugas..!!!");
         } else {
             BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnCPPT.setToolTipText("CPPT untuk tanggal hari ini SUDAH diisi oleh petugas..!!!");
         }
 
         if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + norawat + "' and tgl_perawatan=date(now())") == 0) {
             BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726_merah.png")));
+            BtnResep.setToolTipText("Pada hari ini pasien tersebut BELUM diberi resep oleh dokter..!!!");
         } else {
             BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
+            BtnResep.setToolTipText("Pada hari ini pasien tersebut SUDAH diberi resep oleh dokter..!!!");
         }
 
         if (Sequel.cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + norawat + "'") == 0) {
             BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnRingkasan.setToolTipText("Ringkasan pulang rawat inap BELUM diisi oleh dokter DPJP..!!!");
         } else {
             BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnRingkasan.setToolTipText("Ringkasan pulang rawat inap SUDAH diisi oleh dokter DPJP..!!!");
         }
 
         if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
             BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnCTK.setToolTipText("Catatan Tindakan Keperawatan pasien tersebut pada hari ini BELUM diisi oleh petugas..!!!");
         } else {
             BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnCTK.setToolTipText("Catatan Tindakan Keperawatan pasien tersebut pada hari ini SUDAH diisi oleh petugas..!!!");
         }
 
         if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and tgl_pemberian=date(now())") == 0) {
             BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel_merah.png")));
+            BtnJadwalObat.setToolTipText("Jadwal pemberian obat pasien tersebut pada hari ini BELUM dibikinkan oleh petugas..!!!");
         } else {
             BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png")));
+            BtnJadwalObat.setToolTipText("Jadwal pemberian obat pasien tersebut pada hari ini SUDAH dibikinkan oleh petugas..!!!");
         }
     }
 }
