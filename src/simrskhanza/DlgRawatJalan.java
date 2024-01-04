@@ -9717,9 +9717,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,pemeriksaan_ralan.imun_ke, "
                     + "pemeriksaan_ralan.diagnosa,pemeriksaan_ralan.rencana_follow_up, pemeriksaan_ralan.rincian_tindakan, pemeriksaan_ralan.terapi, "
                     + "pemeriksaan_ralan.stts_prmrj, ifnull(pemeriksaan_ralan.spo2,'') spo2 from pasien inner join reg_periksa inner join pemeriksaan_ralan "
-                    + "on pemeriksaan_ralan.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter = pemeriksaan_ralan.kd_dokter where  "
+                    + "on pemeriksaan_ralan.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter = pemeriksaan_ralan.kd_dokter where "
                     + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.no_rawat like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pasien.nm_pasien like ? or  "
+                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pasien.nm_pasien like ? or "
+                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and reg_periksa.no_rkm_medis like ? or "
                     + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.alergi like ? or "
                     + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.keluhan like ? or "
                     + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.terapi like ? or "
@@ -9749,7 +9750,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps4.setString(21, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps4.setString(22, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps4.setString(23, "%" + TNoRM.getText() + "%");
-                ps4.setString(24, "%" + TCari.getText().trim() + "%");
+                ps4.setString(24, "%" + TCari.getText().trim() + "%");                
+                ps4.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps4.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps4.setString(27, "%" + TNoRM.getText() + "%");
+                ps4.setString(28, "%" + TCari.getText().trim() + "%");
                 rs = ps4.executeQuery();
                 while (rs.next()) {
                     tabModePemeriksaanDr.addRow(new Object[]{
@@ -13052,6 +13057,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     + "left join petugas pt on pt.nip = prp.nip where "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.no_rawat like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and p.nm_pasien like ? or "
+                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.alergi like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.keluhan like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.pemeriksaan like ? or "
@@ -13093,6 +13099,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps6.setString(28, "%" + TNoRM.getText() + "%");
                 ps6.setString(29, "%" + kdpoli.getText().trim() + "%");
                 ps6.setString(30, "%" + TCari.getText().trim() + "%");
+                
+                ps6.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps6.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps6.setString(33, "%" + TNoRM.getText() + "%");
+                ps6.setString(34, "%" + kdpoli.getText().trim() + "%");
+                ps6.setString(35, "%" + TCari.getText().trim() + "%");
                 rs6 = ps6.executeQuery();
                 while (rs6.next()) {
                     tabModePemeriksaanPr.addRow(new Object[]{false, rs6.getString(1),

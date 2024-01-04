@@ -704,5 +704,50 @@ public class DlgRMEranap extends javax.swing.JDialog {
         kdkamar = kdkmr;        
         gedung = nmgedung;
         TtglMasuk.setText(tglmsk);
+        tombolCek(norw);
+    }
+
+    private void tombolCek(String norawat) {
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
+            BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+        } else {
+            BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
+            BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+        } else {
+            BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and tgl_cppt=date(now())") == 0) {
+            BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+        } else {
+            BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + norawat + "' and tgl_perawatan=date(now())") == 0) {
+            BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726_merah.png")));
+        } else {
+            BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + norawat + "'") == 0) {
+            BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+        } else {
+            BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
+            BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+        } else {
+            BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+        }
+
+        if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and tgl_pemberian=date(now())") == 0) {
+            BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel_merah.png")));
+        } else {
+            BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png")));
+        }
     }
 }
