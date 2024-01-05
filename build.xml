@@ -74,6 +74,8 @@
         <mkdir dir="${build.dir}/report" />        
         <mkdir dir="${build.dir}/setting" />        
         <mkdir dir="${build.dir}/suara" />
+		<mkdir dir="${build.dir}/cache" />
+
         <copy todir="${build.dir}/report">
             <fileset dir="report/" includes="**/*.jasper" />
         </copy>                
@@ -83,12 +85,17 @@
         <copy todir="${build.dir}/suara">
             <fileset dir="suara/" includes="**/*.mp3, **/*.rar" />
         </copy>
+		<copy todir="${build.dir}/cache">
+            <fileset dir="cache/" includes="**/*.iyem" />
+        </copy>
     </target>
 
     <target name="-post-jar">
         <mkdir dir="${dist.dir}/report" />        
         <mkdir dir="${dist.dir}/setting" /> 
-        <mkdir dir="${dist.dir}/suara" />       
+        <mkdir dir="${dist.dir}/suara" />
+		<mkdir dir="${build.dir}/cache" />
+       
         <copy todir="${dist.dir}/report">
             <fileset dir="report/" includes="**/*.jasper" />
         </copy>               
@@ -98,5 +105,8 @@
         <copy todir="${dist.dir}/suara">
             <fileset dir="suara/" includes="**/*.mp3, **/*.rar" />
         </copy> 
+		<copy todir="${dist.dir}/cache">
+            <fileset dir="cache/" includes="**/*.iyem" />
+        </copy>
     </target>
 </project>

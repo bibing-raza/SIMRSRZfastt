@@ -264,7 +264,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame1.add(internalFrame4, java.awt.BorderLayout.PAGE_START);
 
         internalFrame2.setName("internalFrame2"); // NOI18N
-        internalFrame2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 9, 9));
+        internalFrame2.setPreferredSize(new java.awt.Dimension(2800, 2800));
+        internalFrame2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
 
         BtnAsesmenMedik.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N

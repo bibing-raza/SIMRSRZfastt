@@ -75,4 +75,14 @@
     <entry key="NOTIFAPOTEK">no</entry>
     <entry key="NOTIFLABORATORIUM">no</entry>
     <entry key="NOTIFRADIOLOGI">no</entry>
+	<entry key="CLIENTIDSATUSEHAT">enkripsi key client satu sehat</entry>  
+    <entry key="SECRETKEYSATUSEHAT">enkripsi secret key satu sehat</entry>  
+    <entry key="URLAUTHSATUSEHAT">https://api-satusehat-dev.dto.kemkes.go.id/oauth2/v1</entry>   
+    <entry key="URLFHIRSATUSEHAT">https://api-satusehat-dev.dto.kemkes.go.id/fhir-r4/v1</entry>  
+    <entry key="IDSATUSEHAT">enkripsi key id satu sehat</entry>  
+    <entry key="KELURAHANSATUSEHAT">6303051001</entry>  
+    <entry key="KECAMATANSATUSEHAT">630305</entry>  
+    <entry key="KABUPATENSATUSEHAT">6303</entry>  
+    <entry key="PROPINSISATUSEHAT">63</entry>  
+    <entry key="KODEPOSSATUSEHAT">70611</entry>
 </properties>

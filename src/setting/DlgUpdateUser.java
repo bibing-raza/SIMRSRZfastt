@@ -609,7 +609,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "kendali_Mutu_kendali_Biaya_INACBG,dashboard_eResep,bpjs_sep_internal,kemenkes_sitt,rencana_kontrol_jkn,spri_jkn,hapus_sep,"
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
-                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -1504,6 +1504,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[J]Tarif UTD".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[J]Tarif UTD", rs.getBoolean("tarif_utd")});
+                    }
+                    
+                    if ("[K]Referensi Praktisi Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[K]Referensi Praktisi Satu Sehat", rs.getBoolean("bridging_satu_sehat")});
                     }
                     
                     if ("[K]Kemenkes Kanker".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -3031,6 +3035,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[J]Tarif UTD".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","tarif_utd='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[K]Referensi Praktisi Satu Sehat".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bridging_satu_sehat='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[K]Kemenkes Kanker".equals(tbUser.getValueAt(i,1).toString())){
