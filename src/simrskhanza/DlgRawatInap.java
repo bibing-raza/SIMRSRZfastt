@@ -356,7 +356,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
         tbPemeriksaan.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabModeCppt=new DefaultTableModel(null, new Object[]{
-            "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
+            "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Lainnya", "Jenis PPA",
             "Nama PPA", "Shift", "hasil", "instruksi", "no_rawat", "tgl_cppt", "jam_cppt"
         }) {
             @Override

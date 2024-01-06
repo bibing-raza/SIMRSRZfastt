@@ -235,8 +235,11 @@ import keuangan.DlgRekening;
 import keuangan.DlgRekeningTahun;
 import bridging.ReklasifikasiRalan;
 import bridging.ReklasifikasiRanap;
+import bridging.SatuSehatKirimCondition;
+import bridging.SatuSehatKirimEncounter;
 import bridging.SatuSehatMapingLokasi;
 import bridging.SatuSehatMapingOrganisasi;
+import bridging.SatuSehatMapingVaksin;
 import bridging.SatuSehatReferensiPasien;
 import bridging.SatuSehatReferensiPraktisi;
 import fungsi.BackgroundMusic;
@@ -965,6 +968,9 @@ public class frmUtama extends javax.swing.JFrame {
         btnReferensiPasienSatuSehat = new widget.ButtonBig();
         btnMapingOrganisasiSatuSehat = new widget.ButtonBig();
         btnMapingLokasiSatuSehat = new widget.ButtonBig();
+        btnMapingVaksinSatuSehat = new widget.ButtonBig();
+        btnKirimEncounterSatuSehat = new widget.ButtonBig();
+        btnKirimConditionSatuSehat = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6358,6 +6364,45 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         Panelmenu.add(btnMapingLokasiSatuSehat);
+
+        btnMapingVaksinSatuSehat.setForeground(new java.awt.Color(0, 0, 0));
+        btnMapingVaksinSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png"))); // NOI18N
+        btnMapingVaksinSatuSehat.setText("Mapping Vaksin Satu Sehat");
+        btnMapingVaksinSatuSehat.setIconTextGap(0);
+        btnMapingVaksinSatuSehat.setName("btnMapingVaksinSatuSehat"); // NOI18N
+        btnMapingVaksinSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMapingVaksinSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapingVaksinSatuSehatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMapingVaksinSatuSehat);
+
+        btnKirimEncounterSatuSehat.setForeground(new java.awt.Color(0, 0, 0));
+        btnKirimEncounterSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png"))); // NOI18N
+        btnKirimEncounterSatuSehat.setText("Kirim Encounter Satu Sehat");
+        btnKirimEncounterSatuSehat.setIconTextGap(0);
+        btnKirimEncounterSatuSehat.setName("btnKirimEncounterSatuSehat"); // NOI18N
+        btnKirimEncounterSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimEncounterSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKirimEncounterSatuSehatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnKirimEncounterSatuSehat);
+
+        btnKirimConditionSatuSehat.setForeground(new java.awt.Color(0, 0, 0));
+        btnKirimConditionSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png"))); // NOI18N
+        btnKirimConditionSatuSehat.setText("Kirim Condition (ICD-10) Satu Sehat");
+        btnKirimConditionSatuSehat.setIconTextGap(0);
+        btnKirimConditionSatuSehat.setName("btnKirimConditionSatuSehat"); // NOI18N
+        btnKirimConditionSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnKirimConditionSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnKirimConditionSatuSehatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnKirimConditionSatuSehat);
 
         scrollPane2.setViewportView(Panelmenu);
 
@@ -12601,6 +12646,39 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMapingLokasiSatuSehatActionPerformed
 
+    private void btnMapingVaksinSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapingVaksinSatuSehatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatMapingVaksin aplikasi = new SatuSehatMapingVaksin(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMapingVaksinSatuSehatActionPerformed
+
+    private void btnKirimEncounterSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKirimEncounterSatuSehatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimEncounter aplikasi = new SatuSehatKirimEncounter(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnKirimEncounterSatuSehatActionPerformed
+
+    private void btnKirimConditionSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKirimConditionSatuSehatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatKirimCondition aplikasi = new SatuSehatKirimCondition(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnKirimConditionSatuSehatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12815,6 +12893,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnKeuntungan;
     private widget.ButtonBig btnKeuntunganObat2;
     private widget.ButtonBig btnKeuntunganObatRanap;
+    private widget.ButtonBig btnKirimConditionSatuSehat;
+    private widget.ButtonBig btnKirimEncounterSatuSehat;
     private widget.ButtonBig btnKlaimJaminanJasaRaharja;
     private widget.ButtonBig btnKonversi;
     private widget.ButtonBig btnKunjunganRalan;
@@ -12830,6 +12910,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnListSpesialistikRujukanBPJS;
     private widget.ButtonBig btnMapingLokasiSatuSehat;
     private widget.ButtonBig btnMapingOrganisasiSatuSehat;
+    private widget.ButtonBig btnMapingVaksinSatuSehat;
     private widget.ButtonBig btnMasterAturanPakai;
     private widget.ButtonBig btnMasterCaraBayar;
     private widget.ButtonBig btnMasterDTD;
@@ -14331,6 +14412,21 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnMapingVaksinSatuSehat);
+                jmlmenu++;
+            }
+            
+            if (akses.getsatu_sehat() == true) {
+                Panelmenu.add(btnKirimEncounterSatuSehat);
+                jmlmenu++;
+            }
+            
+            if (akses.getsatu_sehat() == true) {
+                Panelmenu.add(btnKirimConditionSatuSehat);
+                jmlmenu++;
+            }
+            
             if (akses.getsisrute_rujukan_masuk() == true) {
                 Panelmenu.add(btnRujukanMasukSisrute);
                 jmlmenu++;
@@ -15207,6 +15303,21 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getadmin() == true) {
             Panelmenu.add(btnMapingLokasiSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnMapingVaksinSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getsatu_sehat() == true) {
+            Panelmenu.add(btnKirimEncounterSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getsatu_sehat() == true) {
+            Panelmenu.add(btnKirimConditionSatuSehat);
             jmlmenu++;
         }
         
@@ -17173,6 +17284,27 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getadmin()== true) {
             if (btnMapingLokasiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMapingLokasiSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnMapingVaksinSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMapingVaksinSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getsatu_sehat()== true) {
+            if (btnKirimEncounterSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnKirimEncounterSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getsatu_sehat()== true) {
+            if (btnKirimConditionSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnKirimConditionSatuSehat);
                 jmlmenu++;
             }
         }

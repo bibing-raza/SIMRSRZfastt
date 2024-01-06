@@ -64,7 +64,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private DlgCariDiet diet = new DlgCariDiet(null, false);
     private Date date = new Date(), jamSekarang, jamCPPT1, jamCPPT2, jamCPPT3;
     private DlgCariJumlahPemberianDiet jlhberi = new DlgCariJumlahPemberianDiet(null, false);
-    private String status = "", cekjam = "", statusOK = "", nipppa = "", jamkeluar = "", nipkonsulen = "", dapatobat = "", 
+    private String status = "", cekjam = "", statusOK = "", nipppa = "", jamkeluar = "", nipDPJPlain = "", dapatobat = "", 
             obatsesuai = "", obatefektif = "", obataman = "", waktuSimpanDiet = "", kemasan = "", dataDiet = "", jnsRawat = "",
             kdUnit = "", instruksiDiet = "", siftppa = "", soap = "", hasil_pemeriksaan = "", instruksi_nakes = "", tgm = "",
             skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorRJ = "",
@@ -681,9 +681,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
                     } else if (pilihan == 2) {
                         if (dokter.getTable().getSelectedRow() != -1) {
-                            nipkonsulen = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
-                            nmKonsulen.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
-                            BtnKonsulen.requestFocus();
+                            nipDPJPlain = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                            nmDPJPlainya.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                            BtnDPJPLain.requestFocus();
                         }
                     } else if (pilihan == 3) {
                         if (dokter.getTable().getSelectedRow() != -1) {
@@ -943,8 +943,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnDPJP = new widget.Button();
         BtnHapusDPJP = new widget.Button();
         BtnHapusKonsulen = new widget.Button();
-        BtnKonsulen = new widget.Button();
-        nmKonsulen = new widget.TextBox();
+        BtnDPJPLain = new widget.Button();
+        nmDPJPlainya = new widget.TextBox();
         jLabel18 = new widget.Label();
         cmbBagian = new widget.ComboBox();
         jLabel17 = new widget.Label();
@@ -1871,7 +1871,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         BtnCetakCPPT.setBounds(97, 95, 140, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -1887,7 +1887,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2286,7 +2286,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2484,7 +2484,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2498,7 +2498,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3085,7 +3085,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -3280,33 +3280,33 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame20.add(BtnHapusKonsulen);
         BtnHapusKonsulen.setBounds(721, 36, 28, 23);
 
-        BtnKonsulen.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKonsulen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnKonsulen.setMnemonic('1');
-        BtnKonsulen.setToolTipText("Alt+1");
-        BtnKonsulen.setName("BtnKonsulen"); // NOI18N
-        BtnKonsulen.addActionListener(new java.awt.event.ActionListener() {
+        BtnDPJPLain.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDPJPLain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDPJPLain.setMnemonic('1');
+        BtnDPJPLain.setToolTipText("Alt+1");
+        BtnDPJPLain.setName("BtnDPJPLain"); // NOI18N
+        BtnDPJPLain.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKonsulenActionPerformed(evt);
+                BtnDPJPLainActionPerformed(evt);
             }
         });
-        internalFrame20.add(BtnKonsulen);
-        BtnKonsulen.setBounds(684, 36, 28, 23);
+        internalFrame20.add(BtnDPJPLain);
+        BtnDPJPLain.setBounds(684, 36, 28, 23);
 
-        nmKonsulen.setEditable(false);
-        nmKonsulen.setForeground(new java.awt.Color(0, 0, 0));
-        nmKonsulen.setName("nmKonsulen"); // NOI18N
-        internalFrame20.add(nmKonsulen);
-        nmKonsulen.setBounds(365, 36, 315, 23);
+        nmDPJPlainya.setEditable(false);
+        nmDPJPlainya.setForeground(new java.awt.Color(0, 0, 0));
+        nmDPJPlainya.setName("nmDPJPlainya"); // NOI18N
+        internalFrame20.add(nmDPJPlainya);
+        nmDPJPlainya.setBounds(370, 36, 310, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("DPJP Konsulen :");
+        jLabel18.setText("DPJP Lainnya :");
         jLabel18.setName("jLabel18"); // NOI18N
         internalFrame20.add(jLabel18);
-        jLabel18.setBounds(270, 36, 90, 23);
+        jLabel18.setBounds(274, 36, 90, 23);
 
         cmbBagian.setForeground(new java.awt.Color(0, 0, 0));
-        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP (K)", "PPA", "DPJP" }));
+        cmbBagian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dokter IGD", "DPJP (K)", "PPA", "DPJP", "DPJP Raber" }));
         cmbBagian.setName("cmbBagian"); // NOI18N
         cmbBagian.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3314,7 +3314,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         internalFrame20.add(cmbBagian);
-        cmbBagian.setBounds(186, 36, 85, 23);
+        cmbBagian.setBounds(186, 36, 88, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Jenis Bagian :");
@@ -3329,7 +3329,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel4.setBounds(0, 64, 180, 23);
 
         cmbPPA.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA", "DPJP" }));
+        cmbPPA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Perawat", "Bidan", "Apoteker", "Nutrisionis", "Fisioterapis", "Dokter IRNA", "DPJP", "DPJP Raber" }));
         cmbPPA.setName("cmbPPA"); // NOI18N
         cmbPPA.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3567,7 +3567,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -3621,7 +3621,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -3937,7 +3937,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3951,7 +3951,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4239,7 +4239,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "'" + Sequel.cariIsi("select now()") + "','" + cekjam + "',"
                         + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
                         + "'" + cmbPPA.getSelectedItem().toString() + "','" + nipppa + "','" + cmbBagian.getSelectedItem().toString() + "',"
-                        + "'" + cmbSertim.getSelectedItem().toString() + "','" + nipkonsulen + "','" + nipSerah.getText() + "',"
+                        + "'" + cmbSertim.getSelectedItem().toString() + "','" + nipDPJPlain + "','" + nipSerah.getText() + "',"
                         + "'" + nipTerima.getText() + "','" + siftppa + "',"
                         + "'" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
                         + "'tidak','-','" + soap + "','" + Valid.mysql_real_escape_stringERM(TSubjektif.getText()) + "',"
@@ -4355,7 +4355,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                 Valid.SetTgl(tglCppt.getSelectedItem() + ""), Valid.mysql_real_escape_stringERM(hasil_pemeriksaan), Valid.mysql_real_escape_stringERM(instruksi_nakes),
                                 kddpjp.getText(), cekjam, cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                                 cmbPPA.getSelectedItem().toString(), nipppa, cmbBagian.getSelectedItem().toString(),
-                                cmbSertim.getSelectedItem().toString(), nipkonsulen, nipSerah.getText(), nipTerima.getText(),
+                                cmbSertim.getSelectedItem().toString(), nipDPJPlain, nipSerah.getText(), nipTerima.getText(),
                                 cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                                 soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
                                 Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText()),
@@ -4659,7 +4659,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
 
-    private void BtnKonsulenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKonsulenActionPerformed
+    private void BtnDPJPLainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDPJPLainActionPerformed
         pilihan = 2;
         akses.setform("DlgCPPT");
         dokter.isCek();
@@ -4667,7 +4667,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         dokter.setLocationRelativeTo(internalFrame1);
         dokter.setAlwaysOnTop(false);
         dokter.setVisible(true);
-    }//GEN-LAST:event_BtnKonsulenActionPerformed
+    }//GEN-LAST:event_BtnDPJPLainActionPerformed
 
     private void BtnSerahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSerahActionPerformed
         pilihan = 2;
@@ -4711,8 +4711,8 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void cmbBagianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBagianActionPerformed
         if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
-            nipkonsulen = "-";
-            nmKonsulen.setText("-");
+            nipDPJPlain = "-";
+            nmDPJPlainya.setText("-");
             cmbPPA.setSelectedIndex(0);
             cmbSertim.setSelectedIndex(0);
             nipppa = "-";
@@ -4721,12 +4721,12 @@ public class DlgCPPT extends javax.swing.JDialog {
             if (cmbBagian.getSelectedIndex() == 3) {
                 JOptionPane.showMessageDialog(rootPane, "Jenis bagian PPA hanya untuk pengisian CPPT rawat inap..!!!");
                 cmbBagian.setSelectedIndex(0);
-                BtnKonsulen.setEnabled(false);
+                BtnDPJPLain.setEnabled(false);
                 cmbBagian.requestFocus();
-            } else if (cmbBagian.getSelectedIndex() == 2 || cmbBagian.getSelectedIndex() == 4) {
-                BtnKonsulen.setEnabled(true);
+            } else if (cmbBagian.getSelectedIndex() == 2 || cmbBagian.getSelectedIndex() == 4 || cmbBagian.getSelectedIndex() == 5) {
+                BtnDPJPLain.setEnabled(true);
             } else {
-                BtnKonsulen.setEnabled(false);
+                BtnDPJPLain.setEnabled(false);
             }
         }
     }//GEN-LAST:event_cmbBagianActionPerformed
@@ -5044,8 +5044,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHapusDPJPActionPerformed
 
     private void BtnHapusKonsulenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusKonsulenActionPerformed
-        nipkonsulen = "-";
-        nmKonsulen.setText("-");
+        nipDPJPlain = "-";
+        nmDPJPlainya.setText("-");
     }//GEN-LAST:event_BtnHapusKonsulenActionPerformed
 
     private void BtnHapusPPAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusPPAActionPerformed
@@ -6563,6 +6563,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnCloseIn7;
     private widget.Button BtnCopas;
     private widget.Button BtnDPJP;
+    private widget.Button BtnDPJPLain;
     private widget.Button BtnEdit;
     private widget.Button BtnEdit1;
     private widget.Button BtnEdit2;
@@ -6583,7 +6584,6 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar1;
     private widget.Button BtnKonfirDpjp;
-    private widget.Button BtnKonsulen;
     private widget.Button BtnLihatKon;
     private widget.Button BtnPPA;
     private widget.Button BtnPasteHasil;
@@ -6816,8 +6816,8 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.TextBox nipPetugasKonfir;
     private widget.TextBox nipSerah;
     private widget.TextBox nipTerima;
+    private widget.TextBox nmDPJPlainya;
     private widget.TextBox nmKonfirDpjp;
-    private widget.TextBox nmKonsulen;
     private widget.TextBox nmPetugasKonfir;
     private widget.TextBox nmSerah;
     private widget.TextBox nmTerima;
@@ -7212,8 +7212,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         nipppa = "-";
         cmbBagian.setSelectedIndex(0);
         cmbSertim.setSelectedIndex(0);
-        nipkonsulen = "-";
-        nmKonsulen.setText("-");        
+        nipDPJPlain = "-";
+        nmDPJPlainya.setText("-");        
         nipSerah.setText("-");
         nmSerah.setText("-");
         BtnSerah.setEnabled(false);
@@ -7255,7 +7255,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         statusOK = "";
         cekjam = "";
         nipppa = "";
-        nipkonsulen = "";
+        nipDPJPlain = "";
         soap = "";
         
         if (tbCPPT.getSelectedRow() != -1) {
@@ -7277,8 +7277,8 @@ public class DlgCPPT extends javax.swing.JDialog {
             cmbBagian.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 18).toString());
             nipppa = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 19).toString();
             cmbSertim.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 20).toString());                      
-            nmKonsulen.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 21).toString());
-            nipkonsulen = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 22).toString();
+            nmDPJPlainya.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 21).toString());
+            nipDPJPlain = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 22).toString();
             nmSerah.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 23).toString());
             nmTerima.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 24).toString());
             nipSerah.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 25).toString());
@@ -7699,9 +7699,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7732,9 +7732,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Periode Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7765,9 +7765,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT PerTanggal Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7796,9 +7796,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7827,9 +7827,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Periode Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7860,9 +7860,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                 Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT PerTanggal Rawat Inap ]::",
                         "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                         + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                        + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                         + "c.hasil_pemeriksaan, "
-                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                        + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                         + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                         + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                         + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "
@@ -7894,9 +7894,9 @@ public class DlgCPPT extends javax.swing.JDialog {
             Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT IGD ]::",
                     "SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), "
                     + "date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, "
-                    + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
+                    + "ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, "
                     + "c.hasil_pemeriksaan, "
-                    + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
+                    + "concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP' or c.jenis_bagian='DPJP (K)' or c.jenis_bagian='DPJP Raber',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, "
                     + "concat('(', c.verifikasi,') - ',pg.nama) verif, "
                     + "if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, "
                     + "if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima, if(ifnull(ck.no_rawat,'')<>'','" + konfirmasi_terapi + "','') datakonfirmasi "

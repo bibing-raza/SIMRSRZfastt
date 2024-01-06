@@ -52,7 +52,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
         initComponents();
 
         tabMode=new DefaultTableModel(null, new Object[]{
-            "Cek", "Verifikasi", "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
+            "Cek", "Verifikasi", "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Lainnya", "Jenis PPA",
             "Nama PPA", "Shift", "hasil", "instruksi", "wkt_simpan", "no_rawat", "tgl_cppt", "jam_cppt"
         }) {
             @Override
