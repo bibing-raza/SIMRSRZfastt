@@ -235,6 +235,8 @@ import keuangan.DlgRekening;
 import keuangan.DlgRekeningTahun;
 import bridging.ReklasifikasiRalan;
 import bridging.ReklasifikasiRanap;
+import bridging.SatuSehatMapingLokasi;
+import bridging.SatuSehatMapingOrganisasi;
 import bridging.SatuSehatReferensiPasien;
 import bridging.SatuSehatReferensiPraktisi;
 import fungsi.BackgroundMusic;
@@ -961,6 +963,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenKeperawatanDewasa = new widget.ButtonBig();
         btnReferensiDokterSatuSehat = new widget.ButtonBig();
         btnReferensiPasienSatuSehat = new widget.ButtonBig();
+        btnMapingOrganisasiSatuSehat = new widget.ButtonBig();
+        btnMapingLokasiSatuSehat = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6329,6 +6333,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnReferensiPasienSatuSehat);
 
+        btnMapingOrganisasiSatuSehat.setForeground(new java.awt.Color(0, 0, 0));
+        btnMapingOrganisasiSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png"))); // NOI18N
+        btnMapingOrganisasiSatuSehat.setText("Mapping Organisasi Satu Sehat");
+        btnMapingOrganisasiSatuSehat.setIconTextGap(0);
+        btnMapingOrganisasiSatuSehat.setName("btnMapingOrganisasiSatuSehat"); // NOI18N
+        btnMapingOrganisasiSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMapingOrganisasiSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapingOrganisasiSatuSehatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMapingOrganisasiSatuSehat);
+
+        btnMapingLokasiSatuSehat.setForeground(new java.awt.Color(0, 0, 0));
+        btnMapingLokasiSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/satusehat.png"))); // NOI18N
+        btnMapingLokasiSatuSehat.setText("Mapping Lokasi Satu Sehat");
+        btnMapingLokasiSatuSehat.setIconTextGap(0);
+        btnMapingLokasiSatuSehat.setName("btnMapingLokasiSatuSehat"); // NOI18N
+        btnMapingLokasiSatuSehat.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMapingLokasiSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMapingLokasiSatuSehatActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMapingLokasiSatuSehat);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6337,7 +6367,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/01/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/01/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12549,6 +12579,28 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnReferensiPasienSatuSehatActionPerformed
 
+    private void btnMapingOrganisasiSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapingOrganisasiSatuSehatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatMapingOrganisasi aplikasi = new SatuSehatMapingOrganisasi(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMapingOrganisasiSatuSehatActionPerformed
+
+    private void btnMapingLokasiSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMapingLokasiSatuSehatActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        SatuSehatMapingLokasi aplikasi = new SatuSehatMapingLokasi(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMapingLokasiSatuSehatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12776,6 +12828,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnLihatPiutang;
     private widget.ButtonBig btnListSaranaRujukanBPJS;
     private widget.ButtonBig btnListSpesialistikRujukanBPJS;
+    private widget.ButtonBig btnMapingLokasiSatuSehat;
+    private widget.ButtonBig btnMapingOrganisasiSatuSehat;
     private widget.ButtonBig btnMasterAturanPakai;
     private widget.ButtonBig btnMasterCaraBayar;
     private widget.ButtonBig btnMasterDTD;
@@ -14267,6 +14321,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnMapingOrganisasiSatuSehat);
+                jmlmenu++;
+            }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnMapingLokasiSatuSehat);
+                jmlmenu++;
+            }
+            
             if (akses.getsisrute_rujukan_masuk() == true) {
                 Panelmenu.add(btnRujukanMasukSisrute);
                 jmlmenu++;
@@ -15134,7 +15198,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsatu_sehat() == true) {
             Panelmenu.add(btnReferensiPasienSatuSehat);
             jmlmenu++;
-        }        
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnMapingOrganisasiSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnMapingLokasiSatuSehat);
+            jmlmenu++;
+        }
         
         if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnSuratKonsulUnitRanap);
@@ -17085,6 +17159,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsatu_sehat()== true) {
             if (btnReferensiPasienSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnReferensiPasienSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnMapingOrganisasiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMapingOrganisasiSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnMapingLokasiSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMapingLokasiSatuSehat);
                 jmlmenu++;
             }
         }
