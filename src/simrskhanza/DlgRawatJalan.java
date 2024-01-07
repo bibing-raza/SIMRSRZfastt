@@ -258,7 +258,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tabModePemeriksaanPr = new DefaultTableModel(null, new Object[]{
             "P", "No.Rawat", "Petugas Yg Menangani", "No.R.M.", "Nama Pasien", "Tgl.Input", "Jam Input", "Suhu(C)", "Tensi", "Nadi(/menit)",
             "Respirasi(/menit)", "Tinggi(Cm)", "Berat(Kg)", "GCS(E,V,M)", "Keluhan", "Pemeriksaan", "Alergi", "Imun Ke",
-            "Diagnosa Pasien", "Rencana Follow Up", "nip", "Rincian Tindakan", "Terapi", "kd_poli", "spo2"}) {
+            "Diagnosa Pasien", "Rencana Follow Up", "nip", "Rincian Tindakan", "Terapi", "kd_poli", "spo2", "kesadaran", "lingkar_perut"
+        }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = false;
@@ -274,7 +275,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -286,7 +288,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         tbPemeriksaanPr.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPemeriksaanPr.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 25; i++) {
+        for (i = 0; i < 27; i++) {
             TableColumn column = tbPemeriksaanPr.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -340,6 +342,12 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -828,7 +836,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TNadi.setDocument(new batasInput((byte) 3).getOnlyAngka(TNadi));
         Tspo21.setDocument(new batasInput((byte) 3).getOnlyAngka(Tspo21));
         Tspo2.setDocument(new batasInput((byte) 3).getOnlyAngka(Tspo2));
+        Tkesadaran.setDocument(new batasInput((int) 180).getKata(Tkesadaran));
         TRespirasi.setDocument(new batasInput((byte) 3).getOnlyAngka(TRespirasi));
+        TlingkarPerut.setDocument(new batasInput((byte) 4).getKata(TlingkarPerut));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -1458,6 +1468,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TTerapi1 = new widget.TextArea();
         jLabel43 = new widget.Label();
         Tspo21 = new widget.TextBox();
+        jLabel45 = new widget.Label();
+        Tkesadaran = new widget.TextBox();
+        jLabel46 = new widget.Label();
+        TlingkarPerut = new widget.TextBox();
         Scroll10 = new widget.ScrollPane();
         tbPemeriksaanPr = new widget.Table();
         internalFrame9 = new widget.InternalFrame();
@@ -2723,7 +2737,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -2947,7 +2961,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2961,7 +2975,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3941,7 +3955,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput3.add(TGCS1);
-        TGCS1.setBounds(765, 61, 244, 23);
+        TGCS1.setBounds(765, 61, 70, 23);
 
         jLabel40.setForeground(new java.awt.Color(0, 0, 0));
         jLabel40.setText("Diagnosa :");
@@ -4134,6 +4148,40 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         FormInput3.add(Tspo21);
         Tspo21.setBounds(1070, 5, 42, 23);
+
+        jLabel45.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel45.setText("Kesadaran :");
+        jLabel45.setName("jLabel45"); // NOI18N
+        FormInput3.add(jLabel45);
+        jLabel45.setBounds(836, 61, 92, 23);
+
+        Tkesadaran.setForeground(new java.awt.Color(0, 0, 0));
+        Tkesadaran.setFocusTraversalPolicyProvider(true);
+        Tkesadaran.setName("Tkesadaran"); // NOI18N
+        Tkesadaran.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TkesadaranKeyPressed(evt);
+            }
+        });
+        FormInput3.add(Tkesadaran);
+        Tkesadaran.setBounds(932, 61, 140, 23);
+
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("L. Perut :");
+        jLabel46.setName("jLabel46"); // NOI18N
+        FormInput3.add(jLabel46);
+        jLabel46.setBounds(1005, 33, 60, 23);
+
+        TlingkarPerut.setForeground(new java.awt.Color(0, 0, 0));
+        TlingkarPerut.setFocusTraversalPolicyProvider(true);
+        TlingkarPerut.setName("TlingkarPerut"); // NOI18N
+        TlingkarPerut.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TlingkarPerutKeyPressed(evt);
+            }
+        });
+        FormInput3.add(TlingkarPerut);
+        TlingkarPerut.setBounds(1070, 33, 42, 23);
 
         Scroll37.setViewportView(FormInput3);
 
@@ -4968,7 +5016,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -6464,7 +6512,8 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                             + "tinggi='" + TTinggi1.getText() + "',berat='" + TBerat1.getText() + "',imun_ke='" + cmbImun1.getSelectedItem().toString() + "',"
                                             + "gcs='" + TGCS1.getText() + "',alergi='" + TAlergi1.getText() + "',diagnosa='" + TDiagnosa1.getText() + "',"
                                             + "rencana_follow_up='" + TRncanaFolow1.getText() + "',nip='" + kdptg1.getText() + "',"
-                                            + "rincian_tindakan='" + TRincianTindakan1.getText() + "',terapi='" + TTerapi1.getText() + "',spo2='" + Tspo21.getText() + "'");
+                                            + "rincian_tindakan='" + TRincianTindakan1.getText() + "',terapi='" + TTerapi1.getText() + "',spo2='" + Tspo21.getText() + "',"
+                                            + "kesadaran='" + Tkesadaran.getText() + "', lingkar_perut='" + TlingkarPerut.getText() + "'");
 
                                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi1.getText() + "'");
                                     tampilPemeriksaanPetugas();
@@ -9038,6 +9087,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         cmbBulan.setSelectedIndex(0);
         cmbBulan.setEnabled(false);
     }//GEN-LAST:event_ChkTanggalActionPerformed
+
+    private void TkesadaranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkesadaranKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TkesadaranKeyPressed
+
+    private void TlingkarPerutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlingkarPerutKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_TlingkarPerutKeyPressed
     /**
      * @param args the command line arguments
      */
@@ -9264,6 +9321,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JTabbedPane TabPemeriksaanDokter;
     private javax.swing.JTabbedPane TabRawat;
     private widget.Tanggal TglKunRwt;
+    private widget.TextBox Tkesadaran;
+    private widget.TextBox TlingkarPerut;
     private widget.TextBox Tnorawat;
     private widget.TextBox Tspo2;
     private widget.TextBox Tspo21;
@@ -9339,6 +9398,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Label jLabel42;
     private widget.Label jLabel43;
     private widget.Label jLabel44;
+    private widget.Label jLabel45;
+    private widget.Label jLabel46;
     private widget.Label jLabel5;
     private widget.Label jLabel54;
     private widget.Label jLabel55;
@@ -9922,6 +9983,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             TRincianTindakan1.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 21).toString());
             TTerapi1.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 22).toString());
             Tspo21.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 24).toString());
+            Tkesadaran.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 25).toString());
+            TlingkarPerut.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 26).toString());
         }
     }
 
@@ -13031,12 +13094,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 || (!TBerat1.getText().trim().equals("")) || (!TRespirasi1.getText().trim().equals(""))
                 || (!TNadi1.getText().trim().equals("")) || (!TGCS1.getText().trim().equals(""))
                 || (!TDiagnosa1.getText().trim().equals("")) || (!TRincianTindakan1.getText().trim().equals(""))) {
-            Sequel.menyimpan("pemeriksaan_ralan_petugas", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 21, new String[]{
+            Sequel.menyimpan("pemeriksaan_ralan_petugas", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Data", 23, new String[]{
                 TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 TSuhu1.getText(), TTensi1.getText(), TNadi1.getText(), TRespirasi1.getText(), TTinggi1.getText(),
                 TBerat1.getText(), TGCS1.getText(), TKeluhan1.getText(), TPemeriksaan1.getText(), TAlergi1.getText(),
                 cmbImun1.getSelectedItem().toString(), TDiagnosa1.getText(), KdDok.getText(), TRncanaFolow1.getText(),
-                kdptg1.getText(), TRincianTindakan1.getText(), TTerapi1.getText(), Tspo21.getText()
+                kdptg1.getText(), TRincianTindakan1.getText(), TTerapi1.getText(), Tspo21.getText(), Tkesadaran.getText(), TlingkarPerut.getText()
             });
 
             Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi1.getText() + "'");
@@ -13052,9 +13115,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             ps6 = koneksi.prepareStatement("SELECT prp.no_rawat, ifnull(pt.nama,'-') nama, rp.no_rkm_medis, p.nm_pasien, prp.tgl_perawatan, prp.jam_rawat, prp.suhu_tubuh,"
                     + "prp.tensi, prp.nadi, prp.respirasi, prp.tinggi, prp.berat, prp.gcs, prp.keluhan, prp.pemeriksaan, prp.alergi,"
                     + "prp.imun_ke, prp.diagnosa, prp.rencana_follow_up, prp.nip, prp.rincian_tindakan, "
-                    + "ifnull(prp.terapi,'-') terapi, rp.kd_poli, ifnull(prp.spo2,'') spo2 from pasien p inner join reg_periksa rp on rp.no_rkm_medis=p.no_rkm_medis "
-                    + "inner join pemeriksaan_ralan_petugas prp on prp.no_rawat=rp.no_rawat inner join dokter d on d.kd_dokter=prp.kd_dokter "
-                    + "left join petugas pt on pt.nip = prp.nip where "
+                    + "ifnull(prp.terapi,'-') terapi, rp.kd_poli, ifnull(prp.spo2,'') spo2, ifnull(prp.kesadaran,'') kesadaran, ifnull(prp.lingkar_perut,'') lp from pasien p "
+                    + "inner join reg_periksa rp on rp.no_rkm_medis=p.no_rkm_medis inner join pemeriksaan_ralan_petugas prp on prp.no_rawat=rp.no_rawat "
+                    + "inner join dokter d on d.kd_dokter=prp.kd_dokter left join petugas pt on pt.nip = prp.nip where "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.no_rawat like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and p.nm_pasien like ? or "
                     + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or "
@@ -13130,7 +13193,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs6.getString(21),
                         rs6.getString(22),
                         rs6.getString(23),
-                        rs6.getString(24)
+                        rs6.getString(24),
+                        rs6.getString(25),
+                        rs6.getString(26)
                     });
                 }
             } catch (Exception e) {
@@ -14987,6 +15052,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         TTerapi1.setText("");
         Tspo21.setText("");
         Tspo2.setText("");
+        Tkesadaran.setText("");
+        TlingkarPerut.setText("");
 
         TNoRw2.setText("");
         ChkPemeriksaan.setSelected(false);

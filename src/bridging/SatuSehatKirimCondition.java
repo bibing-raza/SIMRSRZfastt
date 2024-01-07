@@ -376,12 +376,12 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Tgl.Registrasi :");
+        jLabel15.setText("Tgl. Registrasi :");
         jLabel15.setName("jLabel15"); // NOI18N
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -395,7 +395,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -783,7 +783,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, "
-                    + "rp.status_lanjut, concat(nj.tanggal,' ',nj.jam) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition "
+                    + "rp.status_lanjut, ifnull(concat(nj.tanggal,' ',nj.jam),now()) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                     + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
                     + "LEFT JOIN nota_jalan nj ON nj.no_rawat = rp.no_rawat LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
@@ -829,7 +829,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN nota_inap ni ON ni.no_rawat = rp.no_rawat "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
                     + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
-                    + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS where ni.tanggal between ? and ? "
+                    + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS where rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                     + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
