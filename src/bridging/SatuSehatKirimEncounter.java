@@ -842,11 +842,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.kd_dokter, pg.nama, "
                     + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, "
-                    + "ifnull(concat(nj.tanggal,'T',nj.jam,'+07:00'),concat(date(now()),'T',time(now()),'+07:00')) pulang, "
+                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+07:00') pulang, "
                     + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
-                    + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN nota_jalan nj ON nj.no_rawat = rp.no_rawat "
-                    + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
+                    + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                    + "where rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                     + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -884,11 +884,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
 
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.kd_dokter, pg.nama, "
-                    + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, concat(ni.tanggal,'T',ni.jam,'+07:00') pulang, "
+                    + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+07:00') pulang, "
                     + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
-                    + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN nota_inap ni ON ni.no_rawat = rp.no_rawat "
-                    + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
+                    + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat where ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                     + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");

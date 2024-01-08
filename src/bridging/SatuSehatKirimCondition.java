@@ -782,11 +782,11 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, "
-                    + "rp.status_lanjut, ifnull(concat(nj.tanggal,' ',nj.jam),now()) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
-                    + "LEFT JOIN nota_jalan nj ON nj.no_rawat = rp.no_rawat LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                    + "concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, "
+                    + "ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
+                    + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
                     + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS where rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
@@ -824,12 +824,12 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
             }
 
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
-                    + "concat(ni.tanggal,' ',ni.jam) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN nota_inap ni ON ni.no_rawat = rp.no_rawat "
-                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
-                    + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
-                    + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS where rp.tgl_registrasi between ? and ? "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
+                    + "se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                    + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
+                    + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
+                    + "ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                     + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");

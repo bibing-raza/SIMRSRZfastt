@@ -831,14 +831,13 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, ifnull(concat(nj.tanggal,' ',nj.jam ),now()) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.diagnosa, pr.keluhan, pr.pemeriksaan, "
-                    + "sc.kd_penyakit, py.nm_penyakit, sc.id_condition, ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp "
-                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat AND sc.STATUS = 'Ralan' INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit "
-                    + "INNER JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.kd_dokter = pg.nik "
-                    + "LEFT JOIN nota_jalan nj ON nj.no_rawat = rp.no_rawat LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat "
-                    + "AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' where pr.diagnosa<>'' and rp.tgl_registrasi between ? and ? "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.diagnosa, pr.keluhan, pr.pemeriksaan, sc.kd_penyakit, py.nm_penyakit, sc.id_condition, "
+                    + "ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat AND sc.STATUS = 'Ralan' "
+                    + "INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit INNER JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN pegawai pg ON pr.kd_dokter = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
+                    + "AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' where pr.diagnosa<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -875,15 +874,14 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
             }
 
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(ni.tanggal,' ',ni.jam) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.penilaian, pr.keluhan, pr.pemeriksaan, "
-                    + "sc.kd_penyakit, py.nm_penyakit, sc.id_condition, ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp "
-                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN nota_inap ni ON ni.no_rawat = rp.no_rawat "
-                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat "
-                    + "AND sc.STATUS = 'Ranap' INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit INNER JOIN pemeriksaan_ranap pr ON pr.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pegawai pg ON pr.nip = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat "
-                    + "AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ranap' "
-                    + "where pr.penilaian<>'' and rp.tgl_registrasi between ? and ? "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.penilaian, pr.keluhan, pr.pemeriksaan, sc.kd_penyakit, "
+                    + "py.nm_penyakit, sc.id_condition, ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp "
+                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat AND sc.STATUS = 'Ranap' "
+                    + "INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit INNER JOIN pemeriksaan_ranap pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN pegawai pg ON pr.nip = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
+                    + "AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ranap' where ki.stts_pulang not in ('-','Pindah Kamar') and pr.penilaian<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");

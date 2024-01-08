@@ -15477,7 +15477,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         psdpjp.close();
                     }
                 }
-                tbKamIn.setValueAt(dokterranap, i, 19);
+                tbKamIn.setValueAt(dokterranap, i, 20);
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
