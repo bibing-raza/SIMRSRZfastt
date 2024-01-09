@@ -447,6 +447,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu = new javax.swing.JPopupMenu();
+        MnUrutanJam = new javax.swing.JMenuItem();
         MnContengSemua = new javax.swing.JMenuItem();
         MnHapusConteng = new javax.swing.JMenuItem();
         MnCopyTindakan = new javax.swing.JMenuItem();
@@ -583,6 +584,21 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         jPopupMenu.setName("jPopupMenu"); // NOI18N
 
+        MnUrutanJam.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnUrutanJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnUrutanJam.setText("Urutkan Sesuai Jam");
+        MnUrutanJam.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnUrutanJam.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnUrutanJam.setIconTextGap(5);
+        MnUrutanJam.setName("MnUrutanJam"); // NOI18N
+        MnUrutanJam.setPreferredSize(new java.awt.Dimension(140, 26));
+        MnUrutanJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnUrutanJamActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnUrutanJam);
+
         MnContengSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnContengSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnContengSemua.setText("Conteng Semua");
@@ -590,7 +606,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         MnContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnContengSemua.setIconTextGap(5);
         MnContengSemua.setName("MnContengSemua"); // NOI18N
-        MnContengSemua.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnContengSemua.setPreferredSize(new java.awt.Dimension(140, 26));
         MnContengSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnContengSemuaActionPerformed(evt);
@@ -605,7 +621,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         MnHapusConteng.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHapusConteng.setIconTextGap(5);
         MnHapusConteng.setName("MnHapusConteng"); // NOI18N
-        MnHapusConteng.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnHapusConteng.setPreferredSize(new java.awt.Dimension(140, 26));
         MnHapusConteng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusContengActionPerformed(evt);
@@ -620,7 +636,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         MnCopyTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCopyTindakan.setIconTextGap(5);
         MnCopyTindakan.setName("MnCopyTindakan"); // NOI18N
-        MnCopyTindakan.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnCopyTindakan.setPreferredSize(new java.awt.Dimension(140, 26));
         MnCopyTindakan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCopyTindakanActionPerformed(evt);
@@ -1230,7 +1246,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel51.setBounds(0, 8, 80, 23);
 
         TtglCetak.setEditable(false);
-        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         TtglCetak.setDisplayFormat("dd-MM-yyyy");
         TtglCetak.setName("TtglCetak"); // NOI18N
         TtglCetak.setOpaque(false);
@@ -1333,7 +1349,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1749,7 +1765,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1763,7 +1779,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3244,6 +3260,10 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         }        
     }//GEN-LAST:event_BtnPrint1ActionPerformed
 
+    private void MnUrutanJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnUrutanJamActionPerformed
+        tampilUrutanJam();
+    }//GEN-LAST:event_MnUrutanJamActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3310,6 +3330,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnHapusManajemen;
     private javax.swing.JMenuItem MnHapusPagi;
     private javax.swing.JMenuItem MnHapusSore;
+    private javax.swing.JMenuItem MnUrutanJam;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
@@ -3397,6 +3418,73 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.Table tbTindakan;
     // End of variables declaration//GEN-END:variables
 
+    private void tampilUrutanJam() {
+        Valid.tabelKosong(tabMode);
+        try {
+            ps = koneksi.prepareStatement("select c.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(c.tanggal,'%d-%m-%Y') tgl, "
+                    + "c.sift, if(c.jam_tindakan='00:00:00','',time_format(c.jam_tindakan,'%H:%i')) jamTindkaan, "
+                    + "c.nm_tindakan, pg.nama ptgs, c.tanggal, c.jam_tindakan, c.nip_petugas, c.waktu_simpan from catatan_tindakan_keperawatan c "
+                    + "inner join reg_periksa rp on rp.no_rawat=c.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=c.nip_petugas where "
+                    + "c.tanggal between ? and ? and c.no_rawat like ? or "
+                    + "c.tanggal between ? and ? and p.no_rkm_medis like ? or "
+                    + "c.tanggal between ? and ? and p.nm_pasien like ? or "
+                    + "c.tanggal between ? and ? and c.sift like ? or "
+                    + "c.tanggal between ? and ? and c.nm_tindakan like ? or "
+                    + "c.tanggal between ? and ? and pg.nama like ? order by c.tanggal, c.jam_tindakan");
+            try {
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new Object[]{
+                        false,
+                        rs.getString("no_rawat"), 
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("tgl"),
+                        rs.getString("sift"),
+                        rs.getString("jamTindkaan"),
+                        rs.getString("nm_tindakan"),
+                        rs.getString("ptgs"),
+                        rs.getString("tanggal"),
+                        rs.getString("jam_tindakan"),
+                        rs.getString("nip_petugas"),
+                        rs.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        LCount.setText("" + tabMode.getRowCount());
+    }
+    
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {

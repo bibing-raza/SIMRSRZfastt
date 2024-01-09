@@ -10,6 +10,7 @@
  * and open the template in10:28:56 PM
  */
 package simrskhanza;
+import bridging.ApiSatuSehat;
 import bridging.BPJSApi;
 import bridging.BPJSDataSEP;
 import bridging.BPJSSuratKontrol;
@@ -114,17 +115,26 @@ public final class DlgReg extends javax.swing.JDialog {
     private PreparedStatement ps, ps2, ps3, pscaripiutang;
     private Properties prop = new Properties();
     private ResultSet rs, rs2;
+    private ApiSatuSehat apiSatuSehat = new ApiSatuSehat();
+    private HttpHeaders headers ;
+    private HttpEntity requestEntity;
+    private ObjectMapper mapper = new ObjectMapper();
+    private JsonNode root;
+    private JsonNode response;
     private int pilihan = 0, i = 0, cekRujuk = 0, cekSEP = 0, cekjampersal = 0, cekjamkesda = 0,
             diagnosa_cek = 0, cekUmur = 0, x = 0, panggilan = 0, nomorpasien = 0, hasilantrian = 0,
             cekPangBPJS = 0, cekPangUmum = 0, cekPangLB = 0, cekPangInap = 0;
     private Date cal = new Date();
     private String nosisrute = "", URUTNOREG = "", alamatperujuk = "-", URL = "", utc = "", noka = "", wktPanggil = "", wktAmbilNomor = "", panggilanFix = "",
             aktifjadwal = "", IPPRINTERTRACER = "", umur = "0", sttsumur = "Th", cekSEPboking = "", diagnosa_ok = "", noPangAkhir = "", noRwNew = "",
-            tglDaftar = "", tglnoRW = "", sttsumur1 = "", validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi");
+            tglDaftar = "", tglnoRW = "", sttsumur1 = "", validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi"),
+            iddokter = "", idpasien = "", link = "", json = "", sttsrawat = "";
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private String[] urut = {"", "./suara/satu.mp3", "./suara/dua.mp3", "./suara/tiga.mp3", "./suara/empat.mp3",
         "./suara/lima.mp3", "./suara/enam.mp3", "./suara/tujuh.mp3", "./suara/delapan.mp3",
         "./suara/sembilan.mp3", "./suara/sepuluh.mp3", "./suara/sebelas.mp3"};
+    
+    
     private BackgroundMusic music;
     private char ESC = 27;
     // ganti kertas
@@ -1275,6 +1285,12 @@ public final class DlgReg extends javax.swing.JDialog {
             IPPRINTERTRACER = "";
             URUTNOREG = "";
         }
+        
+        try {
+            link = koneksiDB.URLFHIRSATUSEHAT();
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
 
         ChkInput.setSelected(false);
         isForm();
@@ -1562,6 +1578,8 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         CrPoli = new widget.TextBox();
         BtnSeek4 = new widget.Button();
+        jLabel24 = new widget.Label();
+        Tsatusehat = new widget.Label();
         panelGlass7 = new widget.panelisi();
         jLabel15 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -3463,7 +3481,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -3514,7 +3532,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -3775,7 +3793,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -3904,7 +3922,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -3997,7 +4015,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 130, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4223,7 +4241,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -4880,6 +4898,20 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnSeek4);
 
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Status Bridging SatuSehat : ");
+        jLabel24.setName("jLabel24"); // NOI18N
+        jLabel24.setPreferredSize(new java.awt.Dimension(155, 23));
+        panelGlass8.add(jLabel24);
+
+        Tsatusehat.setForeground(new java.awt.Color(0, 0, 204));
+        Tsatusehat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        Tsatusehat.setText("satusehat");
+        Tsatusehat.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        Tsatusehat.setName("Tsatusehat"); // NOI18N
+        Tsatusehat.setPreferredSize(new java.awt.Dimension(155, 23));
+        panelGlass8.add(Tsatusehat);
+
         panelGlass12.add(panelGlass8, java.awt.BorderLayout.PAGE_START);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
@@ -4892,7 +4924,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4906,7 +4938,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5768,7 +5800,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5782,7 +5814,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-08-2023" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2023" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -5980,6 +6012,7 @@ public final class DlgReg extends javax.swing.JDialog {
                             TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                     simpanIKM();
                     UpdateUmur();
+                    kirimSatuSehat();
                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                     Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Simpan'");
 
@@ -6000,6 +6033,7 @@ public final class DlgReg extends javax.swing.JDialog {
                                 TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                         simpanIKM();
                         UpdateUmur();
+                        kirimSatuSehat();
                         Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                         Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Simpan'");
 
@@ -6020,6 +6054,7 @@ public final class DlgReg extends javax.swing.JDialog {
                                     TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                             simpanIKM();
                             UpdateUmur();
+                            kirimSatuSehat();
                             Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                             Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Simpan'");
 
@@ -6040,6 +6075,7 @@ public final class DlgReg extends javax.swing.JDialog {
                                         TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                                 simpanIKM();
                                 UpdateUmur();
+                                kirimSatuSehat();
                                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                                 Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Simpan'");
 
@@ -6060,6 +6096,7 @@ public final class DlgReg extends javax.swing.JDialog {
                                             TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                                     simpanIKM();
                                     UpdateUmur();
+                                    kirimSatuSehat();
                                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
                                     Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Simpan'");
 
@@ -6259,6 +6296,7 @@ public final class DlgReg extends javax.swing.JDialog {
                             tbregistrasiRalan.getValueAt(tbregistrasiRalan.getSelectedRow(), 2).toString()
                         });
 
+                updateSatuSehat();
                 Sequel.mengedit("rujuk_masuk", "no_rawat='" + TNoRw.getText() + "'", "perujuk='" + AsalRujukan.getText() + "', alamat='" + alamatperujuk + "', "
                         + "dokter_perujuk='" + AsalRujukan.getText() + "',kd_rujukan='" + kode_rujukanya.getText() + "' ");
                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
@@ -6286,6 +6324,7 @@ public final class DlgReg extends javax.swing.JDialog {
                                 tbregistrasiRalan.getValueAt(tbregistrasiRalan.getSelectedRow(), 2).toString()
                             });
 
+                    updateSatuSehat();
                     Sequel.mengedit("rujuk_masuk", "no_rawat='" + TNoRw.getText() + "'", "perujuk='" + AsalRujukan.getText() + "', alamat='" + alamatperujuk + "', "
                             + "dokter_perujuk='" + AsalRujukan.getText() + "', kd_rujukan='" + kode_rujukanya.getText() + "' ");
                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
@@ -7176,6 +7215,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampilAwal();
         akses.tRefreshAntri.start();
+        if (Sequel.cariIsi("select status_aktif from setting_bridging where kd_bridging='3'").equals("Ya")) {
+            Tsatusehat.setText("AKTIF");
+        } else {
+            Tsatusehat.setText("NON AKTIF");
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void MnPeriksaRadiologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPeriksaRadiologiActionPerformed
@@ -10031,6 +10075,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Tanggal TglSakit2;
     private widget.Tanggal TglSurat;
     private widget.Tanggal TglSurat1;
+    private widget.Label Tsatusehat;
     private widget.Tanggal Ttgl_lahir;
     private widget.TextBox Tumur;
     private widget.Button btnKab;
@@ -10086,6 +10131,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
+    private widget.Label jLabel24;
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
@@ -11868,5 +11914,203 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
 
         LCount.setText("" + tabMode.getRowCount());
+    }
+    
+    private void kirimSatuSehat() {
+        iddokter = "";
+        idpasien = "";
+        sttsrawat = "Ralan";
+
+        if (Sequel.cariIsi("select status_aktif from setting_bridging where kd_bridging='3'").equals("Ya")) {
+            Tsatusehat.setText("AKTIF");
+            if (iddokter.length() == 16) {
+                try {
+                    iddokter = Sequel.cariIsi("select no_ktp from pegawai where nik='" + kddokter.getText() + "'");
+                    idpasien = Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis='" + TNoRM.getText() + "'");
+                    try {
+                        headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_JSON);
+                        headers.add("Authorization", "Bearer " + apiSatuSehat.TokenSatuSehat());
+                        json = "{"
+                                + "\"resourceType\": \"Encounter\","
+                                + "\"status\": \"finished\","
+                                + "\"class\": {"
+                                + "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\","
+                                + "\"code\": \"" + (sttsrawat.equals("Ralan") ? "AMB" : "IMP") + "\","
+                                + "\"display\": \"" + (sttsrawat.equals("Ralan") ? "ambulatory" : "inpatient encounter") + "\""
+                                + "},"
+                                + "\"subject\": {"
+                                + "\"reference\": \"Patient/" + idpasien + "\","
+                                + "\"display\": \"" + TPasien.getText() + "\""
+                                + "},"
+                                + "\"participant\": ["
+                                + "{"
+                                + "\"type\": ["
+                                + "{"
+                                + "\"coding\": ["
+                                + "{"
+                                + "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\","
+                                + "\"code\": \"ATND\","
+                                + "\"display\": \"attender\""
+                                + "}"
+                                + "]"
+                                + "}"
+                                + "],"
+                                + "\"individual\": {"
+                                + "\"reference\": \"Practitioner/" + iddokter + "\","
+                                + "\"display\": \"" + TDokter.getText() + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"period\": {"
+                                + "\"start\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',jam_reg,'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\""
+                                + "},"
+                                + "\"location\": ["
+                                + "{"
+                                + "\"location\": {"
+                                + "\"reference\": \"Location/" + Sequel.cariIsi("select ifnull(id_lokasi_satusehat,'') from satu_sehat_mapping_lokasi_ralan where kd_poli='" + kdpoli.getText() + "'") + "\","
+                                + "\"display\": \"" + TPoli.getText() + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"statusHistory\": ["
+                                + "{"
+                                + "\"status\": \"finished\","
+                                + "\"period\": {"
+                                + "\"start\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',jam_reg,'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\","
+                                + "\"end\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"serviceProvider\": {"
+                                + "\"reference\": \"Organization/" + koneksiDB.IDSATUSEHAT() + "\""
+                                + "},"
+                                + "\"identifier\": ["
+                                + "{"
+                                + "\"system\": \"http://sys-ids.kemkes.go.id/encounter/" + koneksiDB.IDSATUSEHAT() + "\","
+                                + "\"value\": \"" + TNoRw.getText() + "\""
+                                + "}"
+                                + "]"
+                                + "}";
+                        System.out.println("URL : " + link + "/Encounter");
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Encounter", HttpMethod.POST, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
+                        root = mapper.readTree(json);
+                        response = root.path("id");
+                        if (!response.asText().equals("")) {
+                            Sequel.menyimpan("satu_sehat_encounter", "?,?", "No.Rawat", 2, new String[]{
+                                TNoRw.getText(), response.asText()
+                            });
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging SatuSehat: " + e);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+            } else {
+                System.out.println("NIK " + TDokter.getText() + " kurang dari 16 digit");
+            }
+        } else {
+            Tsatusehat.setText("NON AKTIF");
+        }
+    }
+    
+    private void updateSatuSehat() {
+        iddokter = "";
+        idpasien = "";
+        sttsrawat = "Ralan";
+
+        if (Sequel.cariIsi("select status_aktif from setting_bridging where kd_bridging='3'").equals("Ya")) {
+            Tsatusehat.setText("AKTIF");
+            if (iddokter.length() == 16) {
+                try {
+                    iddokter = Sequel.cariIsi("select no_ktp from pegawai where nik='" + kddokter.getText() + "'");
+                    idpasien = Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis='" + TNoRM.getText() + "'");
+                    try {
+                        headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_JSON);
+                        headers.add("Authorization", "Bearer " + apiSatuSehat.TokenSatuSehat());
+                        json = "{"
+                                + "\"resourceType\": \"Encounter\","
+                                + "\"id\": \"" + Sequel.cariIsi("select id_encounter from satu_sehat_encounter where no_rawat='" + TNoRw.getText() + "'") + "\","
+                                + "\"identifier\": ["
+                                + "{"
+                                + "\"system\": \"http://sys-ids.kemkes.go.id/encounter/" + koneksiDB.IDSATUSEHAT() + "\","
+                                + "\"value\": \"" + TNoRw.getText() + "\""
+                                + "}"
+                                + "],"
+                                + "\"status\": \"finished\","
+                                + "\"class\": {"
+                                + "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\","
+                                + "\"code\": \"" + (Sequel.cariIsi("select ifnull(id_lokasi_satusehat,'') from satu_sehat_mapping_lokasi_ralan where kd_poli='" + kdpoli.getText() + "'").equals("Ralan") ? "AMB" : "IMP") + "\","
+                                + "\"display\": \"" + (Sequel.cariIsi("select ifnull(id_lokasi_satusehat,'') from satu_sehat_mapping_lokasi_ralan where kd_poli='" + kdpoli.getText() + "'").equals("Ralan") ? "ambulatory" : "inpatient encounter") + "\""
+                                + "},"
+                                + "\"subject\": {"
+                                + "\"reference\": \"Patient/" + idpasien + "\","
+                                + "\"display\": \"" + TPasien.getText() + "\""
+                                + "},"
+                                + "\"participant\": ["
+                                + "{"
+                                + "\"type\": ["
+                                + "{"
+                                + "\"coding\": ["
+                                + "{"
+                                + "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\","
+                                + "\"code\": \"ATND\","
+                                + "\"display\": \"attender\""
+                                + "}"
+                                + "]"
+                                + "}"
+                                + "],"
+                                + "\"individual\": {"
+                                + "\"reference\": \"Practitioner/" + iddokter + "\","
+                                + "\"display\": \"" + TDokter.getText() + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"period\": {"
+                                + "\"start\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',jam_reg,'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\""
+                                + "},"
+                                + "\"location\": ["
+                                + "{"
+                                + "\"location\": {"
+                                + "\"reference\": \"Location/" + Sequel.cariIsi("select ifnull(id_lokasi_satusehat,'') from satu_sehat_mapping_lokasi_ralan where kd_poli='" + kdpoli.getText() + "'") + "\","
+                                + "\"display\": \"" + TPoli.getText() + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"statusHistory\": ["
+                                + "{"
+                                + "\"status\": \"finished\","
+                                + "\"period\": {"
+                                + "\"start\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',jam_reg,'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\","
+                                + "\"end\": \"" + Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+07:00') from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "\""
+                                + "}"
+                                + "}"
+                                + "],"
+                                + "\"serviceProvider\": {"
+                                + "\"reference\": \"Organization/" + koneksiDB.IDSATUSEHAT() + "\""
+                                + "}"
+                                + "}";
+                        System.out.println("URL : " + link + "/Encounter/" + Sequel.cariIsi("select id_encounter from satu_sehat_encounter where no_rawat='" + TNoRw.getText() + "'"));
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Encounter/" + Sequel.cariIsi("select id_encounter from satu_sehat_encounter where no_rawat='" + TNoRw.getText() + "'"), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+            } else {
+                System.out.println("NIK " + TDokter.getText() + " kurang dari 16 digit");
+            }
+        } else {
+            Tsatusehat.setText("NON AKTIF");
+        }
     }
 }

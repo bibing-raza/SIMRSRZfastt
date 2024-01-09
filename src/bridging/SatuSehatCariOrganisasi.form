@@ -69,12 +69,12 @@
 
           <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
           <SubComponents>
-            <Component class="widget.Table" name="tbKamar">
+            <Component class="widget.Table" name="tbDepartemen">
               <Properties>
-                <Property name="name" type="java.lang.String" value="tbKamar" noResource="true"/>
+                <Property name="name" type="java.lang.String" value="tbDepartemen" noResource="true"/>
               </Properties>
               <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbKamarKeyPressed"/>
+                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="tbDepartemenKeyPressed"/>
               </Events>
             </Component>
           </SubComponents>

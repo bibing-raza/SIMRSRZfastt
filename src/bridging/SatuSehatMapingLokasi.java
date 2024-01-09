@@ -33,6 +33,7 @@ import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.MediaType;
+import simrskhanza.DlgCariBangsal;
 import simrskhanza.DlgCariPoli;
 
 /**
@@ -49,7 +50,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     private int i=0,pilih=0;
     private SatuSehatCariOrganisasi organisasi=new SatuSehatCariOrganisasi(null,false);
     private DlgCariPoli poli=new DlgCariPoli(null,false);
-    private DlgKamar kamar=new DlgKamar(null,false);
+    //private DlgKamar kamar=new DlgKamar(null,false);
+    private DlgCariBangsal bangsal=new DlgCariBangsal(null,false);
     private String link="",json="";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
@@ -68,45 +70,45 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new Object[]{
-                "Kode Unit","Nama Unit","ID Lokasi Satu Sehat","Longitude","Latitude","Altitude",
-                "Kode Departemen","Nama Departemen","ID Organisasi Satu Sehat"
+        tabMode = new DefaultTableModel(null, new Object[]{
+            "Kode Unit", "Nama Unit", "ID Lokasi Satu Sehat", "Longitude", "Latitude", "Altitude",
+            "Kode Departemen", "Nama Departemen", "ID Organisasi Satu Sehat"
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasi.setModel(tabMode);
-
         tbLokasi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 9; i++) {
             TableColumn column = tbLokasi.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(80);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(180);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(215);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(110);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(110);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(110);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(100);
-            }else if(i==7){
+            } else if (i == 7) {
                 column.setPreferredWidth(180);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setPreferredWidth(215);
             }
         }
         tbLokasi.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabModeKamar=new DefaultTableModel(null,new Object[]{
-                "Nomor Ruang","Kamar/Ruang","ID Lokasi Satu Sehat","Longitude","Latitude","Altitude",
-                "Kode Departemen","Nama Departemen","ID Organisasi Satu Sehat"
-            }){
+        tabModeKamar = new DefaultTableModel(null, new Object[]{
+            "Nomor Ruang", "Kamar/Ruang", "ID Lokasi Satu Sehat", "Longitude", "Latitude", "Altitude",
+            "Kode Departemen", "Nama Departemen", "ID Organisasi Satu Sehat"
+        }) {
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         tbLokasiKamar.setModel(tabModeKamar);
@@ -324,43 +326,43 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-                if(organisasi.getTable().getSelectedRow()!= -1){                
-                    if(pilih==1){
-                        KodeDepartemen.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemen.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                if (organisasi.getTable().getSelectedRow() != -1) {
+                    if (pilih == 1) {
+                        KodeDepartemen.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemen.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemen.requestFocus();
-                    }else if(pilih==2){
-                        KodeDepartemenKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 2) {
+                        KodeDepartemenKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiKamar.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenKamar.requestFocus();
-                    }else if(pilih==3){
-                        KodeDepartemenRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 3) {
+                        KodeDepartemenRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiRuangOK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenRuangOK.requestFocus();
-                    }else if(pilih==4){
-                        KodeDepartemenRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 4) {
+                        KodeDepartemenRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiRuangLabPK.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenRuangLabPK.requestFocus();
-                    }else if(pilih==5){
-                        KodeDepartemenRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 5) {
+                        KodeDepartemenRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiRuangLabPA.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenRuangLabPA.requestFocus();
-                    }else if(pilih==6){
-                        KodeDepartemenRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 6) {
+                        KodeDepartemenRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiRuangLabMB.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenRuangLabMB.requestFocus();
-                    }else if(pilih==7){
-                        KodeDepartemenRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),0).toString());
-                        NamaDepartemenRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),1).toString());
-                        IDOrganisasiRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(),2).toString());
+                    } else if (pilih == 7) {
+                        KodeDepartemenRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 0).toString());
+                        NamaDepartemenRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 1).toString());
+                        IDOrganisasiRuangRadiologi.setText(organisasi.getTable().getValueAt(organisasi.getTable().getSelectedRow(), 2).toString());
                         KodeDepartemenRuangRadiologi.requestFocus();
-                    }         
+                    }
                 }
             }
             @Override
@@ -396,18 +398,20 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             public void windowDeactivated(WindowEvent e) {}
         }); 
         
-        kamar.addWindowListener(new WindowListener() {
+        bangsal.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {}
             @Override
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-                if(kamar.getTable().getSelectedRow()!= -1){   
-                    KodeKamar.setText(kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(),1).toString());  
-                    NamaKamar.setText(kamar.getTable().getValueAt(kamar.getTable().getSelectedRow(),3).toString()); 
-                }  
-                KodeKamar.requestFocus();
+                if(akses.getform().equals("SatuSehatMapingLokasi")){
+                    if (bangsal.getTable().getSelectedRow() != -1) {
+                        KodeBangsal.setText(bangsal.getTable().getValueAt(bangsal.getTable().getSelectedRow(), 0).toString());
+                        NamaBangsal.setText(bangsal.getTable().getValueAt(bangsal.getTable().getSelectedRow(), 1).toString());
+                        KodeBangsal.requestFocus();
+                    }
+                }
             }
             @Override
             public void windowIconified(WindowEvent e) {}
@@ -417,19 +421,6 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             public void windowActivated(WindowEvent e) {}
             @Override
             public void windowDeactivated(WindowEvent e) {}
-        });
-        
-        kamar.getTable().addKeyListener(new KeyListener() {
-            @Override
-            public void keyTyped(KeyEvent e) {}
-            @Override
-            public void keyPressed(KeyEvent e) {
-                if(e.getKeyCode()==KeyEvent.VK_SPACE){
-                    kamar.dispose();
-                }
-            }
-            @Override
-            public void keyReleased(KeyEvent e) {}
         });
         
         try {
@@ -491,8 +482,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         NamaDepartemenKamar = new widget.TextBox();
         btnDepartemenKamar = new widget.Button();
         jLabel12 = new widget.Label();
-        KodeKamar = new widget.TextBox();
-        NamaKamar = new widget.TextBox();
+        KodeBangsal = new widget.TextBox();
+        NamaBangsal = new widget.TextBox();
         btnKamar = new widget.Button();
         IDOrganisasiKamar = new widget.TextBox();
         LongitudeKamar = new widget.TextBox();
@@ -987,22 +978,22 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         btnDepartemenKamar.setBounds(705, 40, 28, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel12.setText("Kamar :");
+        jLabel12.setText("Bangsal :");
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput1.add(jLabel12);
         jLabel12.setBounds(0, 10, 59, 23);
 
-        KodeKamar.setEditable(false);
-        KodeKamar.setForeground(new java.awt.Color(0, 0, 0));
-        KodeKamar.setName("KodeKamar"); // NOI18N
-        FormInput1.add(KodeKamar);
-        KodeKamar.setBounds(63, 10, 70, 23);
+        KodeBangsal.setEditable(false);
+        KodeBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        KodeBangsal.setName("KodeBangsal"); // NOI18N
+        FormInput1.add(KodeBangsal);
+        KodeBangsal.setBounds(63, 10, 70, 23);
 
-        NamaKamar.setEditable(false);
-        NamaKamar.setForeground(new java.awt.Color(0, 0, 0));
-        NamaKamar.setName("NamaKamar"); // NOI18N
-        FormInput1.add(NamaKamar);
-        NamaKamar.setBounds(135, 10, 195, 23);
+        NamaBangsal.setEditable(false);
+        NamaBangsal.setForeground(new java.awt.Color(0, 0, 0));
+        NamaBangsal.setName("NamaBangsal"); // NOI18N
+        FormInput1.add(NamaBangsal);
+        NamaBangsal.setBounds(135, 10, 195, 23);
 
         btnKamar.setForeground(new java.awt.Color(0, 0, 0));
         btnKamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1728,22 +1719,22 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
 }//GEN-LAST:event_btnDepartemenRSKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if(TabRawat.getSelectedIndex()==0){
-            if(KodeDepartemen.getText().trim().equals("")||NamaDepartemen.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemen,"Departemen/Organisasi");
-            }else if(KodePoli.getText().trim().equals("")||NamaPoli.getText().trim().equals("")){
-                Valid.textKosong(KodePoli,"Poli/Unit");
-            }else if(Longitude.getText().trim().equals("")){
-                Valid.textKosong(Longitude,"Longitude");
-            }else if(Latitude.getText().trim().equals("")){
-                Valid.textKosong(Latitude,"Latitude");
-            }else if(Altitude.getText().trim().equals("")){
-                Valid.textKosong(Altitude,"Altitude");
-            }else{
-                try{
+        if (TabRawat.getSelectedIndex() == 0) {
+            if (KodeDepartemen.getText().trim().equals("") || NamaDepartemen.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemen, "Departemen/Organisasi");
+            } else if (KodePoli.getText().trim().equals("") || NamaPoli.getText().trim().equals("")) {
+                Valid.textKosong(KodePoli, "Poli/Unit");
+            } else if (Longitude.getText().trim().equals("")) {
+                Valid.textKosong(Longitude, "Longitude");
+            } else if (Latitude.getText().trim().equals("")) {
+                Valid.textKosong(Latitude, "Latitude");
+            } else if (Altitude.getText().trim().equals("")) {
+                Valid.textKosong(Altitude, "Altitude");
+            } else {
+                try {
                     headers = new HttpHeaders();
                     headers.setContentType(MediaType.APPLICATION_JSON);
-                    headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                    headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
                     json = "{" +
                                 "\"resourceType\": \"Location\"," +
                                 "\"identifier\": [" +
@@ -1823,55 +1814,55 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                                     "\"reference\": \"Organization/"+IDOrganisasi.getText()+"\"" +
                                 "}" +
                             "}";
-                    System.out.println("URL : "+link+"/Location");
-                    System.out.println("Request JSON : "+json);
-                    requestEntity = new HttpEntity(json,headers);
-                    json=api.getRest().exchange(link+"/Location", HttpMethod.POST, requestEntity, String.class).getBody();
-                    System.out.println("Result JSON : "+json);
+                    System.out.println("URL : " + link + "/Location");
+                    System.out.println("Request JSON : " + json);
+                    requestEntity = new HttpEntity(json, headers);
+                    json = api.getRest().exchange(link + "/Location", HttpMethod.POST, requestEntity, String.class).getBody();
+                    System.out.println("Result JSON : " + json);
                     root = mapper.readTree(json);
                     response = root.path("id");
-                    if(!response.asText().equals("")){
-                        if(Sequel.menyimpantf("satu_sehat_mapping_lokasi_ralan","?,?,?,?,?,?","Kode Poli/Kode Unit/ID Lokasi",6,new String[]{
-                                KodePoli.getText(),IDOrganisasi.getText(),response.asText(),Longitude.getText(),Latitude.getText(),Altitude.getText()
-                            })==true){
+                    if (!response.asText().equals("")) {
+                        if (Sequel.menyimpantf("satu_sehat_mapping_lokasi_ralan", "?,?,?,?,?,?", "Kode Poli/Kode Unit/ID Lokasi", 6, new String[]{
+                            KodePoli.getText(), IDOrganisasi.getText(), response.asText(), Longitude.getText(), Latitude.getText(), Altitude.getText()
+                        }) == true) {
                             emptTeks();
                             tampil();
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Gagal melakukan mapping organisasi ke server Satu Sehat Kemenkes");
-                    } 
-                }catch(Exception e){
-                    System.out.println("Notifikasi Bridging : "+e);
-                    JOptionPane.showMessageDialog(null,"Error Respon Satu Sehat Kemenkes : "+e);
-                }               
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal melakukan mapping organisasi ke server Satu Sehat Kemenkes");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi Bridging : " + e);
+                    JOptionPane.showMessageDialog(null, "Error Respon Satu Sehat Kemenkes : " + e);
+                }
             }
-        }else if(TabRawat.getSelectedIndex()==1){
-            if(KodeDepartemenKamar.getText().trim().equals("")||NamaDepartemenKamar.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemenKamar,"Departemen/Organisasi");
-            }else if(KodeKamar.getText().trim().equals("")||NamaKamar.getText().trim().equals("")){
-                Valid.textKosong(KodeKamar,"Kamar/Ruang");
-            }else if(LongitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(LongitudeKamar,"Longitude");
-            }else if(LatitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(LatitudeKamar,"Latitude");
-            }else if(AltitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(AltitudeKamar,"Altitude");
-            }else{
-                try{
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            if (KodeDepartemenKamar.getText().trim().equals("") || NamaDepartemenKamar.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemenKamar, "Departemen/Organisasi");
+            } else if (KodeBangsal.getText().trim().equals("") || NamaBangsal.getText().trim().equals("")) {
+                Valid.textKosong(KodeBangsal, "Kamar/Ruang");
+            } else if (LongitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(LongitudeKamar, "Longitude");
+            } else if (LatitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(LatitudeKamar, "Latitude");
+            } else if (AltitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(AltitudeKamar, "Altitude");
+            } else {
+                try {
                     headers = new HttpHeaders();
                     headers.setContentType(MediaType.APPLICATION_JSON);
-                    headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                    headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
                     json = "{" +
                                 "\"resourceType\": \"Location\"," +
                                 "\"identifier\": [" +
                                     "{" +
                                         "\"system\": \"http://sys-ids.kemkes.go.id/location/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                        "\"value\": \""+KodeKamar.getText()+"\"" +
+                                        "\"value\": \""+KodeBangsal.getText()+"\"" +
                                     "}" +
                                 "]," +
                                 "\"status\": \"active\"," +
-                                "\"name\": \""+NamaKamar.getText()+"\"," +
-                                "\"description\": \""+NamaKamar.getText()+" Nomor "+KodeKamar.getText()+"\"," +
+                                "\"name\": \""+NamaBangsal.getText()+"\"," +
+                                "\"description\": \""+NamaBangsal.getText()+" Nomor "+KodeBangsal.getText()+"\"," +
                                 "\"mode\": \"instance\"," +
                                 "\"telecom\": [" +
                                     "{" +
@@ -1940,26 +1931,26 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                                     "\"reference\": \"Organization/"+IDOrganisasiKamar.getText()+"\"" +
                                 "}" +
                             "}";
-                    System.out.println("Request JSON : "+json);
-                    requestEntity = new HttpEntity(json,headers);
-                    json=api.getRest().exchange(link+"/Location", HttpMethod.POST, requestEntity, String.class).getBody();
-                    System.out.println("Result JSON : "+json);
+                    System.out.println("Request JSON : " + json);
+                    requestEntity = new HttpEntity(json, headers);
+                    json = api.getRest().exchange(link + "/Location", HttpMethod.POST, requestEntity, String.class).getBody();
+                    System.out.println("Result JSON : " + json);
                     root = mapper.readTree(json);
                     response = root.path("id");
-                    if(!response.asText().equals("")){
-                        if(Sequel.menyimpantf("satu_sehat_mapping_lokasi_ranap","?,?,?,?,?,?","Kode Kamar/Kode Ruang/ID Lokasi",6,new String[]{
-                                KodeKamar.getText(),IDOrganisasiKamar.getText(),response.asText(),LongitudeKamar.getText(),LatitudeKamar.getText(),AltitudeKamar.getText()
-                            })==true){
+                    if (!response.asText().equals("")) {
+                        if (Sequel.menyimpantf("satu_sehat_mapping_lokasi_ranap", "?,?,?,?,?,?", "Kode Kamar/Kode Ruang/ID Lokasi", 6, new String[]{
+                            KodeBangsal.getText(), IDOrganisasiKamar.getText(), response.asText(), LongitudeKamar.getText(), LatitudeKamar.getText(), AltitudeKamar.getText()
+                        }) == true) {
                             emptTeks();
                             tampilkamar();
                         }
-                    }else{
-                        JOptionPane.showMessageDialog(null,"Gagal melakukan mapping organisasi ke server Satu Sehat Kemenkes");
-                    } 
-                }catch(Exception e){
-                    System.out.println("Notifikasi Bridging : "+e);
-                    JOptionPane.showMessageDialog(null,"Error Respon Satu Sehat Kemenkes : "+e);
-                }               
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal melakukan mapping organisasi ke server Satu Sehat Kemenkes");
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi Bridging : " + e);
+                    JOptionPane.showMessageDialog(null, "Error Respon Satu Sehat Kemenkes : " + e);
+                }
             }
         }else if(TabRawat.getSelectedIndex()==2){
             if(tabModeRuangOK.getRowCount()==0){
@@ -2706,12 +2697,12 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                                 "\"identifier\": [" +
                                     "{" +
                                         "\"system\": \"http://sys-ids.kemkes.go.id/location/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                        "\"value\": \""+KodeKamar.getText()+"\"" +
+                                        "\"value\": \""+KodeBangsal.getText()+"\"" +
                                     "}" +
                                 "]," +
                                 "\"status\": \"inactive\"," +
-                                "\"name\": \""+NamaKamar.getText()+"\"," +
-                                "\"description\": \""+NamaKamar.getText()+" Nomor "+KodeKamar.getText()+"\"," +
+                                "\"name\": \""+NamaBangsal.getText()+"\"," +
+                                "\"description\": \""+NamaBangsal.getText()+" Nomor "+KodeBangsal.getText()+"\"," +
                                 "\"mode\": \"instance\"," +
                                 "\"telecom\": [" +
                                     "{" +
@@ -2787,7 +2778,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                     root = mapper.readTree(json);
                     response = root.path("id");
                     if(!response.asText().equals("")){
-                        Valid.hapusTable(tabModeKamar,KodeKamar,"satu_sehat_mapping_lokasi_ranap","kd_kamar");
+                        Valid.hapusTable(tabModeKamar,KodeBangsal,"satu_sehat_mapping_lokasi_ranap","kd_kamar");
                         emptTeks();
                         tampilkamar();
                     }else{
@@ -3382,23 +3373,23 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        if(TabRawat.getSelectedIndex()==0){
-            if(KodeDepartemen.getText().trim().equals("")||NamaDepartemen.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemen,"Departemen/Organisasi");
-            }else if(KodePoli.getText().trim().equals("")||NamaPoli.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemen,"Poli/Unit");
-            }else if(Longitude.getText().trim().equals("")){
-                Valid.textKosong(Longitude,"Longitude");
-            }else if(Latitude.getText().trim().equals("")){
-                Valid.textKosong(Latitude,"Latitude");
-            }else if(Altitude.getText().trim().equals("")){
-                Valid.textKosong(Altitude,"Altitude");
-            }else{
-                if(tbLokasi.getSelectedRow()>-1){
-                    try{
+        if (TabRawat.getSelectedIndex() == 0) {
+            if (KodeDepartemen.getText().trim().equals("") || NamaDepartemen.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemen, "Departemen/Organisasi");
+            } else if (KodePoli.getText().trim().equals("") || NamaPoli.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemen, "Poli/Unit");
+            } else if (Longitude.getText().trim().equals("")) {
+                Valid.textKosong(Longitude, "Longitude");
+            } else if (Latitude.getText().trim().equals("")) {
+                Valid.textKosong(Latitude, "Latitude");
+            } else if (Altitude.getText().trim().equals("")) {
+                Valid.textKosong(Altitude, "Altitude");
+            } else {
+                if (tbLokasi.getSelectedRow() > -1) {
+                    try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
                         json = "{" +
                                     "\"resourceType\": \"Location\"," +
                                     "\"id\": \""+tbLokasi.getValueAt(tbLokasi.getSelectedRow(),2).toString()+"\"," +
@@ -3479,58 +3470,58 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                                         "\"reference\": \"Organization/"+IDOrganisasi.getText()+"\"" +
                                     "}" +
                                 "}";
-                        System.out.println("URL : "+link+"/Location");
-                        System.out.println("Request JSON : "+json);
-                        requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Location/"+tbLokasi.getValueAt(tbLokasi.getSelectedRow(),2).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : "+json);
+                        System.out.println("URL : " + link + "/Location");
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Location/" + tbLokasi.getValueAt(tbLokasi.getSelectedRow(), 2).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
                         root = mapper.readTree(json);
                         response = root.path("id");
-                        if(!response.asText().equals("")){
-                            if(Sequel.mengedittf("satu_sehat_mapping_lokasi_ralan","kd_poli=?","kd_poli=?,id_organisasi_satusehat=?,id_lokasi_satusehat=?,longitude=?,latitude=?,altittude=?",7,new String[]{
-                                    KodePoli.getText(),IDOrganisasi.getText(),response.asText(),Longitude.getText(),Latitude.getText(),Altitude.getText(),tbLokasi.getValueAt(tbLokasi.getSelectedRow(),0).toString()
-                                })==true){
+                        if (!response.asText().equals("")) {
+                            if (Sequel.mengedittf("satu_sehat_mapping_lokasi_ralan", "kd_poli=?", "kd_poli=?,id_organisasi_satusehat=?,id_lokasi_satusehat=?,longitude=?,latitude=?,altittude=?", 7, new String[]{
+                                KodePoli.getText(), IDOrganisasi.getText(), response.asText(), Longitude.getText(), Latitude.getText(), Altitude.getText(), tbLokasi.getValueAt(tbLokasi.getSelectedRow(), 0).toString()
+                            }) == true) {
                                 emptTeks();
                                 tampil();
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Gagal melakukan mapping lokasi ke server Satu Sehat Kemenkes");
-                        } 
-                    }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
-                        JOptionPane.showMessageDialog(null,"Error Respon Satu Sehat Kemenkes : "+e);
-                    }  
-                }                
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Gagal melakukan mapping lokasi ke server Satu Sehat Kemenkes");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                        JOptionPane.showMessageDialog(null, "Error Respon Satu Sehat Kemenkes : " + e);
+                    }
+                }
             }
-        }else if(TabRawat.getSelectedIndex()==1){
-            if(KodeDepartemenKamar.getText().trim().equals("")||NamaDepartemenKamar.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemenKamar,"Departemen/Organisasi");
-            }else if(KodeKamar.getText().trim().equals("")||NamaKamar.getText().trim().equals("")){
-                Valid.textKosong(KodeKamar,"Kamar/Ruang");
-            }else if(LongitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(LongitudeKamar,"Longitude");
-            }else if(LatitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(LatitudeKamar,"Latitude");
-            }else if(AltitudeKamar.getText().trim().equals("")){
-                Valid.textKosong(AltitudeKamar,"Altitude");
-            }else{
-                if(tbLokasiKamar.getSelectedRow()>-1){
-                    try{
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            if (KodeDepartemenKamar.getText().trim().equals("") || NamaDepartemenKamar.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemenKamar, "Departemen/Organisasi");
+            } else if (KodeBangsal.getText().trim().equals("") || NamaBangsal.getText().trim().equals("")) {
+                Valid.textKosong(KodeBangsal, "Kamar/Ruang");
+            } else if (LongitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(LongitudeKamar, "Longitude");
+            } else if (LatitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(LatitudeKamar, "Latitude");
+            } else if (AltitudeKamar.getText().trim().equals("")) {
+                Valid.textKosong(AltitudeKamar, "Altitude");
+            } else {
+                if (tbLokasiKamar.getSelectedRow() > -1) {
+                    try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
                         json = "{" +
                                     "\"resourceType\": \"Location\"," +
                                     "\"id\": \""+tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),2).toString()+"\"," +
                                     "\"identifier\": [" +
                                         "{" +
                                             "\"system\": \"http://sys-ids.kemkes.go.id/location/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+KodeKamar.getText()+"\"" +
+                                            "\"value\": \""+KodeBangsal.getText()+"\"" +
                                         "}" +
                                     "]," +
                                     "\"status\": \"active\"," +
-                                    "\"name\": \""+NamaKamar.getText()+"\"," +
-                                    "\"description\": \""+NamaKamar.getText()+" Nomor "+KodeKamar.getText()+"\"," +
+                                    "\"name\": \""+NamaBangsal.getText()+"\"," +
+                                    "\"description\": \""+NamaBangsal.getText()+" Nomor "+KodeBangsal.getText()+"\"," +
                                     "\"mode\": \"instance\"," +
                                     "\"telecom\": [" +
                                         "{" +
@@ -3599,43 +3590,43 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
                                         "\"reference\": \"Organization/"+IDOrganisasiKamar.getText()+"\"" +
                                     "}" +
                                 "}";
-                        System.out.println("Request JSON : "+json);
-                        requestEntity = new HttpEntity(json,headers);
-                        json=api.getRest().exchange(link+"/Location/"+tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),2).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : "+json);
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Location/" + tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 2).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
                         root = mapper.readTree(json);
                         response = root.path("id");
-                        if(!response.asText().equals("")){
-                            if(Sequel.mengedittf("satu_sehat_mapping_lokasi_ranap","kd_kamar=?","kd_kamar=?,id_organisasi_satusehat=?,id_lokasi_satusehat=?,longitude=?,latitude=?,altittude=?",7,new String[]{
-                                    KodeKamar.getText(),IDOrganisasiKamar.getText(),response.asText(),LongitudeKamar.getText(),LatitudeKamar.getText(),AltitudeKamar.getText(),tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),0).toString()
-                                })==true){
+                        if (!response.asText().equals("")) {
+                            if (Sequel.mengedittf("satu_sehat_mapping_lokasi_ranap", "kd_bangsal=?", "kd_bangsal=?,id_organisasi_satusehat=?,id_lokasi_satusehat=?,longitude=?,latitude=?,altittude=?", 7, new String[]{
+                                KodeBangsal.getText(), IDOrganisasiKamar.getText(), response.asText(), LongitudeKamar.getText(), LatitudeKamar.getText(), AltitudeKamar.getText(), tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 0).toString()
+                            }) == true) {
                                 emptTeks();
                                 tampilkamar();
                             }
-                        }else{
-                            JOptionPane.showMessageDialog(null,"Gagal melakukan mapping lokasi ke server Satu Sehat Kemenkes");
-                        } 
-                    }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
-                        JOptionPane.showMessageDialog(null,"Error Respon Satu Sehat Kemenkes : "+e);
-                    }  
-                }                
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Gagal melakukan mapping lokasi ke server Satu Sehat Kemenkes");
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                        JOptionPane.showMessageDialog(null, "Error Respon Satu Sehat Kemenkes : " + e);
+                    }
+                }
             }
-        }else if(TabRawat.getSelectedIndex()==2){
-            if(KodeDepartemenRuangOK.getText().trim().equals("")||NamaDepartemenRuangOK.getText().trim().equals("")){
-                Valid.textKosong(KodeDepartemenRuangOK,"Departemen/Organisasi");
-            }else if(LongitudeRuangOK.getText().trim().equals("")){
-                Valid.textKosong(LongitudeRuangOK,"Longitude");
-            }else if(LatitudeRuangOK.getText().trim().equals("")){
-                Valid.textKosong(LatitudeRuangOK,"Latitude");
-            }else if(AltitudeRuangOK.getText().trim().equals("")){
-                Valid.textKosong(AltitudeRuangOK,"Altitude");
-            }else{
-                if(tbLokasiRuangOK.getSelectedRow()>-1){
-                    try{
+        } else if (TabRawat.getSelectedIndex() == 2) {
+            if (KodeDepartemenRuangOK.getText().trim().equals("") || NamaDepartemenRuangOK.getText().trim().equals("")) {
+                Valid.textKosong(KodeDepartemenRuangOK, "Departemen/Organisasi");
+            } else if (LongitudeRuangOK.getText().trim().equals("")) {
+                Valid.textKosong(LongitudeRuangOK, "Longitude");
+            } else if (LatitudeRuangOK.getText().trim().equals("")) {
+                Valid.textKosong(LatitudeRuangOK, "Latitude");
+            } else if (AltitudeRuangOK.getText().trim().equals("")) {
+                Valid.textKosong(AltitudeRuangOK, "Altitude");
+            } else {
+                if (tbLokasiRuangOK.getSelectedRow() > -1) {
+                    try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
                         json = "{" +
                                     "\"resourceType\": \"Location\"," +
                                     "\"id\": \""+tbLokasiRuangOK.getValueAt(tbLokasiRuangOK.getSelectedRow(),0).toString()+"\"," +
@@ -4327,13 +4318,12 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     }//GEN-LAST:event_btnDepartemenKamarKeyPressed
 
     private void btnKamarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnKamarActionPerformed
-        kamar.load();
-        kamar.isCek();
-        kamar.emptTeks();
-        kamar.tampil();
-        kamar.setSize(855, internalFrame1.getHeight() - 40);
-        kamar.setLocationRelativeTo(internalFrame1);
-        kamar.setVisible(true);
+        akses.setform("SatuSehatMapingLokasi");
+        bangsal.isCek();
+        bangsal.emptTeks();
+        bangsal.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        bangsal.setLocationRelativeTo(internalFrame1);
+        bangsal.setVisible(true);
     }//GEN-LAST:event_btnKamarActionPerformed
 
     private void btnKamarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnKamarKeyPressed
@@ -4644,6 +4634,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     private widget.TextBox IDOrganisasiRuangLabPK;
     private widget.TextBox IDOrganisasiRuangOK;
     private widget.TextBox IDOrganisasiRuangRadiologi;
+    private widget.TextBox KodeBangsal;
     private widget.TextBox KodeDepartemen;
     private widget.TextBox KodeDepartemenKamar;
     private widget.TextBox KodeDepartemenRuangLabMB;
@@ -4651,7 +4642,6 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     private widget.TextBox KodeDepartemenRuangLabPK;
     private widget.TextBox KodeDepartemenRuangOK;
     private widget.TextBox KodeDepartemenRuangRadiologi;
-    private widget.TextBox KodeKamar;
     private widget.TextBox KodePoli;
     private widget.Label LCount;
     private widget.TextBox Latitude;
@@ -4668,6 +4658,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     private widget.TextBox LongitudeRuangLabPK;
     private widget.TextBox LongitudeRuangOK;
     private widget.TextBox LongitudeRuangRadiologi;
+    private widget.TextBox NamaBangsal;
     private widget.TextBox NamaDepartemen;
     private widget.TextBox NamaDepartemenKamar;
     private widget.TextBox NamaDepartemenRuangLabMB;
@@ -4675,7 +4666,6 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     private widget.TextBox NamaDepartemenRuangLabPK;
     private widget.TextBox NamaDepartemenRuangOK;
     private widget.TextBox NamaDepartemenRuangRadiologi;
-    private widget.TextBox NamaKamar;
     private widget.TextBox NamaPoli;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
@@ -4801,8 +4791,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             IDOrganisasi.setText("");
             btnPoliRS.requestFocus();
         }else if(TabRawat.getSelectedIndex()==1){
-            KodeKamar.setText("");
-            NamaKamar.setText("");
+            KodeBangsal.setText("");
+            NamaBangsal.setText("");
             LongitudeKamar.setText("");
             AltitudeKamar.setText("");
             LatitudeKamar.setText("");
@@ -4867,15 +4857,15 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     }
     
     private void getDataKamar() {
-       if(tbLokasiKamar.getSelectedRow()!= -1){
-           KodeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),0).toString());
-           NamaKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),1).toString());
-           LongitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),3).toString());
-           LatitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),4).toString());
-           AltitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),5).toString());
-           KodeDepartemenKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),6).toString());
-           NamaDepartemenKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),7).toString());
-           IDOrganisasiKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(),8).toString());
+        if (tbLokasiKamar.getSelectedRow() != -1) {
+            KodeBangsal.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 0).toString());
+            NamaBangsal.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 1).toString());
+            LongitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 3).toString());
+            LatitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 4).toString());
+            AltitudeKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 5).toString());
+            KodeDepartemenKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 6).toString());
+            NamaDepartemenKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 7).toString());
+            IDOrganisasiKamar.setText(tbLokasiKamar.getValueAt(tbLokasiKamar.getSelectedRow(), 8).toString());
         }
     }
     
@@ -4887,45 +4877,43 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
     
     private void tampilkamar() {
         Valid.tabelKosong(tabModeKamar);
-        try{
-            ps=koneksi.prepareStatement(
-                   "select satu_sehat_mapping_lokasi_ranap.kd_kamar,bangsal.nm_bangsal,satu_sehat_mapping_lokasi_ranap.id_lokasi_satusehat,"+
-                   "satu_sehat_mapping_lokasi_ranap.longitude,satu_sehat_mapping_lokasi_ranap.latitude,satu_sehat_mapping_lokasi_ranap.altittude,"+
-                   "satu_sehat_mapping_departemen.dep_id,departemen.nama,satu_sehat_mapping_lokasi_ranap.id_organisasi_satusehat "+
-                   "from satu_sehat_mapping_lokasi_ranap inner join kamar on satu_sehat_mapping_lokasi_ranap.kd_kamar=kamar.kd_kamar "+
-                   "inner join bangsal on kamar.kd_bangsal=bangsal.kd_bangsal inner join satu_sehat_mapping_departemen "+
-                   "on satu_sehat_mapping_lokasi_ranap.id_organisasi_satusehat=satu_sehat_mapping_departemen.id_organisasi_satusehat "+
-                   "inner join departemen on satu_sehat_mapping_departemen.dep_id=departemen.dep_id "+
-                   (TCari.getText().equals("")?"":"where satu_sehat_mapping_departemen.dep_id like ? or departemen.nama like ? or "+
-                   "bangsal.nm_bangsal like ? or satu_sehat_mapping_lokasi_ranap.kd_kamar like ?")+" order by departemen.nama");
+        try {
+            ps = koneksi.prepareStatement(
+                    "SELECT sr.kd_bangsal, b.nm_bangsal, sr.id_lokasi_satusehat, sr.longitude, sr.latitude, sr.altittude, sd.dep_id, "
+                    + "d.nama, sr.id_organisasi_satusehat  FROM satu_sehat_mapping_lokasi_ranap sr "
+                    + "INNER JOIN bangsal b ON b.kd_bangsal = sr.kd_bangsal "
+                    + "INNER JOIN satu_sehat_mapping_departemen sd ON sr.id_organisasi_satusehat = sd.id_organisasi_satusehat "
+                    + "INNER JOIN departemen d ON sd.dep_id = d.dep_id "
+                    + (TCari.getText().equals("") ? "" : "where sd.dep_id like ? or d.nama like ? or "
+                    + "b.nm_bangsal like ? or sr.kd_bangsal like ?") + " order by d.nama");
             try {
-                if(!TCari.getText().equals("")){
-                    ps.setString(1,"%"+TCari.getText()+"%");
-                    ps.setString(2,"%"+TCari.getText()+"%");
-                    ps.setString(3,"%"+TCari.getText()+"%");
-                    ps.setString(4,"%"+TCari.getText()+"%");
+                if (!TCari.getText().equals("")) {
+                    ps.setString(1, "%" + TCari.getText() + "%");
+                    ps.setString(2, "%" + TCari.getText() + "%");
+                    ps.setString(3, "%" + TCari.getText() + "%");
+                    ps.setString(4, "%" + TCari.getText() + "%");
                 }
-                rs=ps.executeQuery();
-                while(rs.next()){
+                rs = ps.executeQuery();
+                while (rs.next()) {
                     tabModeKamar.addRow(new Object[]{
-                        rs.getString("kd_kamar"),rs.getString("nm_bangsal"),rs.getString("id_lokasi_satusehat"),rs.getString("longitude"),rs.getString("latitude"),
-                        rs.getString("altittude"),rs.getString("dep_id"),rs.getString("nama"),rs.getString("id_organisasi_satusehat")
+                        rs.getString("kd_bangsal"), rs.getString("nm_bangsal"), rs.getString("id_lokasi_satusehat"), rs.getString("longitude"), rs.getString("latitude"),
+                        rs.getString("altittude"), rs.getString("dep_id"), rs.getString("nama"), rs.getString("id_organisasi_satusehat")
                     });
                 }
             } catch (Exception e) {
-                System.out.println("Notif : "+e);
-            } finally{
-                if(rs!=null){
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
             }
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabModeKamar.getRowCount());
+        LCount.setText("" + tabModeKamar.getRowCount());
     }
     
     private void tampilruangok() {

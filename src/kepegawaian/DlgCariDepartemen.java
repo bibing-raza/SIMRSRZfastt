@@ -19,9 +19,6 @@ import fungsi.koneksiDB;
 import fungsi.validasi;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
-import java.io.File;
-import java.io.FileReader;
-import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -36,20 +33,15 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgCariDepartemen extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
-    private ResultSet rs;
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();    
     private PreparedStatement ps;
-    private File file;
-    private FileWriter fileWriter;
-    private String iyem;
-    private ObjectMapper mapper = new ObjectMapper();
-    private JsonNode root;
-    private JsonNode response;
-    private FileReader myObj;
+    private ResultSet rs;
+    
     /** Creates new form DlgPenyakit
      * @param parent
      * @param modal */
+    
     public DlgCariDepartemen(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
@@ -61,40 +53,40 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbDepartemen.setModel(tabMode);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbDepartemen.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDepartemen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 2; i++) {
             TableColumn column = tbDepartemen.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(110);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(400);
             }
         }
         tbDepartemen.setDefaultRenderer(Object.class, new WarnaTable());
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
                 public void insertUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil2();
+                        tampil();
                     }
                 }
                 @Override
                 public void removeUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil2();
+                        tampil();
                     }
                 }
                 @Override
                 public void changedUpdate(DocumentEvent e) {
                     if(TCari.getText().length()>2){
-                        tampil2();
+                        tampil();
                     }
                 }
             });
@@ -246,25 +238,25 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
 
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             tbDepartemen.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampil2();
+        tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -275,9 +267,9 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnAllActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnCari, TCari);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
@@ -291,21 +283,14 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
     }//GEN-LAST:event_formWindowActivated
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        try {
-            if(Valid.daysOld("./cache/departemen.iyem")<30){
-                tampil2();
-            }else{
-                tampil();
-            }
-        } catch (Exception e) {
-        }
+        tampil();        
     }//GEN-LAST:event_formWindowOpened
 
     private void tbDepartemenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbDepartemenKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
                 dispose();
-            }else if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
+            } else if (evt.getKeyCode() == KeyEvent.VK_SHIFT) {
                 TCari.setText("");
                 TCari.requestFocus();
             }
@@ -344,66 +329,32 @@ public final class DlgCariDepartemen extends javax.swing.JDialog {
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try{
-            file=new File("./cache/departemen.iyem");
-            file.createNewFile();
-            fileWriter = new FileWriter(file);
-            iyem="";
-            ps=koneksi.prepareStatement("select * from departemen order by departemen.nama ");
+        try {
+            ps = koneksi.prepareStatement("select * from departemen where dep_id like ? or nama like ? order by nama desc");
             try {
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    tabMode.addRow(new String[]{rs.getString(1),rs.getString(2)});
-                    iyem=iyem+"{\"KodeDepartemen\":\""+rs.getString(1)+"\",\"NamaDepartemen\":\""+rs.getString(2)+"\"},";
+                ps.setString(1, "%" + TCari.getText().trim() + "%");
+                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new String[]{
+                        rs.getString("dep_id"),
+                        rs.getString("nama")
+                    });
                 }
             } catch (Exception e) {
-                System.out.println("Notifikasi : "+e);
-            } finally{
-                if(rs!=null){
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
             }
-            fileWriter.write("{\"departemen\":["+iyem.substring(0,iyem.length()-1)+"]}");
-            fileWriter.flush();
-            fileWriter.close();
-            iyem=null;
-        }catch(Exception e){
-            System.out.println("Notifikasi : "+e);
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabMode.getRowCount());
-    }
-
-    private void tampil2() {
-        try {
-            myObj = new FileReader("./cache/departemen.iyem");
-            root = mapper.readTree(myObj);
-            Valid.tabelKosong(tabMode);
-            response = root.path("departemen");
-            if(response.isArray()){
-                if(TCari.getText().trim().equals("")){
-                    for(JsonNode list:response){
-                        tabMode.addRow(new Object[]{
-                            list.path("KodeDepartemen").asText(),list.path("NamaDepartemen").asText()
-                        });
-                    }
-                }else{
-                    for(JsonNode list:response){
-                        if(list.path("KodeDepartemen").asText().toLowerCase().contains(TCari.getText().toLowerCase())||list.path("NamaDepartemen").asText().toLowerCase().contains(TCari.getText().toLowerCase())){
-                            tabMode.addRow(new Object[]{
-                                list.path("KodeDepartemen").asText(),list.path("NamaDepartemen").asText()
-                            });                    
-                        }
-                    }
-                }
-            }
-            myObj.close();
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : "+ex);
-        }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText("" + tabMode.getRowCount());
     }
     
     public void emptTeks() {

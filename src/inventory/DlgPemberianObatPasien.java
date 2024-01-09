@@ -1260,10 +1260,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel15.setBounds(450, 122, 100, 23);
 
         cmbObat.setForeground(new java.awt.Color(0, 0, 0));
-        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI" }));
+        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI", "TETES", "OLES", "HISAP", "SEMPROT" }));
         cmbObat.setName("cmbObat"); // NOI18N
         panelGlass7.add(cmbObat);
-        cmbObat.setBounds(554, 122, 76, 23);
+        cmbObat.setBounds(554, 122, 80, 23);
 
         chkJam1.setBackground(new java.awt.Color(242, 242, 242));
         chkJam1.setForeground(new java.awt.Color(0, 0, 0));
