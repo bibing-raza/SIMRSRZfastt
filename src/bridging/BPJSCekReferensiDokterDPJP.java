@@ -176,7 +176,7 @@ public final class BPJSCekReferensiDokterDPJP extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Dokter DPJP VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pencarian Data Referensi Dokter DPJP VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -279,8 +279,7 @@ public final class BPJSCekReferensiDokterDPJP extends javax.swing.JDialog {
         panelGlass7.add(jLabel15);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setForeground(new java.awt.Color(0, 0, 0));
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2018" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -414,10 +413,10 @@ public final class BPJSCekReferensiDokterDPJP extends javax.swing.JDialog {
     }//GEN-LAST:event_DTPCari1KeyPressed
 
     private void BtnPropinsiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPropinsiActionPerformed
-        spesialis.setSize(internalFrame1.getWidth()-40,internalFrame1.getHeight()-40);
+        spesialis.setSize(842, internalFrame1.getHeight() - 40);
         spesialis.setLocationRelativeTo(internalFrame1);
         spesialis.setVisible(true);
-        spesialis.fokus();
+        spesialis.Poli.requestFocus();
     }//GEN-LAST:event_BtnPropinsiActionPerformed
 
     private void DTPCari1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_DTPCari1MouseClicked
@@ -446,7 +445,7 @@ public final class BPJSCekReferensiDokterDPJP extends javax.swing.JDialog {
     private widget.Button BtnPrint;
     private widget.Button BtnPropinsi;
     private widget.Tanggal DTPCari1;
-    private widget.TextBox Dokter;
+    public widget.TextBox Dokter;
     private widget.TextBox KdSep;
     private widget.TextBox NmSep;
     private widget.ScrollPane Scroll;
@@ -566,10 +565,6 @@ public final class BPJSCekReferensiDokterDPJP extends javax.swing.JDialog {
 
     public JTable getTable(){
         return tbKamar;
-    }
-    
-    public void fokus() {
-        Dokter.requestFocus();
     }
 
     public void poliklinik(String kode_poli, String nm_poli) {

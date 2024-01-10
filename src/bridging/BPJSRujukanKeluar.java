@@ -1126,7 +1126,7 @@ public final class BPJSRujukanKeluar extends javax.swing.JDialog {
         poli.setSize(internalFrame1.getWidth()-40,internalFrame1.getHeight()-40);
         poli.setLocationRelativeTo(internalFrame1);
         poli.setVisible(true);
-        poli.fokus();
+        poli.Poli.requestFocus();
     }//GEN-LAST:event_btnPoli1ActionPerformed
 
     private void btnPoli1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPoli1KeyPressed

@@ -65,12 +65,12 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         
-        tbKamar.setModel(tabMode);
-        tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbPoliklinik.setModel(tabMode);
+        tbPoliklinik.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPoliklinik.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 3; i++) {
-            TableColumn column = tbKamar.getColumnModel().getColumn(i);
+            TableColumn column = tbPoliklinik.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(40);
             } else if (i == 1) {
@@ -79,7 +79,7 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
                 column.setPreferredWidth(470);
             }
         }
-        tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
+        tbPoliklinik.setDefaultRenderer(Object.class, new WarnaTable());
         
         Poli.setDocument(new batasInput((byte)100).getKata(Poli));
         
@@ -115,7 +115,7 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbKamar = new widget.Table();
+        tbPoliklinik = new widget.Table();
         panelGlass6 = new widget.panelisi();
         jLabel16 = new widget.Label();
         Poli = new widget.TextBox();
@@ -130,17 +130,17 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Poli/Unit VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pencarian Data Referensi Poli/Unit VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbKamar.setAutoCreateRowSorter(true);
-        tbKamar.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbKamar.setName("tbKamar"); // NOI18N
-        Scroll.setViewportView(tbKamar);
+        tbPoliklinik.setAutoCreateRowSorter(true);
+        tbPoliklinik.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbPoliklinik.setName("tbPoliklinik"); // NOI18N
+        Scroll.setViewportView(tbPoliklinik);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -317,13 +317,13 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
-    private widget.TextBox Poli;
+    public widget.TextBox Poli;
     private widget.ScrollPane Scroll;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
     private widget.panelisi panelGlass6;
-    private widget.Table tbKamar;
+    private widget.Table tbPoliklinik;
     // End of variables declaration//GEN-END:variables
 
     public void tampil(String poli) {
@@ -371,10 +371,6 @@ public final class BPJSCekReferensiPoli extends javax.swing.JDialog {
     }    
 
     public JTable getTable(){
-        return tbKamar;
-    }
-    
-    public void fokus(){
-        Poli.requestFocus();
+        return tbPoliklinik;
     }
 }

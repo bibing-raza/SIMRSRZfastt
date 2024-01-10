@@ -4583,7 +4583,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         poli.setSize(internalFrame1.getWidth()-40,internalFrame1.getHeight()-40);
         poli.setLocationRelativeTo(internalFrame1);
         poli.setVisible(true);
-        poli.fokus();
+        poli.Poli.requestFocus();
     }//GEN-LAST:event_btnPoliActionPerformed
 
     private void btnPoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPoliKeyPressed
@@ -4960,7 +4960,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         poli.setSize(internalFrame1.getWidth()-40,internalFrame1.getHeight()-40);
         poli.setLocationRelativeTo(internalFrame1);
         poli.setVisible(true);
-        poli.fokus();
+        poli.Poli.requestFocus();
     }//GEN-LAST:event_btnPoli1ActionPerformed
 
     private void TipeRujukanItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_TipeRujukanItemStateChanged
@@ -5213,7 +5213,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         dpjp.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dpjp.setLocationRelativeTo(internalFrame1);
         dpjp.setVisible(true);
-        dpjp.fokus();
+        dpjp.Dokter.requestFocus();
         dpjp.poliklinik(KdPoli.getText(), NmPoli.getText());
     }//GEN-LAST:event_btnDPJPActionPerformed
 
@@ -5598,7 +5598,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         dpjp.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dpjp.setLocationRelativeTo(internalFrame1);
         dpjp.setVisible(true);
-        dpjp.fokus();
+        dpjp.Dokter.requestFocus();
         dpjp.poliklinik(KdPoli.getText(), NmPoli.getText());
     }//GEN-LAST:event_btnDPJPlayanActionPerformed
 

@@ -46,7 +46,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;   
     private int i=0;
-    private String link="",json="",iddokter="",idpasien="";
+    private String link = "", json = "", iddokter = "", idpasien = "", idpasienKirim = "", iddokterKirim = "";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
@@ -89,46 +89,44 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbEncounter.setModel(tabMode);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbEncounter.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbEncounter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
         for (i = 0; i < 16; i++) {
             TableColumn column = tbEncounter.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(150);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(165);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
+            } else if (i == 3) {
+                column.setPreferredWidth(60);
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
                 column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(80);
-            }else if(i==7){
-                column.setPreferredWidth(150);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(80);
-            }else if(i==10){
-                column.setPreferredWidth(140);
-            }else if(i==11){
+            } else if (i == 6) {
+                column.setPreferredWidth(130);
+            } else if (i == 7) {
                 column.setPreferredWidth(210);
-            }else if(i==12){
+            } else if (i == 8) {
+                column.setPreferredWidth(110);
+            } else if (i == 9) {
+                column.setPreferredWidth(80);
+            } else if (i == 10) {
+                column.setPreferredWidth(195);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(135);
+            } else if (i == 13) {
                 column.setPreferredWidth(63);
-            }else if(i==13){
-                column.setPreferredWidth(63);
-            }else if(i==14){
-                column.setPreferredWidth(150);
-            }else if(i==15){
-                column.setPreferredWidth(215);
+            } else if (i == 14) {
+                column.setPreferredWidth(160);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbEncounter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -196,6 +194,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihEncounterBelum = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -236,6 +235,21 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppPilihSemua);
 
+        ppPilihEncounterBelum.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihEncounterBelum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihEncounterBelum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihEncounterBelum.setText("Pilih Encounter Kosong");
+        ppPilihEncounterBelum.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihEncounterBelum.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihEncounterBelum.setName("ppPilihEncounterBelum"); // NOI18N
+        ppPilihEncounterBelum.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihEncounterBelum.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihEncounterBelumActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihEncounterBelum);
+
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -269,6 +283,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbEncounter.setAutoCreateRowSorter(true);
         tbEncounter.setComponentPopupMenu(jPopupMenu1);
         tbEncounter.setName("tbEncounter"); // NOI18N
         Scroll.setViewportView(tbEncounter);
@@ -389,7 +404,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -403,7 +418,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -459,9 +474,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             dispose();
-        }else{Valid.pindah(evt,BtnPrint,BtnKeluar);}
+        } else {
+            Valid.pindah(evt, BtnPrint, BtnKeluar);
+        }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
@@ -572,107 +589,18 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TCari,BtnPrint);
+        } else {
+            Valid.pindah(evt, TCari, BtnPrint);
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
-        for (i = 0; i < tbEncounter.getRowCount(); i++) {
-            if (tbEncounter.getValueAt(i, 0).toString().equals("true")
-                    && (!tbEncounter.getValueAt(i, 5).toString().equals(""))
-                    && (!tbEncounter.getValueAt(i, 8).toString().equals(""))
-                    && tbEncounter.getValueAt(i, 15).toString().equals("")) {
-                try {
-                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(i, 8).toString());
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
-                    try{
-                        headers = new HttpHeaders();
-                        headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        json = "{" +
-                                    "\"resourceType\": \"Encounter\"," +
-                                    "\"status\": \"finished\"," +
-                                    "\"class\": {" +
-                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                        "\"code\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
-                                        "\"display\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
-                                    "}," +
-                                    "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbEncounter.getValueAt(i,4).toString()+"\"" +
-                                    "}," +
-                                    "\"participant\": [" +
-                                        "{" +
-                                            "\"type\": [" +
-                                                "{" +
-                                                    "\"coding\": [" +
-                                                        "{" +
-                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                            "\"code\": \"ATND\"," +
-                                                            "\"display\": \"attender\"" +
-                                                        "}" +
-                                                    "]" +
-                                                "}" +
-                                            "]," +
-                                            "\"individual\": {" +
-                                                "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                                "\"display\": \""+tbEncounter.getValueAt(i,7).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"period\": {" +
-                                        "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"" +
-                                    "}," +
-                                    "\"location\": [" +
-                                        "{" +
-                                            "\"location\": {" +
-                                                "\"reference\": \"Location/"+tbEncounter.getValueAt(i,11).toString()+"\"," +
-                                                "\"display\": \""+tbEncounter.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"statusHistory\": [" +
-                                        "{" +
-                                            "\"status\": \"finished\"," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"," +
-                                                "\"end\": \""+tbEncounter.getValueAt(i,14).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"serviceProvider\": {" +
-                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
-                                    "}," +
-                                    "\"identifier\": [" +
-                                        "{" +
-                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbEncounter.getValueAt(i,2).toString()+"\"" +
-                                        "}" +
-                                    "]" +
-                                "}";
-                        System.out.println("URL : " + link + "/Encounter");
-                        System.out.println("Request JSON : " + json);
-                        requestEntity = new HttpEntity(json, headers);
-                        json = api.getRest().exchange(link + "/Encounter", HttpMethod.POST, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : " + json);
-                        root = mapper.readTree(json);
-                        response = root.path("id");
-                        if (!response.asText().equals("")) {
-                            Sequel.menyimpan("satu_sehat_encounter", "?,?", "No.Rawat", 2, new String[]{
-                                tbEncounter.getValueAt(i, 2).toString(), response.asText()
-                            });
-                        }
-                    }catch(Exception e){
-                        System.out.println("Notifikasi Bridging : "+e);
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : "+e);
-                }
-            }
-        }
+        cekIdDokter();
+        cekIdPasien();        
+        arrivedKirim();
+        inprogresKirim();
         tampil();
     }//GEN-LAST:event_BtnKirimActionPerformed
 
@@ -688,97 +616,6 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
-    private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
-        for (i = 0; i < tbEncounter.getRowCount(); i++) {
-            if (tbEncounter.getValueAt(i, 0).toString().equals("true")
-                    && (!tbEncounter.getValueAt(i, 5).toString().equals(""))
-                    && (!tbEncounter.getValueAt(i, 8).toString().equals(""))
-                    && (!tbEncounter.getValueAt(i, 15).toString().equals(""))) {
-                try {
-                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(i, 8).toString());
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
-                    try {
-                        headers = new HttpHeaders();
-                        headers.setContentType(MediaType.APPLICATION_JSON);
-                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
-                        json = "{" +
-                                    "\"resourceType\": \"Encounter\"," +
-                                    "\"id\": \""+tbEncounter.getValueAt(i,15).toString()+"\"," +
-                                    "\"identifier\": [" +
-                                        "{" +
-                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
-                                            "\"value\": \""+tbEncounter.getValueAt(i,2).toString()+"\"" +
-                                        "}" +
-                                    "]," +
-                                    "\"status\": \"finished\"," +
-                                    "\"class\": {" +
-                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
-                                        "\"code\": \""+(tbEncounter.getValueAt(i,11).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
-                                        "\"display\": \""+(tbEncounter.getValueAt(i,11).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
-                                    "}," +
-                                    "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
-                                        "\"display\": \""+tbEncounter.getValueAt(i,4).toString()+"\"" +
-                                    "}," +
-                                    "\"participant\": [" +
-                                        "{" +
-                                            "\"type\": [" +
-                                                "{" +
-                                                    "\"coding\": [" +
-                                                        "{" +
-                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
-                                                            "\"code\": \"ATND\"," +
-                                                            "\"display\": \"attender\"" +
-                                                        "}" +
-                                                    "]" +
-                                                "}" +
-                                            "]," +
-                                            "\"individual\": {" +
-                                                "\"reference\": \"Practitioner/"+iddokter+"\"," +
-                                                "\"display\": \""+tbEncounter.getValueAt(i,7).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"period\": {" +
-                                        "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"" +
-                                    "}," +
-                                    "\"location\": [" +
-                                        "{" +
-                                            "\"location\": {" +
-                                                "\"reference\": \"Location/"+tbEncounter.getValueAt(i,11).toString()+"\"," +
-                                                "\"display\": \""+tbEncounter.getValueAt(i,10).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"statusHistory\": [" +
-                                        "{" +
-                                            "\"status\": \"finished\"," +
-                                            "\"period\": {" +
-                                                "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"," +
-                                                "\"end\": \""+tbEncounter.getValueAt(i,14).toString()+"\"" +
-                                            "}" +
-                                        "}" +
-                                    "]," +
-                                    "\"serviceProvider\": {" +
-                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
-                                    "}" +
-                                "}";
-                        System.out.println("URL : " + link + "/Encounter/" + tbEncounter.getValueAt(i, 15).toString());
-                        System.out.println("Request JSON : " + json);
-                        requestEntity = new HttpEntity(json, headers);
-                        json = api.getRest().exchange(link + "/Encounter/" + tbEncounter.getValueAt(i, 15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
-                        System.out.println("Result JSON : " + json);
-                    } catch (Exception e) {
-                        System.out.println("Notifikasi Bridging : " + e);
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                }
-            }
-        }
-        tampil();
-    }//GEN-LAST:event_BtnUpdateActionPerformed
-
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         tampil();
@@ -792,6 +629,19 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
             Valid.pindah(evt, BtnPrint, BtnKeluar);
         }
     }//GEN-LAST:event_BtnAllKeyPressed
+
+    private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+        updateEncounter();
+        tampil();
+    }//GEN-LAST:event_BtnUpdateActionPerformed
+
+    private void ppPilihEncounterBelumActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihEncounterBelumActionPerformed
+        for (i = 0; i < tbEncounter.getRowCount(); i++) {
+            if (tbEncounter.getValueAt(i, 15).toString().equals("")) {
+                tbEncounter.setValueAt(true, i, 0);
+            }
+        }
+    }//GEN-LAST:event_ppPilihEncounterBelumActionPerformed
 
     /**
     * @param args the command line arguments
@@ -832,6 +682,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihEncounterBelum;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbEncounter;
     // End of variables declaration//GEN-END:variables
@@ -842,7 +693,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.kd_dokter, pg.nama, "
                     + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, "
-                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+07:00') pulang, "
+                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, "
                     + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                     + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
@@ -866,7 +717,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
-                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+07:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
+                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
                         rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter")
                     });
@@ -884,7 +735,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
 
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.kd_dokter, pg.nama, "
-                    + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+07:00') pulang, "
+                    + "pg.no_ktp ktpdokter, rp.kd_poli, pl.nm_poli, ss.id_lokasi_satusehat, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
                     + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                     + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
@@ -908,7 +759,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
-                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+07:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
+                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
                         rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter")
                     });
@@ -931,11 +782,334 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
 
     public void isCek(){
         BtnKirim.setEnabled(akses.getsatu_sehat());
-        BtnUpdate.setEnabled(akses.getsatu_sehat());
         BtnPrint.setEnabled(akses.getsatu_sehat());
     }
     
-    public JTable getTable(){
-        return tbEncounter;
+    private void arrivedKirim() {
+        for (i = 0; i < tbEncounter.getRowCount(); i++) {
+            if (tbEncounter.getValueAt(i, 0).toString().equals("true")
+                    && (!tbEncounter.getValueAt(i, 5).toString().equals(""))
+                    && (!tbEncounter.getValueAt(i, 8).toString().equals(""))
+                    && tbEncounter.getValueAt(i, 15).toString().equals("")) {
+                try {
+                    iddokterKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'");
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'");
+                    try{
+                        headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_JSON);
+                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        json = "{" +
+                                    "\"resourceType\": \"Encounter\"," +
+                                    "\"status\": \"finished\"," +
+                                    "\"class\": {" +
+                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                        "\"code\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
+                                        "\"display\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                    "}," +
+                                    "\"subject\": {" +
+                                        "\"reference\": \"Patient/"+idpasienKirim+"\"," +
+                                        "\"display\": \""+tbEncounter.getValueAt(i,4).toString()+"\"" +
+                                    "}," +
+                                    "\"participant\": [" +
+                                        "{" +
+                                            "\"type\": [" +
+                                                "{" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                            "\"code\": \"ATND\"," +
+                                                            "\"display\": \"attender\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}" +
+                                            "]," +
+                                            "\"individual\": {" +
+                                                "\"reference\": \"Practitioner/"+iddokterKirim+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,7).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"period\": {" +
+                                        "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"" +
+                                    "}," +
+                                    "\"location\": [" +
+                                        "{" +
+                                            "\"location\": {" +
+                                                "\"reference\": \"Location/"+tbEncounter.getValueAt(i,11).toString()+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,10).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"statusHistory\": [" +
+                                        "{" +
+                                            "\"status\": \"arrived\"," +
+                                            "\"period\": {" +
+                                                "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"serviceProvider\": {" +
+                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                    "}," +
+                                    "\"identifier\": [" +
+                                        "{" +
+                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                            "\"value\": \""+tbEncounter.getValueAt(i,2).toString()+"\"" +
+                                        "}" +
+                                    "]" +
+                                "}";
+                        System.out.println("URL : " + link + "/Encounter");
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Encounter", HttpMethod.POST, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
+                        root = mapper.readTree(json);
+                        response = root.path("id");
+                        if (!response.asText().equals("")) {
+                            Sequel.menyimpan("satu_sehat_encounter", "?,?", "No.Rawat", 2, new String[]{
+                                tbEncounter.getValueAt(i, 2).toString(), response.asText()
+                            });
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+            }
+        }
+    }
+    
+    private void inprogresKirim() {
+        for (i = 0; i < tbEncounter.getRowCount(); i++) {
+            if (tbEncounter.getValueAt(i, 0).toString().equals("true")
+                    && (!tbEncounter.getValueAt(i, 5).toString().equals(""))
+                    && (!tbEncounter.getValueAt(i, 8).toString().equals(""))
+                    && tbEncounter.getValueAt(i, 15).toString().equals("")) {
+                try {
+                    iddokterKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'");
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'");
+                    try{
+                        headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_JSON);
+                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        json = "{" +
+                                    "\"resourceType\": \"Encounter\"," +
+                                    "\"status\": \"finished\"," +
+                                    "\"class\": {" +
+                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                        "\"code\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
+                                        "\"display\": \""+(tbEncounter.getValueAt(i,13).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                    "}," +
+                                    "\"subject\": {" +
+                                        "\"reference\": \"Patient/"+idpasienKirim+"\"," +
+                                        "\"display\": \""+tbEncounter.getValueAt(i,4).toString()+"\"" +
+                                    "}," +
+                                    "\"participant\": [" +
+                                        "{" +
+                                            "\"type\": [" +
+                                                "{" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                            "\"code\": \"ATND\"," +
+                                                            "\"display\": \"attender\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}" +
+                                            "]," +
+                                            "\"individual\": {" +
+                                                "\"reference\": \"Practitioner/"+iddokterKirim+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,7).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"period\": {" +
+                                        "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"" +
+                                    "}," +
+                                    "\"location\": [" +
+                                        "{" +
+                                            "\"location\": {" +
+                                                "\"reference\": \"Location/"+tbEncounter.getValueAt(i,11).toString()+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,10).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"statusHistory\": [" +                                
+                                        "{" +
+                                            "\"status\": \"arrived\"," +
+                                            "\"period\": {" +                                                
+                                                "\"start\": \""+tbEncounter.getValueAt(i,1).toString() +"\"," +
+                                                "\"end\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'00:05:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'") +"\"" +
+                                            "}" +
+                                        "}," +                                
+                                        "{" +
+                                            "\"status\": \"in-progress\"," +
+                                            "\"period\": {" +                                                
+                                                "\"start\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'00:05:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'") + "\"," +
+                                                "\"end\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'") +"\"" +
+                                            "}" +
+                                        "}," +
+                                        "{" +
+                                            "\"status\": \"finished\"," +
+                                            "\"period\": {" +                                                
+                                                "\"start\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'") +"\"," +
+                                                "\"end\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'") + "\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"serviceProvider\": {" +
+                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                    "}," +
+                                    "\"identifier\": [" +
+                                        "{" +
+                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                            "\"value\": \""+tbEncounter.getValueAt(i,2).toString()+"\"" +
+                                        "}" +
+                                    "]" +
+                                "}";
+                        System.out.println("URL : " + link + "/Encounter");
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Encounter", HttpMethod.POST, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
+                        root = mapper.readTree(json);
+                        response = root.path("id");
+                        if (!response.asText().equals("")) {
+                            Sequel.menyimpan("satu_sehat_encounter", "?,?", "No.Rawat", 2, new String[]{
+                                tbEncounter.getValueAt(i, 2).toString(), response.asText()
+                            });
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+            }
+        }
+    }
+    
+    private void updateEncounter() {
+        for (i = 0; i < tbEncounter.getRowCount(); i++) {
+            if (tbEncounter.getValueAt(i, 0).toString().equals("true")
+                    && (!tbEncounter.getValueAt(i, 5).toString().equals(""))
+                    && (!tbEncounter.getValueAt(i, 8).toString().equals(""))
+                    && (!tbEncounter.getValueAt(i, 15).toString().equals(""))) {
+                try {
+                    iddokterKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'");
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'");
+                    try {
+                        headers = new HttpHeaders();
+                        headers.setContentType(MediaType.APPLICATION_JSON);
+                        headers.add("Authorization", "Bearer "+api.TokenSatuSehat());
+                        json = "{" +
+                                    "\"resourceType\": \"Encounter\"," +
+                                    "\"id\": \""+tbEncounter.getValueAt(i,15).toString()+"\"," +
+                                    "\"identifier\": [" +
+                                        "{" +
+                                            "\"system\": \"http://sys-ids.kemkes.go.id/encounter/"+koneksiDB.IDSATUSEHAT()+"\"," +
+                                            "\"value\": \""+tbEncounter.getValueAt(i,2).toString()+"\"" +
+                                        "}" +
+                                    "]," +
+                                    "\"status\": \"finished\"," +
+                                    "\"class\": {" +
+                                        "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ActCode\"," +
+                                        "\"code\": \""+(tbEncounter.getValueAt(i,11).toString().equals("Ralan")?"AMB":"IMP")+"\"," +
+                                        "\"display\": \""+(tbEncounter.getValueAt(i,11).toString().equals("Ralan")?"ambulatory":"inpatient encounter")+"\"" +
+                                    "}," +
+                                    "\"subject\": {" +
+                                        "\"reference\": \"Patient/"+idpasienKirim+"\"," +
+                                        "\"display\": \""+tbEncounter.getValueAt(i,4).toString()+"\"" +
+                                    "}," +
+                                    "\"participant\": [" +
+                                        "{" +
+                                            "\"type\": [" +
+                                                "{" +
+                                                    "\"coding\": [" +
+                                                        "{" +
+                                                            "\"system\": \"http://terminology.hl7.org/CodeSystem/v3-ParticipationType\"," +
+                                                            "\"code\": \"ATND\"," +
+                                                            "\"display\": \"attender\"" +
+                                                        "}" +
+                                                    "]" +
+                                                "}" +
+                                            "]," +
+                                            "\"individual\": {" +
+                                                "\"reference\": \"Practitioner/"+iddokterKirim+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,7).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"period\": {" +
+                                        "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"," +
+                                        "\"end\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'02:00:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'")+"\"" +
+                                    "}," +
+                                    "\"location\": [" +
+                                        "{" +
+                                            "\"location\": {" +
+                                                "\"reference\": \"Location/"+tbEncounter.getValueAt(i,11).toString()+"\"," +
+                                                "\"display\": \""+tbEncounter.getValueAt(i,10).toString()+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"statusHistory\": [" +
+                                        "{" +
+                                            "\"status\": \"finished\"," +
+                                            "\"period\": {" +
+                                                "\"start\": \""+tbEncounter.getValueAt(i,1).toString()+"\"," +
+                                                "\"end\": \""+Sequel.cariIsi("select concat(tgl_registrasi,'T',ADDTIME(jam_reg,'00:30:00'),'+08:00') from reg_periksa where no_rawat='" + tbEncounter.getValueAt(i, 2).toString() + "'")+"\"" +
+                                            "}" +
+                                        "}" +
+                                    "]," +
+                                    "\"serviceProvider\": {" +
+                                        "\"reference\": \"Organization/"+koneksiDB.IDSATUSEHAT()+"\"" +
+                                    "}" +
+                                "}";
+                        System.out.println("URL : " + link + "/Encounter/" + tbEncounter.getValueAt(i, 15).toString());
+                        System.out.println("Request JSON : " + json);
+                        requestEntity = new HttpEntity(json, headers);
+                        json = api.getRest().exchange(link + "/Encounter/" + tbEncounter.getValueAt(i, 15).toString(), HttpMethod.PUT, requestEntity, String.class).getBody();
+                        System.out.println("Result JSON : " + json);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi Bridging : " + e);
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+            }
+        }
+    }
+    
+    private void cekIdPasien() {
+        idpasien = "";
+        try {
+            for (i = 0; i < tbEncounter.getRowCount(); i++) {
+                idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
+                if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'") == 0) {
+                    Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                        tbEncounter.getValueAt(i, 3).toString(), idpasien
+                    });
+                } else {
+                    Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cekIdDokter() {
+        iddokter = "";
+        try {
+            for (i = 0; i < tbEncounter.getRowCount(); i++) {
+                if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'").equals("")) {
+                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(i, 8).toString());
+                    Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

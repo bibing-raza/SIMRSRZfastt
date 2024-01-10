@@ -4379,7 +4379,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         dpjp.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dpjp.setLocationRelativeTo(internalFrame1);
         dpjp.setVisible(true);
-        dpjp.fokus();
+        dpjp.Dokter.requestFocus();
         dpjp.poliklinik(KdPoli.getText(), NmPoli.getText());
     }//GEN-LAST:event_btnDPJPActionPerformed
 
@@ -4423,7 +4423,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         poliBPJS.setSize(842, 390);
         poliBPJS.setLocationRelativeTo(internalFrame1);
         poliBPJS.setVisible(true);
-        poliBPJS.fokus();
+        poliBPJS.Poli.requestFocus();
     }//GEN-LAST:event_btnPoliActionPerformed
 
     private void btnPoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnPoliKeyPressed
@@ -4977,7 +4977,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         dpjp.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dpjp.setLocationRelativeTo(internalFrame1);
         dpjp.setVisible(true);
-        dpjp.fokus();
+        dpjp.Dokter.requestFocus();
         dpjp.poliklinik(KdPoli.getText(), NmPoli.getText());
         dpjp.tglLayan(TanggalPeriksa.getDate());
     }//GEN-LAST:event_btnDPJPlayanActionPerformed

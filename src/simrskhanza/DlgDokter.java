@@ -11,6 +11,8 @@
  */
 
 package simrskhanza;
+import bridging.BPJSCekReferensiDokterDPJP;
+import bridging.SatuSehatCekNIK;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -52,9 +54,11 @@ public class DlgDokter extends javax.swing.JDialog {
     private validasi Valid=new validasi();
     private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
     private DlgCariSpesialis spesial=new DlgCariSpesialis(null,false);
+    private BPJSCekReferensiDokterDPJP dpjp = new BPJSCekReferensiDokterDPJP(null, false);
+    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();
     private PreparedStatement stat, stat1;
     private ResultSet rs, rs1;
-    private String kerja1 = "", kerja2 = "", urlfoto = "";
+    private String kerja1 = "", kerja2 = "", urlfoto = "", kddokterBPJS = "", kddokterSatuSehat = "";
 
     /** Creates new form DlgDokter
      * @param parent
@@ -66,9 +70,11 @@ public class DlgDokter extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] row={"Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama",
-            "Alamat Tinggal","No.HP/Telp","Stts.Nikah","Spesialis","Alumni","No.Ijin Praktek",
-            "NIK/No. KTP","Status Kerja","URL Foto"};
+        Object[] row={
+            "Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama",
+            "Alamat Tinggal", "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni", "No.Ijin Praktek",
+            "NIK/No. KTP", "Status Kerja", "URL Foto", "Kode Dokter BPJS", "Kode Dokter Satu Sehat"
+        };
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -77,12 +83,10 @@ public class DlgDokter extends javax.swing.JDialog {
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 16; i++) {
+        for (int i = 0; i < 18; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
-//                column.setMinWidth(0);
-//                column.setMaxWidth(0);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
@@ -113,6 +117,10 @@ public class DlgDokter extends javax.swing.JDialog {
                 column.setPreferredWidth(90);
             } else if (i == 15) {
                 column.setPreferredWidth(300);
+            } else if (i == 16) {
+                column.setPreferredWidth(100);
+            } else if (i == 17) {
+                column.setPreferredWidth(130);
             }
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -134,8 +142,6 @@ public class DlgDokter extends javax.swing.JDialog {
             TableColumn column = tbDokter1.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
-//                column.setMinWidth(0);
-//                column.setMaxWidth(0);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
@@ -180,6 +186,7 @@ public class DlgDokter extends javax.swing.JDialog {
         TTlp.setDocument(new batasInput((byte)13).getOnlyAngka(TTlp));
         TnoKTP.setDocument(new batasInput((byte)20).getOnlyAngka(TnoKTP));
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -192,8 +199,47 @@ public class DlgDokter extends javax.swing.JDialog {
         } 
         
         ChkInput.setSelected(false);
-        isForm(); 
+        isForm();
         
+        dpjp.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (dpjp.getTable().getSelectedRow() != -1) {
+                    kddokterBPJS = dpjp.getTable().getValueAt(dpjp.getTable().getSelectedRow(), 1).toString();
+                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + TKd.getText() + "'") == 0) {
+                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{kddokterBPJS, TKd.getText(), ""});
+                    } else {
+                        Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + TKd.getText() + "'", "kd_dokter_bpjs='" + kddokterBPJS + "'");
+                    }
+                    tampil();
+                }
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
+
+        dpjp.getTable().addKeyListener(new KeyListener() {
+            @Override
+            public void keyTyped(KeyEvent e) {}
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if(e.getKeyCode()==KeyEvent.VK_SPACE){
+                    dpjp.dispose();
+                }
+            }
+            @Override
+            public void keyReleased(KeyEvent e) {}
+        });
               
         spesial.addWindowListener(new WindowListener() {
             @Override
@@ -258,6 +304,8 @@ public class DlgDokter extends javax.swing.JDialog {
 
         Popup = new javax.swing.JPopupMenu();
         MnRestore = new javax.swing.JMenuItem();
+        MnDokterBPJS = new javax.swing.JMenuItem();
+        MnDokterSatuSehat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel2 = new javax.swing.JPanel();
         panelGlass6 = new widget.panelisi();
@@ -326,22 +374,50 @@ public class DlgDokter extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        MnRestore.setBackground(new java.awt.Color(255, 255, 255));
         MnRestore.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRestore.setForeground(new java.awt.Color(0, 0, 0));
         MnRestore.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRestore.setText("Data Sampah");
         MnRestore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnRestore.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRestore.setIconTextGap(5);
         MnRestore.setName("MnRestore"); // NOI18N
-        MnRestore.setPreferredSize(new java.awt.Dimension(130, 28));
+        MnRestore.setPreferredSize(new java.awt.Dimension(200, 28));
         MnRestore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRestoreActionPerformed(evt);
             }
         });
         Popup.add(MnRestore);
+
+        MnDokterBPJS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokterBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokterBPJS.setText("Update Kode Dokter BPJS");
+        MnDokterBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokterBPJS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokterBPJS.setIconTextGap(5);
+        MnDokterBPJS.setName("MnDokterBPJS"); // NOI18N
+        MnDokterBPJS.setPreferredSize(new java.awt.Dimension(200, 28));
+        MnDokterBPJS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokterBPJSActionPerformed(evt);
+            }
+        });
+        Popup.add(MnDokterBPJS);
+
+        MnDokterSatuSehat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokterSatuSehat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokterSatuSehat.setText("Update Kode Dokter SatuSehat");
+        MnDokterSatuSehat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokterSatuSehat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokterSatuSehat.setIconTextGap(5);
+        MnDokterSatuSehat.setName("MnDokterSatuSehat"); // NOI18N
+        MnDokterSatuSehat.setPreferredSize(new java.awt.Dimension(200, 28));
+        MnDokterSatuSehat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokterSatuSehatActionPerformed(evt);
+            }
+        });
+        Popup.add(MnDokterSatuSehat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -352,7 +428,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -530,7 +606,6 @@ public class DlgDokter extends javax.swing.JDialog {
         cmbCrJk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "LAKI-LAKI", "PEREMPUAN" }));
         cmbCrJk.setLightWeightPopupEnabled(false);
         cmbCrJk.setName("cmbCrJk"); // NOI18N
-        cmbCrJk.setOpaque(false);
         cmbCrJk.setPreferredSize(new java.awt.Dimension(100, 23));
         cmbCrJk.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -554,7 +629,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbCrGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "A", "B", "AB", "O", "-" }));
         CmbCrGd.setLightWeightPopupEnabled(false);
         CmbCrGd.setName("CmbCrGd"); // NOI18N
-        CmbCrGd.setOpaque(false);
         CmbCrGd.setPreferredSize(new java.awt.Dimension(100, 23));
         CmbCrGd.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -578,7 +652,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbCrStts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "", "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDA" }));
         CmbCrStts.setLightWeightPopupEnabled(false);
         CmbCrStts.setName("CmbCrStts"); // NOI18N
-        CmbCrStts.setOpaque(false);
         CmbCrStts.setPreferredSize(new java.awt.Dimension(100, 23));
         CmbCrStts.addItemListener(new java.awt.event.ItemListener() {
             public void itemStateChanged(java.awt.event.ItemEvent evt) {
@@ -676,7 +749,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbJk.setForeground(new java.awt.Color(0, 0, 0));
         CmbJk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LAKI-LAKI", "PEREMPUAN" }));
         CmbJk.setName("CmbJk"); // NOI18N
-        CmbJk.setOpaque(false);
         CmbJk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CmbJkKeyPressed(evt);
@@ -711,7 +783,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CMbGd.setForeground(new java.awt.Color(0, 0, 0));
         CMbGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "AB", "O", "-" }));
         CMbGd.setName("CMbGd"); // NOI18N
-        CMbGd.setOpaque(false);
         CMbGd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CMbGdKeyPressed(evt);
@@ -727,7 +798,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel13.setBounds(2, 102, 153, 23);
 
         DTPLahir.setEditable(false);
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2020" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -749,7 +820,6 @@ public class DlgDokter extends javax.swing.JDialog {
         cmbAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KONG HU CHU", "-" }));
         cmbAgama.setLightWeightPopupEnabled(false);
         cmbAgama.setName("cmbAgama"); // NOI18N
-        cmbAgama.setOpaque(false);
         cmbAgama.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbAgamaKeyPressed(evt);
@@ -768,7 +838,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbStts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDA" }));
         CmbStts.setLightWeightPopupEnabled(false);
         CmbStts.setName("CmbStts"); // NOI18N
-        CmbStts.setOpaque(false);
         CmbStts.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 CmbSttsKeyPressed(evt);
@@ -932,7 +1001,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbSttsKerja.setForeground(new java.awt.Color(0, 0, 0));
         CmbSttsKerja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "NON AKTIF" }));
         CmbSttsKerja.setName("CmbSttsKerja"); // NOI18N
-        CmbSttsKerja.setOpaque(false);
         CmbSttsKerja.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 CmbSttsKerjaActionPerformed(evt);
@@ -990,7 +1058,6 @@ public class DlgDokter extends javax.swing.JDialog {
 
         TabDokter.setBackground(new java.awt.Color(250, 255, 245));
         TabDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabDokter.setForeground(new java.awt.Color(0, 0, 0));
         TabDokter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TabDokter.setName("TabDokter"); // NOI18N
         TabDokter.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1137,6 +1204,11 @@ public class DlgDokter extends javax.swing.JDialog {
                         + "'-','-','-','-','-','-','-','-','0','" + TTmp.getText() + "','" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "','" + TAlmt.getText() + "','-','0000-00-00','<1','-','T','-',"
                         + "'AKTIF','0','0','0','0000-00-00','0','0','" + TnoKTP.getText() + "'");
                 
+                //cek data mapping kode dokter
+                if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + TKd.getText() + "'") == 0) {
+                    Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), ""});
+                }
+
                 Sequel.menyimpan("dokter", "'" + TKd.getText() + "','"
                         + TNm.getText() + "','"
                         + CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "','"
@@ -1535,6 +1607,29 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_TurlKeyPressed
 
+    private void MnDokterBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokterBPJSActionPerformed
+        dpjp.setSize(872, internalFrame1.getHeight() - 40);
+        dpjp.setLocationRelativeTo(internalFrame1);
+        dpjp.setVisible(true);
+        dpjp.Dokter.requestFocus();
+        dpjp.poliklinik("", "");
+    }//GEN-LAST:event_MnDokterBPJSActionPerformed
+
+    private void MnDokterSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokterSatuSehatActionPerformed
+        kddokterSatuSehat = "";
+        try {
+            kddokterSatuSehat = cekViaSatuSehat.tampilIDParktisi(TnoKTP.getText());
+            if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + TKd.getText() + "'") == 0) {                
+                Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), kddokterSatuSehat});
+            } else {
+                Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + TKd.getText() + "'", "kd_dokter_satu_sehat='" + kddokterSatuSehat + "'");
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        tampil();
+    }//GEN-LAST:event_MnDokterSatuSehatActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1572,6 +1667,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdSps;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnDokterBPJS;
+    private javax.swing.JMenuItem MnDokterSatuSehat;
     private javax.swing.JMenuItem MnRestore;
     private javax.swing.JPanel PanelInput;
     private javax.swing.JPopupMenu Popup;
@@ -1714,7 +1811,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         rs.getString(13),
                         rs.getString(14),
                         rs.getString(15),
-                        rs.getString(16)
+                        rs.getString(16),
+                        Sequel.cariIsi("select ifnull(kd_dokter_bpjs,'') from mapping_dokter where kd_dokter_rs='" + rs.getString(1) + "'"),
+                        Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + rs.getString(1) + "'")
                     });
                 }
             } catch (Exception e) {

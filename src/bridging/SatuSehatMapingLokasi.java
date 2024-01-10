@@ -86,21 +86,21 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(80);
             } else if (i == 1) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(195);
             } else if (i == 2) {
                 column.setPreferredWidth(215);
             } else if (i == 3) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 4) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 5) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(70);
             } else if (i == 6) {
                 column.setPreferredWidth(100);
             } else if (i == 7) {
-                column.setPreferredWidth(180);
+                column.setPreferredWidth(250);
             } else if (i == 8) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             }
         }
         tbLokasi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -111,31 +111,31 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         }) {
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiKamar.setModel(tabModeKamar);
-
         tbLokasiKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 9; i++) {
             TableColumn column = tbLokasiKamar.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(80);
-            }else if(i==1){
-                column.setPreferredWidth(180);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(200);
+            } else if (i == 2) {
                 column.setPreferredWidth(215);
-            }else if(i==3){
-                column.setPreferredWidth(110);
-            }else if(i==4){
-                column.setPreferredWidth(110);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
+            } else if (i == 3) {
+                column.setPreferredWidth(120);
+            } else if (i == 4) {
+                column.setPreferredWidth(120);
+            } else if (i == 5) {
+                column.setPreferredWidth(65);
+            } else if (i == 6) {
                 column.setPreferredWidth(100);
-            }else if(i==7){
-                column.setPreferredWidth(180);
-            }else if(i==8){
-                column.setPreferredWidth(215);
+            } else if (i == 7) {
+                column.setPreferredWidth(265);
+            } else if (i == 8) {
+                column.setPreferredWidth(225);
             }
         }
         tbLokasiKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -145,26 +145,25 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiRuangOK.setModel(tabModeRuangOK);
-
         tbLokasiRuangOK.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiRuangOK.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
         for (i = 0; i < 7; i++) {
             TableColumn column = tbLokasiRuangOK.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(215);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
-                column.setPreferredWidth(110);
-            }else if(i==3){
-                column.setPreferredWidth(110);
-            }else if(i==4){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
+                column.setPreferredWidth(120);
+            } else if (i == 3) {
+                column.setPreferredWidth(60);
+            } else if (i == 4) {
                 column.setPreferredWidth(100);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(180);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(215);
             }
         }
@@ -175,8 +174,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiRuangLabPK.setModel(tabModeRuangLabPK);
-
         tbLokasiRuangLabPK.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiRuangLabPK.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -185,11 +184,11 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             if(i==0){
                 column.setPreferredWidth(215);
             }else if(i==1){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==2){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==3){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(60);
             }else if(i==4){
                 column.setPreferredWidth(100);
             }else if(i==5){
@@ -205,26 +204,26 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiRuangLabPA.setModel(tabModeRuangLabPA);
-
         tbLokasiRuangLabPA.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiRuangLabPA.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 7; i++) {
             TableColumn column = tbLokasiRuangLabPA.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(215);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
-                column.setPreferredWidth(110);
-            }else if(i==3){
-                column.setPreferredWidth(110);
-            }else if(i==4){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
+                column.setPreferredWidth(120);
+            } else if (i == 3) {
+                column.setPreferredWidth(60);
+            } else if (i == 4) {
                 column.setPreferredWidth(100);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(180);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(215);
             }
         }
@@ -235,8 +234,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiRuangLabMB.setModel(tabModeRuangLabMB);
-
         tbLokasiRuangLabMB.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiRuangLabMB.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -245,11 +244,11 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             if(i==0){
                 column.setPreferredWidth(215);
             }else if(i==1){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==2){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==3){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(60);
             }else if(i==4){
                 column.setPreferredWidth(100);
             }else if(i==5){
@@ -265,8 +264,8 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbLokasiRuangRadiologi.setModel(tabModeRuangRadiologi);
-
         tbLokasiRuangRadiologi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLokasiRuangRadiologi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -275,11 +274,11 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             if(i==0){
                 column.setPreferredWidth(215);
             }else if(i==1){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==2){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             }else if(i==3){
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(60);
             }else if(i==4){
                 column.setPreferredWidth(100);
             }else if(i==5){
@@ -787,19 +786,19 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         jLabel4.setText("Organisasi :");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
-        jLabel4.setBounds(170, 40, 74, 23);
+        jLabel4.setBounds(124, 40, 70, 23);
 
         KodeDepartemen.setEditable(false);
         KodeDepartemen.setForeground(new java.awt.Color(0, 0, 0));
         KodeDepartemen.setName("KodeDepartemen"); // NOI18N
         FormInput.add(KodeDepartemen);
-        KodeDepartemen.setBounds(248, 40, 55, 23);
+        KodeDepartemen.setBounds(200, 40, 55, 23);
 
         NamaDepartemen.setEditable(false);
         NamaDepartemen.setForeground(new java.awt.Color(0, 0, 0));
         NamaDepartemen.setName("NamaDepartemen"); // NOI18N
         FormInput.add(NamaDepartemen);
-        NamaDepartemen.setBounds(305, 40, 176, 23);
+        NamaDepartemen.setBounds(259, 40, 176, 23);
 
         btnDepartemenRS.setForeground(new java.awt.Color(0, 0, 0));
         btnDepartemenRS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -817,7 +816,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnDepartemenRS);
-        btnDepartemenRS.setBounds(705, 40, 28, 23);
+        btnDepartemenRS.setBounds(715, 40, 28, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Unit RS :");
@@ -859,7 +858,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         IDOrganisasi.setForeground(new java.awt.Color(0, 0, 0));
         IDOrganisasi.setName("IDOrganisasi"); // NOI18N
         FormInput.add(IDOrganisasi);
-        IDOrganisasi.setBounds(483, 40, 220, 23);
+        IDOrganisasi.setBounds(439, 40, 270, 23);
 
         Longitude.setForeground(new java.awt.Color(0, 0, 0));
         Longitude.setName("Longitude"); // NOI18N
@@ -869,7 +868,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Longitude);
-        Longitude.setBounds(430, 10, 120, 23);
+        Longitude.setBounds(430, 10, 150, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Longitude :");
@@ -881,7 +880,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         jLabel9.setText("Latitude :");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
-        jLabel9.setBounds(549, 10, 60, 23);
+        jLabel9.setBounds(580, 10, 60, 23);
 
         Latitude.setForeground(new java.awt.Color(0, 0, 0));
         Latitude.setName("Latitude"); // NOI18N
@@ -891,7 +890,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Latitude);
-        Latitude.setBounds(613, 10, 120, 23);
+        Latitude.setBounds(643, 10, 180, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Altitude :");
@@ -907,7 +906,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput.add(Altitude);
-        Altitude.setBounds(63, 40, 110, 23);
+        Altitude.setBounds(63, 40, 60, 23);
 
         internalFrame2.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -945,19 +944,19 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         jLabel11.setText("Organisasi :");
         jLabel11.setName("jLabel11"); // NOI18N
         FormInput1.add(jLabel11);
-        jLabel11.setBounds(170, 40, 74, 23);
+        jLabel11.setBounds(124, 40, 70, 23);
 
         KodeDepartemenKamar.setEditable(false);
         KodeDepartemenKamar.setForeground(new java.awt.Color(0, 0, 0));
         KodeDepartemenKamar.setName("KodeDepartemenKamar"); // NOI18N
         FormInput1.add(KodeDepartemenKamar);
-        KodeDepartemenKamar.setBounds(248, 40, 55, 23);
+        KodeDepartemenKamar.setBounds(200, 40, 55, 23);
 
         NamaDepartemenKamar.setEditable(false);
         NamaDepartemenKamar.setForeground(new java.awt.Color(0, 0, 0));
         NamaDepartemenKamar.setName("NamaDepartemenKamar"); // NOI18N
         FormInput1.add(NamaDepartemenKamar);
-        NamaDepartemenKamar.setBounds(305, 40, 176, 23);
+        NamaDepartemenKamar.setBounds(259, 40, 176, 23);
 
         btnDepartemenKamar.setForeground(new java.awt.Color(0, 0, 0));
         btnDepartemenKamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -975,7 +974,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput1.add(btnDepartemenKamar);
-        btnDepartemenKamar.setBounds(705, 40, 28, 23);
+        btnDepartemenKamar.setBounds(715, 40, 28, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Bangsal :");
@@ -1017,7 +1016,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         IDOrganisasiKamar.setForeground(new java.awt.Color(0, 0, 0));
         IDOrganisasiKamar.setName("IDOrganisasiKamar"); // NOI18N
         FormInput1.add(IDOrganisasiKamar);
-        IDOrganisasiKamar.setBounds(483, 40, 220, 23);
+        IDOrganisasiKamar.setBounds(439, 40, 270, 23);
 
         LongitudeKamar.setForeground(new java.awt.Color(0, 0, 0));
         LongitudeKamar.setName("LongitudeKamar"); // NOI18N
@@ -1027,7 +1026,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput1.add(LongitudeKamar);
-        LongitudeKamar.setBounds(430, 10, 120, 23);
+        LongitudeKamar.setBounds(430, 10, 150, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Longitude :");
@@ -1039,7 +1038,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
         jLabel14.setText("Latitude :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput1.add(jLabel14);
-        jLabel14.setBounds(549, 10, 60, 23);
+        jLabel14.setBounds(580, 10, 60, 23);
 
         LatitudeKamar.setForeground(new java.awt.Color(0, 0, 0));
         LatitudeKamar.setName("LatitudeKamar"); // NOI18N
@@ -1049,7 +1048,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput1.add(LatitudeKamar);
-        LatitudeKamar.setBounds(613, 10, 120, 23);
+        LatitudeKamar.setBounds(643, 10, 180, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Altitude :");
@@ -1065,7 +1064,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput1.add(AltitudeKamar);
-        AltitudeKamar.setBounds(63, 40, 110, 23);
+        AltitudeKamar.setBounds(63, 40, 60, 23);
 
         internalFrame3.add(FormInput1, java.awt.BorderLayout.PAGE_START);
 
@@ -1187,7 +1186,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput2.add(AltitudeRuangOK);
-        AltitudeRuangOK.setBounds(568, 10, 165, 23);
+        AltitudeRuangOK.setBounds(568, 10, 60, 23);
 
         internalFrame4.add(FormInput2, java.awt.BorderLayout.PAGE_START);
 
@@ -1309,7 +1308,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput3.add(AltitudeRuangLabPK);
-        AltitudeRuangLabPK.setBounds(568, 10, 165, 23);
+        AltitudeRuangLabPK.setBounds(568, 10, 60, 23);
 
         internalFrame5.add(FormInput3, java.awt.BorderLayout.PAGE_START);
 
@@ -1431,7 +1430,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput4.add(AltitudeRuangLabPA);
-        AltitudeRuangLabPA.setBounds(568, 10, 165, 23);
+        AltitudeRuangLabPA.setBounds(568, 10, 60, 23);
 
         internalFrame6.add(FormInput4, java.awt.BorderLayout.PAGE_START);
 
@@ -1553,7 +1552,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput5.add(AltitudeRuangLabMB);
-        AltitudeRuangLabMB.setBounds(568, 10, 165, 23);
+        AltitudeRuangLabMB.setBounds(568, 10, 60, 23);
 
         internalFrame7.add(FormInput5, java.awt.BorderLayout.PAGE_START);
 
@@ -1675,7 +1674,7 @@ public final class SatuSehatMapingLokasi extends javax.swing.JDialog {
             }
         });
         FormInput6.add(AltitudeRuangRadiologi);
-        AltitudeRuangRadiologi.setBounds(568, 10, 165, 23);
+        AltitudeRuangRadiologi.setBounds(568, 10, 60, 23);
 
         internalFrame8.add(FormInput6, java.awt.BorderLayout.PAGE_START);
 
