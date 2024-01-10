@@ -119,7 +119,7 @@ public class DlgUser extends javax.swing.JDialog {
                     "[K]Hapus SEP","[L]Penilaian Awal Medis Kebidanan & Kandungan Ralan","[L]Penilaian Awal Keperawatan Kebidanan Ralan","[L]Ikhtisar Perawatan HIV & Terapi ART",
                     "[L]Survey Kepuasan","[K]Kemenkes Kanker","[O]Set Bridging","[O]Operator Antrian","[L]Penilaian Awal Medis Ralan THT","[I]Rekam Psikologis",
                     "[L]Penilaian Awal Medis & Tambahan Pasien Geriatri","[L]Penilaian Awal Medis Ralan Mata","[L]Surat Sakit","[L]Surat Keterangan KIR/MCU","[L]Asesmen Medik Dewasa Ranap",
-                    "[D]Pemberian Obat Pasien","[L]CPPT","[K]Referensi Praktisi Satu Sehat"
+                    "[D]Pemberian Obat Pasien","[L]CPPT","[K]Bridging SatuSehat"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -635,7 +635,7 @@ public class DlgUser extends javax.swing.JDialog {
             } else if (i == 378) {
                 column.setPreferredWidth(50);
             } else if (i == 379) {
-                column.setPreferredWidth(160);
+                column.setPreferredWidth(120);
             } else {
                 column.setPreferredWidth(130);
             }

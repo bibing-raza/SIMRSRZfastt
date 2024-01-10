@@ -1506,8 +1506,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                         tabMode.addRow(new Object[]{false, "[J]Tarif UTD", rs.getBoolean("tarif_utd")});
                     }
                     
-                    if ("[K]Referensi Praktisi Satu Sehat".toLowerCase().contains(TCari.getText().toLowerCase())) {
-                        tabMode.addRow(new Object[]{false, "[K]Referensi Praktisi Satu Sehat", rs.getBoolean("bridging_satu_sehat")});
+                    if ("[K]Bridging SatuSehat".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[K]Bridging SatuSehat", rs.getBoolean("bridging_satu_sehat")});
                     }
                     
                     if ("[K]Kemenkes Kanker".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -3037,7 +3037,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","tarif_utd='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
-            if("[K]Referensi Praktisi Satu Sehat".equals(tbUser.getValueAt(i,1).toString())){
+            if("[K]Bridging SatuSehat".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bridging_satu_sehat='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             

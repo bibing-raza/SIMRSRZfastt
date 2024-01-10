@@ -1085,13 +1085,20 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         idpasien = "";
         try {
             for (i = 0; i < tbEncounter.getRowCount(); i++) {
-                idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
-                if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'") == 0) {
-                    Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
-                        tbEncounter.getValueAt(i, 3).toString(), idpasien
-                    });
-                } else {
-                    Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                if (tbEncounter.getValueAt(i, 0).toString().equals("true")
+                        && (!tbEncounter.getValueAt(i, 5).toString().equals("")
+                        || tbEncounter.getValueAt(i, 5).toString().length() == 16)) {
+
+                    idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
+                    if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'") == 0) {
+                        Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                            tbEncounter.getValueAt(i, 3).toString(), idpasien
+                        });
+                    } else {
+                        if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'").equals("")) {
+                            Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                        }
+                    }
                 }
             }
         } catch (Exception e) {
@@ -1103,9 +1110,17 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         iddokter = "";
         try {
             for (i = 0; i < tbEncounter.getRowCount(); i++) {
-                if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'").equals("")) {
+                if (tbEncounter.getValueAt(i, 0).toString().equals("true")
+                        && !tbEncounter.getValueAt(i, 8).toString().equals("")) {
+                    
                     iddokter = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(i, 8).toString());
-                    Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'") == 0) {
+                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbEncounter.getValueAt(i, 6).toString(), iddokter});
+                    } else {
+                        if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'").equals("")) {
+                            Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                        }
+                    }
                 }
             }
         } catch (Exception e) {

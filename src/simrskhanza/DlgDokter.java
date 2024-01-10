@@ -797,7 +797,6 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(2, 102, 153, 23);
 
-        DTPLahir.setEditable(false);
         DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
@@ -1203,35 +1202,26 @@ public class DlgDokter extends javax.swing.JDialog {
                 Sequel.menyimpan("pegawai", "'0','" + TKd.getText() + "','" + TNm.getText() + "','" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
                         + "'-','-','-','-','-','-','-','-','0','" + TTmp.getText() + "','" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "','" + TAlmt.getText() + "','-','0000-00-00','<1','-','T','-',"
                         + "'AKTIF','0','0','0','0000-00-00','0','0','" + TnoKTP.getText() + "'");
-                
-                //cek data mapping kode dokter
-                if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + TKd.getText() + "'") == 0) {
-                    Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), ""});
+
+                if (Sequel.menyimpantf("dokter", "'" + TKd.getText() + "','" + TNm.getText() + "',"
+                        + "'" + CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "',"
+                        + "'" + TTmp.getText() + "','" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "','" + CMbGd.getSelectedItem() + "',"
+                        + "'" + cmbAgama.getSelectedItem() + "','" + TAlmt.getText() + "','" + TTlp.getText() + "','" + CmbStts.getSelectedItem() + "',"
+                        + "'" + KdSps.getText() + "','" + TAlumni.getText() + "','" + TNoi.getText() + "','" + kerja1 + "','" + urlfoto + "'", "Dokter") == true) {
+
+                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + TKd.getText() + "'") == 0) {
+                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), ""});
+                    }
+                    
+                    if (TabDokter.getSelectedIndex() == 0) {
+                        tampil();
+                        emptTeks();
+                    } else if (TabDokter.getSelectedIndex() == 1) {
+                        tampil1();
+                        emptTeks();
+                    }
                 }
 
-                Sequel.menyimpan("dokter", "'" + TKd.getText() + "','"
-                        + TNm.getText() + "','"
-                        + CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "','"
-                        + TTmp.getText() + "','"
-                        + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "','"
-                        + CMbGd.getSelectedItem() + "','"
-                        + cmbAgama.getSelectedItem() + "','"
-                        + TAlmt.getText() + "','"
-                        + TTlp.getText() + "','"
-                        + CmbStts.getSelectedItem() + "','"
-                        + KdSps.getText() + "','"
-                        + TAlumni.getText() + "','"
-                        + TNoi.getText() + "','" 
-                        + kerja1 + "','" 
-                        + urlfoto + "'", "Kode Dokter");
-
-                if (TabDokter.getSelectedIndex() == 0) {
-                    tampil();
-                    emptTeks();
-                } else if (TabDokter.getSelectedIndex() == 1) {
-                    tampil1();
-                    emptTeks();
-                }
                 koneksi.setAutoCommit(true);
             } catch (Exception ex) {
                 return;
