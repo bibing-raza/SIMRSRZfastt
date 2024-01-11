@@ -1606,18 +1606,24 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_MnDokterBPJSActionPerformed
 
     private void MnDokterSatuSehatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokterSatuSehatActionPerformed
-        kddokterSatuSehat = "";
-        try {
-            kddokterSatuSehat = cekViaSatuSehat.tampilIDParktisi(TnoKTP.getText());
-            if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + TKd.getText() + "'") == 0) {                
-                Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), kddokterSatuSehat});
-            } else {
-                Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + TKd.getText() + "'", "kd_dokter_satu_sehat='" + kddokterSatuSehat + "'");
+        if (tbDokter.getSelectedRow() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan salah klik satu nama dokternya terlebih dahulu..!!");
+        } else {
+            kddokterSatuSehat = "";
+            try {
+                kddokterSatuSehat = cekViaSatuSehat.tampilIDParktisi(TnoKTP.getText());
+                if (!kddokterSatuSehat.equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + TKd.getText() + "'") == 0) {
+                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", TKd.getText(), kddokterSatuSehat});
+                    } else {
+                        Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + TKd.getText() + "'", "kd_dokter_satu_sehat='" + kddokterSatuSehat + "'");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
             }
-        } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
+            tampil();
         }
-        tampil();
     }//GEN-LAST:event_MnDokterSatuSehatActionPerformed
 
     /**

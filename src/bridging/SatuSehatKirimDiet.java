@@ -873,8 +873,8 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
 
             ps = koneksi.prepareStatement(
                     "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                    + "c.instruksi_nakes, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt, ifnull(ss.id_diet,'') satu_sehat_diet "
-                    + "FROM reg_periksa rp  INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet "
+                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                     + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
                     + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
@@ -897,8 +897,8 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
-                        rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi_nakes"), rs.getString("nama"), rs.getString("ktppraktisi"),
-                        rs.getString("tgl_cppt"), rs.getString("satu_sehat_diet")
+                        rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi"), rs.getString("nama"), rs.getString("ktppraktisi"),
+                        rs.getString("tanggal"), rs.getString("satu_sehat_diet")
                     });
                 }
             } catch (Exception e) {
@@ -931,13 +931,15 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                         || tbDiet.getValueAt(i, 5).toString().length() == 16)) {
 
                     idpasien = cekViaSatuSehat.tampilIDPasien(tbDiet.getValueAt(i, 5).toString());
-                    if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'") == 0) {
-                        Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
-                            tbDiet.getValueAt(i, 3).toString(), idpasien
-                        });
-                    } else {
-                        if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'").equals("")) {
-                            Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                    if (!idpasien.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'") == 0) {
+                            Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                                tbDiet.getValueAt(i, 3).toString(), idpasien
+                            });
+                        } else {
+                            if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'").equals("")) {
+                                Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                            }
                         }
                     }
                 }

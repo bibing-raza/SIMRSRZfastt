@@ -25,6 +25,7 @@ import java.io.FileWriter;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import javax.swing.JOptionPane;
 import javax.swing.event.DocumentEvent;
 import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
@@ -46,7 +47,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;   
     private int i=0;
-    private String link = "", json = "", iddokter = "", idpasien = "", idpasienKirim = "", iddokterKirim = "";
+    private String link = "", json = "", iddokter = "", idpasien = "", idpasienKirim = "", iddokterKirim = "", kddokterSatuSehat = "";
     private ApiSatuSehat api=new ApiSatuSehat();
     private HttpHeaders headers ;
     private HttpEntity requestEntity;
@@ -66,11 +67,11 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Kode Dokter","Nama Dokter",
-                "No.KTP Dokter","Kode Poli","Nama Poli/Unit","ID Lokasi Unit","Stts Rawat","Stts Lanjut",
-                "Tanggal Pulang","ID Encounter"
-            }){
+        tabMode=new DefaultTableModel(null, new String[]{
+            "P", "Tanggal Registrasi", "No.Rawat", "No.RM", "Nama Pasien", "No.KTP Pasien", "Kode Dokter", "Nama Dokter",
+            "No.KTP Dokter", "Kode Poli", "Nama Poli/Unit", "ID Lokasi Unit", "Stts Rawat", "Stts Lanjut",
+            "Tanggal Pulang", "ID Encounter", "ID Practitioner"
+        }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
                 if (colIndex==0) {
@@ -82,7 +83,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                  java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
-                 java.lang.String.class
+                 java.lang.String.class, java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -93,7 +94,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         tbEncounter.setModel(tabMode);
         tbEncounter.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbEncounter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbEncounter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -127,6 +128,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                 column.setPreferredWidth(160);
             } else if (i == 15) {
                 column.setPreferredWidth(225);
+            } else if (i == 16) {
+                column.setPreferredWidth(90);
             }
         }
         tbEncounter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -196,6 +199,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         ppPilihSemua = new javax.swing.JMenuItem();
         ppPilihEncounterBelum = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
+        ppKodePractitioner = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -264,6 +268,21 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(ppBersihkan);
+
+        ppKodePractitioner.setBackground(new java.awt.Color(255, 255, 254));
+        ppKodePractitioner.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppKodePractitioner.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppKodePractitioner.setText("Update ID Practitioner");
+        ppKodePractitioner.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppKodePractitioner.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppKodePractitioner.setName("ppKodePractitioner"); // NOI18N
+        ppKodePractitioner.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppKodePractitioner.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppKodePractitionerActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppKodePractitioner);
 
         LoadHTML.setBorder(null);
         LoadHTML.setName("LoadHTML"); // NOI18N
@@ -643,6 +662,27 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ppPilihEncounterBelumActionPerformed
 
+    private void ppKodePractitionerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppKodePractitionerActionPerformed
+        if (tbEncounter.getSelectedRow() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan salah klik satu nama dokternya terlebih dahulu..!!");
+        } else {
+            kddokterSatuSehat = "";
+            try {
+                kddokterSatuSehat = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(tbEncounter.getSelectedRow(), 8).toString());
+                if (!kddokterSatuSehat.equals("")) {
+                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(tbEncounter.getSelectedRow(), 6).toString() + "'") == 0) {
+                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbEncounter.getValueAt(tbEncounter.getSelectedRow(), 6).toString(), kddokterSatuSehat});
+                    } else {
+                        Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(tbEncounter.getSelectedRow(), 6).toString() + "'", "kd_dokter_satu_sehat='" + kddokterSatuSehat + "'");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+            tampil();
+        }
+    }//GEN-LAST:event_ppKodePractitionerActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -682,6 +722,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppKodePractitioner;
     private javax.swing.JMenuItem ppPilihEncounterBelum;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbEncounter;
@@ -719,7 +760,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                     tabMode.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
-                        rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter")
+                        rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter"),
+                        Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + rs.getString("kd_dokter") + "'")
                     });
                 }
             } catch (Exception e) {
@@ -761,7 +803,8 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                     tabMode.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("kd_dokter"), rs.getString("nama"), rs.getString("ktpdokter"), rs.getString("kd_poli"), rs.getString("nm_poli"),
-                        rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter")
+                        rs.getString("id_lokasi_satusehat"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter"),
+                        Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + rs.getString("kd_dokter") + "'")
                     });
                 }
             } catch (Exception e) {
@@ -1090,13 +1133,15 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         || tbEncounter.getValueAt(i, 5).toString().length() == 16)) {
 
                     idpasien = cekViaSatuSehat.tampilIDPasien(tbEncounter.getValueAt(i, 5).toString());
-                    if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'") == 0) {
-                        Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
-                            tbEncounter.getValueAt(i, 3).toString(), idpasien
-                        });
-                    } else {
-                        if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'").equals("")) {
-                            Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                    if (!idpasien.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'") == 0) {
+                            Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                                tbEncounter.getValueAt(i, 3).toString(), idpasien
+                            });
+                        } else {
+                            if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'").equals("")) {
+                                Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbEncounter.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                            }
                         }
                     }
                 }
@@ -1112,13 +1157,15 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
             for (i = 0; i < tbEncounter.getRowCount(); i++) {
                 if (tbEncounter.getValueAt(i, 0).toString().equals("true")
                         && !tbEncounter.getValueAt(i, 8).toString().equals("")) {
-                    
+                 
                     iddokter = cekViaSatuSehat.tampilIDParktisi(tbEncounter.getValueAt(i, 8).toString());
-                    if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'") == 0) {
-                        Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbEncounter.getValueAt(i, 6).toString(), iddokter});
-                    } else {
-                        if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'").equals("")) {
-                            Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                    if (!iddokter.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'") == 0) {
+                            Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbEncounter.getValueAt(i, 6).toString(), iddokter});
+                        } else {
+                            if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'").equals("")) {
+                                Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbEncounter.getValueAt(i, 6).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                            }
                         }
                     }
                 }
