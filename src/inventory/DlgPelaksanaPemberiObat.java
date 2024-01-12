@@ -163,7 +163,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(100);
             } else if (i == 3) {
                 column.setPreferredWidth(130);
             } else if (i == 4) {

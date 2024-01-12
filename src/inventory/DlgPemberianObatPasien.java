@@ -144,7 +144,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setPreferredWidth(70);
             } else if (i == 9) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(100);
             } else if (i == 10) {
                 column.setPreferredWidth(120);
             } else if (i == 11) {
@@ -1151,7 +1151,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(dosis);
-        dosis.setBounds(134, 122, 100, 23);
+        dosis.setBounds(134, 122, 150, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cara Pemberian/Rute :");
@@ -1206,7 +1206,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel10.setText("Jumlah (Sisa Obat) :");
         jLabel10.setName("jLabel10"); // NOI18N
         panelGlass7.add(jLabel10);
-        jLabel10.setBounds(235, 122, 110, 23);
+        jLabel10.setBounds(285, 122, 110, 23);
 
         jlhSisaObat.setForeground(new java.awt.Color(0, 0, 0));
         jlhSisaObat.setName("jlhSisaObat"); // NOI18N
@@ -1216,7 +1216,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(jlhSisaObat);
-        jlhSisaObat.setBounds(350, 122, 100, 23);
+        jlhSisaObat.setBounds(400, 122, 50, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Tgl. Pemberian :");
@@ -1251,7 +1251,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Tjlh.setForeground(new java.awt.Color(0, 0, 0));
         Tjlh.setName("Tjlh"); // NOI18N
         panelGlass7.add(Tjlh);
-        Tjlh.setBounds(554, 94, 76, 23);
+        Tjlh.setBounds(552, 94, 76, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Pemberian Obat : ");
@@ -1263,7 +1263,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI", "TETES", "OLES", "HISAP", "SEMPROT" }));
         cmbObat.setName("cmbObat"); // NOI18N
         panelGlass7.add(cmbObat);
-        cmbObat.setBounds(554, 122, 80, 23);
+        cmbObat.setBounds(552, 122, 80, 23);
 
         chkJam1.setBackground(new java.awt.Color(242, 242, 242));
         chkJam1.setForeground(new java.awt.Color(0, 0, 0));
@@ -2061,7 +2061,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2075,7 +2075,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

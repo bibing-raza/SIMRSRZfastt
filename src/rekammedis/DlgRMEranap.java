@@ -730,7 +730,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }
 
     private void tombolCek(String norawat) {
-        if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "' and date(tgl_asesmen)=date(now())") == 0) {
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "'") == 0) {
             BtnAsesmenMedik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
             BtnAsesmenMedik.setToolTipText("Asesmen Medik Dewasa BELUM diisi oleh dokter..!!!");
         } else {
@@ -738,7 +738,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             BtnAsesmenMedik.setToolTipText("Asesmen Medik Dewasa SUDAH diisi oleh dokter..!!!");
         }
 
-        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "'") == 0) {
             BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
             BtnAsesmenKeperawatanDewasa.setToolTipText("Asesmen Keperawatan Dewasa BELUM diisi oleh petugas..!!!");
         } else {

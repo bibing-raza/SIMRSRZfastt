@@ -1228,6 +1228,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
         MnRekapSEPRanap = new javax.swing.JMenuItem();
         MnRekapSEPRalan = new javax.swing.JMenuItem();
+        MnRekapSEPRalanRM = new javax.swing.JMenuItem();
         Popup1 = new javax.swing.JPopupMenu();
         ppPengajuan = new javax.swing.JMenu();
         MnBackdate = new javax.swing.JMenuItem();
@@ -1493,7 +1494,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppSEP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppSEP.setIconTextGap(8);
         ppSEP.setName("ppSEP"); // NOI18N
-        ppSEP.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppSEP.setPreferredSize(new java.awt.Dimension(240, 25));
         ppSEP.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppSEPBtnPrintActionPerformed(evt);
@@ -1509,7 +1510,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppDetailSEPvclaim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppDetailSEPvclaim.setIconTextGap(8);
         ppDetailSEPvclaim.setName("ppDetailSEPvclaim"); // NOI18N
-        ppDetailSEPvclaim.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppDetailSEPvclaim.setPreferredSize(new java.awt.Dimension(240, 25));
         ppDetailSEPvclaim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppDetailSEPvclaimBtnPrintActionPerformed(evt);
@@ -1525,7 +1526,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppSEPinternal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppSEPinternal.setIconTextGap(8);
         ppSEPinternal.setName("ppSEPinternal"); // NOI18N
-        ppSEPinternal.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppSEPinternal.setPreferredSize(new java.awt.Dimension(240, 25));
         ppSEPinternal.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppSEPinternalBtnPrintActionPerformed(evt);
@@ -1541,7 +1542,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppUpdateSEPdariVclaim.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppUpdateSEPdariVclaim.setIconTextGap(8);
         ppUpdateSEPdariVclaim.setName("ppUpdateSEPdariVclaim"); // NOI18N
-        ppUpdateSEPdariVclaim.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppUpdateSEPdariVclaim.setPreferredSize(new java.awt.Dimension(240, 25));
         ppUpdateSEPdariVclaim.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppUpdateSEPdariVclaimBtnPrintActionPerformed(evt);
@@ -1557,7 +1558,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppPulang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPulang.setIconTextGap(8);
         ppPulang.setName("ppPulang"); // NOI18N
-        ppPulang.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppPulang.setPreferredSize(new java.awt.Dimension(240, 25));
         ppPulang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPulangBtnPrintActionPerformed(evt);
@@ -1573,7 +1574,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppProgramPRB.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppProgramPRB.setIconTextGap(8);
         ppProgramPRB.setName("ppProgramPRB"); // NOI18N
-        ppProgramPRB.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppProgramPRB.setPreferredSize(new java.awt.Dimension(240, 25));
         ppProgramPRB.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppProgramPRBActionPerformed(evt);
@@ -1589,7 +1590,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppRencanaKontrollagi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppRencanaKontrollagi.setIconTextGap(8);
         ppRencanaKontrollagi.setName("ppRencanaKontrollagi"); // NOI18N
-        ppRencanaKontrollagi.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppRencanaKontrollagi.setPreferredSize(new java.awt.Dimension(240, 25));
         ppRencanaKontrollagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppRencanaKontrollagiActionPerformed(evt);
@@ -1605,7 +1606,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppDataRujukanKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppDataRujukanKeluar.setIconTextGap(8);
         ppDataRujukanKeluar.setName("ppDataRujukanKeluar"); // NOI18N
-        ppDataRujukanKeluar.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppDataRujukanKeluar.setPreferredSize(new java.awt.Dimension(240, 25));
         ppDataRujukanKeluar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppDataRujukanKeluarActionPerformed(evt);
@@ -1622,7 +1623,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppMembuatRujukan.setIconTextGap(8);
         ppMembuatRujukan.setName("ppMembuatRujukan"); // NOI18N
         ppMembuatRujukan.setOpaque(true);
-        ppMembuatRujukan.setPreferredSize(new java.awt.Dimension(200, 25));
+        ppMembuatRujukan.setPreferredSize(new java.awt.Dimension(240, 25));
 
         ppRujukanBiasa.setBackground(new java.awt.Color(242, 242, 242));
         ppRujukanBiasa.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -1686,7 +1687,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         MnRekapSEPRanap.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRekapSEPRanap.setIconTextGap(8);
         MnRekapSEPRanap.setName("MnRekapSEPRanap"); // NOI18N
-        MnRekapSEPRanap.setPreferredSize(new java.awt.Dimension(200, 25));
+        MnRekapSEPRanap.setPreferredSize(new java.awt.Dimension(240, 25));
         MnRekapSEPRanap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapSEPRanapBtnPrintActionPerformed(evt);
@@ -1702,13 +1703,29 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         MnRekapSEPRalan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRekapSEPRalan.setIconTextGap(8);
         MnRekapSEPRalan.setName("MnRekapSEPRalan"); // NOI18N
-        MnRekapSEPRalan.setPreferredSize(new java.awt.Dimension(200, 25));
+        MnRekapSEPRalan.setPreferredSize(new java.awt.Dimension(240, 25));
         MnRekapSEPRalan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRekapSEPRalanBtnPrintActionPerformed(evt);
             }
         });
         Popup.add(MnRekapSEPRalan);
+
+        MnRekapSEPRalanRM.setBackground(new java.awt.Color(242, 242, 242));
+        MnRekapSEPRalanRM.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapSEPRalanRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapSEPRalanRM.setText("Rekap No. SEP R. JALAN Rehab Medik");
+        MnRekapSEPRalanRM.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapSEPRalanRM.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapSEPRalanRM.setIconTextGap(8);
+        MnRekapSEPRalanRM.setName("MnRekapSEPRalanRM"); // NOI18N
+        MnRekapSEPRalanRM.setPreferredSize(new java.awt.Dimension(240, 25));
+        MnRekapSEPRalanRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapSEPRalanRMBtnPrintActionPerformed(evt);
+            }
+        });
+        Popup.add(MnRekapSEPRalanRM);
 
         Popup1.setName("Popup1"); // NOI18N
 
@@ -1942,7 +1959,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         noSrtMati.setBounds(130, 62, 280, 23);
 
         tglMati.setEditable(false);
-        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         tglMati.setDisplayFormat("dd-MM-yyyy");
         tglMati.setName("tglMati"); // NOI18N
         tglMati.setOpaque(false);
@@ -1958,7 +1975,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel48.setBounds(220, 91, 90, 23);
 
         noLP.setEditable(false);
-        noLP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        noLP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         noLP.setDisplayFormat("dd-MM-yyyy");
         noLP.setName("noLP"); // NOI18N
         noLP.setOpaque(false);
@@ -2048,7 +2065,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel30.setBounds(0, 25, 160, 23);
 
         TanggalRujukKeluar.setEditable(false);
-        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         TanggalRujukKeluar.setDisplayFormat("dd-MM-yyyy");
         TanggalRujukKeluar.setName("TanggalRujukKeluar"); // NOI18N
         TanggalRujukKeluar.setOpaque(false);
@@ -2268,7 +2285,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel49.setBounds(0, 54, 160, 23);
 
         tglRencanaKunjungan.setEditable(false);
-        tglRencanaKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        tglRencanaKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         tglRencanaKunjungan.setDisplayFormat("dd-MM-yyyy");
         tglRencanaKunjungan.setName("tglRencanaKunjungan"); // NOI18N
         tglRencanaKunjungan.setOpaque(false);
@@ -2925,7 +2942,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel20.setBounds(183, 102, 53, 23);
 
         TanggalSEP.setEditable(false);
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -2946,7 +2963,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel22.setBounds(0, 102, 90, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3298,7 +3315,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel36.setBounds(806, 12, 93, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -3932,7 +3949,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass11.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3951,7 +3968,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-08-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6482,6 +6499,15 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_ppDetailSEPvclaimBtnPrintActionPerformed
 
+    private void MnRekapSEPRalanRMBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapSEPRalanRMBtnPrintActionPerformed
+        if (tbSEP.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa diexport menjadi file excel...!!!!");
+            BtnBatal.requestFocus();
+        } else if (tbSEP.getRowCount() != 0) {
+            ExportSEPRalanFisioterapi();
+        }
+    }//GEN-LAST:event_MnRekapSEPRalanRMBtnPrintActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -6573,6 +6599,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnFingerPrin;
     private javax.swing.JMenuItem MnFingerPrin1;
     private javax.swing.JMenuItem MnRekapSEPRalan;
+    private javax.swing.JMenuItem MnRekapSEPRalanRM;
     private javax.swing.JMenuItem MnRekapSEPRanap;
     private widget.TextBox NmDPJP;
     private widget.TextBox NmKab;
@@ -8054,6 +8081,23 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                 + "and rp.tgl_registrasi<='" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'", dialog_simpan);
         
         JOptionPane.showMessageDialog(null, "Data SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
+        this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void ExportSEPRalanFisioterapi() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        dialog_simpan = Valid.openDialog();
+        
+        Valid.MyReportToExcel("SELECT bs.no_sep 'No. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', date_format(rp.tgl_registrasi,'%d-%m-%Y') 'Tgl. Kunjungan', "
+                + "dr.jns_rehabmedik 'Jns. Rehab Medik', ifnull(pg.nama,'-') 'Petugas Rehab Medik' from bridging_sep bs "
+                + "inner join reg_periksa rp on rp.no_rawat=bs.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                + "inner join data_rehab_medik dr on dr.no_rawat=bs.no_rawat left join pemeriksaan_ralan_petugas pr on pr.no_rawat = rp.no_rawat "
+                + "left join pegawai pg on pg.nik = pr.nip WHERE "
+                + "bs.tglsep between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                + "and bs.jnspelayanan='2' and rp.tgl_registrasi>='" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' "
+                + "and rp.tgl_registrasi<='" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' order by rp.tgl_registrasi, dr.jns_rehabmedik", dialog_simpan);
+        
+        JOptionPane.showMessageDialog(null, "Data SEP Rawat Jalan rehab medik berhasil diexport menjadi file excel,..!!!");
         this.setCursor(Cursor.getDefaultCursor());
     }
     
