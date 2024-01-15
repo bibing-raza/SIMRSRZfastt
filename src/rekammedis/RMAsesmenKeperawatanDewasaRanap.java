@@ -5310,7 +5310,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         BtnEdit.setEnabled(akses.getcppt());
         
         if (akses.getjml2() >= 1) {            
-            BtnPerawat.setEnabled(false);
+//            BtnPerawat.setEnabled(false);
             nip = akses.getkode();            
             Sequel.cariIsi("select nama from pegawai where nik=?", TnmPerawat, nip);
             if (TnmPerawat.getText().equals("")) {
