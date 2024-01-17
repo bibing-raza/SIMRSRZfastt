@@ -4668,7 +4668,46 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         NoTelp.requestFocus();
                     } else {
                         JOptionPane.showMessageDialog(null, "Status kepesertaan tidak aktif..!!");
-                        dispose();
+                        TPasien.setText(Strings.toUpperCase(cekViaBPJSKartu.nama));
+                        TglLahir.setText(cekViaBPJSKartu.tglLahir);
+                        NoKartu.setText(no_peserta);
+                        JenisPeserta.setText(cekViaBPJSKartu.jenisPesertaketerangan);
+                        Status.setText(cekViaBPJSKartu.statusPesertaketerangan);
+
+                        if (cekViaBPJSKartu.sex.equals("L")) {
+                            JK.setText("Laki-laki");
+                        } else {
+                            JK.setText("Perempuan");
+                        }
+
+                        if (AsalRujukan.getSelectedIndex() == 0) {
+                            KdPpkRujukan.setText(cekViaBPJSKartu.provUmumkdProvider);
+                            rujukanSEP.setText(cekViaBPJSKartu.provUmumnmProvider);
+                            Sequel.cariIsi("select nama_rujukan from master_nama_rujukan where kode_faskes_bpjs=? ", NmPpkRujukan, KdPpkRujukan.getText());
+                            Sequel.cariIsi("select kd_rujukan from master_nama_rujukan where status='1' and kode_faskes_bpjs=? ", kode_rujukanya, KdPpkRujukan.getText());
+//                            NmPpkRujukan.setText("");
+                        } else if (AsalRujukan.getSelectedIndex() == 1) {
+                            KdPpkRujukan.setText(KdPPK.getText());
+//                            NmPpkRujukan.setText(NmPPK.getText());
+                            rujukanSEP.setText(NmPPK.getText());
+                            NmPpkRujukan.setText(NmPPK.getText());
+                            Sequel.cariIsi("select kd_rujukan from master_nama_rujukan where status='1' and kode_faskes_bpjs=? ", kode_rujukanya, KdPpkRujukan.getText());
+                        }
+
+                        if (cekViaBPJSKartu.hakKelaskode.equals("1")) {
+                            hakKelas.setSelectedIndex(0);
+                        } else if (cekViaBPJSKartu.hakKelaskode.equals("2")) {
+                            hakKelas.setSelectedIndex(1);
+                        } else if (cekViaBPJSKartu.hakKelaskode.equals("3")) {
+                            hakKelas.setSelectedIndex(2);
+                        }
+
+                        if (cekViaBPJSKartu.mrnoTelepon.equals("null")) {
+                            NoTelp.setText(Sequel.cariIsi("select ifnull(no_tlp,'0') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+                        } else {
+                            NoTelp.setText(cekViaBPJSKartu.mrnoTelepon);
+                        }
+                        BtnSimpan.setEnabled(false);
                     }
                 } else {
                     dispose();

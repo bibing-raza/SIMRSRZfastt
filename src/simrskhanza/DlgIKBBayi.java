@@ -649,7 +649,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.setName("Popup"); // NOI18N
 
-        ppGrafikjkbayi.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikjkbayi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikjkbayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikjkbayi.setText("Grafik Jns.Kelamin Bayi");
@@ -665,7 +664,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         Popup.add(ppGrafikjkbayi);
 
-        jMenu1.setBackground(new java.awt.Color(255, 255, 255));
         jMenu1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         jMenu1.setText("Grafik Berat Bayi");
         jMenu1.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -673,7 +671,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         jMenu1.setName("jMenu1"); // NOI18N
         jMenu1.setPreferredSize(new java.awt.Dimension(190, 25));
 
-        ppGrafikberat.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikberat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikberat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikberat.setText("Keseluruhan");
@@ -689,7 +686,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu1.add(ppGrafikberat);
 
-        ppGrafikberatlaki.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikberatlaki.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikberatlaki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikberatlaki.setText("Laki-Laki");
@@ -705,7 +701,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu1.add(ppGrafikberatlaki);
 
-        ppGrafikberatwn.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikberatwn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikberatwn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikberatwn.setText("Perempuan");
@@ -723,7 +718,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.add(jMenu1);
 
-        jMenu2.setBackground(new java.awt.Color(255, 255, 255));
         jMenu2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         jMenu2.setText("Grafik Panjang Bayi");
         jMenu2.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -731,7 +725,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         jMenu2.setName("jMenu2"); // NOI18N
         jMenu2.setPreferredSize(new java.awt.Dimension(190, 25));
 
-        ppGrafikpanjang.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikpanjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikpanjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikpanjang.setText("Keseluruhan");
@@ -747,7 +740,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu2.add(ppGrafikpanjang);
 
-        ppGrafikpanjanglaki.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikpanjanglaki.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikpanjanglaki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikpanjanglaki.setText("Laki-Laki");
@@ -763,7 +755,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu2.add(ppGrafikpanjanglaki);
 
-        ppGrafikpanjangwn.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikpanjangwn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikpanjangwn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikpanjangwn.setText("Perempuan");
@@ -781,7 +772,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.add(jMenu2);
 
-        jMenu3.setBackground(new java.awt.Color(255, 255, 255));
         jMenu3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         jMenu3.setText("Grafik Lahir/Tahun");
         jMenu3.setActionCommand("Grafik Kelahiran Tahunan");
@@ -790,7 +780,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         jMenu3.setName("jMenu3"); // NOI18N
         jMenu3.setPreferredSize(new java.awt.Dimension(190, 25));
 
-        ppGrafiklahirtahun.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirtahun.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirtahun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirtahun.setText("Keseluruhan");
@@ -806,7 +795,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu3.add(ppGrafiklahirtahun);
 
-        ppGrafiklahirtahunlaki.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirtahunlaki.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirtahunlaki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirtahunlaki.setText("Laki-Laki");
@@ -822,7 +810,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu3.add(ppGrafiklahirtahunlaki);
 
-        ppGrafiklahirtahunwn.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirtahunwn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirtahunwn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirtahunwn.setText("Perempuan");
@@ -840,7 +827,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.add(jMenu3);
 
-        jMenu4.setBackground(new java.awt.Color(255, 255, 255));
         jMenu4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         jMenu4.setText("Grafik Lahir/Bulan");
         jMenu4.setActionCommand("Grafik Kelahiran Tahunan");
@@ -849,7 +835,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         jMenu4.setName("jMenu4"); // NOI18N
         jMenu4.setPreferredSize(new java.awt.Dimension(190, 25));
 
-        ppGrafiklahirbulan.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirbulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirbulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirbulan.setText("Keseluruhan");
@@ -865,7 +850,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu4.add(ppGrafiklahirbulan);
 
-        ppGrafiklahirbulanlaki.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirbulanlaki.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirbulanlaki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirbulanlaki.setText("Laki-Laki");
@@ -881,7 +865,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu4.add(ppGrafiklahirbulanlaki);
 
-        ppGrafiklahirbulanwn.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafiklahirbulanwn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafiklahirbulanwn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafiklahirbulanwn.setText("Perempuan");
@@ -899,7 +882,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.add(jMenu4);
 
-        jMenu5.setBackground(new java.awt.Color(255, 255, 255));
         jMenu5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         jMenu5.setText("Grafik Proses Lahir");
         jMenu5.setActionCommand("Grafik Kelahiran Tahunan");
@@ -908,7 +890,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         jMenu5.setName("jMenu5"); // NOI18N
         jMenu5.setPreferredSize(new java.awt.Dimension(190, 25));
 
-        ppGrafikproseslahir.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikproseslahir.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikproseslahir.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikproseslahir.setText("Keseluruhan");
@@ -924,7 +905,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu5.add(ppGrafikproseslahir);
 
-        ppGrafikproseslahirlaki.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikproseslahirlaki.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikproseslahirlaki.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikproseslahirlaki.setText("Laki-Laki");
@@ -940,7 +920,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         jMenu5.add(ppGrafikproseslahirlaki);
 
-        ppGrafikproseslahirwn.setBackground(new java.awt.Color(255, 255, 255));
         ppGrafikproseslahirwn.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppGrafikproseslahirwn.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppGrafikproseslahirwn.setText("Perempuan");
@@ -958,7 +937,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
 
         Popup.add(jMenu5);
 
-        MnKartu.setBackground(new java.awt.Color(255, 255, 255));
         MnKartu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnKartu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnKartu.setText("Kartu Berobat");
@@ -972,7 +950,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         Popup.add(MnKartu);
 
-        MnInformasiBayi.setBackground(new java.awt.Color(255, 255, 255));
         MnInformasiBayi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnInformasiBayi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnInformasiBayi.setText("Label Informasi Bayi");
@@ -986,7 +963,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         Popup.add(MnInformasiBayi);
 
-        MnSKLblanko.setBackground(new java.awt.Color(255, 255, 255));
         MnSKLblanko.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSKLblanko.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSKLblanko.setText("Blanko Surat Kelahiran");
@@ -1000,7 +976,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         });
         Popup.add(MnSKLblanko);
 
-        MnSKL.setBackground(new java.awt.Color(255, 255, 255));
         MnSKL.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSKL.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSKL.setText("Surat Kelahiran");
@@ -1043,7 +1018,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel15);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2023" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1063,7 +1038,7 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         panelGlass8.add(jLabel17);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2023" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1305,35 +1280,30 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         cmbMnt1App.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1App.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt1App.setName("cmbMnt1App"); // NOI18N
-        cmbMnt1App.setOpaque(false);
         internalFrame7.add(cmbMnt1App);
         cmbMnt1App.setBounds(102, 148, 40, 23);
 
         cmbMnt1Pul.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1Pul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt1Pul.setName("cmbMnt1Pul"); // NOI18N
-        cmbMnt1Pul.setOpaque(false);
         internalFrame7.add(cmbMnt1Pul);
         cmbMnt1Pul.setBounds(102, 36, 40, 23);
 
         cmbMnt1Gri.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1Gri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt1Gri.setName("cmbMnt1Gri"); // NOI18N
-        cmbMnt1Gri.setOpaque(false);
         internalFrame7.add(cmbMnt1Gri);
         cmbMnt1Gri.setBounds(102, 120, 40, 23);
 
         cmbMnt1Act.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1Act.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt1Act.setName("cmbMnt1Act"); // NOI18N
-        cmbMnt1Act.setOpaque(false);
         internalFrame7.add(cmbMnt1Act);
         cmbMnt1Act.setBounds(102, 92, 40, 23);
 
         cmbMnt1Res.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1Res.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt1Res.setName("cmbMnt1Res"); // NOI18N
-        cmbMnt1Res.setOpaque(false);
         internalFrame7.add(cmbMnt1Res);
         cmbMnt1Res.setBounds(102, 64, 40, 23);
 
@@ -1377,35 +1347,30 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         cmbMnt5App.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5App.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt5App.setName("cmbMnt5App"); // NOI18N
-        cmbMnt5App.setOpaque(false);
         internalFrame7.add(cmbMnt5App);
         cmbMnt5App.setBounds(252, 148, 40, 23);
 
         cmbMnt5Pul.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5Pul.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt5Pul.setName("cmbMnt5Pul"); // NOI18N
-        cmbMnt5Pul.setOpaque(false);
         internalFrame7.add(cmbMnt5Pul);
         cmbMnt5Pul.setBounds(252, 36, 40, 23);
 
         cmbMnt5Gri.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5Gri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt5Gri.setName("cmbMnt5Gri"); // NOI18N
-        cmbMnt5Gri.setOpaque(false);
         internalFrame7.add(cmbMnt5Gri);
         cmbMnt5Gri.setBounds(252, 120, 40, 23);
 
         cmbMnt5Act.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5Act.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt5Act.setName("cmbMnt5Act"); // NOI18N
-        cmbMnt5Act.setOpaque(false);
         internalFrame7.add(cmbMnt5Act);
         cmbMnt5Act.setBounds(252, 92, 40, 23);
 
         cmbMnt5Res.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt5Res.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "0", "1", "2" }));
         cmbMnt5Res.setName("cmbMnt5Res"); // NOI18N
-        cmbMnt5Res.setOpaque(false);
         internalFrame7.add(cmbMnt5Res);
         cmbMnt5Res.setBounds(252, 64, 40, 23);
 
@@ -1592,7 +1557,6 @@ public class DlgIKBBayi extends javax.swing.JDialog {
         cmbHlm.setForeground(new java.awt.Color(0, 0, 0));
         cmbHlm.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "50", "100", "200", "300", "400", "500", "1000" }));
         cmbHlm.setName("cmbHlm"); // NOI18N
-        cmbHlm.setOpaque(false);
         cmbHlm.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi2.add(cmbHlm);
 
@@ -3813,6 +3777,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             tgl1.setDate(tgl);
             tgl2.setDate(new Date());
             tampilPersalinan();
+            TCari1.setText("");
             TCari1.requestFocus();
         }
     }//GEN-LAST:event_btnPasienIbuActionPerformed
@@ -3898,6 +3863,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
 
     private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
         WindowPasienIbuBersalin.dispose();
+        TCari1.setText("");
         NmAyah.requestFocus();
     }//GEN-LAST:event_BtnKeluar1ActionPerformed
 
@@ -4975,6 +4941,15 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             System.out.println("Notifikasi : " + e);
         }
         LCount1.setText("" + tabMode1.getRowCount());
+        
+        if (!TCari1.getText().equals("") && tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data tidak ditemukan, kemungkinan disebabkan oleh :\n"
+                    + "1. Data yang diketik pada keyword tidak sesuai\n"
+                    + "2. Tgl. pasien mendaftar diluar rentang tgl. rawat yang dipilih\n"
+                    + "3. Pasien TIDAK dirawat diantara ruang rawat Obsgyn, VIP Intan, ICCU/ICU, Covid, atau Isolasi       \n"
+                    + "4. Data jns. kelamin pada saat mendaftar bukan dipilih perempuan oleh petugas\n"
+                    + "5. Data umur pasien salah/tdk. sesuai ketika didaftarkan oleh petugas pendaftaran.");
+        }
     }
 
     private void tampilPonek() {
