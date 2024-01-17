@@ -264,7 +264,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -278,7 +278,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelisi4.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -466,7 +466,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel108.setBounds(0, 150, 150, 23);
 
         cmbJnsTran.setForeground(new java.awt.Color(0, 0, 0));
-        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT RAWAT INAP", "SURAT ISTIRAHAT SAKIT IGD", "SURAT KETERANGAN SAKIT RAWAT INAP", "SURAT KETERANGAN SAKIT IGD", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD" }));
+        cmbJnsTran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "FARMASI", "RADIOLOGI", "LABORATORIUM", "PENANGANAN DOKTER", "PENANGANAN PETUGAS", "PENANGANAN DOKTER & PETUGAS", "DIET HARIAN", "ASESMEN MEDIK DEWASA RAWAT INAP", "ASESMEN KEPERAWATAN DEWASA RAWAT INAP", "CPPT RAWAT INAP", "CPPT IGD", "CATATAN RESEP RAWAT INAP", "CATATAN RESEP IGD", "RINGKASAN PULANG RAWAT INAP", "TRANSFER SERAH TERIMA RAWAT INAP", "TRANSFER SERAH TERIMA IGD", "CATATAN TINDAKAN KEPERAWATAN RAWAT INAP", "JADWAL PEMBERIAN OBAT RAWAT INAP", "JADWAL PEMBERIAN OBAT IGD", "KONSUL ANTAR UNIT RAWAT INAP", "DATA PERSALINAN", "SPIROMETRI", "SURAT ISTIRAHAT SAKIT", "DATA PERSALINAN DINKES KABUPATEN", "SURAT KETERANGAN SAKIT", "DPJP RAWAT INAP", "PERMINTAAN PERIKSA LAB.", "PERMINTAAN PERIKSA RADIOLOGI", "PEMANTAUAN HARIAN PASIEN RAWAT INAP", "TRIASE IGD", "ASESMEN MEDIK IGD", "ASESMEN KEPERAWATAN IGD" }));
         cmbJnsTran.setName("cmbJnsTran"); // NOI18N
         cmbJnsTran.setPreferredSize(new java.awt.Dimension(115, 23));
         cmbJnsTran.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1257,6 +1257,42 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 19) {
                 ps1 = koneksi.prepareStatement("select no_rawat, tgl_pemberian tgl, jadwal_pemberian jam, nama_obat data "
                         + "from pemberian_obat where no_rawat ='" + TNoRwTerpilih.getText() + "' and status='Ralan'");
+                //konsul antar unit
+            } else if (cmbJnsTran.getSelectedIndex() == 20) {
+                ps1 = koneksi.prepareStatement("select no_rawat, tgl_minta tgl, jam_minta jam, permintaan_konsul data "
+                        + "from surat_konsul_unit_ranap where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //data persalinan
+            } else if (cmbJnsTran.getSelectedIndex() == 21) {
+                ps1 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, concat(jns_persalinan,', Rujukan : ',rujukan) data "
+                        + "from data_persalinan where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //spirometri
+            } else if (cmbJnsTran.getSelectedIndex() == 22) {
+                ps1 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, keluhan data "
+                        + "from spirometri where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //surat istirahat sakit
+            } else if (cmbJnsTran.getSelectedIndex() == 23) {
+                ps1 = koneksi.prepareStatement("select no_rawat, tgl_mulai tgl, time(now()) jam, no_surat data "
+                        + "from surat_istirahat_sakit where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //data persalinan dinkes kabupaten
+            } else if (cmbJnsTran.getSelectedIndex() == 24) {
+                ps1 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, kasus_persalinan data "
+                        + "from persalinan_dinkes where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //surat keterangan sakit
+            } else if (cmbJnsTran.getSelectedIndex() == 25) {
+                ps1 = koneksi.prepareStatement("select no_rawat, sejak_tgl tgl, time(now()) jam, no_surat data "
+                        + "from surat_keterangan_sakit where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //dpjp
+            } else if (cmbJnsTran.getSelectedIndex() == 26) {
+                ps1 = koneksi.prepareStatement("select dr.no_rawat, date(now()) tgl, time(now()) jam, d.nm_dokter data "
+                        + "from dpjp_ranap dr inner join dokter d on d.kd_dokter=dr.kd_dokter where dr.no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //permintaan periksa lab
+            } else if (cmbJnsTran.getSelectedIndex() == 27) {
+                ps1 = koneksi.prepareStatement("select no_rawat, tgl_permintaan tgl, jam_permintaan jam, nm_pemeriksaan data "
+                        + "from permintaan_lab_raza where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                //permintaan periksa radiologi
+            } else if (cmbJnsTran.getSelectedIndex() == 28) {
+                ps1 = koneksi.prepareStatement("select no_rawat, tgl_permintaan tgl, jam_permintaan jam, nm_pemeriksaan data "
+                        + "from permintaan_radiologi where no_rawat ='" + TNoRwTerpilih.getText() + "'");
             } 
 
             try {
@@ -1373,6 +1409,42 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             } else if (cmbJnsTran.getSelectedIndex() == 19) {
                 ps2 = koneksi.prepareStatement("select no_rawat, tgl_pemberian tgl, jadwal_pemberian jam, nama_obat data "
                         + "from pemberian_obat where no_rawat ='" + TNoRwTujuan.getText() + "' and status='Ralan'");
+                //konsul antar unit
+            } else if (cmbJnsTran.getSelectedIndex() == 20) {
+                ps2 = koneksi.prepareStatement("select no_rawat, tgl_minta tgl, jam_minta jam, permintaan_konsul data "
+                        + "from surat_konsul_unit_ranap where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //data persalinan
+            } else if (cmbJnsTran.getSelectedIndex() == 21) {
+                ps2 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, concat(jns_persalinan,', Rujukan : ',rujukan) data "
+                        + "from data_persalinan where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //spirometri
+            } else if (cmbJnsTran.getSelectedIndex() == 22) {
+                ps2 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, keluhan data "
+                        + "from spirometri where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //surat istirahat sakit
+            } else if (cmbJnsTran.getSelectedIndex() == 23) {
+                ps2 = koneksi.prepareStatement("select no_rawat, tgl_mulai tgl, time(now()) jam, no_surat data "
+                        + "from surat_istirahat_sakit where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //data persalinan dinkes kabupaten
+            } else if (cmbJnsTran.getSelectedIndex() == 24) {
+                ps2 = koneksi.prepareStatement("select no_rawat, date(now()) tgl, time(now()) jam, kasus_persalinan data "
+                        + "from persalinan_dinkes where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //surat keterangan sakit
+            } else if (cmbJnsTran.getSelectedIndex() == 25) {
+                ps2 = koneksi.prepareStatement("select no_rawat, sejak_tgl tgl, time(now()) jam, no_surat data "
+                        + "from surat_keterangan_sakit where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //dpjp
+            } else if (cmbJnsTran.getSelectedIndex() == 26) {
+                ps2 = koneksi.prepareStatement("select dr.no_rawat, date(now()) tgl, time(now()) jam, d.nm_dokter data "
+                        + "from dpjp_ranap dr inner join dokter d on d.kd_dokter=dr.kd_dokter where dr.no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //permintaan periksa lab
+            } else if (cmbJnsTran.getSelectedIndex() == 27) {
+                ps2 = koneksi.prepareStatement("select no_rawat, tgl_permintaan tgl, jam_permintaan jam, nm_pemeriksaan data "
+                        + "from permintaan_lab_raza where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                //permintaan periksa radiologi
+            } else if (cmbJnsTran.getSelectedIndex() == 28) {
+                ps2 = koneksi.prepareStatement("select no_rawat, tgl_permintaan tgl, jam_permintaan jam, nm_pemeriksaan data "
+                        + "from permintaan_radiologi where no_rawat ='" + TNoRwTujuan.getText() + "'");
             } 
 
             try {
@@ -2465,6 +2537,257 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             ChkTglTran.requestFocus();
         }
     }
+    
+    private void tranKonsulAntarUnit() {
+        if (ChkTglTran.isSelected() == true && !tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("surat_konsul_unit_ranap", "tgl_minta = '" + tglDari.getText() + "' and jam_minta >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+                Sequel.mengedit("surat_konsul_unit_ranap", "tgl_minta > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("surat_konsul_unit_ranap", "tgl_minta = '" + tglDari.getText() + "' and jam_minta >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+                Sequel.mengedit("surat_konsul_unit_ranap", "tgl_minta > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else if (ChkTglTran.isSelected() == false && tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("surat_konsul_unit_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("surat_konsul_unit_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Menentukan tgl. transaksi & jamnya tidak Valid...!!");
+            ChkTglTran.requestFocus();
+        }
+    }
+    
+    private void tranDataPersalinan() {
+        if (pilihan == 1) {
+            Sequel.mengedit("data_persalinan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("data_persalinan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranSpirometri() {
+        if (pilihan == 1) {
+            Sequel.mengedit("spirometri", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("spirometri", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranSuratIstirahatSakit() {
+        if (pilihan == 1) {
+            Sequel.mengedit("surat_istirahat_sakit", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("surat_istirahat_sakit", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranDataPersalinanDinkes() {
+        if (pilihan == 1) {
+            Sequel.mengedit("persalinan_dinkes", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("detail_persalinan_dinkes", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("persalinan_dinkes", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("detail_persalinan_dinkes", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranSuratKeteranganSakit() {
+        if (pilihan == 1) {
+            Sequel.mengedit("surat_keterangan_sakit", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("surat_keterangan_sakit", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranDPJP() {
+        if (pilihan == 1) {
+            Sequel.mengedit("dpjp_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("dpjp_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void tranPermintaanPeriksaLab() {
+        if (ChkTglTran.isSelected() == true && !tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("permintaan_lab_raza", "tgl_permintaan = '" + tglDari.getText() + "' and jam_permintaan >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+                Sequel.mengedit("permintaan_lab_raza", "tgl_permintaan > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("permintaan_lab_raza", "tgl_permintaan = '" + tglDari.getText() + "' and jam_permintaan >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+                Sequel.mengedit("permintaan_lab_raza", "tgl_permintaan > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else if (ChkTglTran.isSelected() == false && tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("permintaan_lab_raza", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("permintaan_lab_raza", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Menentukan tgl. transaksi & jamnya tidak Valid...!!");
+            ChkTglTran.requestFocus();
+        }
+    }
+    
+    private void tranPermintaanPeriksaRad() {
+        if (ChkTglTran.isSelected() == true && !tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("permintaan_radiologi", "tgl_permintaan = '" + tglDari.getText() + "' and jam_permintaan >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+                Sequel.mengedit("permintaan_radiologi", "tgl_permintaan > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("permintaan_radiologi", "tgl_permintaan = '" + tglDari.getText() + "' and jam_permintaan >='" + pukulDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+                Sequel.mengedit("permintaan_radiologi", "tgl_permintaan > '" + tglDari.getText() + "' "
+                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else if (ChkTglTran.isSelected() == false && tglDari.getText().equals("")) {
+            if (pilihan == 1) {
+                Sequel.mengedit("permintaan_radiologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            } else if (pilihan == 2) {
+                Sequel.mengedit("permintaan_radiologi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            }
+
+            tampil();
+            tampilTujuan();
+            pilihan = 0;
+            ChkTglTran.setSelected(false);
+            ChkTglTran.setText("Semua Tgl. Transaksi");
+            tglDari.setText("");
+            pukulDari.setText("");
+            ChkRMranap.setSelected(false);
+            ChkRMigd.setSelected(false);
+
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Menentukan tgl. transaksi & jamnya tidak Valid...!!");
+            ChkTglTran.requestFocus();
+        }
+    }
 
     private void pindahData() {
         if (cmbJnsTran.getSelectedIndex() == 1) {
@@ -2561,6 +2884,51 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 tranPemberianObatIGD();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 20) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranKonsulAntarUnit();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 21) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranDataPersalinan();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 22) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranSpirometri();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 23) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranSuratIstirahatSakit();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 24) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranDataPersalinanDinkes();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 25) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranSuratKeteranganSakit();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 26) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranDPJP();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 27) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranPermintaanPeriksaLab();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 28) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tranPermintaanPeriksaRad();
             }
         }
     }

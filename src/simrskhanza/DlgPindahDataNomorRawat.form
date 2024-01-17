@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="15-01-2024"/>
+                        <StringItem index="0" value="17-01-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="15-01-2024"/>
+                        <StringItem index="0" value="17-01-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -586,7 +586,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="34">
+                      <StringArray count="33">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -610,17 +610,16 @@
                         <StringItem index="20" value="KONSUL ANTAR UNIT RAWAT INAP"/>
                         <StringItem index="21" value="DATA PERSALINAN"/>
                         <StringItem index="22" value="SPIROMETRI"/>
-                        <StringItem index="23" value="SURAT ISTIRAHAT SAKIT RAWAT INAP"/>
-                        <StringItem index="24" value="SURAT ISTIRAHAT SAKIT IGD"/>
-                        <StringItem index="25" value="SURAT KETERANGAN SAKIT RAWAT INAP"/>
-                        <StringItem index="26" value="SURAT KETERANGAN SAKIT IGD"/>
-                        <StringItem index="27" value="DPJP RAWAT INAP"/>
-                        <StringItem index="28" value="PERMINTAAN PERIKSA LAB."/>
-                        <StringItem index="29" value="PERMINTAAN PERIKSA RADIOLOGI"/>
-                        <StringItem index="30" value="PEMANTAUAN HARIAN PASIEN RAWAT INAP"/>
-                        <StringItem index="31" value="TRIASE IGD"/>
-                        <StringItem index="32" value="ASESMEN MEDIK IGD"/>
-                        <StringItem index="33" value="ASESMEN KEPERAWATAN IGD"/>
+                        <StringItem index="23" value="SURAT ISTIRAHAT SAKIT"/>
+                        <StringItem index="24" value="DATA PERSALINAN DINKES KABUPATEN"/>
+                        <StringItem index="25" value="SURAT KETERANGAN SAKIT"/>
+                        <StringItem index="26" value="DPJP RAWAT INAP"/>
+                        <StringItem index="27" value="PERMINTAAN PERIKSA LAB."/>
+                        <StringItem index="28" value="PERMINTAAN PERIKSA RADIOLOGI"/>
+                        <StringItem index="29" value="PEMANTAUAN HARIAN PASIEN RAWAT INAP"/>
+                        <StringItem index="30" value="TRIASE IGD"/>
+                        <StringItem index="31" value="ASESMEN MEDIK IGD"/>
+                        <StringItem index="32" value="ASESMEN KEPERAWATAN IGD"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>
