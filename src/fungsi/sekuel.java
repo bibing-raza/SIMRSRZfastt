@@ -184,6 +184,27 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public void menyimpanPesanGagalnyaDiTerminal(String table, String value, String sama, int i, String[] a) {
+        try {
+            ps = connect.prepareStatement("insert into " + table + " values(" + value + ")");
+            try {
+                for (angka = 1; angka <= i; angka++) {
+                    ps.setString(angka, a[angka - 1]);
+                }
+                ps.executeUpdate();
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+                System.out.println("Gagal menyimpan data. Kemungkinan ada " + sama + " yang sama dimasukkan sebelumnya...!");
+            } finally {
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
 
     public void menyimpan2(String table, String value, String sama, int i, String[] a) {
         try {

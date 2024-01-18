@@ -67,7 +67,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         setSize(628,674);
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "P", "Tanggal Registrasi", "No.Rawat", "No.RM", "Nama Pasien", "No.KTP Pasien", "Stts Rawat", "Stts Lanjut",
+            "P", "Tgl. Registrasi", "No. Rawat", "No. RM", "Nama Pasien", "No.KTP Pasien", "Stts Rawat", "Stts Lanjut",
             "Tanggal Pulang", "ID Encounter", "ICD 10", "Nama Penyakit", "ID Condition"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
@@ -87,40 +87,39 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
-        tbCondition.setModel(tabMode);
 
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
-        tbCondition.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbCondition.setModel(tabMode);
+        tbCondition.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbCondition.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 13; i++) {
             TableColumn column = tbCondition.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
+            } else if (i == 3) {
+                column.setPreferredWidth(60);
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(130);
+            } else if (i == 7) {
                 column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(50);
-            }else if(i==11){
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(225);
-            }else if(i==12){
-                column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(65);
+            } else if (i == 11) {
+                column.setPreferredWidth(300);
+            } else if (i == 12) {
+                column.setPreferredWidth(225);
             }
         }
         tbCondition.setDefaultRenderer(Object.class, new WarnaTable());
@@ -625,7 +624,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if (!response.asText().equals("")) {
-                            Sequel.menyimpan("satu_sehat_condition", "?,?,?,?", "Diagnosa", 4, new String[]{
+                            Sequel.menyimpanPesanGagalnyaDiTerminal("satu_sehat_condition", "?,?,?,?", "Diagnosa", 4, new String[]{
                                 tbCondition.getValueAt(i, 2).toString(), tbCondition.getValueAt(i, 10).toString(), tbCondition.getValueAt(i, 7).toString(), response.asText()
                             });
                         }
@@ -873,9 +872,5 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     public void isCek(){
         BtnKirim.setEnabled(akses.getsatu_sehat());
         BtnPrint.setEnabled(akses.getsatu_sehat());
-    }
-    
-    public JTable getTable(){
-        return tbCondition;
     }
 }
