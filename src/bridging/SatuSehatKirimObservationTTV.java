@@ -69,7 +69,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         setSize(628,674);
 
         tabModeSuhu=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Stts Rawat","Stts Lanjut",
+                "P","Tgl. Registrasi","No. Rawat","No. RM","Nama Pasien","No.KTP Pasien","Stts Rawat","Stts Lanjut",
                 "Tanggal Pulang","ID Encounter","Suhu (°C)","Petugas/Dokter/Praktisi","No.KTP Praktisi","Tanggal","Jam",
                 "ID Observation Suhu"
             }){
@@ -101,35 +101,35 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(20);
             } else if (i == 1) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 2) {
                 column.setPreferredWidth(105);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(65);
             } else if (i == 4) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 5) {
                 column.setPreferredWidth(110);
             } else if (i == 6) {
-                column.setPreferredWidth(63);
+                column.setPreferredWidth(120);
             } else if (i == 7) {
                 column.setPreferredWidth(63);
             } else if (i == 8) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
                 column.setPreferredWidth(60);
             } else if (i == 11) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 12) {
                 column.setPreferredWidth(110);
             } else if (i == 13) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(70);
             } else if (i == 14) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(65);
             } else if (i == 15) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             }
         }
         tbSuhu.setDefaultRenderer(Object.class, new WarnaTable());
@@ -167,35 +167,35 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(20);
             } else if (i == 1) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 2) {
                 column.setPreferredWidth(105);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(65);
             } else if (i == 4) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 5) {
                 column.setPreferredWidth(110);
             } else if (i == 6) {
-                column.setPreferredWidth(63);
+                column.setPreferredWidth(120);
             } else if (i == 7) {
                 column.setPreferredWidth(63);
             } else if (i == 8) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 11) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 12) {
                 column.setPreferredWidth(110);
             } else if (i == 13) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(70);
             } else if (i == 14) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(65);
             } else if (i == 15) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             }
         }
         tbRespirasi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -231,38 +231,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbNadi.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(70);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbNadi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -298,38 +298,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbSpO2.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(55);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbSpO2.setDefaultRenderer(Object.class, new WarnaTable());
@@ -365,38 +365,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbGCS.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(40);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbGCS.setDefaultRenderer(Object.class, new WarnaTable());
@@ -432,38 +432,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbKesadaran.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(80);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbKesadaran.setDefaultRenderer(Object.class, new WarnaTable());
@@ -499,38 +499,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbTensi.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(75);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbTensi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -566,38 +566,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbTB.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(45);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbTB.setDefaultRenderer(Object.class, new WarnaTable());
@@ -633,38 +633,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbBB.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(45);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbBB.setDefaultRenderer(Object.class, new WarnaTable());
@@ -700,38 +700,38 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         for (i = 0; i < 16; i++) {
             TableColumn column = tbLP.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(110);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(45);
-            }else if(i==11){
-                column.setPreferredWidth(150);
-            }else if(i==12){
-                column.setPreferredWidth(110);
-            }else if(i==13){
+            } else if (i == 3) {
                 column.setPreferredWidth(65);
-            }else if(i==14){
-                column.setPreferredWidth(55);
-            }else if(i==15){
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(120);
+            } else if (i == 7) {
+                column.setPreferredWidth(63);
+            } else if (i == 8) {
+                column.setPreferredWidth(120);
+            } else if (i == 9) {
                 column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
+            } else if (i == 12) {
+                column.setPreferredWidth(110);
+            } else if (i == 13) {
+                column.setPreferredWidth(70);
+            } else if (i == 14) {
+                column.setPreferredWidth(65);
+            } else if (i == 15) {
+                column.setPreferredWidth(225);
             }
         }
         tbLP.setDefaultRenderer(Object.class, new WarnaTable());
@@ -799,6 +799,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihIdKosong = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -850,13 +851,28 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); // NOI18N
-        ppPilihSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihSemua.setPreferredSize(new java.awt.Dimension(190, 26));
         ppPilihSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPilihSemuaActionPerformed(evt);
             }
         });
         jPopupMenu1.add(ppPilihSemua);
+
+        ppPilihIdKosong.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihIdKosong.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihIdKosong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihIdKosong.setText("Pilih ID Observasi-TTV Kosong");
+        ppPilihIdKosong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihIdKosong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihIdKosong.setName("ppPilihIdKosong"); // NOI18N
+        ppPilihIdKosong.setPreferredSize(new java.awt.Dimension(190, 26));
+        ppPilihIdKosong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihIdKosongActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihIdKosong);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -865,7 +881,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); // NOI18N
-        ppBersihkan.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppBersihkan.setPreferredSize(new java.awt.Dimension(190, 26));
         ppBersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppBersihkanActionPerformed(evt);
@@ -1001,7 +1017,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1015,7 +1031,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1075,6 +1091,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbSuhu.setAutoCreateRowSorter(true);
         tbSuhu.setComponentPopupMenu(jPopupMenu1);
         tbSuhu.setName("tbSuhu"); // NOI18N
         Scroll.setViewportView(tbSuhu);
@@ -1085,6 +1102,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
+        tbRespirasi.setAutoCreateRowSorter(true);
         tbRespirasi.setComponentPopupMenu(jPopupMenu1);
         tbRespirasi.setName("tbRespirasi"); // NOI18N
         Scroll1.setViewportView(tbRespirasi);
@@ -1095,6 +1113,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
+        tbNadi.setAutoCreateRowSorter(true);
         tbNadi.setComponentPopupMenu(jPopupMenu1);
         tbNadi.setName("tbNadi"); // NOI18N
         Scroll2.setViewportView(tbNadi);
@@ -1105,6 +1124,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
+        tbSpO2.setAutoCreateRowSorter(true);
         tbSpO2.setComponentPopupMenu(jPopupMenu1);
         tbSpO2.setName("tbSpO2"); // NOI18N
         Scroll3.setViewportView(tbSpO2);
@@ -1115,6 +1135,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
+        tbGCS.setAutoCreateRowSorter(true);
         tbGCS.setComponentPopupMenu(jPopupMenu1);
         tbGCS.setName("tbGCS"); // NOI18N
         Scroll4.setViewportView(tbGCS);
@@ -1125,6 +1146,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
+        tbKesadaran.setAutoCreateRowSorter(true);
         tbKesadaran.setComponentPopupMenu(jPopupMenu1);
         tbKesadaran.setName("tbKesadaran"); // NOI18N
         Scroll5.setViewportView(tbKesadaran);
@@ -1135,6 +1157,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
+        tbTensi.setAutoCreateRowSorter(true);
         tbTensi.setComponentPopupMenu(jPopupMenu1);
         tbTensi.setName("tbTensi"); // NOI18N
         Scroll6.setViewportView(tbTensi);
@@ -1145,6 +1168,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
 
+        tbTB.setAutoCreateRowSorter(true);
         tbTB.setComponentPopupMenu(jPopupMenu1);
         tbTB.setName("tbTB"); // NOI18N
         Scroll7.setViewportView(tbTB);
@@ -1155,6 +1179,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll8.setName("Scroll8"); // NOI18N
         Scroll8.setOpaque(true);
 
+        tbBB.setAutoCreateRowSorter(true);
         tbBB.setComponentPopupMenu(jPopupMenu1);
         tbBB.setName("tbBB"); // NOI18N
         Scroll8.setViewportView(tbBB);
@@ -1165,6 +1190,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         Scroll9.setName("Scroll9"); // NOI18N
         Scroll9.setOpaque(true);
 
+        tbLP.setAutoCreateRowSorter(true);
         tbLP.setComponentPopupMenu(jPopupMenu1);
         tbLP.setName("tbLP"); // NOI18N
         Scroll9.setViewportView(tbLP);
@@ -2912,7 +2938,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
         switch (TabRawat.getSelectedIndex()) {
             case 0:
-                for (i = 0; i < tbSuhu.getRowCount(); i++) {
+                for (i = 0; i < tbSuhu.getRowCount(); i++) {                    
                     tbSuhu.setValueAt(true, i, 0);
                 }
                 break;
@@ -3815,6 +3841,83 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAll1KeyPressed
 
+    private void ppPilihIdKosongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihIdKosongActionPerformed
+        switch (TabRawat.getSelectedIndex()) {
+            case 0:
+                for (i = 0; i < tbSuhu.getRowCount(); i++) {
+                    if (tbSuhu.getValueAt(i, 15).equals("")) {
+                        tbSuhu.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 1:
+                for (i = 0; i < tbRespirasi.getRowCount(); i++) {
+                    if (tbRespirasi.getValueAt(i, 15).equals("")) {
+                        tbRespirasi.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 2:
+                for (i = 0; i < tbNadi.getRowCount(); i++) {
+                    if (tbNadi.getValueAt(i, 15).equals("")) {
+                        tbNadi.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 3:
+                for (i = 0; i < tbSpO2.getRowCount(); i++) {
+                    if (tbSpO2.getValueAt(i, 15).equals("")) {
+                        tbSpO2.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 4:
+                for (i = 0; i < tbGCS.getRowCount(); i++) {
+                    if (tbGCS.getValueAt(i, 15).equals("")) {
+                        tbGCS.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 5:
+                for (i = 0; i < tbKesadaran.getRowCount(); i++) {
+                    if (tbKesadaran.getValueAt(i, 15).equals("")) {
+                        tbKesadaran.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 6:
+                for (i = 0; i < tbTensi.getRowCount(); i++) {
+                    if (tbTensi.getValueAt(i, 15).equals("")) {
+                        tbTensi.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 7:
+                for (i = 0; i < tbTB.getRowCount(); i++) {
+                    if (tbTB.getValueAt(i, 15).equals("")) {
+                        tbTB.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 8:
+                for (i = 0; i < tbBB.getRowCount(); i++) {
+                    if (tbBB.getValueAt(i, 15).equals("")) {
+                        tbBB.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            case 9:
+                for (i = 0; i < tbLP.getRowCount(); i++) {
+                    if (tbLP.getValueAt(i, 15).equals("")) {
+                        tbLP.setValueAt(true, i, 0);
+                    }
+                }
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_ppPilihIdKosongActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3864,6 +3967,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihIdKosong;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbBB;
     private widget.Table tbGCS;
@@ -3907,7 +4011,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeSuhu.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("suhu_tubuh"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvsuhu")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvsuhu")
                     });
                 }
             } catch (Exception e) {
@@ -3997,7 +4103,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeRespirasi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("respirasi"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvrespirasi")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvrespirasi")
                     });
                 }
             } catch (Exception e) {
@@ -4087,7 +4195,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeNadi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("nadi"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvnadi")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvnadi")
                     });
                 }
             } catch (Exception e) {
@@ -4102,7 +4212,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             }
 
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.nadi, ifnull(ss.id_observation,'') satu_sehat_observationttvnadi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ranap pr ON pr.no_rawat = rp.no_rawat "
@@ -4177,7 +4287,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeSpO2.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("spo2"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvspo2")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvspo2")
                     });
                 }
             } catch (Exception e) {
@@ -4267,7 +4379,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeGCS.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("gcs"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvgcs")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvgcs")
                     });
                 }
             } catch (Exception e) {
@@ -4357,7 +4471,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeKesadaran.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("kesadaran"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvkesadaran")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvkesadaran")
                     });
                 }
             } catch (Exception e) {
@@ -4447,7 +4563,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeTensi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("tensi"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtensi")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtensi")
                     });
                 }
             } catch (Exception e) {
@@ -4537,7 +4655,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeTB.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("tinggi"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtb")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtb")
                     });
                 }
             } catch (Exception e) {
@@ -4627,7 +4747,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeBB.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("berat"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvbb")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvbb")
                     });
                 }
             } catch (Exception e) {
@@ -4717,7 +4839,9 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeLP.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("lingkar_perut"),
-                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvlp")
+                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
+                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvlp")
                     });
                 }
             } catch (Exception e) {

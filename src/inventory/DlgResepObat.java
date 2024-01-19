@@ -1227,7 +1227,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("propinsirs", akses.getpropinsirs());
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));            
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            if (akses.getadmin() == true) {
+                param.put("petugas", "-");
+            } else {
+                param.put("petugas", Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'"));
+            }
             Valid.MyReport("rptResepJalan.jasper", "report", "::[ Kwitansi Resep Obat ]::", " "
                     + "SELECT a.tgl_perawatan, a.jam, a.no_rawat, a.no_resep, a.no_rkm_medis, a.nm_pasien, a.png_jawab, a.nm_dokter, a.nama_brng, "
                     + "a.jml, a.hrg_jual, a.embalase, a.tuslah, a.total, b.total Total_Semua, c.nm_bangsal Asal_apotek, a.status_lanjut, a.Ruangan "

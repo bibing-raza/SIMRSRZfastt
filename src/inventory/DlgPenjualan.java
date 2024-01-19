@@ -1717,7 +1717,10 @@ private void BtnGudangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 }
             }
             Sequel.AutoComitTrue();
-            Valid.panggilUrl("billing/NotaApotek.php?nonota=" + NoNota.getText() + "&besarppn=" + besarppn + "&bayar=" + Bayar.getText() + "&tanggal=" + Valid.SetTgl(Tgl.getSelectedItem() + "") + "&catatan=" + catatan.getText().replaceAll(" ", "_") + "&petugas=" + nmptg.getText().replaceAll(" ", "_") + "&pasien=" + nmmem.getText().replaceAll(" ", "_") + "&norm=" + kdmem.getText().replaceAll(" ", "_"));
+            Valid.panggilUrl("billing/NotaApotek.php?nonota=" + NoNota.getText() + "&besarppn=" + besarppn + "&bayar=" + Bayar.getText()
+                    + "&tanggal=" + Valid.SetTgl(Tgl.getSelectedItem() + "") + "&catatan=" + catatan.getText().replaceAll(" ", "_")
+                    + "&petugas=" + nmptg.getText().replaceAll(" ", "_") + "&pasien=" + nmmem.getText().replaceAll(" ", "_")
+                    + "&norm=" + kdmem.getText().replaceAll(" ", "_"));
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_ppCetakNotaActionPerformed

@@ -11,6 +11,7 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="tgl_nota" class="java.lang.String"/>
+	<parameter name="petugas" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT dj.nota_jual, CONCAT(dj.jumlah, ' ', ks.satuan) jlh, db.nama_brng, dj.total, date_format(p.tgl_jual,'%d-%m-%Y') tgl_jual, pt.nama petgas, p.no_rkm_medis, p.nm_pasien,
 p.keterangan, (select sum(total) from detailjual WHERE nota_jual='PJ027713') tagihan, p.ongkir ppn, 
@@ -421,25 +422,25 @@ AND db.kdjns = j.kdjns AND dj.kode_sat = ks.kode_sat AND dj.nota_jual = p.nota_j
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Transparent" x="114" y="63" width="145" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
+				<reportElement mode="Transparent" x="114" y="63" width="151" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Petugas,]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="114" y="94" width="145" height="12" forecolor="#000000" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="8" isBold="false"/>
-				</textElement>
-				<text><![CDATA[( ................................... )]]></text>
-			</staticText>
 			<textField>
-				<reportElement x="114" y="53" width="145" height="12"/>
+				<reportElement x="114" y="53" width="151" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}+", "+$P{tgl_nota}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="114" y="97" width="151" height="12"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{petugas}+")"]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

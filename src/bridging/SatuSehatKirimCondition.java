@@ -187,6 +187,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihIdConditionKosong = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -219,13 +220,28 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); // NOI18N
-        ppPilihSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihSemua.setPreferredSize(new java.awt.Dimension(170, 26));
         ppPilihSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPilihSemuaActionPerformed(evt);
             }
         });
         jPopupMenu1.add(ppPilihSemua);
+
+        ppPilihIdConditionKosong.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihIdConditionKosong.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihIdConditionKosong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihIdConditionKosong.setText("Pilih ID Condition Kosong");
+        ppPilihIdConditionKosong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihIdConditionKosong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihIdConditionKosong.setName("ppPilihIdConditionKosong"); // NOI18N
+        ppPilihIdConditionKosong.setPreferredSize(new java.awt.Dimension(170, 26));
+        ppPilihIdConditionKosong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihIdConditionKosongActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihIdConditionKosong);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -234,7 +250,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); // NOI18N
-        ppBersihkan.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppBersihkan.setPreferredSize(new java.awt.Dimension(170, 26));
         ppBersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppBersihkanActionPerformed(evt);
@@ -260,6 +276,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbCondition.setAutoCreateRowSorter(true);
         tbCondition.setComponentPopupMenu(jPopupMenu1);
         tbCondition.setName("tbCondition"); // NOI18N
         Scroll.setViewportView(tbCondition);
@@ -380,7 +397,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -394,7 +411,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -734,6 +751,14 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
+    private void ppPilihIdConditionKosongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihIdConditionKosongActionPerformed
+        for (i = 0; i < tbCondition.getRowCount(); i++) {
+            if (tbCondition.getValueAt(i, 12).equals("")) {
+                tbCondition.setValueAt(true, i, 0);
+            }
+        }
+    }//GEN-LAST:event_ppPilihIdConditionKosongActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -773,6 +798,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihIdConditionKosong;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbCondition;
     // End of variables declaration//GEN-END:variables

@@ -1201,6 +1201,11 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 param.put("tgl_nota", Sequel.cariIsi("select day(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'") + " "
                         + Sequel.bulanINDONESIA("select month(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'") + " "
                         + Sequel.cariIsi("select year(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'"));
+                if (akses.getadmin() == true) {
+                    param.put("petugas", "-");
+                } else {
+                    param.put("petugas", Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'"));
+                }
                 Valid.MyReport("rptNotaApotek.jasper", "report", "::[ Nota Transaksi Farmasi (Penjualan Bebas) ]::",
                         " SELECT dj.nota_jual, CONCAT(dj.jumlah, ' ', ks.satuan) jlh, db.nama_brng, dj.total, date_format(p.tgl_jual,'%d-%m-%Y') tgl_jual, pt.nama petgas, p.no_rkm_medis, p.nm_pasien,"
                         + "p.keterangan, (select sum(total) from detailjual WHERE nota_jual='" + tbObat.getValueAt(tbObat.getSelectedRow(), 0).toString().trim() + "') tagihan, p.ongkir ppn, "
