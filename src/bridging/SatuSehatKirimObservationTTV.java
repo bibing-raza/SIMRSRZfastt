@@ -3978,11 +3978,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.suhu_tubuh, ifnull(ss.id_observation,'') satu_sehat_observationttvsuhu "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.temperatur,pr.suhu_tubuh) suhu_tubuh, "
+                    + "ifnull(ss.id_observation,'') satu_sehat_observationttvsuhu FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvsuhu ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.suhu_tubuh<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.temperatur<>'' or pr.suhu_tubuh<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4068,11 +4069,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.respirasi, ifnull(ss.id_observation,'') satu_sehat_observationttvrespirasi "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.napas,pr.respirasi) respirasi, ifnull(ss.id_observation,'') satu_sehat_observationttvrespirasi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvrespirasi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.respirasi<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.napas<>'' or pr.respirasi<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4158,11 +4159,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.nadi, ifnull(ss.id_observation,'') satu_sehat_observationttvnadi "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.nadi,pr.nadi) nadi, ifnull(ss.id_observation,'') satu_sehat_observationttvnadi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvnadi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.nadi<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.nadi<>'' or pr.nadi<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or nj.tanggal like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4248,11 +4249,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.spo2, ifnull(ss.id_observation,'') satu_sehat_observationttvspo2 "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.saturasi,pr.spo2) spo2, ifnull(ss.id_observation,'') satu_sehat_observationttvspo2 "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvspo2 ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.spo2<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.saturasi<>'' or pr.spo2<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4338,11 +4339,12 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.gcs, ifnull(ss.id_observation,'') satu_sehat_observationttvgcs "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,',',pa.gcs_v,',',pa.gcs_m),pr.gcs) gcs, "
+                    + "ifnull(ss.id_observation,'') satu_sehat_observationttvgcs FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat "
+                    + "INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN penilaian_awal_medis_igd pa on pa.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvgcs ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.gcs<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (pa.gcs_e<>'' or pr.gcs<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4428,11 +4430,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.kesadaran, ifnull(ss.id_observation,'') satu_sehat_observationttvkesadaran "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.kesadaran,pr.kesadaran) kesadaran, ifnull(ss.id_observation,'') satu_sehat_observationttvkesadaran "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvkesadaran ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.kesadaran<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.kesadaran<>'' or pr.kesadaran<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4518,11 +4520,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.tensi, ifnull(ss.id_observation,'') satu_sehat_observationttvtensi "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.td,pr.tensi) tensi, ifnull(ss.id_observation,'') satu_sehat_observationttvtensi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvtensi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.tensi<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.td<>'' or pr.tensi<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4608,11 +4610,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.tinggi, ifnull(ss.id_observation,'') satu_sehat_observationttvtb "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.tb,pr.tinggi) tinggi, ifnull(ss.id_observation,'') satu_sehat_observationttvtb "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvtb ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.tinggi<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.tb<>'' or pr.tinggi<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
@@ -4698,11 +4700,11 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.berat, ifnull(ss.id_observation,'') satu_sehat_observationttvbb "
+                    + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',ti.bb,pr.berat) berat, ifnull(ss.id_observation,'') satu_sehat_observationttvbb "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN triase_igd ti on ti.no_rawat=rp.no_rawat "
                     + "LEFT JOIN satu_sehat_observationttvbb ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
-                    + "where pr.berat<>'' and rp.tgl_registrasi between ? and ? "
+                    + "where (ti.bb<>'' or pr.berat<>'') and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
                     + "rp.stts like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pr.tgl_perawatan,pr.jam_rawat");
