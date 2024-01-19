@@ -67,7 +67,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         setSize(628,674);
 
         tabMode=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","Stts Rawat","Stts Lanjut",
+                "P","Tgl. Registrasi","No. Rawat","No. RM","Nama Pasien","No. KTP Pasien","Stts Rawat","Stts Lanjut",
                 "Tanggal Pulang","ID Encounter","ICD 9","Nama Prosedur","ID Procedure"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
@@ -87,40 +87,39 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
-        tbProsedur.setModel(tabMode);
 
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
-        tbProsedur.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbProsedur.setModel(tabMode);
+        tbProsedur.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbProsedur.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 13; i++) {
             TableColumn column = tbProsedur.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(150);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(160);
+            } else if (i == 2) {
                 column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
+            } else if (i == 3) {
+                column.setPreferredWidth(65);
+            } else if (i == 4) {
+                column.setPreferredWidth(220);
+            } else if (i == 5) {
                 column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(63);
-            }else if(i==7){
-                column.setPreferredWidth(63);
-            }else if(i==8){
-                column.setPreferredWidth(150);
-            }else if(i==9){
-                column.setPreferredWidth(215);
-            }else if(i==10){
-                column.setPreferredWidth(50);
-            }else if(i==11){
+            } else if (i == 6) {
+                column.setPreferredWidth(125);
+            } else if (i == 7) {
+                column.setPreferredWidth(65);
+            } else if (i == 8) {
+                column.setPreferredWidth(170);
+            } else if (i == 9) {
                 column.setPreferredWidth(225);
-            }else if(i==12){
-                column.setPreferredWidth(215);
+            } else if (i == 10) {
+                column.setPreferredWidth(65);
+            } else if (i == 11) {
+                column.setPreferredWidth(300);
+            } else if (i == 12) {
+                column.setPreferredWidth(225);
             }
         }
         tbProsedur.setDefaultRenderer(Object.class, new WarnaTable());
@@ -261,6 +260,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbProsedur.setAutoCreateRowSorter(true);
         tbProsedur.setComponentPopupMenu(jPopupMenu1);
         tbProsedur.setName("tbProsedur"); // NOI18N
         Scroll.setViewportView(tbProsedur);
@@ -381,7 +381,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -395,7 +395,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-06-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -773,7 +773,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
-                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+07:00') pulang, se.id_encounter, pp.kode, "
+                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, se.id_encounter, pp.kode, "
                     + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
                     + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
@@ -797,7 +797,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
-                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+07:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
+                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("kode"),
                         rs.getString("deskripsi_panjang"), rs.getString("id_procedure")
                     });
@@ -814,7 +814,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
             }
 
             ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+07:00') pulang, "
+                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
                     + "se.id_encounter, pp.kode, i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                     + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
@@ -839,7 +839,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
-                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+07:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
+                        false, rs.getString("tgl_registrasi") + "T" + rs.getString("jam_reg") + "+08:00", rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), rs.getString("status_lanjut"), rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("kode"),
                         rs.getString("deskripsi_panjang"), rs.getString("id_procedure")
                     });
