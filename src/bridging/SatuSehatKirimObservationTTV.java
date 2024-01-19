@@ -185,7 +185,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -223,9 +223,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbNadi.setModel(tabModeNadi);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbNadi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbNadi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -252,7 +251,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -290,9 +289,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbSpO2.setModel(tabModeSpO2);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbSpO2.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSpO2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -319,7 +317,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -357,9 +355,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbGCS.setModel(tabModeGCS);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbGCS.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbGCS.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -386,7 +383,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -424,9 +421,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbKesadaran.setModel(tabModeKesadaran);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbKesadaran.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKesadaran.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -453,7 +449,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -491,9 +487,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbTensi.setModel(tabModeTensi);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbTensi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbTensi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -520,7 +515,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -558,9 +553,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbTB.setModel(tabModeTB);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbTB.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbTB.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -587,7 +581,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -625,9 +619,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbBB.setModel(tabModeBB);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbBB.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBB.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -654,7 +647,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -692,9 +685,8 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
+        
         tbLP.setModel(tabModeLP);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbLP.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbLP.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -721,7 +713,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (i == 9) {
                 column.setPreferredWidth(215);
             } else if (i == 10) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(90);
             } else if (i == 11) {
                 column.setPreferredWidth(220);
             } else if (i == 12) {
@@ -3988,7 +3980,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.suhu_tubuh, ifnull(ss.id_observation,'') satu_sehat_observationttvsuhu "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvsuhu ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.suhu_tubuh<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4011,9 +4003,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeSuhu.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("suhu_tubuh"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvsuhu")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvsuhu")
                     });
                 }
             } catch (Exception e) {
@@ -4080,7 +4070,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.respirasi, ifnull(ss.id_observation,'') satu_sehat_observationttvrespirasi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvrespirasi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.respirasi<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4103,9 +4093,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeRespirasi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("respirasi"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvrespirasi")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvrespirasi")
                     });
                 }
             } catch (Exception e) {
@@ -4172,7 +4160,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.nadi, ifnull(ss.id_observation,'') satu_sehat_observationttvnadi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvnadi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.nadi<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or nj.tanggal like ? or "
@@ -4195,9 +4183,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeNadi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("nadi"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvnadi")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvnadi")
                     });
                 }
             } catch (Exception e) {
@@ -4264,7 +4250,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.spo2, ifnull(ss.id_observation,'') satu_sehat_observationttvspo2 "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvspo2 ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.spo2<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4287,9 +4273,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeSpO2.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("spo2"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvspo2")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvspo2")
                     });
                 }
             } catch (Exception e) {
@@ -4356,7 +4340,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.gcs, ifnull(ss.id_observation,'') satu_sehat_observationttvgcs "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvgcs ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.gcs<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4379,9 +4363,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeGCS.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("gcs"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvgcs")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvgcs")
                     });
                 }
             } catch (Exception e) {
@@ -4448,7 +4430,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.kesadaran, ifnull(ss.id_observation,'') satu_sehat_observationttvkesadaran "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvkesadaran ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.kesadaran<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4471,9 +4453,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeKesadaran.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("kesadaran"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvkesadaran")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvkesadaran")
                     });
                 }
             } catch (Exception e) {
@@ -4540,7 +4520,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.tensi, ifnull(ss.id_observation,'') satu_sehat_observationttvtensi "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvtensi ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.tensi<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4563,9 +4543,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeTensi.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("tensi"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtensi")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtensi")
                     });
                 }
             } catch (Exception e) {
@@ -4632,7 +4610,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.tinggi, ifnull(ss.id_observation,'') satu_sehat_observationttvtb "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvtb ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.tinggi<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4655,9 +4633,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeTB.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("tinggi"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtb")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvtb")
                     });
                 }
             } catch (Exception e) {
@@ -4724,7 +4700,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.berat, ifnull(ss.id_observation,'') satu_sehat_observationttvbb "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvbb ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.berat<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4747,9 +4723,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeBB.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("berat"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvbb")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvbb")
                     });
                 }
             } catch (Exception e) {
@@ -4816,7 +4790,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.lingkar_perut, ifnull(ss.id_observation,'') satu_sehat_observationttvlp "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pr.nip = pg.nik "
+                    + "INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter "
                     + "LEFT JOIN satu_sehat_observationttvlp ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' "
                     + "where pr.lingkar_perut<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
@@ -4839,9 +4813,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                     tabModeLP.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("lingkar_perut"),
-                        Sequel.cariIsi("select pg.nama from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select pg.no_ktp from reg_periksa rp inner join pegawai pg on pg.nik=rp.kd_dokter where rp.no_rawat='" + rs.getString("no_rawat") + "'"),
-                        rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvlp")
+                        rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvlp")
                     });
                 }
             } catch (Exception e) {
