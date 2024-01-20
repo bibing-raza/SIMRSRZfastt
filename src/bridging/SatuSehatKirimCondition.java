@@ -207,6 +207,8 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         DTPCari1 = new widget.Tanggal();
         jLabel17 = new widget.Label();
         DTPCari2 = new widget.Tanggal();
+        jLabel18 = new widget.Label();
+        cmbData = new widget.ComboBox();
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -397,7 +399,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -411,12 +413,24 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass9.add(DTPCari2);
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Lihat Data :");
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(jLabel18);
+
+        cmbData.setForeground(new java.awt.Color(0, 0, 0));
+        cmbData.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum/Gagal", "Berhasil" }));
+        cmbData.setName("cmbData"); // NOI18N
+        cmbData.setPreferredSize(new java.awt.Dimension(96, 23));
+        panelGlass9.add(cmbData);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Key Word :");
@@ -790,10 +804,12 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private widget.editorpane LoadHTML;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
+    private widget.ComboBox cmbData;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -808,16 +824,44 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
-                    + "concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, "
-                    + "ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
-                    + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
-                    + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS where rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
-                    + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, "
+                        + "ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
+                        + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
+                        + "where rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, "
+                        + "ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
+                        + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
+                        + "where (sc.id_condition is null or sc.id_condition='') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg,'02:00:00')) pulang, se.id_encounter, dp.kd_penyakit, py.nm_penyakit, "
+                        + "ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
+                        + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
+                        + "where sc.id_condition<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -850,16 +894,41 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                 }
             }
 
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
-                    + "se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
-                    + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
-                    + "ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
-                    + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
+                        + "se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
+                        + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
+                        + "ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
+                        + "se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
+                        + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
+                        + "(sc.id_condition is null or sc.id_condition='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
+                        + "se.id_encounter, dp.kd_penyakit, py.nm_penyakit, ifnull(sc.id_condition,'') id_condition FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
+                        + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
+                        + "sc.id_condition<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));

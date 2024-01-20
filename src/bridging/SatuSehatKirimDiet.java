@@ -189,6 +189,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihIdDietKosong = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -208,6 +209,8 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         DTPCari1 = new widget.Tanggal();
         jLabel17 = new widget.Label();
         DTPCari2 = new widget.Tanggal();
+        jLabel18 = new widget.Label();
+        cmbData = new widget.ComboBox();
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -222,13 +225,28 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); // NOI18N
-        ppPilihSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihSemua.setPreferredSize(new java.awt.Dimension(160, 26));
         ppPilihSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPilihSemuaActionPerformed(evt);
             }
         });
         jPopupMenu1.add(ppPilihSemua);
+
+        ppPilihIdDietKosong.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihIdDietKosong.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihIdDietKosong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihIdDietKosong.setText("Pilih ID Diet Kosong");
+        ppPilihIdDietKosong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihIdDietKosong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihIdDietKosong.setName("ppPilihIdDietKosong"); // NOI18N
+        ppPilihIdDietKosong.setPreferredSize(new java.awt.Dimension(160, 26));
+        ppPilihIdDietKosong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihIdDietKosongActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihIdDietKosong);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -238,7 +256,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); // NOI18N
-        ppBersihkan.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppBersihkan.setPreferredSize(new java.awt.Dimension(160, 26));
         ppBersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppBersihkanActionPerformed(evt);
@@ -385,7 +403,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -399,12 +417,24 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass9.add(DTPCari2);
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Lihat Data :");
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(jLabel18);
+
+        cmbData.setForeground(new java.awt.Color(0, 0, 0));
+        cmbData.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum/Gagal", "Berhasil" }));
+        cmbData.setName("cmbData"); // NOI18N
+        cmbData.setPreferredSize(new java.awt.Dimension(96, 23));
+        panelGlass9.add(cmbData);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Key Word :");
@@ -672,14 +702,14 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
-        for(i=0;i<tbDiet.getRowCount();i++){
-            tbDiet.setValueAt(true,i,0);
+        for (i = 0; i < tbDiet.getRowCount(); i++) {
+            tbDiet.setValueAt(true, i, 0);
         }
     }//GEN-LAST:event_ppPilihSemuaActionPerformed
 
     private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBersihkanActionPerformed
-        for(i=0;i<tbDiet.getRowCount();i++){
-            tbDiet.setValueAt(false,i,0);
+        for (i = 0; i < tbDiet.getRowCount(); i++) {
+            tbDiet.setValueAt(false, i, 0);
         }
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
@@ -793,6 +823,14 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
+    private void ppPilihIdDietKosongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihIdDietKosongActionPerformed
+        for (i = 0; i < tbDiet.getRowCount(); i++) {
+            if (tbDiet.getValueAt(i, 11).equals("")) {
+                tbDiet.setValueAt(true, i, 0);
+            }
+        }
+    }//GEN-LAST:event_ppPilihIdDietKosongActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -822,16 +860,19 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     private widget.editorpane LoadHTML;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
+    private widget.ComboBox cmbData;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihIdDietKosong;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbDiet;
     // End of variables declaration//GEN-END:variables
@@ -839,16 +880,40 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                    + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
-                    + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
-                    + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
-
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
+                        + "where (ss.id_diet is null or ss.id_diet='') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
+                        + "where ss.id_diet<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -879,17 +944,44 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 }
             }
 
-            ps = koneksi.prepareStatement(
-                    "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                    + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
-                    + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
-                    + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
-                    + "where ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
-                    + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
+                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
+                        + "where ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
+                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
+                        + "where (ss.id_diet is null or ss.id_diet='') and ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
+                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
+                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
+                        + "where ss.id_diet<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));

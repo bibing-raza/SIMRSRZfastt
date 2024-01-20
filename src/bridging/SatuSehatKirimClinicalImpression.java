@@ -40,21 +40,21 @@ import org.springframework.http.MediaType;
  */
 public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
-    private ResultSet rs;   
-    private int i=0;
-    private String link="",json="",idpasien="",iddokter="";
-    private ApiSatuSehat api=new ApiSatuSehat();
-    private HttpHeaders headers ;
+    private ResultSet rs;
+    private int i = 0;
+    private String link = "", json = "", idpasien = "", iddokter = "", idpasienKirim = "", iddokterKirim = "";
+    private ApiSatuSehat api = new ApiSatuSehat();
+    private HttpHeaders headers;
     private HttpEntity requestEntity;
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
-    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();  
-    private StringBuilder htmlContent;    
+    private SatuSehatCekNIK cekViaSatuSehat = new SatuSehatCekNIK();
+    private StringBuilder htmlContent; 
     
     /** Creates new form DlgKamar
      * @param parent
@@ -66,13 +66,13 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien",
-                "No.KTP Pasien","Stts Rawat","Stts Lanjut",
-                "Tanggal Pulang","ID Encounter","Keluhan/Subjek/Objek",
-                "Asesmen/Clinical Impression","Petugas/Dokter/Praktisi",
-                "No.KTP Praktisi","Tanggal","Jam","ICD 10","Nama Penyakit",
-                "ID Condition","ID Clinicial Impression"
+        tabMode = new DefaultTableModel(null, new String[]{
+            "P", "Tanggal Registrasi", "No.Rawat", "No.RM", "Nama Pasien",
+            "No.KTP Pasien", "Stts Rawat", "Stts Lanjut",
+            "Tanggal Pulang", "ID Encounter", "Keluhan/Subjek/Objek",
+            "Asesmen/Clinical Impression", "Petugas/Dokter/Praktisi",
+            "No.KTP Praktisi", "Tanggal", "Jam", "ICD 10", "Nama Penyakit",
+            "ID Condition", "ID Clinicial Impression", "kddokter"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -86,7 +86,8 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
-                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                 java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -98,7 +99,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         tbImpresion.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbImpresion.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbImpresion.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(20);
@@ -140,6 +141,9 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                 column.setPreferredWidth(215);
             } else if (i == 19) {
                 column.setPreferredWidth(215);
+            } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbImpresion.setDefaultRenderer(Object.class, new WarnaTable());
@@ -207,6 +211,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihIdClinicialKosong = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -239,13 +244,28 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); // NOI18N
-        ppPilihSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihSemua.setPreferredSize(new java.awt.Dimension(170, 26));
         ppPilihSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPilihSemuaActionPerformed(evt);
             }
         });
         jPopupMenu1.add(ppPilihSemua);
+
+        ppPilihIdClinicialKosong.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihIdClinicialKosong.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihIdClinicialKosong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihIdClinicialKosong.setText("Pilih ID Clinicial Kosong");
+        ppPilihIdClinicialKosong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihIdClinicialKosong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihIdClinicialKosong.setName("ppPilihIdClinicialKosong"); // NOI18N
+        ppPilihIdClinicialKosong.setPreferredSize(new java.awt.Dimension(170, 26));
+        ppPilihIdClinicialKosong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihIdClinicialKosongActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihIdClinicialKosong);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -254,7 +274,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); // NOI18N
-        ppBersihkan.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppBersihkan.setPreferredSize(new java.awt.Dimension(170, 26));
         ppBersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppBersihkanActionPerformed(evt);
@@ -400,7 +420,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -414,7 +434,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -599,6 +619,8 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
+        cekIdDokter();
+        cekIdPasien();
         for (i = 0; i < tbImpresion.getRowCount(); i++) {
             if (tbImpresion.getValueAt(i, 0).toString().equals("true") 
                     && (!tbImpresion.getValueAt(i, 5).toString().equals("")) 
@@ -606,8 +628,8 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                     && (!tbImpresion.getValueAt(i, 13).toString().equals("")) 
                     && tbImpresion.getValueAt(i, 19).toString().equals("")) {
                 try {
-                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbImpresion.getValueAt(i, 13).toString());
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbImpresion.getValueAt(i, 5).toString());
+                    iddokterKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbImpresion.getValueAt(i, 20).toString() + "'");
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbImpresion.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -617,17 +639,17 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                                     "\"status\": \"completed\"," +
                                     "\"description\" : \""+tbImpresion.getValueAt(i,10).toString().replaceAll("(\r\n|\r|\n|\n\r)","<br>") +"\"," +
                                     "\"subject\" : {"+
-                                       "\"reference\" : \"Patient/"+idpasien+"\","+
+                                       "\"reference\" : \"Patient/"+idpasienKirim+"\","+
                                        "\"display\" : \""+tbImpresion.getValueAt(i,4).toString()+"\""+
                                     "},"+
                                     "\"encounter\" : { " +
                                       "\"reference\" : \"Encounter/"+tbImpresion.getValueAt(i,9).toString()+"\","+
                                       "\"display\" : \"Kunjungan "+tbImpresion.getValueAt(i,4).toString()+" pada tanggal "+tbImpresion.getValueAt(i,1).toString()+" dengan nomor kunjungan "+tbImpresion.getValueAt(i,2).toString()+"\""+
                                     "},"+
-                                    "\"effectiveDateTime\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+07:00\"," +
-                                    "\"date\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+07:00\"," +
+                                    "\"effectiveDateTime\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+08:00\"," +
+                                    "\"date\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+08:00\"," +
                                     "\"assessor\" : {"+
-                                      "\"reference\" : \"Practitioner/"+iddokter+"\""+
+                                      "\"reference\" : \"Practitioner/"+iddokterKirim+"\""+
                                     "},"+
                                     "\"summary\" : \""+tbImpresion.getValueAt(i,11).toString().replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"\","+
                                     "\"finding\": [" +
@@ -694,6 +716,8 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+        cekIdDokter();
+        cekIdPasien();
         for (i = 0; i < tbImpresion.getRowCount(); i++) {
             if (tbImpresion.getValueAt(i, 0).toString().equals("true") 
                     && (!tbImpresion.getValueAt(i, 5).toString().equals("")) 
@@ -701,8 +725,8 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                     && (!tbImpresion.getValueAt(i, 13).toString().equals("")) 
                     && (!tbImpresion.getValueAt(i, 19).toString().equals(""))) {
                 try {
-                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbImpresion.getValueAt(i, 13).toString());
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbImpresion.getValueAt(i, 5).toString());
+                    iddokterKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbImpresion.getValueAt(i, 20).toString() + "'");
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbImpresion.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -713,17 +737,17 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                                     "\"status\": \"completed\"," +
                                     "\"description\" : \""+tbImpresion.getValueAt(i,10).toString().replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"\"," +
                                     "\"subject\" : {"+
-                                       "\"reference\" : \"Patient/"+idpasien+"\","+
+                                       "\"reference\" : \"Patient/"+idpasienKirim+"\","+
                                        "\"display\" : \""+tbImpresion.getValueAt(i,4).toString()+"\""+
                                     "},"+
                                     "\"encounter\" : { " +
                                       "\"reference\" : \"Encounter/"+tbImpresion.getValueAt(i,9).toString()+"\","+
                                       "\"display\" : \"Kunjungan "+tbImpresion.getValueAt(i,4).toString()+" pada tanggal "+tbImpresion.getValueAt(i,1).toString()+" dengan nomor kunjungan "+tbImpresion.getValueAt(i,2).toString()+"\""+
                                     "},"+
-                                    "\"effectiveDateTime\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+07:00\"," +
-                                    "\"date\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+07:00\"," +
+                                    "\"effectiveDateTime\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+08:00\"," +
+                                    "\"date\": \""+tbImpresion.getValueAt(i,14).toString()+"T"+tbImpresion.getValueAt(i,15).toString()+"+08:00\"," +
                                     "\"assessor\" : {"+
-                                      "\"reference\" : \"Practitioner/"+iddokter+"\""+
+                                      "\"reference\" : \"Practitioner/"+iddokterKirim+"\""+
                                     "},"+
                                     "\"summary\" : \""+tbImpresion.getValueAt(i,11).toString().replaceAll("(\r\n|\r|\n|\n\r)","<br>")+"\","+
                                     "\"finding\": [" +
@@ -784,6 +808,14 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
+    private void ppPilihIdClinicialKosongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihIdClinicialKosongActionPerformed
+        for (i = 0; i < tbImpresion.getRowCount(); i++) {
+            if (tbImpresion.getValueAt(i, 19).equals("")) {
+                tbImpresion.setValueAt(true, i, 0);
+            }
+        }
+    }//GEN-LAST:event_ppPilihIdClinicialKosongActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -823,6 +855,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihIdClinicialKosong;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbImpresion;
     // End of variables declaration//GEN-END:variables
@@ -833,10 +866,10 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.diagnosa, pr.keluhan, pr.pemeriksaan, sc.kd_penyakit, py.nm_penyakit, sc.id_condition, "
-                    + "ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression, rp.kd_dokter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat AND sc.STATUS = 'Ralan' "
                     + "INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit INNER JOIN pemeriksaan_ralan pr ON pr.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pegawai pg ON pr.kd_dokter = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
+                    + "INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
                     + "AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ralan' where pr.diagnosa<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
@@ -859,7 +892,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("keluhan") + ", " + rs.getString("pemeriksaan"), rs.getString("diagnosa"),
                         rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("kd_penyakit"), rs.getString("nm_penyakit"), rs.getString("id_condition"),
-                        rs.getString("satu_sehat_clinicalimpression")
+                        rs.getString("satu_sehat_clinicalimpression"), rs.getString("kd_dokter")
                     });
                 }
             } catch (Exception e) {
@@ -876,11 +909,11 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(ki.tgl_keluar,' ',ki.jam_keluar) pulang, "
                     + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, pr.penilaian, pr.keluhan, pr.pemeriksaan, sc.kd_penyakit, "
-                    + "py.nm_penyakit, sc.id_condition, ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression FROM reg_periksa rp "
+                    + "py.nm_penyakit, sc.id_condition, ifnull(ss.id_clinicalimpression,'') satu_sehat_clinicalimpression, dr.kd_dokter FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN satu_sehat_condition sc ON sc.no_rawat = rp.no_rawat AND sc.STATUS = 'Ranap' "
                     + "INNER JOIN penyakit py ON py.kd_penyakit = sc.kd_penyakit INNER JOIN pemeriksaan_ranap pr ON pr.no_rawat = rp.no_rawat "
-                    + "INNER JOIN pegawai pg ON pr.nip = pg.nik LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
+                    + "INNER JOIN dpjp_ranap dr on dr.no_rawat=ki.no_rawat INNER JOIN pegawai pg ON pg.nik=dr.kd_dokter LEFT JOIN satu_sehat_clinicalimpression ss ON ss.no_rawat = pr.no_rawat AND ss.tgl_perawatan = pr.tgl_perawatan "
                     + "AND ss.jam_rawat = pr.jam_rawat AND ss.STATUS = 'Ranap' where ki.stts_pulang not in ('-','Pindah Kamar') and pr.penilaian<>'' and rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ? or "
@@ -903,7 +936,7 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("keluhan") + ", " + rs.getString("pemeriksaan"), rs.getString("penilaian"),
                         rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("kd_penyakit"), rs.getString("nm_penyakit"), rs.getString("id_condition"),
-                        rs.getString("satu_sehat_clinicalimpression")
+                        rs.getString("satu_sehat_clinicalimpression"), rs.getString("kd_dokter")
                     });
                 }
             } catch (Exception e) {
@@ -925,5 +958,56 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
     public void isCek(){
         BtnKirim.setEnabled(akses.getsatu_sehat());
         BtnPrint.setEnabled(akses.getsatu_sehat());
+    }
+    
+    private void cekIdPasien() {
+        idpasien = "";
+        try {
+            for (i = 0; i < tbImpresion.getRowCount(); i++) {
+                if (tbImpresion.getValueAt(i, 0).toString().equals("true")
+                        && (!tbImpresion.getValueAt(i, 5).toString().equals("")
+                        || tbImpresion.getValueAt(i, 5).toString().length() == 16)) {
+
+                    idpasien = cekViaSatuSehat.tampilIDPasien(tbImpresion.getValueAt(i, 5).toString());
+                    if (!idpasien.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbImpresion.getValueAt(i, 3).toString() + "'") == 0) {
+                            Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                                tbImpresion.getValueAt(i, 3).toString(), idpasien
+                            });
+                        } else {
+                            if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbImpresion.getValueAt(i, 3).toString() + "'").equals("")) {
+                                Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbImpresion.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cekIdDokter() {
+        iddokter = "";
+        try {
+            for (i = 0; i < tbImpresion.getRowCount(); i++) {
+                if (tbImpresion.getValueAt(i, 0).toString().equals("true")
+                        && !tbImpresion.getValueAt(i, 13).toString().equals("")) {
+                 
+                    iddokter = cekViaSatuSehat.tampilIDParktisi(tbImpresion.getValueAt(i, 13).toString());
+                    if (!iddokter.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbImpresion.getValueAt(i, 20).toString() + "'") == 0) {
+                            Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbImpresion.getValueAt(i, 20).toString(), iddokter});
+                        } else {
+                            if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbImpresion.getValueAt(i, 20).toString() + "'").equals("")) {
+                                Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbImpresion.getValueAt(i, 20).toString() + "'", "kd_dokter_satu_sehat='" + iddokter + "'");
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

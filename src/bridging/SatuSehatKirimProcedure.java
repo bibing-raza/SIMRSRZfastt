@@ -187,6 +187,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         ppPilihSemua = new javax.swing.JMenuItem();
+        ppPilihIdProcedureKosong = new javax.swing.JMenuItem();
         ppBersihkan = new javax.swing.JMenuItem();
         LoadHTML = new widget.editorpane();
         internalFrame1 = new widget.InternalFrame();
@@ -206,6 +207,8 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         DTPCari1 = new widget.Tanggal();
         jLabel17 = new widget.Label();
         DTPCari2 = new widget.Tanggal();
+        jLabel18 = new widget.Label();
+        cmbData = new widget.ComboBox();
         jLabel16 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -219,13 +222,28 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppPilihSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppPilihSemua.setName("ppPilihSemua"); // NOI18N
-        ppPilihSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppPilihSemua.setPreferredSize(new java.awt.Dimension(170, 26));
         ppPilihSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppPilihSemuaActionPerformed(evt);
             }
         });
         jPopupMenu1.add(ppPilihSemua);
+
+        ppPilihIdProcedureKosong.setBackground(new java.awt.Color(255, 255, 254));
+        ppPilihIdProcedureKosong.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihIdProcedureKosong.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPilihIdProcedureKosong.setText("Pilih ID Procedure Kosong");
+        ppPilihIdProcedureKosong.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPilihIdProcedureKosong.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPilihIdProcedureKosong.setName("ppPilihIdProcedureKosong"); // NOI18N
+        ppPilihIdProcedureKosong.setPreferredSize(new java.awt.Dimension(170, 26));
+        ppPilihIdProcedureKosong.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPilihIdProcedureKosongActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(ppPilihIdProcedureKosong);
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -234,7 +252,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ppBersihkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ppBersihkan.setName("ppBersihkan"); // NOI18N
-        ppBersihkan.setPreferredSize(new java.awt.Dimension(150, 26));
+        ppBersihkan.setPreferredSize(new java.awt.Dimension(170, 26));
         ppBersihkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 ppBersihkanActionPerformed(evt);
@@ -402,6 +420,18 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         DTPCari2.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass9.add(DTPCari2);
 
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Lihat Data :");
+        jLabel18.setName("jLabel18"); // NOI18N
+        jLabel18.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(jLabel18);
+
+        cmbData.setForeground(new java.awt.Color(0, 0, 0));
+        cmbData.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Belum/Gagal", "Berhasil" }));
+        cmbData.setName("cmbData"); // NOI18N
+        cmbData.setPreferredSize(new java.awt.Dimension(96, 23));
+        panelGlass9.add(cmbData);
+
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Key Word :");
         jLabel16.setName("jLabel16"); // NOI18N
@@ -540,13 +570,13 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPrintActionPerformed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             tbProsedur.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
@@ -727,6 +757,14 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAllKeyPressed
 
+    private void ppPilihIdProcedureKosongActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihIdProcedureKosongActionPerformed
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            if (tbProsedur.getValueAt(i, 12).equals("")) {
+                tbProsedur.setValueAt(true, i, 0);
+            }
+        }
+    }//GEN-LAST:event_ppPilihIdProcedureKosongActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -756,16 +794,19 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
     private widget.editorpane LoadHTML;
     private widget.ScrollPane Scroll;
     private widget.TextBox TCari;
+    private widget.ComboBox cmbData;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private javax.swing.JMenuItem ppBersihkan;
+    private javax.swing.JMenuItem ppPilihIdProcedureKosong;
     private javax.swing.JMenuItem ppPilihSemua;
     private widget.Table tbProsedur;
     // End of variables declaration//GEN-END:variables
@@ -773,16 +814,41 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
-                    + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, se.id_encounter, pp.kode, "
-                    + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
-                    + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                    + "where rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
-                    + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, se.id_encounter, pp.kode, "
+                        + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, se.id_encounter, pp.kode, "
+                        + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where (ss.id_procedure is null or ss.id_procedure='') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, "
+                        + "concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') pulang, se.id_encounter, pp.kode, "
+                        + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
+                        + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where ss.id_procedure<>'' and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -815,16 +881,41 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                 }
             }
 
-            ps = koneksi.prepareStatement(
-                    "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
-                    + "se.id_encounter, pp.kode, i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                    + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
-                    + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                    + "where ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
-                    + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                    + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
-                    + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            if (cmbData.getSelectedIndex() == 0) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
+                        + "se.id_encounter, pp.kode, i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
+                        + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 1) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
+                        + "se.id_encounter, pp.kode, i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
+                        + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where (ss.id_procedure is null or ss.id_procedure='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            } else if (cmbData.getSelectedIndex() == 2) {
+                ps = koneksi.prepareStatement(
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, rp.status_lanjut, concat(ki.tgl_keluar,'T',ki.jam_keluar,'+08:00') pulang, "
+                        + "se.id_encounter, pp.kode, i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
+                        + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
+                        + "where ss.id_procedure<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
+                        + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
