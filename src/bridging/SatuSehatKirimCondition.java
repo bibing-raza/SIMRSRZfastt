@@ -40,21 +40,21 @@ import org.springframework.http.MediaType;
  */
 public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
-    private ResultSet rs;   
-    private int i=0;
-    private String link="",json="",idpasien="";
-    private ApiSatuSehat api=new ApiSatuSehat();
-    private HttpHeaders headers ;
+    private ResultSet rs;
+    private int i = 0;
+    private String link = "", json = "", idpasien = "", idpasienKirim = "";
+    private ApiSatuSehat api = new ApiSatuSehat();
+    private HttpHeaders headers;
     private HttpEntity requestEntity;
     private ObjectMapper mapper = new ObjectMapper();
     private JsonNode root;
     private JsonNode response;
-    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();    
-    private StringBuilder htmlContent; 
+    private SatuSehatCekNIK cekViaSatuSehat = new SatuSehatCekNIK();
+    private StringBuilder htmlContent;
     
     /** Creates new form DlgKamar
      * @param parent
@@ -582,13 +582,14 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
+        cekIdPasien();
         for (i = 0; i < tbCondition.getRowCount(); i++) {
             if (tbCondition.getValueAt(i, 0).toString().equals("true") 
                     && (!tbCondition.getValueAt(i, 5).toString().equals("")) 
                     && (!tbCondition.getValueAt(i, 9).toString().equals("")) 
                     && tbCondition.getValueAt(i, 12).toString().equals("")) {
                 try {
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbCondition.getValueAt(i, 5).toString());
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbCondition.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -625,7 +626,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                                         "]" +
                                     "}," +
                                     "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
+                                        "\"reference\": \"Patient/"+idpasienKirim+"\"," +
                                         "\"display\": \""+tbCondition.getValueAt(i,4).toString()+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
@@ -669,13 +670,14 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+        cekIdPasien();
         for (i = 0; i < tbCondition.getRowCount(); i++) {
             if (tbCondition.getValueAt(i, 0).toString().equals("true") 
                     && (!tbCondition.getValueAt(i, 5).toString().equals("")) 
                     && (!tbCondition.getValueAt(i, 9).toString().equals("")) 
                     && (!tbCondition.getValueAt(i, 12).toString().equals(""))) {
                 try {
-                    idpasien = cekViaSatuSehat.tampilIDPasien(tbCondition.getValueAt(i, 5).toString());
+                    idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbCondition.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
                         headers.setContentType(MediaType.APPLICATION_JSON);
@@ -713,7 +715,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                                         "]" +
                                     "}," +
                                     "\"subject\": {" +
-                                        "\"reference\": \"Patient/"+idpasien+"\"," +
+                                        "\"reference\": \"Patient/"+idpasienKirim+"\"," +
                                         "\"display\": \""+tbCondition.getValueAt(i,4).toString()+"\"" +
                                     "}," +
                                     "\"encounter\": {" +
@@ -898,5 +900,32 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
     public void isCek(){
         BtnKirim.setEnabled(akses.getsatu_sehat());
         BtnPrint.setEnabled(akses.getsatu_sehat());
+    }
+    
+    private void cekIdPasien() {
+        idpasien = "";
+        try {
+            for (i = 0; i < tbCondition.getRowCount(); i++) {
+                if (tbCondition.getValueAt(i, 0).toString().equals("true")
+                        && (!tbCondition.getValueAt(i, 5).toString().equals("")
+                        || tbCondition.getValueAt(i, 5).toString().length() == 16)) {
+
+                    idpasien = cekViaSatuSehat.tampilIDPasien(tbCondition.getValueAt(i, 5).toString());
+                    if (!idpasien.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from satu_sehat_mapping_pasien where no_rkm_medis='" + tbCondition.getValueAt(i, 3).toString() + "'") == 0) {
+                            Sequel.menyimpan("satu_sehat_mapping_pasien", "?,?", "No. Rekam Medis", 2, new String[]{
+                                tbCondition.getValueAt(i, 3).toString(), idpasien
+                            });
+                        } else {
+                            if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbCondition.getValueAt(i, 3).toString() + "'").equals("")) {
+                                Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbCondition.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

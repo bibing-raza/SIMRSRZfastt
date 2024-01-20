@@ -2527,4 +2527,29 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public boolean meghapustf(String table,String field,String nilai_field) {
+        bool=true;
+        try {
+            ps=connect.prepareStatement("delete from "+table+" where "+field+"=?");
+            try{       
+                ps.setString(1,nilai_field);
+                ps.executeUpdate();
+                bool=true;
+             }catch(Exception e){
+                bool=false;
+                System.out.println("Notifikasi : "+e);
+                JOptionPane.showMessageDialog(null,"Maaf, data gagal dihapus. Kemungkinan data tersebut masih dipakai di table lain...!!!!");
+             }finally{
+                if(ps != null){
+                    ps.close();
+                }
+            }
+            SimpanTrack("delete from "+table+" where "+field+"='"+nilai_field+"'");
+        } catch (Exception e) {
+            bool=false;
+            System.out.println("Notifikasi : "+e);
+        }
+        return bool;
+    }
 }

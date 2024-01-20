@@ -117,6 +117,7 @@ public final class validasi {
     private final sekuel Sequel = new sekuel();
     private static String cekNmPrwtn = "", cekNmPtgs = "", cekKdPtgs = "", cek_string = "", ipPrint = "";
     private File file;
+    private boolean status = true;
 
     public validasi() {
         super();
@@ -2340,6 +2341,21 @@ public final class validasi {
     
     public static int milliToDay(long milli) {
         return (int) ((double) milli / (1000 * 24 * 60 * 60));
+    }
+    
+    public boolean hapusTabletf(DefaultTableModel tabMode, JTextField nilai_field, String table, String field) {
+        status = true;
+        if (tabMode.getRowCount() == 0) {
+            status = false;
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            nilai_field.requestFocus();
+        } else if (nilai_field.getText().trim().equals("")) {
+            status = false;
+            JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus.\nKlik data pada table untuk memilih...!!!!");
+        } else if (!nilai_field.getText().trim().equals("")) {
+            status = sek.meghapustf(table, field, nilai_field.getText());
+        }
+        return status;
     }
 }
   

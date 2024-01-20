@@ -46,7 +46,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0;
-    private String link = "", json = "", idpasien = "", idpraktisi = "", idpasienKirim = "";
+    private String link = "", json = "", idpasien = "", idpraktisi = "", idpasienKirim = "", idpraktisiKirim = "";
     private ApiSatuSehat api = new ApiSatuSehat();
     private HttpHeaders headers;
     private HttpEntity requestEntity;
@@ -54,7 +54,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     private JsonNode root;
     private JsonNode response;
     private SatuSehatCekNIK cekViaSatuSehat = new SatuSehatCekNIK();
-    private StringBuilder htmlContent; 
+    private StringBuilder htmlContent;  
     
     /** Creates new form DlgKamar
      * @param parent
@@ -66,9 +66,9 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         this.setLocation(10,2);
         setSize(628,674);
 
-        tabMode=new DefaultTableModel(null,new String[]{
-                "P","Tanggal Registrasi","No.Rawat","No.RM","Nama Pasien","No.KTP Pasien","ID Encounter",
-                "Instruksi Diet/Gizi","Petugas/Praktisi","No.KTP Praktisi","Tanggal","ID Diet"
+        tabMode = new DefaultTableModel(null, new String[]{
+            "P", "Tgl. Registrasi", "No. Rawat", "No. RM", "Nama Pasien", "No.KTP Pasien", "ID Encounter",
+            "Instruksi Diet/Gizi", "Petugas/Praktisi", "No.KTP Praktisi", "Tanggal", "ID Diet", "kd_dokter"
             }){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                 boolean a = false;
@@ -80,45 +80,48 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
              Class[] types = new Class[] {
                  java.lang.Boolean.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
                  java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class, 
-                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class
+                 java.lang.String.class, java.lang.String.class, java.lang.String.class, java.lang.String.class,
+                 java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbDiet.setModel(tabMode);
-
-        //tbKamar.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbKamar.getBackground()));
         tbDiet.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDiet.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 12; i++) {
+        for (i = 0; i < 13; i++) {
             TableColumn column = tbDiet.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(110);
-            }else if(i==2){
-                column.setPreferredWidth(105);
-            }else if(i==3){
-                column.setPreferredWidth(70);
-            }else if(i==4){
-                column.setPreferredWidth(150);
-            }else if(i==5){
-                column.setPreferredWidth(110);
-            }else if(i==6){
-                column.setPreferredWidth(215);
-            }else if(i==7){
-                column.setPreferredWidth(250);
-            }else if(i==8){
-                column.setPreferredWidth(150);
-            }else if(i==9){
+            } else if (i == 1) {
                 column.setPreferredWidth(120);
-            }else if(i==10){
-                column.setPreferredWidth(110);
-            }else if(i==11){
+            } else if (i == 2) {
+                column.setPreferredWidth(115);
+            } else if (i == 3) {
+                column.setPreferredWidth(65);
+            } else if (i == 4) {
                 column.setPreferredWidth(220);
+            } else if (i == 5) {
+                column.setPreferredWidth(110);
+            } else if (i == 6) {
+                column.setPreferredWidth(225);
+            } else if (i == 7) {
+                column.setPreferredWidth(300);
+            } else if (i == 8) {
+                column.setPreferredWidth(230);
+            } else if (i == 9) {
+                column.setPreferredWidth(110);
+            } else if (i == 10) {
+                column.setPreferredWidth(120);
+            } else if (i == 11) {
+                column.setPreferredWidth(225);
+            } else if (i == 12) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbDiet.setDefaultRenderer(Object.class, new WarnaTable());
@@ -213,6 +216,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
 
         ppPilihSemua.setBackground(new java.awt.Color(255, 255, 254));
         ppPilihSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPilihSemua.setForeground(new java.awt.Color(50, 50, 50));
         ppPilihSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppPilihSemua.setText("Pilih Semua");
         ppPilihSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -228,6 +232,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
 
         ppBersihkan.setBackground(new java.awt.Color(255, 255, 254));
         ppBersihkan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppBersihkan.setForeground(new java.awt.Color(50, 50, 50));
         ppBersihkan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppBersihkan.setText("Hilangkan Pilihan");
         ppBersihkan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -375,12 +380,12 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Tgl.Registrasi :");
+        jLabel15.setText("Tgl. Registrasi :");
         jLabel15.setName("jLabel15"); // NOI18N
         jLabel15.setPreferredSize(new java.awt.Dimension(85, 23));
         panelGlass9.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -394,7 +399,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass9.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -555,14 +560,15 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TCari,BtnPrint);
+        } else {
+            Valid.pindah(evt, TCari, BtnPrint);
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnKirimActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKirimActionPerformed
+        cekIdDokter();
         cekIdPasien();
         for (i = 0; i < tbDiet.getRowCount(); i++) {
             if (tbDiet.getValueAt(i, 0).toString().equals("true") 
@@ -571,7 +577,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                     && (!tbDiet.getValueAt(i, 9).toString().equals("")) 
                     && tbDiet.getValueAt(i, 11).toString().equals("")) {
                 try {
-                    idpraktisi = cekViaSatuSehat.tampilIDParktisi(tbDiet.getValueAt(i, 9).toString());
+                    idpraktisiKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbDiet.getValueAt(i, 12).toString() + "'");
                     idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
@@ -615,7 +621,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                                     "\"date\" : \""+tbDiet.getValueAt(i,10).toString().replaceAll(" ","T")+"01+08:00\" ," +
                                     "\"author\" : [" +
                                         "{" +
-                                            "\"reference\" : \"Practitioner/"+idpraktisi+"\"," +
+                                            "\"reference\" : \"Practitioner/"+idpraktisiKirim+"\"," +
                                             "\"display\" : \""+tbDiet.getValueAt(i,8).toString()+"\"" +
                                         "}" +
                                     "]," +
@@ -649,9 +655,11 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                         root = mapper.readTree(json);
                         response = root.path("id");
                         if (!response.asText().equals("")) {
-                            Sequel.menyimpan("satu_sehat_diet", "?,?,?", "Diet/Gizi", 5, new String[]{
-                                tbDiet.getValueAt(i, 2).toString(), tbDiet.getValueAt(i, 10).toString(), response.asText()
-                            });
+                            if (Sequel.menyimpantf2("satu_sehat_diet", "?,?,?", "Diet/Gizi", 3, new String[]{
+                                tbDiet.getValueAt(i, 2).toString(), tbDiet.getValueAt(i, 10).toString().substring(0, 19), response.asText()
+                            }) == true) {
+                                tbDiet.setValueAt(response.asText(), i, 11);
+                            }
                         }
                     } catch (Exception e) {
                         System.out.println("Notifikasi Bridging : " + e);
@@ -661,22 +669,22 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 }
             }
         }
-        tampil();
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
-        for (i = 0; i < tbDiet.getRowCount(); i++) {
-            tbDiet.setValueAt(true, i, 0);
+        for(i=0;i<tbDiet.getRowCount();i++){
+            tbDiet.setValueAt(true,i,0);
         }
     }//GEN-LAST:event_ppPilihSemuaActionPerformed
 
     private void ppBersihkanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppBersihkanActionPerformed
-        for (i = 0; i < tbDiet.getRowCount(); i++) {
-            tbDiet.setValueAt(false, i, 0);
+        for(i=0;i<tbDiet.getRowCount();i++){
+            tbDiet.setValueAt(false,i,0);
         }
     }//GEN-LAST:event_ppBersihkanActionPerformed
 
     private void BtnUpdateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUpdateActionPerformed
+        cekIdDokter();
         cekIdPasien();
         for (i = 0; i < tbDiet.getRowCount(); i++) {
             if (tbDiet.getValueAt(i, 0).toString().equals("true") 
@@ -685,7 +693,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                     && (!tbDiet.getValueAt(i, 9).toString().equals("")) 
                     && (!tbDiet.getValueAt(i, 11).toString().equals(""))) {
                 try {
-                    idpraktisi = cekViaSatuSehat.tampilIDParktisi(tbDiet.getValueAt(i, 9).toString());
+                    idpraktisiKirim = Sequel.cariIsi("select kd_dokter_satu_sehat from mapping_dokter where kd_dokter_rs='" + tbDiet.getValueAt(i, 12).toString() + "'");
                     idpasienKirim = Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'");
                     try {
                         headers = new HttpHeaders();
@@ -730,7 +738,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                                     "\"date\" : \""+tbDiet.getValueAt(i,10).toString().replaceAll(" ","T")+"+08:00\" ," +
                                     "\"author\" : [" +
                                         "{" +
-                                            "\"reference\" : \"Practitioner/"+idpraktisi+"\" ," +
+                                            "\"reference\" : \"Practitioner/"+idpraktisiKirim+"\" ," +
                                             "\"display\" : \""+tbDiet.getValueAt(i,8).toString()+"\"" +
                                         "}" +
                                     "]," +
@@ -769,7 +777,6 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 }
             }
         }
-        tampil();
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
@@ -834,13 +841,14 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                    + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet "
+                    + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
                     + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
                     + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
                     + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -857,7 +865,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                     tabMode.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi"), rs.getString("nama"), rs.getString("ktppraktisi"),
-                        rs.getString("tanggal"), rs.getString("satu_sehat_diet")
+                        rs.getString("tanggal"), rs.getString("satu_sehat_diet"), rs.getString("kd_dokter")
                     });
                 }
             } catch (Exception e) {
@@ -873,7 +881,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
 
             ps = koneksi.prepareStatement(
                     "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                    + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet "
+                    + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                     + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
@@ -898,7 +906,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                     tabMode.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
                         rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi"), rs.getString("nama"), rs.getString("ktppraktisi"),
-                        rs.getString("tanggal"), rs.getString("satu_sehat_diet")
+                        rs.getString("tanggal"), rs.getString("satu_sehat_diet"), rs.getString("nip_ppa")
                     });
                 }
             } catch (Exception e) {
@@ -939,6 +947,30 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                         } else {
                             if (Sequel.cariIsi("select id_pasien from satu_sehat_mapping_pasien where no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'").equals("")) {
                                 Sequel.mengedit("satu_sehat_mapping_pasien", "no_rkm_medis='" + tbDiet.getValueAt(i, 3).toString() + "'", "id_pasien='" + idpasien + "'");
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void cekIdDokter() {
+        idpraktisi = "";
+        try {
+            for (i = 0; i < tbDiet.getRowCount(); i++) {
+                if (tbDiet.getValueAt(i, 0).toString().equals("true")
+                        && !tbDiet.getValueAt(i, 9).toString().equals("")) {
+                 
+                    idpraktisi = cekViaSatuSehat.tampilIDParktisi(tbDiet.getValueAt(i, 9).toString());
+                    if (!idpraktisi.equals("")) {
+                        if (Sequel.cariInteger("select count(-1) from mapping_dokter where kd_dokter_rs='" + tbDiet.getValueAt(i, 12).toString() + "'") == 0) {
+                            Sequel.menyimpan("mapping_dokter", "?,?,?", "Kode Dokter", 3, new String[]{"", tbDiet.getValueAt(i, 12).toString(), idpraktisi});
+                        } else {
+                            if (Sequel.cariIsi("select ifnull(kd_dokter_satu_sehat,'') from mapping_dokter where kd_dokter_rs='" + tbDiet.getValueAt(i, 12).toString() + "'").equals("")) {
+                                Sequel.mengedit("mapping_dokter", "kd_dokter_rs='" + tbDiet.getValueAt(i, 12).toString() + "'", "kd_dokter_satu_sehat='" + idpraktisi + "'");
                             }
                         }
                     }
