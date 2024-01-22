@@ -821,7 +821,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
                         + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
@@ -832,7 +832,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
                         + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where (ss.id_procedure is null or ss.id_procedure='') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (ss.id_procedure is null or ss.id_procedure='') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
@@ -843,7 +843,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "i.deskripsi_panjang, ifnull(ss.id_procedure,'') id_procedure FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat "
                         + "INNER JOIN icd9 i ON pp.kode = i.kode LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where ss.id_procedure<>'' and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ss.id_procedure<>'' and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
@@ -888,7 +888,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
                         + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
@@ -899,7 +899,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
                         + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where (ss.id_procedure is null or ss.id_procedure='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (ss.id_procedure is null or ss.id_procedure='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");
@@ -910,7 +910,7 @@ public final class SatuSehatKirimProcedure extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN prosedur_pasien pp ON pp.no_rawat = rp.no_rawat INNER JOIN icd9 i ON pp.kode = i.kode "
                         + "LEFT JOIN satu_sehat_procedure ss ON ss.no_rawat = pp.no_rawat AND ss.kode = pp.kode AND ss.STATUS = pp.STATUS "
-                        + "where ss.id_procedure<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ss.id_procedure<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pp.kode like ? or i.deskripsi_panjang like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,pp.prioritas");

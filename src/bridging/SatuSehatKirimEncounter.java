@@ -755,7 +755,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -767,7 +767,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where (se.id_encounter is null or se.id_encounter='') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (se.id_encounter is null or se.id_encounter='') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -779,7 +779,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "ifnull(se.id_encounter,'') id_encounter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where se.id_encounter<>'' and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and se.id_encounter<>'' and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -826,7 +826,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
                         + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -838,7 +838,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
                         + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where (se.id_encounter is null or se.id_encounter='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (se.id_encounter is null or se.id_encounter='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");
@@ -850,7 +850,7 @@ public final class SatuSehatKirimEncounter extends javax.swing.JDialog {
                         + "INNER JOIN pegawai pg ON pg.nik = rp.kd_dokter INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli "
                         + "INNER JOIN satu_sehat_mapping_lokasi_ralan ss ON ss.kd_poli = pl.kd_poli INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
                         + "LEFT JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "where se.id_encounter<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and se.id_encounter<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.nama like ? or pl.nm_poli like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg");

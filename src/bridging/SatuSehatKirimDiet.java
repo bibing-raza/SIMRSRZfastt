@@ -110,13 +110,13 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(225);
             } else if (i == 7) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(200);
             } else if (i == 8) {
                 column.setPreferredWidth(230);
             } else if (i == 9) {
                 column.setPreferredWidth(110);
             } else if (i == 10) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(160);
             } else if (i == 11) {
                 column.setPreferredWidth(225);
             } else if (i == 12) {
@@ -648,7 +648,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                                         "\"reference\" : \"Encounter/"+tbDiet.getValueAt(i,6).toString()+"\","+
                                         "\"display\" : \"Kunjungan "+tbDiet.getValueAt(i,4).toString()+" pada tanggal "+tbDiet.getValueAt(i,1).toString()+" dengan nomor kunjungan "+tbDiet.getValueAt(i,2).toString()+"\""+
                                     "}," +
-                                    "\"date\" : \""+tbDiet.getValueAt(i,10).toString().replaceAll(" ","T")+"01+08:00\" ," +
+                                    "\"date\" : \""+tbDiet.getValueAt(i,10).toString()+"\" ," +
                                     "\"author\" : [" +
                                         "{" +
                                             "\"reference\" : \"Practitioner/"+idpraktisiKirim+"\"," +
@@ -699,6 +699,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 }
             }
         }
+        tampil();
     }//GEN-LAST:event_BtnKirimActionPerformed
 
     private void ppPilihSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPilihSemuaActionPerformed
@@ -765,7 +766,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                                         "\"reference\" : \"Encounter/"+tbDiet.getValueAt(i,6).toString()+"\","+
                                         "\"display\" : \"Kunjungan "+tbDiet.getValueAt(i,4).toString()+" pada tanggal "+tbDiet.getValueAt(i,1).toString()+" dengan nomor kunjungan "+tbDiet.getValueAt(i,2).toString()+"\""+
                                     "}," +
-                                    "\"date\" : \""+tbDiet.getValueAt(i,10).toString().replaceAll(" ","T")+"+08:00\" ," +
+                                    "\"date\" : \""+tbDiet.getValueAt(i,10).toString()+"\" ," +
                                     "\"author\" : [" +
                                         "{" +
                                             "\"reference\" : \"Practitioner/"+idpraktisiKirim+"\" ," +
@@ -807,6 +808,7 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
                 }
             }
         }
+        tampil();
     }//GEN-LAST:event_BtnUpdateActionPerformed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
@@ -880,103 +882,107 @@ public final class SatuSehatKirimDiet extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            if (cmbData.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement(
-                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
-                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat where rp.tgl_registrasi between ? and ? "
-                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
-                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
-            } else if (cmbData.getSelectedIndex() == 1) {
-                ps = koneksi.prepareStatement(
-                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
-                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
-                        + "where (ss.id_diet is null or ss.id_diet='') and rp.tgl_registrasi between ? and ? "
-                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
-                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
-            } else if (cmbData.getSelectedIndex() == 2) {
-                ps = koneksi.prepareStatement(
-                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, rp.tgl_registrasi tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
-                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
-                        + "where ss.id_diet<>'' and rp.tgl_registrasi between ? and ? "
-                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
-                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
-                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
-            }
-            
-            try {
-                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                if (!TCari.getText().equals("")) {
-                    ps.setString(3, "%" + TCari.getText() + "%");
-                    ps.setString(4, "%" + TCari.getText() + "%");
-                    ps.setString(5, "%" + TCari.getText() + "%");
-                    ps.setString(6, "%" + TCari.getText() + "%");
-                    ps.setString(7, "%" + TCari.getText() + "%");
-                    ps.setString(8, "%" + TCari.getText() + "%");
-                }
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    tabMode.addRow(new Object[]{
-                        false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
-                        rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi"), rs.getString("nama"), rs.getString("ktppraktisi"),
-                        rs.getString("tanggal"), rs.getString("satu_sehat_diet"), rs.getString("kd_dokter")
-                    });
-                }
-            } catch (Exception e) {
-                System.out.println("Notif : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            }
+//            if (cmbData.getSelectedIndex() == 0) {
+//                ps = koneksi.prepareStatement(
+//                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+//                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') tanggal, "
+//                        + "ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+//                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+//                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
+//                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
+//                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+//                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+//                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+//            } else if (cmbData.getSelectedIndex() == 1) {
+//                ps = koneksi.prepareStatement(
+//                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+//                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') tanggal, "
+//                        + "ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+//                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+//                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
+//                        + "where (ss.id_diet is null or ss.id_diet='') and (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
+//                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+//                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+//                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+//            } else if (cmbData.getSelectedIndex() == 2) {
+//                ps = koneksi.prepareStatement(
+//                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+//                        + "'-' instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(rp.tgl_registrasi,'T',ADDTIME(rp.jam_reg,'02:00:00'),'+08:00') tanggal, "
+//                        + "ifnull(ss.id_diet,'') satu_sehat_diet, rp.kd_dokter FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+//                        + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pegawai pg ON rp.kd_dokter = pg.nik "
+//                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = rp.no_rawat "
+//                        + "where ss.id_diet<>'' and (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
+//                        + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
+//                        + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
+//                        + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
+//            }
+//            
+//            try {
+//                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+//                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+//                if (!TCari.getText().equals("")) {
+//                    ps.setString(3, "%" + TCari.getText() + "%");
+//                    ps.setString(4, "%" + TCari.getText() + "%");
+//                    ps.setString(5, "%" + TCari.getText() + "%");
+//                    ps.setString(6, "%" + TCari.getText() + "%");
+//                    ps.setString(7, "%" + TCari.getText() + "%");
+//                    ps.setString(8, "%" + TCari.getText() + "%");
+//                }
+//                rs = ps.executeQuery();
+//                while (rs.next()) {
+//                    tabMode.addRow(new Object[]{
+//                        false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
+//                        rs.getString("no_ktp"), rs.getString("id_encounter"), rs.getString("instruksi"), rs.getString("nama"), rs.getString("ktppraktisi"),
+//                        rs.getString("tanggal"), rs.getString("satu_sehat_diet"), rs.getString("kd_dokter")
+//                    });
+//                }
+//            } catch (Exception e) {
+//                System.out.println("Notif : " + e);
+//            } finally {
+//                if (rs != null) {
+//                    rs.close();
+//                }
+//                if (ps != null) {
+//                    ps.close();
+//                }
+//            }
 
             if (cmbData.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement(
-                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
-                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
-                        + "where ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "concat(dm.nama_diet,', Jlh. Pemberian : ',d.jlh_pemberian) instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(d.tanggal,'T',rp.jam_reg,'+08:00') tanggal, "
+                        + "ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki ON ki.no_rawat = rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat AND c.jenis_ppa = 'Nutrisionis' INNER JOIN diet_ranap_daftar_rincian d on d.no_rawat=c.no_rawat and d.waktu='Siang' "
+                        + "INNER JOIN diet_master dm on dm.kd_diet=d.kd_diet INNER JOIN pegawai pg ON c.nip_ppa = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
                         + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
             } else if (cmbData.getSelectedIndex() == 1) {
                 ps = koneksi.prepareStatement(
-                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
-                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
-                        + "where (ss.id_diet is null or ss.id_diet='') and ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "concat(dm.nama_diet,', Jlh. Pemberian : ',d.jlh_pemberian) instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(d.tanggal,'T',rp.jam_reg,'+08:00') tanggal, "
+                        + "ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki ON ki.no_rawat = rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat AND c.jenis_ppa = 'Nutrisionis' INNER JOIN diet_ranap_daftar_rincian d on d.no_rawat=c.no_rawat and d.waktu='Siang' "
+                        + "INNER JOIN diet_master dm on dm.kd_diet=d.kd_diet INNER JOIN pegawai pg ON c.nip_ppa = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (ss.id_diet is null or ss.id_diet='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
                         + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");
             } else if (cmbData.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement(
-                        "select rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
-                        + "ifnull(c.instruksi_nakes,'-') instruksi, pg.nama, pg.no_ktp ktppraktisi, c.tgl_cppt tanggal, ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
-                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat and c.jenis_ppa='Nutrisionis' "
-                        + "INNER JOIN pegawai pg ON c.nip_ppa = pg.nik LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat AND ss.tanggal = c.tgl_cppt "
-                        + "where ss.id_diet<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and c.instruksi_nakes<>'' and rp.tgl_registrasi between ? and ? "
+                        "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, se.id_encounter, "
+                        + "concat(dm.nama_diet,', Jlh. Pemberian : ',d.jlh_pemberian) instruksi, pg.nama, pg.no_ktp ktppraktisi, concat(d.tanggal,'T',rp.jam_reg,'+08:00') tanggal, "
+                        + "ifnull(ss.id_diet,'') satu_sehat_diet, c.nip_ppa FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki ON ki.no_rawat = rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
+                        + "INNER JOIN cppt c ON c.no_rawat = rp.no_rawat AND c.jenis_ppa = 'Nutrisionis' INNER JOIN diet_ranap_daftar_rincian d on d.no_rawat=c.no_rawat and d.waktu='Siang' "
+                        + "INNER JOIN diet_master dm on dm.kd_diet=d.kd_diet INNER JOIN pegawai pg ON c.nip_ppa = pg.nik "
+                        + "LEFT JOIN satu_sehat_diet ss ON ss.no_rawat = c.no_rawat "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ss.id_diet<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or pg.no_ktp like ? or pg.nama like ?) ")
                         + "order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat");

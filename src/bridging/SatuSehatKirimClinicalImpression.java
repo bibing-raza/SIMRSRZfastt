@@ -104,43 +104,43 @@ public final class SatuSehatKirimClinicalImpression extends javax.swing.JDialog 
             if (i == 0) {
                 column.setPreferredWidth(20);
             } else if (i == 1) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(120);
             } else if (i == 2) {
-                column.setPreferredWidth(105);
+                column.setPreferredWidth(115);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(65);
             } else if (i == 4) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 5) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(116);
             } else if (i == 6) {
-                column.setPreferredWidth(63);
+                column.setPreferredWidth(125);
             } else if (i == 7) {
                 column.setPreferredWidth(63);
             } else if (i == 8) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(115);
             } else if (i == 9) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             } else if (i == 10) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(250);
             } else if (i == 11) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(250);
             } else if (i == 12) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(220);
             } else if (i == 13) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(116);
             } else if (i == 14) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(75);
             } else if (i == 15) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(75);
             } else if (i == 16) {
-                column.setPreferredWidth(50);
+                column.setPreferredWidth(56);
             } else if (i == 17) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(255);
             } else if (i == 18) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             } else if (i == 19) {
-                column.setPreferredWidth(215);
+                column.setPreferredWidth(225);
             } else if (i == 20) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);

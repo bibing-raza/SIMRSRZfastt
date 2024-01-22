@@ -5123,60 +5123,73 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
     
     private void ganti() {
         cekData();
-        if (Sequel.mengedittf("asesmen_medik_dewasa_ranap", "no_rawat=?", "no_rawat=?, kd_kamar=?, tgl_asesmen=?, rujukan=?, ket_rs=?, ket_puskes=?, ket_praktek=?, ket_lainya=?, diagnosa_rujukan=?, "
-                + "datang_sendiri=?, diantar=?, ket_diantar=?, nip_dokter_memeriksa=?, nip_supervisor=?, tgl_anamnese=?, keluhan_utama=?, riw_penyakit_sekarang=?, hipertensi_1=?, dm_1=?, pjk=?, "
-                + "asma_1=?, stroke=?, liver=?, ginjal=?, tb_paru=?, lain_lain_1=?, ket_lain_1=?, pernah_dirawat=?, ket_kapan=?, ket_dimana=?, diagnosis=?, hipertensi_2=?, dm_2=?, jantung=?, "
-                + "asma_2=?, lain_lain_2=?, ket_lain_2=?, riw_alergi=?, nyeri=?, ket_lokasi=?, ket_intensitas=?, skor=?, jenis=?, keadaan_umum=?, gizi=?, gcs_e=?, gcs_m=?, gcs_v=?, tindakan_resus=?, "
-                + "bb=?, tb=?, td=?, nadi=?, respirasi=?, suhu_axila=?, suhu_rektal=?, mata_anemis=?, ikterik=?, pupil=?, diameter_kanan=?, diameter_kiri=?, udem_palpebra=?, tonsil=?, faring=?, "
-                + "lidah=?, bibir=?, jvp=?, kelenjar_limfe=?, ket_ada_kelenjar=?, kaku_kuduk=?, thoraks=?, ket_asimetris=?, cor_s1s2=?, reguler=?, ireguler=?, murmur=?, lain_lain=?, suara_nafas=?, "
-                + "ronchi=?, ket_ronchi=?, wheezing=?, ket_wheezing=?, distended=?, meteorismus=?, peristaltik=?, asites=?, nyeri_tekan=?, lokasi=?, hepar=?, lien=?, extremitas=?, udem=?, ket_udem=?, "
-                + "hasil_pemeriksaan=?, diagnosis1=?, diagnosis2=?, diagnosis3=?, diagnosis4=?, rencana_kerja=?, perencanaan_pemulangan=?, catatan_penting=?, tgl_dpjp=?, nip_dpjp=?, pemeriksaan_fisik_lain=?, "
-                + "saturasi=?, diagnosis5=?, diagnosis6=?, diagnosis7=?", 109, new String[]{
-                    TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
-                    Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
-                    Tkeluhan.getText(), Triw_penyakit_sekarang.getText(), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
-                    Tdiagnosis.getText(), hipertensi2, dm2, jantung, asma2, lain2, Tket_lain2.getText(), Triw_alergi.getText(), nyeri, Tlokasi.getText(), Tintensitas.getText(), Tskor.getText(), cmbJenis.getSelectedItem().toString(),
-                    cmbKeadaan.getSelectedItem().toString(), cmbGizi.getSelectedItem().toString(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), resus, Tbb.getText(), Ttb.getText(), Ttd.getText(), Tnadi.getText(), Trespi.getText(), Taxila.getText(),
-                    Trektal.getText(), cmbMata.getSelectedItem().toString(), cmbIkterik.getSelectedItem().toString(), cmbPupil.getSelectedItem().toString(), Tdiameter_kanan.getText(), Tdiameter_kiri.getText(), cmbUdem_palpe.getSelectedItem().toString(),
-                    Ttonsil.getText(), Tfaring.getText(), Tlidah.getText(), Tbibir.getText(), Tjvp.getText(), cmbKelenjar.getSelectedItem().toString(), Tkelenjar.getText(), cmbKaku.getSelectedItem().toString(), cmbThoraks.getSelectedItem().toString(),
-                    Tasimetris.getText(), Tcor.getText(), reguler, ireguler, Tmurmur.getText(), Tlain_lain.getText(), Tsuara_nfs.getText(), cmbRonchi.getSelectedItem().toString(), Tronchi.getText(), cmbWhezing.getSelectedItem().toString(),
-                    Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(),
-                    Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Thsl_pemeriksaan.getText(), Tdiagnosa1.getText(), Tdiagnosa2.getText(),
-                    Tdiagnosa3.getText(), Tdiagnosa4.getText(), Trencana_kerja.getText(), Trencana_pulang.getText(), Tcatatan.getText(), Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19),
-                    kddpjp.getText(), TPemFisikLain.getText(), saturasi.getText(), Tdiagnosa5.getText(), Tdiagnosa6.getText(), Tdiagnosa7.getText(),
-                    tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
-                }) == true) {
-            Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
-            TCari.setText(TNoRw.getText());
-            tampil();            
-            emptTeks();
-            TabRawat.setSelectedIndex(1);
+        try {
+            if (Sequel.mengedittf("asesmen_medik_dewasa_ranap", "no_rawat=?", "no_rawat=?, kd_kamar=?, tgl_asesmen=?, rujukan=?, ket_rs=?, ket_puskes=?, ket_praktek=?, ket_lainya=?, diagnosa_rujukan=?, "
+                    + "datang_sendiri=?, diantar=?, ket_diantar=?, nip_dokter_memeriksa=?, nip_supervisor=?, tgl_anamnese=?, keluhan_utama=?, riw_penyakit_sekarang=?, hipertensi_1=?, dm_1=?, pjk=?, "
+                    + "asma_1=?, stroke=?, liver=?, ginjal=?, tb_paru=?, lain_lain_1=?, ket_lain_1=?, pernah_dirawat=?, ket_kapan=?, ket_dimana=?, diagnosis=?, hipertensi_2=?, dm_2=?, jantung=?, "
+                    + "asma_2=?, lain_lain_2=?, ket_lain_2=?, riw_alergi=?, nyeri=?, ket_lokasi=?, ket_intensitas=?, skor=?, jenis=?, keadaan_umum=?, gizi=?, gcs_e=?, gcs_m=?, gcs_v=?, tindakan_resus=?, "
+                    + "bb=?, tb=?, td=?, nadi=?, respirasi=?, suhu_axila=?, suhu_rektal=?, mata_anemis=?, ikterik=?, pupil=?, diameter_kanan=?, diameter_kiri=?, udem_palpebra=?, tonsil=?, faring=?, "
+                    + "lidah=?, bibir=?, jvp=?, kelenjar_limfe=?, ket_ada_kelenjar=?, kaku_kuduk=?, thoraks=?, ket_asimetris=?, cor_s1s2=?, reguler=?, ireguler=?, murmur=?, lain_lain=?, suara_nafas=?, "
+                    + "ronchi=?, ket_ronchi=?, wheezing=?, ket_wheezing=?, distended=?, meteorismus=?, peristaltik=?, asites=?, nyeri_tekan=?, lokasi=?, hepar=?, lien=?, extremitas=?, udem=?, ket_udem=?, "
+                    + "hasil_pemeriksaan=?, diagnosis1=?, diagnosis2=?, diagnosis3=?, diagnosis4=?, rencana_kerja=?, perencanaan_pemulangan=?, catatan_penting=?, tgl_dpjp=?, nip_dpjp=?, pemeriksaan_fisik_lain=?, "
+                    + "saturasi=?, diagnosis5=?, diagnosis6=?, diagnosis7=?", 109, new String[]{
+                        TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
+                        Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
+                        Tkeluhan.getText(), Valid.mysql_real_escape_stringERM(Triw_penyakit_sekarang.getText()), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
+                        Tdiagnosis.getText(), hipertensi2, dm2, jantung, asma2, lain2, Tket_lain2.getText(), Valid.mysql_real_escape_stringERM(Triw_alergi.getText()), nyeri, Tlokasi.getText(), Tintensitas.getText(), Tskor.getText(), cmbJenis.getSelectedItem().toString(),
+                        cmbKeadaan.getSelectedItem().toString(), cmbGizi.getSelectedItem().toString(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), resus, Tbb.getText(), Ttb.getText(), Ttd.getText(), Tnadi.getText(), Trespi.getText(), Taxila.getText(),
+                        Trektal.getText(), cmbMata.getSelectedItem().toString(), cmbIkterik.getSelectedItem().toString(), cmbPupil.getSelectedItem().toString(), Tdiameter_kanan.getText(), Tdiameter_kiri.getText(), cmbUdem_palpe.getSelectedItem().toString(),
+                        Ttonsil.getText(), Tfaring.getText(), Tlidah.getText(), Tbibir.getText(), Tjvp.getText(), cmbKelenjar.getSelectedItem().toString(), Tkelenjar.getText(), cmbKaku.getSelectedItem().toString(), cmbThoraks.getSelectedItem().toString(),
+                        Tasimetris.getText(), Tcor.getText(), reguler, ireguler, Tmurmur.getText(), Tlain_lain.getText(), Tsuara_nfs.getText(), cmbRonchi.getSelectedItem().toString(), Tronchi.getText(), cmbWhezing.getSelectedItem().toString(),
+                        Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(),
+                        Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Valid.mysql_real_escape_stringERM(Thsl_pemeriksaan.getText()), 
+                        Valid.mysql_real_escape_stringERM(Tdiagnosa1.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa2.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa3.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa4.getText()), 
+                        Valid.mysql_real_escape_stringERM(Trencana_kerja.getText()), Valid.mysql_real_escape_stringERM(Trencana_pulang.getText()), Valid.mysql_real_escape_stringERM(Tcatatan.getText()), 
+                        Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19),
+                        kddpjp.getText(), TPemFisikLain.getText(), saturasi.getText(), Valid.mysql_real_escape_stringERM(Tdiagnosa5.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa6.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa7.getText()),
+                        tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
+                    }) == true) {
+                Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
+                TCari.setText(TNoRw.getText());
+                tampil();
+                emptTeks();
+                TabRawat.setSelectedIndex(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Simpan CPPT : " + e);
         }
     }
     
     private void simpan() {
         cekData();
-        if (Sequel.menyimpantf("asesmen_medik_dewasa_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 109, new String[]{
-            TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
-            Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
-            Tkeluhan.getText(), Triw_penyakit_sekarang.getText(), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
-            Tdiagnosis.getText(), hipertensi2, dm2, jantung, asma2, lain2, Tket_lain2.getText(), Triw_alergi.getText(), nyeri, Tlokasi.getText(), Tintensitas.getText(), Tskor.getText(), cmbJenis.getSelectedItem().toString(),
-            cmbKeadaan.getSelectedItem().toString(), cmbGizi.getSelectedItem().toString(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), resus, Tbb.getText(), Ttb.getText(), Ttd.getText(), Tnadi.getText(), Trespi.getText(), Taxila.getText(),
-            Trektal.getText(), cmbMata.getSelectedItem().toString(), cmbIkterik.getSelectedItem().toString(), cmbPupil.getSelectedItem().toString(), Tdiameter_kanan.getText(), Tdiameter_kiri.getText(), cmbUdem_palpe.getSelectedItem().toString(), 
-            Ttonsil.getText(), Tfaring.getText(), Tlidah.getText(), Tbibir.getText(), Tjvp.getText(), cmbKelenjar.getSelectedItem().toString(), Tkelenjar.getText(), cmbKaku.getSelectedItem().toString(), cmbThoraks.getSelectedItem().toString(), 
-            Tasimetris.getText(), Tcor.getText(), reguler, ireguler, Tmurmur.getText(), Tlain_lain.getText(), Tsuara_nfs.getText(), cmbRonchi.getSelectedItem().toString(), Tronchi.getText(), cmbWhezing.getSelectedItem().toString(),
-            Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(), 
-            Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Thsl_pemeriksaan.getText(), Tdiagnosa1.getText(), Tdiagnosa2.getText(), 
-            Tdiagnosa3.getText(), Tdiagnosa4.getText(), Trencana_kerja.getText(), Trencana_pulang.getText(), Tcatatan.getText(), Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19), 
-            kddpjp.getText(), TPemFisikLain.getText(), Sequel.cariIsi("select now()"), saturasi.getText(), Tdiagnosa5.getText(), Tdiagnosa6.getText(), Tdiagnosa7.getText()
-        }) == true) {
-            Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
-            TCari.setText(TNoRw.getText());                      
-            TabRawat.setSelectedIndex(1);
-            emptTeks();
-            tampil();            
-        }        
+        try {
+            if (Sequel.menyimpantf("asesmen_medik_dewasa_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 109, new String[]{
+                        TNoRw.getText(), Tkdkamar.getText(), Valid.SetTgl(TglAsesmen.getSelectedItem() + "") + " " + TglAsesmen.getSelectedItem().toString().substring(11, 19), rujukan, Tket_rs.getText(), Tket_puskes.getText(), Tket_praktek.getText(),
+                        Tket_lainya.getText(), Tdiag_rujukan.getText(), dtg_sendiri, diantar, Tdiantar.getText(), kddokter_meriksa.getText(), kdsuper.getText(), Valid.SetTgl(TglAnamnesa.getSelectedItem() + "") + " " + TglAnamnesa.getSelectedItem().toString().substring(11, 19),
+                        Tkeluhan.getText(), Valid.mysql_real_escape_stringERM(Triw_penyakit_sekarang.getText()), hipertensi1, dm1, pjk, asma1, strok, liver, ginjal, tb, lain1, Tket_lain1.getText(), cmbPernah.getSelectedItem().toString(), Tkapan.getText(), Tdimana.getText(),
+                        Tdiagnosis.getText(), hipertensi2, dm2, jantung, asma2, lain2, Tket_lain2.getText(), Valid.mysql_real_escape_stringERM(Triw_alergi.getText()), nyeri, Tlokasi.getText(), Tintensitas.getText(), Tskor.getText(), cmbJenis.getSelectedItem().toString(),
+                        cmbKeadaan.getSelectedItem().toString(), cmbGizi.getSelectedItem().toString(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), resus, Tbb.getText(), Ttb.getText(), Ttd.getText(), Tnadi.getText(), Trespi.getText(), Taxila.getText(),
+                        Trektal.getText(), cmbMata.getSelectedItem().toString(), cmbIkterik.getSelectedItem().toString(), cmbPupil.getSelectedItem().toString(), Tdiameter_kanan.getText(), Tdiameter_kiri.getText(), cmbUdem_palpe.getSelectedItem().toString(),
+                        Ttonsil.getText(), Tfaring.getText(), Tlidah.getText(), Tbibir.getText(), Tjvp.getText(), cmbKelenjar.getSelectedItem().toString(), Tkelenjar.getText(), cmbKaku.getSelectedItem().toString(), cmbThoraks.getSelectedItem().toString(),
+                        Tasimetris.getText(), Tcor.getText(), reguler, ireguler, Tmurmur.getText(), Tlain_lain.getText(), Tsuara_nfs.getText(), cmbRonchi.getSelectedItem().toString(), Tronchi.getText(), cmbWhezing.getSelectedItem().toString(),
+                        Twhezing.getText(), cmbDisten.getSelectedItem().toString(), cmbMeteo.getSelectedItem().toString(), cmbPeris.getSelectedItem().toString(), cmbAsites.getSelectedItem().toString(), cmbNyeri.getSelectedItem().toString(),
+                        Tlokasi_nyeri.getText(), Thepar.getText(), Tlien.getText(), cmbExtrem.getSelectedItem().toString(), cmbUdem.getSelectedItem().toString(), Tudem.getText(), Valid.mysql_real_escape_stringERM(Thsl_pemeriksaan.getText()),
+                        Valid.mysql_real_escape_stringERM(Tdiagnosa1.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa2.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa3.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa4.getText()),
+                        Valid.mysql_real_escape_stringERM(Trencana_kerja.getText()), Valid.mysql_real_escape_stringERM(Trencana_pulang.getText()), Valid.mysql_real_escape_stringERM(Tcatatan.getText()),
+                        Valid.SetTgl(TglDpjp.getSelectedItem() + "") + " " + TglDpjp.getSelectedItem().toString().substring(11, 19),
+                        kddpjp.getText(), TPemFisikLain.getText(), Sequel.cariIsi("select now()"), saturasi.getText(), Valid.mysql_real_escape_stringERM(Tdiagnosa5.getText()), Valid.mysql_real_escape_stringERM(Tdiagnosa6.getText()),
+                        Valid.mysql_real_escape_stringERM(Tdiagnosa7.getText())
+                    }) == true) {
+                Sequel.simpanReplaceInto("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
+                TCari.setText(TNoRw.getText());
+                TabRawat.setSelectedIndex(1);
+                emptTeks();
+                tampil();
+            }
+        } catch (Exception e) {
+            System.out.println("Simpan CPPT : " + e);
+        }
     }
     
     private void cekData() {
