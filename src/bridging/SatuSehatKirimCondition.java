@@ -832,7 +832,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
                         + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
                         + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
-                        + "where rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
@@ -844,7 +844,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
                         + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
                         + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
-                        + "where (sc.id_condition is null or sc.id_condition='') and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (sc.id_condition is null or sc.id_condition='') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
@@ -856,7 +856,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat "
                         + "INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat "
                         + "AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS "
-                        + "where sc.id_condition<>'' and rp.tgl_registrasi between ? and ? "
+                        + "where (p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and sc.id_condition<>'' and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
@@ -901,7 +901,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
                         + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
-                        + "ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "(p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
@@ -912,7 +912,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
                         + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
-                        + "(sc.id_condition is null or sc.id_condition='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "(p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and (sc.id_condition is null or sc.id_condition='') and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
@@ -923,7 +923,7 @@ public final class SatuSehatKirimCondition extends javax.swing.JDialog {
                         + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat "
                         + "INNER JOIN diagnosa_pasien dp ON dp.no_rawat = rp.no_rawat INNER JOIN penyakit py ON dp.kd_penyakit = py.kd_penyakit "
                         + "LEFT JOIN satu_sehat_condition sc ON sc.no_rawat = dp.no_rawat AND sc.kd_penyakit = dp.kd_penyakit AND sc.STATUS = dp.STATUS WHERE "
-                        + "sc.id_condition<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
+                        + "(p.no_ktp<>'' or p.no_ktp<>'0' or p.no_ktp<>'-') and sc.id_condition<>'' and ki.stts_pulang not in ('-','Pindah Kamar') and rp.tgl_registrasi between ? and ? "
                         + (TCari.getText().equals("") ? "" : "and (rp.no_rawat like ? or rp.no_rkm_medis like ? or "
                         + "p.nm_pasien like ? or p.no_ktp like ? or dp.kd_penyakit like ? or py.nm_penyakit like ? or "
                         + "rp.stts like ? or rp.status_lanjut like ?)") + " order by rp.tgl_registrasi,rp.jam_reg,rp.no_rawat,dp.prioritas");
