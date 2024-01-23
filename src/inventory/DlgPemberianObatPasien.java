@@ -3995,7 +3995,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Tket7.setText("");
         Tket8.setText("");
         
-        Tket1.setEnabled(false);
+        Tket1.setEnabled(true);
         Tket2.setEnabled(false);
         Tket3.setEnabled(false);
         Tket4.setEnabled(false);

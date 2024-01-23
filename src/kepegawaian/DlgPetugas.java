@@ -676,7 +676,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 102, 105, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-07-2023" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-10-2023" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -759,7 +759,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
         TAlmt.setBounds(515, 42, 360, 23);
 
         TTlp.setForeground(new java.awt.Color(0, 0, 0));
-        TTlp.setHighlighter(null);
         TTlp.setName("TTlp"); // NOI18N
         TTlp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -824,7 +823,6 @@ public final class DlgPetugas extends javax.swing.JDialog {
         jLabel22.setBounds(668, 72, 60, 23);
 
         TnoKTP.setForeground(new java.awt.Color(0, 0, 0));
-        TnoKTP.setHighlighter(null);
         TnoKTP.setName("TnoKTP"); // NOI18N
         TnoKTP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

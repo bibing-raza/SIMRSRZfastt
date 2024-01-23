@@ -121,6 +121,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
+        BtnPantauHarianPerJam = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -384,6 +385,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnJawabKonsul);
+
+        BtnPantauHarianPerJam.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPantauHarianPerJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
+        BtnPantauHarianPerJam.setText("Pemantauan Harian PerJam");
+        BtnPantauHarianPerJam.setIconTextGap(0);
+        BtnPantauHarianPerJam.setName("BtnPantauHarianPerJam"); // NOI18N
+        BtnPantauHarianPerJam.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPantauHarianPerJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPantauHarianPerJamActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnPantauHarianPerJam);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -654,6 +668,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         tombolCek(TNoRW.getText());
     }//GEN-LAST:event_BtnRefresActionPerformed
 
+    private void BtnPantauHarianPerJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPantauHarianPerJamActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMPemantauanHarianPerjam form = new RMPemantauanHarianPerjam(null, false);
+                form.emptTeks();
+                form.isCek();
+//                form.setData(TNoRW.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses, kalau sudah selesai dikabari...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnPantauHarianPerJamActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -680,6 +715,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
+    private widget.ButtonBig BtnPantauHarianPerJam;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnRingkasan;
@@ -784,6 +820,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png")));
             BtnJadwalObat.setToolTipText("Jadwal pemberian obat pasien tersebut pada hari ini SUDAH dibikinkan oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_perjam where no_rawat='" + norawat + "' and tgl_pantau=date(now())") == 0) {
+            BtnPantauHarianPerJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20_biru.png")));
+            BtnPantauHarianPerJam.setToolTipText("Data pemantauan harian pasien perjam pada hari ini BELUM dibikinkan oleh petugas..!!!");
+        } else {
+            BtnPantauHarianPerJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png")));
+            BtnPantauHarianPerJam.setToolTipText("Data pemantauan harian pasien perjam pada hari ini SUDAH dibikinkan oleh petugas..!!!");
         }
     }
 }

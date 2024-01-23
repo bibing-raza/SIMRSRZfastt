@@ -758,7 +758,6 @@ public class DlgDokter extends javax.swing.JDialog {
         CmbJk.setBounds(160, 72, 100, 23);
 
         TNm.setForeground(new java.awt.Color(0, 0, 0));
-        TNm.setHighlighter(null);
         TNm.setName("TNm"); // NOI18N
         TNm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -797,7 +796,7 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(2, 102, 153, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2024" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -881,7 +880,6 @@ public class DlgDokter extends javax.swing.JDialog {
         TAlmt.setBounds(486, 42, 378, 23);
 
         TTlp.setForeground(new java.awt.Color(0, 0, 0));
-        TTlp.setHighlighter(null);
         TTlp.setName("TTlp"); // NOI18N
         TTlp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -893,7 +891,6 @@ public class DlgDokter extends javax.swing.JDialog {
 
         TKd.setEditable(false);
         TKd.setForeground(new java.awt.Color(0, 0, 0));
-        TKd.setHighlighter(null);
         TKd.setName("TKd"); // NOI18N
         TKd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -981,7 +978,6 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel23.setBounds(620, 72, 60, 23);
 
         TnoKTP.setForeground(new java.awt.Color(0, 0, 0));
-        TnoKTP.setHighlighter(null);
         TnoKTP.setName("TnoKTP"); // NOI18N
         TnoKTP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {

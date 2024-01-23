@@ -1413,7 +1413,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' "
                     + "from detail_pemberian_obat where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' group by kode_brng) as b on b.kode_brng = a.kode_brng "
                     + "left join "
-                    + "(select d.kode_brng, d.jumlah jml from detailjual d  "
+                    + "(select d.kode_brng, sum(ifnull(d.jumlah,0)) jml from detailjual d  "
                     + "inner join penjualan p on p.nota_jual = d.nota_jual "
                     + "where p.tgl_jual between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' group by d.kode_brng) as c on c.kode_brng = a.kode_brng "
                     + "left join "

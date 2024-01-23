@@ -4573,7 +4573,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             if (cmbData.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement(
                         "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,',',pa.gcs_v,',',pa.gcs_m),pr.gcs) gcs, "
+                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,pa.gcs_v,pa.gcs_m),pr.gcs) gcs, "
                         + "ifnull(ss.id_observation,'') satu_sehat_observationttvgcs FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat "
                         + "INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN penilaian_awal_medis_igd pa on pa.no_rawat=rp.no_rawat "
@@ -4585,7 +4585,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (cmbData.getSelectedIndex() == 1) {
                 ps = koneksi.prepareStatement(
                         "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,',',pa.gcs_v,',',pa.gcs_m),pr.gcs) gcs, "
+                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,pa.gcs_v,pa.gcs_m),pr.gcs) gcs, "
                         + "ifnull(ss.id_observation,'') satu_sehat_observationttvgcs FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat "
                         + "INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN penilaian_awal_medis_igd pa on pa.no_rawat=rp.no_rawat "
@@ -4597,7 +4597,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
             } else if (cmbData.getSelectedIndex() == 2) {
                 ps = koneksi.prepareStatement(
                         "SELECT rp.tgl_registrasi, rp.jam_reg, rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, p.no_ktp, rp.stts, concat(rp.tgl_registrasi,' ',ADDTIME(rp.jam_reg, '02:00:00')) pulang, "
-                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,',',pa.gcs_v,',',pa.gcs_m),pr.gcs) gcs, "
+                        + "se.id_encounter, pg.nama, pg.no_ktp ktppraktisi, pr.tgl_perawatan, pr.jam_rawat, if(rp.kd_poli='igdk',concat(pa.gcs_e,pa.gcs_v,pa.gcs_m),pr.gcs) gcs, "
                         + "ifnull(ss.id_observation,'') satu_sehat_observationttvgcs FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN satu_sehat_encounter se ON se.no_rawat = rp.no_rawat INNER JOIN pemeriksaan_ralan_petugas pr ON pr.no_rawat = rp.no_rawat "
                         + "INNER JOIN pegawai pg ON pg.nik=rp.kd_dokter LEFT JOIN penilaian_awal_medis_igd pa on pa.no_rawat=rp.no_rawat "
@@ -4624,7 +4624,7 @@ public final class SatuSehatKirimObservationTTV extends javax.swing.JDialog {
                 while (rs.next()) {
                     tabModeGCS.addRow(new Object[]{
                         false, rs.getString("tgl_registrasi") + " " + rs.getString("jam_reg"), rs.getString("no_rawat"), rs.getString("no_rkm_medis"), rs.getString("nm_pasien"),
-                        rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("gcs"),
+                        rs.getString("no_ktp"), rs.getString("stts"), "Ralan", rs.getString("pulang"), rs.getString("id_encounter"), rs.getString("gcs").replaceAll(",", ""),
                         rs.getString("nama"), rs.getString("ktppraktisi"), rs.getString("tgl_perawatan"), rs.getString("jam_rawat"), rs.getString("satu_sehat_observationttvgcs")
                     });
                 }

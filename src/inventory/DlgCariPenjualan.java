@@ -1201,11 +1201,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 param.put("tgl_nota", Sequel.cariIsi("select day(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'") + " "
                         + Sequel.bulanINDONESIA("select month(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'") + " "
                         + Sequel.cariIsi("select year(tgl_jual) from penjualan where nota_jual='" + NoNota.getText() + "'"));
-                if (akses.getadmin() == true) {
-                    param.put("petugas", "-");
-                } else {
-                    param.put("petugas", Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'"));
-                }
                 Valid.MyReport("rptNotaApotek.jasper", "report", "::[ Nota Transaksi Farmasi (Penjualan Bebas) ]::",
                         " SELECT dj.nota_jual, CONCAT(dj.jumlah, ' ', ks.satuan) jlh, db.nama_brng, dj.total, date_format(p.tgl_jual,'%d-%m-%Y') tgl_jual, pt.nama petgas, p.no_rkm_medis, p.nm_pasien,"
                         + "p.keterangan, (select sum(total) from detailjual WHERE nota_jual='" + tbObat.getValueAt(tbObat.getSelectedRow(), 0).toString().trim() + "') tagihan, p.ongkir ppn, "
@@ -1443,7 +1438,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("emailrs",akses.getemailrs()); 
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
                 Valid.MyReport("rptDRJLangsung.jasper","report","::[ Laporan Rekap Detail Penjualan Langsung Resep Per Pasien ]::",
-                        " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(s.nm_pasien, p.keterangan) nm_pasien, g.nama_brng, "+  
+                        " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, g.nama_brng, "+  
                         " j.h_jual, j.jumlah,j.subtotal, j.tambahan, j.total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "+ 
                         " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "+ 
                         " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_akhir "+
@@ -1476,7 +1471,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                 param.put("emailrs",akses.getemailrs()); 
                 param.put("logo",Sequel.cariGambar("select logo from setting")); 
                 Valid.MyReport("rptTRJPerPasien.jasper","report","::[ Laporan Rekap Total Transaksi Per Pasien ]::",
-                    " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(s.nm_pasien, p.keterangan) nm_pasien, sum(j.jumlah) as T_jumlah, "+ 
+                    " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, sum(j.jumlah) as T_jumlah, "+ 
                     " sum(j.subtotal) as T_subtotal, sum(j.tambahan) as T_tambahan, sum(j.total) as T_total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "+ 
                     " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "+ 
                     " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_akhir "+
