@@ -3427,7 +3427,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                         cmbTiba.getSelectedItem().toString(), TtibaLain.getText(), cmbMasuk.getSelectedItem().toString(), Tkeluhan.getText(), cmbRiwAlergi.getSelectedItem().toString(),
                         alergiObat, TreaksiObat.getText(), alergiMakanan, TreaksiMakanan.getText(), alergiLain, TreaksiLain.getText(), gelang, cmbAlergiDiberitahu.getSelectedItem().toString(),
                         TriwPenyktSkg.getText(), Tkesadaran.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Ttemp.getText(), Thr.getText(), Trr.getText(),
-                        TbbBelum.getText(), TbbMasuk.getText(), Ttb.getText(), Timt.getText(), Tcrt.getText(), Tspo.getText(), cmbPernafasan.getSelectedItem().toString(), Tpernafasan.getText(),
+                        TbbBelum.getText(), TbbMasuk.getText().trim(), Ttb.getText().trim(), Timt.getText().trim(), Tcrt.getText(), Tspo.getText(), cmbPernafasan.getSelectedItem().toString(), Tpernafasan.getText(),
                         cmbPenglihatan.getSelectedItem().toString(), Tpenglihatan.getText(), cmbPendengaran.getSelectedItem().toString(), Tpendengaran.getText(), cmbMulut.getSelectedItem().toString(),
                         Tmulut.getText(), cmbReflek.getSelectedItem().toString(), Treflek.getText(), cmbBicara.getSelectedItem().toString(), Tbicara.getText(), cmbDefekasi.getSelectedItem().toString(),
                         Tdefekasi.getText(), cmbMiksi.getSelectedItem().toString(), Tmiksi.getText(), cmbGastro.getSelectedItem().toString(), Tgastro.getText(), cmbPola.getSelectedItem().toString(),
@@ -3442,7 +3442,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                         kurang, perluMPP, perluDP, TmasalahLain.getText(), Valid.SetTgl(TtglAses.getSelectedItem() + ""), nip, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                         Sequel.cariIsi("select now()"), TnmAlergiObat.getText(), TnmAlergiMakanan.getText(), TnmAlergiLain.getText()
                     }) == true) {
-                
+
                 //simpan faktor resiko
                 for (i = 0; i < tbFaktorResiko.getRowCount(); i++) {
                     if (tbFaktorResiko.getValueAt(i, 0).toString().equals("true")) {
@@ -4168,11 +4168,23 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
     }//GEN-LAST:event_TbbBelumKeyPressed
 
     private void TbbMasukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbMasukKeyPressed
-        Valid.pindah(evt, TbbBelum, Ttb);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (TbbMasuk.getText().contains(",") == true) {
+                TbbMasuk.setText(TbbMasuk.getText().replaceAll(",", "."));
+            }
+            Ttb.requestFocus();
+        }
     }//GEN-LAST:event_TbbMasukKeyPressed
 
     private void TtbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtbKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (TbbMasuk.getText().contains(",") == true) {
+                TbbMasuk.setText(TbbMasuk.getText().replaceAll(",", "."));
+            }
+            
+            if (Ttb.getText().contains(",") == true) {
+                Ttb.setText(Ttb.getText().replaceAll(",", "."));
+            }
             BtnIMTActionPerformed(null);
         }
     }//GEN-LAST:event_TtbKeyPressed
@@ -6209,6 +6221,14 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
 
             if (Ttb.getText().equals("")) {
                 Ttb.setText("0");
+            }
+            
+            if (TbbMasuk.getText().contains(",") == true) {
+                TbbMasuk.setText(TbbMasuk.getText().replaceAll(",", "."));
+            }
+            
+            if (Ttb.getText().contains(",") == true) {
+                Ttb.setText(Ttb.getText().replaceAll(",", "."));
             }
 
             A = Double.parseDouble(TbbMasuk.getText());
