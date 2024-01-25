@@ -33,6 +33,7 @@ import keuangan.Jurnal;
 import kepegawaian.DlgCariPetugas;
 
 public class DlgCariPenjualan extends javax.swing.JDialog {
+
     private final DefaultTableModel tabMode;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -50,7 +51,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
     private DecimalFormat df2 = new DecimalFormat("###,###,###,###,###,###,###");
     private double ttljual = 0, subttljual = 0, subttldisc = 0, subttlall = 0, subttltambahan = 0;
     private String verifikasi_penjualan_di_kasir = Sequel.cariIsi("select verifikasi_penjualan_di_kasir from set_nota"),
-            nofak = "", mem = "", ptg = "", sat = "", bar = "", tanggal = "", no_nota = "", kd_obat = "", nmPrinter1 = "", nmPrinter2 = "";
+            nofak = "", mem = "", ptg = "", sat = "", bar = "", tanggal = "", no_nota = "", kd_obat = "", nmPrinter1 = "", nmPrinter2 = "", dialog_simpan = "";
 
     /**
      * Creates new form DlgProgramStudi
@@ -63,7 +64,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         initComponents();
 
         Object[] row = {"No.Nota", "Tanggal", "Petugas", "Pasien", "Keterangan", "Jns.Jual", "PPN", "Barang", "Satuan",
-            "Harga(Rp)", "Jml", "Subtotal(Rp)", "Ptg(%)", "Potongan(Rp)", "Tambahan(Rp)", "Total(Rp)", "nonota", 
+            "Harga(Rp)", "Jml", "Subtotal(Rp)", "Ptg(%)", "Potongan(Rp)", "Tambahan(Rp)", "Total(Rp)", "nonota",
             "kdbarang", "nama_obat"
         };
         tabMode = new DefaultTableModel(null, row) {
@@ -72,7 +73,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
                 return false;
             }
         };
-        
+
         tbObat.setModel(tabMode);
         tbObat.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
@@ -124,37 +125,49 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
 
-        NoNota.setDocument(new batasInput((byte)25).getKata(NoNota));
-        kdmem.setDocument(new batasInput((byte)15).getKata(kdmem));
-        nmmem.setDocument(new batasInput((byte)70).getKata(nmmem));
-        kdptg.setDocument(new batasInput((byte)25).getKata(kdptg));
-        kdbar.setDocument(new batasInput((byte)15).getKata(kdbar));
-        kdsat.setDocument(new batasInput((byte)3).getKata(kdsat));
-        TCari.setDocument(new batasInput((byte)100).getKata(TCari));  
-        
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+        NoNota.setDocument(new batasInput((byte) 25).getKata(NoNota));
+        kdmem.setDocument(new batasInput((byte) 15).getKata(kdmem));
+        nmmem.setDocument(new batasInput((byte) 70).getKata(nmmem));
+        kdptg.setDocument(new batasInput((byte) 25).getKata(kdptg));
+        kdbar.setDocument(new batasInput((byte) 15).getKata(kdbar));
+        kdsat.setDocument(new batasInput((byte) 3).getKata(kdsat));
+        TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+
+        if (koneksiDB.cariCepat().equals("aktif")) {
+            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
+                public void insertUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
+                public void removeUpdate(DocumentEvent e) {
+                    tampil();
+                }
+
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
+                public void changedUpdate(DocumentEvent e) {
+                    tampil();
+                }
             });
         }
 
         pasien.addWindowListener(new WindowListener() {
             @Override
-            public void windowOpened(WindowEvent e) {}
+            public void windowOpened(WindowEvent e) {
+            }
+
             @Override
-            public void windowClosing(WindowEvent e) {}
+            public void windowClosing(WindowEvent e) {
+            }
+
             @Override
             public void windowClosed(WindowEvent e) {
-                if(akses.getform().equals("DlgCariPenjualan")){
-                    if(pasien.getTable().getSelectedRow()!= -1){                   
-                        kdmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(),1).toString());
-                        nmmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(),2).toString());
-                    }     
+                if (akses.getform().equals("DlgCariPenjualan")) {
+                    if (pasien.getTable().getSelectedRow() != -1) {
+                        kdmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 1).toString());
+                        nmmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 2).toString());
+                    }
                     kdmem.requestFocus();
                 }
             }
@@ -330,13 +343,13 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         } else {
             ppVerif.setVisible(false);
         }
-        
+
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             nmPrinter1 = koneksiDB.NAMAPRINTER1();
             nmPrinter2 = koneksiDB.NAMAPRINTER2();
         } catch (Exception e) {
-            System.out.println("NAMA PRINTER : "+e);
+            System.out.println("NAMA PRINTER : " + e);
         }
 
     }
@@ -363,6 +376,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         MnRekapTotalPerPasien = new javax.swing.JMenuItem();
         MnRekapTotalDokterPerResep = new javax.swing.JMenuItem();
         MnDetailResepPerPasien = new javax.swing.JMenuItem();
+        MnRekapTotalPerPasienExcel = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
         tbObat = new widget.Table();
@@ -403,7 +417,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        ppCetakNota.setBackground(new java.awt.Color(255, 255, 255));
         ppCetakNota.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppCetakNota.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppCetakNota.setText("Cetak Ulang Nota");
@@ -417,7 +430,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppCetakNota);
 
-        ppCetakNotaAdminFar.setBackground(new java.awt.Color(255, 255, 255));
         ppCetakNotaAdminFar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppCetakNotaAdminFar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         ppCetakNotaAdminFar.setText("Nota Admin Farmasi");
@@ -430,7 +442,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppCetakNotaAdminFar);
 
-        ppHapus.setBackground(new java.awt.Color(255, 255, 255));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppHapus.setText("Hapus Penjualan");
@@ -443,7 +454,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppHapus);
 
-        ppVerif.setBackground(new java.awt.Color(255, 255, 255));
         ppVerif.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppVerif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppVerif.setText("Verifikasi");
@@ -456,7 +466,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppVerif);
 
-        ppVerifAll.setBackground(new java.awt.Color(255, 255, 255));
         ppVerifAll.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppVerifAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppVerifAll.setText("Verifikasi Semua");
@@ -470,7 +479,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppVerifAll);
 
-        ppAturanPakai.setBackground(new java.awt.Color(255, 255, 255));
         ppAturanPakai.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppAturanPakai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppAturanPakai.setText("Aturan Pakai Obat");
@@ -483,7 +491,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppAturanPakai);
 
-        ppLabelObatMinum.setBackground(new java.awt.Color(255, 255, 255));
         ppLabelObatMinum.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppLabelObatMinum.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppLabelObatMinum.setText("Cetak Aturan Pakai Obat Minum");
@@ -496,7 +503,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppLabelObatMinum);
 
-        ppLabelObatLuar.setBackground(new java.awt.Color(255, 255, 255));
         ppLabelObatLuar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppLabelObatLuar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppLabelObatLuar.setText("Cetak Aturan Pakai Obat Luar");
@@ -509,14 +515,12 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppLabelObatLuar);
 
-        MnLaporanJual.setBackground(new java.awt.Color(255, 255, 255));
         MnLaporanJual.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept_page.png"))); // NOI18N
         MnLaporanJual.setText("Laporan Rekap");
         MnLaporanJual.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLaporanJual.setName("MnLaporanJual"); // NOI18N
         MnLaporanJual.setPreferredSize(new java.awt.Dimension(200, 25));
 
-        MnRekapTotalPerPasien.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapTotalPerPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapTotalPerPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRekapTotalPerPasien.setText("Total Transaksi Per Pasien Per Resep");
@@ -529,7 +533,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         MnLaporanJual.add(MnRekapTotalPerPasien);
 
-        MnRekapTotalDokterPerResep.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapTotalDokterPerResep.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapTotalDokterPerResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnRekapTotalDokterPerResep.setText("Total Transaksi Dokter Per Resep");
@@ -542,7 +545,6 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         MnLaporanJual.add(MnRekapTotalDokterPerResep);
 
-        MnDetailResepPerPasien.setBackground(new java.awt.Color(255, 255, 255));
         MnDetailResepPerPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDetailResepPerPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         MnDetailResepPerPasien.setText("Detail Resep Per Pasien");
@@ -555,6 +557,18 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
         });
         MnLaporanJual.add(MnDetailResepPerPasien);
 
+        MnRekapTotalPerPasienExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapTotalPerPasienExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnRekapTotalPerPasienExcel.setText("Total Transaksi Per Pasien Per Resep (Excel)");
+        MnRekapTotalPerPasienExcel.setName("MnRekapTotalPerPasienExcel"); // NOI18N
+        MnRekapTotalPerPasienExcel.setPreferredSize(new java.awt.Dimension(230, 25));
+        MnRekapTotalPerPasienExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRekapTotalPerPasienExcelActionPerformed(evt);
+            }
+        });
+        MnLaporanJual.add(MnRekapTotalPerPasienExcel);
+
         jPopupMenu1.add(MnLaporanJual);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -566,7 +580,7 @@ public class DlgCariPenjualan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cari Penjualan Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cari Penjualan Obat, Alkes & BHP Medis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1208,7 +1222,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         + "FROM detailjual dj INNER JOIN databarang db INNER JOIN kodesatuan ks INNER JOIN jenis j INNER JOIN penjualan p INNER JOIN petugas pt ON dj.kode_brng = db.kode_brng "
                         + "AND db.kdjns = j.kdjns AND dj.kode_sat = ks.kode_sat AND dj.nota_jual = p.nota_jual AND pt.nip=p.nip "
                         + "WHERE dj.nota_jual = '" + tbObat.getValueAt(tbObat.getSelectedRow(), 0).toString().trim() + "' ", param);
-                
+
 //                Valid.panggilUrl("billing/NotaApotek2.php?nonota=" + tbDokter.getValueAt(tbDokter.getSelectedRow(), 0).toString().trim());
             }
         }
@@ -1401,7 +1415,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                             + "',' ',CURTIME()),'Pelunasan','" + ttljual + "','" + ttljual + "','Sudah','" + akses.getkode() + "','-'", "No.Nota");
                                 }
                             }
-                            
+
                         } catch (Exception e) {
                             System.out.println("Notifikasi 2 : " + e);
                         } finally {
@@ -1424,137 +1438,137 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     }//GEN-LAST:event_ppVerifAllActionPerformed
 
     private void MnDetailResepPerPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDetailResepPerPasienActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
+        } else if (tabMode.getRowCount() != 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>(); 
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs()); 
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                Valid.MyReport("rptDRJLangsung.jasper","report","::[ Laporan Rekap Detail Penjualan Langsung Resep Per Pasien ]::",
-                        " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, g.nama_brng, "+  
-                        " j.h_jual, j.jumlah,j.subtotal, j.tambahan, j.total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "+ 
-                        " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "+ 
-                        " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_akhir "+
-                        " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "+
-                        " inner join databarang g on g.kode_brng = j.kode_brng "+
-                        " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "+
-                        " left join penjab b on b.kd_pj = r.kd_pj "+
-                        " left join dokter d on d.kd_dokter = r.kd_dokter "+
-                        " left join poliklinik k on k.kd_poli = r.kd_poli "+
-                        " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "+
-                        " left join dokter d2 on d2.kd_dokter = p.kd_dokter "+        
-                        " where p.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' "+
-                        " order by p.nota_jual, p.tgl_jual, no_rkm_medis, g.nama_brng",param);                 
-                this.setCursor(Cursor.getDefaultCursor());
-        }    
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            Valid.MyReport("rptDRJLangsung.jasper", "report", "::[ Laporan Rekap Detail Penjualan Langsung Resep Per Pasien ]::",
+                    " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, g.nama_brng, "
+                    + " j.h_jual, j.jumlah,j.subtotal, j.tambahan, j.total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_akhir "
+                    + " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "
+                    + " inner join databarang g on g.kode_brng = j.kode_brng "
+                    + " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "
+                    + " left join penjab b on b.kd_pj = r.kd_pj "
+                    + " left join dokter d on d.kd_dokter = r.kd_dokter "
+                    + " left join poliklinik k on k.kd_poli = r.kd_poli "
+                    + " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "
+                    + " left join dokter d2 on d2.kd_dokter = p.kd_dokter "
+                    + " where p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + " order by p.nota_jual, p.tgl_jual, no_rkm_medis, g.nama_brng", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnDetailResepPerPasienActionPerformed
 
     private void MnRekapTotalPerPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapTotalPerPasienActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
+        } else if (tabMode.getRowCount() != 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>(); 
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs()); 
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                Valid.MyReport("rptTRJPerPasien.jasper","report","::[ Laporan Rekap Total Transaksi Per Pasien ]::",
-                    " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, sum(j.jumlah) as T_jumlah, "+ 
-                    " sum(j.subtotal) as T_subtotal, sum(j.tambahan) as T_tambahan, sum(j.total) as T_total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "+ 
-                    " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "+ 
-                    " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_akhir "+
-                    " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "+
-                    " inner join databarang g on g.kode_brng = j.kode_brng "+
-                    " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "+
-                    " left join penjab b on b.kd_pj = r.kd_pj "+
-                    " left join dokter d on d.kd_dokter = r.kd_dokter "+
-                    " left join poliklinik k on k.kd_poli = r.kd_poli "+
-                    " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "+
-                    " left join dokter d2 on d2.kd_dokter = p.kd_dokter "+        
-                    " where p.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' "+
-                    " GROUP BY p.nota_jual, p.tgl_jual, no_rkm_medis "+
-                    " order by p.nota_jual, p.tgl_jual, no_rkm_medis",param);                
-                this.setCursor(Cursor.getDefaultCursor());
-        } 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            Valid.MyReport("rptTRJPerPasien.jasper", "report", "::[ Laporan Rekap Total Transaksi Per Pasien ]::",
+                    " select distinct p.nota_jual,p.tgl_jual,ifnull(r.no_rkm_medis,'-') no_rkm_medis, ifnull(p.nm_pasien, p.keterangan) nm_pasien, sum(j.jumlah) as T_jumlah, "
+                    + " sum(j.subtotal) as T_subtotal, sum(j.tambahan) as T_tambahan, sum(j.total) as T_total, ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, ifnull(k.nm_poli,'-')nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_akhir "
+                    + " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "
+                    + " inner join databarang g on g.kode_brng = j.kode_brng "
+                    + " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "
+                    + " left join penjab b on b.kd_pj = r.kd_pj "
+                    + " left join dokter d on d.kd_dokter = r.kd_dokter "
+                    + " left join poliklinik k on k.kd_poli = r.kd_poli "
+                    + " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "
+                    + " left join dokter d2 on d2.kd_dokter = p.kd_dokter "
+                    + " where p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + " GROUP BY p.nota_jual, p.tgl_jual, no_rkm_medis "
+                    + " order by p.nota_jual, p.tgl_jual, no_rkm_medis", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnRekapTotalPerPasienActionPerformed
 
     private void MnRekapTotalDokterPerResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapTotalDokterPerResepActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
+        } else if (tabMode.getRowCount() != 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>(); 
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs()); 
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                Valid.MyReport("rptTRJPerDokter.jasper","report","::[ Laporan Rekap Total Transaksi Dokter Per Resep ]::",
-                    " select distinct ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, sum(j.subtotal) as T_subtotal, sum(j.tambahan) as T_tambahan, sum(j.total) as T_total, "+  
-                    " ifnull(k.nm_poli,'-') nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "+ 
-                    " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "+ 
-                    " WHERE penjualan.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"') AS tgl_akhir "+
-                    " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "+
-                    " inner join databarang g on g.kode_brng = j.kode_brng "+
-                    " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "+
-                    " left join penjab b on b.kd_pj = r.kd_pj "+
-                    " left join dokter d on d.kd_dokter = r.kd_dokter "+
-                    " left join poliklinik k on k.kd_poli = r.kd_poli "+
-                    " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "+
-                    " left join dokter d2 on d2.kd_dokter = p.kd_dokter "+        
-                    " where p.tgl_jual BETWEEN '"+Valid.SetTgl(Tgl1.getSelectedItem()+"")+"' AND '"+Valid.SetTgl(Tgl2.getSelectedItem()+"")+"' "+
-                    " GROUP BY nm_dokter order by nm_dokter, nm_poli",param);               
-                this.setCursor(Cursor.getDefaultCursor());
-        } 
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            Valid.MyReport("rptTRJPerDokter.jasper", "report", "::[ Laporan Rekap Total Transaksi Dokter Per Resep ]::",
+                    " select distinct ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') nm_dokter, sum(j.subtotal) as T_subtotal, sum(j.tambahan) as T_tambahan, sum(j.total) as T_total, "
+                    + " ifnull(k.nm_poli,'-') nm_poli, (SELECT MIN(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_awal, (SELECT MAX(tgl_jual) FROM penjualan "
+                    + " WHERE penjualan.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "') AS tgl_akhir "
+                    + " from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual "
+                    + " inner join databarang g on g.kode_brng = j.kode_brng "
+                    + " left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual "
+                    + " left join penjab b on b.kd_pj = r.kd_pj "
+                    + " left join dokter d on d.kd_dokter = r.kd_dokter "
+                    + " left join poliklinik k on k.kd_poli = r.kd_poli "
+                    + " left join pasien s on s.no_rkm_medis = r.no_rkm_medis "
+                    + " left join dokter d2 on d2.kd_dokter = p.kd_dokter "
+                    + " where p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' "
+                    + " GROUP BY nm_dokter order by nm_dokter, nm_poli", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_MnRekapTotalDokterPerResepActionPerformed
 
     private void ppCetakNotaAdminFarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppCetakNotaAdminFarActionPerformed
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
+        } else if (tabMode.getRowCount() != 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>(); 
-                param.put("namars",akses.getnamars());
-                param.put("alamatrs",akses.getalamatrs());
-                param.put("kotars",akses.getkabupatenrs());
-                param.put("propinsirs",akses.getpropinsirs());
-                param.put("kontakrs",akses.getkontakrs());
-                param.put("emailrs",akses.getemailrs()); 
-                param.put("logo",Sequel.cariGambar("select logo from setting")); 
-                param.put("tgl_nota", Sequel.cariIsi("select day(now())") + " " + Sequel.bulanINDONESIA("select month(now())") + " " + Sequel.cariIsi("select year(now())"));
-                Valid.MyReport("rptNJLAdminFarmasi.jasper","report","::[ Cetak Nota/Kwitansi Resep Pasien dari Penjualan Langsung (untuk Admin Farmasi) ]::",
-                    " select penjualan.nota_jual, penjualan.tgl_jual, databarang.nama_brng, databarang.kode_sat, databarang.ralan as hrg_jual, detailjual.jumlah, "+  
-                    " detailjual.subtotal, detailjual.bsr_dis as diskon, detailjual.dis as diskon_persen, detailjual.tambahan as tuslah, "+ 
-                    " detailjual.total as total_tran, petugas.nama as nm_petugas, penjualan.no_rkm_medis,penjualan.nm_pasien, "+ 
-                    " penjualan.keterangan, penjualan.jns_jual, bangsal.nm_bangsal,penjualan.status, dokter.nm_dokter "+ 
-                    " from penjualan inner join petugas inner join bangsal inner join jenis "+ 
-                    " inner join detailjual inner join databarang inner join kodesatuan "+ 
-                    " on detailjual.kode_brng=databarang.kode_brng "+ 
-                    " and detailjual.kode_sat=kodesatuan.kode_sat "+ 
-                    " and penjualan.kd_bangsal=bangsal.kd_bangsal "+ 
-                    " and penjualan.nota_jual=detailjual.nota_jual "+ 
-                    " and penjualan.nip=petugas.nip and databarang.kdjns=jenis.kdjns "+ 
-                    " INNER JOIN dokter ON penjualan.kd_dokter = dokter.kd_dokter "+
-                    " where penjualan.nota_jual='"+NoNota.getText()+"' "+ 
-                    " order by penjualan.tgl_jual,penjualan.nota_jual",param);               
-                this.setCursor(Cursor.getDefaultCursor());
-        }    
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("tgl_nota", Sequel.cariIsi("select day(now())") + " " + Sequel.bulanINDONESIA("select month(now())") + " " + Sequel.cariIsi("select year(now())"));
+            Valid.MyReport("rptNJLAdminFarmasi.jasper", "report", "::[ Cetak Nota/Kwitansi Resep Pasien dari Penjualan Langsung (untuk Admin Farmasi) ]::",
+                    " select penjualan.nota_jual, penjualan.tgl_jual, databarang.nama_brng, databarang.kode_sat, databarang.ralan as hrg_jual, detailjual.jumlah, "
+                    + " detailjual.subtotal, detailjual.bsr_dis as diskon, detailjual.dis as diskon_persen, detailjual.tambahan as tuslah, "
+                    + " detailjual.total as total_tran, petugas.nama as nm_petugas, penjualan.no_rkm_medis,penjualan.nm_pasien, "
+                    + " penjualan.keterangan, penjualan.jns_jual, bangsal.nm_bangsal,penjualan.status, dokter.nm_dokter "
+                    + " from penjualan inner join petugas inner join bangsal inner join jenis "
+                    + " inner join detailjual inner join databarang inner join kodesatuan "
+                    + " on detailjual.kode_brng=databarang.kode_brng "
+                    + " and detailjual.kode_sat=kodesatuan.kode_sat "
+                    + " and penjualan.kd_bangsal=bangsal.kd_bangsal "
+                    + " and penjualan.nota_jual=detailjual.nota_jual "
+                    + " and penjualan.nip=petugas.nip and databarang.kdjns=jenis.kdjns "
+                    + " INNER JOIN dokter ON penjualan.kd_dokter = dokter.kd_dokter "
+                    + " where penjualan.nota_jual='" + NoNota.getText() + "' "
+                    + " order by penjualan.tgl_jual,penjualan.nota_jual", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
     }//GEN-LAST:event_ppCetakNotaAdminFarActionPerformed
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
@@ -1587,8 +1601,8 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
             DlgGantiAturanPakai aturan = new DlgGantiAturanPakai(null, false);
             aturan.setSize(644, 316);
             aturan.setLocationRelativeTo(internalFrame1);
-            aturan.setData(no_nota, kd_obat, 
-                    Sequel.cariIsi("SELECT p.tgl_jual FROM penjualan p INNER JOIN detailjual dj on p.nota_jual = dj.nota_jual WHERE dj.nota_jual='" + no_nota + "'"), 
+            aturan.setData(no_nota, kd_obat,
+                    Sequel.cariIsi("SELECT p.tgl_jual FROM penjualan p INNER JOIN detailjual dj on p.nota_jual = dj.nota_jual WHERE dj.nota_jual='" + no_nota + "'"),
                     Sequel.cariIsi("select time(now())"), "jual_bebas");
             aturan.setVisible(true);
         }
@@ -1670,6 +1684,39 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }//GEN-LAST:event_ppLabelObatLuarActionPerformed
 
+    private void MnRekapTotalPerPasienExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapTotalPerPasienExcelActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+//            if (Valid.MyReportToExcelBoolean(
+//                    "select a.kode_brng 'Kode', a.nama_brng 'Nama Obat', a.kode_sat 'Satuan', round (a.h_beli) 'Harga Beli',  "
+//                    + "ifnull(b.Apotek_IGD,0) 'Apotek IGD',ifnull(b.Apotek_Sentral,0) 'Apotek Sentral',ifnull(b.Gudang_Penerimaan,0) 'Gudang Penerimaan', "
+//                    + "ifnull(b.Gudang_Farmasi_Ruangan,0) 'Gudang Farmasi Ruangan',ifnull(b.Apotek_IBS,0) 'Apotek IBS', "
+//                    + "ifnull(b.Apotek_IGD,0)+ ifnull(b.Apotek_Sentral,0)+ifnull(b.Gudang_Penerimaan,0)+ifnull(b.Gudang_Farmasi_Ruangan,0)+ifnull(b.Apotek_IBS,0) 'Total' from "
+//                    + "((select kode_brng, nama_brng, h_beli, kode_sat from databarang where status = '1') as a "
+//                    + "left join "
+//                    + "(select kode_brng, ifnull( SUM( CASE WHEN kd_bangsal = 'APT01' THEN jml END ), 0 ) 'Apotek_IGD',ifnull( sum( CASE WHEN kd_bangsal = 'APT02' THEN jml END ), 0 ) 'Apotek_Sentral',ifnull( sum( CASE WHEN kd_bangsal = 'APT03' THEN jml END ), 0 ) 'Gudang_Penerimaan',ifnull( sum( CASE WHEN kd_bangsal = 'APT04' THEN jml END ), 0 ) 'Gudang_Farmasi_Ruangan',ifnull( sum( CASE WHEN kd_bangsal = 'APT07' THEN jml END ), 0 ) 'Apotek_IBS' from detail_pemberian_obat  "
+//                    + "inner join reg_periksa on reg_periksa.no_rawat = detail_pemberian_obat.no_rawat "
+//                    + "where tgl_perawatan between '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "' and reg_periksa.kd_pj = 'B01' group by kode_brng) as b on b.kode_brng = a.kode_brng "
+//                    + ") ORDER BY a.nama_brng", dialog_simpan) == true) {
+            if (Valid.MyReportToExcelBoolean(
+                    "select p.nota_jual 'No Nota',p.tgl_jual 'Tanggal',ifnull(r.no_rkm_medis,'-') as 'No RM', ifnull(p.nm_pasien, p.keterangan) as 'Nama Pasien', "
+                    + "sum(j.jumlah) as 'Qty Obat',  sum(j.subtotal) as 'Sub Total', sum(j.tambahan) as 'Tambahan', sum(j.total) as 'Total', "
+                    + "ifnull((ifnull(d2.nm_dokter, d.nm_dokter)),'-') as 'Dokter Peresep', ifnull(k.nm_poli,'-') as 'Poli' "
+                    + "from penjualan p inner join detailjual j on j.nota_jual = p.nota_jual  inner join databarang g on g.kode_brng = j.kode_brng  "
+                    + "left join reg_periksa r on r.no_rkm_medis = p.no_rkm_medis and r.tgl_registrasi = p.tgl_jual  left join penjab b on b.kd_pj = r.kd_pj  "
+                    + "left join dokter d on d.kd_dokter = r.kd_dokter  left join poliklinik k on k.kd_poli = r.kd_poli  "
+                    + "left join pasien s on s.no_rkm_medis = r.no_rkm_medis  left join dokter d2 on d2.kd_dokter = p.kd_dokter  "
+                    + "where p.tgl_jual BETWEEN '" + Valid.SetTgl(Tgl1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(Tgl2.getSelectedItem() + "") + "'  GROUP BY p.nota_jual, p.tgl_jual, r.no_rkm_medis  "
+                    + "order by p.nota_jual, p.tgl_jual, r.no_rkm_medis", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnRekapTotalPerPasienExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1696,6 +1743,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private javax.swing.JMenu MnLaporanJual;
     private javax.swing.JMenuItem MnRekapTotalDokterPerResep;
     private javax.swing.JMenuItem MnRekapTotalPerPasien;
+    private javax.swing.JMenuItem MnRekapTotalPerPasienExcel;
     private widget.TextBox NoNota;
     private widget.TextBox TCari;
     private widget.Tanggal Tgl1;
@@ -1808,8 +1856,8 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                             + " detailjual.nota_jual='" + rs.getString(1) + "' " + sat + bar + " and detailjual.kode_brng like '%" + TCari.getText() + "%' or "
                             + " detailjual.nota_jual='" + rs.getString(1) + "' " + sat + bar + " and databarang.nama_brng like '%" + TCari.getText() + "%' or "
                             + " detailjual.nota_jual='" + rs.getString(1) + "' " + sat + bar + " and detailjual.kode_sat like '%" + TCari.getText() + "%' or "
-                            + " detailjual.nota_jual='" + rs.getString(1) + "' " + sat + bar + " and jenis.nama like '%" + TCari.getText() + "%' order by detailjual.kode_brng");                    
-                    
+                            + " detailjual.nota_jual='" + rs.getString(1) + "' " + sat + bar + " and jenis.nama like '%" + TCari.getText() + "%' order by detailjual.kode_brng");
+
                     try {
                         rs2 = ps2.executeQuery();
                         subttlall = 0;

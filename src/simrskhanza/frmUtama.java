@@ -390,6 +390,7 @@ import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
+import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMTindakanKedokteran;
 import setting.DlgClosingKasir;
 import setting.DlgSetBridging;
@@ -983,6 +984,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnKirimClinicalSatuSehat = new widget.ButtonBig();
         btnKirimDietSatuSehat = new widget.ButtonBig();
         btnMapingObatSatuSehat = new widget.ButtonBig();
+        btnPemantauanHarian24Jam = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6494,6 +6496,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMapingObatSatuSehat);
 
+        btnPemantauanHarian24Jam.setForeground(new java.awt.Color(0, 0, 0));
+        btnPemantauanHarian24Jam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
+        btnPemantauanHarian24Jam.setText("Pemantauan Harian Pasien 24 Jam");
+        btnPemantauanHarian24Jam.setIconTextGap(0);
+        btnPemantauanHarian24Jam.setName("btnPemantauanHarian24Jam"); // NOI18N
+        btnPemantauanHarian24Jam.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPemantauanHarian24Jam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPemantauanHarian24JamActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPemantauanHarian24Jam);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6502,7 +6517,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20/01/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/01/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12834,6 +12849,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMapingObatSatuSehatActionPerformed
 
+    private void btnPemantauanHarian24JamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemantauanHarian24JamActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPemantauanHarian24Jam aplikasi = new RMPemantauanHarian24Jam(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPemantauanHarian24JamActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13104,6 +13132,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPasienPonek;
     private widget.ButtonBig btnPaymentPoint;
     private widget.ButtonBig btnPegawai;
+    private widget.ButtonBig btnPemantauanHarian24Jam;
     private widget.ButtonBig btnPemasukanLain;
     private widget.ButtonBig btnPembelian;
     private widget.ButtonBig btnPembelianIpsrs;
@@ -13586,6 +13615,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnPemantauanHarian24Jam);
+                jmlmenu++;
+            }
+            
             if (akses.getcppt() == true) {
                 Panelmenu.add(btnPersetujuanTindakan);
                 jmlmenu++;
@@ -15549,6 +15583,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnSuratJawabanKonsulRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnPemantauanHarian24Jam);
             jmlmenu++;
         }
         
@@ -17582,6 +17621,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpermintaan_lab()== true) {
             if (btnSuratJawabanKonsulRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSuratJawabanKonsulRanap);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnPemantauanHarian24Jam.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPemantauanHarian24Jam);
                 jmlmenu++;
             }
         }

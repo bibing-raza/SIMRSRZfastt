@@ -50,7 +50,7 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "Barang", "Awal", "Masuk", "Keluar", "Akhir", "Posisi",
-            "Tanggal", "Jam", "Petugas", "Lokasi", "Status"
+            "Tanggal", "Jam", "Petugas", "Lokasi", "Status", "Waktu Input"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -62,7 +62,7 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         tbDokter.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(230);
@@ -86,6 +86,8 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
                 column.setPreferredWidth(150);
             } else if (i == 10) {
                 column.setPreferredWidth(60);
+            } else if (i == 11) {
+                column.setPreferredWidth(230);
             }
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
@@ -249,6 +251,8 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         NmGudang = new widget.TextBox();
         btnBarang1 = new widget.Button();
         panelisi1 = new widget.panelisi();
+        label9 = new widget.Label();
+        filterTgl = new widget.ComboBox();
         label11 = new widget.Label();
         Tgl1 = new widget.Tanggal();
         label18 = new widget.Label();
@@ -257,7 +261,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
-        label9 = new widget.Label();
         BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -630,6 +633,32 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
+        label9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        label9.setName("label9"); // NOI18N
+        label9.setPreferredSize(new java.awt.Dimension(19, 30));
+        panelisi1.add(label9);
+
+        filterTgl.setForeground(new java.awt.Color(0, 0, 0));
+        filterTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tanggal Transaksi", "Tanggal Input" }));
+        filterTgl.setName("filterTgl"); // NOI18N
+        filterTgl.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                filterTglItemStateChanged(evt);
+            }
+        });
+        filterTgl.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                filterTglMouseClicked(evt);
+            }
+        });
+        filterTgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                filterTglKeyPressed(evt);
+            }
+        });
+        panelisi1.add(filterTgl);
+
         label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tanggal :");
         label11.setName("label11"); // NOI18N
@@ -708,12 +737,6 @@ public class DlgRiwayatBarangMedis extends javax.swing.JDialog {
             }
         });
         panelisi1.add(BtnAll);
-
-        label9.setForeground(new java.awt.Color(0, 0, 0));
-        label9.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        label9.setName("label9"); // NOI18N
-        label9.setPreferredSize(new java.awt.Dimension(19, 30));
-        panelisi1.add(label9);
 
         BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -1497,6 +1520,18 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         }
     }//GEN-LAST:event_MnRiwayatSetiapDepoLainnyaActionPerformed
 
+    private void filterTglItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_filterTglItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_filterTglItemStateChanged
+
+    private void filterTglMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_filterTglMouseClicked
+        
+    }//GEN-LAST:event_filterTglMouseClicked
+
+    private void filterTglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_filterTglKeyPressed
+        
+    }//GEN-LAST:event_filterTglKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -1546,6 +1581,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Tanggal Tgl2;
     private widget.Button btnBarang;
     private widget.Button btnBarang1;
+    private widget.ComboBox filterTgl;
     private widget.InternalFrame internalFrame1;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.TextBox kdbar;
@@ -1565,14 +1601,15 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private void prosesCari() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement(
+            if(filterTgl.getSelectedIndex()==0){
+              ps = koneksi.prepareStatement(
                     "select riwayat_barang_medis.kode_brng,databarang.nama_brng,"
                     + "riwayat_barang_medis.stok_awal,riwayat_barang_medis.masuk,"
                     + "riwayat_barang_medis.keluar,riwayat_barang_medis.stok_akhir,"
                     + "riwayat_barang_medis.posisi,riwayat_barang_medis.tanggal,"
                     + "riwayat_barang_medis.jam,riwayat_barang_medis.petugas,"
                     + "riwayat_barang_medis.kd_bangsal,bangsal.nm_bangsal,"
-                    + "riwayat_barang_medis.status from riwayat_barang_medis "
+                    + "riwayat_barang_medis.status,riwayat_barang_medis.wkt_eks from riwayat_barang_medis "
                     + "inner join bangsal inner join databarang on "
                     + "riwayat_barang_medis.kode_brng=databarang.kode_brng and "
                     + "riwayat_barang_medis.kd_bangsal=bangsal.kd_bangsal where "
@@ -1581,7 +1618,27 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.petugas like ? or "
                     + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and bangsal.nm_bangsal like ? or "
                     + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kd_bangsal like ? or "
-                    + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.status like ? order by riwayat_barang_medis.tanggal,riwayat_barang_medis.jam ");
+                    + "riwayat_barang_medis.tanggal between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.status like ? order by riwayat_barang_medis.tanggal,riwayat_barang_medis.jam ");  
+            } else{
+                ps = koneksi.prepareStatement(
+                    "select riwayat_barang_medis.kode_brng,databarang.nama_brng,"
+                    + "riwayat_barang_medis.stok_awal,riwayat_barang_medis.masuk,"
+                    + "riwayat_barang_medis.keluar,riwayat_barang_medis.stok_akhir,"
+                    + "riwayat_barang_medis.posisi,riwayat_barang_medis.tanggal,"
+                    + "riwayat_barang_medis.jam,riwayat_barang_medis.petugas,"
+                    + "riwayat_barang_medis.kd_bangsal,bangsal.nm_bangsal,"
+                    + "riwayat_barang_medis.status,riwayat_barang_medis.wkt_eks from riwayat_barang_medis "
+                    + "inner join bangsal inner join databarang on "
+                    + "riwayat_barang_medis.kode_brng=databarang.kode_brng and "
+                    + "riwayat_barang_medis.kd_bangsal=bangsal.kd_bangsal where "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kode_brng like ? or "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and databarang.nama_brng like ? or "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.petugas like ? or "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and bangsal.nm_bangsal like ? or "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.kd_bangsal like ? or "
+                    + "DATE_FORMAT(riwayat_barang_medis.wkt_eks,'%Y-%m-%d') between ? and ? and databarang.nama_brng like ? and bangsal.nm_bangsal like ? and riwayat_barang_medis.status like ? order by riwayat_barang_medis.tanggal,riwayat_barang_medis.jam ");
+            }
+            
             try {
                 ps.setString(1, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
@@ -1622,7 +1679,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         rs.getString("posisi"), rs.getString("tanggal"),
                         rs.getString("jam"), rs.getString("petugas"),
                         rs.getString("kd_bangsal") + " " + rs.getString("nm_bangsal"),
-                        rs.getString("status")
+                        rs.getString("status"),rs.getString("wkt_eks")
                     });
                 }
             } catch (Exception e) {

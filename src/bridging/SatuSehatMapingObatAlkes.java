@@ -531,7 +531,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         FormInput.add(NumoratorCode);
         NumoratorCode.setBounds(109, 130, 70, 23);
 
-        KFACode.setEditable(false);
         KFACode.setForeground(new java.awt.Color(0, 0, 0));
         KFACode.setName("KFACode"); // NOI18N
         FormInput.add(KFACode);
