@@ -3446,7 +3446,7 @@ private void MnHapusTagihanActionPerformed(java.awt.event.ActionEvent evt) {//GE
             Sequel.queryu2("delete from nota_inap where no_rawat='" + TNoRw.getText() + "'");
             Sequel.queryu2("delete from detail_nota_inap where no_rawat='" + TNoRw.getText() + "'");
             Valid.hapusTable(tabModeRwJlDr, TNoRw, "billing", "no_rawat");
-            Valid.hapusTable(tabModeRwJlDr, TNoRw, "tagihan_sadewa", "no_nota");
+//            Valid.hapusTable(tabModeRwJlDr, TNoRw, "tagihan_sadewa", "no_nota");
             this.setCursor(Cursor.getDefaultCursor());
             Sequel.AutoComitTrue();
             JOptionPane.showMessageDialog(rootPane, "Proses hapus data Nota Salah selesai..!!");

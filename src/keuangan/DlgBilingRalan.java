@@ -3265,7 +3265,7 @@ private void MnHapusTagihanActionPerformed(java.awt.event.ActionEvent evt) {//GE
                 Sequel.mengedittf("periksa_radiologi", "no_rawat = '" + TNoRw.getText() + "' and stts_bayar = 'Bayar' and no_nota = '" + TCekNota.getText() + "' ", "stts_bayar = 'Belum',no_nota='-'");
                 Sequel.mengedittf("operasi", "no_rawat = '" + TNoRw.getText() + "' and stts_bayar = 'Bayar' and no_nota = '" + TCekNota.getText() + "' ", "stts_bayar = 'Bayar',no_nota='-'");
                 Valid.hapusTable(tabModeRwJlDr, TCekNota, "billing", "no_nota");
-                Valid.hapusTable(tabModeRwJlDr, TCekNota, "tagihan_sadewa", "no_nota2");
+//                Valid.hapusTable(tabModeRwJlDr, TCekNota, "tagihan_sadewa", "no_nota2");
                 this.setCursor(Cursor.getDefaultCursor());
                 Sequel.AutoComitTrue();
                 JOptionPane.showMessageDialog(rootPane, "Proses hapus data Nota Salah selesai..!!");

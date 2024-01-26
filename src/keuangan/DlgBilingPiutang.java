@@ -328,7 +328,7 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
             Sequel.AutoComitFalse();
             jawab=JOptionPane.showConfirmDialog(null, "Yakin anda mau menghapus PIUTANG ini ????","Konfirmasi",JOptionPane.YES_NO_OPTION);
             Valid.hapusTable(tabModeRwJlDr,TNoRw,"billing","no_rawat");  
-            Valid.hapusTable(tabModeRwJlDr,TNoRw,"tagihan_sadewa","no_nota");  
+//            Valid.hapusTable(tabModeRwJlDr,TNoRw,"tagihan_sadewa","no_nota");  
             Valid.editTable(tabModeRwJlDr,"reg_periksa","no_rawat",TNoRw,"stts='Belum'");
             if(jawab==JOptionPane.YES_OPTION){
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

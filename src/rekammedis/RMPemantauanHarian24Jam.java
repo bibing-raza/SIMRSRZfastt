@@ -1417,34 +1417,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             Valid.textKosong(Tsuhu, "Suhu");
             Tsuhu.requestFocus();
         } else {
-            if (Tsuhu.getText().contains(",") == true) {
-                Tsuhu.setText(Tsuhu.getText().replaceAll(",", "."));
-            }
-
-            autoNomorPerJam();
-            jamDiurutkan();
-            BtnTotOutputActionPerformed(null);
-            if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 27, new String[]{
-                TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
-                urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
-                Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
-                Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Sequel.cariIsi("select now()")
-            }) == true) {
-              
-                //simpan Parental_Line_Obat-obatan
-                if (tbParental.getRowCount() != 0) {
-                    for (i = 0; i < tbParental.getRowCount(); i++) {
-                        Sequel.menyimpan2("pemantauan_harian_parental", "?,?,?,?,?,?,?", 7, new String[]{
-                            TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
-                            tbParental.getValueAt(i, 1).toString(), tbParental.getValueAt(i, 2).toString(), "24 Jam"
-                        });
-                    }
-                }
-                
-                tampil();
-                emptTeks();
-                tampilTotal24Jam(tglPANTAU,norawatPANTAU);
-            }
+            simpan();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1479,72 +1452,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                     Valid.textKosong(Tsuhu, "Suhu");
                     Tsuhu.requestFocus();
                 } else {
-                    if (Tsuhu.getText().contains(",") == true) {
-                        Tsuhu.setText(Tsuhu.getText().replaceAll(",", "."));
-                    }
-
-                    jamDiurutkan();
-                    BtnTotOutputActionPerformed(null);
-                    if (Sequel.mengedittf("pemantauan_harian_24jam", "waktu_simpan=?", "kd_pantau=?, tgl_pantau=?, jam=?, "
-                            + "urutan_jam=?, nadi=?, suhu=?, gcs_e=?, gcs_m=?, gcs_v=?, kesadaran=?, td=?, nafas=?, spo2=?, makan_minum=?, "
-                            + "ngt=?, total_parental=?, total_intake=?, urine=?, ngt_darah=?, drain=?, muntah=?, bab=?, iwl=?, total_output=?, "
-                            + "balance=?", 26, new String[]{
-                                TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
-                                urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
-                                Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
-                                Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(),
-                                tbPantau.getValueAt(tbPantau.getSelectedRow(), 30).toString()
-                            }) == true) {
-
-                        //simpan Parental_Line_Obat-obatan
-                        Sequel.meghapus("pemantauan_harian_parental", "kd_pantau",
-                                tbPantau.getValueAt(tbPantau.getSelectedRow(), 1).toString());
-
-                        if (tbParental.getRowCount() != 0) {
-                            for (i = 0; i < tbParental.getRowCount(); i++) {
-                                Sequel.menyimpan2("pemantauan_harian_parental", "?,?,?,?,?,?,?", 7, new String[]{
-                                    TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
-                                    tbParental.getValueAt(i, 1).toString(), tbParental.getValueAt(i, 2).toString(), "24 Jam"
-                                });
-                            }
-                        }
-
-                        tampil();
-                        emptTeks();
-                        tampilTotal24Jam(tglPANTAU, norawatPANTAU);
-                    }
+                    gantiPemantauan();
+                    emptTeks();
+                    tampil();
+                    tampilTotal24Jam(tglPANTAU, norawatPANTAU);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
             }
         } else if (pilih == 2) {
-            if (tabMode1.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Data Parental/Line/Obat-obatan belum ada...!!");
-                BtnParental.requestFocus();
-            } else if (tbParental.getSelectedRowCount() == 0 || dataParental.equals("")) {
+            if (tbParental.getSelectedRowCount() == 0 || dataParental.equals("")) {
                 JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
                 tbParental.requestFocus();
             } else {
-                x = JOptionPane.showConfirmDialog(rootPane, "Apakah obat " + tbParental.getValueAt(tbParental.getSelectedRow(), 1).toString()
-                        + " jml. pemberian " + tbParental.getValueAt(tbParental.getSelectedRow(), 2).toString()
-                        + " Cc. akan diperbaiki/diganti..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    tabMode1.removeRow(tbParental.getSelectedRow());
-                    dataParental = "";
-                    pilih = 0;
-                    WindowParental.setSize(820, internalFrame1.getHeight() - 40);
-                    WindowParental.setLocationRelativeTo(internalFrame1);
-                    WindowParental.setAlwaysOnTop(false);
-                    WindowParental.setVisible(true);
-
-                    BtnBatal1ActionPerformed(null);
-                    DTPCari1.setDate(new Date());
-                    DTPCari2.setDate(new Date());
-                    tampilObatTerjadwal();
-                } else {
-                    dataParental = "";
-                    pilih = 0;
-                }
+                gantiParental();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!");
@@ -1759,43 +1680,22 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 x = JOptionPane.showConfirmDialog(rootPane, "Apakah pemantauan harian tgl. " + tglPantau.getSelectedItem().toString() + " jam "
                         + tbPantau.getValueAt(tbPantau.getSelectedRow(), 5).toString() + " akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
-                    if (Sequel.queryu2tf("delete from pemantauan_harian_24jam where waktu_simpan=?", 1, new String[]{
-                        tbPantau.getValueAt(tbPantau.getSelectedRow(), 30).toString()
-                    }) == true) {
-                        Sequel.meghapus("pemantauan_harian_parental", "kd_pantau",
-                                tbPantau.getValueAt(tbPantau.getSelectedRow(), 1).toString());
-
-                        tampil();
-                        emptTeks();
-                        tampilTotal24Jam(tglPANTAU, norawatPANTAU);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                    }
+                    hapusPemantauan();
+                } else {
+                    tampil();
+                    emptTeks();
+                    tampilTotal24Jam(tglPANTAU, norawatPANTAU);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih salah satu datanya terlebih dahulu..!!");
             }
         } else if (pilih == 2) {
-            if (tabMode1.getRowCount() == 0) {
-                JOptionPane.showMessageDialog(null, "Data Parental/Line/Obat-obatan belum ada...!!");
-                BtnParental.requestFocus();
-            } else if (tbParental.getSelectedRowCount() == 0 || dataParental.equals("")) {
-                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
-                tbParental.requestFocus();
-            } else {
-                x = JOptionPane.showConfirmDialog(rootPane, "Apakah obat " + tbParental.getValueAt(tbParental.getSelectedRow(), 1).toString()
-                        + " jml. pemberian " + tbParental.getValueAt(tbParental.getSelectedRow(), 2).toString()
-                        + " Cc. akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    tabMode1.removeRow(tbParental.getSelectedRow());
-                    dataParental = "";
-                    pilih = 1;
-                    hitungParental();
-                } else {
-                    dataParental = "";
-                    pilih = 0;
-                }
-            }
+            hapusParental();
+            gantiPemantauan();
+            dataParental = "";
+            pilih = 0;
+            tampil();            
+            tampilTotal24Jam(tglPANTAU, norawatPANTAU);
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu datanya pada tabel utk. dihapus...!!");
         }
@@ -1830,6 +1730,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             hitungParental();
             tampilObatTerjadwal();
             BtnBatal1ActionPerformed(null);
+            gantiPemantauan();
         }
     }//GEN-LAST:event_BtnSimpan1ActionPerformed
 
@@ -1844,6 +1745,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
         WindowParental.dispose();
         BtnBatal1ActionPerformed(null);
+        
+        if (!TkdPantau.getText().equals("")) {
+            if (Sequel.cariInteger("select count(-1) from pemantauan_harian_parental where "
+                    + "tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and kd_pantau='" + TkdPantau.getText() + "'") > 0) {
+                tampilParental();
+            }
+        }
     }//GEN-LAST:event_BtnKeluar1ActionPerformed
 
     private void TnmObatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmObatKeyPressed
@@ -2474,6 +2382,129 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         } catch (Exception e) {
             System.out.println("Notif : " + e);
+        }
+    }
+    
+    private void simpan() {
+        if (Tsuhu.getText().contains(",") == true) {
+            Tsuhu.setText(Tsuhu.getText().replaceAll(",", "."));
+        }
+
+        autoNomorPerJam();
+        jamDiurutkan();
+        BtnTotOutputActionPerformed(null);
+        if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 27, new String[]{
+            TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
+            urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
+            Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
+            Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Sequel.cariIsi("select now()")
+        }) == true) {
+
+            //simpan Parental_Line_Obat-obatan
+            if (tbParental.getRowCount() != 0) {
+                for (i = 0; i < tbParental.getRowCount(); i++) {
+                    Sequel.menyimpan2("pemantauan_harian_parental", "?,?,?,?,?,?,?", 7, new String[]{
+                        TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
+                        tbParental.getValueAt(i, 1).toString(), tbParental.getValueAt(i, 2).toString(), "24 Jam"
+                    });
+                }
+            }
+
+            tampil();
+            emptTeks();
+            tampilTotal24Jam(tglPANTAU, norawatPANTAU);
+        }
+    }
+
+    private void hapusPemantauan() {
+        if (Sequel.queryu2tf("delete from pemantauan_harian_24jam where waktu_simpan=?", 1, new String[]{
+            tbPantau.getValueAt(tbPantau.getSelectedRow(), 30).toString()
+        }) == true) {
+            Sequel.meghapus("pemantauan_harian_parental", "kd_pantau",
+                    tbPantau.getValueAt(tbPantau.getSelectedRow(), 1).toString());
+
+            tampil();
+            emptTeks();
+            tampilTotal24Jam(tglPANTAU, norawatPANTAU);
+        } else {
+            JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+        }
+    }
+
+    private void hapusParental() {
+        if (tbParental.getSelectedRowCount() == 0 || dataParental.equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbParental.requestFocus();
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah obat " + tbParental.getValueAt(tbParental.getSelectedRow(), 1).toString()
+                    + " jml. pemberian " + tbParental.getValueAt(tbParental.getSelectedRow(), 2).toString()
+                    + " Cc. akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                tabMode1.removeRow(tbParental.getSelectedRow());
+                dataParental = "";
+                pilih = 1;
+                hitungParental();
+            } else {
+                dataParental = "";
+                pilih = 0;
+            }
+        }
+    }
+
+    private void gantiPemantauan() {
+        if (Tsuhu.getText().contains(",") == true) {
+            Tsuhu.setText(Tsuhu.getText().replaceAll(",", "."));
+        }
+
+        jamDiurutkan();
+        BtnTotOutputActionPerformed(null);
+        if (Sequel.mengedittf("pemantauan_harian_24jam", "waktu_simpan=?", "kd_pantau=?, tgl_pantau=?, jam=?, "
+                + "urutan_jam=?, nadi=?, suhu=?, gcs_e=?, gcs_m=?, gcs_v=?, kesadaran=?, td=?, nafas=?, spo2=?, makan_minum=?, "
+                + "ngt=?, total_parental=?, total_intake=?, urine=?, ngt_darah=?, drain=?, muntah=?, bab=?, iwl=?, total_output=?, "
+                + "balance=?", 26, new String[]{
+                    TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
+                    urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
+                    Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
+                    Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(),
+                    tbPantau.getValueAt(tbPantau.getSelectedRow(), 30).toString()
+                }) == true) {
+
+            //simpan Parental_Line_Obat-obatan
+            Sequel.meghapus("pemantauan_harian_parental", "kd_pantau",
+                    tbPantau.getValueAt(tbPantau.getSelectedRow(), 1).toString());
+
+            if (tbParental.getRowCount() != 0) {
+                for (i = 0; i < tbParental.getRowCount(); i++) {
+                    Sequel.menyimpan2("pemantauan_harian_parental", "?,?,?,?,?,?,?", 7, new String[]{
+                        TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
+                        tbParental.getValueAt(i, 1).toString(), tbParental.getValueAt(i, 2).toString(), "24 Jam"
+                    });
+                }
+            }
+        }
+    }
+    
+    private void gantiParental() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah obat " + tbParental.getValueAt(tbParental.getSelectedRow(), 1).toString()
+                + " jml. pemberian " + tbParental.getValueAt(tbParental.getSelectedRow(), 2).toString()
+                + " Cc. akan diperbaiki/diganti..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            tabMode1.removeRow(tbParental.getSelectedRow());
+            dataParental = "";
+            pilih = 0;
+            WindowParental.setSize(820, internalFrame1.getHeight() - 40);
+            WindowParental.setLocationRelativeTo(internalFrame1);
+            WindowParental.setAlwaysOnTop(false);
+            WindowParental.setVisible(true);
+
+            BtnBatal1ActionPerformed(null);
+            DTPCari1.setDate(new Date());
+            DTPCari2.setDate(new Date());
+            tampilObatTerjadwal();
+        } else {
+            dataParental = "";
+            pilih = 0;
+            tampilParental();
         }
     }
 }
