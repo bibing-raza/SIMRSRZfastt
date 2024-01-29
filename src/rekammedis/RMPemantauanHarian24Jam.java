@@ -2025,8 +2025,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private void BtnGrafikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikActionPerformed
         if (TNoRw.getText().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
-        } else if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRw.getText() + "' and tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Grafik hasil pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tdk. ditemukan..!!");
+        } else if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRw.getText() + "' and tgl_pantau='" + tglPANTAU + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Grafik hasil pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(tglPANTAU) + " tdk. ditemukan..!!");
             tbPantau.requestFocus();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));

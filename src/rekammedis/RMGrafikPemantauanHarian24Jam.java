@@ -438,7 +438,8 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);        
         try {
             ps1 = koneksi.prepareStatement("select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, concat(gcs_e,',',gcs_m,',',gcs_v) gcs "
-                    + "from pemantauan_harian_24jam where tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "'");
+                    + "from pemantauan_harian_24jam where tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' "
+                    + "and no_rawat='" + TNoRW.getText() + "' order by urutan_jam");
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
