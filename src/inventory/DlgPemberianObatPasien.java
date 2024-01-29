@@ -4032,8 +4032,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         nip1 = "";
         nip2 = "";
         
-        if(tbObat.getSelectedRow()!= -1){
-            waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(),47).toString();
+        if (tbObat.getSelectedRow() != -1) {
+            waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString();
             tampilData();
             dataCek();
         }
@@ -4087,6 +4087,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         status = sttsrawat;
         TNmPasien.setText(nmpasien);
         nmUnit.setText(unit);
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        
+        if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norw + "'") > 0) {
+            Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_pemberian from pemberian_obat where "
+                    + "no_rawat='" + norw + "' order by tgl_pemberian desc limit 1"));
+        } else {
+            DTPCari1.setDate(new Date());
+        }
+        
         TCari.setText(norw);
         tampilResep();
     }

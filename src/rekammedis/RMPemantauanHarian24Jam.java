@@ -17,11 +17,13 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -35,13 +37,13 @@ import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
  * @author dosen
  */
 public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3, tabModeCppt;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3;
-    private ResultSet rs, rs1, rs2, rs3;
-    private String urutanJam = "", dataParental = "", wktSimpan = "", tglPANTAU = "", norawatPANTAU = "";
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, pscppt;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rscppt;
+    private String urutanJam = "", dataParental = "", wktSimpan = "", tglPANTAU = "", norawatPANTAU = "", dataKonfirmasi = "";
     private int i = 0, x = 0, totParental = 0, pilih = 0;
 
     /** Creates new form DlgSpesialis
@@ -199,7 +201,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode3 = new DefaultTableModel(null, new Object[]{
-            "Pasien", "Tgl. Pantau", "Keterangan", "Total 24 Jam"
+            "Pasien", "Tgl. Pantau", "Keterangan", "Total (Cc.)"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -213,7 +215,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         for (int i = 0; i < 4; i++) {
             TableColumn column = tbTotal.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(320);
             } else if (i == 1) {
                 column.setPreferredWidth(75);
             } else if (i == 2) {
@@ -223,6 +225,56 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             } 
         }
         tbTotal.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabModeCppt=new DefaultTableModel(null, new Object[]{
+            "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
+            "Nama PPA", "Shift", "hasil", "instruksi", "no_rawat", "tgl_cppt", "jam_cppt"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbCPPT.setModel(tabModeCppt);
+        tbCPPT.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbCPPT.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 12; i++) {
+            TableColumn column = tbCPPT.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(70);
+            } else if (i == 1) {
+                column.setPreferredWidth(60);
+            } else if (i == 2) {
+                column.setPreferredWidth(80);
+            } else if (i == 3) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 4) {
+                column.setPreferredWidth(80);
+            } else if (i == 5) {
+                column.setPreferredWidth(200);
+            } else if (i == 6) {
+                column.setPreferredWidth(40);
+            } else if (i == 7) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 10) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((int)100).getKata(TCari));
         Tnadi.setDocument(new batasInput((byte) 3).getOnlyAngka(Tnadi));
@@ -266,6 +318,9 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 }
             });
         }
+        
+        ChkAccor.setSelected(false);
+        isMenu();
     }
 
     /** This method is called from within the constructor to
@@ -373,10 +428,15 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel26 = new widget.Label();
         jLabel56 = new widget.Label();
         jLabel27 = new widget.Label();
+        jLabel63 = new widget.Label();
+        TrgRawat = new widget.TextBox();
         Scroll1 = new widget.ScrollPane();
         tbParental = new widget.Table();
+        panelGlass11 = new widget.panelisi();
         Scroll = new widget.ScrollPane();
         tbPantau = new widget.Table();
+        Scroll3 = new widget.ScrollPane();
+        tbTotal = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -395,8 +455,16 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         BtnCari = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
-        Scroll3 = new widget.ScrollPane();
-        tbTotal = new widget.Table();
+        PanelAccor = new widget.PanelBiasa();
+        ChkAccor = new widget.CekBox();
+        FormMenu = new widget.PanelBiasa();
+        Scroll4 = new widget.ScrollPane();
+        tbCPPT = new widget.Table();
+        panelGlass14 = new widget.panelisi();
+        scrollPane5 = new widget.ScrollPane();
+        Thasil = new widget.TextArea();
+        scrollPane4 = new widget.ScrollPane();
+        Tinstruksi = new widget.TextArea();
 
         WindowParental.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowParental.setName("WindowParental"); // NOI18N
@@ -497,7 +565,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -511,7 +579,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -594,8 +662,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass10.setName("panelGlass10"); // NOI18N
-        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 298));
-        panelGlass10.setLayout(new java.awt.GridLayout(1, 2));
+        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 248));
+        panelGlass10.setLayout(new java.awt.BorderLayout());
 
         panelGlass7.setName("panelGlass7"); // NOI18N
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 270));
@@ -623,7 +691,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setName("TPasien"); // NOI18N
         panelGlass7.add(TPasien);
-        TPasien.setBounds(314, 10, 301, 23);
+        TPasien.setBounds(314, 10, 490, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Pemantauan :");
@@ -631,7 +699,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-01-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -900,26 +968,26 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         Ttotintake.setForeground(new java.awt.Color(0, 0, 0));
         Ttotintake.setName("Ttotintake"); // NOI18N
         panelGlass7.add(Ttotintake);
-        Ttotintake.setBounds(115, 178, 80, 23);
+        Ttotintake.setBounds(705, 150, 80, 23);
 
         jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel45.setText("cc.");
         jLabel45.setName("jLabel45"); // NOI18N
         panelGlass7.add(jLabel45);
-        jLabel45.setBounds(200, 178, 20, 23);
+        jLabel45.setBounds(790, 150, 20, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("OUTPUT :");
         jLabel22.setName("jLabel22"); // NOI18N
         panelGlass7.add(jLabel22);
-        jLabel22.setBounds(0, 206, 110, 23);
+        jLabel22.setBounds(0, 178, 110, 23);
 
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setText("Urine :");
         jLabel46.setName("jLabel46"); // NOI18N
         panelGlass7.add(jLabel46);
-        jLabel46.setBounds(115, 206, 40, 23);
+        jLabel46.setBounds(115, 178, 40, 23);
 
         Turin.setForeground(new java.awt.Color(0, 0, 0));
         Turin.setName("Turin"); // NOI18N
@@ -929,20 +997,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Turin);
-        Turin.setBounds(160, 206, 45, 23);
+        Turin.setBounds(160, 178, 45, 23);
 
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel47.setText("cc.");
         jLabel47.setName("jLabel47"); // NOI18N
         panelGlass7.add(jLabel47);
-        jLabel47.setBounds(210, 206, 20, 23);
+        jLabel47.setBounds(210, 178, 20, 23);
 
         jLabel48.setForeground(new java.awt.Color(0, 0, 0));
         jLabel48.setText("NGT / Darah :");
         jLabel48.setName("jLabel48"); // NOI18N
         panelGlass7.add(jLabel48);
-        jLabel48.setBounds(235, 206, 80, 23);
+        jLabel48.setBounds(235, 178, 80, 23);
 
         TngtDarah.setForeground(new java.awt.Color(0, 0, 0));
         TngtDarah.setName("TngtDarah"); // NOI18N
@@ -952,20 +1020,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TngtDarah);
-        TngtDarah.setBounds(320, 206, 45, 23);
+        TngtDarah.setBounds(320, 178, 45, 23);
 
         jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel49.setText("cc.");
         jLabel49.setName("jLabel49"); // NOI18N
         panelGlass7.add(jLabel49);
-        jLabel49.setBounds(370, 206, 20, 23);
+        jLabel49.setBounds(370, 178, 20, 23);
 
         jLabel50.setForeground(new java.awt.Color(0, 0, 0));
         jLabel50.setText("Drain :");
         jLabel50.setName("jLabel50"); // NOI18N
         panelGlass7.add(jLabel50);
-        jLabel50.setBounds(390, 206, 62, 23);
+        jLabel50.setBounds(390, 178, 62, 23);
 
         Tdrain.setForeground(new java.awt.Color(0, 0, 0));
         Tdrain.setName("Tdrain"); // NOI18N
@@ -975,20 +1043,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tdrain);
-        Tdrain.setBounds(456, 206, 45, 23);
+        Tdrain.setBounds(456, 178, 45, 23);
 
         jLabel51.setForeground(new java.awt.Color(0, 0, 0));
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel51.setText("cc.");
         jLabel51.setName("jLabel51"); // NOI18N
         panelGlass7.add(jLabel51);
-        jLabel51.setBounds(508, 206, 20, 23);
+        jLabel51.setBounds(508, 178, 20, 23);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
         jLabel52.setText("Muntah :");
         jLabel52.setName("jLabel52"); // NOI18N
         panelGlass7.add(jLabel52);
-        jLabel52.setBounds(95, 234, 60, 23);
+        jLabel52.setBounds(95, 206, 60, 23);
 
         Tmuntah.setForeground(new java.awt.Color(0, 0, 0));
         Tmuntah.setName("Tmuntah"); // NOI18N
@@ -998,20 +1066,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tmuntah);
-        Tmuntah.setBounds(160, 234, 45, 23);
+        Tmuntah.setBounds(160, 206, 45, 23);
 
         jLabel53.setForeground(new java.awt.Color(0, 0, 0));
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel53.setText("cc.");
         jLabel53.setName("jLabel53"); // NOI18N
         panelGlass7.add(jLabel53);
-        jLabel53.setBounds(210, 234, 20, 23);
+        jLabel53.setBounds(210, 206, 20, 23);
 
         jLabel54.setForeground(new java.awt.Color(0, 0, 0));
         jLabel54.setText("BAB :");
         jLabel54.setName("jLabel54"); // NOI18N
         panelGlass7.add(jLabel54);
-        jLabel54.setBounds(235, 234, 80, 23);
+        jLabel54.setBounds(235, 206, 80, 23);
 
         Tbab.setForeground(new java.awt.Color(0, 0, 0));
         Tbab.setName("Tbab"); // NOI18N
@@ -1021,59 +1089,59 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tbab);
-        Tbab.setBounds(320, 234, 45, 23);
+        Tbab.setBounds(320, 206, 45, 23);
 
         jLabel55.setForeground(new java.awt.Color(0, 0, 0));
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel55.setText("cc.");
         jLabel55.setName("jLabel55"); // NOI18N
         panelGlass7.add(jLabel55);
-        jLabel55.setBounds(370, 234, 20, 23);
+        jLabel55.setBounds(370, 206, 20, 23);
 
         Tiwl.setEditable(false);
         Tiwl.setForeground(new java.awt.Color(0, 0, 0));
         Tiwl.setName("Tiwl"); // NOI18N
         panelGlass7.add(Tiwl);
-        Tiwl.setBounds(456, 234, 45, 23);
+        Tiwl.setBounds(456, 206, 45, 23);
 
         jLabel57.setForeground(new java.awt.Color(0, 0, 0));
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel57.setText("cc.");
         jLabel57.setName("jLabel57"); // NOI18N
         panelGlass7.add(jLabel57);
-        jLabel57.setBounds(508, 234, 20, 23);
+        jLabel57.setBounds(508, 206, 20, 23);
 
         Ttotouput.setEditable(false);
         Ttotouput.setForeground(new java.awt.Color(0, 0, 0));
         Ttotouput.setName("Ttotouput"); // NOI18N
         panelGlass7.add(Ttotouput);
-        Ttotouput.setBounds(160, 262, 80, 23);
+        Ttotouput.setBounds(705, 178, 80, 23);
 
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel58.setText("cc.");
         jLabel58.setName("jLabel58"); // NOI18N
         panelGlass7.add(jLabel58);
-        jLabel58.setBounds(245, 262, 20, 23);
+        jLabel58.setBounds(790, 178, 20, 23);
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("BALANCE :");
         jLabel59.setName("jLabel59"); // NOI18N
         panelGlass7.add(jLabel59);
-        jLabel59.setBounds(390, 262, 62, 23);
+        jLabel59.setBounds(610, 206, 90, 23);
 
         Tbalance.setEditable(false);
         Tbalance.setForeground(new java.awt.Color(0, 0, 0));
         Tbalance.setName("Tbalance"); // NOI18N
         panelGlass7.add(Tbalance);
-        Tbalance.setBounds(456, 262, 60, 23);
+        Tbalance.setBounds(705, 206, 80, 23);
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel60.setText("cc.");
         jLabel60.setName("jLabel60"); // NOI18N
         panelGlass7.add(jLabel60);
-        jLabel60.setBounds(522, 262, 20, 23);
+        jLabel60.setBounds(790, 206, 20, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("BB Masuk RS :");
@@ -1131,7 +1199,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnTotOutput);
-        BtnTotOutput.setBounds(25, 262, 130, 23);
+        BtnTotOutput.setBounds(570, 178, 130, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Jml. Parental / Line :");
@@ -1143,19 +1211,32 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel56.setText("IWL :");
         jLabel56.setName("jLabel56"); // NOI18N
         panelGlass7.add(jLabel56);
-        jLabel56.setBounds(390, 234, 62, 23);
+        jLabel56.setBounds(390, 206, 62, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("TOTAL INTAKE :");
         jLabel27.setName("jLabel27"); // NOI18N
         panelGlass7.add(jLabel27);
-        jLabel27.setBounds(0, 178, 110, 23);
+        jLabel27.setBounds(610, 150, 90, 23);
 
-        panelGlass10.add(panelGlass7);
+        jLabel63.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel63.setText("Rg. Rawat : ");
+        jLabel63.setName("jLabel63"); // NOI18N
+        panelGlass7.add(jLabel63);
+        jLabel63.setBounds(455, 38, 75, 23);
+
+        TrgRawat.setEditable(false);
+        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
+        TrgRawat.setName("TrgRawat"); // NOI18N
+        panelGlass7.add(TrgRawat);
+        TrgRawat.setBounds(533, 38, 270, 23);
+
+        panelGlass10.add(panelGlass7, java.awt.BorderLayout.CENTER);
 
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Parental / Line / Obat-obatan ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
+        Scroll1.setPreferredSize(new java.awt.Dimension(640, 422));
 
         tbParental.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbParental.setName("tbParental"); // NOI18N
@@ -1166,9 +1247,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         });
         Scroll1.setViewportView(tbParental);
 
-        panelGlass10.add(Scroll1);
+        panelGlass10.add(Scroll1, java.awt.BorderLayout.EAST);
 
         internalFrame1.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
+
+        panelGlass11.setName("panelGlass11"); // NOI18N
+        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass11.setLayout(new java.awt.BorderLayout());
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
@@ -1190,7 +1275,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbPantau);
 
-        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
+        panelGlass11.add(Scroll, java.awt.BorderLayout.CENTER);
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemantauan Selama 24 Jam ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+        Scroll3.setPreferredSize(new java.awt.Dimension(487, 140));
+
+        tbTotal.setToolTipText("");
+        tbTotal.setName("tbTotal"); // NOI18N
+        Scroll3.setViewportView(tbTotal);
+
+        panelGlass11.add(Scroll3, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame1.add(panelGlass11, java.awt.BorderLayout.CENTER);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -1318,7 +1416,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-01-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -1332,7 +1430,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-01-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1391,16 +1489,92 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemantauan Selama 24 Jam ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
-        Scroll3.setPreferredSize(new java.awt.Dimension(487, 422));
+        PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAccor.setName("PanelAccor"); // NOI18N
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
+        PanelAccor.setLayout(new java.awt.BorderLayout());
 
-        tbTotal.setToolTipText("");
-        tbTotal.setName("tbTotal"); // NOI18N
-        Scroll3.setViewportView(tbTotal);
+        ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
+        ChkAccor.setToolTipText("Silahkan Klik Untuk Membaca CPPT");
+        ChkAccor.setFocusable(false);
+        ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setName("ChkAccor"); // NOI18N
+        ChkAccor.setPreferredSize(new java.awt.Dimension(22, 20));
+        ChkAccor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
+        ChkAccor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
+        ChkAccor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
+        ChkAccor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkAccorActionPerformed(evt);
+            }
+        });
+        PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
 
-        internalFrame1.add(Scroll3, java.awt.BorderLayout.EAST);
+        FormMenu.setBackground(new java.awt.Color(250, 250, 245));
+        FormMenu.setName("FormMenu"); // NOI18N
+        FormMenu.setPreferredSize(new java.awt.Dimension(150, 483));
+        FormMenu.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " CPPT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+
+        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbCPPTMouseClicked(evt);
+            }
+        });
+        tbCPPT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbCPPTKeyPressed(evt);
+            }
+        });
+        Scroll4.setViewportView(tbCPPT);
+
+        FormMenu.add(Scroll4);
+
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass14.setLayout(new java.awt.BorderLayout());
+
+        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane5.setName("scrollPane5"); // NOI18N
+        scrollPane5.setPreferredSize(new java.awt.Dimension(212, 270));
+
+        Thasil.setEditable(false);
+        Thasil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Thasil.setColumns(20);
+        Thasil.setRows(5);
+        Thasil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Thasil.setName("Thasil"); // NOI18N
+        Thasil.setPreferredSize(new java.awt.Dimension(202, 4000));
+        scrollPane5.setViewportView(Thasil);
+
+        panelGlass14.add(scrollPane5, java.awt.BorderLayout.PAGE_START);
+
+        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Instruksi Tenaga Kesehatan Termasuk Pasca Bedah/Prosedur ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane4.setName("scrollPane4"); // NOI18N
+        scrollPane4.setPreferredSize(new java.awt.Dimension(212, 150));
+
+        Tinstruksi.setEditable(false);
+        Tinstruksi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Tinstruksi.setColumns(20);
+        Tinstruksi.setRows(5);
+        Tinstruksi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tinstruksi.setName("Tinstruksi"); // NOI18N
+        Tinstruksi.setPreferredSize(new java.awt.Dimension(202, 4000));
+        scrollPane4.setViewportView(Tinstruksi);
+
+        panelGlass14.add(scrollPane4, java.awt.BorderLayout.CENTER);
+
+        FormMenu.add(panelGlass14);
+
+        PanelAccor.add(FormMenu, java.awt.BorderLayout.CENTER);
+
+        internalFrame1.add(PanelAccor, java.awt.BorderLayout.EAST);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -1662,13 +1836,19 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data pasienya...!!!!");
         } else {
-            WindowParental.setSize(820, internalFrame1.getHeight() - 40);
+            WindowParental.setSize(820, 480);
             WindowParental.setLocationRelativeTo(internalFrame1);
             WindowParental.setAlwaysOnTop(false);
             WindowParental.setVisible(true);
+
+            if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRw.getText() + "' and nama_obat<>'-'") > 0) {
+                Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_pemberian from pemberian_obat where "
+                        + "no_rawat='" + TNoRw.getText() + "' order by tgl_pemberian desc limit 1"));
+            } else {
+                DTPCari1.setDate(new Date());
+            }
             
             BtnBatal1ActionPerformed(null);
-            DTPCari1.setDate(new Date());
             DTPCari2.setDate(new Date());
             tampilObatTerjadwal();
         }
@@ -1691,11 +1871,6 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         } else if (pilih == 2) {
             hapusParental();
-            gantiPemantauan();
-            dataParental = "";
-            pilih = 0;
-            tampil();            
-            tampilTotal24Jam(tglPANTAU, norawatPANTAU);
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu datanya pada tabel utk. dihapus...!!");
         }
@@ -1726,11 +1901,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             tabMode1.addRow(new String[]{
                 tglPantau.getSelectedItem().toString(), TnmObat.getText(), TjmlBeri.getText(), TkdPantau.getText(),
                 Valid.SetTgl(tglPantau.getSelectedItem() + "")});
+
+            if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where "
+                    + "waktu_simpan='" + tbPantau.getValueAt(tbPantau.getSelectedRow(), 30).toString() + "'") > 0) {
+                gantiPemantauan();
+            }
             
-            hitungParental();
             tampilObatTerjadwal();
             BtnBatal1ActionPerformed(null);
-            gantiPemantauan();
         }
     }//GEN-LAST:event_BtnSimpan1ActionPerformed
 
@@ -1769,6 +1947,30 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_WindowParentalWindowOpened
 
+    private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
+        isMenu();
+    }//GEN-LAST:event_ChkAccorActionPerformed
+
+    private void tbCPPTMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbCPPTMouseClicked
+        if (tabModeCppt.getRowCount() != 0) {
+            try {
+                getDataCppt();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbCPPTMouseClicked
+
+    private void tbCPPTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbCPPTKeyPressed
+        if (tabModeCppt.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getDataCppt();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_tbCPPTKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1798,15 +2000,19 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
     private widget.Button BtnTotOutput;
+    public widget.CekBox ChkAccor;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Tanggal DTPCariA;
     private widget.Tanggal DTPCariB;
+    private widget.PanelBiasa FormMenu;
     private widget.Label LCount;
+    private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
     public widget.TextBox TCari;
     private widget.TextBox TNoRm;
     private widget.TextBox TNoRw;
@@ -1818,6 +2024,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.TextBox Tgcse;
     private widget.TextBox Tgcsm;
     private widget.TextBox Tgcsv;
+    private widget.TextArea Thasil;
+    private widget.TextArea Tinstruksi;
     private widget.TextBox Tiwl;
     private widget.TextBox TjmlBeri;
     private widget.TextBox TjmlParental;
@@ -1829,6 +2037,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.TextBox Tngt;
     private widget.TextBox TngtDarah;
     private widget.TextBox TnmObat;
+    private widget.TextBox TrgRawat;
     private widget.TextBox Trr;
     private widget.TextBox Tspo;
     private widget.TextBox Tsuhu;
@@ -1893,14 +2102,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.Label jLabel60;
     private widget.Label jLabel61;
     private widget.Label jLabel62;
+    private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
+    private widget.ScrollPane scrollPane4;
+    private widget.ScrollPane scrollPane5;
+    private widget.Table tbCPPT;
     private widget.Table tbObat;
     private widget.Table tbPantau;
     private widget.Table tbParental;
@@ -1988,6 +2203,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     public void emptTeks() {
         tglPantau.setDate(new Date());
         tglPantau.requestFocus();
+        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         Tnadi.setText("");        
         Tsuhu.setText("");
         cmbJam.setSelectedIndex(0);
@@ -2336,11 +2552,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw) {
+    public void setData(String norw, String rgrawat) {
         TNoRw.setText(norw);
         TNoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norw + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
         Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
+        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        TrgRawat.setText(rgrawat);
+        
+        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norw + "'") > 0) {
+            Valid.SetTgl(DTPCariA, Sequel.cariIsi("select tgl_pantau from pemantauan_harian_24jam where "
+                    + "no_rawat='" + norw + "' order by tgl_pantau desc limit 1"));
+        } else {
+            DTPCariA.setDate(new Date());
+        }
     }
     
     private void hitungParental() {
@@ -2383,6 +2608,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notif : " + e);
         }
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemantauan Selama "
+                + Sequel.cariIsi("select count(-1) from pemantauan_harian_24jam where tgl_pantau = '" + tgl + "' and no_rawat ='" + norw + "'")
+                + " Jam ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12)));
     }
     
     private void simpan() {
@@ -2441,12 +2670,16 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                     + " Cc. akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 tabMode1.removeRow(tbParental.getSelectedRow());
+                gantiPemantauan();
                 dataParental = "";
-                pilih = 1;
-                hitungParental();
+                pilih = 0;
+                tampil();
+                tampilTotal24Jam(tglPANTAU, norawatPANTAU);
             } else {
                 dataParental = "";
                 pilih = 0;
+                tampil();
+                tampilTotal24Jam(tglPANTAU, norawatPANTAU);
             }
         }
     }
@@ -2492,7 +2725,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             tabMode1.removeRow(tbParental.getSelectedRow());
             dataParental = "";
             pilih = 0;
-            WindowParental.setSize(820, internalFrame1.getHeight() - 40);
+            WindowParental.setSize(820, 480);
             WindowParental.setLocationRelativeTo(internalFrame1);
             WindowParental.setAlwaysOnTop(false);
             WindowParental.setVisible(true);
@@ -2505,6 +2738,141 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             dataParental = "";
             pilih = 0;
             tampilParental();
+        }
+    }
+    
+    public void isMenu() {
+        if (ChkAccor.isSelected() == true) {
+            ChkAccor.setVisible(false);
+            PanelAccor.setPreferredSize(new Dimension(900, HEIGHT));
+            FormMenu.setVisible(true);
+            ChkAccor.setVisible(true);
+            Thasil.setText("");
+            Tinstruksi.setText("");
+            tampilCppt();
+        } else if (ChkAccor.isSelected() == false) {
+            ChkAccor.setVisible(false);
+            PanelAccor.setPreferredSize(new Dimension(22, HEIGHT));
+            FormMenu.setVisible(false);
+            ChkAccor.setVisible(true);
+        }
+    }
+    
+    private void tampilCppt() {
+        Valid.tabelKosong(tabModeCppt);
+        try {
+            pscppt = koneksi.prepareStatement("SELECT c.verifikasi, DATE_FORMAT(c.tgl_cppt,'%d-%m-%Y') tgl, if(c.cek_jam='ya',TIME_FORMAT(c.jam_cppt,'%H:%i'),'-') jam, "
+                    + "c.jenis_bagian, pg1.nama nmdpjp, c.jenis_ppa, pg2.nama nmppa, c.cppt_shift, c.hasil_pemeriksaan, "
+                    + "c.instruksi_nakes, c.waktu_simpan, c.no_rawat, c.tgl_cppt, c.jam_cppt from cppt c "
+                    + "inner join pegawai pg1 on pg1.nik=c.nip_konsulen "
+                    + "inner join pegawai pg2 on pg2.nik=c.nip_ppa where "
+                    + "c.flag_hapus='tidak' and c.status='ranap' and c.no_rawat='" + TNoRw.getText() + "' order by c.tgl_cppt, c.jam_cppt");
+            try {
+                rscppt = pscppt.executeQuery();                
+                while (rscppt.next()) {
+                    tabModeCppt.addRow(new String[]{
+                        rscppt.getString("tgl"),
+                        rscppt.getString("jam"),
+                        rscppt.getString("jenis_bagian"),
+                        rscppt.getString("nmdpjp"),
+                        rscppt.getString("jenis_ppa"),
+                        rscppt.getString("nmppa"),
+                        rscppt.getString("cppt_shift"),
+                        rscppt.getString("hasil_pemeriksaan"),
+                        rscppt.getString("instruksi_nakes"),
+                        rscppt.getString("no_rawat"),
+                        rscppt.getString("tgl_cppt"),
+                        rscppt.getString("jam_cppt")
+                    });
+                }
+                this.setCursor(Cursor.getDefaultCursor());
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rscppt != null) {
+                    rscppt.close();
+                }
+                if (pscppt != null) {
+                    pscppt.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void getDataCppt() {
+        dataKonfirmasi = "";
+        
+        if (tbCPPT.getSelectedRow() != -1) {
+            Thasil.setText("Tgl. CPPT : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 0).toString() + ", Jam : " + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 1).toString() + " WITA\n\n"
+                    + "" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString());
+            
+            //konfirmasi terapi
+            if (Sequel.cariInteger("select count(-1) from cppt_konfirmasi_terapi where "
+                    + "no_rawat='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString() + "' "
+                    + "and tgl_cppt='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString() + "' "
+                    + "and cppt_shift='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString() + "' "
+                    + "and jam_cppt='" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString() + "'") > 0) {
+
+                tampilKonfirmasi(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString(),
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString());
+                
+                if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().equals("-")) {
+                    Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString() + "\n\n"
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n" + dataKonfirmasi);
+                } else {
+                    Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString() + "\n\n"
+                            + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString() + ")\n\n"
+                            + "KONFIRMASI TERAPI VIA TELP. :\n\n" + dataKonfirmasi);
+                }
+            } else {
+                if (tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString().equals("-")) {
+                    Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString());
+                } else {
+                    Tinstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString() + "\n\n"
+                            + "(" + tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 5).toString() + ")");
+                }
+            }
+        }
+    }
+    
+    private void tampilKonfirmasi(String norwt, String tglcppt, String sift, String jamcppt) {
+        try {
+            ps4 = koneksi.prepareStatement("select pg1.nama ptgs, date_format(ck.tgl_lapor,'%d-%m-%Y') tgllapor, time_format(ck.jam_lapor,'%H:%i') jamlapor, "
+                    + "pg2.nama dpjp, date_format(ck.tgl_verifikasi,'%d-%m-%Y') tglverif, time_format(ck.jam_verifikasi,'%H:%i') jamverif from cppt_konfirmasi_terapi ck "
+                    + "inner join pegawai pg1 on pg1.nik=ck.nip_petugas_konfir inner join pegawai pg2 on pg2.nik=ck.nip_dpjp_konfir where "
+                    + "ck.no_rawat = '" + norwt + "' and ck.tgl_cppt='" + tglcppt + "' and ck.cppt_shift='" + sift + "' "
+                    + "and ck.jam_cppt='" + jamcppt + "' order by ck.waktu_simpan");
+            try {
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    if (dataKonfirmasi.equals("")) {
+                        dataKonfirmasi = "Tgl. Lapor : " + rs4.getString("tgllapor") + ", Jam : " + rs4.getString("jamlapor") + " WITA\n"
+                                + "Tgl. Verifikasi : " + rs4.getString("tglverif") + ", Jam : " + rs4.getString("jamverif") + " WITA\n"
+                                + "Nama Petugas : " + rs4.getString("ptgs") + "\n"
+                                + "Dengan DPJP : " + rs4.getString("dpjp");
+                    } else {
+                        dataKonfirmasi = dataKonfirmasi + "\n\nTgl. Lapor : " + rs4.getString("tgllapor") + ", Jam : " + rs4.getString("jamlapor") + " WITA\n"
+                                + "Tgl. Verifikasi : " + rs4.getString("tglverif") + ", Jam : " + rs4.getString("jamverif") + " WITA\n"
+                                + "Nama Petugas : " + rs4.getString("ptgs") + "\n"
+                                + "Dengan DPJP : " + rs4.getString("dpjp");
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

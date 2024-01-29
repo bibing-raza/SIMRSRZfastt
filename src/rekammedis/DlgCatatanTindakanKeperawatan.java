@@ -3720,6 +3720,15 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmPasien);
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        
+        if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norw + "'") > 0) {
+            Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tanggal from catatan_tindakan_keperawatan where "
+                    + "no_rawat='" + norw + "' order by tanggal desc limit 1"));
+        } else {
+            DTPCari1.setDate(new Date());
+        }
+        
         TCari.setText(norw);
         tampilPagi();
         tampilSore();

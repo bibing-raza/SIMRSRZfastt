@@ -39,11 +39,12 @@ import javax.swing.table.TableColumn;
  */
 public class DlgJadwal extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
     private PreparedStatement ps;
     private ResultSet rs;
+    private String urutanHari = "";
 
     /** Creates new form DlgJadwal
      * @param parent
@@ -95,7 +96,6 @@ public class DlgJadwal extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(250);
             } else if (i == 7) {
-//                column.setPreferredWidth(250);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -222,14 +222,13 @@ public class DlgJadwal extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jadwal Praktek ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jadwal Praktek ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbJadwal.setAutoCreateRowSorter(true);
         tbJadwal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJadwal.setName("tbJadwal"); // NOI18N
         tbJadwal.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -501,17 +500,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbHari.setForeground(new java.awt.Color(0, 0, 0));
         cmbHari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SENIN", "SELASA", "RABU", "KAMIS", "JUMAT", "SABTU", "AKHAD" }));
         cmbHari.setName("cmbHari"); // NOI18N
-        cmbHari.setOpaque(false);
-        cmbHari.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cmbHariItemStateChanged(evt);
-            }
-        });
-        cmbHari.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cmbHariMouseClicked(evt);
-            }
-        });
         cmbHari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbHariKeyPressed(evt);
@@ -523,7 +511,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam1.setName("cmbJam1"); // NOI18N
-        cmbJam1.setOpaque(false);
         cmbJam1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbJam1KeyPressed(evt);
@@ -535,7 +522,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt1.setName("cmbMnt1"); // NOI18N
-        cmbMnt1.setOpaque(false);
         cmbMnt1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbMnt1KeyPressed(evt);
@@ -547,7 +533,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk1.setName("cmbDtk1"); // NOI18N
-        cmbDtk1.setOpaque(false);
         cmbDtk1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbDtk1KeyPressed(evt);
@@ -566,7 +551,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbJam2.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam2.setName("cmbJam2"); // NOI18N
-        cmbJam2.setOpaque(false);
         cmbJam2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbJam2KeyPressed(evt);
@@ -578,7 +562,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbMnt2.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt2.setName("cmbMnt2"); // NOI18N
-        cmbMnt2.setOpaque(false);
         cmbMnt2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbMnt2KeyPressed(evt);
@@ -590,7 +573,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         cmbDtk2.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk2.setName("cmbDtk2"); // NOI18N
-        cmbDtk2.setOpaque(false);
         cmbDtk2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbDtk2KeyPressed(evt);
@@ -664,10 +646,6 @@ public class DlgJadwal extends javax.swing.JDialog {
         //Valid.pindah(evt,TJns,BtnSimpan);
 }//GEN-LAST:event_TPoliKeyPressed
 
-    private void cmbHariItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cmbHariItemStateChanged
-        // TODO add your handling code here:
-}//GEN-LAST:event_cmbHariItemStateChanged
-
     private void cmbHariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbHariKeyPressed
         Valid.pindah(evt,kddokter,cmbJam1);
 }//GEN-LAST:event_cmbHariKeyPressed
@@ -702,11 +680,12 @@ public class DlgJadwal extends javax.swing.JDialog {
         } else if (TPoli.getText().trim().equals("")) {
             Valid.textKosong(KdPoli, "Poliklinik");
         } else {
+            hariDiurutkan();
             Sequel.menyimpan("jadwal", "'" + kddokter.getText() + "','" + cmbHari.getSelectedItem() + "','"
                     + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "','"
                     + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "','"
-                    + KdPoli.getText() + "'", "Kode Dokter");
-            
+                    + KdPoli.getText() + "','" + urutanHari + "'", "Kode Dokter");
+
             tampil();
             emptTeks();
             kddokter.requestFocus();
@@ -758,9 +737,11 @@ public class DlgJadwal extends javax.swing.JDialog {
             Valid.textKosong(KdPoli, "Poliklinik");
         } else {
             if (tbJadwal.getSelectedRow() != -1) {
+                hariDiurutkan();
                 Sequel.queryu("update jadwal set jam_mulai='" + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "',"
                         + "jam_selesai='" + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "',"
-                        + "kd_poli='" + KdPoli.getText() + "',kd_dokter='" + kddokter.getText() + "',hari_kerja='" + cmbHari.getSelectedItem() + "' where "
+                        + "kd_poli='" + KdPoli.getText() + "',kd_dokter='" + kddokter.getText() + "',hari_kerja='" + cmbHari.getSelectedItem() + "',"
+                        + "urutan_hari='" + urutanHari + "' where "
                         + "kd_dokter='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 1).toString() + "' "
                         + "and hari_kerja='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 3).toString() + "' "
                         + "and jam_mulai='" + tbJadwal.getValueAt(tbJadwal.getSelectedRow(), 4).toString() + "' "
@@ -930,10 +911,6 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
-    private void cmbHariMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbHariMouseClicked
-        cmbHari.setEditable(false);
-    }//GEN-LAST:event_cmbHariMouseClicked
-
     /**
     * @param args the command line arguments
     */
@@ -1000,7 +977,7 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     + "j.hari_kerja like ? or "
                     + "j.jam_mulai like ? or "
                     + "j.jam_selesai like ? or "
-                    + "pl.nm_poli like ? order by j.kd_dokter");
+                    + "pl.nm_poli like ? order by j.kd_poli, j.urutan_hari");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
@@ -1042,7 +1019,7 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         nmdokter.setText("");
         KdPoli.setText("");
         TPoli.setText("");
-
+        urutanHari = "";
         cmbHari.setSelectedItem("SENIN");
         cmbJam1.setSelectedItem("00");
         cmbJam2.setSelectedItem("00");
@@ -1050,7 +1027,6 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         cmbMnt2.setSelectedItem("00");
         cmbDtk1.setSelectedItem("00");
         cmbDtk2.setSelectedItem("00");
-
         kddokter.requestFocus();
     }
 
@@ -1071,4 +1047,22 @@ private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
     }  
     
+    private void hariDiurutkan() {
+        urutanHari = "";
+        if (cmbHari.getSelectedIndex() == 0) {
+            urutanHari = "1";
+        } else if (cmbHari.getSelectedIndex() == 1) {
+            urutanHari = "2";
+        } else if (cmbHari.getSelectedIndex() == 2) {
+            urutanHari = "3";
+        } else if (cmbHari.getSelectedIndex() == 3) {
+            urutanHari = "4";
+        } else if (cmbHari.getSelectedIndex() == 4) {
+            urutanHari = "5";
+        } else if (cmbHari.getSelectedIndex() == 5) {
+            urutanHari = "6";
+        } else if (cmbHari.getSelectedIndex() == 6) {
+            urutanHari = "7";
+        } 
+    }
 }

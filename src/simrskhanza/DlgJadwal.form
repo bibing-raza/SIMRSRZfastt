@@ -39,7 +39,6 @@
                 </LineBorder>
               </Border>
               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
-              <Color PropertyName="color" blue="0" green="0" red="0" type="rgb"/>
             </TitledBorder>
           </Border>
         </Property>
@@ -71,7 +70,6 @@
           <SubComponents>
             <Component class="widget.Table" name="tbJadwal">
               <Properties>
-                <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                 <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
                 <Property name="name" type="java.lang.String" value="tbJadwal" noResource="true"/>
               </Properties>
@@ -506,11 +504,8 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbHari" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
-                <EventHandler event="itemStateChanged" listener="java.awt.event.ItemListener" parameters="java.awt.event.ItemEvent" handler="cmbHariItemStateChanged"/>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="cmbHariMouseClicked"/>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbHariKeyPressed"/>
               </Events>
               <Constraints>
@@ -553,7 +548,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbJam1" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbJam1KeyPressed"/>
@@ -634,7 +628,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbMnt1" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbMnt1KeyPressed"/>
@@ -715,7 +708,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbDtk1" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbDtk1KeyPressed"/>
@@ -775,7 +767,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbJam2" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbJam2KeyPressed"/>
@@ -856,7 +847,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbMnt2" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbMnt2KeyPressed"/>
@@ -937,7 +927,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbDtk2" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbDtk2KeyPressed"/>
