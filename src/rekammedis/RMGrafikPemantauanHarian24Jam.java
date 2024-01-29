@@ -10,6 +10,8 @@
  */
 
 package rekammedis;
+import fungsi.WarnaTable;
+import fungsi.akses;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
@@ -18,20 +20,27 @@ import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import javax.swing.JOptionPane;
+import javax.swing.JTable;
+import javax.swing.table.DefaultTableModel;
+import javax.swing.table.TableColumn;
 
 /**
  *
  * @author dosen
  */
 public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
+    private final DefaultTableModel tabMode, tabMode1;
     private final Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private final validasi Valid = new validasi();
-    private ResultSet rs;
+    private PreparedStatement ps1, ps2;
+    private ResultSet rs, rs1, rs2;
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -39,6 +48,101 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     public RMGrafikPemantauanHarian24Jam(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        
+        tabMode = new DefaultTableModel(null, new Object[]{
+            "Tgl. Pantau", "Jam", "Nadi", "Suhu", "GCS", "Kesadaran", "Tensi", "Frek. Nafas", "SPO2", "Makan Minum", 
+            "NGT", "Total Parental", "Total Intake", "Urine", "NGT Darah", "Drain", "Muntah", "BAB", "IWL",
+            "Total Output", "Balance", "tglpantau", "kdpantau"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbIntake.setModel(tabMode);
+        tbIntake.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbIntake.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 23; i++) {
+            TableColumn column = tbIntake.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(75);
+            } else if (i == 1) {
+                column.setPreferredWidth(30);
+            } else if (i == 2) {
+                column.setPreferredWidth(50);
+            } else if (i == 3) {
+                column.setPreferredWidth(50);
+            } else if (i == 4) {
+                column.setPreferredWidth(45);
+            } else if (i == 5) {
+                column.setPreferredWidth(75);
+            } else if (i == 6) {
+                column.setPreferredWidth(45);
+            } else if (i == 7) {
+                column.setPreferredWidth(75);
+            } else if (i == 8) {
+                column.setPreferredWidth(45);
+            } else if (i == 9) {
+                column.setPreferredWidth(80);
+            } else if (i == 10) {
+                column.setPreferredWidth(45);
+            } else if (i == 11) {
+                column.setPreferredWidth(85);
+            } else if (i == 12) {
+                column.setPreferredWidth(80);
+            } else if (i == 13) {
+                column.setPreferredWidth(50);
+            } else if (i == 14) {
+                column.setPreferredWidth(70);
+            } else if (i == 15) {
+                column.setPreferredWidth(50);
+            } else if (i == 16) {
+                column.setPreferredWidth(60);
+            } else if (i == 17) {
+                column.setPreferredWidth(40);
+            } else if (i == 18) {
+                column.setPreferredWidth(40);
+            } else if (i == 19) {
+                column.setPreferredWidth(80);
+            } else if (i == 20) {
+                column.setPreferredWidth(60);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbIntake.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode1 = new DefaultTableModel(null, new Object[]{
+            "Tanggal", "Jam", "Nama Obat", "Jml. Beri (cc)"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbParental.setModel(tabMode1);
+        tbParental.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbParental.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 4; i++) {
+            TableColumn column = tbParental.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(70);
+            } else if (i == 1) {
+                column.setPreferredWidth(30);
+            } else if (i == 2) {
+                column.setPreferredWidth(270);
+            } else if (i == 3) {
+                column.setPreferredWidth(80);
+            }
+        }
+        tbParental.setDefaultRenderer(Object.class, new WarnaTable());
     }
 
     /** This method is called from within the constructor to
@@ -67,16 +171,16 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel34 = new widget.Label();
         BtnGrafik = new widget.Button();
         BtnKeluar3 = new widget.Button();
+        panelBiasa5 = new widget.PanelBiasa();
         Scroll1 = new widget.ScrollPane();
         tbIntake = new widget.Table();
+        Scroll2 = new widget.ScrollPane();
+        tbParental = new widget.Table();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
         addWindowListener(new java.awt.event.WindowAdapter() {
-            public void windowActivated(java.awt.event.WindowEvent evt) {
-                formWindowActivated(evt);
-            }
             public void windowOpened(java.awt.event.WindowEvent evt) {
                 formWindowOpened(evt);
             }
@@ -198,16 +302,37 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
 
         internalFrame1.add(panelGlass5, java.awt.BorderLayout.PAGE_END);
 
+        panelBiasa5.setName("panelBiasa5"); // NOI18N
+        panelBiasa5.setLayout(new java.awt.BorderLayout());
+
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Data Intake Per Jam ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
         Scroll1.setPreferredSize(new java.awt.Dimension(440, 422));
 
-        tbIntake.setToolTipText("");
+        tbIntake.setToolTipText("Silahkan klik salah satu data utk. melihat parental/line/obat-obatan");
         tbIntake.setName("tbIntake"); // NOI18N
+        tbIntake.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbIntakeMouseClicked(evt);
+            }
+        });
         Scroll1.setViewportView(tbIntake);
 
-        internalFrame1.add(Scroll1, java.awt.BorderLayout.EAST);
+        panelBiasa5.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Parental / Line / Obat-obatan ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
+        Scroll2.setPreferredSize(new java.awt.Dimension(440, 222));
+
+        tbParental.setToolTipText("");
+        tbParental.setName("tbParental"); // NOI18N
+        Scroll2.setViewportView(tbParental);
+
+        panelBiasa5.add(Scroll2, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame1.add(panelBiasa5, java.awt.BorderLayout.EAST);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -215,28 +340,43 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        
+        Valid.tabelKosong(tabMode);
+        Valid.tabelKosong(tabMode1);
     }//GEN-LAST:event_formWindowOpened
-
-    private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
-        
-    }//GEN-LAST:event_formWindowActivated
 
     private void BtnKeluar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar3ActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluar3ActionPerformed
 
     private void BtnGrafikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikActionPerformed
-        grafikpantau24jam grafik = new grafikpantau24jam("Grafik Hasil Pemantauan Harian Pasien Selama " 
-                + Sequel.cariIsi("select count(-1) from pemantauan_harian_24jam where tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat ='" + TNoRW.getText() + "'")
-                + " Jam Pada Tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")),
-                "where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'");
-        grafik.setSize(panelBiasa3.getWidth(), panelBiasa3.getHeight());
-        grafik.setModal(true);
-        grafik.setAlwaysOnTop(true);
-        grafik.setLocationRelativeTo(panelBiasa3);
-        grafik.setVisible(true);
+        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tdk. ditemukan..!!");
+            Valid.tabelKosong(tabMode);
+            Valid.tabelKosong(tabMode1);
+            tglPantau.requestFocus();
+        } else {
+            grafikpantau24jam grafik = new grafikpantau24jam("Grafik Hasil Pemantauan Harian Pasien Selama "
+                    + Sequel.cariIsi("select count(-1) from pemantauan_harian_24jam where tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat ='" + TNoRW.getText() + "'")
+                    + " Jam Pada Tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")),
+                    "where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'");
+            grafik.dispose();
+            grafik.setSize(panelBiasa3.getWidth(), panelBiasa3.getHeight());
+            grafik.setModal(false);
+            grafik.setAlwaysOnTop(true);
+            grafik.setLocationRelativeTo(panelBiasa3);
+            grafik.setVisible(true);
+            tampil();
+        }
     }//GEN-LAST:event_BtnGrafikActionPerformed
+
+    private void tbIntakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIntakeMouseClicked
+        if (tabMode.getRowCount() != 0) {
+            try {
+                tampilParental();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbIntakeMouseClicked
 
     /**
     * @param args the command line arguments
@@ -258,6 +398,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.Button BtnGrafik;
     private widget.Button BtnKeluar3;
     private widget.ScrollPane Scroll1;
+    private widget.ScrollPane Scroll2;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
@@ -271,8 +412,10 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.TextBox nmUnit;
     private widget.PanelBiasa panelBiasa3;
     private widget.PanelBiasa panelBiasa4;
+    private widget.PanelBiasa panelBiasa5;
     private widget.panelisi panelGlass5;
     private widget.Table tbIntake;
+    private widget.Table tbParental;
     private widget.Tanggal tglPantau;
     // End of variables declaration//GEN-END:variables
 
@@ -288,6 +431,86 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                     + "no_rawat='" + norw + "' order by tgl_pantau desc limit 1"));
         } else {
             tglPantau.setDate(new Date());
+        }
+    }
+    
+    private void tampil() {
+        Valid.tabelKosong(tabMode);        
+        try {
+            ps1 = koneksi.prepareStatement("select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, concat(gcs_e,',',gcs_m,',',gcs_v) gcs "
+                    + "from pemantauan_harian_24jam where tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode.addRow(new String[]{
+                        rs1.getString("tglPantau"),
+                        rs1.getString("jam"),                        
+                        rs1.getString("nadi"),
+                        rs1.getString("suhu"),
+                        rs1.getString("gcs"),
+                        rs1.getString("kesadaran"),
+                        rs1.getString("td"),
+                        rs1.getString("nafas"),
+                        rs1.getString("spo2"),
+                        rs1.getString("makan_minum"),
+                        rs1.getString("ngt"),
+                        rs1.getString("total_parental"),
+                        rs1.getString("total_intake"),
+                        rs1.getString("urine"),
+                        rs1.getString("ngt_darah"),
+                        rs1.getString("drain"),
+                        rs1.getString("muntah"),
+                        rs1.getString("bab"),
+                        rs1.getString("iwl"),
+                        rs1.getString("total_output"),
+                        rs1.getString("balance"),
+                        rs1.getString("tgl_pantau"),
+                        rs1.getString("kd_pantau")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilParental() {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps2 = koneksi.prepareStatement("select date_format(tgl_pantau,'%d-%m-%Y') tglPantau, nm_obat, jml_pemberian, jam_ke from pemantauan_harian_parental where "
+                    + "tgl_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 21).toString() + "' and "
+                    + "kd_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 22).toString() + "'");
+            try {
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabMode1.addRow(new String[]{
+                        rs2.getString("tglPantau"),
+                        rs2.getString("jam_ke"),
+                        rs2.getString("nm_obat"),
+                        rs2.getString("jml_pemberian")
+                    });
+                }                
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

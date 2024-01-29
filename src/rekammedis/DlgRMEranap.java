@@ -714,20 +714,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgRMEranap");
-                RMPemantauanHarian24Jam form = new RMPemantauanHarian24Jam(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setData(TNoRW.getText(), nmUnit.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses, kalau sudah selesai dikabari...!!!");
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMPemantauanHarian24Jam form = new RMPemantauanHarian24Jam(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPantauHarian24JamActionPerformed
 
@@ -735,18 +731,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgRMEranap");
-                RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
-                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), TtglMasuk.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses, kalau sudah selesai dikabari...!!!");
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(), TtglMasuk.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnGrafikPantau24JamActionPerformed
 
@@ -931,9 +923,13 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "' and tgl_pantau=date(now())") == 0) {
             BtnPantauHarian24Jam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20_biru.png")));
             BtnPantauHarian24Jam.setToolTipText("Data pemantauan harian pasien 24 jam, pada hari ini BELUM dibikinkan oleh petugas..!!!");
+            BtnGrafikPantau24Jam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20_biru.png")));
+            BtnGrafikPantau24Jam.setToolTipText("Grafik hasil pemantauan harian pasien dalam 24 jam, pada hari ini BELUM dibikinkan oleh petugas..!!!");
         } else {
             BtnPantauHarian24Jam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png")));
             BtnPantauHarian24Jam.setToolTipText("Data pemantauan harian pasien 24 jam, pada hari ini SUDAH dibikinkan oleh petugas..!!!");
+            BtnGrafikPantau24Jam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png")));
+            BtnGrafikPantau24Jam.setToolTipText("Grafik hasil pemantauan harian pasien dalam 24 jam, pada hari ini SUDAH dibikinkan oleh petugas..!!!");
         }
     }
 }

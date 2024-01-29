@@ -4,7 +4,6 @@
  */
 
 package rekammedis;
-
 /**
  *
  * @author Via
@@ -14,7 +13,7 @@ package rekammedis;
  * and open the template in the editor.
  */
 
-
+import fungsi.akses;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
@@ -40,7 +39,6 @@ import org.jfree.chart.renderer.category.LineAndShapeRenderer;
 import org.jfree.data.category.CategoryDataset;
 import org.jfree.data.category.DefaultCategoryDataset;
 
-
 /**
  *
  * @author Via
@@ -48,6 +46,7 @@ import org.jfree.data.category.DefaultCategoryDataset;
 public class grafikpantau24jam extends JDialog {
       sekuel Sequel = new sekuel();
       validasi Valid = new validasi();
+      
       public grafikpantau24jam(String title, String symbol) {
         // super(title);
           setTitle(title);
@@ -61,14 +60,9 @@ public class grafikpantau24jam extends JDialog {
          //setUndecorated(true);
          setIconImage(new ImageIcon(super.getClass().getResource("/picture/addressbook-edit24.png")).getImage());
          pack();
-         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
+         setDefaultCloseOperation(DISPOSE_ON_CLOSE);         
       }
-      Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();
-        /**
-           * Creates a dataset.
-           *
-           * @return A dataset.
-           */
+      Dimension screen=Toolkit.getDefaultToolkit().getScreenSize();        
 
     public static CategoryDataset createDataset1(String symbol) { //data grafik nilai K dan D
         DefaultCategoryDataset result = new DefaultCategoryDataset();
@@ -77,7 +71,7 @@ public class grafikpantau24jam extends JDialog {
 
         try {
             Statement stat = koneksiDB.condb().createStatement();
-            ResultSet rs = stat.executeQuery("select jam, nadi from pemantauan_harian_24jam "+ symbol+ "order by urutan_jam" );
+            ResultSet rs = stat.executeQuery("select jam, nadi from pemantauan_harian_24jam "+ symbol+ " order by urutan_jam" );
             while (rs.next()) {
                 String tksbr = rs.getString("jam");
                 double field = rs.getDouble("nadi");
@@ -96,7 +90,7 @@ public class grafikpantau24jam extends JDialog {
 
         try {
             Statement stat = koneksiDB.condb().createStatement();
-            ResultSet rs = stat.executeQuery("select jam, suhu from pemantauan_harian_24jam " + symbol + "order by urutan_jam");
+            ResultSet rs = stat.executeQuery("select jam, suhu from pemantauan_harian_24jam " + symbol + " order by urutan_jam");
             while (rs.next()) {
                 String tksbr = rs.getString("jam");
                 double field = rs.getDouble("suhu");
@@ -108,11 +102,6 @@ public class grafikpantau24jam extends JDialog {
         return result;
     }
 
-         /**
-          * Creates a chart.
-          *
-          * @return A chart.
-          */
          private static JFreeChart createChart(String symbol) {
              //data nadi
              CategoryDataset dataset1 = createDataset1(symbol);
@@ -145,15 +134,9 @@ public class grafikpantau24jam extends JDialog {
 
              JFreeChart result = new JFreeChart(
                      "",
-                     new Font("SansSerif", Font.PLAIN,6 ), plot, true);
+                     new Font("Tahoma", Font.PLAIN,7 ), plot, true);
              return result;
          }
-
-         /**
-          * Creates a panel for the demo (used by SuperDemo.java).
-          *
-          * @return A panel.
-          */
 
          public static JPanel createDemoPanel(String symbol) {
              JFreeChart chart = createChart(symbol);
