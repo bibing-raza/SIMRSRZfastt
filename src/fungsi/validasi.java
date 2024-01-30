@@ -2252,8 +2252,8 @@ public final class validasi {
         }
     }
     
-    public double SetAngka7(double nilai){        
-       return Double.parseDouble(df7.format(nilai));
+    public String SetAngka7(double nilai) {
+        return df7.format(nilai);
     }
     
     public void AutoMultiPrint(String reportName, String reportDirName, String judul, String qry, Map parameters, String printernama) {

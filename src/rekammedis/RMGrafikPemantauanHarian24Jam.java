@@ -50,9 +50,9 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         initComponents();
         
         tabMode = new DefaultTableModel(null, new Object[]{
-            "Tgl. Pantau", "Jam", "Nadi", "Suhu", "GCS", "Kesadaran", "Tensi", "Frek. Nafas", "SPO2", "Makan Minum", 
-            "NGT", "Total Parental", "Total Intake", "Urine", "NGT Darah", "Drain", "Muntah", "BAB", "IWL",
-            "Total Output", "Balance", "tglpantau", "kdpantau"
+            "Tgl. Pantau", "Jam", "Nadi", "Suhu", "GCS", "Kesadaran", "Tensi", "Frek. Nafas", "SPO2", "Makan Minum",
+            "NGT", "Transfusi", "Total Parental", "Total Intake", "Urine", "NGT Darah", "Drain", "Muntah", "BAB", "IWL",
+            "Defekasi", "Total Output", "Balance", "tglpantau", "kdpantau"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -64,7 +64,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         tbIntake.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbIntake.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 23; i++) {
+        for (int i = 0; i < 25; i++) {
             TableColumn column = tbIntake.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(75);
@@ -89,29 +89,33 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
             } else if (i == 10) {
                 column.setPreferredWidth(45);
             } else if (i == 11) {
-                column.setPreferredWidth(85);
-            } else if (i == 12) {
-                column.setPreferredWidth(80);
-            } else if (i == 13) {
-                column.setPreferredWidth(50);
-            } else if (i == 14) {
                 column.setPreferredWidth(70);
-            } else if (i == 15) {
+            } else if (i == 12) {
+                column.setPreferredWidth(85);
+            } else if (i == 13) {
+                column.setPreferredWidth(80);
+            } else if (i == 14) {
                 column.setPreferredWidth(50);
+            } else if (i == 15) {
+                column.setPreferredWidth(70);
             } else if (i == 16) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(50);
             } else if (i == 17) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(60);
             } else if (i == 18) {
                 column.setPreferredWidth(40);
             } else if (i == 19) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 20) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(80);
             } else if (i == 21) {
+                column.setPreferredWidth(70);
+            } else if (i == 22) {
+                column.setPreferredWidth(60);
+            } else if (i == 23) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 22) {
+            } else if (i == 24) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -192,7 +196,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
 
         panelBiasa4.setMinimumSize(new java.awt.Dimension(2, 200));
         panelBiasa4.setName("panelBiasa4"); // NOI18N
-        panelBiasa4.setPreferredSize(new java.awt.Dimension(2, 100));
+        panelBiasa4.setPreferredSize(new java.awt.Dimension(2, 72));
         panelBiasa4.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -217,7 +221,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         TNmPasien.setForeground(new java.awt.Color(0, 0, 0));
         TNmPasien.setName("TNmPasien"); // NOI18N
         panelBiasa4.add(TNmPasien);
-        TNmPasien.setBounds(308, 10, 291, 23);
+        TNmPasien.setBounds(308, 10, 339, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Rg. Rawat :");
@@ -229,19 +233,19 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         nmUnit.setForeground(new java.awt.Color(0, 0, 0));
         nmUnit.setName("nmUnit"); // NOI18N
         panelBiasa4.add(nmUnit);
-        nmUnit.setBounds(107, 38, 492, 23);
+        nmUnit.setBounds(107, 38, 300, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tgl. Masuk :");
         jLabel4.setName("jLabel4"); // NOI18N
         panelBiasa4.add(jLabel4);
-        jLabel4.setBounds(0, 66, 103, 23);
+        jLabel4.setBounds(410, 38, 70, 23);
 
         TtglMasuk.setEditable(false);
         TtglMasuk.setForeground(new java.awt.Color(0, 0, 0));
         TtglMasuk.setName("TtglMasuk"); // NOI18N
         panelBiasa4.add(TtglMasuk);
-        TtglMasuk.setBounds(107, 66, 210, 23);
+        TtglMasuk.setBounds(486, 38, 160, 23);
 
         internalFrame1.add(panelBiasa4, java.awt.BorderLayout.PAGE_START);
 
@@ -455,6 +459,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                         rs1.getString("spo2"),
                         rs1.getString("makan_minum"),
                         rs1.getString("ngt"),
+                        rs1.getString("transfusi"),
                         rs1.getString("total_parental"),
                         rs1.getString("total_intake"),
                         rs1.getString("urine"),
@@ -463,6 +468,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                         rs1.getString("muntah"),
                         rs1.getString("bab"),
                         rs1.getString("iwl"),
+                        rs1.getString("defekasi"),
                         rs1.getString("total_output"),
                         rs1.getString("balance"),
                         rs1.getString("tgl_pantau"),
@@ -488,8 +494,8 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             ps2 = koneksi.prepareStatement("select date_format(tgl_pantau,'%d-%m-%Y') tglPantau, nm_obat, jml_pemberian, jam_ke from pemantauan_harian_parental where "
-                    + "tgl_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 21).toString() + "' and "
-                    + "kd_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 22).toString() + "'");
+                    + "tgl_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 23).toString() + "' and "
+                    + "kd_pantau='" + tbIntake.getValueAt(tbIntake.getSelectedRow(), 24).toString() + "'");
             try {
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
