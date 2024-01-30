@@ -2409,6 +2409,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             } else {
                 Tiwl.setText(Valid.SetAngka(Total_iwl));
             }
+            
+            if (Tiwl.getText().contains(",") == true) {
+                Tiwl.setText(Tiwl.getText().replaceAll(",", ""));
+            }
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -2445,6 +2449,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 Ttotintake.setText("0");
             } else {
                 Ttotintake.setText(Valid.SetAngka(Total));
+            }
+         
+            if (Ttotintake.getText().contains(",") == true) {
+                Ttotintake.setText(Ttotintake.getText().replaceAll(",", ""));
             }
 
         } catch (Exception e) {
@@ -2499,6 +2507,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             } else {
                 Ttotouput.setText(Valid.SetAngka(Total));
             }
+            
+            if (Ttotouput.getText().contains(",") == true) {
+                Ttotouput.setText(Ttotouput.getText().replaceAll(",", ""));
+            }
 
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -2527,6 +2539,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 Tbalance.setText("0");
             } else {
                 Tbalance.setText(Valid.SetAngka(Total));
+            }
+            
+            if (Tbalance.getText().contains(",") == true) {
+                Tbalance.setText(Tbalance.getText().replaceAll(",", ""));
             }
 
         } catch (Exception e) {
@@ -2682,6 +2698,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         }
         
         TjmlParental.setText(Valid.SetAngka(totParental));
+        
+        if (TjmlParental.getText().contains(",") == true) {
+            TjmlParental.setText(TjmlParental.getText().replaceAll(",", ""));
+        }
     }
     
     private void tampilTotal24Jam(String tgl, String norw) {
@@ -2696,10 +2716,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                     if (rs3.getInt("cek") == 0 || TNoRw.getText().equals("")) {
                         Valid.tabelKosong(tabMode3);
                     } else {
-                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), rs3.getString("tglpantau"), "Total INTAKE", rs3.getString("intake")});
-                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), rs3.getString("tglpantau"), "Total IWL", rs3.getString("iwl")});
-                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), rs3.getString("tglpantau"), "Total OUTPUT", rs3.getString("output")});
-                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), rs3.getString("tglpantau"), "Total BALANCE", rs3.getString("balance")});
+                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), 
+                            rs3.getString("tglpantau"), "Total INTAKE", rs3.getString("intake").replaceAll(",", ".")});
+                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), 
+                            rs3.getString("tglpantau"), "Total IWL", rs3.getString("iwl").replaceAll(",", ".")});
+                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), 
+                            rs3.getString("tglpantau"), "Total OUTPUT", rs3.getString("output").replaceAll(",", ".")});
+                        tabMode3.addRow(new String[]{TNoRm.getText() + " - " + TPasien.getText(), 
+                            rs3.getString("tglpantau"), "Total BALANCE", rs3.getString("balance").replaceAll(",", ".")});
                     }
                 }
             } catch (Exception e) {
