@@ -1114,6 +1114,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("manajemen_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("surat_konsul_unit_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("asesmen_medik_dewasa_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("asesmen_medik_dewasa_ranap_histori", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("cppt", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("cppt_history", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
@@ -1132,17 +1133,15 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("penilaian_awal_keperawatan_dewasa_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("penilaian_awal_keperawatan_dewasa_ranap_resiko", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("penilaian_awal_keperawatan_dewasa_ranap_decubitus", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-
-            Sequel.mengedit("pemantauan_harian_obat_perjam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_perjam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_pertanggal", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_total_kesamping", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("pemantauan_harian_parental", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("pemantauan_harian_24jam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("evaluasi_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("manajemen_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("surat_konsul_unit_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("asesmen_medik_dewasa_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("asesmen_medik_dewasa_ranap_histori", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");            
             Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("cppt", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("cppt_history", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1162,10 +1161,8 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("penilaian_awal_keperawatan_dewasa_ranap_resiko", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("penilaian_awal_keperawatan_dewasa_ranap_decubitus", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
 
-            Sequel.mengedit("pemantauan_harian_obat_perjam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_perjam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_pertanggal", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-            Sequel.mengedit("pemantauan_harian_total_kesamping", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("pemantauan_harian_parental", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("pemantauan_harian_24jam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -1296,7 +1293,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
                 //pemantauan harian pasien ranap
             } else if (cmbJnsTran.getSelectedIndex() == 29) {
                 ps1 = koneksi.prepareStatement("select no_rawat, tgl_pantau tgl, time(now()) jam, kd_pantau data "
-                        + "from pemantauan_harian_pertanggal where no_rawat ='" + TNoRwTerpilih.getText() + "'");
+                        + "from pemantauan_harian_24jam where no_rawat ='" + TNoRwTerpilih.getText() + "'");
                 //triase igd
             } else if (cmbJnsTran.getSelectedIndex() == 30) {
                 ps1 = koneksi.prepareStatement("select no_rawat, date(tanggal) tgl, time(tanggal) jam, keluhan_utama data "
@@ -1464,7 +1461,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
                 //pemantauan harian pasien ranap
             } else if (cmbJnsTran.getSelectedIndex() == 29) {
                 ps2 = koneksi.prepareStatement("select no_rawat, tgl_pantau tgl, time(now()) jam, kd_pantau data "
-                        + "from pemantauan_harian_pertanggal where no_rawat ='" + TNoRwTujuan.getText() + "'");
+                        + "from pemantauan_harian_24jam where no_rawat ='" + TNoRwTujuan.getText() + "'");
                 //triase igd
             } else if (cmbJnsTran.getSelectedIndex() == 30) {
                 ps2 = koneksi.prepareStatement("select no_rawat, date(tanggal) tgl, time(tanggal) jam, keluhan_utama data "
@@ -1996,8 +1993,10 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
     private void tranAsesMedikDewasaRanap() {
         if (pilihan == 1) {
             Sequel.mengedit("asesmen_medik_dewasa_ranap", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("asesmen_medik_dewasa_ranap_histori", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("asesmen_medik_dewasa_ranap", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("asesmen_medik_dewasa_ranap_histori", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
 
         tampil();
@@ -2824,44 +2823,24 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
     private void tranPemantauanHarianRanap() {
         if (ChkTglTran.isSelected() == true && !tglDari.getText().equals("")) {
             if (pilihan == 1) {
-                Sequel.mengedit("pemantauan_harian_pertanggal", "tgl_pantau = '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_24jam", "tgl_pantau = '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_pertanggal", "tgl_pantau > '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                
-                Sequel.mengedit("pemantauan_harian_perjam", "tgl_pantau = '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_perjam", "tgl_pantau > '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_24jam", "tgl_pantau > '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
                 
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "tgl_pantau = '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_parental", "tgl_pantau = '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "tgl_pantau > '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "tgl_pantau = '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "tgl_pantau > '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_parental", "tgl_pantau > '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             } else if (pilihan == 2) {
-                Sequel.mengedit("pemantauan_harian_pertanggal", "tgl_pantau = '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_24jam", "tgl_pantau = '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_pertanggal", "tgl_pantau > '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                
-                Sequel.mengedit("pemantauan_harian_perjam", "tgl_pantau = '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_perjam", "tgl_pantau > '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_24jam", "tgl_pantau > '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
                 
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "tgl_pantau = '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_parental", "tgl_pantau = '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "tgl_pantau > '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "tgl_pantau = '" + tglDari.getText() + "' "
-                        + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "tgl_pantau > '" + tglDari.getText() + "' "
+                Sequel.mengedit("pemantauan_harian_parental", "tgl_pantau > '" + tglDari.getText() + "' "
                         + "and no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             }
 
@@ -2877,15 +2856,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
 
         } else if (ChkTglTran.isSelected() == false && tglDari.getText().equals("")) {
             if (pilihan == 1) {                
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_perjam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_pertanggal", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+                Sequel.mengedit("pemantauan_harian_parental", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+                Sequel.mengedit("pemantauan_harian_24jam", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             } else if (pilihan == 2) {
-                Sequel.mengedit("pemantauan_harian_obat_perjam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_perjam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_pertanggal", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
-                Sequel.mengedit("pemantauan_harian_total_kesamping", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+                Sequel.mengedit("pemantauan_harian_parental", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+                Sequel.mengedit("pemantauan_harian_24jam", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             }
 
             tampil();

@@ -186,7 +186,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Pemantauan Harian Pasien Selama 24 Jam ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Grafik Pemantauan Harian Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -260,7 +260,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass5.add(jLabel33);
 
         tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-01-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -360,7 +360,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                     + " Jam Pada Tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")),
                     "where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'");
             grafik.dispose();
-            grafik.setSize(panelBiasa3.getWidth(), panelBiasa3.getHeight());
+            grafik.setSize(panelBiasa3.getWidth() - 10, panelBiasa3.getHeight() - 10);
             grafik.setModal(false);
             grafik.setAlwaysOnTop(true);
             grafik.setLocationRelativeTo(panelBiasa3);

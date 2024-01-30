@@ -1798,8 +1798,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRW.getText().equals("")) {
             Valid.textKosong(TNoRW, "nomor rawat");
-        } else if (TNmDokter.getText().trim().equals("")) {
-            Valid.textKosong(TNmDokter, "dokter pengirim");
         } else {
             kontrolPoli = "";
             cekTgl = "";
@@ -1815,6 +1813,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TKlgPasien.setText("-");
             } else {
                 TKlgPasien.setText(TKlgPasien.getText());
+            }
+            
+            if (TNmDokter.getText().equals("")) {
+                TNmDokter.setText("-");
+            } else {
+                TNmDokter.setText(TNmDokter.getText());
             }
             
             try {
@@ -1864,8 +1868,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (TNoRW.getText().equals("")) {
             Valid.textKosong(TNoRW, "nomor rawat");
-        } else if (TNmDokter.getText().trim().equals("")) {
-            Valid.textKosong(TNmDokter, "dokter pengirim");
         } else {
             kontrolPoli = "";
             cekTgl = "";
@@ -1881,6 +1883,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TKlgPasien.setText("-");
             } else {
                 TKlgPasien.setText(TKlgPasien.getText());
+            }
+            
+            if (TNmDokter.getText().equals("")) {
+                TNmDokter.setText("-");
+            } else {
+                TNmDokter.setText(TNmDokter.getText());
             }
 
             try {

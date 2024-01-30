@@ -1280,7 +1280,10 @@ public class DlgDinkesPersalinan extends javax.swing.JDialog {
                             + "'" + tbKasus.getValueAt(i, 0).toString() + "'", "Detail Kasus Persalinan");
                 }
 
-                Sequel.simpanReplaceInto("dpjp_ranap", "'" + norawat.getText() + "','" + kddpjp.getText() + "'", "DPJP Rawat Inap");
+                if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + norawat.getText() + "'") == 0) {
+                    Sequel.menyimpan("dpjp_ranap", "'" + norawat.getText() + "','" + kddpjp.getText() + "'");
+                }
+                
                 Sequel.mengedit("pasien", "no_rkm_medis='" + norm.getText() + "'",
                         "no_tlp='" + nohp.getText() + "', "
                         + "no_ktp='" + nik.getText() + "', "
