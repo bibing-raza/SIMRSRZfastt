@@ -19,12 +19,15 @@ import java.awt.BorderLayout;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.table.DefaultTableModel;
@@ -39,8 +42,10 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private final Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private final validasi Valid = new validasi();
-    private PreparedStatement ps1, ps2;
-    private ResultSet rs, rs1, rs2;
+    private PreparedStatement ps1, ps2, ps3, ps4;
+    private ResultSet rs, rs1, rs2, rs3, rs4;
+    private String tglLahir = "", catatan = "", petugas = "", tot_intake = "", tot_iwl = "",
+            tot_output = "", tot_balance = "", cttnfix = "", ptgsfix = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -174,6 +179,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         tglPantau = new widget.Tanggal();
         jLabel34 = new widget.Label();
         BtnGrafik = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnKeluar3 = new widget.Button();
         panelBiasa5 = new widget.PanelBiasa();
         Scroll1 = new widget.ScrollPane();
@@ -264,7 +270,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass5.add(jLabel33);
 
         tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -289,6 +295,25 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass5.add(BtnGrafik);
+
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass5.add(BtnPrint);
 
         BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -382,6 +407,46 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbIntakeMouseClicked
 
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tdk. ditemukan..!!");
+            Valid.tabelKosong(tabMode);
+            Valid.tabelKosong(tabMode1);
+            tglPantau.requestFocus();
+        } else {
+            catatanPetugas();
+            totalHasil();
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TNmPasien.getText());
+            param.put("tgllahir", tglLahir);
+            param.put("catatan", catatan);
+            param.put("petugas", petugas);            
+            param.put("total_intake", tot_intake);
+            param.put("total_iwl", tot_iwl);
+            param.put("total_output", tot_output);
+            param.put("total_balance", tot_balance);
+            param.put("total_jam", Sequel.cariIsi("select count(-1) from pemantauan_harian_24jam where "
+                    + "tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat ='" + TNoRW.getText() + "'"));
+
+            Valid.MyReport("rptPemantauanHarianPasien.jasper", "report", "::[ Lembar Hasil Pemantauan Harian Pasien ]::",
+                    "select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, concat('E:',gcs_e,', M:',gcs_m,', V:',gcs_v) gcs "
+                    + "from pemantauan_harian_24jam where tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' "
+                    + "and no_rawat='" + TNoRW.getText() + "'", param);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+        
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        } 
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -401,6 +466,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnGrafik;
     private widget.Button BtnKeluar3;
+    private widget.Button BtnPrint;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.TextBox TNmPasien;
@@ -427,6 +493,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(nomorrm);
         TNmPasien.setText(namaPx);
+        tglLahir = Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis='" + nomorrm + "'");
         nmUnit.setText(rgrawat);
         TtglMasuk.setText(tglmasuk);
         
@@ -514,6 +581,88 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                 }
                 if (ps2 != null) {
                     ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void catatanPetugas() {
+        catatan = "";
+        petugas = "";
+        cttnfix = "";
+        ptgsfix = "";
+        try {
+            ps3 = koneksi.prepareStatement("select *, pg.nama nmpetugas from pemantauan_harian_24jam p inner join pegawai pg on pg.nik=p.nip_petugas where "
+                    + "p.tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and p.no_rawat='" + TNoRW.getText() + "'");
+            try {
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    if (rs3.getString("catatan").equals("")) {
+                        cttnfix = "";
+                    } else {
+                        cttnfix = "Jam : " + rs3.getString("jam") + " (" + rs3.getString("catatan") + ")";
+                    }
+
+                    if (rs3.getString("nmpetugas").equals("-") || rs3.getString("nmpetugas").equals("--")) {
+                        ptgsfix = "";
+                    } else {
+                        ptgsfix = "Jam : " + rs3.getString("jam") + ", Nama : " + rs3.getString("nmpetugas") + "";
+                    }
+
+                    if (catatan.equals("")) {
+                        catatan = cttnfix;
+                    } else {
+                        catatan = catatan + "\n" + cttnfix;
+                    }
+
+                    if (petugas.equals("")) {
+                        petugas = ptgsfix;
+                    } else {
+                        petugas = petugas + "\n" + ptgsfix;
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void totalHasil() {
+        tot_intake = "";
+        tot_iwl = "";
+        tot_output = "";
+        tot_balance = "";
+        try {
+            ps4 = koneksi.prepareStatement("select *, ifnull(format(sum(total_intake),0),'-') totintake, ifnull(format(sum(iwl),1),'-') totiwl, "
+                    + "ifnull(format(sum(total_output),1),'-') totoutput, ifnull(format(sum(balance),1),'-') totbalance "
+                    + "from pemantauan_harian_24jam where tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat='" + TNoRW.getText() + "'");
+            try {
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    tot_intake = rs4.getString("totintake");
+                    tot_iwl = rs4.getString("totiwl");
+                    tot_output = rs4.getString("totoutput");
+                    tot_balance = rs4.getString("totbalance");
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
                 }
             }
         } catch (Exception e) {

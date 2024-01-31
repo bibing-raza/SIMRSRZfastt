@@ -45,8 +45,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes;
-    private ResultSet rs, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes;
+    private PreparedStatement ps, ps1, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes;
+    private ResultSet rs, rs1, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes;
     private int i = 0, x = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0;
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "", kodekamar = "", skorAsesIGD = "", kesimpulanGZanak = "",
@@ -413,6 +413,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel5 = new widget.Label();
         noreg = new widget.TextBox();
         jml_noreg = new widget.Label();
+        ChkAsesmenMedik = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbRingkasan = new widget.Table();
@@ -884,7 +885,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel45.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel45.setName("jLabel45"); // NOI18N
         panelisi1.add(jLabel45);
-        jLabel45.setBounds(10, 148, 530, 23);
+        jLabel45.setBounds(10, 148, 510, 23);
 
         jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -892,7 +893,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel44.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel44.setName("jLabel44"); // NOI18N
         panelisi1.add(jLabel44);
-        jLabel44.setBounds(10, 162, 530, 23);
+        jLabel44.setBounds(10, 162, 400, 23);
 
         Scroll16.setName("Scroll16"); // NOI18N
         Scroll16.setOpaque(true);
@@ -1304,7 +1305,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-01-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1552,6 +1553,26 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jml_noreg.setName("jml_noreg"); // NOI18N
         panelisi1.add(jml_noreg);
         jml_noreg.setBounds(967, 8, 460, 23);
+
+        ChkAsesmenMedik.setBackground(new java.awt.Color(255, 255, 250));
+        ChkAsesmenMedik.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkAsesmenMedik.setForeground(new java.awt.Color(0, 0, 0));
+        ChkAsesmenMedik.setText("Lihat Data Asesmen Medik Pasien");
+        ChkAsesmenMedik.setBorderPainted(true);
+        ChkAsesmenMedik.setBorderPaintedFlat(true);
+        ChkAsesmenMedik.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        ChkAsesmenMedik.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkAsesmenMedik.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkAsesmenMedik.setName("ChkAsesmenMedik"); // NOI18N
+        ChkAsesmenMedik.setOpaque(false);
+        ChkAsesmenMedik.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkAsesmenMedik.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkAsesmenMedikActionPerformed(evt);
+            }
+        });
+        panelisi1.add(ChkAsesmenMedik);
+        ChkAsesmenMedik.setBounds(510, 162, 230, 23);
 
         Scroll2.setViewportView(panelisi1);
 
@@ -2535,6 +2556,25 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jml_noreg.setText("Jumlah No. Reg. TB : " + i + " digit");
     }//GEN-LAST:event_noregKeyReleased
 
+    private void ChkAsesmenMedikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAsesmenMedikActionPerformed
+        if (ChkAsesmenMedik.isSelected() == true) {
+            if (Sequel.cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                tampilAsesmen();
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, asesmen medik pasien belum diisi..!!!!");
+                ChkAsesmenMedik.setSelected(false);
+            }
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah data asesmen medik pada ringkasan pulang ini akan dihapus ..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                TTerapiPengobatan.setText("");
+                TDiagUtama.setText("");
+                TAlasanDirawat.setText("");
+                TRingkasanRiwayat.setText("");
+            }
+        }
+    }//GEN-LAST:event_ChkAsesmenMedikActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2564,6 +2604,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnVerif;
+    public widget.CekBox ChkAsesmenMedik;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnAsesmenKebidanan;
     private javax.swing.JMenuItem MnAsesmenKeperawatanIGD;
@@ -2881,6 +2922,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         THasil.setText("");
         nmgedung = "";
         noreg.setText(Sequel.cariIsi("select ifnull(id_tb_03,'') from nomor_reg_tb where no_rkm_medis='" + TNoRM.getText() + "'"));
+        ChkAsesmenMedik.setSelected(false);
         
         if (nmgedung.equals("AL-HAKIM/PARU")) {
             noreg.setEnabled(true);
@@ -3768,6 +3810,67 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 }
                 if (psLaprm != null) {
                     psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilAsesmen() {
+        try {
+            ps1 = koneksi.prepareStatement("select *, if(diagnosis1<>'',diagnosis1,'') diag1, if(diagnosis2<>'',diagnosis2,'') diag2, "
+                    + "if(diagnosis3<>'',diagnosis3,'') diag3, if(diagnosis4<>'',diagnosis4,'') diag4, if(diagnosis5<>'',diagnosis5,'') diag5, "
+                    + "if(diagnosis6<>'',diagnosis6,'') diag6, if(diagnosis7<>'',diagnosis7,'') diag7 from asesmen_medik_dewasa_ranap where "
+                    + "no_rawat='" + TNoRW.getText() + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    if (TTerapiPengobatan.getText().equals("")) {
+                        TTerapiPengobatan.setText(rs1.getString("rencana_kerja"));
+                    } else {
+                        TTerapiPengobatan.setText(TTerapiPengobatan.getText() + "\n\n" + rs1.getString("rencana_kerja"));
+                    }
+                    
+                    if (TDiagUtama.getText().equals("")) {
+                        TDiagUtama.setText(rs1.getString("diag1") + "\n"
+                                + rs1.getString("diag2") + "\n"
+                                + rs1.getString("diag3") + "\n"
+                                + rs1.getString("diag4") + "\n"
+                                + rs1.getString("diag5") + "\n"
+                                + rs1.getString("diag6") + "\n"
+                                + rs1.getString("diag7"));
+                    } else {
+                        TDiagUtama.setText(TDiagUtama.getText() + "\n\n" 
+                                + rs1.getString("diag1") + "\n"
+                                + rs1.getString("diag2") + "\n"
+                                + rs1.getString("diag3") + "\n"
+                                + rs1.getString("diag4") + "\n"
+                                + rs1.getString("diag5") + "\n"
+                                + rs1.getString("diag6") + "\n"
+                                + rs1.getString("diag7"));
+                    }
+                    
+                    if (TAlasanDirawat.getText().equals("")) {
+                        TAlasanDirawat.setText(rs1.getString("keluhan_utama"));
+                    } else {
+                        TAlasanDirawat.setText(TAlasanDirawat.getText() + "\n\n" + rs1.getString("keluhan_utama"));
+                    }
+                    
+                    if (TRingkasanRiwayat.getText().equals("")) {
+                        TRingkasanRiwayat.setText(rs1.getString("riw_penyakit_sekarang"));
+                    } else {
+                        TRingkasanRiwayat.setText(TRingkasanRiwayat.getText() + "\n\n" + rs1.getString("riw_penyakit_sekarang"));
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
                 }
             }
         } catch (Exception e) {
