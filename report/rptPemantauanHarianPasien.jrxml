@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
 	<property name="ireport.zoom" value="2.000000000000008"/>
-	<property name="ireport.x" value="56"/>
-	<property name="ireport.y" value="17"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -200,7 +200,7 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true"/>
 				</textElement>
-				<text><![CDATA[PEMANTAUAN HARIAN PASIEN]]></text>
+				<text><![CDATA[PEMANTAUAN HARIAN PASIEN PER JAM]]></text>
 			</staticText>
 			<line>
 				<reportElement x="0" y="72" width="766" height="1">
@@ -468,7 +468,7 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				<text><![CDATA[Drain]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="607" y="1" width="20" height="11">
+				<reportElement x="607" y="1" width="28" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -477,13 +477,13 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				<text><![CDATA[IWL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="651" y="1" width="50" height="11">
+				<reportElement x="660" y="1" width="40" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<text><![CDATA[Tot. Output]]></text>
+				<text><![CDATA[T. Output]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="27" y="1" width="51" height="11">
@@ -522,7 +522,7 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				<text><![CDATA[NGT]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="629" y="1" width="23" height="11">
+				<reportElement x="636" y="1" width="25" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -658,13 +658,13 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="628" y="0" width="1" height="12"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="635" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="651" y="0" width="1" height="12"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="660" y="0" width="1" height="12"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -749,91 +749,91 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{makan_minum}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="279" y="0" width="22" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{ngt}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="302" y="0" width="37" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{total_parental}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="340" y="0" width="37" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{transfusi}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="378" y="0" width="50" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{total_intake}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="429" y="0" width="35" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{muntah}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="465" y="0" width="28" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{urine}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="495" y="0" width="35" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{defekasi}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="531" y="0" width="48" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{ngt_darah}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="581" y="0" width="25" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{drain}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="607" y="0" width="20" height="11"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="607" y="0" width="28" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{iwl}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="629" y="0" width="23" height="11"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="638" y="0" width="23" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{bab}]]></textFieldExpression>
 			</textField>
-			<textField>
-				<reportElement x="654" y="0" width="45" height="11"/>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="663" y="0" width="36" height="11"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{total_output}]]></textFieldExpression>
 			</textField>
-			<textField>
+			<textField isStretchWithOverflow="true">
 				<reportElement x="704" y="0" width="30" height="11"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
@@ -943,13 +943,13 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="628" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="635" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="651" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="660" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -997,14 +997,14 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{total_intake}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="607" y="0" width="20" height="11"/>
+				<reportElement x="607" y="0" width="28" height="11"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{total_iwl}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="654" y="0" width="45" height="11"/>
+				<reportElement x="663" y="0" width="36" height="11"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -1042,13 +1042,13 @@ from pemantauan_harian_24jam where tgl_pantau='2024-01-30'  and no_rawat='2024/0
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="651" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="660" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="628" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement x="635" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>

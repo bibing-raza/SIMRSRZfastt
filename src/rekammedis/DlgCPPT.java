@@ -77,12 +77,11 @@ public class DlgCPPT extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. CPPT",
-            "Jam CPPT", "Hasil Pemeriksaan", "Instruksi Nakes", "Verifikasi",
-            "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt",
-            "Jenis PPA", "Nama PPA", "Jenis Bagian", "nipppa", "serah_terima_cppt", "nmkonsulen", 
-            "nipkonsulen", "petugas_serah", "petugas_terima", "nip_petugas_serah", "nip_petugas_terima",
-            "Shift", "jam_serah_terima", "pilihan_soap", "subjektif", "objektif", "asesmen", "planing"
+        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Tgl. Lahir", "Tgl. CPPT", "Jam CPPT", "Jenis PPA", "Nama PPA", "Hasil Pemeriksaan",
+            "Instruksi Nakes", "Verifikasi", "Nama DPJP", "Status", "tanggal", "nip_dpjp", "wkt_simpan", "cekjam", "jam_cppt", "Jenis Bagian",
+            "nipppa", "serah_terima_cppt", "nmkonsulen", "nipkonsulen", "petugas_serah", "petugas_terima", "nip_petugas_serah",
+            "nip_petugas_terima", "Shift", "jam_serah_terima", "pilihan_soap", "subjektif", "objektif", "asesmen", "planing"
+                
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -110,21 +109,19 @@ public class DlgCPPT extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(75);
             } else if (i == 6) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(90);
             } else if (i == 7) {
                 column.setPreferredWidth(250);
             } else if (i == 8) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(250);
             } else if (i == 9) {
                 column.setPreferredWidth(250);
             } else if (i == 10) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(60);
             } else if (i == 11) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(250);
             } else if (i == 12) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(45);
             } else if (i == 13) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -135,11 +132,13 @@ public class DlgCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 16) {
-                column.setPreferredWidth(90);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 17) {
-                column.setPreferredWidth(250);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 18) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             } else if (i == 19) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -165,7 +164,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 27) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(45);
             } else if (i == 28) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -4283,13 +4282,13 @@ public class DlgCPPT extends javax.swing.JDialog {
                 x = JOptionPane.showConfirmDialog(rootPane, "Pilih YES untuk hapus biasa, NO untuk hapus lenyap..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
-                        "ya", "-", tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
+                        "ya", "-", tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                     });
                     tampil();
                     emptTeks();
                 } else {
                     if (Sequel.queryu2tf("delete from cppt where waktu_simpan=?", 1, new String[]{
-                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
+                        tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                     }) == true) {
                         tampil();
                         emptTeks();
@@ -4301,7 +4300,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                 x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                 if (x == JOptionPane.YES_OPTION) {
                     Sequel.mengedit("cppt", "waktu_simpan=?", "flag_hapus=?, nip_penghapus=?", 3, new String[]{
-                        "ya", akses.getkode(), tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
+                        "ya", akses.getkode(), tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                     });
                     tampil();
                     emptTeks();
@@ -4346,7 +4345,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             try {
                 if (tbCPPT.getSelectedRow() > -1) {
                     //sebelum diganti data cppt sebelumnya disimpan dulu ke tabel cppt_history
-                    simpanHistory(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString());
+                    simpanHistory(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString());
                     
                     Sequel.mengedit("cppt", "waktu_simpan=?", "tgl_cppt=?, hasil_pemeriksaan=?, "
                             + "instruksi_nakes=?, nip_dpjp=?, cek_jam=?, jam_cppt=?, jenis_ppa=?, nip_ppa=?, jenis_bagian=?, "
@@ -4359,7 +4358,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                                 cmbSift.getSelectedItem().toString(), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                                 soap, Valid.mysql_real_escape_stringERM(TSubjektif.getText()), Valid.mysql_real_escape_stringERM(TObjektif.getText()),
                                 Valid.mysql_real_escape_stringERM(TAsesmen.getText()), Valid.mysql_real_escape_stringERM(TPlaning.getText()),
-                                tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString()
+                                tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString()
                             });
 
                     //menyamakan tgl, jam & sift cppt dengan data konfirmasi terapi
@@ -6980,6 +6979,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("tgllhr"),
                         rs.getString("tglcppt"),
                         rs.getString("jam_cppt_data"),
+                        rs.getString("jenis_ppa"),
+                        rs.getString("nmppa"),
                         rs.getString("hasil_pemeriksaan"),
                         rs.getString("instruksi_nakes"),
                         rs.getString("verifikasi"),
@@ -6989,9 +6990,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         rs.getString("nip_dpjp"),
                         rs.getString("waktu_simpan"),
                         rs.getString("cek_jam"),
-                        rs.getString("jam_cppt"),
-                        rs.getString("jenis_ppa"),
-                        rs.getString("nmppa"),
+                        rs.getString("jam_cppt"),                        
                         rs.getString("jenis_bagian"),
                         rs.getString("nip_ppa"),                        
                         rs.getString("serah_terima_cppt"),
@@ -7262,18 +7261,18 @@ public class DlgCPPT extends javax.swing.JDialog {
             TNoRw.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 0).toString());
             TNoRm.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 1).toString());
             TPasien.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 2).toString());
-            Valid.SetTgl(tglCppt, tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString());
-            THasil.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString());
-            TInstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString());
-            kddpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString());
-            nmdpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString());
-            statusOK = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 10).toString();
-            cekjam = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString();
-            cmbJam.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 15).toString().substring(6, 8));
-            cmbPPA.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString());            
-            nmppa.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString());
+            Valid.SetTgl(tglCppt, tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 13).toString());
+            THasil.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 8).toString());
+            TInstruksi.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 9).toString());
+            kddpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 14).toString());
+            nmdpjp.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 11).toString());
+            statusOK = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 12).toString();
+            cekjam = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 16).toString();
+            cmbJam.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 17).toString().substring(6, 8));
+            cmbPPA.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 6).toString());            
+            nmppa.setText(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 7).toString());
             cmbBagian.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 18).toString());
             nipppa = tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 19).toString();
             cmbSertim.setSelectedItem(tbCPPT.getValueAt(tbCPPT.getSelectedRow(), 20).toString());                      
@@ -7314,7 +7313,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.hasil_pemeriksaan<>'' and p.no_rkm_medis like ? OR "
                         + "c.hasil_pemeriksaan<>'' and p.nm_pasien like ? OR "
-                        + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.hasil_pemeriksaan<>'' and c.hasil_pemeriksaan like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             } else if (pilihan == 2) {
                 pps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7322,7 +7321,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.instruksi_nakes<>'' and p.no_rkm_medis like ? OR "
                         + "c.instruksi_nakes<>'' and p.nm_pasien like ? OR "
-                        + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.instruksi_nakes<>'' and c.instruksi_nakes like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             } else if (pilihan == 3) {
                 pps3 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7330,7 +7329,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.subjektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.subjektif<>'' and p.nm_pasien like ? OR "
-                        + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.subjektif<>'' and c.subjektif like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             } else if (pilihan == 4) {
                 pps4 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7338,7 +7337,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.objektif<>'' and p.no_rkm_medis like ? OR "
                         + "c.objektif<>'' and p.nm_pasien like ? OR "
-                        + "c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.objektif<>'' and c.objektif like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             } else if (pilihan == 5) {
                 pps5 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7346,7 +7345,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.asesmen<>'' and p.no_rkm_medis like ? OR "
                         + "c.asesmen<>'' and p.nm_pasien like ? OR "
-                        + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.asesmen<>'' and c.asesmen like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             } else if (pilihan == 6) {
                 pps6 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, date_format(c.tgl_cppt,'%d-%m-%Y') tglcppt, "
                         + "time_format(c.jam_cppt,'%H:%i') jam, c.* from cppt c "
@@ -7354,7 +7353,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "c.planing<>'' and p.no_rkm_medis like ? OR "
                         + "c.planing<>'' and p.nm_pasien like ? OR "
-                        + "c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, time(c.waktu_simpan) desc limit 200");
+                        + "c.planing<>'' and c.planing like ? ORDER BY c.tgl_cppt, c.jam_cppt limit 200");
             }
             
             try {

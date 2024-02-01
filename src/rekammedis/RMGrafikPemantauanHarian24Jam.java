@@ -173,19 +173,32 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         nmUnit = new widget.TextBox();
         jLabel4 = new widget.Label();
         TtglMasuk = new widget.TextBox();
+        TabPilihan = new javax.swing.JTabbedPane();
+        panelJam = new widget.PanelBiasa();
         panelBiasa3 = new widget.PanelBiasa();
-        panelGlass5 = new widget.panelisi();
-        jLabel33 = new widget.Label();
-        tglPantau = new widget.Tanggal();
-        jLabel34 = new widget.Label();
-        BtnGrafik = new widget.Button();
-        BtnPrint = new widget.Button();
-        BtnKeluar3 = new widget.Button();
         panelBiasa5 = new widget.PanelBiasa();
         Scroll1 = new widget.ScrollPane();
         tbIntake = new widget.Table();
         Scroll2 = new widget.ScrollPane();
         tbParental = new widget.Table();
+        panelGlass5 = new widget.panelisi();
+        jLabel33 = new widget.Label();
+        tglPantau = new widget.Tanggal();
+        jLabel34 = new widget.Label();
+        BtnGrafikJam = new widget.Button();
+        BtnPrintPerJam = new widget.Button();
+        BtnKeluar3 = new widget.Button();
+        panelTanggal = new widget.PanelBiasa();
+        panelBiasa6 = new widget.PanelBiasa();
+        panelBiasa7 = new widget.PanelBiasa();
+        Scroll3 = new widget.ScrollPane();
+        tbIntake1 = new widget.Table();
+        Scroll4 = new widget.ScrollPane();
+        tbParental1 = new widget.Table();
+        panelGlass6 = new widget.panelisi();
+        BtnGrafikTgl = new widget.Button();
+        BtnPrintPerTgl = new widget.Button();
+        BtnKeluar4 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -255,81 +268,17 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
 
         internalFrame1.add(panelBiasa4, java.awt.BorderLayout.PAGE_START);
 
+        TabPilihan.setBackground(new java.awt.Color(254, 255, 254));
+        TabPilihan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabPilihan.setName("TabPilihan"); // NOI18N
+        TabPilihan.setPreferredSize(new java.awt.Dimension(0, 2000));
+
+        panelJam.setName("panelJam"); // NOI18N
+        panelJam.setLayout(new java.awt.BorderLayout());
+
         panelBiasa3.setName("panelBiasa3"); // NOI18N
         panelBiasa3.setLayout(new java.awt.BorderLayout());
-        internalFrame1.add(panelBiasa3, java.awt.BorderLayout.CENTER);
-
-        panelGlass5.setName("panelGlass5"); // NOI18N
-        panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
-        panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel33.setText("Tgl. Pemantauan :");
-        jLabel33.setName("jLabel33"); // NOI18N
-        jLabel33.setPreferredSize(new java.awt.Dimension(105, 23));
-        panelGlass5.add(jLabel33);
-
-        tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2024" }));
-        tglPantau.setDisplayFormat("dd-MM-yyyy");
-        tglPantau.setName("tglPantau"); // NOI18N
-        tglPantau.setOpaque(false);
-        tglPantau.setPreferredSize(new java.awt.Dimension(100, 23));
-        panelGlass5.add(tglPantau);
-
-        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setName("jLabel34"); // NOI18N
-        jLabel34.setPreferredSize(new java.awt.Dimension(25, 23));
-        panelGlass5.add(jLabel34);
-
-        BtnGrafik.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGrafik.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Bar Chart (copy).png"))); // NOI18N
-        BtnGrafik.setMnemonic('G');
-        BtnGrafik.setText("Lihat Grafik");
-        BtnGrafik.setToolTipText("Alt+G");
-        BtnGrafik.setName("BtnGrafik"); // NOI18N
-        BtnGrafik.setPreferredSize(new java.awt.Dimension(120, 30));
-        BtnGrafik.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGrafikActionPerformed(evt);
-            }
-        });
-        panelGlass5.add(BtnGrafik);
-
-        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
-        BtnPrint.setMnemonic('T');
-        BtnPrint.setText("Cetak");
-        BtnPrint.setToolTipText("Alt+T");
-        BtnPrint.setName("BtnPrint"); // NOI18N
-        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPrintActionPerformed(evt);
-            }
-        });
-        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnPrintKeyPressed(evt);
-            }
-        });
-        panelGlass5.add(BtnPrint);
-
-        BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar3.setMnemonic('K');
-        BtnKeluar3.setText("Keluar");
-        BtnKeluar3.setToolTipText("Alt+K");
-        BtnKeluar3.setName("BtnKeluar3"); // NOI18N
-        BtnKeluar3.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnKeluar3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKeluar3ActionPerformed(evt);
-            }
-        });
-        panelGlass5.add(BtnKeluar3);
-
-        internalFrame1.add(panelGlass5, java.awt.BorderLayout.PAGE_END);
+        panelJam.add(panelBiasa3, java.awt.BorderLayout.CENTER);
 
         panelBiasa5.setName("panelBiasa5"); // NOI18N
         panelBiasa5.setLayout(new java.awt.BorderLayout());
@@ -361,7 +310,177 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
 
         panelBiasa5.add(Scroll2, java.awt.BorderLayout.PAGE_END);
 
-        internalFrame1.add(panelBiasa5, java.awt.BorderLayout.EAST);
+        panelJam.add(panelBiasa5, java.awt.BorderLayout.EAST);
+
+        panelGlass5.setName("panelGlass5"); // NOI18N
+        panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Tgl. Pemantauan :");
+        jLabel33.setName("jLabel33"); // NOI18N
+        jLabel33.setPreferredSize(new java.awt.Dimension(105, 23));
+        panelGlass5.add(jLabel33);
+
+        tglPantau.setForeground(new java.awt.Color(50, 70, 50));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-02-2024" }));
+        tglPantau.setDisplayFormat("dd-MM-yyyy");
+        tglPantau.setName("tglPantau"); // NOI18N
+        tglPantau.setOpaque(false);
+        tglPantau.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass5.add(tglPantau);
+
+        jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel34.setName("jLabel34"); // NOI18N
+        jLabel34.setPreferredSize(new java.awt.Dimension(25, 23));
+        panelGlass5.add(jLabel34);
+
+        BtnGrafikJam.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGrafikJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Bar Chart (copy).png"))); // NOI18N
+        BtnGrafikJam.setMnemonic('G');
+        BtnGrafikJam.setText("Lihat Grafik PerJam");
+        BtnGrafikJam.setToolTipText("Alt+G");
+        BtnGrafikJam.setName("BtnGrafikJam"); // NOI18N
+        BtnGrafikJam.setPreferredSize(new java.awt.Dimension(160, 30));
+        BtnGrafikJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGrafikJamActionPerformed(evt);
+            }
+        });
+        panelGlass5.add(BtnGrafikJam);
+
+        BtnPrintPerJam.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrintPerJam.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrintPerJam.setMnemonic('T');
+        BtnPrintPerJam.setText("Cetak");
+        BtnPrintPerJam.setToolTipText("Alt+T");
+        BtnPrintPerJam.setName("BtnPrintPerJam"); // NOI18N
+        BtnPrintPerJam.setPreferredSize(new java.awt.Dimension(90, 30));
+        BtnPrintPerJam.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintPerJamActionPerformed(evt);
+            }
+        });
+        BtnPrintPerJam.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintPerJamKeyPressed(evt);
+            }
+        });
+        panelGlass5.add(BtnPrintPerJam);
+
+        BtnKeluar3.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar3.setMnemonic('K');
+        BtnKeluar3.setText("Keluar");
+        BtnKeluar3.setToolTipText("Alt+K");
+        BtnKeluar3.setName("BtnKeluar3"); // NOI18N
+        BtnKeluar3.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar3ActionPerformed(evt);
+            }
+        });
+        panelGlass5.add(BtnKeluar3);
+
+        panelJam.add(panelGlass5, java.awt.BorderLayout.PAGE_END);
+
+        TabPilihan.addTab("Per Jam", panelJam);
+
+        panelTanggal.setName("panelTanggal"); // NOI18N
+        panelTanggal.setLayout(new java.awt.BorderLayout());
+
+        panelBiasa6.setName("panelBiasa6"); // NOI18N
+        panelBiasa6.setLayout(new java.awt.BorderLayout());
+        panelTanggal.add(panelBiasa6, java.awt.BorderLayout.CENTER);
+
+        panelBiasa7.setName("panelBiasa7"); // NOI18N
+        panelBiasa7.setLayout(new java.awt.BorderLayout());
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Data Intake Per Tanggal ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+        Scroll3.setPreferredSize(new java.awt.Dimension(440, 422));
+
+        tbIntake1.setToolTipText("Silahkan klik salah satu data utk. melihat parental/line/obat-obatan");
+        tbIntake1.setName("tbIntake1"); // NOI18N
+        tbIntake1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbIntake1MouseClicked(evt);
+            }
+        });
+        Scroll3.setViewportView(tbIntake1);
+
+        panelBiasa7.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Parental / Line / Obat-obatan ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+        Scroll4.setPreferredSize(new java.awt.Dimension(440, 222));
+
+        tbParental1.setToolTipText("");
+        tbParental1.setName("tbParental1"); // NOI18N
+        Scroll4.setViewportView(tbParental1);
+
+        panelBiasa7.add(Scroll4, java.awt.BorderLayout.PAGE_END);
+
+        panelTanggal.add(panelBiasa7, java.awt.BorderLayout.EAST);
+
+        panelGlass6.setName("panelGlass6"); // NOI18N
+        panelGlass6.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        BtnGrafikTgl.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGrafikTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Bar Chart (copy).png"))); // NOI18N
+        BtnGrafikTgl.setMnemonic('G');
+        BtnGrafikTgl.setText("Lihat Grafik PerTanggal");
+        BtnGrafikTgl.setToolTipText("Alt+G");
+        BtnGrafikTgl.setName("BtnGrafikTgl"); // NOI18N
+        BtnGrafikTgl.setPreferredSize(new java.awt.Dimension(180, 30));
+        BtnGrafikTgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGrafikTglActionPerformed(evt);
+            }
+        });
+        panelGlass6.add(BtnGrafikTgl);
+
+        BtnPrintPerTgl.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrintPerTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrintPerTgl.setMnemonic('T');
+        BtnPrintPerTgl.setText("Cetak");
+        BtnPrintPerTgl.setToolTipText("Alt+T");
+        BtnPrintPerTgl.setName("BtnPrintPerTgl"); // NOI18N
+        BtnPrintPerTgl.setPreferredSize(new java.awt.Dimension(90, 30));
+        BtnPrintPerTgl.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintPerTglActionPerformed(evt);
+            }
+        });
+        BtnPrintPerTgl.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintPerTglKeyPressed(evt);
+            }
+        });
+        panelGlass6.add(BtnPrintPerTgl);
+
+        BtnKeluar4.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar4.setMnemonic('K');
+        BtnKeluar4.setText("Keluar");
+        BtnKeluar4.setToolTipText("Alt+K");
+        BtnKeluar4.setName("BtnKeluar4"); // NOI18N
+        BtnKeluar4.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar4ActionPerformed(evt);
+            }
+        });
+        panelGlass6.add(BtnKeluar4);
+
+        panelTanggal.add(panelGlass6, java.awt.BorderLayout.PAGE_END);
+
+        TabPilihan.addTab("Per Tanggal", panelTanggal);
+
+        internalFrame1.add(TabPilihan, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -371,13 +490,20 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Valid.tabelKosong(tabMode);
         Valid.tabelKosong(tabMode1);
+        TabPilihan.setSelectedIndex(0);
+        
+        if (akses.getadmin() == true) {
+            TabPilihan.setEnabledAt(1, true);
+        } else {
+            TabPilihan.setEnabledAt(1, false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnKeluar3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar3ActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluar3ActionPerformed
 
-    private void BtnGrafikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikActionPerformed
+    private void BtnGrafikJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikJamActionPerformed
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tdk. ditemukan..!!");
             Valid.tabelKosong(tabMode);
@@ -394,9 +520,9 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
             grafik.setAlwaysOnTop(true);
             grafik.setLocationRelativeTo(panelBiasa3);
             grafik.setVisible(true);
-            tampil();
+            tampilPerJam();
         }
-    }//GEN-LAST:event_BtnGrafikActionPerformed
+    }//GEN-LAST:event_BtnGrafikJamActionPerformed
 
     private void tbIntakeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIntakeMouseClicked
         if (tabMode.getRowCount() != 0) {
@@ -407,7 +533,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbIntakeMouseClicked
 
-    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+    private void BtnPrintPerJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintPerJamActionPerformed
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "' and tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tdk. ditemukan..!!");
             Valid.tabelKosong(tabMode);
@@ -433,19 +559,54 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                     + "tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' and no_rawat ='" + TNoRW.getText() + "'"));
 
             Valid.MyReport("rptPemantauanHarianPasien.jasper", "report", "::[ Lembar Hasil Pemantauan Harian Pasien ]::",
-                    "select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, concat('E:',gcs_e,', M:',gcs_m,', V:',gcs_v) gcs "
+                    "select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, if(gcs_e='' and gcs_m='' and gcs_v='','',concat('E:',gcs_e,', M:',gcs_m,', V:',gcs_v)) gcs "
                     + "from pemantauan_harian_24jam where tgl_pantau = '" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' "
-                    + "and no_rawat='" + TNoRW.getText() + "'", param);
+                    + "and no_rawat='" + TNoRW.getText() + "' order by urutan_jam", param);
             this.setCursor(Cursor.getDefaultCursor());
         }
         
-    }//GEN-LAST:event_BtnPrintActionPerformed
+    }//GEN-LAST:event_BtnPrintPerJamActionPerformed
 
-    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+    private void BtnPrintPerJamKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintPerJamKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnPrintActionPerformed(null);
+            BtnPrintPerJamActionPerformed(null);
         } 
-    }//GEN-LAST:event_BtnPrintKeyPressed
+    }//GEN-LAST:event_BtnPrintPerJamKeyPressed
+
+    private void tbIntake1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIntake1MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tbIntake1MouseClicked
+
+    private void BtnGrafikTglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikTglActionPerformed
+        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien tersebut tdk. ditemukan..!!");
+            Valid.tabelKosong(tabMode);
+            Valid.tabelKosong(tabMode1);
+            tglPantau.requestFocus();
+        } else {
+            grafikpantauPerTanggal grafik = new grafikpantauPerTanggal("Grafik Hasil Pemantauan Harian Pasien PerTanggal",
+                    "no_rawat='" + TNoRW.getText() + "'");
+            grafik.dispose();
+            grafik.setSize(panelBiasa6.getWidth() - 10, panelBiasa6.getHeight() - 10);
+            grafik.setModal(false);
+            grafik.setAlwaysOnTop(true);
+            grafik.setLocationRelativeTo(panelBiasa6);
+            grafik.setVisible(true);
+//            tampilPerJam();
+        }
+    }//GEN-LAST:event_BtnGrafikTglActionPerformed
+
+    private void BtnPrintPerTglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintPerTglActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPrintPerTglActionPerformed
+
+    private void BtnPrintPerTglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintPerTglKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnPrintPerTglKeyPressed
+
+    private void BtnKeluar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar4ActionPerformed
+        dispose();
+    }//GEN-LAST:event_BtnKeluar4ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -464,14 +625,20 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private widget.Button BtnGrafik;
+    private widget.Button BtnGrafikJam;
+    private widget.Button BtnGrafikTgl;
     private widget.Button BtnKeluar3;
-    private widget.Button BtnPrint;
+    private widget.Button BtnKeluar4;
+    private widget.Button BtnPrintPerJam;
+    private widget.Button BtnPrintPerTgl;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
+    private javax.swing.JTabbedPane TabPilihan;
     private widget.TextBox TtglMasuk;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel13;
@@ -483,9 +650,16 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.PanelBiasa panelBiasa3;
     private widget.PanelBiasa panelBiasa4;
     private widget.PanelBiasa panelBiasa5;
+    private widget.PanelBiasa panelBiasa6;
+    private widget.PanelBiasa panelBiasa7;
     private widget.panelisi panelGlass5;
+    private widget.panelisi panelGlass6;
+    private widget.PanelBiasa panelJam;
+    private widget.PanelBiasa panelTanggal;
     private widget.Table tbIntake;
+    private widget.Table tbIntake1;
     private widget.Table tbParental;
+    private widget.Table tbParental1;
     private widget.Tanggal tglPantau;
     // End of variables declaration//GEN-END:variables
 
@@ -505,10 +679,11 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         }
     }
     
-    private void tampil() {
+    private void tampilPerJam() {
         Valid.tabelKosong(tabMode);        
         try {
-            ps1 = koneksi.prepareStatement("select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, concat(gcs_e,',',gcs_m,',',gcs_v) gcs "
+            ps1 = koneksi.prepareStatement("select *, date_format(tgl_pantau,'%d/%m/%Y') tglPantau, "
+                    + "if(gcs_e='' and gcs_m='' and gcs_v='','',concat(gcs_e,',',gcs_m,',',gcs_v)) gcs "
                     + "from pemantauan_harian_24jam where tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "' "
                     + "and no_rawat='" + TNoRW.getText() + "' order by urutan_jam");
             try {
