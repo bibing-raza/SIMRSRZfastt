@@ -3080,12 +3080,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         autoNomorPerJam();
         jamDiurutkan();
         BtnTotOutputActionPerformed(null);
-        if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 33, new String[]{
+        if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 34, new String[]{
             TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
             urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
             Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
             Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Sequel.cariIsi("select now()"),
-            Tbb.getText(), Ttransfusi.getText(), TreaksiTransfusi.getText(), Tdefekasi.getText(), Tcatatan.getText(), Tnip.getText()
+            Tbb.getText(), Ttransfusi.getText(), TreaksiTransfusi.getText(), Tdefekasi.getText(), Tcatatan.getText(), Tnip.getText(),
+            cmbKali.getSelectedItem().toString()
         }) == true) {
 
             //simpan Parental_Line_Obat-obatan
@@ -3159,12 +3160,12 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         if (Sequel.mengedittf("pemantauan_harian_24jam", "waktu_simpan=?", "kd_pantau=?, tgl_pantau=?, jam=?, "
                 + "urutan_jam=?, nadi=?, suhu=?, gcs_e=?, gcs_m=?, gcs_v=?, kesadaran=?, td=?, nafas=?, spo2=?, makan_minum=?, "
                 + "ngt=?, total_parental=?, total_intake=?, urine=?, ngt_darah=?, drain=?, muntah=?, bab=?, iwl=?, total_output=?, "
-                + "balance=?, bb_msk_rs=?, transfusi=?, reaksi_transfusi=?, defekasi=?, catatan=?, nip_petugas=?", 32, new String[]{
+                + "balance=?, bb_msk_rs=?, transfusi=?, reaksi_transfusi=?, defekasi=?, catatan=?, nip_petugas=?, pengali=?", 33, new String[]{
                     TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
                     urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Ttensi.getText(),
                     Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
                     Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Tbb.getText(),
-                    Ttransfusi.getText(), TreaksiTransfusi.getText(), Tdefekasi.getText(), Tcatatan.getText(), Tnip.getText(),
+                    Ttransfusi.getText(), TreaksiTransfusi.getText(), Tdefekasi.getText(), Tcatatan.getText(), Tnip.getText(), cmbKali.getSelectedItem().toString(), 
                     wktSimpan
                 }) == true) {
 

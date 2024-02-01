@@ -74,7 +74,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");
                 double field = rs.getDouble("nadi");
-                result.addValue(field, "Nadi (x/mnt) Jam 6", tksbr);
+                result.addValue(field, "Nadi Jam 6", tksbr);
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -92,7 +92,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");
                 double field = rs.getDouble("nadi");
-                result.addValue(field, "Nadi (x/mnt) Jam 12", tksbr);
+                result.addValue(field, "Nadi Jam 12", tksbr);
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -110,7 +110,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");
                 double field = rs.getDouble("nadi");
-                result.addValue(field, "Nadi (x/mnt) Jam 18", tksbr);
+                result.addValue(field, "Nadi Jam 18", tksbr);
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -128,7 +128,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");
                 double field = rs.getDouble("nadi");
-                result.addValue(field, "Nadi (x/mnt) Jam 24", tksbr);
+                result.addValue(field, "Nadi Jam 24", tksbr);
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -146,7 +146,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");                
                 double field = rs.getDouble("suhu");
-                result.addValue(field, "Suhu (°C) Jam 6", tksbr);                
+                result.addValue(field, "Suhu Jam 6", tksbr);                
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -164,7 +164,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");                
                 double field = rs.getDouble("suhu");
-                result.addValue(field, "Suhu (°C) Jam 12", tksbr);                
+                result.addValue(field, "Suhu Jam 12", tksbr);                
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -182,7 +182,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");                
                 double field = rs.getDouble("suhu");
-                result.addValue(field, "Suhu (°C) Jam 18", tksbr);                
+                result.addValue(field, "Suhu Jam 18", tksbr);                
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -200,7 +200,7 @@ public class grafikpantauPerTanggal extends JDialog {
             while (rs.next()) {
                 String tksbr = rs.getString("tgl");                
                 double field = rs.getDouble("suhu");
-                result.addValue(field, "Suhu (°C) Jam 24", tksbr);                
+                result.addValue(field, "Suhu Jam 24", tksbr);                
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
@@ -209,9 +209,10 @@ public class grafikpantauPerTanggal extends JDialog {
     }
 
          private static JFreeChart createChart(String symbol) {
-             //nadi 6
+            //DATA NADI ------------------------------------------------
+            //nadi 6
              CategoryDataset nadi_ds6 = Nadi6(symbol);
-             NumberAxis nadi_ra6 = new NumberAxis("Nadi (x/mnt) Jam 6");
+             NumberAxis nadi_ra6 = new NumberAxis("Nadi Jam 6");
              nadi_ra6.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
              
              LineAndShapeRenderer nadi_r6 = new LineAndShapeRenderer();
@@ -220,9 +221,44 @@ public class grafikpantauPerTanggal extends JDialog {
              CategoryPlot nadi_s6 = new CategoryPlot(nadi_ds6, null, nadi_ra6, nadi_r6);
              nadi_s6.setDomainGridlinesVisible(true);
              
+             //nadi 12
+             CategoryDataset nadi_ds12 = Nadi12(symbol);
+             NumberAxis nadi_ra12 = new NumberAxis("Nadi Jam 12");
+             nadi_ra12.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+             
+             LineAndShapeRenderer nadi_r12 = new LineAndShapeRenderer();
+             nadi_r12.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot nadi_s12 = new CategoryPlot(nadi_ds12, null, nadi_ra12, nadi_r12);
+             nadi_s12.setDomainGridlinesVisible(true);
+             
+             //nadi 18
+             CategoryDataset nadi_ds18 = Nadi18(symbol);
+             NumberAxis nadi_ra18 = new NumberAxis("Nadi Jam 18");
+             nadi_ra18.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+             
+             LineAndShapeRenderer nadi_r18 = new LineAndShapeRenderer();
+             nadi_r18.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot nadi_s18 = new CategoryPlot(nadi_ds18, null, nadi_ra18, nadi_r18);
+             nadi_s18.setDomainGridlinesVisible(true);
+             
+             //nadi 24
+             CategoryDataset nadi_ds24 = Nadi24(symbol);
+             NumberAxis nadi_ra24 = new NumberAxis("Nadi Jam 24");
+             nadi_ra24.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+             
+             LineAndShapeRenderer nadi_r24 = new LineAndShapeRenderer();
+             nadi_r24.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot nadi_s24 = new CategoryPlot(nadi_ds24, null, nadi_ra24, nadi_r24);
+             nadi_s24.setDomainGridlinesVisible(true);
+             //DATA NADI SAMPAI SINI ------------------------------------------------
+             
+             //DATA SUHU ------------------------------------------------
              //suhu 6
              CategoryDataset suhu_ds6 = Suhu6(symbol);
-             NumberAxis suhu_ra6 = new NumberAxis("Suhu (°C) Jam 6");
+             NumberAxis suhu_ra6 = new NumberAxis("Suhu Jam 6");
              suhu_ra6.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
 
              LineAndShapeRenderer suhu_r6 = new LineAndShapeRenderer();
@@ -230,13 +266,53 @@ public class grafikpantauPerTanggal extends JDialog {
              
              CategoryPlot suhu_s6 = new CategoryPlot(suhu_ds6, null, suhu_ra6, suhu_r6);
              suhu_s6.setDomainGridlinesVisible(true);
+             
+             //suhu 12
+             CategoryDataset suhu_ds12 = Suhu12(symbol);
+             NumberAxis suhu_ra12 = new NumberAxis("Suhu Jam 12");
+             suhu_ra12.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+             LineAndShapeRenderer suhu_r12 = new LineAndShapeRenderer();
+             suhu_r12.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot suhu_s12 = new CategoryPlot(suhu_ds12, null, suhu_ra12, suhu_r12);
+             suhu_s12.setDomainGridlinesVisible(true);
+             
+             //suhu 18
+             CategoryDataset suhu_ds18 = Suhu18(symbol);
+             NumberAxis suhu_ra18 = new NumberAxis("Suhu Jam 18");
+             suhu_ra18.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+             LineAndShapeRenderer suhu_r18 = new LineAndShapeRenderer();
+             suhu_r18.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot suhu_s18 = new CategoryPlot(suhu_ds18, null, suhu_ra18, suhu_r18);
+             suhu_s18.setDomainGridlinesVisible(true);
+             
+             //suhu 24
+             CategoryDataset suhu_ds24 = Suhu24(symbol);
+             NumberAxis suhu_ra24 = new NumberAxis("Suhu Jam 24");
+             suhu_ra24.setStandardTickUnits(NumberAxis.createIntegerTickUnits());
+
+             LineAndShapeRenderer suhu_r24 = new LineAndShapeRenderer();
+             suhu_r24.setBaseToolTipGenerator(new StandardCategoryToolTipGenerator());
+             
+             CategoryPlot suhu_s24 = new CategoryPlot(suhu_ds24, null, suhu_ra24, suhu_r24);
+             suhu_s24.setDomainGridlinesVisible(true);
+             //DATA SUHU SAMPAI SINI ------------------------------------------------
 
              CategoryAxis domainAxis = new CategoryAxis("Grafik PerTanggal");
              CombinedDomainCategoryPlot plot = new CombinedDomainCategoryPlot(domainAxis);
 //             CombinedCategoryPlot plot = new CombinedCategoryPlot(
 //                     domainAxis, new NumberAxis("Range"));
              plot.add(nadi_s6, 1);
+             plot.add(nadi_s12, 1);
+             plot.add(nadi_s18, 1);
+             plot.add(nadi_s24, 1);
              plot.add(suhu_s6, 1);
+             plot.add(suhu_s12, 1);
+             plot.add(suhu_s18, 1);
+             plot.add(suhu_s24, 1);
 
              JFreeChart result = new JFreeChart(
                      "",
