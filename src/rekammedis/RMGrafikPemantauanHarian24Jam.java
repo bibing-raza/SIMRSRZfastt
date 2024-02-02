@@ -28,8 +28,23 @@ import java.sql.Statement;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+import javafx.application.Platform;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
+import javafx.concurrent.Worker;
+import static javafx.concurrent.Worker.State.FAILED;
+import javafx.embed.swing.JFXPanel;
+import javafx.scene.Scene;
+import javafx.scene.web.PopupFeatures;
+import javafx.scene.web.WebEngine;
+import javafx.scene.web.WebView;
+import javafx.stage.Stage;
+import javafx.stage.StageStyle;
+import javafx.util.Callback;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 
@@ -45,7 +60,10 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private PreparedStatement ps1, ps2, ps3, ps4;
     private ResultSet rs, rs1, rs2, rs3, rs4;
     private String tglLahir = "", catatan = "", petugas = "", tot_intake = "", tot_iwl = "",
-            tot_output = "", tot_balance = "", cttnfix = "", ptgsfix = "";
+            tot_output = "", tot_balance = "", cttnfix = "", ptgsfix = "", link = "";
+    private WebEngine engine;
+    private final JFXPanel jfxPanel = new JFXPanel();
+    private final JPanel panel = new JPanel(new BorderLayout());
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -190,15 +208,12 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         BtnKeluar3 = new widget.Button();
         panelTanggal = new widget.PanelBiasa();
         panelBiasa6 = new widget.PanelBiasa();
-        panelBiasa7 = new widget.PanelBiasa();
-        Scroll3 = new widget.ScrollPane();
-        tbIntake1 = new widget.Table();
-        Scroll4 = new widget.ScrollPane();
-        tbParental1 = new widget.Table();
         panelGlass6 = new widget.panelisi();
-        BtnGrafikTgl = new widget.Button();
         BtnPrintPerTgl = new widget.Button();
         BtnKeluar4 = new widget.Button();
+        panelBiasa7 = new widget.PanelBiasa();
+        Scroll3 = new widget.ScrollPane();
+        tbPertanggal = new widget.Table();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -272,6 +287,11 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         TabPilihan.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabPilihan.setName("TabPilihan"); // NOI18N
         TabPilihan.setPreferredSize(new java.awt.Dimension(0, 2000));
+        TabPilihan.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabPilihanMouseClicked(evt);
+            }
+        });
 
         panelJam.setName("panelJam"); // NOI18N
         panelJam.setLayout(new java.awt.BorderLayout());
@@ -323,7 +343,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass5.add(jLabel33);
 
         tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-02-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-02-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -393,55 +413,9 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         panelBiasa6.setLayout(new java.awt.BorderLayout());
         panelTanggal.add(panelBiasa6, java.awt.BorderLayout.CENTER);
 
-        panelBiasa7.setName("panelBiasa7"); // NOI18N
-        panelBiasa7.setLayout(new java.awt.BorderLayout());
-
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Data Intake Per Tanggal ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
-        Scroll3.setPreferredSize(new java.awt.Dimension(440, 422));
-
-        tbIntake1.setToolTipText("Silahkan klik salah satu data utk. melihat parental/line/obat-obatan");
-        tbIntake1.setName("tbIntake1"); // NOI18N
-        tbIntake1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbIntake1MouseClicked(evt);
-            }
-        });
-        Scroll3.setViewportView(tbIntake1);
-
-        panelBiasa7.add(Scroll3, java.awt.BorderLayout.CENTER);
-
-        Scroll4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Parental / Line / Obat-obatan ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Scroll4.setName("Scroll4"); // NOI18N
-        Scroll4.setOpaque(true);
-        Scroll4.setPreferredSize(new java.awt.Dimension(440, 222));
-
-        tbParental1.setToolTipText("");
-        tbParental1.setName("tbParental1"); // NOI18N
-        Scroll4.setViewportView(tbParental1);
-
-        panelBiasa7.add(Scroll4, java.awt.BorderLayout.PAGE_END);
-
-        panelTanggal.add(panelBiasa7, java.awt.BorderLayout.EAST);
-
         panelGlass6.setName("panelGlass6"); // NOI18N
         panelGlass6.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass6.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        BtnGrafikTgl.setForeground(new java.awt.Color(0, 0, 0));
-        BtnGrafikTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Bar Chart (copy).png"))); // NOI18N
-        BtnGrafikTgl.setMnemonic('G');
-        BtnGrafikTgl.setText("Lihat Grafik PerTanggal");
-        BtnGrafikTgl.setToolTipText("Alt+G");
-        BtnGrafikTgl.setName("BtnGrafikTgl"); // NOI18N
-        BtnGrafikTgl.setPreferredSize(new java.awt.Dimension(180, 30));
-        BtnGrafikTgl.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnGrafikTglActionPerformed(evt);
-            }
-        });
-        panelGlass6.add(BtnGrafikTgl);
 
         BtnPrintPerTgl.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrintPerTgl.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -477,6 +451,22 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass6.add(BtnKeluar4);
 
         panelTanggal.add(panelGlass6, java.awt.BorderLayout.PAGE_END);
+
+        panelBiasa7.setName("panelBiasa7"); // NOI18N
+        panelBiasa7.setLayout(new java.awt.BorderLayout());
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Data Pemantauan Per Tanggal ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+        Scroll3.setPreferredSize(new java.awt.Dimension(380, 422));
+
+        tbPertanggal.setToolTipText("");
+        tbPertanggal.setName("tbPertanggal"); // NOI18N
+        Scroll3.setViewportView(tbPertanggal);
+
+        panelBiasa7.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        panelTanggal.add(panelBiasa7, java.awt.BorderLayout.EAST);
 
         TabPilihan.addTab("Per Tanggal", panelTanggal);
 
@@ -573,29 +563,6 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         } 
     }//GEN-LAST:event_BtnPrintPerJamKeyPressed
 
-    private void tbIntake1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbIntake1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tbIntake1MouseClicked
-
-    private void BtnGrafikTglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikTglActionPerformed
-        if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien tersebut tdk. ditemukan..!!");
-            Valid.tabelKosong(tabMode);
-            Valid.tabelKosong(tabMode1);
-            tglPantau.requestFocus();
-        } else {
-            grafikpantauPerTanggal grafik = new grafikpantauPerTanggal("Grafik Hasil Pemantauan Harian Pasien PerTanggal",
-                    "no_rawat='" + TNoRW.getText() + "'");
-            grafik.dispose();
-            grafik.setSize(panelBiasa6.getWidth() - 10, panelBiasa6.getHeight() - 10);
-            grafik.setModal(false);
-            grafik.setAlwaysOnTop(true);
-            grafik.setLocationRelativeTo(panelBiasa6);
-            grafik.setVisible(true);
-//            tampilPerJam();
-        }
-    }//GEN-LAST:event_BtnGrafikTglActionPerformed
-
     private void BtnPrintPerTglActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintPerTglActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnPrintPerTglActionPerformed
@@ -607,6 +574,19 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private void BtnKeluar4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar4ActionPerformed
         dispose();
     }//GEN-LAST:event_BtnKeluar4ActionPerformed
+
+    private void TabPilihanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabPilihanMouseClicked
+        if (TabPilihan.getSelectedIndex() == 1) {
+            if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "'") == 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, data pemantauan harian pasien tersebut tdk. ditemukan..!!");
+                Valid.tabelKosong(tabMode);
+                Valid.tabelKosong(tabMode1);
+                tglPantau.requestFocus();
+            } else {
+                tampilPerTanggal();
+            }
+        }
+    }//GEN-LAST:event_TabPilihanMouseClicked
 
     /**
     * @param args the command line arguments
@@ -626,7 +606,6 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnGrafikJam;
-    private widget.Button BtnGrafikTgl;
     private widget.Button BtnKeluar3;
     private widget.Button BtnKeluar4;
     private widget.Button BtnPrintPerJam;
@@ -634,7 +613,6 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
     private widget.ScrollPane Scroll3;
-    private widget.ScrollPane Scroll4;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
@@ -657,9 +635,8 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.PanelBiasa panelJam;
     private widget.PanelBiasa panelTanggal;
     private widget.Table tbIntake;
-    private widget.Table tbIntake1;
     private widget.Table tbParental;
-    private widget.Table tbParental1;
+    private widget.Table tbPertanggal;
     private widget.Tanggal tglPantau;
     // End of variables declaration//GEN-END:variables
 
@@ -843,5 +820,119 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void tampilPerTanggal() {
+        try {
+            link = "https://www.youtube.com/watch?v=tt3kQnj0onM";
+//            link = "urlnya diisi disini";            
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+        }
+        
+        try {
+            if (TNoRW.getText().equals("")) {
+                loadURL("");
+                initComponents2();
+            } else {
+                if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                    loadURL(link + "" + TNoRW.getText());
+                    initComponents2();
+                } else {
+                    loadURL("");
+                    initComponents2();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
+        } 
+    }
+    
+    public void loadURL(String url) {
+        try {            
+            createScene();
+        } catch (Exception e) {
+        }
+
+        Platform.runLater(() -> {
+            try {
+                engine.load(url);
+            } catch (Exception exception) {
+                engine.load(url);
+            }
+        });
+    }
+    
+    private void initComponents2() {           
+        panel.add(jfxPanel, BorderLayout.CENTER);        
+        panelBiasa6.setLayout(new BorderLayout());
+        panelBiasa6.add(panel);
+    }
+    
+    private void createScene() {
+        try {
+            link = "https://www.youtube.com/watch?v=tt3kQnj0onM";
+//            link = "urlnya diisi disini";            
+        } catch (Exception e) {
+            System.out.println("E : " + e);
+        }
+        
+        Platform.runLater(new Runnable() {
+            public void run() {
+                WebView view = new WebView();                
+                engine = view.getEngine();
+                engine.setJavaScriptEnabled(true);                
+                engine.setCreatePopupHandler(new Callback<PopupFeatures, WebEngine>() {
+                    @Override
+                    public WebEngine call(PopupFeatures p) {
+                        Stage stage = new Stage(StageStyle.TRANSPARENT);
+                        return view.getEngine();
+                    }
+                });
+                
+                engine.getLoadWorker().exceptionProperty().addListener((ObservableValue<? extends Throwable> o, Throwable old, final Throwable value) -> {
+                    if (engine.getLoadWorker().getState() == FAILED) {
+                        SwingUtilities.invokeLater(() -> {
+                            JOptionPane.showMessageDialog(
+                                    panel,
+                                    (value != null) ?
+                                            engine.getLocation() + "\n" + value.getMessage() :
+                                            engine.getLocation() + "\nUnexpected Data.",
+                                    "Loading Data...",
+                                    JOptionPane.ERROR_MESSAGE);
+                        });
+                    }
+                });                
+                
+                engine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
+                    @Override
+                    public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
+                        if (newState == Worker.State.SUCCEEDED) {
+                            try {
+                                if (engine.getLocation().contains(link)) {
+                                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                                    engine.executeScript("history.back()");
+                                    setCursor(Cursor.getDefaultCursor());
+                                } else if (engine.getLocation().contains(link)) {
+                                    dispose();
+                                }
+                                
+//                                if (engine.getLocation().replaceAll(link + "" + TNoRW.getText(), "").contains(link + "" + TNoRW.getText())) {
+//                                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+//                                    engine.executeScript("history.back()");
+//                                    setCursor(Cursor.getDefaultCursor());
+//                                } else if (engine.getLocation().replaceAll(link + "" + TNoRW.getText(), "").contains(link + "" + TNoRW.getText())) {
+//                                    dispose();
+//                                }
+                            } catch (Exception ex) {
+                                System.out.println("Notifikasi : "+ex);
+                            }
+                        } 
+                    }
+                });
+                
+                jfxPanel.setScene(new Scene(view));
+            }
+        });
     }
 }

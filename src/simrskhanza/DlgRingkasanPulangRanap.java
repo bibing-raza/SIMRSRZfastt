@@ -242,7 +242,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             public void windowClosed(WindowEvent e) {
                 if (akses.getform().equals("DlgRingkasanPulangRanap")) {
                     if (dokter.getTable().getSelectedRow() != -1) {
-                        TNmDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());                        
+                        TNmDokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
                     }
                 }
             }
@@ -3005,10 +3005,11 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         try {
             psPasien = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgl_lhr, "
                     + "IF(p.jk='L','Laki-laki','Perempuan') jk, DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_msk, DATE_FORMAT(ki.tgl_keluar,'%d-%m-%Y') tgl_pulang, "
-                    + "b.nm_bangsal, pj.png_jawab, ki.stts_pulang, ifnull(d.nm_dokter,'-') dpjp, b.nm_gedung from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "inner join penjab pj ON pj.kd_pj = rp.kd_pj left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat left join dokter d on d.kd_dokter=dr.kd_dokter where "
-                    + "rp.no_rawat like '%" + TNoRW.getText() + "%' and ki.stts_pulang<>'Pindah Kamar' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");            
+                    + "b.nm_bangsal, pj.png_jawab, ki.stts_pulang, ifnull(d.nm_dokter,'-') dpjp, b.nm_gedung, d1.nm_dokter dokter_ralan from reg_periksa rp "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal inner join penjab pj ON pj.kd_pj = rp.kd_pj "
+                    + "INNER JOIN dokter d1 on d1.kd_dokter=rp.kd_dokter left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat left join dokter d on d.kd_dokter=dr.kd_dokter where "
+                    + "rp.no_rawat like '%" + TNoRW.getText() + "%' and ki.stts_pulang<>'Pindah Kamar' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
             try {
                 rsPasien = psPasien.executeQuery();              
                 while (rsPasien.next()) {
@@ -3023,6 +3024,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     TKondisiPulang.setText(rsPasien.getString("stts_pulang"));
                     Tdpjp.setText(rsPasien.getString("dpjp"));
                     nmgedung = rsPasien.getString("nm_gedung");
+                    TNmDokter.setText(rsPasien.getString("dokter_ralan"));
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
