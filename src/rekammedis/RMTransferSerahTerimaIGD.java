@@ -54,6 +54,7 @@ import laporan.DlgHasilLIS;
 import laporan.DlgPenyakit;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariPeriksaRadiologi;
+import simrskhanza.DlgNotepad;
 
 /**
  *
@@ -730,6 +731,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
+        BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
         BtnBeriObat = new widget.Button();
 
@@ -1092,7 +1094,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023 16:03:36" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023 21:18:52" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -2318,7 +2320,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2333,7 +2335,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2501,6 +2503,20 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnAll);
+
+        BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
+        BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setMnemonic('N');
+        BtnNotepad.setText("Notepad");
+        BtnNotepad.setToolTipText("Alt+N");
+        BtnNotepad.setName("BtnNotepad"); // NOI18N
+        BtnNotepad.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNotepadActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnNotepad);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -3302,6 +3318,17 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         // TODO add your handling code here:
     }//GEN-LAST:event_TDiagnosaKeyPressed
 
+    private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMTransferSerahTerimaIGD");
+        DlgNotepad form = new DlgNotepad(null, false);
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setData(akses.getkode());
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnNotepadActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3333,6 +3360,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluhan;
+    private widget.Button BtnNotepad;
     private widget.Button BtnPrint;
     private widget.Button BtnRekom;
     private widget.Button BtnRiwAlergi;

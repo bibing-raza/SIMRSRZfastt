@@ -1035,6 +1035,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenu();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
+        MnNotepad = new javax.swing.JMenuItem();
         MnBilling = new javax.swing.JMenuItem();
         MnDeposit = new javax.swing.JMenuItem();
         MnUpdateHari = new javax.swing.JMenuItem();
@@ -4192,6 +4193,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanPenunjang.add(MnHasilPemeriksaanRad);
 
         jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+
+        MnNotepad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnNotepad.setText("Notepad SIMRS");
+        MnNotepad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnNotepad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnNotepad.setIconTextGap(5);
+        MnNotepad.setName("MnNotepad"); // NOI18N
+        MnNotepad.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnNotepadActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnNotepad);
 
         MnBilling.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnBilling.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -13405,6 +13421,23 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnGrafikPantauActionPerformed
 
+    private void MnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnNotepadActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKamarInap");
+            DlgNotepad form = new DlgNotepad(null, false);
+            form.setData(akses.getkode());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnNotepadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13584,6 +13617,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnNoResep;
     private javax.swing.JMenuItem MnNomorTB;
     private javax.swing.JMenuItem MnNonCovid;
+    private javax.swing.JMenuItem MnNotepad;
     private javax.swing.JMenu MnObat;
     private javax.swing.JMenuItem MnOperasi;
     private javax.swing.JMenuItem MnOrderLab;

@@ -989,6 +989,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnPemantauanHarian24Jam = new widget.ButtonBig();
         btnKirimMedicationRequestSatuSehat = new widget.ButtonBig();
         btnKirimMedicationDispenseSatuSehat = new widget.ButtonBig();
+        btnNotepad = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6539,6 +6540,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnKirimMedicationDispenseSatuSehat);
 
+        btnNotepad.setForeground(new java.awt.Color(0, 0, 0));
+        btnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485642_edit-notes.png"))); // NOI18N
+        btnNotepad.setText("Notepad SIMRS");
+        btnNotepad.setIconTextGap(0);
+        btnNotepad.setName("btnNotepad"); // NOI18N
+        btnNotepad.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNotepadActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnNotepad);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6547,7 +6561,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28/01/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04/02/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12914,6 +12928,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnKirimMedicationDispenseSatuSehatActionPerformed
 
+    private void btnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNotepadActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgNotepad aplikasi = new DlgNotepad(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setData(akses.getkode());
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnNotepadActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13170,6 +13196,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMonitoringKlaimBPJS;
     private widget.ButtonBig btnMutasiBarang;
     private widget.ButtonBig btnMutasiBerkas;
+    private widget.ButtonBig btnNotepad;
     private widget.ButtonBig btnObat;
     private widget.ButtonBig btnObatPasienPeresep;
     private widget.ButtonBig btnObatPasienRalan;
@@ -13695,6 +13722,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 2) {
             jmlmenu = 0;
+            Panelmenu.add(btnNotepad);
+            jmlmenu++;
+            
             if (akses.getpetugas() == true) {
                 Panelmenu.add(btnPegawai);
                 jmlmenu++;
@@ -15675,6 +15705,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
+        Panelmenu.add(btnNotepad);
+        jmlmenu++;
+        
         if (akses.getadmin() == true) {
             Panelmenu.add(btnBangsal);
             jmlmenu++;
@@ -17594,6 +17627,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (btnNotepad.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+            Panelmenu.add(btnNotepad);
+            jmlmenu++;
+        }
+        
         if (akses.getsatu_sehat()== true) {
             if (btnReferensiDokterSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnReferensiDokterSatuSehat);

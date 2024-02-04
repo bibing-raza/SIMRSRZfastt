@@ -414,6 +414,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         noreg = new widget.TextBox();
         jml_noreg = new widget.Label();
         ChkAsesmenMedik = new widget.CekBox();
+        BtnPasteTerapiPulang = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbRingkasan = new widget.Table();
@@ -429,6 +430,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
         BtnAll = new widget.Button();
+        BtnNotepad = new widget.Button();
         BtnVerif = new widget.Button();
         BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -1305,7 +1307,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1574,6 +1576,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         panelisi1.add(ChkAsesmenMedik);
         ChkAsesmenMedik.setBounds(510, 162, 230, 23);
 
+        BtnPasteTerapiPulang.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteTerapiPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteTerapiPulang.setMnemonic('L');
+        BtnPasteTerapiPulang.setText("Paste");
+        BtnPasteTerapiPulang.setToolTipText("Alt+L");
+        BtnPasteTerapiPulang.setName("BtnPasteTerapiPulang"); // NOI18N
+        BtnPasteTerapiPulang.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteTerapiPulang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteTerapiPulangActionPerformed(evt);
+            }
+        });
+        panelisi1.add(BtnPasteTerapiPulang);
+        BtnPasteTerapiPulang.setBounds(780, 1180, 80, 23);
+
         Scroll2.setViewportView(panelisi1);
 
         internalFrame2.add(Scroll2, java.awt.BorderLayout.CENTER);
@@ -1761,6 +1778,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnAll);
+
+        BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
+        BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnNotepad.setMnemonic('N');
+        BtnNotepad.setText("Notepad");
+        BtnNotepad.setToolTipText("Alt+N");
+        BtnNotepad.setName("BtnNotepad"); // NOI18N
+        BtnNotepad.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnNotepad.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnNotepadActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnNotepad);
 
         BtnVerif.setForeground(new java.awt.Color(0, 0, 0));
         BtnVerif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/checked.png"))); // NOI18N
@@ -2575,6 +2606,31 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkAsesmenMedikActionPerformed
 
+    private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("DlgRingkasanPulangRanap");
+        DlgNotepad form = new DlgNotepad(null, false);
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setData(akses.getkode());
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnNotepadActionPerformed
+
+    private void BtnPasteTerapiPulangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteTerapiPulangActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu resep pulangnya..!!!!");
+        } else {
+            if (TTerapiPulang.getText().equals("")) {
+                TTerapiPulang.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                TTerapiPulang.setText(TTerapiPulang.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteTerapiPulangActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2599,8 +2655,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnNotepad;
     private widget.Button BtnPasteHasil;
     private widget.Button BtnPastePenunjang;
+    private widget.Button BtnPasteTerapiPulang;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnVerif;
