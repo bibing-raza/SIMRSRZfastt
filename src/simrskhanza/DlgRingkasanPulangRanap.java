@@ -303,6 +303,17 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         anakB = new widget.TextArea();
         Scroll8 = new widget.ScrollPane();
         tbFaktorResiko = new widget.Table();
+        WindowTTE = new javax.swing.JDialog();
+        internalFrame3 = new widget.InternalFrame();
+        panelisi3 = new widget.panelisi();
+        jLabel60 = new widget.Label();
+        kddokter = new widget.TextBox();
+        TDokter = new widget.TextBox();
+        jLabel61 = new widget.Label();
+        Tpaspras = new widget.TextBox();
+        panelisi4 = new widget.panelisi();
+        BtnSimpan1 = new widget.Button();
+        BtnCloseIn1 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         TabRingkasan = new widget.TabPane();
         internalFrame2 = new widget.InternalFrame();
@@ -434,6 +445,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnVerif = new widget.Button();
         BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
+        BtnTTE = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -689,6 +701,89 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         tbFaktorResiko.setName("tbFaktorResiko"); // NOI18N
         Scroll8.setViewportView(tbFaktorResiko);
+
+        WindowTTE.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowTTE.setName("WindowTTE"); // NOI18N
+        WindowTTE.setUndecorated(true);
+        WindowTTE.setResizable(false);
+
+        internalFrame3.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Bubuhkan Tanda Tangan Elektronik (TTE) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame3.setName("internalFrame3"); // NOI18N
+        internalFrame3.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame3.setLayout(new java.awt.BorderLayout());
+
+        panelisi3.setBackground(new java.awt.Color(255, 150, 255));
+        panelisi3.setName("panelisi3"); // NOI18N
+        panelisi3.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi3.setLayout(null);
+
+        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel60.setText("Nama DPJP : ");
+        jLabel60.setName("jLabel60"); // NOI18N
+        panelisi3.add(jLabel60);
+        jLabel60.setBounds(0, 10, 100, 23);
+
+        kddokter.setEditable(false);
+        kddokter.setForeground(new java.awt.Color(0, 0, 0));
+        kddokter.setName("kddokter"); // NOI18N
+        panelisi3.add(kddokter);
+        kddokter.setBounds(100, 10, 90, 23);
+
+        TDokter.setEditable(false);
+        TDokter.setForeground(new java.awt.Color(0, 0, 0));
+        TDokter.setName("TDokter"); // NOI18N
+        panelisi3.add(TDokter);
+        TDokter.setBounds(193, 10, 271, 23);
+
+        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel61.setText("Passphrase : ");
+        jLabel61.setName("jLabel61"); // NOI18N
+        panelisi3.add(jLabel61);
+        jLabel61.setBounds(0, 38, 100, 23);
+
+        Tpaspras.setForeground(new java.awt.Color(0, 0, 0));
+        Tpaspras.setName("Tpaspras"); // NOI18N
+        panelisi3.add(Tpaspras);
+        Tpaspras.setBounds(100, 38, 364, 23);
+
+        internalFrame3.add(panelisi3, java.awt.BorderLayout.PAGE_START);
+
+        panelisi4.setBackground(new java.awt.Color(255, 150, 255));
+        panelisi4.setName("panelisi4"); // NOI18N
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
+        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 4, 9));
+
+        BtnSimpan1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSimpan1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Export.png"))); // NOI18N
+        BtnSimpan1.setMnemonic('S');
+        BtnSimpan1.setText("Submit");
+        BtnSimpan1.setToolTipText("Alt+S");
+        BtnSimpan1.setName("BtnSimpan1"); // NOI18N
+        BtnSimpan1.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnSimpan1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSimpan1ActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnSimpan1);
+
+        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
+        BtnCloseIn1.setText("Tutup");
+        BtnCloseIn1.setToolTipText("Alt+U");
+        BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
+        BtnCloseIn1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCloseIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn1ActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnCloseIn1);
+
+        internalFrame3.add(panelisi4, java.awt.BorderLayout.CENTER);
+
+        WindowTTE.getContentPane().add(internalFrame3, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1307,7 +1402,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1839,6 +1934,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnKeluar);
+
+        BtnTTE.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTTE.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/clear24.png"))); // NOI18N
+        BtnTTE.setMnemonic('T');
+        BtnTTE.setText("Bubuhkan TTE");
+        BtnTTE.setToolTipText("Alt+T");
+        BtnTTE.setName("BtnTTE"); // NOI18N
+        BtnTTE.setPreferredSize(new java.awt.Dimension(140, 30));
+        BtnTTE.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTTEActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnTTE);
 
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
@@ -2631,6 +2740,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPasteTerapiPulangActionPerformed
 
+    private void BtnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTTEActionPerformed
+        WindowTTE.setSize(505, 143);
+        WindowTTE.setLocationRelativeTo(internalFrame1);
+        WindowTTE.setVisible(true);
+    }//GEN-LAST:event_BtnTTEActionPerformed
+
+    private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
+
+    }//GEN-LAST:event_BtnSimpan1ActionPerformed
+
+    private void BtnCloseIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn1ActionPerformed
+        WindowTTE.dispose();
+    }//GEN-LAST:event_BtnCloseIn1ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2651,6 +2774,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCloseIn1;
     public widget.Button BtnDokter;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
@@ -2661,6 +2785,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnPasteTerapiPulang;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
+    private widget.Button BtnSimpan1;
+    private widget.Button BtnTTE;
     private widget.Button BtnVerif;
     public widget.CekBox ChkAsesmenMedik;
     private widget.Label LCount;
@@ -2696,6 +2822,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextArea TCatatan;
     private widget.TextArea TDiagSekunder;
     private widget.TextArea TDiagUtama;
+    private widget.TextBox TDokter;
     private widget.TextBox TDokterLuar;
     private widget.TextBox TFrekuensiNafas;
     private widget.TextArea THasil;
@@ -2729,6 +2856,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextBox Tedukasi;
     private widget.TextBox Tgcs;
     private widget.Tanggal TglKontrol;
+    private widget.TextBox Tpaspras;
+    private javax.swing.JDialog WindowTTE;
     private widget.TextArea anakA;
     private widget.TextArea anakB;
     private widget.CekBox chkTglKontrol;
@@ -2738,6 +2867,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextArea dewasaC;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
@@ -2791,9 +2921,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Label jLabel57;
     private widget.Label jLabel58;
     private widget.Label jLabel59;
+    private widget.Label jLabel60;
+    private widget.Label jLabel61;
     private widget.Label jLabel8;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label jml_noreg;
+    private widget.TextBox kddokter;
     private widget.TextBox noreg;
     private widget.PanelBiasa panelBiasa10;
     private widget.PanelBiasa panelBiasa14;
@@ -2805,6 +2938,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.panelisi panelisi1;
+    private widget.panelisi panelisi3;
+    private widget.panelisi panelisi4;
     private widget.Table tbFaktorResiko;
     private widget.Table tbRingkasan;
     // End of variables declaration//GEN-END:variables

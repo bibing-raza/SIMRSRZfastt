@@ -393,6 +393,7 @@ import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMPemantauanHarian24Jam;
+import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMTindakanKedokteran;
 import setting.DlgClosingKasir;
 import setting.DlgSetBridging;
@@ -990,6 +991,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnKirimMedicationRequestSatuSehat = new widget.ButtonBig();
         btnKirimMedicationDispenseSatuSehat = new widget.ButtonBig();
         btnNotepad = new widget.ButtonBig();
+        btnProtokolKemoterapi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6553,6 +6555,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnNotepad);
 
+        btnProtokolKemoterapi.setForeground(new java.awt.Color(0, 0, 0));
+        btnProtokolKemoterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
+        btnProtokolKemoterapi.setText("Protokol Kemoterapi");
+        btnProtokolKemoterapi.setIconTextGap(0);
+        btnProtokolKemoterapi.setName("btnProtokolKemoterapi"); // NOI18N
+        btnProtokolKemoterapi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnProtokolKemoterapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnProtokolKemoterapiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnProtokolKemoterapi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6561,7 +6576,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04/02/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/02/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -7276,12 +7291,12 @@ public class frmUtama extends javax.swing.JFrame {
         jMenu4.setName("jMenu4"); // NOI18N
         jMenu4.setPreferredSize(new java.awt.Dimension(160, 30));
         jMenu4.addMenuListener(new javax.swing.event.MenuListener() {
-            public void menuCanceled(javax.swing.event.MenuEvent evt) {
+            public void menuSelected(javax.swing.event.MenuEvent evt) {
+                jMenu4MenuSelected(evt);
             }
             public void menuDeselected(javax.swing.event.MenuEvent evt) {
             }
-            public void menuSelected(javax.swing.event.MenuEvent evt) {
-                jMenu4MenuSelected(evt);
+            public void menuCanceled(javax.swing.event.MenuEvent evt) {
             }
         });
         jMenu4.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -12940,6 +12955,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnNotepadActionPerformed
 
+    private void btnProtokolKemoterapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnProtokolKemoterapiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMProtokolKemoterapi aplikasi = new RMProtokolKemoterapi(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnProtokolKemoterapiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13257,6 +13284,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPotonganBiaya;
     private widget.ButtonBig btnProdusenInventaris;
     private widget.ButtonBig btnProgramPRBBPJS;
+    private widget.ButtonBig btnProtokolKemoterapi;
     private widget.ButtonBig btnRBDokter;
     private widget.ButtonBig btnRBJasaSarana;
     private widget.ButtonBig btnRBKSO;
@@ -15118,6 +15146,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
+            if (akses.getkemoterapi() == true) {
+                Panelmenu.add(btnProtokolKemoterapi);
+                jmlmenu++;
+            }
+            
             if (akses.getpenilaian_awal_keperawatan_kebidanan()== true) {
                 Panelmenu.add(btnAsesmenKebidananRalan);
                 jmlmenu++;
@@ -15725,6 +15758,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkemenkes_sitt() == true) {
             Panelmenu.add(btnSpirometri);
+            jmlmenu++;
+        }
+        
+        if (akses.getkemoterapi() == true) {
+            Panelmenu.add(btnProtokolKemoterapi);
             jmlmenu++;
         }
 
@@ -17775,6 +17813,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getadmin()== true) {
             if (btnBangsal.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnBangsal);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkemoterapi()== true) {
+            if (btnProtokolKemoterapi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnProtokolKemoterapi);
                 jmlmenu++;
             }
         }

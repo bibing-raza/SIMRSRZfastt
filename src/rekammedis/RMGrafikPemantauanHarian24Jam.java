@@ -824,8 +824,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     
     private void tampilPerTanggal() {
         try {
-            link = "https://www.youtube.com/watch?v=tt3kQnj0onM";
-//            link = "urlnya diisi disini";            
+            link = "http://192.168.0.225/view/grafik.php?norawat=";
         } catch (Exception e) {
             System.out.println("E : " + e);
         }
@@ -871,8 +870,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     
     private void createScene() {
         try {
-            link = "https://www.youtube.com/watch?v=tt3kQnj0onM";
-//            link = "urlnya diisi disini";            
+            link = "http://192.168.0.225/view/grafik.php?norawat=";
         } catch (Exception e) {
             System.out.println("E : " + e);
         }
@@ -909,21 +907,13 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             try {
-                                if (engine.getLocation().contains(link)) {
+                                if (engine.getLocation().contains(link + "" + TNoRW.getText())) {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                                     engine.executeScript("history.back()");
                                     setCursor(Cursor.getDefaultCursor());
-                                } else if (engine.getLocation().contains(link)) {
+                                } else if (engine.getLocation().contains(link + "" + TNoRW.getText())) {
                                     dispose();
                                 }
-                                
-//                                if (engine.getLocation().replaceAll(link + "" + TNoRW.getText(), "").contains(link + "" + TNoRW.getText())) {
-//                                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                                    engine.executeScript("history.back()");
-//                                    setCursor(Cursor.getDefaultCursor());
-//                                } else if (engine.getLocation().replaceAll(link + "" + TNoRW.getText(), "").contains(link + "" + TNoRW.getText())) {
-//                                    dispose();
-//                                }
                             } catch (Exception ex) {
                                 System.out.println("Notifikasi : "+ex);
                             }

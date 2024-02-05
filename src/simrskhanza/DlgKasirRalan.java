@@ -107,6 +107,7 @@ import rekammedis.RMTriaseIGD;
 import rekammedis.RMPenilaianAwalMedisRalanMata;
 import rekammedis.RMPenilaianAwalMedisRalanTHT;
 import rekammedis.RMPenilaianTambahanGeriatri;
+import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 
@@ -656,6 +657,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDokter = new javax.swing.JMenuItem();
         MnPenjab = new javax.swing.JMenuItem();
         MnPermintaan = new javax.swing.JMenu();
+        MnProtokolKemoterapi = new javax.swing.JMenuItem();
         MnEklaimINACBG = new javax.swing.JMenu();
         MnKlaimJKN = new javax.swing.JMenuItem();
         MnKlaimCOVID = new javax.swing.JMenuItem();
@@ -1238,6 +1240,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnPermintaan.setName("MnPermintaan"); // NOI18N
         MnPermintaan.setOpaque(true);
         MnPermintaan.setPreferredSize(new java.awt.Dimension(200, 26));
+
+        MnProtokolKemoterapi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnProtokolKemoterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnProtokolKemoterapi.setText("Protokol Kemoterapi");
+        MnProtokolKemoterapi.setEnabled(false);
+        MnProtokolKemoterapi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnProtokolKemoterapi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnProtokolKemoterapi.setIconTextGap(5);
+        MnProtokolKemoterapi.setName("MnProtokolKemoterapi"); // NOI18N
+        MnProtokolKemoterapi.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnProtokolKemoterapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnProtokolKemoterapiActionPerformed(evt);
+            }
+        });
+        MnPermintaan.add(MnProtokolKemoterapi);
 
         MnEklaimINACBG.setBackground(new java.awt.Color(248, 253, 243));
         MnEklaimINACBG.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3242,7 +3260,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4095,7 +4113,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4332,7 +4350,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4351,7 +4369,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8120,6 +8138,24 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnNotepadActionPerformed
 
+    private void MnProtokolKemoterapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnProtokolKemoterapiActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+            TCari.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKasirRalan");
+            RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), "Ralan");
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnProtokolKemoterapiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8254,6 +8290,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnPetugasPemberianObat;
     private javax.swing.JMenuItem MnPoli;
     private javax.swing.JMenuItem MnPoliInternal;
+    private javax.swing.JMenuItem MnProtokolKemoterapi;
     private javax.swing.JMenu MnRMGawatDarurat;
     private javax.swing.JMenuItem MnRegistrasiKeTBDOT;
     private javax.swing.JMenuItem MnRehabMedik;
@@ -8692,6 +8729,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnInputDataKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         MnInputDataAsesmenMedikObstetri.setEnabled(akses.getresep_dokter());
         ppPersetujuanTindakan.setEnabled(akses.getcppt());
+        MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getkode().equals("Admin Utama")) {
             ppProgramPRB.setEnabled(true);

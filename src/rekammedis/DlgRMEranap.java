@@ -123,6 +123,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnJawabKonsul = new widget.ButtonBig();
         BtnPantauHarianPasien = new widget.ButtonBig();
         BtnGrafikPantauHarian = new widget.ButtonBig();
+        BtnProtokolKemoterapi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -412,6 +413,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnGrafikPantauHarian);
+
+        BtnProtokolKemoterapi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnProtokolKemoterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
+        BtnProtokolKemoterapi.setText("Protokol Kemoterapi");
+        BtnProtokolKemoterapi.setIconTextGap(0);
+        BtnProtokolKemoterapi.setName("BtnProtokolKemoterapi"); // NOI18N
+        BtnProtokolKemoterapi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnProtokolKemoterapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnProtokolKemoterapiActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnProtokolKemoterapi);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -716,6 +730,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnGrafikPantauHarianActionPerformed
 
+    private void BtnProtokolKemoterapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnProtokolKemoterapiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), "Ranap");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnProtokolKemoterapiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -744,6 +775,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
     private widget.ButtonBig BtnPantauHarianPasien;
+    private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnRingkasan;
@@ -776,6 +808,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnResep.setEnabled(akses.getresep_dokter());
         BtnKonsul.setEnabled(akses.getpermintaan_lab());
         BtnJawabKonsul.setEnabled(akses.getpermintaan_lab());
+        BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
     }
     
     public void setData(String norw, String norm, String nmpasien,
