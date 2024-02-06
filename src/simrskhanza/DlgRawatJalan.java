@@ -9145,16 +9145,20 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
             TCari.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRawatJalan");
-            RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
-            form.emptTeks();
-            form.isCek();
-            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), "Ralan");
-            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRawatJalan");
+                RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), "Ralan");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, masih proses dikerjakan, kalau sudah selesai dikabari...!!!");
+            }
         }
     }//GEN-LAST:event_ppProtokolKemoterapiBtnPrintActionPerformed
     /**
