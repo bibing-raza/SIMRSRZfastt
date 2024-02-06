@@ -13427,9 +13427,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKamarInap");
                 RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
-                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(),
-                        Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'")));
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setData(norawat.getText());
+                form.setSize(632, 71);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
                 BtnCariActionPerformed(null);

@@ -2741,9 +2741,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPasteTerapiPulangActionPerformed
 
     private void BtnTTEActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTTEActionPerformed
-        WindowTTE.setSize(505, 143);
-        WindowTTE.setLocationRelativeTo(internalFrame1);
-        WindowTTE.setVisible(true);
+        if (akses.getadmin() == true) {
+            WindowTTE.setSize(505, 143);
+            WindowTTE.setLocationRelativeTo(internalFrame1);
+            WindowTTE.setVisible(true);
+        } else {
+            JOptionPane.showMessageDialog(null, "Untuk saat ini belum bisa difungsikan, masih menunggu sosialisasi dari manajemen..!!");
+        }
     }//GEN-LAST:event_BtnTTEActionPerformed
 
     private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed

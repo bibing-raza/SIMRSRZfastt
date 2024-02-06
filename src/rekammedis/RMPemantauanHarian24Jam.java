@@ -2271,19 +2271,19 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else if (tbPantau.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Grafik hasil pemantauan harian pasien tdk. ditemukan, cek lagi tanggalnya..!!");
-        } else if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + TNoRw.getText() + "' and tgl_pantau='" + tglPANTAU + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Grafik hasil pemantauan harian pasien pada tgl. " + Valid.SetTglINDONESIA(tglPANTAU) + " tdk. ditemukan..!!");
-            tbPantau.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("RMPemantauanHarian24Jam");
-            RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
-            form.setData(TNoRw.getText(), TNoRm.getText(), TPasien.getText(), TrgRawat.getText(),
-                    Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
-            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("RMPemantauanHarian24Jam");
+                RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
+                form.setData(TNoRw.getText());
+                form.setSize(632, 71);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih proses dikerjakan..!!");
+            }            
         }
     }//GEN-LAST:event_BtnGrafikActionPerformed
 

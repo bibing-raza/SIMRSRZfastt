@@ -1343,6 +1343,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         cekCatRanap = Sequel.cariInteger("Select count(-1) from catatan_resep_ranap where no_rawat = '" + TNoRw.getText() + "' and status = 'BELUM'");
         cekCatRalan = Sequel.cariInteger("Select count(-1) from catatan_resep where no_rawat = '" + TNoRw.getText() + "' and status = 'BELUM'");
 
+        //APOTEK SENTRAL atau APOTEK IBS
         if (akses.getkdbangsal().equals("APT02") || akses.getkdbangsal().equals("APT07")) {
             if (cekCatRanap > 0) {
                 JOptionPane.showMessageDialog(null, "Ada catatan resep dari dokter, Silakan verifikasi resepnya dulu..!!");
@@ -1355,6 +1356,7 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 TNoRw.setText("");
                 TPasien.setText("");
             }
+        //APOTEK IGD    
         } else if (akses.getkdbangsal().equals("APT01")) {
             if (cekCatRanap > 0 || cekCatRalan > 0) {
                 JOptionPane.showMessageDialog(null, "Ada catatan resep dari dokter, Silakan verifikasi resepnya dulu..!!");
@@ -1367,6 +1369,14 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                 TNoRw.setText("");
                 TPasien.setText("");
             }
+        } else {
+            Simpan();
+            cmbStatus.setSelectedIndex(0);
+            cmbKertas.setSelectedIndex(0);
+            cmbStatus1.setSelectedIndex(0);
+            cmbKertas1.setSelectedIndex(0);
+            TNoRw.setText("");
+            TPasien.setText("");
         }
     }
 }//GEN-LAST:event_BtnSimpanActionPerformed
