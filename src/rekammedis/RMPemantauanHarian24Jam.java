@@ -2272,18 +2272,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         } else if (tbPantau.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Grafik hasil pemantauan harian pasien tdk. ditemukan, cek lagi tanggalnya..!!");
         } else {
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("RMPemantauanHarian24Jam");
-                RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
-                form.setData(TNoRw.getText());
-                form.setSize(632, 71);
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih proses dikerjakan..!!");
-            }            
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMPemantauanHarian24Jam");
+            RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
+            form.setData(TNoRw.getText());
+            form.setSize(632, 71);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnGrafikActionPerformed
 

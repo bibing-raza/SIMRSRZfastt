@@ -50,6 +50,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipDokter = "", nipPerawat = "";
     private int i = 0, x = 0;
+    private Date tgl = new Date();
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -60,7 +61,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Umur (Th.)","Nama Protokol", "Siklus Ke", "Tgl. Kemoterapi",
             "Dosis", "TB", "BB", "LPT", "Diagnosis", "Program", "Nama Dokter", "Nama Perawat", "tgl_kemoterapi",             
-            "nipDokter", "nipPerawat", "wktsimpan"};
+            "nipDokter", "nipPerawat", "wktsimpan", "keterangan"};
         
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -70,7 +71,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tbProtokol.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbProtokol.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 19; i++) {
+        for (int i = 0; i < 20; i++) {
             TableColumn column = tbProtokol.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -112,6 +113,9 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 18) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -303,6 +307,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         BtnDokter = new widget.Button();
         BtnPerawat = new widget.Button();
         chkSaya = new widget.CekBox();
+        jLabel23 = new widget.Label();
+        Tket = new widget.TextBox();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -473,7 +479,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -487,7 +493,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -632,7 +638,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setBounds(160, 66, 100, 23);
 
         TtglKemo.setForeground(new java.awt.Color(50, 70, 50));
-        TtglKemo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2024" }));
+        TtglKemo.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2024" }));
         TtglKemo.setDisplayFormat("dd-MM-yyyy");
         TtglKemo.setName("TtglKemo"); // NOI18N
         TtglKemo.setOpaque(false);
@@ -792,31 +798,31 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Scroll25.setViewportView(Tprogram);
 
         panelGlass7.add(Scroll25);
-        Scroll25.setBounds(773, 10, 555, 280);
+        Scroll25.setBounds(773, 10, 555, 252);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Nama Dokter : ");
         jLabel19.setName("jLabel19"); // NOI18N
         panelGlass7.add(jLabel19);
-        jLabel19.setBounds(680, 295, 90, 23);
+        jLabel19.setBounds(680, 267, 90, 23);
 
         TnmDokter.setEditable(false);
         TnmDokter.setForeground(new java.awt.Color(0, 0, 0));
         TnmDokter.setName("TnmDokter"); // NOI18N
         panelGlass7.add(TnmDokter);
-        TnmDokter.setBounds(773, 295, 530, 23);
+        TnmDokter.setBounds(773, 267, 530, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Nama Perawat : ");
         jLabel20.setName("jLabel20"); // NOI18N
         panelGlass7.add(jLabel20);
-        jLabel20.setBounds(680, 323, 90, 23);
+        jLabel20.setBounds(680, 295, 90, 23);
 
         TnmPerawat.setEditable(false);
         TnmPerawat.setForeground(new java.awt.Color(0, 0, 0));
         TnmPerawat.setName("TnmPerawat"); // NOI18N
         panelGlass7.add(TnmPerawat);
-        TnmPerawat.setBounds(773, 323, 420, 23);
+        TnmPerawat.setBounds(773, 295, 420, 23);
 
         BtnDokter.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -829,7 +835,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnDokter);
-        BtnDokter.setBounds(1303, 295, 30, 23);
+        BtnDokter.setBounds(1303, 267, 30, 23);
 
         BtnPerawat.setForeground(new java.awt.Color(0, 0, 0));
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -842,7 +848,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPerawat);
-        BtnPerawat.setBounds(1195, 323, 28, 23);
+        BtnPerawat.setBounds(1195, 295, 28, 23);
 
         chkSaya.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya.setForeground(new java.awt.Color(0, 0, 0));
@@ -858,7 +864,18 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya);
-        chkSaya.setBounds(1230, 323, 90, 23);
+        chkSaya.setBounds(1230, 295, 90, 23);
+
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("Keterangan : ");
+        jLabel23.setName("jLabel23"); // NOI18N
+        panelGlass7.add(jLabel23);
+        jLabel23.setBounds(680, 323, 90, 23);
+
+        Tket.setForeground(new java.awt.Color(0, 0, 0));
+        Tket.setName("Tket"); // NOI18N
+        panelGlass7.add(Tket);
+        Tket.setBounds(773, 323, 530, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -936,13 +953,27 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TnoRW.getText().equals("")) {
             Valid.textKosong(TnoRW, "Pasien");            
+        } else if (Tsiklus.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya harus diisi dulu..!!");
+            Tsiklus.requestFocus();
+        } else if (Tsiklus.getText().equals("0") || Tsiklus.getText().equals("00") || Tsiklus.getText().equals("000")) {
+            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya tidak valid, silahkan ulangi lagi..!!");
+            Tsiklus.requestFocus();
         } else {
-            Sequel.menyimpan("protokol_kemoterapi", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
-                    + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglKemo.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
-                    + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
-                    + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "'", "Protokol Kemoterapi");
-            tampil();
-            emptTeks();
+            if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "' and siklus_ke='" + Tsiklus.getText() + "'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Siklus ke " + Tsiklus.getText() + " kemoterapi pasien ini sudah ada..!!");
+                Tsiklus.requestFocus();
+            } else {
+                Sequel.menyimpan("protokol_kemoterapi", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
+                        + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglKemo.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
+                        + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
+                        + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "',"
+                        + "'" + TnoRM.getText() + "','" + Tket.getText() + "'", "Protokol Kemoterapi");
+                
+                TCari.setText(TnoRM.getText());
+                tampil();
+                emptTeks();
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -957,9 +988,11 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnHapus);}
+        } else {
+            Valid.pindah(evt, BtnSimpan, BtnHapus);
+        }
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
@@ -989,6 +1022,12 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if (TnoRW.getText().trim().equals("")) {
             Valid.textKosong(TnoRW, "Pasien");
+        } else if (Tsiklus.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya harus diisi dulu..!!");
+            Tsiklus.requestFocus();
+        } else if (Tsiklus.getText().equals("0") || Tsiklus.getText().equals("00") || Tsiklus.getText().equals("000")) {
+            JOptionPane.showMessageDialog(rootPane, "Siklus kemoterapinya tidak valid, silahkan ulangi lagi..!!");
+            Tsiklus.requestFocus();
         } else {
             if (tbProtokol.getSelectedRow() > -1) {
                 //jika bukan dokter atau admin utama
@@ -997,7 +1036,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                             "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
                             + "tgl_kemoterapi='" + Valid.SetTgl(TtglKemo.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
                             + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
-                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "'");
+                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
+                            + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
                 } else if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") == 0) {
                     Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'", "nip_perawat='" + nipPerawat + "'");
                 } else {
@@ -1005,9 +1045,11 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                             "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
                             + "tgl_kemoterapi='" + Valid.SetTgl(TtglKemo.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
                             + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
-                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "'");
+                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
+                            + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
                 }
 
+                TCari.setText(TnoRM.getText());
                 tampil();
                 emptTeks();
             } else {
@@ -1248,6 +1290,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.TextBox Tbb;
     private widget.TextArea Tdiagnosis;
     private widget.TextArea Tdosis;
+    private widget.TextBox Tket;
     private widget.TextBox Tlpt;
     private widget.TextBox TnmDokter;
     private widget.TextBox TnmPasien;
@@ -1276,6 +1319,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel22;
+    private widget.Label jLabel23;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
@@ -1297,13 +1341,14 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement("SELECT pk.no_rawat, p.no_rkm_medis, p.nm_pasien, pk.nm_protokol, pk.siklus_ke, date_format(pk.tgl_kemoterapi,'%d/%m/%Y') tglkemo, "
                     + "pk.dosis, pk.tb, pk.bb, pk.lpt, pk.diagnosis, pk.program, pk.nip_perawat, pk.nip_dokter, pk.waktu_simpan, pg1.nama nmperawat, "
-                    + "pg2.nama nmdokter, pk.tgl_kemoterapi, rp.umurdaftar from protokol_kemoterapi pk inner join reg_periksa rp on rp.no_rawat=pk.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg1 on pg1.nik=pk.nip_perawat "
-                    + "inner join pegawai pg2 on pg2.nik=pk.nip_dokter where "
+                    + "pg2.nama nmdokter, pk.tgl_kemoterapi, rp.umurdaftar, pk.keterangan from protokol_kemoterapi pk "
+                    + "inner join reg_periksa rp on rp.no_rawat=pk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg1 on pg1.nik=pk.nip_perawat inner join pegawai pg2 on pg2.nik=pk.nip_dokter where "
                     + "pk.tgl_kemoterapi between ? and ? and pk.no_rawat like ? or "
                     + "pk.tgl_kemoterapi between ? and ? and p.no_rkm_medis like ? or "
                     + "pk.tgl_kemoterapi between ? and ? and p.nm_pasien like ? or "
                     + "pk.tgl_kemoterapi between ? and ? and pk.nm_protokol like ? or "
+                    + "pk.tgl_kemoterapi between ? and ? and pk.keterangan like ? or "
                     + "pk.tgl_kemoterapi between ? and ? and pg1.nama like ? order by pk.siklus_ke desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -1321,6 +1366,9 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -1342,7 +1390,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                         rs.getString("tgl_kemoterapi"),
                         rs.getString("nip_dokter"),
                         rs.getString("nip_perawat"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("keterangan")
                     });
                 }
             } catch (Exception e) {
@@ -1363,7 +1412,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
     public void emptTeks() {
         TnmProtokol.setText("");
-        Tsiklus.setText("");
+        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "'"));
         TtglKemo.setDate(new Date());
         Tdosis.setText("");
         Tumur.setText("");
@@ -1377,6 +1426,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         nipPerawat = "-";
         TnmPerawat.setText("-");
         chkSaya.setSelected(false);
+        Tket.setText("");
     }
 
     private void getData() {
@@ -1400,6 +1450,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             TnmPerawat.setText(tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 14).toString());
             nipDokter = tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 16).toString();
             nipPerawat = tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 17).toString();
+            Tket.setText(tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 19).toString());
         }
     }
     
@@ -1414,7 +1465,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from protokol_kemoterapi where no_rawat=?", 1, new String[]{
                 tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 0).toString()
-            }) == true) {                             
+            }) == true) {
+                TCari.setText(TnoRM.getText());
                 tampil();
                 emptTeks();
             } else {
@@ -1430,6 +1482,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + norw + "' and sttsumur='Th'"));
         Ttb.setText(Sequel.cariIsi("select ifnull(tinggi_badan,'') from pasien where no_rkm_medis='" + norm + "'"));
         Tbb.setText(Sequel.cariIsi("select ifnull(berat,'') from pemeriksaan_ralan_petugas where no_rawat='" + norw + "'"));
+        Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'"));
+        TCari.setText(norm);
+        tgl.setDate(1);
+        DTPCari1.setDate(tgl);
         
         if (stts.equals("Ralan")) {
             nipDokter = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norw + "'");
@@ -1441,8 +1497,14 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             nipDokter = "-";
             TnmDokter.setText("-");
             Tdiagnosis.setText("");
-            nipPerawat = akses.getkode();
-            TnmPerawat.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPerawat + "'"));
+            
+            if (akses.getadmin() == true) {
+                nipPerawat = "-";
+                TnmPerawat.setText("-");
+            } else {
+                nipPerawat = akses.getkode();
+                TnmPerawat.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPerawat + "'"));
+            }
         }
         
         //jika bukan dokter atau admin utama

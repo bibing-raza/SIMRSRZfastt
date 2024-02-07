@@ -157,17 +157,19 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private void BtnGrafikActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGrafikActionPerformed
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Grafik pemantauan harian pasien dengan no. rawat " + norawat + " tidak ditemukan..!!");
-        } else if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "' "
-                + "and tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Grafik pemantauan harian pasien pada tgl. "
-                    + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tidak ditemukan..!!");
-            tglPantau.requestFocus();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            try {                
+            try {
                 host_grafik_rme = Sequel.decXML(prop.getProperty("HOSTgrafikRME"), prop.getProperty("KEY"));
                 if (cmbGrafik.getSelectedIndex() == 0) {
-                    Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat + "&tgl=" + Valid.SetTgl(tglPantau.getSelectedItem() + ""));
+                    if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "' "
+                            + "and tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {
+                        JOptionPane.showMessageDialog(null, "Grafik pemantauan harian pasien pada tgl. "
+                                + Valid.SetTglINDONESIA(Valid.SetTgl(tglPantau.getSelectedItem() + "")) + " tidak ditemukan..!!");
+                        tglPantau.requestFocus();
+                    } else {
+                        Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat + "&tgl=" + Valid.SetTgl(tglPantau.getSelectedItem() + ""));
+                    }
                 } else {
                     Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat);
                 }
