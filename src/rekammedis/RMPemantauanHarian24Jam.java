@@ -2695,10 +2695,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         if (tbPantau.getSelectedRow() != -1) {
             TNoRw.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),0).toString());
             TkdPantau.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),1).toString());
-            TNoRm.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),2).toString());
-            TPasien.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),3).toString());
-            Valid.SetTgl(tglPantau, tbPantau.getValueAt(tbPantau.getSelectedRow(),28).toString());
-            cmbJam.setSelectedItem(tbPantau.getValueAt(tbPantau.getSelectedRow(),5).toString());
+            TNoRm.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(), 2).toString());
+            TPasien.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(), 3).toString());
+            TrgRawat.setText(Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' and "
+                    + "ki.tgl_masuk='" + tbPantau.getValueAt(tbPantau.getSelectedRow(), 28).toString() + "' "
+                    + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+            Valid.SetTgl(tglPantau, tbPantau.getValueAt(tbPantau.getSelectedRow(), 28).toString());
+            cmbJam.setSelectedItem(tbPantau.getValueAt(tbPantau.getSelectedRow(), 5).toString());
             Tnadi.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),6).toString());
             Tsuhu.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),7).toString());
             Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TNoRw.getText() + "'"));
@@ -3037,7 +3041,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
         Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
         Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
-        TrgRawat.setText(rgrawat);        
+        TrgRawat.setText(rgrawat);
         
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norw + "'") > 0) {
             Valid.SetTgl(DTPCariA, Sequel.cariIsi("select tgl_pantau from pemantauan_harian_24jam where "

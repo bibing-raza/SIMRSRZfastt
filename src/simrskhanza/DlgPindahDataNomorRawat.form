@@ -138,7 +138,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-01-2024"/>
+                        <StringItem index="0" value="11-02-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -166,7 +166,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-01-2024"/>
+                        <StringItem index="0" value="11-02-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -586,7 +586,7 @@
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                      <StringArray count="33">
+                      <StringArray count="34">
                         <StringItem index="0" value=" "/>
                         <StringItem index="1" value="FARMASI"/>
                         <StringItem index="2" value="RADIOLOGI"/>
@@ -620,6 +620,7 @@
                         <StringItem index="30" value="TRIASE IGD"/>
                         <StringItem index="31" value="ASESMEN MEDIK IGD"/>
                         <StringItem index="32" value="ASESMEN KEPERAWATAN IGD"/>
+                        <StringItem index="33" value="PROTOKOL KEMOTERAPI"/>
                       </StringArray>
                     </Property>
                     <Property name="name" type="java.lang.String" value="cmbJnsTran" noResource="true"/>

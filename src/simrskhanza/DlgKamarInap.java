@@ -13463,21 +13463,17 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (tbKamIn.getSelectedRow() != -1) {
-                if (akses.getadmin() == true) {
-                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    akses.setform("DlgKamarInap");
-                    RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
-                    form.emptTeks();
-                    form.isCek();
-                    form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "Ranap");
-                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                    form.setLocationRelativeTo(internalFrame1);
-                    form.setVisible(true);
-                    BtnCariActionPerformed(null);
-                    this.setCursor(Cursor.getDefaultCursor());
-                } else {
-                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan, kalau sudah selesai dikabari...!!!");
-                }
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKamarInap");
+                RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "Ranap");
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
             }
         }
     }//GEN-LAST:event_MnProtokolKemoterapiActionPerformed

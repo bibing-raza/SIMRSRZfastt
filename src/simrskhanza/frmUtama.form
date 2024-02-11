@@ -9361,7 +9361,7 @@
                   <Color blue="1d" green="1d" red="1d" type="rgb"/>
                 </Property>
                 <Property name="backgroundImage" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                  <Image iconType="3" name="/picture/wallpaper.jpg"/>
+                  <Image iconType="3" name="/picture/underconstruction.jpg"/>
                 </Property>
                 <Property name="backgroundImageType" type="int" value="9"/>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
