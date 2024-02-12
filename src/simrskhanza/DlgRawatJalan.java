@@ -9148,9 +9148,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRawatJalan");
             RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
-            form.emptTeks();
-            form.isCek();
             form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), "Ralan");
+            form.emptTeks();
+            form.isCek();            
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);

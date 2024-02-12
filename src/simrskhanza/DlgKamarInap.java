@@ -13466,9 +13466,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKamarInap");
                 RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
+                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "Ranap");
                 form.emptTeks();
                 form.isCek();
-                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), "Ranap");
                 form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

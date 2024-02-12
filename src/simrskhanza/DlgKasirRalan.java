@@ -8148,9 +8148,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), "Ralan");
             form.emptTeks();
             form.isCek();
-            form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), "Ralan");
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
