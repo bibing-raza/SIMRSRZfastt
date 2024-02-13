@@ -1290,8 +1290,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             Tsiklus.requestFocus();
         } else {
             if (tbProtokol.getSelectedRow() > -1) {
-                //jika bukan dokter atau admin utama
-                if (akses.getadmin() == true) {
                     gantiDisimpan();
                     Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
                             "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
@@ -1299,18 +1297,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                             + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
                             + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
                             + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
-                } else if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") == 0) {
-                    Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'", "nip_perawat='" + nipPerawat + "'");
-                    JOptionPane.showMessageDialog(rootPane, "Nama perawat ruangan berhasil disimpan, data yang lain tidak berubah..!!");
-                } else {
-                    gantiDisimpan();
-                    Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
-                            "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
-                            + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
-                            + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
-                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
-                            + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
-                }
 
                 TCari.setText(TnoRM.getText());
                 tampil();
