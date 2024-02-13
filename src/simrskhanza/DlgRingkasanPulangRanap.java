@@ -52,6 +52,10 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "", kodekamar = "", skorAsesIGD = "", kesimpulanGZanak = "",
             kesimpulanGZDewasa = "", faktorresikoigd = "", TotSkorGZD = "", TotSkorGZA = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", 
             nmgedung = "";
+    private String anemis = "", ikterik = "", pupil = "", dia_kanan = "", dia_kiri = "", udem_palpe = "", tonsil = "", faring = "", satur = "",
+            lidah = "", bibir = "", jvp = "", limfe = "", kuduk = "", thorak = "", cor = "", reguler = "", ireguler = "", lain1 = "", nafas = "",
+            ronci = "", whezing = "", disten = "", meteo = "", peris = "", asites = "", nyeri = "", hepar = "", lien = "", extrem = "", udem = "",
+            lain2 = "";
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2711,6 +2715,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TDiagUtama.setText("");
                 TAlasanDirawat.setText("");
                 TRingkasanRiwayat.setText("");
+                TPemeriksaanFisik.setText("");
             }
         }
     }//GEN-LAST:event_ChkAsesmenMedikActionPerformed
@@ -4017,6 +4022,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     }
     
     private void tampilAsesmen() {
+        emptPemeriksaanFisik();
         try {
             ps1 = koneksi.prepareStatement("select *, if(diagnosis1<>'',diagnosis1,'') diag1, if(diagnosis2<>'',diagnosis2,'') diag2, "
                     + "if(diagnosis3<>'',diagnosis3,'') diag3, if(diagnosis4<>'',diagnosis4,'') diag4, if(diagnosis5<>'',diagnosis5,'') diag5, "
@@ -4025,6 +4031,223 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
+                    //pemeriksaan fisik
+                    if (rs1.getString("mata_anemis").equals("")) {
+                        anemis = "";
+                    } else {
+                        anemis = "Mata : Anemis : " + rs1.getString("mata_anemis") + ", ";
+                    }
+                    
+                    if (rs1.getString("ikterik").equals("")) {
+                        ikterik = "";
+                    } else {
+                        ikterik = "Ikterik : " + rs1.getString("ikterik") + ", ";
+                    }
+                    
+                    if (rs1.getString("pupil").equals("")) {
+                        pupil = "";
+                    } else {
+                        pupil = "Pupil : " + rs1.getString("pupil") + ", ";
+                    }
+                    
+                    if (rs1.getString("diameter_kanan").equals("")) {
+                        dia_kanan = "";
+                    } else {
+                        dia_kanan = "Diameter Kanan : " + rs1.getString("diameter_kanan") + " mm, ";
+                    }
+                    
+                    if (rs1.getString("diameter_kiri").equals("")) {
+                        dia_kiri = "";
+                    } else {
+                        dia_kiri = "Diameter Kiri : " + rs1.getString("diameter_kiri") + " mm, ";
+                    }
+                    
+                    if (rs1.getString("udem_palpebra").equals("")) {
+                        udem_palpe = "";
+                    } else {
+                        udem_palpe = "Udem Palpebrae : " + rs1.getString("udem_palpebra") + ", ";
+                    }
+                    
+                    if (rs1.getString("tonsil").equals("")) {
+                        tonsil = "";
+                    } else {
+                        tonsil = "THT : Tonsil : " + rs1.getString("tonsil") + ", ";
+                    }
+                    
+                    if (rs1.getString("faring").equals("")) {
+                        faring = "";
+                    } else {
+                        faring = "Faring : " + rs1.getString("faring") + ", ";
+                    }
+                    
+                    if (rs1.getString("saturasi").equals("")) {
+                        satur = "";
+                    } else {
+                        satur = "Saturasi O2 : " + rs1.getString("saturasi") + " %, ";
+                    }
+                    
+                    if (rs1.getString("lidah").equals("")) {
+                        lidah = "";
+                    } else {
+                        lidah = "Lidah : " + rs1.getString("lidah") + ", ";
+                    }
+                    
+                    if (rs1.getString("bibir").equals("")) {
+                        bibir = "";
+                    } else {
+                        bibir = "Bibir : " + rs1.getString("bibir") + ", ";
+                    }
+                    
+                    if (rs1.getString("jvp").equals("")) {
+                        jvp = "";
+                    } else {
+                        jvp = "Leher : JVP : " + rs1.getString("jvp") + ", ";
+                    }
+                    
+                    if (rs1.getString("kelenjar_limfe").equals("")) {
+                        limfe = "";
+                    } else if (rs1.getString("kelenjar_limfe").equals("Ada")) {
+                        limfe = "Pembesaran Kelenjar Limfe : " + rs1.getString("kelenjar_limfe") + " (" + rs1.getString("ket_ada_kelenjar") + "), ";
+                    } else if (rs1.getString("kelenjar_limfe").equals("Tidak")) {
+                        limfe = "Pembesaran Kelenjar Limfe : " + rs1.getString("kelenjar_limfe") + ", ";
+                    }
+                    
+                    if (rs1.getString("kaku_kuduk").equals("")) {
+                        kuduk = "";
+                    } else {
+                        kuduk = "Kaku Kuduk : " + rs1.getString("kaku_kuduk") + ", ";
+                    }
+                    
+                    if (rs1.getString("thoraks").equals("")) {
+                        thorak = "";
+                    } else if (rs1.getString("thoraks").equals("Asimetris")) {
+                        thorak = "Thoraks : " + rs1.getString("thoraks") + " (" + rs1.getString("ket_asimetris") + "), ";
+                    } else if (rs1.getString("thoraks").equals("Simetris")) {
+                        thorak = "Thoraks : " + rs1.getString("thoraks") + ", ";
+                    }
+                    
+                    if (rs1.getString("cor_s1s2").equals("")) {
+                        cor = "";
+                    } else {
+                        cor = "Cor : S1/S2 " + rs1.getString("cor_s1s2") + ", ";
+                    }
+                    
+                    if (rs1.getString("reguler").equals("tidak")) {
+                        reguler = "";
+                    } else {
+                        reguler = "Reguler : Ya, ";
+                    }
+                    
+                    if (rs1.getString("ireguler").equals("tidak")) {
+                        ireguler = "";
+                    } else {
+                        ireguler = "Ireguler, Murmur : Ya (" + rs1.getString("murmur") + "), ";
+                    }
+                    
+                    if (rs1.getString("lain_lain").equals("")) {
+                        lain1 = "";
+                    } else {
+                        lain1 = "Lain-lain : " + rs1.getString("lain_lain") + ", ";
+                    }
+                    
+                    if (rs1.getString("suara_nafas").equals("")) {
+                        nafas = "";
+                    } else {
+                        nafas = "Pulmo : Suara Nafas : " + rs1.getString("suara_nafas") + ", ";
+                    }
+                    
+                    if (rs1.getString("ronchi").equals("")) {
+                        ronci = "";
+                    } else if (rs1.getString("ronchi").equals("Ada")) {
+                        ronci = "Ronchi : " + rs1.getString("ronchi") + " (" + rs1.getString("ket_ronchi") + "), ";
+                    } else if (rs1.getString("ronchi").equals("Tidak")) {
+                        ronci = "Ronchi : " + rs1.getString("ronchi") + ", ";
+                    }
+
+                    if (rs1.getString("wheezing").equals("")) {
+                        whezing = "";
+                    } else if (rs1.getString("wheezing").equals("Ada")) {
+                        whezing = "Wheezing : " + rs1.getString("wheezing") + " (" + rs1.getString("ket_wheezing") + "), ";
+                    } else if (rs1.getString("wheezing").equals("Tidak")) {
+                        whezing = "Wheezing : " + rs1.getString("wheezing") + ", ";
+                    }
+                    
+                    if (rs1.getString("distended").equals("")) {
+                        disten = "";
+                    } else {
+                        disten = "Abdomen : Distended : " + rs1.getString("distended") + ", ";
+                    }
+                    
+                    if (rs1.getString("meteorismus").equals("")) {
+                        meteo = "";
+                    } else {
+                        meteo = "Meteorismus : " + rs1.getString("meteorismus") + ", ";
+                    }
+                    
+                    if (rs1.getString("peristaltik").equals("")) {
+                        peris = "";
+                    } else {
+                        peris = "Peristaltik : " + rs1.getString("peristaltik") + ", ";
+                    }
+                    
+                    if (rs1.getString("asites").equals("")) {
+                        asites = "";
+                    } else {
+                        asites = "Asites : " + rs1.getString("asites") + ", ";
+                    }
+                    
+                    if (rs1.getString("nyeri_tekan").equals("")) {
+                        nyeri = "";
+                    } else if (rs1.getString("nyeri_tekan").equals("Ada")) {
+                        nyeri = "Nyeri Tekan : " + rs1.getString("nyeri_tekan") + " (" + rs1.getString("lokasi") + "), ";
+                    } else if (rs1.getString("nyeri_tekan").equals("Tidak")) {
+                        nyeri = "Nyeri Tekan : " + rs1.getString("nyeri_tekan") + ", ";
+                    }
+                    
+                    if (rs1.getString("hepar").equals("")) {
+                        hepar = "";
+                    } else {
+                        hepar = "Hepar : " + rs1.getString("hepar") + ", ";
+                    }
+                    
+                    if (rs1.getString("lien").equals("")) {
+                        lien = "";
+                    } else {
+                        lien = "Lien : " + rs1.getString("lien") + ", ";
+                    }
+                    
+                    if (rs1.getString("extremitas").equals("")) {
+                        extrem = "";
+                    } else {
+                        extrem = "Extremitas : " + rs1.getString("extremitas") + ", ";
+                    }
+                    
+                    if (rs1.getString("udem").equals("")) {
+                        udem = "";
+                    } else if (rs1.getString("udem").equals("Ada")) {
+                        udem = "Udem : " + rs1.getString("udem") + " (" + rs1.getString("ket_udem") + "), ";
+                    } else if (rs1.getString("udem").equals("Tidak")) {
+                        udem = "Udem : " + rs1.getString("udem") + ", ";
+                    }
+                    
+                    if (rs1.getString("pemeriksaan_fisik_lain").equals("")) {
+                        lain2 = "";
+                    } else {
+                        lain2 = "Pemeriksaan lain : " + rs1.getString("pemeriksaan_fisik_lain");
+                    }
+
+                    if (TPemeriksaanFisik.getText().equals("")) {
+                        TPemeriksaanFisik.setText(anemis + ikterik + pupil + dia_kanan + dia_kiri + udem_palpe + tonsil + faring
+                                + satur + lidah + bibir + jvp + limfe + kuduk + thorak + cor + reguler + ireguler + lain1 + nafas
+                                + ronci + whezing + disten + meteo + peris + asites + nyeri + hepar + lien + extrem + udem + lain2);
+                    } else {
+                        TPemeriksaanFisik.setText(TPemeriksaanFisik.getText() + "\n\n" + anemis + ikterik + pupil + dia_kanan + dia_kiri
+                                + udem_palpe + tonsil + faring + satur + lidah + bibir + jvp + limfe + kuduk + thorak + cor + reguler
+                                + ireguler + lain1 + nafas + ronci + whezing + disten + meteo + peris + asites + nyeri + hepar + lien
+                                + extrem + udem + lain2);
+                    }
+                    //-------------------------------------------------------------------------------------------------------------------
+                    
                     if (TTerapiPengobatan.getText().equals("")) {
                         TTerapiPengobatan.setText(rs1.getString("rencana_kerja"));
                     } else {
@@ -4075,5 +4298,40 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    private void emptPemeriksaanFisik() {
+        anemis = "";
+        ikterik = "";
+        pupil = "";
+        dia_kanan = "";
+        dia_kiri = "";
+        udem_palpe = "";
+        tonsil = "";
+        faring = "";
+        satur = "";
+        lidah = "";
+        bibir = "";
+        jvp = "";
+        limfe = "";
+        kuduk = "";
+        thorak = "";
+        cor = "";
+        reguler = "";
+        ireguler = "";
+        lain1 = "";
+        nafas = "";
+        ronci = "";
+        whezing = "";
+        disten = "";
+        meteo = "";
+        peris = "";
+        asites = "";
+        nyeri = "";
+        hepar = "";
+        lien = "";
+        extrem = "";
+        udem = "";
+        lain2 = "";
     }
 }
