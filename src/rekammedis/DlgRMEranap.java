@@ -585,7 +585,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             DlgCatatanTindakanKeperawatan form = new DlgCatatanTindakanKeperawatan(null, false);
             form.emptTeks();
             form.isCek();
-            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText());
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
