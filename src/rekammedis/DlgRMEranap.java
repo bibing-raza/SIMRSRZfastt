@@ -470,13 +470,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
     private void BtnCloseIn10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn10ActionPerformed
         WindowDPJPranap.dispose();
-        kddpjp.setText("");
-        nmdpjp.setText("");
+        kddpjp.setText("-");
+        nmdpjp.setText("-");
     }//GEN-LAST:event_BtnCloseIn10ActionPerformed
 
     private void BtnSimpan6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan6ActionPerformed
         if (kddpjp.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya...!");
+            btnDPJP.requestFocus();
+        } else if (kddpjp.getText().equals("-") || kddpjp.getText().equals("--")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya dengan benar...!");
             btnDPJP.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'") == 0) {
