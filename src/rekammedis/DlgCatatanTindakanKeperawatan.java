@@ -1379,7 +1379,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel51.setBounds(0, 8, 80, 23);
 
         TtglCetak.setEditable(false);
-        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         TtglCetak.setDisplayFormat("dd-MM-yyyy");
         TtglCetak.setName("TtglCetak"); // NOI18N
         TtglCetak.setOpaque(false);
@@ -1458,7 +1458,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 8, 100, 23);
 
         TtglCopy.setEditable(false);
-        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         TtglCopy.setDisplayFormat("dd-MM-yyyy");
         TtglCopy.setName("TtglCopy"); // NOI18N
         TtglCopy.setOpaque(false);
@@ -1651,7 +1651,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglCTK);
 
-        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         TtglCTK.setDisplayFormat("dd-MM-yyyy");
         TtglCTK.setName("TtglCTK"); // NOI18N
         TtglCTK.setOpaque(false);
@@ -1733,7 +1733,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi16.add(jLabel57);
         jLabel57.setBounds(0, 20, 100, 23);
 
-        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         TtglCopy1.setDisplayFormat("dd-MM-yyyy");
         TtglCopy1.setName("TtglCopy1"); // NOI18N
         TtglCopy1.setOpaque(false);
@@ -1885,7 +1885,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -2224,9 +2224,9 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         BtnEvaluasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnEvaluasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnEvaluasi.setMnemonic('P');
+        BtnEvaluasi.setMnemonic('E');
         BtnEvaluasi.setText("Evaluasi Nyeri");
-        BtnEvaluasi.setToolTipText("Alt+P");
+        BtnEvaluasi.setToolTipText("Alt+E");
         BtnEvaluasi.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnEvaluasi.setName("BtnEvaluasi"); // NOI18N
         BtnEvaluasi.setPreferredSize(new java.awt.Dimension(140, 30));
@@ -2239,9 +2239,9 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         BtnManajemen.setForeground(new java.awt.Color(0, 0, 0));
         BtnManajemen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnManajemen.setMnemonic('P');
+        BtnManajemen.setMnemonic('M');
         BtnManajemen.setText("Manajemen Nyeri");
-        BtnManajemen.setToolTipText("Alt+P");
+        BtnManajemen.setToolTipText("Alt+M");
         BtnManajemen.setGlassColor(new java.awt.Color(255, 204, 0));
         BtnManajemen.setName("BtnManajemen"); // NOI18N
         BtnManajemen.setPreferredSize(new java.awt.Dimension(150, 30));
@@ -2316,7 +2316,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2330,7 +2330,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

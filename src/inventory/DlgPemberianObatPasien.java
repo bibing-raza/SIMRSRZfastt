@@ -73,7 +73,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             "jadwal_pemberian", "jadwal_pemberian2", "jadwal_pemberian3", "jadwal_pemberian4", "jadwal_pemberian5",
             "jadwal_pemberian6", "jadwal_pemberian7", "jadwal_pemberian8", "wkt_simpan",
             "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "25", "26", "27", "28", "29"
+            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -111,7 +111,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -124,7 +124,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbObat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 77; i++) {
+        for (int i = 0; i < 78; i++) {
             TableColumn column = tbObat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -328,6 +328,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             } else if (i == 76) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 77) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbObat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -390,7 +393,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         
         tabMode3 = new DefaultTableModel(null, new Object[]{
             "no_rawat", "Tgl. Beri", "Nama Obat", "Jns. Obat", "Nama Petugas 1", "Nama Petugas 2",
-            "nip1", "nip2", "waktu_simpan", "Pasien", "Rg. Rawat/Inst./Poli"
+            "nip1", "nip2", "waktu_simpan", "Pasien", "Rg. Rawat/Inst./Poli", "Sift"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -401,7 +404,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         tbDouble.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbDouble.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 11; i++) {
+        for (int i = 0; i < 12; i++) {
             TableColumn column = tbDouble.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -429,6 +432,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 column.setPreferredWidth(250);
             } else if (i == 10) {
                 column.setPreferredWidth(220);
+            } else if (i == 11) {
+                column.setPreferredWidth(50);
             }
         }
         tbDouble.setDefaultRenderer(Object.class, new WarnaTable());
@@ -689,10 +694,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         BtnPetugas2 = new widget.Button();
         BtnHapusPtgs2 = new widget.Button();
         chkSaya2 = new widget.CekBox();
+        jLabel30 = new widget.Label();
+        cmbSift = new widget.ComboBox();
         panelGlass11 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
         tbResep = new widget.Table();
         panelGlass12 = new widget.panelisi();
+        jLabel29 = new widget.Label();
+        cmbResep = new widget.ComboBox();
         BtnResep = new widget.Button();
         jLabel9 = new widget.Label();
         LCount = new widget.Label();
@@ -1640,7 +1649,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPetugas);
-        BtnPetugas.setBounds(240, 150, 220, 23);
+        BtnPetugas.setBounds(360, 150, 220, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Ket : ");
@@ -1854,6 +1863,18 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass7.add(chkSaya2);
         chkSaya2.setBounds(628, 318, 100, 23);
 
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Sift : ");
+        jLabel30.setName("jLabel30"); // NOI18N
+        panelGlass7.add(jLabel30);
+        jLabel30.setBounds(235, 150, 40, 23);
+
+        cmbSift.setForeground(new java.awt.Color(0, 0, 0));
+        cmbSift.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Pagi", "Sore", "Malam" }));
+        cmbSift.setName("cmbSift"); // NOI18N
+        panelGlass7.add(cmbSift);
+        cmbSift.setBounds(277, 150, 70, 23);
+
         panelGlass10.add(panelGlass7);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
@@ -1878,6 +1899,23 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass12.setName("panelGlass12"); // NOI18N
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 9, 9));
+
+        jLabel29.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel29.setText("Jenis Resep :");
+        jLabel29.setName("jLabel29"); // NOI18N
+        jLabel29.setPreferredSize(new java.awt.Dimension(75, 23));
+        panelGlass12.add(jLabel29);
+
+        cmbResep.setForeground(new java.awt.Color(0, 0, 0));
+        cmbResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Inap", "Rawat Jalan/IGD" }));
+        cmbResep.setName("cmbResep"); // NOI18N
+        cmbResep.setPreferredSize(new java.awt.Dimension(118, 23));
+        cmbResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbResepActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(cmbResep);
 
         BtnResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
@@ -2077,7 +2115,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2091,7 +2129,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2352,7 +2390,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     + "'" + cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem() + "',"
                     + "'" + Tket1.getText() + "','" + Tket2.getText() + "','" + Tket3.getText() + "','" + Tket4.getText() + "',"
                     + "'" + Tket5.getText() + "','" + Tket6.getText() + "','" + Tket7.getText() + "','" + Tket8.getText() + "',"
-                    + "'" + cekDobel + "','" + nip1 + "','" + nip2 + "'", "Pemberian Obat");
+                    + "'" + cekDobel + "','" + nip1 + "','" + nip2 + "','" + cmbSift.getSelectedItem().toString() + "'", "Pemberian Obat");
             
             tampil();
             tampilDoubelCek();
@@ -2372,6 +2410,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampilResep();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -2457,7 +2496,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         + "cek_jam1=?, cek_jam2=?, cek_jam3=?, cek_jam4=?, cek_jam5=?, cek_jam6=?, cek_jam7=?, cek_jam8=?, "
                         + "jadwal_pemberian2=?, jadwal_pemberian3=?, jadwal_pemberian4=?, jadwal_pemberian5=?, jadwal_pemberian6=?, "
                         + "jadwal_pemberian7=?, jadwal_pemberian8=?, ket1=?, ket2=?, ket3=?, ket4=?, ket5=?, ket6=?, ket7=?, ket8=?, "
-                        + "cek_dobel=?, nip_petugas1=?, nip_petugas2=?", 37, new String[]{
+                        + "cek_dobel=?, nip_petugas1=?, nip_petugas2=?, sift=?", 38, new String[]{
                             nmObat.getText(), dosis.getText(), caraPemberian.getText(),
                             cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                             jlhSisaObat.getText(), kdobatFix, Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nmUnit.getText(), Tjlh.getText(),
@@ -2470,7 +2509,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                             cmbJam7.getSelectedItem() + ":" + cmbMnt7.getSelectedItem() + ":" + cmbDtk7.getSelectedItem(),
                             cmbJam8.getSelectedItem() + ":" + cmbMnt8.getSelectedItem() + ":" + cmbDtk8.getSelectedItem(),
                             Tket1.getText(), Tket2.getText(), Tket3.getText(), Tket4.getText(),
-                            Tket5.getText(), Tket6.getText(), Tket7.getText(), Tket8.getText(), cekDobel, nip1, nip2,
+                            Tket5.getText(), Tket6.getText(), Tket7.getText(), Tket8.getText(), cekDobel, nip1, nip2, cmbSift.getSelectedItem().toString(),
                             tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString()
                         });
 
@@ -3309,15 +3348,19 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, pasien belum dipilih datanya..!!");
         } else {
-            if (nmUnit.equals("IGD")) {
+            //resep rawat jalan/igd
+            if (cmbResep.getSelectedIndex() == 1) {
                 if (Sequel.cariInteger("select count(-1) from catatan_resep where no_rawat='" + TNoRW.getText() + "' and tgl_perawatan='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Resep pasien pada tgl. " + tgl_beri.getSelectedItem() + " tidak ditemukan..!!");
+                    Valid.tabelKosong(tabMode2);
                 } else {
                     tampilResep();
                 }
-            } else if (!nmUnit.equals("IGD")) {
+                //resep rawat inap
+            } else if (cmbResep.getSelectedIndex() == 0) {
                 if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + TNoRW.getText() + "' and tgl_perawatan='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "'") == 0) {
                     JOptionPane.showMessageDialog(null, "Resep pasien pada tgl. " + tgl_beri.getSelectedItem() + " tidak ditemukan..!!");
+                    Valid.tabelKosong(tabMode2);
                 } else {
                     tampilResep();
                 }
@@ -3383,7 +3426,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                     + "'" + tbObat.getValueAt(i, 27).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 74).toString() + "',"
                                     + "'" + tbObat.getValueAt(i, 75).toString() + "',"
-                                    + "'" + tbObat.getValueAt(i, 76).toString() + "'", "Pemberian Obat");
+                                    + "'" + tbObat.getValueAt(i, 76).toString() + "',"
+                                    + "'" + tbObat.getValueAt(i, 77).toString() + "'", "Pemberian Obat");
 
                             //jeda 1 detik
                             Thread.sleep(1000);
@@ -3562,6 +3606,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnNotepadActionPerformed
 
+    private void cmbResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbResepActionPerformed
+        if (cmbResep.getSelectedIndex() == 1) {
+            Valid.SetTgl(tgl_beri, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRW.getText() + "'"));
+        } else if (cmbResep.getSelectedIndex() == 0) {
+            tgl_beri.setDate(new Date());
+        }
+    }//GEN-LAST:event_cmbResepActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3676,6 +3728,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.ComboBox cmbMnt7;
     private widget.ComboBox cmbMnt8;
     private widget.ComboBox cmbObat;
+    private widget.ComboBox cmbResep;
+    private widget.ComboBox cmbSift;
     private widget.TextBox dosis;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame5;
@@ -3699,7 +3753,9 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Label jLabel26;
     private widget.Label jLabel27;
     private widget.Label jLabel28;
+    private widget.Label jLabel29;
     private widget.Label jLabel3;
+    private widget.Label jLabel30;
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel4;
@@ -3797,7 +3853,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"), ":",
                         "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "", "",
-                        "", "", "", "", "", "", "", ""
+                        "", "", "", "", "", "", "", "", ""
                     });
 
                     if (cmbJnsObat.getSelectedIndex() == 0) {
@@ -3910,7 +3966,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                                 rs2.getString("jadwal_pemberian8"),
                                 rs2.getString("cek_dobel"),
                                 rs2.getString("nip_petugas1"),
-                                rs2.getString("nip_petugas2")
+                                rs2.getString("nip_petugas2"),
+                                rs2.getString("sift")
                                 //sampai sini
                             });
                         }
@@ -3950,9 +4007,10 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Tjlh.setText("");
         cmbObat.setSelectedIndex(0);
         cmbJnsObat.setSelectedIndex(0);
-        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));        
         Thasil.setText("");
         Tinstruksi.setText("");
+        cmbSift.setSelectedIndex(0);
         nmObat.requestFocus();
         
         chkJam1.setSelected(true);
@@ -4043,6 +4101,12 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         BtnHapusPtgs2.setEnabled(false);
         chkSaya1.setEnabled(false);
         chkSaya2.setEnabled(false);
+        
+        if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+            cmbResep.setSelectedIndex(1);
+        } else if (status.equals("ranap")) {
+            cmbResep.setSelectedIndex(0);
+        }
     }
 
     private void getData() {
@@ -4117,6 +4181,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         nmUnit.setText(unit);
         Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         
+        if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)")) {
+            cmbResep.setSelectedIndex(1);
+            Valid.SetTgl(tgl_beri, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
+        } else if (sttsrawat.equals("ranap")) {
+            cmbResep.setSelectedIndex(0);
+            tgl_beri.setDate(new Date());
+        }
+        
         if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norw + "'") > 0) {
             Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_pemberian from pemberian_obat where "
                     + "no_rawat='" + norw + "' order by tgl_pemberian desc limit 1"));
@@ -4157,6 +4229,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     nip2 = rs3.getString("nip_petugas2");
                     TnmPetugas1.setText(rs3.getString("ptgs1"));
                     TnmPetugas2.setText(rs3.getString("ptgs2"));
+                    cmbSift.setSelectedItem(rs3.getString("sift"));
                     tampilResep();
                     
                     cekjam1 = rs3.getString("cek_jam1");
@@ -4415,13 +4488,15 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private void tampilResep() {
         Valid.tabelKosong(tabMode2);
         try {
-            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)")) {
+                //resep rawat jalan/igd
+            if (cmbResep.getSelectedIndex() == 1) {                
                 ps4 = koneksi.prepareStatement("select c.no_rawat, c.noID, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl_perawatan, "
                         + "time_format(c.jam_perawatan,'%H:%i') jam_perawatan, c.nama_obat, c.status, d.nm_dokter from catatan_resep c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat "
                         + "inner join dokter d on d.kd_dokter = c.kd_dokter where "
                         + "c.tgl_perawatan='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and c.no_rawat='" + TNoRW.getText() + "' order by c.noId");
-            } else if (status.equals("ranap")) {
+                //resep rawat inap
+            } else if (cmbResep.getSelectedIndex() == 0) {                
                 ps4 = koneksi.prepareStatement("select c.no_rawat, c.noID, date_format(c.tgl_perawatan,'%d-%m-%Y') tgl_perawatan, "
                         + "time_format(c.jam_perawatan,'%H:%i') jam_perawatan, c.nama_obat, c.status, d.nm_dokter from catatan_resep_ranap c "
                         + "inner join reg_periksa r on r.no_rawat = c.no_rawat "
@@ -4639,7 +4714,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                         rs6.getString("nip_petugas2"),
                         rs6.getString("waktu_simpan"),
                         rs6.getString("no_rkm_medis") + " - " + rs6.getString("nm_pasien"),
-                        rs6.getString("nm_unit")
+                        rs6.getString("nm_unit"),
+                        rs6.getString("sift")
                     });
                 }
             } catch (Exception e) {
@@ -4691,11 +4767,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 while (rs7.next()) {
                     if (dataDobelCek.equals("")) {
                         dataDobelCek = rs7.getString("jenis_obat") + " - " + rs7.getString("nama_obat") + "\n"
+                                + "Sift Petugas : " + rs7.getString("sift") + "\n"
                                 + "Petugas 1 : " + rs7.getString("ptgs1") + ", Paraf : ............\n\n"
                                 + "Petugas 2 : " + rs7.getString("ptgs2") + ", Paraf : ............\n"
                                 + "__________________________________________________________________";
                     } else {
                         dataDobelCek = dataDobelCek + "\n\n" + rs7.getString("jenis_obat") + " - " + rs7.getString("nama_obat") + "\n"
+                                + "Sift Petugas : " + rs7.getString("sift") + "\n"
                                 + "Petugas 1 : " + rs7.getString("ptgs1") + ", Paraf : ............\n\n"
                                 + "Petugas 2 : " + rs7.getString("ptgs2") + ", Paraf : ............\n"
                                 + "__________________________________________________________________";

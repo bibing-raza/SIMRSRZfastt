@@ -3336,9 +3336,9 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/category.png"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="80"/>
+                    <Property name="mnemonic" type="int" value="69"/>
                     <Property name="text" type="java.lang.String" value="Evaluasi Nyeri"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Alt+P"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Alt+E"/>
                     <Property name="glassColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="cc" red="ff" type="rgb"/>
                     </Property>
@@ -3359,9 +3359,9 @@
                     <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
                       <Image iconType="3" name="/picture/category.png"/>
                     </Property>
-                    <Property name="mnemonic" type="int" value="80"/>
+                    <Property name="mnemonic" type="int" value="77"/>
                     <Property name="text" type="java.lang.String" value="Manajemen Nyeri"/>
-                    <Property name="toolTipText" type="java.lang.String" value="Alt+P"/>
+                    <Property name="toolTipText" type="java.lang.String" value="Alt+M"/>
                     <Property name="glassColor" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="cc" red="ff" type="rgb"/>
                     </Property>
