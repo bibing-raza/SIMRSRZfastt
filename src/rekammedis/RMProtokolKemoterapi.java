@@ -1290,13 +1290,13 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             Tsiklus.requestFocus();
         } else {
             if (tbProtokol.getSelectedRow() > -1) {
-                    gantiDisimpan();
-                    Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
-                            "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
-                            + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
-                            + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
-                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
-                            + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
+                gantiDisimpan();
+                Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
+                        "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
+                        + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
+                        + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
+                        + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
+                        + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
 
                 TCari.setText(TnoRM.getText());
                 tampil();
@@ -2024,14 +2024,14 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         } else {
             user = akses.getkode();
         }
-        
-        Sequel.menyimpan("protokol_kemoterapi_histori", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
-                + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
-                + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
-                + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "',"
-                + "'" + TnoRM.getText() + "','" + Tket.getText() + "','hapus','" + user + "','" + Sequel.cariIsi("select now()") + "'", "Protokol Kemoterapi Histori");
+
+        Sequel.menyimpanPesanGagalnyaDiTerminal("protokol_kemoterapi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Protokol Kemoterapi Histori", 18, new String[]{
+            TnoRW.getText(), TnmProtokol.getText(), Tsiklus.getText(), Valid.SetTgl(TtglSiklus.getSelectedItem() + ""), Tdosis.getText(),
+            Ttb.getText(), Tbb.getText(), Tlpt.getText(), Tdiagnosis.getText(), Tprogram.getText(), nipPerawat, nipDokter,
+            Sequel.cariIsi("select now()"), TnoRM.getText(), Tket.getText(), "hapus", user, Sequel.cariIsi("select now()")
+        });
     }
-    
+
     private void gantiDisimpan() {
         user = "";
         if (akses.getadmin() == true) {
@@ -2039,12 +2039,12 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         } else {
             user = akses.getkode();
         }
-        
-        Sequel.menyimpan("protokol_kemoterapi_histori", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
-                + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
-                + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
-                + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "',"
-                + "'" + TnoRM.getText() + "','" + Tket.getText() + "','ganti','" + user + "','" + Sequel.cariIsi("select now()") + "'", "Protokol Kemoterapi Histori");
+
+        Sequel.menyimpanPesanGagalnyaDiTerminal("protokol_kemoterapi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Protokol Kemoterapi Histori", 18, new String[]{
+            TnoRW.getText(), TnmProtokol.getText(), Tsiklus.getText(), Valid.SetTgl(TtglSiklus.getSelectedItem() + ""), Tdosis.getText(),
+            Ttb.getText(), Tbb.getText(), Tlpt.getText(), Tdiagnosis.getText(), Tprogram.getText(), nipPerawat, nipDokter,
+            Sequel.cariIsi("select now()"), TnoRM.getText(), Tket.getText(), "ganti", user, Sequel.cariIsi("select now()")
+        });
     }
     
     private void tampilRiwayat() {

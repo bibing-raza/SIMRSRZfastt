@@ -9346,36 +9346,37 @@ public class DlgCPPT extends javax.swing.JDialog {
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
-                    Sequel.menyimpan("cppt_history",
-                            "'" + rs3.getString("no_rawat") + "',"
-                            + "'" + rs3.getString("tgl_cppt") + "',"
-                            + "'" + rs3.getString("bagian") + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("hasil_pemeriksaan")) + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("instruksi_nakes")) + "',"
-                            + "'" + rs3.getString("verifikasi") + "',"
-                            + "'" + rs3.getString("nip_dpjp") + "',"
-                            + "'" + rs3.getString("status") + "',"
-                            + "'" + rs3.getString("waktu_simpan") + "',"
-                            + "'" + rs3.getString("cek_jam") + "',"
-                            + "'" + rs3.getString("jam_cppt") + "',"
-                            + "'" + rs3.getString("jenis_ppa") + "',"
-                            + "'" + rs3.getString("nip_ppa") + "',"
-                            + "'" + rs3.getString("jenis_bagian") + "',"
-                            + "'" + rs3.getString("serah_terima_cppt") + "',"
-                            + "'" + rs3.getString("nip_konsulen") + "',"
-                            + "'" + rs3.getString("nip_petugas_serah") + "',"
-                            + "'" + rs3.getString("nip_petugas_terima") + "',"
-                            + "'" + rs3.getString("cppt_shift") + "',"
-                            + "'" + rs3.getString("jam_serah_terima") + "',"
-                            + "'" + rs3.getString("flag_hapus") + "',"
-                            + "'" + rs3.getString("nip_penghapus") + "',"
-                            + "'" + rs3.getString("pilihan_soap") + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("subjektif")) + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("objektif")) + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("asesmen")) + "',"
-                            + "'" + Valid.mysql_real_escape_stringERM(rs3.getString("planing")) + "',"
-                            + "'" + Sequel.cariIsi("select now()") + "',"
-                            + "'" + akses.getkode() + "'", "CPPT History");
+                    Sequel.menyimpanPesanGagalnyaDiTerminal("cppt_history", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "CPPT History", 29, new String[]{
+                        rs3.getString("no_rawat"),
+                        rs3.getString("tgl_cppt"),
+                        rs3.getString("bagian"),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("hasil_pemeriksaan")),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("instruksi_nakes")),
+                        rs3.getString("verifikasi"),
+                        rs3.getString("nip_dpjp"),
+                        rs3.getString("status"),
+                        rs3.getString("waktu_simpan"),
+                        rs3.getString("cek_jam"),
+                        rs3.getString("jam_cppt"),
+                        rs3.getString("jenis_ppa"),
+                        rs3.getString("nip_ppa"),
+                        rs3.getString("jenis_bagian"),
+                        rs3.getString("serah_terima_cppt"),
+                        rs3.getString("nip_konsulen"),
+                        rs3.getString("nip_petugas_serah"),
+                        rs3.getString("nip_petugas_terima"),
+                        rs3.getString("cppt_shift"),
+                        rs3.getString("jam_serah_terima"),
+                        rs3.getString("flag_hapus"),
+                        rs3.getString("nip_penghapus"),
+                        rs3.getString("pilihan_soap"),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("subjektif")),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("objektif")),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("asesmen")),
+                        Valid.mysql_real_escape_stringERM(rs3.getString("planing")),
+                        Sequel.cariIsi("select now()"),
+                        akses.getkode()
+                    });
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
