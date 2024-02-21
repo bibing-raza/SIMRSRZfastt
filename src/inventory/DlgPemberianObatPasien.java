@@ -488,8 +488,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
 
-        nmObat.setDocument(new batasInput((int) 255).getKata(nmObat));
-        dosis.setDocument(new batasInput((int) 7).getKata(dosis));
+        nmObat.setDocument(new batasInput((int) 255).getKata(nmObat));        
         caraPemberian.setDocument(new batasInput((int) 180).getKata(caraPemberian));
         jlhSisaObat.setDocument(new batasInput((int) 20).getKata(jlhSisaObat));
         Tjlh.setDocument(new batasInput((int) 10).getKata(Tjlh));
@@ -666,7 +665,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         cmbDtk6 = new widget.ComboBox();
         cmbDtk7 = new widget.ComboBox();
         cmbDtk8 = new widget.ComboBox();
-        BtnPetugas = new widget.Button();
         jLabel11 = new widget.Label();
         jLabel16 = new widget.Label();
         jLabel23 = new widget.Label();
@@ -713,6 +711,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         BtnEdit = new widget.Button();
         BtnCopyJadwal = new widget.Button();
         BtnPrint = new widget.Button();
+        BtnPetugas = new widget.Button();
         BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
@@ -1162,7 +1161,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(dosis);
-        dosis.setBounds(134, 122, 150, 23);
+        dosis.setBounds(134, 122, 496, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Cara Pemberian/Rute :");
@@ -1217,7 +1216,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel10.setText("Jumlah (Sisa Obat) :");
         jLabel10.setName("jLabel10"); // NOI18N
         panelGlass7.add(jLabel10);
-        jLabel10.setBounds(285, 122, 110, 23);
+        jLabel10.setBounds(345, 150, 110, 23);
 
         jlhSisaObat.setForeground(new java.awt.Color(0, 0, 0));
         jlhSisaObat.setName("jlhSisaObat"); // NOI18N
@@ -1227,7 +1226,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(jlhSisaObat);
-        jlhSisaObat.setBounds(400, 122, 50, 23);
+        jlhSisaObat.setBounds(460, 150, 50, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Tgl. Pemberian :");
@@ -1268,13 +1267,13 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel15.setText("Pemberian Obat : ");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass7.add(jLabel15);
-        jLabel15.setBounds(450, 122, 100, 23);
+        jLabel15.setBounds(515, 150, 100, 23);
 
         cmbObat.setForeground(new java.awt.Color(0, 0, 0));
         cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI", "TETES", "OLES", "HISAP", "SEMPROT" }));
         cmbObat.setName("cmbObat"); // NOI18N
         panelGlass7.add(cmbObat);
-        cmbObat.setBounds(552, 122, 80, 23);
+        cmbObat.setBounds(617, 150, 80, 23);
 
         chkJam1.setBackground(new java.awt.Color(242, 242, 242));
         chkJam1.setForeground(new java.awt.Color(0, 0, 0));
@@ -1634,22 +1633,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelGlass7.add(cmbDtk8);
         cmbDtk8.setBounds(570, 262, 47, 23);
-
-        BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png"))); // NOI18N
-        BtnPetugas.setMnemonic('P');
-        BtnPetugas.setText("Petugas Yang Melaksanakan");
-        BtnPetugas.setToolTipText("Alt+P");
-        BtnPetugas.setGlassColor(new java.awt.Color(255, 204, 0));
-        BtnPetugas.setName("BtnPetugas"); // NOI18N
-        BtnPetugas.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPetugasActionPerformed(evt);
-            }
-        });
-        panelGlass7.add(BtnPetugas);
-        BtnPetugas.setBounds(360, 150, 220, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Ket : ");
@@ -2069,6 +2052,21 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnPrint);
+
+        BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/users.png"))); // NOI18N
+        BtnPetugas.setMnemonic('P');
+        BtnPetugas.setText("Petugas Yang Melaksanakan");
+        BtnPetugas.setToolTipText("Alt+P");
+        BtnPetugas.setGlassColor(new java.awt.Color(255, 204, 0));
+        BtnPetugas.setName("BtnPetugas"); // NOI18N
+        BtnPetugas.setPreferredSize(new java.awt.Dimension(220, 30));
+        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnPetugas);
 
         BtnNotepad.setForeground(new java.awt.Color(0, 0, 0));
         BtnNotepad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
