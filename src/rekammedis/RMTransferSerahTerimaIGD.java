@@ -51,6 +51,7 @@ import javax.swing.text.Document;
 import kepegawaian.DlgCariPetugas;
 import keuangan.DlgKamar;
 import laporan.DlgHasilLIS;
+import laporan.DlgHasilPenunjangMedis;
 import laporan.DlgPenyakit;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariPeriksaRadiologi;
@@ -551,6 +552,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
@@ -736,6 +738,21 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         BtnBeriObat = new widget.Button();
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHasilPemeriksaanPenunjang);
 
         MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -1094,7 +1111,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023 21:18:52" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024 21:00:55" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -2320,7 +2337,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2335,7 +2352,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-11-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3329,6 +3346,19 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnNotepadActionPerformed
 
+    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            akses.setform("RMTransferSerahTerimaIGD");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3392,6 +3422,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.InternalFrame FormTST;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
+    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;

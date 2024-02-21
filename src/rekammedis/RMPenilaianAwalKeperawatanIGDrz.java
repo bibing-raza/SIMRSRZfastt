@@ -45,6 +45,7 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilLIS;
+import laporan.DlgHasilPenunjangMedis;
 import simrskhanza.DlgCariDokter;
 import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgNotepad;
@@ -488,6 +489,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
@@ -749,6 +751,21 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+
         MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
@@ -967,7 +984,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023 15:01:18" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024 21:00:22" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -2558,7 +2575,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023 15:01:20" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024 21:00:23" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2866,7 +2883,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2881,7 +2898,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4248,6 +4265,19 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnNotepadActionPerformed
 
+    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            akses.setform("RMPenilaianAwalKeperawatanIGDrz");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4302,6 +4332,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private widget.TextBox KdDokter;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
+    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private widget.TextBox NmDokter;
     private usu.widget.glass.PanelGlass PanelWall;

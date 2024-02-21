@@ -32,6 +32,7 @@ import javax.swing.table.TableColumn;
 import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgHasilExpertiseRadiologi;
 import laporan.DlgHasilLIS;
+import laporan.DlgHasilPenunjangMedis;
 import rekammedis.DlgVerifikasiCPPT;
 import simrskhanza.DlgCariDokter;
 
@@ -335,6 +336,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         MnIGD = new javax.swing.JMenu();
@@ -519,6 +521,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
         BtnVerif = new widget.Button();
@@ -528,6 +531,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+
         MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
@@ -535,7 +553,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHasilPemeriksaanLab.setIconTextGap(5);
         MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
-        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(190, 26));
         MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHasilPemeriksaanLabActionPerformed(evt);
@@ -550,7 +568,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnHasilPemeriksaanRad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHasilPemeriksaanRad.setIconTextGap(5);
         MnHasilPemeriksaanRad.setName("MnHasilPemeriksaanRad"); // NOI18N
-        MnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(190, 26));
         MnHasilPemeriksaanRad.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHasilPemeriksaanRadActionPerformed(evt);
@@ -566,7 +584,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnIGD.setIconTextGap(5);
         MnIGD.setName("MnIGD"); // NOI18N
         MnIGD.setOpaque(true);
-        MnIGD.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnIGD.setPreferredSize(new java.awt.Dimension(190, 26));
 
         MnTriase.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnTriase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -652,7 +670,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnDiagnosa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDiagnosa.setIconTextGap(5);
         MnDiagnosa.setName("MnDiagnosa"); // NOI18N
-        MnDiagnosa.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnDiagnosa.setPreferredSize(new java.awt.Dimension(190, 26));
         MnDiagnosa.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDiagnosaActionPerformed(evt);
@@ -667,7 +685,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         MnCetakRingkasan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCetakRingkasan.setIconTextGap(5);
         MnCetakRingkasan.setName("MnCetakRingkasan"); // NOI18N
-        MnCetakRingkasan.setPreferredSize(new java.awt.Dimension(180, 26));
+        MnCetakRingkasan.setPreferredSize(new java.awt.Dimension(190, 26));
         MnCetakRingkasan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakRingkasanActionPerformed(evt);
@@ -1658,7 +1676,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-02-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -2139,6 +2157,25 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnGanti);
+
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnPrint);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -3167,6 +3204,29 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAll1KeyPressed
 
+    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
+        if (TNoRW.getText().trim().equals("") || TNmPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRW, "Pasien");
+        } else {
+            akses.setform("DlgRingkasanPulangRanap");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRW.getText(), TNmPasien.getText(), TNoRM.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        MnCetakRingkasanActionPerformed(null);
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3202,6 +3262,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button BtnPasteHasil;
     private widget.Button BtnPastePenunjang;
     private widget.Button BtnPasteTerapiPulang;
+    private widget.Button BtnPrint;
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
@@ -3217,6 +3278,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnCetakRingkasan;
     private javax.swing.JMenuItem MnDiagnosa;
     private javax.swing.JMenuItem MnHasilPemeriksaanLab;
+    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private javax.swing.JMenu MnIGD;
     private javax.swing.JMenuItem MnTriase;
