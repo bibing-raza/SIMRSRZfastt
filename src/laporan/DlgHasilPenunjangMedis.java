@@ -122,7 +122,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(250);
             } else if (i == 2) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(150);
             } else if (i == 3) {
                 column.setPreferredWidth(90);
             } else if (i == 4) {
@@ -257,7 +257,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         tbHasilCopy = new widget.Table();
         panelGlass8 = new widget.panelisi();
         BtnConteng = new widget.Button();
-        BtnPilihPemeriksaan = new widget.Button();
         BtnHapus = new widget.Button();
         BtnCopy = new widget.Button();
         BtnPrinLab = new widget.Button();
@@ -287,7 +286,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         MnHapusDipilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
         MnHapusDipilih.setText("Hapus Pemeriksaan Dipilih");
         MnHapusDipilih.setName("MnHapusDipilih"); // NOI18N
-        MnHapusDipilih.setPreferredSize(new java.awt.Dimension(228, 26));
+        MnHapusDipilih.setPreferredSize(new java.awt.Dimension(208, 26));
         MnHapusDipilih.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusDipilihActionPerformed(evt);
@@ -299,7 +298,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         MnHapusSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         MnHapusSemua.setText("Hapus Semua Pemeriksaan Dipilih");
         MnHapusSemua.setName("MnHapusSemua"); // NOI18N
-        MnHapusSemua.setPreferredSize(new java.awt.Dimension(228, 26));
+        MnHapusSemua.setPreferredSize(new java.awt.Dimension(208, 26));
         MnHapusSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusSemuaActionPerformed(evt);
@@ -427,6 +426,11 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
 
         tbHasil.setToolTipText("Silahkan conteng item hasil pemeriksaan yang akan di copy");
         tbHasil.setName("tbHasil"); // NOI18N
+        tbHasil.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbHasilMouseClicked(evt);
+            }
+        });
         Scroll.setViewportView(tbHasil);
 
         panelGlass12.add(Scroll);
@@ -461,20 +465,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnConteng);
-
-        BtnPilihPemeriksaan.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPilihPemeriksaan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnPilihPemeriksaan.setMnemonic('H');
-        BtnPilihPemeriksaan.setText("Pemeriksaan Dipilih");
-        BtnPilihPemeriksaan.setToolTipText("Alt+H");
-        BtnPilihPemeriksaan.setName("BtnPilihPemeriksaan"); // NOI18N
-        BtnPilihPemeriksaan.setPreferredSize(new java.awt.Dimension(160, 30));
-        BtnPilihPemeriksaan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPilihPemeriksaanActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnPilihPemeriksaan);
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
@@ -798,10 +788,24 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private void BtnContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContengActionPerformed
         if (tabMode1.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
-        } else {            
+        } else {
             tampilLIS();
             for (i = 0; i < tbHasil.getRowCount(); i++) {
                 tbHasil.setValueAt(Boolean.TRUE, i, 0);
+            }
+
+            try {
+                for (i = 0; i < tbHasil.getRowCount(); i++) {
+                    if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
+                        tabMode3.addRow(new Object[]{
+                            tbHasil.getValueAt(i, 1).toString(),
+                            tbHasil.getValueAt(i, 2).toString(),
+                            tbHasil.getValueAt(i, 3).toString()
+                        });
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
             }
         }
     }//GEN-LAST:event_BtnContengActionPerformed
@@ -840,55 +844,15 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             akses.setCopyData(hasilDipilih);
             BtnKeluarActionPerformed(null);
         }
-
-//        if (tabMode1.getRowCount() == 0) {
-//            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
-//        } else {
-//            //cek conteng
-//            x = 0;
-//            for (i = 0; i < tbHasil.getRowCount(); i++) {
-//                if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-//                    x++;
-//                }
-//            }
-//            
-//            if (x == 0) {
-//                JOptionPane.showMessageDialog(null, "Silahkan conteng hasil pemeriksaan lab. yang dipilih utk. di copy..!!!!");
-//                tbHasil.requestFocus();
-//            } else {
-//                try {
-//                    for (i = 0; i < tbHasil.getRowCount(); i++) {
-//                        if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-//                            if (hasilDipilih.equals("")) {
-//                                hasilDipilih = tbHasil.getValueAt(i, 1).toString() + " "
-//                                        + tbHasil.getValueAt(i, 2).toString() + " "
-//                                        + tbHasil.getValueAt(i, 3).toString();
-//                            } else {
-//                                hasilDipilih = hasilDipilih + "\n" + tbHasil.getValueAt(i, 1).toString() + " "
-//                                        + tbHasil.getValueAt(i, 2).toString() + " "
-//                                        + tbHasil.getValueAt(i, 3).toString();
-//                            }
-//                        }
-//                    }
-//                } catch (Exception e) {
-//                    System.out.println("Notifikasi : " + e);
-//                }
-//
-//                akses.setCopyData(hasilDipilih);
-//                BtnKeluarActionPerformed(null);
-//            }
-//        }
     }//GEN-LAST:event_BtnCopyActionPerformed
 
     private void TabPemeriksaanMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabPemeriksaanMouseClicked
         if (TabPemeriksaan.getSelectedIndex() == 0) {
-            Valid.tabelKosong(tabMode1);
-            Valid.tabelKosong(tabMode3);
+            Valid.tabelKosong(tabMode1);            
             TCari.setText("");
             tampilLIS();
         } else if (TabPemeriksaan.getSelectedIndex() == 1) {
-            TCari1.setText("");
-            HasilPeriksa.setText("");
+            TCari1.setText("");            
             tampilItem();
         }
     }//GEN-LAST:event_TabPemeriksaanMouseClicked
@@ -1013,43 +977,10 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCopy1ActionPerformed
 
-    private void BtnPilihPemeriksaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihPemeriksaanActionPerformed
-        if (tabMode1.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium belum dipilih...!!!!");
-        } else {
-            //cek conteng
-            x = 0;
-            for (i = 0; i < tbHasil.getRowCount(); i++) {
-                if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-                    x++;
-                }
-            }
-
-            if (x == 0) {
-                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu hasil pemeriksaan lab. yang dipilih..!!!!");
-                tbHasil.requestFocus();
-            } else {
-                try {
-                    for (i = 0; i < tbHasil.getRowCount(); i++) {
-                        if (tbHasil.getValueAt(i, 0).toString().equals("true")) {
-                            tabMode3.addRow(new Object[]{
-                                tbHasil.getValueAt(i, 1).toString(),
-                                tbHasil.getValueAt(i, 2).toString(),
-                                tbHasil.getValueAt(i, 3).toString()
-                            });
-                        }
-                    }
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                }
-                BtnHapusActionPerformed(null);
-            }
-        }
-    }//GEN-LAST:event_BtnPilihPemeriksaanActionPerformed
-
     private void MnHapusDipilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusDipilihActionPerformed
         if (tbHasilCopy.getSelectedRow() > -1) {
             tabMode3.removeRow(tbHasilCopy.getSelectedRow());
+            BtnHapusActionPerformed(null);
         } else {
             JOptionPane.showMessageDialog(null, "Silahkan klik pilih salah satu datanya dulu..!!!!");
             tbHasilCopy.requestFocus();
@@ -1063,9 +994,27 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah semua data pemeriksaan lab. yang dipilih akan dihapus semua..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 Valid.tabelKosong(tabMode3);
+                BtnHapusActionPerformed(null);
             }
         }
     }//GEN-LAST:event_MnHapusSemuaActionPerformed
+
+    private void tbHasilMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbHasilMouseClicked
+        if (tabMode1.getRowCount() != 0) {
+            try {
+
+                if (tbHasil.getValueAt(tbHasil.getSelectedRow(), 0).toString().equals("true")) {
+                    tabMode3.addRow(new Object[]{
+                        tbHasil.getValueAt(tbHasil.getSelectedRow(), 1).toString(),
+                        tbHasil.getValueAt(tbHasil.getSelectedRow(), 2).toString(),
+                        tbHasil.getValueAt(tbHasil.getSelectedRow(), 3).toString()
+                    });
+                }
+
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbHasilMouseClicked
 
     /**
     * @param args the command line arguments
@@ -1092,7 +1041,6 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnKeluar1;
-    private widget.Button BtnPilihPemeriksaan;
     private widget.Button BtnPrinLab;
     private widget.Button BtnPrinRadiologi;
     private widget.PanelBiasa FormInput;
