@@ -38,11 +38,9 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import kepegawaian.DlgCariPegawai;
 import kepegawaian.DlgCariPetugas;
-import laporan.DlgHasilLIS;
 import laporan.DlgPenyakit;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgCariDokter;
-import simrskhanza.DlgCariPeriksaRadiologi;
 
 /**
  *
@@ -55,14 +53,14 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, ps2, ps3, ps4;
     private ResultSet rs, rs1, rs2, rs3, rs4;
-    private int i = 0, x = 0, pilihan = 0, cekHasilRad = 0;
+    private int i = 0, x = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgPenyakit icd10 = new DlgPenyakit(null, false);
     private String cervical = "", rjp = "", defribrilasi = "", intubasi = "", vtp = "", dekompresi = "", balut = "", kateter = "",
             ngt = "", infus = "", obat = "", tidakada = "", paten = "", obsP = "", deformitas = "", contusio = "", penetrasi = "", tenderness = "",
             swelling = "", ekskoriasi = "", abrasi = "", burn = "", laserasi = "", tdk_tmpk_jls = "", obsT = "", traumaJlnNfs = "", resikoAspirasi = "",
-            bendaAsing = "", meninggal = "", ganggnafas = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", mengeluh_prt = "",
+            bendaAsing = "", meninggal = "", ganggnafas = "", itemDipilih = "", mengeluh_prt = "",
             hipertensi1 = "", dm1 = "", jantung1 = "", asma1 = "", lainya1 = "", hipertensi2 = "", dm2 = "", jantung2 = "", asma2 = "", lainya2 = "",
             pil = "", suntik1 = "", suntik3 = "", implan = "", dismen = "", spoting = "", menor = "", metro = "", nyeri = "", bandle = "",
             his = "", teratur = "", tdk_teratur = "", terus = "", kuat = "", sedang = "", lemah = "", bersih = "", odema = "", ruptur = "",
@@ -936,9 +934,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
-        MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame4 = new widget.InternalFrame();
         panelisi4 = new widget.panelisi();
@@ -1336,38 +1331,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
 
-        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
-
-        MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
-        MnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanLab.setIconTextGap(5);
-        MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
-        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(190, 26));
-        MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanLabActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnHasilPemeriksaanLab);
-
-        MnHasilPemeriksaanRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanRad.setText("Hasil Pemeriksaan Radiologi");
-        MnHasilPemeriksaanRad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanRad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanRad.setIconTextGap(5);
-        MnHasilPemeriksaanRad.setName("MnHasilPemeriksaanRad"); // NOI18N
-        MnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(190, 26));
-        MnHasilPemeriksaanRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanRadActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnHasilPemeriksaanRad);
-
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
         WindowTemplate.setUndecorated(true);
@@ -1676,7 +1639,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
         FormInput.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang medis");
-        FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 2375));
         FormInput.setLayout(null);
@@ -1684,21 +1646,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jSeparator1.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator1.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator1.setComponentPopupMenu(jPopupMenu1);
         jSeparator1.setName("jSeparator1"); // NOI18N
         FormInput.add(jSeparator1);
         jSeparator1.setBounds(0, 120, 880, 1);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setComponentPopupMenu(jPopupMenu1);
         TNoRw.setName("TNoRw"); // NOI18N
         FormInput.add(TNoRw);
         TNoRw.setBounds(157, 30, 131, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien.setComponentPopupMenu(jPopupMenu1);
         TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
@@ -1706,14 +1665,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM.setComponentPopupMenu(jPopupMenu1);
         TNoRM.setName("TNoRM"); // NOI18N
         FormInput.add(TNoRM);
         TNoRM.setBounds(290, 30, 70, 23);
 
         label14.setForeground(new java.awt.Color(0, 0, 0));
         label14.setText("Bidan Yg. Menyerahkan :");
-        label14.setComponentPopupMenu(jPopupMenu1);
         label14.setName("label14"); // NOI18N
         label14.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label14);
@@ -1721,7 +1678,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         KdBidan.setEditable(false);
         KdBidan.setForeground(new java.awt.Color(0, 0, 0));
-        KdBidan.setComponentPopupMenu(jPopupMenu1);
         KdBidan.setName("KdBidan"); // NOI18N
         KdBidan.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(KdBidan);
@@ -1729,7 +1685,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         NmBidan.setEditable(false);
         NmBidan.setForeground(new java.awt.Color(0, 0, 0));
-        NmBidan.setComponentPopupMenu(jPopupMenu1);
         NmBidan.setName("NmBidan"); // NOI18N
         NmBidan.setPreferredSize(new java.awt.Dimension(207, 23));
         FormInput.add(NmBidan);
@@ -1738,7 +1693,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         BtnBidan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnBidan.setMnemonic('2');
         BtnBidan.setToolTipText("Alt+2");
-        BtnBidan.setComponentPopupMenu(jPopupMenu1);
         BtnBidan.setName("BtnBidan"); // NOI18N
         BtnBidan.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnBidan.addActionListener(new java.awt.event.ActionListener() {
@@ -1751,14 +1705,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Lahir : ");
-        jLabel8.setComponentPopupMenu(jPopupMenu1);
         jLabel8.setName("jLabel8"); // NOI18N
         FormInput.add(jLabel8);
         jLabel8.setBounds(665, 30, 80, 23);
 
         TglLahir.setEditable(false);
         TglLahir.setForeground(new java.awt.Color(0, 0, 0));
-        TglLahir.setComponentPopupMenu(jPopupMenu1);
         TglLahir.setHighlighter(null);
         TglLahir.setName("TglLahir"); // NOI18N
         FormInput.add(TglLahir);
@@ -1766,21 +1718,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("No. Rawat :");
-        jLabel10.setComponentPopupMenu(jPopupMenu1);
         jLabel10.setName("jLabel10"); // NOI18N
         FormInput.add(jLabel10);
         jLabel10.setBounds(0, 30, 150, 23);
 
         label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tgl. Asesmen : ");
-        label11.setComponentPopupMenu(jPopupMenu1);
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label11);
         label11.setBounds(665, 60, 80, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglAsesmen.setComponentPopupMenu(jPopupMenu1);
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:00" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1790,7 +1739,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel98.setForeground(new java.awt.Color(0, 0, 0));
         jLabel98.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel98.setText("INTERVENSI PREHOSPITAL");
-        jLabel98.setComponentPopupMenu(jPopupMenu1);
         jLabel98.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel98.setName("jLabel98"); // NOI18N
         FormInput.add(jLabel98);
@@ -1799,7 +1747,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("MULAI PENANGANAN :");
-        jLabel12.setComponentPopupMenu(jPopupMenu1);
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
@@ -1807,7 +1754,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         label15.setForeground(new java.awt.Color(0, 0, 0));
         label15.setText("Mengetahui DPJP :");
-        label15.setComponentPopupMenu(jPopupMenu1);
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label15);
@@ -1815,7 +1761,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         kddpjp.setEditable(false);
         kddpjp.setForeground(new java.awt.Color(0, 0, 0));
-        kddpjp.setComponentPopupMenu(jPopupMenu1);
         kddpjp.setName("kddpjp"); // NOI18N
         kddpjp.setPreferredSize(new java.awt.Dimension(80, 23));
         FormInput.add(kddpjp);
@@ -1823,7 +1768,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         nmdpjp.setEditable(false);
         nmdpjp.setForeground(new java.awt.Color(0, 0, 0));
-        nmdpjp.setComponentPopupMenu(jPopupMenu1);
         nmdpjp.setName("nmdpjp"); // NOI18N
         nmdpjp.setPreferredSize(new java.awt.Dimension(207, 23));
         FormInput.add(nmdpjp);
@@ -1832,7 +1776,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         BtnDpjp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDpjp.setMnemonic('2');
         BtnDpjp.setToolTipText("Alt+2");
-        BtnDpjp.setComponentPopupMenu(jPopupMenu1);
         BtnDpjp.setName("BtnDpjp"); // NOI18N
         BtnDpjp.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnDpjp.addActionListener(new java.awt.event.ActionListener() {
@@ -1849,7 +1792,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkCervical.setText("Cervical Collar");
         ChkCervical.setBorderPainted(true);
         ChkCervical.setBorderPaintedFlat(true);
-        ChkCervical.setComponentPopupMenu(jPopupMenu1);
         ChkCervical.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkCervical.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkCervical.setName("ChkCervical"); // NOI18N
@@ -1864,7 +1806,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkRJP.setText("RJP");
         ChkRJP.setBorderPainted(true);
         ChkRJP.setBorderPaintedFlat(true);
-        ChkRJP.setComponentPopupMenu(jPopupMenu1);
         ChkRJP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkRJP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkRJP.setName("ChkRJP"); // NOI18N
@@ -1879,7 +1820,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDefribilasi.setText("Defribrilasi");
         ChkDefribilasi.setBorderPainted(true);
         ChkDefribilasi.setBorderPaintedFlat(true);
-        ChkDefribilasi.setComponentPopupMenu(jPopupMenu1);
         ChkDefribilasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDefribilasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDefribilasi.setName("ChkDefribilasi"); // NOI18N
@@ -1894,7 +1834,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkIntubasi.setText("Intubasi");
         ChkIntubasi.setBorderPainted(true);
         ChkIntubasi.setBorderPaintedFlat(true);
-        ChkIntubasi.setComponentPopupMenu(jPopupMenu1);
         ChkIntubasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkIntubasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkIntubasi.setName("ChkIntubasi"); // NOI18N
@@ -1909,7 +1848,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkVTP.setText("VTP");
         ChkVTP.setBorderPainted(true);
         ChkVTP.setBorderPaintedFlat(true);
-        ChkVTP.setComponentPopupMenu(jPopupMenu1);
         ChkVTP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkVTP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkVTP.setName("ChkVTP"); // NOI18N
@@ -1924,7 +1862,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDekompresi.setText("Dekompresi Jarum/WSD*");
         ChkDekompresi.setBorderPainted(true);
         ChkDekompresi.setBorderPaintedFlat(true);
-        ChkDekompresi.setComponentPopupMenu(jPopupMenu1);
         ChkDekompresi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDekompresi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDekompresi.setName("ChkDekompresi"); // NOI18N
@@ -1939,7 +1876,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBalut.setText("Balut / Bidai*");
         ChkBalut.setBorderPainted(true);
         ChkBalut.setBorderPaintedFlat(true);
-        ChkBalut.setComponentPopupMenu(jPopupMenu1);
         ChkBalut.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkBalut.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkBalut.setName("ChkBalut"); // NOI18N
@@ -1954,7 +1890,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkKateter.setText("Kateter Urin");
         ChkKateter.setBorderPainted(true);
         ChkKateter.setBorderPaintedFlat(true);
-        ChkKateter.setComponentPopupMenu(jPopupMenu1);
         ChkKateter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkKateter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkKateter.setName("ChkKateter"); // NOI18N
@@ -1969,7 +1904,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkNGT.setText("NGT");
         ChkNGT.setBorderPainted(true);
         ChkNGT.setBorderPaintedFlat(true);
-        ChkNGT.setComponentPopupMenu(jPopupMenu1);
         ChkNGT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkNGT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkNGT.setName("ChkNGT"); // NOI18N
@@ -1984,7 +1918,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkInfus.setText("Infus");
         ChkInfus.setBorderPainted(true);
         ChkInfus.setBorderPaintedFlat(true);
-        ChkInfus.setComponentPopupMenu(jPopupMenu1);
         ChkInfus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkInfus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkInfus.setName("ChkInfus"); // NOI18N
@@ -1999,7 +1932,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkObat.setText("Obat");
         ChkObat.setBorderPainted(true);
         ChkObat.setBorderPaintedFlat(true);
-        ChkObat.setComponentPopupMenu(jPopupMenu1);
         ChkObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkObat.setName("ChkObat"); // NOI18N
@@ -2014,7 +1946,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkObat.setBounds(540, 150, 50, 23);
 
         TObat.setForeground(new java.awt.Color(0, 0, 0));
-        TObat.setComponentPopupMenu(jPopupMenu1);
         TObat.setName("TObat"); // NOI18N
         FormInput.add(TObat);
         TObat.setBounds(594, 150, 260, 23);
@@ -2025,7 +1956,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTidak.setText("Tidak Ada");
         ChkTidak.setBorderPainted(true);
         ChkTidak.setBorderPaintedFlat(true);
-        ChkTidak.setComponentPopupMenu(jPopupMenu1);
         ChkTidak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTidak.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTidak.setName("ChkTidak"); // NOI18N
@@ -2037,7 +1967,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jSeparator2.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator2.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator2.setComponentPopupMenu(jPopupMenu1);
         jSeparator2.setName("jSeparator2"); // NOI18N
         FormInput.add(jSeparator2);
         jSeparator2.setBounds(0, 210, 880, 1);
@@ -2045,7 +1974,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel99.setForeground(new java.awt.Color(0, 0, 0));
         jLabel99.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel99.setText("SURVEI PRIMER");
-        jLabel99.setComponentPopupMenu(jPopupMenu1);
         jLabel99.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel99.setName("jLabel99"); // NOI18N
         FormInput.add(jLabel99);
@@ -2054,7 +1982,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel100.setForeground(new java.awt.Color(0, 51, 204));
         jLabel100.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel100.setText("Jalan Nafas :");
-        jLabel100.setComponentPopupMenu(jPopupMenu1);
         jLabel100.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel100.setName("jLabel100"); // NOI18N
         FormInput.add(jLabel100);
@@ -2066,7 +1993,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkPaten.setText("Paten");
         ChkPaten.setBorderPainted(true);
         ChkPaten.setBorderPaintedFlat(true);
-        ChkPaten.setComponentPopupMenu(jPopupMenu1);
         ChkPaten.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkPaten.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkPaten.setName("ChkPaten"); // NOI18N
@@ -2081,7 +2007,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkObstruksiP.setText("Obstruksi Partial");
         ChkObstruksiP.setBorderPainted(true);
         ChkObstruksiP.setBorderPaintedFlat(true);
-        ChkObstruksiP.setComponentPopupMenu(jPopupMenu1);
         ChkObstruksiP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkObstruksiP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkObstruksiP.setName("ChkObstruksiP"); // NOI18N
@@ -2101,7 +2026,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkObstruksiT.setText("Obstruksi Total");
         ChkObstruksiT.setBorderPainted(true);
         ChkObstruksiT.setBorderPaintedFlat(true);
-        ChkObstruksiT.setComponentPopupMenu(jPopupMenu1);
         ChkObstruksiT.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkObstruksiT.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkObstruksiT.setName("ChkObstruksiT"); // NOI18N
@@ -2116,7 +2040,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTrauma.setText("Trauma Jalan Nafas :");
         ChkTrauma.setBorderPainted(true);
         ChkTrauma.setBorderPaintedFlat(true);
-        ChkTrauma.setComponentPopupMenu(jPopupMenu1);
         ChkTrauma.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTrauma.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTrauma.setName("ChkTrauma"); // NOI18N
@@ -2132,7 +2055,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbTrauma.setForeground(new java.awt.Color(0, 0, 0));
         cmbTrauma.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Fasial", "Leher", "Inhalasi" }));
-        cmbTrauma.setComponentPopupMenu(jPopupMenu1);
         cmbTrauma.setName("cmbTrauma"); // NOI18N
         FormInput.add(cmbTrauma);
         cmbTrauma.setBounds(145, 340, 70, 23);
@@ -2143,7 +2065,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkResiko.setText("Resiko Aspirasi :");
         ChkResiko.setBorderPainted(true);
         ChkResiko.setBorderPaintedFlat(true);
-        ChkResiko.setComponentPopupMenu(jPopupMenu1);
         ChkResiko.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkResiko.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkResiko.setName("ChkResiko"); // NOI18N
@@ -2159,7 +2080,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbResiko.setForeground(new java.awt.Color(0, 0, 0));
         cmbResiko.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Perdarahan", "Muntahan" }));
-        cmbResiko.setComponentPopupMenu(jPopupMenu1);
         cmbResiko.setName("cmbResiko"); // NOI18N
         FormInput.add(cmbResiko);
         cmbResiko.setBounds(122, 370, 92, 23);
@@ -2170,7 +2090,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBendaAsing.setText("Benda Asing : ");
         ChkBendaAsing.setBorderPainted(true);
         ChkBendaAsing.setBorderPaintedFlat(true);
-        ChkBendaAsing.setComponentPopupMenu(jPopupMenu1);
         ChkBendaAsing.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkBendaAsing.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkBendaAsing.setName("ChkBendaAsing"); // NOI18N
@@ -2185,21 +2104,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBendaAsing.setBounds(20, 400, 88, 23);
 
         TBendaAsing.setForeground(new java.awt.Color(0, 0, 0));
-        TBendaAsing.setComponentPopupMenu(jPopupMenu1);
         TBendaAsing.setName("TBendaAsing"); // NOI18N
         FormInput.add(TBendaAsing);
         TBendaAsing.setBounds(110, 400, 280, 23);
 
         jLabel101.setForeground(new java.awt.Color(0, 0, 0));
         jLabel101.setText("Kesimpulan Jalan Nafas :");
-        jLabel101.setComponentPopupMenu(jPopupMenu1);
         jLabel101.setName("jLabel101"); // NOI18N
         FormInput.add(jLabel101);
         jLabel101.setBounds(20, 430, 130, 23);
 
         cmbKesJalanNafas.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesJalanNafas.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Aman", "Mengancam Jiwa" }));
-        cmbKesJalanNafas.setComponentPopupMenu(jPopupMenu1);
         cmbKesJalanNafas.setName("cmbKesJalanNafas"); // NOI18N
         FormInput.add(cmbKesJalanNafas);
         cmbKesJalanNafas.setBounds(155, 430, 115, 23);
@@ -2207,7 +2123,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel102.setForeground(new java.awt.Color(0, 51, 204));
         jLabel102.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel102.setText("Pernapasan :");
-        jLabel102.setComponentPopupMenu(jPopupMenu1);
         jLabel102.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel102.setName("jLabel102"); // NOI18N
         FormInput.add(jLabel102);
@@ -2215,7 +2130,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbPernapasan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPernapasan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Spontan", "Tidak Spontan" }));
-        cmbPernapasan.setComponentPopupMenu(jPopupMenu1);
         cmbPernapasan.setName("cmbPernapasan"); // NOI18N
         cmbPernapasan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -2227,49 +2141,42 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel103.setForeground(new java.awt.Color(0, 0, 0));
         jLabel103.setText("Gerakan Dada :");
-        jLabel103.setComponentPopupMenu(jPopupMenu1);
         jLabel103.setName("jLabel103"); // NOI18N
         FormInput.add(jLabel103);
         jLabel103.setBounds(270, 280, 130, 23);
 
         cmbGerakanDada.setForeground(new java.awt.Color(0, 0, 0));
         cmbGerakanDada.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Simetris", "Asimetris", "Jejas dinding dada kanan", "Jejas dinding dada kiri", "Jejas dinding dada kanan & kiri" }));
-        cmbGerakanDada.setComponentPopupMenu(jPopupMenu1);
         cmbGerakanDada.setName("cmbGerakanDada"); // NOI18N
         FormInput.add(cmbGerakanDada);
         cmbGerakanDada.setBounds(405, 280, 183, 23);
 
         jLabel104.setForeground(new java.awt.Color(0, 0, 0));
         jLabel104.setText("Tipe Pernapasan :");
-        jLabel104.setComponentPopupMenu(jPopupMenu1);
         jLabel104.setName("jLabel104"); // NOI18N
         FormInput.add(jLabel104);
         jLabel104.setBounds(270, 310, 130, 23);
 
         cmbTipePernapasan.setForeground(new java.awt.Color(0, 0, 0));
         cmbTipePernapasan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Normal", "Kussmaul", "Biot", "Apneustic", "Retraktif", "Takipneu", "Hiperventilasi", "Cheyne Stoke", "Flare" }));
-        cmbTipePernapasan.setComponentPopupMenu(jPopupMenu1);
         cmbTipePernapasan.setName("cmbTipePernapasan"); // NOI18N
         FormInput.add(cmbTipePernapasan);
         cmbTipePernapasan.setBounds(405, 310, 100, 23);
 
         jLabel105.setForeground(new java.awt.Color(0, 0, 0));
         jLabel105.setText("Kesimpulan Pernapasan :");
-        jLabel105.setComponentPopupMenu(jPopupMenu1);
         jLabel105.setName("jLabel105"); // NOI18N
         FormInput.add(jLabel105);
         jLabel105.setBounds(270, 340, 130, 23);
 
         cmbKesPernapasan.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesPernapasan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Aman", "Mengancam Jiwa" }));
-        cmbKesPernapasan.setComponentPopupMenu(jPopupMenu1);
         cmbKesPernapasan.setName("cmbKesPernapasan"); // NOI18N
         FormInput.add(cmbKesPernapasan);
         cmbKesPernapasan.setBounds(405, 340, 115, 23);
 
         jLabel106.setForeground(new java.awt.Color(0, 51, 204));
         jLabel106.setText("Sirkulasi :");
-        jLabel106.setComponentPopupMenu(jPopupMenu1);
         jLabel106.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel106.setName("jLabel106"); // NOI18N
         FormInput.add(jLabel106);
@@ -2277,77 +2184,66 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel107.setForeground(new java.awt.Color(0, 0, 0));
         jLabel107.setText("Nadi :");
-        jLabel107.setComponentPopupMenu(jPopupMenu1);
         jLabel107.setName("jLabel107"); // NOI18N
         FormInput.add(jLabel107);
         jLabel107.setBounds(630, 250, 80, 23);
 
         cmbNadi1.setForeground(new java.awt.Color(0, 0, 0));
         cmbNadi1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Reguler", "Irreguler" }));
-        cmbNadi1.setComponentPopupMenu(jPopupMenu1);
         cmbNadi1.setName("cmbNadi1"); // NOI18N
         FormInput.add(cmbNadi1);
         cmbNadi1.setBounds(715, 250, 80, 23);
 
         jLabel108.setForeground(new java.awt.Color(0, 0, 0));
         jLabel108.setText("Kulit / Mukosa :");
-        jLabel108.setComponentPopupMenu(jPopupMenu1);
         jLabel108.setName("jLabel108"); // NOI18N
         FormInput.add(jLabel108);
         jLabel108.setBounds(630, 280, 80, 23);
 
         cmbKulit.setForeground(new java.awt.Color(0, 0, 0));
         cmbKulit.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Normal", "Jaundice", "Berkeringat", "Pucat", "Cyanosis" }));
-        cmbKulit.setComponentPopupMenu(jPopupMenu1);
         cmbKulit.setName("cmbKulit"); // NOI18N
         FormInput.add(cmbKulit);
         cmbKulit.setBounds(715, 280, 90, 23);
 
         jLabel109.setForeground(new java.awt.Color(0, 0, 0));
         jLabel109.setText("Akral :");
-        jLabel109.setComponentPopupMenu(jPopupMenu1);
         jLabel109.setName("jLabel109"); // NOI18N
         FormInput.add(jLabel109);
         jLabel109.setBounds(630, 310, 80, 23);
 
         cmbAkral1.setForeground(new java.awt.Color(0, 0, 0));
         cmbAkral1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Hangat", "Dingin" }));
-        cmbAkral1.setComponentPopupMenu(jPopupMenu1);
         cmbAkral1.setName("cmbAkral1"); // NOI18N
         FormInput.add(cmbAkral1);
         cmbAkral1.setBounds(715, 310, 70, 23);
 
         jLabel110.setForeground(new java.awt.Color(0, 0, 0));
         jLabel110.setText("CRT :");
-        jLabel110.setComponentPopupMenu(jPopupMenu1);
         jLabel110.setName("jLabel110"); // NOI18N
         FormInput.add(jLabel110);
         jLabel110.setBounds(630, 340, 80, 23);
 
         cmbCRT.setForeground(new java.awt.Color(0, 0, 0));
         cmbCRT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "< 2 detik", "> 2 detik" }));
-        cmbCRT.setComponentPopupMenu(jPopupMenu1);
         cmbCRT.setName("cmbCRT"); // NOI18N
         FormInput.add(cmbCRT);
         cmbCRT.setBounds(715, 340, 80, 23);
 
         jLabel111.setForeground(new java.awt.Color(0, 0, 0));
         jLabel111.setText("Kesimpulan Sirkulasi :");
-        jLabel111.setComponentPopupMenu(jPopupMenu1);
         jLabel111.setName("jLabel111"); // NOI18N
         FormInput.add(jLabel111);
         jLabel111.setBounds(600, 370, 110, 23);
 
         cmbKesSirkulasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesSirkulasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Aman", "Mengancam Jiwa" }));
-        cmbKesSirkulasi.setComponentPopupMenu(jPopupMenu1);
         cmbKesSirkulasi.setName("cmbKesSirkulasi"); // NOI18N
         FormInput.add(cmbKesSirkulasi);
         cmbKesSirkulasi.setBounds(715, 370, 115, 23);
 
         jLabel118.setForeground(new java.awt.Color(0, 51, 204));
         jLabel118.setText("Disabilitas :");
-        jLabel118.setComponentPopupMenu(jPopupMenu1);
         jLabel118.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel118.setName("jLabel118"); // NOI18N
         FormInput.add(jLabel118);
@@ -2355,34 +2251,29 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel119.setForeground(new java.awt.Color(0, 0, 0));
         jLabel119.setText("GCS :");
-        jLabel119.setComponentPopupMenu(jPopupMenu1);
         jLabel119.setName("jLabel119"); // NOI18N
         FormInput.add(jLabel119);
         jLabel119.setBounds(450, 420, 40, 23);
 
         jLabel120.setForeground(new java.awt.Color(0, 0, 0));
         jLabel120.setText("Pupil :");
-        jLabel120.setComponentPopupMenu(jPopupMenu1);
         jLabel120.setName("jLabel120"); // NOI18N
         FormInput.add(jLabel120);
         jLabel120.setBounds(400, 450, 90, 23);
 
         cmbPupil.setForeground(new java.awt.Color(0, 0, 0));
         cmbPupil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Isokor", "Anisokor" }));
-        cmbPupil.setComponentPopupMenu(jPopupMenu1);
         cmbPupil.setName("cmbPupil"); // NOI18N
         FormInput.add(cmbPupil);
         cmbPupil.setBounds(494, 450, 75, 23);
 
         jLabel121.setForeground(new java.awt.Color(0, 0, 0));
         jLabel121.setText("Diameter (Kanan) :");
-        jLabel121.setComponentPopupMenu(jPopupMenu1);
         jLabel121.setName("jLabel121"); // NOI18N
         FormInput.add(jLabel121);
         jLabel121.setBounds(580, 450, 110, 23);
 
         TDiam_kanan.setForeground(new java.awt.Color(0, 0, 0));
-        TDiam_kanan.setComponentPopupMenu(jPopupMenu1);
         TDiam_kanan.setName("TDiam_kanan"); // NOI18N
         TDiam_kanan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2394,13 +2285,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel122.setForeground(new java.awt.Color(0, 0, 0));
         jLabel122.setText("Reflek Cahaya :");
-        jLabel122.setComponentPopupMenu(jPopupMenu1);
         jLabel122.setName("jLabel122"); // NOI18N
         FormInput.add(jLabel122);
         jLabel122.setBounds(400, 480, 90, 23);
 
         TReflek.setForeground(new java.awt.Color(0, 0, 0));
-        TReflek.setComponentPopupMenu(jPopupMenu1);
         TReflek.setName("TReflek"); // NOI18N
         TReflek.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2412,13 +2301,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel123.setForeground(new java.awt.Color(0, 0, 0));
         jLabel123.setText("Meningeal Signs :");
-        jLabel123.setComponentPopupMenu(jPopupMenu1);
         jLabel123.setName("jLabel123"); // NOI18N
         FormInput.add(jLabel123);
         jLabel123.setBounds(400, 510, 90, 23);
 
         TMeningeal.setForeground(new java.awt.Color(0, 0, 0));
-        TMeningeal.setComponentPopupMenu(jPopupMenu1);
         TMeningeal.setName("TMeningeal"); // NOI18N
         TMeningeal.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2430,14 +2317,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel124.setForeground(new java.awt.Color(0, 0, 0));
         jLabel124.setText("Lateralisasi :");
-        jLabel124.setComponentPopupMenu(jPopupMenu1);
         jLabel124.setName("jLabel124"); // NOI18N
         FormInput.add(jLabel124);
         jLabel124.setBounds(400, 540, 90, 23);
 
         cmbLater.setForeground(new java.awt.Color(0, 0, 0));
         cmbLater.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Tidak Ada", "Kanan", "Kiri" }));
-        cmbLater.setComponentPopupMenu(jPopupMenu1);
         cmbLater.setName("cmbLater"); // NOI18N
         FormInput.add(cmbLater);
         cmbLater.setBounds(494, 540, 80, 23);
@@ -2445,7 +2330,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel125.setForeground(new java.awt.Color(0, 51, 204));
         jLabel125.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel125.setText("Eksposur :");
-        jLabel125.setComponentPopupMenu(jPopupMenu1);
         jLabel125.setFont(new java.awt.Font("Tahoma", 2, 11)); // NOI18N
         jLabel125.setName("jLabel125"); // NOI18N
         FormInput.add(jLabel125);
@@ -2453,13 +2337,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel164.setForeground(new java.awt.Color(0, 0, 0));
         jLabel164.setText("Diagnosis Medis Sementara / Masalah :");
-        jLabel164.setComponentPopupMenu(jPopupMenu1);
         jLabel164.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel164.setName("jLabel164"); // NOI18N
         FormInput.add(jLabel164);
         jLabel164.setBounds(0, 1738, 250, 23);
 
-        scrollPane9.setComponentPopupMenu(jPopupMenu1);
         scrollPane9.setName("scrollPane9"); // NOI18N
 
         TDiagSementara.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2479,13 +2361,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel165.setForeground(new java.awt.Color(0, 0, 0));
         jLabel165.setText("ICD-10 :");
-        jLabel165.setComponentPopupMenu(jPopupMenu1);
         jLabel165.setName("jLabel165"); // NOI18N
         FormInput.add(jLabel165);
         jLabel165.setBounds(705, 1758, 60, 23);
 
         Ticd.setForeground(new java.awt.Color(0, 0, 0));
-        Ticd.setComponentPopupMenu(jPopupMenu1);
         Ticd.setName("Ticd"); // NOI18N
         Ticd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2497,7 +2377,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel166.setForeground(new java.awt.Color(0, 0, 0));
         jLabel166.setText("Rencana / Instruksi :");
-        jLabel166.setComponentPopupMenu(jPopupMenu1);
         jLabel166.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel166.setName("jLabel166"); // NOI18N
         FormInput.add(jLabel166);
@@ -2505,7 +2384,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel167.setForeground(new java.awt.Color(0, 0, 0));
         jLabel167.setText("Telah Diberikan Informasi / Edukasi Tentang :");
-        jLabel167.setComponentPopupMenu(jPopupMenu1);
         jLabel167.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel167.setName("jLabel167"); // NOI18N
         FormInput.add(jLabel167);
@@ -2513,13 +2391,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel168.setForeground(new java.awt.Color(0, 0, 0));
         jLabel168.setText("Informasi / Edukasi Tentang :");
-        jLabel168.setComponentPopupMenu(jPopupMenu1);
         jLabel168.setName("jLabel168"); // NOI18N
         FormInput.add(jLabel168);
         jLabel168.setBounds(10, 1973, 150, 23);
 
         Tedukasi.setForeground(new java.awt.Color(0, 0, 0));
-        Tedukasi.setComponentPopupMenu(jPopupMenu1);
         Tedukasi.setName("Tedukasi"); // NOI18N
         Tedukasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2531,13 +2407,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel169.setForeground(new java.awt.Color(0, 0, 0));
         jLabel169.setText("Rencana Asuhan Diharapkan :");
-        jLabel169.setComponentPopupMenu(jPopupMenu1);
         jLabel169.setName("jLabel169"); // NOI18N
         FormInput.add(jLabel169);
         jLabel169.setBounds(10, 2003, 150, 23);
 
         Trencana.setForeground(new java.awt.Color(0, 0, 0));
-        Trencana.setComponentPopupMenu(jPopupMenu1);
         Trencana.setName("Trencana"); // NOI18N
         Trencana.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2549,21 +2423,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel170.setForeground(new java.awt.Color(0, 0, 0));
         jLabel170.setText("Pemberi Edukasi / Informasi :");
-        jLabel170.setComponentPopupMenu(jPopupMenu1);
         jLabel170.setName("jLabel170"); // NOI18N
         FormInput.add(jLabel170);
         jLabel170.setBounds(10, 2033, 150, 23);
 
         kdpetugas.setEditable(false);
         kdpetugas.setForeground(new java.awt.Color(0, 0, 0));
-        kdpetugas.setComponentPopupMenu(jPopupMenu1);
         kdpetugas.setName("kdpetugas"); // NOI18N
         FormInput.add(kdpetugas);
         kdpetugas.setBounds(165, 2033, 110, 23);
 
         nmpetugas.setEditable(false);
         nmpetugas.setForeground(new java.awt.Color(0, 0, 0));
-        nmpetugas.setComponentPopupMenu(jPopupMenu1);
         nmpetugas.setName("nmpetugas"); // NOI18N
         FormInput.add(nmpetugas);
         nmpetugas.setBounds(280, 2033, 260, 23);
@@ -2571,7 +2442,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPetugas.setMnemonic('2');
         BtnPetugas.setToolTipText("Alt+2");
-        BtnPetugas.setComponentPopupMenu(jPopupMenu1);
         BtnPetugas.setName("BtnPetugas"); // NOI18N
         BtnPetugas.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
@@ -2584,34 +2454,29 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel171.setForeground(new java.awt.Color(0, 0, 0));
         jLabel171.setText("Penerima Edukasi :");
-        jLabel171.setComponentPopupMenu(jPopupMenu1);
         jLabel171.setName("jLabel171"); // NOI18N
         FormInput.add(jLabel171);
         jLabel171.setBounds(575, 2033, 100, 23);
 
         nmpenerima.setForeground(new java.awt.Color(0, 0, 0));
-        nmpenerima.setComponentPopupMenu(jPopupMenu1);
         nmpenerima.setName("nmpenerima"); // NOI18N
         FormInput.add(nmpenerima);
         nmpenerima.setBounds(680, 2033, 195, 23);
 
         jLabel172.setForeground(new java.awt.Color(0, 0, 0));
         jLabel172.setText("Nama Dokter : ");
-        jLabel172.setComponentPopupMenu(jPopupMenu1);
         jLabel172.setName("jLabel172"); // NOI18N
         FormInput.add(jLabel172);
         jLabel172.setBounds(10, 2063, 150, 23);
 
         kddokter.setEditable(false);
         kddokter.setForeground(new java.awt.Color(0, 0, 0));
-        kddokter.setComponentPopupMenu(jPopupMenu1);
         kddokter.setName("kddokter"); // NOI18N
         FormInput.add(kddokter);
         kddokter.setBounds(165, 2063, 110, 23);
 
         nmdokter.setEditable(false);
         nmdokter.setForeground(new java.awt.Color(0, 0, 0));
-        nmdokter.setComponentPopupMenu(jPopupMenu1);
         nmdokter.setName("nmdokter"); // NOI18N
         FormInput.add(nmdokter);
         nmdokter.setBounds(280, 2063, 260, 23);
@@ -2619,7 +2484,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter.setMnemonic('2');
         BtnDokter.setToolTipText("Alt+2");
-        BtnDokter.setComponentPopupMenu(jPopupMenu1);
         BtnDokter.setName("BtnDokter"); // NOI18N
         BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
         BtnDokter.addActionListener(new java.awt.event.ActionListener() {
@@ -2633,7 +2497,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jSeparator4.setBackground(new java.awt.Color(239, 244, 234));
         jSeparator4.setForeground(new java.awt.Color(239, 244, 234));
         jSeparator4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(239, 244, 234)));
-        jSeparator4.setComponentPopupMenu(jPopupMenu1);
         jSeparator4.setName("jSeparator4"); // NOI18N
         FormInput.add(jSeparator4);
         jSeparator4.setBounds(0, 2093, 880, 1);
@@ -2641,7 +2504,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel173.setForeground(new java.awt.Color(0, 0, 0));
         jLabel173.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel173.setText("PASIEN KELUAR PONEK");
-        jLabel173.setComponentPopupMenu(jPopupMenu1);
         jLabel173.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel173.setName("jLabel173"); // NOI18N
         FormInput.add(jLabel173);
@@ -2649,21 +2511,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel174.setForeground(new java.awt.Color(0, 0, 0));
         jLabel174.setText("Tgl. & Jam Keluar :");
-        jLabel174.setComponentPopupMenu(jPopupMenu1);
         jLabel174.setName("jLabel174"); // NOI18N
         FormInput.add(jLabel174);
         jLabel174.setBounds(10, 2113, 125, 23);
 
         jLabel175.setForeground(new java.awt.Color(0, 0, 0));
         jLabel175.setText("Opname Diruangan :");
-        jLabel175.setComponentPopupMenu(jPopupMenu1);
         jLabel175.setName("jLabel175"); // NOI18N
         FormInput.add(jLabel175);
         jLabel175.setBounds(10, 2173, 125, 23);
 
         cmbRuangan.setForeground(new java.awt.Color(0, 0, 0));
         cmbRuangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "AS-SAMI/1", "AS-SAMI/2" }));
-        cmbRuangan.setComponentPopupMenu(jPopupMenu1);
         cmbRuangan.setName("cmbRuangan"); // NOI18N
         cmbRuangan.setPreferredSize(new java.awt.Dimension(145, 23));
         cmbRuangan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2676,13 +2535,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel176.setForeground(new java.awt.Color(0, 0, 0));
         jLabel176.setText("Indikasi Masuk :");
-        jLabel176.setComponentPopupMenu(jPopupMenu1);
         jLabel176.setName("jLabel176"); // NOI18N
         FormInput.add(jLabel176);
         jLabel176.setBounds(10, 2203, 125, 23);
 
         Tindikasi.setForeground(new java.awt.Color(0, 0, 0));
-        Tindikasi.setComponentPopupMenu(jPopupMenu1);
         Tindikasi.setName("Tindikasi"); // NOI18N
         Tindikasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2694,13 +2551,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel177.setForeground(new java.awt.Color(0, 0, 0));
         jLabel177.setText("Dipulangkan, Kontrol Ke :");
-        jLabel177.setComponentPopupMenu(jPopupMenu1);
         jLabel177.setName("jLabel177"); // NOI18N
         FormInput.add(jLabel177);
         jLabel177.setBounds(10, 2233, 125, 23);
 
         Tdipulangkan.setForeground(new java.awt.Color(0, 0, 0));
-        Tdipulangkan.setComponentPopupMenu(jPopupMenu1);
         Tdipulangkan.setName("Tdipulangkan"); // NOI18N
         Tdipulangkan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2712,13 +2567,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel178.setForeground(new java.awt.Color(0, 0, 0));
         jLabel178.setText("Dirujuk Ke :");
-        jLabel178.setComponentPopupMenu(jPopupMenu1);
         jLabel178.setName("jLabel178"); // NOI18N
         FormInput.add(jLabel178);
         jLabel178.setBounds(10, 2263, 125, 23);
 
         Tdirujuk.setForeground(new java.awt.Color(0, 0, 0));
-        Tdirujuk.setComponentPopupMenu(jPopupMenu1);
         Tdirujuk.setName("Tdirujuk"); // NOI18N
         Tdirujuk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2730,12 +2583,10 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel179.setForeground(new java.awt.Color(0, 0, 0));
         jLabel179.setText("Alasan Dirujuk :");
-        jLabel179.setComponentPopupMenu(jPopupMenu1);
         jLabel179.setName("jLabel179"); // NOI18N
         FormInput.add(jLabel179);
         jLabel179.setBounds(10, 2293, 125, 23);
 
-        scrollPane10.setComponentPopupMenu(jPopupMenu1);
         scrollPane10.setName("scrollPane10"); // NOI18N
 
         TAlasanDirujuk.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2759,7 +2610,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkMeninggal.setText("Meninggal Jam :");
         ChkMeninggal.setBorderPainted(true);
         ChkMeninggal.setBorderPaintedFlat(true);
-        ChkMeninggal.setComponentPopupMenu(jPopupMenu1);
         ChkMeninggal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ChkMeninggal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkMeninggal.setName("ChkMeninggal"); // NOI18N
@@ -2775,7 +2625,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
-        cmbJam.setComponentPopupMenu(jPopupMenu1);
         cmbJam.setName("cmbJam"); // NOI18N
         cmbJam.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -2787,7 +2636,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbMnt.setComponentPopupMenu(jPopupMenu1);
         cmbMnt.setName("cmbMnt"); // NOI18N
         cmbMnt.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -2799,7 +2647,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
-        cmbDtk.setComponentPopupMenu(jPopupMenu1);
         cmbDtk.setName("cmbDtk"); // NOI18N
         cmbDtk.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseReleased(java.awt.event.MouseEvent evt) {
@@ -2811,13 +2658,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel180.setForeground(new java.awt.Color(0, 0, 0));
         jLabel180.setText("Penyebab :");
-        jLabel180.setComponentPopupMenu(jPopupMenu1);
         jLabel180.setName("jLabel180"); // NOI18N
         FormInput.add(jLabel180);
         jLabel180.setBounds(420, 2173, 90, 23);
 
         Tpenyebab.setForeground(new java.awt.Color(0, 0, 0));
-        Tpenyebab.setComponentPopupMenu(jPopupMenu1);
         Tpenyebab.setName("Tpenyebab"); // NOI18N
         Tpenyebab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2829,13 +2674,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel181.setForeground(new java.awt.Color(0, 0, 0));
         jLabel181.setText("K/u :");
-        jLabel181.setComponentPopupMenu(jPopupMenu1);
         jLabel181.setName("jLabel181"); // NOI18N
         FormInput.add(jLabel181);
         jLabel181.setBounds(470, 2203, 40, 23);
 
         Tku.setForeground(new java.awt.Color(0, 0, 0));
-        Tku.setComponentPopupMenu(jPopupMenu1);
         Tku.setName("Tku"); // NOI18N
         Tku.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2847,13 +2690,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel182.setForeground(new java.awt.Color(0, 0, 0));
         jLabel182.setText("TD :");
-        jLabel182.setComponentPopupMenu(jPopupMenu1);
         jLabel182.setName("jLabel182"); // NOI18N
         FormInput.add(jLabel182);
         jLabel182.setBounds(470, 2233, 40, 23);
 
         Ttd.setForeground(new java.awt.Color(0, 0, 0));
-        Ttd.setComponentPopupMenu(jPopupMenu1);
         Ttd.setName("Ttd"); // NOI18N
         Ttd.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2865,13 +2706,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel183.setForeground(new java.awt.Color(0, 0, 0));
         jLabel183.setText("HR :");
-        jLabel183.setComponentPopupMenu(jPopupMenu1);
         jLabel183.setName("jLabel183"); // NOI18N
         FormInput.add(jLabel183);
         jLabel183.setBounds(470, 2263, 40, 23);
 
         Thr.setForeground(new java.awt.Color(0, 0, 0));
-        Thr.setComponentPopupMenu(jPopupMenu1);
         Thr.setName("Thr"); // NOI18N
         Thr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2883,20 +2722,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel184.setForeground(new java.awt.Color(0, 0, 0));
         jLabel184.setText("RR :");
-        jLabel184.setComponentPopupMenu(jPopupMenu1);
         jLabel184.setName("jLabel184"); // NOI18N
         FormInput.add(jLabel184);
         jLabel184.setBounds(590, 2233, 40, 23);
 
         jLabel185.setForeground(new java.awt.Color(0, 0, 0));
         jLabel185.setText("Temp :");
-        jLabel185.setComponentPopupMenu(jPopupMenu1);
         jLabel185.setName("jLabel185"); // NOI18N
         FormInput.add(jLabel185);
         jLabel185.setBounds(590, 2263, 40, 23);
 
         Trr.setForeground(new java.awt.Color(0, 0, 0));
-        Trr.setComponentPopupMenu(jPopupMenu1);
         Trr.setName("Trr"); // NOI18N
         Trr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2907,7 +2743,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         Trr.setBounds(636, 2233, 70, 23);
 
         Ttemp.setForeground(new java.awt.Color(0, 0, 0));
-        Ttemp.setComponentPopupMenu(jPopupMenu1);
         Ttemp.setName("Ttemp"); // NOI18N
         Ttemp.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2919,20 +2754,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel186.setForeground(new java.awt.Color(0, 0, 0));
         jLabel186.setText("SpO2 :");
-        jLabel186.setComponentPopupMenu(jPopupMenu1);
         jLabel186.setName("jLabel186"); // NOI18N
         FormInput.add(jLabel186);
         jLabel186.setBounds(708, 2233, 40, 23);
 
         jLabel187.setForeground(new java.awt.Color(0, 0, 0));
         jLabel187.setText("GCS :");
-        jLabel187.setComponentPopupMenu(jPopupMenu1);
         jLabel187.setName("jLabel187"); // NOI18N
         FormInput.add(jLabel187);
         jLabel187.setBounds(708, 2263, 40, 23);
 
         Tspo2.setForeground(new java.awt.Color(0, 0, 0));
-        Tspo2.setComponentPopupMenu(jPopupMenu1);
         Tspo2.setName("Tspo2"); // NOI18N
         Tspo2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2943,7 +2775,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         Tspo2.setBounds(754, 2233, 70, 23);
 
         Tgcs.setForeground(new java.awt.Color(0, 0, 0));
-        Tgcs.setComponentPopupMenu(jPopupMenu1);
         Tgcs.setName("Tgcs"); // NOI18N
         Tgcs.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -2955,7 +2786,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbObstruksi.setForeground(new java.awt.Color(0, 0, 0));
         cmbObstruksi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Stridor", "Snoring", "Gurgling", "Wheezing" }));
-        cmbObstruksi.setComponentPopupMenu(jPopupMenu1);
         cmbObstruksi.setName("cmbObstruksi"); // NOI18N
         FormInput.add(cmbObstruksi);
         cmbObstruksi.setBounds(125, 280, 80, 23);
@@ -2966,7 +2796,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDeformitas.setText("Deformitas");
         ChkDeformitas.setBorderPainted(true);
         ChkDeformitas.setBorderPaintedFlat(true);
-        ChkDeformitas.setComponentPopupMenu(jPopupMenu1);
         ChkDeformitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDeformitas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDeformitas.setName("ChkDeformitas"); // NOI18N
@@ -2981,7 +2810,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkContusio.setText("Contusio");
         ChkContusio.setBorderPainted(true);
         ChkContusio.setBorderPaintedFlat(true);
-        ChkContusio.setComponentPopupMenu(jPopupMenu1);
         ChkContusio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkContusio.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkContusio.setName("ChkContusio"); // NOI18N
@@ -2996,7 +2824,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkPenetrasi.setText("Penetrasi");
         ChkPenetrasi.setBorderPainted(true);
         ChkPenetrasi.setBorderPaintedFlat(true);
-        ChkPenetrasi.setComponentPopupMenu(jPopupMenu1);
         ChkPenetrasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkPenetrasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkPenetrasi.setName("ChkPenetrasi"); // NOI18N
@@ -3011,7 +2838,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTenderness.setText("Tenderness");
         ChkTenderness.setBorderPainted(true);
         ChkTenderness.setBorderPaintedFlat(true);
-        ChkTenderness.setComponentPopupMenu(jPopupMenu1);
         ChkTenderness.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTenderness.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTenderness.setName("ChkTenderness"); // NOI18N
@@ -3026,7 +2852,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkSwelling.setText("Swelling");
         ChkSwelling.setBorderPainted(true);
         ChkSwelling.setBorderPaintedFlat(true);
-        ChkSwelling.setComponentPopupMenu(jPopupMenu1);
         ChkSwelling.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkSwelling.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkSwelling.setName("ChkSwelling"); // NOI18N
@@ -3041,7 +2866,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkEkskoriasi.setText("Ekskoriasi");
         ChkEkskoriasi.setBorderPainted(true);
         ChkEkskoriasi.setBorderPaintedFlat(true);
-        ChkEkskoriasi.setComponentPopupMenu(jPopupMenu1);
         ChkEkskoriasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkEkskoriasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkEkskoriasi.setName("ChkEkskoriasi"); // NOI18N
@@ -3056,7 +2880,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkAbrasi.setText("Abrasi");
         ChkAbrasi.setBorderPainted(true);
         ChkAbrasi.setBorderPaintedFlat(true);
-        ChkAbrasi.setComponentPopupMenu(jPopupMenu1);
         ChkAbrasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkAbrasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkAbrasi.setName("ChkAbrasi"); // NOI18N
@@ -3071,7 +2894,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBurn.setText("Burn");
         ChkBurn.setBorderPainted(true);
         ChkBurn.setBorderPaintedFlat(true);
-        ChkBurn.setComponentPopupMenu(jPopupMenu1);
         ChkBurn.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkBurn.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkBurn.setName("ChkBurn"); // NOI18N
@@ -3086,7 +2908,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLaserasi.setText("Laserasi");
         ChkLaserasi.setBorderPainted(true);
         ChkLaserasi.setBorderPaintedFlat(true);
-        ChkLaserasi.setComponentPopupMenu(jPopupMenu1);
         ChkLaserasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkLaserasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkLaserasi.setName("ChkLaserasi"); // NOI18N
@@ -3101,7 +2922,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTdkTampk.setText("Tidak Tampak Jelas");
         ChkTdkTampk.setBorderPainted(true);
         ChkTdkTampk.setBorderPaintedFlat(true);
-        ChkTdkTampk.setComponentPopupMenu(jPopupMenu1);
         ChkTdkTampk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTdkTampk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTdkTampk.setName("ChkTdkTampk"); // NOI18N
@@ -3112,14 +2932,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbReguler.setForeground(new java.awt.Color(0, 0, 0));
         cmbReguler.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Reguler", "Irreguler" }));
-        cmbReguler.setComponentPopupMenu(jPopupMenu1);
         cmbReguler.setName("cmbReguler"); // NOI18N
         FormInput.add(cmbReguler);
         cmbReguler.setBounds(405, 250, 80, 23);
 
         cmbRencana.setForeground(new java.awt.Color(0, 0, 0));
         cmbRencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Kuratif", "Paliatif", "Rehabilitatif" }));
-        cmbRencana.setComponentPopupMenu(jPopupMenu1);
         cmbRencana.setName("cmbRencana"); // NOI18N
         cmbRencana.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3131,7 +2949,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel188.setForeground(new java.awt.Color(0, 0, 0));
         jLabel188.setText("Planing : ");
-        jLabel188.setComponentPopupMenu(jPopupMenu1);
         jLabel188.setName("jLabel188"); // NOI18N
         FormInput.add(jLabel188);
         jLabel188.setBounds(125, 1855, 60, 23);
@@ -3139,7 +2956,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         btnICD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         btnICD.setMnemonic('2');
         btnICD.setToolTipText("Alt+2");
-        btnICD.setComponentPopupMenu(jPopupMenu1);
         btnICD.setName("btnICD"); // NOI18N
         btnICD.setPreferredSize(new java.awt.Dimension(28, 23));
         btnICD.addActionListener(new java.awt.event.ActionListener() {
@@ -3153,13 +2969,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel126.setForeground(new java.awt.Color(0, 0, 0));
         jLabel126.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel126.setText("E :");
-        jLabel126.setComponentPopupMenu(jPopupMenu1);
         jLabel126.setName("jLabel126"); // NOI18N
         FormInput.add(jLabel126);
         jLabel126.setBounds(494, 420, 16, 23);
 
         TgcsE.setForeground(new java.awt.Color(0, 0, 0));
-        TgcsE.setComponentPopupMenu(jPopupMenu1);
         TgcsE.setName("TgcsE"); // NOI18N
         TgcsE.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3171,13 +2985,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel190.setForeground(new java.awt.Color(0, 0, 0));
         jLabel190.setText("V :");
-        jLabel190.setComponentPopupMenu(jPopupMenu1);
         jLabel190.setName("jLabel190"); // NOI18N
         FormInput.add(jLabel190);
         jLabel190.setBounds(590, 420, 25, 23);
 
         TgcsV.setForeground(new java.awt.Color(0, 0, 0));
-        TgcsV.setComponentPopupMenu(jPopupMenu1);
         TgcsV.setName("TgcsV"); // NOI18N
         TgcsV.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3189,13 +3001,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel191.setForeground(new java.awt.Color(0, 0, 0));
         jLabel191.setText("M :");
-        jLabel191.setComponentPopupMenu(jPopupMenu1);
         jLabel191.setName("jLabel191"); // NOI18N
         FormInput.add(jLabel191);
         jLabel191.setBounds(700, 420, 25, 23);
 
         TgcsM.setForeground(new java.awt.Color(0, 0, 0));
-        TgcsM.setComponentPopupMenu(jPopupMenu1);
         TgcsM.setName("TgcsM"); // NOI18N
         TgcsM.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3207,13 +3017,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel192.setForeground(new java.awt.Color(0, 0, 0));
         jLabel192.setText("Diameter (Kiri) :");
-        jLabel192.setComponentPopupMenu(jPopupMenu1);
         jLabel192.setName("jLabel192"); // NOI18N
         FormInput.add(jLabel192);
         jLabel192.setBounds(580, 480, 110, 23);
 
         TDiam_kiri.setForeground(new java.awt.Color(0, 0, 0));
-        TDiam_kiri.setComponentPopupMenu(jPopupMenu1);
         TDiam_kiri.setName("TDiam_kiri"); // NOI18N
         TDiam_kiri.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3226,7 +3034,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel193.setForeground(new java.awt.Color(0, 0, 0));
         jLabel193.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel193.setText("mm");
-        jLabel193.setComponentPopupMenu(jPopupMenu1);
         jLabel193.setName("jLabel193"); // NOI18N
         FormInput.add(jLabel193);
         jLabel193.setBounds(745, 450, 30, 23);
@@ -3234,12 +3041,10 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel194.setForeground(new java.awt.Color(0, 0, 0));
         jLabel194.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel194.setText("mm");
-        jLabel194.setComponentPopupMenu(jPopupMenu1);
         jLabel194.setName("jLabel194"); // NOI18N
         FormInput.add(jLabel194);
         jLabel194.setBounds(745, 480, 30, 23);
 
-        scrollPane12.setComponentPopupMenu(jPopupMenu1);
         scrollPane12.setName("scrollPane12"); // NOI18N
 
         Tplaning.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3263,7 +3068,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkGangNafas.setText("Gangguan Jalan Nafas");
         ChkGangNafas.setBorderPainted(true);
         ChkGangNafas.setBorderPaintedFlat(true);
-        ChkGangNafas.setComponentPopupMenu(jPopupMenu1);
         ChkGangNafas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkGangNafas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkGangNafas.setName("ChkGangNafas"); // NOI18N
@@ -3274,13 +3078,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel112.setForeground(new java.awt.Color(0, 0, 0));
         jLabel112.setText("Alasan Masuk : ");
-        jLabel112.setComponentPopupMenu(jPopupMenu1);
         jLabel112.setName("jLabel112"); // NOI18N
         FormInput.add(jLabel112);
         jLabel112.setBounds(20, 570, 90, 23);
 
         Talasan_msk.setForeground(new java.awt.Color(0, 0, 0));
-        Talasan_msk.setComponentPopupMenu(jPopupMenu1);
         Talasan_msk.setName("Talasan_msk"); // NOI18N
         Talasan_msk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3292,14 +3094,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel113.setForeground(new java.awt.Color(0, 0, 0));
         jLabel113.setText("Cara Pasien Datang : ");
-        jLabel113.setComponentPopupMenu(jPopupMenu1);
         jLabel113.setName("jLabel113"); // NOI18N
         FormInput.add(jLabel113);
         jLabel113.setBounds(20, 600, 110, 23);
 
         cmbCara_datang.setForeground(new java.awt.Color(0, 0, 0));
         cmbCara_datang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Sendiri", "Rujukan Bidan/BPM", "PKM", "SpOG", "RS Lain" }));
-        cmbCara_datang.setComponentPopupMenu(jPopupMenu1);
         cmbCara_datang.setName("cmbCara_datang"); // NOI18N
         cmbCara_datang.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3311,13 +3111,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel114.setForeground(new java.awt.Color(0, 0, 0));
         jLabel114.setText("Rujukan Bidan/BPM : ");
-        jLabel114.setComponentPopupMenu(jPopupMenu1);
         jLabel114.setName("jLabel114"); // NOI18N
         FormInput.add(jLabel114);
         jLabel114.setBounds(264, 600, 115, 23);
 
         Trujukan_bidan.setForeground(new java.awt.Color(0, 0, 0));
-        Trujukan_bidan.setComponentPopupMenu(jPopupMenu1);
         Trujukan_bidan.setName("Trujukan_bidan"); // NOI18N
         Trujukan_bidan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3329,13 +3127,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel115.setForeground(new java.awt.Color(0, 0, 0));
         jLabel115.setText("PKM : ");
-        jLabel115.setComponentPopupMenu(jPopupMenu1);
         jLabel115.setName("jLabel115"); // NOI18N
         FormInput.add(jLabel115);
         jLabel115.setBounds(264, 630, 115, 23);
 
         Tpkm.setForeground(new java.awt.Color(0, 0, 0));
-        Tpkm.setComponentPopupMenu(jPopupMenu1);
         Tpkm.setName("Tpkm"); // NOI18N
         Tpkm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3347,13 +3143,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel116.setForeground(new java.awt.Color(0, 0, 0));
         jLabel116.setText("Dokter Spesialis (SpOG) : ");
-        jLabel116.setComponentPopupMenu(jPopupMenu1);
         jLabel116.setName("jLabel116"); // NOI18N
         FormInput.add(jLabel116);
         jLabel116.setBounds(239, 660, 140, 23);
 
         Tspog.setForeground(new java.awt.Color(0, 0, 0));
-        Tspog.setComponentPopupMenu(jPopupMenu1);
         Tspog.setName("Tspog"); // NOI18N
         Tspog.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3365,13 +3159,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel117.setForeground(new java.awt.Color(0, 0, 0));
         jLabel117.setText("RS Lain : ");
-        jLabel117.setComponentPopupMenu(jPopupMenu1);
         jLabel117.setName("jLabel117"); // NOI18N
         FormInput.add(jLabel117);
         jLabel117.setBounds(264, 690, 115, 23);
 
         Trs_lain.setForeground(new java.awt.Color(0, 0, 0));
-        Trs_lain.setComponentPopupMenu(jPopupMenu1);
         Trs_lain.setName("Trs_lain"); // NOI18N
         Trs_lain.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3383,13 +3175,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel127.setForeground(new java.awt.Color(0, 0, 0));
         jLabel127.setText("Dengan Gr : ");
-        jLabel127.setComponentPopupMenu(jPopupMenu1);
         jLabel127.setName("jLabel127"); // NOI18N
         FormInput.add(jLabel127);
         jLabel127.setBounds(20, 720, 110, 23);
 
         Tgr.setForeground(new java.awt.Color(0, 0, 0));
-        Tgr.setComponentPopupMenu(jPopupMenu1);
         Tgr.setName("Tgr"); // NOI18N
         Tgr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3401,13 +3191,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel128.setForeground(new java.awt.Color(0, 0, 0));
         jLabel128.setText("Pr : ");
-        jLabel128.setComponentPopupMenu(jPopupMenu1);
         jLabel128.setName("jLabel128"); // NOI18N
         FormInput.add(jLabel128);
         jLabel128.setBounds(205, 720, 30, 23);
 
         Tpr.setForeground(new java.awt.Color(0, 0, 0));
-        Tpr.setComponentPopupMenu(jPopupMenu1);
         Tpr.setName("Tpr"); // NOI18N
         Tpr.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3419,13 +3207,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel129.setForeground(new java.awt.Color(0, 0, 0));
         jLabel129.setText("A : ");
-        jLabel129.setComponentPopupMenu(jPopupMenu1);
         jLabel129.setName("jLabel129"); // NOI18N
         FormInput.add(jLabel129);
         jLabel129.setBounds(310, 720, 30, 23);
 
         Ta.setForeground(new java.awt.Color(0, 0, 0));
-        Ta.setComponentPopupMenu(jPopupMenu1);
         Ta.setName("Ta"); // NOI18N
         Ta.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3437,14 +3223,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel130.setForeground(new java.awt.Color(0, 0, 0));
         jLabel130.setText("Hamil : ");
-        jLabel130.setComponentPopupMenu(jPopupMenu1);
         jLabel130.setName("jLabel130"); // NOI18N
         FormInput.add(jLabel130);
         jLabel130.setBounds(417, 720, 50, 23);
 
         Thamil.setForeground(new java.awt.Color(0, 0, 0));
         Thamil.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Thamil.setComponentPopupMenu(jPopupMenu1);
         Thamil.setName("Thamil"); // NOI18N
         Thamil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3457,13 +3241,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel131.setForeground(new java.awt.Color(0, 0, 0));
         jLabel131.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel131.setText("mg dengan : ");
-        jLabel131.setComponentPopupMenu(jPopupMenu1);
         jLabel131.setName("jLabel131"); // NOI18N
         FormInput.add(jLabel131);
         jLabel131.setBounds(515, 720, 64, 23);
 
         Tket_dengan.setForeground(new java.awt.Color(0, 0, 0));
-        Tket_dengan.setComponentPopupMenu(jPopupMenu1);
         Tket_dengan.setName("Tket_dengan"); // NOI18N
         FormInput.add(Tket_dengan);
         Tket_dengan.setBounds(580, 720, 250, 23);
@@ -3471,14 +3253,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel132.setForeground(new java.awt.Color(0, 0, 0));
         jLabel132.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel132.setText("Keluhan :");
-        jLabel132.setComponentPopupMenu(jPopupMenu1);
         jLabel132.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel132.setName("jLabel132"); // NOI18N
         FormInput.add(jLabel132);
         jLabel132.setBounds(20, 750, 60, 23);
 
-        TglPerutMules.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglPerutMules.setComponentPopupMenu(jPopupMenu1);
+        TglPerutMules.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglPerutMules.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglPerutMules.setName("TglPerutMules"); // NOI18N
         TglPerutMules.setOpaque(false);
@@ -3491,7 +3271,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkPerutMules.setText("Pasien mengeluh perut mules / nyeri mulai tgl. ");
         ChkPerutMules.setBorderPainted(true);
         ChkPerutMules.setBorderPaintedFlat(true);
-        ChkPerutMules.setComponentPopupMenu(jPopupMenu1);
         ChkPerutMules.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkPerutMules.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkPerutMules.setName("ChkPerutMules"); // NOI18N
@@ -3507,14 +3286,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel133.setForeground(new java.awt.Color(0, 0, 0));
         jLabel133.setText("Keluar lendir darah : ");
-        jLabel133.setComponentPopupMenu(jPopupMenu1);
         jLabel133.setName("jLabel133"); // NOI18N
         FormInput.add(jLabel133);
         jLabel133.setBounds(407, 770, 110, 23);
 
         cmbKeluarLendir.setForeground(new java.awt.Color(0, 0, 0));
         cmbKeluarLendir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbKeluarLendir.setComponentPopupMenu(jPopupMenu1);
         cmbKeluarLendir.setName("cmbKeluarLendir"); // NOI18N
         cmbKeluarLendir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3526,13 +3303,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel134.setForeground(new java.awt.Color(0, 0, 0));
         jLabel134.setText("Mulai Tgl. ");
-        jLabel134.setComponentPopupMenu(jPopupMenu1);
         jLabel134.setName("jLabel134"); // NOI18N
         FormInput.add(jLabel134);
         jLabel134.setBounds(583, 770, 60, 23);
 
-        TglLendirYa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglLendirYa.setComponentPopupMenu(jPopupMenu1);
+        TglLendirYa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglLendirYa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglLendirYa.setName("TglLendirYa"); // NOI18N
         TglLendirYa.setOpaque(false);
@@ -3541,14 +3316,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel135.setForeground(new java.awt.Color(0, 0, 0));
         jLabel135.setText("Keluar air-air : ");
-        jLabel135.setComponentPopupMenu(jPopupMenu1);
         jLabel135.setName("jLabel135"); // NOI18N
         FormInput.add(jLabel135);
         jLabel135.setBounds(20, 800, 90, 23);
 
         cmbKeluarAir.setForeground(new java.awt.Color(0, 0, 0));
         cmbKeluarAir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbKeluarAir.setComponentPopupMenu(jPopupMenu1);
         cmbKeluarAir.setName("cmbKeluarAir"); // NOI18N
         cmbKeluarAir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3560,20 +3333,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbKeluarAirYa.setForeground(new java.awt.Color(0, 0, 0));
         cmbKeluarAirYa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Banyak", "Sedikit-sedikit" }));
-        cmbKeluarAirYa.setComponentPopupMenu(jPopupMenu1);
         cmbKeluarAirYa.setName("cmbKeluarAirYa"); // NOI18N
         FormInput.add(cmbKeluarAirYa);
         cmbKeluarAirYa.setBounds(180, 800, 100, 23);
 
         jLabel136.setForeground(new java.awt.Color(0, 0, 0));
         jLabel136.setText("Mulai Tgl. ");
-        jLabel136.setComponentPopupMenu(jPopupMenu1);
         jLabel136.setName("jLabel136"); // NOI18N
         FormInput.add(jLabel136);
         jLabel136.setBounds(280, 800, 60, 23);
 
-        TglAirYa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglAirYa.setComponentPopupMenu(jPopupMenu1);
+        TglAirYa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglAirYa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAirYa.setName("TglAirYa"); // NOI18N
         TglAirYa.setOpaque(false);
@@ -3582,14 +3352,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel137.setForeground(new java.awt.Color(0, 0, 0));
         jLabel137.setText("Periksa Ketempat Bidan : ");
-        jLabel137.setComponentPopupMenu(jPopupMenu1);
         jLabel137.setName("jLabel137"); // NOI18N
         FormInput.add(jLabel137);
         jLabel137.setBounds(477, 800, 140, 23);
 
         cmbPeriksaBidan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPeriksaBidan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbPeriksaBidan.setComponentPopupMenu(jPopupMenu1);
         cmbPeriksaBidan.setName("cmbPeriksaBidan"); // NOI18N
         cmbPeriksaBidan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3601,12 +3369,10 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel138.setForeground(new java.awt.Color(0, 0, 0));
         jLabel138.setText("Hasil / Riwayat Pemeriksaan Bidan : ");
-        jLabel138.setComponentPopupMenu(jPopupMenu1);
         jLabel138.setName("jLabel138"); // NOI18N
         FormInput.add(jLabel138);
         jLabel138.setBounds(20, 830, 190, 23);
 
-        scrollPane11.setComponentPopupMenu(jPopupMenu1);
         scrollPane11.setName("scrollPane11"); // NOI18N
 
         THasilPeriksaBidan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -3626,14 +3392,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel139.setForeground(new java.awt.Color(0, 0, 0));
         jLabel139.setText("Pasien Mengeluh Pusing : ");
-        jLabel139.setComponentPopupMenu(jPopupMenu1);
         jLabel139.setName("jLabel139"); // NOI18N
         FormInput.add(jLabel139);
         jLabel139.setBounds(20, 908, 140, 23);
 
         cmbMengeluhPusing.setForeground(new java.awt.Color(0, 0, 0));
         cmbMengeluhPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbMengeluhPusing.setComponentPopupMenu(jPopupMenu1);
         cmbMengeluhPusing.setName("cmbMengeluhPusing"); // NOI18N
         cmbMengeluhPusing.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3645,13 +3409,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel140.setForeground(new java.awt.Color(0, 0, 0));
         jLabel140.setText("Mulai Tgl. ");
-        jLabel140.setComponentPopupMenu(jPopupMenu1);
         jLabel140.setName("jLabel140"); // NOI18N
         FormInput.add(jLabel140);
         jLabel140.setBounds(227, 908, 60, 23);
 
-        TglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglPusing.setComponentPopupMenu(jPopupMenu1);
+        TglPusing.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglPusing.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglPusing.setName("TglPusing"); // NOI18N
         TglPusing.setOpaque(false);
@@ -3660,14 +3422,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel141.setForeground(new java.awt.Color(0, 0, 0));
         jLabel141.setText("Nyeri Ulu Hati : ");
-        jLabel141.setComponentPopupMenu(jPopupMenu1);
         jLabel141.setName("jLabel141"); // NOI18N
         FormInput.add(jLabel141);
         jLabel141.setBounds(428, 908, 90, 23);
 
         cmbNyeriUlu.setForeground(new java.awt.Color(0, 0, 0));
         cmbNyeriUlu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbNyeriUlu.setComponentPopupMenu(jPopupMenu1);
         cmbNyeriUlu.setName("cmbNyeriUlu"); // NOI18N
         cmbNyeriUlu.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3679,13 +3439,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel142.setForeground(new java.awt.Color(0, 0, 0));
         jLabel142.setText("Mulai Tgl. ");
-        jLabel142.setComponentPopupMenu(jPopupMenu1);
         jLabel142.setName("jLabel142"); // NOI18N
         FormInput.add(jLabel142);
         jLabel142.setBounds(583, 908, 60, 23);
 
-        TglNyeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglNyeri.setComponentPopupMenu(jPopupMenu1);
+        TglNyeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglNyeri.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglNyeri.setName("TglNyeri"); // NOI18N
         TglNyeri.setOpaque(false);
@@ -3694,14 +3452,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel143.setForeground(new java.awt.Color(0, 0, 0));
         jLabel143.setText("Pandangan Kabur : ");
-        jLabel143.setComponentPopupMenu(jPopupMenu1);
         jLabel143.setName("jLabel143"); // NOI18N
         FormInput.add(jLabel143);
         jLabel143.setBounds(20, 938, 140, 23);
 
         cmbPandangan.setForeground(new java.awt.Color(0, 0, 0));
         cmbPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbPandangan.setComponentPopupMenu(jPopupMenu1);
         cmbPandangan.setName("cmbPandangan"); // NOI18N
         cmbPandangan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3713,13 +3469,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel144.setForeground(new java.awt.Color(0, 0, 0));
         jLabel144.setText("Mulai Tgl. ");
-        jLabel144.setComponentPopupMenu(jPopupMenu1);
         jLabel144.setName("jLabel144"); // NOI18N
         FormInput.add(jLabel144);
         jLabel144.setBounds(227, 938, 60, 23);
 
-        TglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglPandangan.setComponentPopupMenu(jPopupMenu1);
+        TglPandangan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglPandangan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglPandangan.setName("TglPandangan"); // NOI18N
         TglPandangan.setOpaque(false);
@@ -3728,14 +3482,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel145.setForeground(new java.awt.Color(0, 0, 0));
         jLabel145.setText("Mual / Muntah : ");
-        jLabel145.setComponentPopupMenu(jPopupMenu1);
         jLabel145.setName("jLabel145"); // NOI18N
         FormInput.add(jLabel145);
         jLabel145.setBounds(428, 938, 90, 23);
 
         cmbMual.setForeground(new java.awt.Color(0, 0, 0));
         cmbMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbMual.setComponentPopupMenu(jPopupMenu1);
         cmbMual.setName("cmbMual"); // NOI18N
         cmbMual.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3747,13 +3499,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel146.setForeground(new java.awt.Color(0, 0, 0));
         jLabel146.setText("Mulai Tgl. ");
-        jLabel146.setComponentPopupMenu(jPopupMenu1);
         jLabel146.setName("jLabel146"); // NOI18N
         FormInput.add(jLabel146);
         jLabel146.setBounds(583, 938, 60, 23);
 
-        TglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglMual.setComponentPopupMenu(jPopupMenu1);
+        TglMual.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglMual.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglMual.setName("TglMual"); // NOI18N
         TglMual.setOpaque(false);
@@ -3762,14 +3512,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel147.setForeground(new java.awt.Color(0, 0, 0));
         jLabel147.setText("Batuk / Pilek : ");
-        jLabel147.setComponentPopupMenu(jPopupMenu1);
         jLabel147.setName("jLabel147"); // NOI18N
         FormInput.add(jLabel147);
         jLabel147.setBounds(20, 968, 140, 23);
 
         cmbBatuk.setForeground(new java.awt.Color(0, 0, 0));
         cmbBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbBatuk.setComponentPopupMenu(jPopupMenu1);
         cmbBatuk.setName("cmbBatuk"); // NOI18N
         cmbBatuk.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3781,13 +3529,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel148.setForeground(new java.awt.Color(0, 0, 0));
         jLabel148.setText("Mulai Tgl. ");
-        jLabel148.setComponentPopupMenu(jPopupMenu1);
         jLabel148.setName("jLabel148"); // NOI18N
         FormInput.add(jLabel148);
         jLabel148.setBounds(227, 968, 60, 23);
 
-        TglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglBatuk.setComponentPopupMenu(jPopupMenu1);
+        TglBatuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglBatuk.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglBatuk.setName("TglBatuk"); // NOI18N
         TglBatuk.setOpaque(false);
@@ -3796,14 +3542,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel149.setForeground(new java.awt.Color(0, 0, 0));
         jLabel149.setText("Demam : ");
-        jLabel149.setComponentPopupMenu(jPopupMenu1);
         jLabel149.setName("jLabel149"); // NOI18N
         FormInput.add(jLabel149);
         jLabel149.setBounds(428, 968, 90, 23);
 
         cmbDemam.setForeground(new java.awt.Color(0, 0, 0));
         cmbDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbDemam.setComponentPopupMenu(jPopupMenu1);
         cmbDemam.setName("cmbDemam"); // NOI18N
         cmbDemam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3815,13 +3559,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel150.setForeground(new java.awt.Color(0, 0, 0));
         jLabel150.setText("Mulai Tgl. ");
-        jLabel150.setComponentPopupMenu(jPopupMenu1);
         jLabel150.setName("jLabel150"); // NOI18N
         FormInput.add(jLabel150);
         jLabel150.setBounds(583, 968, 60, 23);
 
-        TglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023 15:08:23" }));
-        TglDemam.setComponentPopupMenu(jPopupMenu1);
+        TglDemam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023 17:28:01" }));
         TglDemam.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglDemam.setName("TglDemam"); // NOI18N
         TglDemam.setOpaque(false);
@@ -3830,14 +3572,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel151.setForeground(new java.awt.Color(0, 0, 0));
         jLabel151.setText("Riwayat Perjalanan Jauh : ");
-        jLabel151.setComponentPopupMenu(jPopupMenu1);
         jLabel151.setName("jLabel151"); // NOI18N
         FormInput.add(jLabel151);
         jLabel151.setBounds(20, 998, 140, 23);
 
         cmbRiwJlnJauh.setForeground(new java.awt.Color(0, 0, 0));
         cmbRiwJlnJauh.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbRiwJlnJauh.setComponentPopupMenu(jPopupMenu1);
         cmbRiwJlnJauh.setName("cmbRiwJlnJauh"); // NOI18N
         cmbRiwJlnJauh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3848,7 +3588,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         cmbRiwJlnJauh.setBounds(165, 998, 60, 23);
 
         TriwJlnJauh.setForeground(new java.awt.Color(0, 0, 0));
-        TriwJlnJauh.setComponentPopupMenu(jPopupMenu1);
         TriwJlnJauh.setName("TriwJlnJauh"); // NOI18N
         TriwJlnJauh.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3860,27 +3599,23 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel152.setForeground(new java.awt.Color(0, 0, 0));
         jLabel152.setText("Os ANC dengan PKM / Bidan : ");
-        jLabel152.setComponentPopupMenu(jPopupMenu1);
         jLabel152.setName("jLabel152"); // NOI18N
         FormInput.add(jLabel152);
         jLabel152.setBounds(10, 1028, 150, 23);
 
         cmbOs.setForeground(new java.awt.Color(0, 0, 0));
         cmbOs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Ya", "Tidak" }));
-        cmbOs.setComponentPopupMenu(jPopupMenu1);
         cmbOs.setName("cmbOs"); // NOI18N
         FormInput.add(cmbOs);
         cmbOs.setBounds(165, 1028, 60, 23);
 
         jLabel153.setForeground(new java.awt.Color(0, 0, 0));
         jLabel153.setText("Dengan dr. ");
-        jLabel153.setComponentPopupMenu(jPopupMenu1);
         jLabel153.setName("jLabel153"); // NOI18N
         FormInput.add(jLabel153);
         jLabel153.setBounds(227, 1028, 70, 23);
 
         Tspog1.setForeground(new java.awt.Color(0, 0, 0));
-        Tspog1.setComponentPopupMenu(jPopupMenu1);
         Tspog1.setName("Tspog1"); // NOI18N
         Tspog1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3893,14 +3628,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel154.setForeground(new java.awt.Color(0, 0, 0));
         jLabel154.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel154.setText("SpOG, ");
-        jLabel154.setComponentPopupMenu(jPopupMenu1);
         jLabel154.setName("jLabel154"); // NOI18N
         FormInput.add(jLabel154);
         jLabel154.setBounds(535, 1028, 37, 23);
 
         TJspog1.setForeground(new java.awt.Color(0, 0, 0));
         TJspog1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TJspog1.setComponentPopupMenu(jPopupMenu1);
         TJspog1.setName("TJspog1"); // NOI18N
         TJspog1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3913,20 +3646,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel155.setForeground(new java.awt.Color(0, 0, 0));
         jLabel155.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel155.setText("X");
-        jLabel155.setComponentPopupMenu(jPopupMenu1);
         jLabel155.setName("jLabel155"); // NOI18N
         FormInput.add(jLabel155);
         jLabel155.setBounds(615, 1028, 15, 23);
 
         jLabel156.setForeground(new java.awt.Color(0, 0, 0));
         jLabel156.setText("Dengan dr. ");
-        jLabel156.setComponentPopupMenu(jPopupMenu1);
         jLabel156.setName("jLabel156"); // NOI18N
         FormInput.add(jLabel156);
         jLabel156.setBounds(227, 1058, 70, 23);
 
         Tspog2.setForeground(new java.awt.Color(0, 0, 0));
-        Tspog2.setComponentPopupMenu(jPopupMenu1);
         Tspog2.setName("Tspog2"); // NOI18N
         Tspog2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -3939,14 +3669,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel157.setForeground(new java.awt.Color(0, 0, 0));
         jLabel157.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel157.setText("SpOG, ");
-        jLabel157.setComponentPopupMenu(jPopupMenu1);
         jLabel157.setName("jLabel157"); // NOI18N
         FormInput.add(jLabel157);
         jLabel157.setBounds(535, 1058, 37, 23);
 
         TJspog2.setForeground(new java.awt.Color(0, 0, 0));
         TJspog2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TJspog2.setComponentPopupMenu(jPopupMenu1);
         TJspog2.setName("TJspog2"); // NOI18N
         FormInput.add(TJspog2);
         TJspog2.setBounds(574, 1058, 34, 23);
@@ -3954,7 +3682,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel158.setForeground(new java.awt.Color(0, 0, 0));
         jLabel158.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel158.setText("X");
-        jLabel158.setComponentPopupMenu(jPopupMenu1);
         jLabel158.setName("jLabel158"); // NOI18N
         FormInput.add(jLabel158);
         jLabel158.setBounds(615, 1058, 15, 23);
@@ -3962,7 +3689,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel159.setForeground(new java.awt.Color(0, 0, 0));
         jLabel159.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel159.setText("Riwayat Penyakit Dahulu :");
-        jLabel159.setComponentPopupMenu(jPopupMenu1);
         jLabel159.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel159.setName("jLabel159"); // NOI18N
         FormInput.add(jLabel159);
@@ -3974,7 +3700,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkHipertensi1.setText("Hipertensi");
         ChkHipertensi1.setBorderPainted(true);
         ChkHipertensi1.setBorderPaintedFlat(true);
-        ChkHipertensi1.setComponentPopupMenu(jPopupMenu1);
         ChkHipertensi1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkHipertensi1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkHipertensi1.setName("ChkHipertensi1"); // NOI18N
@@ -3989,7 +3714,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDM1.setText("Diabetes Mellitus");
         ChkDM1.setBorderPainted(true);
         ChkDM1.setBorderPaintedFlat(true);
-        ChkDM1.setComponentPopupMenu(jPopupMenu1);
         ChkDM1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDM1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDM1.setName("ChkDM1"); // NOI18N
@@ -4004,7 +3728,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkJantung1.setText("Jantung");
         ChkJantung1.setBorderPainted(true);
         ChkJantung1.setBorderPaintedFlat(true);
-        ChkJantung1.setComponentPopupMenu(jPopupMenu1);
         ChkJantung1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkJantung1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkJantung1.setName("ChkJantung1"); // NOI18N
@@ -4019,7 +3742,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkAsma1.setText("Asma");
         ChkAsma1.setBorderPainted(true);
         ChkAsma1.setBorderPaintedFlat(true);
-        ChkAsma1.setComponentPopupMenu(jPopupMenu1);
         ChkAsma1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkAsma1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkAsma1.setName("ChkAsma1"); // NOI18N
@@ -4034,7 +3756,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLainya1.setText("Lainnya");
         ChkLainya1.setBorderPainted(true);
         ChkLainya1.setBorderPaintedFlat(true);
-        ChkLainya1.setComponentPopupMenu(jPopupMenu1);
         ChkLainya1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkLainya1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkLainya1.setName("ChkLainya1"); // NOI18N
@@ -4049,7 +3770,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLainya1.setBounds(370, 1108, 60, 23);
 
         TketLainya1.setForeground(new java.awt.Color(0, 0, 0));
-        TketLainya1.setComponentPopupMenu(jPopupMenu1);
         TketLainya1.setName("TketLainya1"); // NOI18N
         FormInput.add(TketLainya1);
         TketLainya1.setBounds(430, 1108, 410, 23);
@@ -4057,7 +3777,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel160.setForeground(new java.awt.Color(0, 0, 0));
         jLabel160.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel160.setText("Riwayat Penyakit Keluarga :");
-        jLabel160.setComponentPopupMenu(jPopupMenu1);
         jLabel160.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel160.setName("jLabel160"); // NOI18N
         FormInput.add(jLabel160);
@@ -4069,7 +3788,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkHipertensi2.setText("Hipertensi");
         ChkHipertensi2.setBorderPainted(true);
         ChkHipertensi2.setBorderPaintedFlat(true);
-        ChkHipertensi2.setComponentPopupMenu(jPopupMenu1);
         ChkHipertensi2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkHipertensi2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkHipertensi2.setName("ChkHipertensi2"); // NOI18N
@@ -4084,7 +3802,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDM2.setText("Diabetes Mellitus");
         ChkDM2.setBorderPainted(true);
         ChkDM2.setBorderPaintedFlat(true);
-        ChkDM2.setComponentPopupMenu(jPopupMenu1);
         ChkDM2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDM2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDM2.setName("ChkDM2"); // NOI18N
@@ -4099,7 +3816,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkJantung2.setText("Jantung");
         ChkJantung2.setBorderPainted(true);
         ChkJantung2.setBorderPaintedFlat(true);
-        ChkJantung2.setComponentPopupMenu(jPopupMenu1);
         ChkJantung2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkJantung2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkJantung2.setName("ChkJantung2"); // NOI18N
@@ -4114,7 +3830,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkAsma2.setText("Asma");
         ChkAsma2.setBorderPainted(true);
         ChkAsma2.setBorderPaintedFlat(true);
-        ChkAsma2.setComponentPopupMenu(jPopupMenu1);
         ChkAsma2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkAsma2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkAsma2.setName("ChkAsma2"); // NOI18N
@@ -4129,7 +3844,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLainya2.setText("Lainnya");
         ChkLainya2.setBorderPainted(true);
         ChkLainya2.setBorderPaintedFlat(true);
-        ChkLainya2.setComponentPopupMenu(jPopupMenu1);
         ChkLainya2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkLainya2.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkLainya2.setName("ChkLainya2"); // NOI18N
@@ -4144,7 +3858,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLainya2.setBounds(370, 1158, 60, 23);
 
         TketLainya2.setForeground(new java.awt.Color(0, 0, 0));
-        TketLainya2.setComponentPopupMenu(jPopupMenu1);
         TketLainya2.setName("TketLainya2"); // NOI18N
         FormInput.add(TketLainya2);
         TketLainya2.setBounds(430, 1158, 410, 23);
@@ -4152,14 +3865,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel161.setForeground(new java.awt.Color(0, 0, 0));
         jLabel161.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel161.setText("Riwayat Penyakit Ginekologi :");
-        jLabel161.setComponentPopupMenu(jPopupMenu1);
         jLabel161.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel161.setName("jLabel161"); // NOI18N
         FormInput.add(jLabel161);
         jLabel161.setBounds(20, 1188, 173, 23);
 
         TriwGine.setForeground(new java.awt.Color(0, 0, 0));
-        TriwGine.setComponentPopupMenu(jPopupMenu1);
         TriwGine.setName("TriwGine"); // NOI18N
         FormInput.add(TriwGine);
         TriwGine.setBounds(195, 1188, 645, 23);
@@ -4167,7 +3878,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel162.setForeground(new java.awt.Color(0, 0, 0));
         jLabel162.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel162.setText("Riwayat KB :");
-        jLabel162.setComponentPopupMenu(jPopupMenu1);
         jLabel162.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel162.setName("jLabel162"); // NOI18N
         FormInput.add(jLabel162);
@@ -4179,7 +3889,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkPil.setText("Pil, Lama : ");
         ChkPil.setBorderPainted(true);
         ChkPil.setBorderPaintedFlat(true);
-        ChkPil.setComponentPopupMenu(jPopupMenu1);
         ChkPil.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkPil.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkPil.setName("ChkPil"); // NOI18N
@@ -4195,7 +3904,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         Tpil.setForeground(new java.awt.Color(0, 0, 0));
         Tpil.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tpil.setComponentPopupMenu(jPopupMenu1);
         Tpil.setName("Tpil"); // NOI18N
         Tpil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4207,7 +3915,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbSatuanPil.setForeground(new java.awt.Color(0, 0, 0));
         cmbSatuanPil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "bulan", "tahun" }));
-        cmbSatuanPil.setComponentPopupMenu(jPopupMenu1);
         cmbSatuanPil.setName("cmbSatuanPil"); // NOI18N
         FormInput.add(cmbSatuanPil);
         cmbSatuanPil.setBounds(215, 1218, 65, 23);
@@ -4218,7 +3925,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkSuntik1.setText("Suntik 1 bulan, Lama :");
         ChkSuntik1.setBorderPainted(true);
         ChkSuntik1.setBorderPaintedFlat(true);
-        ChkSuntik1.setComponentPopupMenu(jPopupMenu1);
         ChkSuntik1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkSuntik1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkSuntik1.setName("ChkSuntik1"); // NOI18N
@@ -4234,7 +3940,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         Tsuntik1.setForeground(new java.awt.Color(0, 0, 0));
         Tsuntik1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tsuntik1.setComponentPopupMenu(jPopupMenu1);
         Tsuntik1.setName("Tsuntik1"); // NOI18N
         Tsuntik1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4246,7 +3951,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbSatuanSuntik1.setForeground(new java.awt.Color(0, 0, 0));
         cmbSatuanSuntik1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "bulan", "tahun" }));
-        cmbSatuanSuntik1.setComponentPopupMenu(jPopupMenu1);
         cmbSatuanSuntik1.setName("cmbSatuanSuntik1"); // NOI18N
         FormInput.add(cmbSatuanSuntik1);
         cmbSatuanSuntik1.setBounds(465, 1218, 65, 23);
@@ -4257,7 +3961,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkSuntik3.setText("Suntik 3 bulan, Lama :");
         ChkSuntik3.setBorderPainted(true);
         ChkSuntik3.setBorderPaintedFlat(true);
-        ChkSuntik3.setComponentPopupMenu(jPopupMenu1);
         ChkSuntik3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkSuntik3.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkSuntik3.setName("ChkSuntik3"); // NOI18N
@@ -4273,7 +3976,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         Tsuntik3.setForeground(new java.awt.Color(0, 0, 0));
         Tsuntik3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tsuntik3.setComponentPopupMenu(jPopupMenu1);
         Tsuntik3.setName("Tsuntik3"); // NOI18N
         Tsuntik3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4285,7 +3987,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbSatuanSuntik3.setForeground(new java.awt.Color(0, 0, 0));
         cmbSatuanSuntik3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "bulan", "tahun" }));
-        cmbSatuanSuntik3.setComponentPopupMenu(jPopupMenu1);
         cmbSatuanSuntik3.setName("cmbSatuanSuntik3"); // NOI18N
         FormInput.add(cmbSatuanSuntik3);
         cmbSatuanSuntik3.setBounds(715, 1218, 65, 23);
@@ -4296,7 +3997,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkImplan.setText("Implant, Lama : ");
         ChkImplan.setBorderPainted(true);
         ChkImplan.setBorderPaintedFlat(true);
-        ChkImplan.setComponentPopupMenu(jPopupMenu1);
         ChkImplan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkImplan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkImplan.setName("ChkImplan"); // NOI18N
@@ -4312,7 +4012,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         Timplan.setForeground(new java.awt.Color(0, 0, 0));
         Timplan.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Timplan.setComponentPopupMenu(jPopupMenu1);
         Timplan.setName("Timplan"); // NOI18N
         Timplan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4324,13 +4023,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbSatuanImplan.setForeground(new java.awt.Color(0, 0, 0));
         cmbSatuanImplan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "bulan", "tahun" }));
-        cmbSatuanImplan.setComponentPopupMenu(jPopupMenu1);
         cmbSatuanImplan.setName("cmbSatuanImplan"); // NOI18N
         FormInput.add(cmbSatuanImplan);
         cmbSatuanImplan.setBounds(244, 1248, 65, 23);
 
         TriwKBlain.setForeground(new java.awt.Color(0, 0, 0));
-        TriwKBlain.setComponentPopupMenu(jPopupMenu1);
         TriwKBlain.setName("TriwKBlain"); // NOI18N
         TriwKBlain.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4343,7 +4040,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel163.setForeground(new java.awt.Color(0, 0, 0));
         jLabel163.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel163.setText("Riwayat Kehamilan Sekarang :");
-        jLabel163.setComponentPopupMenu(jPopupMenu1);
         jLabel163.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel163.setName("jLabel163"); // NOI18N
         FormInput.add(jLabel163);
@@ -4351,13 +4047,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel189.setForeground(new java.awt.Color(0, 0, 0));
         jLabel189.setText("HPHT : ");
-        jLabel189.setComponentPopupMenu(jPopupMenu1);
         jLabel189.setName("jLabel189"); // NOI18N
         FormInput.add(jLabel189);
         jLabel189.setBounds(20, 1298, 50, 23);
 
         Thpht.setForeground(new java.awt.Color(0, 0, 0));
-        Thpht.setComponentPopupMenu(jPopupMenu1);
         Thpht.setName("Thpht"); // NOI18N
         Thpht.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4369,13 +4063,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel195.setForeground(new java.awt.Color(0, 0, 0));
         jLabel195.setText("HPL : ");
-        jLabel195.setComponentPopupMenu(jPopupMenu1);
         jLabel195.setName("jLabel195"); // NOI18N
         FormInput.add(jLabel195);
         jLabel195.setBounds(280, 1298, 40, 23);
 
         Thpl.setForeground(new java.awt.Color(0, 0, 0));
-        Thpl.setComponentPopupMenu(jPopupMenu1);
         Thpl.setName("Thpl"); // NOI18N
         Thpl.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4387,13 +4079,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel196.setForeground(new java.awt.Color(0, 0, 0));
         jLabel196.setText("UK : ");
-        jLabel196.setComponentPopupMenu(jPopupMenu1);
         jLabel196.setName("jLabel196"); // NOI18N
         FormInput.add(jLabel196);
         jLabel196.setBounds(530, 1298, 40, 23);
 
         Tuk.setForeground(new java.awt.Color(0, 0, 0));
-        Tuk.setComponentPopupMenu(jPopupMenu1);
         Tuk.setName("Tuk"); // NOI18N
         Tuk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4406,20 +4096,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel197.setForeground(new java.awt.Color(0, 0, 0));
         jLabel197.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel197.setText("minggu");
-        jLabel197.setComponentPopupMenu(jPopupMenu1);
         jLabel197.setName("jLabel197"); // NOI18N
         FormInput.add(jLabel197);
         jLabel197.setBounds(780, 1298, 40, 23);
 
         jLabel198.setForeground(new java.awt.Color(0, 0, 0));
         jLabel198.setText("UK (USG) : ");
-        jLabel198.setComponentPopupMenu(jPopupMenu1);
         jLabel198.setName("jLabel198"); // NOI18N
         FormInput.add(jLabel198);
         jLabel198.setBounds(20, 1328, 60, 23);
 
         Tukusg.setForeground(new java.awt.Color(0, 0, 0));
-        Tukusg.setComponentPopupMenu(jPopupMenu1);
         Tukusg.setName("Tukusg"); // NOI18N
         Tukusg.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4432,14 +4119,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel199.setForeground(new java.awt.Color(0, 0, 0));
         jLabel199.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel199.setText("minggu, Tgl. USG :");
-        jLabel199.setComponentPopupMenu(jPopupMenu1);
         jLabel199.setName("jLabel199"); // NOI18N
         FormInput.add(jLabel199);
         jLabel199.setBounds(290, 1328, 93, 23);
 
         tglUSG.setEditable(false);
-        tglUSG.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023" }));
-        tglUSG.setComponentPopupMenu(jPopupMenu1);
+        tglUSG.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
         tglUSG.setDisplayFormat("dd-MM-yyyy");
         tglUSG.setName("tglUSG"); // NOI18N
         tglUSG.setOpaque(false);
@@ -4449,14 +4134,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel200.setForeground(new java.awt.Color(0, 0, 0));
         jLabel200.setText("BB Sebelum Hamil : ");
-        jLabel200.setComponentPopupMenu(jPopupMenu1);
         jLabel200.setName("jLabel200"); // NOI18N
         FormInput.add(jLabel200);
         jLabel200.setBounds(480, 1328, 110, 23);
 
         TbbBlmHamil.setForeground(new java.awt.Color(0, 0, 0));
         TbbBlmHamil.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TbbBlmHamil.setComponentPopupMenu(jPopupMenu1);
         TbbBlmHamil.setName("TbbBlmHamil"); // NOI18N
         TbbBlmHamil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4469,14 +4152,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel201.setForeground(new java.awt.Color(0, 0, 0));
         jLabel201.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel201.setText("Kg.  BB Setelah Hamil : ");
-        jLabel201.setComponentPopupMenu(jPopupMenu1);
         jLabel201.setName("jLabel201"); // NOI18N
         FormInput.add(jLabel201);
         jLabel201.setBounds(650, 1328, 113, 23);
 
         TbbStlhHamil.setForeground(new java.awt.Color(0, 0, 0));
         TbbStlhHamil.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TbbStlhHamil.setComponentPopupMenu(jPopupMenu1);
         TbbStlhHamil.setName("TbbStlhHamil"); // NOI18N
         TbbStlhHamil.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4489,21 +4170,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel202.setForeground(new java.awt.Color(0, 0, 0));
         jLabel202.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel202.setText("Kg.");
-        jLabel202.setComponentPopupMenu(jPopupMenu1);
         jLabel202.setName("jLabel202"); // NOI18N
         FormInput.add(jLabel202);
         jLabel202.setBounds(818, 1328, 25, 23);
 
         jLabel203.setForeground(new java.awt.Color(0, 0, 0));
         jLabel203.setText("TBI : ");
-        jLabel203.setComponentPopupMenu(jPopupMenu1);
         jLabel203.setName("jLabel203"); // NOI18N
         FormInput.add(jLabel203);
         jLabel203.setBounds(20, 1358, 50, 23);
 
         Ttbi.setForeground(new java.awt.Color(0, 0, 0));
         Ttbi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Ttbi.setComponentPopupMenu(jPopupMenu1);
         Ttbi.setName("Ttbi"); // NOI18N
         Ttbi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4516,13 +4194,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel204.setForeground(new java.awt.Color(0, 0, 0));
         jLabel204.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel204.setText("Cm.  BMI : ");
-        jLabel204.setComponentPopupMenu(jPopupMenu1);
         jLabel204.setName("jLabel204"); // NOI18N
         FormInput.add(jLabel204);
         jLabel204.setBounds(130, 1358, 55, 23);
 
         Tbmi.setForeground(new java.awt.Color(0, 0, 0));
-        Tbmi.setComponentPopupMenu(jPopupMenu1);
         Tbmi.setName("Tbmi"); // NOI18N
         Tbmi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4534,20 +4210,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel205.setForeground(new java.awt.Color(0, 0, 0));
         jLabel205.setText("LILA : ");
-        jLabel205.setComponentPopupMenu(jPopupMenu1);
         jLabel205.setName("jLabel205"); // NOI18N
         FormInput.add(jLabel205);
         jLabel205.setBounds(370, 1358, 50, 23);
 
         Tlila.setForeground(new java.awt.Color(0, 0, 0));
-        Tlila.setComponentPopupMenu(jPopupMenu1);
         Tlila.setName("Tlila"); // NOI18N
         FormInput.add(Tlila);
         Tlila.setBounds(424, 1358, 180, 23);
 
         jLabel206.setForeground(new java.awt.Color(0, 0, 0));
         jLabel206.setText("Keluhan : ");
-        jLabel206.setComponentPopupMenu(jPopupMenu1);
         jLabel206.setName("jLabel206"); // NOI18N
         FormInput.add(jLabel206);
         jLabel206.setBounds(20, 1388, 72, 23);
@@ -4558,7 +4231,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkDismen.setText("Dismenorhoe");
         ChkDismen.setBorderPainted(true);
         ChkDismen.setBorderPaintedFlat(true);
-        ChkDismen.setComponentPopupMenu(jPopupMenu1);
         ChkDismen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkDismen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkDismen.setName("ChkDismen"); // NOI18N
@@ -4573,7 +4245,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkSpoting.setText("Spotting");
         ChkSpoting.setBorderPainted(true);
         ChkSpoting.setBorderPaintedFlat(true);
-        ChkSpoting.setComponentPopupMenu(jPopupMenu1);
         ChkSpoting.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkSpoting.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkSpoting.setName("ChkSpoting"); // NOI18N
@@ -4588,7 +4259,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkMenor.setText("Menorrhagia");
         ChkMenor.setBorderPainted(true);
         ChkMenor.setBorderPaintedFlat(true);
-        ChkMenor.setComponentPopupMenu(jPopupMenu1);
         ChkMenor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkMenor.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkMenor.setName("ChkMenor"); // NOI18N
@@ -4603,7 +4273,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkMetro.setText("Metrohagia");
         ChkMetro.setBorderPainted(true);
         ChkMetro.setBorderPaintedFlat(true);
-        ChkMetro.setComponentPopupMenu(jPopupMenu1);
         ChkMetro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkMetro.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkMetro.setName("ChkMetro"); // NOI18N
@@ -4613,7 +4282,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkMetro.setBounds(362, 1388, 80, 23);
 
         TkeluhanLain.setForeground(new java.awt.Color(0, 0, 0));
-        TkeluhanLain.setComponentPopupMenu(jPopupMenu1);
         TkeluhanLain.setName("TkeluhanLain"); // NOI18N
         TkeluhanLain.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4626,7 +4294,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel207.setForeground(new java.awt.Color(0, 0, 0));
         jLabel207.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel207.setText("Pemeriksaan OBSTETRI : ");
-        jLabel207.setComponentPopupMenu(jPopupMenu1);
         jLabel207.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel207.setName("jLabel207"); // NOI18N
         FormInput.add(jLabel207);
@@ -4634,13 +4301,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel208.setForeground(new java.awt.Color(0, 0, 0));
         jLabel208.setText("Leopold 1 : ");
-        jLabel208.setComponentPopupMenu(jPopupMenu1);
         jLabel208.setName("jLabel208"); // NOI18N
         FormInput.add(jLabel208);
         jLabel208.setBounds(170, 1418, 60, 23);
 
         Tleopold1.setForeground(new java.awt.Color(0, 0, 0));
-        Tleopold1.setComponentPopupMenu(jPopupMenu1);
         Tleopold1.setName("Tleopold1"); // NOI18N
         Tleopold1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4652,13 +4317,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel209.setForeground(new java.awt.Color(0, 0, 0));
         jLabel209.setText("Leopold 2 : ");
-        jLabel209.setComponentPopupMenu(jPopupMenu1);
         jLabel209.setName("jLabel209"); // NOI18N
         FormInput.add(jLabel209);
         jLabel209.setBounds(170, 1448, 60, 23);
 
         Tleopold2.setForeground(new java.awt.Color(0, 0, 0));
-        Tleopold2.setComponentPopupMenu(jPopupMenu1);
         Tleopold2.setName("Tleopold2"); // NOI18N
         Tleopold2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4670,13 +4333,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel210.setForeground(new java.awt.Color(0, 0, 0));
         jLabel210.setText("Leopold 3 : ");
-        jLabel210.setComponentPopupMenu(jPopupMenu1);
         jLabel210.setName("jLabel210"); // NOI18N
         FormInput.add(jLabel210);
         jLabel210.setBounds(170, 1478, 60, 23);
 
         Tleopold3.setForeground(new java.awt.Color(0, 0, 0));
-        Tleopold3.setComponentPopupMenu(jPopupMenu1);
         Tleopold3.setName("Tleopold3"); // NOI18N
         Tleopold3.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4688,13 +4349,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel211.setForeground(new java.awt.Color(0, 0, 0));
         jLabel211.setText("Leopold 4 : ");
-        jLabel211.setComponentPopupMenu(jPopupMenu1);
         jLabel211.setName("jLabel211"); // NOI18N
         FormInput.add(jLabel211);
         jLabel211.setBounds(170, 1508, 60, 23);
 
         Tleopold4.setForeground(new java.awt.Color(0, 0, 0));
-        Tleopold4.setComponentPopupMenu(jPopupMenu1);
         Tleopold4.setName("Tleopold4"); // NOI18N
         Tleopold4.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4710,7 +4369,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkNyeriTekan.setText("Nyeri Tekan");
         ChkNyeriTekan.setBorderPainted(true);
         ChkNyeriTekan.setBorderPaintedFlat(true);
-        ChkNyeriTekan.setComponentPopupMenu(jPopupMenu1);
         ChkNyeriTekan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkNyeriTekan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkNyeriTekan.setName("ChkNyeriTekan"); // NOI18N
@@ -4725,7 +4383,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBandle.setText("Bandle Ring");
         ChkBandle.setBorderPainted(true);
         ChkBandle.setBorderPaintedFlat(true);
-        ChkBandle.setComponentPopupMenu(jPopupMenu1);
         ChkBandle.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkBandle.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkBandle.setName("ChkBandle"); // NOI18N
@@ -4737,7 +4394,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel212.setForeground(new java.awt.Color(0, 0, 0));
         jLabel212.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel212.setText("SURVEI SEKUNDER");
-        jLabel212.setComponentPopupMenu(jPopupMenu1);
         jLabel212.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel212.setName("jLabel212"); // NOI18N
         FormInput.add(jLabel212);
@@ -4745,14 +4401,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel213.setForeground(new java.awt.Color(0, 0, 0));
         jLabel213.setText("TFU : ");
-        jLabel213.setComponentPopupMenu(jPopupMenu1);
         jLabel213.setName("jLabel213"); // NOI18N
         FormInput.add(jLabel213);
         jLabel213.setBounds(20, 1558, 50, 23);
 
         Ttfu.setForeground(new java.awt.Color(0, 0, 0));
         Ttfu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Ttfu.setComponentPopupMenu(jPopupMenu1);
         Ttfu.setName("Ttfu"); // NOI18N
         Ttfu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -4765,14 +4419,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel214.setForeground(new java.awt.Color(0, 0, 0));
         jLabel214.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel214.setText("Cm.   Taksiran Berat Janin : ");
-        jLabel214.setComponentPopupMenu(jPopupMenu1);
         jLabel214.setName("jLabel214"); // NOI18N
         FormInput.add(jLabel214);
         jLabel214.setBounds(130, 1558, 137, 23);
 
         TbbJanin.setForeground(new java.awt.Color(0, 0, 0));
         TbbJanin.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TbbJanin.setComponentPopupMenu(jPopupMenu1);
         TbbJanin.setName("TbbJanin"); // NOI18N
         FormInput.add(TbbJanin);
         TbbJanin.setBounds(267, 1558, 50, 23);
@@ -4780,7 +4432,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel215.setForeground(new java.awt.Color(0, 0, 0));
         jLabel215.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel215.setText("gram.");
-        jLabel215.setComponentPopupMenu(jPopupMenu1);
         jLabel215.setName("jLabel215"); // NOI18N
         FormInput.add(jLabel215);
         jLabel215.setBounds(323, 1558, 30, 23);
@@ -4791,7 +4442,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkHis.setText("His / Kontraksi : ");
         ChkHis.setBorderPainted(true);
         ChkHis.setBorderPaintedFlat(true);
-        ChkHis.setComponentPopupMenu(jPopupMenu1);
         ChkHis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkHis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkHis.setName("ChkHis"); // NOI18N
@@ -4806,7 +4456,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkHis.setBounds(362, 1558, 98, 23);
 
         ThisKontraksi.setForeground(new java.awt.Color(0, 0, 0));
-        ThisKontraksi.setComponentPopupMenu(jPopupMenu1);
         ThisKontraksi.setName("ThisKontraksi"); // NOI18N
         FormInput.add(ThisKontraksi);
         ThisKontraksi.setBounds(460, 1558, 70, 23);
@@ -4814,7 +4463,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel216.setForeground(new java.awt.Color(0, 0, 0));
         jLabel216.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel216.setText("x/10 mnt");
-        jLabel216.setComponentPopupMenu(jPopupMenu1);
         jLabel216.setName("jLabel216"); // NOI18N
         FormInput.add(jLabel216);
         jLabel216.setBounds(535, 1558, 45, 23);
@@ -4825,7 +4473,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTeratur.setText("Teratur");
         ChkTeratur.setBorderPainted(true);
         ChkTeratur.setBorderPaintedFlat(true);
-        ChkTeratur.setComponentPopupMenu(jPopupMenu1);
         ChkTeratur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTeratur.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTeratur.setName("ChkTeratur"); // NOI18N
@@ -4840,7 +4487,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTdkTeratur.setText("Tidak Teratur");
         ChkTdkTeratur.setBorderPainted(true);
         ChkTdkTeratur.setBorderPaintedFlat(true);
-        ChkTdkTeratur.setComponentPopupMenu(jPopupMenu1);
         ChkTdkTeratur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTdkTeratur.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTdkTeratur.setName("ChkTdkTeratur"); // NOI18N
@@ -4855,7 +4501,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkTrsMenerus.setText("Terus Menerus");
         ChkTrsMenerus.setBorderPainted(true);
         ChkTrsMenerus.setBorderPaintedFlat(true);
-        ChkTrsMenerus.setComponentPopupMenu(jPopupMenu1);
         ChkTrsMenerus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkTrsMenerus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkTrsMenerus.setName("ChkTrsMenerus"); // NOI18N
@@ -4866,14 +4511,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel217.setForeground(new java.awt.Color(0, 0, 0));
         jLabel217.setText("Durasi : ");
-        jLabel217.setComponentPopupMenu(jPopupMenu1);
         jLabel217.setName("jLabel217"); // NOI18N
         FormInput.add(jLabel217);
         jLabel217.setBounds(20, 1588, 50, 23);
 
         Tdurasi.setForeground(new java.awt.Color(0, 0, 0));
         Tdurasi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        Tdurasi.setComponentPopupMenu(jPopupMenu1);
         Tdurasi.setName("Tdurasi"); // NOI18N
         FormInput.add(Tdurasi);
         Tdurasi.setBounds(73, 1588, 50, 23);
@@ -4881,7 +4524,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel218.setForeground(new java.awt.Color(0, 0, 0));
         jLabel218.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel218.setText("detik");
-        jLabel218.setComponentPopupMenu(jPopupMenu1);
         jLabel218.setName("jLabel218"); // NOI18N
         FormInput.add(jLabel218);
         jLabel218.setBounds(130, 1588, 30, 23);
@@ -4892,7 +4534,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkKuat.setText("Kuat");
         ChkKuat.setBorderPainted(true);
         ChkKuat.setBorderPaintedFlat(true);
-        ChkKuat.setComponentPopupMenu(jPopupMenu1);
         ChkKuat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkKuat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkKuat.setName("ChkKuat"); // NOI18N
@@ -4907,7 +4548,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkSedang.setText("Sedang");
         ChkSedang.setBorderPainted(true);
         ChkSedang.setBorderPaintedFlat(true);
-        ChkSedang.setComponentPopupMenu(jPopupMenu1);
         ChkSedang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkSedang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkSedang.setName("ChkSedang"); // NOI18N
@@ -4922,7 +4562,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkLemah.setText("Lemah");
         ChkLemah.setBorderPainted(true);
         ChkLemah.setBorderPaintedFlat(true);
-        ChkLemah.setComponentPopupMenu(jPopupMenu1);
         ChkLemah.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkLemah.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkLemah.setName("ChkLemah"); // NOI18N
@@ -4933,13 +4572,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel219.setForeground(new java.awt.Color(0, 0, 0));
         jLabel219.setText("Auskultasi : DJJ ");
-        jLabel219.setComponentPopupMenu(jPopupMenu1);
         jLabel219.setName("jLabel219"); // NOI18N
         FormInput.add(jLabel219);
         jLabel219.setBounds(340, 1588, 90, 23);
 
         Tauskultasi.setForeground(new java.awt.Color(0, 0, 0));
-        Tauskultasi.setComponentPopupMenu(jPopupMenu1);
         Tauskultasi.setName("Tauskultasi"); // NOI18N
         FormInput.add(Tauskultasi);
         Tauskultasi.setBounds(435, 1588, 70, 23);
@@ -4947,14 +4584,12 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel220.setForeground(new java.awt.Color(0, 0, 0));
         jLabel220.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel220.setText("x/mnt");
-        jLabel220.setComponentPopupMenu(jPopupMenu1);
         jLabel220.setName("jLabel220"); // NOI18N
         FormInput.add(jLabel220);
         jLabel220.setBounds(510, 1588, 34, 23);
 
         jLabel221.setForeground(new java.awt.Color(0, 0, 0));
         jLabel221.setText("Pemeriksaan Genitalia : ");
-        jLabel221.setComponentPopupMenu(jPopupMenu1);
         jLabel221.setName("jLabel221"); // NOI18N
         FormInput.add(jLabel221);
         jLabel221.setBounds(20, 1618, 130, 23);
@@ -4965,7 +4600,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkBersih.setText("Bersih");
         ChkBersih.setBorderPainted(true);
         ChkBersih.setBorderPaintedFlat(true);
-        ChkBersih.setComponentPopupMenu(jPopupMenu1);
         ChkBersih.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkBersih.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkBersih.setName("ChkBersih"); // NOI18N
@@ -4980,7 +4614,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkOedema.setText("Oedema");
         ChkOedema.setBorderPainted(true);
         ChkOedema.setBorderPaintedFlat(true);
-        ChkOedema.setComponentPopupMenu(jPopupMenu1);
         ChkOedema.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkOedema.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkOedema.setName("ChkOedema"); // NOI18N
@@ -4995,7 +4628,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkRuptur.setText("Ruptur");
         ChkRuptur.setBorderPainted(true);
         ChkRuptur.setBorderPaintedFlat(true);
-        ChkRuptur.setComponentPopupMenu(jPopupMenu1);
         ChkRuptur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkRuptur.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkRuptur.setName("ChkRuptur"); // NOI18N
@@ -5010,7 +4642,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkCandiloma.setText("Candiloma");
         ChkCandiloma.setBorderPainted(true);
         ChkCandiloma.setBorderPaintedFlat(true);
-        ChkCandiloma.setComponentPopupMenu(jPopupMenu1);
         ChkCandiloma.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         ChkCandiloma.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         ChkCandiloma.setName("ChkCandiloma"); // NOI18N
@@ -5020,7 +4651,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         ChkCandiloma.setBounds(338, 1618, 72, 23);
 
         Tgenitalia_lain.setForeground(new java.awt.Color(0, 0, 0));
-        Tgenitalia_lain.setComponentPopupMenu(jPopupMenu1);
         Tgenitalia_lain.setName("Tgenitalia_lain"); // NOI18N
         Tgenitalia_lain.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -5032,13 +4662,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel222.setForeground(new java.awt.Color(0, 0, 0));
         jLabel222.setText("Inspeksi : ");
-        jLabel222.setComponentPopupMenu(jPopupMenu1);
         jLabel222.setName("jLabel222"); // NOI18N
         FormInput.add(jLabel222);
         jLabel222.setBounds(20, 1648, 60, 23);
 
         Tinspeksi.setForeground(new java.awt.Color(0, 0, 0));
-        Tinspeksi.setComponentPopupMenu(jPopupMenu1);
         Tinspeksi.setName("Tinspeksi"); // NOI18N
         Tinspeksi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -5050,20 +4678,17 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel223.setForeground(new java.awt.Color(0, 0, 0));
         jLabel223.setText("Konsistensi : ");
-        jLabel223.setComponentPopupMenu(jPopupMenu1);
         jLabel223.setName("jLabel223"); // NOI18N
         FormInput.add(jLabel223);
         jLabel223.setBounds(20, 1678, 70, 23);
 
         jLabel224.setForeground(new java.awt.Color(0, 0, 0));
         jLabel224.setText("Periksa Dalam (Obstetri) : ");
-        jLabel224.setComponentPopupMenu(jPopupMenu1);
         jLabel224.setName("jLabel224"); // NOI18N
         FormInput.add(jLabel224);
         jLabel224.setBounds(220, 1678, 150, 23);
 
         Tperiksa_dlm.setForeground(new java.awt.Color(0, 0, 0));
-        Tperiksa_dlm.setComponentPopupMenu(jPopupMenu1);
         Tperiksa_dlm.setName("Tperiksa_dlm"); // NOI18N
         Tperiksa_dlm.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -5075,13 +4700,11 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         jLabel225.setForeground(new java.awt.Color(0, 0, 0));
         jLabel225.setText("Inspekulum : ");
-        jLabel225.setComponentPopupMenu(jPopupMenu1);
         jLabel225.setName("jLabel225"); // NOI18N
         FormInput.add(jLabel225);
         jLabel225.setBounds(20, 1708, 70, 23);
 
         Tinspekulum.setForeground(new java.awt.Color(0, 0, 0));
-        Tinspekulum.setComponentPopupMenu(jPopupMenu1);
         Tinspekulum.setName("Tinspekulum"); // NOI18N
         Tinspekulum.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -5101,21 +4724,18 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
 
         cmbKonsistensi.setForeground(new java.awt.Color(0, 0, 0));
         cmbKonsistensi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Encer", "Kental", "Bergumpal Gumpal" }));
-        cmbKonsistensi.setComponentPopupMenu(jPopupMenu1);
         cmbKonsistensi.setName("cmbKonsistensi"); // NOI18N
         FormInput.add(cmbKonsistensi);
         cmbKonsistensi.setBounds(90, 1678, 124, 23);
 
         cmbNadi2.setForeground(new java.awt.Color(0, 0, 0));
         cmbNadi2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Kuat", "Lemah" }));
-        cmbNadi2.setComponentPopupMenu(jPopupMenu1);
         cmbNadi2.setName("cmbNadi2"); // NOI18N
         FormInput.add(cmbNadi2);
         cmbNadi2.setBounds(800, 250, 70, 23);
 
         cmbAkral2.setForeground(new java.awt.Color(0, 0, 0));
         cmbAkral2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Kering", "Basah" }));
-        cmbAkral2.setComponentPopupMenu(jPopupMenu1);
         cmbAkral2.setName("cmbAkral2"); // NOI18N
         FormInput.add(cmbAkral2);
         cmbAkral2.setBounds(790, 310, 70, 23);
@@ -5253,7 +4873,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         Scroll.setPreferredSize(new java.awt.Dimension(452, 200));
 
         tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbAsesmen.setComponentPopupMenu(jPopupMenu1);
         tbAsesmen.setName("tbAsesmen"); // NOI18N
         tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -5279,7 +4898,7 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5293,7 +4912,7 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-10-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6313,59 +5932,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         }
     }//GEN-LAST:event_ChkHisActionPerformed
 
-    private void MnHasilPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanLabActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-            Valid.textKosong(TNoRw, "Pasien");
-        } else {
-            if (Sequel.cariInteger("select count(1) cek from lis_reg where no_rawat='" + TNoRw.getText() + "'") == 0) {
-                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium (LIS) tidak ditemukan ...!!!!");
-            } else {
-                DlgHasilLIS lis = new DlgHasilLIS(null, false);
-                lis.setSize(914, internalFrame1.getHeight() - 40);
-                lis.setLocationRelativeTo(internalFrame1);
-                lis.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
-                lis.setVisible(true);
-            }
-        }
-    }//GEN-LAST:event_MnHasilPemeriksaanLabActionPerformed
-
-    private void MnHasilPemeriksaanRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanRadActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-            Valid.textKosong(TNoRw, "Pasien");
-        } else {
-            cekHasilRad = 0;
-            kdItemrad = "";
-            itemDipilih = "";
-            tglRad = "";
-            jamRad = "";
-
-            tglRad = Sequel.cariIsi("select tgl_periksa from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            jamRad = Sequel.cariIsi("select jam from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            kdItemrad = Sequel.cariIsi("select kd_jenis_prw from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-            itemDipilih = Sequel.cariIsi("select nm_perawatan from jns_perawatan_radiologi where kd_jenis_prw='" + kdItemrad + "'");
-            cekHasilRad = Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-
-            if (cekHasilRad >= 1) {
-                akses.setform("RMPenilaianAwalMedikObstetriRalan");
-                DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
-                form.WindowHasil.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.WindowHasil.setLocationRelativeTo(internalFrame1);
-                form.isCek();
-                form.setData(TNoRw.getText(), kdItemrad, itemDipilih, "OK", TNoRM.getText(), TPasien.getText(), tglRad, jamRad, TDiagSementara.getText(),
-                    Sequel.cariIsi("select pl.nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"),
-                    Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.kd_dokter where pr.no_rawat='" + TNoRw.getText() + "'"),
-                    Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.dokter_perujuk where pr.no_rawat='" + TNoRw.getText() + "'"),
-                    Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where "
-                        + "kd_rujukan='" + Sequel.cariIsi("select ifnull(kd_rujukan,'') from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") + "'"));
-                form.WindowHasil.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan radiologi (expertise) tidak ditemukan ...!!!!");
-            }
-        }
-    }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
-
     private void Trujukan_bidanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Trujukan_bidanKeyPressed
         Valid.pindah(evt, cmbCara_datang, Tgr);
     }//GEN-LAST:event_Trujukan_bidanKeyPressed
@@ -6742,8 +6308,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
     private widget.PanelBiasa FormInput;
     private widget.TextBox KdBidan;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnHasilPemeriksaanLab;
-    private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private widget.TextBox NmBidan;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
@@ -7028,7 +6592,6 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
     private widget.Label jLabel98;
     private widget.Label jLabel99;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JSeparator jSeparator1;
     private javax.swing.JSeparator jSeparator2;
     private javax.swing.JSeparator jSeparator4;
@@ -9075,10 +8638,7 @@ public final class RMPenilaianAwalMedikObstetriRalan extends javax.swing.JDialog
         bendaAsing = "";
         meninggal = "";
         ganggnafas = "";
-        kdItemrad = "";
         itemDipilih = "";
-        tglRad = "";
-        jamRad = "";
         mengeluh_prt = "";
         hipertensi1 = "";
         dm1 = "";

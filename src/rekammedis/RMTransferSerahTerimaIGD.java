@@ -50,11 +50,9 @@ import javax.swing.table.TableColumn;
 import javax.swing.text.Document;
 import kepegawaian.DlgCariPetugas;
 import keuangan.DlgKamar;
-import laporan.DlgHasilLIS;
 import laporan.DlgHasilPenunjangMedis;
 import laporan.DlgPenyakit;
 import simrskhanza.DlgCariDokter;
-import simrskhanza.DlgCariPeriksaRadiologi;
 import simrskhanza.DlgNotepad;
 
 /**
@@ -71,13 +69,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     public DlgKamar kamar = new DlgKamar(null, false);
     private PreparedStatement ps, ps1, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
     private ResultSet rs, rs1, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
-    private int i = 0, x = 0, pilihan = 0, cekHasilRad = 0;
+    private int i = 0, x = 0, pilihan = 0;
     private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", 
             kd_kamar_pindah = "", resepDipilih = "", cekResep = "", tglResep = "", status_kmr = "",
             tglPemberianObat = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
-            drain = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", lab = "", posisi = "", nmKamar = "";
+            drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -553,8 +551,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
-        MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
-        MnHasilPemeriksaanRad = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame6 = new widget.InternalFrame();
         panelisi5 = new widget.panelisi();
@@ -753,36 +749,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         jPopupMenu2.add(MnHasilPemeriksaanPenunjang);
-
-        MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
-        MnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanLab.setIconTextGap(5);
-        MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
-        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(190, 26));
-        MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanLabActionPerformed(evt);
-            }
-        });
-        jPopupMenu2.add(MnHasilPemeriksaanLab);
-
-        MnHasilPemeriksaanRad.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanRad.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanRad.setText("Hasil Pemeriksaan Radiologi");
-        MnHasilPemeriksaanRad.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanRad.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanRad.setIconTextGap(5);
-        MnHasilPemeriksaanRad.setName("MnHasilPemeriksaanRad"); // NOI18N
-        MnHasilPemeriksaanRad.setPreferredSize(new java.awt.Dimension(190, 26));
-        MnHasilPemeriksaanRad.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanRadActionPerformed(evt);
-            }
-        });
-        jPopupMenu2.add(MnHasilPemeriksaanRad);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -1111,7 +1077,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024 21:00:55" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024 23:18:24" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -2337,7 +2303,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2352,7 +2318,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3098,59 +3064,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TdiagnosisKeyPressed
 
-    private void MnHasilPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanLabActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-            Valid.textKosong(TNoRw, "Pasien");
-        } else {
-            if (Sequel.cariInteger("select count(1) cek from lis_reg where no_rawat='" + TNoRw.getText() + "'") == 0) {
-                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium (LIS) tidak ditemukan ...!!!!");
-            } else {
-                DlgHasilLIS lis = new DlgHasilLIS(null, false);
-                lis.setSize(914, internalFrame1.getHeight() - 40);
-                lis.setLocationRelativeTo(internalFrame1);
-                lis.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
-                lis.setVisible(true);
-            }
-        }
-    }//GEN-LAST:event_MnHasilPemeriksaanLabActionPerformed
-
-    private void MnHasilPemeriksaanRadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanRadActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-            Valid.textKosong(TNoRw, "Pasien");
-        } else {
-            cekHasilRad = 0;
-            kdItemrad = "";
-            itemDipilih = "";
-            tglRad = "";
-            jamRad = "";
-            
-            tglRad = Sequel.cariIsi("select tgl_periksa from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            jamRad = Sequel.cariIsi("select jam from periksa_radiologi where no_rawat='" + TNoRw.getText() + "'");
-            kdItemrad = Sequel.cariIsi("select kd_jenis_prw from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                    + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-            itemDipilih = Sequel.cariIsi("select nm_perawatan from jns_perawatan_radiologi where kd_jenis_prw='" + kdItemrad + "'");
-            cekHasilRad = Sequel.cariInteger("select count(-1) from periksa_radiologi where no_rawat='" + TNoRw.getText() + "' and "
-                    + "tgl_periksa='" + tglRad + "' and jam='" + jamRad + "'");
-
-            if (cekHasilRad >= 1) {                
-                akses.setform("RMTransferSerahTerimaIGD");
-                DlgCariPeriksaRadiologi form = new DlgCariPeriksaRadiologi(null, false);
-                form.WindowHasil.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                form.WindowHasil.setLocationRelativeTo(internalFrame1);
-                form.isCek();
-                form.setData(TNoRw.getText(), kdItemrad, itemDipilih, "OK", TNoRM.getText(), TPasien.getText(), tglRad, jamRad, Tdiagnosis.getText(),
-                        Sequel.cariIsi("select pl.nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.kd_dokter where pr.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select p.nama from periksa_radiologi pr inner join pegawai p on p.nik=pr.dokter_perujuk where pr.no_rawat='" + TNoRw.getText() + "'"),
-                        Sequel.cariIsi("select concat('(',UPPER(tipe_faskes),') ',nama_rujukan) from master_nama_rujukan where "
-                                + "kd_rujukan='" + Sequel.cariIsi("select ifnull(kd_rujukan,'') from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'") + "'"));
-                form.WindowHasil.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Hasil pemeriksaan radiologi (expertise) tidak ditemukan ...!!!!");
-            }
-        }
-    }//GEN-LAST:event_MnHasilPemeriksaanRadActionPerformed
-
     private void BtnDiagnosisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDiagnosisActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
@@ -3421,9 +3334,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.InternalFrame FormTST;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
-    private javax.swing.JMenuItem MnHasilPemeriksaanRad;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll3;

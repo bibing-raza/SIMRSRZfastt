@@ -64,7 +64,6 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import keuangan.DlgLhtPiutang;
-import laporan.DlgHasilLIS;
 import permintaan.DlgSuratIstirahatSakit;
 
 /**
@@ -788,7 +787,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnLabelPxRanap1 = new javax.swing.JMenuItem();
         MnLabelPxRanap2 = new javax.swing.JMenuItem();
         MnLaporan = new javax.swing.JMenu();
-        MnHasilPemeriksaanLab = new javax.swing.JMenuItem();
         MnLaporanKunjunganIGD = new javax.swing.JMenuItem();
         MnLaporanStatistikIGD = new javax.swing.JMenuItem();
         MnLaporanRekapKunjunganPoli = new javax.swing.JMenuItem();
@@ -1466,21 +1464,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnLaporan.setOpaque(true);
         MnLaporan.setPreferredSize(new java.awt.Dimension(240, 26));
         MnLaporan.setRequestFocusEnabled(false);
-
-        MnHasilPemeriksaanLab.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanLab.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanLab.setText("Hasil Pemeriksaan Lab.");
-        MnHasilPemeriksaanLab.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanLab.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanLab.setIconTextGap(5);
-        MnHasilPemeriksaanLab.setName("MnHasilPemeriksaanLab"); // NOI18N
-        MnHasilPemeriksaanLab.setPreferredSize(new java.awt.Dimension(240, 26));
-        MnHasilPemeriksaanLab.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanLabActionPerformed(evt);
-            }
-        });
-        MnLaporan.add(MnHasilPemeriksaanLab);
 
         MnLaporanKunjunganIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnLaporanKunjunganIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -6825,19 +6808,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnPrinterLama1ActionPerformed
 
-    private void MnHasilPemeriksaanLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanLabActionPerformed
-        if (Sequel.cariInteger("select count(1) cek from lis_reg where no_rawat='" + TNoRw.getText() + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Hasil pemeriksaan laboratorium (LIS) tidak ditemukan ...!!!!");
-            tbregistrasiIGD.requestFocus();
-        } else {
-            DlgHasilLIS lis = new DlgHasilLIS(null, false);
-            lis.setSize(914, internalFrame1.getHeight() - 40);
-            lis.setLocationRelativeTo(internalFrame1);
-            lis.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
-            lis.setVisible(true);
-        }
-    }//GEN-LAST:event_MnHasilPemeriksaanLabActionPerformed
-
     private void BtnDokterINAPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterINAPActionPerformed
         akses.setform("DlgIGD");
         pilihan = 2;
@@ -7119,7 +7089,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem MnGantiUmurReg;
     private javax.swing.JMenu MnGelangBayi;
     private javax.swing.JMenu MnGelangDewasaAnak;
-    private javax.swing.JMenuItem MnHasilPemeriksaanLab;
     private javax.swing.JMenu MnIdentitasRM;
     private javax.swing.JMenuItem MnJAMPERSAL;
     private javax.swing.JMenuItem MnKamarInap;
@@ -7756,7 +7725,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         MnRujuk.setEnabled(akses.getrujukan_keluar());
         MnRujukMasuk.setEnabled(akses.getrujukan_masuk());
         MnCatatanPasien.setEnabled(akses.getcatatan_pasien());
-        MnHasilPemeriksaanLab.setEnabled(akses.getigd());
     }
 
     private void isNumber() {
