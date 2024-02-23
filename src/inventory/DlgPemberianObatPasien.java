@@ -955,7 +955,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnContengSemua.setIconTextGap(5);
         MnContengSemua.setName("MnContengSemua"); // NOI18N
-        MnContengSemua.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnContengSemua.setPreferredSize(new java.awt.Dimension(170, 26));
         MnContengSemua.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnContengSemuaActionPerformed(evt);
@@ -970,7 +970,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnHapusConteng.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHapusConteng.setIconTextGap(5);
         MnHapusConteng.setName("MnHapusConteng"); // NOI18N
-        MnHapusConteng.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnHapusConteng.setPreferredSize(new java.awt.Dimension(170, 26));
         MnHapusConteng.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusContengActionPerformed(evt);
@@ -985,7 +985,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnCopy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCopy.setIconTextGap(5);
         MnCopy.setName("MnCopy"); // NOI18N
-        MnCopy.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnCopy.setPreferredSize(new java.awt.Dimension(170, 26));
         MnCopy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCopyActionPerformed(evt);
@@ -1000,7 +1000,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnCopyData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCopyData.setIconTextGap(5);
         MnCopyData.setName("MnCopyData"); // NOI18N
-        MnCopyData.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnCopyData.setPreferredSize(new java.awt.Dimension(170, 26));
         MnCopyData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCopyDataActionPerformed(evt);
@@ -1034,7 +1034,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnSemuaPagi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSemuaPagi.setIconTextGap(5);
         MnSemuaPagi.setName("MnSemuaPagi"); // NOI18N
-        MnSemuaPagi.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnSemuaPagi.setPreferredSize(new java.awt.Dimension(200, 26));
         MnSemuaPagi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSemuaPagiActionPerformed(evt);
@@ -1049,7 +1049,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnSemuaSore.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSemuaSore.setIconTextGap(5);
         MnSemuaSore.setName("MnSemuaSore"); // NOI18N
-        MnSemuaSore.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnSemuaSore.setPreferredSize(new java.awt.Dimension(200, 26));
         MnSemuaSore.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSemuaSoreActionPerformed(evt);
@@ -1064,7 +1064,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnSemuaMalam.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSemuaMalam.setIconTextGap(5);
         MnSemuaMalam.setName("MnSemuaMalam"); // NOI18N
-        MnSemuaMalam.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnSemuaMalam.setPreferredSize(new java.awt.Dimension(200, 26));
         MnSemuaMalam.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSemuaMalamActionPerformed(evt);
@@ -1079,7 +1079,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnSemuanya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnSemuanya.setIconTextGap(5);
         MnSemuanya.setName("MnSemuanya"); // NOI18N
-        MnSemuanya.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnSemuanya.setPreferredSize(new java.awt.Dimension(200, 26));
         MnSemuanya.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnSemuanyaActionPerformed(evt);
@@ -1094,7 +1094,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnDibatalkan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDibatalkan.setIconTextGap(5);
         MnDibatalkan.setName("MnDibatalkan"); // NOI18N
-        MnDibatalkan.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnDibatalkan.setPreferredSize(new java.awt.Dimension(200, 26));
         MnDibatalkan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDibatalkanActionPerformed(evt);
@@ -1109,7 +1109,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         MnDiCopy.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnDiCopy.setIconTextGap(5);
         MnDiCopy.setName("MnDiCopy"); // NOI18N
-        MnDiCopy.setPreferredSize(new java.awt.Dimension(185, 26));
+        MnDiCopy.setPreferredSize(new java.awt.Dimension(200, 26));
         MnDiCopy.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnDiCopyActionPerformed(evt);
@@ -1420,7 +1420,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2024" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -2525,7 +2525,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2539,7 +2539,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
