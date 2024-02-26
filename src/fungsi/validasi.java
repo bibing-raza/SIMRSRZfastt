@@ -100,7 +100,7 @@ import widget.TextArea;
  */
 public final class validasi {
     private int a, j, i, result = 0,cekPrint=0;
-    private String s, s1, auto, host = "", host_grafik_rme = "", PEMBULATANHARGAOBAT = "";
+    private String s, s1, auto, host = "", host_port = "", PEMBULATANHARGAOBAT = "";
     private final Connection connect = koneksiDB.condb();
     private final sekuel sek = new sekuel();
     private final java.awt.Desktop desktop = java.awt.Desktop.getDesktop();
@@ -1215,17 +1215,17 @@ public final class validasi {
         try {
             Properties prop = new Properties();
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            host_grafik_rme = Sequel.decXML(prop.getProperty("HOSTgrafikRME"), prop.getProperty("KEY"));
+            host_port = Sequel.decXML(prop.getProperty("HOSTport"), prop.getProperty("KEY"));
             if (os.contains("win")) {
-                rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://" + host_grafik_rme + "/" + url);
+                rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://" + host_port + "/" + url);
             } else if (os.contains("mac")) {
-                rt.exec("open " + "http://" + host_grafik_rme + "/" + url);
+                rt.exec("open " + "http://" + host_port + "/" + url);
             } else if (os.contains("nix") || os.contains("nux")) {
                 String[] browsers = {"x-www-browser", "epiphany", "firefox", "mozilla", "konqueror", "chrome", "chromium", "netscape", "opera", "links", "lynx", "midori"};
                 // Build a command string which looks like "browser1 "url" || browser2 "url" ||..."
                 StringBuilder cmd = new StringBuilder();
                 for (i = 0; i < browsers.length; i++) {
-                    cmd.append(i == 0 ? "" : " || ").append(browsers[i]).append(" \"").append("http://").append(host_grafik_rme).append(url).append("\" ");
+                    cmd.append(i == 0 ? "" : " || ").append(browsers[i]).append(" \"").append("http://").append(host_port).append(url).append("\" ");
                 }
                 rt.exec(new String[]{"sh", "-c", cmd.toString()});
             }

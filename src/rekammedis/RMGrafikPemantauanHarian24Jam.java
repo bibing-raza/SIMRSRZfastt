@@ -47,7 +47,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
     private final Properties prop = new Properties();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private String norawat = "", host_grafik_rme = "";
+    private String norawat = "";
     
     /** Creates new form DlgSpesialis
      * @param parent
@@ -160,7 +160,6 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
-                host_grafik_rme = Sequel.decXML(prop.getProperty("HOSTgrafikRME"), prop.getProperty("KEY"));
                 if (cmbGrafik.getSelectedIndex() == 0) {
                     if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "' "
                             + "and tgl_pantau='" + Valid.SetTgl(tglPantau.getSelectedItem() + "") + "'") == 0) {

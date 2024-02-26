@@ -124,6 +124,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPantauHarianPasien = new widget.ButtonBig();
         BtnGrafikPantauHarian = new widget.ButtonBig();
         BtnProtokolKemoterapi = new widget.ButtonBig();
+        BtnDokumenJangMed = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -426,6 +427,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnProtokolKemoterapi);
+
+        BtnDokumenJangMed.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/x-office-address-book.png"))); // NOI18N
+        BtnDokumenJangMed.setText("Dokumen Penunjang Medis");
+        BtnDokumenJangMed.setIconTextGap(0);
+        BtnDokumenJangMed.setName("BtnDokumenJangMed"); // NOI18N
+        BtnDokumenJangMed.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnDokumenJangMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDokumenJangMedActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnDokumenJangMed);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -750,6 +764,25 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnProtokolKemoterapiActionPerformed
 
+    private void BtnDokumenJangMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokumenJangMedActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnDokumenJangMedActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -772,6 +805,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnCPPT;
     private widget.ButtonBig BtnCTK;
     private widget.Button BtnCloseIn10;
+    private widget.ButtonBig BtnDokumenJangMed;
     private widget.ButtonBig BtnGrafikPantauHarian;
     private widget.ButtonBig BtnJadwalObat;
     private widget.ButtonBig BtnJawabKonsul;

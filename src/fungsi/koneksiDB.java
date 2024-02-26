@@ -366,16 +366,6 @@ public final class koneksiDB {
         return var;
     }
     
-    public static String URLCEKFINGERPRINT() {
-        try {
-            prop.loadFromXML(new FileInputStream("setting/database.xml"));
-            var = prop.getProperty("URLCEKFINGERPRINT");
-        } catch (Exception e) {
-            var = "";
-        }
-        return var;
-    }
-    
     public static String SECRETKEYSATUSEHAT() {
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
@@ -470,6 +460,16 @@ public final class koneksiDB {
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
             var = prop.getProperty("KODEPOSSATUSEHAT");
+        } catch (Exception e) {
+            var = "";
+        }
+        return var;
+    }
+    
+    public static String HOSTport() {
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            var = "http://" + Sequel.decXML2(prop.getProperty("HOSTport"), prop.getProperty("KEY")) + "/";
         } catch (Exception e) {
             var = "";
         }

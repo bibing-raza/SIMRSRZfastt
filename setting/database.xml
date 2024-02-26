@@ -71,7 +71,6 @@
     <entry key="SECRETKEYAPIICARE">sama isinya dengan SECRETKEYAPIBPJS</entry>
     <entry key="CONSIDAPIICARE">sama isinya dengan CONSIDAPIBPJS</entry>
     <entry key="USERKEYAPIICARE">sama isinya dengan USERKEYAPIBPJS</entry>
-    <entry key="URLCEKFINGERPRINT">http://ip addres server/cekfp/?cari=no rekam medisnya</entry>
     <entry key="NOTIFAPOTEK">no</entry>
     <entry key="NOTIFLABORATORIUM">no</entry>
     <entry key="NOTIFRADIOLOGI">no</entry>
@@ -85,5 +84,5 @@
     <entry key="KABUPATENSATUSEHAT">6303</entry>  
     <entry key="PROPINSISATUSEHAT">63</entry>  
     <entry key="KODEPOSSATUSEHAT">70611</entry>
-	<entry key="HOSTgrafikRME">enkripsi ip addres server</entry>
+	<entry key="HOSTport">enkripsi ip addres server & portnya</entry>
 </properties>

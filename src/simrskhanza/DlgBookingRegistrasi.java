@@ -1348,7 +1348,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         cekLAYAN();
         try {
-            link = koneksiDB.URLCEKFINGERPRINT();
+            link = koneksiDB.HOSTport();
         } catch (Exception e) {
             System.out.println("E : " + e);
         }
@@ -6624,7 +6624,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 initComponents2();
             } else {
                 if (kdpnj.getText().equals("B01") || (kdpnj.getText().equals("A03"))) {
-                    loadURL(link + "" + TNoRM.getText());
+                    loadURL(link + "cekfp/?cari=" + TNoRM.getText());
                     initComponents2();
                 } else {
                     loadURL("");
@@ -6693,12 +6693,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             try {
-                                if (engine.getLocation().replaceAll(link + "" + TNoRM.getText(), "").contains(link + "" + TNoRM.getText())) {
+                                if (engine.getLocation().contains(link + "cekfp/?cari=" + TNoRM.getText())) {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-//                                    Valid.panggilUrlRAZA(engine.getLocation().replaceAll(link + "" + TNoRM.getText(), ""));
                                     engine.executeScript("history.back()");
                                     setCursor(Cursor.getDefaultCursor());
-                                } else if (engine.getLocation().replaceAll(link + "" + TNoRM.getText(), "").contains(link + "" + TNoRM.getText())) {
+                                } else if (engine.getLocation().contains(link + "cekfp/?cari=" + TNoRM.getText())) {
                                     dispose();
                                 }
                             } catch (Exception ex) {
