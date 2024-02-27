@@ -32,6 +32,7 @@ import javax.swing.table.TableColumn;
 import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgHasilPenunjangMedis;
 import rekammedis.DlgVerifikasiCPPT;
+import rekammedis.RMDokumenPenunjangMedis;
 import simrskhanza.DlgCariDokter;
 
 /**
@@ -335,6 +336,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
+        MnDokumenJangMed = new javax.swing.JMenuItem();
         MnIGD = new javax.swing.JMenu();
         MnTriase = new javax.swing.JMenuItem();
         MnAsesmenMedikIGD = new javax.swing.JMenuItem();
@@ -541,6 +543,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+
+        MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenJangMed.setText("Dokumen Penunjang Medis");
+        MnDokumenJangMed.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokumenJangMed.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokumenJangMed.setIconTextGap(5);
+        MnDokumenJangMed.setName("MnDokumenJangMed"); // NOI18N
+        MnDokumenJangMed.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnDokumenJangMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenJangMedActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDokumenJangMed);
 
         MnIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnIGD.setText("RM Gawat Darurat (IGD)");
@@ -1642,7 +1659,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3162,6 +3179,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void MnDokumenJangMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenJangMedActionPerformed
+        if (TNoRW.getText().trim().equals("") || TNmPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRW, "Pasien");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRingkasanPulangRanap");
+            RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDokumenJangMedActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3212,6 +3244,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnAsesmenMedikObstetriIGD;
     private javax.swing.JMenuItem MnCetakRingkasan;
     private javax.swing.JMenuItem MnDiagnosa;
+    private javax.swing.JMenuItem MnDokumenJangMed;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenu MnIGD;
     private javax.swing.JMenuItem MnTriase;

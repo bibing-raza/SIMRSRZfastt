@@ -606,6 +606,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
+        MnDokumenJangMed = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame4 = new widget.InternalFrame();
         panelisi4 = new widget.panelisi();
@@ -952,6 +953,21 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+
+        MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenJangMed.setText("Dokumen Penunjang Medis");
+        MnDokumenJangMed.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokumenJangMed.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokumenJangMed.setIconTextGap(5);
+        MnDokumenJangMed.setName("MnDokumenJangMed"); // NOI18N
+        MnDokumenJangMed.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnDokumenJangMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenJangMedActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDokumenJangMed);
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
@@ -1654,7 +1670,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024 23:14:05" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:25:08" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3874,7 +3890,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3888,7 +3904,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5018,6 +5034,21 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
+    private void MnDokumenJangMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenJangMedActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMPenilaianAwalMedikIGD");
+            RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDokumenJangMedActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5115,6 +5146,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     private widget.TextBox Jk;
     private widget.TextBox KdPerawat;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnDokumenJangMed;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private widget.TextBox NmPerawat;
     private usu.widget.glass.PanelGlass PanelWall;

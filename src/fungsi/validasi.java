@@ -1219,7 +1219,7 @@ public final class validasi {
             if (os.contains("win")) {
                 rt.exec("rundll32 url.dll,FileProtocolHandler " + "http://" + host_port + "/" + url);
             } else if (os.contains("mac")) {
-                rt.exec("open " + "http://" + host_port + "/" + url);
+                rt.exec("open " + "http://" + host_port + url);
             } else if (os.contains("nix") || os.contains("nux")) {
                 String[] browsers = {"x-www-browser", "epiphany", "firefox", "mozilla", "konqueror", "chrome", "chromium", "netscape", "opera", "links", "lynx", "midori"};
                 // Build a command string which looks like "browser1 "url" || browser2 "url" ||..."

@@ -95,6 +95,7 @@ import rekammedis.DlgRMEranap;
 import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenKeperawatanDewasaRanap;
 import rekammedis.RMAsesmenMedikDewasaRanap;
+import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMGrafikPemantauanHarian24Jam;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPenilaianAwalMedikIGD;
@@ -1020,6 +1021,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPemantauanHarian = new javax.swing.JMenu();
         MnInputDataPantau = new javax.swing.JMenuItem();
         MnGrafikPantau = new javax.swing.JMenuItem();
+        MnDokumenJangMed = new javax.swing.JMenuItem();
         MnSpirometri = new javax.swing.JMenuItem();
         MnAssesmenAsuhanGizi = new javax.swing.JMenuItem();
         MnMonevAsuhanGizi = new javax.swing.JMenuItem();
@@ -3968,6 +3970,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnPemantauanHarian.add(MnGrafikPantau);
 
         MnRekamMedis.add(MnPemantauanHarian);
+
+        MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenJangMed.setText("Dokumen Penunjang Medis");
+        MnDokumenJangMed.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokumenJangMed.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokumenJangMed.setIconTextGap(5);
+        MnDokumenJangMed.setName("MnDokumenJangMed"); // NOI18N
+        MnDokumenJangMed.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnDokumenJangMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenJangMedActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnDokumenJangMed);
 
         MnSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -13431,6 +13448,28 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
+    private void MnDokumenJangMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenJangMedActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (tbKamIn.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKamarInap");
+                RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+                form.setData(norawat.getText(), TNoRM.getText(), TPasien.getText());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnDokumenJangMedActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13560,6 +13599,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnDiagnosaAwal;
     private javax.swing.JMenuItem MnDiet;
     private javax.swing.JMenuItem MnDietMakanan;
+    private javax.swing.JMenuItem MnDokumenJangMed;
     private javax.swing.JMenuItem MnFormulirKematian;
     private javax.swing.JMenu MnGantiData;
     private javax.swing.JMenu MnGelangBayi;

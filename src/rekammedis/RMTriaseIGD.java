@@ -429,6 +429,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
+        MnDokumenJangMed = new javax.swing.JMenuItem();
         buttonGroup1 = new javax.swing.ButtonGroup();
         buttonGroup2 = new javax.swing.ButtonGroup();
         buttonGroup3 = new javax.swing.ButtonGroup();
@@ -661,6 +662,21 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
 
+        MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenJangMed.setText("Dokumen Penunjang Medis");
+        MnDokumenJangMed.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokumenJangMed.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokumenJangMed.setIconTextGap(5);
+        MnDokumenJangMed.setName("MnDokumenJangMed"); // NOI18N
+        MnDokumenJangMed.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnDokumenJangMed.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenJangMedActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnDokumenJangMed);
+
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowTemplate.setName("WindowTemplate"); // NOI18N
         WindowTemplate.setUndecorated(true);
@@ -849,7 +865,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024 23:11:23" }));
+        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
         tgl_kunjungan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kunjungan.setName("tgl_kunjungan"); // NOI18N
         tgl_kunjungan.setOpaque(false);
@@ -1084,7 +1100,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian_tunggal);
         tmpt_kejadian_tunggal.setBounds(223, 240, 310, 23);
 
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024 23:11:24" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1149,7 +1165,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian);
         tmpt_kejadian.setBounds(538, 270, 228, 23);
 
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024 23:11:24" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -2516,7 +2532,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2531,7 +2547,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3758,6 +3774,21 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
+    private void MnDokumenJangMedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenJangMedActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMTriaseIGD");
+            RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDokumenJangMedActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -3833,6 +3864,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.InternalFrame FormTriase;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnDokumenJangMed;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
