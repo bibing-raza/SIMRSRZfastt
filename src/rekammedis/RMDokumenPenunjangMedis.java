@@ -133,6 +133,10 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNmPasien = new widget.TextBox();
         PanelContent = new widget.panelisi();
         panelGlass10 = new widget.panelisi();
+        panelGlass12 = new widget.panelisi();
+        PanelWall = new usu.widget.glass.PanelGlass();
+        panelGlass13 = new widget.panelisi();
+        panelGlass14 = new widget.panelisi();
         Scroll = new widget.ScrollPane();
         tbFile = new widget.Table();
         panelGlass11 = new widget.panelisi();
@@ -196,6 +200,34 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(372, 422));
         panelGlass10.setLayout(new java.awt.BorderLayout());
+
+        panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QRCode Dibawah Ini Untuk Upload Dokumen ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 160));
+        panelGlass12.setLayout(new java.awt.BorderLayout());
+
+        PanelWall.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/qrcode_upload_dok_jangmed.png"))); // NOI18N
+        PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall.setRound(false);
+        PanelWall.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall.setLayout(null);
+        panelGlass12.add(PanelWall, java.awt.BorderLayout.CENTER);
+
+        panelGlass13.setBorder(null);
+        panelGlass13.setName("panelGlass13"); // NOI18N
+        panelGlass13.setPreferredSize(new java.awt.Dimension(90, 160));
+        panelGlass13.setLayout(new java.awt.BorderLayout());
+        panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
+
+        panelGlass14.setBorder(null);
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(90, 160));
+        panelGlass14.setLayout(new java.awt.BorderLayout());
+        panelGlass12.add(panelGlass14, java.awt.BorderLayout.EAST);
+
+        panelGlass10.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ File Dokumen ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
@@ -370,7 +402,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
                         || tbFile.getValueAt(tbFile.getSelectedRow(), 8).toString().equals(akses.getkode())) {
                     x = JOptionPane.showConfirmDialog(rootPane, "Yakin dokumen/file pemeriksaan " + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + " akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
-
+                        JOptionPane.showMessageDialog(null, "Menu hapus masih dalam proses dikerjakan..!!");
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Dokumen/file pemeriksaan " + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase()
@@ -410,6 +442,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.panelisi PanelContent;
+    private usu.widget.glass.PanelGlass PanelWall;
     private widget.ScrollPane Scroll;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
@@ -420,6 +453,9 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
+    private widget.panelisi panelGlass13;
+    private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;

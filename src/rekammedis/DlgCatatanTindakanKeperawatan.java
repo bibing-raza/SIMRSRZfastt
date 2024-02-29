@@ -48,12 +48,12 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, psPagi, psSore, psMalam, pscppt;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rsPagi, rsSore, rsMalam, rscppt;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8, ps9, psPagi, psSore, psMalam, pscppt;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rs9, rsPagi, rsSore, rsMalam, rscppt;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nip = "", nipCopy = "", nipCopy1 = "", wktSimpan = "", kodeTindakan = "", dataKonfirmasi = "", nmgedung = "",
             wktSimpanPagi = "", wktSimpanSore = "", wktSimpanMalam = "", evaluasi = "", evaluasiPG = "",
-            evaluasiSR = "", evaluasiML = "";
+            evaluasiSR = "", evaluasiML = "", manajemenNyeri = "";
     private int x = 0, i = 0, pilihan = 0;
     private Date date = new Date(), jamSekarang, jamSift1, jamSift2, jamSift3,
             jamSekarangCopy, jamSift1Copy, jamSift2Copy, jamSift3Copy,
@@ -632,12 +632,14 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         WindowCetak = new javax.swing.JDialog();
         internalFrame9 = new widget.InternalFrame();
         panelisi10 = new widget.panelisi();
-        jLabel51 = new widget.Label();
-        TtglCetak = new widget.Tanggal();
+        TtglCetak1 = new widget.Tanggal();
         BtnPrint1 = new widget.Button();
         BtnCloseIn4 = new widget.Button();
         jLabel52 = new widget.Label();
         cmbSiftCetak = new widget.ComboBox();
+        jLabel58 = new widget.Label();
+        TtglCetak2 = new widget.Tanggal();
+        ChkPeriode = new widget.CekBox();
         WindowCopyTindakan = new javax.swing.JDialog();
         internalFrame10 = new widget.InternalFrame();
         panelisi11 = new widget.panelisi();
@@ -1511,22 +1513,14 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi10.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi10.setLayout(null);
 
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel51.setText("Tanggal : ");
-        jLabel51.setName("jLabel51"); // NOI18N
-        jLabel51.setPreferredSize(new java.awt.Dimension(70, 23));
-        jLabel51.setRequestFocusEnabled(false);
-        panelisi10.add(jLabel51);
-        jLabel51.setBounds(0, 8, 80, 23);
-
-        TtglCetak.setEditable(false);
-        TtglCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
-        TtglCetak.setDisplayFormat("dd-MM-yyyy");
-        TtglCetak.setName("TtglCetak"); // NOI18N
-        TtglCetak.setOpaque(false);
-        TtglCetak.setPreferredSize(new java.awt.Dimension(95, 23));
-        panelisi10.add(TtglCetak);
-        TtglCetak.setBounds(82, 8, 95, 23);
+        TtglCetak1.setEditable(false);
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCetak1.setDisplayFormat("dd-MM-yyyy");
+        TtglCetak1.setName("TtglCetak1"); // NOI18N
+        TtglCetak1.setOpaque(false);
+        TtglCetak1.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelisi10.add(TtglCetak1);
+        TtglCetak1.setBounds(112, 8, 95, 23);
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
@@ -1541,7 +1535,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi10.add(BtnPrint1);
-        BtnPrint1.setBounds(305, 8, 85, 23);
+        BtnPrint1.setBounds(460, 8, 85, 23);
 
         BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
         BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
@@ -1556,7 +1550,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi10.add(BtnCloseIn4);
-        BtnCloseIn4.setBounds(400, 8, 90, 23);
+        BtnCloseIn4.setBounds(560, 8, 90, 23);
 
         jLabel52.setForeground(new java.awt.Color(0, 0, 0));
         jLabel52.setText("Sift : ");
@@ -1564,13 +1558,50 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel52.setPreferredSize(new java.awt.Dimension(70, 23));
         jLabel52.setRequestFocusEnabled(false);
         panelisi10.add(jLabel52);
-        jLabel52.setBounds(178, 8, 45, 23);
+        jLabel52.setBounds(338, 8, 45, 23);
 
         cmbSiftCetak.setForeground(new java.awt.Color(0, 0, 0));
         cmbSiftCetak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Pagi", "Sore", "Malam" }));
         cmbSiftCetak.setName("cmbSiftCetak"); // NOI18N
         panelisi10.add(cmbSiftCetak);
-        cmbSiftCetak.setBounds(225, 8, 70, 23);
+        cmbSiftCetak.setBounds(385, 8, 70, 23);
+
+        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel58.setText("s.d");
+        jLabel58.setName("jLabel58"); // NOI18N
+        jLabel58.setPreferredSize(new java.awt.Dimension(70, 23));
+        jLabel58.setRequestFocusEnabled(false);
+        panelisi10.add(jLabel58);
+        jLabel58.setBounds(211, 8, 25, 23);
+
+        TtglCetak2.setEditable(false);
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCetak2.setDisplayFormat("dd-MM-yyyy");
+        TtglCetak2.setName("TtglCetak2"); // NOI18N
+        TtglCetak2.setOpaque(false);
+        TtglCetak2.setPreferredSize(new java.awt.Dimension(95, 23));
+        panelisi10.add(TtglCetak2);
+        TtglCetak2.setBounds(240, 8, 95, 23);
+
+        ChkPeriode.setBackground(new java.awt.Color(255, 255, 250));
+        ChkPeriode.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkPeriode.setForeground(new java.awt.Color(0, 0, 0));
+        ChkPeriode.setText("Periode Tgl. : ");
+        ChkPeriode.setBorderPainted(true);
+        ChkPeriode.setBorderPaintedFlat(true);
+        ChkPeriode.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        ChkPeriode.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkPeriode.setName("ChkPeriode"); // NOI18N
+        ChkPeriode.setOpaque(false);
+        ChkPeriode.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkPeriode.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkPeriodeActionPerformed(evt);
+            }
+        });
+        panelisi10.add(ChkPeriode);
+        ChkPeriode.setBounds(0, 8, 110, 23);
 
         internalFrame9.add(panelisi10, java.awt.BorderLayout.CENTER);
 
@@ -1599,7 +1630,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 8, 100, 23);
 
         TtglCopy.setEditable(false);
-        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         TtglCopy.setDisplayFormat("dd-MM-yyyy");
         TtglCopy.setName("TtglCopy"); // NOI18N
         TtglCopy.setOpaque(false);
@@ -1793,7 +1824,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglCTK);
 
-        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         TtglCTK.setDisplayFormat("dd-MM-yyyy");
         TtglCTK.setName("TtglCTK"); // NOI18N
         TtglCTK.setOpaque(false);
@@ -1875,7 +1906,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi16.add(jLabel57);
         jLabel57.setBounds(0, 20, 100, 23);
 
-        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         TtglCopy1.setDisplayFormat("dd-MM-yyyy");
         TtglCopy1.setName("TtglCopy1"); // NOI18N
         TtglCopy1.setOpaque(false);
@@ -2027,7 +2058,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -2458,7 +2489,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2472,7 +2503,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2944,23 +2975,24 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
         } else {
+            ChkPeriode.setSelected(false);
+            TtglCetak2.setEnabled(false);
+            Valid.SetTgl(TtglCetak1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRW.getText() + "'"));
+            TtglCetak2.setDate(new Date());
+            cmbSiftCetak.setSelectedIndex(0);
+            ChkPeriode.requestFocus();
+
             if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "'") > 0) {
-                WindowCetak.setSize(519, 73);
+                WindowCetak.setSize(696, 73);
                 WindowCetak.setLocationRelativeTo(internalFrame1);
                 WindowCetak.setAlwaysOnTop(false);
                 WindowCetak.setVisible(true);
-                TtglCetak.setDate(new Date());
-                cmbSiftCetak.setSelectedIndex(0);
-                TtglCetak.requestFocus();
             } else {
                 if (tbCatatan.getSelectedRow() > -1) {
-                    WindowCetak.setSize(519, 73);
+                    WindowCetak.setSize(696, 73);
                     WindowCetak.setLocationRelativeTo(internalFrame1);
                     WindowCetak.setAlwaysOnTop(false);
-                    WindowCetak.setVisible(true);
-                    TtglCetak.setDate(new Date());
-                    cmbSiftCetak.setSelectedIndex(0);
-                    TtglCetak.requestFocus();
+                    WindowCetak.setVisible(true);                    
                 } else {
                     JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel catatan tindakan keperawatan..!!");
                     tbCatatan.requestFocus();
@@ -3909,55 +3941,116 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCloseIn4ActionPerformed
 
     private void BtnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint1ActionPerformed
-        if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
-                + "tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "'") == 0) {
-            JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan pada tgl. " + TtglCetak.getSelectedItem() + " tidak ditemukan...!!!!");
-            TtglCetak.requestFocus();
-        } else if (tabMode.getRowCount() != 0) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
+        if (tabMode.getRowCount() != 0) {
+            if (ChkPeriode.isSelected() == true) {
+                if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                        + "tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan pada tgl. " + TtglCetak1.getSelectedItem() + " s.d " + TtglCetak2.getSelectedItem() + " tidak ditemukan...!!!!");
+                    TtglCetak1.requestFocus();
+                } else {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
 
-            if (cmbSiftCetak.getSelectedIndex() == 0) {
-                if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where "
-                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak.getSelectedItem() + " utk. semua sift tidak ditemukan...!!!!");
-                } else {
-                    dataEvaluasiSiftPagi();
-                    dataEvaluasiSiftSore();
-                    dataEvaluasiSiftMalam();
-                    param.put("evaluasiPagi", evaluasiPG);
-                    param.put("evaluasiSore", evaluasiSR);
-                    param.put("evaluasiMalam", evaluasiML);
-                    param.put("manajemen", "Manajemen Nyeri : \n" + Sequel.cariIsi("SELECT ifnull(manajemen_nyeri,'-') from manajemen_catatan_tindakan_keperawatan where "
-                            + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "'"));
-                    
-                    Valid.MyReport("rptCatatanTindakanPerawatAll.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
-                            + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
-                            + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                            + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' ORDER BY ct.waktu_simpan", param);
-                    BtnCloseIn4ActionPerformed(null);
+                    if (cmbSiftCetak.getSelectedIndex() == 0) {
+                        if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and  "
+                                + "tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "'") == 0) {
+                            JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak1.getSelectedItem() + " s.d " + TtglCetak2.getSelectedItem() + " utk. semua sift tidak ditemukan...!!!!");
+                        } else {
+                            dataEvaluasiSiftPagi();
+                            dataEvaluasiSiftSore();
+                            dataEvaluasiSiftMalam();
+                            dataManajemenNyeri();
+                            param.put("evaluasiPagi", evaluasiPG);
+                            param.put("evaluasiSore", evaluasiSR);
+                            param.put("evaluasiMalam", evaluasiML);
+                            param.put("manajemen", manajemenNyeri);
+
+                            Valid.MyReport("rptCatatanTindakanPerawatAllPeriode.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
+                                    + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
+                                    + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                    + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                                    + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' ORDER BY ct.tanggal, ct.sift, ct.jam_tindakan", param);
+                            BtnCloseIn4ActionPerformed(null);
+                        }
+                    } else {
+                        if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                                + "tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' "
+                                + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "'") == 0) {
+                            JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak1.getSelectedItem() + " s.d "
+                                    + TtglCetak2.getSelectedItem() + " sift " + cmbSiftCetak.getSelectedItem().toString() + " tidak ditemukan...!!!!");
+                        } else {
+                            dataEvaluasiPerSift();
+                            dataManajemenNyeri();
+                            param.put("evaluasi", evaluasi);
+                            param.put("manajemen", manajemenNyeri);
+                            Valid.MyReport("rptCatatanTindakanPerawatPeriode.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
+                                    + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
+                                    + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                    + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                                    + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and ct.sift='" + cmbSiftCetak.getSelectedItem().toString() + "' "
+                                    + "ORDER BY ct.tanggal, ct.sift, ct.jam_tindakan", param);
+                            BtnCloseIn4ActionPerformed(null);
+                        }
+                    }
+                    this.setCursor(Cursor.getDefaultCursor());
                 }
+                
             } else {
-                if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' "
-                        + "and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' and sift='" + cmbSiftCetak.getSelectedItem().toString() + "'") == 0) {
-                    JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak.getSelectedItem() + " sift " + cmbSiftCetak.getSelectedItem().toString() + " tidak ditemukan...!!!!");
+                if (Sequel.cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                        + "tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "'") == 0) {
+                    JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan pada tgl. " + TtglCetak1.getSelectedItem() + " tidak ditemukan...!!!!");
+                    TtglCetak1.requestFocus();
                 } else {
-                    dataEvaluasiPerSift();
-                    param.put("evaluasi", evaluasi + "\n\nManajemen Nyeri : \n" + Sequel.cariIsi("SELECT ifnull(manajemen_nyeri,'-') from manajemen_catatan_tindakan_keperawatan where "
-                            + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "'"));
-                    Valid.MyReport("rptCatatanTindakanPerawat.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
-                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
-                            + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
-                            + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                            + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                            + "and ct.sift='" + cmbSiftCetak.getSelectedItem().toString() + "' ORDER BY ct.waktu_simpan", param);
-                    BtnCloseIn4ActionPerformed(null);
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+
+                    if (cmbSiftCetak.getSelectedIndex() == 0) {
+                        if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and  "
+                                + "tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "'") == 0) {
+                            JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak1.getSelectedItem() + " utk. semua sift tidak ditemukan...!!!!");
+                        } else {
+                            dataEvaluasiSiftPagi();
+                            dataEvaluasiSiftSore();
+                            dataEvaluasiSiftMalam();
+                            dataManajemenNyeri();
+                            param.put("evaluasiPagi", evaluasiPG);
+                            param.put("evaluasiSore", evaluasiSR);
+                            param.put("evaluasiMalam", evaluasiML);
+                            param.put("manajemen", manajemenNyeri);
+
+                            Valid.MyReport("rptCatatanTindakanPerawatAll.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
+                                    + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
+                                    + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                    + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' ORDER BY ct.waktu_simpan", param);
+                            BtnCloseIn4ActionPerformed(null);
+                        }
+                    } else {
+                        if (Sequel.cariInteger("SELECT count(-1) from catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                                + "tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and sift='" + cmbSiftCetak.getSelectedItem().toString() + "'") == 0) {
+                            JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan tgl. " + TtglCetak1.getSelectedItem() + " sift " + cmbSiftCetak.getSelectedItem().toString() + " tidak ditemukan...!!!!");
+                        } else {
+                            dataEvaluasiPerSift();
+                            dataManajemenNyeri();
+                            param.put("evaluasi", evaluasi + "\n\nManajemen Nyeri : \n" + manajemenNyeri);
+                            Valid.MyReport("rptCatatanTindakanPerawat.jasper", "report", "::[ Cetak Lembar Catatan Tindakan Keperawatan ]::",
+                                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, ct.sift, date_format(ct.tanggal,'%d-%m-%Y') tglctk, "
+                                    + "time_format(ct.jam_tindakan,'%H:%i') jam, ct.nm_tindakan, ct.waktu_simpan from catatan_tindakan_keperawatan ct "
+                                    + "inner join reg_periksa rp on rp.no_rawat=ct.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
+                                    + "ct.no_rawat='" + TNoRW.getText() + "' and ct.tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                                    + "and ct.sift='" + cmbSiftCetak.getSelectedItem().toString() + "' ORDER BY ct.waktu_simpan", param);
+                            BtnCloseIn4ActionPerformed(null);
+                        }
+                    }
+                    this.setCursor(Cursor.getDefaultCursor());
                 }
             }
-            this.setCursor(Cursor.getDefaultCursor());
         }        
     }//GEN-LAST:event_BtnPrint1ActionPerformed
 
@@ -4472,6 +4565,15 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnSemuaMalamActionPerformed
 
+    private void ChkPeriodeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkPeriodeActionPerformed
+        TtglCetak2.setDate(new Date());
+        if (ChkPeriode.isSelected() == true) {
+            TtglCetak2.setEnabled(true);
+        } else {
+            TtglCetak2.setEnabled(false);
+        }
+    }//GEN-LAST:event_ChkPeriodeActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4520,6 +4622,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.Button BtnSimpan2;
     private widget.Button BtnTindakan;
     public widget.CekBox ChkAccor;
+    public widget.CekBox ChkPeriode;
     private widget.CekBox ChkTglCTK;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
@@ -4583,7 +4686,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.TextBox Tsore;
     private widget.Tanggal Ttgl;
     private widget.Tanggal TtglCTK;
-    private widget.Tanggal TtglCetak;
+    private widget.Tanggal TtglCetak1;
+    private widget.Tanggal TtglCetak2;
     private widget.Tanggal TtglCopy;
     private widget.Tanggal TtglCopy1;
     private javax.swing.JDialog WindowCetak;
@@ -4631,13 +4735,13 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.Label jLabel48;
     private widget.Label jLabel5;
     private widget.Label jLabel50;
-    private widget.Label jLabel51;
     private widget.Label jLabel52;
     private widget.Label jLabel53;
     private widget.Label jLabel54;
     private widget.Label jLabel55;
     private widget.Label jLabel56;
     private widget.Label jLabel57;
+    private widget.Label jLabel58;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -5334,42 +5438,83 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private void dataEvaluasiPerSift() {
         evaluasi = "";
         try {
-            if (cmbSiftCetak.getSelectedIndex() == 1) {
-                ps4 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                        + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_pagi<>'' ORDER BY evaluasi_nyeri");
-            } else if (cmbSiftCetak.getSelectedIndex() == 2) {
-                ps4 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                        + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_sore<>'' ORDER BY evaluasi_nyeri");
-            } else if (cmbSiftCetak.getSelectedIndex() == 3) {
-                ps4 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                        + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_malam<>'' ORDER BY evaluasi_nyeri");
-            } 
+            if (ChkPeriode.isSelected() == true) {
+                if (cmbSiftCetak.getSelectedIndex() == 1) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                            + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' "
+                            + "and ket_pagi<>'' ORDER BY tanggal, evaluasi_nyeri");
+                } else if (cmbSiftCetak.getSelectedIndex() == 2) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                            + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' "
+                            + "and ket_sore<>'' ORDER BY tanggal, evaluasi_nyeri");
+                } else if (cmbSiftCetak.getSelectedIndex() == 3) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                            + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' "
+                            + "and ket_malam<>'' ORDER BY tanggal, evaluasi_nyeri");
+                }
+            } else {
+                if (cmbSiftCetak.getSelectedIndex() == 1) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                            + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_pagi<>'' ORDER BY evaluasi_nyeri");
+                } else if (cmbSiftCetak.getSelectedIndex() == 2) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                            + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_sore<>'' ORDER BY evaluasi_nyeri");
+                } else if (cmbSiftCetak.getSelectedIndex() == 3) {
+                    ps4 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                            + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                            + "and sift='" + cmbSiftCetak.getSelectedItem().toString() + "' and ket_malam<>'' ORDER BY evaluasi_nyeri");
+                }
+            }
 
             try {
                 rs4 = ps4.executeQuery();
                 while (rs4.next()) {
-                    if (cmbSiftCetak.getSelectedIndex() == 1) {
-                        if (evaluasi.equals("")) {
-                            evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_pagi");
-                        } else {
-                            evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_pagi");
+                    if (ChkPeriode.isSelected() == true) {
+                        if (cmbSiftCetak.getSelectedIndex() == 1) {
+                            if (evaluasi.equals("")) {
+                                evaluasi = "Tgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_pagi") + ")";
+                            } else {
+                                evaluasi = evaluasi + "\nTgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_pagi") + ")";
+                            }
+                        } else if (cmbSiftCetak.getSelectedIndex() == 2) {
+                            if (evaluasi.equals("")) {                                
+                                evaluasi = "Tgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_sore") + ")";
+                            } else {
+                                evaluasi = evaluasi + "\nTgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_sore") + ")";
+                            }
+                        } else if (cmbSiftCetak.getSelectedIndex() == 3) {
+                            if (evaluasi.equals("")) {                                
+                                evaluasi = "Tgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_malam") + ")";
+                            } else {
+                                evaluasi = evaluasi + "\nTgl. " + rs4.getString("tgl") + " : " + rs4.getString("evaluasi_nyeri") + " (" + rs4.getString("ket_malam") + ")";
+                            }
                         }
-                    } else if (cmbSiftCetak.getSelectedIndex() == 2) {
-                        if (evaluasi.equals("")) {
-                            evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_sore");
-                        } else {
-                            evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_sore");
+                    } else {
+                        if (cmbSiftCetak.getSelectedIndex() == 1) {
+                            if (evaluasi.equals("")) {
+                                evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_pagi");
+                            } else {
+                                evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_pagi");
+                            }
+                        } else if (cmbSiftCetak.getSelectedIndex() == 2) {
+                            if (evaluasi.equals("")) {
+                                evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_sore");
+                            } else {
+                                evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_sore");
+                            }
+                        } else if (cmbSiftCetak.getSelectedIndex() == 3) {
+                            if (evaluasi.equals("")) {
+                                evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_malam");
+                            } else {
+                                evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_malam");
+                            }
                         }
-                    } else if (cmbSiftCetak.getSelectedIndex() == 3) {
-                        if (evaluasi.equals("")) {
-                            evaluasi = rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_malam");
-                        } else {
-                            evaluasi = evaluasi + "\n" + rs4.getString("evaluasi_nyeri") + " : " + rs4.getString("ket_malam");
-                        }
-                    } 
+                    }
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -5389,17 +5534,32 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private void dataEvaluasiSiftPagi() {
         evaluasiPG = "";
         try {
-            ps5 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                    + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                    + "and ket_pagi<>'' ORDER BY evaluasi_nyeri");
+            if (ChkPeriode.isSelected() == true) {
+                ps5 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                        + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and ket_pagi<>'' ORDER BY tanggal, evaluasi_nyeri");
+            } else {
+                ps5 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                        + "and ket_pagi<>'' ORDER BY evaluasi_nyeri");
+            }
+            
             try {
                 rs5 = ps5.executeQuery();
                 while (rs5.next()) {
-                    if (evaluasiPG.equals("")) {
-                        evaluasiPG = rs5.getString("evaluasi_nyeri") + " : " + rs5.getString("ket_pagi");
+                    if (ChkPeriode.isSelected() == true) {
+                        if (evaluasiPG.equals("")) {
+                            evaluasiPG = "Tgl. " + rs5.getString("tgl") + " : " + rs5.getString("evaluasi_nyeri") + " (" + rs5.getString("ket_pagi") + ")";
+                        } else {
+                            evaluasiPG = evaluasiPG + "\nTgl. " + rs5.getString("tgl") + " : " + rs5.getString("evaluasi_nyeri") + " (" + rs5.getString("ket_pagi") + ")";
+                        }
                     } else {
-                        evaluasiPG = evaluasiPG + "\n" + rs5.getString("evaluasi_nyeri") + " : " + rs5.getString("ket_pagi");
-                    }
+                        if (evaluasiPG.equals("")) {
+                            evaluasiPG = rs5.getString("evaluasi_nyeri") + " (" + rs5.getString("ket_pagi") + ")";
+                        } else {
+                            evaluasiPG = evaluasiPG + "\n" + rs5.getString("evaluasi_nyeri") + " (" + rs5.getString("ket_pagi") + ")";
+                        }
+                    }                    
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -5419,16 +5579,31 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private void dataEvaluasiSiftSore() {
         evaluasiSR = "";
         try {
-            ps6 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                    + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                    + "and ket_sore<>'' ORDER BY evaluasi_nyeri");
+            if (ChkPeriode.isSelected() == true) {
+                ps6 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                        + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and ket_sore<>'' ORDER BY tanggal, evaluasi_nyeri");
+            } else {
+                ps6 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                        + "and ket_sore<>'' ORDER BY evaluasi_nyeri");
+            }
+            
             try {
                 rs6 = ps6.executeQuery();
                 while (rs6.next()) {
-                    if (evaluasiSR.equals("")) {
-                        evaluasiSR = rs6.getString("evaluasi_nyeri") + " : " + rs6.getString("ket_sore");
+                    if (ChkPeriode.isSelected() == true) {
+                        if (evaluasiSR.equals("")) {
+                            evaluasiSR = "Tgl. " + rs6.getString("tgl") + " : " + rs6.getString("evaluasi_nyeri") + " (" + rs6.getString("ket_sore") + ")";
+                        } else {
+                            evaluasiSR = evaluasiSR + "\nTgl. " + rs6.getString("tgl") + " : " + rs6.getString("evaluasi_nyeri") + " (" + rs6.getString("ket_sore") + ")";
+                        }
                     } else {
-                        evaluasiSR = evaluasiSR + "\n" + rs6.getString("evaluasi_nyeri") + " : " + rs6.getString("ket_sore");
+                        if (evaluasiSR.equals("")) {
+                            evaluasiSR = rs6.getString("evaluasi_nyeri") + " (" + rs6.getString("ket_sore") + ")";
+                        } else {
+                            evaluasiSR = evaluasiSR + "\n" + rs6.getString("evaluasi_nyeri") + " (" + rs6.getString("ket_sore") + ")";
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -5449,16 +5624,31 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private void dataEvaluasiSiftMalam() {
         evaluasiML = "";
         try {
-            ps7 = koneksi.prepareStatement("SELECT * from evaluasi_catatan_tindakan_keperawatan where "
-                    + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak.getSelectedItem() + "") + "' "
-                    + "and ket_malam<>'' ORDER BY evaluasi_nyeri");
+            if (ChkPeriode.isSelected() == true) {
+                ps7 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and "
+                        + "'" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' and ket_malam<>'' ORDER BY tanggal, evaluasi_nyeri");
+            } else {
+                ps7 = koneksi.prepareStatement("SELECT *, date_format(tanggal,'%d/%m/%Y') tgl from evaluasi_catatan_tindakan_keperawatan where "
+                        + "no_rawat='" + TNoRW.getText() + "' and tanggal='" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' "
+                        + "and ket_malam<>'' ORDER BY evaluasi_nyeri");
+            }
+            
             try {
                 rs7 = ps7.executeQuery();
                 while (rs7.next()) {
-                    if (evaluasiML.equals("")) {
-                        evaluasiML = rs7.getString("evaluasi_nyeri") + " : " + rs7.getString("ket_malam");
+                    if (ChkPeriode.isSelected() == true) {
+                        if (evaluasiML.equals("")) {
+                            evaluasiML = "Tgl. " + rs7.getString("tgl") + " : " + rs7.getString("evaluasi_nyeri") + " (" + rs7.getString("ket_malam") + ")";
+                        } else {
+                            evaluasiML = evaluasiML + "\nTgl. " + rs7.getString("tgl") + " : " + rs7.getString("evaluasi_nyeri") + " (" + rs7.getString("ket_malam") + ")";
+                        }
                     } else {
-                        evaluasiML = evaluasiML + "\n" + rs7.getString("evaluasi_nyeri") + " : " + rs7.getString("ket_malam");
+                        if (evaluasiML.equals("")) {
+                            evaluasiML = rs7.getString("evaluasi_nyeri") + " (" + rs7.getString("ket_malam") + ")";
+                        } else {
+                            evaluasiML = evaluasiML + "\n" + rs7.getString("evaluasi_nyeri") + " (" + rs7.getString("ket_malam") + ")";
+                        }
                     }
                 }
             } catch (Exception e) {
@@ -5469,6 +5659,51 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 }
                 if (ps7 != null) {
                     ps7.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void dataManajemenNyeri() {
+        manajemenNyeri = "";
+        try {
+            if (ChkPeriode.isSelected() == true) {
+                ps9 = koneksi.prepareStatement("SELECT date_format(tanggal,'%d/%m/%Y') tgl, ifnull(manajemen_nyeri,'-') m_nyeri "
+                        + "from manajemen_catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                        + "tanggal between '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TtglCetak2.getSelectedItem() + "") + "' order by tanggal");
+            } else {
+                ps9 = koneksi.prepareStatement("SELECT date_format(tanggal,'%d/%m/%Y') tgl, ifnull(manajemen_nyeri,'-') m_nyeri "
+                        + "from manajemen_catatan_tindakan_keperawatan where no_rawat='" + TNoRW.getText() + "' and "
+                        + "tanggal = '" + Valid.SetTgl(TtglCetak1.getSelectedItem() + "") + "'");
+            }
+            
+            try {
+                rs9 = ps9.executeQuery();
+                while (rs9.next()) {
+                    if (ChkPeriode.isSelected() == true) {
+                        if (manajemenNyeri.equals("")) {
+                            manajemenNyeri = "Tgl. " + rs9.getString("tgl") + " : " + rs9.getString("m_nyeri");
+                        } else {
+                            manajemenNyeri = manajemenNyeri + "\nTgl. " + rs9.getString("tgl") + " : " + rs9.getString("m_nyeri");
+                        }
+                    } else {
+                        if (manajemenNyeri.equals("")) {
+                            manajemenNyeri = rs9.getString("m_nyeri");
+                        } else {
+                            manajemenNyeri = manajemenNyeri + "\n" + rs9.getString("m_nyeri");
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs9 != null) {
+                    rs9.close();
+                }
+                if (ps9 != null) {
+                    ps9.close();
                 }
             }
         } catch (SQLException e) {

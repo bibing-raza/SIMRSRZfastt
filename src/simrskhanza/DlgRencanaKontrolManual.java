@@ -414,8 +414,7 @@ public final class DlgRencanaKontrolManual extends javax.swing.JDialog {
         if (jnsrwt.equals("Ralan")) {
             kdpoli.setText(kodepoli);
             nmpoli.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'"));
-            nmdpjp = dpjp;
-            BtnPoli.setEnabled(false);
+            nmdpjp = dpjp;            
             noRM = norm;
             kddokter.setText("");
             nmdokter.setText("");
@@ -423,8 +422,7 @@ public final class DlgRencanaKontrolManual extends javax.swing.JDialog {
         } else if (jnsrwt.equals("Ranap")) {
             kdpoli.setText("");
             nmpoli.setText("");
-            nmdpjp = dpjp;
-            BtnPoli.setEnabled(true);
+            nmdpjp = dpjp;            
             noRM = norm;
             kddokter.setText("");
             nmdokter.setText("");
