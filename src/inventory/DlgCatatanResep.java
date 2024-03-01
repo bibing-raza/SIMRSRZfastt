@@ -1604,7 +1604,6 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     public void isCek() {
         BtnSimpan.setEnabled(akses.getresep_dokter());
         BtnHapus.setEnabled(akses.getresep_dokter());
-        BtnPrint.setEnabled(akses.getresep_dokter());
         BtnEdit.setEnabled(akses.getresep_dokter());
         BtnCopyResepTerakhir.setEnabled(akses.getresep_dokter());
     }

@@ -121,7 +121,8 @@ public final class DlgReg extends javax.swing.JDialog {
     private Date cal = new Date();
     private String nosisrute = "", URUTNOREG = "", alamatperujuk = "-", URL = "", utc = "", noka = "", wktPanggil = "", wktAmbilNomor = "", panggilanFix = "",
             aktifjadwal = "", IPPRINTERTRACER = "", umur = "0", sttsumur = "Th", cekSEPboking = "", diagnosa_ok = "", noPangAkhir = "", noRwNew = "",
-            tglDaftar = "", tglnoRW = "", sttsumur1 = "", validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi");
+            tglDaftar = "", tglnoRW = "", sttsumur1 = "", validasiregistrasi = Sequel.cariIsi("select wajib_closing_kasir from set_validasi_registrasi"),
+            noakhirbpjs = "", noakhirumum = "", noakhirlansia = "", noakhirranap = "";
     private SimpleDateFormat dateformat = new SimpleDateFormat("yyyy/MM/dd");
     private String[] urut = {"", "./suara/satu.mp3", "./suara/dua.mp3", "./suara/tiga.mp3", "./suara/empat.mp3",
         "./suara/lima.mp3", "./suara/enam.mp3", "./suara/tujuh.mp3", "./suara/delapan.mp3",
@@ -1597,6 +1598,9 @@ public final class DlgReg extends javax.swing.JDialog {
         statusOperator = new widget.Label();
         loketRalan = new widget.CekBox();
         loketRanap = new widget.CekBox();
+        jLabel24 = new widget.Label();
+        cmbAntrian = new widget.ComboBox();
+        BtnSetNomor = new widget.Button();
         Scroll1 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         jPanel1 = new javax.swing.JPanel();
@@ -5130,7 +5134,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(jLabel38);
         jLabel38.setBounds(0, 50, 170, 23);
 
-        loket1.setBackground(new java.awt.Color(240, 250, 230));
         loket1.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket1);
         loket1.setText("1 (SATU)");
@@ -5142,7 +5145,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loket1);
         loket1.setBounds(175, 50, 80, 23);
 
-        loket2.setBackground(new java.awt.Color(240, 250, 230));
         loket2.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket2);
         loket2.setText("2 (DUA)");
@@ -5154,7 +5156,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loket2);
         loket2.setBounds(262, 50, 80, 23);
 
-        loket3.setBackground(new java.awt.Color(240, 250, 230));
         loket3.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket3);
         loket3.setText("3 (TIGA)");
@@ -5166,7 +5167,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loket3);
         loket3.setBounds(349, 50, 80, 23);
 
-        loket4.setBackground(new java.awt.Color(240, 250, 230));
         loket4.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket4);
         loket4.setText("4 (EMPAT)");
@@ -5178,7 +5178,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loket4);
         loket4.setBounds(436, 50, 80, 23);
 
-        loket5.setBackground(new java.awt.Color(240, 250, 230));
         loket5.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket5);
         loket5.setText("5 (LIMA)");
@@ -5190,7 +5189,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loket5);
         loket5.setBounds(523, 50, 80, 23);
 
-        loket6.setBackground(new java.awt.Color(240, 250, 230));
         loket6.setBorder(javax.swing.BorderFactory.createLineBorder(java.awt.Color.pink));
         buttonGroup2.add(loket6);
         loket6.setText("6 (ENAM)");
@@ -5216,7 +5214,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(statusOperator);
         statusOperator.setBounds(175, 80, 950, 23);
 
-        loketRalan.setBackground(new java.awt.Color(235, 255, 235));
         loketRalan.setBorder(null);
         buttonGroup1.add(loketRalan);
         loketRalan.setForeground(new java.awt.Color(0, 0, 0));
@@ -5231,7 +5228,6 @@ public final class DlgReg extends javax.swing.JDialog {
         panelGlass9.add(loketRalan);
         loketRalan.setBounds(175, 20, 110, 23);
 
-        loketRanap.setBackground(new java.awt.Color(235, 255, 235));
         loketRanap.setBorder(null);
         buttonGroup1.add(loketRanap);
         loketRanap.setForeground(new java.awt.Color(0, 0, 0));
@@ -5245,6 +5241,35 @@ public final class DlgReg extends javax.swing.JDialog {
         loketRanap.setOpaque(false);
         panelGlass9.add(loketRanap);
         loketRanap.setBounds(300, 20, 110, 23);
+
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Set Panggilan No. Antrian Terakhir : ");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass9.add(jLabel24);
+        jLabel24.setBounds(410, 20, 200, 23);
+
+        cmbAntrian.setForeground(new java.awt.Color(0, 0, 0));
+        cmbAntrian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua Antrian", "Antrian BPJS", "Antrian Umum", "Antrian Lansia", "Antrian Ranap" }));
+        cmbAntrian.setName("cmbAntrian"); // NOI18N
+        panelGlass9.add(cmbAntrian);
+        cmbAntrian.setBounds(615, 20, 110, 23);
+
+        BtnSetNomor.setForeground(new java.awt.Color(0, 0, 0));
+        BtnSetNomor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnSetNomor.setMnemonic('N');
+        BtnSetNomor.setText("Set Nomor");
+        BtnSetNomor.setToolTipText("Alt+N");
+        BtnSetNomor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnSetNomor.setIconTextGap(5);
+        BtnSetNomor.setName("BtnSetNomor"); // NOI18N
+        BtnSetNomor.setPreferredSize(new java.awt.Dimension(150, 30));
+        BtnSetNomor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnSetNomorActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnSetNomor);
+        BtnSetNomor.setBounds(730, 20, 110, 30);
 
         internalFrame2.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
@@ -9829,6 +9854,86 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnPetugasRegActionPerformed
 
+    private void BtnSetNomorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSetNomorActionPerformed
+        noakhirbpjs = "";
+        noakhirlansia = "";
+        noakhirranap = "";
+        noakhirumum = "";
+
+        if (cmbAntrian.getSelectedIndex() == 0) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin semua no. panggilan antrian akan diset sesuai nomor terakhir antrian pasien..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_bpjs where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirbpjs = Sequel.cariIsi("select no_antrian from antrian_nomor_bpjs where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + noakhirbpjs + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir BPJS");
+                }
+
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_lansia where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirlansia = Sequel.cariIsi("select no_antrian from antrian_nomor_lansia where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_lansia", "'" + noakhirlansia + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Lansia-Bayi");
+                }
+
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_inap where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirranap = Sequel.cariIsi("select no_antrian from antrian_nomor_inap where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_inap", "'" + noakhirranap + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Ranat Inap");
+                }
+
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_umum where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirumum = Sequel.cariIsi("select no_antrian from antrian_nomor_umum where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_umum", "'" + noakhirumum + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Umum");
+                }
+                cmbAntrian.setSelectedIndex(0);
+            } else {
+                cmbAntrian.setSelectedIndex(0);
+            }
+            
+        } else if (cmbAntrian.getSelectedIndex() == 1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin no. panggilan antrian BPJS akan diset sesuai nomor terakhir antrian pasien..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_bpjs where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirbpjs = Sequel.cariIsi("select no_antrian from antrian_nomor_bpjs where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_bpjs", "'" + noakhirbpjs + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir BPJS");
+                }
+                cmbAntrian.setSelectedIndex(0);
+            } else {
+                cmbAntrian.setSelectedIndex(0);
+            }
+        } else if (cmbAntrian.getSelectedIndex() == 2) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin no. panggilan antrian UMUM akan diset sesuai nomor terakhir antrian pasien..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_umum where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirumum = Sequel.cariIsi("select no_antrian from antrian_nomor_umum where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_umum", "'" + noakhirumum + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Umum");
+                }
+                cmbAntrian.setSelectedIndex(0);
+            } else {
+                cmbAntrian.setSelectedIndex(0);
+            }
+        } else if (cmbAntrian.getSelectedIndex() == 3) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin no. panggilan antrian Lansia-Bayi akan diset sesuai nomor terakhir antrian pasien..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_lansia where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirlansia = Sequel.cariIsi("select no_antrian from antrian_nomor_lansia where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_lansia", "'" + noakhirlansia + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Lansia-Bayi");
+                }
+                cmbAntrian.setSelectedIndex(0);
+            } else {
+                cmbAntrian.setSelectedIndex(0);
+            }
+        } else if (cmbAntrian.getSelectedIndex() == 4) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin no. panggilan antrian Rawat Inap akan diset sesuai nomor terakhir antrian pasien..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.cariInteger("select count(-1) from antrian_nomor_inap where date(waktu_cetak)=date(now())") > 0) {
+                    noakhirranap = Sequel.cariIsi("select no_antrian from antrian_nomor_inap where date(waktu_cetak)=date(now()) order by no_antrian desc limit 1");
+                    Sequel.menyimpan("antrian_pemanggil_inap", "'" + noakhirranap + "','ok','1','" + Sequel.cariIsi("select now()") + "'", "No. Antrian Terakhir Ranat Inap");
+                }
+                cmbAntrian.setSelectedIndex(0);
+            } else {
+                cmbAntrian.setSelectedIndex(0);
+            }
+        }
+    }//GEN-LAST:event_BtnSetNomorActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -9886,6 +9991,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnRestor;
     private widget.Button BtnSeek3;
     private widget.Button BtnSeek4;
+    private widget.Button BtnSetNomor;
     private widget.Button BtnSimpan;
     private widget.Button BtnSimpan1;
     private widget.Button BtnSimpan2;
@@ -10044,6 +10150,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
     private widget.TextBox cekPasien;
+    private widget.ComboBox cmbAntrian;
     private widget.ComboBox cmbSttsUmur;
     private widget.TextBox drPerujuk;
     private widget.Label infobpjs1;
@@ -10089,6 +10196,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
+    private widget.Label jLabel24;
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
@@ -10664,13 +10772,17 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         MnStatus.setEnabled(akses.getsetstatusralan());
         ppPasienCorona.setEnabled(akses.getpasien_corona());
 
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             TabRawat.setEnabled(true);
             TabRawat.setEnabledAt(1, true);
             TabRawat.setEnabledAt(3, true);
+            cmbAntrian.setEnabled(true);
+            BtnSetNomor.setEnabled(true);
         } else {
             TabRawat.setEnabledAt(1, akses.getOperator_antrian());
             TabRawat.setEnabledAt(3, false);
+            cmbAntrian.setEnabled(false);
+            BtnSetNomor.setEnabled(false);
         }
     }
 
