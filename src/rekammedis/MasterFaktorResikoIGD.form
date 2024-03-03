@@ -33,7 +33,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Data Master Resiko Jatuh (IGD, Kebidanan, Rawat Inap Dewasa) ]::">
+            <TitledBorder title="::[ Data Master Resiko Jatuh Pasien ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder thickness="3">
                   <Color PropertyName="color" blue="ff" green="99" red="0" type="rgb"/>
@@ -498,11 +498,12 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="4">
+                  <StringArray count="5">
                     <StringItem index="0" value="Dewasa"/>
                     <StringItem index="1" value="Anak"/>
                     <StringItem index="2" value="Kebidanan"/>
                     <StringItem index="3" value="Dewasa Ranap"/>
+                    <StringItem index="4" value="Ulang Resiko Jatuh"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbAsesmen" noResource="true"/>
@@ -512,7 +513,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="543" y="38" width="130" height="23"/>
+                  <AbsoluteConstraints x="543" y="38" width="150" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>

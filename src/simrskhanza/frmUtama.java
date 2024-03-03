@@ -392,6 +392,7 @@ import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
+import rekammedis.RMAsesmenUlangResikoJatuh;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMTindakanKedokteran;
@@ -949,7 +950,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnKasusPersalinanDinkes = new widget.ButtonBig();
         btnPenilaianTambahanGeriatri = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanGeriatri = new widget.ButtonBig();
-        btnMasterFaktorResikoIGDkebidanan = new widget.ButtonBig();
+        btnMasterFaktorResikoJatuh = new widget.ButtonBig();
         btnAssesmenKeperawatanIGD = new widget.ButtonBig();
         btnAssesmenMedikIGD = new widget.ButtonBig();
         btnPenilaianAwalMedisRalanMata = new widget.ButtonBig();
@@ -992,6 +993,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnKirimMedicationDispenseSatuSehat = new widget.ButtonBig();
         btnNotepad = new widget.ButtonBig();
         btnProtokolKemoterapi = new widget.ButtonBig();
+        btnAsesmenUlangResikoJatuh = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6009,18 +6011,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPenilaianAwalMedisRalanGeriatri);
 
-        btnMasterFaktorResikoIGDkebidanan.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterFaktorResikoIGDkebidanan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
-        btnMasterFaktorResikoIGDkebidanan.setText("Master Faktor Resiko Jatuh");
-        btnMasterFaktorResikoIGDkebidanan.setIconTextGap(0);
-        btnMasterFaktorResikoIGDkebidanan.setName("btnMasterFaktorResikoIGDkebidanan"); // NOI18N
-        btnMasterFaktorResikoIGDkebidanan.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterFaktorResikoIGDkebidanan.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterFaktorResikoJatuh.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterFaktorResikoJatuh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
+        btnMasterFaktorResikoJatuh.setText("Master Faktor Resiko Jatuh");
+        btnMasterFaktorResikoJatuh.setIconTextGap(0);
+        btnMasterFaktorResikoJatuh.setName("btnMasterFaktorResikoJatuh"); // NOI18N
+        btnMasterFaktorResikoJatuh.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterFaktorResikoJatuh.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterFaktorResikoIGDkebidananActionPerformed(evt);
+                btnMasterFaktorResikoJatuhActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
+        Panelmenu.add(btnMasterFaktorResikoJatuh);
 
         btnAssesmenKeperawatanIGD.setForeground(new java.awt.Color(0, 0, 0));
         btnAssesmenKeperawatanIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_AMBULANCE-transport-health_care-transportation-urgency_6007988.png"))); // NOI18N
@@ -6568,6 +6570,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnProtokolKemoterapi);
 
+        btnAsesmenUlangResikoJatuh.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenUlangResikoJatuh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/patient (1).png"))); // NOI18N
+        btnAsesmenUlangResikoJatuh.setText("Asesmen Ulang Resiko Jatuh");
+        btnAsesmenUlangResikoJatuh.setIconTextGap(0);
+        btnAsesmenUlangResikoJatuh.setName("btnAsesmenUlangResikoJatuh"); // NOI18N
+        btnAsesmenUlangResikoJatuh.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenUlangResikoJatuh.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenUlangResikoJatuhActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenUlangResikoJatuh);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6576,7 +6591,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/02/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/03/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12395,7 +12410,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPenilaianAwalMedisRalanGeriatriActionPerformed
 
-    private void btnMasterFaktorResikoIGDkebidananActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterFaktorResikoIGDkebidananActionPerformed
+    private void btnMasterFaktorResikoJatuhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterFaktorResikoJatuhActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         MasterFaktorResikoIGD form = new MasterFaktorResikoIGD(this, false);
@@ -12404,7 +12419,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         form.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterFaktorResikoIGDkebidananActionPerformed
+    }//GEN-LAST:event_btnMasterFaktorResikoJatuhActionPerformed
 
     private void btnAssesmenKeperawatanIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenKeperawatanIGDActionPerformed
         isTutup();
@@ -12967,6 +12982,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnProtokolKemoterapiActionPerformed
 
+    private void btnAsesmenUlangResikoJatuhActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenUlangResikoJatuhActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenUlangResikoJatuh aplikasi = new RMAsesmenUlangResikoJatuh(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenUlangResikoJatuhActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13026,6 +13054,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenKeperawatanDewasa;
     private widget.ButtonBig btnAsesmenMedikDewasaRanap;
     private widget.ButtonBig btnAsesmenMedikObstetriRalan;
+    private widget.ButtonBig btnAsesmenUlangResikoJatuh;
     private widget.ButtonBig btnAssesmenGiziHarian;
     private widget.ButtonBig btnAssesmenGiziUlang;
     private widget.ButtonBig btnAssesmenKeperawatanIGD;
@@ -13210,7 +13239,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterAturanPakai;
     private widget.ButtonBig btnMasterCaraBayar;
     private widget.ButtonBig btnMasterDTD;
-    private widget.ButtonBig btnMasterFaktorResikoIGDkebidanan;
+    private widget.ButtonBig btnMasterFaktorResikoJatuh;
     private widget.ButtonBig btnMasterFaskes;
     private widget.ButtonBig btnMasterJabatanKomite;
     private widget.ButtonBig btnMasterKasusPersalinanDinkes;
@@ -15146,6 +15175,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnAsesmenUlangResikoJatuh);
+                jmlmenu++;
+            }
+            
             if (akses.getkemoterapi() == true) {
                 Panelmenu.add(btnProtokolKemoterapi);
                 jmlmenu++;
@@ -15237,7 +15271,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
             
             if (akses.getdata_triase_igd() == true) {
-                Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
+                Panelmenu.add(btnMasterFaktorResikoJatuh);
                 jmlmenu++;
             }
             
@@ -15727,6 +15761,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnPemantauanHarian24Jam);
             jmlmenu++;
         }
+
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnAsesmenUlangResikoJatuh);
+            jmlmenu++;
+        }
         
         if (akses.getcppt() == true) {
             Panelmenu.add(btnPersetujuanTindakan);
@@ -15927,7 +15966,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getdata_triase_igd() == true) {
-            Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
+            Panelmenu.add(btnMasterFaktorResikoJatuh);
             jmlmenu++;
         }
         
@@ -17797,6 +17836,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getcppt()== true) {
+            if (btnAsesmenUlangResikoJatuh.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenUlangResikoJatuh);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
             if (btnPersetujuanTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPersetujuanTindakan);
                 jmlmenu++;
@@ -18021,8 +18067,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getdata_triase_igd()== true) {
-            if (btnMasterFaktorResikoIGDkebidanan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterFaktorResikoIGDkebidanan);
+            if (btnMasterFaktorResikoJatuh.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterFaktorResikoJatuh);
                 jmlmenu++;
             }
         }

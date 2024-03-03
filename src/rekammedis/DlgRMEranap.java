@@ -118,6 +118,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnResep = new widget.ButtonBig();
         BtnRingkasan = new widget.ButtonBig();
         BtnCTK = new widget.ButtonBig();
+        BtnAsesmenUlangRJ = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
@@ -349,6 +350,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnCTK);
+
+        BtnAsesmenUlangRJ.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenUlangRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenUlangRJ.setText("Asesmen Ulang Resiko Jatuh");
+        BtnAsesmenUlangRJ.setIconTextGap(0);
+        BtnAsesmenUlangRJ.setName("BtnAsesmenUlangRJ"); // NOI18N
+        BtnAsesmenUlangRJ.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenUlangRJ.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenUlangRJActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnAsesmenUlangRJ);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -779,6 +793,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnDokumenJangMedActionPerformed
 
+    private void BtnAsesmenUlangRJActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenUlangRJActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMAsesmenUlangResikoJatuh form = new RMAsesmenUlangResikoJatuh(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenUlangRJActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -798,6 +829,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenKeperawatanDewasa;
     private widget.ButtonBig BtnAsesmenMedik;
+    private widget.ButtonBig BtnAsesmenUlangRJ;
     private widget.ButtonBig BtnCPPT;
     private widget.ButtonBig BtnCTK;
     private widget.Button BtnCloseIn10;
@@ -926,6 +958,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
             BtnPantauHarianPasien.setToolTipText("Data pemantauan harian pasien pada hari ini SUDAH dibikinkan oleh petugas..!!!");
             BtnGrafikPantauHarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png")));
             BtnGrafikPantauHarian.setToolTipText("Grafik hasil pemantauan harian pasien pada hari ini SUDAH dibikinkan oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
+            BtnAsesmenUlangRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh BELUM diisi oleh dokter..!!!");
+        } else {
+            BtnAsesmenUlangRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh SUDAH diisi oleh dokter..!!!");
         }
     }
 }

@@ -1025,7 +1025,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         FormInput.add(Truangan);
         Truangan.setBounds(136, 38, 420, 23);
 
-        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         TtglMsk.setDisplayFormat("dd-MM-yyyy");
         TtglMsk.setName("TtglMsk"); // NOI18N
         TtglMsk.setOpaque(false);
@@ -1440,7 +1440,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel30.setText("x/mnt      BB Sebelum Sakit : ");
         jLabel30.setName("jLabel30"); // NOI18N
         FormInput.add(jLabel30);
-        jLabel30.setBounds(660, 383, 137, 23);
+        jLabel30.setBounds(660, 383, 140, 23);
 
         TbbBelum.setBackground(new java.awt.Color(245, 250, 240));
         TbbBelum.setForeground(new java.awt.Color(0, 0, 0));
@@ -1538,7 +1538,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel36.setText("detik       SPO2 : ");
         jLabel36.setName("jLabel36"); // NOI18N
         FormInput.add(jLabel36);
-        jLabel36.setBounds(719, 411, 80, 23);
+        jLabel36.setBounds(719, 411, 81, 23);
 
         Tspo.setBackground(new java.awt.Color(245, 250, 240));
         Tspo.setForeground(new java.awt.Color(0, 0, 0));
@@ -2531,7 +2531,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         cegahA.setBackground(new java.awt.Color(255, 255, 255));
         cegahA.setColumns(20);
         cegahA.setRows(5);
-        cegahA.setText("1. Oreintasi lingkungan\n2. Posisi tempat tidur rendah dan terkunci\n3. Rel tempat tidur dipasang (dinaikkan)\n4. Pencahayaan adekuat\n5. Edukasi pencegahan jatuh");
+        cegahA.setText("1. Orientasi lingkungan\n2. Posisi tempat tidur rendah dan terkunci\n3. Rel tempat tidur dipasang (dinaikkan)\n4. Pencahayaan adekuat\n5. Edukasi pencegahan jatuh");
         cegahA.setName("cegahA"); // NOI18N
         cegahA.setOpaque(true);
         panelBiasa8.add(cegahA, java.awt.BorderLayout.CENTER);
@@ -2999,7 +2999,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel95);
         jLabel95.setBounds(0, 2237, 100, 23);
 
-        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        TtglAses.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         TtglAses.setDisplayFormat("dd-MM-yyyy");
         TtglAses.setName("TtglAses"); // NOI18N
         TtglAses.setOpaque(false);
@@ -3230,7 +3230,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3244,7 +3244,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

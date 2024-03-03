@@ -966,7 +966,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:38:44" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:33:59" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -1853,7 +1853,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         dewasaA.setBackground(new java.awt.Color(255, 255, 255));
         dewasaA.setColumns(20);
         dewasaA.setRows(5);
-        dewasaA.setText("1. Oreintasi lingkungan\n2. Posisi tempat tidur rendah dan terkunci\n3. Rel tempat tidur dipasang (dinaikkan)\n4. Pencahayaan adekuat\n5. Edukasi pencegahan jatuh");
+        dewasaA.setText("1. Orientasi lingkungan\n2. Posisi tempat tidur rendah dan terkunci\n3. Rel tempat tidur dipasang (dinaikkan)\n4. Pencahayaan adekuat\n5. Edukasi pencegahan jatuh");
         dewasaA.setName("dewasaA"); // NOI18N
         dewasaA.setOpaque(true);
         panelBiasa8.add(dewasaA, java.awt.BorderLayout.CENTER);
@@ -2557,7 +2557,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:38:45" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:34:00" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2865,7 +2865,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2880,7 +2880,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
