@@ -16,6 +16,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  */
 public class WarnaTableKhusus1 extends DefaultTableCellRenderer {
     private int kolom = 16;
+    private int kolom1 = 17;
     
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {
@@ -27,6 +28,10 @@ public class WarnaTableKhusus1 extends DefaultTableCellRenderer {
         }
         
         if (!table.getValueAt(row, kolom).toString().equals("")) {
+            component.setBackground(new Color(204,255,204));
+        }
+        
+        if (!table.getValueAt(row, kolom1).toString().equals("")) {
             component.setBackground(new Color(204,255,204));
         }
         return component;

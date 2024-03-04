@@ -3756,7 +3756,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

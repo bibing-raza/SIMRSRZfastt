@@ -1829,9 +1829,9 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
     private void tampilDataFaktorResiko() {
         Valid.tabelKosong(tabMode1);
         try {
-            ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, "
-                    + "if(b.kode_ulang_resiko='" + TkdFaktor.getText() + "','dipilih','-') cekkode FROM master_faktor_resiko_igd a "
-                    + "left join detail_asesmen_ulang_resiko_jatuh b on a.kode_resiko=b.kode_resiko where "
+            ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
+                    + "FROM master_faktor_resiko_igd a left join detail_asesmen_ulang_resiko_jatuh b on a.kode_resiko=b.kode_resiko "
+                    + "and b.kode_ulang_resiko='" + TkdFaktor.getText() + "' where "
                     + "a.asesmen='Ulang Resiko Jatuh' order by a.kode_resiko");
             try {
                 rs2 = ps2.executeQuery();

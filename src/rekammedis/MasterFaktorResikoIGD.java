@@ -120,7 +120,6 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
-        BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
         BtnKeluar = new widget.Button();
         jLabel7 = new widget.Label();
@@ -226,25 +225,6 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnBatal);
-
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
-        BtnHapus.setText("Hapus");
-        BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setName("BtnHapus"); // NOI18N
-        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusActionPerformed(evt);
-            }
-        });
-        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnHapusKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnHapus);
 
         BtnEdit.setForeground(new java.awt.Color(0, 0, 0));
         BtnEdit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -489,34 +469,10 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnHapus);}
+        }
 }//GEN-LAST:event_BtnBatalKeyPressed
-
-    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!");
-        } else if (TKd.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!");
-            tbResiko.requestFocus();
-        } else {
-            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                Valid.hapusTable(tabMode, TKd, "master_faktor_resiko_igd", "kode_resiko");
-                tampil();
-                emptTeks();
-            }
-        }
-}//GEN-LAST:event_BtnHapusActionPerformed
-
-    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            BtnHapusActionPerformed(null);
-        }else{
-            Valid.pindah(evt, BtnBatal, BtnEdit);
-        }
-}//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
         if (TKd.getText().trim().equals("")) {
@@ -545,10 +501,8 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnEditActionPerformed(null);
-        }else{
-            Valid.pindah(evt, BtnHapus, BtnKeluar);
         }
 }//GEN-LAST:event_BtnEditKeyPressed
 
@@ -674,7 +628,6 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnEdit;
-    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
     private widget.Label LCount;
@@ -767,8 +720,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
     }
     
     public void isCek(){
-       BtnSimpan.setEnabled(akses.getdata_triase_igd());
-       BtnHapus.setEnabled(akses.getdata_triase_igd());
+       BtnSimpan.setEnabled(akses.getdata_triase_igd());       
        BtnEdit.setEnabled(akses.getdata_triase_igd());
     }
 }

@@ -963,7 +963,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="23-02-2024"/>
+                        <StringItem index="0" value="04-03-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4172,7 +4172,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="23-02-2024"/>
+                        <StringItem index="0" value="04-03-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4200,7 +4200,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="23-02-2024"/>
+                        <StringItem index="0" value="04-03-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -4405,7 +4405,7 @@
                   <SubComponents>
                     <Component class="widget.Table" name="tbCPPT">
                       <Properties>
-                        <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang mau diedit ataupun dihapus"/>
+                        <Property name="toolTipText" type="java.lang.String" value="Silahkan klik untuk memilih data yang dibaca cpptnya"/>
                         <Property name="name" type="java.lang.String" value="tbCPPT" noResource="true"/>
                       </Properties>
                       <Events>

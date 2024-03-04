@@ -111,18 +111,20 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         politujuanbpjs = new widget.TextBox();
         jLabel39 = new widget.Label();
         nmdokterbpjs = new widget.TextBox();
+        jLabel40 = new widget.Label();
+        TnoKartu = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         BtnSimpan = new widget.Button();
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2023" }));
+        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
         tglPeriksaBPJS.setDisplayFormat("dd-MM-yyyy");
         tglPeriksaBPJS.setName("tglPeriksaBPJS"); // NOI18N
         tglPeriksaBPJS.setOpaque(false);
         tglPeriksaBPJS.setPreferredSize(new java.awt.Dimension(90, 23));
 
-        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2023" }));
+        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
         tglrujukanbpjs.setDisplayFormat("dd-MM-yyyy");
         tglrujukanbpjs.setName("tglrujukanbpjs"); // NOI18N
         tglrujukanbpjs.setOpaque(false);
@@ -162,7 +164,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         norwBokingBPJS.setHighlighter(null);
         norwBokingBPJS.setName("norwBokingBPJS"); // NOI18N
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-11-2023" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -237,7 +239,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         tglperiksabpjs.setForeground(new java.awt.Color(0, 0, 0));
         tglperiksabpjs.setName("tglperiksabpjs"); // NOI18N
         panelGlass1.add(tglperiksabpjs);
-        tglperiksabpjs.setBounds(100, 66, 160, 23);
+        tglperiksabpjs.setBounds(100, 66, 135, 23);
 
         jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setText("Poliklinik Tujuan : ");
@@ -262,6 +264,18 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         nmdokterbpjs.setName("nmdokterbpjs"); // NOI18N
         panelGlass1.add(nmdokterbpjs);
         nmdokterbpjs.setBounds(100, 122, 320, 23);
+
+        jLabel40.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel40.setText("No. Kartu :");
+        jLabel40.setName("jLabel40"); // NOI18N
+        panelGlass1.add(jLabel40);
+        jLabel40.setBounds(235, 66, 60, 23);
+
+        TnoKartu.setEditable(false);
+        TnoKartu.setForeground(new java.awt.Color(0, 0, 0));
+        TnoKartu.setName("TnoKartu"); // NOI18N
+        panelGlass1.add(TnoKartu);
+        TnoKartu.setBounds(300, 66, 120, 23);
 
         internalFrame1.add(panelGlass1, java.awt.BorderLayout.CENTER);
 
@@ -427,12 +441,14 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     private widget.ComboBox LakaLantas;
     private widget.TextBox TNoRegBPJS;
     private widget.Tanggal TanggalSEP;
+    private widget.TextBox TnoKartu;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
     private widget.Label jLabel38;
     private widget.Label jLabel39;
+    private widget.Label jLabel40;
     private javax.swing.JPanel jPanel1;
     private widget.TextBox kdbokingbpjs;
     private widget.TextBox nmdokterbpjs;
@@ -459,6 +475,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         suplesi.setSelectedIndex(0);
         TNoRegBPJS.setText("");
         norwBokingBPJS.setText("");
+        TnoKartu.setText("");
         TanggalSEP.setDate(new Date());
         BtnHapus.setEnabled(false);
     }
@@ -470,7 +487,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 kdbokingbpjs.requestFocus();
             } else {
                 psCekBooking = koneksi.prepareStatement("select b.kd_booking, DATE_FORMAT(b.tanggal_periksa, '%Y-%m-%d') tglPeriksa,p.nm_pasien,k.nm_poli,d.nm_dokter, "
-                        + "b.tanggal_periksa from booking_registrasi b "
+                        + "b.tanggal_periksa, ifnull(p.no_peserta,'-') nokartu from booking_registrasi b "
                         + "inner join pasien p on p.no_rkm_medis = b.no_rkm_medis "
                         + "inner join poliklinik k on k.kd_poli = b.kd_poli "
                         + "inner join dokter d on d.kd_dokter = b.kd_dokter "
@@ -483,6 +500,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                     tglperiksabpjs.setText(Valid.SetTglINDONESIA(rsCekBooking.getString("tanggal_periksa")));
                     politujuanbpjs.setText(rsCekBooking.getString("nm_poli"));
                     nmdokterbpjs.setText(rsCekBooking.getString("nm_dokter"));
+                    TnoKartu.setText(rsCekBooking.getString("nokartu"));
                 } else {
                     JOptionPane.showMessageDialog(null, "Kode Booking tidak ditemukan, silakan ulangi lagi...!!");
                 }

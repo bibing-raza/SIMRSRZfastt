@@ -866,14 +866,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void isCek() {
-        BtnCPPT.setEnabled(akses.getcppt());
-        BtnJadwalObat.setEnabled(akses.getpemberian_obat());
         BtnAsesmenMedik.setEnabled(akses.getasesmen_medik_dewasa_ranap());
-        BtnCTK.setEnabled(akses.getcppt());
+        BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());        
+        BtnCPPT.setEnabled(akses.getcppt());
         BtnResep.setEnabled(akses.getresep_dokter());
+        BtnRingkasan.setEnabled(akses.getringkasanpulangranap());
+        BtnCTK.setEnabled(akses.getcppt());
+        BtnAsesmenUlangRJ.setEnabled(akses.getcppt());        
+        BtnJadwalObat.setEnabled(akses.getpemberian_obat());        
         BtnKonsul.setEnabled(akses.getpermintaan_lab());
         BtnJawabKonsul.setEnabled(akses.getpermintaan_lab());
-        BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
+        BtnPantauHarianPasien.setEnabled(akses.getcppt());
+        BtnGrafikPantauHarian.setEnabled(akses.getcppt());        
+        BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());        
     }
     
     public void setData(String norw, String norm, String nmpasien,

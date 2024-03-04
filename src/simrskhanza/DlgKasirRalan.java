@@ -183,7 +183,8 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         tabModekasir = new DefaultTableModel(null, new String[]{
             "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst.", "Jenis Bayar", "Jns. Kunjungan",
-            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd"
+            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
+            "cek_penanganan_dokter_poli"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -195,7 +196,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirRalan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbKasirRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 17; i++) {
+        for (i = 0; i < 18; i++) {
             TableColumn column = tbKasirRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -232,6 +233,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 15) {
                 column.setPreferredWidth(350);
             } else if (i == 16) {                
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 17) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -3247,7 +3251,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4100,7 +4104,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4337,7 +4341,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4356,7 +4360,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8584,7 +8588,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("stts_klaim"),
                         rskasir.getString("no_tlp"),
                         rskasir.getString("almt_pasien"),
-                        Sequel.cariIsi("select ifnull(no_rawat,'') from penilaian_awal_medis_igd where no_rawat='" + rskasir.getString("no_rawat") + "'")
+                        Sequel.cariIsi("select ifnull(no_rawat,'') from penilaian_awal_medis_igd where no_rawat='" + rskasir.getString("no_rawat") + "'"),
+                        Sequel.cariIsi("select ifnull(no_rawat,'') from pemeriksaan_ralan where no_rawat='" + rskasir.getString("no_rawat") + "'")
                     });
                 }
             } catch (Exception e) {

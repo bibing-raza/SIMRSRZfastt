@@ -2612,7 +2612,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
 
-        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
         tbCPPT.setName("tbCPPT"); // NOI18N
         tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
