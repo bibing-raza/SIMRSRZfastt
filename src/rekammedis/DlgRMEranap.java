@@ -119,6 +119,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnRingkasan = new widget.ButtonBig();
         BtnCTK = new widget.ButtonBig();
         BtnAsesmenUlangRJ = new widget.ButtonBig();
+        BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
@@ -363,6 +364,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnAsesmenUlangRJ);
+
+        BtnPengelolaanTranfusiDarah.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png"))); // NOI18N
+        BtnPengelolaanTranfusiDarah.setText("Pengelolaan Transfusi Darah");
+        BtnPengelolaanTranfusiDarah.setIconTextGap(0);
+        BtnPengelolaanTranfusiDarah.setName("BtnPengelolaanTranfusiDarah"); // NOI18N
+        BtnPengelolaanTranfusiDarah.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPengelolaanTranfusiDarah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPengelolaanTranfusiDarahActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnPengelolaanTranfusiDarah);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -810,6 +824,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenUlangRJActionPerformed
 
+    private void BtnPengelolaanTranfusiDarahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPengelolaanTranfusiDarahActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMPengelolaanTransfusiDarah form = new RMPengelolaanTransfusiDarah(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPengelolaanTranfusiDarahActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -840,6 +871,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
     private widget.ButtonBig BtnPantauHarianPasien;
+    private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
@@ -877,8 +909,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnKonsul.setEnabled(akses.getpermintaan_lab());
         BtnJawabKonsul.setEnabled(akses.getpermintaan_lab());
         BtnPantauHarianPasien.setEnabled(akses.getcppt());
-        BtnGrafikPantauHarian.setEnabled(akses.getcppt());        
+        BtnGrafikPantauHarian.setEnabled(akses.getcppt());
         BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());        
+        BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,
@@ -967,10 +1000,18 @@ public class DlgRMEranap extends javax.swing.JDialog {
         
         if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {
             BtnAsesmenUlangRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
-            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh BELUM diisi oleh dokter..!!!");
+            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh BELUM diisi oleh petugas..!!!");
         } else {
             BtnAsesmenUlangRJ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
-            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh SUDAH diisi oleh dokter..!!!");
+            BtnAsesmenUlangRJ.setToolTipText("Asesmen Ulang Resiko Jatuh SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from pengelolaan_transfusi_darah where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
+            BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop.png")));
+            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Transfusi Darah Pasien BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png")));
+            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Transfusi Darah Pasien SUDAH diisi oleh petugas..!!!");
         }
     }
 }

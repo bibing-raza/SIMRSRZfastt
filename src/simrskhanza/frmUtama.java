@@ -394,6 +394,7 @@ import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMAsesmenUlangResikoJatuh;
 import rekammedis.RMPemantauanHarian24Jam;
+import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMTindakanKedokteran;
 import setting.DlgClosingKasir;
@@ -994,6 +995,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnNotepad = new widget.ButtonBig();
         btnProtokolKemoterapi = new widget.ButtonBig();
         btnAsesmenUlangResikoJatuh = new widget.ButtonBig();
+        btnPengelolaanTransfusiDarah = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6583,6 +6585,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenUlangResikoJatuh);
 
+        btnPengelolaanTransfusiDarah.setForeground(new java.awt.Color(0, 0, 0));
+        btnPengelolaanTransfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop.png"))); // NOI18N
+        btnPengelolaanTransfusiDarah.setText("Pengelolaan Transfusi Darah");
+        btnPengelolaanTransfusiDarah.setIconTextGap(0);
+        btnPengelolaanTransfusiDarah.setName("btnPengelolaanTransfusiDarah"); // NOI18N
+        btnPengelolaanTransfusiDarah.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPengelolaanTransfusiDarah.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPengelolaanTransfusiDarahActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPengelolaanTransfusiDarah);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6591,7 +6606,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/03/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/03/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12995,6 +13010,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenUlangResikoJatuhActionPerformed
 
+    private void btnPengelolaanTransfusiDarahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPengelolaanTransfusiDarahActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPengelolaanTransfusiDarah aplikasi = new RMPengelolaanTransfusiDarah(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPengelolaanTransfusiDarahActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13281,6 +13309,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPengambilanUTD;
     private widget.ButtonBig btnPengambilanUTD2;
     private widget.ButtonBig btnPengaturanRekening;
+    private widget.ButtonBig btnPengelolaanTransfusiDarah;
     private widget.ButtonBig btnPengeluaran;
     private widget.ButtonBig btnPengeluaranIpsrs;
     private widget.ButtonBig btnPenggajian;
@@ -15176,6 +15205,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
             if (akses.getcppt()== true) {
+                Panelmenu.add(btnPengelolaanTransfusiDarah);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
                 Panelmenu.add(btnAsesmenUlangResikoJatuh);
                 jmlmenu++;
             }
@@ -15807,6 +15841,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnCPPT);
+            jmlmenu++;
+        }
+      
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnPengelolaanTransfusiDarah);
             jmlmenu++;
         }
 
@@ -17894,6 +17933,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnCPPT.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCPPT);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnPengelolaanTransfusiDarah.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPengelolaanTransfusiDarah);
                 jmlmenu++;
             }
         }

@@ -2028,7 +2028,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Sequel.menyimpanPesanGagalnyaDiTerminal("protokol_kemoterapi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Protokol Kemoterapi Histori", 18, new String[]{
             TnoRW.getText(), TnmProtokol.getText(), Tsiklus.getText(), Valid.SetTgl(TtglSiklus.getSelectedItem() + ""), Tdosis.getText(),
             Ttb.getText(), Tbb.getText(), Tlpt.getText(), Tdiagnosis.getText(), Tprogram.getText(), nipPerawat, nipDokter,
-            Sequel.cariIsi("select now()"), TnoRM.getText(), Tket.getText(), "hapus", user, Sequel.cariIsi("select now()")
+            tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 18).toString(), TnoRM.getText(), Tket.getText(), "hapus", user, 
+            Sequel.cariIsi("select now()")
         });
     }
 
@@ -2043,7 +2044,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Sequel.menyimpanPesanGagalnyaDiTerminal("protokol_kemoterapi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Protokol Kemoterapi Histori", 18, new String[]{
             TnoRW.getText(), TnmProtokol.getText(), Tsiklus.getText(), Valid.SetTgl(TtglSiklus.getSelectedItem() + ""), Tdosis.getText(),
             Ttb.getText(), Tbb.getText(), Tlpt.getText(), Tdiagnosis.getText(), Tprogram.getText(), nipPerawat, nipDokter,
-            Sequel.cariIsi("select now()"), TnoRM.getText(), Tket.getText(), "ganti", user, Sequel.cariIsi("select now()")
+            tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 18).toString(), TnoRM.getText(), Tket.getText(), "ganti", user, 
+            Sequel.cariIsi("select now()")
         });
     }
     
