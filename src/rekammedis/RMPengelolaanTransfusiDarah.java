@@ -17,6 +17,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
@@ -284,6 +285,14 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnCloseIn10 = new widget.Button();
         Scroll6 = new widget.ScrollPane();
         tbRiwayat = new widget.Table();
+        WindowCetak = new javax.swing.JDialog();
+        internalFrame10 = new widget.InternalFrame();
+        BtnCloseIn6 = new widget.Button();
+        BtnCetak = new widget.Button();
+        tglA = new widget.Tanggal();
+        jLabel49 = new widget.Label();
+        tglB = new widget.Tanggal();
+        jLabel50 = new widget.Label();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTransfusi = new widget.Table();
@@ -383,7 +392,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         WindowRiwayat.setUndecorated(true);
         WindowRiwayat.setResizable(false);
 
-        internalFrame13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Riwayat Pengelolaan Transfusi Darah Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Riwayat Pengelolaan Pasien Transfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame13.setName("internalFrame13"); // NOI18N
         internalFrame13.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame13.setLayout(new java.awt.BorderLayout());
@@ -545,6 +554,75 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 
         WindowRiwayat.getContentPane().add(internalFrame13, java.awt.BorderLayout.CENTER);
 
+        WindowCetak.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowCetak.setName("WindowCetak"); // NOI18N
+        WindowCetak.setUndecorated(true);
+        WindowCetak.setResizable(false);
+
+        internalFrame10.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Cetak Laporan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame10.setName("internalFrame10"); // NOI18N
+        internalFrame10.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame10.setLayout(null);
+
+        BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('U');
+        BtnCloseIn6.setText("Tutup");
+        BtnCloseIn6.setToolTipText("Alt+U");
+        BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
+        BtnCloseIn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn6ActionPerformed(evt);
+            }
+        });
+        internalFrame10.add(BtnCloseIn6);
+        BtnCloseIn6.setBounds(425, 23, 80, 26);
+
+        BtnCetak.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCetak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnCetak.setMnemonic('U');
+        BtnCetak.setText("Cetak");
+        BtnCetak.setToolTipText("Alt+U");
+        BtnCetak.setName("BtnCetak"); // NOI18N
+        BtnCetak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetakActionPerformed(evt);
+            }
+        });
+        internalFrame10.add(BtnCetak);
+        BtnCetak.setBounds(320, 23, 90, 26);
+
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2024" }));
+        tglA.setDisplayFormat("dd-MM-yyyy");
+        tglA.setName("tglA"); // NOI18N
+        tglA.setOpaque(false);
+        tglA.setPreferredSize(new java.awt.Dimension(90, 23));
+        internalFrame10.add(tglA);
+        tglA.setBounds(93, 25, 90, 23);
+
+        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel49.setText("s.d");
+        jLabel49.setName("jLabel49"); // NOI18N
+        internalFrame10.add(jLabel49);
+        jLabel49.setBounds(185, 25, 30, 23);
+
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2024" }));
+        tglB.setDisplayFormat("dd-MM-yyyy");
+        tglB.setName("tglB"); // NOI18N
+        tglB.setOpaque(false);
+        tglB.setPreferredSize(new java.awt.Dimension(90, 23));
+        internalFrame10.add(tglB);
+        tglB.setBounds(218, 25, 90, 23);
+
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("Periode Tgl. :");
+        jLabel50.setName("jLabel50"); // NOI18N
+        internalFrame10.add(jLabel50);
+        jLabel50.setBounds(0, 25, 90, 23);
+
+        WindowCetak.getContentPane().add(internalFrame10, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -557,7 +635,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pengelolaan Transfusi Darah Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pengelolaan Pasien Transfusi Darah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -777,9 +855,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 BtnCariKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                BtnCariKeyReleased(evt);
             }
         });
         panelGlass9.add(BtnCari);
@@ -1372,10 +1447,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnCariKeyPressed
 
-    private void BtnCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyReleased
-        // TODO add your handling code here:
-}//GEN-LAST:event_BtnCariKeyReleased
-
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
        emptTeks();
        tampil();
@@ -1533,51 +1604,13 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (tbTransfusi.getSelectedRow() > -1) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("norm", TNoRm.getText());
-            param.put("nmpasien", TPasien.getText());
-//            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
-//            param.put("tglasesmen", Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")));
-//            param.put("jamasesmen", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " WITA");
-//            param.put("totalskor", TtotSkor.getText());
-//            param.put("tindakancegah", cmbTindakanCegah.getSelectedItem().toString());
-//            param.put("nmpetugas", TnmPetugas.getText());
-//            param.put("kategori", Tkategori.getText());
-//
-//            if (cmbTindakanCegah.getSelectedIndex() == 1) {
-//                param.put("judultindakan", "Pencegahan Umum (A)");
-//                param.put("isitindakan", cegahA.getText() + "\n\n"
-//                    + "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")) + "\n"
-//                    + "Tindakan Pencegahan Resiko Jatuh : " + cmbTindakanCegah.getSelectedItem().toString() + "\n");
-//            } else if (cmbTindakanCegah.getSelectedIndex() == 2) {
-//                param.put("judultindakan", "Pencegahan Resiko Sedang (B)");
-//                param.put("isitindakan", cegahB.getText() + "\n\n"
-//                    + "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")) + "\n"
-//                    + "Tindakan Pencegahan Resiko Jatuh : " + cmbTindakanCegah.getSelectedItem().toString() + "\n");
-//            } else if (cmbTindakanCegah.getSelectedIndex() == 3) {
-//                param.put("judultindakan", "Pencegahan Resiko Tinggi (C)");
-//                param.put("isitindakan", cegahC.getText() + "\n\n"
-//                    + "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")) + "\n"
-//                    + "Tindakan Pencegahan Resiko Jatuh : " + cmbTindakanCegah.getSelectedItem().toString() + "\n");
-//            } else {
-//                param.put("judultindakan", "-");
-//                param.put("isitindakan", "-\n\n"
-//                    + "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")) + "\n"
-//                    + "Tindakan Pencegahan Resiko Jatuh : " + cmbTindakanCegah.getSelectedItem().toString() + "\n");
-//            }
-//
-//            Valid.MyReport("rptAsesmenUlangRJ.jasper", "report", "::[ Asesmen Ulang Resiko Jatuh ]::",
-//                "SELECT b.faktor_resiko, b.skala, b.skor from detail_asesmen_ulang_resiko_jatuh a "
-//                + "inner join master_faktor_resiko_igd b on b.kode_resiko=a.kode_resiko WHERE "
-//                + "a.kode_ulang_resiko='" + TkdFaktor.getText() + "' order by b.kode_resiko", param);
-//
-//            TCari.setText(TNoRw.getText());
-//            Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
-//            emptTeks();
-//            BtnCariActionPerformed(null);
+        if (tbTransfusi.getSelectedRow() > -1) {            
+            WindowCetak.setSize(533, 70);
+            WindowCetak.setLocationRelativeTo(internalFrame1);
+            WindowCetak.setAlwaysOnTop(false);
+            WindowCetak.setVisible(true);
+            tglA.setDate(new Date());
+            tglB.setDate(new Date());
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih salah satu datanya terlebih dulu..!!!!");
             tbTransfusi.requestFocus();
@@ -1723,6 +1756,34 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         TCari2.setText("");
     }//GEN-LAST:event_BtnCloseIn10ActionPerformed
 
+    private void BtnCloseIn6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn6ActionPerformed
+        WindowCetak.dispose();
+        tglA.setDate(new Date());
+        tglB.setDate(new Date());
+    }//GEN-LAST:event_BtnCloseIn6ActionPerformed
+
+    private void BtnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        Map<String, Object> param = new HashMap<>();
+        param.put("namars", akses.getnamars());
+        param.put("logo", Sequel.cariGambar("select logo from setting"));        
+
+        Valid.MyReport("rptPengelolaanTransfusiDarah.jasper", "report", "::[ Cetak Laporan Pengelolaan Pasien Transfusi Darah ]::",
+                "SELECT pt.*, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(pt.tanggal,'%d/%m/%Y') tgl, "
+                + "time_format(pt.jam,'%H:%i Wita') jamTransfusi, pg1.nama ptgs1, pg2.nama ptgs2, pg3.nama ptgs3 from pengelolaan_transfusi_darah pt "
+                + "inner join reg_periksa rp on rp.no_rawat=pt.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                + "inner join pegawai pg1 on pg1.nik=pt.15_sebelum_nip_petugas inner join pegawai pg2 on pg2.nik=pt.15_masuk_nip_petugas "
+                + "inner join pegawai pg3 on pg3.nik=pt.1_masuk_nip_petugas WHERE "
+                + "pt.no_rawat = '" + TNoRw.getText() + "' AND pt.tanggal between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
+                + "and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY pt.tanggal, pt.jam", param);
+
+        TCari.setText(TNoRw.getText());
+        tampil();
+        emptTeks();
+        BtnCloseIn6ActionPerformed(null);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnCetakActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1745,7 +1806,9 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari2;
+    private widget.Button BtnCetak;
     private widget.Button BtnCloseIn10;
+    private widget.Button BtnCloseIn6;
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
@@ -1787,6 +1850,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.TextBox TnmPetugas3;
     private widget.TextBox TruangRwt;
     private widget.Tanggal Ttgl;
+    private javax.swing.JDialog WindowCetak;
     private javax.swing.JDialog WindowRiwayat;
     private widget.CekBox chkSaya1;
     private widget.CekBox chkSaya2;
@@ -1795,6 +1859,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
     private widget.InternalFrame internalFrame1;
+    private widget.InternalFrame internalFrame10;
     private widget.InternalFrame internalFrame13;
     private widget.InternalFrame internalFrame17;
     private widget.InternalFrame internalFrame18;
@@ -1825,7 +1890,9 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.Label jLabel38;
     private widget.Label jLabel39;
     private widget.Label jLabel40;
+    private widget.Label jLabel49;
     private widget.Label jLabel5;
+    private widget.Label jLabel50;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -1837,6 +1904,8 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
     private widget.panelisi panelGlass9;
     private widget.Table tbRiwayat;
     private widget.Table tbTransfusi;
+    private widget.Tanggal tglA;
+    private widget.Tanggal tglB;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
@@ -1925,6 +1994,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);
+        Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         Tjenis.setText("");
         T15TDbelum.setText("");
         T15Nadibelum.setText("");

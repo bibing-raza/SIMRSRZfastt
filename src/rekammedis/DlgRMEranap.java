@@ -1008,10 +1008,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         
         if (Sequel.cariInteger("select count(-1) from pengelolaan_transfusi_darah where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
             BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop.png")));
-            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Transfusi Darah Pasien BELUM diisi oleh petugas..!!!");
+            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Pasien Transfusi Darah BELUM diisi oleh petugas..!!!");
         } else {
             BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png")));
-            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Transfusi Darah Pasien SUDAH diisi oleh petugas..!!!");
+            BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Pasien Transfusi Darah SUDAH diisi oleh petugas..!!!");
         }
     }
 }
