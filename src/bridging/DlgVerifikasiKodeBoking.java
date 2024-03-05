@@ -662,7 +662,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         nomorAutoBPJS();
         if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
                 new String[]{TNoRegBPJS.getText(), norwBokingBPJS.getText(), Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"),
-                    kddokterbpjs, normbpjs, kdpoliSEP, "-", "-", "-", 0 + "", "Belum", "Lama", "Ralan", kdpenjabbpjs, umur, sttsumur, usernya}) == true) {
+                    kddokterbpjs, normbpjs, kdpolibpjs, "-", "-", "-", 0 + "", "Belum", "Lama", "Ralan", kdpenjabbpjs, umur, sttsumur, usernya}) == true) {
 
             Sequel.mengedit("booking_registrasi", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_booking='Terdaftar',no_rawat='" + norwBokingBPJS.getText() + "'");
             Sequel.menyimpan("history_user", "Now(),'" + norwBokingBPJS.getText() + "','" + usernya + "','Registrasi Pasien','Simpan'");
