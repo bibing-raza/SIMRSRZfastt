@@ -393,6 +393,7 @@ import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMAsesmenUlangResikoJatuh;
+import rekammedis.RMMonitoringEWSDewasa;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMProtokolKemoterapi;
@@ -996,6 +997,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnProtokolKemoterapi = new widget.ButtonBig();
         btnAsesmenUlangResikoJatuh = new widget.ButtonBig();
         btnPengelolaanTransfusiDarah = new widget.ButtonBig();
+        btnMonitoringEWSDewasa = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6598,6 +6600,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPengelolaanTransfusiDarah);
 
+        btnMonitoringEWSDewasa.setForeground(new java.awt.Color(0, 0, 0));
+        btnMonitoringEWSDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
+        btnMonitoringEWSDewasa.setText("Monitoring EWS Dewasa");
+        btnMonitoringEWSDewasa.setIconTextGap(0);
+        btnMonitoringEWSDewasa.setName("btnMonitoringEWSDewasa"); // NOI18N
+        btnMonitoringEWSDewasa.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMonitoringEWSDewasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMonitoringEWSDewasaActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMonitoringEWSDewasa);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6606,7 +6621,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/03/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/03/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13023,6 +13038,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPengelolaanTransfusiDarahActionPerformed
 
+    private void btnMonitoringEWSDewasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMonitoringEWSDewasaActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMMonitoringEWSDewasa aplikasi = new RMMonitoringEWSDewasa(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMonitoringEWSDewasaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13277,6 +13305,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterResikoDecubitus;
     private widget.ButtonBig btnMerkInventaris;
     private widget.ButtonBig btnMonevAsuhanGizi;
+    private widget.ButtonBig btnMonitoringEWSDewasa;
     private widget.ButtonBig btnMonitoringKlaimBPJS;
     private widget.ButtonBig btnMutasiBarang;
     private widget.ButtonBig btnMutasiBerkas;
@@ -15205,6 +15234,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         } else if (cmbMenu.getSelectedIndex() == 11) {
             jmlmenu = 0;
             if (akses.getcppt()== true) {
+                Panelmenu.add(btnMonitoringEWSDewasa);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
                 Panelmenu.add(btnPengelolaanTransfusiDarah);
                 jmlmenu++;
             }
@@ -15798,6 +15832,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnAsesmenUlangResikoJatuh);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnMonitoringEWSDewasa);
             jmlmenu++;
         }
         
@@ -17884,6 +17923,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnPersetujuanTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPersetujuanTindakan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnMonitoringEWSDewasa.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMonitoringEWSDewasa);
                 jmlmenu++;
             }
         }

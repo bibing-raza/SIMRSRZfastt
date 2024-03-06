@@ -55,10 +55,10 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tanggal", "Jam", "Laju Respirasi", "Saturasi",
-            "Suplemen", "Tensi", "Laju Jantung", "Kesadaran", "Temperatur", "Tot. Skor", "GDS", "Skor Nyeri", "Urin Output",
-            "Nama Perawat", "Skor Respirasi", "Skor Saturasi", "Skor Suplemen", "Skor Tensi", "Skor Nadi", "Skor Kesadaran",
-            "Skor Temperatur", "tanggal", "jam", "nip", "waktu_simpan"
+        Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tanggal", "Jam", "Laju Respirasi", "Skor",
+            "Saturasi", "Skor", "Suplemen", "Skor", "Tensi", "Skor", "Laju Jantung", "Skor", "Kesadaran", "Skor", 
+            "Temperatur", "Skor", "Tot. Skor", "GDS", "Skor Nyeri", "Urin Output", "Nama Perawat", "tanggal", "jam", 
+            "nip", "waktu_simpan"
         };
         
         tabMode=new DefaultTableModel(null,row){
@@ -86,41 +86,41 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(80);
             } else if (i == 7) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 8) {
                 column.setPreferredWidth(80);
             } else if (i == 9) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 10) {
                 column.setPreferredWidth(80);
             } else if (i == 11) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 12) {
                 column.setPreferredWidth(80);
             } else if (i == 13) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 14) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(80);
             } else if (i == 15) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(40);
             } else if (i == 16) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(80);
             } else if (i == 17) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(40);
             } else if (i == 18) {
                 column.setPreferredWidth(80);
             } else if (i == 19) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(40);
             } else if (i == 20) {
                 column.setPreferredWidth(80);
             } else if (i == 21) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 22) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(75);
             } else if (i == 23) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(75);
             } else if (i == 24) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(220);
             } else if (i == 25) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -280,6 +280,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         panelBiasa11 = new widget.PanelBiasa();
         skor4 = new widget.TextArea();
         jLabel28 = new widget.Label();
+        kesimpulanEWS = new widget.TextArea();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -307,9 +308,6 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         tbEWS.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 tbEWSKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbEWSKeyReleased(evt);
             }
         });
         Scroll.setViewportView(tbEWS);
@@ -860,13 +858,13 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         jLabel19.setText("Total Skor :");
         jLabel19.setName("jLabel19"); // NOI18N
         panelGlass7.add(jLabel19);
-        jLabel19.setBounds(375, 94, 80, 23);
+        jLabel19.setBounds(375, 262, 80, 23);
 
         TtotSkor.setEditable(false);
         TtotSkor.setForeground(new java.awt.Color(0, 0, 0));
         TtotSkor.setName("TtotSkor"); // NOI18N
         panelGlass7.add(TtotSkor);
-        TtotSkor.setBounds(460, 94, 55, 23);
+        TtotSkor.setBounds(460, 262, 55, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Nama Perawat :");
@@ -878,13 +876,13 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         TnmPerawat.setForeground(new java.awt.Color(0, 0, 0));
         TnmPerawat.setName("TnmPerawat"); // NOI18N
         panelGlass7.add(TnmPerawat);
-        TnmPerawat.setBounds(165, 290, 320, 23);
+        TnmPerawat.setBounds(165, 290, 350, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("GDS :");
         jLabel22.setName("jLabel22"); // NOI18N
         panelGlass7.add(jLabel22);
-        jLabel22.setBounds(375, 122, 80, 23);
+        jLabel22.setBounds(375, 94, 80, 23);
 
         Tgds.setForeground(new java.awt.Color(0, 0, 0));
         Tgds.setName("Tgds"); // NOI18N
@@ -894,13 +892,13 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tgds);
-        Tgds.setBounds(460, 122, 55, 23);
+        Tgds.setBounds(460, 94, 55, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Skor Nyeri :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelGlass7.add(jLabel24);
-        jLabel24.setBounds(375, 150, 80, 23);
+        jLabel24.setBounds(375, 122, 80, 23);
 
         TskorNyeri.setForeground(new java.awt.Color(0, 0, 0));
         TskorNyeri.setName("TskorNyeri"); // NOI18N
@@ -910,13 +908,13 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TskorNyeri);
-        TskorNyeri.setBounds(460, 150, 55, 23);
+        TskorNyeri.setBounds(460, 122, 55, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Urin Output :");
         jLabel26.setName("jLabel26"); // NOI18N
         panelGlass7.add(jLabel26);
-        jLabel26.setBounds(375, 178, 80, 23);
+        jLabel26.setBounds(375, 150, 80, 23);
 
         Turin.setForeground(new java.awt.Color(0, 0, 0));
         Turin.setName("Turin"); // NOI18N
@@ -926,7 +924,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Turin);
-        Turin.setBounds(460, 178, 55, 23);
+        Turin.setBounds(460, 150, 55, 23);
 
         BtnPerawat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPerawat.setMnemonic('2');
@@ -939,7 +937,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnPerawat);
-        BtnPerawat.setBounds(485, 290, 28, 23);
+        BtnPerawat.setBounds(520, 290, 28, 23);
 
         chkSaya.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya.setForeground(new java.awt.Color(0, 0, 0));
@@ -955,10 +953,9 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(chkSaya);
-        chkSaya.setBounds(520, 290, 100, 23);
+        chkSaya.setBounds(560, 290, 100, 23);
 
         TabSkor.setBackground(new java.awt.Color(255, 255, 254));
-        TabSkor.setTabPlacement(javax.swing.JTabbedPane.LEFT);
         TabSkor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TabSkor.setName("TabSkor"); // NOI18N
 
@@ -1019,7 +1016,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         TabSkor.addTab("Kriteria Code Blue", panelBiasa11);
 
         panelGlass7.add(TabSkor);
-        TabSkor.setBounds(530, 90, 400, 150);
+        TabSkor.setBounds(530, 90, 640, 100);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1027,6 +1024,14 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         jLabel28.setName("jLabel28"); // NOI18N
         panelGlass7.add(jLabel28);
         jLabel28.setBounds(230, 150, 25, 23);
+
+        kesimpulanEWS.setEditable(false);
+        kesimpulanEWS.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Kesimpulan EWS Sesuai Dengan Total Skor : ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11))); // NOI18N
+        kesimpulanEWS.setColumns(20);
+        kesimpulanEWS.setRows(5);
+        kesimpulanEWS.setName("kesimpulanEWS"); // NOI18N
+        panelGlass7.add(kesimpulanEWS);
+        kesimpulanEWS.setBounds(530, 200, 640, 80);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1187,7 +1192,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void tbEWSMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbEWSMouseClicked
-        if(tabMode.getRowCount()!=0){
+        if (tabMode.getRowCount() != 0) {
             try {
                 getData();
             } catch (java.lang.NullPointerException e) {
@@ -1196,28 +1201,19 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
 }//GEN-LAST:event_tbEWSMouseClicked
 
     private void tbEWSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbEWSKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
-                TCari.setText("");
-                TCari.requestFocus();
-            }           
+        if (tabMode.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getData();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
         }
 }//GEN-LAST:event_tbEWSKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
     }//GEN-LAST:event_formWindowOpened
-
-    private void tbEWSKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbEWSKeyReleased
-        if(tabMode.getRowCount()!=0){
-            if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
-                try {
-                    getData();
-                } catch (java.lang.NullPointerException e) {
-                }
-            }          
-        }
-    }//GEN-LAST:event_tbEWSKeyReleased
 
     private void cmbDtkMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtkMouseReleased
         AutoCompleteDecorator.decorate(cmbDtk);
@@ -1523,6 +1519,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private widget.TextArea kesimpulanEWS;
     private widget.PanelBiasa panelBiasa10;
     private widget.PanelBiasa panelBiasa11;
     private widget.PanelBiasa panelBiasa8;
@@ -1551,8 +1548,27 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
                     + "me.tanggal between ? and ? and me.ruang_rawat like ? or "
                     + "me.tanggal between ? and ? and me.kesadaran like ? order by me.tanggal desc, me.jam desc");
             try {
-                ps.setString(1, "%" + TCari.getText().trim() + "%");
-                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -1560,32 +1576,31 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("ruang_rawat"),
-                        rs.getString("tgl"),                        
+                        rs.getString("tgl"),
                         rs.getString("jamEws"),
                         rs.getString("laju_respirasi"),
+                        rs.getString("skor_respirasi"),
                         rs.getString("saturasi"),
+                        rs.getString("skor_saturasi"),
                         rs.getString("suplemen"),
-                        rs.getString("tensi"),                        
+                        rs.getString("skor_suplemen"),
+                        rs.getString("tensi"),
+                        rs.getString("skor_tensi"),
                         rs.getString("nadi"),
+                        rs.getString("skor_nadi"),
                         rs.getString("kesadaran"),
+                        rs.getString("skor_kesadaran"),
                         rs.getString("temperatur"),
+                        rs.getString("skor_temperatur"),
                         rs.getString("nilai_skor"),
-                        rs.getString("gds"),                        
+                        rs.getString("gds"),
                         rs.getString("skor_nyeri"),
                         rs.getString("urin_output"),
-                        rs.getString("perawat"),                        
-                        rs.getString("skor_respirasi"),
-                        rs.getString("skor_saturasi"),
-                        rs.getString("skor_suplemen"),
-                        rs.getString("skor_tensi"),
-                        rs.getString("skor_nadi"),
-                        rs.getString("skor_kesadaran"),
-                        rs.getString("skor_temperatur"),                        
+                        rs.getString("perawat"),
                         rs.getString("tanggal"),
                         rs.getString("jam"),
                         rs.getString("nip_perawat"),
                         rs.getString("waktu_simpan")
-                        
                     });
                 }
             } catch (Exception e) {
@@ -1642,9 +1657,36 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
     }
 
     private void getData() {
-        if(tbEWS.getSelectedRow()!= -1){
-//            TKd.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),0).toString());
-//            TNm.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),1).toString());
+        nip = "";
+        if (tbEWS.getSelectedRow() != -1) {
+            TNoRw.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),0).toString());
+            TNoRm.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),1).toString());
+            TPasien.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),2).toString());
+            TruangRwt.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),3).toString());
+            Valid.SetTgl(Ttgl, tbEWS.getValueAt(tbEWS.getSelectedRow(),25).toString());
+            cmbJam.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),26).toString().substring(6, 8));
+            cmbRespirasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),6).toString());
+            TskorRespi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),7).toString());
+            cmbSaturasi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),8).toString());
+            TskorSatu.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),9).toString());
+            cmbSuplemen.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),10).toString());
+            TskorSuple.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),11).toString());
+            cmbTensi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),12).toString());
+            TskorTensi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),13).toString());
+            cmbNadi.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),14).toString());
+            TskorNadi.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),15).toString());
+            cmbKesadaran.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),16).toString());
+            TskorKesadaran.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),17).toString());
+            cmbTempe.setSelectedItem(tbEWS.getValueAt(tbEWS.getSelectedRow(),18).toString());
+            TskorTempe.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),19).toString());
+            TtotSkor.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),20).toString());
+            Tgds.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),21).toString());
+            TskorNyeri.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),22).toString());
+            Turin.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),23).toString());
+            nip = tbEWS.getValueAt(tbEWS.getSelectedRow(),27).toString();
+            TnmPerawat.setText(tbEWS.getValueAt(tbEWS.getSelectedRow(),24).toString());
         }
     }
     
@@ -1659,12 +1701,18 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         total = respirasi + saturasi + suplemen + tensi + nadi + kesadaran + temperatur;
         TtotSkor.setText(Valid.SetAngka2(total));
         
-        if (total >= 0 && total <= 4) {
+        if (total == 0) {
             TabSkor.setSelectedIndex(0);
+            kesimpulanEWS.setText("-");
+        } else if (total >= 1 && total <= 4) {
+            TabSkor.setSelectedIndex(0);
+            kesimpulanEWS.setText("RESIKO RINGAN :\n" + skor1.getText());
         } else if (total >= 5 && total <= 6) {
             TabSkor.setSelectedIndex(1);
+            kesimpulanEWS.setText("RESIKO SEDANG :\n" + skor2.getText());
         } else if (total >= 7) {
             TabSkor.setSelectedIndex(2);
+            kesimpulanEWS.setText("RESIKO TINGGI :\n" + skor3.getText());
         }
     }
     

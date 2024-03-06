@@ -1609,7 +1609,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             WindowCetak.setLocationRelativeTo(internalFrame1);
             WindowCetak.setAlwaysOnTop(false);
             WindowCetak.setVisible(true);
-            tglA.setDate(new Date());
+            Valid.SetTgl(tglA, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
             tglB.setDate(new Date());
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih salah satu datanya terlebih dulu..!!!!");
