@@ -120,6 +120,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCTK = new widget.ButtonBig();
         BtnAsesmenUlangRJ = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
+        BtnMonitoringEWSdewasa = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
@@ -377,6 +378,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnPengelolaanTranfusiDarah);
+
+        BtnMonitoringEWSdewasa.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMonitoringEWSdewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
+        BtnMonitoringEWSdewasa.setText("Monitoring EWS Dewasa");
+        BtnMonitoringEWSdewasa.setIconTextGap(0);
+        BtnMonitoringEWSdewasa.setName("BtnMonitoringEWSdewasa"); // NOI18N
+        BtnMonitoringEWSdewasa.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMonitoringEWSdewasa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMonitoringEWSdewasaActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnMonitoringEWSdewasa);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -841,6 +855,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPengelolaanTranfusiDarahActionPerformed
 
+    private void BtnMonitoringEWSdewasaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMonitoringEWSdewasaActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMMonitoringEWSDewasa form = new RMMonitoringEWSDewasa(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMonitoringEWSdewasaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -870,6 +901,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
+    private widget.ButtonBig BtnMonitoringEWSdewasa;
     private widget.ButtonBig BtnPantauHarianPasien;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnProtokolKemoterapi;
@@ -912,6 +944,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnGrafikPantauHarian.setEnabled(akses.getcppt());
         BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());        
         BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
+        BtnMonitoringEWSdewasa.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,
@@ -1012,6 +1045,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png")));
             BtnPengelolaanTranfusiDarah.setToolTipText("Pengelolaan Pasien Transfusi Darah SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from monitoring_ews_dewasa where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
+            BtnMonitoringEWSdewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png")));
+            BtnMonitoringEWSdewasa.setToolTipText("Monitoring EWS Dewasa BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnMonitoringEWSdewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940_biru.png")));
+            BtnMonitoringEWSdewasa.setToolTipText("Monitoring EWS Dewasa SUDAH diisi oleh petugas..!!!");
         }
     }
 }
