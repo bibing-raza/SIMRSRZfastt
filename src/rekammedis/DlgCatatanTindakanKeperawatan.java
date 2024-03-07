@@ -1514,7 +1514,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -1576,7 +1576,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -1630,7 +1630,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 8, 100, 23);
 
         TtglCopy.setEditable(false);
-        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglCopy.setDisplayFormat("dd-MM-yyyy");
         TtglCopy.setName("TtglCopy"); // NOI18N
         TtglCopy.setOpaque(false);
@@ -1824,7 +1824,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglCTK);
 
-        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglCTK.setDisplayFormat("dd-MM-yyyy");
         TtglCTK.setName("TtglCTK"); // NOI18N
         TtglCTK.setOpaque(false);
@@ -1906,7 +1906,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi16.add(jLabel57);
         jLabel57.setBounds(0, 20, 100, 23);
 
-        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglCopy1.setDisplayFormat("dd-MM-yyyy");
         TtglCopy1.setName("TtglCopy1"); // NOI18N
         TtglCopy1.setOpaque(false);
@@ -2058,7 +2058,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -2489,7 +2489,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2503,7 +2503,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2581,6 +2581,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
+        getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
         PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
@@ -2634,7 +2636,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         scrollPane5.setName("scrollPane5"); // NOI18N
-        scrollPane5.setPreferredSize(new java.awt.Dimension(212, 350));
+        scrollPane5.setPreferredSize(new java.awt.Dimension(212, 400));
 
         Thasil.setEditable(false);
         Thasil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -2666,9 +2668,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         PanelAccor.add(FormMenu, java.awt.BorderLayout.CENTER);
 
-        internalFrame1.add(PanelAccor, java.awt.BorderLayout.EAST);
-
-        getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+        getContentPane().add(PanelAccor, java.awt.BorderLayout.EAST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3235,6 +3235,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnEdit1ActionPerformed
 
     private void BtnEvaluasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEvaluasiActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
         WindowEvaluasi.setSize(599, 197);
         WindowEvaluasi.setLocationRelativeTo(internalFrame1);
         WindowEvaluasi.setAlwaysOnTop(false);
@@ -3487,6 +3489,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 + "and tanggal='" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "'") > 0) {
             JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan manajemen nyeri utk. tgl. " + Ttgl.getSelectedItem() + " sudah tersimpan,..!!");
         } else {
+            ChkAccor.setSelected(false);
+            isMenu();
             WindowManajemen.setSize(664, 294);
             WindowManajemen.setLocationRelativeTo(internalFrame1);
             WindowManajemen.setAlwaysOnTop(false);
@@ -4064,6 +4068,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
     private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ChkAccor.setSelected(false);
+        isMenu();
         akses.setform("DlgCatatanTindakanKeperawatan");
         DlgNotepad form = new DlgNotepad(null, false);
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

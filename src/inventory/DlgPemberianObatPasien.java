@@ -930,6 +930,11 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
+        panelGlass13 = new widget.panelisi();
+        Scroll = new widget.ScrollPane();
+        tbObat = new widget.Table();
+        Scroll4 = new widget.ScrollPane();
+        tbDouble = new widget.Table();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -940,11 +945,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         Thasil = new widget.TextArea();
         scrollPane4 = new widget.ScrollPane();
         Tinstruksi = new widget.TextArea();
-        panelGlass13 = new widget.panelisi();
-        Scroll = new widget.ScrollPane();
-        tbObat = new widget.Table();
-        Scroll4 = new widget.ScrollPane();
-        tbDouble = new widget.Table();
 
         jPopupMenu.setName("jPopupMenu"); // NOI18N
 
@@ -1420,7 +1420,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -2525,7 +2525,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2539,7 +2539,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2616,93 +2616,6 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
-        PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
-        PanelAccor.setLayout(new java.awt.BorderLayout());
-
-        ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
-        ChkAccor.setToolTipText("Silahkan Klik Untuk Membaca CPPT");
-        ChkAccor.setFocusable(false);
-        ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        ChkAccor.setName("ChkAccor"); // NOI18N
-        ChkAccor.setPreferredSize(new java.awt.Dimension(22, 20));
-        ChkAccor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
-        ChkAccor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
-        ChkAccor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
-        ChkAccor.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkAccorActionPerformed(evt);
-            }
-        });
-        PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
-
-        FormMenu.setBackground(new java.awt.Color(250, 250, 245));
-        FormMenu.setName("FormMenu"); // NOI18N
-        FormMenu.setPreferredSize(new java.awt.Dimension(150, 483));
-        FormMenu.setLayout(new java.awt.GridLayout(1, 2));
-
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " CPPT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
-        Scroll3.setName("Scroll3"); // NOI18N
-        Scroll3.setOpaque(true);
-
-        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
-        tbCPPT.setName("tbCPPT"); // NOI18N
-        tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbCPPTMouseClicked(evt);
-            }
-        });
-        tbCPPT.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbCPPTKeyPressed(evt);
-            }
-        });
-        Scroll3.setViewportView(tbCPPT);
-
-        FormMenu.add(Scroll3);
-
-        panelGlass14.setName("panelGlass14"); // NOI18N
-        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 300));
-        panelGlass14.setLayout(new java.awt.BorderLayout());
-
-        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        scrollPane5.setName("scrollPane5"); // NOI18N
-        scrollPane5.setPreferredSize(new java.awt.Dimension(212, 250));
-
-        Thasil.setEditable(false);
-        Thasil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Thasil.setColumns(20);
-        Thasil.setRows(5);
-        Thasil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Thasil.setName("Thasil"); // NOI18N
-        Thasil.setPreferredSize(new java.awt.Dimension(202, 4000));
-        scrollPane5.setViewportView(Thasil);
-
-        panelGlass14.add(scrollPane5, java.awt.BorderLayout.PAGE_START);
-
-        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Instruksi Tenaga Kesehatan Termasuk Pasca Bedah/Prosedur ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        scrollPane4.setName("scrollPane4"); // NOI18N
-        scrollPane4.setPreferredSize(new java.awt.Dimension(212, 250));
-
-        Tinstruksi.setEditable(false);
-        Tinstruksi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Tinstruksi.setColumns(20);
-        Tinstruksi.setRows(5);
-        Tinstruksi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        Tinstruksi.setName("Tinstruksi"); // NOI18N
-        Tinstruksi.setPreferredSize(new java.awt.Dimension(202, 4000));
-        scrollPane4.setViewportView(Tinstruksi);
-
-        panelGlass14.add(scrollPane4, java.awt.BorderLayout.CENTER);
-
-        FormMenu.add(panelGlass14);
-
-        PanelAccor.add(FormMenu, java.awt.BorderLayout.CENTER);
-
-        internalFrame1.add(PanelAccor, java.awt.BorderLayout.EAST);
-
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(44, 300));
         panelGlass13.setLayout(new java.awt.BorderLayout());
@@ -2757,6 +2670,93 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         internalFrame1.add(panelGlass13, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
+
+        PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
+        PanelAccor.setName("PanelAccor"); // NOI18N
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
+        PanelAccor.setLayout(new java.awt.BorderLayout());
+
+        ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
+        ChkAccor.setToolTipText("Silahkan Klik Untuk Membaca CPPT");
+        ChkAccor.setFocusable(false);
+        ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        ChkAccor.setName("ChkAccor"); // NOI18N
+        ChkAccor.setPreferredSize(new java.awt.Dimension(22, 20));
+        ChkAccor.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
+        ChkAccor.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
+        ChkAccor.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2leftarrow.png"))); // NOI18N
+        ChkAccor.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkAccorActionPerformed(evt);
+            }
+        });
+        PanelAccor.add(ChkAccor, java.awt.BorderLayout.WEST);
+
+        FormMenu.setBackground(new java.awt.Color(250, 250, 245));
+        FormMenu.setName("FormMenu"); // NOI18N
+        FormMenu.setPreferredSize(new java.awt.Dimension(150, 483));
+        FormMenu.setLayout(new java.awt.GridLayout(1, 2));
+
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " CPPT ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbCPPT.setToolTipText("Silahkan klik untuk memilih data yang dibaca cpptnya");
+        tbCPPT.setName("tbCPPT"); // NOI18N
+        tbCPPT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbCPPTMouseClicked(evt);
+            }
+        });
+        tbCPPT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbCPPTKeyPressed(evt);
+            }
+        });
+        Scroll3.setViewportView(tbCPPT);
+
+        FormMenu.add(Scroll3);
+
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass14.setLayout(new java.awt.BorderLayout());
+
+        scrollPane5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Hasil Pemeriksaan, Analisa, Rencana, Penatalaksanaan Pasien ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane5.setName("scrollPane5"); // NOI18N
+        scrollPane5.setPreferredSize(new java.awt.Dimension(212, 400));
+
+        Thasil.setEditable(false);
+        Thasil.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Thasil.setColumns(20);
+        Thasil.setRows(5);
+        Thasil.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Thasil.setName("Thasil"); // NOI18N
+        Thasil.setPreferredSize(new java.awt.Dimension(202, 4000));
+        scrollPane5.setViewportView(Thasil);
+
+        panelGlass14.add(scrollPane5, java.awt.BorderLayout.PAGE_START);
+
+        scrollPane4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Instruksi Tenaga Kesehatan Termasuk Pasca Bedah/Prosedur ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        scrollPane4.setName("scrollPane4"); // NOI18N
+        scrollPane4.setPreferredSize(new java.awt.Dimension(212, 250));
+
+        Tinstruksi.setEditable(false);
+        Tinstruksi.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Tinstruksi.setColumns(20);
+        Tinstruksi.setRows(5);
+        Tinstruksi.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        Tinstruksi.setName("Tinstruksi"); // NOI18N
+        Tinstruksi.setPreferredSize(new java.awt.Dimension(202, 4000));
+        scrollPane4.setViewportView(Tinstruksi);
+
+        panelGlass14.add(scrollPane4, java.awt.BorderLayout.CENTER);
+
+        FormMenu.add(panelGlass14);
+
+        PanelAccor.add(FormMenu, java.awt.BorderLayout.CENTER);
+
+        getContentPane().add(PanelAccor, java.awt.BorderLayout.EAST);
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -3736,6 +3736,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         } else if (Sequel.cariInteger("select count(-1) from pemberian_obat where no_rawat='" + TNoRW.getText() + "'") == 0) {
             JOptionPane.showMessageDialog(null, "Simpan dulu data jadwal pemberian obatnya sesuai dengan tgl. pemberian..!!");
         } else {
+            ChkAccor.setSelected(false);
+            isMenu();
             akses.setform("DlgPemberianObatPasien");
             DlgPelaksanaPemberiObat petugas = new DlgPelaksanaPemberiObat(null, false);
             petugas.emptTeks();
@@ -3784,6 +3786,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Data pemberian obat pasien masih kosong...!!!!");
         } else {
+            ChkAccor.setSelected(false);
+            isMenu();
             //cek conteng
             x = 0;
             for (i = 0; i < tbObat.getRowCount(); i++) {
@@ -4009,6 +4013,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
     private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        ChkAccor.setSelected(false);
+        isMenu();
         akses.setform("DlgPemberianObatPasien");
         DlgNotepad form = new DlgNotepad(null, false);
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
