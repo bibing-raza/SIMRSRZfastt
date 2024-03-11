@@ -192,7 +192,10 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TCari.setDocument(new batasInput((int)100).getKata(TCari));
+        Tgds.setDocument(new batasInput((int) 10).getKata(Tgds));
+        TskorNyeri.setDocument(new batasInput((int) 5).getKata(TskorNyeri));
+        Turin.setDocument(new batasInput((int) 5).getKata(Turin));
+        TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
