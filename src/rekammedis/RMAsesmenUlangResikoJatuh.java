@@ -1088,6 +1088,7 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Silahkan conteng dulu data faktor resikonya..!!!!");
                 tbFaktorResiko.requestFocus();
             } else {
+                autoNomorFaktorResiko();
                 if (Sequel.menyimpantf("asesmen_ulang_resiko_jatuh", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
                         TNoRw.getText(), Valid.SetTgl(tglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                         TkdFaktor.getText(), TtotSkor.getText(), cmbTindakanCegah.getSelectedItem().toString(), nip, Tkategori.getText(),
@@ -1365,8 +1366,10 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
 
             Valid.MyReport("rptAsesmenUlangRJ.jasper", "report", "::[ Asesmen Ulang Resiko Jatuh ]::",
                     "SELECT b.faktor_resiko, b.skala, b.skor from detail_asesmen_ulang_resiko_jatuh a "
-                    + "inner join master_faktor_resiko_igd b on b.kode_resiko=a.kode_resiko WHERE "
-                    + "a.kode_ulang_resiko='" + TkdFaktor.getText() + "' order by b.kode_resiko", param);
+                    + "inner join master_faktor_resiko_igd b on b.kode_resiko=a.kode_resiko "
+                    + "inner join asesmen_ulang_resiko_jatuh c on c.kode_ulang_resiko=a.kode_ulang_resiko WHERE "
+                    + "a.kode_ulang_resiko='" + TkdFaktor.getText() + "' and c.tgl_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString() + "' "
+                    + "and c.jam_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 12).toString() + "' order by b.kode_resiko", param);
 
             TCari.setText(TNoRw.getText());
             Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
@@ -1830,9 +1833,16 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
-                    + "FROM master_faktor_resiko_igd a left join detail_asesmen_ulang_resiko_jatuh b on a.kode_resiko=b.kode_resiko "
-                    + "and b.kode_ulang_resiko='" + TkdFaktor.getText() + "' where "
-                    + "a.asesmen='Ulang Resiko Jatuh' order by a.kode_resiko");
+                    + "FROM master_faktor_resiko_igd a LEFT JOIN detail_asesmen_ulang_resiko_jatuh b ON a.kode_resiko = b.kode_resiko "
+                    + "AND b.kode_ulang_resiko = '" + TkdFaktor.getText() + "' left join asesmen_ulang_resiko_jatuh c on c.kode_ulang_resiko = b.kode_ulang_resiko "
+                    + "and b.kode_ulang_resiko = '" + TkdFaktor.getText() + "' and c.tgl_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString() + "' "
+                    + "and c.jam_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 12).toString() + "' "
+                    + "WHERE a.asesmen = 'Ulang Resiko Jatuh' ORDER BY a.kode_resiko");
+
+//            ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
+//                    + "FROM master_faktor_resiko_igd a left join detail_asesmen_ulang_resiko_jatuh b on a.kode_resiko=b.kode_resiko "
+//                    + "and b.kode_ulang_resiko='" + TkdFaktor.getText() + "' where "
+//                    + "a.asesmen='Ulang Resiko Jatuh' order by a.kode_resiko");
             try {
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
