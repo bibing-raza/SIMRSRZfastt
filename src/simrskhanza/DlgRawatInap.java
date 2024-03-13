@@ -53,8 +53,8 @@ public final class DlgRawatInap extends javax.swing.JDialog {
     //public DlgKamarInap kamarinap = new DlgKamarInap(null, false);
     private DlgPasien pasien = new DlgPasien(null, false);
     public  DlgCariDokter dokter_umum=new DlgCariDokter(null,false);
-    private PreparedStatement ps, ps2, ps3, ps4, ps5, psrekening, pstarif, psdiagnosa, pscppt;
-    private ResultSet rs, rs5, rsrekening, rscppt;
+    private PreparedStatement ps, ps2, ps3, ps4, ps5, ps6, psrekening, pstarif, psdiagnosa, pscppt;
+    private ResultSet rs, rs5, rs6, rsrekening, rscppt;
     private Date date = new Date();
     private Date date2 = new Date();
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
@@ -4777,9 +4777,21 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabModeDr.addRow(new Object[]{
-                        false, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5), rs.getString(6), rs.getString(7),
-                        rs.getString(8), rs.getDouble(9), rs.getString("kd_jenis_prw"), rs.getString("tarif_tindakandr"), rs.getString("kso"),
-                        rs.getString("dokter2"),rs.getString("kd_dokter_mewakili")
+                        false,
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getDouble(9),
+                        rs.getString("kd_jenis_prw"),
+                        rs.getString("tarif_tindakandr"),
+                        rs.getString("kso"),
+                        rs.getString("dokter2"),
+                        rs.getString("kd_dokter_mewakili")
                     });
                 }
             } catch (Exception e) {
@@ -4804,26 +4816,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             TNoRM.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 2).toString());
             TPasien.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 3).toString());
             KdDok.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 5).toString());
-            TDokter.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 6).toString());            
+            TDokter.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 6).toString());
             cmbJam.setSelectedItem(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 8).toString().substring(0, 2));
             cmbMnt.setSelectedItem(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 8).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 8).toString().substring(6, 8));
             Valid.SetTgl(DTPTgl, tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 7).toString());
-            Sequel.cariIsi("select kd_jenis_prw from jns_perawatan_inap where nm_perawatan=? ", TKdPrw, tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 4).toString());
-            
-//            KdDok1.setText(Sequel.cariIsi("select kd_dokter_mewakili from rawat_inap_dr where no_rawat='" + TNoRw.getText() + "' and kd_jenis_prw='" + TKdPrw.getText() + "' "
-//                    + "and tgl_perawatan='" + tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 7).toString() + "' "
-//                    + "and jam_rawat='" + tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 8).toString() + "'"));
-
+            TKdPrw.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 10).toString());
             KdDok1.setText(tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 14).toString());
-
-//            if (KdDok1.getText().equals("")) {
-//                KdDok1.setText("-");
-//            } else {
-//                KdDok1.setText(Sequel.cariIsi("select kd_dokter_mewakili from rawat_inap_dr where no_rawat='" + TNoRw.getText() + "' and kd_jenis_prw='" + TKdPrw.getText() + "' "
-//                        + "and tgl_perawatan='" + tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 7).toString() + "' "
-//                        + "and jam_rawat='" + tbRawatDr.getValueAt(tbRawatDr.getSelectedRow(), 8).toString() + "'"));
-//            }
             TDokter1.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + KdDok1.getText() + "'"));
             isJns();
         }
@@ -4880,7 +4879,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ps2.setString(28, "%" + TCari.getText().trim() + "%");
                 rs = ps2.executeQuery();
                 while (rs.next()) {
-                    tabModePr.addRow(new Object[]{false, rs.getString(1),
+                    tabModePr.addRow(new Object[]{
+                        false, 
+                        rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
                         rs.getString(4),
@@ -4922,7 +4923,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbMnt.setSelectedItem(tbRawatPr.getValueAt(tbRawatPr.getSelectedRow(), 8).toString().substring(3, 5));
             cmbDtk.setSelectedItem(tbRawatPr.getValueAt(tbRawatPr.getSelectedRow(), 8).toString().substring(6, 8));
             Valid.SetTgl(DTPTgl, tbRawatPr.getValueAt(tbRawatPr.getSelectedRow(), 7).toString());
-            Sequel.cariIsi("select kd_jenis_prw from jns_perawatan_inap where nm_perawatan=? ", TKdPrw, tbRawatPr.getValueAt(tbRawatPr.getSelectedRow(), 4).toString());
+            TKdPrw.setText(tbRawatPr.getValueAt(tbRawatPr.getSelectedRow(), 10).toString());            
             isJns();
         }
     }
@@ -5035,19 +5036,39 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
 
     private void isJns() {
-        Sequel.cariIsi("select nm_perawatan from jns_perawatan_inap where kd_jenis_prw=? ", TNmPrw, TKdPrw.getText());
-        Sequel.cariIsi("select bhp from jns_perawatan_inap where kd_jenis_prw=? ", Bhp, TKdPrw.getText());
-        Sequel.cariIsi("select material from jns_perawatan_inap where kd_jenis_prw=? ", BagianRS, TKdPrw.getText());
-        Sequel.cariIsi("select tarif_tindakandr from jns_perawatan_inap where kd_jenis_prw=? ", JmDokter, TKdPrw.getText());
-        Sequel.cariIsi("select tarif_tindakanpr from jns_perawatan_inap where kd_jenis_prw=? ", JmPerawat, TKdPrw.getText());
-        Sequel.cariIsi("select kso from jns_perawatan_inap where kd_jenis_prw=? ", KSO, TKdPrw.getText());
-        Sequel.cariIsi("select menejemen from jns_perawatan_inap where kd_jenis_prw=? ", Menejemen, TKdPrw.getText());
-        if (TabRawat.getSelectedIndex() == 0) {
-            Sequel.cariIsi("select total_byrdr from jns_perawatan_inap where kd_jenis_prw=? ", TTnd, TKdPrw.getText());
-        } else if (TabRawat.getSelectedIndex() == 1) {
-            Sequel.cariIsi("select total_byrpr from jns_perawatan_inap where kd_jenis_prw=? ", TTnd, TKdPrw.getText());
-        } else if (TabRawat.getSelectedIndex() == 2) {
-            Sequel.cariIsi("select total_byrdrpr from jns_perawatan_inap where kd_jenis_prw=? ", TTnd, TKdPrw.getText());
+        try {
+            ps6 = koneksi.prepareStatement("select * from jns_perawatan_inap where kd_jenis_prw='" + TKdPrw.getText() + "'");
+            try {
+                rs6 = ps6.executeQuery();
+                while (rs6.next()) {
+                    TNmPrw.setText(rs6.getString("nm_perawatan"));
+                    Bhp.setText(rs6.getString("bhp"));
+                    BagianRS.setText(rs6.getString("material"));
+                    JmDokter.setText(rs6.getString("tarif_tindakandr"));
+                    JmPerawat.setText(rs6.getString("tarif_tindakanpr"));
+                    KSO.setText(rs6.getString("kso"));
+                    Menejemen.setText(rs6.getString("menejemen"));
+
+                    if (TabRawat.getSelectedIndex() == 0) {
+                        TTnd.setText(rs6.getString("total_byrdr"));
+                    } else if (TabRawat.getSelectedIndex() == 1) {
+                        TTnd.setText(rs6.getString("total_byrpr"));
+                    } else if (TabRawat.getSelectedIndex() == 2) {
+                        TTnd.setText(rs6.getString("total_byrdrpr"));
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs6 != null) {
+                    rs6.close();
+                }
+                if (ps6 != null) {
+                    ps6.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 

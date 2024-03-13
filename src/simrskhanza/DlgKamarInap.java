@@ -14814,18 +14814,18 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void updateHari() {
         if ((R1.isSelected() == true) && (akses.getstatus() == false)) {
             for (i = 0; i < tbKamIn.getRowCount(); i++) {
-                if (tbKamIn.getValueAt(i, 14).toString().equals("")) {
+                if (tbKamIn.getValueAt(i, 15).toString().equals("")) {
                     if (hariawal.equals("Yes")) {
                         Sequel.mengedit(" kamar_inap ", " no_rawat='" + tbKamIn.getValueAt(i, 0).toString() + "' and "
-                                + " kd_kamar='" + tbKamIn.getValueAt(i, 7).toString() + "' "
-                                + " and tgl_masuk='" + tbKamIn.getValueAt(i, 12).toString() + "' and jam_masuk='" + tbKamIn.getValueAt(i, 13).toString() + "'",
+                                + " kd_kamar='" + tbKamIn.getValueAt(i, 8).toString() + "' "
+                                + " and tgl_masuk='" + tbKamIn.getValueAt(i, 13).toString() + "' and jam_masuk='" + tbKamIn.getValueAt(i, 14).toString() + "'",
                                 " lama=if(to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk))=0,if(time_to_sec(NOW())-time_to_sec(concat(tgl_masuk,' ',jam_masuk))>(3600*" + lama + "),1,0),to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk)))+1,"
                                 + " ttl_biaya=(if(to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk))=0,if(time_to_sec(NOW())-time_to_sec(concat(tgl_masuk,' ',jam_masuk))>(3600*" + lama + "),1,0),to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk)))+1)*trf_kamar");
 
                     } else {
                         Sequel.mengedit(" kamar_inap ", " no_rawat='" + tbKamIn.getValueAt(i, 0).toString() + "' and "
-                                + " kd_kamar='" + tbKamIn.getValueAt(i, 7).toString() + "' "
-                                + " and tgl_masuk='" + tbKamIn.getValueAt(i, 12).toString() + "' and jam_masuk='" + tbKamIn.getValueAt(i, 13).toString() + "'",
+                                + " kd_kamar='" + tbKamIn.getValueAt(i, 8).toString() + "' "
+                                + " and tgl_masuk='" + tbKamIn.getValueAt(i, 13).toString() + "' and jam_masuk='" + tbKamIn.getValueAt(i, 14).toString() + "'",
                                 " lama=if(to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk))=0,if(time_to_sec(NOW())-time_to_sec(concat(tgl_masuk,' ',jam_masuk))>(3600*" + lama + "),1,0),to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk))),"
                                 + " ttl_biaya=if(to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk))=0,if(time_to_sec(NOW())-time_to_sec(concat(tgl_masuk,' ',jam_masuk))>(3600*" + lama + "),1,0),to_days(NOW())-to_days(concat(tgl_masuk,' ',jam_masuk)))*trf_kamar");
                     }
