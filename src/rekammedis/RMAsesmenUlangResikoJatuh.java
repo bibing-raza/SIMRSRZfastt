@@ -1365,7 +1365,7 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
             }
 
             Valid.MyReport("rptAsesmenUlangRJ.jasper", "report", "::[ Asesmen Ulang Resiko Jatuh ]::",
-                    "SELECT b.faktor_resiko, b.skala, b.skor from detail_asesmen_ulang_resiko_jatuh a "
+                    "SELECT DISTINCT b.faktor_resiko, b.skala, b.skor from detail_asesmen_ulang_resiko_jatuh a "
                     + "inner join master_faktor_resiko_igd b on b.kode_resiko=a.kode_resiko "
                     + "inner join asesmen_ulang_resiko_jatuh c on c.kode_ulang_resiko=a.kode_ulang_resiko WHERE "
                     + "a.kode_ulang_resiko='" + TkdFaktor.getText() + "' and c.tgl_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString() + "' "
@@ -1832,7 +1832,7 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
     private void tampilDataFaktorResiko() {
         Valid.tabelKosong(tabMode1);
         try {
-            ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
+            ps2 = koneksi.prepareStatement("SELECT DISTINCT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
                     + "FROM master_faktor_resiko_igd a LEFT JOIN detail_asesmen_ulang_resiko_jatuh b ON a.kode_resiko = b.kode_resiko "
                     + "AND b.kode_ulang_resiko = '" + TkdFaktor.getText() + "' left join asesmen_ulang_resiko_jatuh c on c.kode_ulang_resiko = b.kode_ulang_resiko "
                     + "and b.kode_ulang_resiko = '" + TkdFaktor.getText() + "' and c.tgl_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString() + "' "
