@@ -81,7 +81,7 @@ public final class akses {
             kemenkes_sitt = false, rencana_kontrol_jkn = false, spri_jkn = false, hapus_sep = false, penilaian_awal_medis_ralan_kebidanan = false, penilaian_awal_keperawatan_kebidanan = false,
             ikhtisar_perawatan_hiv = false, survey_kepuasan = false, kemenkes_kanker = false, aktivasi_bridging = false, operator_antrian = false, penilaian_awal_medis_ralan_tht = false,
             rekam_psikologis = false, penilaian_pasien_geriatri = false, penilaian_awal_medis_ralan_mata = false, surat_sakit = false, surat_keterangan_kir_mcu = false, asesmen_medik_dewasa_ranap = false,
-            pemberian_obat = false, cppt = false, bridging_satu_sehat = false, kemoterapi=false;
+            pemberian_obat = false, cppt = false, bridging_satu_sehat = false, kemoterapi=false, cek_piutang=false;
     public static Timer tRefreshAntrian, tRefreshPoli, tRefreshAntri, tRefreshNotifApotek, tRefreshNotifLab, tRefreshNotifRad;
 
     public static void setData(String user, String pass) {
@@ -481,6 +481,7 @@ public final class akses {
                     akses.cppt = true;
                     akses.bridging_satu_sehat = true;
                     akses.kemoterapi = true;
+                    akses.cek_piutang = true;
                 } else if (rs.getRow() >= 1) {
                     akses.kode = "Admin Utama";
                     akses.penyakit = true;
@@ -856,6 +857,7 @@ public final class akses {
                     akses.cppt = true;
                     akses.bridging_satu_sehat = true;
                     akses.kemoterapi = true;
+                    akses.cek_piutang = true;
                 } else if (rs2.getRow() >= 1) {
                     rs2.beforeFirst();
                     rs2.next();
@@ -1235,6 +1237,7 @@ public final class akses {
                     akses.cppt = rs2.getBoolean("cppt");
                     akses.bridging_satu_sehat = rs2.getBoolean("bridging_satu_sehat");
                     akses.kemoterapi = rs2.getBoolean("kemoterapi");
+                    akses.cek_piutang = rs2.getBoolean("cek_piutang");
                 } else if ((rs.getRow() == 0) && (rs2.getRow() == 0)) {
                     akses.kode = "";
                     akses.penyakit = false;
@@ -1611,6 +1614,7 @@ public final class akses {
                     akses.cppt = false;
                     akses.bridging_satu_sehat = false;
                     akses.kemoterapi = false;
+                    akses.cek_piutang = false;
                 }
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -3343,5 +3347,9 @@ public final class akses {
     
     public static boolean getkemoterapi() {
         return akses.kemoterapi;
+    }
+    
+    public static boolean getcek_piutang() {
+        return akses.cek_piutang;
     }
 }

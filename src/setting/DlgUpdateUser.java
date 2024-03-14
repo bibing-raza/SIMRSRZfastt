@@ -609,7 +609,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "kendali_Mutu_kendali_Biaya_INACBG,dashboard_eResep,bpjs_sep_internal,kemenkes_sitt,rencana_kontrol_jkn,spri_jkn,hapus_sep,"
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
-                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -1396,6 +1396,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[I]Telusur Kunjungan Pasien".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[I]Telusur Kunjungan Pasien", rs.getBoolean("telusur_kunjungan_pasien")});
+                    }
+                    
+                    if ("[J]Cek Piutang".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[J]Cek Piutang", rs.getBoolean("cek_piutang")});
                     }
 
                     if ("[J]Akun Bayar".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -2931,6 +2935,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[I]Telusur Kunjungan Pasien".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","telusur_kunjungan_pasien='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[J]Cek Piutang".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","cek_piutang='"+tbUser.getValueAt(i,2).toString()+"'");
             }
 
             if("[J]Akun Bayar".equals(tbUser.getValueAt(i,1).toString())){

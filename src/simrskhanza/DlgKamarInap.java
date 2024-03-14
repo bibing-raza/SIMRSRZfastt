@@ -166,7 +166,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "Nomer RM", "Nama Pasien", "Tgl. Lahir", "Alamat Pasien", "Jenis Bayar",
             "Cetak SEP", "Status Resep", "Kode Kamar", "Ruang Rawat Inap", "Tarif Kamar",
             "Diagnosa Awal", "Diagnosa Akhir", "Tgl. Masuk", "Jam Masuk", "Tgl. Keluar", "Jam Keluar",
-            "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul"
+            "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul", "cekPiutangUmum"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -179,7 +179,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         tbKamIn.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbKamIn.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 24; i++) {
+        for (i = 0; i < 25; i++) {
             TableColumn column = tbKamIn.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -229,6 +229,9 @@ public class DlgKamarInap extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1045,6 +1048,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnNotepad = new javax.swing.JMenuItem();
         MnBilling = new javax.swing.JMenuItem();
+        MnPiutangPasien = new javax.swing.JMenuItem();
         MnDeposit = new javax.swing.JMenuItem();
         MnUpdateHari = new javax.swing.JMenuItem();
         ppRiwayat = new javax.swing.JMenuItem();
@@ -1319,6 +1323,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         status_pulang = new widget.TextBox();
         Scroll9 = new widget.ScrollPane();
         tbFaktorDecu = new widget.Table();
+        tglPiutang = new widget.Tanggal();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbKamIn = new widget.Table();
@@ -1744,7 +1749,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         TglMati.setEditable(false);
         TglMati.setForeground(new java.awt.Color(0, 0, 153));
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -4294,6 +4299,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnBilling);
 
+        MnPiutangPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPiutangPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPiutangPasien.setText("Piutang Pasien");
+        MnPiutangPasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPiutangPasien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPiutangPasien.setIconTextGap(5);
+        MnPiutangPasien.setName("MnPiutangPasien"); // NOI18N
+        MnPiutangPasien.setPreferredSize(new java.awt.Dimension(220, 26));
+        MnPiutangPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPiutangPasienBtnPrintActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnPiutangPasien);
+
         MnDeposit.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDeposit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDeposit.setText("Deposit/Titipan Pasien");
@@ -4795,7 +4815,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame7.add(jLabel37);
         jLabel37.setBounds(0, 20, 110, 23);
 
-        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         Tglsurat.setDisplayFormat("dd-MM-yyyy");
         Tglsurat.setName("Tglsurat"); // NOI18N
         Tglsurat.setOpaque(false);
@@ -4923,7 +4943,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame18.add(jLabel105);
         jLabel105.setBounds(0, 20, 110, 23);
 
-        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         Tglsurat1.setDisplayFormat("dd-MM-yyyy");
         Tglsurat1.setName("Tglsurat1"); // NOI18N
         Tglsurat1.setOpaque(false);
@@ -5026,7 +5046,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame8.add(jLabel43);
         jLabel43.setBounds(10, 20, 120, 23);
 
-        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         TglMati1.setDisplayFormat("dd-MM-yyyy");
         TglMati1.setName("TglMati1"); // NOI18N
         TglMati1.setOpaque(false);
@@ -5280,7 +5300,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel91.setName("jLabel91"); // NOI18N
         panelGlass9.add(jLabel91);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -5298,7 +5318,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel92.setName("jLabel92"); // NOI18N
         panelGlass9.add(jLabel92);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -6166,7 +6186,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame11.add(jLabel51);
         jLabel51.setBounds(0, 25, 130, 23);
 
-        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         TglRegRalan.setDisplayFormat("dd-MM-yyyy");
         TglRegRalan.setName("TglRegRalan"); // NOI18N
         TglRegRalan.setOpaque(false);
@@ -6425,7 +6445,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         BtnBaca.setBounds(97, 95, 130, 30);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -6441,7 +6461,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel49.setBounds(288, 60, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -6554,7 +6574,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -6640,7 +6660,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -6795,7 +6815,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         statusSEP.setPreferredSize(new java.awt.Dimension(207, 23));
 
         tglMasukInap.setEditable(false);
-        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         tglMasukInap.setDisplayFormat("dd-MM-yyyy");
         tglMasukInap.setName("tglMasukInap"); // NOI18N
         tglMasukInap.setOpaque(false);
@@ -6828,6 +6848,23 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         tbFaktorDecu.setName("tbFaktorDecu"); // NOI18N
         Scroll9.setViewportView(tbFaktorDecu);
+
+        tglPiutang.setEditable(false);
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
+        tglPiutang.setDisplayFormat("dd-MM-yyyy");
+        tglPiutang.setName("tglPiutang"); // NOI18N
+        tglPiutang.setOpaque(false);
+        tglPiutang.setPreferredSize(new java.awt.Dimension(100, 23));
+        tglPiutang.addItemListener(new java.awt.event.ItemListener() {
+            public void itemStateChanged(java.awt.event.ItemEvent evt) {
+                tglPiutangItemStateChanged(evt);
+            }
+        });
+        tglPiutang.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tglPiutangKeyPressed(evt);
+            }
+        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -7105,7 +7142,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass11.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -7129,7 +7166,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -7156,7 +7193,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -7180,7 +7217,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-03-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -13711,6 +13748,44 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnMonitoringEWSDewasaBtnPrintActionPerformed
 
+    private void MnPiutangPasienBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPiutangPasienBtnPrintActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (tbKamIn.getSelectedRow() != -1) {
+                if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rkm_medis='" + TNoRM.getText() + "' and status='Belum Lunas'") == 0) {
+                    tglPiutang.setDate(new Date());
+                } else {
+                    Sequel.cariIsi("select tgl_piutang from piutang_pasien where no_rkm_medis='" + TNoRM.getText() + "' "
+                            + "and status='Belum Lunas' order by tgl_piutang asc limit 1", tglPiutang);
+                }
+                
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgKamarInap");
+                DlgLhtPiutang piutang = new DlgLhtPiutang(null, false);
+                piutang.setNoRm(TNoRM.getText(), tglPiutang.getDate());
+                piutang.tampil();
+                piutang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                piutang.setLocationRelativeTo(internalFrame1);
+                piutang.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPiutangPasienBtnPrintActionPerformed
+
+    private void tglPiutangItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_tglPiutangItemStateChanged
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tglPiutangItemStateChanged
+
+    private void tglPiutangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tglPiutangKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_tglPiutangKeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -13912,6 +13987,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnPetugasPelaksanaPemberianObat;
     private javax.swing.JMenuItem MnPindahNyangkut;
     private javax.swing.JMenuItem MnPindahTransaksi;
+    private javax.swing.JMenuItem MnPiutangPasien;
     private javax.swing.JMenuItem MnPrinterBaru;
     private javax.swing.JMenuItem MnPrinterBaru1;
     private javax.swing.JMenuItem MnPrinterBaru2;
@@ -14255,6 +14331,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Tanggal tglB;
     private widget.TextBox tglInap;
     private widget.Tanggal tglMasukInap;
+    private widget.Tanggal tglPiutang;
     private widget.TextBox tglsep;
     private widget.TextBox ttlbiaya;
     private widget.TextBox ttlbiayapindah;
@@ -14372,7 +14449,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         rs.getString("nm_dokter"),
                         rs.getString("no_tlp"),
                         rs.getString("dokter2"),
-                        Sequel.cariIsi("select ifnull(no_rawat,'') from surat_konsul_unit_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status_dijawab='Belum'")
+                        Sequel.cariIsi("select ifnull(no_rawat,'') from surat_konsul_unit_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status_dijawab='Belum'"),
+                        Sequel.cariIsi("select ifnull(p.no_rkm_medis,'') from  piutang_pasien p inner join reg_periksa r on p.no_rkm_medis = r.no_rkm_medis and p.no_rawat = r.no_rawat and r.kd_pj = 'U01' "
+                        + "where p.status = 'Belum Lunas' and p.no_rkm_medis = '" + rs.getString("no_rkm_medis") + "'")
                     });
                 }
             } catch (Exception e) {
@@ -14809,6 +14888,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnAsesmenUlangResikoJatuh.setEnabled(akses.getcppt());
         MnPengelolaanTransfusiDarah.setEnabled(akses.getcppt());
         MnMonitoringEWSDewasa.setEnabled(akses.getcppt());
+        MnPiutangPasien.setEnabled(akses.getbayar_piutang());
     }
 
     private void updateHari() {

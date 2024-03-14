@@ -1410,7 +1410,7 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salh satu datanya terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1838,11 +1838,6 @@ public class RMAsesmenUlangResikoJatuh extends javax.swing.JDialog {
                     + "and b.kode_ulang_resiko = '" + TkdFaktor.getText() + "' and c.tgl_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString() + "' "
                     + "and c.jam_asesmen = '" + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 12).toString() + "' "
                     + "WHERE a.asesmen = 'Ulang Resiko Jatuh' ORDER BY a.kode_resiko");
-
-//            ps2 = koneksi.prepareStatement("SELECT a.kode_resiko, a.faktor_resiko, a.skala, a.skor, IF(ifnull(b.kode_resiko,'-')='-','-','dipilih') cekkode "
-//                    + "FROM master_faktor_resiko_igd a left join detail_asesmen_ulang_resiko_jatuh b on a.kode_resiko=b.kode_resiko "
-//                    + "and b.kode_ulang_resiko='" + TkdFaktor.getText() + "' where "
-//                    + "a.asesmen='Ulang Resiko Jatuh' order by a.kode_resiko");
             try {
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {

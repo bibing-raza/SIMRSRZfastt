@@ -84,13 +84,13 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
-        tbBangsal.setModel(tabMode);
+        tbPiutang.setModel(tabMode);
         //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
-        tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 22; i++) {
-            TableColumn column = tbBangsal.getColumnModel().getColumn(i);
+            TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(105);
             }else if(i==1){
@@ -107,7 +107,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
                 column.setPreferredWidth(80);
             }
         }
-        tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
+        tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());
 
         TKd.setDocument(new batasInput((byte)20).getKata(TKd));
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -172,7 +172,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         TKd = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbBangsal = new widget.Table();
+        tbPiutang = new widget.Table();
         panelGlass5 = new widget.panelisi();
         label17 = new widget.Label();
         TCari = new widget.TextBox();
@@ -194,7 +194,6 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
 
         TKd.setForeground(new java.awt.Color(255, 255, 255));
         TKd.setName("TKd"); // NOI18N
-        TKd.setSelectionColor(new java.awt.Color(255, 255, 255));
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -205,26 +204,26 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Rincian Piutang Pasien Per Cara Bayar di Pendaftaran ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Rincian Piutang Pasien Per Cara Bayar di Pendaftaran ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbBangsal.setToolTipText("");
-        tbBangsal.setName("tbBangsal"); // NOI18N
-        tbBangsal.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbPiutang.setToolTipText("");
+        tbPiutang.setName("tbPiutang"); // NOI18N
+        tbPiutang.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbBangsalMouseClicked(evt);
+                tbPiutangMouseClicked(evt);
             }
         });
-        tbBangsal.addKeyListener(new java.awt.event.KeyAdapter() {
+        tbPiutang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbBangsalKeyPressed(evt);
+                tbPiutangKeyPressed(evt);
             }
         });
-        Scroll.setViewportView(tbBangsal);
+        Scroll.setViewportView(tbPiutang);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -232,11 +231,13 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         panelGlass5.setPreferredSize(new java.awt.Dimension(55, 55));
         panelGlass5.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Key Word :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass5.add(label17);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -246,6 +247,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         });
         panelGlass5.add(TCari);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -263,6 +265,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnCari);
 
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
         BtnAll.setToolTipText("Alt+M");
@@ -296,6 +299,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(180, 23));
         panelGlass5.add(LCount);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -314,6 +318,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         });
         panelGlass5.add(BtnPrint);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -338,6 +343,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tgl.Tagihan :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -349,6 +355,7 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         Tgl1.setPreferredSize(new java.awt.Dimension(100, 23));
         panelisi4.add(Tgl1);
 
+        label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label18.setText("s.d.");
         label18.setName("label18"); // NOI18N
@@ -361,11 +368,13 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         Tgl2.setPreferredSize(new java.awt.Dimension(100, 23));
         panelisi4.add(Tgl2);
 
+        label19.setForeground(new java.awt.Color(0, 0, 0));
         label19.setText("Cara Bayar :");
         label19.setName("label19"); // NOI18N
         label19.setPreferredSize(new java.awt.Dimension(75, 23));
         panelisi4.add(label19);
 
+        kdpenjab.setForeground(new java.awt.Color(0, 0, 0));
         kdpenjab.setName("kdpenjab"); // NOI18N
         kdpenjab.setPreferredSize(new java.awt.Dimension(80, 23));
         kdpenjab.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -376,10 +385,12 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         panelisi4.add(kdpenjab);
 
         nmpenjab.setEditable(false);
+        nmpenjab.setForeground(new java.awt.Color(0, 0, 0));
         nmpenjab.setName("nmpenjab"); // NOI18N
         nmpenjab.setPreferredSize(new java.awt.Dimension(295, 23));
         panelisi4.add(nmpenjab);
 
+        BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnSeek2.setMnemonic('3');
         BtnSeek2.setToolTipText("Alt+3");
@@ -488,73 +499,75 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void tbBangsalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBangsalMouseClicked
-        if(tabMode.getRowCount()!=0){
-            if(evt.getClickCount()==2){
-                int kolom=tbBangsal.getSelectedColumn();
-                if(kolom==1){
+    private void tbPiutangMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPiutangMouseClicked
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getClickCount() == 2) {
+                int kolom = tbPiutang.getSelectedColumn();
+                if (kolom == 1) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    if(akses.getbayar_piutang()==true){
-                        DlgBayarPiutang bayarpiutang=new DlgBayarPiutang(null,false);
+                    if (akses.getbayar_piutang() == true) {
+                        DlgBayarPiutang bayarpiutang = new DlgBayarPiutang(null, false);
                         bayarpiutang.emptTeks();
-                        String norm=Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='"+tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString() +"'");
-                        String nama=Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='"+norm+"'"); 
-                        bayarpiutang.setData(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString(),norm,nama);                   
-                        bayarpiutang.tampil();  
-                        bayarpiutang.setSize(this.getWidth()-40,this.getHeight()-40);
+                        String norm = Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'");
+                        String nama = Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'");
+                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama);
+                        bayarpiutang.tampil();
+                        bayarpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                         bayarpiutang.setLocationRelativeTo(this);
                         bayarpiutang.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
-                    }                        
-                }else if(kolom==0){
+                    }
+                } else if (kolom == 0) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    DlgBilingPiutang rincianpiutang=new DlgBilingPiutang(null,false);
+                    DlgBilingPiutang rincianpiutang = new DlgBilingPiutang(null, false);
                     rincianpiutang.isRawat(
-                            tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString(),
-                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?",tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString())
-                    );                    
-                    rincianpiutang.setSize(this.getWidth()-40,this.getHeight()-40);
+                            tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(),
+                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?", tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString())
+                    );
+                    rincianpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                     rincianpiutang.setLocationRelativeTo(this);
                     rincianpiutang.setVisible(true);
                     this.setCursor(Cursor.getDefaultCursor());
                 }
             }
         }
-}//GEN-LAST:event_tbBangsalMouseClicked
+}//GEN-LAST:event_tbPiutangMouseClicked
 
-    private void tbBangsalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbBangsalKeyPressed
-        if(tabMode.getRowCount()!=0){
-            if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-                int kolom=tbBangsal.getSelectedColumn();
-                if(kolom==1){
-                    if(akses.getbayar_piutang()==true){
+    private void tbPiutangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbPiutangKeyPressed
+        if (tabMode.getRowCount() != 0) {
+            if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+                int kolom = tbPiutang.getSelectedColumn();
+                if (kolom == 1) {
+                    if (akses.getbayar_piutang() == true) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                        DlgBayarPiutang bayarpiutang=new DlgBayarPiutang(null,false);
+                        DlgBayarPiutang bayarpiutang = new DlgBayarPiutang(null, false);
                         bayarpiutang.emptTeks();
-                        String norm=Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='"+tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString()+"'");
-                        String nama=Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='"+norm+"'");
-                        bayarpiutang.setData(tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString(),norm,nama);
-                        bayarpiutang.tampil();  
-                        bayarpiutang.setSize(this.getWidth()-40,this.getHeight()-40);
+                        String norm = Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'");
+                        String nama = Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'");
+                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama);
+                        bayarpiutang.tampil();
+                        bayarpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                         bayarpiutang.setLocationRelativeTo(this);
                         bayarpiutang.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
-                    }                        
-                }else if(kolom==0){
+                    }
+                } else if (kolom == 0) {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                    DlgBilingPiutang rincianpiutang=new DlgBilingPiutang(null,false);
+                    DlgBilingPiutang rincianpiutang = new DlgBilingPiutang(null, false);
                     rincianpiutang.isRawat(
-                            tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString(),
-                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?",tbBangsal.getValueAt(tbBangsal.getSelectedRow(),0).toString())
-                    );                    
-                    rincianpiutang.setSize(this.getWidth()-40,this.getHeight()-40);
+                            tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(),
+                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?", tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString())
+                    );
+                    rincianpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                     rincianpiutang.setLocationRelativeTo(this);
                     rincianpiutang.setVisible(true);
                     this.setCursor(Cursor.getDefaultCursor());
-                }               
+                }
             }
         }
-}//GEN-LAST:event_tbBangsalKeyPressed
+}//GEN-LAST:event_tbPiutangKeyPressed
 
 private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
         if(evt.getKeyCode()==KeyEvent.VK_ENTER){
@@ -646,7 +659,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox nmpenjab;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelisi4;
-    private widget.Table tbBangsal;
+    private widget.Table tbPiutang;
     // End of variables declaration//GEN-END:variables
 
     public void tampil(){
