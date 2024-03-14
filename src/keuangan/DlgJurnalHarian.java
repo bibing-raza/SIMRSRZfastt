@@ -56,13 +56,13 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
-        tbDokter.setModel(tabMode);
+        tbJurnal.setModel(tabMode);
 
-        tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
-        tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbJurnal.setPreferredScrollableViewportSize(new Dimension(800,800));
+        tbJurnal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 6; i++) {
-            TableColumn column = tbDokter.getColumnModel().getColumn(i);
+            TableColumn column = tbJurnal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(75);
             }else if(i==1){
@@ -77,7 +77,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
                 column.setPreferredWidth(95);
             }
         }
-        tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
+        tbJurnal.setDefaultRenderer(Object.class, new WarnaTable());
 
         NoJur.setDocument(new batasInput((byte)8).getKata(NoJur));
         kdrek.setDocument(new batasInput((byte)15).getKata(kdrek));
@@ -151,7 +151,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         Kd2 = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
-        tbDokter = new widget.Table();
+        tbJurnal = new widget.Table();
         jPanel1 = new javax.swing.JPanel();
         panelisi4 = new widget.panelisi();
         label17 = new widget.Label();
@@ -196,14 +196,14 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jurnal Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Jurnal Harian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
 
-        tbDokter.setModel(new javax.swing.table.DefaultTableModel(
+        tbJurnal.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -214,9 +214,9 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
 
             }
         ));
-        tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbDokter.setName("tbDokter"); // NOI18N
-        scrollPane1.setViewportView(tbDokter);
+        tbJurnal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbJurnal.setName("tbJurnal"); // NOI18N
+        scrollPane1.setViewportView(tbJurnal);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -229,12 +229,14 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(null);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Rekening :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label17);
         label17.setBounds(0, 10, 70, 23);
 
+        kdrek.setForeground(new java.awt.Color(0, 0, 0));
         kdrek.setName("kdrek"); // NOI18N
         kdrek.setPreferredSize(new java.awt.Dimension(80, 23));
         kdrek.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -246,11 +248,13 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         kdrek.setBounds(74, 10, 110, 23);
 
         nmrek.setEditable(false);
+        nmrek.setForeground(new java.awt.Color(0, 0, 0));
         nmrek.setName("nmrek"); // NOI18N
         nmrek.setPreferredSize(new java.awt.Dimension(207, 23));
         panelisi4.add(nmrek);
         nmrek.setBounds(186, 10, 300, 23);
 
+        BtnCari6.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnCari6.setMnemonic('1');
         BtnCari6.setToolTipText("Alt+1");
@@ -264,18 +268,21 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi4.add(BtnCari6);
         BtnCari6.setBounds(488, 10, 28, 23);
 
-        label25.setText("Ttl.Kredit : Rp.");
+        label25.setForeground(new java.awt.Color(0, 0, 0));
+        label25.setText("Ttl. Kredit : Rp.");
         label25.setName("label25"); // NOI18N
         label25.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label25);
         label25.setBounds(525, 40, 90, 23);
 
-        label26.setText("Ttl.Debet : Rp.");
+        label26.setForeground(new java.awt.Color(0, 0, 0));
+        label26.setText("Ttl. Debet : Rp.");
         label26.setName("label26"); // NOI18N
         label26.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(label26);
         label26.setBounds(525, 10, 90, 23);
 
+        label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Tipe :");
         label21.setName("label21"); // NOI18N
         label21.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -283,11 +290,13 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         label21.setBounds(0, 40, 70, 23);
 
         tipe.setEditable(false);
+        tipe.setForeground(new java.awt.Color(0, 0, 0));
         tipe.setName("tipe"); // NOI18N
         tipe.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(tipe);
         tipe.setBounds(74, 40, 70, 23);
 
+        label23.setForeground(new java.awt.Color(0, 0, 0));
         label23.setText("Balance :");
         label23.setName("label23"); // NOI18N
         label23.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -295,11 +304,13 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         label23.setBounds(147, 40, 60, 23);
 
         balance.setEditable(false);
+        balance.setForeground(new java.awt.Color(0, 0, 0));
         balance.setName("balance"); // NOI18N
         balance.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(balance);
         balance.setBounds(211, 40, 70, 23);
 
+        label22.setForeground(new java.awt.Color(0, 0, 0));
         label22.setText("Saldo Awal :");
         label22.setName("label22"); // NOI18N
         label22.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -307,17 +318,20 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         label22.setBounds(286, 40, 80, 23);
 
         saldoawal.setEditable(false);
+        saldoawal.setForeground(new java.awt.Color(0, 0, 0));
         saldoawal.setName("saldoawal"); // NOI18N
         saldoawal.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(saldoawal);
         saldoawal.setBounds(370, 40, 116, 23);
 
+        debet.setForeground(new java.awt.Color(0, 0, 0));
         debet.setText("0");
         debet.setName("debet"); // NOI18N
         debet.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi4.add(debet);
         debet.setBounds(620, 10, 150, 23);
 
+        kredit.setForeground(new java.awt.Color(0, 0, 0));
         kredit.setText("0");
         kredit.setName("kredit"); // NOI18N
         kredit.setPreferredSize(new java.awt.Dimension(70, 23));
@@ -330,11 +344,13 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label10.setForeground(new java.awt.Color(0, 0, 0));
         label10.setText("Key Word :");
         label10.setName("label10"); // NOI18N
         label10.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi1.add(label10);
 
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
         TCari.setPreferredSize(new java.awt.Dimension(305, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -344,6 +360,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         });
         panelisi1.add(TCari);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -361,10 +378,12 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         });
         panelisi1.add(BtnCari);
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(40, 23));
         panelisi1.add(label9);
 
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
@@ -383,6 +402,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         });
         panelisi1.add(BtnAll);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -401,6 +421,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         });
         panelisi1.add(BtnPrint);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -427,12 +448,14 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi3.setPreferredSize(new java.awt.Dimension(100, 47));
         panelisi3.setLayout(null);
 
-        label15.setText("No.Jurnal :");
+        label15.setForeground(new java.awt.Color(0, 0, 0));
+        label15.setText("No. Jurnal :");
         label15.setName("label15"); // NOI18N
         label15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelisi3.add(label15);
         label15.setBounds(0, 12, 75, 23);
 
+        NoJur.setForeground(new java.awt.Color(0, 0, 0));
         NoJur.setName("NoJur"); // NOI18N
         NoJur.setPreferredSize(new java.awt.Dimension(207, 23));
         NoJur.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -443,7 +466,8 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi3.add(NoJur);
         NoJur.setBounds(79, 12, 180, 23);
 
-        label11.setText("Tgl.Jurnal :");
+        label11.setForeground(new java.awt.Color(0, 0, 0));
+        label11.setText("Tgl. Jurnal :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(70, 23));
         panelisi3.add(label11);
@@ -460,6 +484,7 @@ public class DlgJurnalHarian extends javax.swing.JDialog {
         panelisi3.add(TglJurnal2);
         TglJurnal2.setBounds(570, 12, 110, 23);
 
+        label12.setForeground(new java.awt.Color(0, 0, 0));
         label12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label12.setText("s.d.");
         label12.setName("label12"); // NOI18N
@@ -701,7 +726,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.panelisi panelisi4;
     private widget.TextBox saldoawal;
     private widget.ScrollPane scrollPane1;
-    private widget.Table tbDokter;
+    private widget.Table tbJurnal;
     private widget.TextBox tipe;
     // End of variables declaration//GEN-END:variables
 
@@ -783,8 +808,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             int row=tabMode.getRowCount();
             for(int i=0;i<row;i++){  
                 try {
-                    tanggal1=tbDokter.getValueAt(i,0).toString();
-                    tanggal2=tbDokter.getValueAt(i-1,0).toString();
+                    tanggal1=tbJurnal.getValueAt(i,0).toString();
+                    tanggal2=tbJurnal.getValueAt(i-1,0).toString();
                     
                     if((!tanggal1.equals(tanggal2))&&(!tanggal2.equals(""))){   
                         tabMode.insertRow(i,new Object[]{"","","","",null,null}); 

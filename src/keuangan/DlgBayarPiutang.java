@@ -960,6 +960,7 @@ private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt
 }//GEN-LAST:event_ppNotaPiutangBtnPrintActionPerformed
 
 private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeekActionPerformed
+    akses.setform("DlgBayarPiutang");
     pasien.emptTeks();
     pasien.isCek();
     pasien.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);

@@ -33,7 +33,7 @@ public class WarnaTableKhusus2 extends DefaultTableCellRenderer {
         
         if (akses.getcek_piutang() == true) {
             if (!table.getValueAt(row, kolom1).toString().equals("")) {
-                component.setBackground(new Color(255,89,89));
+                component.setBackground(new Color(255, 255, 51));
             }
         }
         return component;
