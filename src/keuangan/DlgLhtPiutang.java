@@ -534,7 +534,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                         bayarpiutang.emptTeks();
                         String norm = Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'");
                         String nama = Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'");
-                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama);
+                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama,
+                                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 4).toString()));
                         bayarpiutang.tampil();
                         bayarpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                         bayarpiutang.setLocationRelativeTo(this);
@@ -569,7 +570,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                         bayarpiutang.emptTeks();
                         String norm = Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'");
                         String nama = Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'");
-                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama);
+                        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama,
+                                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 4).toString()));
                         bayarpiutang.tampil();
                         bayarpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                         bayarpiutang.setLocationRelativeTo(this);
@@ -645,7 +647,8 @@ private void MnDetailCicilanActionPerformed(java.awt.event.ActionEvent evt) {//G
         bayarpiutang.emptTeks();
         String norm = Sequel.cariIsi("select no_rkm_medis from piutang_pasien where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'");
         String nama = Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'");
-        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama);
+        bayarpiutang.setData(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(), norm, nama, 
+                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 4).toString()));
         bayarpiutang.tampil();
         bayarpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
         bayarpiutang.setLocationRelativeTo(this);

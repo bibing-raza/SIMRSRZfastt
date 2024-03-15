@@ -70,11 +70,12 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         Object[] row={"Tgl. Bayar",
                       "No. RM",
                       "Pasien",
-                      "Cicilan(Rp)",
+                      "Cicilan (Rp)",
                       "Keterangan",
                       "No.Tagihan",
                       "tglbayar",
-                      "waktu_simpan"};
+                      "waktu_simpan",
+                      "Sisa Piutang (Rp)"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -83,7 +84,7 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 8; i++) {
+        for (int i = 0; i < 9; i++) {
             TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
@@ -103,14 +104,16 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 8) {
+                column.setPreferredWidth(100);
             }
         }
         tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());
         
-        NoRawat.setDocument(new batasInput((byte)17).getKata(NoRawat));
-        Cicilan.setDocument(new batasInput((byte)15).getOnlyAngka(Cicilan));
-        Keterangan.setDocument(new batasInput((byte)100).getKata(Keterangan));
-        Kdmem.setDocument(new batasInput((byte)6).getOnlyAngka(Kdmem));
+        NoRawat.setDocument(new batasInput((byte) 17).getKata(NoRawat));
+        Cicilan.setDocument(new batasInput((byte) 15).getOnlyAngka(Cicilan));
+        Keterangan.setDocument(new batasInput((byte) 100).getKata(Keterangan));
+        TNoRM.setDocument(new batasInput((byte) 6).getOnlyAngka(TNoRM));
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -160,22 +163,22 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
             @Override
             public void windowClosed(WindowEvent e) {
                 if (pasien.getTable().getSelectedRow() != -1) {
-                    Kdmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 1).toString());
-                    Nmmem.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 2).toString());
-                    sisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat='" + NoRawat.getText() + "' and pp.no_rkm_medis=?", Kdmem.getText())
-                            + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", Kdmem.getText())
-                            - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat='" + NoRawat.getText() + "' and bp.no_rkm_medis=?", Kdmem.getText());
+                    TNoRM.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 1).toString());
+                    TNmPasien.setText(pasien.getTable().getValueAt(pasien.getTable().getSelectedRow(), 2).toString());
+                    sisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat='" + NoRawat.getText() + "' and pp.no_rkm_medis=?", TNoRM.getText())
+                            + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", TNoRM.getText())
+                            - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat='" + NoRawat.getText() + "' and bp.no_rkm_medis=?", TNoRM.getText());
                     Sisa.setText(Valid.SetAngka(sisapiutang));
                     
-                    Tsisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rkm_medis=?", Kdmem.getText())
-                            + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", Kdmem.getText())
-                            - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rkm_medis=?", Kdmem.getText());
+                    Tsisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat=?", NoRawat.getText())
+//                            + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", TNoRM.getText())
+                            - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat=?", NoRawat.getText());
                     TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
                     if (!Cicilan.getText().equals("")) {
                         Sisa.setText(Valid.SetAngka(sisapiutang - Double.parseDouble(Cicilan.getText())));
                         TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
                     }
-                    Sequel.cariIsi("select no_rawat from reg_periksa where no_rkm_medis=? order by tgl_registrasi desc limit 1", NoRawat, Kdmem.getText());
+                    Sequel.cariIsi("select no_rawat from reg_periksa where no_rkm_medis=? order by tgl_registrasi desc limit 1", NoRawat, TNoRM.getText());
                 }
             }
 
@@ -213,7 +216,7 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         
         try {
             ps = koneksi.prepareStatement("select bp.tgl_bayar, bp.no_rkm_medis, p.nm_pasien, bp.besar_cicilan,"
-                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan from bayar_piutang bp "
+                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan, bp.sisa_piutang from bayar_piutang bp "
                     + "inner join pasien p on bp.no_rkm_medis=p.no_rkm_medis where "
                     + "bp.no_rawat like ? or "
                     + "bp.no_rkm_medis like ? or "
@@ -249,8 +252,8 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         label35 = new widget.Label();
         Cicilan = new widget.TextBox();
         label16 = new widget.Label();
-        Kdmem = new widget.TextBox();
-        Nmmem = new widget.TextBox();
+        TNoRM = new widget.TextBox();
+        TNmPasien = new widget.TextBox();
         Tanggal = new widget.Tanggal();
         label38 = new widget.Label();
         Sisa = new widget.TextBox();
@@ -405,19 +408,19 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         panelisi4.add(label16);
         label16.setBounds(301, 10, 80, 23);
 
-        Kdmem.setEditable(false);
-        Kdmem.setForeground(new java.awt.Color(0, 0, 0));
-        Kdmem.setName("Kdmem"); // NOI18N
-        Kdmem.setPreferredSize(new java.awt.Dimension(80, 23));
-        panelisi4.add(Kdmem);
-        Kdmem.setBounds(384, 10, 90, 23);
+        TNoRM.setEditable(false);
+        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRM.setName("TNoRM"); // NOI18N
+        TNoRM.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelisi4.add(TNoRM);
+        TNoRM.setBounds(384, 10, 90, 23);
 
-        Nmmem.setEditable(false);
-        Nmmem.setForeground(new java.awt.Color(0, 0, 0));
-        Nmmem.setName("Nmmem"); // NOI18N
-        Nmmem.setPreferredSize(new java.awt.Dimension(207, 23));
-        panelisi4.add(Nmmem);
-        Nmmem.setBounds(476, 10, 204, 23);
+        TNmPasien.setEditable(false);
+        TNmPasien.setForeground(new java.awt.Color(0, 0, 0));
+        TNmPasien.setName("TNmPasien"); // NOI18N
+        TNmPasien.setPreferredSize(new java.awt.Dimension(207, 23));
+        panelisi4.add(TNmPasien);
+        TNmPasien.setBounds(476, 10, 204, 23);
 
         Tanggal.setEditable(false);
         Tanggal.setDisplayFormat("dd-MM-yyyy");
@@ -440,11 +443,6 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         Sisa.setEditable(false);
         Sisa.setForeground(new java.awt.Color(0, 0, 0));
         Sisa.setName("Sisa"); // NOI18N
-        Sisa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                SisaKeyPressed(evt);
-            }
-        });
         panelisi4.add(Sisa);
         Sisa.setBounds(590, 70, 120, 23);
 
@@ -452,6 +450,7 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         BtnSeek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnSeek.setMnemonic('1');
         BtnSeek.setToolTipText("ALt+1");
+        BtnSeek.setEnabled(false);
         BtnSeek.setName("BtnSeek"); // NOI18N
         BtnSeek.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -670,7 +669,7 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelisi1.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-03-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -694,14 +693,14 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
             Valid.textKosong(NoRawat, "No.Tagihan/No.Rawat");
         } else if (Cicilan.getText().trim().equals("") || Cicilan.getText().trim().equals("0")) {
             Valid.textKosong(Cicilan, "Besar Cicilan");
-        } else if (Nmmem.getText().trim().equals("")) {
-            Valid.textKosong(Kdmem, "Member");
+        } else if (TNmPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRM, "Member");
         } else {
             try {
                 koderekening = Sequel.cariIsi("select kd_rek from akun_bayar where nama_bayar=?", nama_bayar.getSelectedItem().toString());
-                Sequel.menyimpan("bayar_piutang", "?,?,?,?,?,?,?", 7, new String[]{
-                    Valid.SetTgl(Tanggal.getSelectedItem() + ""), Kdmem.getText(), Cicilan.getText(),
-                    Keterangan.getText(), NoRawat.getText(), koderekening, Sequel.cariIsi("select now()")
+                Sequel.menyimpan("bayar_piutang", "?,?,?,?,?,?,?,?", 8, new String[]{
+                    Valid.SetTgl(Tanggal.getSelectedItem() + ""), TNoRM.getText(), Cicilan.getText(),
+                    Keterangan.getText(), NoRawat.getText(), koderekening, Sequel.cariIsi("select now()"), Sisa.getText()
                 });
 
                 if (Double.parseDouble(Sisa.getText()) <= 1) {
@@ -735,17 +734,17 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
             Valid.textKosong(NoRawat, "No.Tagihan/No.Rawat");
         } else if (Cicilan.getText().trim().equals("") || Cicilan.getText().trim().equals("0")) {
             Valid.textKosong(Cicilan, "Besar Cicilan");
-        } else if (Nmmem.getText().trim().equals("")) {
-            Valid.textKosong(Kdmem, "Member");
+        } else if (TNmPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRM, "Member");
         } else {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data ini mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 try {
                     koderekening = Sequel.cariIsi("select kd_rek from bayar_piutang where "
-                            + "tgl_bayar='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and no_rkm_medis='" + Kdmem.getText() + "' and waktu_simpan='" + wktsimpan + "'");
+                            + "tgl_bayar='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' and no_rkm_medis='" + TNoRM.getText() + "' and waktu_simpan='" + wktsimpan + "'");
 
                     Sequel.queryu("delete from bayar_piutang where tgl_bayar='" + Valid.SetTgl(Tanggal.getSelectedItem() + "") + "' "
-                            + "and no_rkm_medis='" + Kdmem.getText() + "' "
+                            + "and no_rkm_medis='" + TNoRM.getText() + "' "
                             + "and no_rawat='" + NoRawat.getText() + "' "
                             + "and waktu_simpan='" + wktsimpan + "'");
                     Sequel.mengedit("piutang_pasien", "no_rawat='" + NoRawat.getText() + "'", "status='Belum Lunas'");
@@ -832,9 +831,9 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -868,31 +867,31 @@ private void KeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
     }//GEN-LAST:event_Kd2KeyPressed
 
     private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalKeyPressed
-        Valid.pindah(evt,NoRawat,Kdmem);
+        Valid.pindah(evt,NoRawat,TNoRM);
     }//GEN-LAST:event_TanggalKeyPressed
 
     private void CicilanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CicilanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             Sisa.setText(Valid.SetAngka(sisapiutang));
-            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
+//            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
             if (!Cicilan.getText().equals("")) {
                 Sisa.setText(Valid.SetAngka2(sisapiutang - Double.parseDouble(Cicilan.getText())));
-                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
+//                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
             }
         } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             Sisa.setText(Valid.SetAngka(sisapiutang));
-            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
+//            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
             if (!Cicilan.getText().equals("")) {
                 Sisa.setText(Valid.SetAngka2(sisapiutang - Double.parseDouble(Cicilan.getText())));
-                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
+//                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
             }
             Keterangan.requestFocus();
         } else if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Sisa.setText(Valid.SetAngka(sisapiutang));
-            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
+//            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
             if (!Cicilan.getText().equals("")) {
                 Sisa.setText(Valid.SetAngka2(sisapiutang - Double.parseDouble(Cicilan.getText())));
-                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
+//                TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
             }
             BtnSimpan.requestFocus();
         }
@@ -910,10 +909,6 @@ private void KeteranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         TCari.setText("");
         tampil();
     }//GEN-LAST:event_BtnAllActionPerformed
-
-    private void SisaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_SisaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_SisaKeyPressed
 
 private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppNotaPiutangBtnPrintActionPerformed
     if (tabMode.getRowCount() == 0) {
@@ -940,6 +935,7 @@ private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt
             param.put("nmpasien", tabMode.getValueAt(tbPiutang.getSelectedRow(), 2).toString());
             param.put("keterangan", tabMode.getValueAt(tbPiutang.getSelectedRow(), 4).toString());
             param.put("nilaicicilan", tabMode.getValueAt(tbPiutang.getSelectedRow(), 3).toString());
+            param.put("sisapiutang", tabMode.getValueAt(tbPiutang.getSelectedRow(), 8).toString());
 
             if (akses.getadmin() == true) {
                 param.put("petugas_ksr", "( ................... )");
@@ -979,10 +975,10 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         }
 
         Sisa.setText(Valid.SetAngka(sisapiutang));
-        TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
+//        TotalPiutang.setText(Valid.SetAngka(Tsisapiutang));
         if (!Cicilan.getText().equals("")) {
             Sisa.setText(Valid.SetAngka2(sisapiutang - Double.parseDouble(Cicilan.getText())));
-            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
+//            TotalPiutang.setText(Valid.SetAngka(Tsisapiutang - Double.parseDouble(Cicilan.getText())));
         }
     }//GEN-LAST:event_CicilanKeyReleased
 
@@ -1012,16 +1008,16 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     private widget.Button BtnSimpan;
     private widget.TextBox Cicilan;
     private widget.TextBox Kd2;
-    private widget.TextBox Kdmem;
     private widget.TextBox Keterangan;
     private widget.Label LCount;
     private widget.Label LTotal;
-    private widget.TextBox Nmmem;
     private widget.TextBox NoRawat;
     private javax.swing.JPopupMenu Popup;
     private widget.ScrollPane Scroll;
     private widget.TextBox Sisa;
     private widget.TextBox TCari;
+    private widget.TextBox TNmPasien;
+    private widget.TextBox TNoRM;
     private widget.Tanggal Tanggal;
     private widget.Label TotalPiutang;
     private widget.InternalFrame internalFrame1;
@@ -1066,7 +1062,8 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     rs.getString(5),
                     rs.getString(6),
                     rs.getString("tglbayar"),
-                    rs.getString("waktu_simpan")
+                    rs.getString("waktu_simpan"),
+                    Valid.SetAngka(rs.getDouble("sisa_piutang"))
                 });
             }
         } catch (SQLException e) {
@@ -1079,8 +1076,8 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     public void emptTeks() {
         Kd2.setText("");
         Cicilan.setText("0");
-        Kdmem.setText("");
-        Nmmem.setText("");
+        TNoRM.setText("");
+        TNmPasien.setText("");
         Sisa.setText("0");
         TotalPiutang.setText("0");
         Keterangan.setText("");
@@ -1088,24 +1085,24 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         NoRawat.requestFocus();
     }
     
-    public void setData(String norawat,String norm,String nama){
+    public void setData(String norawat, String norm, String nama, double totpiutang) {
         NoRawat.setText(norawat);
-        Kdmem.setText(norm);
-        Nmmem.setText(nama);
+        TNoRM.setText(norm);
+        TNmPasien.setText(nama);
         TCari.setText(norawat);
         tglNota.setDate(new Date());
-        sisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat='" + NoRawat.getText() + "' and pp.no_rkm_medis=?", Kdmem.getText())
-                    + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", Kdmem.getText())
-                    - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat='" + NoRawat.getText() + "' and bp.no_rkm_medis=?", Kdmem.getText());
+        sisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat='" + NoRawat.getText() + "' and pp.no_rkm_medis=?", TNoRM.getText())
+                + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", TNoRM.getText())
+                - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat='" + NoRawat.getText() + "' and bp.no_rkm_medis=?", TNoRM.getText());
         Sisa.setText(Valid.SetAngka(Valid.roundUp(sisapiutang, 100)));
-        
-        Tsisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rkm_medis=?", Kdmem.getText())
-                    + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", Kdmem.getText())
-                    - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rkm_medis=?", Kdmem.getText());
-        TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(Tsisapiutang, 100)));
+
+//        Tsisapiutang = Sequel.cariIsiAngka("SELECT ifnull(SUM(pp.sisapiutang),0) FROM piutang_pasien pp where pp.no_rawat=?", NoRawat.getText())
+////                + Sequel.cariIsiAngka("SELECT ifnull(SUM(p.sisapiutang),0) FROM piutang p where p.no_rkm_medis=?", TNoRM.getText())
+//                - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat=?", NoRawat.getText());
+        TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(totpiutang, 100)));
         if (!Cicilan.getText().equals("")) {
             Sisa.setText(Valid.SetAngka(Valid.roundUp(sisapiutang - Double.parseDouble(Cicilan.getText()), 100)));
-            TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(Tsisapiutang - Double.parseDouble(Cicilan.getText()), 100)));
+            TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(totpiutang - Double.parseDouble(Cicilan.getText()), 100)));
         }
     }
 
@@ -1113,8 +1110,8 @@ private void BtnSeekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         wktsimpan = "";
         int row=tbPiutang.getSelectedRow();
         if(row!= -1){
-            Kdmem.setText(tbPiutang.getValueAt(row,1).toString());
-            Nmmem.setText(tbPiutang.getValueAt(row,2).toString());
+            TNoRM.setText(tbPiutang.getValueAt(row,1).toString());
+            TNmPasien.setText(tbPiutang.getValueAt(row,2).toString());
             Cicilan.setText(tbPiutang.getValueAt(row,3).toString());
             Keterangan.setText(tbPiutang.getValueAt(row,4).toString());
             NoRawat.setText(tbPiutang.getValueAt(row,5).toString());

@@ -682,29 +682,29 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
 
     private void BtnBayarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBayarActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-        }else if(tabMode.getRowCount()!=0){
-            koderekening=Sequel.cariIsi("select kd_rek from akun_bayar where nama_bayar=?",nama_bayar.getSelectedItem().toString());
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        } else if (tabMode.getRowCount() != 0) {
+            koderekening = Sequel.cariIsi("select kd_rek from akun_bayar where nama_bayar=?", nama_bayar.getSelectedItem().toString());
             Sequel.AutoComitFalse();
-            row=tabMode.getRowCount();
-            for(int i=0;i<row;i++){  
-                if(tabMode.getValueAt(i,0).toString().equals("true")){
-                    if(Sequel.menyimpantf("bayar_piutang","?,?,?,?,?,?,?","Data",7,new String[]{
-                        Valid.SetTgl(Tanggal.getSelectedItem()+""),
-                        Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=?",tabMode.getValueAt(i,1).toString()),
-                        tabMode.getValueAt(i,11).toString(),"diverifikasi oleh "+akses.getkode(),tabMode.getValueAt(i,1).toString(),
-                        koderekening,Sequel.cariIsi("select now()")
-                    })==true){
-                        if(Double.parseDouble(tabMode.getValueAt(i,8).toString())<=0){
-                            Sequel.mengedit("piutang_pasien","no_rawat='"+tabMode.getValueAt(i,1).toString()+"'","status='Lunas'");
-                        }                            
-                        Sequel.queryu("delete from tampjurnal");                    
-                        Sequel.menyimpan("tampjurnal","'"+Sequel.cariIsi("select Bayar_Piutang_Pasien from set_akun")+"','BAYAR PIUTANG','0','"+tabMode.getValueAt(i,11).toString()+"'","Rekening");    
-                        Sequel.menyimpan("tampjurnal","'"+koderekening+"','"+nama_bayar.getSelectedItem()+"','"+tabMode.getValueAt(i,11).toString()+"','0'","Rekening"); 
-                        jur.simpanJurnal(tabMode.getValueAt(i,1).toString(),Valid.SetTgl(Tanggal.getSelectedItem()+""),"U","BAYAR PIUTANG");                   
+            row = tabMode.getRowCount();
+            for (int i = 0; i < row; i++) {
+                if (tabMode.getValueAt(i, 0).toString().equals("true")) {
+                    if (Sequel.menyimpantf("bayar_piutang", "?,?,?,?,?,?,?,?", "Data", 8, new String[]{
+                        Valid.SetTgl(Tanggal.getSelectedItem() + ""),
+                        Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=?", tabMode.getValueAt(i, 1).toString()),
+                        tabMode.getValueAt(i, 11).toString(), "diverifikasi oleh " + akses.getkode(), tabMode.getValueAt(i, 1).toString(),
+                        koderekening, Sequel.cariIsi("select now()"), tabMode.getValueAt(i, 8).toString()
+                    }) == true) {
+                        if (Double.parseDouble(tabMode.getValueAt(i, 8).toString()) <= 0) {
+                            Sequel.mengedit("piutang_pasien", "no_rawat='" + tabMode.getValueAt(i, 1).toString() + "'", "status='Lunas'");
+                        }
+                        Sequel.queryu("delete from tampjurnal");
+                        Sequel.menyimpan("tampjurnal", "'" + Sequel.cariIsi("select Bayar_Piutang_Pasien from set_akun") + "','BAYAR PIUTANG','0','" + tabMode.getValueAt(i, 11).toString() + "'", "Rekening");
+                        Sequel.menyimpan("tampjurnal", "'" + koderekening + "','" + nama_bayar.getSelectedItem() + "','" + tabMode.getValueAt(i, 11).toString() + "','0'", "Rekening");
+                        jur.simpanJurnal(tabMode.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "BAYAR PIUTANG");
                     }
-                    
+
                 }
             }
             Sequel.AutoComitTrue();
