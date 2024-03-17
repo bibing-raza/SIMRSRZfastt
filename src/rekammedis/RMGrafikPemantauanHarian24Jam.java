@@ -83,7 +83,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Grafik Pemantauan Harian Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Grafik Pemantauan Harian Pasien Dewasa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
@@ -94,7 +94,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         internalFrame1.add(jLabel3);
 
         tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);

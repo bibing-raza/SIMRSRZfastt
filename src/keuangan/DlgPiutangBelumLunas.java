@@ -641,7 +641,10 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
         DlgBilingPiutang rincianpiutang = new DlgBilingPiutang(null, false);
         rincianpiutang.isRawat(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 1).toString(), 
                 Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 6).toString()),
-                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 8).toString()));
+                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 8).toString()),
+                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 5).toString()),
+                Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 7).toString())
+        );
         rincianpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
         rincianpiutang.setLocationRelativeTo(this);
         rincianpiutang.setAlwaysOnTop(false);

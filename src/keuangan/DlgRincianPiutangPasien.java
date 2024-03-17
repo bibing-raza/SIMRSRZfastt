@@ -523,8 +523,10 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
                     DlgBilingPiutang rincianpiutang = new DlgBilingPiutang(null, false);
                     rincianpiutang.isRawat(
                             tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(),
-                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?", tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString()),
-                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString())
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 19).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 18).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 20).toString())
                     );
                     rincianpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                     rincianpiutang.setLocationRelativeTo(this);
@@ -559,8 +561,10 @@ public final class DlgRincianPiutangPasien extends javax.swing.JDialog {
                     DlgBilingPiutang rincianpiutang = new DlgBilingPiutang(null, false);
                     rincianpiutang.isRawat(
                             tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString(),
-                            Sequel.cariIsiAngka("select uangmuka from piutang_pasien where no_rawat=?", tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString()),
-                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString())
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 19).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 21).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 18).toString()),
+                            Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 20).toString())
                     );
                     rincianpiutang.setSize(this.getWidth() - 40, this.getHeight() - 40);
                     rincianpiutang.setLocationRelativeTo(this);

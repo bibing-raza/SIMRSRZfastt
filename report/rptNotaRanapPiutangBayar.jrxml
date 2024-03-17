@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="612" pageHeight="792" columnWidth="572" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="36">
-	<property name="ireport.zoom" value="1.818181818181852"/>
-	<property name="ireport.x" value="187"/>
+	<property name="ireport.zoom" value="1.5026296018031833"/>
+	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
@@ -23,8 +23,9 @@
 (SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,
 (SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total piutang') tot_piutang,
 (SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,
+(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='jumlah bayar') jlh_bayar,
 (SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap 
-WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')]]>
+WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','JUMLAH BAYAR','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')]]>
 	</queryString>
 	<field name="temp1" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -62,7 +63,10 @@ WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsa
 	<field name="uang_muka" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="sisa_piutang" class="java.lang.String"/>
+	<field name="jlh_bayar" class="java.lang.String"/>
+	<field name="sisa_piutang" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<background>
 		<band splitType="Stretch"/>
 	</background>
@@ -232,9 +236,9 @@ WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsa
 		</band>
 	</detail>
 	<summary>
-		<band height="174" splitType="Stretch">
+		<band height="188" splitType="Stretch">
 			<staticText>
-				<reportElement x="335" y="64" width="222" height="14"/>
+				<reportElement x="335" y="78" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="10"/>
 				</textElement>
@@ -248,21 +252,21 @@ WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsa
 				<text><![CDATA[TOTAL PIUTANG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="15" width="410" height="15"/>
+				<reportElement x="13" y="14" width="410" height="15"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[UANG MUKA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="13" y="29" width="410" height="15"/>
+				<reportElement x="13" y="42" width="410" height="15"/>
 				<textElement textAlignment="Right" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SISA PIUTANG]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="427" y="15" width="23" height="15"/>
+				<reportElement x="427" y="14" width="23" height="15"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
@@ -276,7 +280,7 @@ WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsa
 				<text><![CDATA[Rp.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="427" y="29" width="23" height="15"/>
+				<reportElement x="427" y="42" width="23" height="15"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
@@ -290,46 +294,67 @@ WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsa
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{tot_piutang}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="29" width="122" height="15"/>
+				<reportElement x="450" y="42" width="122" height="15"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{sisa_piutang}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="450" y="15" width="122" height="15"/>
+				<reportElement x="450" y="14" width="122" height="15"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="true"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{uang_muka}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="11" y="137" width="42" height="14"/>
+				<reportElement x="11" y="151" width="42" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Catatan : ]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="335" y="117" width="222" height="14"/>
+				<reportElement x="335" y="131" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{petugas_ksr}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="54" y="137" width="489" height="29"/>
+				<reportElement x="54" y="151" width="489" height="29"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<text><![CDATA[Mohon maaf apabila ada tagihan yang belum tertagihkan dalam perincian ini akan ditagihkan kemudian, dan apabila berlebih akan dikembalikan.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="335" y="52" width="222" height="14"/>
+				<reportElement x="335" y="66" width="222" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglNota}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="427" y="28" width="23" height="15"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Rp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="13" y="28" width="410" height="15"/>
+				<textElement textAlignment="Right" lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="true"/>
+				</textElement>
+				<text><![CDATA[JUMLAH BAYAR]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="450" y="28" width="122" height="15"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="11" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jlh_bayar}]]></textFieldExpression>
 			</textField>
 		</band>
 	</summary>

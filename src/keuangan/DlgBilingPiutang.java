@@ -40,15 +40,15 @@ public class DlgBilingPiutang extends javax.swing.JDialog {
             Obat_Ralan = "", Registrasi_Ralan = "", Tambahan_Ralan = "", Potongan_Ralan = "", Uang_Muka_Ralan = "",
             Piutang_Pasien_Ralan = "", Operasi_Ralan = "", Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "",
             Tambahan_Ranap = "", Potongan_Ranap = "", Retur_Obat_Ranap = "", Resep_Pulang_Ranap = "", Kamar_Inap = "", Operasi_Ranap = "", user = "",
-            Service_Ranap = "", Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", status = "", kode_rekening = "", TtlSemua = "";
+            Service_Ranap = "", Harian_Ranap = "", Uang_Muka_Ranap = "", Piutang_Pasien_Ranap = "", status = "", kode_rekening = "";
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Jurnal jur = new Jurnal();
     private double total = 0, ttl = 0, y = 0, ttlLaborat = 0, ttlRadiologi = 0, ttlOperasi = 0, ttlObat = 0,
-            ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0,
+            ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0, TtlSemua = 0,
             ttlTambahan = 0, ttlPotongan = 0, ttlKamar = 0, ttlRegistrasi = 0, ttlHarian = 0, ttlRetur_Obat = 0,
-            ttlResep_Pulang = 0, ttlService = 0, uangmuka = 0, ttlRalan_Dokter_Param = 0, sisapiutang = 0;
+            ttlResep_Pulang = 0, ttlService = 0, uangmuka = 0, ttlRalan_Dokter_Param = 0, sisapiutang = 0, cicilan = 0; 
     private PreparedStatement ps, psrekening;
     private ResultSet rs, rsrekening;
     private int jawab, i = 0;
@@ -318,9 +318,10 @@ private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
         }
 
-        Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL PIUTANG',':','','','','','" + TtlSemua + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-        Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','" + Valid.SetAngka(uangmuka) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
-        Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','" + Valid.SetAngka(sisapiutang) + "','Tagihan','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+        Sequel.menyimpan("temporary_bayar_ranap", "'0','TOTAL PIUTANG',':','','','','','" + Valid.SetAngka(TtlSemua) + "','Tagihan','','','','','','','','',''", "Piutang Pasien Ranap");
+        Sequel.menyimpan("temporary_bayar_ranap", "'0','UANG MUKA',':','','','','','" + Valid.SetAngka(uangmuka) + "','Tagihan','','','','','','','','',''", "Piutang Pasien Ranap");
+        Sequel.menyimpan("temporary_bayar_ranap", "'0','JUMLAH BAYAR',':','','','','','" + Valid.SetAngka(cicilan) + "','Tagihan','','','','','','','','',''", "Piutang Pasien Ranap");
+        Sequel.menyimpan("temporary_bayar_ranap", "'0','SISA PIUTANG',':','','','','','" + Valid.SetAngka(sisapiutang) + "','Tagihan','','','','','','','','',''", "Piutang Pasien Ranap");
         cetakNotaPiutangAJA();
     }
     this.setCursor(Cursor.getDefaultCursor());
@@ -524,168 +525,191 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     private widget.Tanggal tglNota;
     // End of variables declaration//GEN-END:variables
 
-    public void isRawat(String norawat,double uangmuka2, double sp) {
+    public void isRawat(String norawat, double uangmuka2, double sp, double totpiutang, double jlhcicilan) {
         sisapiutang = sp;
-        uangmuka=uangmuka2;
-        status=Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat=?",norawat);        
+        uangmuka = uangmuka2;
+        TtlSemua = totpiutang;
+        cicilan = jlhcicilan;
+        status = Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat=?", norawat);
         TNoRw.setText(norawat);
-             try{
-                ps=koneksi.prepareStatement("select no,nm_perawatan, if(biaya<>0,biaya,null) as satu, if(jumlah<>0,jumlah,null) as dua,"+
-                                 "if(tambahan<>0,tambahan,null) as tiga, if(totalbiaya<>0,totalbiaya,null) as empat,pemisah,status "+
-                                 "from billing where no_rawat=?  order by noindex"); 
-                try {
-                    ps.setString(1, norawat);
-                    rs=ps.executeQuery();
-                    total=0;
-                    while(rs.next()){
-                        if((!rs.getString("no").contains("Tagihan + PPN"))&&(!rs.getString("no").contains("PPN("))){                    
-                            tabModeRwJlDr.addRow(new Object[]{true,rs.getString("no"),
-                                        rs.getString("nm_perawatan"),
-                                        rs.getString("pemisah"),
-                                        rs.getObject("satu"),
-                                        rs.getObject("dua"),
-                                        rs.getObject("tiga"),
-                                        rs.getObject("empat"),
-                                        rs.getString("status")});
-                        }
-                    }
-                    
-                    if(status.equals("Ralan")){
-                        kode_rekening=Sequel.cariIsi("select kd_rek from nota_jalan where no_rawat=?",norawat);
-                        ttl=0;
-                        y=0;
-                        ttlLaborat=0;ttlRadiologi=0;ttlObat=0;ttlRalan_Dokter=0;ttlRalan_Paramedis=0;ttlTambahan=0;
-                        ttlPotongan=0;ttlRegistrasi=0;ttlRalan_Dokter_Param=0;ttlOperasi=0;
-                        for(i=0;i<tbAdmin.getRowCount();i++){ 
-                            try {                
-                               y=Double.parseDouble(tabModeRwJlDr.getValueAt(i,7).toString());  
-                            } catch (Exception e) {
-                                y=0; 
-                            }
-                            switch (tabModeRwJlDr.getValueAt(i,8).toString()) {
-                                case "Laborat":
-                                        ttlLaborat=ttlLaborat+y;
-                                        break;
-                                case "Radiologi":
-                                        ttlRadiologi=ttlRadiologi+y;
-                                        break;
-                                case "Obat":
-                                        ttlObat=ttlObat+y;
-                                        break;
-                                case "Ralan Dokter":
-                                        ttlRalan_Dokter=ttlRalan_Dokter+y;
-                                        break;     
-                                case "Ralan Dokter Paramedis":
-                                        ttlRalan_Dokter_Param=ttlRalan_Dokter_Param+y;
-                                        break;    
-                                case "Ralan Paramedis":
-                                        ttlRalan_Paramedis=ttlRalan_Paramedis+y;
-                                        break;
-                                case "Tambahan":
-                                        ttlTambahan=ttlTambahan+y;
-                                        break;
-                                case "Potongan":
-                                        ttlPotongan=ttlPotongan+y;
-                                        break;
-                                case "Registrasi":
-                                        ttlRegistrasi=ttlRegistrasi+y;
-                                        break;
-                                case "Operasi":
-                                        ttlOperasi=ttlOperasi+y;
-                                        break;
-                            }                                
-                            ttl=ttl+y;             
-                        }
-                    }else if(status.equals("Ranap")){                        
-                        kode_rekening = Sequel.cariIsi("SELECT ab.kd_rek FROM akun_bayar ab INNER JOIN detail_nota_inap dn ON ab.nama_bayar=dn.nama_bayar WHERE "
-                                + "dn.no_rawat = '" + norawat + "' limit 1");
-                        ttl=0;
-                        y=0;
-                        ttlLaborat=0;ttlRadiologi=0;ttlOperasi=0;ttlObat=0;ttlRanap_Dokter=0;ttlRanap_Paramedis=0;ttlRalan_Dokter=0;
-                        ttlRalan_Paramedis=0;ttlTambahan=0;ttlPotongan=0;ttlKamar=0;ttlRegistrasi=0;ttlHarian=0;ttlRetur_Obat=0;ttlResep_Pulang=0;
-                        ttlService=0;
-                        int row=tabModeRwJlDr.getRowCount();
-                        if(row>0){
-                            for(int r=0;r<row;r++){             
-                                try {
-                                    y=Double.parseDouble(tabModeRwJlDr.getValueAt(r,7).toString());  
-                                } catch (Exception e) {
-                                   y=0;
-                                }  
-                                switch (tabModeRwJlDr.getValueAt(r,8).toString()) {
-                                    case "Laborat":
-                                        ttlLaborat=ttlLaborat+y;
-                                        break;
-                                    case "Radiologi":
-                                        ttlRadiologi=ttlRadiologi+y;
-                                        break;
-                                    case "Operasi":
-                                        ttlOperasi=ttlOperasi+y;
-                                        break;
-                                    case "Obat":
-                                        ttlObat=ttlObat+y;
-                                        break;
-                                    case "Ranap Dokter":
-                                        ttlRanap_Dokter=ttlRanap_Dokter+y;
-                                        break;
-                                    case "Ranap Dokter Paramedis":
-                                        ttlRanap_Dokter=ttlRanap_Dokter+y;
-                                        break;
-                                    case "Ranap Paramedis":
-                                        ttlRanap_Paramedis=ttlRanap_Paramedis+y;
-                                        break;
-                                    case "Ralan Dokter":
-                                        ttlRalan_Dokter=ttlRalan_Dokter+y;
-                                        break;
-                                    case "Ralan Dokter Paramedis":
-                                        ttlRalan_Dokter=ttlRalan_Dokter+y;
-                                        break;
-                                    case "Ralan Paramedis":
-                                        ttlRalan_Paramedis=ttlRalan_Paramedis+y;
-                                        break;
-                                    case "Tambahan":
-                                        ttlTambahan=ttlTambahan+y;
-                                        break;
-                                    case "Potongan":
-                                        ttlPotongan=ttlPotongan+y;
-                                        break;
-                                    case "Kamar":
-                                        ttlKamar=ttlKamar+y;
-                                        break;
-                                    case "Registrasi":
-                                        ttlRegistrasi=ttlRegistrasi+y;
-                                        break;
-                                    case "Harian":
-                                        ttlHarian=ttlHarian+y;
-                                        break;
-                                    case "Retur Obat":
-                                        ttlRetur_Obat=ttlRetur_Obat+y;
-                                        break;
-                                    case "Resep Pulang":
-                                        ttlResep_Pulang=ttlResep_Pulang+y;
-                                        break;
-                                    case "Service":
-                                        ttlService=ttlService+y;
-                                        break;
-                                }
-                                ttl=ttl+y;
-                            }              
-                        }        
-                    }        
-                } catch (Exception e) {
-                    System.out.println(e);
-                } finally{
-                    if(rs!=null){
-                        rs.close();
-                    }
-                    if(ps!=null){
-                        ps.close();
+
+        try {
+            ps = koneksi.prepareStatement("select no,nm_perawatan, if(biaya<>0,biaya,null) as satu, if(jumlah<>0,jumlah,null) as dua,"
+                    + "if(tambahan<>0,tambahan,null) as tiga, if(totalbiaya<>0,totalbiaya,null) as empat,pemisah,status "
+                    + "from billing where no_rawat=?  order by noindex");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                total = 0;
+                while (rs.next()) {
+                    if ((!rs.getString("no").contains("Tagihan + PPN")) && (!rs.getString("no").contains("PPN("))) {
+                        tabModeRwJlDr.addRow(new Object[]{true, rs.getString("no"),
+                            rs.getString("nm_perawatan"),
+                            rs.getString("pemisah"),
+                            rs.getObject("satu"),
+                            rs.getObject("dua"),
+                            rs.getObject("tiga"),
+                            rs.getObject("empat"),
+                            rs.getString("status")});
                     }
                 }
-            }catch(Exception e){
-                System.out.println("Notifikasi : "+e);
+
+                if (status.equals("Ralan")) {
+                    kode_rekening = Sequel.cariIsi("select kd_rek from nota_jalan where no_rawat=?", norawat);
+                    ttl = 0;
+                    y = 0;
+                    ttlLaborat = 0;
+                    ttlRadiologi = 0;
+                    ttlObat = 0;
+                    ttlRalan_Dokter = 0;
+                    ttlRalan_Paramedis = 0;
+                    ttlTambahan = 0;
+                    ttlPotongan = 0;
+                    ttlRegistrasi = 0;
+                    ttlRalan_Dokter_Param = 0;
+                    ttlOperasi = 0;
+                    for (i = 0; i < tbAdmin.getRowCount(); i++) {
+                        try {
+                            y = Double.parseDouble(tabModeRwJlDr.getValueAt(i, 7).toString());
+                        } catch (Exception e) {
+                            y = 0;
+                        }
+                        switch (tabModeRwJlDr.getValueAt(i, 8).toString()) {
+                            case "Laborat":
+                                ttlLaborat = ttlLaborat + y;
+                                break;
+                            case "Radiologi":
+                                ttlRadiologi = ttlRadiologi + y;
+                                break;
+                            case "Obat":
+                                ttlObat = ttlObat + y;
+                                break;
+                            case "Ralan Dokter":
+                                ttlRalan_Dokter = ttlRalan_Dokter + y;
+                                break;
+                            case "Ralan Dokter Paramedis":
+                                ttlRalan_Dokter_Param = ttlRalan_Dokter_Param + y;
+                                break;
+                            case "Ralan Paramedis":
+                                ttlRalan_Paramedis = ttlRalan_Paramedis + y;
+                                break;
+                            case "Tambahan":
+                                ttlTambahan = ttlTambahan + y;
+                                break;
+                            case "Potongan":
+                                ttlPotongan = ttlPotongan + y;
+                                break;
+                            case "Registrasi":
+                                ttlRegistrasi = ttlRegistrasi + y;
+                                break;
+                            case "Operasi":
+                                ttlOperasi = ttlOperasi + y;
+                                break;
+                        }
+                        ttl = ttl + y;
+                    }
+                } else if (status.equals("Ranap")) {
+                    kode_rekening = Sequel.cariIsi("SELECT ab.kd_rek FROM akun_bayar ab INNER JOIN detail_nota_inap dn ON ab.nama_bayar=dn.nama_bayar WHERE "
+                            + "dn.no_rawat = '" + norawat + "' limit 1");
+                    ttl = 0;
+                    y = 0;
+                    ttlLaborat = 0;
+                    ttlRadiologi = 0;
+                    ttlOperasi = 0;
+                    ttlObat = 0;
+                    ttlRanap_Dokter = 0;
+                    ttlRanap_Paramedis = 0;
+                    ttlRalan_Dokter = 0;
+                    ttlRalan_Paramedis = 0;
+                    ttlTambahan = 0;
+                    ttlPotongan = 0;
+                    ttlKamar = 0;
+                    ttlRegistrasi = 0;
+                    ttlHarian = 0;
+                    ttlRetur_Obat = 0;
+                    ttlResep_Pulang = 0;
+                    ttlService = 0;
+                    int row = tabModeRwJlDr.getRowCount();
+                    if (row > 0) {
+                        for (int r = 0; r < row; r++) {
+                            try {
+                                y = Double.parseDouble(tabModeRwJlDr.getValueAt(r, 7).toString());
+                            } catch (Exception e) {
+                                y = 0;
+                            }
+                            switch (tabModeRwJlDr.getValueAt(r, 8).toString()) {
+                                case "Laborat":
+                                    ttlLaborat = ttlLaborat + y;
+                                    break;
+                                case "Radiologi":
+                                    ttlRadiologi = ttlRadiologi + y;
+                                    break;
+                                case "Operasi":
+                                    ttlOperasi = ttlOperasi + y;
+                                    break;
+                                case "Obat":
+                                    ttlObat = ttlObat + y;
+                                    break;
+                                case "Ranap Dokter":
+                                    ttlRanap_Dokter = ttlRanap_Dokter + y;
+                                    break;
+                                case "Ranap Dokter Paramedis":
+                                    ttlRanap_Dokter = ttlRanap_Dokter + y;
+                                    break;
+                                case "Ranap Paramedis":
+                                    ttlRanap_Paramedis = ttlRanap_Paramedis + y;
+                                    break;
+                                case "Ralan Dokter":
+                                    ttlRalan_Dokter = ttlRalan_Dokter + y;
+                                    break;
+                                case "Ralan Dokter Paramedis":
+                                    ttlRalan_Dokter = ttlRalan_Dokter + y;
+                                    break;
+                                case "Ralan Paramedis":
+                                    ttlRalan_Paramedis = ttlRalan_Paramedis + y;
+                                    break;
+                                case "Tambahan":
+                                    ttlTambahan = ttlTambahan + y;
+                                    break;
+                                case "Potongan":
+                                    ttlPotongan = ttlPotongan + y;
+                                    break;
+                                case "Kamar":
+                                    ttlKamar = ttlKamar + y;
+                                    break;
+                                case "Registrasi":
+                                    ttlRegistrasi = ttlRegistrasi + y;
+                                    break;
+                                case "Harian":
+                                    ttlHarian = ttlHarian + y;
+                                    break;
+                                case "Retur Obat":
+                                    ttlRetur_Obat = ttlRetur_Obat + y;
+                                    break;
+                                case "Resep Pulang":
+                                    ttlResep_Pulang = ttlResep_Pulang + y;
+                                    break;
+                                case "Service":
+                                    ttlService = ttlService + y;
+                                    break;
+                            }
+                            ttl = ttl + y;
+                        }
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
             }
-             TtlSemua = Valid.SetAngka3(Valid.roundUp(ttl, 0));
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
     
     private void cetakNotaPiutangAJA() {
@@ -714,7 +738,8 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 + "(SELECT temp2 FROM temporary_bayar_ranap WHERE temp1='Alamat Pasien') alamat_pasien,"
                 + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='total piutang') tot_piutang,"
                 + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='uang muka') uang_muka,"
+                + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='jumlah bayar') jlh_bayar,"
                 + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
-                + "WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')", param);
+                + "WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','JUMLAH BAYAR','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')", param);
     }
 }
