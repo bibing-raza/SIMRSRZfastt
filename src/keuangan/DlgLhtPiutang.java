@@ -1688,7 +1688,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                - Sequel.cariIsiAngka("SELECT ifnull(SUM(bp.besar_cicilan),0) FROM bayar_piutang bp where bp.no_rawat=?", NoRawat.getText());
         TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 4).toString()), 100)));
         if (!Cicilan.getText().equals("")) {
-            Sisa.setText(Valid.SetAngka(Valid.roundUp(sisapiutang - Double.parseDouble(Cicilan.getText()), 100)));
+            Sisa.setText(Valid.SetAngka(Valid.roundUp(sisapiutang1 - Double.parseDouble(Cicilan.getText()), 100)));
             TotalPiutang.setText(Valid.SetAngka(Valid.roundUp(Double.parseDouble(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 4).toString()) - Double.parseDouble(Cicilan.getText()), 100)));
         }
     }
