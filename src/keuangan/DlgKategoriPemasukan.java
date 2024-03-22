@@ -65,17 +65,21 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbKamar.setModel(tabMode);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbKamar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKamar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 4; i++) {
             TableColumn column = tbKamar.getColumnModel().getColumn(i);
-            if(i==0){
-                column.setPreferredWidth(70);
-            }else{
-                column.setPreferredWidth(200);
+            if (i == 0) {
+                column.setPreferredWidth(75);
+            } else if (i == 1) {
+                column.setPreferredWidth(300);
+            } else if (i == 2) {
+                column.setPreferredWidth(390);
+            } else if (i == 3) {
+                column.setPreferredWidth(90);
             }
         }
         tbKamar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -219,7 +223,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Kategori Pemasukan Lain-Lain ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Kategori Pemasukan Lain-Lain ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -251,7 +255,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
         label34.setName("label34"); // NOI18N
         label34.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label34);
-        label34.setBounds(250, 12, 67, 23);
+        label34.setBounds(317, 12, 80, 23);
 
         KdAkun.setForeground(new java.awt.Color(0, 0, 0));
         KdAkun.setName("KdAkun"); // NOI18N
@@ -261,7 +265,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(KdAkun);
-        KdAkun.setBounds(319, 12, 80, 23);
+        KdAkun.setBounds(399, 12, 80, 23);
 
         NmAkun.setEditable(false);
         NmAkun.setForeground(new java.awt.Color(0, 0, 0));
@@ -273,7 +277,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(NmAkun);
-        NmAkun.setBounds(401, 12, 187, 23);
+        NmAkun.setBounds(481, 12, 317, 23);
 
         BtnAkun.setForeground(new java.awt.Color(0, 0, 0));
         BtnAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -287,7 +291,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnAkun);
-        BtnAkun.setBounds(590, 12, 28, 23);
+        BtnAkun.setBounds(800, 12, 28, 23);
 
         label35.setForeground(new java.awt.Color(0, 0, 0));
         label35.setText("Kategori :");
@@ -314,7 +318,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(Nm);
-        Nm.setBounds(60, 42, 170, 23);
+        Nm.setBounds(60, 42, 250, 23);
 
         label36.setForeground(new java.awt.Color(0, 0, 0));
         label36.setText("Kode :");
@@ -328,7 +332,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
         label37.setName("label37"); // NOI18N
         label37.setPreferredSize(new java.awt.Dimension(35, 23));
         panelisi4.add(label37);
-        label37.setBounds(227, 42, 90, 23);
+        label37.setBounds(317, 42, 80, 23);
 
         KdKontraAkun.setForeground(new java.awt.Color(0, 0, 0));
         KdKontraAkun.setName("KdKontraAkun"); // NOI18N
@@ -343,7 +347,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(KdKontraAkun);
-        KdKontraAkun.setBounds(319, 42, 80, 23);
+        KdKontraAkun.setBounds(399, 42, 80, 23);
 
         NmKontraAKun.setEditable(false);
         NmKontraAKun.setForeground(new java.awt.Color(0, 0, 0));
@@ -355,7 +359,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(NmKontraAKun);
-        NmKontraAKun.setBounds(401, 42, 187, 23);
+        NmKontraAKun.setBounds(481, 42, 317, 23);
 
         BtnKontraAkun.setForeground(new java.awt.Color(0, 0, 0));
         BtnKontraAkun.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -369,7 +373,7 @@ public final class DlgKategoriPemasukan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnKontraAkun);
-        BtnKontraAkun.setBounds(590, 42, 28, 23);
+        BtnKontraAkun.setBounds(800, 42, 28, 23);
 
         internalFrame1.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
