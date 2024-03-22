@@ -330,6 +330,8 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             NoSEP.requestFocus();
                             BtnSimpan6.setEnabled(true);
                             BtnPrint.setEnabled(false);
+                            labelSewa.setVisible(false);
+                            nominalSewa.setVisible(false);
                             selisihBaru();
 
                             if (WindowSelisihTarif.isVisible() == true) {
@@ -349,6 +351,8 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             WindowAmbulan.setSize(609, 282);
                             WindowAmbulan.setLocationRelativeTo(internalFrame1);
                             WindowAmbulan.setVisible(true);
+                            labelSewa.setVisible(false);
+                            nominalSewa.setVisible(false);
                             
                             Tnorm.setText("-");
                             Tnmpasien.setText("-");
@@ -359,8 +363,10 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             CmbTarif.setEnabled(false);
                             Tnorm.requestFocus();
                         
-                        } else if ((!KdKategori.getText().equals("SBPJS")) || (!KdKategori.getText().equals("SWKTN"))) {
+                        } else if (!KdKategori.getText().equals("SBPJS") || !KdKategori.getText().equals("SWKTN") || !KdKategori.getText().equals("AMBLN")) {
                             pemasukan.requestFocus();
+                            labelSewa.setVisible(false);
+                            nominalSewa.setVisible(false);
                         }
                     }
                 }
@@ -387,7 +393,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement(
                     " SELECT pl.no_transaksi, pl.tanggal, pl.jam_penerimaan, kpl.nama_kategori, "
-                    + " p.nama, pl.besar, concat(pl.keterangan,' angsuran ke ',IFNULL(b.pembayaran_ke,'-'),' (',UPPER(IFNULL(b.status_transaksi,'-')),')') keterangan, "
+                    + " p.nama, pl.besar, if(pl.kode_kategori='AMBLN',pl.keterangan,concat(pl.keterangan,' angsuran ke ',IFNULL(b.pembayaran_ke,'-'),' (',UPPER(IFNULL(b.status_transaksi,'-')),')')) keterangan, "
                     + " IFNULL(pl.telah_terima_dari,'-') pembayar, "
                     + " pl.no_sep, pl.no_rkm_medis, pl.no_kartu, pl.no_rawat, pl.tgl_masuk, pl.tgl_pulang, "
                     + " pl.ruang_inap, pl.kode_inacbg, pl.trf_kls1, pl.trf_kls2, pl.trf_kls3, "
@@ -1761,20 +1767,14 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         KdPtg.setEditable(false);
         KdPtg.setForeground(new java.awt.Color(0, 0, 0));
         KdPtg.setName("KdPtg"); // NOI18N
-        KdPtg.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                KdPtgKeyPressed(evt);
-            }
-        });
         FormInput.add(KdPtg);
         KdPtg.setBounds(85, 70, 100, 23);
 
         NmPtg.setEditable(false);
         NmPtg.setForeground(new java.awt.Color(0, 0, 0));
-        NmPtg.setHighlighter(null);
         NmPtg.setName("NmPtg"); // NOI18N
         FormInput.add(NmPtg);
-        NmPtg.setBounds(188, 70, 220, 23);
+        NmPtg.setBounds(188, 70, 420, 23);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Keterangan :");
@@ -1804,7 +1804,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnPetugas);
-        btnPetugas.setBounds(410, 70, 28, 23);
+        btnPetugas.setBounds(610, 70, 28, 23);
 
         KdKategori.setEditable(false);
         KdKategori.setForeground(new java.awt.Color(0, 0, 0));
@@ -1822,7 +1822,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         NmKategori.setHighlighter(null);
         NmKategori.setName("NmKategori"); // NOI18N
         FormInput.add(NmKategori);
-        NmKategori.setBounds(158, 40, 251, 23);
+        NmKategori.setBounds(158, 40, 451, 23);
 
         btnKategori.setForeground(new java.awt.Color(0, 0, 0));
         btnKategori.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1840,7 +1840,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnKategori);
-        btnKategori.setBounds(410, 40, 28, 23);
+        btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
         Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-03-2024" }));
@@ -1866,7 +1866,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel11.setText("Telah terima dari (An./Pasien) :");
         jLabel11.setName("jLabel11"); // NOI18N
         FormInput.add(jLabel11);
-        jLabel11.setBounds(0, 180, 160, 23);
+        jLabel11.setBounds(750, 100, 170, 23);
 
         pemasukan.setForeground(new java.awt.Color(0, 0, 0));
         pemasukan.setText("0");
@@ -1879,7 +1879,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(pemasukan);
-        pemasukan.setBounds(567, 40, 139, 23);
+        pemasukan.setBounds(925, 40, 139, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jam :");
@@ -1947,10 +1947,10 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         noTransaksi.setBounds(85, 10, 110, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Jlh. Nominal : Rp.");
+        jLabel15.setText("Jumlah Nominal : Rp.");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(443, 40, 120, 23);
+        jLabel15.setBounds(750, 40, 170, 23);
 
         telahTerimaPAS.setForeground(new java.awt.Color(0, 0, 0));
         telahTerimaPAS.setName("telahTerimaPAS"); // NOI18N
@@ -1960,7 +1960,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(telahTerimaPAS);
-        telahTerimaPAS.setBounds(165, 180, 315, 23);
+        telahTerimaPAS.setBounds(925, 100, 315, 23);
 
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
@@ -1968,7 +1968,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Keterangan.setColumns(20);
         Keterangan.setRows(5);
         Keterangan.setName("Keterangan"); // NOI18N
-        Keterangan.setPreferredSize(new java.awt.Dimension(170, 200));
+        Keterangan.setPreferredSize(new java.awt.Dimension(170, 500));
         Keterangan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 KeteranganKeyPressed(evt);
@@ -1977,7 +1977,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Scroll3.setViewportView(Keterangan);
 
         FormInput.add(Scroll3);
-        Scroll3.setBounds(85, 100, 660, 75);
+        Scroll3.setBounds(85, 100, 660, 130);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Kategori : ");
@@ -1987,10 +1987,10 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel14.setBounds(0, 40, 80, 23);
 
         labelSewa.setForeground(new java.awt.Color(0, 0, 0));
-        labelSewa.setText("Jlh. Bayar Sewa : Rp.");
+        labelSewa.setText("Jumlah Bayar Sewa : Rp.");
         labelSewa.setName("labelSewa"); // NOI18N
         FormInput.add(labelSewa);
-        labelSewa.setBounds(443, 70, 120, 23);
+        labelSewa.setBounds(750, 70, 170, 23);
 
         nominalSewa.setEditable(false);
         nominalSewa.setForeground(new java.awt.Color(0, 0, 0));
@@ -2004,13 +2004,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(nominalSewa);
-        nominalSewa.setBounds(567, 70, 139, 23);
+        nominalSewa.setBounds(925, 70, 139, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Telah terima (Atas Nama Lain) :");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput.add(jLabel16);
-        jLabel16.setBounds(0, 210, 160, 23);
+        jLabel16.setBounds(750, 128, 170, 23);
 
         telahTerimaAN.setForeground(new java.awt.Color(0, 0, 0));
         telahTerimaAN.setName("telahTerimaAN"); // NOI18N
@@ -2020,7 +2020,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         FormInput.add(telahTerimaAN);
-        telahTerimaAN.setBounds(165, 210, 315, 23);
+        telahTerimaAN.setBounds(925, 128, 315, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -2258,16 +2258,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         petugas.setVisible(true);
     }//GEN-LAST:event_btnPetugasActionPerformed
 
-    private void KdPtgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KdPtgKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            Sequel.cariIsi("select nama from petugas where nip=?", NmPtg, KdPtg.getText());
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            btnPetugasActionPerformed(null);
-        } else {
-            Valid.pindah(evt, KdKategori, Keterangan);
-        }
-    }//GEN-LAST:event_KdPtgKeyPressed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         Sequel.cariIsiComboDB("SELECT nm_perawatan FROM jns_perawatan WHERE kd_kategori='swkn' AND STATUS='1'", CmbTarif);
@@ -2356,8 +2346,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 selisihBaru();
             } else {
                 SimpanKwitansi();
-                param.put("uang_sebanyak", Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap")) + " Rupiah.");
-                param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
+                String kalimatBayar = "", bayar = "";
+                kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+                bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+                
+                param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+                param.put("terbilang", "Terbilang Rp. " + bayar);
+                
+                if (KdKategori.getText().equals("AMBLN")) {
+                    param.put("sebesar", "");
+                } else {
+                    param.put("sebesar", " sebesar Rp. " + bayar + "\n");
+                }
                 Valid.MyReport("rptNotaKwitansiLain.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", "SELECT * FROM temporary_bayar_ranap", param);
                 this.setCursor(Cursor.getDefaultCursor());
                 emptTeks();
@@ -3412,14 +3412,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         jLabel53.setVisible(true);
         ChkSesuaiTagihan.setVisible(true);
         jlhdibayar.setVisible(true);
-
-        if (akses.getkode().equals("Admin Utama")) {
-            KdPtg.setText("");
-            NmPtg.setText("");
-        } else {
-            KdPtg.setText(akses.getkode());
-            NmPtg.setText(akses.getnamauser());
-        }
     }
 
     private void getData() {
@@ -3504,13 +3496,17 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     public void isCek() {
-        if (akses.getjml2() >= 1) {
-            tglNota.setDate(new Date());
-            KdPtg.setEditable(false);
+        tglNota.setDate(new Date());
+        BtnSimpan.setEnabled(akses.getpemasukan_lain());
+        BtnHapus.setEnabled(akses.getpemasukan_lain());
+
+        if (akses.getadmin() == true) {
+            btnPetugas.setEnabled(true);
+            KdPtg.setText("-");
+            NmPtg.setText("-");
+        } else {
             btnPetugas.setEnabled(false);
             KdPtg.setText(akses.getkode());
-            BtnSimpan.setEnabled(akses.getpemasukan_lain());
-            BtnHapus.setEnabled(akses.getpemasukan_lain());
             Sequel.cariIsi("select nama from petugas where nip=?", NmPtg, KdPtg.getText());
         }
     }
@@ -4212,7 +4208,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
                         + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
                         + "~ Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
-                telahTerimaPAS.setText(Tnmpasien.getText());
+                telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
             } else {
                 selisihJrk = A - 15;
                 hslSelisihJrk = selisihJrk * B;
@@ -4228,7 +4224,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
                         + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
                         + "~ Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
-                telahTerimaPAS.setText(Tnmpasien.getText());
+                telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
             }
             ambulanDibayar = Valid.SetAngka2(bayarAmbulan);
         } else {            
@@ -4238,7 +4234,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             ambulanDibayar = Valid.SetAngka2(C);
             Keterangan.setText("Alamat Tujuan : " + TalamatTujuan.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
                     + "Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n");
-            telahTerimaPAS.setText(Tnmpasien.getText());
+            telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
         }
     }  
 }

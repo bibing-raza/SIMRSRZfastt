@@ -14,6 +14,7 @@
 	<parameter name="terbilang" class="java.lang.String"/>
 	<parameter name="uang_sebanyak" class="java.lang.String"/>
 	<parameter name="tglNota" class="java.lang.String"/>
+	<parameter name="sebesar" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT * FROM temporary_bayar_ranap]]>
 	</queryString>
@@ -154,7 +155,7 @@
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="2" y="0" width="30" height="38"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 		</band>
 	</title>
@@ -216,14 +217,14 @@
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp8}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp8}+"\n"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="112" y="0" width="151" height="13"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9" isBold="false"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp2}+" sebesar Rp. "+$F{temp3}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp2}+""+$P{sebesar}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement stretchType="RelativeToTallestObject" x="1" y="0" width="1" height="13" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
