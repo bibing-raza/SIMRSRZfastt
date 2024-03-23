@@ -357,7 +357,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             Tnorm.setText("-");
                             Tnmpasien.setText("-");
                             Tjarak.setText("0");
-                            TalamatTujuan.setText("");
+                            TtujuanAlamat.setText("");
                             TselisihJrk.setText("0");
                             TtarifSelisihJrk.setText("0");
                             CmbTarif.setEnabled(false);
@@ -443,6 +443,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         RekapSelisihAngsur = new javax.swing.JMenuItem();
         RekapPemasukanLain = new javax.swing.JMenuItem();
         RekapSewaTempat = new javax.swing.JMenuItem();
+        RekapAmbulan = new javax.swing.JMenuItem();
         WindowSelisihTarif = new javax.swing.JDialog();
         internalFrame7 = new widget.InternalFrame();
         internalFrame8 = new widget.InternalFrame();
@@ -506,7 +507,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel18 = new widget.Label();
         Tjarak = new widget.TextBox();
         jLabel20 = new widget.Label();
-        TalamatTujuan = new widget.TextBox();
         jLabel22 = new widget.Label();
         CmbTarif = new widget.ComboBox();
         jLabel23 = new widget.Label();
@@ -523,6 +523,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel26 = new widget.Label();
         Tnorm = new widget.TextBox();
         Tnmpasien = new widget.TextBox();
+        TtujuanAlamat = new widget.TextBox();
         internalFrame11 = new widget.InternalFrame();
         BtnSimpan4 = new widget.Button();
         BtnCloseIn4 = new widget.Button();
@@ -688,6 +689,18 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         });
         MnLaporan.add(RekapSewaTempat);
 
+        RekapAmbulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        RekapAmbulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        RekapAmbulan.setText("Rekap Pembayaran Ambulan");
+        RekapAmbulan.setName("RekapAmbulan"); // NOI18N
+        RekapAmbulan.setPreferredSize(new java.awt.Dimension(220, 26));
+        RekapAmbulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                RekapAmbulanActionPerformed(evt);
+            }
+        });
+        MnLaporan.add(RekapAmbulan);
+
         jPopupMenu1.add(MnLaporan);
 
         WindowSelisihTarif.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -717,11 +730,11 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         NoSEP.setMaxLenth(18);
         NoSEP.setName("NoSEP"); // NOI18N
         NoSEP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                NoSEPKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 NoSEPKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                NoSEPKeyTyped(evt);
             }
         });
         internalFrame8.add(NoSEP);
@@ -816,11 +829,11 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         kdINACBG.setMaxLenth(15);
         kdINACBG.setName("kdINACBG"); // NOI18N
         kdINACBG.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                kdINACBGKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 kdINACBGKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                kdINACBGKeyTyped(evt);
             }
         });
         internalFrame8.add(kdINACBG);
@@ -1169,11 +1182,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame6.add(jLabel20);
         jLabel20.setBounds(140, 38, 130, 23);
 
-        TalamatTujuan.setForeground(new java.awt.Color(0, 0, 0));
-        TalamatTujuan.setName("TalamatTujuan"); // NOI18N
-        internalFrame6.add(TalamatTujuan);
-        TalamatTujuan.setBounds(272, 38, 305, 23);
-
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Nama Tarif : ");
         jLabel22.setName("jLabel22"); // NOI18N
@@ -1285,6 +1293,16 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame6.add(Tnmpasien);
         Tnmpasien.setBounds(170, 10, 408, 23);
 
+        TtujuanAlamat.setForeground(new java.awt.Color(0, 0, 0));
+        TtujuanAlamat.setName("TtujuanAlamat"); // NOI18N
+        TtujuanAlamat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TtujuanAlamatKeyPressed(evt);
+            }
+        });
+        internalFrame6.add(TtujuanAlamat);
+        TtujuanAlamat.setBounds(272, 38, 305, 23);
+
         internalFrame5.add(internalFrame6, java.awt.BorderLayout.CENTER);
 
         internalFrame11.setName("internalFrame11"); // NOI18N
@@ -1327,194 +1345,66 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         cekNoSEP.setForeground(new java.awt.Color(0, 0, 0));
         cekNoSEP.setHighlighter(null);
         cekNoSEP.setName("cekNoSEP"); // NOI18N
-        cekNoSEP.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cekNoSEPKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cekNoSEPKeyPressed(evt);
-            }
-        });
 
         hasilLM.setForeground(new java.awt.Color(0, 0, 0));
         hasilLM.setHighlighter(null);
         hasilLM.setName("hasilLM"); // NOI18N
-        hasilLM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                hasilLMKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                hasilLMKeyPressed(evt);
-            }
-        });
 
         byrSimpan.setForeground(new java.awt.Color(0, 0, 0));
         byrSimpan.setHighlighter(null);
         byrSimpan.setName("byrSimpan"); // NOI18N
-        byrSimpan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                byrSimpanKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                byrSimpanKeyPressed(evt);
-            }
-        });
 
         rumusbayar.setForeground(new java.awt.Color(0, 0, 0));
         rumusbayar.setHighlighter(null);
         rumusbayar.setName("rumusbayar"); // NOI18N
-        rumusbayar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                rumusbayarKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                rumusbayarKeyPressed(evt);
-            }
-        });
 
         statusSELISIH.setForeground(new java.awt.Color(0, 0, 0));
         statusSELISIH.setHighlighter(null);
         statusSELISIH.setName("statusSELISIH"); // NOI18N
-        statusSELISIH.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                statusSELISIHKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                statusSELISIHKeyPressed(evt);
-            }
-        });
 
         persenSewa.setForeground(new java.awt.Color(0, 0, 0));
         persenSewa.setHighlighter(null);
         persenSewa.setName("persenSewa"); // NOI18N
-        persenSewa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                persenSewaKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                persenSewaKeyPressed(evt);
-            }
-        });
 
         nominalPajakSewa.setForeground(new java.awt.Color(0, 0, 0));
         nominalPajakSewa.setHighlighter(null);
         nominalPajakSewa.setName("nominalPajakSewa"); // NOI18N
-        nominalPajakSewa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                nominalPajakSewaKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nominalPajakSewaKeyPressed(evt);
-            }
-        });
 
         totalbyrsewa.setForeground(new java.awt.Color(0, 0, 0));
         totalbyrsewa.setHighlighter(null);
         totalbyrsewa.setName("totalbyrsewa"); // NOI18N
-        totalbyrsewa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                totalbyrsewaKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                totalbyrsewaKeyPressed(evt);
-            }
-        });
 
         cekNoTransaksi.setForeground(new java.awt.Color(0, 0, 0));
         cekNoTransaksi.setHighlighter(null);
         cekNoTransaksi.setName("cekNoTransaksi"); // NOI18N
-        cekNoTransaksi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                cekNoTransaksiKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cekNoTransaksiKeyPressed(evt);
-            }
-        });
 
         bayarKe.setForeground(new java.awt.Color(0, 0, 0));
         bayarKe.setHighlighter(null);
         bayarKe.setName("bayarKe"); // NOI18N
-        bayarKe.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                bayarKeKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                bayarKeKeyPressed(evt);
-            }
-        });
 
         jumlhBayar.setForeground(new java.awt.Color(0, 0, 0));
         jumlhBayar.setHighlighter(null);
         jumlhBayar.setName("jumlhBayar"); // NOI18N
-        jumlhBayar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                jumlhBayarKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jumlhBayarKeyPressed(evt);
-            }
-        });
 
         belumDibayar.setForeground(new java.awt.Color(0, 0, 0));
         belumDibayar.setHighlighter(null);
         belumDibayar.setName("belumDibayar"); // NOI18N
-        belumDibayar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                belumDibayarKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                belumDibayarKeyPressed(evt);
-            }
-        });
 
         statusTran.setForeground(new java.awt.Color(0, 0, 0));
         statusTran.setHighlighter(null);
         statusTran.setName("statusTran"); // NOI18N
-        statusTran.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                statusTranKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                statusTranKeyPressed(evt);
-            }
-        });
 
         noTranAngsur.setForeground(new java.awt.Color(0, 0, 0));
         noTranAngsur.setHighlighter(null);
         noTranAngsur.setName("noTranAngsur"); // NOI18N
-        noTranAngsur.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                noTranAngsurKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                noTranAngsurKeyPressed(evt);
-            }
-        });
 
         dataSelisihTarif.setForeground(new java.awt.Color(0, 0, 0));
         dataSelisihTarif.setHighlighter(null);
         dataSelisihTarif.setName("dataSelisihTarif"); // NOI18N
-        dataSelisihTarif.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                dataSelisihTarifKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                dataSelisihTarifKeyPressed(evt);
-            }
-        });
 
         realcostRS.setForeground(new java.awt.Color(0, 0, 0));
         realcostRS.setHighlighter(null);
         realcostRS.setName("realcostRS"); // NOI18N
-        realcostRS.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                realcostRSKeyTyped(evt);
-            }
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                realcostRSKeyPressed(evt);
-            }
-        });
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -1675,7 +1565,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-03-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1694,7 +1584,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1709,7 +1599,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1843,7 +1733,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-03-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1998,11 +1888,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         nominalSewa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         nominalSewa.setHighlighter(null);
         nominalSewa.setName("nominalSewa"); // NOI18N
-        nominalSewa.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nominalSewaKeyPressed(evt);
-            }
-        });
         FormInput.add(nominalSewa);
         nominalSewa.setBounds(925, 70, 139, 23);
 
@@ -2014,11 +1899,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         telahTerimaAN.setForeground(new java.awt.Color(0, 0, 0));
         telahTerimaAN.setName("telahTerimaAN"); // NOI18N
-        telahTerimaAN.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                telahTerimaANKeyPressed(evt);
-            }
-        });
         FormInput.add(telahTerimaAN);
         telahTerimaAN.setBounds(925, 128, 315, 23);
 
@@ -2311,6 +2191,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
             tbPemasukan.requestFocus();
         } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -2330,9 +2211,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         + " from pemasukan_lain inner join petugas inner join kategori_pemasukan_lain on pemasukan_lain.nip=petugas.nip "
                         + " and pemasukan_lain.kode_kategori=kategori_pemasukan_lain.kode_kategori "
                         + " where pemasukan_lain.no_transaksi='" + noTransaksi.getText() + "' ", param);
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
 
             } else if (KdKategori.getText().equals("SBPJS")) {
                 SimpanKwitansi();
@@ -2341,28 +2219,28 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 param.put("terbilang", Sequel.cariIsi("SELECT concat('Terbilang Rp. ',REPLACE(REPLACE(temp3,'.','.'),',','.')) FROM temporary_bayar_ranap"));
                 Valid.MyReport("rptNotaKwitansi.jasper", "report", "::[ Kwitansi pembayaran (Selisih Tarif BPJS) ]::", "SELECT * FROM temporary_bayar_ranap", param);
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
+
             } else {
                 SimpanKwitansi();
                 String kalimatBayar = "", bayar = "";
                 kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
                 bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
-                
+
                 param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
                 param.put("terbilang", "Terbilang Rp. " + bayar);
-                
+
                 if (KdKategori.getText().equals("AMBLN")) {
                     param.put("sebesar", "");
                 } else {
                     param.put("sebesar", " sebesar Rp. " + bayar + "\n");
                 }
                 Valid.MyReport("rptNotaKwitansiLain.jasper", "report", "::[ Kwitansi pembayaran lain-lain ]::", "SELECT * FROM temporary_bayar_ranap", param);
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
+
             }
+            this.setCursor(Cursor.getDefaultCursor());
+            emptTeks();
+            selisihBaru();
+            tampil();
         }
     }//GEN-LAST:event_cetakNotaActionPerformed
 
@@ -2572,33 +2450,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
     }//GEN-LAST:event_NoSEPKeyTyped
 
-    private void cekNoSEPKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cekNoSEPKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cekNoSEPKeyTyped
-
-    private void cekNoSEPKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cekNoSEPKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cekNoSEPKeyPressed
-
     private void BtnSelisihBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSelisihBaruActionPerformed
         selisihBaru();
     }//GEN-LAST:event_BtnSelisihBaruActionPerformed
-
-    private void hasilLMKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hasilLMKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hasilLMKeyTyped
-
-    private void hasilLMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hasilLMKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_hasilLMKeyPressed
-
-    private void byrSimpanKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_byrSimpanKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_byrSimpanKeyTyped
-
-    private void byrSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_byrSimpanKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_byrSimpanKeyPressed
 
     private void lihatSelisihTarifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_lihatSelisihTarifActionPerformed
         Sequel.cariIsi("select no_transaksi from pemasukan_lain where no_rawat=? ", cekNoTransaksi, norawat.getText());
@@ -2660,14 +2514,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_lihatSelisihTarifActionPerformed
 
-    private void rumusbayarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rumusbayarKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rumusbayarKeyTyped
-
-    private void rumusbayarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_rumusbayarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_rumusbayarKeyPressed
-
     private void cetakNotaNaikKlsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakNotaNaikKlsActionPerformed
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
@@ -2681,7 +2527,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (!KdKategori.getText().trim().equals("SBPJS")) {
             JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
             tbPemasukan.requestFocus();
-        } else {            
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -2689,7 +2536,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("propinsirs", akses.getpropinsirs());
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));            
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
 
             if (statusTran.getText().equals("dicicil")) {
@@ -2702,9 +2549,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
                 Valid.MyReport("rptNotaSelisihTarifCicil.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Angsuran) ]::", "SELECT * FROM temporary_bayar_ranap", param);
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
 
             } else if (statusTran.getText().equals("lunas") || (statusTran.getText().equals(""))) {
                 SimpanNotaNaikKelas();
@@ -2714,20 +2558,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
                 Valid.MyReport("rptNotaSelisihTarif.jasper", "report", "::[ Kwitansi pembayaran selisih tarif BPJS (Pelunasan) ]::", "SELECT * FROM temporary_bayar_ranap", param);
                 Sequel.mengedit("reg_periksa", "no_rawat='" + norw + "'", "p_jawab='" + telahTerimaAN.getText() + "' ");
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
             }
+            this.setCursor(Cursor.getDefaultCursor());
+            emptTeks();
+            selisihBaru();
+            tampil();
         }
     }//GEN-LAST:event_cetakNotaNaikKlsActionPerformed
-
-    private void statusSELISIHKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_statusSELISIHKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusSELISIHKeyTyped
-
-    private void statusSELISIHKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_statusSELISIHKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusSELISIHKeyPressed
 
     private void RekapSelisihLunasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapSelisihLunasActionPerformed
         if (tabMode.getRowCount() == 0) {
@@ -2735,47 +2572,49 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             TCari.requestFocus();
         } else if (tabMode.getRowCount() != 0) {
             dataSelisihTarif.setText(Sequel.cariIsi("SELECT COUNT(DISTINCT no_sep) cekpasien FROM pemasukan_lain WHERE tanggal BETWEEN "
-                                +" '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "));
-            
+                    + " '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "));
+
             if (dataSelisihTarif.getText().equals("0")) {
                 JOptionPane.showMessageDialog(null, "Untuk pelunasan selisih tarif naik kls. rwt pasien BPJS Tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem() + " datanya tidak ditemukan...!!!");
                 emptTeks();
                 selisihBaru();
             } else if (!dataSelisihTarif.getText().equals("0")) {
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("periode", "Periode Tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem());
-            Valid.MyReport("rptRekapSelisihTarifBPJS.jasper", "report", "::[ Laporan Rekap Selisih Tarif Naik Kelas BPJS (Pelunasan) ]::",
-                    " select DISTINCT i.no_rawat, CONCAT(r.no_rkm_medis,' - ',p.nm_pasien) noRM_pasien, DATE_FORMAT(pl.tanggal,'%d/%m/%Y') tgl_byr, "
-                    + " concat('Kelas ',pl.hak_kelas) hak_kls, pl.naik_kelas naik_kekls, pl.kode_inacbg, format(IFNULL(sum(l.totalbiaya),''),0) ttl_rincian_RC, "
-                    + " case when b.nm_bangsal like '%VIP%' then pl.besar else 0 end VIP, "
-                    + " case when b.nm_bangsal like '%Al-Khaliq%' then pl.besar else 0 end Bersalin, "
-                    + " case when b.nm_bangsal like '%Al-Hakim%' then pl.besar else 0 end Paru, "
-                    + " case when b.nm_bangsal like '%Al-Muiz%' then pl.besar else 0 end Bedah, "
-                    + " case when b.nm_bangsal like '%Ar-Rahman%' then pl.besar else 0 end Anak, "
-                    + " case when b.nm_bangsal like '%Ar-Razaq%' then pl.besar else 0 end RKPD, "
-                    + " case when b.nm_bangsal like '%As-Sami%' then pl.besar else 0 end Assami, "
-                    + " case when b.nm_bangsal like '%Ar-Raudah/Syaraf%' then pl.besar else 0 end Arraudah_Syaraf, "
-                    + " case when b.nm_bangsal like '%Ar-Raudah/Mata%' then pl.besar else 0 end Arraudah_MTKK, "
-                    + " pl.besar total_selisih from pemasukan_lain pl "
-                    + " left join kamar_inap i on i.no_rawat = pl.no_rawat "
-                    + " left join reg_periksa r on i.no_rawat = r.no_rawat "
-                    + " left join kamar k on k.kd_kamar = i.kd_kamar "
-                    + " left join bangsal b on b.kd_bangsal = k.kd_bangsal "
-                    + " left join billing l on i.no_rawat = l.no_rawat "
-                    + " left join pasien p on p.no_rkm_medis=r.no_rkm_medis "
-                    + " where pl.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                    + " and pl.kode_kategori='sbpjs' and i.stts_pulang not in ('-','Pindah Kamar') "
-                    + " group by l.no_rawat, pl.no_transaksi ORDER BY pl.tanggal", param);
-            this.setCursor(Cursor.getDefaultCursor());
-            emptTeks();
-            selisihBaru();
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("periode", "Periode Tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem());
+                Valid.MyReport("rptRekapSelisihTarifBPJS.jasper", "report", "::[ Laporan Rekap Selisih Tarif Naik Kelas BPJS (Pelunasan) ]::",
+                        " select DISTINCT i.no_rawat, CONCAT(r.no_rkm_medis,' - ',p.nm_pasien) noRM_pasien, DATE_FORMAT(pl.tanggal,'%d/%m/%Y') tgl_byr, "
+                        + " concat('Kelas ',pl.hak_kelas) hak_kls, pl.naik_kelas naik_kekls, pl.kode_inacbg, format(IFNULL(sum(l.totalbiaya),''),0) ttl_rincian_RC, "
+                        + " case when b.nm_bangsal like '%VIP%' then pl.besar else 0 end VIP, "
+                        + " case when b.nm_bangsal like '%Al-Khaliq%' then pl.besar else 0 end Bersalin, "
+                        + " case when b.nm_bangsal like '%Al-Hakim%' then pl.besar else 0 end Paru, "
+                        + " case when b.nm_bangsal like '%Al-Muiz%' then pl.besar else 0 end Bedah, "
+                        + " case when b.nm_bangsal like '%Ar-Rahman%' then pl.besar else 0 end Anak, "
+                        + " case when b.nm_bangsal like '%Ar-Razaq%' then pl.besar else 0 end RKPD, "
+                        + " case when b.nm_bangsal like '%As-Sami%' then pl.besar else 0 end Assami, "
+                        + " case when b.nm_bangsal like '%Ar-Raudah/Syaraf%' then pl.besar else 0 end Arraudah_Syaraf, "
+                        + " case when b.nm_bangsal like '%Ar-Raudah/Mata%' then pl.besar else 0 end Arraudah_MTKK, "
+                        + " pl.besar total_selisih from pemasukan_lain pl "
+                        + " left join kamar_inap i on i.no_rawat = pl.no_rawat "
+                        + " left join reg_periksa r on i.no_rawat = r.no_rawat "
+                        + " left join kamar k on k.kd_kamar = i.kd_kamar "
+                        + " left join bangsal b on b.kd_bangsal = k.kd_bangsal "
+                        + " left join billing l on i.no_rawat = l.no_rawat "
+                        + " left join pasien p on p.no_rkm_medis=r.no_rkm_medis "
+                        + " where pl.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                        + " and pl.kode_kategori='sbpjs' and i.stts_pulang not in ('-','Pindah Kamar') "
+                        + " group by l.no_rawat, pl.no_transaksi ORDER BY pl.tanggal", param);
+                this.setCursor(Cursor.getDefaultCursor());
+                emptTeks();
+                selisihBaru();
+                tampil();
             }
         }
     }//GEN-LAST:event_RekapSelisihLunasActionPerformed
@@ -2790,6 +2629,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             emptTeks();
             tampil();
         } else if ((tabMode.getRowCount() != 0) && (!KdKategori.getText().equals("SBPJS"))) {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("alamatrs", akses.getalamatrs());
@@ -2805,20 +2645,17 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                         + " FROM pemasukan_lain pl INNER JOIN petugas p on p.nip=pl.nip INNER JOIN kategori_pemasukan_lain kpl on kpl.kode_kategori=pl.kode_kategori "
                         + " WHERE pl.tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
                         + " and pl.kode_kategori not in ('sbpjs','swktn') order by pl.tanggal ", param);
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
-
             } else if ((!KdKategori.getText().equals("")) || (!KdKategori.getText().equals("SBPJS"))) {
                 Valid.MyReport("rptPemasukanLain.jasper", "report", "::[ Data Pemasukan Lain-Lain ]::",
                         " SELECT pl.no_transaksi, kpl.nama_kategori, p.nama petugas, pl.keterangan ket_byr, pl.besar "
                         + " FROM pemasukan_lain pl INNER JOIN petugas p on p.nip=pl.nip INNER JOIN kategori_pemasukan_lain kpl on kpl.kode_kategori=pl.kode_kategori "
                         + " WHERE pl.tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
                         + " and pl.kode_kategori not in ('sbpjs','swktn') and pl.kode_kategori='" + KdKategori.getText() + "' order by pl.tanggal ", param);
-                this.setCursor(Cursor.getDefaultCursor());
-                emptTeks();
-                selisihBaru();
             }
+            this.setCursor(Cursor.getDefaultCursor());
+            emptTeks();
+            selisihBaru();
+            tampil();
         }
     }//GEN-LAST:event_RekapPemasukanLainActionPerformed
 
@@ -2834,7 +2671,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 JOptionPane.showMessageDialog(null, "Untuk transaksi sewa tempat/kantin pada tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem() + " datanya tidak ditemukan...!!!");
                 emptTeks();
                 selisihBaru();
+                tampil();
             } else if (!dataSelisihTarif.getText().equals("0")) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 Map<String, Object> param = new HashMap<>();
                 param.put("namars", akses.getnamars());
                 param.put("alamatrs", akses.getalamatrs());
@@ -2855,37 +2694,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 this.setCursor(Cursor.getDefaultCursor());
                 emptTeks();
                 selisihBaru();
+                tampil();
             }
         }
     }//GEN-LAST:event_RekapSewaTempatActionPerformed
-
-    private void persenSewaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_persenSewaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_persenSewaKeyTyped
-
-    private void persenSewaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_persenSewaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_persenSewaKeyPressed
-
-    private void nominalPajakSewaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalPajakSewaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nominalPajakSewaKeyTyped
-
-    private void nominalPajakSewaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalPajakSewaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nominalPajakSewaKeyPressed
-
-    private void nominalSewaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nominalSewaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nominalSewaKeyPressed
-
-    private void totalbyrsewaKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalbyrsewaKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalbyrsewaKeyTyped
-
-    private void totalbyrsewaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_totalbyrsewaKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_totalbyrsewaKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (kdINACBG.getText().equals("")) {
@@ -2925,57 +2737,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
-    private void cekNoTransaksiKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cekNoTransaksiKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cekNoTransaksiKeyTyped
-
-    private void cekNoTransaksiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cekNoTransaksiKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cekNoTransaksiKeyPressed
-
     private void ChkSesuaiTagihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkSesuaiTagihanActionPerformed
         cektagihan();
     }//GEN-LAST:event_ChkSesuaiTagihanActionPerformed
-
-    private void bayarKeKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarKeKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bayarKeKeyTyped
-
-    private void bayarKeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_bayarKeKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_bayarKeKeyPressed
-
-    private void jumlhBayarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlhBayarKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jumlhBayarKeyTyped
-
-    private void jumlhBayarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jumlhBayarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jumlhBayarKeyPressed
-
-    private void belumDibayarKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_belumDibayarKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_belumDibayarKeyTyped
-
-    private void belumDibayarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_belumDibayarKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_belumDibayarKeyPressed
-
-    private void statusTranKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_statusTranKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusTranKeyTyped
-
-    private void statusTranKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_statusTranKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_statusTranKeyPressed
-
-    private void noTranAngsurKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noTranAngsurKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noTranAngsurKeyTyped
-
-    private void noTranAngsurKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_noTranAngsurKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_noTranAngsurKeyPressed
 
     private void RekapSelisihAngsurActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapSelisihAngsurActionPerformed
         if (tabMode.getRowCount() == 0) {
@@ -2990,6 +2754,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 emptTeks();
                 selisihBaru();
             } else if (!dataSelisihTarif.getText().equals("0")) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 Map<String, Object> param = new HashMap<>();
                 param.put("namars", akses.getnamars());
                 param.put("alamatrs", akses.getalamatrs());
@@ -3022,29 +2787,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 this.setCursor(Cursor.getDefaultCursor());
                 emptTeks();
                 selisihBaru();
+                tampil();
             }
         }
     }//GEN-LAST:event_RekapSelisihAngsurActionPerformed
-
-    private void dataSelisihTarifKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataSelisihTarifKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataSelisihTarifKeyTyped
-
-    private void dataSelisihTarifKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dataSelisihTarifKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_dataSelisihTarifKeyPressed
-
-    private void telahTerimaANKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_telahTerimaANKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_telahTerimaANKeyPressed
-
-    private void realcostRSKeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_realcostRSKeyTyped
-        // TODO add your handling code here:
-    }//GEN-LAST:event_realcostRSKeyTyped
-
-    private void realcostRSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_realcostRSKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_realcostRSKeyPressed
 
     private void BtnSimpan4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan4ActionPerformed
         if (Tnorm.getText().equals("")) {
@@ -3053,9 +2799,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else if (Tjarak.getText().equals("") || Tjarak.getText().equals("0")) {
             Valid.textKosong(Tjarak, "Jarak Tujuan");
             Tjarak.requestFocus();
-        } else if (TalamatTujuan.getText().equals("")) {
-            Valid.textKosong(TalamatTujuan, "Alamat Tujuan");
-            TalamatTujuan.requestFocus();
+        } else if (TtujuanAlamat.getText().equals("")) {
+            Valid.textKosong(TtujuanAlamat, "Alamat Tujuan");
+            TtujuanAlamat.requestFocus();
         } else if ((Double.parseDouble(Tjarak.getText()) > 15 && CmbTarif.getSelectedIndex() == 4)
                 || (Double.parseDouble(Tjarak.getText()) > 15 && CmbTarif.getSelectedIndex() == 0)) {
             JOptionPane.showMessageDialog(null, "Jenis pilihan tarif yg. dipilih salah, karena jarak tujuan > 15 Km. ..!!");
@@ -3063,6 +2809,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else {
             autoNomorTransaksi();
             Sequel.AutoComitFalse();
+            hitungAmbulan();
             simpanpemasukan();            
             tampil();
             emptTeks();
@@ -3108,7 +2855,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_TjarakKeyReleased
 
     private void TjarakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjarakKeyPressed
-        Valid.pindah(evt, Tjarak, TalamatTujuan);
+        Valid.pindah(evt, Tjarak, TtujuanAlamat);
     }//GEN-LAST:event_TjarakKeyPressed
 
     private void TnormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnormKeyPressed
@@ -3117,6 +2864,45 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Tjarak.requestFocus();
         }
     }//GEN-LAST:event_TnormKeyPressed
+
+    private void TtujuanAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtujuanAlamatKeyPressed
+        Valid.pindah(evt, Tjarak, CmbTarif);
+    }//GEN-LAST:event_TtujuanAlamatKeyPressed
+
+    private void RekapAmbulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapAmbulanActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+            TCari.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from pemasukan_lain where "
+                    + "tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + "and kode_kategori='AMBLN'") == 0) {
+                JOptionPane.showMessageDialog(null, "Data pembayaran transportasi ambulan tdk. ditemukan pada periode tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem() + " ...!!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("periode", "Periode Tgl. " + DTPCari1.getSelectedItem() + " s.d " + DTPCari2.getSelectedItem());
+                Valid.MyReport("rptPemasukanAmbulan.jasper", "report", "::[ Data Pembayaran Transportasi Ambulance ]::",
+                        "SELECT pl.no_transaksi, date_format(pl.tanggal,'%d/%m/%Y') tgltransaksi, time_format(pl.jam_penerimaan,'%H:%i') jam, "
+                        + "pl.telah_terima_dari, pl.keterangan ket_byr, p.nama petugas, pl.besar "
+                        + "FROM pemasukan_lain pl INNER JOIN petugas p on p.nip=pl.nip "
+                        + "INNER JOIN kategori_pemasukan_lain kpl on kpl.kode_kategori=pl.kode_kategori "
+                        + "WHERE pl.tanggal BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                        + "and pl.kode_kategori='ambln' order by pl.tanggal, pl.jam_penerimaan", param);
+                this.setCursor(Cursor.getDefaultCursor());
+                emptTeks();
+                selisihBaru();
+                tampil();
+            }
+        }
+    }//GEN-LAST:event_RekapAmbulanActionPerformed
 
     /**
      * @param args the command line arguments
@@ -3166,6 +2952,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox NmPtg;
     private widget.TextBox NoSEP;
     private javax.swing.JPanel PanelInput;
+    private javax.swing.JMenuItem RekapAmbulan;
     private javax.swing.JMenuItem RekapPemasukanLain;
     private javax.swing.JMenuItem RekapSelisihAngsur;
     private javax.swing.JMenuItem RekapSelisihLunas;
@@ -3177,7 +2964,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox Sudahbyr;
     private widget.TextBox TCari;
     private widget.TextArea TKalkulasi;
-    private widget.TextBox TalamatTujuan;
     private widget.Tanggal Tanggal;
     private widget.TextBox Tjarak;
     private widget.TextBox TjlhBayar;
@@ -3188,6 +2974,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox TselisihJrk;
     private widget.TextBox Ttarif;
     private widget.TextBox TtarifSelisihJrk;
+    private widget.TextBox TtujuanAlamat;
     private javax.swing.JDialog WindowAmbulan;
     private javax.swing.JDialog WindowSelisihTarif;
     private widget.TextBox bayarKe;
@@ -4207,7 +3994,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
                 TjlhBayar1.setText(TjlhBayar.getText());
                 pemasukan.setText(TjlhBayar.getText());
-                Keterangan.setText("Alamat Tujuan : " + TalamatTujuan.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
+                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
                         + "~ Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
                         + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
                         + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
@@ -4223,7 +4010,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
                 TjlhBayar1.setText(TjlhBayar.getText());
                 pemasukan.setText(TjlhBayar.getText());
-                Keterangan.setText("Alamat Tujuan : " + TalamatTujuan.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
+                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
                         + "~ Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
                         + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
                         + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
@@ -4236,7 +4023,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             TjlhBayar1.setText(TjlhBayar.getText());
             pemasukan.setText(TjlhBayar.getText());
             ambulanDibayar = Valid.SetAngka2(C);
-            Keterangan.setText("Alamat Tujuan : " + TalamatTujuan.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
+            Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
                     + "Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n");
             telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
         }
