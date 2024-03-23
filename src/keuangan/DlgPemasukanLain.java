@@ -357,7 +357,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             Tnorm.setText("-");
                             Tnmpasien.setText("-");
                             Tjarak.setText("0");
-                            TalamatTujuan.setText("-");                            
+                            TalamatTujuan.setText("");
                             TselisihJrk.setText("0");
                             TtarifSelisihJrk.setText("0");
                             CmbTarif.setEnabled(false);
@@ -3091,9 +3091,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void TjarakKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjarakKeyReleased
         if (Double.parseDouble(Tjarak.getText()) == 0) {
+            TselisihJrk.setText("0");
+            TtarifSelisihJrk.setText("0");
             CmbTarif.setSelectedIndex(4);
             CmbTarif.setEnabled(false);            
         } else if (Double.parseDouble(Tjarak.getText()) >= 1 && Double.parseDouble(Tjarak.getText()) <= 15) {
+            TselisihJrk.setText("0");
+            TtarifSelisihJrk.setText("0");
             CmbTarif.setSelectedIndex(4);
             CmbTarif.setEnabled(false);
         } else {
