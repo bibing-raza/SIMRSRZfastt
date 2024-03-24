@@ -524,6 +524,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Tnorm = new widget.TextBox();
         Tnmpasien = new widget.TextBox();
         TtujuanAlamat = new widget.TextBox();
+        jLabel31 = new widget.Label();
         internalFrame11 = new widget.InternalFrame();
         BtnSimpan4 = new widget.Button();
         BtnCloseIn4 = new widget.Button();
@@ -1157,7 +1158,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame6.setLayout(null);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Jarak Tujuan : ");
+        jLabel18.setText("Alamat Tujuan : ");
         jLabel18.setName("jLabel18"); // NOI18N
         internalFrame6.add(jLabel18);
         jLabel18.setBounds(0, 38, 90, 23);
@@ -1174,13 +1175,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         internalFrame6.add(Tjarak);
-        Tjarak.setBounds(92, 38, 50, 23);
+        Tjarak.setBounds(503, 38, 50, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Km.        Alamat Tujuan : ");
+        jLabel20.setText("Jarak Tujuan : ");
         jLabel20.setName("jLabel20"); // NOI18N
         internalFrame6.add(jLabel20);
-        jLabel20.setBounds(140, 38, 130, 23);
+        jLabel20.setBounds(413, 38, 90, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Nama Tarif : ");
@@ -1216,63 +1217,63 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel24.setText("Penghitungan Jumlah Bayar = Biaya Selisih Jarak + Tarif Standar PerBup : Rp.");
         jLabel24.setName("jLabel24"); // NOI18N
         internalFrame6.add(jLabel24);
-        jLabel24.setBounds(0, 150, 390, 23);
+        jLabel24.setBounds(0, 150, 473, 23);
 
         TjlhBayar.setEditable(false);
         TjlhBayar.setForeground(new java.awt.Color(0, 0, 0));
         TjlhBayar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TjlhBayar.setName("TjlhBayar"); // NOI18N
         internalFrame6.add(TjlhBayar);
-        TjlhBayar.setBounds(394, 150, 110, 23);
+        TjlhBayar.setBounds(477, 150, 110, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : ");
         jLabel25.setName("jLabel25"); // NOI18N
         internalFrame6.add(jLabel25);
-        jLabel25.setBounds(0, 94, 390, 23);
+        jLabel25.setBounds(0, 94, 473, 23);
 
         TselisihJrk.setEditable(false);
         TselisihJrk.setForeground(new java.awt.Color(0, 0, 0));
         TselisihJrk.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         TselisihJrk.setName("TselisihJrk"); // NOI18N
         internalFrame6.add(TselisihJrk);
-        TselisihJrk.setBounds(394, 94, 45, 23);
+        TselisihJrk.setBounds(477, 94, 50, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Penghitungan Biaya Selisih Jarak = Selisih Jarak (Km.) X Tarif PerBup : Rp.");
         jLabel27.setName("jLabel27"); // NOI18N
         internalFrame6.add(jLabel27);
-        jLabel27.setBounds(0, 122, 390, 23);
+        jLabel27.setBounds(0, 122, 473, 23);
 
         TtarifSelisihJrk.setEditable(false);
         TtarifSelisihJrk.setForeground(new java.awt.Color(0, 0, 0));
         TtarifSelisihJrk.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TtarifSelisihJrk.setName("TtarifSelisihJrk"); // NOI18N
         internalFrame6.add(TtarifSelisihJrk);
-        TtarifSelisihJrk.setBounds(394, 122, 110, 23);
+        TtarifSelisihJrk.setBounds(477, 122, 110, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Jumlah Bayar : Rp.");
         jLabel28.setName("jLabel28"); // NOI18N
         internalFrame6.add(jLabel28);
-        jLabel28.setBounds(0, 178, 390, 23);
+        jLabel28.setBounds(0, 178, 473, 23);
 
         TjlhBayar1.setEditable(false);
         TjlhBayar1.setForeground(new java.awt.Color(0, 0, 0));
         TjlhBayar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TjlhBayar1.setName("TjlhBayar1"); // NOI18N
         internalFrame6.add(TjlhBayar1);
-        TjlhBayar1.setBounds(394, 178, 110, 23);
+        TjlhBayar1.setBounds(477, 178, 110, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel30.setText("Km.");
         jLabel30.setName("jLabel30"); // NOI18N
         internalFrame6.add(jLabel30);
-        jLabel30.setBounds(445, 94, 30, 23);
+        jLabel30.setBounds(532, 94, 30, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Pasien : ");
+        jLabel26.setText("Pasien/An. : ");
         jLabel26.setName("jLabel26"); // NOI18N
         internalFrame6.add(jLabel26);
         jLabel26.setBounds(0, 10, 90, 23);
@@ -1287,9 +1288,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame6.add(Tnorm);
         Tnorm.setBounds(92, 10, 75, 23);
 
-        Tnmpasien.setEditable(false);
         Tnmpasien.setForeground(new java.awt.Color(0, 0, 0));
         Tnmpasien.setName("Tnmpasien"); // NOI18N
+        Tnmpasien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnmpasienKeyPressed(evt);
+            }
+        });
         internalFrame6.add(Tnmpasien);
         Tnmpasien.setBounds(170, 10, 408, 23);
 
@@ -1301,7 +1306,14 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         internalFrame6.add(TtujuanAlamat);
-        TtujuanAlamat.setBounds(272, 38, 305, 23);
+        TtujuanAlamat.setBounds(92, 38, 320, 23);
+
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel31.setText("Km.");
+        jLabel31.setName("jLabel31"); // NOI18N
+        internalFrame6.add(jLabel31);
+        jLabel31.setBounds(560, 38, 30, 23);
 
         internalFrame5.add(internalFrame6, java.awt.BorderLayout.CENTER);
 
@@ -1565,7 +1577,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1584,7 +1596,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1599,7 +1611,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1733,7 +1745,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-03-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2793,10 +2805,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_RekapSelisihAngsurActionPerformed
 
     private void BtnSimpan4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan4ActionPerformed
-        if (Tnorm.getText().equals("")) {
-            Valid.textKosong(Tjarak, "Pasien");
-            Tnorm.requestFocus();
-        } else if (Tjarak.getText().equals("") || Tjarak.getText().equals("0")) {
+        if (Tjarak.getText().equals("") || Tjarak.getText().equals("0")) {
             Valid.textKosong(Tjarak, "Jarak Tujuan");
             Tjarak.requestFocus();
         } else if (TtujuanAlamat.getText().equals("")) {
@@ -2855,18 +2864,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_TjarakKeyReleased
 
     private void TjarakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjarakKeyPressed
-        Valid.pindah(evt, Tjarak, TtujuanAlamat);
+        Valid.pindah(evt, TtujuanAlamat, CmbTarif);
     }//GEN-LAST:event_TjarakKeyPressed
 
     private void TnormKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnormKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Tnmpasien.setText(Sequel.cariIsi("select ifnull(nm_pasien,'-') from pasien where no_rkm_medis='" + Tnorm.getText() + "'"));
-            Tjarak.requestFocus();
+            TtujuanAlamat.requestFocus();
         }
     }//GEN-LAST:event_TnormKeyPressed
 
     private void TtujuanAlamatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtujuanAlamatKeyPressed
-        Valid.pindah(evt, Tjarak, CmbTarif);
+        Valid.pindah(evt, Tnorm, Tjarak);
     }//GEN-LAST:event_TtujuanAlamatKeyPressed
 
     private void RekapAmbulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_RekapAmbulanActionPerformed
@@ -2903,6 +2912,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
         }
     }//GEN-LAST:event_RekapAmbulanActionPerformed
+
+    private void TnmpasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnmpasienKeyPressed
+        Valid.pindah(evt, Tnorm, TtujuanAlamat);
+    }//GEN-LAST:event_TnmpasienKeyPressed
 
     /**
      * @param args the command line arguments
@@ -3018,6 +3031,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel29;
     private widget.Label jLabel3;
     private widget.Label jLabel30;
+    private widget.Label jLabel31;
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
