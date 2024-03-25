@@ -1224,7 +1224,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TjlhBayar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TjlhBayar.setName("TjlhBayar"); // NOI18N
         internalFrame6.add(TjlhBayar);
-        TjlhBayar.setBounds(477, 150, 110, 23);
+        TjlhBayar.setBounds(477, 150, 100, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : ");
@@ -1250,7 +1250,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TtarifSelisihJrk.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TtarifSelisihJrk.setName("TtarifSelisihJrk"); // NOI18N
         internalFrame6.add(TtarifSelisihJrk);
-        TtarifSelisihJrk.setBounds(477, 122, 110, 23);
+        TtarifSelisihJrk.setBounds(477, 122, 100, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Jumlah Bayar : Rp.");
@@ -1263,7 +1263,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TjlhBayar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         TjlhBayar1.setName("TjlhBayar1"); // NOI18N
         internalFrame6.add(TjlhBayar1);
-        TjlhBayar1.setBounds(477, 178, 110, 23);
+        TjlhBayar1.setBounds(477, 178, 100, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
