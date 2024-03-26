@@ -111,9 +111,8 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbPemasukan.setModel(tabMode);
-
-        //tbObat.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbObat.getBackground()));
         tbPemasukan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPemasukan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -136,79 +135,60 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(200);
             } else if (i == 8) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 9) {
-                column.setPreferredWidth(200);
+            } else if (i == 9) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 10) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 11) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 12) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 13) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 14) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 15) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 16) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 17) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 18) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 19) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 20) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 21) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 22) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 23) {
-//                column.setPreferredWidth(200);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 24) {
-//              column.setPreferredWidth(120);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);                
             } else if (i == 25) {
-//              column.setPreferredWidth(120);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);  
             } else if (i == 26) {
-//              column.setPreferredWidth(90);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 27) {
@@ -231,6 +211,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         Tjarak.setDocument(new batasInput((byte) 3).getOnlyAngka(Tjarak));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         Tnorm.setDocument(new batasInput((byte) 6).getKata(Tnorm));
+        Tnmpasien.setDocument(new batasInput((int) 150).getKata(Tnmpasien));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -2004,15 +1985,12 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         if (tabMode.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
             DTPCari1.requestFocus();
-        } else if (noTransaksi.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
-        } else if (!(noTransaksi.getText().trim().equals(""))) {
+        } else {
             if (tbPemasukan.getSelectedRow() > -1) {
-
                 if (KdKategori.getText().equals("SBPJS")) {
                     JOptionPane.showMessageDialog(null, "Data tdk. bisa dihapus karena accounting sudah tervalidasi utk. transaksi pembayaran biaya selisih tarif naik kls. rawat...!!!!");
                     BtnBatal.requestFocus();
-                } else if (!KdKategori.getText().equals("SBPJS")) {
+                } else {
                     Sequel.AutoComitFalse();
                     try {
                         Sequel.queryu2("delete from pemasukan_lain where no_transaksi=? ", 1, new String[]{
@@ -2024,7 +2002,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                         if (rs.next()) {
                             Sequel.menyimpan("tampjurnal", "?,?,?,?", 4, new String[]{rs.getString(1), rs.getString(2), pemasukan.getText(), "0"});
                             Sequel.menyimpan("tampjurnal", "?,?,?,?", 4, new String[]{rs.getString(3), rs.getString(4), "0", pemasukan.getText()});
-                            jur.simpanJurnal("-", Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMBATALAN PEMASUKAN LAIN-LAIN, Petugas : " + NmPtg.getText());
+                            jur.simpanJurnal("-", Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "PEMBATALAN PEMASUKAN " + NmKategori.getText() + ", Petugas : " + NmPtg.getText());
                         }
                     } catch (Exception e) {
                         System.out.println("Notifikasi : " + e);
@@ -2033,6 +2011,9 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                     tampil();
                     emptTeks();
                 }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
+                tbPemasukan.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
