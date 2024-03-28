@@ -4722,6 +4722,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
+//            param.put("logors", Sequel.cariGambar("select logo from setting"));
             if (JenisPelayanan.getSelectedIndex() == 0) {
                 Sequel.queryu("delete from bridging_sep where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and jnspelayanan='1' and LENGTH(no_sep)<19");
                 
@@ -4733,20 +4734,31 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         + "if(penjamin='null','',penjamin) penjamin FROM bridging_sep WHERE no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' "
                         + "AND jnsPelayanan='1'", param);
 
-            } else {                
+            } else {
+                //ini yang ditutup
                 if (Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and jnspelayanan='2'").equals("1")) {
                     param.put("kunjunganInternal", "-");
                 } else {
                     param.put("kunjunganInternal", "- Kunjungan rujukan internal");
                 }
-                
+
                 Sequel.queryu("delete from bridging_sep where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and jnspelayanan='2' and LENGTH(no_sep)<19");
+//                param.put("loket", akses.getNomorLoket() + " (" + akses.getJenisLoket() + ")");
                 
                 if (Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'").equals("HIV")) {
                     param.put("subSpesialis", Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='HIV'"));
                     param.put("dokter", Sequel.cariIsi("select d.nm_dokter from reg_periksa rp inner join dokter d on d.kd_dokter=rp.kd_dokter "
                             + "where rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'"));
                     
+//                    Valid.MyReport("rptBuktiRegistrasiRZvct.jasper", "report", "::[ Bukti Registrasi Rawat Jalan Poliklinik VCT ]::",
+//                            "SELECT bs.no_sep, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, "
+//                            + "date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama "
+//                            + "FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+//                            + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+//                            + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join petugas pt on pt.nip=rp.nip_petugas "
+//                            + "WHERE rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and rp.status_lanjut='ralan'", param);
+                    
+                    //ini yang ditutup
                     Valid.MyReport("rptBridgingSEPvct.jasper", "report", "::[ Cetak SEP Rawat Jalan Poliklinik VCT ]::",
                             " SELECT no_sep, tglsep, CONCAT(no_kartu,' (MR. ',nomr,')') nomor, nama_pasien, "
                             + "CONCAT(tanggal_lahir,' Kelamin : ',if(jkel='L','Laki-laki','Perempuan')) tgl_lhr, IFNULL(notelep,'') notelp, "
@@ -4756,14 +4768,34 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                             + "if(penjamin='null','',penjamin) penjamin FROM bridging_sep WHERE no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' "
                             + "and jnspelayanan='2'", param);
                 } else {
-                    Valid.MyReport("rptBridgingSEP2.jasper", "report", "::[ Cetak SEP Rawat Jalan ]::",
-                            " SELECT no_sep, tglsep, CONCAT(no_kartu,' (MR. ',nomr,')') nomor, nama_pasien, "
-                            + "CONCAT(tanggal_lahir,' Kelamin : ',if(jkel='L','Laki-laki','Perempuan')) tgl_lhr, IFNULL(notelep,'') notelp, "
-                            + "nmpolitujuan sub_spesialis, nmdpjpLayan doktr, nmppkrujukan faskes_perujuk, nmdiagnosaawal diag_awal, catatan, "
-                            + "peserta, if(jnspelayanan='2','R. Jalan','R.Inap') jns_rawat, SUBSTRING(tujuanKunjungan,4,14) jns_kun, '-' poli_perujuk, "
-                            + "if(klsrawat='1','Kelas 1',if(klsrawat='2','Kelas 2','Kelas 3')) klsHak, IFNULL(nmKelasNaiknya,'') nmklsnaik, "
-                            + "if(penjamin='null','',penjamin) penjamin FROM bridging_sep WHERE no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' "
-                            + "and jnspelayanan='2'", param);
+                    if (Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'").equals("IGDK")) {
+                        Valid.MyReport("rptBridgingSEP2.jasper", "report", "::[ Cetak SEP Rawat Jalan ]::",
+                                " SELECT no_sep, tglsep, CONCAT(no_kartu,' (MR. ',nomr,')') nomor, nama_pasien, "
+                                + "CONCAT(tanggal_lahir,' Kelamin : ',if(jkel='L','Laki-laki','Perempuan')) tgl_lhr, IFNULL(notelep,'') notelp, "
+                                + "nmpolitujuan sub_spesialis, nmdpjpLayan doktr, nmppkrujukan faskes_perujuk, nmdiagnosaawal diag_awal, catatan, "
+                                + "peserta, if(jnspelayanan='2','R. Jalan','R.Inap') jns_rawat, SUBSTRING(tujuanKunjungan,4,14) jns_kun, '-' poli_perujuk, "
+                                + "if(klsrawat='1','Kelas 1',if(klsrawat='2','Kelas 2','Kelas 3')) klsHak, IFNULL(nmKelasNaiknya,'') nmklsnaik, "
+                                + "if(penjamin='null','',penjamin) penjamin FROM bridging_sep WHERE no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' "
+                                + "and jnspelayanan='2'", param);
+                    } else {
+//                    Valid.MyReport("rptBuktiRegistrasiRZ.jasper", "report", "::[ Bukti Registrasi Rawat Jalan ]::",
+//                            "SELECT bs.no_sep, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, "
+//                            + "date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama "
+//                            + "FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+//                            + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+//                            + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join petugas pt on pt.nip=rp.nip_petugas "
+//                            + "WHERE rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and rp.status_lanjut='ralan'", param);
+
+                        //ini yang ditutup
+                        Valid.MyReport("rptBridgingSEP2.jasper", "report", "::[ Cetak SEP Rawat Jalan ]::",
+                                " SELECT no_sep, tglsep, CONCAT(no_kartu,' (MR. ',nomr,')') nomor, nama_pasien, "
+                                + "CONCAT(tanggal_lahir,' Kelamin : ',if(jkel='L','Laki-laki','Perempuan')) tgl_lhr, IFNULL(notelep,'') notelp, "
+                                + "nmpolitujuan sub_spesialis, nmdpjpLayan doktr, nmppkrujukan faskes_perujuk, nmdiagnosaawal diag_awal, catatan, "
+                                + "peserta, if(jnspelayanan='2','R. Jalan','R.Inap') jns_rawat, SUBSTRING(tujuanKunjungan,4,14) jns_kun, '-' poli_perujuk, "
+                                + "if(klsrawat='1','Kelas 1',if(klsrawat='2','Kelas 2','Kelas 3')) klsHak, IFNULL(nmKelasNaiknya,'') nmklsnaik, "
+                                + "if(penjamin='null','',penjamin) penjamin FROM bridging_sep WHERE no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' "
+                                + "and jnspelayanan='2'", param);
+                    }
                 }
                 
                 Sequel.mengedit("kelengkapan_booking_sep_bpjs", "no_rawat='" + TNoRw.getText() + "'", "status_cetak_sep='SUDAH' ");

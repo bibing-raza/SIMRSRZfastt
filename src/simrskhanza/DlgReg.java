@@ -8265,11 +8265,25 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         if (tbregistrasiRalan.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
-        } else if (tbregistrasiRalan.getRowCount() != 0) {
+        } else if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_pj not in ('B01','A03')") > 0) {
+            JOptionPane.showMessageDialog(null, "Fitur ini hanya untuk pasien BPJS saja...!!!!");
+            tbregistrasiRalan.requestFocus();
+        } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
+//            param.put("logors", Sequel.cariGambar("select logo from setting"));
+//            param.put("loket", akses.getNomorLoket() + " (" + akses.getJenisLoket() + ")");
+//
+//            Valid.MyReport("rptBuktiRegistrasiRZgagal.jasper", "report", "::[ Bukti Registrasi Pasien BPJS Rawat Jalan ]::",
+//                    "SELECT 'Sistem BPJS sedang gangguan, hubungi petugas informasi' no_sep, p.no_rkm_medis, p.nm_pasien, "
+//                    + "date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
+//                    + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM reg_periksa rp "
+//                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+//                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter LEFT JOIN petugas pt ON pt.nip = rp.nip_petugas WHERE "
+//                    + "rp.no_rawat='" + TNoRw.getText() + "' and rp.status_lanjut='ralan'", param);
+
             Valid.MyReport("rptManualSEPJalan.jasper", "report", "::[ Cetak Manual SEP Pasien BPJS Rawat Jalan ]::",
                     " SELECT DATE_FORMAT(reg_periksa.tgl_registrasi,'%Y-%m-%d') tgl_sep, CONCAT(pasien.no_peserta,' (MR. ',reg_periksa.no_rkm_medis,')') no_kartu, "
                     + "pasien.nm_pasien, CONCAT(DATE_FORMAT(pasien.tgl_lahir,'%Y-%m-%d'),' Kelamin : ',IF(pasien.jk='L','Laki-laki','Perempuan')) tgl_lahir, "
