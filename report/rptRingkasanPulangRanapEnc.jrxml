@@ -917,17 +917,15 @@ Nama Obat (Dosis, Frekuensi, Jumlah, Cara Pemberian)]]></text>
 	<pageFooter>
 		<band height="50">
 			<staticText>
-				<reportElement x="1" y="10" width="495" height="37" uuid="405ea8ed-d65c-45f6-9370-5e33bf748e1a"/>
+				<reportElement x="10" y="10" width="495" height="30" uuid="405ea8ed-d65c-45f6-9370-5e33bf748e1a"/>
 				<textElement verticalAlignment="Middle">
-					<font fontName="Tahoma" size="7"/>
+					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<text><![CDATA[UU ITE No 11 Tahun 2008 Pasal 5 Ayat 1
-- Informasi Elektronik dan/atau Dokumen Elektronik dan/atau hasil cetaknya merupakan alat bukti hukum yang sah.
-- Dokumen ini telah ditandatangani secara elektronik yang tersertifikasi oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara (BSSN).]]></text>
+				<text><![CDATA[Dokumen ini telah ditandatangani secara elektronik yang tersertifikasi oleh Balai Sertifikasi Elektronik (BSrE), Badan Siber dan Sandi Negara (BSSN).]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="502" y="9" width="38" height="38" uuid="a3526f19-4ac3-4d79-9d47-a1ff96725136"/>
+				<reportElement x="509" y="8" width="35" height="35" uuid="a3526f19-4ac3-4d79-9d47-a1ff96725136"/>
 				<imageExpression><![CDATA["setting/bsre.jpg"]]></imageExpression>
 			</image>
 		</band>
