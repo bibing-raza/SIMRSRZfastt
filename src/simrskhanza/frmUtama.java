@@ -998,6 +998,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenUlangResikoJatuh = new widget.ButtonBig();
         btnPengelolaanTransfusiDarah = new widget.ButtonBig();
         btnMonitoringEWSDewasa = new widget.ButtonBig();
+        btnMasterNomorDokumen = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6613,6 +6614,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMonitoringEWSDewasa);
 
+        btnMasterNomorDokumen.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterNomorDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_book_285636.png"))); // NOI18N
+        btnMasterNomorDokumen.setText("Master Nomor Dokumen");
+        btnMasterNomorDokumen.setIconTextGap(0);
+        btnMasterNomorDokumen.setName("btnMasterNomorDokumen"); // NOI18N
+        btnMasterNomorDokumen.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterNomorDokumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasterNomorDokumenActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMasterNomorDokumen);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6621,7 +6635,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/03/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/03/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13051,6 +13065,21 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMonitoringEWSDewasaActionPerformed
 
+    private void btnMasterNomorDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNomorDokumenActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgMasterNomorDokumen aplikasi = new DlgMasterNomorDokumen(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.ChkInput.setSelected(true);
+        aplikasi.isForm();
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMasterNomorDokumenActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13301,6 +13330,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterKasusPersalinanDinkes;
     private widget.ButtonBig btnMasterKeluhanPsikologis;
     private widget.ButtonBig btnMasterMasalahKeperawatan;
+    private widget.ButtonBig btnMasterNomorDokumen;
     private widget.ButtonBig btnMasterRencanaTritmenPsikologis;
     private widget.ButtonBig btnMasterResikoDecubitus;
     private widget.ButtonBig btnMerkInventaris;
@@ -13839,6 +13869,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu = 0;
             Panelmenu.add(btnNotepad);
             jmlmenu++;
+            
+            if (akses.getadmin()== true) {
+                Panelmenu.add(btnMasterNomorDokumen);
+                jmlmenu++;
+            }
             
             if (akses.getpetugas() == true) {
                 Panelmenu.add(btnPegawai);
@@ -15740,6 +15775,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariKosong() {
         jmlmenu = 0;
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnMasterNomorDokumen);
+            jmlmenu++;
+        }
+
         if (akses.getsatu_sehat() == true) {
             Panelmenu.add(btnReferensiDokterSatuSehat);
             jmlmenu++;
@@ -17782,6 +17822,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void isCariIsi() {
         jmlmenu = 0;
+        if (btnMasterNomorDokumen.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+            Panelmenu.add(btnMasterNomorDokumen);
+            jmlmenu++;
+        }
+        
         if (btnNotepad.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
             Panelmenu.add(btnNotepad);
             jmlmenu++;
