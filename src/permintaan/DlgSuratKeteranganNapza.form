@@ -1473,7 +1473,7 @@
             <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
               <Image iconType="3" name="/picture/2rightarrow.png"/>
             </Property>
-            <Property name="toolTipText" type="java.lang.String" value="Silahkan Klik Untuk Membaca CPPT"/>
+            <Property name="toolTipText" type="java.lang.String" value="Silahkan Klik Untuk Melihat Hasil Pemeriksaan Lab."/>
             <Property name="focusable" type="boolean" value="false"/>
             <Property name="horizontalAlignment" type="int" value="0"/>
             <Property name="horizontalTextPosition" type="int" value="0"/>

@@ -48,7 +48,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
-    private String thn = "", nosrt = "", kddokter = "";
+    private String thn = "", nosrt = "", kddokter = "", sttsnomor = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -193,6 +193,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                 if (akses.getform().equals("DlgSuratKeteranganRohani")) {
                     if (dokumen.getTable().getSelectedRow() != -1) {
                         TnoDokumen.setText(dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 2).toString());
+                        sttsnomor = dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 4).toString();
                     }
                     BtnDokumen.requestFocus();
                 }
@@ -931,6 +932,9 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
             BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
+            BtnDokumen.requestFocus();
         } else {
             autoNomorSurat();
             Sequel.menyimpan("surat_keterangan_rohani", "'" + TNoRW.getText() + "','" + TNoSurat.getText() + "',"
@@ -949,10 +953,10 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,TNoSurat,BtnBatal);
+        } else {
+            Valid.pindah(evt, TNoSurat, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -979,6 +983,9 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                     + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
+            BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
             BtnDokumen.requestFocus();
         } else {
             if (tbSurat.getSelectedRow() > -1) {
@@ -1236,7 +1243,6 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         dokumen.isCek();
         dokumen.ChkInput.setSelected(false);
         dokumen.isForm();
-        dokumen.setData("aktif");
         dokumen.setSize(650, internalFrame1.getHeight() - 40);
         dokumen.setLocationRelativeTo(internalFrame1);
         dokumen.setAlwaysOnTop(false);
@@ -1434,6 +1440,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         TNoRM.setText("");
         TPasien.setText("");
         TnoDokumen.setText("");
+        sttsnomor = "";
         TTempLahr.setText("");
         TtglLahir.setText("");
         TPendidikan.setText("");

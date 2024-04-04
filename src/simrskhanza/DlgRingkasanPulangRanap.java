@@ -1,5 +1,7 @@
 package simrskhanza;
 
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import com.sun.jna.platform.win32.OaIdl;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
@@ -15,15 +17,25 @@ import java.awt.event.KeyListener;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
 import java.io.FileInputStream;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.security.KeyManagementException;
+import java.security.NoSuchAlgorithmException;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Base64;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
@@ -31,6 +43,14 @@ import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
 import laporan.DlgDiagnosaPenyakit;
 import laporan.DlgHasilPenunjangMedis;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMDokumenPenunjangMedis;
 import simrskhanza.DlgCariDokter;
@@ -55,7 +75,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private String anemis = "", ikterik = "", pupil = "", dia_kanan = "", dia_kiri = "", udem_palpe = "", tonsil = "", faring = "", satur = "",
             lidah = "", bibir = "", jvp = "", limfe = "", kuduk = "", thorak = "", cor = "", reguler = "", ireguler = "", lain1 = "", nafas = "",
             ronci = "", whezing = "", disten = "", meteo = "", peris = "", asites = "", nyeri = "", hepar = "", lien = "", extrem = "", udem = "",
-            lain2 = "", dataKonfirmasi = "";
+            lain2 = "", dataKonfirmasi = "",dokterkode="",host_port="",requestJson12 = "",stringbalik = "";
+    private HttpHeaders headers;
+    private HttpEntity requestEntity;
+    private JsonNode root;
+    private JsonNode response;
+    private ObjectMapper mapper = new ObjectMapper();
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -1721,7 +1746,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3182,13 +3207,143 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             WindowTTE.setSize(505, 143);
             WindowTTE.setLocationRelativeTo(internalFrame1);
             WindowTTE.setVisible(true);
+            kddokter.setText(Sequel.cariIsi("select no_ktp from pegawai where nik = '" + akses.getkode() + "'"));
+            TDokter.setText(Sequel.cariIsi("select nama from petugas where user_id = '" + akses.getkode() + "'"));
         } else {
             JOptionPane.showMessageDialog(null, "Untuk saat ini belum bisa difungsikan, masih menunggu sosialisasi dari manajemen..!!");
         }
     }//GEN-LAST:event_BtnTTEActionPerformed
 
     private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
+        String data = "";
+        if (tbRingkasan.getSelectedRow() > -1) {
+            if (Sequel.cariInteger("select count(-1) from rme_file_upload where no_rawat = '" + TNoRW.getText() + "' and jenis_pemeriksaan = 'RSM1' and stts_data = '1'") > 0) {
+                JOptionPane.showMessageDialog(null, "Dokumen sudah diverifikasi,...!!!");
+            } else {
+                if (dokterkode.equals(akses.getkode())) {
+                    diagnosa = "";
+                    tindakan = "";
 
+                    //simpan diagnosa sekunder ICD-10------------->>
+                    try {
+                        psdiag = koneksi.prepareStatement("SELECT dp.kd_penyakit icd_sekunder, py.ciri_ciri diag_sekunder FROM diagnosa_pasien dp "
+                                + "INNER JOIN penyakit py ON py.kd_penyakit = dp.kd_penyakit "
+                                + "WHERE dp.no_rawat like '%" + TNoRW.getText() + "%' AND dp.prioritas <> 1 AND dp. STATUS = 'ranap'");
+                        try {
+                            rsdiag = psdiag.executeQuery();
+                            i = 1;
+                            while (rsdiag.next()) {
+                                if (diagnosa.equals("")) {
+                                    diagnosa = i + ". " + rsdiag.getString("diag_sekunder") + " (ICD 10 : " + rsdiag.getString("icd_sekunder") + ")";
+                                } else {
+                                    diagnosa = diagnosa + "\n" + i + ". " + rsdiag.getString("diag_sekunder") + " (ICD 10 : " + rsdiag.getString("icd_sekunder") + ")";
+                                }
+                                i++;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+
+                    //simpan tindakan prosedur ------------->>
+                    try {
+                        pspros = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp INNER JOIN icd9 i ON i.kode = pp.kode "
+                                + "WHERE pp.no_rawat like '%" + TNoRW.getText() + "%' AND pp. STATUS = 'ranap'");
+                        try {
+                            rspros = pspros.executeQuery();
+                            i = 1;
+                            while (rspros.next()) {
+                                if (tindakan.equals("")) {
+                                    tindakan = i + ". " + rspros.getString("deskripsi_panjang") + " (ICD 9 CM : " + rspros.getString("kode") + ")";
+                                } else {
+                                    tindakan = tindakan + "\n" + i + ". " + rspros.getString("deskripsi_panjang") + " (ICD 9 CM : " + rspros.getString("kode") + ")";
+                                }
+                                i++;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("norm", TNoRM.getText());
+                    param.put("nmpasien", TNmPasien.getText());
+                    param.put("tgllahir", TTglLhr.getText());
+                    param.put("jk", TJK.getText());
+                    param.put("tglmsk", TTglMsk.getText());
+                    param.put("tglplg", TTglPulang.getText());
+                    param.put("rgrawat", TRuangrawat.getText());
+                    param.put("crbayar", TCaraBayar.getText());
+                    param.put("drDPJP", Tdpjp.getText());
+                    param.put("nmdokter", TNmDokter.getText());
+                    param.put("alasan", TAlasanDirawat.getText());
+                    param.put("ringkasan", TRingkasanRiwayat.getText());
+                    param.put("fisik", TPemeriksaanFisik.getText());
+                    param.put("penunjang", TPemeriksaanPenunjang.getText());
+                    param.put("terapi", TTerapiPengobatan.getText());
+                    param.put("diagnosaUtama", TDiagUtama.getText());
+                    param.put("diagnosaSekunder", TDiagSekunder.getText());
+                    param.put("diagnosaSekunderList", diagnosa);
+                    param.put("tindakan", TTindakan.getText());
+                    param.put("tindakanList", tindakan);
+                    param.put("png_jawab_px", TKlgPasien.getText());
+                    param.put("kondisiPlg", TKondisiPulang.getText());
+                    param.put("keadaanumum", TKeadaanumum.getText());
+                    param.put("kesadaran", TKesadaran.getText() + ", GCS : " + Tgcs.getText());
+                    param.put("tandavital", "Tekanan Darah : " + TTensi.getText() + " mmHg, Suhu : " + TSuhu.getText() + " °C, Nadi : " + TNadi.getText() + " x/mnt, Frekuensi Nafas : " + TFrekuensiNafas.getText() + " x/mnt");
+                    param.put("edukasi", Tedukasi.getText());
+                    param.put("terapiPlg", TTerapiPulang.getText());
+                    param.put("pengobatan", cmbLanjutan.getSelectedItem().toString() + " " + TDokterLuar.getText());
+
+                    if (chkTglKontrol.isSelected() == false) {
+                        param.put("tglkontrolpoli", "-");
+                    } else {
+                        param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'")));
+                    }
+
+                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where "
+                            + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1")));
+                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(jam_keluar,'%H:%i') from kamar_inap where "
+                            + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
+
+                    data = Valid.saveToPDFTte("rptRingkasanPulangRanapEnc.jasper", "report", TNoRW.getText(), param);
+//            JOptionPane.showMessageDialog(null, data);
+
+                    try {
+                        byte[] input_file = Files.readAllBytes(Paths.get(data));
+                        byte[] encodedBytes = Base64.getEncoder().encode(input_file);
+                        String encodedString = new String(encodedBytes);
+
+                        mengunggahFile(TNoRW.getText().replaceAll("/", "") + ".pdf", encodedString, TNoRW.getText(), kddokter.getText(), "RSM1", Tpaspras.getText(), Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat = '" + TNoRW.getText() + "'"), akses.getkode(), TNoRM.getText());
+//                    mengunggahFile(TNoRW.getText().replaceAll("/", "") + ".pdf", encodedString, TNoRW.getText(), "0803202100007062", "RSM1", "Hantek1234.!", Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat = '" + TNoRW.getText() + "'"), akses.getkode(), TNoRM.getText());
+                    } catch (Exception e) {
+                        JOptionPane.showMessageDialog(null, e);
+                    }
+
+                    this.setCursor(Cursor.getDefaultCursor());
+
+                    tampil();
+                    emptTeks();
+                    WindowTTE.dispose();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maaf, Akun User Login dan data DPJP berbeda");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih salah satu data pada tabel terlebih dahulu..!!!!");
+        }
     }//GEN-LAST:event_BtnSimpan1ActionPerformed
 
     private void BtnCloseIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn1ActionPerformed
@@ -5230,5 +5385,78 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public void mengunggahFile(String namaFile, String enkodePDF, String noRawat, String nik, String kode,
+            String pwd, String stts, String ptgs, String rm) {
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson12
+                    = "{"
+                    + "\"metadata\": {"
+                    + "\"method\": \"kirim_berkas\"},"
+                    + "\"data\": {"
+                    + "\"no_rawat\": \"" + noRawat + "\","
+                    + "\"nik\": \"" + nik + "\","
+                    + "\"password\": \"" + pwd + "\","
+                    + "\"jns_dokumen\": \"" + kode + "\","
+                    + "\"nama_file\": \"" + namaFile + "\","
+                    + "\"status_rawat\": \"" + stts + "\","
+                    + "\"petugas\": \"" + ptgs + "\","
+                    + "\"nomr\": \"" + rm + "\","
+                    + "\"file_base64\": \"" + enkodePDF + "\""
+                    + "}}";
+            
+            Properties prop = new Properties();
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            host_port = Sequel.decXML(prop.getProperty("HOSTport"), prop.getProperty("KEY"));
+            System.out.println("JSON : " + requestJson12);
+            requestEntity = new HttpEntity(requestJson12, headers);
+//            stringbalik = getRest().exchange("https://sirsraza.banjarkab.go.id/ws-tte-simrs/kirim.php", HttpMethod.POST, requestEntity, String.class).getBody();
+            stringbalik = getRest().exchange("http://" + host_port + "/ws-tte-simrs/kirim.php", HttpMethod.POST, requestEntity, String.class).getBody();
+//            System.out.println("Output : " + stringbalik);
+            root = mapper.readTree(stringbalik);
+//            JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+            if (root.path("status").asBoolean() == true) {
+//                JOptionPane.showMessageDialog(null, root.path("msg").asText());
+                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
+            } else {
+//                JOptionPane.showMessageDialog(null, root.path("msg").asText());
+                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
+            }
+            Sequel.menyimpan("log_tte", "'" + noRawat + "',CURRENT_TIMESTAMP,'" + kode + "','" + root.path("msg").asText() + "'");
+        } catch (Exception erornya) {
+            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, silakan ulangi lagi (" + erornya + ")");
+//            System.out.println("Notifikasi : " + erornya);
+            Sequel.menyimpan("log_tte", "'" + noRawat + "',CURRENT_TIMESTAMP,'" + kode + "','" + erornya + "'");
+//            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+//                JOptionPane.showMessageDialog(null, erornya);                
+//            }
+        }
+    }
+
+    public RestTemplate getRest() throws NoSuchAlgorithmException, KeyManagementException {
+        SSLContext sslContext = SSLContext.getInstance("SSL");
+        javax.net.ssl.TrustManager[] trustManagers = {
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                }
+
+                public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                }
+            }
+        };
+        sslContext.init(null, trustManagers, new SecureRandom());
+        SSLSocketFactory sslFactory = new SSLSocketFactory(sslContext, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        Scheme scheme = new Scheme("https", 443, sslFactory);
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory();
+        factory.getHttpClient().getConnectionManager().getSchemeRegistry().register(scheme);
+        return new RestTemplate(factory);
     }
 }

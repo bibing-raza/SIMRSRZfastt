@@ -2382,5 +2382,41 @@ public final class validasi {
         }
         return status;
     }
+    
+    public String saveToPDFTte(String reportName, String reportDirName, String judul, Map parameters) {
+        String a = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            String saveDir = prop.getProperty("FOLDERPDF");
+
+            File d = new File(saveDir);
+            boolean cek = d.isDirectory();
+
+            if (cek == false) {
+                Files.createDirectories(Paths.get(saveDir));
+            }
+
+            try (Statement stm = connect.createStatement()) {
+                try {
+                    File f = new File("./" + reportDirName + "/" + reportName.replaceAll("jasper", "pdf"));
+                    String namafile = "./" + reportDirName + "/" + reportName;
+                    JasperPrint jasperPrint = JasperFillManager.fillReport(namafile, parameters, connect);
+//                    JasperExportManager.exportReportToPdfFile(jasperPrint, saveDir + "/" + reportName.replaceAll("jasper", "pdf"));
+                    JasperExportManager.exportReportToPdfFile(jasperPrint, saveDir + "/" + judul.replaceAll("/", "") + ".pdf");
+                    
+                    a = saveDir + "/" + judul.replaceAll("/", "") + ".pdf";
+//                    Desktop.getDesktop().open(f);
+                    JOptionPane.showMessageDialog(null, "Berhasil Menyiapkan File PDF. Klik Ok untuk membubuhkan TTE,..!!");
+                } catch (Exception rptexcpt) {
+
+                    System.out.println("Report Can't view because : " + rptexcpt);
+                    JOptionPane.showMessageDialog(null, "Report Can't view because : " + rptexcpt);
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return a;
+    }
 }
   

@@ -48,7 +48,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
-    private String thn = "", nosrt = "", kddokter = "", cekTgl = "", kodepoli = "";
+    private String thn = "", nosrt = "", kddokter = "", cekTgl = "", kodepoli = "", sttsnomor = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -209,6 +209,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 if (akses.getform().equals("DlgSuratKeteranganDokter")) {
                     if (dokumen.getTable().getSelectedRow() != -1) {
                         TnoDokumen.setText(dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 2).toString());
+                        sttsnomor = dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 4).toString();
                     }
                     BtnDokumen.requestFocus();
                 }
@@ -1027,6 +1028,9 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
             BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
+            BtnDokumen.requestFocus();
         } else {
             if (ChkTglSurat.isSelected() == true) {
                 cekTgl = "ya";
@@ -1086,6 +1090,9 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                     + "dengan No. Rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
+            BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
             BtnDokumen.requestFocus();
         } else {
             if (ChkTglSurat.isSelected() == true) {
@@ -1492,7 +1499,6 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         dokumen.isCek();
         dokumen.ChkInput.setSelected(false);
         dokumen.isForm();
-        dokumen.setData("aktif");
         dokumen.setSize(650, internalFrame1.getHeight() - 40);
         dokumen.setLocationRelativeTo(internalFrame1);
         dokumen.setAlwaysOnTop(false);
@@ -1702,6 +1708,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TTempLahr.setText("");
         TtglLahir.setText("");
         TnoDokumen.setText("");
+        sttsnomor = "";
         Tjk.setText("");
         TPekerjaan.setText("");
         TAlamat.setText("");

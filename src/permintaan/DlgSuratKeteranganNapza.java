@@ -51,7 +51,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
     private String nosurat = "", thn = "", thc = "", bzo = "", met = "", mop = "", coc = "",
             amp = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
-            tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "";
+            tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", sttsnomor = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -281,6 +281,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 if (akses.getform().equals("DlgSuratKeteranganNapza")) {
                     if (dokumen.getTable().getSelectedRow() != -1) {
                         TnoDokumen.setText(dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 2).toString());
+                        sttsnomor = dokumen.getTable().getValueAt(dokumen.getTable().getSelectedRow(), 4).toString();
                     }
                     BtnDokumen.requestFocus();
                 }
@@ -1190,7 +1191,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
-        ChkAccor.setToolTipText("Silahkan Klik Untuk Membaca CPPT");
+        ChkAccor.setToolTipText("Silahkan Klik Untuk Melihat Hasil Pemeriksaan Lab.");
         ChkAccor.setFocusable(false);
         ChkAccor.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         ChkAccor.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
@@ -1326,6 +1327,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
             BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
+            BtnDokumen.requestFocus();
         } else {
             autoNomorSurat();
             cekData();
@@ -1380,6 +1384,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "dg. no. rawat " + TNoRW.getText() + " belum ada tersimpan...!!!!");
         } else if (TnoDokumen.getText().equals("")) {
             Valid.textKosong(TnoDokumen, "Nomor Dokumen");
+            BtnDokumen.requestFocus();
+        } else if (sttsnomor.equals("Non Aktif")) {
+            JOptionPane.showMessageDialog(null, "Nomor dokumen yang dipilih statusnya " + sttsnomor + ", silahkan ulangi lagi...!!");
             BtnDokumen.requestFocus();
         } else {
             cekData();
@@ -1878,7 +1885,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         dokumen.isCek();
         dokumen.ChkInput.setSelected(false);
         dokumen.isForm();
-        dokumen.setData("aktif");
         dokumen.setSize(650, internalFrame1.getHeight() - 40);
         dokumen.setLocationRelativeTo(internalFrame1);
         dokumen.setAlwaysOnTop(false);
@@ -2126,6 +2132,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         kddokter = "";
         Tnmdokter.setText("");
         TnoDokumen.setText("");
+        sttsnomor = "";
         
         ChkTHC.setSelected(false);
         ChkBZO.setSelected(false);

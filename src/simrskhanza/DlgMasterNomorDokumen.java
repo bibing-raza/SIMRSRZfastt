@@ -64,7 +64,7 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
         for (i = 0; i < 5; i++) {
             TableColumn column = tbDokumen.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(100);
             } else if (i == 1) {
                 column.setPreferredWidth(250);
             } else if (i == 2) {
@@ -84,11 +84,11 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
-                public void insertUpdate(DocumentEvent e) {tampil(cekKategori.getText());}
+                public void insertUpdate(DocumentEvent e) {tampil();}
                 @Override
-                public void removeUpdate(DocumentEvent e) {tampil(cekKategori.getText());}
+                public void removeUpdate(DocumentEvent e) {tampil();}
                 @Override
-                public void changedUpdate(DocumentEvent e) {tampil(cekKategori.getText());}
+                public void changedUpdate(DocumentEvent e) {tampil();}
             });
         } 
         
@@ -105,7 +105,6 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        cekKategori = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -136,9 +135,6 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbDokumen = new widget.Table();
-
-        cekKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cekKategori.setName("cekKategori"); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -538,7 +534,7 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampil("");
+        tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -593,7 +589,7 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkInputActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil("");
+        tampil();
     }//GEN-LAST:event_formWindowOpened
 
     private void TnomorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnomorKeyPressed
@@ -633,7 +629,6 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
     private widget.TextBox Tkd;
     private widget.TextBox Tnomor;
     private widget.Tanggal TtglBerlaku;
-    public widget.TextBox cekKategori;
     private widget.ComboBox cmbStatus;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -650,15 +645,17 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
     private widget.Table tbDokumen;
     // End of variables declaration//GEN-END:variables
 
-    public void tampil(String stts) {     
+    public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT * FROM nomor_dokumen WHERE "
-                    + "status_nomor like '%" + stts + "%' and jns_dokumen LIKE ? or "
-                    + "status_nomor like '%" + stts + "%' and nomor_dokumen like ? ORDER BY kd_nomor");
+                    + "jns_dokumen LIKE ? or "
+                    + "nomor_dokumen like ? or "
+                    + "status_nomor like ? ORDER BY kd_nomor");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
@@ -726,9 +723,5 @@ public class DlgMasterNomorDokumen extends javax.swing.JDialog {
     
     public JTable getTable(){
         return tbDokumen;
-    }
-    
-    public void setData(String status) {
-        tampil(status);
     }
 }
