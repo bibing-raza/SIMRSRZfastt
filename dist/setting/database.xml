@@ -85,4 +85,5 @@
     <entry key="PROPINSISATUSEHAT">63</entry>  
     <entry key="KODEPOSSATUSEHAT">70611</entry>
 	<entry key="HOSTport">enkripsi ip addres server & portnya</entry>
+	<entry key="FOLDERPDF">lokasi file pdf setelah dibubuhi tte</entry>
 </properties>

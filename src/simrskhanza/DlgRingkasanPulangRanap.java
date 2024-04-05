@@ -446,7 +446,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         kddokter = new widget.TextBox();
         TDokter = new widget.TextBox();
         jLabel61 = new widget.Label();
-        Tpaspras = new widget.TextBox();
+        Tpaspras = new widget.PasswordBox();
         panelisi4 = new widget.panelisi();
         BtnSimpan1 = new widget.Button();
         BtnCloseIn1 = new widget.Button();
@@ -909,6 +909,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel61.setBounds(0, 38, 100, 23);
 
         Tpaspras.setForeground(new java.awt.Color(0, 0, 0));
+        Tpaspras.setToolTipText("Silahkan masukkan Passphrase");
+        Tpaspras.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
         Tpaspras.setName("Tpaspras"); // NOI18N
         panelisi3.add(Tpaspras);
         Tpaspras.setBounds(100, 38, 364, 23);
@@ -1746,7 +1748,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-04-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3319,7 +3321,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                             + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
 
                     data = Valid.saveToPDFTte("rptRingkasanPulangRanapEnc.jasper", "report", TNoRW.getText(), param);
-//            JOptionPane.showMessageDialog(null, data);
 
                     try {
                         byte[] input_file = Files.readAllBytes(Paths.get(data));
@@ -3651,7 +3652,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Tanggal TglKontrol;
     private widget.TextArea Thasil;
     private widget.TextArea Tinstruksi;
-    private widget.TextBox Tpaspras;
+    private widget.PasswordBox Tpaspras;
     private javax.swing.JDialog WindowDPJPranap;
     private javax.swing.JDialog WindowPasien;
     private javax.swing.JDialog WindowTTE;
@@ -5420,15 +5421,15 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             root = mapper.readTree(stringbalik);
 //            JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
             if (root.path("status").asBoolean() == true) {
-//                JOptionPane.showMessageDialog(null, root.path("msg").asText());
-                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
+                JOptionPane.showMessageDialog(null, root.path("msg").asText());
+//                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
             } else {
-//                JOptionPane.showMessageDialog(null, root.path("msg").asText());
-                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
+                JOptionPane.showMessageDialog(null, root.path("msg").asText());
+//                System.out.println("Pesan Status Unggah File : " + root.path("msg").asText());
             }
             Sequel.menyimpan("log_tte", "'" + noRawat + "',CURRENT_TIMESTAMP,'" + kode + "','" + root.path("msg").asText() + "'");
         } catch (Exception erornya) {
-            JOptionPane.showMessageDialog(null, "Terjadi Kesalahan, silakan ulangi lagi (" + erornya + ")");
+            JOptionPane.showMessageDialog(null, "Terjadi kesalahan (" + erornya + "), silakan ulangi lagi,..!!");
 //            System.out.println("Notifikasi : " + erornya);
             Sequel.menyimpan("log_tte", "'" + noRawat + "',CURRENT_TIMESTAMP,'" + kode + "','" + erornya + "'");
 //            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
