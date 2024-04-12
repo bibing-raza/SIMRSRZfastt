@@ -4131,7 +4131,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                 
                 Sequel.menyimpan("poliklinik", "?,?,?,?,?,?", 6, new String[]{"IGDK", "IGD", "0", "0","0","0"});
                 if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
-                        new String[]{TNoReg.getText(), TNoRw.getText(), tglDaftar, Sequel.cariIsi("SELECT TIME(NOW()) jam"),
+                        new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                             kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
                             TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                     UpdateUmur();
@@ -4141,7 +4141,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
 
                     if ((cmbTindakan.getSelectedItem().equals("MENINGGAL DI IGD")) || (cmbTindakan.getSelectedItem().equals("D.O.A"))) {
-                        Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW()) jam") + "','"
+                        Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW())") + "','"
                                 + TNoRM.getText() + "','" + cmbTindakan.getSelectedItem() + "','Rumah Sakit','-','-','-','-','IGD','-','',''", "pasien");
                     
                     } else if (cmbTindakan.getSelectedItem().equals("APS")) {
@@ -4161,7 +4161,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                     Kd2.setText("");
                     isNumber();
                     if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
-                            new String[]{TNoReg.getText(), TNoRw.getText(), tglDaftar, Sequel.cariIsi("SELECT TIME(NOW()) jam"),
+                            new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                 kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
                                 TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                         UpdateUmur();
@@ -4171,7 +4171,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                         Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
 
                         if ((cmbTindakan.getSelectedItem().equals("MENINGGAL DI IGD")) || (cmbTindakan.getSelectedItem().equals("D.O.A"))) {
-                            Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW()) jam") + "','"
+                            Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW())") + "','"
                                     + TNoRM.getText() + "','" + cmbTindakan.getSelectedItem() + "','Rumah Sakit','-','-','-','-','IGD','-','',''", "pasien");
                         
                         } else if (cmbTindakan.getSelectedItem().equals("APS")) {
@@ -4191,7 +4191,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                         Kd2.setText("");
                         isNumber();
                         if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
-                                new String[]{TNoReg.getText(), TNoRw.getText(), tglDaftar, Sequel.cariIsi("SELECT TIME(NOW()) jam"),
+                                new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                     kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
                                     TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                             UpdateUmur();
@@ -4201,7 +4201,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                             Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
 
                             if ((cmbTindakan.getSelectedItem().equals("MENINGGAL DI IGD")) || (cmbTindakan.getSelectedItem().equals("D.O.A"))) {
-                                Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW()) jam") + "','"
+                                Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW())") + "','"
                                         + TNoRM.getText() + "','" + cmbTindakan.getSelectedItem() + "','Rumah Sakit','-','-','-','-','IGD','-','',''", "pasien");
                             
                             } else if (cmbTindakan.getSelectedItem().equals("APS")) {
@@ -4221,7 +4221,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                             Kd2.setText("");
                             isNumber();
                             if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
-                                    new String[]{TNoReg.getText(), TNoRw.getText(), tglDaftar, Sequel.cariIsi("SELECT TIME(NOW()) jam"),
+                                    new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                         kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
                                         TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                                 UpdateUmur();
@@ -4231,7 +4231,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                                 Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
 
                                 if ((cmbTindakan.getSelectedItem().equals("MENINGGAL DI IGD")) || (cmbTindakan.getSelectedItem().equals("D.O.A"))) {
-                                    Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW()) jam") + "','"
+                                    Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW())") + "','"
                                             + TNoRM.getText() + "','" + cmbTindakan.getSelectedItem() + "','Rumah Sakit','-','-','-','-','IGD','-','',''", "pasien");
                                 
                                 } else if (cmbTindakan.getSelectedItem().equals("APS")) {
@@ -4251,7 +4251,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                                 Kd2.setText("");
                                 isNumber();
                                 if (Sequel.menyimpantf("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
-                                        new String[]{TNoReg.getText(), TNoRw.getText(), tglDaftar, Sequel.cariIsi("SELECT TIME(NOW()) jam"),
+                                        new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                                             kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
                                             TStatus.getText(), "Ralan", kdpnj.getText(), umur, sttsumur, akses.getkode()}) == true) {
                                     UpdateUmur();
@@ -4261,7 +4261,7 @@ public final class DlgIGD extends javax.swing.JDialog {
                                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "suku_bangsa='" + kdsuku.getText() + "', bahasa_pasien='" + kdbahasa.getText() + "' ");
 
                                     if ((cmbTindakan.getSelectedItem().equals("MENINGGAL DI IGD")) || (cmbTindakan.getSelectedItem().equals("D.O.A"))) {
-                                        Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW()) jam") + "','"
+                                        Sequel.menyimpan("pasien_mati", "'" + tglDaftar + "','" + Sequel.cariIsi("SELECT TIME(NOW())") + "','"
                                                 + TNoRM.getText() + "','" + cmbTindakan.getSelectedItem() + "','Rumah Sakit','-','-','-','-','IGD','-','',''", "pasien");
                                     
                                     } else if (cmbTindakan.getSelectedItem().equals("APS")) {
@@ -7426,8 +7426,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         tulisan_tanggal.setText(Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d')") + " "
                 + Sequel.bulanINDONESIA("SELECT DATE_FORMAT(NOW(),'%m')") + " "
                 + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y')"));
-        tglDaftar = Sequel.cariIsi("SELECT DATE(NOW()) tgl_daftar");
-        tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d') tgl_daftar");
+        tglDaftar = Sequel.cariIsi("SELECT DATE(NOW())");
+        tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d')");
         AsalRujukan.setText("");
         alamatperujuk = "";
         TNoID.setText("");
@@ -7711,8 +7711,8 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         tulisan_tanggal.setText(Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%d')") + " "
                 + Sequel.bulanINDONESIA("SELECT DATE_FORMAT(NOW(),'%m')") + " "
                 + Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y')"));
-        tglDaftar = Sequel.cariIsi("SELECT DATE(NOW()) tgl_daftar");
-        tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d') tgl_daftar");
+        tglDaftar = Sequel.cariIsi("SELECT DATE(NOW())");
+        tglnoRW = Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d')");
         DTPCari1.setDate(new Date());
         DTPCari2.setDate(new Date());
         BtnSimpan.setEnabled(akses.getigd());
@@ -7812,7 +7812,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             gantiBaris(writer);
             writer.write("Tgl. Daftar : ");
             boltText(writer);
-            writer.write(tglref[2] + "-" + tglref[1] + "-" + tglref[0] + "/" +Sequel.cariIsi("SELECT TIME(NOW()) jam"));
+            writer.write(tglref[2] + "-" + tglref[1] + "-" + tglref[0] + "/" +Sequel.cariIsi("SELECT TIME(NOW())"));
             gantiBaris(writer);
             boltTextOff(writer);
             writer.write("Ruangan     : ");

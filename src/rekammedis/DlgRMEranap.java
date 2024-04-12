@@ -119,6 +119,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnRingkasan = new widget.ButtonBig();
         BtnCTK = new widget.ButtonBig();
         BtnAsesmenUlangRJ = new widget.ButtonBig();
+        BtnTransferSerahTerima = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
         BtnMonitoringEWSdewasa = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
@@ -365,6 +366,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnAsesmenUlangRJ);
+
+        BtnTransferSerahTerima.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTransferSerahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnTransferSerahTerima.setText("Transfer & Serah Terima Pasien");
+        BtnTransferSerahTerima.setIconTextGap(0);
+        BtnTransferSerahTerima.setName("BtnTransferSerahTerima"); // NOI18N
+        BtnTransferSerahTerima.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnTransferSerahTerima.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTransferSerahTerimaActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnTransferSerahTerima);
 
         BtnPengelolaanTranfusiDarah.setForeground(new java.awt.Color(0, 0, 0));
         BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png"))); // NOI18N
@@ -872,6 +886,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMonitoringEWSdewasaActionPerformed
 
+    private void BtnTransferSerahTerimaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTransferSerahTerimaActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMTransferSerahTerimaIGD form = new RMTransferSerahTerimaIGD(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setNoRm(TNoRW.getText(), new Date(), "ranap", kdkamar, nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnTransferSerahTerimaActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -909,6 +940,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnRingkasan;
     private widget.Button BtnSimpan6;
+    private widget.ButtonBig BtnTransferSerahTerima;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
@@ -945,6 +977,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());        
         BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
         BtnMonitoringEWSdewasa.setEnabled(akses.getcppt());
+        BtnTransferSerahTerima.setEnabled(akses.getpemberian_obat());
     }
     
     public void setData(String norw, String norm, String nmpasien,
@@ -1053,6 +1086,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnMonitoringEWSdewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940_biru.png")));
             BtnMonitoringEWSdewasa.setToolTipText("Monitoring EWS Dewasa SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and kd_kamar_msk<>'IGDK'") == 0) {
+            BtnTransferSerahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnTransferSerahTerima.setToolTipText("Data Transfer & Serah Terima Pasien BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnTransferSerahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnTransferSerahTerima.setToolTipText("Data Transfer & Serah Terima Pasien SUDAH diisi oleh petugas..!!!");
         }
     }
 }
