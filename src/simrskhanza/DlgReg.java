@@ -1366,7 +1366,7 @@ public final class DlgReg extends javax.swing.JDialog {
         MnJKRA = new javax.swing.JMenuItem();
         MnGChalaman1 = new javax.swing.JMenuItem();
         MnGChalaman2 = new javax.swing.JMenuItem();
-        MnManualSEPBPJS = new javax.swing.JMenuItem();
+        MnManualBuktiRegBPJS = new javax.swing.JMenuItem();
         jMenu3 = new javax.swing.JMenu();
         MnCheckList = new javax.swing.JMenuItem();
         MnCheckList1 = new javax.swing.JMenuItem();
@@ -2761,21 +2761,21 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         jMenu4.add(MnGChalaman2);
 
-        MnManualSEPBPJS.setBackground(new java.awt.Color(242, 242, 242));
-        MnManualSEPBPJS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnManualSEPBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnManualSEPBPJS.setText("SEP Manual Pasien BPJS Rawat Jalan");
-        MnManualSEPBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnManualSEPBPJS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnManualSEPBPJS.setIconTextGap(5);
-        MnManualSEPBPJS.setName("MnManualSEPBPJS"); // NOI18N
-        MnManualSEPBPJS.setPreferredSize(new java.awt.Dimension(320, 26));
-        MnManualSEPBPJS.addActionListener(new java.awt.event.ActionListener() {
+        MnManualBuktiRegBPJS.setBackground(new java.awt.Color(242, 242, 242));
+        MnManualBuktiRegBPJS.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnManualBuktiRegBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnManualBuktiRegBPJS.setText("Bukti Registrasi Manual Pasien BPJS");
+        MnManualBuktiRegBPJS.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnManualBuktiRegBPJS.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnManualBuktiRegBPJS.setIconTextGap(5);
+        MnManualBuktiRegBPJS.setName("MnManualBuktiRegBPJS"); // NOI18N
+        MnManualBuktiRegBPJS.setPreferredSize(new java.awt.Dimension(320, 26));
+        MnManualBuktiRegBPJS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnManualSEPBPJSActionPerformed(evt);
+                MnManualBuktiRegBPJSActionPerformed(evt);
             }
         });
-        jMenu4.add(MnManualSEPBPJS);
+        jMenu4.add(MnManualBuktiRegBPJS);
 
         jPopupMenu1.add(jMenu4);
 
@@ -3470,7 +3470,7 @@ public final class DlgReg extends javax.swing.JDialog {
         panelBiasa2.setLayout(null);
 
         TglSakit1.setEditable(false);
-        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        TglSakit1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         TglSakit1.setDisplayFormat("dd-MM-yyyy");
         TglSakit1.setName("TglSakit1"); // NOI18N
         TglSakit1.setOpaque(false);
@@ -3521,7 +3521,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel32.setBounds(176, 10, 20, 23);
 
         TglSakit2.setEditable(false);
-        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        TglSakit2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         TglSakit2.setDisplayFormat("dd-MM-yyyy");
         TglSakit2.setName("TglSakit2"); // NOI18N
         TglSakit2.setOpaque(false);
@@ -3782,7 +3782,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel26.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -3911,7 +3911,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -4004,7 +4004,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel29.setBounds(0, 25, 130, 23);
 
         TglReg.setEditable(false);
-        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        TglReg.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         TglReg.setDisplayFormat("dd-MM-yyyy");
         TglReg.setName("TglReg"); // NOI18N
         TglReg.setOpaque(false);
@@ -4230,7 +4230,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel39.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -4899,7 +4899,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4913,7 +4913,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5796,7 +5796,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel59.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(jLabel59);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5810,7 +5810,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel60.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass11.add(jLabel60);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -8261,7 +8261,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_MnCetakSuratSehat1ActionPerformed
 
-    private void MnManualSEPBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnManualSEPBPJSActionPerformed
+    private void MnManualBuktiRegBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnManualBuktiRegBPJSActionPerformed
         if (tbregistrasiRalan.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             TCari.requestFocus();
@@ -8273,28 +8273,28 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select bpjs from gambar"));
-//            param.put("logors", Sequel.cariGambar("select logo from setting"));
-//            param.put("loket", akses.getNomorLoket() + " (" + akses.getJenisLoket() + ")");
-//
-//            Valid.MyReport("rptBuktiRegistrasiRZgagal.jasper", "report", "::[ Bukti Registrasi Pasien BPJS Rawat Jalan ]::",
-//                    "SELECT 'Sistem BPJS sedang gangguan, hubungi petugas informasi' no_sep, p.no_rkm_medis, p.nm_pasien, "
-//                    + "date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
-//                    + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM reg_periksa rp "
-//                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-//                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter LEFT JOIN petugas pt ON pt.nip = rp.nip_petugas WHERE "
-//                    + "rp.no_rawat='" + TNoRw.getText() + "' and rp.status_lanjut='ralan'", param);
+            param.put("logors", Sequel.cariGambar("select logo from setting"));
+            param.put("loket", akses.getNomorLoket() + " (" + akses.getJenisLoket() + ")");
 
-            Valid.MyReport("rptManualSEPJalan.jasper", "report", "::[ Cetak Manual SEP Pasien BPJS Rawat Jalan ]::",
-                    " SELECT DATE_FORMAT(reg_periksa.tgl_registrasi,'%Y-%m-%d') tgl_sep, CONCAT(pasien.no_peserta,' (MR. ',reg_periksa.no_rkm_medis,')') no_kartu, "
-                    + "pasien.nm_pasien, CONCAT(DATE_FORMAT(pasien.tgl_lahir,'%Y-%m-%d'),' Kelamin : ',IF(pasien.jk='L','Laki-laki','Perempuan')) tgl_lahir, "
-                    + "IFNULL(pasien.no_tlp,'-') no_telpon, poliklinik.nm_poli, penjab.png_jawab, IF(reg_periksa.status_lanjut='Ralan','R. Jalan','R. Inap') jns_rawat, d.nm_dokter "
-                    + "FROM reg_periksa INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
-                    + "INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                    + "INNER JOIN dokter d ON d.kd_dokter=reg_periksa.kd_dokter WHERE reg_periksa.status_lanjut='Ralan' AND penjab.png_jawab LIKE '%bpjs%' "
-                    + "AND reg_periksa.no_rawat='" + TNoRw.getText() + "'", param);
+            Valid.MyReport("rptBuktiRegistrasiRZgagal.jasper", "report", "::[ Bukti Registrasi Pasien BPJS Rawat Jalan ]::",
+                    "SELECT 'Sistem BPJS sedang gangguan, perbaikan setelah kembali normal' no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
+                    + "date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
+                    + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM reg_periksa rp "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter LEFT JOIN petugas pt ON pt.nip = rp.nip_petugas WHERE "
+                    + "rp.no_rawat='" + TNoRw.getText() + "' and rp.status_lanjut='ralan'", param);
+
+//            Valid.MyReport("rptManualSEPJalan.jasper", "report", "::[ Cetak Manual SEP Pasien BPJS Rawat Jalan ]::",
+//                    " SELECT DATE_FORMAT(reg_periksa.tgl_registrasi,'%Y-%m-%d') tgl_sep, CONCAT(pasien.no_peserta,' (MR. ',reg_periksa.no_rkm_medis,')') no_kartu, "
+//                    + "pasien.nm_pasien, CONCAT(DATE_FORMAT(pasien.tgl_lahir,'%Y-%m-%d'),' Kelamin : ',IF(pasien.jk='L','Laki-laki','Perempuan')) tgl_lahir, "
+//                    + "IFNULL(pasien.no_tlp,'-') no_telpon, poliklinik.nm_poli, penjab.png_jawab, IF(reg_periksa.status_lanjut='Ralan','R. Jalan','R. Inap') jns_rawat, d.nm_dokter "
+//                    + "FROM reg_periksa INNER JOIN pasien ON reg_periksa.no_rkm_medis = pasien.no_rkm_medis "
+//                    + "INNER JOIN poliklinik ON reg_periksa.kd_poli = poliklinik.kd_poli INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
+//                    + "INNER JOIN dokter d ON d.kd_dokter=reg_periksa.kd_dokter WHERE reg_periksa.status_lanjut='Ralan' AND penjab.png_jawab LIKE '%bpjs%' "
+//                    + "AND reg_periksa.no_rawat='" + TNoRw.getText() + "'", param);
             this.setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_MnManualSEPBPJSActionPerformed
+    }//GEN-LAST:event_MnManualBuktiRegBPJSActionPerformed
 
     private void MnJAMKESDAActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnJAMKESDAActionPerformed
         if (nmpnj.getText().equals("")) {
@@ -10102,7 +10102,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenuItem MnLaporanRekapPerujuk;
     private javax.swing.JMenuItem MnLaporanRekapRawatDarurat;
     private javax.swing.JMenuItem MnLembarCasemix;
-    private javax.swing.JMenuItem MnManualSEPBPJS;
+    private javax.swing.JMenuItem MnManualBuktiRegBPJS;
     private javax.swing.JMenu MnPemeriksaan;
     private javax.swing.JMenuItem MnPeriksaLab;
     private javax.swing.JMenuItem MnPeriksaRadiologi;

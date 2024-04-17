@@ -212,6 +212,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         Tnorm.setDocument(new batasInput((byte) 6).getKata(Tnorm));
         Tnmpasien.setDocument(new batasInput((int) 150).getKata(Tnmpasien));
+        TjlhBiayaPihak3.setDocument(new batasInput((int) 10).getOnlyAngka(TjlhBiayaPihak3));
         
         if (koneksiDB.cariCepat().equals("aktif")) {
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
@@ -329,7 +330,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             nominalSewa.setVisible(true);
 
                         } else if (KdKategori.getText().equals("AMBLN")) {
-                            WindowAmbulan.setSize(609, 282);
+                            WindowAmbulan.setSize(609, 310);
                             WindowAmbulan.setLocationRelativeTo(internalFrame1);
                             WindowAmbulan.setVisible(true);
                             labelSewa.setVisible(false);
@@ -341,6 +342,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             TtujuanAlamat.setText("");
                             TselisihJrk.setText("0");
                             TtarifSelisihJrk.setText("0");
+                            TjlhBiayaPihak3.setText("0");
                             CmbTarif.setEnabled(false);
                             Tnorm.requestFocus();
                         
@@ -499,13 +501,16 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel27 = new widget.Label();
         TtarifSelisihJrk = new widget.TextBox();
         jLabel28 = new widget.Label();
-        TjlhBayar1 = new widget.TextBox();
+        TtotBayar = new widget.TextBox();
         jLabel30 = new widget.Label();
         jLabel26 = new widget.Label();
         Tnorm = new widget.TextBox();
         Tnmpasien = new widget.TextBox();
         TtujuanAlamat = new widget.TextBox();
         jLabel31 = new widget.Label();
+        jLabel32 = new widget.Label();
+        TjlhBiayaPihak3 = new widget.TextBox();
+        BtnHitung = new widget.Button();
         internalFrame11 = new widget.InternalFrame();
         BtnSimpan4 = new widget.Button();
         BtnCloseIn4 = new widget.Button();
@@ -1234,17 +1239,17 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         TtarifSelisihJrk.setBounds(477, 122, 100, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel28.setText("Jumlah Bayar : Rp.");
+        jLabel28.setText("Rp.");
         jLabel28.setName("jLabel28"); // NOI18N
         internalFrame6.add(jLabel28);
-        jLabel28.setBounds(0, 178, 473, 23);
+        jLabel28.setBounds(443, 206, 30, 23);
 
-        TjlhBayar1.setEditable(false);
-        TjlhBayar1.setForeground(new java.awt.Color(0, 0, 0));
-        TjlhBayar1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        TjlhBayar1.setName("TjlhBayar1"); // NOI18N
-        internalFrame6.add(TjlhBayar1);
-        TjlhBayar1.setBounds(477, 178, 100, 23);
+        TtotBayar.setEditable(false);
+        TtotBayar.setForeground(new java.awt.Color(0, 0, 0));
+        TtotBayar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TtotBayar.setName("TtotBayar"); // NOI18N
+        internalFrame6.add(TtotBayar);
+        TtotBayar.setBounds(477, 206, 100, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1295,6 +1300,39 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel31.setName("jLabel31"); // NOI18N
         internalFrame6.add(jLabel31);
         jLabel31.setBounds(560, 38, 30, 23);
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp.");
+        jLabel32.setName("jLabel32"); // NOI18N
+        internalFrame6.add(jLabel32);
+        jLabel32.setBounds(0, 178, 473, 23);
+
+        TjlhBiayaPihak3.setForeground(new java.awt.Color(0, 0, 0));
+        TjlhBiayaPihak3.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        TjlhBiayaPihak3.setName("TjlhBiayaPihak3"); // NOI18N
+        TjlhBiayaPihak3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TjlhBiayaPihak3KeyPressed(evt);
+            }
+        });
+        internalFrame6.add(TjlhBiayaPihak3);
+        TjlhBiayaPihak3.setBounds(477, 178, 100, 23);
+
+        BtnHitung.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHitung.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHitung.setMnemonic('H');
+        BtnHitung.setText("Hitung Total Bayar");
+        BtnHitung.setToolTipText("Alt+H");
+        BtnHitung.setGlassColor(new java.awt.Color(255, 204, 0));
+        BtnHitung.setName("BtnHitung"); // NOI18N
+        BtnHitung.setPreferredSize(new java.awt.Dimension(100, 26));
+        BtnHitung.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHitungActionPerformed(evt);
+            }
+        });
+        internalFrame6.add(BtnHitung);
+        BtnHitung.setBounds(300, 206, 150, 26);
 
         internalFrame5.add(internalFrame6, java.awt.BorderLayout.CENTER);
 
@@ -1558,7 +1596,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1577,7 +1615,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1592,7 +1630,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1726,7 +1764,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-03-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2830,11 +2868,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         if (Double.parseDouble(Tjarak.getText()) == 0) {
             TselisihJrk.setText("0");
             TtarifSelisihJrk.setText("0");
+            TjlhBiayaPihak3.setText("0");
             CmbTarif.setSelectedIndex(4);
             CmbTarif.setEnabled(false);            
         } else if (Double.parseDouble(Tjarak.getText()) >= 1 && Double.parseDouble(Tjarak.getText()) <= 15) {
             TselisihJrk.setText("0");
             TtarifSelisihJrk.setText("0");
+            TjlhBiayaPihak3.setText("0");
             CmbTarif.setSelectedIndex(4);
             CmbTarif.setEnabled(false);
         } else {
@@ -2898,6 +2938,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.pindah(evt, Tnorm, TtujuanAlamat);
     }//GEN-LAST:event_TnmpasienKeyPressed
 
+    private void BtnHitungActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHitungActionPerformed
+        CmbTarifActionPerformed(null);
+    }//GEN-LAST:event_BtnHitungActionPerformed
+
+    private void TjlhBiayaPihak3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjlhBiayaPihak3KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            CmbTarifActionPerformed(null);
+        }
+    }//GEN-LAST:event_TjlhBiayaPihak3KeyPressed
+
     /**
      * @param args the command line arguments
      */
@@ -2921,6 +2971,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnCloseIn4;
     private widget.Button BtnCloseIn6;
     private widget.Button BtnHapus;
+    private widget.Button BtnHitung;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSelisihBaru;
@@ -2961,13 +3012,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Tanggal Tanggal;
     private widget.TextBox Tjarak;
     private widget.TextBox TjlhBayar;
-    private widget.TextBox TjlhBayar1;
+    private widget.TextBox TjlhBiayaPihak3;
     private widget.TextBox Tnmpasien;
     private widget.TextBox Tnorm;
     private widget.TextBox Totdibayar;
     private widget.TextBox TselisihJrk;
     private widget.TextBox Ttarif;
     private widget.TextBox TtarifSelisihJrk;
+    private widget.TextBox TtotBayar;
     private widget.TextBox TtujuanAlamat;
     private javax.swing.JDialog WindowAmbulan;
     private javax.swing.JDialog WindowSelisihTarif;
@@ -3013,6 +3065,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel3;
     private widget.Label jLabel30;
     private widget.Label jLabel31;
+    private widget.Label jLabel32;
     private widget.Label jLabel35;
     private widget.Label jLabel36;
     private widget.Label jLabel37;
@@ -3781,8 +3834,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     Valid.SetTgl(Tanggal.getSelectedItem() + ""),
                     KdKategori.getText(), ambulanDibayar, KdPtg.getText(), Keterangan.getText(),
                     CmbJam.getSelectedItem() + ":" + CmbMenit.getSelectedItem() + ":" + CmbDetik.getSelectedItem(),
-                    noTransaksi.getText(), telahTerimaPAS.getText(), "-", Tnorm.getText(), "-", "-", "-", "-", "-", "-", "0", "0", "0", "-", "-", "-", "0", "-",
-                    ambulanDibayar, "0", "0"
+                    noTransaksi.getText(), telahTerimaPAS.getText(), "-", Tnorm.getText(), "-", "-", "-", "-", "-", "-", "0", "0",
+                    TjlhBiayaPihak3.getText(), "-", "-", "-", "0", "-", ambulanDibayar, "0", "0"
                 }) == true) {
                     WindowAmbulan.dispose();
                 }                
@@ -3956,13 +4009,15 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void hitungAmbulan() {
-        double A, B, C, selisihJrk, hslSelisihJrk, bayarAmbulan;
+        double A, B, C, D, selisihJrk, hslSelisihJrk, bayarAmbulan, totalBayarAmbulan;
         A = 0;
         B = 0;
         C = 0;
+        D = 0;
         selisihJrk = 0;
         hslSelisihJrk = 0;
         bayarAmbulan = 0;
+        totalBayarAmbulan = 0;
         ambulanDibayar = "";
         
         if (Tjarak.getText().equals("")) {
@@ -3971,9 +4026,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             Tjarak.setText(Tjarak.getText());
         }
         
+        if (TjlhBiayaPihak3.getText().equals("")) {
+            TjlhBiayaPihak3.setText("0");
+        } else {
+            TjlhBiayaPihak3.setText(TjlhBiayaPihak3.getText());
+        }
+        
         A = Double.parseDouble(Tjarak.getText());
         B = tarifAmbulan;
         C = Double.parseDouble(Sequel.cariIsi("SELECT total_byrdrpr FROM jns_perawatan WHERE kd_kategori='swkn' AND STATUS='1' and kd_jenis_prw='2024RJ9B004'"));
+        D = Double.parseDouble(TjlhBiayaPihak3.getText());
         
         // angka 15 adalah Jarak < 15 km sesuai nama tarif diperbup
         // kd_jenis_prw='2024RJ9B004'adalah nm_perawatan Jarak < 15 km sesuai nama tarif diperbup
@@ -3983,44 +4045,78 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 selisihJrk = 0;
                 hslSelisihJrk = 0;
                 bayarAmbulan = 0;
+                totalBayarAmbulan = 0;
+                totalBayarAmbulan = bayarAmbulan - D;
                 
                 TselisihJrk.setText(Valid.SetAngka2(selisihJrk));                
                 TtarifSelisihJrk.setText(Valid.SetAngka(hslSelisihJrk));                
                 TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
-                TjlhBayar1.setText(TjlhBayar.getText());
-                pemasukan.setText(TjlhBayar.getText());
-                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
-                        + "~ Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                        + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                        + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                        + "~ Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
+                TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
+                pemasukan.setText(TtotBayar.getText());
+                
+                if (TjlhBiayaPihak3.getText().equals("0")) {
+                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
+                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
+                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
+                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
+                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
+                } else {
+                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
+                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
+                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
+                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
+                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n"
+                            + "e.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
+                            + "f.) Total Bayar : Jumlah Bayar Rp. " + TjlhBayar.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
+                }
                 telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
             } else {
                 selisihJrk = A - 15;
                 hslSelisihJrk = selisihJrk * B;
                 bayarAmbulan = hslSelisihJrk + C;
+                totalBayarAmbulan = bayarAmbulan - D;
                 
                 TselisihJrk.setText(Valid.SetAngka2(selisihJrk));                
                 TtarifSelisihJrk.setText(Valid.SetAngka(hslSelisihJrk));                
                 TjlhBayar.setText(Valid.SetAngka(bayarAmbulan));
-                TjlhBayar1.setText(TjlhBayar.getText());
-                pemasukan.setText(TjlhBayar.getText());
-                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
-                        + "~ Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
-                        + "~ Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
-                        + "~ Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
-                        + "~ Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
+                TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
+                pemasukan.setText(TtotBayar.getText());
+
+                if (TjlhBiayaPihak3.getText().equals("0")) {
+                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
+                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
+                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
+                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
+                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n");
+                } else {
+                    Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
+                            + "a.) Selisih Jarak Dari Tarif Standar PerBup (Jarak < 15 km) : " + Tjarak.getText() + " Km. - 15 Km. = " + TselisihJrk.getText() + " Km.\n"
+                            + "b.) Jenis Tarif PerBup Yang Dipilih Adalah " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
+                            + "c.) Biaya Selisih Jarak : Selisih Jarak " + TselisihJrk.getText() + " Km. X Tarif PerBup Rp. " + Ttarif.getText() + " = Rp. " + TtarifSelisihJrk.getText() + "\n"
+                            + "d.) Jumlah Bayar : Biaya Selisih Jarak Rp. " + TtarifSelisihJrk.getText() + " + Tarif Standar PerBup Rp. 450.000 = Rp. " + TjlhBayar.getText() + "\n"
+                            + "e.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
+                            + "f.) Total Bayar : Jumlah Bayar Rp. " + TjlhBayar.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
+                }
                 telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
             }
-            ambulanDibayar = Valid.SetAngka2(bayarAmbulan);
-        } else {            
-            TjlhBayar.setText(Valid.SetAngka(C));
-            TjlhBayar1.setText(TjlhBayar.getText());
-            pemasukan.setText(TjlhBayar.getText());
-            ambulanDibayar = Valid.SetAngka2(C);
-            Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
-                    + "Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n");
-            telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");
+            ambulanDibayar = Valid.SetAngka2(totalBayarAmbulan);
+        } else {
+            totalBayarAmbulan = C - D;
+            TjlhBayar.setText(Valid.SetAngka(C));          
+            TtotBayar.setText(Valid.SetAngka(totalBayarAmbulan));
+            pemasukan.setText(TtotBayar.getText());
+            ambulanDibayar = Valid.SetAngka2(totalBayarAmbulan);
+            
+            if (TjlhBiayaPihak3.getText().equals("0")) {
+                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\n"
+                        + "Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n");
+            } else {
+                Keterangan.setText("Alamat Tujuan : " + TtujuanAlamat.getText() + ", Sejauh " + Tjarak.getText() + " Km.\nUraian Penjelasan :\n"
+                        + "a.) Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + "\n"
+                        + "b.) Jumlah Biaya Dibayar Oleh Pihak Ke 3 : Rp. " + Valid.SetAngka(D) + "\n"
+                        + "c.) Total Bayar : Jenis Tarif PerBup Yang Dipilih " + CmbTarif.getSelectedItem().toString() + " Rp. " + Ttarif.getText() + " - Jumlah Biaya Dibayar Oleh Pihak Ke 3 Rp. " + Valid.SetAngka(D) + " = Rp. " + TtotBayar.getText() + "\n");
+            }
+            telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");            
         }
     }  
 }

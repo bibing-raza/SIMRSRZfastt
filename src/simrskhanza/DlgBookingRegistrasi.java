@@ -1333,16 +1333,18 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         }
         
         try {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 user = "AdminUtama";
             } else {
-                user = akses.getnamauser().replace(" ", "").substring(0, 10);
+                user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'").replace(" ", "").substring(0, 10);
+//                user = akses.getnamauser().replace(" ", "").substring(0, 10);
             }
         } catch (Exception e) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 user = "AdminUtama";
             } else {
-                user = akses.getnamauser();
+                user = Sequel.cariIsi("select nama from pegawai where nik='" + akses.getkode() + "'");
+//                user = akses.getnamauser();
             }
         }
 

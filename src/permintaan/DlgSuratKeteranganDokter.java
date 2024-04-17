@@ -523,7 +523,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -538,7 +538,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -715,7 +715,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TAlamat.setBounds(105, 94, 380, 23);
 
         Ttgl_no_surat.setEditable(false);
-        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023" }));
+        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
         Ttgl_no_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_no_surat.setName("Ttgl_no_surat"); // NOI18N
         Ttgl_no_surat.setOpaque(false);
@@ -815,7 +815,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel25.setBounds(505, 270, 80, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-09-2023" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -829,7 +829,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel22.setBounds(0, 178, 105, 23);
 
         cmbDinyatakan.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDinyatakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Baik kesehatannya", "Kurang baik kesehatannya, besar harapan dapat diperbaiki", "Tidak baik kesehatannya, dengan diagnosa", "Lainnya" }));
+        cmbDinyatakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Baik kesehatannya", "Baik kesehatannya, Tidak bertindik, dan Tidak bertato", "Kurang baik kesehatannya, besar harapan dapat diperbaiki", "Tidak baik kesehatannya, dengan diagnosa", "Lainnya" }));
         cmbDinyatakan.setName("cmbDinyatakan"); // NOI18N
         cmbDinyatakan.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass7.add(cmbDinyatakan);

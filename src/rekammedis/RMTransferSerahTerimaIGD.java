@@ -1093,7 +1093,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:28:28" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:37:18" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -1195,7 +1195,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Triw_penyakit.setColumns(20);
         Triw_penyakit.setRows(5);
         Triw_penyakit.setName("Triw_penyakit"); // NOI18N
-        Triw_penyakit.setPreferredSize(new java.awt.Dimension(162, 200));
+        Triw_penyakit.setPreferredSize(new java.awt.Dimension(162, 1000));
         Triw_penyakit.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Triw_penyakitKeyPressed(evt);
@@ -2319,7 +2319,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2334,7 +2334,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3751,6 +3751,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(true);
             statusOK = "Ralan";
+            Triw_penyakit.setText(Sequel.cariIsi("select ifnull(anamnesis,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
         } else if (posisidata.equals("ralan")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(false);
