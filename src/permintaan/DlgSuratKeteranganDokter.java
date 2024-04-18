@@ -1295,7 +1295,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 }
                 
                 if (kodepoli.equals("UMUM")) {
-                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 4) {
+                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 5) {
                         param.put("dinyatakan", "....................................................................................................."
                                 + "..................................................................................................................."
                                 + "........................................................................................");
@@ -1303,7 +1303,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                                 + "..................................................................................................................."
                                 + "..................................................................................................................."
                                 + ".............................................................................................................");
-                    } else if (cmbDinyatakan.getSelectedIndex() == 3) {
+                    } else if (cmbDinyatakan.getSelectedIndex() == 4) {
                         param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
                         param.put("keperluan", Tkeperluan.getText());
                     } else {
@@ -1332,7 +1332,20 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                     Valid.MyReport("rptSuratDokterSemuaPoli.jasper", "report",
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
                             "SELECT date(now())", param);
-                } else {
+                    
+                } else if (kodepoli.equals("KLT")) {
+                    param.put("hasil", Thasil.getText() + "\n");
+                    param.put("keperluan", Tkeperluan.getText() + "\n");
+                    if (cmbDinyatakan.getSelectedIndex() == 4) {
+                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText() + "\n");
+                    } else {
+                        param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + "\n");
+                    }
+                    Valid.MyReport("rptSuratDokterKulit.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                }else {
                     param.put("hasil", Thasil.getText() + "\n");
                     param.put("dinyatakan", "Kesimpulan : " + cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
                     param.put("keperluan", Tkeperluan.getText() + "\n");
@@ -1461,7 +1474,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
                             "SELECT date(now())", param);
 
-                } else if (kodepoli.equals("MAT")) {                    
+                } else if (kodepoli.equals("MAT")) {
                     param.put("keperluan", Tkeperluan.getText() + "\n");
                     Valid.MyReport("rptSuratDokterMataManual1.jasper", "report",
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
@@ -1470,9 +1483,15 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
                             "SELECT date(now())", param);
 
-                } else if (kodepoli.equals("THT")) {                    
+                } else if (kodepoli.equals("THT")) {
                     param.put("keperluan", Tkeperluan.getText() + "\n");
                     Valid.MyReport("rptSuratDokterPoliTHTManual.jasper", "report",
+                            "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
+                            "SELECT date(now())", param);
+                    
+                } else if (kodepoli.equals("KLT")) {
+                    param.put("keperluan", Tkeperluan.getText() + "\n");
+                    Valid.MyReport("rptSuratDokterKulitManual.jasper", "report",
                             "::[ Surat Keterangan Dokter dari Poliklinik " + Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kodepoli + "'") + " ]::",
                             "SELECT date(now())", param);
                 } else {                    
@@ -1482,7 +1501,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                             "SELECT date(now())", param);
                 }
             }
-
+            
             TCari.setText(TNoRW.getText());
             tbSurat.requestFocus();
             emptTeks();

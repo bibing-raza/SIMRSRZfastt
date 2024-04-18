@@ -419,6 +419,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         cetakNota = new javax.swing.JMenuItem();
+        cetakNotaAmbulan = new javax.swing.JMenuItem();
         cetakNotaNaikKls = new javax.swing.JMenuItem();
         lihatSelisihTarif = new javax.swing.JMenuItem();
         MnLaporan = new javax.swing.JMenu();
@@ -597,6 +598,18 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(cetakNota);
+
+        cetakNotaAmbulan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        cetakNotaAmbulan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        cetakNotaAmbulan.setText("Cetak Nota/Kwitansi Ambulan");
+        cetakNotaAmbulan.setName("cetakNotaAmbulan"); // NOI18N
+        cetakNotaAmbulan.setPreferredSize(new java.awt.Dimension(190, 26));
+        cetakNotaAmbulan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cetakNotaAmbulanActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(cetakNotaAmbulan);
 
         cetakNotaNaikKls.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         cetakNotaNaikKls.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -2948,6 +2961,48 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_TjlhBiayaPihak3KeyPressed
 
+    private void cetakNotaAmbulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cetakNotaAmbulanActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Tabel masih kosong...!!!!");
+            DTPCari1.requestFocus();
+        } else if (noTransaksi.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (KdKategori.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan anda pilih dulu salah satu pemasukan lain-lain dengan mengklik data pada tabel...!!!");
+            tbPemasukan.requestFocus();
+        } else if (!KdKategori.getText().trim().equals("AMBLN")) {
+            JOptionPane.showMessageDialog(null, "Pilihan cetak nota/kwitansi pembayaran salah...!!!");
+            tbPemasukan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("tglNota", "Martapura, " + Valid.SetTglINDONESIA(Valid.SetTgl(tglNota.getSelectedItem() + "")));
+
+            SimpanKwitansi();
+            String kalimatBayar = "", bayar = "";
+            kalimatBayar = Sequel.Terbilang(Sequel.cariIsiAngka("SELECT REPLACE(REPLACE(temp3,'.',''),',','') FROM temporary_bayar_ranap"));
+            bayar = Sequel.cariIsi("SELECT temp3 FROM temporary_bayar_ranap");
+
+            param.put("uang_sebanyak", kalimatBayar + " Rupiah.");
+            param.put("terbilang", "Terbilang Rp. " + bayar);
+            Valid.MyReport("rptNotaAmbulan.jasper", "report", "::[ Kwitansi pembayaran Ambulance ]::", 
+                    "SELECT * FROM temporary_bayar_ranap", param);
+
+            this.setCursor(Cursor.getDefaultCursor());
+            emptTeks();
+            selisihBaru();
+            tampil();
+        }
+    }//GEN-LAST:event_cetakNotaAmbulanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3031,6 +3086,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox cekNoSEP;
     private widget.TextBox cekNoTransaksi;
     private javax.swing.JMenuItem cetakNota;
+    private javax.swing.JMenuItem cetakNotaAmbulan;
     private javax.swing.JMenuItem cetakNotaNaikKls;
     private widget.TextBox dataSelisihTarif;
     private widget.TextBox deskripsiKD;
