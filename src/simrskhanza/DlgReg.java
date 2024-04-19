@@ -8278,11 +8278,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
             Valid.MyReport("rptBuktiRegistrasiRZgagal.jasper", "report", "::[ Bukti Registrasi Pasien BPJS Rawat Jalan ]::",
                     "SELECT 'Sistem BPJS sedang gangguan, perbaikan setelah kembali normal' no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
-                    + "date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
-                    + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM reg_periksa rp "
-                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
-                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter LEFT JOIN petugas pt ON pt.nip = rp.nip_petugas WHERE "
-                    + "rp.no_rawat='" + TNoRw.getText() + "' and rp.status_lanjut='ralan'", param);
+                    + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jk, "
+                    + "date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, "
+                    + "ifnull(pt.nama,rp.nip_petugas) nama FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter "
+                    + "LEFT JOIN petugas pt ON pt.nip = rp.nip_petugas WHERE rp.no_rawat='" + TNoRw.getText() + "' and rp.status_lanjut='ralan'", param);
 
 //            Valid.MyReport("rptManualSEPJalan.jasper", "report", "::[ Cetak Manual SEP Pasien BPJS Rawat Jalan ]::",
 //                    " SELECT DATE_FORMAT(reg_periksa.tgl_registrasi,'%Y-%m-%d') tgl_sep, CONCAT(pasien.no_peserta,' (MR. ',reg_periksa.no_rkm_medis,')') no_kartu, "

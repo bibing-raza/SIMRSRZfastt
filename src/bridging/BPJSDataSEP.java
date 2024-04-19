@@ -4753,7 +4753,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                             + "where rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'"));
                     
                     Valid.MyReport("rptBuktiRegistrasiRZvct.jasper", "report", "::[ Bukti Registrasi Rawat Jalan Poliklinik VCT ]::",
-                            "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, "
+                            "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
+                            + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir, "
                             + "if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
                             + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama "
                             + "FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
@@ -4782,7 +4783,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                                 + "and jnspelayanan='2'", param);
                     } else {
                         Valid.MyReport("rptBuktiRegistrasiRZ.jasper", "report", "::[ Bukti Registrasi Rawat Jalan ]::",
-                                "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d/%m/%Y') tgllahir, "
+                                "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
+                                + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir, "
                                 + "if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, time_format(rp.jam_reg,'%H:%i') jam, "
                                 + "pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
                                 + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "

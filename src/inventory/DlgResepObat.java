@@ -1228,6 +1228,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             param.put("kontakrs", akses.getkontakrs());
             param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
+            
+            if (Sequel.cariIsi("select status_lanjut from reg_periksa where no_rawat='" + TNoRw.getText() + "'").equals("Ralan")) {
+                param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='2'"));
+            } else {
+                param.put("nosep", Sequel.cariIsi("select ifnull(no_sep,'-') from bridging_sep where no_rawat='" + TNoRw.getText() + "' and jnspelayanan='1'"));
+            }
+            
             if (akses.getadmin() == true) {
                 param.put("petugas", "-");
             } else {
