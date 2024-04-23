@@ -94,7 +94,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         internalFrame1.add(jLabel3);
 
         tglPantau.setForeground(new java.awt.Color(50, 70, 50));
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-04-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -108,9 +108,9 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
         internalFrame1.add(jLabel4);
 
         cmbGrafik.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGrafik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Per Jam", "Per Tanggal" }));
+        cmbGrafik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Per Tanggal Semua Jam", "Per Tanggal (Jam 6, 12, 18, 24)", "Semua Tanggal Semua Jam" }));
         cmbGrafik.setName("cmbGrafik"); // NOI18N
-        cmbGrafik.setPreferredSize(new java.awt.Dimension(89, 23));
+        cmbGrafik.setPreferredSize(new java.awt.Dimension(198, 23));
         internalFrame1.add(cmbGrafik);
 
         BtnGrafik.setForeground(new java.awt.Color(0, 0, 0));
@@ -169,8 +169,10 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                     } else {
                         Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat + "&tgl=" + Valid.SetTgl(tglPantau.getSelectedItem() + ""));
                     }
-                } else {
+                } else if (cmbGrafik.getSelectedIndex() == 1) {
                     Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat);
+                } else if (cmbGrafik.getSelectedIndex() == 2) {
+                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!");
                 }
             } catch (Exception ex) {
                 System.out.println("Notifikasi : " + ex);

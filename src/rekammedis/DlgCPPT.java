@@ -6612,7 +6612,7 @@ public class DlgCPPT extends javax.swing.JDialog {
             akses.setform("DlgCPPT");
             RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
             form.setData(TNoRw.getText());
-            form.setSize(632, 71);
+            form.setSize(747, 71);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

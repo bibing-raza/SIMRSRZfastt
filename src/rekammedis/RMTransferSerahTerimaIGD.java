@@ -67,8 +67,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     public DlgKamar kamar = new DlgKamar(null, false);
-    private PreparedStatement ps, ps1, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
-    private ResultSet rs, rs1, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
+    private PreparedStatement ps, ps1, ps2, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
+    private ResultSet rs, rs1, rs2, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
     private int i = 0, x = 0, pilihan = 0;
     private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", 
             kd_kamar_pindah = "", resepDipilih = "", cekResep = "", tglResep = "", status_kmr = "",
@@ -2615,6 +2615,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        asesmenMedikIGD(TNoRw.getText());
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -3776,53 +3777,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             statusOK = "Ralan";
             
             Talasan_ranap.setText(Sequel.cariIsi("select ifnull(keluhan_utama,'') from triase_igd where no_rawat='" + TNoRw.getText() + "'"));
-            Triw_penyakit_skg.setText(Sequel.cariIsi("select ifnull(anamnesis,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
-            Triw_alergi.setText(Sequel.cariIsi("select ifnull(Alergi,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
-            
             if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                penyakitDulu1 = Sequel.cariIsi("select if(hipertensi='ya','Hipertensi','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
-                penyakitDulu2 = Sequel.cariIsi("select if(diabetes='ya','Diabetes Mellitus','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
-                penyakitDulu3 = Sequel.cariIsi("select if(jantung='ya','Jantung','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
-                penyakitDulu4 = Sequel.cariIsi("select if(riwayat_penyakit_lain='-' or riwayat_penyakit_lain='','',concat('Lainnya : ',riwayat_penyakit_lain)) "
-                        + "from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
-                
-                //tunggal
-                if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1);
-                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) { 
-                    Triw_penyakit_dulu.setText(penyakitDulu2);
-                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) { 
-                    Triw_penyakit_dulu.setText(penyakitDulu3);
-                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) { 
-                    Triw_penyakit_dulu.setText(penyakitDulu4);
-                //dobel 1
-                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2);
-                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3);
-                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu4);
-                //dobel 2
-                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3);
-                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu4);    
-                //dobel 3
-                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu3 + ", " + penyakitDulu4);
-                //tripel
-                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3);
-                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu4);
-                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3 + ", " + penyakitDulu4);                                    
-                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);                
-                //lengkap
-                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
-                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);
-                }
+                asesmenMedikIGD(TNoRw.getText());
             } else {
                 Triw_penyakit_dulu.setText("");
             }
@@ -4744,5 +4700,75 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         lab = "";
         wktSimpan = "";
         statusOK = "";
+    }
+    
+    private void asesmenMedikIGD(String norw) {
+        try {
+            ps2 = koneksi.prepareStatement("select ifnull(anamnesis,'') anamnesis, ifnull(Alergi,'') alergi, if(hipertensi='ya','Hipertensi','') hipertensi, "
+                    + "if(diabetes='ya','Diabetes Mellitus','') diabet, if(jantung='ya','Jantung','') jantung, "
+                    + "if(riwayat_penyakit_lain='-' or riwayat_penyakit_lain='','',concat('Lainnya : ',riwayat_penyakit_lain)) riwayat_lain "
+                    + "from penilaian_awal_medis_igd where no_rawat='" + norw + "'");
+            try {
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    Triw_penyakit_skg.setText(rs2.getString("anamnesis"));
+                    Triw_alergi.setText(rs2.getString("alergi"));
+                    penyakitDulu1 = rs2.getString("hipertensi");
+                    penyakitDulu2 = rs2.getString("diabet");
+                    penyakitDulu3 = rs2.getString("jantung");
+                    penyakitDulu4 = rs2.getString("riwayat_lain");
+
+                    //tunggal
+                    if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1);
+                    } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu2);
+                    } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu3);
+                    } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu4);
+                        //dobel 1
+                    } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2);
+                    } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3);
+                    } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu4);
+                        //dobel 2
+                    } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3);
+                    } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu4);
+                        //dobel 3
+                    } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu3 + ", " + penyakitDulu4);
+                        //tripel
+                    } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3);
+                    } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu4);
+                    } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3 + ", " + penyakitDulu4);
+                    } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);
+                        //lengkap
+                    } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                        Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);
+                    }
+
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }

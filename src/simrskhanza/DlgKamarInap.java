@@ -13573,7 +13573,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 akses.setform("DlgKamarInap");
                 RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
                 form.setData(norawat.getText());
-                form.setSize(632, 71);
+                form.setSize(747, 71);
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
                 BtnCariActionPerformed(null);

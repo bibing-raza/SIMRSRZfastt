@@ -796,7 +796,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
             akses.setform("DlgRMEranap");
             RMGrafikPemantauanHarian24Jam form = new RMGrafikPemantauanHarian24Jam(null, false);
             form.setData(TNoRW.getText());
-            form.setSize(632, 71);
+            form.setSize(747, 71);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

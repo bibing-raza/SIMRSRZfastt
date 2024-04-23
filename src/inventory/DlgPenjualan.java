@@ -41,11 +41,11 @@ public class DlgPenjualan extends javax.swing.JDialog {
     private DlgCariPenjualan carijual = new DlgCariPenjualan(null, false);
     private DlgCariBangsal bangsal = new DlgCariBangsal(null, false);
     private double ttl = 0, y = 0, stokbarang = 0, bayar = 0, total = 0, ppn = 0, besarppn = 0, tagihanppn = 0, stokbarang2, embalase = 0, tuslah = 0;
-    private int jml = 0, i = 0, row, ksg = 0, cekVeri = 0, cekReg = 0;
+    private int jml = 0, i = 0, row, ksg = 0, cekVeri = 0, cekReg = 0, cekAwal = 0;
     private String verifikasi_penjualan_di_kasir = Sequel.cariIsi(
             "select verifikasi_penjualan_di_kasir from set_nota"), status = "Belum Dibayar", NoRw = "-";
-    private PreparedStatement ps, psstok;
-    private ResultSet rs, rsstok;
+    private PreparedStatement ps, psstok, psCheck;
+    private ResultSet rs, rsstok, rsCheck;
     private String[] kodebarang, namabarang, kategori, satuan;
     private double[] harga, jumlah, subtotal, diskon, besardiskon, totaljual, tambahan, stok;
     private WarnaTable2 warna = new WarnaTable2();
@@ -1245,10 +1245,22 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         cekVeri = 0;
-        cekVeri = Sequel.cariInteger("select count(1) from penjualan where status = 'Belum Dibayar'");
+        cekAwal = 0;
 
         cekReg = 0;
         cekReg = Sequel.cariInteger("select count(1) from reg_periksa where no_rkm_medis ='" + kdmem.getText() + "' and tgl_registrasi = DATE(Now()) and status_lanjut = 'Ralan'");
+
+        try {
+            psCheck = koneksi.prepareStatement("select nota_jual from penjualan where status = 'Belum Dibayar'");
+            rsCheck = psCheck.executeQuery();
+            while (rsCheck.next()) {
+                cekAwal = Sequel.cariInteger("select count(1) from detailjual where nota_jual = '" + rsCheck.getString("nota_jual") + "'");
+                if (cekAwal > 0) {
+                    cekVeri++;
+                }
+            }
+        } catch (Exception e) {
+        }
 
         if (cekReg > 0) {
             JOptionPane.showMessageDialog(null, "Silakan lakukan pemberian obat melalui rawat ralan");
