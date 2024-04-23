@@ -75,7 +75,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             tglPemberianObat = "", nip_dokter = "", nip_serah = "", nip_terima = "", ekg = "", torak_foto = "", 
             fotoC = "", fotoG = "", fotoA = "", spiri = "", echo = "", usg = "", ct_scan = "", endos = "", wktSimpan = "",
             ctg = "", penunjang_lain = "", alat_lain = "", infus = "", kateter = "", ngt = "", oksigen = "", statusOK = "",
-            drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "";
+            drain = "", itemDipilih = "", lab = "", posisi = "", nmKamar = "", penyakitDulu1 = "", penyakitDulu2 = "",
+            penyakitDulu3 = "", penyakitDulu4 = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -604,9 +605,9 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         Talasan_ranap = new widget.TextArea();
         jLabel17 = new widget.Label();
         scrollPane10 = new widget.ScrollPane();
-        Tkeluhan = new widget.TextArea();
+        Triw_penyakit_skg = new widget.TextArea();
         scrollPane11 = new widget.ScrollPane();
-        Triw_penyakit = new widget.TextArea();
+        Triw_penyakit_dulu = new widget.TextArea();
         jLabel20 = new widget.Label();
         jLabel22 = new widget.Label();
         scrollPane12 = new widget.ScrollPane();
@@ -710,6 +711,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         jLabel43 = new widget.Label();
         jLabel49 = new widget.Label();
         jLabel50 = new widget.Label();
+        jLabel51 = new widget.Label();
+        jLabel52 = new widget.Label();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTransfer = new widget.Table();
@@ -1093,7 +1096,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(0, 237, 130, 23);
 
-        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:37:18" }));
+        tgl_pindah.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024 21:44:01" }));
         tgl_pindah.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_pindah.setName("tgl_pindah"); // NOI18N
         tgl_pindah.setOpaque(false);
@@ -1167,47 +1170,47 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         scrollPane9.setBounds(136, 267, 260, 100);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Keluhan :");
+        jLabel17.setText("Riw. Penyakit  ");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(395, 267, 60, 23);
+        jLabel17.setBounds(395, 267, 90, 23);
 
         scrollPane10.setName("scrollPane10"); // NOI18N
 
-        Tkeluhan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Tkeluhan.setColumns(20);
-        Tkeluhan.setRows(5);
-        Tkeluhan.setName("Tkeluhan"); // NOI18N
-        Tkeluhan.setPreferredSize(new java.awt.Dimension(162, 200));
-        Tkeluhan.addKeyListener(new java.awt.event.KeyAdapter() {
+        Triw_penyakit_skg.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Triw_penyakit_skg.setColumns(20);
+        Triw_penyakit_skg.setRows(5);
+        Triw_penyakit_skg.setName("Triw_penyakit_skg"); // NOI18N
+        Triw_penyakit_skg.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Triw_penyakit_skg.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TkeluhanKeyPressed(evt);
+                Triw_penyakit_skgKeyPressed(evt);
             }
         });
-        scrollPane10.setViewportView(Tkeluhan);
+        scrollPane10.setViewportView(Triw_penyakit_skg);
 
         FormInput.add(scrollPane10);
-        scrollPane10.setBounds(460, 267, 300, 100);
+        scrollPane10.setBounds(490, 267, 270, 100);
 
         scrollPane11.setName("scrollPane11"); // NOI18N
 
-        Triw_penyakit.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Triw_penyakit.setColumns(20);
-        Triw_penyakit.setRows(5);
-        Triw_penyakit.setName("Triw_penyakit"); // NOI18N
-        Triw_penyakit.setPreferredSize(new java.awt.Dimension(162, 1000));
-        Triw_penyakit.addKeyListener(new java.awt.event.KeyAdapter() {
+        Triw_penyakit_dulu.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Triw_penyakit_dulu.setColumns(20);
+        Triw_penyakit_dulu.setRows(5);
+        Triw_penyakit_dulu.setName("Triw_penyakit_dulu"); // NOI18N
+        Triw_penyakit_dulu.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Triw_penyakit_dulu.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                Triw_penyakitKeyPressed(evt);
+                Triw_penyakit_duluKeyPressed(evt);
             }
         });
-        scrollPane11.setViewportView(Triw_penyakit);
+        scrollPane11.setViewportView(Triw_penyakit_dulu);
 
         FormInput.add(scrollPane11);
         scrollPane11.setBounds(136, 374, 260, 100);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Riwayat Penyakit :");
+        jLabel20.setText("Riwayat Penyakit  ");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
         jLabel20.setBounds(0, 374, 130, 23);
@@ -2174,7 +2177,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnRiwPenyakit);
-        BtnRiwPenyakit.setBounds(30, 394, 100, 23);
+        BtnRiwPenyakit.setBounds(30, 410, 100, 23);
 
         BtnDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
         BtnDiagnosa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -2277,6 +2280,18 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         FormInput.add(jLabel50);
         jLabel50.setBounds(265, 557, 40, 23);
 
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Sekarang : ");
+        jLabel51.setName("jLabel51"); // NOI18N
+        FormInput.add(jLabel51);
+        jLabel51.setBounds(395, 282, 90, 23);
+
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Dahulu : ");
+        jLabel52.setName("jLabel52"); // NOI18N
+        FormInput.add(jLabel52);
+        jLabel52.setBounds(0, 389, 130, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTST.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2319,7 +2334,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2334,7 +2349,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2574,7 +2589,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                         + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 65, new String[]{
                             TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                             Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
-                            Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
+                            Triw_penyakit_skg.getText(), Triw_penyakit_dulu.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
                             Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
                             cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
                             endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
@@ -2583,6 +2598,12 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                             Talasan_pindah.getText(), Tnm_pasienKlg.getText(), nip_dokter, nip_serah, nip_terima, Valid.SetTgl(tgl_transfer.getSelectedItem() + ""), infus, kateter, ngt,
                             oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
                         }) == true) {
+                    
+                    if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                        Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRw.getText() + "'",
+                                "td='" + Ttd.getText() + "', hr='" + Tnadi.getText() + "', rr='" + Trr.getText() + "', temp='" + Tsuhu.getText() + "', "
+                                + "spo2='" + Tspo2.getText() + "', gcs_pulang='" + gcse.getText() + ", " + gcsm.getText() + ", " + gcsv.getText() + "'");
+                    }
                     TCari.setText(TNoRw.getText());
                     emptTeks();
                     tampil();
@@ -2809,21 +2830,21 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void Talasan_ranapKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Talasan_ranapKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Tkeluhan.requestFocus();
+            Triw_penyakit_skg.requestFocus();
         }
     }//GEN-LAST:event_Talasan_ranapKeyPressed
 
-    private void TkeluhanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkeluhanKeyPressed
+    private void Triw_penyakit_skgKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Triw_penyakit_skgKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Triw_penyakit.requestFocus();
+            Triw_penyakit_dulu.requestFocus();
         }
-    }//GEN-LAST:event_TkeluhanKeyPressed
+    }//GEN-LAST:event_Triw_penyakit_skgKeyPressed
 
-    private void Triw_penyakitKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Triw_penyakitKeyPressed
+    private void Triw_penyakit_duluKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Triw_penyakit_duluKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
             Triw_alergi.requestFocus();
         }
-    }//GEN-LAST:event_Triw_penyakitKeyPressed
+    }//GEN-LAST:event_Triw_penyakit_duluKeyPressed
 
     private void Triw_alergiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Triw_alergiKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_TAB) {
@@ -3386,7 +3407,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox Tdpjp;
     private widget.TextBox Tdr_konsulen1;
     private widget.TextBox Tdr_konsulen2;
-    private widget.TextArea Tkeluhan;
     private widget.TextBox Tket_ctg;
     private widget.TextBox Tket_ctscan;
     private widget.TextBox Tket_endos;
@@ -3400,7 +3420,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.TextBox Tnm_petugas2;
     private widget.TextArea Trekomendasi;
     private widget.TextArea Triw_alergi;
-    private widget.TextArea Triw_penyakit;
+    private widget.TextArea Triw_penyakit_dulu;
+    private widget.TextArea Triw_penyakit_skg;
     private widget.TextBox Trr;
     private widget.TextBox TskalaNyeri;
     private widget.TextBox Tspo2;
@@ -3468,6 +3489,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private widget.Label jLabel49;
     private widget.Label jLabel5;
     private widget.Label jLabel50;
+    private widget.Label jLabel51;
+    private widget.Label jLabel52;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
     private widget.Label jLabel59;
@@ -3658,8 +3681,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         tgl_pindah.setDate(new Date());
         Tnm_kamar_pindah.setText("");
         Talasan_ranap.setText("");
-        Tkeluhan.setText("");
-        Triw_penyakit.setText("");
+        Triw_penyakit_skg.setText("");
+        Triw_penyakit_dulu.setText("");
         Triw_alergi.setText("");
         gcse.setText("");
         gcsm.setText("");
@@ -3751,7 +3774,58 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(true);
             statusOK = "Ralan";
-            Triw_penyakit.setText(Sequel.cariIsi("select ifnull(anamnesis,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
+            
+            Talasan_ranap.setText(Sequel.cariIsi("select ifnull(keluhan_utama,'') from triase_igd where no_rawat='" + TNoRw.getText() + "'"));
+            Triw_penyakit_skg.setText(Sequel.cariIsi("select ifnull(anamnesis,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
+            Triw_alergi.setText(Sequel.cariIsi("select ifnull(Alergi,'') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'"));
+            
+            if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                penyakitDulu1 = Sequel.cariIsi("select if(hipertensi='ya','Hipertensi','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+                penyakitDulu2 = Sequel.cariIsi("select if(diabetes='ya','Diabetes Mellitus','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+                penyakitDulu3 = Sequel.cariIsi("select if(jantung='ya','Jantung','') from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+                penyakitDulu4 = Sequel.cariIsi("select if(riwayat_penyakit_lain='-' or riwayat_penyakit_lain='','',concat('Lainnya : ',riwayat_penyakit_lain)) "
+                        + "from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'");
+                
+                //tunggal
+                if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1);
+                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) { 
+                    Triw_penyakit_dulu.setText(penyakitDulu2);
+                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) { 
+                    Triw_penyakit_dulu.setText(penyakitDulu3);
+                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) { 
+                    Triw_penyakit_dulu.setText(penyakitDulu4);
+                //dobel 1
+                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2);
+                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3);
+                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu4);
+                //dobel 2
+                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3);
+                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu4);    
+                //dobel 3
+                } else if (penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu3 + ", " + penyakitDulu4);
+                //tripel
+                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3);
+                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu4);
+                } else if (!penyakitDulu1.equals("") && penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu3 + ", " + penyakitDulu4);                                    
+                } else if (penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);                
+                //lengkap
+                } else if (!penyakitDulu1.equals("") && !penyakitDulu2.equals("") && !penyakitDulu3.equals("") && !penyakitDulu4.equals("")) {
+                    Triw_penyakit_dulu.setText(penyakitDulu1 + ", " + penyakitDulu2 + ", " + penyakitDulu3 + ", " + penyakitDulu4);
+                }
+            } else {
+                Triw_penyakit_dulu.setText("");
+            }
         } else if (posisidata.equals("ralan")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(false);
@@ -3794,13 +3868,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             Valid.SetTgl2(tgl_pindah, tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 20).toString());
             Tnm_kamar_pindah.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 11).toString());            
             Talasan_ranap.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 12).toString());
-            Tkeluhan.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 13).toString());            
+            Triw_penyakit_skg.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 13).toString());            
             nip_dpjp = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 14).toString();
             nip_konsulen1 = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 15).toString();
             nip_konsulen2 = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 16).toString();            
             kd_kamar = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 19).toString();
             kd_kamar_pindah = tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 21).toString();
-            Triw_penyakit.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 24).toString());
+            Triw_penyakit_dulu.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 24).toString());
             Triw_alergi.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 25).toString());
             gcse.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 26).toString());
             gcsm.setText(tbTransfer.getValueAt(tbTransfer.getSelectedRow(), 27).toString());
@@ -3886,7 +3960,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 + "infus=?, kateter=?, ngt=?, oksigen=?, drain=?, lab=?", 64, new String[]{
                     TNoRw.getText(), nip_dpjp, nip_konsulen1, nip_konsulen2, Tdiagnosis.getText(), Valid.SetTgl(tgl_masuk.getSelectedItem() + ""), kd_kamar,
                     Valid.SetTgl(tgl_pindah.getSelectedItem() + "") + " " + tgl_pindah.getSelectedItem().toString().substring(11, 19), kd_kamar_pindah, Talasan_ranap.getText(),
-                    Tkeluhan.getText(), Triw_penyakit.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
+                    Triw_penyakit_skg.getText(), Triw_penyakit_dulu.getText(), Triw_alergi.getText(), gcse.getText(), gcsm.getText(), gcsv.getText(), cmbKesadaran.getSelectedItem().toString(),
                     Ttd.getText(), Tnadi.getText(), Tsuhu.getText(), Trr.getText(), Tspo2.getText(), TskalaNyeri.getText(), cmbResiko.getSelectedItem().toString(),
                     cmbKriteria.getSelectedItem().toString(), ekg, torak_foto, fotoC, fotoG, fotoA, spiri, echo, usg, ct_scan, Tket_ctscan.getText(),
                     endos, Tket_endos.getText(), ctg, Tket_ctg.getText(), penunjang_lain, Tket_lain.getText(), TDiagnosa.getText(), Valid.SetTgl(tgl_infus.getSelectedItem() + ""),
@@ -4080,8 +4154,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             param.put("tgljampindah", tgl_pindah.getSelectedItem().toString());
             param.put("ruangkamarpindah", Tnm_kamar_pindah.getText());
             param.put("alasanranap", Talasan_ranap.getText());
-            param.put("keluhan", Tkeluhan.getText());
-            param.put("riwpenyakit", Triw_penyakit.getText());
+            param.put("keluhan", Triw_penyakit_skg.getText());
+            param.put("riwpenyakit", Triw_penyakit_dulu.getText());
             param.put("riwalergi", Triw_alergi.getText());
             param.put("gcse", gcse.getText());
             param.put("gcsm", gcsm.getText());
@@ -4621,13 +4695,13 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         if (pilihan == 1) {
             Tdiagnosis.setText(Ttemplate.getText());
         } else if (pilihan == 2) {
-            Tkeluhan.setText(Ttemplate.getText());
+            Triw_penyakit_skg.setText(Ttemplate.getText());
         } else if (pilihan == 3) {
             Triw_alergi.setText(Ttemplate.getText());
         } else if (pilihan == 4) {
             Talasan_ranap.setText(Ttemplate.getText());
         } else if (pilihan == 5) {
-            Triw_penyakit.setText(Ttemplate.getText());
+            Triw_penyakit_dulu.setText(Ttemplate.getText());
         } else if (pilihan == 6) {
             TDiagnosa.setText(Ttemplate.getText());
         } else if (pilihan == 7) {
