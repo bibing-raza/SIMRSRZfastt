@@ -172,7 +172,7 @@ public class RMGrafikPemantauanHarian24Jam extends javax.swing.JDialog {
                 } else if (cmbGrafik.getSelectedIndex() == 1) {
                     Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat);
                 } else if (cmbGrafik.getSelectedIndex() == 2) {
-                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!");
+                    Valid.panggilUrlRME("/rme/pemantauan/?norawat=" + norawat + "&jam=semua");
                 }
             } catch (Exception ex) {
                 System.out.println("Notifikasi : " + ex);

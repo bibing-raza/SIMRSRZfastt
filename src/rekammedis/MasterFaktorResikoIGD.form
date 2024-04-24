@@ -477,12 +477,13 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="5">
+                  <StringArray count="6">
                     <StringItem index="0" value="Dewasa"/>
                     <StringItem index="1" value="Anak"/>
                     <StringItem index="2" value="Kebidanan"/>
                     <StringItem index="3" value="Dewasa Ranap"/>
                     <StringItem index="4" value="Ulang Resiko Jatuh"/>
+                    <StringItem index="5" value="Anak Ranap"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbAsesmen" noResource="true"/>

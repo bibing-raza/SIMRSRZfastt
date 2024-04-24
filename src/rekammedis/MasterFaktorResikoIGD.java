@@ -415,7 +415,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         jLabel9.setBounds(480, 38, 57, 23);
 
         cmbAsesmen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan", "Dewasa Ranap", "Ulang Resiko Jatuh" }));
+        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan", "Dewasa Ranap", "Ulang Resiko Jatuh", "Anak Ranap" }));
         cmbAsesmen.setName("cmbAsesmen"); // NOI18N
         cmbAsesmen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
