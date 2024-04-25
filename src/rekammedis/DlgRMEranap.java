@@ -114,6 +114,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         internalFrame2 = new widget.InternalFrame();
         BtnAsesmenMedik = new widget.ButtonBig();
         BtnAsesmenKeperawatanDewasa = new widget.ButtonBig();
+        BtnAsesmenKeperawatanAnak = new widget.ButtonBig();
         BtnCPPT = new widget.ButtonBig();
         BtnResep = new widget.ButtonBig();
         BtnRingkasan = new widget.ButtonBig();
@@ -301,6 +302,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnAsesmenKeperawatanDewasa);
+
+        BtnAsesmenKeperawatanAnak.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenKeperawatanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenKeperawatanAnak.setText("Asesmen Keperawatan Anak");
+        BtnAsesmenKeperawatanAnak.setIconTextGap(0);
+        BtnAsesmenKeperawatanAnak.setName("BtnAsesmenKeperawatanAnak"); // NOI18N
+        BtnAsesmenKeperawatanAnak.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenKeperawatanAnak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenKeperawatanAnakActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnAsesmenKeperawatanAnak);
 
         BtnCPPT.setForeground(new java.awt.Color(0, 0, 0));
         BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -903,6 +917,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnTransferSerahTerimaActionPerformed
 
+    private void BtnAsesmenKeperawatanAnakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenKeperawatanAnakActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMAsesmenKeperawatanAnakRanap form = new RMAsesmenKeperawatanAnakRanap(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), kdkamar);
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnAsesmenKeperawatanAnakActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -920,6 +955,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private widget.ButtonBig BtnAsesmenKeperawatanAnak;
     private widget.ButtonBig BtnAsesmenKeperawatanDewasa;
     private widget.ButtonBig BtnAsesmenMedik;
     private widget.ButtonBig BtnAsesmenUlangRJ;
@@ -963,7 +999,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
     private void isCek() {
         BtnAsesmenMedik.setEnabled(akses.getasesmen_medik_dewasa_ranap());
-        BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());        
+        BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());
+        BtnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
         BtnCPPT.setEnabled(akses.getcppt());
         BtnResep.setEnabled(akses.getresep_dokter());
         BtnRingkasan.setEnabled(akses.getringkasanpulangranap());
@@ -1094,6 +1131,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnTransferSerahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnTransferSerahTerima.setToolTipText("Data Transfer & Serah Terima Pasien SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norawat + "'") == 0) {
+            BtnAsesmenKeperawatanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenKeperawatanAnak.setToolTipText("Asesmen Keperawatan Anak BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnAsesmenKeperawatanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenKeperawatanAnak.setToolTipText("Asesmen Keperawatan Anak SUDAH diisi oleh petugas..!!!");
         }
     }
 }

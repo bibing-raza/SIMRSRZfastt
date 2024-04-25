@@ -770,6 +770,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jPopupMenu6 = new javax.swing.JPopupMenu();
         MnTemplateP = new javax.swing.JMenuItem();
         MnUlangiP = new javax.swing.JMenuItem();
+        MnPasteLabP = new javax.swing.JMenuItem();
         MnCeklisFarmasiP = new javax.swing.JMenuItem();
         WindowTemplate = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
@@ -1700,6 +1701,21 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         jPopupMenu6.add(MnUlangiP);
+
+        MnPasteLabP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPasteLabP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        MnPasteLabP.setText("Paste");
+        MnPasteLabP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPasteLabP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPasteLabP.setIconTextGap(5);
+        MnPasteLabP.setName("MnPasteLabP"); // NOI18N
+        MnPasteLabP.setPreferredSize(new java.awt.Dimension(130, 26));
+        MnPasteLabP.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPasteLabPActionPerformed(evt);
+            }
+        });
+        jPopupMenu6.add(MnPasteLabP);
 
         MnCeklisFarmasiP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCeklisFarmasiP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -6619,6 +6635,20 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnGrafikPemantauanDewasaActionPerformed
 
+    private void MnPasteLabPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPasteLabPActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu data yg. dipilih..!!!!");
+        } else {
+            if (TPlaning.getText().equals("")) {
+                TPlaning.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                TPlaning.setText(TPlaning.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_MnPasteLabPActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -6737,6 +6767,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnPasteLabA;
     private javax.swing.JMenuItem MnPasteLabO;
+    private javax.swing.JMenuItem MnPasteLabP;
     private javax.swing.JMenuItem MnPasteLabS;
     private javax.swing.JMenuItem MnPemantauanDewasa;
     private javax.swing.JMenuItem MnPemberianDiet;
