@@ -4626,8 +4626,6 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        skorFix = "";
-        
         if (tbAsesmen.getSelectedRow() > -1) {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
@@ -4899,7 +4897,6 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
 
             //faktor resiko jatuh
             try {
-                resikojatuh = "";
                 ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor Resiko : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
                         + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_anak_ranap_resiko pm ON pm.kode_resiko = m.kode_resiko "
                         + "WHERE m.asesmen = 'Anak Ranap' and pm.no_rawat=? ORDER BY pm.kode_resiko");
@@ -5089,8 +5086,8 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             
             Valid.MyReport("rptAsesmenKeperawatanAnak1.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 1 ]::",
                     "SELECT now() tanggal", param);
-            Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
-                    "SELECT now() tanggal", param);
+//            Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
+//                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
@@ -7661,6 +7658,8 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
     }
     
     private void bersihkanString() {
+        skorFix = "";
+        resikojatuh = "";
         nip = "";
         kdkamar = "";
         alergiObat = "";
