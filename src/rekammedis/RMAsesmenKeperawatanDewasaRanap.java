@@ -3775,7 +3775,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                 resikojatuh = "";
                 ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor Resiko : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
                         + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_dewasa_ranap_resiko pm ON pm.kode_resiko = m.kode_resiko "
-                        + "WHERE m.asesmen = 'Dewasa Ranap' and pm.no_rawat=? ORDER BY pm.kode_resiko");
+                        + "WHERE m.asesmen = 'Dewasa Ranap' and pm.no_rawat=? ORDER BY convert(pm.kode_resiko, int) desc");
                 try {
                     ps3.setString(1, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
                     rs3 = ps3.executeQuery();
@@ -4001,7 +4001,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             tampil();
             emptTeks();
         } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu..!!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 

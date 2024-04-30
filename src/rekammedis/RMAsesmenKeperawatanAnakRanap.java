@@ -4899,7 +4899,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             try {
                 ps3 = koneksi.prepareStatement("select m.kode_resiko, concat('Faktor Resiko : ',m.faktor_resiko,', Skala : ',m.skala,', Skor (',m.skor,')') resiko "
                         + "FROM master_faktor_resiko_igd m INNER JOIN penilaian_awal_keperawatan_anak_ranap_resiko pm ON pm.kode_resiko = m.kode_resiko "
-                        + "WHERE m.asesmen = 'Anak Ranap' and pm.no_rawat=? ORDER BY pm.kode_resiko");
+                        + "WHERE m.asesmen = 'Anak Ranap' and pm.no_rawat=? ORDER BY convert(pm.kode_resiko, int) desc");
                 try {
                     ps3.setString(1, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
                     rs3 = ps3.executeQuery();
@@ -4925,8 +4925,8 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
                 System.out.println("Notif : " + e);
             }
             
-            param.put("resikoJatuh", resikojatuh);
-            param.put("TotSkorResikoJatuh", "Jumlah Skor Resiko Jatuh : " + TotSkorRJ.getText());
+            param.put("resikoJatuh", resikojatuh + "\n_________________________________________________________________________________________\n"
+                    + "Jumlah Skor Resiko Jatuh : " + TotSkorRJ.getText());
             param.put("KesResikoJatuh", "Kesimpulan Skor Resiko Jatuh : " + kesimpulanResikoJatuh.getText());
 
             if (cmbTindakanCegah.getSelectedIndex() == 0) {
@@ -4942,22 +4942,22 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             
             //skrining gizi
             param.put("kalimatSkrining", ChkGizi1.getText() + " (Skor : " + TskorGizi1.getText() + ")\n\n"
-                    + ChkGizi2.getText() + " (Skor : " + TskorGizi2.getText() + ")\n" + labelChkGizi2.getText() + "\n\n"
-                    + ChkGizi3.getText() + " (Skor : " + TskorGizi3.getText() + ")\n" + labelChkGizi3A.getText() + "\n" + labelChkGizi3B.getText() + "\n\n"
-                    + ChkGizi4.getText() + " (Skor : " + TskorGizi4.getText() + ")\n"
-                    + labelChkGizi41.getText() + "\n"
-                    + labelChkGizi42.getText() + "\n"
-                    + labelChkGizi43.getText() + "\n"
-                    + labelChkGizi44.getText() + "\n"
-                    + labelChkGizi45.getText() + "\n"
-                    + labelChkGizi46.getText() + "\n"
-                    + labelChkGizi47.getText() + "\n"
-                    + labelChkGizi48.getText() + "\n"
-                    + labelChkGizi49.getText() + "\n"
-                    + labelChkGizi410.getText() + "\n"
-                    + labelChkGizi411.getText() + "\n"
-                    + labelChkGizi412.getText() + "\n"
-                    + labelChkGizi413.getText() + "\n"
+                    + ChkGizi2.getText() + " (Skor : " + TskorGizi2.getText() + ")\n    " + labelChkGizi2.getText() + "\n\n"
+                    + ChkGizi3.getText() + " (Skor : " + TskorGizi3.getText() + ")\n    " + labelChkGizi3A.getText() + "\n    " + labelChkGizi3B.getText() + "\n\n"
+                    + ChkGizi4.getText() + " (Skor : " + TskorGizi4.getText() + ")\n    "
+                    + labelChkGizi41.getText() + "\n    "
+                    + labelChkGizi42.getText() + "\n    "
+                    + labelChkGizi43.getText() + "\n    "
+                    + labelChkGizi44.getText() + "\n    "
+                    + labelChkGizi45.getText() + "\n    "
+                    + labelChkGizi46.getText() + "\n    "
+                    + labelChkGizi47.getText() + "\n    "
+                    + labelChkGizi48.getText() + "\n    "
+                    + labelChkGizi49.getText() + "\n    "
+                    + labelChkGizi410.getText() + "\n    "
+                    + labelChkGizi411.getText() + "\n    "
+                    + labelChkGizi412.getText() + "\n    "
+                    + labelChkGizi413.getText() + "\n    "
                     + labelChkGizi414.getText() + "\n\n"
                     + "TOTAL SKOR : " + TotSkorGizi.getText() + "\nKesimpulan Skrining Gizi : " + kesimpulanGizi.getText() + "\n");
             
@@ -5086,15 +5086,15 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
             
             Valid.MyReport("rptAsesmenKeperawatanAnak1.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 1 ]::",
                     "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptAsesmenKeperawatanAnak2.jasper", "report", "::[ Asesmen Keperawatan Anak Rawat Inap Hal. 2 ]::",
+                    "SELECT now() tanggal", param);
             
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
             tampil();
             emptTeks();
         } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih dulu datanya pada tabel terlebih dahulu..!!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
