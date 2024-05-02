@@ -3147,7 +3147,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             if (TCari1.getText().equals("")) {
                 ps1 = koneksi.prepareStatement("SELECT h.kd_baris, h.nip, p.nama, h.kode_unit, "
                         + "UPPER(if(h.kode_unit=pl.kd_poli,pl.nm_poli,h.kode_unit)) unit "
-                        + " FROM hak_akses_unit h INNER JOIN petugas p ON p.nip = h.nip "
+                        + " FROM hak_akses_unit h INNER JOIN petugas p ON p.user_id = h.nip "
                         + " LEFT JOIN poliklinik pl ON pl.kd_poli = h.kode_unit ORDER BY h.kd_baris");
 
             } else if (!TCari1.getText().equals("")) {
@@ -3160,7 +3160,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
                 ps1 = koneksi.prepareStatement("SELECT h.kd_baris, h.nip, p.nama, h.kode_unit, "
                         + "UPPER(if(h.kode_unit=pl.kd_poli,pl.nm_poli,h.kode_unit)) unit "
-                        + " FROM hak_akses_unit h INNER JOIN petugas p ON p.nip = h.nip "
+                        + " FROM hak_akses_unit h INNER JOIN petugas p ON p.user_id = h.nip "
                         + " LEFT JOIN poliklinik pl ON pl.kd_poli = h.kode_unit "
                         + " WHERE " + mencari + " ORDER BY h.kd_baris");
             }

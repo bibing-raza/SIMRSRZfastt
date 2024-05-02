@@ -7257,6 +7257,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     this.setCursor(Cursor.getDefaultCursor());
                 }
             } else if (Sequel.cariIsi("select kode_unit from hak_akses_unit where nip='" + akses.getkode() + "' and kode_unit ='" + kdpoli.getText() + "'").equals(kdpoli.getText())
+                    || Sequel.cariIsi("select h.kode_unit from hak_akses_unit h inner join petugas p on p.user_id = h.nip where "
+                            + "p.nip='" + akses.getkode() + "' and h.kode_unit ='" + kdpoli.getText() + "'").equals(kdpoli.getText())
                     || Sequel.cariIsi("select kode_unit from hak_akses_unit where nip='" + akses.getkode() + "'").equals("semua ralan")
                     || Sequel.cariIsi("select kode_unit from hak_akses_unit where nip='" + akses.getkode() + "'").equals("semua ralan ranap")) {
                 if (tbKasirRalan.getSelectedRow() != -1) {
