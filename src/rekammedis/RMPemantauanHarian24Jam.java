@@ -3057,9 +3057,18 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TNoRw.setText(norw);
         TNoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norw + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
-        Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
         Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         TrgRawat.setText(rgrawat);
+        
+        //pasien dewasa
+        if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'") > 0) {
+            Tbb.setText(Sequel.cariIsi("select bb_msk_rs from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
+        //pasien ruang anak
+        } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norw + "'") > 0) {
+            Tbb.setText(Sequel.cariIsi("select bb_msk_rs from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norw + "'"));
+        } else {
+            Tbb.setText("");
+        }
         
         if (Sequel.cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norw + "'") > 0) {
             Valid.SetTgl(DTPCariA, Sequel.cariIsi("select tgl_pantau from pemantauan_harian_24jam where "
