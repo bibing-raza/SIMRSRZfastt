@@ -379,7 +379,9 @@ import rekammedis.MasterMasalahKeperawatan;
 import rekammedis.MasterFaktorResikoIGD;
 import rekammedis.MasterResikoDecubitus;
 import rekammedis.RMAsesmenKebidananRalan;
+import rekammedis.RMAsesmenKeperawatanAnakRanap;
 import rekammedis.RMAsesmenKeperawatanDewasaRanap;
+import rekammedis.RMAsesmenMedikAnakRanap;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
@@ -999,6 +1001,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnPengelolaanTransfusiDarah = new widget.ButtonBig();
         btnMonitoringEWSDewasa = new widget.ButtonBig();
         btnMasterNomorDokumen = new widget.ButtonBig();
+        btnAsesmenKeperawatanAnak = new widget.ButtonBig();
+        btnAsesmenMedikAnakRanap = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6627,6 +6631,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMasterNomorDokumen);
 
+        btnAsesmenKeperawatanAnak.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenKeperawatanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
+        btnAsesmenKeperawatanAnak.setText("Asesmen Keperawatan Anak Ranap");
+        btnAsesmenKeperawatanAnak.setIconTextGap(0);
+        btnAsesmenKeperawatanAnak.setName("btnAsesmenKeperawatanAnak"); // NOI18N
+        btnAsesmenKeperawatanAnak.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenKeperawatanAnak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenKeperawatanAnakActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenKeperawatanAnak);
+
+        btnAsesmenMedikAnakRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenMedikAnakRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        btnAsesmenMedikAnakRanap.setText("Asesmen Medik Anak Rawat Inap");
+        btnAsesmenMedikAnakRanap.setIconTextGap(0);
+        btnAsesmenMedikAnakRanap.setName("btnAsesmenMedikAnakRanap"); // NOI18N
+        btnAsesmenMedikAnakRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenMedikAnakRanap.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenMedikAnakRanapActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenMedikAnakRanap);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6635,7 +6665,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/03/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/05/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13080,6 +13110,33 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMasterNomorDokumenActionPerformed
 
+    private void btnAsesmenKeperawatanAnakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenKeperawatanAnakActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenKeperawatanAnakRanap aplikasi = new RMAsesmenKeperawatanAnakRanap(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenKeperawatanAnakActionPerformed
+
+    private void btnAsesmenMedikAnakRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenMedikAnakRanapActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenMedikAnakRanap aplikasi = new RMAsesmenMedikAnakRanap(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenMedikAnakRanapActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13136,7 +13193,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAplicareKetersediaanKamar;
     private widget.ButtonBig btnAplicareReferensiKamar;
     private widget.ButtonBig btnAsesmenKebidananRalan;
+    private widget.ButtonBig btnAsesmenKeperawatanAnak;
     private widget.ButtonBig btnAsesmenKeperawatanDewasa;
+    private widget.ButtonBig btnAsesmenMedikAnakRanap;
     private widget.ButtonBig btnAsesmenMedikDewasaRanap;
     private widget.ButtonBig btnAsesmenMedikObstetriRalan;
     private widget.ButtonBig btnAsesmenUlangResikoJatuh;
@@ -15308,6 +15367,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getasesmen_medik_anak_ranap()== true) {
+                Panelmenu.add(btnAsesmenMedikAnakRanap);
+                jmlmenu++;
+            }
+            
             if (akses.getpermintaan_lab()== true) {
                 Panelmenu.add(btnSuratKonsulUnitRanap);
                 jmlmenu++;
@@ -15350,6 +15414,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt() == true) {
                 Panelmenu.add(btnAsesmenKeperawatanDewasa);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnAsesmenKeperawatanAnak);
                 jmlmenu++;
             }
             
@@ -15938,10 +16007,15 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getasesmen_medik_dewasa_ranap()== true) {
-                Panelmenu.add(btnAsesmenMedikDewasaRanap);
-                jmlmenu++;
-            }
+        if (akses.getasesmen_medik_dewasa_ranap() == true) {
+            Panelmenu.add(btnAsesmenMedikDewasaRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getasesmen_medik_anak_ranap() == true) {
+            Panelmenu.add(btnAsesmenMedikAnakRanap);
+            jmlmenu++;
+        }
         
         if (akses.getsurat_keterangan_kir_mcu() == true) {
             Panelmenu.add(btnSuratKeteranganDokter);
@@ -16060,6 +16134,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getcppt() == true) {
             Panelmenu.add(btnAsesmenKeperawatanDewasa);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnAsesmenKeperawatanAnak);
             jmlmenu++;
         }
                 
@@ -18056,6 +18135,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
+        if (akses.getasesmen_medik_anak_ranap()== true) {
+            if (btnAsesmenMedikAnakRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenMedikAnakRanap);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getsurat_keterangan_kir_mcu() == true) {
             if (btnSuratKeteranganDokter.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSuratKeteranganDokter);
@@ -18171,6 +18257,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnAsesmenKeperawatanDewasa.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAsesmenKeperawatanDewasa);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnAsesmenKeperawatanAnak.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenKeperawatanAnak);
                 jmlmenu++;
             }
         }

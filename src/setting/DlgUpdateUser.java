@@ -609,7 +609,8 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "kendali_Mutu_kendali_Biaya_INACBG,dashboard_eResep,bpjs_sep_internal,kemenkes_sitt,rencana_kontrol_jkn,spri_jkn,hapus_sep,"
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
-                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang,"
+                    + "asesmen_medik_anak_ranap from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -1752,6 +1753,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     
                     if ("[K]SPRI JKN".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[K]SPRI JKN", rs.getBoolean("spri_jkn")});
+                    }
+                    
+                    if ("[L]Asesmen Medik Anak Ranap".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[L]Asesmen Medik Anak Ranap", rs.getBoolean("asesmen_medik_anak_ranap")});
                     }
                     
                     if ("[L]Kemoterapi".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -3291,6 +3296,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
             
             if("[K]Cek SEP Internal BPJS".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","bpjs_sep_internal='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[L]Asesmen Medik Anak Ranap".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","asesmen_medik_anak_ranap='"+tbUser.getValueAt(i,2).toString()+"'");
             }
             
             if("[L]Kemoterapi".equals(tbUser.getValueAt(i,1).toString())){
