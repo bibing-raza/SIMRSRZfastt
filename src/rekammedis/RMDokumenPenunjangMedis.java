@@ -125,6 +125,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnJenisDokumen = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         panelGlass7 = new widget.panelisi();
         jLabel3 = new widget.Label();
@@ -149,6 +151,23 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
 
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnJenisDokumen.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnJenisDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnJenisDokumen.setText("Master Jenis Dokumen");
+        MnJenisDokumen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnJenisDokumen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnJenisDokumen.setIconTextGap(5);
+        MnJenisDokumen.setName("MnJenisDokumen"); // NOI18N
+        MnJenisDokumen.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnJenisDokumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnJenisDokumenActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnJenisDokumen);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -162,6 +181,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass7.setComponentPopupMenu(jPopupMenu1);
         panelGlass7.setName("panelGlass7"); // NOI18N
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 45));
         panelGlass7.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
@@ -193,6 +213,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        PanelContent.setComponentPopupMenu(jPopupMenu1);
         PanelContent.setName("PanelContent"); // NOI18N
         PanelContent.setPreferredSize(new java.awt.Dimension(55, 55));
         PanelContent.setLayout(new java.awt.BorderLayout());
@@ -217,12 +238,14 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass12.add(PanelWall, java.awt.BorderLayout.CENTER);
 
         panelGlass13.setBorder(null);
+        panelGlass13.setComponentPopupMenu(jPopupMenu1);
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(116, 160));
         panelGlass13.setLayout(new java.awt.BorderLayout());
         panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
 
         panelGlass14.setBorder(null);
+        panelGlass14.setComponentPopupMenu(jPopupMenu1);
         panelGlass14.setName("panelGlass14"); // NOI18N
         panelGlass14.setPreferredSize(new java.awt.Dimension(116, 160));
         panelGlass14.setLayout(new java.awt.BorderLayout());
@@ -236,6 +259,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         Scroll.setPreferredSize(new java.awt.Dimension(352, 402));
 
         tbFile.setToolTipText("Silahkan klik untuk memilih data yang mau dilihat dokumennya");
+        tbFile.setComponentPopupMenu(jPopupMenu1);
         tbFile.setName("tbFile"); // NOI18N
         tbFile.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -250,6 +274,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass11.setPreferredSize(new java.awt.Dimension(44, 88));
         panelGlass11.setLayout(new java.awt.BorderLayout());
 
+        panelGlass9.setComponentPopupMenu(jPopupMenu1);
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 3, 9));
@@ -309,11 +334,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         BtnUpload.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnUploadActionPerformed(evt);
-            }
-        });
-        BtnUpload.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnUploadKeyPressed(evt);
             }
         });
         panelGlass8.add(BtnUpload);
@@ -403,6 +423,12 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.cariIsiComboDB("select nama_pemeriksaan from rme_jenis_pemeriksaan order by nama_pemeriksaan", cmbDokumen);
         tampilDokumen();
+        
+        if (akses.getadmin() == true) {
+            MnJenisDokumen.setEnabled(true);
+        } else {
+            MnJenisDokumen.setEnabled(false);
+        }
     }//GEN-LAST:event_formWindowOpened
 
     private void cmbDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDokumenActionPerformed
@@ -452,9 +478,15 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_BtnUploadActionPerformed
 
-    private void BtnUploadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnUploadKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnUploadKeyPressed
+    private void MnJenisDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnJenisDokumenActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMDokumenPenunjangMedis");
+        DlgMasterJenisDokumenJangMed form = new DlgMasterJenisDokumenJangMed(null, false);
+        form.setSize(626, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_MnJenisDokumenActionPerformed
 
     /**
     * @param args the command line arguments
@@ -477,6 +509,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnUpload;
+    private javax.swing.JMenuItem MnJenisDokumen;
     private widget.panelisi PanelContent;
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.ScrollPane Scroll;
@@ -487,6 +520,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel3;
     private widget.Label jLabel6;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;

@@ -3733,14 +3733,14 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
             param.put("pengobatan", Tpengobatan.getText() + "\n");
             param.put("diet", Tdiet.getText() + "\n");
             param.put("rencana", Trencana.getText() + "\n");
-            param.put("tanggal", "Tanggal : " + Valid.SetTglINDONESIA("select date(tgl_asesmen) from asesmen_medik_anak_ranap where no_rawat='" + TNoRw.getText() + "'")
+            param.put("tanggal", "Tanggal : " + Valid.SetTglINDONESIA(Sequel.cariIsi("select date(tgl_asesmen) from asesmen_medik_anak_ranap where no_rawat='" + TNoRw.getText() + "'"))
                     + ", Jam : " + Sequel.cariIsi("select time_format(tgl_asesmen,'%H:%i') from asesmen_medik_anak_ranap where no_rawat='" + TNoRw.getText() + "'") + " Wita");
             param.put("dpjp", "(" + nmdpjp.getText() + ")");
 
             Valid.MyReport("rptCetakAsesmenMedikAnakRanap1.jasper", "report", "::[ Laporan Asesmen Medik Anak hal. 1 ]::",
                     "SELECT now() tanggal", param);
-//            Valid.MyReport("rptCetakAsesmenMedikAnakRanap2.jasper", "report", "::[ Laporan Asesmen Medik Anak hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptCetakAsesmenMedikAnakRanap2.jasper", "report", "::[ Laporan Asesmen Medik Anak hal. 2 ]::",
+                    "SELECT now() tanggal", param);
             
             emptTeks();            
             TabRawat.setSelectedIndex(1);
