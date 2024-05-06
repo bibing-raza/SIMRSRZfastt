@@ -1209,6 +1209,30 @@ public final class validasi {
         }
     }
     
+    public void panggilUrlhttpsLangsung(String url) {
+        String os = System.getProperty("os.name").toLowerCase();
+        Runtime rt = Runtime.getRuntime();
+        try {            
+//            https://sirsraza.banjarkab.go.id/rme/
+
+            if (os.contains("win")) {
+                rt.exec("rundll32 url.dll,FileProtocolHandler " + "https://" + url);
+            } else if (os.contains("mac")) {
+                rt.exec("open " + "https://"+ url);
+            } else if (os.contains("nix") || os.contains("nux")) {
+                String[] browsers = {"x-www-browser", "epiphany", "firefox", "mozilla", "konqueror", "chrome", "chromium", "netscape", "opera", "links", "lynx", "midori"};
+                // Build a command string which looks like "browser1 "url" || browser2 "url" ||..."
+                StringBuilder cmd = new StringBuilder();
+                for (i = 0; i < browsers.length; i++) {
+                    cmd.append(i == 0 ? "" : " || ").append(browsers[i]).append(" \"").append("https://").append(url).append("\" ");
+                }
+                rt.exec(new String[]{"sh", "-c", cmd.toString()});
+            }
+        } catch (Exception e) {
+            System.out.println("Notif Browser : " + e);
+        }
+    }
+    
     public void panggilUrlRME(String url) {
         String os = System.getProperty("os.name").toLowerCase();
         Runtime rt = Runtime.getRuntime();

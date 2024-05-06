@@ -701,6 +701,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnKemenkes = new javax.swing.JMenu();
         MnTeridentifikasiTB = new javax.swing.JMenuItem();
         MnDataKanker = new javax.swing.JMenuItem();
+        MnDokumenPenunjangMedis = new javax.swing.JMenuItem();
         MnNomorTB = new javax.swing.JMenuItem();
         MnSpirometri = new javax.swing.JMenuItem();
         ppProgramPRB = new javax.swing.JMenuItem();
@@ -1835,6 +1836,21 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnKemenkes.add(MnDataKanker);
 
         MnInputData.add(MnKemenkes);
+
+        MnDokumenPenunjangMedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDokumenPenunjangMedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDokumenPenunjangMedis.setText("Dokumen Penunjang Medis");
+        MnDokumenPenunjangMedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDokumenPenunjangMedis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDokumenPenunjangMedis.setIconTextGap(5);
+        MnDokumenPenunjangMedis.setName("MnDokumenPenunjangMedis"); // NOI18N
+        MnDokumenPenunjangMedis.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnDokumenPenunjangMedis.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDokumenPenunjangMedisBtnPrintActionPerformed(evt);
+            }
+        });
+        MnInputData.add(MnDokumenPenunjangMedis);
 
         MnNomorTB.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnNomorTB.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3251,7 +3267,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-05-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4104,7 +4120,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-05-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4341,7 +4357,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4360,7 +4376,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8146,6 +8162,25 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_ppDokumenJangMedBtnPrintActionPerformed
 
+    private void MnDokumenPenunjangMedisBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDokumenPenunjangMedisBtnPrintActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data pasien sudah habis...!!!!");
+            NoRM.requestFocus();
+        } else if (nmPasien.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu data pasien dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKasirRalan");
+            RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
+            form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDokumenPenunjangMedisBtnPrintActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8225,6 +8260,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnDiet;
     private javax.swing.JMenuItem MnDietMakanan;
     private javax.swing.JMenuItem MnDokter;
+    private javax.swing.JMenuItem MnDokumenPenunjangMedis;
     private javax.swing.JMenu MnEklaimINACBG;
     private javax.swing.JMenuItem MnFollowUPPerawatanTerapiHIV;
     private javax.swing.JMenuItem MnFormulirKlaim;

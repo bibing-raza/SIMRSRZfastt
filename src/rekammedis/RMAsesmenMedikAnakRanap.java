@@ -1099,7 +1099,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1113,7 +1113,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1437,6 +1437,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
+        FormInput.setToolTipText("Klik Kanan Pada Area Ini Untuk Melihat Hasil Pemeriksaan Penunjang Medis");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 1973));
@@ -1500,7 +1501,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 10, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2024 00:47:18" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024 08:12:53" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3351,7 +3352,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3366,7 +3367,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3542,51 +3543,210 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());            
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("ruangan", TRuangan.getText());
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("keluhan", Tkeluhan.getText());
             param.put("riw_penyakit_skrng", Triw_penyakit_sekarang.getText());
-            param.put("hsl_pemeriksaan", Tpemeriksaan_penunjang.getText());
-            param.put("rencana_krj", Tpengobatan.getText());
-            param.put("rencana_plg", Trencana.getText());
+            
+            if (ChkHipertensi.isSelected() == true) {
+                param.put("hipertensi", "V");
+            } else {
+                param.put("hipertensi", "");
+            }
+            
+            if (ChkDiabetes.isSelected() == true) {
+                param.put("diabetes", "V");
+            } else {
+                param.put("diabetes", "");
+            }
+            
+            if (ChkJantung.isSelected() == true) {
+                param.put("jantung", "V");
+            } else {
+                param.put("jantung", "");
+            }
+            
+            if (ChkStroke.isSelected() == true) {
+                param.put("strok", "V");
+            } else {
+                param.put("strok", "");
+            }
+            
+            if (ChkAsma.isSelected() == true) {
+                param.put("asma", "V");
+            } else {
+                param.put("asma", "");
+            }
+            
+            if (ChkKejang.isSelected() == true) {
+                param.put("kejang", "V");
+            } else {
+                param.put("kejang", "");
+            }
+            
+            if (ChkHati.isSelected() == true) {
+                param.put("hati", "V");
+            } else {
+                param.put("hati", "");
+            }
+            
+            if (ChkKanker.isSelected() == true) {
+                param.put("kanker", "V");
+            } else {
+                param.put("kanker", "");
+            }
+            
+            if (ChkTB.isSelected() == true) {
+                param.put("tb", "V");
+            } else {
+                param.put("tb", "");
+            }
+            
+            if (ChkPMS.isSelected() == true) {
+                param.put("pms", "V");
+            } else {
+                param.put("pms", "");
+            }
+            
+            if (ChkPerdarahan.isSelected() == true) {
+                param.put("perdarahan", "V");
+            } else {
+                param.put("perdarahan", "");
+            }
+            
+            if (ChkGinjal.isSelected() == true) {
+                param.put("ginjal", "V");
+            } else {
+                param.put("ginjal", "");
+            }
+            
+            if (ChkLain.isSelected() == true) {
+                param.put("lainlain", "V");
+                param.put("kalimat_lain", "Lain-lain : " + Tkalimat_lain.getText());
+            } else {
+                param.put("lainlain", "");
+                param.put("kalimat_lain", "Lain-lain : -");
+            }
+            
+            param.put("keadaan_umum", Tkeadaan_umum.getText());
+            param.put("kesadaran", TKesadaran.getText());
+            param.put("gcs", Tgcse.getText() + ", V : " + Tgcsv.getText() + ", M : " + Tgcsm.getText());
+            param.put("tensi", Ttensi.getText() + " mmHg");
+            param.put("suhu", Tsuhu.getText() + " °C");
+            param.put("nadi", Tnadi.getText() + " x/menit");
+            param.put("kualitas", Tkualitas.getText());
+            param.put("napas", Tnapas.getText() + " x/menit");
+            param.put("bb", Tbb.getText() + " Kg. (" + TbbPersen.getText() + " % BB/U)");
+            param.put("bbpb", TbbpbPersen.getText() + " % BB/PB-TB");
+            param.put("pbtb", Tpbtb.getText() + " Cm. (" + TpbtbPersen.getText() + " % PB-TB/U)");
+            param.put("lla", Tlla.getText() + " Cm.  LK : " + Tlk.getText() + " Cm.");
+            
+            if (ChkTurgor.isSelected() == true) {
+                param.put("turgor", "V");
+            } else {
+                param.put("turgor", "");
+            }
+            
+            if (ChkSianosis.isSelected() == true) {
+                param.put("sianosis", "V");
+            } else {
+                param.put("sianosis", "");
+            }
+            
+            if (ChkPerdarahanKulit.isSelected() == true) {
+                param.put("perdarahan_kulit", "V");
+            } else {
+                param.put("perdarahan_kulit", "");
+            }
+            
+            if (ChkIkterus.isSelected() == true) {
+                param.put("ikterus", "V");
+                param.put("kalimat_ikterus", "Ikterus : " + Tikterus.getText());
+            } else {
+                param.put("ikterus", "");
+                param.put("kalimat_ikterus", "Ikterus : -");
+            }
+            
+            if (ChkHematoma.isSelected() == true) {
+                param.put("hematoma", "V");
+            } else {
+                param.put("hematoma", "");
+            }
+            
+            if (ChkSklerema.isSelected() == true) {
+                param.put("sklerema", "V");
+            } else {
+                param.put("sklerema", "");
+            }
+            
+            if (ChkKutis.isSelected() == true) {
+                param.put("kutis", "V");
+            } else {
+                param.put("kutis", "");
+            }
+            
+            if (ChkMarmorata.isSelected() == true) {
+                param.put("marmorata", "V");
+            } else {
+                param.put("marmorata", "");
+            }
+            
+            param.put("lainya_kulit", TlainyaKulit.getText());
+            param.put("kepala_bentuk", Tbentuk.getText());
+            param.put("kepala_rambut", Trambut.getText());
+            param.put("kepala_mata", Tmata.getText());
+            param.put("kepala_telinga", Ttelinga.getText());
+            param.put("kepala_hidung", Thidung.getText());
+            param.put("kepala_mulut", Tmulut.getText());
+            param.put("kepala_lidah", Tlidah.getText());
+            param.put("kepala_faring", Tfaring.getText());
+            
+            param.put("leher", Tleher.getText());
+            param.put("bentuk_dada", Tbentuk_dada.getText());
+            param.put("bentuk_retraksi", Tretraksi_dada.getText());
+            
+            param.put("jantung_inspeksi", Tinspeksi_jantung.getText());
+            param.put("jantung_palpasi", Tpalpasi_jantung.getText());
+            param.put("jantung_perkusi", Tperkusi_jantung.getText());
+            param.put("jantung_auskultasi", Tauskultasi_jantung.getText());
+            
+            param.put("paru_inspeksi", Tinspeksi_paru.getText());
+            param.put("paru_palpasi", Tpalpasi_paru.getText());
+            param.put("paru_perkusi", Tperkusi_paru.getText());
+            param.put("paru_auskultasi", Tauskultasi_paru.getText());
+            
+            param.put("perut_inspeksi", Tinspeksi_perut.getText());
+            param.put("perut_palpasi", Tpalpasi_perut.getText());
+            param.put("perut_perkusi", Tperkusi_perut.getText());
+            param.put("perut_auskultasi", Tauskultasi_perut.getText());
+            
+            param.put("umum", Tumum.getText());
+            param.put("neurologis", Tneurologis.getText());
+            param.put("susunan", Tsusunan.getText());
+            param.put("tanda", Ttanda.getText());
+            param.put("genitalia", Tgenitalia.getText());
+            param.put("anus", Tanus.getText());
+            
+            param.put("pemeriksaan_penunjang", Tpemeriksaan_penunjang.getText() + "\n");
+            param.put("diagnosa", Tdiagnosa.getText() + "\n");
+            param.put("pengobatan", Tpengobatan.getText() + "\n");
+            param.put("diet", Tdiet.getText() + "\n");
+            param.put("rencana", Trencana.getText() + "\n");
+            param.put("tanggal", "Tanggal : " + Valid.SetTglINDONESIA("select date(tgl_asesmen) from asesmen_medik_anak_ranap where no_rawat='" + TNoRw.getText() + "'")
+                    + ", Jam : " + Sequel.cariIsi("select time_format(tgl_asesmen,'%H:%i') from asesmen_medik_anak_ranap where no_rawat='" + TNoRw.getText() + "'") + " Wita");
+            param.put("dpjp", "(" + nmdpjp.getText() + ")");
 
-            Valid.MyReport("rptCetakAsesmenMedikDewasaRanap.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 1 ]::",
-                    "select p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tglLhr, "
-                    + "concat('Tanggal : ',date_format(am.tgl_asesmen,'%d-%m-%Y'),'   Jam : ',date_format(am.tgl_asesmen,'%H:%i')) tglAsesmen, "
-                    + "IF (am.rujukan = 'ya', 'V', '') rujukan_ya, IF (am.rujukan = 'tidak', 'V', '') rujukan_tdk, am.ket_rs, am.ket_puskes, am.ket_praktek, am.ket_lainya, am.diagnosa_rujukan, "
-                    + "if(am.datang_sendiri='ya','V','') dtg_sndri, if(am.diantar='ya','V','') diantar, am.ket_diantar, p1.nama nm_dr_meriksa, "
-                    + "p2.nama nm_super, date_format(am.tgl_anamnese,'%d-%m-%Y') tglAnam, date_format(am.tgl_anamnese,'%H:%i') jamAnam, am.keluhan_utama, "
-                    + "am.riw_penyakit_sekarang, if(am.hipertensi_1='ya','V','') hiper1, if(am.dm_1='ya','V','') dm1, if(am.pjk='ya','V','') pjk, "
-                    + "if(am.asma_1='ya','V','') asma1, if(am.stroke='ya','V','') strok, if(am.liver='ya','V','') liver, if(am.ginjal='ya','V','') ginjal, "
-                    + "if(am.tb_paru='ya','V','') tbParu, if(am.lain_lain_1='ya','V','') lain1, am.ket_lain_1, if(am.pernah_dirawat='','Pernah Dirawat : -',if(am.pernah_dirawat='Ya',concat('Pernah Dirawat : Ya, Kapan ',am.ket_kapan,' Dimana ',am.ket_dimana,' Diagnosis ',am.diagnosis),concat('Pernah Dirawat : Tidak'))) prnh_dirawat, "
-                    + "if(am.hipertensi_2='ya','V','') hiper2, if(am.dm_2='ya','V','') dm2, if(am.jantung='ya','V','') jantung, "
-                    + "if(am.asma_2='ya','V','') asma2, if(am.lain_lain_2='ya','V','') lain2, am.lain_lain_2, am.ket_lain_2, am.riw_alergi, "
-                    + "if(am.nyeri='ya','V','') nyeri, if(am.nyeri = 'ya',concat('Ya, Lokasi : ',am.ket_lokasi,' Intensitas : ',am.ket_intensitas),'Tidak') nilai_nyeri, "
-                    + "am.skor, am.jenis, am.keadaan_umum, am.gizi, am.gcs_e, am.gcs_m, am.gcs_v, IF(am.tindakan_resus = 'ya','Ya','Tidak') tndk_resus, am.bb, "
-                    + "am.tb, am.td, am.nadi, am.respirasi, am.suhu_axila, am.suhu_rektal, am.mata_anemis, am.ikterik, if(am.pupil='','-',if(am.pupil='Anisokor','Anisokor',concat('Isokor, Diameter ',am.diameter_kanan,' mm / ',am.diameter_kiri,' mm'))) pupil, "
-                    + "am.udem_palpebra, am.tonsil, am.faring, am.lidah, am.bibir, am.jvp, if(am.kelenjar_limfe='Ada',concat('Ada, ',am.ket_ada_kelenjar),am.kelenjar_limfe) kel_limfe, am.kaku_kuduk, am.saturasi "
-                    + "from asesmen_medik_dewasa_ranap am inner join reg_periksa rp on rp.no_rawat=am.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai p1 on p1.nik=am.nip_dokter_memeriksa inner join pegawai p2 on p2.nik=am.nip_supervisor where "
-                    + "am.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
-
-            Valid.MyReport("rptCetakAsesmenMedikDewasaRanap1.jasper", "report", "::[ Laporan Asesmen Medik Dewasa hal. 2 ]::",
-                    "SELECT if(a.thoraks='','-',if(a.thoraks='Asimetris',concat('Asimetris : ',a.ket_asimetris),a.thoraks)) toraks, "
-                    + "a.cor_s1s2, if(a.reguler='ya','V','') reguler, if(a.ireguler='ya','V','') ireguler, "
-                    + "if(a.ireguler='ya',concat('Ireguler, Murmur : ',a.murmur),'Ireguler, Murmur : -') murmur, "
-                    + "a.lain_lain, a.suara_nafas, if(a.ronchi='','-',if(a.ronchi='Ada',concat('Ada : ',a.ket_ronchi),a.ronchi)) ronci, "
-                    + "if(a.wheezing='','-',if(a.wheezing='Ada',concat('Ada, ',a.ket_wheezing),a.wheezing)) whezing, "
-                    + "if(a.distended='','-',a.distended) disten, if(a.meteorismus='','-',a.meteorismus) meteo, "
-                    + "if(a.peristaltik='','-',a.peristaltik) peris, if(a.asites='','-',a.asites) asites, "
-                    + "if(a.nyeri_tekan='','-',if(a.nyeri_tekan='Ada',concat('Ada, Lokasi : ',a.lokasi),a.nyeri_tekan)) nyeri, "
-                    + "concat(a.hepar,', Lien : ',a.lien) hepar, if(a.extremitas='','-',a.extremitas) ekstrem, "
-                    + "if(a.udem='','-',if(a.udem='Ada',concat('Ada, ',a.ket_udem),a.udem)) udem, a.pemeriksaan_fisik_lain, "
-                    + "a.diagnosis1, a.diagnosis2, a.diagnosis3, a.diagnosis4, date_format(a.tgl_dpjp,'%d-%m-%Y %H:%i') tgljam, "
-                    + "p.nama dpjp, a.diagnosis5, a.diagnosis6, a.diagnosis7 from asesmen_medik_dewasa_ranap a inner join pegawai p on p.nik=a.nip_dpjp where "
-                    + "a.no_rawat='" + tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString() + "'", param);
+            Valid.MyReport("rptCetakAsesmenMedikAnakRanap1.jasper", "report", "::[ Laporan Asesmen Medik Anak hal. 1 ]::",
+                    "SELECT now() tanggal", param);
+//            Valid.MyReport("rptCetakAsesmenMedikAnakRanap2.jasper", "report", "::[ Laporan Asesmen Medik Anak hal. 2 ]::",
+//                    "SELECT now() tanggal", param);
             
             emptTeks();            
             TabRawat.setSelectedIndex(1);
             tampil();            
         } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu..!!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 

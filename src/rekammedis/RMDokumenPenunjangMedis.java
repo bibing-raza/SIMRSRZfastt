@@ -145,6 +145,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         cmbDokumen = new widget.ComboBox();
         BtnCari = new widget.Button();
         panelGlass8 = new widget.panelisi();
+        BtnUpload = new widget.Button();
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
 
@@ -198,10 +199,10 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         internalFrame1.add(PanelContent, java.awt.BorderLayout.CENTER);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
-        panelGlass10.setPreferredSize(new java.awt.Dimension(372, 422));
+        panelGlass10.setPreferredSize(new java.awt.Dimension(410, 422));
         panelGlass10.setLayout(new java.awt.BorderLayout());
 
-        panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QRCode Dibawah Ini Untuk Upload Dokumen ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QRCode Untuk Upload Dokumen Via SmartPhone ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         panelGlass12.setName("panelGlass12"); // NOI18N
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 160));
         panelGlass12.setLayout(new java.awt.BorderLayout());
@@ -217,13 +218,13 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         panelGlass13.setBorder(null);
         panelGlass13.setName("panelGlass13"); // NOI18N
-        panelGlass13.setPreferredSize(new java.awt.Dimension(90, 160));
+        panelGlass13.setPreferredSize(new java.awt.Dimension(116, 160));
         panelGlass13.setLayout(new java.awt.BorderLayout());
         panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
 
         panelGlass14.setBorder(null);
         panelGlass14.setName("panelGlass14"); // NOI18N
-        panelGlass14.setPreferredSize(new java.awt.Dimension(90, 160));
+        panelGlass14.setPreferredSize(new java.awt.Dimension(116, 160));
         panelGlass14.setLayout(new java.awt.BorderLayout());
         panelGlass12.add(panelGlass14, java.awt.BorderLayout.EAST);
 
@@ -296,7 +297,26 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(44, 40));
-        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 5, 9));
+        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 9));
+
+        BtnUpload.setForeground(new java.awt.Color(0, 0, 0));
+        BtnUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnUpload.setMnemonic('U');
+        BtnUpload.setText("Upload Dokumen");
+        BtnUpload.setToolTipText("Alt+U");
+        BtnUpload.setName("BtnUpload"); // NOI18N
+        BtnUpload.setPreferredSize(new java.awt.Dimension(140, 23));
+        BtnUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUploadActionPerformed(evt);
+            }
+        });
+        BtnUpload.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnUploadKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnUpload);
 
         BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
         BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
@@ -421,6 +441,21 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnHapusKeyPressed
 
+    private void BtnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUploadActionPerformed
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        try {            
+            Valid.panggilUrlhttpsLangsung("sirsraza.banjarkab.go.id/rme/");
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
+        }
+
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnUploadActionPerformed
+
+    private void BtnUploadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnUploadKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnUploadKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -441,6 +476,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnCari;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnUpload;
     private widget.panelisi PanelContent;
     private usu.widget.glass.PanelGlass PanelWall;
     private widget.ScrollPane Scroll;
