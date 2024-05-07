@@ -181,6 +181,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
+        panelGlass7.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
         panelGlass7.setComponentPopupMenu(jPopupMenu1);
         panelGlass7.setName("panelGlass7"); // NOI18N
         panelGlass7.setPreferredSize(new java.awt.Dimension(44, 45));
@@ -213,6 +214,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
         PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        PanelContent.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
         PanelContent.setComponentPopupMenu(jPopupMenu1);
         PanelContent.setName("PanelContent"); // NOI18N
         PanelContent.setPreferredSize(new java.awt.Dimension(55, 55));
@@ -233,11 +235,13 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
         PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
         PanelWall.setRound(false);
+        PanelWall.setToolTipText("");
         PanelWall.setWarna(new java.awt.Color(110, 110, 110));
         PanelWall.setLayout(null);
         panelGlass12.add(PanelWall, java.awt.BorderLayout.CENTER);
 
         panelGlass13.setBorder(null);
+        panelGlass13.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
         panelGlass13.setComponentPopupMenu(jPopupMenu1);
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(116, 160));
@@ -245,6 +249,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
 
         panelGlass14.setBorder(null);
+        panelGlass14.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
         panelGlass14.setComponentPopupMenu(jPopupMenu1);
         panelGlass14.setName("panelGlass14"); // NOI18N
         panelGlass14.setPreferredSize(new java.awt.Dimension(116, 160));
@@ -254,6 +259,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass10.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ File Dokumen ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        Scroll.setComponentPopupMenu(jPopupMenu1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
         Scroll.setPreferredSize(new java.awt.Dimension(352, 402));
@@ -274,6 +281,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass11.setPreferredSize(new java.awt.Dimension(44, 88));
         panelGlass11.setLayout(new java.awt.BorderLayout());
 
+        panelGlass9.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
         panelGlass9.setComponentPopupMenu(jPopupMenu1);
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -288,7 +296,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         cmbDokumen.setForeground(new java.awt.Color(0, 0, 0));
         cmbDokumen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbDokumen.setName("cmbDokumen"); // NOI18N
-        cmbDokumen.setPreferredSize(new java.awt.Dimension(140, 23));
+        cmbDokumen.setPreferredSize(new java.awt.Dimension(200, 23));
         cmbDokumen.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cmbDokumenActionPerformed(evt);
@@ -320,6 +328,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
         panelGlass11.add(panelGlass9, java.awt.BorderLayout.CENTER);
 
+        panelGlass8.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        panelGlass8.setComponentPopupMenu(jPopupMenu1);
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(44, 40));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 9));
@@ -446,14 +456,15 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
             if (tbFile.getSelectedRow() > -1) {
                 if (akses.getadmin() == true
                         || tbFile.getValueAt(tbFile.getSelectedRow(), 8).toString().equals(akses.getkode())) {
-                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin dokumen/file pemeriksaan " + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + " akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin dokumen/file pemeriksaan " 
+                            + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + " akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                     if (x == JOptionPane.YES_OPTION) {
-                        JOptionPane.showMessageDialog(null, "Menu hapus masih dalam proses dikerjakan..!!");
+                        Sequel.mengedit("rme_file_upload", "id_file='" + noIDfile + "'", "stts_data='0'");
+                        cmbDokumenActionPerformed(null);
                     }
                 } else {
                     JOptionPane.showMessageDialog(null, "Dokumen/file pemeriksaan " + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase()
                             + " ini hanya bisa dihapus oleh petugas yang mengupload..!!");
-                    cmbDokumenActionPerformed(null);
                 }
             } else {
                 JOptionPane.showMessageDialog(null, "Silahkan pilih/klik salah satu dokumen/file penunjang medisnya dulu utk. menghapus data..!!");
@@ -470,7 +481,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private void BtnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUploadActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {            
-            Valid.panggilUrlhttpsLangsung("sirsraza.banjarkab.go.id/rme/");
+            Valid.panggilUrlRME("/rmelokal/");
         } catch (Exception ex) {
             System.out.println("Notifikasi : " + ex);
         }
@@ -535,18 +546,11 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private void tampilDokumen() {
         Valid.tabelKosong(tabMode);
         try {
-            if (cmbDokumen.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
-                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
-                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                        + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' order by rf.tgl_upload desc");
-            } else {
-                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
-                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
-                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                        + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and "
-                        + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' order by rf.tgl_upload desc");
-            }
+            ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
+                    + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
+                    + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
+                    + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and "
+                    + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {

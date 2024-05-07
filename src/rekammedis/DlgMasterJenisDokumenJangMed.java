@@ -71,7 +71,7 @@ public class DlgMasterJenisDokumenJangMed extends javax.swing.JDialog {
         tbDokumen.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        kdjenis.setDocument(new batasInput((byte) 3).getKata(kdjenis));
+        kdjenis.setDocument(new batasInput((byte) 4).getKata(kdjenis));
         nmJenis.setDocument(new batasInput((int) 50).getKata(nmJenis));
         
         if(koneksiDB.cariCepat().equals("aktif")){
