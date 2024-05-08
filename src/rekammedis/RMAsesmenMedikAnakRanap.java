@@ -5164,7 +5164,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         MnRiwayatData.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {            
-            BtnDpjp.setEnabled(false);            
+//            BtnDpjp.setEnabled(false);
             kddpjp.setText(akses.getkode());              
             Sequel.cariIsi("select nama from petugas where nip=?", nmdpjp, kddpjp.getText());
             if (nmdpjp.getText().equals("")) {

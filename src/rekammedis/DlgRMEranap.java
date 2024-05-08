@@ -127,6 +127,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
+        BtnPersetujuanTindakan = new widget.ButtonBig();
         BtnPantauHarianPasien = new widget.ButtonBig();
         BtnGrafikPantauHarian = new widget.ButtonBig();
         BtnProtokolKemoterapi = new widget.ButtonBig();
@@ -473,6 +474,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnJawabKonsul);
+
+        BtnPersetujuanTindakan.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
+        BtnPersetujuanTindakan.setText("Persetujuan/Penolakan Tindakan");
+        BtnPersetujuanTindakan.setIconTextGap(0);
+        BtnPersetujuanTindakan.setName("BtnPersetujuanTindakan"); // NOI18N
+        BtnPersetujuanTindakan.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPersetujuanTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPersetujuanTindakanActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnPersetujuanTindakan);
 
         BtnPantauHarianPasien.setForeground(new java.awt.Color(0, 0, 0));
         BtnPantauHarianPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
@@ -966,6 +980,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenMedikAnakActionPerformed
 
+    private void BtnPersetujuanTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPersetujuanTindakanActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMTindakanKedokteran form = new RMTindakanKedokteran(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), "Ranap");
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPersetujuanTindakanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1000,6 +1031,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnMonitoringEWSdewasa;
     private widget.ButtonBig BtnPantauHarianPasien;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
+    private widget.ButtonBig BtnPersetujuanTindakan;
     private widget.ButtonBig BtnProtokolKemoterapi;
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
@@ -1045,6 +1077,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
         BtnMonitoringEWSdewasa.setEnabled(akses.getcppt());
         BtnTransferSerahTerima.setEnabled(akses.getpemberian_obat());
+        BtnPersetujuanTindakan.setEnabled(akses.getpemberian_obat());
     }
     
     public void setData(String norw, String norm, String nmpasien,
