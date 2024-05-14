@@ -6680,7 +6680,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/05/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11/05/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -20852,6 +20852,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
     }
     
+    private void notifAlarmResepRanapCito() {
+        try {
+            music = new BackgroundMusic("./suara/resep_cito_rawat_inap.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
     private void notifAlarmLab() {
         try {
             music = new BackgroundMusic("./suara/permintaan_periksa_laboratorium_diterima.mp3");
@@ -20879,7 +20889,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 if (akses.getNotifApotek().equals("yes")) {
                     //jika apotek sentral ranap
                     if (akses.getkdbangsal().equals("APT02")) {
-                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
+                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and jenis_resep='CITO' and "
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                            notifAlarmResepRanapCito();
+                        } else if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
                                 + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanap();
                         }
@@ -20890,13 +20903,16 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                                 + "r.status_lanjut='Ralan' and c.status='belum' and r.kd_poli='igdk' and "
                                 + "c.tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmIGD();
-                        }
+                        } 
                         
-                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
-                                        + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                        if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and jenis_resep='CITO' and "
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
+                            notifAlarmResepRanapCito();
+                        } else if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where status='belum' and "
+                                + "tgl_perawatan between DATE_SUB(DATE_FORMAT(NOW(),'%Y-%m-%d'), INTERVAL 1 DAY) and DATE_FORMAT(NOW(),'%Y-%m-%d')") > 0) {
                             notifAlarmResepRanap();
                         }
-                    } 
+                    }
                 }
             }
         };

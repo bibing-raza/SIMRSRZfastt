@@ -2,6 +2,7 @@ package simrskhanza;
 
 import fungsi.BackgroundMusic;
 import fungsi.WarnaTable;
+import fungsi.WarnaTableDasbordApotekRanap;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -60,7 +61,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", idObat = "";
+    private String norawat = "", norm = "", idObat = "", jenisResep = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -76,7 +77,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "No. Telp/HP.", "Ruang Rawat",
-            "Cara Bayar", "Jlh. Item Obat", "Status"
+            "Cara Bayar", "Jlh. Item Obat", "Status", "cekResepCito"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -88,7 +89,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 8; i++) {
+        for (i = 0; i < 9; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -106,13 +107,17 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 column.setPreferredWidth(100);
             } else if (i == 7) {
                 column.setPreferredWidth(50);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
-        tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
+//        tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
+        tbPasien.setDefaultRenderer(Object.class, new WarnaTableDasbordApotekRanap());
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
             "Cek", "no_id", "no_rawat", "No.", "Tgl. Resep", "Jam", "Deskripsi Obat/Alkes",
-            "Status", "Dokter Yang Meresepkan"
+            "Status", "Dokter Yang Meresepkan", "Jns. Resep"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -125,7 +130,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -138,7 +143,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         tbdaftarResep.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbdaftarResep.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbdaftarResep.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(30);
@@ -155,11 +160,13 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(60);
             } else if (i == 6) {
-                column.setPreferredWidth(450);
+                column.setPreferredWidth(350);
             } else if (i == 7) {
                 column.setPreferredWidth(50);
             } else if (i == 8) {
                 column.setPreferredWidth(250);
+            } else if (i == 9) {
+                column.setPreferredWidth(70);
             }
         }
         tbdaftarResep.setDefaultRenderer(Object.class, new WarnaTable());
@@ -256,6 +263,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         MnDataPemberianObat = new javax.swing.JMenuItem();
         MnInputPemberianObat = new javax.swing.JMenuItem();
         MnCekNotif = new javax.swing.JMenuItem();
+        MnCekNotifCito = new javax.swing.JMenuItem();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnContengSemua = new javax.swing.JMenuItem();
         MnHapusConteng = new javax.swing.JMenuItem();
@@ -343,6 +351,21 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu.add(MnCekNotif);
+
+        MnCekNotifCito.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCekNotifCito.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        MnCekNotifCito.setText("Cek Notif Resep CITO");
+        MnCekNotifCito.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCekNotifCito.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCekNotifCito.setIconTextGap(5);
+        MnCekNotifCito.setName("MnCekNotifCito"); // NOI18N
+        MnCekNotifCito.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnCekNotifCito.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCekNotifCitoActionPerformed(evt);
+            }
+        });
+        jPopupMenu.add(MnCekNotifCito);
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -473,7 +496,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel23);
 
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -487,7 +510,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel24);
 
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2023" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -803,6 +826,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 tbdaftarResep.requestFocus();
             } else if (x > 1) {
                 idObat = "";
+                jenisResep = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -810,11 +834,12 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         } else {
                             idObat = idObat + ",'" + tbdaftarResep.getValueAt(i, 1).toString() + "'";
                         }
+                        jenisResep = "(RESEP : " + tbdaftarResep.getValueAt(i, 9).toString() + ")";
                     }
                 }
 
                 Map<String, Object> param = new HashMap<>();
-                param.put("norawat", norawat);
+                param.put("norawat", norawat + " " + jenisResep);
                 param.put("pasien", Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa rp "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + norawat + "'"));
                 param.put("carabyr", Sequel.cariIsi("select pj.png_jawab from reg_periksa rp "
@@ -917,6 +942,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 tampilResep();
             } else if (x > 0) {
                 idObat = "";
+                jenisResep = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -924,6 +950,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         } else {
                             idObat = idObat + ",'" + tbdaftarResep.getValueAt(i, 1).toString() + "'";
                         }
+                        jenisResep = "(RESEP : " + tbdaftarResep.getValueAt(i, 9).toString() + ")";
                     }
                 }
 
@@ -937,7 +964,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 param.put("emailrs", akses.getemailrs());
                 param.put("logo", Sequel.cariGambar("select logo from setting"));
                 param.put("ruangan", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' "
+                        + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1") + " " + jenisResep);
                 
                 Valid.MyReport("rptResepRanap.jasper", "report", "::[ Resep Dokter Rawat Inap ]::",
                         "SELECT c.no_rawat, d.nm_dokter, CONCAT('Martapura, ',DATE_FORMAT(c.tgl_perawatan, '%d/%m/%Y')) tgl_resep, "
@@ -1037,6 +1065,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 tampilResep();
             } else if (x > 0) {
                 idObat = "";
+                jenisResep = "";
                 for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
                     if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                         if (idObat.equals("")) {
@@ -1044,6 +1073,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         } else {
                             idObat = idObat + ",'" + tbdaftarResep.getValueAt(i, 1).toString() + "'";
                         }
+                        jenisResep = "(RESEP : " + tbdaftarResep.getValueAt(i, 9).toString() + ")";
                     }
                 }
 
@@ -1055,7 +1085,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 param.put("kontakrs", akses.getkontakrs());
                 param.put("emailrs", akses.getemailrs());
                 param.put("logo", Sequel.cariGambar("select logo from setting"));
-                param.put("norawat", norawat);
+                param.put("norawat", norawat + " " + jenisResep);
                 param.put("pasien", Sequel.cariIsi("select concat(p.no_rkm_medis,' - ',p.nm_pasien) from reg_periksa rp "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where rp.no_rawat='" + norawat + "'"));
                 param.put("carabyr", Sequel.cariIsi("select pj.png_jawab from reg_periksa rp "
@@ -1100,6 +1130,10 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         notifAlarmResepRanap();
     }//GEN-LAST:event_MnCekNotifActionPerformed
 
+    private void MnCekNotifCitoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCekNotifCitoActionPerformed
+        notifAlarmResepRanapCito();
+    }//GEN-LAST:event_MnCekNotifCitoActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1123,6 +1157,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private widget.Button BtnQRcode;
     public widget.CekBox ChkAutoRefres;
     private javax.swing.JMenuItem MnCekNotif;
+    private javax.swing.JMenuItem MnCekNotifCito;
     private javax.swing.JMenuItem MnCetakResepA5;
     private javax.swing.JMenuItem MnCetakResepBil;
     private javax.swing.JMenuItem MnCetakResepThermal;
@@ -1234,7 +1269,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 }
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("pasienya"),
@@ -1242,7 +1277,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs.getString("nm_gedung"),
                         rs.getString("png_jawab"),
                         rs.getString("jlh_item_obat"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'")
                     });
                 }
             } catch (Exception e) {
@@ -1323,7 +1359,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs.getString("nm_gedung"),
                         rs.getString("png_jawab"),
                         rs.getString("jlh_item_obat"),
-                        rs.getString("status")
+                        rs.getString("status"),
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'")
                     });
                 }
             } catch (Exception e) {
@@ -1373,7 +1410,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             ps1 = koneksi.prepareStatement("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, "
-                    + "cr.jam_perawatan, cr.nama_obat, cr.status, d.nm_dokter "
+                    + "cr.jam_perawatan, cr.nama_obat, cr.status, d.nm_dokter, cr.jenis_resep "
                     + "FROM catatan_resep_ranap cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat "
                     + "inner join dokter d on d.kd_dokter=cr.kd_dokter WHERE cr.no_rawat='" + norawat + "' "
                     + "ORDER BY cr.status, cr.noId desc, cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
@@ -1390,7 +1427,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs1.getString("jam_perawatan"),
                         rs1.getString("nama_obat"),
                         rs1.getString("status"),
-                        rs1.getString("nm_dokter")
+                        rs1.getString("nm_dokter"),
+                        rs1.getString("jenis_resep")
                     });
                     x++;
                 }
@@ -1413,6 +1451,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         MnDataPemberianObat.setEnabled(akses.getberi_obat());
         MnInputPemberianObat.setEnabled(akses.getberi_obat());
         MnCekNotif.setEnabled(akses.getadmin());
+        MnCekNotifCito.setEnabled(akses.getadmin());
         TCari.requestFocus();
     }
     
@@ -1452,6 +1491,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     
     private void tampilQR() {
         idObat = "";
+        jenisResep = "";
         for (i = 0; i < tbdaftarResep.getRowCount(); i++) {
             if (tbdaftarResep.getValueAt(i, 0).toString().equals("true")) {
                 if (idObat.equals("")) {
@@ -1459,6 +1499,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 } else {
                     idObat = idObat + ",'" + tbdaftarResep.getValueAt(i, 1).toString() + "'";
                 }
+                jenisResep = "(RESEP " + tbdaftarResep.getValueAt(i, 9).toString() + ")";
             }
         }
 
@@ -1483,7 +1524,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                     + "UNION ALL "
                     + "SELECT '______________________________' "
                     + "UNION ALL "
-                    + "SELECT 'Item Resep Obat/Alkes : ' "
+                    + "SELECT 'Item Obat/Alkes : " + jenisResep + "' "
                     + "UNION ALL "
                     + "SELECT CONCAT('~ ',nama_obat) FROM catatan_resep_ranap where noId in (" + idObat + ") "
                     + "UNION ALL "
@@ -1573,6 +1614,16 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private void notifAlarmResepRanap() {
         try {
             music = new BackgroundMusic("./suara/resep_rawat_inap.mp3");
+            music.start();
+            Thread.sleep(700);            
+        } catch (Exception ex) {
+            System.out.println(ex);
+        }
+    }
+    
+    private void notifAlarmResepRanapCito() {
+        try {
+            music = new BackgroundMusic("./suara/resep_cito_rawat_inap.mp3");
             music.start();
             Thread.sleep(700);            
         } catch (Exception ex) {

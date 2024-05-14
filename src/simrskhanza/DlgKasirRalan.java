@@ -20,7 +20,7 @@ import inventory.DlgPemberianObat;
 import laporan.DlgDiagnosaPenyakit;
 import keuangan.DlgBilingRalan;
 import fungsi.WarnaTable;
-import fungsi.WarnaTableKhusus1;
+import fungsi.WarnaTableKasirRalan;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -241,7 +241,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         }
 //        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTable());
-        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTableKhusus1());
+        tbKasirRalan.setDefaultRenderer(Object.class, new WarnaTableKasirRalan());
 
         tabModeMati = new DefaultTableModel(null, new Object[]{"Tanggal", "Jam", "No.RM.", "Nama Pasien", "J.K.", "Tmp.Lahir",
             "Tgl.Lahir", "G.D.", "Stts.Nikah", "Agama", "Keterangan", "Tempat Meninggal", "ICD-10", "Unit Asal", "tgl_lahir", "tgl_mati"}) {

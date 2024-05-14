@@ -31,7 +31,7 @@ import laporan.DlgDiagnosaPenyakit;
 import informasi.InformasiAnalisaKamin;
 import keuangan.DlgKamar;
 import fungsi.WarnaTable;
-import fungsi.WarnaTableKhusus2;
+import fungsi.WarnaTableKamarInap;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
 import fungsi.sekuel;
@@ -152,7 +152,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "Nomer RM", "Nama Pasien", "Tgl. Lahir", "Alamat Pasien", "Jenis Bayar",
             "Cetak SEP", "Status Resep", "Kode Kamar", "Ruang Rawat Inap", "Tarif Kamar",
             "Diagnosa Awal", "Diagnosa Akhir", "Tgl. Masuk", "Jam Masuk", "Tgl. Keluar", "Jam Keluar",
-            "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul", "cekPiutangUmum"
+            "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul", "cekPiutangUmum",
+            "cekResepCito"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -220,10 +221,13 @@ public class DlgKamarInap extends javax.swing.JDialog {
             } else if (i == 24) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
 //        tbKamIn.setDefaultRenderer(Object.class, new WarnaTable());
-        tbKamIn.setDefaultRenderer(Object.class, new WarnaTableKhusus2());
+        tbKamIn.setDefaultRenderer(Object.class, new WarnaTableKamarInap());
 
         tabMode3 = new DefaultTableModel(null, new Object[]{"No.", "No. Rawat", "No. RM", "Nama Pasien", "Alamat",
             "Umur", "Tgl. Input", "Diagnosa Awal", "BB-Awal", "BB-Akhir",
@@ -13693,7 +13697,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         rs.getString("dokter2"),
                         Sequel.cariIsi("select ifnull(no_rawat,'') from surat_konsul_unit_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status_dijawab='Belum'"),
                         Sequel.cariIsi("select ifnull(p.no_rkm_medis,'') from  piutang_pasien p inner join reg_periksa r on p.no_rkm_medis = r.no_rkm_medis and p.no_rawat = r.no_rawat and r.kd_pj = 'U01' "
-                        + "where p.status = 'Belum Lunas' and p.no_rkm_medis = '" + rs.getString("no_rkm_medis") + "'")
+                        + "where p.status = 'Belum Lunas' and p.no_rkm_medis = '" + rs.getString("no_rkm_medis") + "'"),
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'")
                     });
                 }
             } catch (Exception e) {
