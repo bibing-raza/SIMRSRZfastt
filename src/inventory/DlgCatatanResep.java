@@ -1912,12 +1912,20 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu jenis resepnya..!!");
             cmbJnsResep.requestFocus();
         } else {
+            resepDipilih = "";
             for (i = 0; i < tbResepObat.getRowCount(); i++) {
-                if (tbResepObat.getValueAt(i, 0).toString().equals("true")
-                        && (tbResepObat.getValueAt(i, 5).toString().equals("SUDAH") || tbResepObat.getValueAt(i, 5).toString().equals("DILUAR"))) {
-                    JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa diganti,     \n"
-                            + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+                if (resepDipilih.equals("")) {
+                    resepDipilih = "'" + tbResepObat.getValueAt(i, 7).toString() + "'";
                 } else {
+                    resepDipilih = resepDipilih + ",'" + tbResepObat.getValueAt(i, 7).toString() + "'";
+                }
+            }
+            
+            if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where noId in (" + resepDipilih + ") and (status='SUDAH' or status='DILUAR')") > 0) {
+                JOptionPane.showMessageDialog(null, "Mohon maaf, untuk resep yang sudah diverifikasi apotek tdk. bisa diganti,     \n"
+                            + "Silakan input lagi sbg. resep baru/lanjutan...!!!!");
+            } else {
+                for (i = 0; i < tbResepObat.getRowCount(); i++) {
                     Sequel.mengedit("catatan_resep_ranap", "noId='" + tbResepObat.getValueAt(i, 7).toString() + "'",
                             "jenis_resep='" + cmbJnsResep.getSelectedItem().toString() + "'");
                 }
