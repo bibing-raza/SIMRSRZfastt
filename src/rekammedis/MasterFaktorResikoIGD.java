@@ -48,7 +48,6 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-
         Object[] row = {"Kode", "Faktor Resiko", "Skala", "Skor", "Asesmen"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -63,13 +62,13 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(50);
             } else if (i == 1) {
-                column.setPreferredWidth(370);
+                column.setPreferredWidth(320);
             } else if (i == 2) {
-                column.setPreferredWidth(370);
+                column.setPreferredWidth(590);
             } else if (i == 3) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(45);
             } else if (i == 4) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(140);
             }
         }
 
@@ -415,7 +414,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
         jLabel9.setBounds(480, 38, 57, 23);
 
         cmbAsesmen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan", "Dewasa Ranap", "Ulang Resiko Jatuh", "Anak Ranap" }));
+        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Dewasa", "Anak", "Kebidanan", "Dewasa Ranap", "Ulang Resiko Jatuh", "Anak Ranap", "Ulang Resiko Jatuh Anak" }));
         cmbAsesmen.setName("cmbAsesmen"); // NOI18N
         cmbAsesmen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -423,7 +422,7 @@ public class MasterFaktorResikoIGD extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbAsesmen);
-        cmbAsesmen.setBounds(543, 38, 150, 23);
+        cmbAsesmen.setBounds(543, 38, 175, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 

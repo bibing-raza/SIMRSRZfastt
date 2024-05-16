@@ -13209,13 +13209,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKamIn.requestFocus();
         } else {
-            if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat.getText() + "'") > 0) {                
+            if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat.getText() + "'") > 0) {
+                cekAda = 0;
+                cekAda = 1;
                 WindowAsesmenUlangRJ.setLocationRelativeTo(internalFrame1);
                 WindowAsesmenUlangRJ.setVisible(true);
                 internalFrame19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), 
                         "::[ Asesmen Ulang Resiko Jatuh Dewasa ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
                         javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
-                tampilAsesmenRJDewasa();                
+                tampilAsesmenResikoJatuh();
             } else {
                 JOptionPane.showMessageDialog(null, "Data asesmen ulang resiko jatuh dewasa tidak ditemukan...!!!");
                 tbKamIn.requestFocus();
@@ -13225,14 +13227,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     private void BtnCloseIn16ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn16ActionPerformed
         WindowAsesmenUlangRJ.dispose();
+        cekAda = 0;
         BtnCariActionPerformed(null);
     }//GEN-LAST:event_BtnCloseIn16ActionPerformed
 
     private void BtnCetakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakActionPerformed
         if (!kodeAsesmen.equals("")) {
-            cetakAsesmenUlangRJDewasa();
+            if (cekAda == 1) {
+                cetakAsesmenUlangRJDewasa();
+            } else if (cekAda == 2) {
+                cetakAsesmenUlangRJAnak();
+            }
             kodeAsesmen = "";
-            tampilAsesmenRJDewasa();            
+            tampilAsesmenResikoJatuh();
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih salah satu datanya terlebih dulu..!!!!");
             tbAsesmen.requestFocus();
@@ -13276,19 +13283,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKamIn.requestFocus();
         } else {
-            JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-            
-//            if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat.getText() + "'") > 0) {                
-//                WindowAsesmenUlangRJ.setLocationRelativeTo(internalFrame1);
-//                WindowAsesmenUlangRJ.setVisible(true);
-//                internalFrame19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), 
-//                        "::[ Asesmen Ulang Resiko Jatuh Anak ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
-//                        javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
-//                tampilAsesmenRJDewasa();
-//            } else {
-//                JOptionPane.showMessageDialog(null, "Data asesmen ulang resiko jatuh dewasa tidak ditemukan...!!!");
-//                tbKamIn.requestFocus();
-//            }
+            if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat.getText() + "'") > 0) {                
+                cekAda = 0;
+                cekAda = 2;
+                WindowAsesmenUlangRJ.setLocationRelativeTo(internalFrame1);
+                WindowAsesmenUlangRJ.setVisible(true);
+                internalFrame19.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), 
+                        "::[ Asesmen Ulang Resiko Jatuh Anak ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, 
+                        javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
+                tampilAsesmenResikoJatuh();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asesmen ulang resiko jatuh dewasa tidak ditemukan...!!!");
+                tbKamIn.requestFocus();
+            }
         }
     }//GEN-LAST:event_MnAsesmenUlangRJAnakActionPerformed
 
@@ -17012,6 +17019,74 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
     
+    private void cetakAsesmenUlangRJAnak() {
+        try {
+            psLaprm = koneksi.prepareStatement("select *, time_format(jam_asesmen,'%H:%i') jamases from asesmen_ulang_resiko_jatuh_anak where "
+                    + "no_rawat='" + norawat.getText() + "' and kode_ulang_resiko='" + kodeAsesmen + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("norm", TNoRM.getText());
+                    param.put("nmpasien", TPasien.getText());
+                    param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));                    
+                    param.put("tglasesmen", Valid.SetTglINDONESIA(rsLaprm.getString("tgl_asesmen")));
+                    param.put("jamasesmen", rsLaprm.getString("jamases") + " WITA");
+                    param.put("totalskor", rsLaprm.getString("total_skor"));
+                    param.put("tindakancegah", rsLaprm.getString("tindakan_pencegahan"));
+                    param.put("nmpetugas", Sequel.cariIsi("select nama from pegawai where nik='" + rsLaprm.getString("nip_petugas") + "'"));
+                    param.put("kategori", rsLaprm.getString("kategori"));
+
+                    if (rsLaprm.getString("tindakan_pencegahan").equals("A")) {
+                        param.put("judultindakan", "Pencegahan Umum (A)");
+                        param.put("isitindakan", "1. Orientasi lingkungan\n"
+                                + "2. Posisi tempat tidur rendah dan terkunci\n"
+                                + "3. Rel tempat tidur dipasang (dinaikkan)\n"
+                                + "4. Bel & barang pribadi dalam jangkauan\n"
+                                + "5. Pencahayaan adekuat\n"
+                                + "6. Edukasi pencegahan jatuh\n\n"
+                                + "Tanggal : " + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_asesmen")) + "\n"
+                                + "Tindakan Pencegahan Resiko Jatuh : " + rsLaprm.getString("tindakan_pencegahan") + "\n");
+                    } else if (rsLaprm.getString("tindakan_pencegahan").equals("B")) {
+                        param.put("judultindakan", "Pencegahan Resiko Tinggi (B)");
+                        param.put("isitindakan", "1. Lakukan semua pencegahan umum A\n"
+                                + "2. Beri tanda segitiga warna kuning pada bed/RM\n"
+                                + "3. Beri tanda identifikasi dengan pin/kancing kuning pada gelang identitas\n"
+                                + "4. Kunjungi dan monitor setiap 1 jam\n"
+                                + "5. Libatkan keluarga untuk mengawasi pasien\n\n"
+                                + "Tanggal : " + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_asesmen")) + "\n"
+                                + "Tindakan Pencegahan Resiko Jatuh : " + rsLaprm.getString("tindakan_pencegahan") + "\n");
+                    } else {
+                        param.put("judultindakan", "-");
+                        param.put("isitindakan", "-\n\n"
+                                + "Tanggal : " + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_asesmen")) + "\n"
+                                + "Tindakan Pencegahan Resiko Jatuh : " + rsLaprm.getString("tindakan_pencegahan") + "\n");
+                    }
+
+                    Valid.MyReport("rptAsesmenUlangRJanak.jasper", "report", "::[ Asesmen Ulang Resiko Jatuh Anak ]::",
+                            "SELECT DISTINCT b.faktor_resiko, b.skala, b.skor from detail_asesmen_ulang_resiko_jatuh_anak a "
+                            + "inner join master_faktor_resiko_igd b on b.kode_resiko=a.kode_resiko "
+                            + "inner join asesmen_ulang_resiko_jatuh_anak c on c.kode_ulang_resiko=a.kode_ulang_resiko WHERE "
+                            + "a.kode_ulang_resiko='" + rsLaprm.getString("kode_ulang_resiko") + "' and c.tgl_asesmen = '" + rsLaprm.getString("tgl_asesmen") + "' "
+                            + "and c.jam_asesmen = '" + rsLaprm.getString("jam_asesmen") + "' order by b.kode_resiko", param);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
     private void cetakAsesmenMedikAnak() {
         try {
             psLaprm = koneksi.prepareStatement("select * from asesmen_medik_anak_ranap where no_rawat='" + norawat.getText() + "'");
@@ -18672,10 +18747,17 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }
     
-    private void tampilAsesmenRJDewasa() {
+    private void tampilAsesmenResikoJatuh() {
         Valid.tabelKosong(tabMode2);
         try {
-            ps7 = koneksi.prepareStatement("SELECT * from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat.getText() + "' order by tgl_asesmen, jam_asesmen");
+            if (cekAda == 1) {
+                ps7 = koneksi.prepareStatement("SELECT * from asesmen_ulang_resiko_jatuh where "
+                        + "no_rawat='" + norawat.getText() + "' order by tgl_asesmen, jam_asesmen");
+            } else if (cekAda == 2) {
+                ps7 = koneksi.prepareStatement("SELECT * from asesmen_ulang_resiko_jatuh_anak where "
+                        + "no_rawat='" + norawat.getText() + "' order by tgl_asesmen, jam_asesmen");
+            }
+            
             try {                
                 rs7 = ps7.executeQuery();                
                 while (rs7.next()) {

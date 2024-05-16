@@ -477,13 +477,14 @@
                   <Color blue="0" green="0" red="0" type="rgb"/>
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                  <StringArray count="6">
+                  <StringArray count="7">
                     <StringItem index="0" value="Dewasa"/>
                     <StringItem index="1" value="Anak"/>
                     <StringItem index="2" value="Kebidanan"/>
                     <StringItem index="3" value="Dewasa Ranap"/>
                     <StringItem index="4" value="Ulang Resiko Jatuh"/>
                     <StringItem index="5" value="Anak Ranap"/>
+                    <StringItem index="6" value="Ulang Resiko Jatuh Anak"/>
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbAsesmen" noResource="true"/>
@@ -493,7 +494,7 @@
               </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="543" y="38" width="150" height="23"/>
+                  <AbsoluteConstraints x="543" y="38" width="175" height="23"/>
                 </Constraint>
               </Constraints>
             </Component>
