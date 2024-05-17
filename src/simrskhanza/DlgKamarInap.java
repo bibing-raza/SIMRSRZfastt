@@ -14297,7 +14297,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
 
         if (!namakamar.equals("")) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 BangsalCari.setText("");
                 btnBangsalCari.setEnabled(true);
                 BangsalCari.setEditable(true);
@@ -14311,7 +14311,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             BangsalCari.setEditable(true);
         }
         
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             MnAmbilSEPvclaim.setEnabled(true);
             MnHapusSEPdidatabase.setEnabled(true);
         } else {
@@ -14378,29 +14378,49 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnPindahNyangkut.setEnabled(akses.getadmin());
         MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
         MnPiutangPasien.setEnabled(akses.getbayar_piutang());
-        MnAsesmenMedikDewasa.setEnabled(akses.getasesmen_medik_dewasa_ranap());
-        MnRingkasanPulang.setEnabled(akses.getringkasanpulangranap());
-        MnCPPT.setEnabled(akses.getcppt());
-        MnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());
-        MnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
-        MnCatatanTindakanKeperawatan.setEnabled(akses.getcppt());
-        MnGrafikPantau.setEnabled(akses.getcppt());
-        MnTransferSerahTerimaPasien.setEnabled(akses.getpemberian_obat());
-        MnAsesmenUlangRJDewasa.setEnabled(akses.getcppt());
-        MnAsesmenUlangRJAnak.setEnabled(akses.getcppt());
         
-        //khusus petugas rekam medis
-        MnAsesmenMedikDewasa.setEnabled(akses.getpenyakit());
-        MnAsesmenMedikAnak.setEnabled(akses.getpenyakit());
-        MnRingkasanPulang.setEnabled(akses.getpenyakit());
-        MnCPPT.setEnabled(akses.getpenyakit());
-        MnAsesmenKeperawatanDewasa.setEnabled(akses.getpenyakit());
-        MnAsesmenKeperawatanAnak.setEnabled(akses.getpenyakit());
-        MnAsesmenUlangRJDewasa.setEnabled(akses.getpenyakit());
-        MnAsesmenUlangRJAnak.setEnabled(akses.getpenyakit());
-        MnCatatanTindakanKeperawatan.setEnabled(akses.getpenyakit());
-        MnGrafikPantau.setEnabled(akses.getpenyakit());
-        MnTransferSerahTerimaPasien.setEnabled(akses.getpenyakit());
+        //membaca e-RM ranap
+        if (akses.getpenyakit() == true || akses.getasesmen_medik_dewasa_ranap() == true) {
+            MnAsesmenMedikDewasa.setEnabled(true);
+        } else {
+            MnAsesmenMedikDewasa.setEnabled(false);
+        }
+        
+        if (akses.getpenyakit() == true || akses.getasesmen_medik_anak_ranap() == true) {
+            MnAsesmenMedikAnak.setEnabled(true);
+        } else {
+            MnAsesmenMedikAnak.setEnabled(false);
+        }
+        
+        if (akses.getpenyakit() == true || akses.getringkasanpulangranap() == true) {
+            MnRingkasanPulang.setEnabled(true);
+        } else {
+            MnRingkasanPulang.setEnabled(false);
+        }
+        
+        if (akses.getpenyakit() == true || akses.getpemberian_obat() == true) {
+            MnTransferSerahTerimaPasien.setEnabled(true);
+        } else {
+            MnTransferSerahTerimaPasien.setEnabled(false);
+        }
+        
+        if (akses.getpenyakit() == true || akses.getcppt() == true) {
+            MnCPPT.setEnabled(true);
+            MnAsesmenKeperawatanDewasa.setEnabled(true);
+            MnAsesmenKeperawatanAnak.setEnabled(true);
+            MnAsesmenUlangRJDewasa.setEnabled(true);
+            MnAsesmenUlangRJAnak.setEnabled(true);
+            MnCatatanTindakanKeperawatan.setEnabled(true);
+            MnGrafikPantau.setEnabled(true);
+        } else {
+            MnCPPT.setEnabled(false);
+            MnAsesmenKeperawatanDewasa.setEnabled(false);
+            MnAsesmenKeperawatanAnak.setEnabled(false);
+            MnAsesmenUlangRJDewasa.setEnabled(false);
+            MnAsesmenUlangRJAnak.setEnabled(false);
+            MnCatatanTindakanKeperawatan.setEnabled(false);
+            MnGrafikPantau.setEnabled(false);
+        }
     }
 
     private void updateHari() {
