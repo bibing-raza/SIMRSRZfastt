@@ -13293,7 +13293,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
                 tampilAsesmenResikoJatuh();
             } else {
-                JOptionPane.showMessageDialog(null, "Data asesmen ulang resiko jatuh dewasa tidak ditemukan...!!!");
+                JOptionPane.showMessageDialog(null, "Data asesmen ulang resiko jatuh anak tidak ditemukan...!!!");
                 tbKamIn.requestFocus();
             }
         }
