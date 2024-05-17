@@ -13196,7 +13196,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cetakAsesmenMedikAnak();
                 BtnCariActionPerformed(null);
             } else {
-                JOptionPane.showMessageDialog(null, "Data asesmen medik dewasa tidak ditemukan...!!!");
+                JOptionPane.showMessageDialog(null, "Data asesmen medik anak tidak ditemukan...!!!");
                 tbKamIn.requestFocus();
             }
         }
@@ -14388,6 +14388,19 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnTransferSerahTerimaPasien.setEnabled(akses.getpemberian_obat());
         MnAsesmenUlangRJDewasa.setEnabled(akses.getcppt());
         MnAsesmenUlangRJAnak.setEnabled(akses.getcppt());
+        
+        //khusus petugas rekam medis
+        MnAsesmenMedikDewasa.setEnabled(akses.getpenyakit());
+        MnAsesmenMedikAnak.setEnabled(akses.getpenyakit());
+        MnRingkasanPulang.setEnabled(akses.getpenyakit());
+        MnCPPT.setEnabled(akses.getpenyakit());
+        MnAsesmenKeperawatanDewasa.setEnabled(akses.getpenyakit());
+        MnAsesmenKeperawatanAnak.setEnabled(akses.getpenyakit());
+        MnAsesmenUlangRJDewasa.setEnabled(akses.getpenyakit());
+        MnAsesmenUlangRJAnak.setEnabled(akses.getpenyakit());
+        MnCatatanTindakanKeperawatan.setEnabled(akses.getpenyakit());
+        MnGrafikPantau.setEnabled(akses.getpenyakit());
+        MnTransferSerahTerimaPasien.setEnabled(akses.getpenyakit());
     }
 
     private void updateHari() {
