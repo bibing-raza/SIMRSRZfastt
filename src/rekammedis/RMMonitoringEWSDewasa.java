@@ -418,7 +418,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2024" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -433,7 +433,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2024" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -618,7 +618,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel30);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -632,7 +632,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         jLabel32.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel32);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -793,7 +793,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         panelGlass7.add(jLabel9);
         jLabel9.setBounds(260, 66, 40, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1529,7 +1529,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
         } else if (cmbRespirasi.getSelectedIndex() == 5) {
             respirasi = 2;
             TskorRespi.setText("2");
-        } 
+        }
         hitungSkor();
     }//GEN-LAST:event_cmbRespirasiActionPerformed
 
