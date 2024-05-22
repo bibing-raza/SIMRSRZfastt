@@ -308,6 +308,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnRiwayatData = new javax.swing.JMenuItem();
+        MnCetakPemberianCairan = new javax.swing.JMenuItem();
         WindowRiwayat = new javax.swing.JDialog();
         internalFrame13 = new widget.InternalFrame();
         internalFrame18 = new widget.InternalFrame();
@@ -421,13 +422,28 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         MnRiwayatData.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRiwayatData.setIconTextGap(5);
         MnRiwayatData.setName("MnRiwayatData"); // NOI18N
-        MnRiwayatData.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnRiwayatData.setPreferredSize(new java.awt.Dimension(270, 26));
         MnRiwayatData.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnRiwayatDataActionPerformed(evt);
             }
         });
         jPopupMenu1.add(MnRiwayatData);
+
+        MnCetakPemberianCairan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakPemberianCairan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnCetakPemberianCairan.setText("Cetak Lembar Pemberian Cairan Kemoterapi");
+        MnCetakPemberianCairan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakPemberianCairan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakPemberianCairan.setIconTextGap(5);
+        MnCetakPemberianCairan.setName("MnCetakPemberianCairan"); // NOI18N
+        MnCetakPemberianCairan.setPreferredSize(new java.awt.Dimension(270, 26));
+        MnCetakPemberianCairan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakPemberianCairanActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakPemberianCairan);
 
         WindowRiwayat.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowRiwayat.setName("WindowRiwayat"); // NOI18N
@@ -457,7 +473,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -471,7 +487,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -895,7 +911,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -909,7 +925,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1055,7 +1071,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setBounds(160, 66, 100, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
-        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
         TtglSiklus.setDisplayFormat("dd-MM-yyyy");
         TtglSiklus.setName("TtglSiklus"); // NOI18N
         TtglSiklus.setOpaque(false);
@@ -1855,6 +1871,31 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         tampilTemplate();
     }//GEN-LAST:event_BtnProgramActionPerformed
 
+    private void MnCetakPemberianCairanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakPemberianCairanActionPerformed
+        if (tbProtokol.getSelectedRow() > -1) {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TnoRM.getText());
+            param.put("nmpasien", TnmPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d/%m/%Y') from pasien where no_rkm_medis='" + TnoRM.getText() + "'"));
+            param.put("program", Tprogram.getText());
+
+            Valid.MyReport("rptPemberianCairanKemoterapi.jasper", "report", "::[ Cetak Lembar Pemberian Cairan Kemoterapi ]::",
+                    "select date(now()) tgl", param);
+            this.setCursor(Cursor.getDefaultCursor());
+
+            TCari.setText(TnoRM.getText());
+            tampil();
+            emptTeks();
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih datanya terlebih dahulu pada tabel..!!!!");
+            tampil();
+            tbProtokol.requestFocus();
+        }
+    }//GEN-LAST:event_MnCetakPemberianCairanActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1899,6 +1940,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.PanelBiasa FormMenu;
     private widget.Label LCount;
     private widget.Label LCount1;
+    private javax.swing.JMenuItem MnCetakPemberianCairan;
     private javax.swing.JMenuItem MnRiwayatData;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
