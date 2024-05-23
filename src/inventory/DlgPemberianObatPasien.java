@@ -1420,7 +1420,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -1682,7 +1682,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel15.setBounds(515, 150, 100, 23);
 
         cmbObat.setForeground(new java.awt.Color(0, 0, 0));
-        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI", "TETES", "OLES", "HISAP", "SEMPROT" }));
+        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ORAL", "INJEKSI", "TETES", "OLES", "HISAP", "SEMPROT", "INHALASI" }));
         cmbObat.setName("cmbObat"); // NOI18N
         panelGlass7.add(cmbObat);
         cmbObat.setBounds(617, 150, 80, 23);
@@ -2525,7 +2525,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2539,7 +2539,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

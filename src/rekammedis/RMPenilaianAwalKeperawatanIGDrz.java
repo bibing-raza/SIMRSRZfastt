@@ -4631,7 +4631,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
-        tgl_asesmen.setDate(new Date());
         nip = "";
         nm_perawat.setText("");
         Tkeluhan.setText("");
@@ -4937,7 +4936,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             ps1 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
                     + "rp.tgl_registrasi, IFNULL(ti.td,'') td, IFNULL(ti.nadi,'') nadi, IFNULL(ti.napas,'') nafas, "
                     + "ifnull(ti.tb,'') tb, ifnull(ti.bb,'') bb, ifnull(ti.keluhan_utama,'') keluhan, IFNULL(ti.temperatur,'') suhu, "
-                    + "rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan FROM reg_periksa rp "
+                    + "rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan, rp.jam_reg FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis inner join dokter d on d.kd_dokter=rp.kd_dokter "
                     + "LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat=?");
             try {
@@ -4960,7 +4959,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                     Tpekerjaan.setText(rs1.getString("pekerjaan"));
                     KdDokter.setText(rs1.getString("kd_dokter"));
                     NmDokter.setText(rs1.getString("nm_dokter"));
-                    DTPCari1.setDate(rs1.getDate("tgl_registrasi"));                    
+                    DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
+                    Valid.SetTgl2(tgl_asesmen, rs1.getDate("tgl_registrasi").toString() + " " + rs1.getString("jam_reg").toString());
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

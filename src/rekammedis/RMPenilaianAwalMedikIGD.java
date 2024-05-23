@@ -5607,7 +5607,6 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
     }
 
     public void emptTeks() {         
-        TglAsesmen.setDate(new Date());
         KdPerawat.setText("-");
         NmPerawat.setText("-");        
         ChkCervical.setSelected(false);
@@ -5945,7 +5944,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                     + "p.tgl_lahir, p.agama, bp.nama_bahasa, rp.tgl_registrasi, p.stts_nikah, p.pekerjaan, p.pnd, "
                     + "pj.png_jawab, ifnull(r.rujuk_ke, '') rujuk_ke, ifnull(r.keterangan, '') ket_rujuk, ifnull(pm.jam, '00:00:00') jam_mati, "
                     + "IFNULL(ti.td, '') td, IFNULL(ti.nadi, '') nadi, IFNULL(ti.napas, '') nafas, IFNULL(ti.temperatur, '') suhu, "
-                    + "IFNULL(ti.saturasi, '') spo2 FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
+                    + "IFNULL(ti.saturasi, '') spo2, rp.jam_reg FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN bahasa_pasien bp ON bp.id = p.bahasa_pasien INNER JOIN penjab pj ON pj.kd_pj = rp.kd_pj "
                     + "LEFT JOIN rujuk r ON r.no_rawat = rp.no_rawat LEFT JOIN pasien_mati pm ON pm.no_rkm_medis = rp.no_rkm_medis "
                     + "LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
@@ -5960,6 +5959,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
                     TglLahir.setText(rs.getString("tgl_lahir")); 
                     Tdirujuk.setText(rs.getString("rujuk_ke"));
                     TAlasanDirujuk.setText(rs.getString("ket_rujuk"));
+                    Valid.SetTgl2(TglAsesmen, rs.getDate("tgl_registrasi").toString() + " " + rs.getString("jam_reg").toString());
                     
                     Ttd.setText(rs.getString("td"));
                     Thr.setText(rs.getString("nadi"));

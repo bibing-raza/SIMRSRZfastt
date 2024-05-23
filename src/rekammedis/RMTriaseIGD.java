@@ -4150,7 +4150,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
-        tgl_kunjungan.setDate(new Date());
         cmbCaraMasuk.setSelectedIndex(0);        
         sdh_terpasang.setText("");
         cmbAlasanKedatangan.setSelectedIndex(0);
@@ -4728,7 +4727,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             psx = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
                     + "rp.tgl_registrasi, IF (p.no_tlp_pj = '', '0', IFNULL(p.no_tlp_pj,'0')) notelppj, "
                     + "IF (p.namakeluarga = '','-',p.namakeluarga) namakeluarga, IFNULL(pa.td,'') td, IFNULL(pa.nadi,'') nadi, "
-                    + "IFNULL(pa.nafas,'') nafas, IFNULL(pa.suhu,'') suhu FROM reg_periksa rp "
+                    + "IFNULL(pa.nafas,'') nafas, IFNULL(pa.suhu,'') suhu, rp.jam_reg FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "LEFT JOIN penilaian_awal_keperawatan_igdrz pa ON pa.no_rawat = rp.no_rawat WHERE rp.no_rawat= ?");
             try {
@@ -4746,6 +4745,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     nadi.setText(rsx.getString("nadi"));
                     pernapasan.setText(rsx.getString("nafas"));
                     temperatur.setText(rsx.getString("suhu"));
+                    Valid.SetTgl2(tgl_kunjungan, rsx.getDate("tgl_registrasi").toString() + " " + rsx.getString("jam_reg").toString());
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

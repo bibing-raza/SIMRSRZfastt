@@ -1099,7 +1099,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1113,7 +1113,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1501,7 +1501,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 10, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024 08:12:53" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024 13:33:06" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3352,7 +3352,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3367,7 +3367,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4906,7 +4906,6 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
     }
 
     public void emptTeks() {         
-        TglAsesmen.setDate(new Date());
         Tkeluhan.setText("");
         Triw_penyakit_sekarang.setText("");
         
@@ -5118,7 +5117,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-Laki','Perempuan') jk, "
-                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi "
+                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi, rp.jam_reg "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "WHERE rp.no_rawat = ?");
             try {
@@ -5130,6 +5129,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
                     DTPCari1.setDate(rs.getDate("tgl_registrasi"));
                     Jk.setText(rs.getString("jk"));
                     TglLahir.setText(rs.getString("tgllahir"));
+                    Valid.SetTgl2(TglAsesmen, rs.getDate("tgl_registrasi").toString() + " " + rs.getString("jam_reg").toString());
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

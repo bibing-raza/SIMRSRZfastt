@@ -5169,10 +5169,6 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
-        TtglMsk.setDate(new Date());
-        cmbJam.setSelectedIndex(0);
-        cmbMnt.setSelectedIndex(0);
-        cmbDtk.setSelectedIndex(0);
         cmbTiba.setSelectedIndex(0);
         TtibaLain.setText("");
         TtibaLain.setEnabled(false);
@@ -5364,11 +5360,13 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
         TsttsNikah.setText(Sequel.cariIsi("select stts_nikah from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
         TnoTelp.setText(Sequel.cariIsi("select ifnull(no_tlp,'0') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
+        Valid.SetTgl(TtglMsk, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(new Date());
         
-        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk.setSelectedIndex(0);
+        cmbJam.setSelectedItem(Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norwt + "'").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norwt + "'").substring(3, 5));
+        cmbDtk.setSelectedItem(Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norwt + "'").substring(6, 8));
+        
         cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk1.setSelectedIndex(0);
