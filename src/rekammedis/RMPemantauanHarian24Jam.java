@@ -49,7 +49,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rs3, rs4, rscppt;
     private String urutanJam = "", dataParental = "", wktSimpan = "", tglPANTAU = "", norawatPANTAU = "", dataKonfirmasi = "", tglBekasInput = "",
             respiEWS = "", saturEWS = "", tensiEWS = "", nadiEWS = "", suhuEWS = "", skorRespi = "", skorSatur = "", skorSuplemen = "",
-            skorTensi = "", skorNadi = "", skorKesadaran = "", skorTemperatur = "", totSkor = "";
+            skorTensi = "", skorNadi = "", skorKesadaran = "", skorTemperatur = "", totSkor = "", ruangranap = "";
     private int i = 0, x = 0, pilih = 0, 
             total = 0, respirasi = 0, saturasi = 0, suplemen = 0, nilaitensi = 0, nilainadi = 0, kesadaran = 0, temperatur = 0;
     private double totParental = 0;
@@ -3568,11 +3568,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     }
     
     public void setData(String norw, String rgrawat) {
+        ruangranap = "";
         TNoRw.setText(norw);
         TNoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norw + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
         Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         TrgRawat.setText(rgrawat);
+        ruangranap = rgrawat;
         
         //pasien dewasa
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'") > 0) {
@@ -3754,6 +3756,12 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             Tdistole.setText("0");
         } else {
             Tdistole.setText(Tdistole.getText());
+        }
+        
+        if (TrgRawat.getText().equals("")) {
+            TrgRawat.setText(ruangranap);
+        } else {
+            TrgRawat.setText(TrgRawat.getText());
         }
 
         hitungMAP();
