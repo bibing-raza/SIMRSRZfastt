@@ -125,6 +125,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferSerahTerima = new widget.ButtonBig();
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
         BtnMonitoringEWSdewasa = new widget.ButtonBig();
+        BtnMonitoringPEWSanak = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
@@ -449,6 +450,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnMonitoringEWSdewasa);
+
+        BtnMonitoringPEWSanak.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMonitoringPEWSanak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
+        BtnMonitoringPEWSanak.setText("Monitoring Pediatric EWS");
+        BtnMonitoringPEWSanak.setIconTextGap(0);
+        BtnMonitoringPEWSanak.setName("BtnMonitoringPEWSanak"); // NOI18N
+        BtnMonitoringPEWSanak.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMonitoringPEWSanak.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMonitoringPEWSanakActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnMonitoringPEWSanak);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -1028,6 +1042,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenUlangRJAnakActionPerformed
 
+    private void BtnMonitoringPEWSanakActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMonitoringPEWSanakActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMMonitoringPEWSAnak form = new RMMonitoringPEWSAnak(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMonitoringPEWSanakActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1061,6 +1092,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
     private widget.ButtonBig BtnMonitoringEWSdewasa;
+    private widget.ButtonBig BtnMonitoringPEWSanak;
     private widget.ButtonBig BtnPantauHarianPasien;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPersetujuanTindakan;
@@ -1109,6 +1141,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnProtokolKemoterapi.setEnabled(akses.getkemoterapi());        
         BtnPengelolaanTranfusiDarah.setEnabled(akses.getcppt());
         BtnMonitoringEWSdewasa.setEnabled(akses.getcppt());
+        BtnMonitoringPEWSanak.setEnabled(akses.getcppt());
         BtnTransferSerahTerima.setEnabled(akses.getpemberian_obat());
         BtnPersetujuanTindakan.setEnabled(akses.getpemberian_obat());
     }
@@ -1251,6 +1284,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnAsesmenUlangRJAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnAsesmenUlangRJAnak.setToolTipText("Asesmen Ulang Resiko Jatuh Anak SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from monitoring_pews_anak where no_rawat='" + norawat + "' and tanggal=date(now())") == 0) {
+            BtnMonitoringPEWSanak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png")));
+            BtnMonitoringPEWSanak.setToolTipText("Monitoring Pediatric EWS BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnMonitoringPEWSanak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940_biru.png")));
+            BtnMonitoringPEWSanak.setToolTipText("Monitoring Pediatric EWS SUDAH diisi oleh petugas..!!!");
         }
     }
 }
