@@ -83,11 +83,11 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(220);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(100);
             } else if (i == 4) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(50);
             } else if (i == 5) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(70);
             } else if (i == 6) {
                 column.setPreferredWidth(250);
             } else if (i == 7) {
@@ -685,7 +685,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
-        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 350));
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 340));
         panelGlass7.setLayout(null);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
@@ -878,9 +878,11 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
 
         TtotSkor.setEditable(false);
         TtotSkor.setForeground(new java.awt.Color(0, 0, 0));
+        TtotSkor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TtotSkor.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         TtotSkor.setName("TtotSkor"); // NOI18N
         panelGlass7.add(TtotSkor);
-        TtotSkor.setBounds(1070, 206, 40, 23);
+        TtotSkor.setBounds(1070, 206, 35, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Nama Perawat :");
@@ -984,7 +986,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         TabSkor.addTab("Kriteria Code Blue, Henti Nafas Atau Jantung", panelBiasa11);
 
         panelGlass7.add(TabSkor);
-        TabSkor.setBounds(125, 234, 640, 100);
+        TabSkor.setBounds(125, 234, 557, 95);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Tgl. Lahir :");
@@ -1040,7 +1042,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         Scroll1.setViewportView(tbData);
 
         panelGlass7.add(Scroll1);
-        Scroll1.setBounds(690, 10, 530, 104);
+        Scroll1.setBounds(690, 234, 530, 95);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1471,43 +1473,21 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        Valid.MyReport("rptMonitoringEWSDewasa.jasper", "report", "::[ Lembar Monitoring Early Warning Score (EWS) Dewasa ]::",
+        Valid.MyReport("rptMonitoringPEWS.jasper", "report", "::[ Lembar Monitoring Pediatric Early Warning Score (PEWS) ]::",
                 "SELECT p.no_rkm_medis, p.nm_pasien, concat(date_format(p.tgl_lahir,'%d-%m-%Y'),' (',p.jk,')') tgllahir, concat(rp.umurdaftar,' ',rp.sttsumur) umur, m.ruang_rawat, "
-                + "if(m.skor_respirasi='C. Blue' and m.laju_respirasi='<= 5',m.skor_respirasi,'') res1, "
-                + "if(m.skor_respirasi='3' and m.laju_respirasi='6 - 8',m.skor_respirasi,'') res2, "
-                + "if(m.skor_respirasi='1' and m.laju_respirasi='9 - 11',m.skor_respirasi,'') res3, "
-                + "if(m.skor_respirasi='0' and m.laju_respirasi='12 - 20',m.skor_respirasi,'') res4, "
-                + "if(m.skor_respirasi='2' and m.laju_respirasi='21 - 24',m.skor_respirasi,'') res5, "
-                + "if(m.skor_respirasi='3' and m.laju_respirasi='25 - 34',m.skor_respirasi,'') res6, "
-                + "if(m.skor_respirasi='C. Blue' and m.laju_respirasi='>= 35',m.skor_respirasi,'') res7, "
-                + "if(m.skor_saturasi='0' and m.saturasi='>= 96',m.skor_saturasi,'') sat1, "
-                + "if(m.skor_saturasi='1' and m.saturasi='94 - 95',m.skor_saturasi,'') sat2, "
-                + "if(m.skor_saturasi='2' and m.saturasi='92 - 93',m.skor_saturasi,'') sat3, "
-                + "if(m.skor_saturasi='3' and m.saturasi='<= 91',m.skor_saturasi,'') sat4, "
-                + "if(m.skor_suplemen='2' and m.suplemen='Ya',m.skor_suplemen,'') sup, "
-                + "if(m.skor_tensi='3' and m.tensi='>= 220',m.skor_tensi,'') ten1, "
-                + "if(m.skor_tensi='1' and m.tensi='181 - 220',m.skor_tensi,'') ten2, "
-                + "if(m.skor_tensi='0' and m.tensi='111 - 180',m.skor_tensi,'') ten3, "
-                + "if(m.skor_tensi='1' and m.tensi='101 - 110',m.skor_tensi,'') ten4, "
-                + "if(m.skor_tensi='2' and m.tensi='91 - 100',m.skor_tensi,'') ten5, "
-                + "if(m.skor_tensi='3' and m.tensi='71 - 90',m.skor_tensi,'') ten6, "
-                + "if(m.skor_tensi='C. Blue' and m.tensi='<= 70',m.skor_tensi,'') ten7, "
-                + "if(m.skor_nadi='C. Blue' and m.nadi='>= 140',m.skor_nadi,'') nad1, "
-                + "if(m.skor_nadi='3' and m.nadi='131 - 140',m.skor_nadi,'') nad2, "
-                + "if(m.skor_nadi='2' and m.nadi='111 - 130',m.skor_nadi,'') nad3, "
-                + "if(m.skor_nadi='1' and m.nadi='91 - 110',m.skor_nadi,'') nad4, "
-                + "if(m.skor_nadi='0' and m.nadi='51 - 90',m.skor_nadi,'') nad5, "
-                + "if(m.skor_nadi='1' and m.nadi='41 - 50',m.skor_nadi,'') nad6, "
-                + "if(m.skor_nadi='C. Blue' and m.nadi='<= 40',m.skor_nadi,'') nad7, "
-                + "if(m.skor_kesadaran='0' and m.kesadaran='Sadar',m.skor_kesadaran,'') kes1, "
-                + "if(m.skor_kesadaran='3' and m.kesadaran='Nyeri/Verbal',m.skor_kesadaran,'') kes2, "
-                + "if(m.skor_kesadaran='C. Blue' and m.kesadaran='Unrespon',m.skor_kesadaran,'') kes3, "
-                + "if(m.skor_temperatur='3' and m.temperatur='<= 35',m.skor_temperatur,'') tem1, "
-                + "if(m.skor_temperatur='1' and m.temperatur='35,1 - 36',m.skor_temperatur,'') tem2, "
-                + "if(m.skor_temperatur='0' and m.temperatur='36,1 - 38',m.skor_temperatur,'') tem3, "
-                + "if(m.skor_temperatur='1' and m.temperatur='38,1 - 39',m.skor_temperatur,'') tem4, "
-                + "if(m.skor_temperatur='2' and m.temperatur='>= 39',m.skor_temperatur,'') tem5, "
-                + "m.nilai_skor, m.gds, m.skor_nyeri, m.urin_output, date_format(m.tanggal,'%d/%m/%Y') tglews, time_format(m.jam,'%H:%i Wita') jam from monitoring_ews_dewasa m "
+                + "if(m.skor_keadaan_umum='0' and m.keadaan_umum='1',m.skor_keadaan_umum,'') ku1, "
+                + "if(m.skor_keadaan_umum='1' and m.keadaan_umum='2',m.skor_keadaan_umum,'') ku2, "
+                + "if(m.skor_keadaan_umum='2' and m.keadaan_umum='3',m.skor_keadaan_umum,'') ku3, "
+                + "if(m.skor_keadaan_umum='3' and m.keadaan_umum='4',m.skor_keadaan_umum,'') ku4, "
+                + "if(m.skor_kardiovaskular='0' and m.kardiovaskular='1',m.skor_kardiovaskular,'') kar1, "
+                + "if(m.skor_kardiovaskular='1' and m.kardiovaskular='2',m.skor_kardiovaskular,'') kar2, "
+                + "if(m.skor_kardiovaskular='2' and m.kardiovaskular='3',m.skor_kardiovaskular,'') kar3, "
+                + "if(m.skor_kardiovaskular='3' and m.kardiovaskular='4',m.skor_kardiovaskular,'') kar4, "
+                + "if(m.skor_respirasi='0' and m.respirasi='1',m.skor_respirasi,'') res1, "
+                + "if(m.skor_respirasi='1' and m.respirasi='2',m.skor_respirasi,'') res2, "
+                + "if(m.skor_respirasi='2' and m.respirasi='3',m.skor_respirasi,'') res3, "
+                + "if(m.skor_respirasi='3' and m.respirasi='4',m.skor_respirasi,'') res4, "
+                + "m.nilai_skor, date_format(m.tanggal,'%d/%m/%Y') tglews, time_format(m.jam,'%H:%i') jam from monitoring_pews_anak m "
                 + "inner join reg_periksa rp on rp.no_rawat=m.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE "
                 + "m.no_rawat = '" + TNoRw.getText() + "' AND m.tanggal between '" + Valid.SetTgl(tglA.getSelectedItem() + "") + "' "
                 + "and '" + Valid.SetTgl(tglB.getSelectedItem() + "") + "' ORDER BY m.tanggal, m.jam", param);
