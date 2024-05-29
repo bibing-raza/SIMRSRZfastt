@@ -6682,7 +6682,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                     nmdpjp.setText(Sequel.cariIsi("select nama from pegawai where nik='" + kddpjp.getText() + "'"));
                 }
             }
-        } else {
+        } else {            
             kddpjp.setText("-");
             nmdpjp.setText("-");
         }
@@ -7412,6 +7412,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         nipKonfirDpjp.setText("-");
         nmKonfirDpjp.setText("-");
         TabPetugas.setSelectedIndex(0);
+        chkDpjp.setSelected(false);
     }
 
     private void getData() {
@@ -7671,7 +7672,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw, String norm, String nmpasien, String sttsrawat) {
+    public void setData(String norw, String norm, String nmpasien, String sttsrawat, String gedung) {
         TNoRw.setText(norw);
         TNoRm.setText(norm);
         TPasien.setText(nmpasien);
@@ -7690,7 +7691,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)") || sttsrawat.equals("ralan")) {
             isIGD_Ralan();
         } else if (sttsrawat.equals("ranap")) {
-            isRanap();
+            isRanap(gedung);
         } else {
             cmbRawat.setSelectedIndex(2);
             cmbPPA.setSelectedIndex(0);
@@ -9648,9 +9649,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
     }
     
-    private void isRanap() {
-        cmbRawat.setSelectedIndex(1);
-        cmbPPA.setSelectedIndex(0);
+    private void isRanap(String namagedung) {
+        cmbRawat.setSelectedIndex(1);        
         cmbPPA.setEnabled(true);
         cmbSertim.setSelectedIndex(0);
         cmbSertim.setEnabled(true);
@@ -9673,12 +9673,21 @@ public class DlgCPPT extends javax.swing.JDialog {
             TabCPPT.setSelectedIndex(0);
         }
 
-        if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
-            kddpjp.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"));
+        //khusus dr. riswan di ruang as-sami
+        if (akses.getkode().equals("D0000020") && namagedung.equals("AS-SAMI")) {
+            chkDpjp.setSelected(true);
+            kddpjp.setText(akses.getkode());
             nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
+            cmbBagian.setSelectedIndex(4);
+            cmbPPA.setSelectedIndex(7);
+            cmbSoap.setSelectedIndex(1);
         } else {
-            kddpjp.setText("-");
-            nmdpjp.setText("-");
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {                
+                kddpjp.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"));
+                nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
+            } else {
+                chkDpjpActionPerformed(null);
+            }
         }
     }
 }

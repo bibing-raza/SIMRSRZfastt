@@ -7824,7 +7824,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 DlgCPPT form = new DlgCPPT(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString());
+                form.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(),
+                        tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 6).toString(), "IGD");
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
