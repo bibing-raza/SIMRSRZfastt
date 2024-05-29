@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="20">
 	<property name="ireport.zoom" value="1.6105100000000014"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="336"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -29,6 +29,7 @@ SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan
 SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '2023/06/25/000001' AND met='ya' UNION ALL
 SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '2023/06/25/000001' AND mop='ya' UNION ALL
 SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '2023/06/25/000001' AND coc='ya' UNION ALL
+SELECT IF(opi='ya','Opiates (OPI)',''), hasil_opi FROM surat_keterangan_napza WHERE no_rawat = '2023/06/25/000001' AND opi='ya' UNION ALL
 SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '2023/06/25/000001' AND amp='ya']]>
 	</queryString>
 	<field name="tes" class="java.lang.String">

@@ -50,7 +50,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
     private String nosurat = "", thn = "", thc = "", bzo = "", met = "", mop = "", coc = "",
-            amp = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
+            amp = "", opi = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
             tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", sttsnomor = "";
     private int x = 0;
 
@@ -65,7 +65,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             "Pekerjaan", "Tmpt. Tinggal", "Permintaan Dari", "No. Surat Dari", "Tanggalnya", "Tgl. Surat Dari", "Keperluan",
             "NIP", "Dokter Pemeriksa", "Tes THC", "Tes BZO", "Tes MET", "Tes MOP", "Tes COC", "Tes AMP",
             "Hasil THC", "Hasil BZO", "Hasil MET", "Hasil MOP", "Hasil COC", "Hasil AMP", "Hasil Kesimpulan",
-            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen"};
+            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen", "tes_opi", "hasil_opi"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -74,7 +74,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         tbSurat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSurat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 34; i++) {
+        for (int i = 0; i < 36; i++) {
             TableColumn column = tbSurat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -146,6 +146,12 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 33) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 34) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 35) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -433,6 +439,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         ChkTglSurat = new widget.CekBox();
         TnoDokumen = new widget.TextBox();
         BtnDokumen = new widget.Button();
+        ChkOPI = new widget.CekBox();
+        cmbOPI = new widget.ComboBox();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -617,7 +625,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -632,7 +640,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -827,15 +835,15 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel14.setText("Tgl. Surat : ");
         jLabel14.setName("jLabel14"); // NOI18N
         panelGlass7.add(jLabel14);
-        jLabel14.setBounds(700, 262, 150, 23);
+        jLabel14.setBounds(940, 262, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-05-2024" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
         panelGlass7.add(Ttgl_surat);
-        Ttgl_surat.setBounds(850, 262, 90, 23);
+        Ttgl_surat.setBounds(1013, 262, 90, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Dokter Pemeriksa : ");
@@ -901,7 +909,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TnoSuratDari.setBounds(105, 178, 387, 23);
 
         TtglSuratDari.setEditable(false);
-        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-04-2024" }));
+        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-05-2024" }));
         TtglSuratDari.setDisplayFormat("dd-MM-yyyy");
         TtglSuratDari.setName("TtglSuratDari"); // NOI18N
         TtglSuratDari.setOpaque(false);
@@ -1111,7 +1119,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkSemuaTes);
-        ChkSemuaTes.setBounds(700, 206, 130, 23);
+        ChkSemuaTes.setBounds(700, 234, 130, 23);
 
         cmbSemuaHasilTes.setForeground(new java.awt.Color(0, 0, 0));
         cmbSemuaHasilTes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1123,25 +1131,20 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbSemuaHasilTes);
-        cmbSemuaHasilTes.setBounds(850, 206, 85, 23);
+        cmbSemuaHasilTes.setBounds(850, 234, 85, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Kesimpulan Hasil Tes : ");
         jLabel20.setName("jLabel20"); // NOI18N
         panelGlass7.add(jLabel20);
-        jLabel20.setBounds(700, 234, 150, 23);
+        jLabel20.setBounds(700, 262, 150, 23);
 
         cmbKesHasil.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
         cmbKesHasil.setName("cmbKesHasil"); // NOI18N
         cmbKesHasil.setPreferredSize(new java.awt.Dimension(55, 28));
-        cmbKesHasil.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKesHasilActionPerformed(evt);
-            }
-        });
         panelGlass7.add(cmbKesHasil);
-        cmbKesHasil.setBounds(850, 234, 85, 23);
+        cmbKesHasil.setBounds(850, 262, 85, 23);
 
         ChkTglSurat.setBackground(new java.awt.Color(255, 255, 250));
         ChkTglSurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1180,6 +1183,32 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         });
         panelGlass7.add(BtnDokumen);
         BtnDokumen.setBounds(237, 38, 28, 23);
+
+        ChkOPI.setBackground(new java.awt.Color(255, 255, 250));
+        ChkOPI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkOPI.setForeground(new java.awt.Color(0, 0, 0));
+        ChkOPI.setText("Opiates (OPI)");
+        ChkOPI.setBorderPainted(true);
+        ChkOPI.setBorderPaintedFlat(true);
+        ChkOPI.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkOPI.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkOPI.setName("ChkOPI"); // NOI18N
+        ChkOPI.setOpaque(false);
+        ChkOPI.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkOPI.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkOPIActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(ChkOPI);
+        ChkOPI.setBounds(700, 206, 143, 23);
+
+        cmbOPI.setForeground(new java.awt.Color(0, 0, 0));
+        cmbOPI.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
+        cmbOPI.setName("cmbOPI"); // NOI18N
+        cmbOPI.setPreferredSize(new java.awt.Dimension(55, 28));
+        panelGlass7.add(cmbOPI);
+        cmbOPI.setBounds(850, 206, 85, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1340,7 +1369,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "'" + cmbTHC.getSelectedItem().toString() + "','" + cmbBZO.getSelectedItem().toString() + "','" + cmbMET.getSelectedItem().toString() + "',"
                     + "'" + cmbMOP.getSelectedItem().toString() + "','" + cmbCOC.getSelectedItem().toString() + "','" + cmbAMP.getSelectedItem().toString() + "',"
                     + "'" + cmbKesHasil.getSelectedItem().toString() + "','" + Tkeperluan.getText() + "','" + kddokter + "',"
-                    + "'" + tglsurat + "','" + TPasien.getText() + "','" + TTempLahr.getText() + "','" + TnoDokumen.getText() + "'", "Surat Keterangan NAPZA");
+                    + "'" + tglsurat + "','" + TPasien.getText() + "','" + TTempLahr.getText() + "','" + TnoDokumen.getText() + "','" + opi + "',"
+                    + "'" + cmbOPI.getSelectedItem().toString() + "'", "Surat Keterangan NAPZA");
             
             TCari.setText(TNoRW.getText());            
             tbSurat.requestFocus();
@@ -1394,12 +1424,13 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 Sequel.mengedit("surat_keterangan_napza", "no_rawat=?",
                         "tgl_surat=?,pekerjaan=?,tempat_tinggal=?,permintaan_dari=?,no_surat_dari=?,tgl_surat_dari=?,thc=?,"
                         + "bzo=?,met=?,mop=?,coc=?,amp=?,hasil_thc=?,hasil_bzo=?,hasil_met=?,hasil_mop=?,hasil_coc=?,hasil_amp=?,"
-                        + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?", 26, new String[]{
+                        + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?, opi=?, hasil_opi=?", 28, new String[]{
                             Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), Ttmpt_tinggal.getText(), TPermintaanDari.getText(),
                             TnoSuratDari.getText(), Valid.SetTgl(TtglSuratDari.getSelectedItem() + ""), thc, bzo, met, mop, coc, amp,
                             cmbTHC.getSelectedItem().toString(), cmbBZO.getSelectedItem().toString(), cmbMET.getSelectedItem().toString(),
                             cmbMOP.getSelectedItem().toString(), cmbCOC.getSelectedItem().toString(), cmbAMP.getSelectedItem().toString(),
-                            cmbKesHasil.getSelectedItem().toString(), Tkeperluan.getText(), kddokter, tglsurat, TPasien.getText(), TTempLahr.getText(), TnoDokumen.getText(),
+                            cmbKesHasil.getSelectedItem().toString(), Tkeperluan.getText(), kddokter, tglsurat, TPasien.getText(), TTempLahr.getText(),
+                            TnoDokumen.getText(), opi, cmbOPI.getSelectedItem().toString(),
                             tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
                 });
                 if (tabMode.getRowCount() != 0) {
@@ -1602,22 +1633,26 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 }
 
                 if (Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and thc='ya' and bzo='ya' "
-                        + "and met='ya' and mop='ya' and coc='ya' and amp='ya'") == 0) {
+                        + "and met='ya' and mop='ya' and coc='ya' and amp='ya' and opi='ya'") == 0
+                        || Sequel.cariInteger("SELECT count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "' and (thc='ya' or bzo='ya' "
+                                + "or met='ya' or mop='ya' or coc='ya' or amp='ya' or opi='ya')") == 0) {
                     Valid.MyReport("rptSuratNarkoba.jasper", "report", "::[ Surat Keterangan Narkoba ]::",
-                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND thc='ya' UNION ALL "
-                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND bzo='ya' UNION ALL "
-                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND met='ya' UNION ALL "
-                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND mop='ya' UNION ALL "
-                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND coc='ya' UNION ALL "
-                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND amp='ya'", param);
+                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(opi='ya','Opiates (OPI)',''), hasil_opi FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "'", param);
                 } else {
                     Valid.MyReport("rptSuratNapza.jasper", "report", "::[ Surat Keterangan NAPZA ]::",
-                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND thc='ya' UNION ALL "
-                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND bzo='ya' UNION ALL "
-                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND met='ya' UNION ALL "
-                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND mop='ya' UNION ALL "
-                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND coc='ya' UNION ALL "
-                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' AND amp='ya'", param);
+                            "SELECT IF(thc='ya','Tannabinoids (THC)','') 'tes', hasil_thc 'hasil' FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(bzo='ya','Benzodi Azepines (BZO)',''), hasil_bzo FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(met='ya','Methamphetamine (MET)',''), hasil_met FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(mop='ya','Morphine (MOP)',''), hasil_mop FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(coc='ya','Cocaine (COC)',''), hasil_coc FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(opi='ya','Opiates (OPI)',''), hasil_opi FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "' UNION ALL "
+                            + "SELECT IF(amp='ya','Amphetamine (AMP)',''), concat(hasil_amp,' *)') hasil_amp FROM surat_keterangan_napza WHERE no_rawat = '" + TNoRW.getText() + "'", param);
                 }
             }
 
@@ -1712,6 +1747,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             ChkMOP.setSelected(true);
             ChkCOC.setSelected(true);
             ChkAMP.setSelected(true);
+            ChkOPI.setSelected(true);
             
             cmbSemuaHasilTes.setEnabled(true);
             cmbTHC.setEnabled(true);
@@ -1720,6 +1756,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbMOP.setEnabled(true);
             cmbCOC.setEnabled(true);
             cmbAMP.setEnabled(true);
+            cmbOPI.setEnabled(true);
             
             cmbSemuaHasilTes.setSelectedIndex(0);
             cmbTHC.setSelectedIndex(0);
@@ -1728,6 +1765,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbMOP.setSelectedIndex(0);
             cmbCOC.setSelectedIndex(0);
             cmbAMP.setSelectedIndex(0);
+            cmbOPI.setSelectedIndex(0);
         } else {
             ChkTHC.setSelected(false);
             ChkBZO.setSelected(false);
@@ -1735,6 +1773,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             ChkMOP.setSelected(false);
             ChkCOC.setSelected(false);
             ChkAMP.setSelected(false);
+            ChkOPI.setSelected(false);
 
             cmbSemuaHasilTes.setEnabled(false);
             cmbTHC.setEnabled(false);
@@ -1743,6 +1782,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbMOP.setEnabled(false);
             cmbCOC.setEnabled(false);
             cmbAMP.setEnabled(false);
+            cmbOPI.setEnabled(false);
 
             cmbSemuaHasilTes.setSelectedIndex(0);
             cmbTHC.setSelectedIndex(0);
@@ -1751,19 +1791,22 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbMOP.setSelectedIndex(0);
             cmbCOC.setSelectedIndex(0);
             cmbAMP.setSelectedIndex(0);
+            cmbOPI.setSelectedIndex(0);
         }
     }//GEN-LAST:event_ChkSemuaTesActionPerformed
 
     private void cmbSemuaHasilTesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSemuaHasilTesActionPerformed
         if (cmbSemuaHasilTes.getSelectedIndex() == 1) {
             if (ChkTHC.isSelected() == true && ChkBZO.isSelected() == true && ChkMET.isSelected() == true
-                    && ChkMOP.isSelected() == true && ChkCOC.isSelected() == true && ChkAMP.isSelected() == true) {
+                    && ChkMOP.isSelected() == true && ChkCOC.isSelected() == true && ChkAMP.isSelected() == true
+                    && ChkOPI.isSelected() == true) {
                 cmbTHC.setEnabled(true);
                 cmbBZO.setEnabled(true);
                 cmbMET.setEnabled(true);
                 cmbMOP.setEnabled(true);
                 cmbCOC.setEnabled(true);
                 cmbAMP.setEnabled(true);
+                cmbOPI.setEnabled(true);
 
                 cmbTHC.setSelectedIndex(1);
                 cmbBZO.setSelectedIndex(1);
@@ -1771,19 +1814,22 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 cmbMOP.setSelectedIndex(1);
                 cmbCOC.setSelectedIndex(1);
                 cmbAMP.setSelectedIndex(1);
+                cmbOPI.setSelectedIndex(1);
             } else {
                 JOptionPane.showMessageDialog(null, "Semua tes narkoba harus terconteng dulu...!!!!");
                 cmbSemuaHasilTes.setSelectedIndex(0);
             }
         } else if (cmbSemuaHasilTes.getSelectedIndex() == 2) {
             if (ChkTHC.isSelected() == true && ChkBZO.isSelected() == true && ChkMET.isSelected() == true
-                    && ChkMOP.isSelected() == true && ChkCOC.isSelected() == true && ChkAMP.isSelected() == true) {
+                    && ChkMOP.isSelected() == true && ChkCOC.isSelected() == true && ChkAMP.isSelected() == true
+                    && ChkOPI.isSelected() == true) {
                 cmbTHC.setEnabled(true);
                 cmbBZO.setEnabled(true);
                 cmbMET.setEnabled(true);
                 cmbMOP.setEnabled(true);
                 cmbCOC.setEnabled(true);
                 cmbAMP.setEnabled(true);
+                cmbOPI.setEnabled(true);
 
                 cmbTHC.setSelectedIndex(2);
                 cmbBZO.setSelectedIndex(2);
@@ -1791,16 +1837,13 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 cmbMOP.setSelectedIndex(2);
                 cmbCOC.setSelectedIndex(2);
                 cmbAMP.setSelectedIndex(2);
+                cmbOPI.setSelectedIndex(2);
             } else {
                 JOptionPane.showMessageDialog(null, "Semua tes narkoba harus terconteng dulu...!!!!");
                 cmbSemuaHasilTes.setSelectedIndex(0);
             }
         }
     }//GEN-LAST:event_cmbSemuaHasilTesActionPerformed
-
-    private void cmbKesHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKesHasilActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbKesHasilActionPerformed
 
     private void ChkTglSuratActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkTglSuratActionPerformed
         if (ChkTglSurat.isSelected() == true) {
@@ -1891,6 +1934,17 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         dokumen.setVisible(true);
     }//GEN-LAST:event_BtnDokumenActionPerformed
 
+    private void ChkOPIActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkOPIActionPerformed
+        if (ChkOPI.isSelected() == true) {
+            cmbOPI.setEnabled(true);
+            cmbOPI.setSelectedIndex(0);
+            cmbOPI.requestFocus();
+        } else {
+            cmbOPI.setEnabled(false);
+            cmbOPI.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_ChkOPIActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1924,6 +1978,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     public widget.CekBox ChkCOC;
     public widget.CekBox ChkMET;
     public widget.CekBox ChkMOP;
+    public widget.CekBox ChkOPI;
     public widget.CekBox ChkSemuaTes;
     public widget.CekBox ChkTHC;
     public widget.CekBox ChkTglSurat;
@@ -1962,6 +2017,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.ComboBox cmbKesHasil;
     private widget.ComboBox cmbMET;
     private widget.ComboBox cmbMOP;
+    private widget.ComboBox cmbOPI;
     private widget.ComboBox cmbSemuaHasilTes;
     private widget.ComboBox cmbTHC;
     private widget.InternalFrame internalFrame1;
@@ -2004,7 +2060,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, sk.pekerjaan, sk.tempat_tinggal, sk.permintaan_dari, sk.no_surat_dari, sk.ada_tgl_nosurat, "
                     + "if(sk.ada_tgl_nosurat='ya',DATE_FORMAT(sk.tgl_surat_dari,'%d-%m-%Y'),'-') tglsuratdari, sk.keperluan, sk.nip_dokter, pg.nama nmdokter, "
                     + "sk.thc, sk.bzo, sk.met, sk.mop, sk.coc, sk.amp, sk.hasil_thc, sk.hasil_bzo, sk.hasil_met, sk.hasil_mop, sk.hasil_coc, sk.hasil_amp, "
-                    + "sk.kesimpulan_hasil, DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_surat, sk.tgl_surat, sk.tgl_surat_dari, sk.no_dokumen FROM reg_periksa rp "
+                    + "sk.kesimpulan_hasil, DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_surat, sk.tgl_surat, sk.tgl_surat_dari, sk.no_dokumen, "
+                    + "sk.opi, sk.hasil_opi FROM reg_periksa rp "
                     + "INNER JOIN surat_keterangan_napza sk ON sk.no_rawat = rp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec_domisili_pasien "
                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab_domisili_pasien INNER JOIN pegawai pg ON pg.nik = sk.nip_dokter WHERE "
@@ -2097,7 +2154,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         rs.getString("no_surat"),
                         rs.getString("tgl_surat"),
                         rs.getString("tgl_surat_dari"),
-                        rs.getString("no_dokumen")
+                        rs.getString("no_dokumen"),
+                        rs.getString("opi"),
+                        rs.getString("hasil_opi")
                     });
                 }
             } catch (Exception e) {
@@ -2140,6 +2199,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         ChkMOP.setSelected(false);
         ChkCOC.setSelected(false);
         ChkAMP.setSelected(false);
+        ChkOPI.setSelected(false);
         ChkSemuaTes.setSelected(false);
         ChkTglSurat.setSelected(false);
         
@@ -2149,6 +2209,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         cmbMOP.setEnabled(false);
         cmbCOC.setEnabled(false);
         cmbAMP.setEnabled(false);
+        cmbOPI.setEnabled(false);
         cmbSemuaHasilTes.setEnabled(false);
         TtglSuratDari.setEnabled(false);
         
@@ -2158,6 +2219,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         cmbMOP.setSelectedIndex(0);
         cmbCOC.setSelectedIndex(0);
         cmbAMP.setSelectedIndex(0);
+        cmbOPI.setSelectedIndex(0);
         cmbSemuaHasilTes.setSelectedIndex(0);
         cmbKesHasil.setSelectedIndex(0);        
         DTPCari1.setDate(Ttgl_surat.getDate());
@@ -2175,6 +2237,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         mop = "";
         coc = "";
         amp = "";
+        opi = "";
         tglsurat = "";
         kddokter = "";
 
@@ -2204,6 +2267,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             mop = tbSurat.getValueAt(tbSurat.getSelectedRow(), 19).toString();
             coc = tbSurat.getValueAt(tbSurat.getSelectedRow(), 20).toString();
             amp = tbSurat.getValueAt(tbSurat.getSelectedRow(), 21).toString();
+            opi = tbSurat.getValueAt(tbSurat.getSelectedRow(), 34).toString();
             
             cmbTHC.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 22).toString());
             cmbBZO.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 23).toString());
@@ -2211,6 +2275,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbMOP.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 25).toString());
             cmbCOC.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 26).toString());
             cmbAMP.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 27).toString());
+            cmbOPI.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 35).toString());
             cmbKesHasil.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 28).toString());
             nosurat = tbSurat.getValueAt(tbSurat.getSelectedRow(), 30).toString();
             Valid.SetTgl(Ttgl_surat, tbSurat.getValueAt(tbSurat.getSelectedRow(), 31).toString());
@@ -2310,6 +2375,12 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             amp = "tidak";
         }
         
+        if (ChkOPI.isSelected() == true) {
+            opi = "ya";
+        } else {
+            opi = "tidak";
+        }
+        
         if (ChkTglSurat.isSelected() == true) {
             tglsurat = "ya";
         } else {
@@ -2364,6 +2435,14 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         } else {
             ChkAMP.setSelected(false);
             cmbAMP.setEnabled(false);
+        }
+        
+        if (opi.equals("ya")) {
+            ChkOPI.setSelected(true);
+            cmbOPI.setEnabled(true);
+        } else {
+            ChkOPI.setSelected(false);
+            cmbOPI.setEnabled(false);
         }
         
         if (tglsurat.equals("ya")) {

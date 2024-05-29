@@ -7683,88 +7683,14 @@ public class DlgCPPT extends javax.swing.JDialog {
         ChkJam.setSelected(true);
         cmbJam.setEnabled(true);
         cmbMnt.setEnabled(true);
-        cmbDtk.setEnabled(true);
-        
-        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
-        cmbDtk.setSelectedIndex(0);
-        
-        try {
-            jamSekarang = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
-            jamCPPT1 = new SimpleDateFormat("HH:mm").parse("08:00");            
-            jamCPPT2 = new SimpleDateFormat("HH:mm").parse("14:00");
-            jamCPPT3 = new SimpleDateFormat("HH:mm").parse("20:00");
-        } catch (Exception e) {
-            System.out.println("Tanggal error, cek lagi..!!");
-        }
-        
-        if (jamCPPT1.before(jamSekarang)) {
-            cmbSift.setSelectedIndex(1);
-        } 
-        
-        if (jamCPPT2.before(jamSekarang)) {
-            cmbSift.setSelectedIndex(2);
-        } 
-        
-        if (jamCPPT3.before(jamSekarang)) {
-            cmbSift.setSelectedIndex(3);
-        }
+        cmbDtk.setEnabled(true);        
+        isJam();
         isRawat();
         
         if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)") || sttsrawat.equals("ralan")) {
-            cmbRawat.setSelectedIndex(0);
-            cmbPPA.setSelectedIndex(0);
-            cmbPPA.setEnabled(false);
-            cmbSertim.setSelectedIndex(0);
-            cmbSertim.setEnabled(false);
-            cmbJam1.setEnabled(false);
-            cmbMnt1.setEnabled(false);
-            cmbDtk1.setEnabled(false);
-            nipppa = "-";
-            nmppa.setText("-");
-            nmppa.setEnabled(false);
-            BtnPPA.setEnabled(false);
-            cmbSift.setEnabled(false);
-            cmbSiftCppt.setEnabled(false);
-
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='Ralan' and flag_hapus='tidak'") > 0) {
-                TabCPPT.setSelectedIndex(1);
-                tampil();
-            } else if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='Ralan' and flag_hapus='tidak'") == 0) {
-                TabCPPT.setSelectedIndex(0);
-            }
+            isIGD_Ralan();
         } else if (sttsrawat.equals("ranap")) {
-            cmbRawat.setSelectedIndex(1);
-            cmbPPA.setSelectedIndex(0);
-            cmbPPA.setEnabled(true);
-            cmbSertim.setSelectedIndex(0);
-            cmbSertim.setEnabled(true);
-            cmbJam1.setEnabled(false);
-            cmbMnt1.setEnabled(false);
-            cmbDtk1.setEnabled(false);
-            nipppa = "-";
-            nmppa.setText("-");
-            nmppa.setEnabled(true);
-            BtnPPA.setEnabled(true);
-            cmbSift.setEnabled(true);
-            cmbSiftCppt.setEnabled(true);
-            
-            if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norw + "' and status='ranap' and flag_hapus='tidak'") > 0) {
-                cmbSiftCppt.setSelectedIndex(4);
-                TabCPPT.setSelectedIndex(1);
-                tampil();
-            } else if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + norw + "' and status='ranap' and flag_hapus='tidak'") == 0) {
-                cmbSiftCppt.setSelectedIndex(0);
-                TabCPPT.setSelectedIndex(0);
-            }
-            
-            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + norw + "'") > 0) {
-                kddpjp.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + norw + "'"));
-                nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
-            } else {
-                kddpjp.setText("-");
-                nmdpjp.setText("-");
-            }
+            isRanap();
         } else {
             cmbRawat.setSelectedIndex(2);
             cmbPPA.setSelectedIndex(0);
@@ -9669,5 +9595,90 @@ public class DlgCPPT extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
         LCount1.setText("" + tabMode5.getRowCount());
+    }
+    
+    private void isJam() {
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
+
+        try {
+            jamSekarang = new SimpleDateFormat("HH:mm").parse(Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H:%i')"));
+            jamCPPT1 = new SimpleDateFormat("HH:mm").parse("08:00");
+            jamCPPT2 = new SimpleDateFormat("HH:mm").parse("14:00");
+            jamCPPT3 = new SimpleDateFormat("HH:mm").parse("20:00");
+        } catch (Exception e) {
+            System.out.println("Tanggal error, cek lagi..!!");
+        }
+
+        if (jamCPPT1.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(1);
+        }
+
+        if (jamCPPT2.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(2);
+        }
+
+        if (jamCPPT3.before(jamSekarang)) {
+            cmbSift.setSelectedIndex(3);
+        }
+    }
+    
+    private void isIGD_Ralan() {
+        cmbRawat.setSelectedIndex(0);
+        cmbPPA.setSelectedIndex(0);
+        cmbPPA.setEnabled(false);
+        cmbSertim.setSelectedIndex(0);
+        cmbSertim.setEnabled(false);
+        cmbJam1.setEnabled(false);
+        cmbMnt1.setEnabled(false);
+        cmbDtk1.setEnabled(false);
+        nipppa = "-";
+        nmppa.setText("-");
+        nmppa.setEnabled(false);
+        BtnPPA.setEnabled(false);
+        cmbSift.setEnabled(false);
+        cmbSiftCppt.setEnabled(false);
+
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='Ralan' and flag_hapus='tidak'") > 0) {
+            TabCPPT.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='Ralan' and flag_hapus='tidak'") == 0) {
+            TabCPPT.setSelectedIndex(0);
+        }
+    }
+    
+    private void isRanap() {
+        cmbRawat.setSelectedIndex(1);
+        cmbPPA.setSelectedIndex(0);
+        cmbPPA.setEnabled(true);
+        cmbSertim.setSelectedIndex(0);
+        cmbSertim.setEnabled(true);
+        cmbJam1.setEnabled(false);
+        cmbMnt1.setEnabled(false);
+        cmbDtk1.setEnabled(false);
+        nipppa = "-";
+        nmppa.setText("-");
+        nmppa.setEnabled(true);
+        BtnPPA.setEnabled(true);
+        cmbSift.setEnabled(true);
+        cmbSiftCppt.setEnabled(true);
+
+        if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='ranap' and flag_hapus='tidak'") > 0) {
+            cmbSiftCppt.setSelectedIndex(4);
+            TabCPPT.setSelectedIndex(1);
+            tampil();
+        } else if (Sequel.cariInteger("select count(-1) from cppt where no_rawat='" + TNoRw.getText() + "' and status='ranap' and flag_hapus='tidak'") == 0) {
+            cmbSiftCppt.setSelectedIndex(0);
+            TabCPPT.setSelectedIndex(0);
+        }
+
+        if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            kddpjp.setText(Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat='" + TNoRw.getText() + "'"));
+            nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
+        } else {
+            kddpjp.setText("-");
+            nmdpjp.setText("-");
+        }
     }
 }

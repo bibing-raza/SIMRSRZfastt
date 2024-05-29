@@ -13,17 +13,6 @@
         <Property name="name" type="java.lang.String" value="kodeBaris" noResource="true"/>
       </Properties>
     </Component>
-    <Component class="widget.TextBox" name="noID">
-      <Properties>
-        <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-          <Color blue="0" green="0" red="0" type="rgb"/>
-        </Property>
-        <Property name="highlighter" type="javax.swing.text.Highlighter" editor="org.netbeans.modules.form.ComponentChooserEditor">
-          <ComponentRef name="null"/>
-        </Property>
-        <Property name="name" type="java.lang.String" value="noID" noResource="true"/>
-      </Properties>
-    </Component>
     <Container class="javax.swing.JPopupMenu" name="jPopupMenu1">
       <Properties>
         <Property name="name" type="java.lang.String" value="jPopupMenu1" noResource="true"/>

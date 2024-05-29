@@ -756,7 +756,6 @@ public class DlgUser extends javax.swing.JDialog {
     private void initComponents() {
 
         kodeBaris = new widget.TextBox();
-        noID = new widget.TextBox();
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSetUser = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
@@ -811,10 +810,6 @@ public class DlgUser extends javax.swing.JDialog {
         kodeBaris.setForeground(new java.awt.Color(0, 0, 0));
         kodeBaris.setHighlighter(null);
         kodeBaris.setName("kodeBaris"); // NOI18N
-
-        noID.setForeground(new java.awt.Color(0, 0, 0));
-        noID.setHighlighter(null);
-        noID.setName("noID"); // NOI18N
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -2026,12 +2021,8 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     }//GEN-LAST:event_BtnAll1KeyPressed
 
     private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
-        Sequel.cariIsi("select nip from petugas where nip=? ", noID, TKd.getText());
-
         if (TKd.getText().trim().equals("") || TNmUser.getText().trim().equals("")) {
             Valid.textKosong(TKd, "User");
-        } else if (noID.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Karyawan tersebut belum masuk ke data petugas, tambahkan dulu ke data petugas...!!!!");
         } else {
             if (cmbSemua.getSelectedIndex() == 0 && cekUnit.isSelected() == true) {
                 if (kdpoli.getText().equals("")) {
@@ -2209,7 +2200,6 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.TextBox kdpoli;
     private widget.TextBox kodeBaris;
     private widget.TextBox nmpoli;
-    private widget.TextBox noID;
     private widget.panelisi panelGlass5;
     private widget.panelisi panelGlass6;
     private widget.panelisi panelGlass7;
@@ -3120,8 +3110,7 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         TCari.setText("");
         TCari1.setText("");
         kodeBaris.setText("");
-        noID.setText("");
-        
+
         cekUnit.setSelected(false);
         cekUnit.setText("Unit R. Inap : RUANGAN");
         kdpoli.setVisible(false);
