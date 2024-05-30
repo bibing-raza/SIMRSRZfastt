@@ -113,18 +113,20 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         nmdokterbpjs = new widget.TextBox();
         jLabel40 = new widget.Label();
         TnoKartu = new widget.TextBox();
+        jLabel41 = new widget.Label();
+        Tantrian = new widget.TextBox();
         jPanel1 = new javax.swing.JPanel();
         BtnSimpan = new widget.Button();
         BtnHapus = new widget.Button();
         BtnKeluar = new widget.Button();
 
-        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
+        tglPeriksaBPJS.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2024" }));
         tglPeriksaBPJS.setDisplayFormat("dd-MM-yyyy");
         tglPeriksaBPJS.setName("tglPeriksaBPJS"); // NOI18N
         tglPeriksaBPJS.setOpaque(false);
         tglPeriksaBPJS.setPreferredSize(new java.awt.Dimension(90, 23));
 
-        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
+        tglrujukanbpjs.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2024" }));
         tglrujukanbpjs.setDisplayFormat("dd-MM-yyyy");
         tglrujukanbpjs.setName("tglrujukanbpjs"); // NOI18N
         tglrujukanbpjs.setOpaque(false);
@@ -164,7 +166,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         norwBokingBPJS.setHighlighter(null);
         norwBokingBPJS.setName("norwBokingBPJS"); // NOI18N
 
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-11-2023" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2024" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -276,6 +278,18 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         TnoKartu.setName("TnoKartu"); // NOI18N
         panelGlass1.add(TnoKartu);
         TnoKartu.setBounds(300, 66, 120, 23);
+
+        jLabel41.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel41.setText("Antrian Khusus : ");
+        jLabel41.setName("jLabel41"); // NOI18N
+        panelGlass1.add(jLabel41);
+        jLabel41.setBounds(0, 150, 100, 23);
+
+        Tantrian.setEditable(false);
+        Tantrian.setForeground(new java.awt.Color(0, 0, 0));
+        Tantrian.setName("Tantrian"); // NOI18N
+        panelGlass1.add(Tantrian);
+        Tantrian.setBounds(100, 150, 70, 23);
 
         internalFrame1.add(panelGlass1, java.awt.BorderLayout.CENTER);
 
@@ -441,6 +455,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     private widget.ComboBox LakaLantas;
     private widget.TextBox TNoRegBPJS;
     private widget.Tanggal TanggalSEP;
+    public widget.TextBox Tantrian;
     private widget.TextBox TnoKartu;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel35;
@@ -449,6 +464,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     private widget.Label jLabel38;
     private widget.Label jLabel39;
     private widget.Label jLabel40;
+    private widget.Label jLabel41;
     private javax.swing.JPanel jPanel1;
     private widget.TextBox kdbokingbpjs;
     private widget.TextBox nmdokterbpjs;
@@ -487,7 +503,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 kdbokingbpjs.requestFocus();
             } else {
                 psCekBooking = koneksi.prepareStatement("select b.kd_booking, DATE_FORMAT(b.tanggal_periksa, '%Y-%m-%d') tglPeriksa,p.nm_pasien,k.nm_poli,d.nm_dokter, "
-                        + "b.tanggal_periksa, ifnull(p.no_peserta,'-') nokartu from booking_registrasi b "
+                        + "b.tanggal_periksa, ifnull(p.no_peserta,'-') nokartu, b.antrian_khusus from booking_registrasi b "
                         + "inner join pasien p on p.no_rkm_medis = b.no_rkm_medis "
                         + "inner join poliklinik k on k.kd_poli = b.kd_poli "
                         + "inner join dokter d on d.kd_dokter = b.kd_dokter "
@@ -501,6 +517,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                     politujuanbpjs.setText(rsCekBooking.getString("nm_poli"));
                     nmdokterbpjs.setText(rsCekBooking.getString("nm_dokter"));
                     TnoKartu.setText(rsCekBooking.getString("nokartu"));
+                    Tantrian.setText(rsCekBooking.getString("antrian_khusus"));
                 } else {
                     JOptionPane.showMessageDialog(null, "Kode Booking tidak ditemukan, silakan ulangi lagi...!!");
                 }
@@ -512,7 +529,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
     
     private void cekPasienBokingBPJS() {
         try {
-            psCekPasien = koneksi.prepareStatement("select no_rkm_medis,kd_poli,tanggal_periksa,kd_pj,kd_dokter "
+            psCekPasien = koneksi.prepareStatement("select no_rkm_medis, kd_poli, tanggal_periksa, kd_pj,kd_dokter "
                     + "from booking_registrasi where kd_booking='" + kdbokingbpjs.getText() + "'");
             rsCekPasien = psCekPasien.executeQuery();
             while (rsCekPasien.next()) {
@@ -664,6 +681,9 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
                 new String[]{TNoRegBPJS.getText(), norwBokingBPJS.getText(), Valid.SetTgl(tglPeriksaBPJS.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"),
                     kddokterbpjs, normbpjs, kdpolibpjs, "-", "-", "-", 0 + "", "Belum", "Lama", "Ralan", kdpenjabbpjs, umur, sttsumur, usernya}) == true) {
 
+            if (Tantrian.getText().equals("YA")) {
+                Sequel.menyimpanIgnore("antrian_prioritas", "'" + norwBokingBPJS.getText() + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
+            }
             Sequel.mengedit("booking_registrasi", "kd_booking='" + kdbokingbpjs.getText() + "'", "status_booking='Terdaftar',no_rawat='" + norwBokingBPJS.getText() + "'");
             Sequel.menyimpan("history_user", "Now(),'" + norwBokingBPJS.getText() + "','" + usernya + "','Registrasi Pasien','Simpan'");
             bool = true;
@@ -1148,6 +1168,7 @@ public class DlgVerifikasiKodeBoking extends javax.swing.JDialog {
         Sequel.meghapus("pasien_mati", "no_rkm_medis", Sequel.cariIsi("select no_rkm_medis from booking_registrasi where kd_booking ='" + kdbokingbpjs.getText() + "'"));
         Sequel.meghapus("reg_rujukan_intern", "no_rawat_ke", norawat);
         Sequel.meghapus("reg_periksa", "no_rawat", norawat);
+        Sequel.meghapus("antrian_prioritas", "no_rawat", norawat);
         Sequel.menyimpan("history_user", "Now(),'" + norawat + "','" + akses.getkode() + "','Registrasi SIPO','Hapus'");
         
         Sequel.mengedit("booking_registrasi", "kd_booking='" + kdbokingbpjs.getText() + "'",

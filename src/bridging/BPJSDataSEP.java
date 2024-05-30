@@ -99,7 +99,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             nilaiJP = "", nilaiKR = "", nilaiEKS = "", utc = "", pembi = "", kdpnjg = "", flag = "", asesmen = "", kdSttsPlg = "",
             cekstsPulang = "", tglJiun = "", noLPJiun = "", desSttsPlg = "", norujukan = "", kddiagSekun = "", nmdiagSekun = "",
             kdprosedur = "", nmprosedur = "", diagSekunderKirim = "", prosedurKirim = "", diagSekunderSimpan = "", prosedurSimpan = "", respons = "",
-            tglPulangInap = "", cekLaka = "", SEPkontrol = "";
+            tglPulangInap = "", cekLaka = "", SEPkontrol = "", antrianKhusus = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -4737,14 +4737,12 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
             //sep rawat jalan
             } else {
-                //ini yang ditutup
-//                if (Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and jnspelayanan='2'").equals("1")) {
-//                    param.put("kunjunganInternal", "-");
-//                } else {
-//                    param.put("kunjunganInternal", "- Kunjungan rujukan internal");
-//                }
-
                 Sequel.queryu("delete from bridging_sep where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and jnspelayanan='2' and LENGTH(no_sep)<19");
+                if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'") > 0) {
+                    antrianKhusus = " (Antrian KHUSUS)";
+                } else {
+                    antrianKhusus = "";
+                }
                 param.put("loket", akses.getNomorLoket() + " (" + akses.getJenisLoket() + ")");
                 
                 if (Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "'").equals("HIV")) {
@@ -4756,8 +4754,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                             "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
                             + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir, "
                             + "if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, "
-                            + "time_format(rp.jam_reg,'%H:%i') jam, pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama "
-                            + "FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+                            + "time_format(rp.jam_reg,'%H:%i') jam, concat(pl.nm_poli,'" + antrianKhusus + "') nm_poli, d.nm_dokter, "
+                            + "ifnull(pt.nama,rp.nip_petugas) nama FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
                             + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                             + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join petugas pt on pt.nip=rp.nip_petugas "
                             + "WHERE rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and bs.jnspelayanan='2'", param);
@@ -4786,7 +4784,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                                 "SELECT bs.no_sep, concat(p.no_rkm_medis,' (No. Reg. : ',rp.no_reg,')') no_rkm_medis, p.nm_pasien, "
                                 + "concat(date_format(p.tgl_lahir,'%d/%m/%Y'),' (Usia : ',rp.umurdaftar,' ',rp.sttsumur,'.)') tgllahir, "
                                 + "if(p.jk='L','Laki-laki','Perempuan') jk, date_format(rp.tgl_registrasi,'%d/%m/%Y') tglreg, time_format(rp.jam_reg,'%H:%i') jam, "
-                                + "pl.nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+                                + "concat(pl.nm_poli,'" + antrianKhusus + "') nm_poli, d.nm_dokter, ifnull(pt.nama,rp.nip_petugas) nama "
+                                + "FROM bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
                                 + "inner join dokter d on d.kd_dokter=rp.kd_dokter inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                                 + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli left join petugas pt on pt.nip=rp.nip_petugas "
                                 + "WHERE rp.no_rawat='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString() + "' and bs.jnspelayanan='2'", param);
