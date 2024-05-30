@@ -83,7 +83,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(115);
+                column.setPreferredWidth(150);
             } else if (i == 2) {
                 column.setPreferredWidth(65);
             } else if (i == 3) {
@@ -751,7 +751,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -765,7 +765,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1045,7 +1045,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -1506,7 +1506,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TkdPantau.setForeground(new java.awt.Color(0, 0, 0));
         TkdPantau.setName("TkdPantau"); // NOI18N
         panelGlass7.add(TkdPantau);
-        TkdPantau.setBounds(314, 38, 140, 23);
+        TkdPantau.setBounds(314, 38, 200, 23);
 
         BtnTotOutput.setForeground(new java.awt.Color(0, 0, 0));
         BtnTotOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1552,13 +1552,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel63.setText("Rg. Rawat : ");
         jLabel63.setName("jLabel63"); // NOI18N
         panelGlass7.add(jLabel63);
-        jLabel63.setBounds(455, 38, 75, 23);
+        jLabel63.setBounds(517, 38, 75, 23);
 
         TrgRawat.setEditable(false);
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         panelGlass7.add(TrgRawat);
-        TrgRawat.setBounds(533, 38, 270, 23);
+        TrgRawat.setBounds(593, 38, 210, 23);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Transfusi :");
@@ -2023,7 +2023,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2037,7 +2037,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-05-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -3422,9 +3422,9 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     }
     
     public void autoNomorPerJam() {
-        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kd_pantau,4),signed)),0) from pemantauan_harian_24jam where "
+        Valid.autoNomer7("select ifnull(MAX(CONVERT(LEFT(kd_pantau,9),signed)),0) from pemantauan_harian_24jam where "
                 + "tgl_pantau like '%" + Valid.SetTgl(tglPantau.getSelectedItem() + "").substring(0, 7) + "%' ", "/24Jam/" + Valid.SetTgl(tglPantau.getSelectedItem() + "").substring(5, 7)
-                + "/" + Valid.SetTgl(tglPantau.getSelectedItem() + "").substring(0, 4), 4, TkdPantau);
+                + "/" + Valid.SetTgl(tglPantau.getSelectedItem() + "").substring(0, 4), 9, TkdPantau);
     }
     
     private void jamDiurutkan() {

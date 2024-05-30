@@ -41,7 +41,7 @@
 		</band>
 	</background>
 	<title>
-		<band height="286">
+		<band height="303">
 			<textField>
 				<reportElement x="0" y="30" width="517" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -206,56 +206,56 @@
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="154" y="207" width="363" height="27"/>
+				<reportElement x="154" y="207" width="363" height="43"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="40" y="235" width="106" height="14"/>
+				<reportElement x="40" y="251" width="106" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Permintaan Dari]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="147" y="235" width="7" height="14"/>
+				<reportElement x="147" y="251" width="7" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="154" y="235" width="363" height="14"/>
+				<reportElement x="154" y="251" width="363" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{permintaan}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="154" y="250" width="363" height="14"/>
+				<reportElement x="154" y="266" width="363" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{nosuratdari}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="147" y="250" width="7" height="14"/>
+				<reportElement x="147" y="266" width="7" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="250" width="106" height="14"/>
+				<reportElement x="40" y="266" width="106" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Nomor Surat, Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="0" y="272" width="517" height="14"/>
+				<reportElement x="0" y="288" width="517" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
