@@ -83,7 +83,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(140);
             } else if (i == 2) {
                 column.setPreferredWidth(65);
             } else if (i == 3) {
@@ -220,7 +220,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(123);
+                column.setPreferredWidth(140);
             } else if (i == 4) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -751,7 +751,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -765,7 +765,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -896,11 +896,6 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         cmbSuplemen.setForeground(new java.awt.Color(0, 0, 0));
         cmbSuplemen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbSuplemen.setName("cmbSuplemen"); // NOI18N
-        cmbSuplemen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbSuplemenActionPerformed(evt);
-            }
-        });
         internalFrame7.add(cmbSuplemen);
         cmbSuplemen.setBounds(101, 38, 60, 23);
 
@@ -914,11 +909,6 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         cmbKesadaran.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesadaran.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Sadar", "Nyeri/Verbal", "Unrespon" }));
         cmbKesadaran.setName("cmbKesadaran"); // NOI18N
-        cmbKesadaran.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbKesadaranActionPerformed(evt);
-            }
-        });
         internalFrame7.add(cmbKesadaran);
         cmbKesadaran.setBounds(252, 38, 95, 23);
 
@@ -1045,7 +1035,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -2023,7 +2013,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2037,7 +2027,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2771,36 +2761,6 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private void cmbDtk1MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbDtk1MouseReleased
         AutoCompleteDecorator.decorate(cmbDtk1);
     }//GEN-LAST:event_cmbDtk1MouseReleased
-
-    private void cmbSuplemenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSuplemenActionPerformed
-        suplemen = 0;
-        skorSuplemen = "";
-        if (cmbSuplemen.getSelectedIndex() == 0) {
-            suplemen = 0;
-            skorSuplemen = "";
-        } else if (cmbSuplemen.getSelectedIndex() == 1) {
-            suplemen = 2;
-            skorSuplemen = "2";
-        }        
-    }//GEN-LAST:event_cmbSuplemenActionPerformed
-
-    private void cmbKesadaranActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKesadaranActionPerformed
-        kesadaran = 0;
-        skorKesadaran = "";
-        if (cmbKesadaran.getSelectedIndex() == 0) {
-            kesadaran = 0;
-            skorKesadaran = "";
-        } else if (cmbKesadaran.getSelectedIndex() == 1) {
-            kesadaran = 0;
-            skorKesadaran = "0";
-        } else if (cmbKesadaran.getSelectedIndex() == 2) {
-            kesadaran = 3;
-            skorKesadaran = "3";
-        } else if (cmbKesadaran.getSelectedIndex() == 3) {
-            kesadaran = 0;
-            skorKesadaran = "C. Blue";
-        }
-    }//GEN-LAST:event_cmbKesadaranActionPerformed
 
     private void TskorNyeriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorNyeriKeyPressed
         Valid.pindah(evt, TskorNyeri, BtnSimpan4);
@@ -3967,12 +3927,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         nilaitensi = 0;
         nilainadi = 0;
         kesadaran = 0;
-        temperatur = 0;
+        temperatur = 0;        
         
         skorRespi = "";
-        skorSatur = "";        
+        skorSatur = "";
+        skorSuplemen = "";
         skorTensi = "";
-        skorNadi = "";        
+        skorNadi = "";
+        skorKesadaran = "";
         skorTemperatur = "";
         totSkor = "";
         
@@ -4047,6 +4009,15 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             skorSatur = "0";
         }
         
+        //suplemen
+        if (cmbSuplemen.getSelectedIndex() == 0) {
+            suplemen = 0;
+            skorSuplemen = "";
+        } else if (cmbSuplemen.getSelectedIndex() == 1) {
+            suplemen = 2;
+            skorSuplemen = "2";
+        }
+        
         //tensi
         if (!Tsistole.getText().equals("") || !Tsistole.getText().equals("-")) {
             tensi = Integer.parseInt(Tsistole.getText());
@@ -4119,6 +4090,21 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             nadiEWS = ">= 140";
             nilaitensi = 0;
             skorNadi = "C. Blue";
+        }
+        
+        //kesadaran
+        if (cmbKesadaran.getSelectedIndex() == 0) {
+            kesadaran = 0;
+            skorKesadaran = "";
+        } else if (cmbKesadaran.getSelectedIndex() == 1) {
+            kesadaran = 0;
+            skorKesadaran = "0";
+        } else if (cmbKesadaran.getSelectedIndex() == 2) {
+            kesadaran = 3;
+            skorKesadaran = "3";
+        } else if (cmbKesadaran.getSelectedIndex() == 3) {
+            kesadaran = 0;
+            skorKesadaran = "C. Blue";
         }
         
         //suhu
