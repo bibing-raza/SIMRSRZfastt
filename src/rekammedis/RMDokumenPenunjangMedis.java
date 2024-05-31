@@ -136,9 +136,10 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         PanelContent = new widget.panelisi();
         panelGlass10 = new widget.panelisi();
         panelGlass12 = new widget.panelisi();
-        PanelWall = new usu.widget.glass.PanelGlass();
         panelGlass13 = new widget.panelisi();
+        PanelWallpublic = new usu.widget.glass.PanelGlass();
         panelGlass14 = new widget.panelisi();
+        PanelWallwifi = new usu.widget.glass.PanelGlass();
         Scroll = new widget.ScrollPane();
         tbFile = new widget.Table();
         panelGlass11 = new widget.panelisi();
@@ -230,30 +231,42 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 160));
         panelGlass12.setLayout(new java.awt.BorderLayout());
 
-        PanelWall.setBackground(new java.awt.Color(29, 29, 29));
-        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/qrcode_upload_dok_jangmed.png"))); // NOI18N
-        PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
-        PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
-        PanelWall.setRound(false);
-        PanelWall.setToolTipText("");
-        PanelWall.setWarna(new java.awt.Color(110, 110, 110));
-        PanelWall.setLayout(null);
-        panelGlass12.add(PanelWall, java.awt.BorderLayout.CENTER);
-
-        panelGlass13.setBorder(null);
-        panelGlass13.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        panelGlass13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 2), "[ Koneksi Paket Data ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
+        panelGlass13.setToolTipText("");
         panelGlass13.setComponentPopupMenu(jPopupMenu1);
         panelGlass13.setName("panelGlass13"); // NOI18N
-        panelGlass13.setPreferredSize(new java.awt.Dimension(116, 160));
+        panelGlass13.setPreferredSize(new java.awt.Dimension(200, 200));
         panelGlass13.setLayout(new java.awt.BorderLayout());
+
+        PanelWallpublic.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWallpublic.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/qrcode_upload_dok_jangmed.png"))); // NOI18N
+        PanelWallpublic.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWallpublic.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWallpublic.setRound(false);
+        PanelWallpublic.setToolTipText("");
+        PanelWallpublic.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWallpublic.setLayout(null);
+        panelGlass13.add(PanelWallpublic, java.awt.BorderLayout.CENTER);
+
         panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
 
-        panelGlass14.setBorder(null);
-        panelGlass14.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        panelGlass14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 2), "[ Koneksi Wifi RS ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
+        panelGlass14.setToolTipText("");
         panelGlass14.setComponentPopupMenu(jPopupMenu1);
         panelGlass14.setName("panelGlass14"); // NOI18N
-        panelGlass14.setPreferredSize(new java.awt.Dimension(116, 160));
+        panelGlass14.setPreferredSize(new java.awt.Dimension(200, 200));
         panelGlass14.setLayout(new java.awt.BorderLayout());
+
+        PanelWallwifi.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWallwifi.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/qrcode_upload_dok_jangmed_wifi.png"))); // NOI18N
+        PanelWallwifi.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWallwifi.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWallwifi.setRound(false);
+        PanelWallwifi.setToolTipText("");
+        PanelWallwifi.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWallwifi.setLayout(null);
+        panelGlass14.add(PanelWallwifi, java.awt.BorderLayout.CENTER);
+
         panelGlass12.add(panelGlass14, java.awt.BorderLayout.EAST);
 
         panelGlass10.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
@@ -522,7 +535,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnUpload;
     private javax.swing.JMenuItem MnJenisDokumen;
     private widget.panelisi PanelContent;
-    private usu.widget.glass.PanelGlass PanelWall;
+    private usu.widget.glass.PanelGlass PanelWallpublic;
+    private usu.widget.glass.PanelGlass PanelWallwifi;
     private widget.ScrollPane Scroll;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;

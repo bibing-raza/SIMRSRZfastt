@@ -1496,7 +1496,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TkdPantau.setForeground(new java.awt.Color(0, 0, 0));
         TkdPantau.setName("TkdPantau"); // NOI18N
         panelGlass7.add(TkdPantau);
-        TkdPantau.setBounds(314, 38, 200, 23);
+        TkdPantau.setBounds(314, 38, 165, 23);
 
         BtnTotOutput.setForeground(new java.awt.Color(0, 0, 0));
         BtnTotOutput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1542,13 +1542,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel63.setText("Rg. Rawat : ");
         jLabel63.setName("jLabel63"); // NOI18N
         panelGlass7.add(jLabel63);
-        jLabel63.setBounds(517, 38, 75, 23);
+        jLabel63.setBounds(480, 38, 72, 23);
 
         TrgRawat.setEditable(false);
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         panelGlass7.add(TrgRawat);
-        TrgRawat.setBounds(593, 38, 210, 23);
+        TrgRawat.setBounds(553, 38, 250, 23);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Transfusi :");

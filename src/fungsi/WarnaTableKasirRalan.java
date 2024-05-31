@@ -30,12 +30,14 @@ public class WarnaTableKasirRalan extends DefaultTableCellRenderer {
             component.setBackground(new Color(204,255,204));
         }
         
-        if (!table.getValueAt(row, kolom2).toString().equals("")) {
-            component.setBackground(new Color(204,255,204));
-        }
-        
         if (!table.getValueAt(row, kolom3).toString().equals("0")) {
             component.setBackground(new Color(253, 215, 228));
+        }
+        
+        if (!table.getValueAt(row, kolom2).toString().equals("")) {
+            component.setBackground(new Color(204,255,204));
+        } else if (!table.getValueAt(row, kolom2).toString().equals("") && !table.getValueAt(row, kolom3).toString().equals("0")) {
+            component.setBackground(new Color(204,255,204));
         }
         return component;
     }
