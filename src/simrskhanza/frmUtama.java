@@ -395,6 +395,7 @@ import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
+import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMMonitoringEWSDewasa;
@@ -1009,6 +1010,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnMasterJenisDokumenJangMed = new widget.ButtonBig();
         btnAsesmenUlangResikoJatuhAnak = new widget.ButtonBig();
         btnMonitoringPediatricEWS = new widget.ButtonBig();
+        btnAsesmenRestrain = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6702,6 +6704,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMonitoringPediatricEWS);
 
+        btnAsesmenRestrain.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        btnAsesmenRestrain.setText("Asesmen Restrain Rawat Inap");
+        btnAsesmenRestrain.setIconTextGap(0);
+        btnAsesmenRestrain.setName("btnAsesmenRestrain"); // NOI18N
+        btnAsesmenRestrain.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenRestrain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenRestrainActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenRestrain);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6710,7 +6725,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/05/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01/06/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13221,6 +13236,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMonitoringPediatricEWSActionPerformed
 
+    private void btnAsesmenRestrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenRestrainActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenRestrain aplikasi = new RMAsesmenRestrain(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenRestrainActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13282,6 +13311,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenMedikAnakRanap;
     private widget.ButtonBig btnAsesmenMedikDewasaRanap;
     private widget.ButtonBig btnAsesmenMedikObstetriRalan;
+    private widget.ButtonBig btnAsesmenRestrain;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhAnak;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhDewasa;
     private widget.ButtonBig btnAssesmenGiziHarian;
@@ -15469,6 +15499,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
             
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnAsesmenRestrain);
+                jmlmenu++;
+            }
+            
             if (akses.getpermintaan_lab()== true) {
                 Panelmenu.add(btnSuratKonsulUnitRanap);
                 jmlmenu++;
@@ -16126,6 +16161,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getasesmen_medik_anak_ranap() == true) {
             Panelmenu.add(btnAsesmenMedikAnakRanap);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnAsesmenRestrain);
             jmlmenu++;
         }
         
@@ -18274,6 +18314,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getasesmen_medik_anak_ranap()== true) {
             if (btnAsesmenMedikAnakRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAsesmenMedikAnakRanap);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnAsesmenRestrain.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenRestrain);
                 jmlmenu++;
             }
         }
