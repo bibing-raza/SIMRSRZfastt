@@ -2658,7 +2658,21 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkResFarmakologiActionPerformed
 
     private void BtnObservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiActionPerformed
-        // TODO add your handling code here:
+        if (Sequel.cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMAsesmenRestrain");
+            RMObservasiRestrain form = new RMObservasiRestrain(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), TrgRawat.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else {
+            JOptionPane.showMessageDialog(null, "Sebelum mengisi observasi restrain, simpan dulu data asesmen restrain...!!!");
+            TabRawat.setSelectedIndex(0);
+        }
     }//GEN-LAST:event_BtnObservasiActionPerformed
 
     /**
@@ -3354,24 +3368,28 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
     }
     
     private void hapus() {
-        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (x == JOptionPane.YES_OPTION) {
-            user = "";
-            if (akses.getadmin() == true) {
-                user = "-";
-            } else {
-                user = akses.getkode();
+        if (Sequel.cariInteger("select count(-1) from observasi_restrain where no_rawat='" + TNoRw.getText() + "'") == 0) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                user = "";
+                if (akses.getadmin() == true) {
+                    user = "-";
+                } else {
+                    user = akses.getkode();
+                }
+
+                hapusDisimpan();
+                if (Sequel.queryu2tf("delete from asesmen_restrain where no_rawat=?", 1, new String[]{
+                    tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString()
+                }) == true) {
+                    tampil();
+                    emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                }
             }
-            
-            hapusDisimpan();
-            if (Sequel.queryu2tf("delete from asesmen_restrain where no_rawat=?", 1, new String[]{
-                tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString()
-            }) == true) {
-                tampil();                
-                emptTeks();
-            } else {
-                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Data observasi restrain sudah ada tersimpan, hapus dulu data observasinya..!!");
         }
     }
     

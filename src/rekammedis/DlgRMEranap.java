@@ -113,6 +113,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         TtglMasuk = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
         BtnAsesmenRestrain = new widget.ButtonBig();
+        BtnObservasiRestrain = new widget.ButtonBig();
         BtnAsesmenMedikDewasa = new widget.ButtonBig();
         BtnAsesmenMedikAnak = new widget.ButtonBig();
         BtnAsesmenKeperawatanDewasa = new widget.ButtonBig();
@@ -294,6 +295,20 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnAsesmenRestrain);
+
+        BtnObservasiRestrain.setForeground(new java.awt.Color(0, 0, 0));
+        BtnObservasiRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
+        BtnObservasiRestrain.setText("Observasi Restrain");
+        BtnObservasiRestrain.setToolTipText("");
+        BtnObservasiRestrain.setIconTextGap(0);
+        BtnObservasiRestrain.setName("BtnObservasiRestrain"); // NOI18N
+        BtnObservasiRestrain.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnObservasiRestrain.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnObservasiRestrainActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnObservasiRestrain);
 
         BtnAsesmenMedikDewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenMedikDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -1091,6 +1106,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenRestrainActionPerformed
 
+    private void BtnObservasiRestrainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiRestrainActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMObservasiRestrain form = new RMObservasiRestrain(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asesmen restrain belum tersimpan untuk pasien ini...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnObservasiRestrainActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1126,6 +1162,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnKonsul;
     private widget.ButtonBig BtnMonitoringEWSdewasa;
     private widget.ButtonBig BtnMonitoringPEWSanak;
+    private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPersetujuanTindakan;
@@ -1161,6 +1198,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());
         BtnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
         BtnAsesmenRestrain.setEnabled(akses.getcppt());
+        BtnObservasiRestrain.setEnabled(akses.getcppt());
         BtnCPPT.setEnabled(akses.getcppt());
         BtnResep.setEnabled(akses.getresep_dokter());
         BtnRingkasan.setEnabled(akses.getringkasanpulangranap());
