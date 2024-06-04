@@ -51,7 +51,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, pscppt;
     private ResultSet rs, rs1, rscppt;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private String nip1 = "", nip2 = "", dataAlasan = "", dataKonfirmasi = "", wktSimpan = "", enumAlasan = "";
+    private String nip1 = "", nip2 = "", dataKonfirmasi = "", wktSimpan = "";
     private int x = 0, i = 0, pilihan = 0;
 
     /** Creates new form DlgSpesialis
@@ -62,11 +62,10 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No. Rawat", "Kode Restrain", "No. RM", "Nama Pasien", "Ruang Perawatan", "Alasan Restrain", "Lokasi Pemasangan",
-            "Tgl. Pemasangan", "Jam", "Pemasangan Restrain", "Perawat/Bidan 1", "Tgl. Observasi", "Jam", "Edema", "Iritasi",
-            "Sirkulasi", "Kondisi", "Perawat/Bidan 2", 
-            "alasan_restrain", "alasan_restrain_lain", "tgl_lokasi", "jam_lokasi", "nip_petugas1", "tgl_observasi",
-            "jam_observasi", "nip_petugas2", "waktu_simpan"
+            "No. Rawat", "Kode Restrain", "No. RM", "Nama Pasien", "Ruang Perawatan", "Tgl. Pemasangan", "Jam", 
+            "Pemasangan Restrain", "Perawat/Bidan 1", "Tgl. Observasi", "Jam", "Edema", "Iritasi", "Sirkulasi", 
+            "Kondisi", "Perawat/Bidan 2", 
+            "tgl_lokasi", "jam_lokasi", "nip_petugas1", "tgl_observasi", "jam_observasi", "nip_petugas2", "waktu_simpan"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -75,44 +74,46 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         tbObservasi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObservasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 27; i++) {
+        for (int i = 0; i < 23; i++) {
             TableColumn column = tbObservasi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
                 column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(55);
             } else if (i == 3) {
                 column.setPreferredWidth(250);
             } else if (i == 4) {
                 column.setPreferredWidth(250);
             } else if (i == 5) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(100);
             } else if (i == 6) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(50);
             } else if (i == 7) {
-                column.setPreferredWidth(90);
-            } else if (i == 8) {
-                column.setPreferredWidth(50);
-            } else if (i == 9) {
                 column.setPreferredWidth(200);
-            } else if (i == 10) {
+            } else if (i == 8) {
                 column.setPreferredWidth(250);
-            } else if (i == 11) {
+            } else if (i == 9) {
                 column.setPreferredWidth(90);
-            } else if (i == 12) {
+            } else if (i == 10) {
                 column.setPreferredWidth(50);
+            } else if (i == 11) {
+                column.setPreferredWidth(50);
+            } else if (i == 12) {
+                column.setPreferredWidth(45);
             } else if (i == 13) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(50);
             } else if (i == 14) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(250);
             } else if (i == 15) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(250);
             } else if (i == 16) {
-                column.setPreferredWidth(250);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 17) {
-                column.setPreferredWidth(250);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 18) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -126,18 +127,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 22) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 23) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 24) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 25) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 26) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -195,7 +184,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         }
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
         
-        TalasanLain.setDocument(new batasInput((int) 250).getKata(TalasanLain));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -265,6 +253,8 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapusSemua = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         panelGlass10 = new widget.panelisi();
         jLabel3 = new widget.Label();
@@ -272,20 +262,15 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TNmPasien = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TtglLokasi = new widget.Tanggal();
-        cmbAlasan = new widget.ComboBox();
         jLabel8 = new widget.Label();
         cmbJam = new widget.ComboBox();
         cmbMnt = new widget.ComboBox();
         cmbDtk = new widget.ComboBox();
         TnmPetugas1 = new widget.TextBox();
         BtnPetugas1 = new widget.Button();
-        TalasanLain = new widget.TextBox();
         chkSaya1 = new widget.CekBox();
-        jLabel11 = new widget.Label();
         jLabel12 = new widget.Label();
         TkodeRestrain = new widget.TextBox();
-        jLabel13 = new widget.Label();
-        cmbLokasi = new widget.ComboBox();
         jLabel14 = new widget.Label();
         TlokasiPemasangan = new widget.TextBox();
         jLabel15 = new widget.Label();
@@ -344,6 +329,22 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         scrollPane4 = new widget.ScrollPane();
         Tinstruksi = new widget.TextArea();
 
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnHapusSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusSemua.setText("Hapus Semua Data");
+        MnHapusSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusSemua.setName("MnHapusSemua"); // NOI18N
+        MnHapusSemua.setPreferredSize(new java.awt.Dimension(145, 26));
+        MnHapusSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusSemuaActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapusSemua);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -358,7 +359,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass10.setName("panelGlass10"); // NOI18N
-        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 360));
+        panelGlass10.setPreferredSize(new java.awt.Dimension(44, 266));
         panelGlass10.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -385,30 +386,19 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         panelGlass10.add(TNoRM);
         TNoRM.setBounds(293, 10, 70, 23);
 
-        TtglLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
+        TtglLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
         TtglLokasi.setDisplayFormat("dd-MM-yyyy");
         TtglLokasi.setName("TtglLokasi"); // NOI18N
         TtglLokasi.setOpaque(false);
         TtglLokasi.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(TtglLokasi);
-        TtglLokasi.setBounds(170, 150, 90, 23);
-
-        cmbAlasan.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAlasan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1. Mencegah Jatuh", "2. Behavioral : gelisah/disorientasi", "3. Pengobatan prosedural", "4. Mencegah tercabutnya IV/CV lain/NGT/Cateter urin", "5. Lain-lain" }));
-        cmbAlasan.setName("cmbAlasan"); // NOI18N
-        cmbAlasan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbAlasanActionPerformed(evt);
-            }
-        });
-        panelGlass10.add(cmbAlasan);
-        cmbAlasan.setBounds(170, 66, 300, 23);
+        TtglLokasi.setBounds(170, 66, 90, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Jam Pemasangan Restrain :");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass10.add(jLabel8);
-        jLabel8.setBounds(260, 150, 160, 23);
+        jLabel8.setBounds(260, 66, 150, 23);
 
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -419,7 +409,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbJam);
-        cmbJam.setBounds(425, 150, 45, 23);
+        cmbJam.setBounds(415, 66, 45, 23);
 
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -430,7 +420,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbMnt);
-        cmbMnt.setBounds(476, 150, 45, 23);
+        cmbMnt.setBounds(466, 66, 45, 23);
 
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -441,13 +431,13 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbDtk);
-        cmbDtk.setBounds(527, 150, 45, 23);
+        cmbDtk.setBounds(517, 66, 45, 23);
 
         TnmPetugas1.setEditable(false);
         TnmPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas1.setName("TnmPetugas1"); // NOI18N
         panelGlass10.add(TnmPetugas1);
-        TnmPetugas1.setBounds(170, 206, 360, 23);
+        TnmPetugas1.setBounds(170, 122, 360, 23);
 
         BtnPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -460,17 +450,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(BtnPetugas1);
-        BtnPetugas1.setBounds(535, 206, 28, 23);
-
-        TalasanLain.setForeground(new java.awt.Color(0, 0, 0));
-        TalasanLain.setName("TalasanLain"); // NOI18N
-        TalasanLain.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TalasanLainKeyPressed(evt);
-            }
-        });
-        panelGlass10.add(TalasanLain);
-        TalasanLain.setBounds(170, 94, 558, 23);
+        BtnPetugas1.setBounds(535, 122, 28, 23);
 
         chkSaya1.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya1.setForeground(new java.awt.Color(0, 0, 0));
@@ -486,44 +466,26 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(chkSaya1);
-        chkSaya1.setBounds(570, 206, 90, 23);
-
-        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel11.setText("Alasan Dilakukan Restrain :");
-        jLabel11.setName("jLabel11"); // NOI18N
-        panelGlass10.add(jLabel11);
-        jLabel11.setBounds(2, 66, 160, 23);
+        chkSaya1.setBounds(570, 122, 90, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Kode Restrain :");
         jLabel12.setName("jLabel12"); // NOI18N
         panelGlass10.add(jLabel12);
-        jLabel12.setBounds(472, 66, 110, 23);
+        jLabel12.setBounds(472, 178, 110, 23);
 
         TkodeRestrain.setEditable(false);
         TkodeRestrain.setForeground(new java.awt.Color(0, 0, 0));
         TkodeRestrain.setHighlighter(null);
         TkodeRestrain.setName("TkodeRestrain"); // NOI18N
         panelGlass10.add(TkodeRestrain);
-        TkodeRestrain.setBounds(588, 66, 140, 23);
-
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Lokasi Pemasangan Restrain :");
-        jLabel13.setName("jLabel13"); // NOI18N
-        panelGlass10.add(jLabel13);
-        jLabel13.setBounds(2, 122, 160, 23);
-
-        cmbLokasi.setForeground(new java.awt.Color(0, 0, 0));
-        cmbLokasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Pergelangan tangan kanan/kiri", "Pergelangan kaki kanan/kiri", "Badan" }));
-        cmbLokasi.setName("cmbLokasi"); // NOI18N
-        panelGlass10.add(cmbLokasi);
-        cmbLokasi.setBounds(170, 122, 187, 23);
+        TkodeRestrain.setBounds(588, 178, 140, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tgl. Pemasangan Restrain :");
         jLabel14.setName("jLabel14"); // NOI18N
         panelGlass10.add(jLabel14);
-        jLabel14.setBounds(2, 150, 160, 23);
+        jLabel14.setBounds(2, 66, 160, 23);
 
         TlokasiPemasangan.setForeground(new java.awt.Color(0, 0, 0));
         TlokasiPemasangan.setName("TlokasiPemasangan"); // NOI18N
@@ -533,39 +495,39 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(TlokasiPemasangan);
-        TlokasiPemasangan.setBounds(170, 178, 558, 23);
+        TlokasiPemasangan.setBounds(170, 94, 558, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Lokasi Pemasangan Restrain :");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass10.add(jLabel15);
-        jLabel15.setBounds(2, 178, 160, 23);
+        jLabel15.setBounds(2, 94, 160, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Nama Perawat/Bidan 1 :");
         jLabel16.setName("jLabel16"); // NOI18N
         panelGlass10.add(jLabel16);
-        jLabel16.setBounds(2, 206, 160, 23);
+        jLabel16.setBounds(2, 122, 160, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tgl. Observasi Lokasi :");
         jLabel17.setName("jLabel17"); // NOI18N
         panelGlass10.add(jLabel17);
-        jLabel17.setBounds(2, 234, 160, 23);
+        jLabel17.setBounds(2, 150, 160, 23);
 
-        TtglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
+        TtglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
         TtglObservasi.setDisplayFormat("dd-MM-yyyy");
         TtglObservasi.setName("TtglObservasi"); // NOI18N
         TtglObservasi.setOpaque(false);
         TtglObservasi.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(TtglObservasi);
-        TtglObservasi.setBounds(170, 234, 90, 23);
+        TtglObservasi.setBounds(170, 150, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jam Observasi Lokasi :");
         jLabel9.setName("jLabel9"); // NOI18N
         panelGlass10.add(jLabel9);
-        jLabel9.setBounds(260, 234, 160, 23);
+        jLabel9.setBounds(260, 150, 160, 23);
 
         cmbJam1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -576,7 +538,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbJam1);
-        cmbJam1.setBounds(425, 234, 45, 23);
+        cmbJam1.setBounds(425, 150, 45, 23);
 
         cmbMnt1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -587,7 +549,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbMnt1);
-        cmbMnt1.setBounds(476, 234, 45, 23);
+        cmbMnt1.setBounds(476, 150, 45, 23);
 
         cmbDtk1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -598,49 +560,49 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(cmbDtk1);
-        cmbDtk1.setBounds(527, 234, 45, 23);
+        cmbDtk1.setBounds(527, 150, 45, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Edema :");
         jLabel18.setName("jLabel18"); // NOI18N
         panelGlass10.add(jLabel18);
-        jLabel18.setBounds(2, 262, 160, 23);
+        jLabel18.setBounds(2, 178, 160, 23);
 
         cmbEdema.setForeground(new java.awt.Color(0, 0, 0));
         cmbEdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbEdema.setName("cmbEdema"); // NOI18N
         panelGlass10.add(cmbEdema);
-        cmbEdema.setBounds(170, 262, 65, 23);
+        cmbEdema.setBounds(170, 178, 65, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Iritasi :");
         jLabel20.setName("jLabel20"); // NOI18N
         panelGlass10.add(jLabel20);
-        jLabel20.setBounds(242, 262, 60, 23);
+        jLabel20.setBounds(235, 178, 45, 23);
 
         cmbIritasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbIritasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbIritasi.setName("cmbIritasi"); // NOI18N
         panelGlass10.add(cmbIritasi);
-        cmbIritasi.setBounds(308, 262, 65, 23);
+        cmbIritasi.setBounds(285, 178, 65, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Sirkulasi :");
         jLabel22.setName("jLabel22"); // NOI18N
         panelGlass10.add(jLabel22);
-        jLabel22.setBounds(372, 262, 70, 23);
+        jLabel22.setBounds(352, 178, 55, 23);
 
         cmbSirkulasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbSirkulasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Baik", "Tidak" }));
         cmbSirkulasi.setName("cmbSirkulasi"); // NOI18N
         panelGlass10.add(cmbSirkulasi);
-        cmbSirkulasi.setBounds(449, 262, 65, 23);
+        cmbSirkulasi.setBounds(411, 178, 65, 23);
 
         jLabel23.setForeground(new java.awt.Color(0, 0, 0));
         jLabel23.setText("Kondisi :");
         jLabel23.setName("jLabel23"); // NOI18N
         panelGlass10.add(jLabel23);
-        jLabel23.setBounds(2, 290, 160, 23);
+        jLabel23.setBounds(2, 206, 160, 23);
 
         Tkondisi.setForeground(new java.awt.Color(0, 0, 0));
         Tkondisi.setName("Tkondisi"); // NOI18N
@@ -650,19 +612,19 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(Tkondisi);
-        Tkondisi.setBounds(170, 290, 558, 23);
+        Tkondisi.setBounds(170, 206, 558, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Nama Perawat/Bidan 2 :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelGlass10.add(jLabel24);
-        jLabel24.setBounds(2, 318, 160, 23);
+        jLabel24.setBounds(2, 234, 160, 23);
 
         TnmPetugas2.setEditable(false);
         TnmPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas2.setName("TnmPetugas2"); // NOI18N
         panelGlass10.add(TnmPetugas2);
-        TnmPetugas2.setBounds(170, 318, 360, 23);
+        TnmPetugas2.setBounds(170, 234, 360, 23);
 
         BtnPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -675,7 +637,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(BtnPetugas2);
-        BtnPetugas2.setBounds(535, 318, 28, 23);
+        BtnPetugas2.setBounds(535, 234, 28, 23);
 
         chkSaya2.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya2.setForeground(new java.awt.Color(0, 0, 0));
@@ -691,7 +653,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(chkSaya2);
-        chkSaya2.setBounds(570, 318, 90, 23);
+        chkSaya2.setBounds(570, 234, 90, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Ruang Rawat :");
@@ -715,6 +677,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbObservasi.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbObservasi.setComponentPopupMenu(jPopupMenu1);
         tbObservasi.setName("tbObservasi"); // NOI18N
         tbObservasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -884,7 +847,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -898,7 +861,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1094,7 +1057,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                 if (akses.getadmin() == true) {
                     hapus();
                 } else {
-                    if (nip1.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 50).toString())) {
+                    if (nip1.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 18).toString())) {
                         hapus();
                     } else {
                         JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat/bidan yang memasang restrain..!!");
@@ -1125,7 +1088,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                 if (akses.getadmin() == true) {
                     ganti();
                 } else {
-                    if (nip1.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 50).toString())) {
+                    if (nip1.equals(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 18).toString())) {
                         ganti();
                     } else {
                         JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat/bidan yang memasang restrain..!!");
@@ -1240,6 +1203,9 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtkMouseReleased
 
     private void BtnPetugas1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugas1ActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
+        
         pilihan = 1;
         akses.setform("RMObservasiRestrain");
         petugas.isCek();
@@ -1252,8 +1218,26 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (TNoRW.getText().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
+        } else if (Sequel.cariInteger("select count(-1) from observasi_restrain where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data observasi restrain pasien ini belum ada tersimpan...!!!!");
         } else {
-            
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());            
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TNmPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+
+            Valid.MyReport("rptObservasiRestrain.jasper", "report", "::[ Laporan Asesmen Restrain hal. 2 ]::",
+                    "select o.*, date_format(o.tgl_lokasi,'%d/%m/%Y') tgllok, time_format(o.jam_lokasi,'%H:%i') jamlok, p1.nama petugas1, "
+                    + "date_format(o.tgl_observasi,'%d/%m/%Y') tglobs, time_format(o.jam_observasi,'%H:%i') jamobs, p2.nama petugas2 from observasi_restrain o "
+                    + "inner join pegawai p1 on p1.nik=o.nip_petugas1 inner join pegawai p2 on p2.nik=o.nip_petugas2 "
+                    + "WHERE o.no_rawat='" + TNoRW.getText() + "' order by o.tgl_lokasi, o.jam_lokasi", param);
+
+            emptTeks();
+            tampil();
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -1305,9 +1289,10 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_chkSaya1ActionPerformed
 
     private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         ChkAccor.setSelected(false);
         isMenu();
+        
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         akses.setform("RMObservasiRestrain");
         DlgNotepad form = new DlgNotepad(null, false);
         form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -1330,6 +1315,9 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbDtk1MouseReleased
 
     private void BtnPetugas2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugas2ActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
+        
         pilihan = 2;
         akses.setform("RMObservasiRestrain");
         petugas.isCek();
@@ -1358,11 +1346,10 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         if (TNoRW.getText().trim().equals("")) {
             Valid.textKosong(TNoRW, "Pasien");
         } else {
-            cekData();
-            if (Sequel.menyimpantf("observasi_restrain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18, new String[]{
-                TNoRW.getText(), TkodeRestrain.getText(), TrgRawat.getText(), enumAlasan, TalasanLain.getText(), cmbLokasi.getSelectedItem().toString(), 
-                Valid.SetTgl(TtglLokasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
-                TlokasiPemasangan.getText(), nip1, Valid.SetTgl(TtglObservasi.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+            if (Sequel.menyimpantf("observasi_restrain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 15, new String[]{
+                TNoRW.getText(), TkodeRestrain.getText(), TrgRawat.getText(), Valid.SetTgl(TtglLokasi.getSelectedItem() + ""), 
+                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TlokasiPemasangan.getText(), nip1,
+                Valid.SetTgl(TtglObservasi.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                 cmbEdema.getSelectedItem().toString(), cmbIritasi.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), Tkondisi.getText(), 
                 nip2, Sequel.cariIsi("select now()")
             }) == true) {
@@ -1374,21 +1361,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSimpanActionPerformed
 
-    private void cmbAlasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAlasanActionPerformed
-        TalasanLain.setText("");
-        
-        if (cmbAlasan.getSelectedIndex() == 5) {
-            TalasanLain.setEnabled(true);
-            TalasanLain.requestFocus();
-        } else {
-            TalasanLain.setEnabled(false);
-        }
-    }//GEN-LAST:event_cmbAlasanActionPerformed
-
-    private void TalasanLainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TalasanLainKeyPressed
-        Valid.pindah(evt, TalasanLain, cmbLokasi);
-    }//GEN-LAST:event_TalasanLainKeyPressed
-
     private void TlokasiPemasanganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlokasiPemasanganKeyPressed
         Valid.pindah(evt, TtglLokasi, BtnPetugas1);
     }//GEN-LAST:event_TlokasiPemasanganKeyPressed
@@ -1396,6 +1368,27 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private void TkondisiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkondisiKeyPressed
         Valid.pindah(evt, cmbSirkulasi, BtnPetugas2);
     }//GEN-LAST:event_TkondisiKeyPressed
+
+    private void MnHapusSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusSemuaActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbObservasi.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from observasi_restrain where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Tidak ada data observasi restrain yang akan dihapus...!!!!");
+        } else {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah semua data observasi restrain akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.queryu2tf("delete from observasi_restrain where no_rawat=?", 1, new String[]{TNoRW.getText()
+                }) == true) {
+                    TCari.setText(TNoRW.getText());
+                    tampil();
+                    emptTeks();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                }
+            }
+        }
+    }//GEN-LAST:event_MnHapusSemuaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1430,6 +1423,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormMenu;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnHapusSemua;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll3;
@@ -1437,7 +1431,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
-    private widget.TextBox TalasanLain;
     private widget.TextArea Thasil;
     private widget.TextArea Tinstruksi;
     private widget.TextBox TkodeRestrain;
@@ -1450,21 +1443,17 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private widget.Tanggal TtglObservasi;
     private widget.CekBox chkSaya1;
     private widget.CekBox chkSaya2;
-    private widget.ComboBox cmbAlasan;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbDtk1;
     private widget.ComboBox cmbEdema;
     private widget.ComboBox cmbIritasi;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbJam1;
-    private widget.ComboBox cmbLokasi;
     private widget.ComboBox cmbMnt;
     private widget.ComboBox cmbMnt1;
     private widget.ComboBox cmbSirkulasi;
     private widget.InternalFrame internalFrame1;
-    private widget.Label jLabel11;
     private widget.Label jLabel12;
-    private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
     private widget.Label jLabel16;
@@ -1483,6 +1472,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
@@ -1495,7 +1485,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        dataAlasan = "";
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("select o.*, p.no_rkm_medis, p.nm_pasien, date_format(o.tgl_lokasi,'%d-%m-%Y') tgllok, "
@@ -1507,7 +1496,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                     + "o.tgl_lokasi between ? and ? and p.no_rkm_medis like ? or "
                     + "o.tgl_lokasi between ? and ? and p.nm_pasien like ? or "
                     + "o.tgl_lokasi between ? and ? and pg1.nama like ? or "
-                    + "o.tgl_lokasi between ? and ? and pg2.nama like ? order by o.waktu_simpan");
+                    + "o.tgl_lokasi between ? and ? and pg2.nama like ? order by o.tgl_lokasi, o.jam_lokasi");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1526,28 +1515,12 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                 ps.setString(15, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (rs.getString("alasan_restrain").equals("0")) {
-                        dataAlasan = "-";
-                    } else if (rs.getString("alasan_restrain").equals("1")) {
-                        dataAlasan = "1. Mencegah Jatuh";
-                    } else if (rs.getString("alasan_restrain").equals("2")) {
-                        dataAlasan = "2. Behavioral : gelisah/disorientasi";
-                    } else if (rs.getString("alasan_restrain").equals("3")) {
-                        dataAlasan = "3. Pengobatan prosedural";
-                    } else if (rs.getString("alasan_restrain").equals("4")) {
-                        dataAlasan = "4. Mencegah tercabutnya IV/CV lain/NGT/Cateter urin";
-                    } else if (rs.getString("alasan_restrain").equals("5")) {
-                        dataAlasan = "5. Lain-lain (" + rs.getString("alasan_restrain_lain") + ")";
-                    }
-
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("kd_restrain"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        rs.getString("ruang_rawat"),
-                        dataAlasan,
-                        rs.getString("lokasi_pemasangan"),
+                        rs.getString("ruang_rawat"),                        
                         rs.getString("tgllok"),
                         rs.getString("jamlok"),
                         rs.getString("pemasangan_restrain"),
@@ -1559,8 +1532,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                         rs.getString("sirkulasi"),
                         rs.getString("kondisi"),
                         rs.getString("petugas2"),
-                        rs.getString("alasan_restrain"),
-                        rs.getString("alasan_restrain_lain"),
                         rs.getString("tgl_lokasi"),
                         rs.getString("jam_lokasi"),
                         rs.getString("nip_petugas1"),
@@ -1587,10 +1558,6 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        cmbAlasan.setSelectedIndex(0);
-        TalasanLain.setText("");
-        TalasanLain.setEnabled(false);
-        cmbLokasi.setSelectedIndex(0);
         TtglLokasi.setDate(new Date());
         cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
@@ -1615,19 +1582,32 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     private void getData() {
         nip1 = "";
         nip2 = "";
-        enumAlasan = "";
         wktSimpan = "";
-
+        
         if (tbObservasi.getSelectedRow() != -1) {
-            TNoRW.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 1).toString());
+            TNoRW.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 0).toString());
             TNoRM.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 2).toString());
-//            Valid.SetTgl(Ttgl, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 9).toString());
-            cmbAlasan.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 5).toString());
-            cmbJam.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 10).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 10).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 10).toString().substring(6, 8));
-            nip1 = tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 11).toString();
-            wktSimpan = tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 12).toString();
+            TNmPasien.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 3).toString());
+            TrgRawat.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 4).toString());
+            TkodeRestrain.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 1).toString());            
+            Valid.SetTgl(TtglLokasi, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 16).toString());
+            cmbJam.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 17).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 17).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 17).toString().substring(6, 8));
+            TlokasiPemasangan.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 7).toString());
+            nip1 = tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 18).toString();
+            TnmPetugas1.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 8).toString());
+            Valid.SetTgl(TtglObservasi, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 19).toString());
+            cmbJam1.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 20).toString().substring(0, 2));
+            cmbMnt1.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 20).toString().substring(3, 5));
+            cmbDtk1.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 20).toString().substring(6, 8));
+            cmbEdema.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 11).toString());
+            cmbIritasi.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 12).toString());
+            cmbSirkulasi.setSelectedItem(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 13).toString());
+            Tkondisi.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 14).toString());
+            nip2 = tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 21).toString();
+            TnmPetugas2.setText(tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 15).toString());
+            wktSimpan = tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 22).toString();
         }
     }
     
@@ -1635,6 +1615,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
        BtnSimpan.setEnabled(akses.getcppt());
        BtnHapus.setEnabled(akses.getcppt());
        BtnEdit.setEnabled(akses.getcppt());
+       MnHapusSemua.setEnabled(akses.getadmin());
     }
     
     public void setData(String norw, String norm, String nmPasien, String nmunit) {
@@ -1799,50 +1780,11 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         }
     }
     
-    private void cekData() {
-        enumAlasan = "";
-        if (cmbAlasan.getSelectedIndex() == 0) {
-            enumAlasan = "0";
-        } else if (cmbAlasan.getSelectedIndex() == 1) {
-            enumAlasan = "1";
-        } else if (cmbAlasan.getSelectedIndex() == 2) {
-            enumAlasan = "2";
-        } else if (cmbAlasan.getSelectedIndex() == 3) {
-            enumAlasan = "3";
-        } else if (cmbAlasan.getSelectedIndex() == 4) {
-            enumAlasan = "4";
-        } else if (cmbAlasan.getSelectedIndex() == 5) {
-            enumAlasan = "5";
-        }
-    }
-    
-    private void dataCek() {
-        if (enumAlasan.equals("0")) {
-            cmbAlasan.setSelectedIndex(0);
-            TalasanLain.setEnabled(false);
-        } else if (enumAlasan.equals("1")) {
-            cmbAlasan.setSelectedIndex(1);
-            TalasanLain.setEnabled(false);
-        } else if (enumAlasan.equals("2")) {
-            cmbAlasan.setSelectedIndex(2);
-            TalasanLain.setEnabled(false);
-        } else if (enumAlasan.equals("3")) {
-            cmbAlasan.setSelectedIndex(3);
-            TalasanLain.setEnabled(false);
-        } else if (enumAlasan.equals("4")) {
-            cmbAlasan.setSelectedIndex(4);
-            TalasanLain.setEnabled(false);
-        } else if (enumAlasan.equals("5")) {
-            cmbAlasan.setSelectedIndex(5);
-            TalasanLain.setEnabled(true);
-        }
-    }
-    
     private void hapus() {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from observasi_restrain where waktu_simpan=?", 1, new String[]{
-                tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 0).toString()
+                tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 22).toString()
             }) == true) {
                 tampil();                
                 emptTeks();
@@ -1853,15 +1795,14 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
     }
     
     private void ganti() {
-        cekData();
-        if (Sequel.mengedittf("observasi_restrain", "waktu_simpan=?", "alasan_restrain=?, alasan_restrain_lain=?, lokasi_pemasangan=?, tgl_lokasi=?, "
-                + "jam_lokasi=?, pemasangan_restrain=?, nip_petugas1=?, tgl_observasi=?, jam_observasi=?, edema=?, iritasi=?, sirkulasi=?, kondisi=?, "
-                + "nip_petugas2=?", 15, new String[]{
-                    enumAlasan, TalasanLain.getText(), cmbLokasi.getSelectedItem().toString(),
+        if (Sequel.mengedittf("observasi_restrain", "waktu_simpan=?", "tgl_lokasi=?, "
+                + "jam_lokasi=?, pemasangan_restrain=?, nip_petugas1=?, tgl_observasi=?, jam_observasi=?, edema=?, "
+                + "iritasi=?, sirkulasi=?, kondisi=?, nip_petugas2=?", 12, new String[]{
                     Valid.SetTgl(TtglLokasi.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                    TlokasiPemasangan.getText(), nip1, Valid.SetTgl(TtglObservasi.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                    cmbEdema.getSelectedItem().toString(), cmbIritasi.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), Tkondisi.getText(),
-                    nip2, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 0).toString()
+                    TlokasiPemasangan.getText(), nip1, Valid.SetTgl(TtglObservasi.getSelectedItem() + ""),
+                    cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                    cmbEdema.getSelectedItem().toString(), cmbIritasi.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(),
+                    Tkondisi.getText(), nip2, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 22).toString()
                 }) == true) {
 
             TCari.setText(TNoRW.getText());

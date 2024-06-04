@@ -583,7 +583,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -597,7 +597,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1245,7 +1245,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglPengkajian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2024" }));
+        tglPengkajian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
         tglPengkajian.setDisplayFormat("dd-MM-yyyy");
         tglPengkajian.setName("tglPengkajian"); // NOI18N
         tglPengkajian.setOpaque(false);
@@ -1886,7 +1886,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1901,7 +1901,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2507,6 +2507,9 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCloseIn10ActionPerformed
 
     private void BtnNotepadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNotepadActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
+        
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         akses.setform("RMAsesmenRestrain");
         DlgNotepad form = new DlgNotepad(null, false);
@@ -2551,6 +2554,9 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_TResFarmakologiKeyPressed
 
     private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugasActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
+
         akses.setform("RMAsesmenRestrain");
         petugas.isCek();
         petugas.setSize(983, internalFrame1.getHeight() - 40);
@@ -2658,6 +2664,9 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
     }//GEN-LAST:event_ChkResFarmakologiActionPerformed
 
     private void BtnObservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnObservasiActionPerformed
+        ChkAccor.setSelected(false);
+        isMenu();
+
         if (Sequel.cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") > 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("RMAsesmenRestrain");

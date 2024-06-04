@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="209bdff7-bf7c-431f-b868-7e2dce61f375">
 	<property name="ireport.zoom" value="1.652892561983475"/>
-	<property name="ireport.x" value="58"/>
-	<property name="ireport.y" value="447"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="sik_test"/>
@@ -68,72 +68,79 @@
 	<title>
 		<band height="722">
 			<staticText>
-				<reportElement x="266" y="17" width="52" height="11">
+				<reportElement x="266" y="17" width="52" height="11" uuid="d1ab1f4c-0913-49e1-ab4a-790e5ae4a46d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="318" y="17" width="7" height="11">
+				<reportElement x="318" y="17" width="7" height="11" uuid="565a6db6-9357-4a65-af2f-c2a0afeb4ab1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="318" y="28" width="7" height="11">
+				<reportElement x="318" y="28" width="7" height="11" uuid="9c561203-20a7-42a7-b853-018fe5917bdf">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="266" y="28" width="52" height="11">
+				<reportElement x="266" y="28" width="52" height="11" uuid="89edb4cc-aa8d-4cf9-a672-619f2af1dde4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="266" y="39" width="52" height="11">
+				<reportElement x="266" y="39" width="52" height="11" uuid="10502f45-a558-48b4-b186-ddbf2cddd7f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="318" y="39" width="7" height="11">
+				<reportElement x="318" y="39" width="7" height="11" uuid="767e043b-eca9-442d-b5d0-a9faadba0be2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
-				<reportElement x="10" y="14" width="35" height="40"/>
-				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
+				<reportElement x="10" y="14" width="35" height="40" uuid="b31097ea-ff92-433a-a7e6-9bc6a74ed80e"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement mode="Opaque" x="0" y="55" width="519" height="17" backcolor="#F0F0DC"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement mode="Opaque" x="0" y="55" width="519" height="17" backcolor="#F0F0DC" uuid="badbe491-58db-4150-918f-52949216533e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[ASESMEN RESTRAIN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="72" width="519" height="1">
+				<reportElement x="0" y="72" width="519" height="1" uuid="35f301a1-fe71-4dab-a16e-3cdd2d8c8d1b">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -141,36 +148,39 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="51" y="21" width="154" height="12">
+				<reportElement x="51" y="21" width="154" height="12" uuid="2fc7ec55-353c-4bf2-9f8d-97b3e290a0e7">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RUMAH SAKIT UMUM DAERAH]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="51" y="34" width="154" height="12">
+				<reportElement x="51" y="34" width="154" height="12" uuid="2e5f47d6-5cf2-4c68-8aa9-e0dca2fdfbb0">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="9" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="475" y="0" width="45" height="13">
+				<reportElement x="475" y="0" width="45" height="13" uuid="fa7ed1b2-a717-45a2-b14b-6a67e61fb4a6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RM 19.7]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="55" width="519" height="1">
+				<reportElement x="0" y="55" width="519" height="1" uuid="4ce94961-0ff9-4772-bfee-63e89a29ccec">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -178,13 +188,13 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="261" y="12" width="1" height="43"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="261" y="12" width="1" height="43" uuid="8909f7ea-1add-4569-98b7-6e580f4fd2df"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="12" width="519" height="1">
+				<reportElement x="0" y="12" width="519" height="1" uuid="b4db4dba-aa0e-491a-b261-f176189fb6cc">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -192,212 +202,231 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="12" width="1" height="703"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="12" width="1" height="703" uuid="7ca49776-f9f4-48ba-acd6-d30f2781f07d"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="12" width="1" height="703"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="12" width="1" height="703" uuid="784f2d72-c8ef-4692-8c2e-c2c02d65c4af"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<rectangle>
-				<reportElement mode="Transparent" x="113" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="88" y="88" width="11" height="11" uuid="50db4847-6071-4f92-baa8-d60412996c33"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="325" y="17" width="191" height="11"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="325" y="17" width="191" height="11" uuid="18f84d05-2dd9-4fa4-a309-21f2c7a98173"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{norm}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{norm}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="325" y="28" width="191" height="11"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="325" y="28" width="191" height="11" uuid="c49c92b5-0045-456f-a8a0-8dc6d9d6943c"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{nmpasien}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{nmpasien}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="325" y="39" width="191" height="11"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="325" y="39" width="191" height="11" uuid="b3f3d00e-c789-4c99-9291-9cfe62a37d95"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{tgllahir}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{tgllahir}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="0" y="73" width="519" height="12">
+				<reportElement x="0" y="73" width="519" height="12" uuid="d6c5fdfd-f2c4-455a-80c6-b7b59a34c213">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[PENGKAJIAN DAN MENTAL]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="88" width="93" height="12">
+				<reportElement x="10" y="88" width="70" height="12" uuid="1fb3f9fc-000e-4689-b951-ce8b9143e21e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Kesadaran]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="88" y="88" width="11" height="11" uuid="f39cfd7b-edc7-4dcf-8938-a9e08cb3b5c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{compos}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{compos}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="127" y="88" width="58" height="12">
+				<reportElement x="102" y="88" width="58" height="12" uuid="dd053f21-4790-4087-99e5-1a4add294bed">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Composmentis]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="192" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="167" y="88" width="11" height="11" uuid="bc82dc23-8a6a-421e-9c51-eb8cb795b79d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{apatis}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{apatis}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="206" y="88" width="29" height="12">
+				<reportElement x="181" y="88" width="29" height="12" uuid="e38a521c-873b-4d3d-b687-307833a6990d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Apatis]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="192" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="167" y="88" width="11" height="11" uuid="50ed145a-3ebc-4585-a0d6-029288228b89"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="240" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="215" y="88" width="11" height="11" uuid="8b668142-408f-4ea1-bf05-9b26be55ad23"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{delirium}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{delirium}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="240" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="215" y="88" width="11" height="11" uuid="c69d47b3-d433-4128-9e64-0b41a588bd66"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="254" y="88" width="35" height="12">
+				<reportElement x="229" y="88" width="35" height="12" uuid="d5d33f0f-3300-476b-bd48-c7310cf181bc">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Delirium]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="309" y="88" width="41" height="12">
+				<reportElement x="284" y="88" width="41" height="12" uuid="4d1d3a95-bc20-4403-ba5b-76b4e4309c8f">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Somnolen]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="295" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="270" y="88" width="11" height="11" uuid="1968fbd3-028f-45f0-8e4e-8a9144a0593a"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="295" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="270" y="88" width="11" height="11" uuid="35371bd8-aba4-4da2-8da8-1f7b4e068d93"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{somnolen}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{somnolen}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="369" y="88" width="25" height="12">
+				<reportElement x="344" y="88" width="25" height="12" uuid="d1ecd8dc-7acd-4fb2-9774-8721628fc621">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Sopor]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="355" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="330" y="88" width="11" height="11" uuid="de61d802-83a1-4eb2-b9ee-2030e43ef565"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{sopor}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{sopor}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="355" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="330" y="88" width="11" height="11" uuid="a4dc1cba-011e-40fe-a9a5-9b6159b931c6"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="399" y="88" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="374" y="88" width="11" height="11" uuid="dd87b2cd-5397-45e1-8a14-8d6202e5c484"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{koma}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{koma}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="413" y="88" width="30" height="12">
+				<reportElement x="388" y="88" width="30" height="12" uuid="c0a5bcea-70ce-447e-a587-3ba3d91ddae6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Koma]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="399" y="88" width="11" height="11"/>
+				<reportElement mode="Transparent" x="374" y="88" width="11" height="11" uuid="b54a2488-37f8-46be-9584-8ad36cec6006"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="50" y="154" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="50" y="154" width="11" height="11" uuid="5089f5fb-a52b-4bc2-96ca-03e0dce65516"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{gelisah}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{gelisah}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="64" y="154" width="354" height="12">
+				<reportElement x="64" y="154" width="354" height="12" uuid="852646b7-ce4f-4965-ab50-43da80dc5803">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pasien Gelisah Atau Delirium Dan Berontak]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="50" y="154" width="11" height="11"/>
+				<reportElement mode="Transparent" x="50" y="154" width="11" height="11" uuid="e7867dd8-5fcb-44cc-ab9d-65a77111e441"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="0" y="714" width="519" height="1">
+				<reportElement x="0" y="714" width="519" height="1" uuid="c8d08801-65e0-4381-8ff0-54d783f348e9">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -405,7 +434,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="85" width="519" height="1">
+				<reportElement x="0" y="85" width="519" height="1" uuid="a26aecb8-40af-4815-bef3-b0adfff51ede">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -413,153 +442,169 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="102" y="88" width="8" height="12">
+				<reportElement x="79" y="88" width="8" height="12" uuid="68558b1a-9c94-44b2-ac54-e59a8fdc3846">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="101" width="93" height="12">
+				<reportElement x="10" y="101" width="70" height="12" uuid="197dcef4-7a4e-46a0-8abb-6da2f88de9c5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[GCS]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="101" width="8" height="12">
+				<reportElement x="79" y="101" width="8" height="12" uuid="c5d01fc9-34c6-4fc8-b474-3e8e54600393">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="101" width="268" height="12"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="88" y="101" width="268" height="12" uuid="5ebb0c9b-4440-4d1c-89dd-7c8c76114710"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{gcs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{gcs}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="114" width="93" height="12">
+				<reportElement x="10" y="114" width="70" height="12" uuid="318daa1b-4a81-4ab5-83d2-7a8aa0d067e3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[TD]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="114" width="8" height="12">
+				<reportElement x="79" y="114" width="8" height="12" uuid="9d36a59a-c3ba-469c-a519-ed2625adb704">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="114" width="403" height="12"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="88" y="114" width="424" height="12" uuid="6e17fc84-d454-467f-a9bc-4fa887654311"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{tensi}+"        Nadi : "+$P{nadi}+"       Suhu : "+$P{suhu}+"        Pernapasan : "+$P{napas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{tensi}+"        Nadi : "+$P{nadi}+"       Suhu : "+$P{suhu}+"        Pernapasan : "+$P{napas}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="127" width="93" height="12">
+				<reportElement x="10" y="127" width="70" height="12" uuid="117272a2-29e5-4c5a-aa5e-6c3dea23bad0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Skala Nyeri]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="127" width="8" height="12">
+				<reportElement x="79" y="127" width="8" height="12" uuid="18596694-5ac2-49da-8528-90d01d9983a6">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="113" y="127" width="268" height="12"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="88" y="127" width="268" height="12" uuid="3aab03c1-8894-4b41-8268-4df666ecca7a"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{skala}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{skala}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="140" width="93" height="12">
+				<reportElement x="10" y="140" width="70" height="12" uuid="cda436b7-5322-44d7-bbad-7ad7145c9ba2">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Hasil Observasi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="102" y="140" width="8" height="12">
+				<reportElement x="79" y="140" width="8" height="12" uuid="7ddcafbc-a0f0-4a88-ab2a-6515fab15e06">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="168" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="50" y="168" width="11" height="11" uuid="e22fda34-bd8a-477f-911f-7acf7a2d8460"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kooperatif}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kooperatif}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="50" y="168" width="11" height="11"/>
+				<reportElement mode="Transparent" x="50" y="168" width="11" height="11" uuid="7a373c26-6ec8-4496-aa4a-25e2a5341c3b"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="64" y="168" width="354" height="12">
+				<reportElement x="64" y="168" width="354" height="12" uuid="34d924a5-5f89-480a-ba58-483ddd2d8078">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pasien Tidak Kooperatif]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="64" y="182" width="354" height="12">
+				<reportElement x="64" y="182" width="354" height="12" uuid="7cdcc23c-ffa9-4893-b1d6-19e6c6debca3">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Ketidakmampuan Dalam Mengikuti Perintah Untuk Tidak Meninggalkan Tempat Tidur]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="50" y="182" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="50" y="182" width="11" height="11" uuid="d01d01be-7d6a-4bfd-8c02-79dfe38ac48f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{ketidakmampuan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{ketidakmampuan}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="50" y="182" width="11" height="11"/>
+				<reportElement mode="Transparent" x="50" y="182" width="11" height="11" uuid="9497239c-2b83-4ab7-888f-c4e4843b2091"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<line>
-				<reportElement x="0" y="211" width="519" height="1">
+				<reportElement x="0" y="211" width="519" height="1" uuid="5095c478-3952-48e4-a6d8-2eddfa348b04">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -567,16 +612,17 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="199" width="519" height="12">
+				<reportElement x="0" y="199" width="519" height="12" uuid="2507d538-3ba0-4868-bfcd-cfa38fecb2ae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[PERTIMBANGAN KLINIS]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="198" width="519" height="1">
+				<reportElement x="0" y="198" width="519" height="1" uuid="71459e44-af8f-4d12-ae75-10c1c3749b67">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -584,82 +630,89 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="28" y="247" width="354" height="12">
+				<reportElement x="28" y="247" width="354" height="12" uuid="529cf1f6-dedb-4c4e-9624-772d304653ec">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Gagal Meminimalkan Penggunaan Restrain]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="219" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="219" width="11" height="11" uuid="b4f7e416-1788-4824-b647-c341e33ca31b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{klinis_diri}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{klinis_diri}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="28" y="233" width="354" height="12">
+				<reportElement x="28" y="233" width="354" height="12" uuid="c037864f-e1ea-4f83-ba0e-b2fb4c82e9a1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Membahayakan Orang Lain]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="233" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="233" width="11" height="11" uuid="f5d22d59-ca32-49b0-919d-35086504c008"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{klinis_orang}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{klinis_orang}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="219" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="219" width="11" height="11" uuid="99a0674c-101e-4586-8433-9fc6baf223ac"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="28" y="219" width="354" height="12">
+				<reportElement x="28" y="219" width="354" height="12" uuid="8e2029ef-bb64-42ce-99a1-3605a4d97cc0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Membahayakan Diri Sendiri]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="247" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="247" width="11" height="11" uuid="aee30090-df25-483e-9437-d9d9d4a10061"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{klinis_gagal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{klinis_gagal}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="247" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="247" width="11" height="11" uuid="9ee16943-e762-40c4-8628-54a66d3283aa"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="233" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="233" width="11" height="11" uuid="aba17d33-b3ad-4291-aef6-4e41dba5e983"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="0" y="264" width="519" height="12">
+				<reportElement x="0" y="264" width="519" height="12" uuid="3cf2e33e-e968-4918-89f5-bf1c9b715886">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[PENILAIAN DAN INSTRUKSI DOKTER]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="276" width="519" height="1">
+				<reportElement x="0" y="276" width="519" height="1" uuid="cee70d28-df37-419d-90b6-97b8e9809071">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -667,7 +720,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="263" width="519" height="1">
+				<reportElement x="0" y="263" width="519" height="1" uuid="d8e40ac3-e3f1-48dd-aa35-3b45a78aee95">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -675,208 +728,227 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="10" y="281" width="208" height="12">
+				<reportElement x="10" y="281" width="208" height="12" uuid="7a41c32c-eebe-4e44-bef4-b5063341ae2d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[1. Restrain Non Farmakologi]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="295" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="295" width="11" height="11" uuid="50e33518-e0d3-422b-8845-09ea475e4d55"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="295" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="295" width="11" height="11" uuid="b2030647-b59a-4622-93b7-6972e5a6dbb6"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_tempat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_tempat}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="295" width="200" height="12">
+				<reportElement x="35" y="295" width="200" height="12" uuid="037990f4-b2b1-4339-89c5-37ef5101701b">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Restrain Tempat Tidur Atau Bedrall]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="21" y="309" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="309" width="11" height="11" uuid="4a4783c8-7abc-4ed0-85ee-c9decfd6616a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_gelang_tangan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_gelang_tangan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="309" width="200" height="12">
+				<reportElement x="35" y="309" width="200" height="12" uuid="06ebcf25-6a48-4e63-9e12-8605cf9fba74">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Restrain Pergelangan Tangan]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="309" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="309" width="11" height="11" uuid="aeef3df8-3f96-4ea2-9345-d564f105a144"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="62" y="323" width="82" height="12">
+				<reportElement x="62" y="323" width="82" height="12" uuid="ace356d8-bea4-4e28-8a74-883633a3d8c5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tangan Kiri]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="48" y="323" width="11" height="11"/>
+				<reportElement mode="Transparent" x="48" y="323" width="11" height="11" uuid="81af81d1-01e0-4b40-923c-6629eb9c4295"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="48" y="323" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="48" y="323" width="11" height="11" uuid="44297f10-46e7-40e5-9827-ef21bd919109"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_tangan_kiri}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_tangan_kiri}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="62" y="337" width="82" height="12">
+				<reportElement x="62" y="337" width="82" height="12" uuid="fe38f605-5e09-4102-8ebe-1edac97b3a38">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tangan Kanan]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="48" y="337" width="11" height="11"/>
+				<reportElement mode="Transparent" x="48" y="337" width="11" height="11" uuid="7a086c17-0b41-4f2c-a0e4-45d06bdfd0c0"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="48" y="337" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="48" y="337" width="11" height="11" uuid="cf4c405e-a1ba-4268-95c3-4fcc321ced65"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_tangan_kanan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_tangan_kanan}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="351" width="200" height="12">
+				<reportElement x="35" y="351" width="200" height="12" uuid="2a345cfc-c26f-4a77-acd4-6b0184621340">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Restrain Pergelangan Kaki]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="351" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="351" width="11" height="11" uuid="b4aed316-30e4-42d7-a28f-fab8899c44a6"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="351" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="351" width="11" height="11" uuid="e034f147-01db-4aa8-9220-b121b72dc43b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_gelang_kaki}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_gelang_kaki}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="62" y="365" width="82" height="12">
+				<reportElement x="62" y="365" width="82" height="12" uuid="826d24d1-5391-4103-b631-90038f1783e4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Kaki Kiri]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="48" y="379" width="11" height="11"/>
+				<reportElement mode="Transparent" x="48" y="379" width="11" height="11" uuid="25f1ea18-e9cf-4fa5-84a2-bb96fe629606"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="62" y="379" width="82" height="12">
+				<reportElement x="62" y="379" width="82" height="12" uuid="ca9a6d4e-f3d9-4ec0-b92d-dcfce21e7c97">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Kaki Kanan]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="48" y="379" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="48" y="379" width="11" height="11" uuid="d413019f-a0f1-477a-b873-9beceb2fabbe"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_kaki_kanan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_kaki_kanan}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="48" y="365" width="11" height="11"/>
+				<reportElement mode="Transparent" x="48" y="365" width="11" height="11" uuid="ac7977e0-d63b-45f2-b73e-25cd7e753bb1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="48" y="365" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="48" y="365" width="11" height="11" uuid="42963d43-8d04-41cd-ba17-0c16ca8ab39c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_kaki_kiri}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_kaki_kiri}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="393" width="200" height="12">
+				<reportElement x="35" y="393" width="200" height="12" uuid="813143c0-e713-42c3-9435-eeb50b91fe79">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Lain - lain]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="393" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="393" width="11" height="11" uuid="4a1cd75c-1297-43f6-8e23-cedfd7836fb0"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="393" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="393" width="11" height="11" uuid="1cb5af32-1b8b-49b0-8417-9c59fd467818"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{res_lain}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{res_lain}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="10" y="406" width="90" height="12">
+				<reportElement x="10" y="406" width="90" height="12" uuid="1093099e-4c45-4b0b-bd2a-13086399f017">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[2. Restrain Farmakologi]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="99" y="406" width="417" height="12"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="99" y="406" width="417" height="12" uuid="b61bc2ee-42b2-4f1f-b32e-a1f56ae34b83"/>
+				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{res_farmakologi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[": "+$P{res_farmakologi}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="435" width="519" height="1">
+				<reportElement x="0" y="435" width="519" height="1" uuid="ff815d81-f23d-4fa0-a32f-49a9d312d161">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -884,7 +956,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="422" width="519" height="1">
+				<reportElement x="0" y="422" width="519" height="1" uuid="d8086fc5-80a4-42ea-9beb-8606b73dd2d1">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -892,166 +964,181 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="423" width="519" height="12">
+				<reportElement x="0" y="423" width="519" height="12" uuid="d6f38d56-4619-423e-9b31-0cc8343a6d75">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RENCANA PENGKAJIAN LANJUTAN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="10" y="441" width="144" height="12">
+				<reportElement x="10" y="441" width="144" height="12" uuid="27c0ff6c-324d-4f16-85f5-e9a629638875">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[a. Restrain Non Farmakologi]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="21" y="455" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="455" width="11" height="11" uuid="58abb585-7a52-4f41-b77c-35d62932948b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian1jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian1jam}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="455" width="200" height="12">
+				<reportElement x="35" y="455" width="200" height="12" uuid="9331aca6-400b-438f-845d-e023140ad1d4">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pengkajian 1 Jam Pertama]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="455" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="455" width="11" height="11" uuid="a7379059-aaf3-4ac7-a29f-453d4674c6fb"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="469" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="469" width="11" height="11" uuid="3cc83225-27f5-43ea-832b-0cca0892643b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian2jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian2jam}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="469" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="469" width="11" height="11" uuid="858ab76d-f34f-454a-9939-3788c35a4281"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="35" y="469" width="200" height="12">
+				<reportElement x="35" y="469" width="200" height="12" uuid="5695ef54-c9c3-4440-8d30-71dcbde36e28">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pengkajian 2 Jam Pertama]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="35" y="483" width="200" height="12">
+				<reportElement x="35" y="483" width="200" height="12" uuid="134baedd-da3a-40bb-8824-961b42b1f26d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pengkajian Lanjutan Tiap 2 Jam Pertama]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="21" y="483" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="483" width="11" height="11" uuid="62c5d0eb-0fdb-4743-841b-3ccea2a52889"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian_lanjut2jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian_lanjut2jam}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="483" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="483" width="11" height="11" uuid="da5df545-c8b2-4122-ac4e-6ab8d7ddfa53"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="497" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="497" width="11" height="11" uuid="3a00b33a-410a-45bf-a195-edae975c9a53"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian_lanjut4jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian_lanjut4jam}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="497" width="200" height="12">
+				<reportElement x="35" y="497" width="200" height="12" uuid="3aa63f93-1c98-4781-b226-bcb32548368c">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pengkajian Lanjutan Tiap 4 Jam Pertama]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="497" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="497" width="11" height="11" uuid="e35f33fe-3efe-4534-9476-80a5f4114ede"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="10" y="510" width="144" height="12">
+				<reportElement x="10" y="510" width="144" height="12" uuid="c2bfd1ee-84df-4b96-a377-0ce524906ddb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[b. Restrain Farmakologi]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="21" y="524" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="524" width="11" height="11" uuid="d4c61d4d-f748-40e5-9a5f-79ffcb7d75b5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian_tanda}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian_tanda}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="35" y="524" width="418" height="12">
+				<reportElement x="35" y="524" width="418" height="12" uuid="d47d5b37-2528-4fd2-9043-67a88dd06bf8">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Observasi Tanda-Tanda Vital 30 Menit Atau 1 Jam Setelah Pemakaian Restrain Selanjutnya Sesuai Kondisi]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="524" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="524" width="11" height="11" uuid="55681a90-3b2d-4aae-b07b-7c7429ead5a4"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="35" y="538" width="418" height="12">
+				<reportElement x="35" y="538" width="418" height="12" uuid="45db0141-5ab9-4f74-bf86-8d16dbd858f0">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Observasi Lanjutan Setiiap 1 Jam]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="21" y="538" width="11" height="11"/>
+				<reportElement mode="Transparent" x="21" y="538" width="11" height="11" uuid="e0989f87-3b5e-4cb5-9724-603f629f9b17"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="21" y="538" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="21" y="538" width="11" height="11" uuid="1412741c-484c-45dc-b13f-a0ad434c0817"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kajian_lanjutan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kajian_lanjutan}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="568" width="519" height="1">
+				<reportElement x="0" y="568" width="519" height="1" uuid="2cf076ce-5680-4338-83ca-d5681a3ba1f8">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -1059,7 +1146,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="555" width="519" height="1">
+				<reportElement x="0" y="555" width="519" height="1" uuid="86b2617b-0e4f-4046-8918-632c9b4082f3">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -1067,82 +1154,89 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="0" y="556" width="519" height="12">
+				<reportElement x="0" y="556" width="519" height="12" uuid="d730e2b1-9db5-4a3d-8276-b0abdf5603f5">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[PENDIDIKAN RESTRAIN PASIEN ATAU KELUARGA]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="574" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="574" width="11" height="11" uuid="52cf5831-8dc6-437e-9967-99f1bb54ad77"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="602" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="602" width="11" height="11" uuid="d497268a-7609-4700-a4fa-063c7f680795"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<textField>
-				<reportElement x="14" y="602" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="602" width="11" height="11" uuid="8da40340-d3be-4e17-ba25-4ee50d1f8ddd"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{jelas_informasi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{jelas_informasi}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="28" y="602" width="354" height="12">
+				<reportElement x="28" y="602" width="354" height="12" uuid="4fd244b8-a6aa-4038-9652-dd47cd138c09">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Memberikan Informasi Atau Edukasi Kepada Pasien Atau Keluarga]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="574" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="574" width="11" height="11" uuid="375be595-9e08-4e0d-8087-c6547949402a"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{jelas_alasan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{jelas_alasan}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="14" y="588" width="11" height="11"/>
+				<reportElement mode="Transparent" x="14" y="588" width="11" height="11" uuid="fdff04e3-e152-4563-b434-fbbb6075125a"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="28" y="574" width="354" height="12">
+				<reportElement x="28" y="574" width="354" height="12" uuid="d5a991d2-3b66-44e8-9d44-789300456933">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Menjelaskan Alasan Penggunaan Restrain Sebagai Prosedur Emergensi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="28" y="588" width="354" height="12">
+				<reportElement x="28" y="588" width="354" height="12" uuid="e4e5c4e7-3c34-4c52-aee0-8ea468fba0ae">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Left" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Menjelaskan Kriteria Hasil Observasi Atau Ketentuan Penghentian Restrain]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="14" y="588" width="11" height="11"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="14" y="588" width="11" height="11" uuid="1166b7cc-9bfb-4166-9942-6f5836ce5d38"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{jelas_kriteria}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{jelas_kriteria}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="619" width="519" height="1">
+				<reportElement x="0" y="619" width="519" height="1" uuid="b9e46f0d-fe5f-4a8e-8fc5-fa8cb2bcaed5">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -1150,27 +1244,30 @@
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="235" y="626" width="277" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="235" y="626" width="277" height="12" uuid="43e227c3-4a8d-4e34-b54a-07d886669968"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{tanggal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{tanggal}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="235" y="638" width="277" height="12">
+				<reportElement x="235" y="638" width="277" height="12" uuid="0dc8c92f-71e2-4f9d-a7ef-fbe998656bd1">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Perawat / Bidan Yang Mengkaji,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="235" y="696" width="277" height="12"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+				<reportElement x="235" y="696" width="277" height="12" uuid="d4183c67-1f56-42be-885a-feca9034d12f"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{petugas}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{petugas}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
