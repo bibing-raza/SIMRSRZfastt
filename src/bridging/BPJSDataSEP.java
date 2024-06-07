@@ -6909,7 +6909,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
                     + "and rp.status_lanjut='Ralan' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%'", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Rekap tindakan medis " + TobatCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
+            JOptionPane.showMessageDialog(null, "Rekap tindakan medis " + TtindakanCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
             WindowCariTindakan.dispose();
             this.setCursor(Cursor.getDefaultCursor());
         }
