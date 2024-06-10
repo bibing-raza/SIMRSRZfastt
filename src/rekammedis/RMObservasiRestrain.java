@@ -392,7 +392,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TtglLokasi.setOpaque(false);
         TtglLokasi.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(TtglLokasi);
-        TtglLokasi.setBounds(170, 66, 90, 23);
+        TtglLokasi.setBounds(167, 66, 90, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Jam Pemasangan Restrain :");
@@ -437,7 +437,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TnmPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas1.setName("TnmPetugas1"); // NOI18N
         panelGlass10.add(TnmPetugas1);
-        TnmPetugas1.setBounds(170, 122, 360, 23);
+        TnmPetugas1.setBounds(167, 122, 360, 23);
 
         BtnPetugas1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -495,7 +495,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(TlokasiPemasangan);
-        TlokasiPemasangan.setBounds(170, 94, 558, 23);
+        TlokasiPemasangan.setBounds(167, 94, 561, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Lokasi Pemasangan Restrain :");
@@ -521,7 +521,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TtglObservasi.setOpaque(false);
         TtglObservasi.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(TtglObservasi);
-        TtglObservasi.setBounds(170, 150, 90, 23);
+        TtglObservasi.setBounds(167, 150, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jam Observasi Lokasi :");
@@ -572,7 +572,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         cmbEdema.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Tidak", "Ya" }));
         cmbEdema.setName("cmbEdema"); // NOI18N
         panelGlass10.add(cmbEdema);
-        cmbEdema.setBounds(170, 178, 65, 23);
+        cmbEdema.setBounds(167, 178, 65, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Iritasi :");
@@ -612,7 +612,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             }
         });
         panelGlass10.add(Tkondisi);
-        Tkondisi.setBounds(170, 206, 558, 23);
+        Tkondisi.setBounds(167, 206, 561, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Nama Perawat/Bidan 2 :");
@@ -624,7 +624,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TnmPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas2.setName("TnmPetugas2"); // NOI18N
         panelGlass10.add(TnmPetugas2);
-        TnmPetugas2.setBounds(170, 234, 360, 23);
+        TnmPetugas2.setBounds(167, 234, 360, 23);
 
         BtnPetugas2.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -665,7 +665,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         panelGlass10.add(TrgRawat);
-        TrgRawat.setBounds(170, 38, 558, 23);
+        TrgRawat.setBounds(167, 38, 561, 23);
 
         internalFrame1.add(panelGlass10, java.awt.BorderLayout.PAGE_START);
 

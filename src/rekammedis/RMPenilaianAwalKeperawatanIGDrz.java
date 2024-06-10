@@ -575,22 +575,22 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         jLabel74 = new widget.Label();
         kesimpulanGZDewasa = new widget.TextArea();
         kesimpulanGZanak = new widget.TextArea();
+        jLabel134 = new widget.Label();
         ChkGZanak3 = new widget.CekBox();
+        jLabel54 = new widget.Label();
         ChkGZanak2 = new widget.CekBox();
         skorGZ5 = new widget.TextBox();
         jLabel136 = new widget.Label();
         scrollPane7 = new widget.ScrollPane();
         malnutrisi = new widget.TextArea();
         jLabel93 = new widget.Label();
-        jLabel54 = new widget.Label();
-        jLabel134 = new widget.Label();
+        jLabel51 = new widget.Label();
         ChkGZanak1 = new widget.CekBox();
         skorGZ3 = new widget.TextBox();
+        jLabel137 = new widget.Label();
         ChkGZanak4 = new widget.CekBox();
         skorGZ4 = new widget.TextBox();
         jLabel92 = new widget.Label();
-        jLabel137 = new widget.Label();
-        jLabel51 = new widget.Label();
         jLabel135 = new widget.Label();
         jLabel138 = new widget.Label();
         skorGZ6 = new widget.TextBox();
@@ -966,7 +966,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:33:59" }));
+        tgl_asesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024 14:58:11" }));
         tgl_asesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_asesmen.setName("tgl_asesmen"); // NOI18N
         tgl_asesmen.setOpaque(false);
@@ -1469,6 +1469,18 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(kesimpulanGZanak);
         kesimpulanGZanak.setBounds(38, 730, 350, 50);
 
+        jLabel134.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel134.setText("malnutrisi berikut :");
+        jLabel134.setName("jLabel134"); // NOI18N
+        jLabel134.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel134MouseClicked(evt);
+            }
+        });
+        FormInput.add(jLabel134);
+        jLabel134.setBounds(442, 600, 270, 23);
+
         ChkGZanak3.setBackground(new java.awt.Color(255, 255, 250));
         ChkGZanak3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         ChkGZanak3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1487,6 +1499,18 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         });
         FormInput.add(ChkGZanak3);
         ChkGZanak3.setBounds(410, 585, 350, 23);
+
+        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel54.setText("(tampak kurus, gemuk, pendek, edema, moon face,");
+        jLabel54.setName("jLabel54"); // NOI18N
+        jLabel54.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel54MouseClicked(evt);
+            }
+        });
+        FormInput.add(jLabel54);
+        jLabel54.setBounds(442, 525, 270, 23);
 
         ChkGZanak2.setBackground(new java.awt.Color(255, 255, 250));
         ChkGZanak2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1558,29 +1582,17 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel93);
         jLabel93.setBounds(442, 555, 270, 23);
 
-        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel54.setText("(tampak kurus, gemuk, pendek, edema, moon face,");
-        jLabel54.setName("jLabel54"); // NOI18N
-        jLabel54.addMouseListener(new java.awt.event.MouseAdapter() {
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel51.setText("(pada bayi < 1 tahun) selama >= 2 bulan");
+        jLabel51.setName("jLabel51"); // NOI18N
+        jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel54MouseClicked(evt);
+                jLabel51MouseClicked(evt);
             }
         });
-        FormInput.add(jLabel54);
-        jLabel54.setBounds(442, 525, 270, 23);
-
-        jLabel134.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel134.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel134.setText("malnutrisi berikut :");
-        jLabel134.setName("jLabel134"); // NOI18N
-        jLabel134.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel134MouseClicked(evt);
-            }
-        });
-        FormInput.add(jLabel134);
-        jLabel134.setBounds(442, 600, 270, 23);
+        FormInput.add(jLabel51);
+        jLabel51.setBounds(442, 480, 270, 23);
 
         ChkGZanak1.setBackground(new java.awt.Color(255, 255, 250));
         ChkGZanak1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1609,6 +1621,18 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         skorGZ3.setName("skorGZ3"); // NOI18N
         FormInput.add(skorGZ3);
         skorGZ3.setBounds(765, 465, 30, 23);
+
+        jLabel137.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel137.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel137.setText("malnutrisi antara lain :");
+        jLabel137.setName("jLabel137"); // NOI18N
+        jLabel137.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel137MouseClicked(evt);
+            }
+        });
+        FormInput.add(jLabel137);
+        jLabel137.setBounds(430, 675, 270, 23);
 
         ChkGZanak4.setBackground(new java.awt.Color(255, 255, 250));
         ChkGZanak4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1649,30 +1673,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         });
         FormInput.add(jLabel92);
         jLabel92.setBounds(442, 540, 270, 23);
-
-        jLabel137.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel137.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel137.setText("malnutrisi antara lain :");
-        jLabel137.setName("jLabel137"); // NOI18N
-        jLabel137.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel137MouseClicked(evt);
-            }
-        });
-        FormInput.add(jLabel137);
-        jLabel137.setBounds(430, 680, 270, 23);
-
-        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel51.setText("(pada bayi < 1 tahun) selama >= 2 bulan");
-        jLabel51.setName("jLabel51"); // NOI18N
-        jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jLabel51MouseClicked(evt);
-            }
-        });
-        FormInput.add(jLabel51);
-        jLabel51.setBounds(442, 480, 270, 23);
 
         jLabel135.setForeground(new java.awt.Color(0, 0, 0));
         jLabel135.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -2557,7 +2557,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(408, 2354, 80, 20);
 
-        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024 13:34:00" }));
+        TglVerif.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024 14:58:13" }));
         TglVerif.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglVerif.setName("TglVerif"); // NOI18N
         TglVerif.setOpaque(false);
@@ -2865,7 +2865,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2880,7 +2880,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-05-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

@@ -367,6 +367,7 @@ import rekammedis.DlgCPPT;
 import rekammedis.DlgCatatanTindakanKeperawatan;
 import rekammedis.DlgInputKodeICD;
 import rekammedis.DlgMasterDTD;
+import rekammedis.DlgMasterDiagnosaGizi;
 import rekammedis.DlgMasterJabatanKomite;
 import rekammedis.DlgMasterJenisDokumenJangMed;
 import rekammedis.DlgMasterKeluhanPsikologis;
@@ -403,6 +404,7 @@ import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMProtokolKemoterapi;
+import rekammedis.RMSkriningUlangGizi;
 import rekammedis.RMTindakanKedokteran;
 import setting.DlgClosingKasir;
 import setting.DlgSetBridging;
@@ -1011,6 +1013,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenUlangResikoJatuhAnak = new widget.ButtonBig();
         btnMonitoringPediatricEWS = new widget.ButtonBig();
         btnAsesmenRestrain = new widget.ButtonBig();
+        btnMasterDiagnosaGizi = new widget.ButtonBig();
+        btnSkriningGiziUlang = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6717,6 +6721,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenRestrain);
 
+        btnMasterDiagnosaGizi.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterDiagnosaGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360815935_contacts.png"))); // NOI18N
+        btnMasterDiagnosaGizi.setText("Master Diagnosa Gizi");
+        btnMasterDiagnosaGizi.setIconTextGap(0);
+        btnMasterDiagnosaGizi.setName("btnMasterDiagnosaGizi"); // NOI18N
+        btnMasterDiagnosaGizi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterDiagnosaGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnMasterDiagnosaGiziActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnMasterDiagnosaGizi);
+
+        btnSkriningGiziUlang.setForeground(new java.awt.Color(0, 0, 0));
+        btnSkriningGiziUlang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_order-history_49596.png"))); // NOI18N
+        btnSkriningGiziUlang.setText("Skrining Gizi Ulang");
+        btnSkriningGiziUlang.setIconTextGap(0);
+        btnSkriningGiziUlang.setName("btnSkriningGiziUlang"); // NOI18N
+        btnSkriningGiziUlang.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkriningGiziUlang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkriningGiziUlangActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSkriningGiziUlang);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6725,7 +6755,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01/06/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/06/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13250,6 +13280,32 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenRestrainActionPerformed
 
+    private void btnMasterDiagnosaGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterDiagnosaGiziActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgMasterDiagnosaGizi aplikasi = new DlgMasterDiagnosaGizi(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.emptTeks();        
+        aplikasi.TCari.requestFocus();
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnMasterDiagnosaGiziActionPerformed
+
+    private void btnSkriningGiziUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkriningGiziUlangActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSkriningUlangGizi gizi = new RMSkriningUlangGizi(this, false);
+        gizi.isCek();
+        gizi.emptTeks();        
+        gizi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        gizi.setLocationRelativeTo(PanelUtama);
+        gizi.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSkriningGiziUlangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -13498,6 +13554,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterAturanPakai;
     private widget.ButtonBig btnMasterCaraBayar;
     private widget.ButtonBig btnMasterDTD;
+    private widget.ButtonBig btnMasterDiagnosaGizi;
     private widget.ButtonBig btnMasterFaktorResikoJatuh;
     private widget.ButtonBig btnMasterFaskes;
     private widget.ButtonBig btnMasterJabatanKomite;
@@ -13667,6 +13724,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSirkulasi2;
     private widget.ButtonBig btnSirkulasiBerkas;
     private widget.ButtonBig btnSirkulasiInventaris;
+    private widget.ButtonBig btnSkriningGiziUlang;
     private widget.ButtonBig btnSpirometri;
     private widget.ButtonBig btnStokObatPasien;
     private widget.ButtonBig btnSuplier;
@@ -13983,6 +14041,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getassesmen_gizi_harian() == true) {
                 Panelmenu.add(btnAssesmenGiziHarian);
+                jmlmenu++;
+            }
+            
+            if (akses.getassesmen_gizi_harian() == true) {
+                Panelmenu.add(btnSkriningGiziUlang);
                 jmlmenu++;
             }
 
@@ -15718,6 +15781,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 Panelmenu.add(btnMasterFaskes);
                 jmlmenu++;
             }
+            
+            if (akses.getassesmen_gizi_harian() == true) {
+                Panelmenu.add(btnMasterDiagnosaGizi);
+                jmlmenu++;
+            }
 
             if (akses.getmaster_cara_bayar() == true) {
                 Panelmenu.add(btnMasterCaraBayar);
@@ -16523,6 +16591,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnAssesmenGiziHarian);
             jmlmenu++;
         }
+        
+        if (akses.getassesmen_gizi_harian() == true) {
+            Panelmenu.add(btnSkriningGiziUlang);
+            jmlmenu++;
+        }
 
         if (akses.getassesmen_gizi_ulang() == true) {
             Panelmenu.add(btnAssesmenGiziUlang);
@@ -16626,6 +16699,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getmaster_faskes() == true) {
             Panelmenu.add(btnMasterFaskes);
+            jmlmenu++;
+        }
+
+        if (akses.getassesmen_gizi_harian() == true) {
+            Panelmenu.add(btnMasterDiagnosaGizi);
             jmlmenu++;
         }
 
@@ -18709,6 +18787,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 jmlmenu++;
             }
         }
+        
+        if (akses.getassesmen_gizi_harian() == true) {
+            if (btnSkriningGiziUlang.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSkriningGiziUlang);
+                jmlmenu++;
+            }
+        }
 
         if (akses.getassesmen_gizi_ulang() == true) {
             if (btnAssesmenGiziUlang.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
@@ -18895,6 +18980,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getmaster_faskes() == true) {
             if (btnMasterFaskes.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMasterFaskes);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getassesmen_gizi_harian() == true) {
+            if (btnMasterDiagnosaGizi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterDiagnosaGizi);
                 jmlmenu++;
             }
         }
