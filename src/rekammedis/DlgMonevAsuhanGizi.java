@@ -27,6 +27,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import kepegawaian.DlgCariPetugas;
 
 public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
@@ -36,8 +37,9 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i = 0;
-    private String kdkamarnya = "", jam = "", tgl = "", edukasi = "", menu = "";
+    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
+    private int i = 0, x = 0;
+    private String nip = "";
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -47,45 +49,29 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Monev", "Jam","Perkembangan Hasil Lab.", "Perkembangan Fisik/Klinik", "Perkembangan Diet", "Evaluasi", "Catatan Makanan dari Luar RS", 
-            "Edukasi", "Tgl. Edukasi", "Menu Pilihan", "Makanan Pokok", "Lauk", "Sayur", "Buah/Snack", "kdkmr"
+            "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Monev", "Ruang Perawatan", "Perkembangan Fisik/Klinis", 
+            "Perkembangan Diet", "Evaluasi Tindak Lanjut", "Ahli Gizi", 
+            "tgl_monev", "nip_petugas", "waktu_simpan"
         }) {
-            @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                boolean a = false;
-                if (colIndex==0) {
-                    a=false;
-                }
-                return a;
-             }
-            Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,                
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
-            };
-             @Override
-             public Class getColumnClass(int columnIndex) {
-                return types [columnIndex];
-             }
+              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         
         tbMonev.setModel(tabMode);
         tbMonev.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbMonev.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 18; i++) {
+        for (i = 0; i < 12; i++) {
             TableColumn column = tbMonev.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(105);
             } else if (i == 1) {
                 column.setPreferredWidth(65);
             } else if (i == 2) {
-                column.setPreferredWidth(280);
+                column.setPreferredWidth(250);
             } else if (i == 3) {
                 column.setPreferredWidth(75);
             } else if (i == 4) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(250);
             } else if (i == 5) {
                 column.setPreferredWidth(250);
             } else if (i == 6) {
@@ -93,25 +79,14 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(250);
             } else if (i == 8) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             } else if (i == 9) {
-                column.setPreferredWidth(250);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 10) {
-                column.setPreferredWidth(80);
-            } else if (i == 11) {
-                column.setPreferredWidth(80);
-            } else if (i == 12) {
-                column.setPreferredWidth(80);
-            } else if (i == 13) {
-                column.setPreferredWidth(150);
-            } else if (i == 14) {
-                column.setPreferredWidth(150);
-            } else if (i == 15) {
-                column.setPreferredWidth(150);
-            } else if (i == 16) {
-                column.setPreferredWidth(150);
-            } else if (i == 17) {
-//                column.setPreferredWidth(100);                      
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 11) {                     
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -130,6 +105,30 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                 public void changedUpdate(DocumentEvent e) {tampil();}
             });
         }
+        
+        petugas.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {}
+            @Override
+            public void windowClosing(WindowEvent e) {}
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (petugas.getTable().getSelectedRow() != -1) {
+                    nip = petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 0).toString();
+                    TnmPetugas.setText(petugas.getTable().getValueAt(petugas.getTable().getSelectedRow(), 1).toString());
+                    chkSaya.setSelected(false);
+                    BtnPetugas.requestFocus();
+                }
+            }
+            @Override
+            public void windowIconified(WindowEvent e) {}
+            @Override
+            public void windowDeiconified(WindowEvent e) {}
+            @Override
+            public void windowActivated(WindowEvent e) {}
+            @Override
+            public void windowDeactivated(WindowEvent e) {}
+        });
     }
  
     /** This method is called from within the constructor to
@@ -148,8 +147,9 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
-        BtnGanti = new widget.Button();
         BtnHapus = new widget.Button();
+        BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
@@ -163,39 +163,28 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         PanelInput = new javax.swing.JPanel();
-        ChkInput = new widget.CekBox();
         FormInput = new widget.PanelBiasa();
         jLabel17 = new widget.Label();
-        ChkEdukasi = new widget.CekBox();
-        ChkMenu = new widget.CekBox();
-        jLabel18 = new widget.Label();
         jLabel25 = new widget.Label();
-        norawat = new widget.TextBox();
-        norm = new widget.TextBox();
-        nmpasien = new widget.TextBox();
+        TNoRW = new widget.TextBox();
+        TNoRM = new widget.TextBox();
+        Tpasien = new widget.TextBox();
         jLabel26 = new widget.Label();
-        nmruangan = new widget.TextBox();
+        TrgRawat = new widget.TextBox();
         jLabel27 = new widget.Label();
         tglMonev = new widget.Tanggal();
-        makanan_pokok = new widget.TextBox();
-        jLabel20 = new widget.Label();
-        jLabel21 = new widget.Label();
-        jLabel22 = new widget.Label();
-        jLabel23 = new widget.Label();
         Scroll10 = new widget.ScrollPane();
-        catatan_makanan = new widget.TextArea();
-        tglEdukasi = new widget.Tanggal();
-        jLabel24 = new widget.Label();
-        jLabel30 = new widget.Label();
-        jLabel31 = new widget.Label();
-        lauk = new widget.TextBox();
-        sayur = new widget.TextBox();
-        buahSnack = new widget.TextBox();
-        hasilLab = new widget.TextBox();
-        fisikKlinik = new widget.TextBox();
-        diet = new widget.TextBox();
-        evaluasi = new widget.TextBox();
-        jLabel32 = new widget.Label();
+        Tfisik = new widget.TextArea();
+        jLabel18 = new widget.Label();
+        Scroll11 = new widget.ScrollPane();
+        Tdiet = new widget.TextArea();
+        jLabel19 = new widget.Label();
+        Scroll12 = new widget.ScrollPane();
+        Tevaluasi = new widget.TextArea();
+        jLabel20 = new widget.Label();
+        TnmPetugas = new widget.TextBox();
+        BtnPetugas = new widget.Button();
+        chkSaya = new widget.CekBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -206,14 +195,13 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Input Monitoring dan Evaluasi Asuhan Gizi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Monitoring dan Evaluasi Asuhan Gizi Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbMonev.setAutoCreateRowSorter(true);
         tbMonev.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -285,6 +273,25 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnBatal);
 
+        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus.setMnemonic('H');
+        BtnHapus.setText("Hapus");
+        BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setName("BtnHapus"); // NOI18N
+        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusActionPerformed(evt);
+            }
+        });
+        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnHapusKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnHapus);
+
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnGanti.setMnemonic('G');
@@ -304,24 +311,24 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
-        BtnHapus.setText("Hapus");
-        BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setName("BtnHapus"); // NOI18N
-        BtnHapus.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusActionPerformed(evt);
+                BtnPrintActionPerformed(evt);
             }
         });
-        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnHapusKeyPressed(evt);
+                BtnPrintKeyPressed(evt);
             }
         });
-        panelGlass8.add(BtnHapus);
+        panelGlass8.add(BtnPrint);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -373,17 +380,11 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel28);
 
-        tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-04-2021" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
         tgl1.setPreferredSize(new java.awt.Dimension(95, 23));
-        tgl1.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tgl1MouseClicked(evt);
-            }
-        });
         panelGlass10.add(tgl1);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
@@ -393,17 +394,11 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-04-2021" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
         tgl2.setPreferredSize(new java.awt.Dimension(95, 23));
-        tgl2.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tgl2MouseClicked(evt);
-            }
-        });
         panelGlass10.add(tgl2);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
@@ -459,326 +454,173 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(380, 350));
+        PanelInput.setPreferredSize(new java.awt.Dimension(380, 310));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
-
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
-        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('M');
-        ChkInput.setText(".: Input Data");
-        ChkInput.setBorderPainted(true);
-        ChkInput.setBorderPaintedFlat(true);
-        ChkInput.setFocusable(false);
-        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput.setName("ChkInput"); // NOI18N
-        ChkInput.setPreferredSize(new java.awt.Dimension(192, 20));
-        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInputActionPerformed(evt);
-            }
-        });
-        PanelInput.add(ChkInput, java.awt.BorderLayout.PAGE_END);
 
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(190, 107));
         FormInput.setLayout(null);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Hasil Lab. : ");
+        jLabel17.setText("Perkembangan Fisik/Klinis : ");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(0, 122, 100, 23);
-
-        ChkEdukasi.setBackground(new java.awt.Color(255, 255, 250));
-        ChkEdukasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkEdukasi.setForeground(new java.awt.Color(0, 0, 0));
-        ChkEdukasi.setText("Edukasi Keamanan Pangan : Tgl. Edukasi : ");
-        ChkEdukasi.setBorderPainted(true);
-        ChkEdukasi.setBorderPaintedFlat(true);
-        ChkEdukasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkEdukasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkEdukasi.setName("ChkEdukasi"); // NOI18N
-        ChkEdukasi.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkEdukasiActionPerformed(evt);
-            }
-        });
-        FormInput.add(ChkEdukasi);
-        ChkEdukasi.setBounds(640, 10, 224, 23);
-
-        ChkMenu.setBackground(new java.awt.Color(255, 255, 250));
-        ChkMenu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        ChkMenu.setForeground(new java.awt.Color(0, 0, 0));
-        ChkMenu.setText("Menu Pilihan : ");
-        ChkMenu.setBorderPainted(true);
-        ChkMenu.setBorderPaintedFlat(true);
-        ChkMenu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkMenu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkMenu.setName("ChkMenu"); // NOI18N
-        ChkMenu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkMenuActionPerformed(evt);
-            }
-        });
-        FormInput.add(ChkMenu);
-        ChkMenu.setBounds(640, 38, 90, 23);
-
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Makanan Pokok : ");
-        jLabel18.setName("jLabel18"); // NOI18N
-        FormInput.add(jLabel18);
-        jLabel18.setBounds(640, 66, 125, 23);
+        jLabel17.setBounds(0, 66, 175, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Pasien : ");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput.add(jLabel25);
-        jLabel25.setBounds(0, 10, 100, 23);
+        jLabel25.setBounds(0, 10, 120, 23);
 
-        norawat.setEditable(false);
-        norawat.setForeground(new java.awt.Color(0, 0, 0));
-        norawat.setHighlighter(null);
-        norawat.setName("norawat"); // NOI18N
-        norawat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                norawatKeyPressed(evt);
-            }
-        });
-        FormInput.add(norawat);
-        norawat.setBounds(102, 10, 120, 23);
+        TNoRW.setEditable(false);
+        TNoRW.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRW.setName("TNoRW"); // NOI18N
+        FormInput.add(TNoRW);
+        TNoRW.setBounds(122, 10, 120, 23);
 
-        norm.setEditable(false);
-        norm.setForeground(new java.awt.Color(0, 0, 0));
-        norm.setHighlighter(null);
-        norm.setName("norm"); // NOI18N
-        norm.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                normKeyPressed(evt);
-            }
-        });
-        FormInput.add(norm);
-        norm.setBounds(225, 10, 70, 23);
+        TNoRM.setEditable(false);
+        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRM.setName("TNoRM"); // NOI18N
+        FormInput.add(TNoRM);
+        TNoRM.setBounds(245, 10, 70, 23);
 
-        nmpasien.setEditable(false);
-        nmpasien.setForeground(new java.awt.Color(0, 0, 0));
-        nmpasien.setHighlighter(null);
-        nmpasien.setName("nmpasien"); // NOI18N
-        nmpasien.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmpasienKeyPressed(evt);
-            }
-        });
-        FormInput.add(nmpasien);
-        nmpasien.setBounds(298, 10, 310, 23);
+        Tpasien.setEditable(false);
+        Tpasien.setForeground(new java.awt.Color(0, 0, 0));
+        Tpasien.setName("Tpasien"); // NOI18N
+        FormInput.add(Tpasien);
+        Tpasien.setBounds(318, 10, 310, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Ruang Rawat : ");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput.add(jLabel26);
-        jLabel26.setBounds(0, 38, 100, 23);
+        jLabel26.setBounds(0, 38, 120, 23);
 
-        nmruangan.setEditable(false);
-        nmruangan.setForeground(new java.awt.Color(0, 0, 0));
-        nmruangan.setHighlighter(null);
-        nmruangan.setName("nmruangan"); // NOI18N
-        nmruangan.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                nmruanganKeyPressed(evt);
-            }
-        });
-        FormInput.add(nmruangan);
-        nmruangan.setBounds(102, 38, 505, 23);
+        TrgRawat.setEditable(false);
+        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
+        TrgRawat.setName("TrgRawat"); // NOI18N
+        FormInput.add(TrgRawat);
+        TrgRawat.setBounds(122, 38, 330, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Tgl. Monev : ");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(0, 66, 100, 23);
+        jLabel27.setBounds(453, 38, 79, 23);
 
         tglMonev.setEditable(false);
-        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-04-2021" }));
+        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
         tglMonev.setDisplayFormat("dd-MM-yyyy");
         tglMonev.setName("tglMonev"); // NOI18N
         tglMonev.setOpaque(false);
         tglMonev.setPreferredSize(new java.awt.Dimension(95, 23));
-        tglMonev.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tglMonevMouseClicked(evt);
-            }
-        });
         FormInput.add(tglMonev);
-        tglMonev.setBounds(102, 66, 95, 23);
-
-        makanan_pokok.setForeground(new java.awt.Color(0, 0, 0));
-        makanan_pokok.setHighlighter(null);
-        makanan_pokok.setName("makanan_pokok"); // NOI18N
-        makanan_pokok.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                makanan_pokokKeyPressed(evt);
-            }
-        });
-        FormInput.add(makanan_pokok);
-        makanan_pokok.setBounds(767, 66, 370, 23);
-
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Minitoring Perkembangan : ");
-        jLabel20.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel20.setName("jLabel20"); // NOI18N
-        FormInput.add(jLabel20);
-        jLabel20.setBounds(0, 94, 180, 23);
-
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Fisik/Klinik : ");
-        jLabel21.setName("jLabel21"); // NOI18N
-        FormInput.add(jLabel21);
-        jLabel21.setBounds(0, 150, 100, 23);
-
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setText("Diet : ");
-        jLabel22.setName("jLabel22"); // NOI18N
-        FormInput.add(jLabel22);
-        jLabel22.setBounds(0, 178, 100, 23);
-
-        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel23.setText("Catatan makanan dari luar rumah sakit yang dibawa oleh Pasien/Keluarga : ");
-        jLabel23.setName("jLabel23"); // NOI18N
-        FormInput.add(jLabel23);
-        jLabel23.setBounds(0, 235, 390, 23);
+        tglMonev.setBounds(533, 38, 95, 23);
 
         Scroll10.setName("Scroll10"); // NOI18N
         Scroll10.setOpaque(true);
 
-        catatan_makanan.setColumns(20);
-        catatan_makanan.setRows(5);
-        catatan_makanan.setName("catatan_makanan"); // NOI18N
-        catatan_makanan.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tfisik.setColumns(20);
+        Tfisik.setRows(5);
+        Tfisik.setName("Tfisik"); // NOI18N
+        Tfisik.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tfisik.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                catatan_makananKeyPressed(evt);
+                TfisikKeyPressed(evt);
             }
         });
-        Scroll10.setViewportView(catatan_makanan);
+        Scroll10.setViewportView(Tfisik);
 
         FormInput.add(Scroll10);
-        Scroll10.setBounds(102, 263, 505, 55);
+        Scroll10.setBounds(177, 66, 450, 55);
 
-        tglEdukasi.setEditable(false);
-        tglEdukasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-04-2021" }));
-        tglEdukasi.setDisplayFormat("dd-MM-yyyy");
-        tglEdukasi.setName("tglEdukasi"); // NOI18N
-        tglEdukasi.setOpaque(false);
-        tglEdukasi.setPreferredSize(new java.awt.Dimension(95, 23));
-        tglEdukasi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tglEdukasiMouseClicked(evt);
-            }
-        });
-        FormInput.add(tglEdukasi);
-        tglEdukasi.setBounds(865, 10, 95, 23);
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Perkembangan Diet : ");
+        jLabel18.setName("jLabel18"); // NOI18N
+        FormInput.add(jLabel18);
+        jLabel18.setBounds(0, 126, 175, 23);
 
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel24.setText("Lauk : ");
-        jLabel24.setName("jLabel24"); // NOI18N
-        FormInput.add(jLabel24);
-        jLabel24.setBounds(640, 94, 125, 23);
+        Scroll11.setName("Scroll11"); // NOI18N
+        Scroll11.setOpaque(true);
 
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel30.setText("Sayur : ");
-        jLabel30.setName("jLabel30"); // NOI18N
-        FormInput.add(jLabel30);
-        jLabel30.setBounds(640, 122, 125, 23);
-
-        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel31.setText("Buah / Snack : ");
-        jLabel31.setName("jLabel31"); // NOI18N
-        FormInput.add(jLabel31);
-        jLabel31.setBounds(640, 150, 125, 23);
-
-        lauk.setForeground(new java.awt.Color(0, 0, 0));
-        lauk.setHighlighter(null);
-        lauk.setName("lauk"); // NOI18N
-        lauk.addKeyListener(new java.awt.event.KeyAdapter() {
+        Tdiet.setColumns(20);
+        Tdiet.setRows(5);
+        Tdiet.setName("Tdiet"); // NOI18N
+        Tdiet.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tdiet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                laukKeyPressed(evt);
+                TdietKeyPressed(evt);
             }
         });
-        FormInput.add(lauk);
-        lauk.setBounds(767, 94, 370, 23);
+        Scroll11.setViewportView(Tdiet);
 
-        sayur.setForeground(new java.awt.Color(0, 0, 0));
-        sayur.setHighlighter(null);
-        sayur.setName("sayur"); // NOI18N
-        sayur.addKeyListener(new java.awt.event.KeyAdapter() {
+        FormInput.add(Scroll11);
+        Scroll11.setBounds(177, 126, 450, 55);
+
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Evaluasi dan Tindak Lanjut : ");
+        jLabel19.setName("jLabel19"); // NOI18N
+        FormInput.add(jLabel19);
+        jLabel19.setBounds(0, 186, 175, 23);
+
+        Scroll12.setName("Scroll12"); // NOI18N
+        Scroll12.setOpaque(true);
+
+        Tevaluasi.setColumns(20);
+        Tevaluasi.setRows(5);
+        Tevaluasi.setName("Tevaluasi"); // NOI18N
+        Tevaluasi.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tevaluasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                sayurKeyPressed(evt);
+                TevaluasiKeyPressed(evt);
             }
         });
-        FormInput.add(sayur);
-        sayur.setBounds(767, 122, 370, 23);
+        Scroll12.setViewportView(Tevaluasi);
 
-        buahSnack.setForeground(new java.awt.Color(0, 0, 0));
-        buahSnack.setHighlighter(null);
-        buahSnack.setName("buahSnack"); // NOI18N
-        buahSnack.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                buahSnackKeyPressed(evt);
+        FormInput.add(Scroll12);
+        Scroll12.setBounds(177, 186, 450, 82);
+
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Ahli Gizi : ");
+        jLabel20.setName("jLabel20"); // NOI18N
+        FormInput.add(jLabel20);
+        jLabel20.setBounds(0, 274, 120, 23);
+
+        TnmPetugas.setEditable(false);
+        TnmPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        TnmPetugas.setName("TnmPetugas"); // NOI18N
+        FormInput.add(TnmPetugas);
+        TnmPetugas.setBounds(122, 274, 390, 23);
+
+        BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPetugas.setMnemonic('1');
+        BtnPetugas.setToolTipText("Alt+1");
+        BtnPetugas.setName("BtnPetugas"); // NOI18N
+        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasActionPerformed(evt);
             }
         });
-        FormInput.add(buahSnack);
-        buahSnack.setBounds(767, 150, 370, 23);
+        FormInput.add(BtnPetugas);
+        BtnPetugas.setBounds(515, 274, 28, 23);
 
-        hasilLab.setForeground(new java.awt.Color(0, 0, 0));
-        hasilLab.setHighlighter(null);
-        hasilLab.setName("hasilLab"); // NOI18N
-        hasilLab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                hasilLabKeyPressed(evt);
+        chkSaya.setBackground(new java.awt.Color(242, 242, 242));
+        chkSaya.setForeground(new java.awt.Color(0, 0, 0));
+        chkSaya.setText("Saya Sendiri");
+        chkSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSaya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSaya.setName("chkSaya"); // NOI18N
+        chkSaya.setOpaque(false);
+        chkSaya.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSayaActionPerformed(evt);
             }
         });
-        FormInput.add(hasilLab);
-        hasilLab.setBounds(102, 122, 505, 23);
-
-        fisikKlinik.setForeground(new java.awt.Color(0, 0, 0));
-        fisikKlinik.setHighlighter(null);
-        fisikKlinik.setName("fisikKlinik"); // NOI18N
-        fisikKlinik.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                fisikKlinikKeyPressed(evt);
-            }
-        });
-        FormInput.add(fisikKlinik);
-        fisikKlinik.setBounds(102, 150, 505, 23);
-
-        diet.setForeground(new java.awt.Color(0, 0, 0));
-        diet.setHighlighter(null);
-        diet.setName("diet"); // NOI18N
-        diet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                dietKeyPressed(evt);
-            }
-        });
-        FormInput.add(diet);
-        diet.setBounds(102, 178, 505, 23);
-
-        evaluasi.setForeground(new java.awt.Color(0, 0, 0));
-        evaluasi.setHighlighter(null);
-        evaluasi.setName("evaluasi"); // NOI18N
-        evaluasi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                evaluasiKeyPressed(evt);
-            }
-        });
-        FormInput.add(evaluasi);
-        evaluasi.setBounds(102, 206, 505, 23);
-
-        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel32.setText("Evaluasi : ");
-        jLabel32.setName("jLabel32"); // NOI18N
-        FormInput.add(jLabel32);
-        jLabel32.setBounds(0, 206, 100, 23);
+        FormInput.add(chkSaya);
+        chkSaya.setBounds(550, 274, 90, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -790,40 +632,14 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if (norawat.getText().trim().equals("")) {
-            Valid.textKosong(norawat, "Data Pasien");
-        } else if (hasilLab.getText().trim().equals("")) {
-            Valid.textKosong(hasilLab, "Perkembangan Hasil Pemeriksaan Lab.");
-        } else if (fisikKlinik.getText().trim().equals("")) {
-            Valid.textKosong(fisikKlinik, "Perkembangan Fisik / Klinik");
-        } else if (diet.getText().trim().equals("")) {
-            Valid.textKosong(diet, "Perkembangan Diet");
-        } else if (evaluasi.getText().trim().equals("")) {
-            Valid.textKosong(evaluasi, "Evaluasi");
+        if (TNoRW.getText().trim().equals("")) {
+            Valid.textKosong(TNoRW, "Data Pasien");
         } else {
-            if (ChkMenu.isSelected() == true) {
-                if (makanan_pokok.getText().trim().equals("")
-                        || lauk.getText().trim().equals("")
-                        || sayur.getText().trim().equals("")
-                        || buahSnack.getText().trim().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Menu pilihan harus diisi sesuai permintaannya,...!!");
-                } else {
-                    NilaiTrueFalse();
-                    Sequel.menyimpan("monev_asuhan_gizi", "'" + norawat.getText() + "','" + Valid.SetTgl(tglMonev.getSelectedItem() + "") + "',"
-                            + "'" + Sequel.cariIsi("SELECT TIME(NOW())") + "','" + hasilLab.getText() + "','" + fisikKlinik.getText() + "',"
-                            + "'" + diet.getText() + "','" + evaluasi.getText() + "','" + catatan_makanan.getText() + "','" + edukasi + "',"
-                            + "'" + Valid.SetTgl(tglEdukasi.getSelectedItem() + "") + "','" + menu + "','" + makanan_pokok.getText() + "',"
-                            + "'" + lauk.getText() + "','" + sayur.getText() + "','" + buahSnack.getText() + "','" + kdkamarnya + "'", "Monitoring & Evaluasi Asuhan Gizi");
-                    emptTeks();
-                    tampil();
-                }
-            } else if (ChkMenu.isSelected() == false) {
-                NilaiTrueFalse();
-                Sequel.menyimpan("monev_asuhan_gizi", "'" + norawat.getText() + "','" + Valid.SetTgl(tglMonev.getSelectedItem() + "") + "',"
-                        + "'" + Sequel.cariIsi("SELECT TIME(NOW())") + "','" + hasilLab.getText() + "','" + fisikKlinik.getText() + "',"
-                        + "'" + diet.getText() + "','" + evaluasi.getText() + "','" + catatan_makanan.getText() + "','" + edukasi + "',"
-                        + "'" + Valid.SetTgl(tglEdukasi.getSelectedItem() + "") + "','" + menu + "','" + makanan_pokok.getText() + "',"
-                        + "'" + lauk.getText() + "','" + sayur.getText() + "','" + buahSnack.getText() + "','" + kdkamarnya + "'", "Monitoring & Evaluasi Asuhan Gizi");
+            if (Sequel.menyimpantf("monev_asuhan_gizi", "?,?,?,?,?,?,?,?", "No. Rawat & Tgl. Monev", 8, new String[]{
+                TNoRW.getText(), Valid.SetTgl(tglMonev.getSelectedItem() + ""), TrgRawat.getText(), Tfisik.getText(),
+                Tdiet.getText(), Tevaluasi.getText(), nip, Sequel.cariIsi("select now()")
+            }) == true) {
+                Valid.SetTgl(tgl1, Valid.SetTgl(tglMonev.getSelectedItem() + ""));
                 emptTeks();
                 tampil();
             }
@@ -833,15 +649,11 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        } else {
-            Valid.pindah(evt, buahSnack, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
-        ChkInput.setSelected(true);
-        isForm(); 
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -851,70 +663,29 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-        if (norawat.getText().trim().equals("")) {
-            Valid.textKosong(norawat, "Data Pasien");
-        } else if (hasilLab.getText().trim().equals("")) {
-            Valid.textKosong(hasilLab, "Perkembangan Hasil Pemeriksaan Lab.");
-        } else if (fisikKlinik.getText().trim().equals("")) {
-            Valid.textKosong(fisikKlinik, "Perkembangan Fisik / Klinik");
-        } else if (diet.getText().trim().equals("")) {
-            Valid.textKosong(diet, "Perkembangan Diet");
-        } else if (evaluasi.getText().trim().equals("")) {
-            Valid.textKosong(evaluasi, "Evaluasi");
+        if (TNoRW.getText().trim().equals("")) {
+            Valid.textKosong(TNoRW, "Data Pasien");
         } else {
-            if (ChkMenu.isSelected() == true) {
-                if (makanan_pokok.getText().trim().equals("")
-                        || lauk.getText().trim().equals("")
-                        || sayur.getText().trim().equals("")
-                        || buahSnack.getText().trim().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Menu pilihan harus diisi sesuai permintaannya,...!!");
+            if (tbMonev.getSelectedRow() > -1) {
+                if (akses.getadmin() == true) {
+                    ganti();
                 } else {
-                    NilaiTrueFalse();
-                    Sequel.mengedit("monev_asuhan_gizi", "no_rawat='" + norawat.getText() + "' and tgl_monev='" + tgl + "' and jam_monev='" + jam + "'",
-                            "tgl_monev='" + Valid.SetTgl(tglMonev.getSelectedItem() + "") + "',"
-                            + "perkembangan_hasil_lab='" + hasilLab.getText() + "',"
-                            + "perkembangan_fisik_klinik='" + fisikKlinik.getText() + "',"
-                            + "perkembangan_diet='" + diet.getText() + "',"
-                            + "evaluasi='" + evaluasi.getText() + "',"
-                            + "catatan_makanan_dari_luar='" + catatan_makanan.getText() + "',"
-                            + "edukasi_keamanan_pangan='" + edukasi + "',"
-                            + "tgl_edukasi='" + Valid.SetTgl(tglEdukasi.getSelectedItem() + "") + "',"
-                            + "menu_pilihan='" + menu + "',"
-                            + "makanan_pokok='" + makanan_pokok.getText() + "',"
-                            + "lauk='" + lauk.getText() + "',"
-                            + "sayur='" + sayur.getText() + "',"
-                            + "buah_snack='" + buahSnack.getText() + "',"
-                            + "kd_kamar='" + kdkamarnya + "'");
-                    emptTeks();
-                    tampil();
+                    if (nip.equals(tbMonev.getValueAt(tbMonev.getSelectedRow(), 10).toString())) {
+                        ganti();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh ahli gizi yang melakukan monev asuhan gizi..!!");
+                    }
                 }
-            } else if (ChkMenu.isSelected() == false) {
-                NilaiTrueFalse();
-                Sequel.mengedit("monev_asuhan_gizi", "no_rawat='" + norawat.getText() + "' and tgl_monev='" + tgl + "' and jam_monev='" + jam + "'",
-                        "tgl_monev='" + Valid.SetTgl(tglMonev.getSelectedItem() + "") + "',"
-                        + "perkembangan_hasil_lab='" + hasilLab.getText() + "',"
-                        + "perkembangan_fisik_klinik='" + fisikKlinik.getText() + "',"
-                        + "perkembangan_diet='" + diet.getText() + "',"
-                        + "evaluasi='" + evaluasi.getText() + "',"
-                        + "catatan_makanan_dari_luar='" + catatan_makanan.getText() + "',"
-                        + "edukasi_keamanan_pangan='" + edukasi + "',"
-                        + "tgl_edukasi='" + Valid.SetTgl(tglEdukasi.getSelectedItem() + "") + "',"
-                        + "menu_pilihan='" + menu + "',"
-                        + "makanan_pokok='" + makanan_pokok.getText() + "',"
-                        + "lauk='" + lauk.getText() + "',"
-                        + "sayur='" + sayur.getText() + "',"
-                        + "buah_snack='" + buahSnack.getText() + "',"
-                        + "kd_kamar='" + kdkamarnya + "'");
-                emptTeks();
-                tampil();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
         }
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnGantiActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnKeluar);
         }
 }//GEN-LAST:event_BtnGantiKeyPressed
@@ -944,9 +715,9 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -958,11 +729,9 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             tampil();
             TCari.setText("");
-        }else{
-            Valid.pindah(evt, BtnCari, buahSnack);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
@@ -986,79 +755,23 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_tbMonevKeyPressed
 
-private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
-    isForm();
-    tglMonev.requestFocus();
-}//GEN-LAST:event_ChkInputActionPerformed
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
-    private void ChkEdukasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkEdukasiActionPerformed
-
-    }//GEN-LAST:event_ChkEdukasiActionPerformed
-
-    private void ChkMenuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkMenuActionPerformed
-        if (ChkMenu.isSelected() == false) {
-            makanan_pokok.setText("");
-            lauk.setText("");
-            sayur.setText("");
-            buahSnack.setText("");
-            makanan_pokok.setEnabled(false);
-            lauk.setEnabled(false);
-            sayur.setEnabled(false);
-            buahSnack.setEnabled(false);
-        } else {
-            makanan_pokok.setText("-");
-            lauk.setText("-");
-            sayur.setText("-");
-            buahSnack.setText("-");
-            makanan_pokok.setEnabled(true);
-            lauk.setEnabled(true);
-            sayur.setEnabled(true);
-            buahSnack.setEnabled(true);
-        }
-    }//GEN-LAST:event_ChkMenuActionPerformed
-
-    private void norawatKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_norawatKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_norawatKeyPressed
-
-    private void normKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_normKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_normKeyPressed
-
-    private void nmpasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmpasienKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nmpasienKeyPressed
-
-    private void nmruanganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_nmruanganKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_nmruanganKeyPressed
-
-    private void tglMonevMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglMonevMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tglMonevMouseClicked
-
-    private void tgl1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tgl1MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tgl1MouseClicked
-
-    private void tgl2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tgl2MouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tgl2MouseClicked
-
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-            tbMonev.requestFocus();
-        } else if (norawat.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
+        if (tbMonev.getSelectedRow() > -1) {
+            if (akses.getadmin() == true) {
+                hapus();
+            } else {
+                if (nip.equals(tbMonev.getValueAt(tbMonev.getSelectedRow(), 10).toString())) {
+                    hapus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh ahli gizi yang melakukan monev asuhan gizi..!!");
+                }
+            }
         } else {
-            Sequel.queryu("delete from monev_asuhan_gizi where no_rawat='" + norawat.getText() + "' and tgl_monev='" + tgl + "' and jam_monev='" + jam + "'");
-            tampil();
-            emptTeks();
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1068,61 +781,77 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_BtnHapusKeyPressed
 
-    private void makanan_pokokKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_makanan_pokokKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            lauk.requestFocus();
+    private void BtnPetugasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPetugasActionPerformed
+        akses.setform("DlgMonevAsuhanGizi");
+        petugas.isCek();
+        petugas.setSize(983, internalFrame1.getHeight() - 40);
+        petugas.setLocationRelativeTo(internalFrame1);
+        petugas.setAlwaysOnTop(false);
+        petugas.setVisible(true);
+    }//GEN-LAST:event_BtnPetugasActionPerformed
+
+    private void chkSayaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkSayaActionPerformed
+        if (chkSaya.isSelected() == true) {
+            if (akses.getadmin() == true) {
+                nip = "-";
+                TnmPetugas.setText("-");
+            } else {
+                nip = akses.getkode();
+                TnmPetugas.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nip + "'"));
+            }
+        } else {
+            nip = "-";
+            TnmPetugas.setText("-");
         }
-    }//GEN-LAST:event_makanan_pokokKeyPressed
+    }//GEN-LAST:event_chkSayaActionPerformed
 
-    private void catatan_makananKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_catatan_makananKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_catatan_makananKeyPressed
-
-    private void tglEdukasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tglEdukasiMouseClicked
-        // TODO add your handling code here:
-    }//GEN-LAST:event_tglEdukasiMouseClicked
-
-    private void laukKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_laukKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            sayur.requestFocus();
+    private void TfisikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TfisikKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            Tdiet.requestFocus();
         }
-    }//GEN-LAST:event_laukKeyPressed
+    }//GEN-LAST:event_TfisikKeyPressed
 
-    private void sayurKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_sayurKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            buahSnack.requestFocus();
+    private void TdietKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdietKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            Tevaluasi.requestFocus();
         }
-    }//GEN-LAST:event_sayurKeyPressed
+    }//GEN-LAST:event_TdietKeyPressed
 
-    private void buahSnackKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_buahSnackKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnSimpan.requestFocus();
+    private void TevaluasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TevaluasiKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            BtnPetugas.requestFocus();
         }
-    }//GEN-LAST:event_buahSnackKeyPressed
+    }//GEN-LAST:event_TevaluasiKeyPressed
 
-    private void hasilLabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_hasilLabKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            fisikKlinik.requestFocus();
-        }
-    }//GEN-LAST:event_hasilLabKeyPressed
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (tbMonev.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", Tpasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+//            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi where no_rawat='" + TNoRW.getText() + "'")));
+            
+            Valid.MyReport("rptMonevAsuhanGizi.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
+                    "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);
 
-    private void fisikKlinikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_fisikKlinikKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            diet.requestFocus();
+            emptTeks();
+            tampil();
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
+            tbMonev.requestFocus();
         }
-    }//GEN-LAST:event_fisikKlinikKeyPressed
+    }//GEN-LAST:event_BtnPrintActionPerformed
 
-    private void dietKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_dietKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            evaluasi.requestFocus();
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnGanti, BtnKeluar);
         }
-    }//GEN-LAST:event_dietKeyPressed
-
-    private void evaluasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_evaluasiKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            catatan_makanan.requestFocus();
-        }
-    }//GEN-LAST:event_evaluasiKeyPressed
+    }//GEN-LAST:event_BtnPrintKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1147,78 +876,60 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPetugas;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkEdukasi;
-    public widget.CekBox ChkInput;
-    private widget.CekBox ChkMenu;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll10;
+    private widget.ScrollPane Scroll11;
+    private widget.ScrollPane Scroll12;
     public widget.TextBox TCari;
-    private widget.TextBox buahSnack;
-    private widget.TextArea catatan_makanan;
-    private widget.TextBox diet;
-    private widget.TextBox evaluasi;
-    private widget.TextBox fisikKlinik;
-    private widget.TextBox hasilLab;
+    private widget.TextBox TNoRM;
+    private widget.TextBox TNoRW;
+    private widget.TextArea Tdiet;
+    private widget.TextArea Tevaluasi;
+    private widget.TextArea Tfisik;
+    private widget.TextBox TnmPetugas;
+    private widget.TextBox Tpasien;
+    private widget.TextBox TrgRawat;
+    private widget.CekBox chkSaya;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
+    private widget.Label jLabel19;
     private widget.Label jLabel20;
-    private widget.Label jLabel21;
-    private widget.Label jLabel22;
-    private widget.Label jLabel23;
-    private widget.Label jLabel24;
     private widget.Label jLabel25;
     private widget.Label jLabel26;
     private widget.Label jLabel27;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
-    private widget.Label jLabel30;
-    private widget.Label jLabel31;
-    private widget.Label jLabel32;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
-    private widget.TextBox lauk;
-    private widget.TextBox makanan_pokok;
-    private widget.TextBox nmpasien;
-    private widget.TextBox nmruangan;
-    private widget.TextBox norawat;
-    private widget.TextBox norm;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
-    private widget.TextBox sayur;
     private widget.Table tbMonev;
     private widget.Tanggal tgl1;
     private widget.Tanggal tgl2;
-    private widget.Tanggal tglEdukasi;
     private widget.Tanggal tglMonev;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT ma.no_rawat, p.no_rkm_medis, p.nm_pasien, ma.tgl_monev, ma.jam_monev, ma.perkembangan_hasil_lab, ma.perkembangan_fisik_klinik, "
-                    + "ma.perkembangan_diet, ma.evaluasi, ma.catatan_makanan_dari_luar, ma.edukasi_keamanan_pangan, ma.tgl_edukasi, "
-                    + "ma.menu_pilihan, ma.makanan_pokok, ma.lauk, ma.sayur, ma.buah_snack, ma.kd_kamar FROM monev_asuhan_gizi ma "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat=ma.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis WHERE "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.no_rawat like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and p.no_rkm_medis like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and p.nm_pasien like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.jam_monev like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.perkembangan_hasil_lab like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.perkembangan_fisik_klinik like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.perkembangan_diet like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.evaluasi like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.catatan_makanan_dari_luar like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.tgl_edukasi like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.makanan_pokok like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.lauk like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.sayur like ? or "
-                    + "ma.tgl_monev BETWEEN ? and ? and ma.buah_snack like ? order by ma.tgl_monev desc, ma.jam_monev desc");
+            ps = koneksi.prepareStatement("SELECT m.*, date_format(m.tgl_monev,'%d-%m-%Y') tgl, p.no_rkm_medis, p.nm_pasien, pg.nama petugas "
+                    + "from monev_asuhan_gizi m inner join reg_periksa rp on rp.no_rawat=m.no_rawat "
+                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=m.nip_petugas WHERE "
+                    + "m.tgl_monev BETWEEN ? and ? and m.no_rawat like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and p.no_rkm_medis like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and p.nm_pasien like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and m.perkembangan_fisik_klinis like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and m.perkembangan_diet like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and m.evaluasi_tindak_lanjut like ? or "
+                    + "m.tgl_monev BETWEEN ? and ? and pg.nama like ? order by m.tgl_monev desc");
             try {
                 ps.setString(1, Valid.SetTgl(tgl1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(tgl2.getSelectedItem() + ""));
@@ -1241,48 +952,21 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 ps.setString(19, Valid.SetTgl(tgl1.getSelectedItem() + ""));
                 ps.setString(20, Valid.SetTgl(tgl2.getSelectedItem() + ""));
                 ps.setString(21, "%" + TCari.getText().trim() + "%");
-                ps.setString(22, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(23, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(24, "%" + TCari.getText().trim() + "%");
-                ps.setString(25, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(26, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(27, "%" + TCari.getText().trim() + "%");
-                ps.setString(28, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(29, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(30, "%" + TCari.getText().trim() + "%");
-                ps.setString(31, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(32, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(33, "%" + TCari.getText().trim() + "%");
-                ps.setString(34, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(35, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(36, "%" + TCari.getText().trim() + "%");                
-                ps.setString(37, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(38, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(39, "%" + TCari.getText().trim() + "%");
-                ps.setString(40, Valid.SetTgl(tgl1.getSelectedItem() + ""));
-                ps.setString(41, Valid.SetTgl(tgl2.getSelectedItem() + ""));
-                ps.setString(42, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        rs.getString("tgl_monev"),
-                        rs.getString("jam_monev"),
-                        rs.getString("perkembangan_hasil_lab"),
-                        rs.getString("perkembangan_fisik_klinik"),                        
+                        rs.getString("tgl"),
+                        rs.getString("ruang_rawat"),
+                        rs.getString("perkembangan_fisik_klinis"),                        
                         rs.getString("perkembangan_diet"),
-                        rs.getString("evaluasi"),
-                        rs.getString("catatan_makanan_dari_luar"),
-                        rs.getString("edukasi_keamanan_pangan"),
-                        rs.getString("tgl_edukasi"),
-                        rs.getString("menu_pilihan"),
-                        rs.getString("makanan_pokok"),
-                        rs.getString("lauk"),
-                        rs.getString("sayur"),
-                        rs.getString("buah_snack"),
-                        rs.getString("kd_kamar")
+                        rs.getString("evaluasi_tindak_lanjut"),
+                        rs.getString("petugas"),
+                        rs.getString("tgl_monev"),
+                        rs.getString("nip_petugas"),
+                        rs.getString("waktu_simpan")
                     });
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1304,122 +988,78 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     public void emptTeks() {   
         tglMonev.setDate(new Date());   
-        jam = "";
-        hasilLab.setText("");
-        fisikKlinik.setText("");
-        diet.setText("");
-        evaluasi.setText("");
-        catatan_makanan.setText("");        
-        ChkEdukasi.setSelected(false);
-        tglEdukasi.setDate(new Date());
-        ChkMenu.setSelected(false);
-        makanan_pokok.setText("");
-        lauk.setText("");
-        sayur.setText("");
-        buahSnack.setText("");
-        makanan_pokok.setEnabled(false);
-        lauk.setEnabled(false);
-        sayur.setEnabled(false);
-        buahSnack.setEnabled(false);
+        Tfisik.setText("");
+        Tdiet.setText("");
+        Tevaluasi.setText("");
+        nip = "-";
+        TnmPetugas.setText("-");
+        chkSaya.setSelected(false);
     }
 
     private void getData() {
-        tgl = "";
-        jam = "";
-        kdkamarnya = "";
-        edukasi = "";
-        menu = "";
+        nip = "";
+        if (tbMonev.getSelectedRow() != -1) {
+            TNoRW.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 0).toString());
+            TNoRM.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 1).toString());
+            Tpasien.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 2).toString());
+            TrgRawat.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 4).toString());
+            Valid.SetTgl(tglMonev, tbMonev.getValueAt(tbMonev.getSelectedRow(), 9).toString());
+            Tfisik.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 5).toString());
+            Tdiet.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 6).toString());
+            Tevaluasi.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 7).toString());
+            nip = tbMonev.getValueAt(tbMonev.getSelectedRow(), 10).toString();
+            TnmPetugas.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 8).toString());
+        }
+    }
+    
+    public void setData(String norw, String norm, String nmpasien, String ruangInap) {
+        TNoRW.setText(norw);
+        TNoRM.setText(norm);
+        Tpasien.setText(nmpasien);
+        TrgRawat.setText(ruangInap);
+        Valid.SetTgl(tgl1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
+        tgl2.setDate(new Date());
+        TCari.setText(norw);
         
-        if(tbMonev.getSelectedRow()!= -1){  
-            norawat.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 0).toString());
-            norm.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 1).toString());
-            nmpasien.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 2).toString());
-            kdkamarnya = tbMonev.getValueAt(tbMonev.getSelectedRow(), 17).toString();
-            nmruangan.setText(Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamarnya + "'"));
-            tgl = tbMonev.getValueAt(tbMonev.getSelectedRow(), 3).toString();
-            jam = tbMonev.getValueAt(tbMonev.getSelectedRow(), 4).toString();
-            Valid.SetTgl(tglMonev, tbMonev.getValueAt(tbMonev.getSelectedRow(), 3).toString());
-            hasilLab.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 5).toString());
-            fisikKlinik.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 6).toString());
-            diet.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 7).toString());
-            evaluasi.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 8).toString());
-            catatan_makanan.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 9).toString());
-            edukasi = tbMonev.getValueAt(tbMonev.getSelectedRow(), 10).toString();
-            Valid.SetTgl(tglEdukasi, tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString());
-            menu = tbMonev.getValueAt(tbMonev.getSelectedRow(), 12).toString();
-            makanan_pokok.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 13).toString());
-            lauk.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 14).toString());
-            sayur.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 15).toString());
-            buahSnack.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 16).toString());
-            NilaiBalik();
-       
-            if (ChkMenu.isSelected() == false) {
-                makanan_pokok.setEnabled(false);
-                lauk.setEnabled(false);
-                sayur.setEnabled(false);
-                buahSnack.setEnabled(false);
-            } else {
-                makanan_pokok.setEnabled(true);
-                lauk.setEnabled(true);
-                sayur.setEnabled(true);
-                buahSnack.setEnabled(true);
-            }
-        }
-    }
-    
-    public void isForm(){
-        if (ChkInput.isSelected() == true) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 350));
-            FormInput.setVisible(true);
-            ChkInput.setVisible(true);
-        } else if (ChkInput.isSelected() == false) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 20));
-            FormInput.setVisible(false);
-            ChkInput.setVisible(true);
-        }
-    }
-    
-    private void NilaiTrueFalse() {
-        if (ChkEdukasi.isSelected() == true) {
-            edukasi = "Ya";
+        if (akses.getadmin() == true) {
+            nip = "-";
+            TnmPetugas.setText("-");            
         } else {
-            edukasi = "Tidak";
+            nip = akses.getkode();
+            TnmPetugas.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nip + "'"));
         }
-        
-        if (ChkMenu.isSelected() == true) {
-            menu = "Ya";
-        } else {
-            menu = "Tidak";
-        }
-    }
-    
-    private void NilaiBalik() {
-        if (edukasi.equals("Ya")) {
-            ChkEdukasi.setSelected(true);
-        } else {
-            ChkEdukasi.setSelected(false);
-        }
-
-        if (menu.equals("Ya")) {
-            ChkMenu.setSelected(true);
-        } else {
-            ChkMenu.setSelected(false);
-        }
-    }
-    
-    public void setPasien(String norw, String ruangInap, String kdKamar) {
-        norawat.setText(norw);
-        norm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norawat.getText() + "'"));
-        nmpasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm.getText() + "'"));
-        nmruangan.setText(ruangInap);
-        kdkamarnya = kdKamar;
     }
     
     public void isCek() {
         BtnSimpan.setEnabled(akses.getmonev_asuhan_gizi());
         BtnGanti.setEnabled(akses.getmonev_asuhan_gizi());
         BtnHapus.setEnabled(akses.getmonev_asuhan_gizi());
+    }
+    
+    private void ganti() {
+        if (Sequel.mengedittf("monev_asuhan_gizi", "waktu_simpan=?", "tgl_monev=?, ruang_rawat=?,"
+                + "perkembangan_fisik_klinis=?, perkembangan_diet=?, evaluasi_tindak_lanjut=?, nip_petugas=?", 7, new String[]{
+                    Valid.SetTgl(tglMonev.getSelectedItem() + ""), TrgRawat.getText(), Tfisik.getText(),
+                    Tdiet.getText(), Tevaluasi.getText(), nip, tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString()
+                }) == true) {
+
+            Valid.SetTgl(tgl1, Valid.SetTgl(tglMonev.getSelectedItem() + ""));
+            tampil();
+            emptTeks();
+        }
+    }
+    
+    private void hapus() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.queryu2tf("delete from monev_asuhan_gizi where waktu_simpan=?", 1, new String[]{
+                tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString()
+            }) == true) {
+                tampil();                
+                emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+            }
+        }
     }
 }

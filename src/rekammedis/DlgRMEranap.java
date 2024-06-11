@@ -137,6 +137,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnProtokolKemoterapi = new widget.ButtonBig();
         BtnDokumenJangMed = new widget.ButtonBig();
         BtnSkriningUlangGizi = new widget.ButtonBig();
+        BtnMonevAsuhanGizi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -611,6 +612,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnSkriningUlangGizi);
+
+        BtnMonevAsuhanGizi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMonevAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485642_edit-notes.png"))); // NOI18N
+        BtnMonevAsuhanGizi.setText("Monitoring Dan Evaluasi Gizi");
+        BtnMonevAsuhanGizi.setIconTextGap(0);
+        BtnMonevAsuhanGizi.setName("BtnMonevAsuhanGizi"); // NOI18N
+        BtnMonevAsuhanGizi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnMonevAsuhanGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMonevAsuhanGiziActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnMonevAsuhanGizi);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -1158,6 +1172,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSkriningUlangGiziActionPerformed
 
+    private void BtnMonevAsuhanGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMonevAsuhanGiziActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            DlgMonevAsuhanGizi form = new DlgMonevAsuhanGizi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnMonevAsuhanGiziActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1191,6 +1222,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnJawabKonsul;
     private widget.Button BtnKeluar;
     private widget.ButtonBig BtnKonsul;
+    private widget.ButtonBig BtnMonevAsuhanGizi;
     private widget.ButtonBig BtnMonitoringEWSdewasa;
     private widget.ButtonBig BtnMonitoringPEWSanak;
     private widget.ButtonBig BtnObservasiRestrain;
@@ -1249,6 +1281,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferSerahTerima.setEnabled(akses.getpemberian_obat());
         BtnPersetujuanTindakan.setEnabled(akses.getpemberian_obat());
         BtnSkriningUlangGizi.setEnabled(akses.getassesmen_gizi_harian());
+        BtnMonevAsuhanGizi.setEnabled(akses.getmonev_asuhan_gizi());
     }
     
     public void setData(String norw, String norm, String nmpasien,
