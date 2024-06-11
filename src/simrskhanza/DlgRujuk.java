@@ -10,6 +10,11 @@
  */
 package simrskhanza;
 
+import bridging.BPJSApi;
+import bridging.BPJSRujukanKeluar;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import static com.sun.org.glassfish.external.amx.AMXUtil.prop;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -23,6 +28,10 @@ import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
 import java.awt.event.WindowEvent;
 import java.awt.event.WindowListener;
+import java.net.URI;
+import java.security.SecureRandom;
+import java.security.cert.CertificateException;
+import java.security.cert.X509Certificate;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -33,11 +42,23 @@ import java.util.Date;
 import javax.swing.Timer;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+import javax.net.ssl.SSLContext;
+import javax.net.ssl.X509TrustManager;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.conn.scheme.Scheme;
+import org.apache.http.conn.ssl.SSLSocketFactory;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
+import org.springframework.http.client.HttpComponentsClientHttpRequestFactory;
+import org.springframework.web.client.RestTemplate;
 
 /**
  *
@@ -48,12 +69,14 @@ public final class DlgRujuk extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private String tgl = "", sql = "", kode_rujukanya = "";
+    private String tgl = "", sql = "", kode_rujukanya = "", URL = "", utc = "", user = "", requestJson;
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
     public DlgRujukMasuk rujukmasuk = new DlgRujukMasuk(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private int i = 0;
+    private BPJSApi api = new BPJSApi();
+    private final Properties prop = new Properties();
+    private int i = 0, x = 0;
     private Date date = new Date();
 
     /**
@@ -297,7 +320,13 @@ public final class DlgRujuk extends javax.swing.JDialog {
         });
 
         ChkInput.setSelected(false);
-        isForm();        
+        isForm();
+
+        try {
+            user = akses.getkode().replace(" ", "").substring(0, 9);
+        } catch (Exception e) {
+            user = akses.getkode();
+        }
     }
     
     /**
@@ -1009,9 +1038,36 @@ public final class DlgRujuk extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        Valid.hapusTable(tabMode, TNoRj, "rujuk", "no_rujuk");
-        BtnCariActionPerformed(null);
-        emptTeks();
+        if (TabRujuk.getSelectedIndex() == 0) {
+            if (tbRujukanNon.getSelectedRow() != -1) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    Sequel.meghapus("rujuk", "no_rujuk", TNoRj.getText());
+                    BtnCariActionPerformed(null);
+                    emptTeks();
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah datanya yang mau dihapus..!!");
+                tbRujukanNon.requestFocus();
+            }
+        } else {
+            if (tbRujukanBPJS.getSelectedRow() != -1) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    try {
+                        bodyWithDeleteRequest();
+                    } catch (Exception ex) {
+                        System.out.println("Notifikasi Bridging : " + ex);
+                        if (ex.toString().contains("UnknownHostException")) {
+                            JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah datanya yang mau dihapus..!!");
+                tbRujukanBPJS.requestFocus();
+            }
+        }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
@@ -1618,5 +1674,74 @@ private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
         };
         // Timer
         new Timer(1000, taskPerformer).start();
+    }
+    
+    public void bodyWithDeleteRequest() throws Exception {
+        RestTemplate restTemplate = new RestTemplate();
+        SSLContext sslContext = SSLContext.getInstance("SSL");
+        javax.net.ssl.TrustManager[] trustManagers = {
+            new X509TrustManager() {
+                public X509Certificate[] getAcceptedIssuers() {
+                    return null;
+                }
+
+                public void checkServerTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                }
+
+                public void checkClientTrusted(X509Certificate[] arg0, String arg1) throws CertificateException {
+                }
+            }
+        };
+        sslContext.init(null, trustManagers, new SecureRandom());
+        SSLSocketFactory sslFactory = new SSLSocketFactory(sslContext, SSLSocketFactory.ALLOW_ALL_HOSTNAME_VERIFIER);
+        Scheme scheme = new Scheme("https", 443, sslFactory);
+
+        HttpComponentsClientHttpRequestFactory factory = new HttpComponentsClientHttpRequestFactory() {
+            @Override
+            protected HttpUriRequest createHttpUriRequest(HttpMethod httpMethod, URI uri) {
+                if (HttpMethod.DELETE == httpMethod) {
+                    return new BPJSRujukanKeluar.HttpEntityEnclosingDeleteRequest(uri);
+                }
+                return super.createHttpUriRequest(httpMethod, uri);
+            }
+        };
+        factory.getHttpClient().getConnectionManager().getSchemeRegistry().register(scheme);
+        restTemplate.setRequestFactory(factory);
+
+        try {
+            URL = prop.getProperty("URLAPIBPJS") + "/Rujukan/delete";
+
+            HttpHeaders headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+            headers.add("X-Cons-ID", Sequel.decXML2(prop.getProperty("CONSIDAPIBPJS"), prop.getProperty("KEY")));
+            utc = String.valueOf(api.GetUTCdatetimeAsString());
+            headers.add("X-Timestamp", utc);
+            headers.add("X-Signature", api.getHmac(utc));
+            headers.add("user_key", koneksiDB.USERKEYAPIBPJS());
+
+            requestJson = "{"
+                    + "\"request\": {"
+                    + "\"t_rujukan\": {"
+                    + "\"noRujukan\": \"" + tbRujukanBPJS.getValueAt(tbRujukanBPJS.getSelectedRow(), 0).toString() + "\","
+                    + "\"user\": \"" + user + "\""
+                    + "}"
+                    + "}"
+                    + "}";
+            ObjectMapper mapper = new ObjectMapper();
+            JsonNode root = mapper.readTree(restTemplate.exchange(URL, HttpMethod.DELETE, new HttpEntity<String>(requestJson, headers), String.class).getBody());
+            JsonNode nameNode = root.path("metaData");
+            System.out.println("code : " + nameNode.path("code").asText());
+            System.out.println("message : " + nameNode.path("message").asText());
+
+            if (nameNode.path("code").asText().equals("200")) {
+                Sequel.meghapus("bridging_rujukan_bpjs", "no_rujukan", tbRujukanBPJS.getValueAt(tbRujukanBPJS.getSelectedRow(), 0).toString());
+                Sequel.meghapus("rujuk", "no_rujuk", tbRujukanBPJS.getValueAt(tbRujukanBPJS.getSelectedRow(), 0).toString());
+                BtnCariActionPerformed(null);
+                emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, nameNode.path("message").asText());
+            }
+        } catch (Exception e) {
+        }
     }
 }

@@ -637,7 +637,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         rincianoperasi = Sequel.cariIsi("select rincianoperasi from set_nota");
         tampilkan_administrasi_di_billingranap = Sequel.cariIsi("select tampilkan_administrasi_di_billingranap from set_nota");
         tampilkan_ppnobat_ranap = Sequel.cariIsi("select tampilkan_ppnobat_ranap from set_nota");
-
+        hakkelas.setDocument(new batasInput((byte) 2).getOnlyAngka(hakkelas));
+        
         try {
             psrekening = koneksi.prepareStatement("select * from set_akun_ranap");
             try {
@@ -672,7 +673,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         } catch (Exception e) {
             System.out.println(e);
         }
-
     }
 
     /**
@@ -721,6 +721,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnCariPeriksaLab = new javax.swing.JMenuItem();
         MnCariRadiologi = new javax.swing.JMenuItem();
         MnHapusTagihan = new javax.swing.JMenuItem();
+        Popup2 = new javax.swing.JPopupMenu();
+        ppPerbaikiHakKelas = new javax.swing.JMenuItem();
         WindowInput = new javax.swing.JDialog();
         internalFrame2 = new widget.InternalFrame();
         TotalObat = new widget.TextBox();
@@ -1405,6 +1407,24 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHapusTagihan);
 
+        Popup2.setName("Popup2"); // NOI18N
+
+        ppPerbaikiHakKelas.setBackground(new java.awt.Color(242, 242, 242));
+        ppPerbaikiHakKelas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        ppPerbaikiHakKelas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        ppPerbaikiHakKelas.setText("Perbaiki Hak Kelas");
+        ppPerbaikiHakKelas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ppPerbaikiHakKelas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ppPerbaikiHakKelas.setIconTextGap(8);
+        ppPerbaikiHakKelas.setName("ppPerbaikiHakKelas"); // NOI18N
+        ppPerbaikiHakKelas.setPreferredSize(new java.awt.Dimension(140, 25));
+        ppPerbaikiHakKelas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ppPerbaikiHakKelasActionPerformed(evt);
+            }
+        });
+        Popup2.add(ppPerbaikiHakKelas);
+
         WindowInput.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowInput.setName("WindowInput"); // NOI18N
         WindowInput.setUndecorated(true);
@@ -2011,11 +2031,11 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         kdINACBG.setMaxLenth(15);
         kdINACBG.setName("kdINACBG"); // NOI18N
         kdINACBG.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyTyped(java.awt.event.KeyEvent evt) {
-                kdINACBGKeyTyped(evt);
-            }
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 kdINACBGKeyPressed(evt);
+            }
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                kdINACBGKeyTyped(evt);
             }
         });
         internalFrame11.add(kdINACBG);
@@ -2106,10 +2126,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         internalFrame12.add(jLabel53);
         jLabel53.setBounds(0, 25, 102, 23);
 
-        hakkelas.setEditable(false);
         hakkelas.setForeground(new java.awt.Color(0, 0, 0));
         hakkelas.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        hakkelas.setHighlighter(null);
+        hakkelas.setComponentPopupMenu(Popup2);
         hakkelas.setName("hakkelas"); // NOI18N
         internalFrame12.add(hakkelas);
         hakkelas.setBounds(106, 25, 40, 23);
@@ -2316,7 +2335,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-03-2024" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2397,7 +2416,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2024 10:09:21" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024 13:43:03" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2509,7 +2528,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4519,6 +4538,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             WindowSelisihTarif.setLocationRelativeTo(internalFrame1);
             WindowSelisihTarif.setVisible(true);
             kdINACBG.requestFocus();
+            hakkelas.setEditable(akses.getadmin());
+            
         } else if (!Sequel.cariIsi("select ifnull(kode_inacbg,'') from bridging_sep where no_sep='" + NoSEP.getText() + "'").equals("")) {
             cekSEP();
             cekINACBG();
@@ -4528,6 +4549,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             WindowSelisihTarif.setLocationRelativeTo(internalFrame1);
             WindowSelisihTarif.setVisible(true);
             kdINACBG.requestFocus();
+            hakkelas.setEditable(akses.getadmin());
         }
     }//GEN-LAST:event_MnSelisihTarifActionPerformed
 
@@ -4658,6 +4680,38 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         // TODO add your handling code here:
     }//GEN-LAST:event_tglPiutangKeyPressed
 
+    private void ppPerbaikiHakKelasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppPerbaikiHakKelasActionPerformed
+        if (hakkelas.getText().equals("1") || hakkelas.getText().equals("2") || hakkelas.getText().equals("3")) {
+            Sequel.mengedit("bridging_sep", "jnspelayanan='1' and no_sep='" + NoSEP.getText() + "'", "klsrawat='" + hakkelas.getText() + "'");
+            cekSEP();
+
+            if (kdINACBG.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(null, "Kode INACBG belum diisi..!!");
+                kdINACBG.requestFocus();
+            } else {
+                cekINACBG();
+
+                if (deskripsiKD.getText().equals("")) {
+                    JOptionPane.showMessageDialog(null, "Kode INACBG salah, ulangi lagi..!!!");
+                    kdINACBG.requestFocus();
+                    kdINACBG.setText("");
+                } else if (!deskripsiKD.getText().equals("")) {
+                    if (hakkelas.getText().equals("1")) {
+                        hitungSelisih();
+                    } else if (hakkelas.getText().equals("2")) {
+                        hitungSelisih();
+                    } else if (hakkelas.getText().equals("3")) {
+                        JOptionPane.showMessageDialog(null, "Sesuai Permenkes RI No. 3 Tahun 2023, utk. hak kelas 3 tdk. diperkenankan lagi naik kls. rawat..!!!");
+                        BtnCloseIn6.requestFocus();
+                    }
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(null, "Isilah hak kelas dengan benar..!!");
+            hakkelas.requestFocus();
+        }
+    }//GEN-LAST:event_ppPerbaikiHakKelasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -4742,6 +4796,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnTambahan1;
     private javax.swing.JMenuItem MnUbahLamaInap;
     private widget.TextBox NoSEP;
+    private javax.swing.JPopupMenu Popup2;
     private javax.swing.JPopupMenu PopupBayar;
     private javax.swing.JPopupMenu PopupPiutang;
     private widget.ScrollPane Scroll;
@@ -4842,6 +4897,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox persenSELISIH;
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppBersihkan1;
+    private javax.swing.JMenuItem ppPerbaikiHakKelas;
     private widget.TextBox realcostRS;
     private widget.TextBox rginap;
     private widget.ScrollPane scrollPane1;
@@ -5913,15 +5969,12 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         MnCariRadiologi.setEnabled(akses.getperiksa_radiologi());
         MnSelisihTarif.setEnabled(akses.getselisih_tarif_bpjs());
         MnPiutangPasien.setEnabled(akses.getbayar_piutang());
+        ppPerbaikiHakKelas.setEnabled(akses.getadmin());
 
         if (Sequel.cariIsi("select tampilkan_tombol_nota_ranap from set_nota").equals("Yes")) {
             BtnNota.setVisible(true);
         } else {
-            if (akses.getkode().equals("Admin Utama")) {
-                BtnNota.setVisible(true);
-            } else {
-                BtnNota.setVisible(false);
-            }
+            BtnNota.setVisible(akses.getadmin());            
         }
     }
 

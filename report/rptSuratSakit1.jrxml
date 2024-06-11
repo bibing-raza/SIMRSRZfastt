@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="20" uuid="33736fa2-0370-432f-b645-33a22f47f154">
 	<property name="ireport.zoom" value="1.6105100000000012"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="257"/>
+	<property name="ireport.y" value="65"/>
 	<parameter name="ttl" class="java.lang.String"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -13,6 +13,7 @@
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="tglsurat" class="java.lang.String"/>
 	<parameter name="ruangan" class="java.lang.String"/>
+	<parameter name="tglizin" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT rp.no_rawat, concat('848 / ',sk.no_surat) nosrt, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, 
 sk.pekerjaan, sk.alamat_domisili, pg.nama dokter, date_format(sk.sejak_tgl,'%d/%m/%Y') tgl_mulai, date_format(sk.sampai_tgl,'%d/%m/%Y') tgl_selesai FROM reg_periksa rp 
@@ -308,12 +309,11 @@ INNER JOIN pegawai pg ON pg.nik = sk.kd_dokter WHERE sk.no_rawat = '2021/10/03/0
 				<text><![CDATA[Demikian surat keterangan ini diberikan untuk diketahui dan dipergunakan seperlunya.]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="20" y="253" width="497" height="14" uuid="8ace035b-9e19-452c-bc5e-d4a5367d2314"/>
+				<reportElement x="20" y="253" width="497" height="14" uuid="e68499bf-405e-48e0-b85f-c4943652820a"/>
 				<textElement>
-					<font fontName="Tahoma" size="10"/>
-					<paragraph lineSpacing="Single"/>
+					<font fontName="Tahoma"/>
 				</textElement>
-				<textFieldExpression><![CDATA["sejak tanggal "+$F{tgl_mulai}+" sampai dengan tanggal "+$F{tgl_selesai}+"."]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{tglizin}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>

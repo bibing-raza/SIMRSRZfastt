@@ -923,6 +923,15 @@ public class DlgSuratKeteranganSakit extends javax.swing.JDialog {
                 param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText());
                 param.put("ruangan", TruangRawat.getText());
                 param.put("tglsurat", akses.getkabupatenrs() + ", " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_simpan from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")));
+
+                    //belum pulang ranap
+                if (Sequel.cariInteger("select count(-1) from kamar_inap where no_rawat='" + TNoRW.getText() + "' and stts_pulang in ('-','Pindah Kamar')") > 0) {
+                    param.put("tglizin", "sejak tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select sejak_tgl from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")) + ".");
+                    //sudah dipulangkan
+                } else {
+                    param.put("tglizin", "sejak tanggal " + Sequel.cariIsi("select date_format(sejak_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'")
+                            + " sampai dengan tanggal " + Sequel.cariIsi("select date_format(sampai_tgl,'%d/%m/%Y') from surat_keterangan_sakit where no_rawat='" + TNoRW.getText() + "'") + ".");
+                }
                 
                 Valid.MyReport("rptSuratSakit1.jasper", "report", "::[ Surat Keterangan Sakit ]::",
                         "SELECT rp.no_rawat, concat('848 / ',sk.no_surat) nosrt, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jk, "

@@ -1352,6 +1352,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         DTPCari3 = new widget.Tanggal();
         jLabel43 = new widget.Label();
         DTPCari4 = new widget.Tanggal();
+        jLabel59 = new widget.Label();
+        cmbRawat = new widget.ComboBox();
         WindowCariTindakan = new javax.swing.JDialog();
         internalFrame16 = new widget.InternalFrame();
         BtnCloseIn10 = new widget.Button();
@@ -1362,6 +1364,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         DTPCari5 = new widget.Tanggal();
         jLabel58 = new widget.Label();
         DTPCari6 = new widget.Tanggal();
+        jLabel60 = new widget.Label();
+        cmbRawat1 = new widget.ComboBox();
         NoBalasan = new widget.TextBox();
         LokasiLaka = new widget.TextBox();
         kode_rujukanya = new widget.TextBox();
@@ -1752,7 +1756,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         MnRekapObatDicari.setBackground(new java.awt.Color(242, 242, 242));
         MnRekapObatDicari.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapObatDicari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        MnRekapObatDicari.setText("Rekap Obat Dicari Sesuai SEP R. Jalan");
+        MnRekapObatDicari.setText("Rekap Obat Dicari Sesuai Data SEP");
         MnRekapObatDicari.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnRekapObatDicari.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRekapObatDicari.setIconTextGap(8);
@@ -1768,7 +1772,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         MnRekapTindakan.setBackground(new java.awt.Color(242, 242, 242));
         MnRekapTindakan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        MnRekapTindakan.setText("Rekap Tindakan Sesuai SEP R. Jalan");
+        MnRekapTindakan.setText("Rekap Tindakan Sesuai Data SEP");
         MnRekapTindakan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnRekapTindakan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnRekapTindakan.setIconTextGap(8);
@@ -2869,7 +2873,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         WindowCariObat.setUndecorated(true);
         WindowCariObat.setResizable(false);
 
-        internalFrame15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rekap Obat Dicari Sesuai SEP Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame15.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rekap Obat Dicari Sesuai Data SEP ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame15.setName("internalFrame15"); // NOI18N
         internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame15.setLayout(null);
@@ -2886,7 +2890,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             }
         });
         internalFrame15.add(BtnCloseIn9);
-        BtnCloseIn9.setBounds(250, 83, 100, 30);
+        BtnCloseIn9.setBounds(250, 111, 100, 30);
 
         BtnRekapObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnRekapObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
@@ -2900,7 +2904,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             }
         });
         internalFrame15.add(BtnRekapObat);
-        BtnRekapObat.setBounds(20, 83, 175, 30);
+        BtnRekapObat.setBounds(20, 111, 175, 30);
 
         TobatCari.setForeground(new java.awt.Color(0, 0, 0));
         TobatCari.setName("TobatCari"); // NOI18N
@@ -2951,6 +2955,18 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame15.add(DTPCari4);
         DTPCari4.setBounds(225, 25, 95, 23);
 
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Dari SEP : ");
+        jLabel59.setName("jLabel59"); // NOI18N
+        internalFrame15.add(jLabel59);
+        jLabel59.setBounds(2, 81, 90, 23);
+
+        cmbRawat.setForeground(new java.awt.Color(0, 0, 0));
+        cmbRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap" }));
+        cmbRawat.setName("cmbRawat"); // NOI18N
+        internalFrame15.add(cmbRawat);
+        cmbRawat.setBounds(96, 81, 95, 23);
+
         WindowCariObat.getContentPane().add(internalFrame15, java.awt.BorderLayout.CENTER);
 
         WindowCariTindakan.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -2958,7 +2974,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         WindowCariTindakan.setUndecorated(true);
         WindowCariTindakan.setResizable(false);
 
-        internalFrame16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rekap Tindakan Dicari Sesuai SEP Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame16.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rekap Tindakan Dicari Sesuai Data SEP ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame16.setName("internalFrame16"); // NOI18N
         internalFrame16.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame16.setLayout(null);
@@ -2975,7 +2991,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(BtnCloseIn10);
-        BtnCloseIn10.setBounds(280, 83, 90, 30);
+        BtnCloseIn10.setBounds(280, 111, 90, 30);
 
         BtnRekapTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnRekapTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
@@ -2989,7 +3005,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             }
         });
         internalFrame16.add(BtnRekapTindakan);
-        BtnRekapTindakan.setBounds(50, 83, 180, 30);
+        BtnRekapTindakan.setBounds(50, 111, 180, 30);
 
         TtindakanCari.setForeground(new java.awt.Color(0, 0, 0));
         TtindakanCari.setName("TtindakanCari"); // NOI18N
@@ -3039,6 +3055,18 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         DTPCari6.setPreferredSize(new java.awt.Dimension(95, 23));
         internalFrame16.add(DTPCari6);
         DTPCari6.setBounds(245, 25, 95, 23);
+
+        jLabel60.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel60.setText("Dari SEP : ");
+        jLabel60.setName("jLabel60"); // NOI18N
+        internalFrame16.add(jLabel60);
+        jLabel60.setBounds(2, 81, 110, 23);
+
+        cmbRawat1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbRawat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Rawat Jalan", "Rawat Inap" }));
+        cmbRawat1.setName("cmbRawat1"); // NOI18N
+        internalFrame16.add(cmbRawat1);
+        cmbRawat1.setBounds(116, 81, 95, 23);
 
         WindowCariTindakan.getContentPane().add(internalFrame16, java.awt.BorderLayout.CENTER);
 
@@ -6818,12 +6846,13 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     }//GEN-LAST:event_MnRekapSEPRalanRMBtnPrintActionPerformed
 
     private void MnRekapObatDicariBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapObatDicariBtnPrintActionPerformed
-        WindowCariObat.setSize(386, 138);
+        WindowCariObat.setSize(386, 161);
         WindowCariObat.setLocationRelativeTo(internalFrame1);
         WindowCariObat.setVisible(true);
         
         DTPCari3.setDate(new Date());
         DTPCari4.setDate(new Date());
+        cmbRawat.setSelectedIndex(0);
         TobatCari.setText("");
     }//GEN-LAST:event_MnRekapObatDicariBtnPrintActionPerformed
 
@@ -6840,18 +6869,32 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             TobatCari.requestFocus();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            dialog_simpan = Valid.openDialog();
+            if (cmbRawat.getSelectedIndex() == 0) {
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT b.no_sep 'No. SEP', date_format(b.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', "
+                        + "p.nm_pasien 'Nama Pasien', pl.nm_poli 'Poliklinik', db.nama_brng 'Nama Obat' from detail_pemberian_obat dp "
+                        + "inner join databarang db on db.kode_brng=dp.kode_brng inner join bridging_sep b on b.no_rawat=dp.no_rawat "
+                        + "inner join reg_periksa rp on rp.no_rawat=b.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli WHERE "
+                        + "b.tglsep BETWEEN '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='ralan' and db.nama_brng like '%" + TobatCari.getText() + "%' order by b.tglsep, rp.kd_poli", dialog_simpan);
 
-            Valid.MyReportToExcel("SELECT b.no_sep 'No. SEP', date_format(b.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', "
-                    + "p.nm_pasien 'Nama Pasien', pl.nm_poli 'Poliklinik', db.nama_brng 'Nama Obat' from detail_pemberian_obat dp "
-                    + "inner join databarang db on db.kode_brng=dp.kode_brng inner join bridging_sep b on b.no_rawat=dp.no_rawat "
-                    + "inner join reg_periksa rp on rp.no_rawat=b.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join poliklinik pl on pl.kd_poli=rp.kd_poli WHERE "
-                    + "b.tglsep BETWEEN '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' "
-                    + "and rp.status_lanjut='ralan' and db.nama_brng like '%" + TobatCari.getText() + "%' order by b.tglsep, rp.kd_poli", dialog_simpan);
+                JOptionPane.showMessageDialog(null, "Rekap obat " + TobatCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
+                WindowCariObat.dispose();
+            } else {
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT b.no_sep 'No. SEP', date_format( b.tglsep, '%d/%m/%Y' ) 'Tgl. SEP', p.no_rkm_medis 'No. RM', "
+                        + "p.nm_pasien 'Nama Pasien', bs.nm_bangsal 'Ruang Perawatan', db.nama_brng 'Nama Obat' FROM detail_pemberian_obat dp "
+                        + "INNER JOIN databarang db ON db.kode_brng = dp.kode_brng INNER JOIN bridging_sep b ON b.no_rawat = dp.no_rawat "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = b.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "INNER JOIN bangsal bs on bs.kd_bangsal=k.kd_bangsal WHERE "
+                        + "b.tglsep BETWEEN '" + Valid.SetTgl(DTPCari3.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari4.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='ranap' and db.nama_brng like '%" + TobatCari.getText() + "%' order by b.tglsep, bs.nm_bangsal", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Rekap obat " + TobatCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
-            WindowCariObat.dispose();
+                JOptionPane.showMessageDialog(null, "Rekap obat " + TobatCari.getText().toUpperCase() + " sesuai SEP Rawat Inap berhasil diexport menjadi file excel,..!!!");
+                WindowCariObat.dispose();
+            }
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnRekapObatActionPerformed
@@ -6862,17 +6905,18 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
     private void TobatCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TobatCariKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnRekapObatActionPerformed(null);
+            cmbRawat.requestFocus();
         }
     }//GEN-LAST:event_TobatCariKeyPressed
 
     private void MnRekapTindakanBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapTindakanBtnPrintActionPerformed
-        WindowCariTindakan.setSize(406, 138);
+        WindowCariTindakan.setSize(406, 165);
         WindowCariTindakan.setLocationRelativeTo(internalFrame1);
         WindowCariTindakan.setVisible(true);
         
         DTPCari5.setDate(new Date());
         DTPCari6.setDate(new Date());
+        cmbRawat1.setSelectedIndex(0);
         TtindakanCari.setText("");
     }//GEN-LAST:event_MnRekapTindakanBtnPrintActionPerformed
 
@@ -6890,34 +6934,80 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             TtindakanCari.requestFocus();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            dialog_simpan = Valid.openDialog();
-            Valid.MyReportToExcel("SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
-                    + "DATE_FORMAT(rj.tgl_perawatan,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', d.nm_dokter 'Nama Dokter', "
-                    + "jp.nm_perawatan 'Nama Pemeriksaan' from bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
-                    + "inner join rawat_jl_drpr rj on rj.no_rawat=bs.no_rawat inner join dokter d on d.kd_dokter=rj.kd_dokter "
-                    + "inner join jns_perawatan jp on jp.kd_jenis_prw=rj.kd_jenis_prw where "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
-                    + "and rp.status_lanjut='Ralan' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%' "
-                    + "union all "
-                    + "SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
-                    + "DATE_FORMAT(pr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', d.nm_dokter 'Nama Dokter', "
-                    + "jp.nm_perawatan 'Nama Pemeriksaan' from bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
-                    + "inner join periksa_radiologi pr on pr.no_rawat=bs.no_rawat inner join dokter d on d.kd_dokter=pr.kd_dokter "
-                    + "inner join jns_perawatan_radiologi jp on jp.kd_jenis_prw=pr.kd_jenis_prw where "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
-                    + "and rp.status_lanjut='Ralan' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%'", dialog_simpan);
+            if (cmbRawat1.getSelectedIndex() == 0) {
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                        + "DATE_FORMAT(rj.tgl_perawatan,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', d.nm_dokter 'Nama Dokter', "
+                        + "jp.nm_perawatan 'Nama Pemeriksaan' from bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
+                        + "inner join rawat_jl_drpr rj on rj.no_rawat=bs.no_rawat inner join dokter d on d.kd_dokter=rj.kd_dokter "
+                        + "inner join jns_perawatan jp on jp.kd_jenis_prw=rj.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ralan' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%' "
+                        + "union all "
+                        + "SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                        + "DATE_FORMAT(pr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', d.nm_dokter 'Nama Dokter', "
+                        + "jp.nm_perawatan 'Nama Pemeriksaan' from bridging_sep bs inner join reg_periksa rp on rp.no_rawat=bs.no_rawat "
+                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join poliklinik pl on pl.kd_poli=rp.kd_poli "
+                        + "inner join periksa_radiologi pr on pr.no_rawat=bs.no_rawat inner join dokter d on d.kd_dokter=pr.kd_dokter "
+                        + "inner join jns_perawatan_radiologi jp on jp.kd_jenis_prw=pr.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ralan' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%'", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Rekap tindakan medis " + TtindakanCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
-            WindowCariTindakan.dispose();
+                JOptionPane.showMessageDialog(null, "Rekap tindakan medis " + TtindakanCari.getText().toUpperCase() + " sesuai SEP Rawat Jalan berhasil diexport menjadi file excel,..!!!");
+                WindowCariTindakan.dispose();
+            } else {
+                dialog_simpan = Valid.openDialog();
+                Valid.MyReportToExcel("SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                        + "DATE_FORMAT(ri.tgl_perawatan,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', pg.nama 'Nama Dokter', "
+                        + "jp.nm_perawatan 'Nama Pemeriksaan' FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "INNER JOIN rawat_inap_dr ri ON ri.no_rawat = bs.no_rawat INNER JOIN pegawai pg ON pg.nik = ri.kd_dokter "
+                        + "INNER JOIN jns_perawatan jp ON jp.kd_jenis_prw = ri.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ranap' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%' "
+                        + "union all "
+                        + "SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                        + "DATE_FORMAT(ri.tgl_perawatan,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', pg.nama 'Nama Dokter', "
+                        + "jp.nm_perawatan 'Nama Pemeriksaan' FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "INNER JOIN rawat_inap_pr ri ON ri.no_rawat = bs.no_rawat INNER JOIN pegawai pg ON pg.nik = ri.nip "
+                        + "INNER JOIN jns_perawatan jp ON jp.kd_jenis_prw = ri.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ranap' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%' "
+                        + "union all "
+                        + "SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
+                        + "DATE_FORMAT(ri.tgl_perawatan,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', pg.nama 'Nama Dokter', "
+                        + "jp.nm_perawatan 'Nama Pemeriksaan' FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat "
+                        + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal "
+                        + "INNER JOIN rawat_inap_drpr ri ON ri.no_rawat = bs.no_rawat INNER JOIN pegawai pg ON pg.nik = ri.kd_dokter "
+                        + "INNER JOIN jns_perawatan jp ON jp.kd_jenis_prw = ri.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ranap' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%' "
+                        + "union all "
+                        + "SELECT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', "
+                        + "p.nm_pasien 'Nama Pasien', DATE_FORMAT(pr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', "
+                        + "d.nm_dokter 'Nama Dokter', jp.nm_perawatan 'Nama Pemeriksaan' FROM bridging_sep bs "
+                        + "INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                        + "INNER JOIN kamar_inap ki on ki.no_rawat=rp.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal INNER JOIN periksa_radiologi pr ON pr.no_rawat = bs.no_rawat "
+                        + "INNER JOIN dokter d ON d.kd_dokter = pr.kd_dokter INNER JOIN jns_perawatan_radiologi jp ON jp.kd_jenis_prw = pr.kd_jenis_prw where "
+                        + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                        + "and rp.status_lanjut='Ranap' and jp.nm_perawatan like '%" + TtindakanCari.getText() + "%'", dialog_simpan);
+
+                JOptionPane.showMessageDialog(null, "Rekap tindakan medis " + TtindakanCari.getText().toUpperCase() + " sesuai SEP Rawat Inap berhasil diexport menjadi file excel,..!!!");
+                WindowCariTindakan.dispose();
+            }
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnRekapTindakanActionPerformed
 
     private void TtindakanCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtindakanCariKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            BtnRekapTindakanActionPerformed(null);
+            cmbRawat1.requestFocus();
         }
     }//GEN-LAST:event_TtindakanCariKeyPressed
 
@@ -7095,6 +7185,8 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private widget.Button btnProsedur;
     private widget.Button btnProv;
     private widget.ComboBox cmbPembiayaan;
+    private widget.ComboBox cmbRawat;
+    private widget.ComboBox cmbRawat1;
     private widget.ComboBox cmbSttsPlg;
     private widget.ComboBox flagPro;
     private widget.ComboBox hakKelas;
@@ -7166,7 +7258,9 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private widget.Label jLabel56;
     private widget.Label jLabel57;
     private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel6;
+    private widget.Label jLabel60;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
