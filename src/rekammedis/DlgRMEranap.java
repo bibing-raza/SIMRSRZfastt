@@ -137,6 +137,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnProtokolKemoterapi = new widget.ButtonBig();
         BtnDokumenJangMed = new widget.ButtonBig();
         BtnSkriningUlangGizi = new widget.ButtonBig();
+        BtnAsuhanGizi = new widget.ButtonBig();
         BtnMonevAsuhanGizi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
@@ -612,6 +613,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         internalFrame2.add(BtnSkriningUlangGizi);
+
+        BtnAsuhanGizi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsuhanGizi.setText("Asuhan Gizi");
+        BtnAsuhanGizi.setIconTextGap(0);
+        BtnAsuhanGizi.setName("BtnAsuhanGizi"); // NOI18N
+        BtnAsuhanGizi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsuhanGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsuhanGiziActionPerformed(evt);
+            }
+        });
+        internalFrame2.add(BtnAsuhanGizi);
 
         BtnMonevAsuhanGizi.setForeground(new java.awt.Color(0, 0, 0));
         BtnMonevAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485642_edit-notes.png"))); // NOI18N
@@ -1189,6 +1203,10 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnMonevAsuhanGiziActionPerformed
 
+    private void BtnAsuhanGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsuhanGiziActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_BtnAsuhanGiziActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1213,6 +1231,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenRestrain;
     private widget.ButtonBig BtnAsesmenUlangRJAnak;
     private widget.ButtonBig BtnAsesmenUlangRJDewasa;
+    private widget.ButtonBig BtnAsuhanGizi;
     private widget.ButtonBig BtnCPPT;
     private widget.ButtonBig BtnCTK;
     private widget.Button BtnCloseIn10;
@@ -1282,6 +1301,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPersetujuanTindakan.setEnabled(akses.getpemberian_obat());
         BtnSkriningUlangGizi.setEnabled(akses.getassesmen_gizi_harian());
         BtnMonevAsuhanGizi.setEnabled(akses.getmonev_asuhan_gizi());
+        BtnAsuhanGizi.setEnabled(akses.getassesmen_gizi_harian());
     }
     
     public void setData(String norw, String norm, String nmpasien,
@@ -1438,6 +1458,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnAsesmenRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnAsesmenRestrain.setToolTipText("Asesmen Restrain SUDAH diisi oleh perawat/bidan..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + norawat + "'") == 0) {
+            BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsuhanGizi.setToolTipText("Asuhan Gizi Pasien BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsuhanGizi.setToolTipText("Asuhan Gizi Pasien SUDAH diisi oleh petugas..!!!");
         }
     }
 }
