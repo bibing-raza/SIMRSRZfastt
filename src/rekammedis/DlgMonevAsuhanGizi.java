@@ -831,8 +831,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             param.put("norm", TNoRM.getText());
             param.put("nmpasien", Tpasien.getText());
             param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
-//            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi where no_rawat='" + TNoRW.getText() + "'")));
+            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRW.getText() + "'")));
             
             Valid.MyReport("rptMonevAsuhanGizi.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
                     "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);
