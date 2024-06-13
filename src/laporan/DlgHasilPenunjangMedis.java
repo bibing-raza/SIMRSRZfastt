@@ -711,33 +711,48 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             if (cekLIS.equals("")) {
                 JOptionPane.showMessageDialog(null, ketLIS + " pemeriksaan dengan No. Lab. " + noLIS + ".");
             } else {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                Map<String, Object> param = new HashMap<>();
-                param.put("namars", akses.getnamars());
-                param.put("alamatrs", akses.getalamatrs());
-                param.put("kotars", akses.getkabupatenrs());
-                param.put("propinsirs", akses.getpropinsirs());
-                param.put("kontakrs", akses.getkontakrs());
-                param.put("emailrs", akses.getemailrs());
-                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                if (tbLIS.getSelectedRow() != -1) {
+                    kamar = "";
+                    tampilHasil(tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString());
+                    
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
 
-                param.put("nmPasien", nmpas);
-                param.put("noLab", noLIS);
-                param.put("norawat", norawat);
-                param.put("norm", nomorrm);
-                param.put("jkCaraByr", Sequel.cariIsi("SELECT concat(IF (p.jk = 'L','Laki-laki','Perempuan'),' / ',pj.png_jawab) FROM reg_periksa rp "
-                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN penjab pj ON pj.kd_pj=rp.kd_pj WHERE rp.no_rawat = '" + norawat + "'"));
-                param.put("tglLhr_umur", Sequel.cariIsi("SELECT concat(DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') "
-                        + "FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis WHERE rp.no_rawat = '" + norawat + "'"));
-                param.put("tglPeriksa", Valid.SetTglINDONESIA(tglPeriksaLIS) + " - " + jamLIS);
-                param.put("drPengirim", drpengirim);
-                param.put("drLAB", Sequel.cariIsi("SELECT d.nm_dokter FROM set_pjlab s INNER JOIN dokter d ON d.kd_dokter=s.kd_dokterlab"));
-                param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE(waktu_insert) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'")));
-                param.put("labelUnit", "Poliklinik/Inst.");
-                param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
+                    param.put("nmPasien", nmpas);
+                    param.put("noLab", tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString());
+                    param.put("norawat", norawat);
+                    param.put("norm", nomorrm);
+                    param.put("jkCaraByr", Sequel.cariIsi("SELECT concat(IF (p.jk = 'L','Laki-laki','Perempuan'),' / ',pj.png_jawab) FROM reg_periksa rp "
+                            + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN penjab pj ON pj.kd_pj=rp.kd_pj WHERE rp.no_rawat = '" + norawat + "'"));
+                    param.put("tglLhr_umur", Sequel.cariIsi("SELECT concat(DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y'),' / ',rp.umurdaftar,' ',rp.sttsumur,'.') "
+                            + "FROM reg_periksa rp INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis WHERE rp.no_rawat = '" + norawat + "'"));
+                    param.put("tglPeriksa", Valid.SetTglINDONESIA(tglPeriksaLIS) + " - " + jamLIS);
+                    param.put("drPengirim", drpengirim);
+                    param.put("drLAB", Sequel.cariIsi("SELECT d.nm_dokter FROM set_pjlab s INNER JOIN dokter d ON d.kd_dokter=s.kd_dokterlab"));
+                    param.put("tglSurat", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT DATE(waktu_insert) FROM lis_hasil_data_pasien WHERE no_lab='" + tbLIS.getValueAt(tbLIS.getSelectedRow(), 1).toString() + "'")));
+                    
+                    kamar = Sequel.cariIsi("select ifnull(kd_kamar,'') from kamar_inap where no_rawat='" + norawat + "' order by tgl_masuk desc limit 1");
+                    if (!kamar.equals("")) {
+                        param.put("labelUnit", "Rg. Perawatan");
+                        param.put("nmUnit", Sequel.cariIsi("select b.nm_bangsal from bangsal b inner join kamar k on b.kd_bangsal=k.kd_bangsal where k.kd_kamar='" + kamar + "' "));
+                    } else if (kamar.equals("")) {
+                        param.put("labelUnit", "Poliklinik/Inst.");
+                        param.put("nmUnit", Sequel.cariIsi("select pl.nm_poli from poliklinik pl inner join reg_periksa rp on pl.kd_poli=rp.kd_poli where rp.no_rawat='" + norawat + "'"));
+                    }
 
-                Valid.MyReport("rptHasilLIS.jasper", "report", "::[ Lembar Hasil Pemeriksaan Laboratorium (LIS) ]::", "SELECT * FROM temporary_lis", param);
-                this.setCursor(Cursor.getDefaultCursor());
+                    Valid.MyReport("rptHasilLIS.jasper", "report", "::[ Lembar Hasil Pemeriksaan Laboratorium (LIS) ]::", "SELECT * FROM temporary_lis", param);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Silahkan pilih/klik dulu salah satu datanya pada tabel");
+                    tbLIS.requestFocus();
+                }
             }
         }
 }//GEN-LAST:event_BtnPrinLabActionPerformed
@@ -1173,22 +1188,22 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
             drpengirim = tbLIS.getValueAt(tbLIS.getSelectedRow(), 7).toString();
             tglPeriksaLIS = Sequel.cariIsi("SELECT DATE(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
             jamPeriksaLIS = Sequel.cariIsi("SELECT TIME(waktu_reg_lab) FROM lis_hasil_data_pasien WHERE no_lab='" + noLIS + "'");
-            tampilHasil();
+            tampilHasil(noLIS);
         }
     }
     
-    private void tampilHasil() {
+    private void tampilHasil(String nolisDipilih) {
         try {
             Sequel.queryu("delete from temporary_lis");
             Valid.tabelKosong(tabMode1);
-            ps1.setString(1, noLIS);
+            ps1.setString(1, nolisDipilih);
             rs1 = ps1.executeQuery();
             while (rs1.next()) {    
                 Sequel.menyimpan("temporary_lis", "'" + rs1.getString("kategori_pemeriksaan_nama") + "','','','',"
                         + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Kategori Pemeriksaan");
                 tabMode1.addRow(new Object[]{false, rs1.getString("kategori_pemeriksaan_nama"), "", "", "", "", "", ""});
 
-                ps2.setString(1, noLIS);
+                ps2.setString(1, nolisDipilih);
                 ps2.setString(2, rs1.getString("kategori_pemeriksaan_nama"));
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
@@ -1196,7 +1211,7 @@ public class DlgHasilPenunjangMedis extends javax.swing.JDialog {
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Sub Kategori Pemeriksaan");
                     tabMode1.addRow(new Object[]{false, "   "+rs2.getString("sub_kategori_pemeriksaan_nama"), "", "", "", "", "", ""});
                     
-                    ps3.setString(1, noLIS);
+                    ps3.setString(1, nolisDipilih);
                     ps3.setString(2, rs2.getString("sub_kategori_pemeriksaan_nama"));
                     ps3.setString(3, rs1.getString("kategori_pemeriksaan_nama"));
                     

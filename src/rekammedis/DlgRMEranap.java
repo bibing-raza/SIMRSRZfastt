@@ -1204,7 +1204,24 @@ public class DlgRMEranap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnMonevAsuhanGiziActionPerformed
 
     private void BtnAsuhanGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsuhanGiziActionPerformed
-        // TODO add your handling code here:
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMAsuhanGiziRanap form = new RMAsuhanGiziRanap(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan, segera diinfokan jika sudah selesai...!!!");
+            }
+        }
     }//GEN-LAST:event_BtnAsuhanGiziActionPerformed
 
     /**
