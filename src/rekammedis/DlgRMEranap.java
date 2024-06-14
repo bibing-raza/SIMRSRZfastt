@@ -112,6 +112,8 @@ public class DlgRMEranap extends javax.swing.JDialog {
         jLabel4 = new widget.Label();
         TtglMasuk = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
+        scrollInput = new widget.ScrollPane();
+        FormInput = new widget.PanelBiasa();
         BtnAsesmenRestrain = new widget.ButtonBig();
         BtnObservasiRestrain = new widget.ButtonBig();
         BtnAsesmenMedikDewasa = new widget.ButtonBig();
@@ -283,7 +285,16 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setPreferredSize(new java.awt.Dimension(2800, 2800));
-        internalFrame2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+        internalFrame2.setLayout(new java.awt.BorderLayout());
+
+        scrollInput.setName("scrollInput"); // NOI18N
+        scrollInput.setPreferredSize(new java.awt.Dimension(102, 557));
+
+        FormInput.setBackground(new java.awt.Color(255, 255, 255));
+        FormInput.setBorder(null);
+        FormInput.setName("FormInput"); // NOI18N
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 750));
+        FormInput.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
 
         BtnAsesmenRestrain.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -297,7 +308,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenRestrainActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenRestrain);
+        FormInput.add(BtnAsesmenRestrain);
 
         BtnObservasiRestrain.setForeground(new java.awt.Color(0, 0, 0));
         BtnObservasiRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360816018_tests.png"))); // NOI18N
@@ -311,7 +322,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnObservasiRestrainActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnObservasiRestrain);
+        FormInput.add(BtnObservasiRestrain);
 
         BtnAsesmenMedikDewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenMedikDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -325,7 +336,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenMedikDewasaActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenMedikDewasa);
+        FormInput.add(BtnAsesmenMedikDewasa);
 
         BtnAsesmenMedikAnak.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenMedikAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -339,7 +350,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenMedikAnakActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenMedikAnak);
+        FormInput.add(BtnAsesmenMedikAnak);
 
         BtnAsesmenKeperawatanDewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -352,7 +363,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenKeperawatanDewasaActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenKeperawatanDewasa);
+        FormInput.add(BtnAsesmenKeperawatanDewasa);
 
         BtnAsesmenKeperawatanAnak.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenKeperawatanAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -365,7 +376,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenKeperawatanAnakActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenKeperawatanAnak);
+        FormInput.add(BtnAsesmenKeperawatanAnak);
 
         BtnCPPT.setForeground(new java.awt.Color(0, 0, 0));
         BtnCPPT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -378,7 +389,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnCPPTActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnCPPT);
+        FormInput.add(BtnCPPT);
 
         BtnResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
@@ -391,7 +402,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnResepActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnResep);
+        FormInput.add(BtnResep);
 
         BtnRingkasan.setForeground(new java.awt.Color(0, 0, 0));
         BtnRingkasan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -404,7 +415,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnRingkasanActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnRingkasan);
+        FormInput.add(BtnRingkasan);
 
         BtnCTK.setForeground(new java.awt.Color(0, 0, 0));
         BtnCTK.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -417,7 +428,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnCTKActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnCTK);
+        FormInput.add(BtnCTK);
 
         BtnAsesmenUlangRJDewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenUlangRJDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -430,7 +441,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenUlangRJDewasaActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenUlangRJDewasa);
+        FormInput.add(BtnAsesmenUlangRJDewasa);
 
         BtnAsesmenUlangRJAnak.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenUlangRJAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -443,7 +454,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsesmenUlangRJAnakActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsesmenUlangRJAnak);
+        FormInput.add(BtnAsesmenUlangRJAnak);
 
         BtnTransferSerahTerima.setForeground(new java.awt.Color(0, 0, 0));
         BtnTransferSerahTerima.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -456,7 +467,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnTransferSerahTerimaActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnTransferSerahTerima);
+        FormInput.add(BtnTransferSerahTerima);
 
         BtnPengelolaanTranfusiDarah.setForeground(new java.awt.Color(0, 0, 0));
         BtnPengelolaanTranfusiDarah.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481001585_blood_drop_biru.png"))); // NOI18N
@@ -469,7 +480,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnPengelolaanTranfusiDarahActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnPengelolaanTranfusiDarah);
+        FormInput.add(BtnPengelolaanTranfusiDarah);
 
         BtnMonitoringEWSdewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnMonitoringEWSdewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
@@ -482,7 +493,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnMonitoringEWSdewasaActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnMonitoringEWSdewasa);
+        FormInput.add(BtnMonitoringEWSdewasa);
 
         BtnMonitoringPEWSanak.setForeground(new java.awt.Color(0, 0, 0));
         BtnMonitoringPEWSanak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_dialog-warning_118940.png"))); // NOI18N
@@ -495,7 +506,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnMonitoringPEWSanakActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnMonitoringPEWSanak);
+        FormInput.add(BtnMonitoringPEWSanak);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -508,7 +519,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnJadwalObatActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnJadwalObat);
+        FormInput.add(BtnJadwalObat);
 
         BtnKonsul.setForeground(new java.awt.Color(0, 0, 0));
         BtnKonsul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/email_open.png"))); // NOI18N
@@ -521,7 +532,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnKonsulActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnKonsul);
+        FormInput.add(BtnKonsul);
 
         BtnJawabKonsul.setForeground(new java.awt.Color(0, 0, 0));
         BtnJawabKonsul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/kwrite.png"))); // NOI18N
@@ -534,7 +545,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnJawabKonsulActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnJawabKonsul);
+        FormInput.add(BtnJawabKonsul);
 
         BtnPersetujuanTindakan.setForeground(new java.awt.Color(0, 0, 0));
         BtnPersetujuanTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_todo_list_add_17451.png"))); // NOI18N
@@ -547,7 +558,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnPersetujuanTindakanActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnPersetujuanTindakan);
+        FormInput.add(BtnPersetujuanTindakan);
 
         BtnPantauHarianPasien.setForeground(new java.awt.Color(0, 0, 0));
         BtnPantauHarianPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
@@ -560,7 +571,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnPantauHarianPasienActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnPantauHarianPasien);
+        FormInput.add(BtnPantauHarianPasien);
 
         BtnGrafikPantauHarian.setForeground(new java.awt.Color(0, 0, 0));
         BtnGrafikPantauHarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486822_20.png"))); // NOI18N
@@ -573,7 +584,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnGrafikPantauHarianActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnGrafikPantauHarian);
+        FormInput.add(BtnGrafikPantauHarian);
 
         BtnProtokolKemoterapi.setForeground(new java.awt.Color(0, 0, 0));
         BtnProtokolKemoterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_30-Doctor_5929214.png"))); // NOI18N
@@ -586,7 +597,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnProtokolKemoterapiActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnProtokolKemoterapi);
+        FormInput.add(BtnProtokolKemoterapi);
 
         BtnDokumenJangMed.setForeground(new java.awt.Color(0, 0, 0));
         BtnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/x-office-address-book.png"))); // NOI18N
@@ -599,7 +610,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnDokumenJangMedActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnDokumenJangMed);
+        FormInput.add(BtnDokumenJangMed);
 
         BtnSkriningUlangGizi.setForeground(new java.awt.Color(0, 0, 0));
         BtnSkriningUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_order-history_49596.png"))); // NOI18N
@@ -612,7 +623,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnSkriningUlangGiziActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnSkriningUlangGizi);
+        FormInput.add(BtnSkriningUlangGizi);
 
         BtnAsuhanGizi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -625,7 +636,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnAsuhanGiziActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnAsuhanGizi);
+        FormInput.add(BtnAsuhanGizi);
 
         BtnMonevAsuhanGizi.setForeground(new java.awt.Color(0, 0, 0));
         BtnMonevAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360485642_edit-notes.png"))); // NOI18N
@@ -638,7 +649,11 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 BtnMonevAsuhanGiziActionPerformed(evt);
             }
         });
-        internalFrame2.add(BtnMonevAsuhanGizi);
+        FormInput.add(BtnMonevAsuhanGizi);
+
+        scrollInput.setViewportView(FormInput);
+
+        internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
 
@@ -1190,16 +1205,20 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgRMEranap");
-            DlgMonevAsuhanGizi form = new DlgMonevAsuhanGizi(null, false);
-            form.emptTeks();
-            form.isCek();
-            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
-            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
+            if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                DlgMonevAsuhanGizi form = new DlgMonevAsuhanGizi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asuhan gizi belum tersimpan untuk pasien ini...!!!");
+            }
         }
     }//GEN-LAST:event_BtnMonevAsuhanGiziActionPerformed
 
@@ -1272,6 +1291,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
     private widget.ButtonBig BtnTransferSerahTerima;
+    private widget.PanelBiasa FormInput;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
@@ -1290,6 +1310,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.TextBox kddpjp;
     private widget.TextBox nmUnit;
     private widget.TextBox nmdpjp;
+    private widget.ScrollPane scrollInput;
     // End of variables declaration//GEN-END:variables
 
     private void isCek() {
