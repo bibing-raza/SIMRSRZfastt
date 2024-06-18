@@ -185,6 +185,8 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         TnmPetugas = new widget.TextBox();
         BtnPetugas = new widget.Button();
         chkSaya = new widget.CekBox();
+        jLabel30 = new widget.Label();
+        TtglAsuhan = new widget.TextBox();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -380,7 +382,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel28);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -394,7 +396,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -454,7 +456,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(380, 310));
+        PanelInput.setPreferredSize(new java.awt.Dimension(380, 338));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
 
         FormInput.setName("FormInput"); // NOI18N
@@ -465,7 +467,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel17.setText("Perkembangan Fisik/Klinis : ");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(0, 66, 175, 23);
+        jLabel17.setBounds(0, 94, 175, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Pasien : ");
@@ -501,22 +503,22 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         FormInput.add(TrgRawat);
-        TrgRawat.setBounds(122, 38, 330, 23);
+        TrgRawat.setBounds(122, 38, 505, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setText("Tgl. Monev : ");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(453, 38, 79, 23);
+        jLabel27.setBounds(453, 66, 79, 23);
 
         tglMonev.setEditable(false);
-        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-06-2024" }));
+        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
         tglMonev.setDisplayFormat("dd-MM-yyyy");
         tglMonev.setName("tglMonev"); // NOI18N
         tglMonev.setOpaque(false);
         tglMonev.setPreferredSize(new java.awt.Dimension(95, 23));
         FormInput.add(tglMonev);
-        tglMonev.setBounds(533, 38, 95, 23);
+        tglMonev.setBounds(533, 66, 95, 23);
 
         Scroll10.setName("Scroll10"); // NOI18N
         Scroll10.setOpaque(true);
@@ -533,13 +535,13 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         Scroll10.setViewportView(Tfisik);
 
         FormInput.add(Scroll10);
-        Scroll10.setBounds(177, 66, 450, 55);
+        Scroll10.setBounds(177, 94, 450, 55);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Perkembangan Diet : ");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(0, 126, 175, 23);
+        jLabel18.setBounds(0, 154, 175, 23);
 
         Scroll11.setName("Scroll11"); // NOI18N
         Scroll11.setOpaque(true);
@@ -556,13 +558,13 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         Scroll11.setViewportView(Tdiet);
 
         FormInput.add(Scroll11);
-        Scroll11.setBounds(177, 126, 450, 55);
+        Scroll11.setBounds(177, 154, 450, 55);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Evaluasi dan Tindak Lanjut : ");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(0, 186, 175, 23);
+        jLabel19.setBounds(0, 214, 175, 23);
 
         Scroll12.setName("Scroll12"); // NOI18N
         Scroll12.setOpaque(true);
@@ -579,19 +581,19 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         Scroll12.setViewportView(Tevaluasi);
 
         FormInput.add(Scroll12);
-        Scroll12.setBounds(177, 186, 450, 82);
+        Scroll12.setBounds(177, 214, 450, 82);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Ahli Gizi : ");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(0, 274, 120, 23);
+        jLabel20.setBounds(0, 302, 120, 23);
 
         TnmPetugas.setEditable(false);
         TnmPetugas.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas.setName("TnmPetugas"); // NOI18N
         FormInput.add(TnmPetugas);
-        TnmPetugas.setBounds(122, 274, 390, 23);
+        TnmPetugas.setBounds(122, 302, 390, 23);
 
         BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -604,7 +606,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPetugas);
-        BtnPetugas.setBounds(515, 274, 28, 23);
+        BtnPetugas.setBounds(515, 302, 28, 23);
 
         chkSaya.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya.setForeground(new java.awt.Color(0, 0, 0));
@@ -620,7 +622,19 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkSaya);
-        chkSaya.setBounds(550, 274, 90, 23);
+        chkSaya.setBounds(550, 302, 90, 23);
+
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Tgl. Asuhan Gizi : ");
+        jLabel30.setName("jLabel30"); // NOI18N
+        FormInput.add(jLabel30);
+        jLabel30.setBounds(0, 66, 120, 23);
+
+        TtglAsuhan.setEditable(false);
+        TtglAsuhan.setForeground(new java.awt.Color(0, 0, 0));
+        TtglAsuhan.setName("TtglAsuhan"); // NOI18N
+        FormInput.add(TtglAsuhan);
+        TtglAsuhan.setBounds(122, 66, 170, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -831,7 +845,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             param.put("norm", TNoRM.getText());
             param.put("nmpasien", Tpasien.getText());
             param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRW.getText() + "'")));
+            param.put("tglasuhan", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi_ranap where no_rawat='" + TNoRW.getText() + "'")));
             
             Valid.MyReport("rptMonevAsuhanGizi.jasper", "report", "::[ Laporan Monitoring Dan Evaluasi Asuhan Gizi Pasien ]::",
                     "SELECT * from monev_asuhan_gizi where no_rawat='" + TNoRW.getText() + "' order by tgl_monev", param);
@@ -894,6 +908,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.TextBox TnmPetugas;
     private widget.TextBox Tpasien;
     private widget.TextBox TrgRawat;
+    private widget.TextBox TtglAsuhan;
     private widget.CekBox chkSaya;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel17;
@@ -905,6 +920,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.Label jLabel27;
     private widget.Label jLabel28;
     private widget.Label jLabel29;
+    private widget.Label jLabel30;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
@@ -1008,6 +1024,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             Tevaluasi.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 7).toString());
             nip = tbMonev.getValueAt(tbMonev.getSelectedRow(), 10).toString();
             TnmPetugas.setText(tbMonev.getValueAt(tbMonev.getSelectedRow(), 8).toString());
+            TtglAsuhan.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi_ranap where no_rawat='" + TNoRW.getText() + "'")));
         }
     }
     
@@ -1017,6 +1034,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         Tpasien.setText(nmpasien);
         TrgRawat.setText(ruangInap);
         Valid.SetTgl(tgl1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norw + "'"));
+        TtglAsuhan.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi_ranap where no_rawat='" + norw + "'")));
         tgl2.setDate(new Date());
         TCari.setText(norw);
         

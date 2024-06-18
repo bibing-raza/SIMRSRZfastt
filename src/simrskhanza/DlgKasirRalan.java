@@ -5688,7 +5688,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 dietralan.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 dietralan.setLocationRelativeTo(internalFrame1);
                 dietralan.emptTeks();
-                dietralan.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                dietralan.setNoRm(TNoRw.getText());
                 dietralan.isCek();
                 dietralan.setVisible(true);
             } else {

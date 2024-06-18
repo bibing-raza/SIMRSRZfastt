@@ -583,15 +583,15 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         jLabel13 = new widget.Label();
         jLabel14 = new widget.Label();
         TtglLahir = new widget.TextBox();
+        Scroll5 = new widget.ScrollPane();
+        tbDiet = new widget.Table();
+        BtnHapusPilihan = new widget.Button();
+        BtnGanti = new widget.Button();
         cekWaktu = new widget.CekBox();
         cekDietPagi = new widget.CekBox();
         cekDietSiang = new widget.CekBox();
         cekDietSore = new widget.CekBox();
-        Scroll5 = new widget.ScrollPane();
-        tbDiet = new widget.Table();
-        BtnHapusPilihan = new widget.Button();
         cekKemasan = new widget.CekBox();
-        BtnGanti = new widget.Button();
         TabDiet = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -602,7 +602,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnDataDietRanap.setBackground(new java.awt.Color(255, 255, 255));
         MnDataDietRanap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataDietRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataDietRanap.setText("Cetak Data Diet Makanan (R.INAP)");
@@ -615,7 +614,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnDataDietRanap);
 
-        MnDataDietRalan.setBackground(new java.awt.Color(255, 255, 255));
         MnDataDietRalan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDataDietRalan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataDietRalan.setText("Cetak Data Diet Makanan (R.JALAN)");
@@ -628,7 +626,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnDataDietRalan);
 
-        MnHapus.setBackground(new java.awt.Color(255, 255, 255));
         MnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHapus.setText("Hapus Data Diet");
         MnHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -639,7 +636,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         MnHapus.setOpaque(true);
         MnHapus.setPreferredSize(new java.awt.Dimension(228, 26));
 
-        MnHapusPerWaktu.setBackground(new java.awt.Color(255, 255, 255));
         MnHapusPerWaktu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHapusPerWaktu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         MnHapusPerWaktu.setText("PerWaktu & Nama Diet");
@@ -655,7 +651,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         MnHapus.add(MnHapusPerWaktu);
 
-        MnHapusSemuaWaktu.setBackground(new java.awt.Color(255, 255, 255));
         MnHapusSemuaWaktu.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHapusSemuaWaktu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         MnHapusSemuaWaktu.setText("Semua Waktu Diet");
@@ -671,7 +666,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         MnHapus.add(MnHapusSemuaWaktu);
 
-        MnHapusSemuaWaktuNamaDiet.setBackground(new java.awt.Color(255, 255, 255));
         MnHapusSemuaWaktuNamaDiet.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHapusSemuaWaktuNamaDiet.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         MnHapusSemuaWaktuNamaDiet.setText("Semua Waktu & Nama Diet");
@@ -724,7 +718,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel100);
 
         tglKun.setEditable(false);
-        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2022" }));
+        tglKun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
         tglKun.setDisplayFormat("dd-MM-yyyy");
         tglKun.setName("tglKun"); // NOI18N
         tglKun.setOpaque(false);
@@ -738,7 +732,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass13.add(jLabel99);
 
         tglDiet.setEditable(false);
-        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2022" }));
+        tglDiet.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
         tglDiet.setDisplayFormat("dd-MM-yyyy");
         tglDiet.setName("tglDiet"); // NOI18N
         tglDiet.setOpaque(false);
@@ -748,7 +742,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         internalFrame15.add(panelGlass13);
         panelGlass13.setBounds(7, 250, 580, 36);
 
-        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Poliklinik / Instalasi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame4.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Poliklinik / Instalasi :.", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setLayout(new java.awt.BorderLayout());
 
@@ -848,7 +842,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         cmbPrin.setForeground(new java.awt.Color(0, 0, 0));
         cmbPrin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Bon Diet", "Form Ketepatan", "Label Diet" }));
         cmbPrin.setName("cmbPrin"); // NOI18N
-        cmbPrin.setOpaque(false);
         cmbPrin.setPreferredSize(new java.awt.Dimension(120, 23));
         panelGlass15.add(cmbPrin);
 
@@ -1175,7 +1168,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         cmbJamCari.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamCari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "Pagi", "Siang", "Sore", "Malam" }));
         cmbJamCari.setName("cmbJamCari"); // NOI18N
-        cmbJamCari.setOpaque(false);
         cmbJamCari.setPreferredSize(new java.awt.Dimension(100, 23));
         cmbJamCari.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1232,7 +1224,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2022" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1252,7 +1244,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2022" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1346,7 +1338,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         TPasien.setBounds(155, 42, 310, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-08-2022" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-06-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1423,74 +1415,7 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         FormInput.add(TtglLahir);
         TtglLahir.setBounds(544, 42, 100, 23);
 
-        cekWaktu.setBorder(null);
-        cekWaktu.setForeground(new java.awt.Color(0, 0, 0));
-        cekWaktu.setText("Semua Waktu Diet");
-        cekWaktu.setBorderPainted(true);
-        cekWaktu.setBorderPaintedFlat(true);
-        cekWaktu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cekWaktu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cekWaktu.setName("cekWaktu"); // NOI18N
-        cekWaktu.setOpaque(false);
-        cekWaktu.setPreferredSize(new java.awt.Dimension(100, 23));
-        cekWaktu.addItemListener(new java.awt.event.ItemListener() {
-            public void itemStateChanged(java.awt.event.ItemEvent evt) {
-                cekWaktuItemStateChanged(evt);
-            }
-        });
-        cekWaktu.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                cekWaktuMouseClicked(evt);
-            }
-        });
-        cekWaktu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cekWaktuActionPerformed(evt);
-            }
-        });
-        FormInput.add(cekWaktu);
-        cekWaktu.setBounds(78, 102, 125, 23);
-
-        cekDietPagi.setBorder(null);
-        cekDietPagi.setForeground(new java.awt.Color(0, 0, 0));
-        cekDietPagi.setText("Diet Pagi");
-        cekDietPagi.setBorderPainted(true);
-        cekDietPagi.setBorderPaintedFlat(true);
-        cekDietPagi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cekDietPagi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cekDietPagi.setName("cekDietPagi"); // NOI18N
-        cekDietPagi.setOpaque(false);
-        cekDietPagi.setPreferredSize(new java.awt.Dimension(100, 23));
-        FormInput.add(cekDietPagi);
-        cekDietPagi.setBounds(78, 132, 70, 23);
-
-        cekDietSiang.setBorder(null);
-        cekDietSiang.setForeground(new java.awt.Color(0, 0, 0));
-        cekDietSiang.setText("Diet Siang");
-        cekDietSiang.setBorderPainted(true);
-        cekDietSiang.setBorderPaintedFlat(true);
-        cekDietSiang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cekDietSiang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cekDietSiang.setName("cekDietSiang"); // NOI18N
-        cekDietSiang.setOpaque(false);
-        cekDietSiang.setPreferredSize(new java.awt.Dimension(100, 23));
-        FormInput.add(cekDietSiang);
-        cekDietSiang.setBounds(78, 162, 70, 23);
-
-        cekDietSore.setBorder(null);
-        cekDietSore.setForeground(new java.awt.Color(0, 0, 0));
-        cekDietSore.setText("Diet Sore");
-        cekDietSore.setBorderPainted(true);
-        cekDietSore.setBorderPaintedFlat(true);
-        cekDietSore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cekDietSore.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cekDietSore.setName("cekDietSore"); // NOI18N
-        cekDietSore.setOpaque(false);
-        cekDietSore.setPreferredSize(new java.awt.Dimension(100, 23));
-        FormInput.add(cekDietSore);
-        cekDietSore.setBounds(78, 192, 70, 23);
-
-        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Diet yang dipilih/ditentukan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " Diet yang dipilih/ditentukan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
 
@@ -1529,24 +1454,6 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         FormInput.add(BtnHapusPilihan);
         BtnHapusPilihan.setBounds(655, 115, 104, 27);
 
-        cekKemasan.setBorder(null);
-        cekKemasan.setForeground(new java.awt.Color(0, 0, 0));
-        cekKemasan.setText("Disajikan Seperti Biasa");
-        cekKemasan.setBorderPainted(true);
-        cekKemasan.setBorderPaintedFlat(true);
-        cekKemasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        cekKemasan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        cekKemasan.setName("cekKemasan"); // NOI18N
-        cekKemasan.setOpaque(false);
-        cekKemasan.setPreferredSize(new java.awt.Dimension(100, 23));
-        cekKemasan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cekKemasanActionPerformed(evt);
-            }
-        });
-        FormInput.add(cekKemasan);
-        cekKemasan.setBounds(78, 222, 350, 23);
-
         BtnGanti.setForeground(new java.awt.Color(0, 0, 0));
         BtnGanti.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnGanti.setMnemonic('G');
@@ -1563,6 +1470,86 @@ public class DlgPemberianDiet extends javax.swing.JDialog {
         });
         FormInput.add(BtnGanti);
         BtnGanti.setBounds(655, 149, 104, 27);
+
+        cekWaktu.setBackground(new java.awt.Color(255, 255, 250));
+        cekWaktu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        cekWaktu.setForeground(new java.awt.Color(0, 0, 0));
+        cekWaktu.setText("Semua Waktu Diet");
+        cekWaktu.setBorderPainted(true);
+        cekWaktu.setBorderPaintedFlat(true);
+        cekWaktu.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekWaktu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekWaktu.setName("cekWaktu"); // NOI18N
+        cekWaktu.setOpaque(false);
+        cekWaktu.setPreferredSize(new java.awt.Dimension(175, 23));
+        cekWaktu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cekWaktuActionPerformed(evt);
+            }
+        });
+        FormInput.add(cekWaktu);
+        cekWaktu.setBounds(78, 102, 125, 23);
+
+        cekDietPagi.setBackground(new java.awt.Color(255, 255, 250));
+        cekDietPagi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        cekDietPagi.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietPagi.setText("Diet Pagi");
+        cekDietPagi.setBorderPainted(true);
+        cekDietPagi.setBorderPaintedFlat(true);
+        cekDietPagi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietPagi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietPagi.setName("cekDietPagi"); // NOI18N
+        cekDietPagi.setOpaque(false);
+        cekDietPagi.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(cekDietPagi);
+        cekDietPagi.setBounds(78, 132, 70, 23);
+
+        cekDietSiang.setBackground(new java.awt.Color(255, 255, 250));
+        cekDietSiang.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        cekDietSiang.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietSiang.setText("Diet Siang");
+        cekDietSiang.setBorderPainted(true);
+        cekDietSiang.setBorderPaintedFlat(true);
+        cekDietSiang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietSiang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietSiang.setName("cekDietSiang"); // NOI18N
+        cekDietSiang.setOpaque(false);
+        cekDietSiang.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(cekDietSiang);
+        cekDietSiang.setBounds(78, 162, 80, 23);
+
+        cekDietSore.setBackground(new java.awt.Color(255, 255, 250));
+        cekDietSore.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        cekDietSore.setForeground(new java.awt.Color(0, 0, 0));
+        cekDietSore.setText("Diet Sore");
+        cekDietSore.setBorderPainted(true);
+        cekDietSore.setBorderPaintedFlat(true);
+        cekDietSore.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekDietSore.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekDietSore.setName("cekDietSore"); // NOI18N
+        cekDietSore.setOpaque(false);
+        cekDietSore.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(cekDietSore);
+        cekDietSore.setBounds(78, 192, 80, 23);
+
+        cekKemasan.setBackground(new java.awt.Color(255, 255, 250));
+        cekKemasan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        cekKemasan.setForeground(new java.awt.Color(0, 0, 0));
+        cekKemasan.setText("Disajikan Seperti Biasa");
+        cekKemasan.setBorderPainted(true);
+        cekKemasan.setBorderPaintedFlat(true);
+        cekKemasan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        cekKemasan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        cekKemasan.setName("cekKemasan"); // NOI18N
+        cekKemasan.setOpaque(false);
+        cekKemasan.setPreferredSize(new java.awt.Dimension(175, 23));
+        cekKemasan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cekKemasanActionPerformed(evt);
+            }
+        });
+        FormInput.add(cekKemasan);
+        cekKemasan.setBounds(78, 222, 350, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1855,48 +1842,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             labelUnit.setText("Poliklinik/Instalasi : ");
         }
     }//GEN-LAST:event_TabDietMouseClicked
-
-    private void cekWaktuItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_cekWaktuItemStateChanged
-        if (cekWaktu.isSelected() == true) {
-            cekWaktu.setText("Semua Waktu Diet");
-            cekDietPagi.setSelected(true);
-            cekDietSiang.setSelected(true);
-            cekDietSore.setSelected(true);
-        } else if (cekWaktu.isSelected() == false) {
-            cekWaktu.setText("Waktu Diet BERBEDA");
-            cekDietPagi.setSelected(false);
-            cekDietSiang.setSelected(false);
-            cekDietSore.setSelected(false);
-        }
-    }//GEN-LAST:event_cekWaktuItemStateChanged
-
-    private void cekWaktuMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cekWaktuMouseClicked
-        if (cekWaktu.isSelected() == true) {
-            cekWaktu.setText("Semua Waktu Diet");
-            cekDietPagi.setSelected(true);
-            cekDietSiang.setSelected(true);
-            cekDietSore.setSelected(true);
-        } else if (cekWaktu.isSelected() == false) {
-            cekWaktu.setText("Waktu Diet BERBEDA");
-            cekDietPagi.setSelected(false);
-            cekDietSiang.setSelected(false);
-            cekDietSore.setSelected(false);
-        }
-    }//GEN-LAST:event_cekWaktuMouseClicked
-
-    private void cekWaktuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekWaktuActionPerformed
-        if (cekWaktu.isSelected() == true) {
-            cekWaktu.setText("Semua Waktu Diet");
-            cekDietPagi.setSelected(true);
-            cekDietSiang.setSelected(true);
-            cekDietSore.setSelected(true);
-        } else if (cekWaktu.isSelected() == false) {
-            cekWaktu.setText("Waktu Diet BERBEDA");
-            cekDietPagi.setSelected(false);
-            cekDietSiang.setSelected(false);
-            cekDietSore.setSelected(false);
-        }
-    }//GEN-LAST:event_cekWaktuActionPerformed
 
     private void tbPoliMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbPoliMouseClicked
         if (tabMode2.getRowCount() != 0) {
@@ -2299,14 +2244,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnHapusSemuaWaktuNamaDietActionPerformed
 
-    private void cekKemasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekKemasanActionPerformed
-        if (cekKemasan.isSelected() == true) {
-            cekKemasan.setText("Dikemas Dengan KOTAKAN");
-        } else if (cekKemasan.isSelected() == false) {
-            cekKemasan.setText("Disajikan Seperti Biasa");
-        }
-    }//GEN-LAST:event_cekKemasanActionPerformed
-
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
         if (tabMode3.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Diet yang dipilih/ditentukan belum ada...!!");
@@ -2400,6 +2337,28 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_ScrollRalanMouseClicked
 
+    private void cekWaktuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekWaktuActionPerformed
+        if (cekWaktu.isSelected() == true) {
+            cekWaktu.setText("Semua Waktu Diet");
+            cekDietPagi.setSelected(true);
+            cekDietSiang.setSelected(true);
+            cekDietSore.setSelected(true);
+        } else if (cekWaktu.isSelected() == false) {
+            cekWaktu.setText("Waktu Diet BERBEDA");
+            cekDietPagi.setSelected(false);
+            cekDietSiang.setSelected(false);
+            cekDietSore.setSelected(false);
+        }
+    }//GEN-LAST:event_cekWaktuActionPerformed
+
+    private void cekKemasanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cekKemasanActionPerformed
+        if (cekKemasan.isSelected() == true) {
+            cekKemasan.setText("Dikemas Dengan KOTAKAN");
+        } else if (cekKemasan.isSelected() == false) {
+            cekKemasan.setText("Disajikan Seperti Biasa");
+        }
+    }//GEN-LAST:event_cekKemasanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2463,10 +2422,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public javax.swing.JDialog WindowLabelGiziRALAN;
     private widget.Button btnDiet;
     private widget.Button btnJumlahBeri;
-    private widget.CekBox cekDietPagi;
-    private widget.CekBox cekDietSiang;
-    private widget.CekBox cekDietSore;
-    private widget.CekBox cekKemasan;
+    public widget.CekBox cekDietPagi;
+    public widget.CekBox cekDietSiang;
+    public widget.CekBox cekDietSore;
+    public widget.CekBox cekKemasan;
     public widget.CekBox cekWaktu;
     private widget.ComboBox cmbJamCari;
     private widget.ComboBox cmbPrin;
@@ -2735,12 +2694,12 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }
 
-    public void setNoRm(String norwt, Date tgl1, Date tgl2) {
+    public void setNoRm(String norwt) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         isRawat();
-        DTPCari1.setDate(tgl1);
-        DTPCari2.setDate(tgl2);
+        DTPCari1.setDate(new Date());
+        DTPCari2.setDate(new Date());
         ChkInput.setSelected(true);
         isForm();
       

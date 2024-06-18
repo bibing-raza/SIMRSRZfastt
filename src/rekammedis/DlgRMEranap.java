@@ -24,6 +24,7 @@ import javax.swing.table.TableColumn;
 import permintaan.DlgSuratJawabanKonsul;
 import permintaan.DlgSuratKonsulUnit;
 import simrskhanza.DlgCariDokter;
+import simrskhanza.DlgPemberianDiet;
 import simrskhanza.DlgRingkasanPulangRanap;
 
 /**
@@ -138,6 +139,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnGrafikPantauHarian = new widget.ButtonBig();
         BtnProtokolKemoterapi = new widget.ButtonBig();
         BtnDokumenJangMed = new widget.ButtonBig();
+        BtnDietPasien = new widget.ButtonBig();
         BtnSkriningUlangGizi = new widget.ButtonBig();
         BtnAsuhanGizi = new widget.ButtonBig();
         BtnMonevAsuhanGizi = new widget.ButtonBig();
@@ -611,6 +613,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnDokumenJangMed);
+
+        BtnDietPasien.setForeground(new java.awt.Color(0, 0, 0));
+        BtnDietPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360486936_pie-chart.png"))); // NOI18N
+        BtnDietPasien.setText("Diet Pasien");
+        BtnDietPasien.setIconTextGap(0);
+        BtnDietPasien.setName("BtnDietPasien"); // NOI18N
+        BtnDietPasien.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnDietPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDietPasienActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnDietPasien);
 
         BtnSkriningUlangGizi.setForeground(new java.awt.Color(0, 0, 0));
         BtnSkriningUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_order-history_49596.png"))); // NOI18N
@@ -1243,6 +1258,25 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsuhanGiziActionPerformed
 
+    private void BtnDietPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDietPasienActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            DlgPemberianDiet form = new DlgPemberianDiet(null, false);
+            form.emptTeks();
+            form.cekWaktu.setSelected(true);
+            form.TCari.setText("");
+            form.isCek();
+            form.setNoRm(TNoRW.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnDietPasienActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1271,6 +1305,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnCPPT;
     private widget.ButtonBig BtnCTK;
     private widget.Button BtnCloseIn10;
+    private widget.ButtonBig BtnDietPasien;
     private widget.ButtonBig BtnDokumenJangMed;
     private widget.ButtonBig BtnGrafikPantauHarian;
     private widget.ButtonBig BtnJadwalObat;
@@ -1340,6 +1375,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnSkriningUlangGizi.setEnabled(akses.getassesmen_gizi_harian());
         BtnMonevAsuhanGizi.setEnabled(akses.getmonev_asuhan_gizi());
         BtnAsuhanGizi.setEnabled(akses.getassesmen_gizi_harian());
+        BtnDietPasien.setEnabled(akses.getdiet_pasien());
     }
     
     public void setData(String norw, String norm, String nmpasien,
