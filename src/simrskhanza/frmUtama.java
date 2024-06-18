@@ -399,6 +399,7 @@ import rekammedis.RMAsesmenMedikDewasaRanap;
 import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
+import rekammedis.RMAsuhanGiziRanap;
 import rekammedis.RMMonitoringEWSDewasa;
 import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPemantauanHarian24Jam;
@@ -912,7 +913,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnDiagnosaPasienCorona = new widget.ButtonBig();
         btnPerawatanPasienCorona = new widget.ButtonBig();
         btnInaCBGKlaimBaruManual2 = new widget.ButtonBig();
-        btnAssesmenGiziHarian = new widget.ButtonBig();
+        btnAsuhanGiziRanap = new widget.ButtonBig();
         btnAssesmenGiziUlang = new widget.ButtonBig();
         btnRencanaKontrolBPJS = new widget.ButtonBig();
         btnMonevAsuhanGizi = new widget.ButtonBig();
@@ -5408,18 +5409,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnInaCBGKlaimBaruManual2);
 
-        btnAssesmenGiziHarian.setForeground(new java.awt.Color(0, 0, 0));
-        btnAssesmenGiziHarian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
-        btnAssesmenGiziHarian.setText("Assesment Asuhan Gizi Harian");
-        btnAssesmenGiziHarian.setIconTextGap(0);
-        btnAssesmenGiziHarian.setName("btnAssesmenGiziHarian"); // NOI18N
-        btnAssesmenGiziHarian.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnAssesmenGiziHarian.addActionListener(new java.awt.event.ActionListener() {
+        btnAsuhanGiziRanap.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsuhanGiziRanap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnAsuhanGiziRanap.setText("Asuhan Gizi Rawat Inap");
+        btnAsuhanGiziRanap.setIconTextGap(0);
+        btnAsuhanGiziRanap.setName("btnAsuhanGiziRanap"); // NOI18N
+        btnAsuhanGiziRanap.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsuhanGiziRanap.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssesmenGiziHarianActionPerformed(evt);
+                btnAsuhanGiziRanapActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnAssesmenGiziHarian);
+        Panelmenu.add(btnAsuhanGiziRanap);
 
         btnAssesmenGiziUlang.setForeground(new java.awt.Color(0, 0, 0));
         btnAssesmenGiziUlang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
@@ -6755,7 +6756,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/06/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/06/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11926,22 +11927,18 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
     }//GEN-LAST:event_btnInaCBGKlaimBaruManual2ActionPerformed
 
-    private void btnAssesmenGiziHarianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenGiziHarianActionPerformed
+    private void btnAsuhanGiziRanapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsuhanGiziRanapActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgAssesmenGiziHarian asesGizi = new DlgAssesmenGiziHarian(this, false);
+        RMAsuhanGiziRanap asesGizi = new RMAsuhanGiziRanap(this, false);
         asesGizi.isCek();
         asesGizi.emptTeks();
-        asesGizi.TCari.setText("");
-        asesGizi.ChkInput.setSelected(false);
-        asesGizi.isForm();
-        asesGizi.tampil();
         asesGizi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         asesGizi.setLocationRelativeTo(PanelUtama);
         asesGizi.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnAssesmenGiziHarianActionPerformed
+    }//GEN-LAST:event_btnAsuhanGiziRanapActionPerformed
 
     private void btnAssesmenGiziUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenGiziUlangActionPerformed
         isTutup();
@@ -13367,10 +13364,10 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenRestrain;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhAnak;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhDewasa;
-    private widget.ButtonBig btnAssesmenGiziHarian;
     private widget.ButtonBig btnAssesmenGiziUlang;
     private widget.ButtonBig btnAssesmenKeperawatanIGD;
     private widget.ButtonBig btnAssesmenMedikIGD;
+    private widget.ButtonBig btnAsuhanGiziRanap;
     private widget.ButtonBig btnBPJSSEP;
     private widget.ButtonBig btnBPJScekRiwayatRujukanPcare;
     private widget.ButtonBig btnBangsal;
@@ -14037,7 +14034,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
 
             if (akses.getassesmen_gizi_harian() == true) {
-                Panelmenu.add(btnAssesmenGiziHarian);
+                Panelmenu.add(btnAsuhanGiziRanap);
                 jmlmenu++;
             }
             
@@ -16585,7 +16582,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getassesmen_gizi_harian() == true) {
-            Panelmenu.add(btnAssesmenGiziHarian);
+            Panelmenu.add(btnAsuhanGiziRanap);
             jmlmenu++;
         }
         
@@ -18779,8 +18776,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getassesmen_gizi_harian() == true) {
-            if (btnAssesmenGiziHarian.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnAssesmenGiziHarian);
+            if (btnAsuhanGiziRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsuhanGiziRanap);
                 jmlmenu++;
             }
         }

@@ -89,6 +89,7 @@ import rekammedis.DlgAssesmenGiziHarian;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgMonevAsuhanGizi;
 import rekammedis.DlgRMEranap;
+import rekammedis.RMAsuhanGiziRanap;
 import rekammedis.RMGrafikPemantauanHarian24Jam;
 import rekammedis.RMPenilaianAwalMedikIGD;
 import rekammedis.RMProtokolKemoterapi;
@@ -11545,31 +11546,23 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     asesGiziUlang.tampil();
                     asesGiziUlang.setVisible(true);
                 } else {
-                    DlgAssesmenGiziHarian asesGizi = new DlgAssesmenGiziHarian(null, false);
+                    RMAsuhanGiziRanap asesGizi = new RMAsuhanGiziRanap(null, false);
                     asesGizi.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     asesGizi.setLocationRelativeTo(internalFrame1);
-                    asesGizi.isCek();
-                    asesGizi.setPasien(norawat.getText(), ruangrawat.getText(), kdkamar.getText(), diagnosaawal.getText());
                     asesGizi.emptTeks();
-                    asesGizi.TCari.setText("");
-                    asesGizi.ChkInput.setSelected(true);
-                    asesGizi.isForm();
-                    asesGizi.tampil();
+                    asesGizi.isCek();
+                    asesGizi.setData(norawat.getText(), ruangrawat.getText());
                     asesGizi.setVisible(true);
                 }
 
             } else {
                 if (Integer.parseInt(cekHR) <= 7) {
-                    DlgAssesmenGiziHarian asesGizi = new DlgAssesmenGiziHarian(null, false);
+                    RMAsuhanGiziRanap asesGizi = new RMAsuhanGiziRanap(null, false);
                     asesGizi.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                     asesGizi.setLocationRelativeTo(internalFrame1);
-                    asesGizi.isCek();
-                    asesGizi.setPasien(norawat.getText(), ruangrawat.getText(), kdkamar.getText(), diagnosaawal.getText());
                     asesGizi.emptTeks();
-                    asesGizi.TCari.setText("");
-                    asesGizi.ChkInput.setSelected(true);
-                    asesGizi.isForm();
-                    asesGizi.tampil();
+                    asesGizi.isCek();
+                    asesGizi.setData(norawat.getText(), ruangrawat.getText());
                     asesGizi.setVisible(true);
                 } else {
                     DlgAssesmenGiziUlang asesGiziUlang = new DlgAssesmenGiziUlang(null, false);
