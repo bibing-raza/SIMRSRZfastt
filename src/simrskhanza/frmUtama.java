@@ -361,7 +361,6 @@ import presensi.DlgKehadiran2;
 import presensi.DlgPulang;
 import presensi.DlgSidikJari;
 import presensi.DlgTemporaryPresensi;
-import rekammedis.DlgAssesmenGiziHarian;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgCPPT;
 import rekammedis.DlgCatatanTindakanKeperawatan;

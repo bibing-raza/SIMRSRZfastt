@@ -85,7 +85,6 @@ import permintaan.DlgSuratIstirahatSakit;
 import permintaan.DlgSuratJawabanKonsul;
 import permintaan.DlgSuratKeteranganSakit;
 import permintaan.DlgSuratKonsulUnit;
-import rekammedis.DlgAssesmenGiziHarian;
 import rekammedis.DlgAssesmenGiziUlang;
 import rekammedis.DlgMonevAsuhanGizi;
 import rekammedis.DlgRMEranap;
