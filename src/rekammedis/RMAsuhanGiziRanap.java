@@ -2822,7 +2822,13 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             param.put("bentuk", cmbBentuk.getSelectedItem().toString() + ", ");
             param.put("rute", cmbRute.getSelectedItem().toString() + ", ");
             param.put("jenisdiet", TjnsDiet.getText());
-            param.put("kalori", Valid.SetAngka(Double.parseDouble(Tkalori.getText())));
+            
+            if (Tkalori.getText().trim().equals("")) {
+                param.put("kalori", "-");
+            } else {
+                param.put("kalori", Valid.SetAngka(Double.parseDouble(Tkalori.getText())));
+            }
+            
             param.put("petugas", TnmPetugas.getText());
 
             Valid.MyReport("rptCetakAsuhanGiziRanap.jasper", "report", "::[ Asuhan Gizi Pasien Rawat Inap ]::",
