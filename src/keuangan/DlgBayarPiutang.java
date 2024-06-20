@@ -72,7 +72,9 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
                       "No.Tagihan",
                       "tglbayar",
                       "waktu_simpan",
-                      "Sisa Piutang (Rp)"};
+                      "Sisa Piutang (Rp)",
+                      "Penjamin Piutang",
+                      "Keterangan Penjamin"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -81,7 +83,7 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(100);
@@ -103,6 +105,10 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 8) {
                 column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(170);
+            } else if (i == 10) {
+                column.setPreferredWidth(250);
             }
         }
         tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1009,7 +1015,9 @@ private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt
                     rs.getString(6),
                     rs.getString("tglbayar"),
                     rs.getString("waktu_simpan"),
-                    Valid.SetAngka(rs.getDouble("sisa_piutang"))
+                    Valid.SetAngka(rs.getDouble("sisa_piutang")),
+                    Sequel.cariIsi(Sequel.cariIsi("select penjamin from piutang_pasien where no_rawat='" + rs.getString("no_rawat") + "'")),
+                    Sequel.cariIsi(Sequel.cariIsi("select ket_penjamin from piutang_pasien where no_rawat='" + rs.getString("no_rawat") + "'"))
                 });
             }
         } catch (SQLException e) {
