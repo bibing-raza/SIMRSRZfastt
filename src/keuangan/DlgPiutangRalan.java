@@ -63,16 +63,16 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
         Object[] rowRwJlDr={"Tanggal","No.Nota","Nama Pasien","Jenis Bayar","Perujuk",
                             "Registrasi","Obat+Emb+Tsl","Paket Tindakan","Operasi",
                             "Laborat","Radiologi","Tambahan","Potongan",
-                            "Total","Dokter"};
+                            "Total","Dokter","Penjamin Piutang", "Keterangan Penjamin"};
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbBangsal.setModel(tabMode);
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 17; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(65);
@@ -129,16 +129,16 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
             public void keyReleased(KeyEvent e) {}
         });
         
-        try{
-            ps= koneksi.prepareStatement(
-                        "select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,reg_periksa.tgl_registrasi,dokter.nm_dokter,penjab.png_jawab "+
-                        "from reg_periksa inner join pasien inner join penjab inner join dokter inner join piutang_pasien "+
-                        "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "+
-                        "reg_periksa.kd_dokter=dokter.kd_dokter and piutang_pasien.no_rawat=reg_periksa.no_rawat where reg_periksa.status_lanjut='Ralan' and "+
-                        "reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? order by reg_periksa.kd_dokter,reg_periksa.tgl_registrasi");
-            ps2=koneksi.prepareStatement(
-                        "select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_rawat=? ");
-        }catch(SQLException e){
+        try {
+            ps = koneksi.prepareStatement(
+                    "select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,reg_periksa.tgl_registrasi,dokter.nm_dokter,penjab.png_jawab, "
+                    + "piutang_pasien.penjamin, piutang_pasien.ket_penjamin from reg_periksa inner join pasien inner join penjab inner join dokter "
+                    + "inner join piutang_pasien on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "
+                    + "reg_periksa.kd_dokter=dokter.kd_dokter and piutang_pasien.no_rawat=reg_periksa.no_rawat where reg_periksa.status_lanjut='Ralan' and "
+                    + "reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? order by reg_periksa.kd_dokter,reg_periksa.tgl_registrasi");
+            ps2 = koneksi.prepareStatement(
+                    "select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_rawat=? ");
+        } catch (SQLException e) {
             System.out.println(e);
         }
 
@@ -491,7 +491,6 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
 }//GEN-LAST:event_tbBangsalKeyPressed
 
 private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
-        
         tampil();
 }//GEN-LAST:event_BtnCari1ActionPerformed
 
@@ -686,7 +685,9 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                     Valid.SetAngka(Tambahan),
                     Valid.SetAngka(Potongan),
                     Valid.SetAngka(Operasi+Laborat+Radiologi+Obat+Ralan_Dokter+Ralan_Paramedis+Ralan_Dokter_paramedis+Tambahan+Potongan+Registrasi),
-                    rs.getString("nm_dokter")
+                    rs.getString("nm_dokter"),
+                    rs.getString("penjamin"),
+                    rs.getString("ket_penjamin")
                 });
             }
             tabMode.addRow(new Object[] {

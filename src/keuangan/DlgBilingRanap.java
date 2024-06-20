@@ -75,9 +75,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             psreturobat, psdetaillab, pstamkur, psrekening, psakunbayar, psakunpiutang,
             pskamarin, psbiayasekali, psbiayaharian, psreseppulang, pstambahanbiaya, pspotonganbiaya, pstemporary,
             psralandokter, psralandrpr, psranapdrpr, psranapdokter, pssep,
-            psoperasi, psralanperawat, psranapperawat, pscaridpjp,
+            psoperasi, psralanperawat, psranapperawat, pscaridpjp, pspenjaminpiutang,
             psperiksalab, pssudahmasuk, pskategori, psubahpenjab, psperiksarad, psanak, psnota, psservice;
-    private ResultSet rscekbilling, rscarirm, rscaripasien, rsreg, rskamar, rscarialamat, rsdetaillab,
+    private ResultSet rscekbilling, rscarirm, rscaripasien, rsreg, rskamar, rscarialamat, rsdetaillab, rspenjaminpiutang,
             rsdokterranap, rsranapdrpr, rsdokterralan, rscariobat, rsobatlangsung, rsobatoperasi, rsreturobat, rsubahpenjab,
             rskamarin, rsbiayasekali, rsbiayaharian, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rssep,
             rsralandokter, rsralandrpr, rsranapdokter, rsoperasi, rsralanperawat, rsranapperawat, rsperiksalab, rskategori,
@@ -125,6 +125,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             + "resep_pulang.no_rawat=? order by databarang.nama_brng",
             sqlpstambahanbiaya = "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=?  ",
             sqlpspotonganbiaya = "select nama_pengurangan, besar_pengurangan from pengurangan_biaya where no_rawat=?  ",
+            sqlpspenjaminpiutang = "select concat(penjamin,' (',ket_penjamin,')') data, count(-1) cek from piutang_pasien where no_rawat=?  ",
             sqlpsralandokter = "select jns_perawatan.nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,count(rawat_jl_dr.kd_jenis_prw) as jml, "
             + "sum(rawat_jl_dr.biaya_rawat) as biaya,"
             + "sum(rawat_jl_dr.bhp) as totalbhp,"
@@ -724,8 +725,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         MnHapusTagihan = new javax.swing.JMenuItem();
         Popup2 = new javax.swing.JPopupMenu();
         ppPerbaikiHakKelas = new javax.swing.JMenuItem();
-        Popup3 = new javax.swing.JPopupMenu();
-        ppGantiPenjamin = new javax.swing.JMenuItem();
         WindowInput = new javax.swing.JDialog();
         internalFrame2 = new widget.InternalFrame();
         TotalObat = new widget.TextBox();
@@ -1431,24 +1430,6 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             }
         });
         Popup2.add(ppPerbaikiHakKelas);
-
-        Popup3.setName("Popup3"); // NOI18N
-
-        ppGantiPenjamin.setBackground(new java.awt.Color(242, 242, 242));
-        ppGantiPenjamin.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppGantiPenjamin.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        ppGantiPenjamin.setText("Ganti Penjamin Piutang");
-        ppGantiPenjamin.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ppGantiPenjamin.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ppGantiPenjamin.setIconTextGap(8);
-        ppGantiPenjamin.setName("ppGantiPenjamin"); // NOI18N
-        ppGantiPenjamin.setPreferredSize(new java.awt.Dimension(170, 25));
-        ppGantiPenjamin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ppGantiPenjaminActionPerformed(evt);
-            }
-        });
-        Popup3.add(ppGantiPenjamin);
 
         WindowInput.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowInput.setName("WindowInput"); // NOI18N
@@ -2441,7 +2422,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024 15:41:08" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024 22:41:48" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2666,14 +2647,14 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         TKembali.setBounds(680, 415, 220, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel5.setText("Bayar : Rp.");
+        jLabel5.setText("Bayar : Rp. ");
         jLabel5.setName("jLabel5"); // NOI18N
         jLabel5.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel5);
         jLabel5.setBounds(20, 40, 90, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Total Tagihan : Rp.");
+        jLabel15.setText("Total Tagihan : Rp. ");
         jLabel15.setName("jLabel15"); // NOI18N
         jLabel15.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel15);
@@ -2722,7 +2703,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         scrollPane4.setBounds(110, 68, 790, 140);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Kembali : Rp.");
+        jLabel6.setText("Kembali : Rp. ");
         jLabel6.setName("jLabel6"); // NOI18N
         jLabel6.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel6);
@@ -2764,7 +2745,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         scrollPane5.setViewportView(tbAkunPiutang);
 
         panelBayar.add(scrollPane5);
-        scrollPane5.setBounds(110, 269, 790, 140);
+        scrollPane5.setBounds(110, 241, 790, 140);
 
         TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
@@ -2827,7 +2808,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         btnCariPiutang.setBounds(875, 213, 25, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel13.setText("Deposit : Rp.");
+        jLabel13.setText("Deposit : Rp. ");
         jLabel13.setName("jLabel13"); // NOI18N
         jLabel13.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel13);
@@ -2855,7 +2836,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         BtnSeek2.setBounds(332, 415, 25, 23);
 
         ChkPiutang.setForeground(new java.awt.Color(0, 0, 0));
-        ChkPiutang.setText("Piutang : Rp.");
+        ChkPiutang.setText("Piutang : Rp. ");
         ChkPiutang.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         ChkPiutang.setName("ChkPiutang"); // NOI18N
         ChkPiutang.setOpaque(false);
@@ -2896,7 +2877,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         chkRanap.setBounds(120, 10, 95, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Tagihan + PPN : Rp.");
+        jLabel18.setText("Tagihan + PPN : Rp. ");
         jLabel18.setName("jLabel18"); // NOI18N
         jLabel18.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel18);
@@ -2907,11 +2888,10 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel7.setName("jLabel7"); // NOI18N
         jLabel7.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel7);
-        jLabel7.setBounds(0, 241, 110, 23);
+        jLabel7.setBounds(0, 387, 110, 23);
 
         cmbPenjamin.setForeground(new java.awt.Color(0, 0, 0));
         cmbPenjamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Keluarga Pasien", "Pasien Sendiri", "Manajemen RSRAZA", "Karyawan RSRAZA", "Asuransi/Pihak 3", "Aparat Desa", "Anggota DPRD", "Ulama/Pemuka Agama", "Tokoh Masyarakat", "Pemerintah Daerah", "Dinas Sosial Kabupaten", "Dinas Kesehatan Kabupaten", "Pemerintah Provinsi", "Dinas Sosial Provinsi", "Dinas Kesehatan Provinsi", "Yayasan", "Panti Asuhan", "Panti Sosial", "Lain-lain" }));
-        cmbPenjamin.setComponentPopupMenu(Popup3);
         cmbPenjamin.setName("cmbPenjamin"); // NOI18N
         cmbPenjamin.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbPenjamin.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -2920,21 +2900,20 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             }
         });
         panelBayar.add(cmbPenjamin);
-        cmbPenjamin.setBounds(110, 241, 170, 23);
+        cmbPenjamin.setBounds(110, 387, 170, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Ket. Penjamin : ");
         jLabel9.setName("jLabel9"); // NOI18N
         jLabel9.setPreferredSize(new java.awt.Dimension(95, 23));
         panelBayar.add(jLabel9);
-        jLabel9.setBounds(280, 241, 95, 23);
+        jLabel9.setBounds(280, 387, 95, 23);
 
         TketPenjamin.setForeground(new java.awt.Color(0, 0, 0));
-        TketPenjamin.setComponentPopupMenu(Popup3);
         TketPenjamin.setName("TketPenjamin"); // NOI18N
         TketPenjamin.setPreferredSize(new java.awt.Dimension(340, 23));
         panelBayar.add(TketPenjamin);
-        TketPenjamin.setBounds(377, 241, 495, 23);
+        TketPenjamin.setBounds(377, 387, 523, 23);
 
         TabRawat.addTab(".: Pembayaran ", panelBayar);
 
@@ -4815,10 +4794,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
-    private void ppGantiPenjaminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ppGantiPenjaminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ppGantiPenjaminActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -4904,7 +4879,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnUbahLamaInap;
     private widget.TextBox NoSEP;
     private javax.swing.JPopupMenu Popup2;
-    private javax.swing.JPopupMenu Popup3;
     private javax.swing.JPopupMenu PopupBayar;
     private javax.swing.JPopupMenu PopupPiutang;
     private widget.ScrollPane Scroll;
@@ -5009,7 +4983,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox persenSELISIH;
     private javax.swing.JMenuItem ppBersihkan;
     private javax.swing.JMenuItem ppBersihkan1;
-    private javax.swing.JMenuItem ppGantiPenjamin;
     private javax.swing.JMenuItem ppPerbaikiHakKelas;
     private widget.TextBox realcostRS;
     private widget.TextBox rginap;
@@ -5110,6 +5083,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 prosesResepPulang(TNoRw.getText());
                 prosesCariTambahan(TNoRw.getText());
                 prosesCariPotongan(TNoRw.getText());
+                prosesCariPenjaminPiutang(TNoRw.getText());
                 if (!norawatbayi.equals("")) {
                     tabModeRwJlDr.addRow(new Object[]{false, "", "", "", null, null, null, null, "-"});
                     tabModeRwJlDr.addRow(new Object[]{true, "Biaya Perawatan Bayi", ":", "", null, null, null, null, "-"});
@@ -5162,6 +5136,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 tampilAkunBayarTersimpan();
                 tampilAkunPiutangTersimpan();
                 isHitung();
+                prosesCariPenjaminPiutang(TNoRw.getText());
                 status = "sudah";
             }
         } catch (Exception ex) {
@@ -5187,6 +5162,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         prosesResepPulang(TNoRw.getText());
         prosesCariTambahan(TNoRw.getText());
         prosesCariPotongan(TNoRw.getText());
+        prosesCariPenjaminPiutang(TNoRw.getText());
         if (!norawatbayi.equals("")) {
             tabModeRwJlDr.addRow(new Object[]{false, "", "", "", null, null, null, null, "-"});
             tabModeRwJlDr.addRow(new Object[]{true, "Biaya Perawatan Bayi", ":", "", null, null, null, null, "-"});
@@ -6916,13 +6892,35 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         if (subttl > 1) {
             tabModeRwJlDr.addRow(new Object[]{true, "", "Total Potongan : " + Valid.SetAngka(subttl), "", null, null, null, null, "TtlPotongan"});
         }
-        
-        //penjamin piutang
-        if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat + "'") > 0) {
-            tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": " + Sequel.cariIsi("select concat(penjamin,' (',ket_penjamin,')') from piutang_pasien where no_rawat='" + norawat + "'") + "", 
-                "", null, null, null, null, "Penjamin Piutang"});
-        } else {
-            tabModeRwJlDr.addRow(new Object[]{false, "Penjamin Piutang", ":", "", null, null, null, null, "Penjamin Piutang"});
+    }
+    
+    private void prosesCariPenjaminPiutang(String norawat) {
+        x++;
+        try {
+            pspenjaminpiutang = koneksi.prepareStatement(sqlpspenjaminpiutang);
+            try {
+                pspenjaminpiutang.setString(1, norawat);
+                rspenjaminpiutang = pspenjaminpiutang.executeQuery();
+                while (rspenjaminpiutang.next()) {
+                    if (rspenjaminpiutang.getString("cek").equals("0")) {
+                        tabModeRwJlDr.addRow(new Object[]{false, "Penjamin Piutang", ":", "", null, null, null, null, "Penjamin Piutang"});
+                    } else {
+                        tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": " + rspenjaminpiutang.getString("data") + "",
+                            "", null, null, null, null, "Penjamin Piutang"});
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rspenjaminpiutang != null) {
+                    rspenjaminpiutang.close();
+                }
+                if (pspenjaminpiutang != null) {
+                    pspenjaminpiutang.close();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
         }
     }
 

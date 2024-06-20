@@ -54,8 +54,8 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         setSize(885,674);
 
         Object[] rowRwJlDr={
-            "P","No.Rawat/No.tagihan","Tgl.Piutang","Pasien","Status","Total Piutang",
-            "Uang Muka","Cicilan","Sisa Piutang","Jatuh Tempo","Cara Bayar","Bayar"
+            "P", "No.Rawat/No.tagihan", "Tgl.Piutang", "Pasien", "Status", "Total Piutang",
+            "Uang Muka", "Cicilan", "Sisa Piutang", "Jatuh Tempo", "Cara Bayar", "Bayar", "Penjamin Piutang", "Keterangan Penjamin"
         };
         tabMode=new DefaultTableModel(null,rowRwJlDr){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){
@@ -68,44 +68,48 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
              Class[] types = new Class[] {
                 java.lang.Boolean.class,java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbPiutang.setModel(tabMode);
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
         tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 14; i++) {
             TableColumn column = tbPiutang.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(120);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(80);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(170);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(80);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(90);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(80);
-            }else if(i==7){
+            } else if (i == 7) {
                 column.setPreferredWidth(90);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setPreferredWidth(90);
-            }else if(i==9){
+            } else if (i == 9) {
                 column.setPreferredWidth(80);
-            }else if(i==10){
+            } else if (i == 10) {
                 column.setPreferredWidth(120);
-            }else if(i==11){
+            } else if (i == 11) {
                 column.setPreferredWidth(90);
+            } else if (i == 12) {
+                column.setPreferredWidth(170);
+            } else if (i == 13) {
+                column.setPreferredWidth(250);
             }
         }
         tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());
@@ -778,39 +782,49 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
         Valid.tabelKosong(tabMode);
         try{
             sisapiutang=0;
-            ps=koneksi.prepareStatement("select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien), "+
-                       "piutang_pasien.status,piutang_pasien.totalpiutang, piutang_pasien.uangmuka, piutang_pasien.sisapiutang, piutang_pasien.tgltempo,penjab.png_jawab "+
-                       "from piutang_pasien inner join pasien inner join reg_periksa inner join penjab on  "+
-                       "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "+
-                       "piutang_pasien.no_rawat=reg_periksa.no_rawat and "+
-                       "reg_periksa.kd_pj=penjab.kd_pj where "+
-                       "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rawat like ? or "+
-                       "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rkm_medis like ? or "+
-                       "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and pasien.nm_pasien like ? or "+
-                       "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.status like ? order by piutang_pasien.tgl_piutang");
+            ps = koneksi.prepareStatement("select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien), "
+                    + "piutang_pasien.status,piutang_pasien.totalpiutang, piutang_pasien.uangmuka, piutang_pasien.sisapiutang, piutang_pasien.tgltempo, "
+                    + "penjab.png_jawab, piutang_pasien.penjamin, piutang_pasien.ket_penjamin "
+                    + "from piutang_pasien inner join pasien inner join reg_periksa inner join penjab on  "
+                    + "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "
+                    + "piutang_pasien.no_rawat=reg_periksa.no_rawat and "
+                    + "reg_periksa.kd_pj=penjab.kd_pj where "
+                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rawat like ? or "
+                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rkm_medis like ? or "
+                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and pasien.nm_pasien like ? or "
+                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.status like ? or "
+                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.penjamin like ? order by piutang_pasien.tgl_piutang");
             try {
-                ps.setString(1,"%"+nmpenjab.getText()+"%");
-                ps.setString(2,"%"+TCari.getText()+"%");
-                ps.setString(3,"%"+nmpenjab.getText()+"%");
-                ps.setString(4,"%"+TCari.getText()+"%");
-                ps.setString(5,"%"+nmpenjab.getText()+"%");
-                ps.setString(6,"%"+TCari.getText()+"%");
-                ps.setString(7,"%"+nmpenjab.getText()+"%");
-                ps.setString(8,"%"+TCari.getText()+"%");
+                ps.setString(1, "%" + nmpenjab.getText() + "%");
+                ps.setString(2, "%" + TCari.getText() + "%");
+                ps.setString(3, "%" + nmpenjab.getText() + "%");
+                ps.setString(4, "%" + TCari.getText() + "%");
+                ps.setString(5, "%" + nmpenjab.getText() + "%");
+                ps.setString(6, "%" + TCari.getText() + "%");
+                ps.setString(7, "%" + nmpenjab.getText() + "%");
+                ps.setString(8, "%" + TCari.getText() + "%");
+                ps.setString(9, "%" + nmpenjab.getText() + "%");
+                ps.setString(10, "%" + TCari.getText() + "%");
                 rs=ps.executeQuery();
                 while(rs.next()){
                     cicilan=Sequel.cariIsiAngka("SELECT ifnull(SUM(bayar_piutang.besar_cicilan),0) FROM bayar_piutang where bayar_piutang.no_rawat=?",rs.getString(1));
-                    tabMode.addRow(new Object[]{false,rs.getString(1),
-                                        rs.getString(2),
-                                        rs.getString(3),
-                                        rs.getString(4),
-                                        rs.getDouble(5),
-                                        rs.getDouble(6),
-                                        cicilan,
-                                        (rs.getDouble(7)-cicilan),
-                                        rs.getString(8),
-                                        rs.getString(9),(rs.getDouble(7)-cicilan)});
-                    sisapiutang=sisapiutang+rs.getDouble(7)-cicilan;
+                    tabMode.addRow(new Object[]{
+                        false, 
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getDouble(5),
+                        rs.getDouble(6),
+                        cicilan,
+                        (rs.getDouble(7) - cicilan),
+                        rs.getString(8),
+                        rs.getString(9), 
+                        (rs.getDouble(7) - cicilan),
+                        rs.getString("penjamin"),
+                        rs.getString("ket_penjamin")
+                    });
+                    sisapiutang = sisapiutang + rs.getDouble(7) - cicilan;
                 }
             } catch (Exception e) {
                 System.out.println(e);

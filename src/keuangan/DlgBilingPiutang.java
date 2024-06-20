@@ -49,8 +49,8 @@ public class DlgBilingPiutang extends javax.swing.JDialog {
             ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0, TtlSemua = 0,
             ttlTambahan = 0, ttlPotongan = 0, ttlKamar = 0, ttlRegistrasi = 0, ttlHarian = 0, ttlRetur_Obat = 0,
             ttlResep_Pulang = 0, ttlService = 0, uangmuka = 0, ttlRalan_Dokter_Param = 0, sisapiutang = 0, cicilan = 0; 
-    private PreparedStatement ps, psrekening;
-    private ResultSet rs, rsrekening;
+    private PreparedStatement ps, psrekening, pspenjaminpiutang;
+    private ResultSet rs, rsrekening, rspenjaminpiutang;
     private int jawab, i = 0;
 
     /** Creates new form DlgBiling
@@ -59,7 +59,8 @@ public class DlgBilingPiutang extends javax.swing.JDialog {
     public DlgBilingPiutang(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        tabModeRwJlDr=new DefaultTableModel(null,new Object[]{
+        
+        tabModeRwJlDr = new DefaultTableModel(null, new Object[]{
             "Pilih","Keterangan","Tagihan/Tindakan/Terapi","","Biaya","Jumlah","Tambahan","Total Biaya",""}){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){
                     return true;
@@ -75,81 +76,79 @@ public class DlgBilingPiutang extends javax.swing.JDialog {
                 return types [columnIndex];
              }
         };
-        tbAdmin.setModel(tabModeRwJlDr);
 
-        //tbPetugas.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPetugas.getBackground()));
-        tbAdmin.setPreferredScrollableViewportSize(new Dimension(800,800));
+        tbAdmin.setModel(tabModeRwJlDr);
+        tbAdmin.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbAdmin.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         
         for (i = 0; i < 9; i++) {
             TableColumn column = tbAdmin.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(40);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(130);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(450);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(15);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(100);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(40);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(100);
-            }else if(i==7){
+            } else if (i == 7) {
                 column.setPreferredWidth(150);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
         }
-
         tbAdmin.setDefaultRenderer(Object.class, new WarnaTable());
 
         try {
-            psrekening=koneksi.prepareStatement("select * from set_akun");
-            try {                
-                rsrekening=psrekening.executeQuery();
-                if(rsrekening.next()){
-                    Tindakan_Ralan=rsrekening.getString("Tindakan_Ralan");
-                    Laborat_Ralan=rsrekening.getString("Laborat_Ralan");
-                    Radiologi_Ralan=rsrekening.getString("Radiologi_Ralan");
-                    Obat_Ralan=rsrekening.getString("Obat_Ralan");
-                    Registrasi_Ralan=rsrekening.getString("Registrasi_Ralan");
-                    Tambahan_Ralan=rsrekening.getString("Tambahan_Ralan");
-                    Potongan_Ralan=rsrekening.getString("Potongan_Ralan");
-                    Uang_Muka_Ralan=rsrekening.getString("Uang_Muka_Ralan");
-                    Piutang_Pasien_Ralan=rsrekening.getString("Piutang_Pasien_Ralan");
-                    Operasi_Ralan=rsrekening.getString("Operasi_Ralan");
-                    Tindakan_Ranap=rsrekening.getString("Tindakan_Ranap");
-                    Laborat_Ranap=rsrekening.getString("Laborat_Ranap");
-                    Radiologi_Ranap=rsrekening.getString("Radiologi_Ranap");
-                    Obat_Ranap=rsrekening.getString("Obat_Ranap");
-                    Registrasi_Ranap=rsrekening.getString("Registrasi_Ranap");
-                    Tambahan_Ranap=rsrekening.getString("Tambahan_Ranap");
-                    Potongan_Ranap=rsrekening.getString("Potongan_Ranap");
-                    Retur_Obat_Ranap=rsrekening.getString("Retur_Obat_Ranap");
-                    Resep_Pulang_Ranap=rsrekening.getString("Resep_Pulang_Ranap");
-                    Kamar_Inap=rsrekening.getString("Kamar_Inap");
-                    Operasi_Ranap=rsrekening.getString("Operasi_Ranap");
-                    Service_Ranap=rsrekening.getString("Service_Ranap");
-                    Harian_Ranap=rsrekening.getString("Harian_Ranap");
-                    Uang_Muka_Ranap=rsrekening.getString("Uang_Muka_Ranap");
-                    Piutang_Pasien_Ranap=rsrekening.getString("Piutang_Pasien_Ranap");  
+            psrekening = koneksi.prepareStatement("select * from set_akun");
+            try {
+                rsrekening = psrekening.executeQuery();
+                if (rsrekening.next()) {
+                    Tindakan_Ralan = rsrekening.getString("Tindakan_Ralan");
+                    Laborat_Ralan = rsrekening.getString("Laborat_Ralan");
+                    Radiologi_Ralan = rsrekening.getString("Radiologi_Ralan");
+                    Obat_Ralan = rsrekening.getString("Obat_Ralan");
+                    Registrasi_Ralan = rsrekening.getString("Registrasi_Ralan");
+                    Tambahan_Ralan = rsrekening.getString("Tambahan_Ralan");
+                    Potongan_Ralan = rsrekening.getString("Potongan_Ralan");
+                    Uang_Muka_Ralan = rsrekening.getString("Uang_Muka_Ralan");
+                    Piutang_Pasien_Ralan = rsrekening.getString("Piutang_Pasien_Ralan");
+                    Operasi_Ralan = rsrekening.getString("Operasi_Ralan");
+                    Tindakan_Ranap = rsrekening.getString("Tindakan_Ranap");
+                    Laborat_Ranap = rsrekening.getString("Laborat_Ranap");
+                    Radiologi_Ranap = rsrekening.getString("Radiologi_Ranap");
+                    Obat_Ranap = rsrekening.getString("Obat_Ranap");
+                    Registrasi_Ranap = rsrekening.getString("Registrasi_Ranap");
+                    Tambahan_Ranap = rsrekening.getString("Tambahan_Ranap");
+                    Potongan_Ranap = rsrekening.getString("Potongan_Ranap");
+                    Retur_Obat_Ranap = rsrekening.getString("Retur_Obat_Ranap");
+                    Resep_Pulang_Ranap = rsrekening.getString("Resep_Pulang_Ranap");
+                    Kamar_Inap = rsrekening.getString("Kamar_Inap");
+                    Operasi_Ranap = rsrekening.getString("Operasi_Ranap");
+                    Service_Ranap = rsrekening.getString("Service_Ranap");
+                    Harian_Ranap = rsrekening.getString("Harian_Ranap");
+                    Uang_Muka_Ranap = rsrekening.getString("Uang_Muka_Ranap");
+                    Piutang_Pasien_Ranap = rsrekening.getString("Piutang_Pasien_Ranap");
                 }
             } catch (Exception e) {
                 System.out.println(e);
-            } finally{
-                if(rsrekening!=null){
+            } finally {
+                if (rsrekening != null) {
                     rsrekening.close();
-                } 
-                if(psrekening!=null){
+                }
+                if (psrekening != null) {
                     psrekening.close();
-                } 
+                }
             }
         } catch (Exception e) {
-            System.out.println("Notifikasi : "+e);
+            System.out.println("Notifikasi : " + e);
         }
     }
 
@@ -536,7 +535,7 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         try {
             ps = koneksi.prepareStatement("select no,nm_perawatan, if(biaya<>0,biaya,null) as satu, if(jumlah<>0,jumlah,null) as dua,"
                     + "if(tambahan<>0,tambahan,null) as tiga, if(totalbiaya<>0,totalbiaya,null) as empat,pemisah,status "
-                    + "from billing where no_rawat=?  order by noindex");
+                    + "from billing where no_rawat=? order by noindex");
             try {
                 ps.setString(1, norawat);
                 rs = ps.executeQuery();
@@ -710,6 +709,7 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+        prosesCariPenjaminPiutang(TNoRw.getText());
     }
     
     private void cetakNotaPiutangAJA() {
@@ -741,5 +741,34 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
                 + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='jumlah bayar') jlh_bayar,"
                 + "(SELECT temp7 FROM temporary_bayar_ranap WHERE temp1='sisa piutang') sisa_piutang FROM temporary_bayar_ranap "
                 + "WHERE temp1 not in ('TOTAL PIUTANG','UANG MUKA','JUMLAH BAYAR','SISA PIUTANG','No.Nota','Bangsal/Kamar','Tgl. Perawatan','Pasien','Alamat Pasien')", param);
+    }
+    
+    private void prosesCariPenjaminPiutang(String norawat) {
+        try {
+            pspenjaminpiutang = koneksi.prepareStatement("select concat(penjamin,' (',ket_penjamin,')') data, count(-1) cek from piutang_pasien where no_rawat=?");
+            try {
+                pspenjaminpiutang.setString(1, norawat);
+                rspenjaminpiutang = pspenjaminpiutang.executeQuery();
+                while (rspenjaminpiutang.next()) {
+                    if (rspenjaminpiutang.getString("cek").equals("0")) {
+                        tabModeRwJlDr.addRow(new Object[]{false, "Penjamin Piutang", ":", "", null, null, null, null, "Penjamin Piutang"});
+                    } else {
+                        tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": " + rspenjaminpiutang.getString("data") + "",
+                            "", null, null, null, null, "Penjamin Piutang"});
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rspenjaminpiutang != null) {
+                    rspenjaminpiutang.close();
+                }
+                if (pspenjaminpiutang != null) {
+                    pspenjaminpiutang.close();
+                }
+            }
+        } catch (Exception ex) {
+            System.out.println("Notifikasi : " + ex);
+        }
     }
 }

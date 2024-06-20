@@ -158,8 +158,9 @@ public final class DlgBayarPiutang extends javax.swing.JDialog {
         
         try {
             ps = koneksi.prepareStatement("select bp.tgl_bayar, bp.no_rkm_medis, p.nm_pasien, bp.besar_cicilan,"
-                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan, bp.sisa_piutang from bayar_piutang bp "
-                    + "inner join pasien p on bp.no_rkm_medis=p.no_rkm_medis where "
+                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan, bp.sisa_piutang, "
+                    + "pp.penjamin, pp.ket_penjamin from bayar_piutang bp inner join pasien p on bp.no_rkm_medis=p.no_rkm_medis "
+                    + "inner join piutang_pasien pp on pp.no_rawat=bp.no_rawat where "
                     + "bp.no_rawat like ? or "
                     + "bp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or "
@@ -1016,8 +1017,8 @@ private void ppNotaPiutangBtnPrintActionPerformed(java.awt.event.ActionEvent evt
                     rs.getString("tglbayar"),
                     rs.getString("waktu_simpan"),
                     Valid.SetAngka(rs.getDouble("sisa_piutang")),
-                    Sequel.cariIsi(Sequel.cariIsi("select penjamin from piutang_pasien where no_rawat='" + rs.getString("no_rawat") + "'")),
-                    Sequel.cariIsi(Sequel.cariIsi("select ket_penjamin from piutang_pasien where no_rawat='" + rs.getString("no_rawat") + "'"))
+                    rs.getString("penjamin"),
+                    rs.getString("ket_penjamin")
                 });
             }
         } catch (SQLException e) {

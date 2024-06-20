@@ -56,7 +56,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
 
         Object[] rowRwJlDr={
             "No.Rawat/No.tagihan", "Tgl.Piutang", "Pasien", "Status", "Total Piutang",
-            "Uang Muka", "Dibayar", "Sisa Piutang", "Jatuh Tempo", "Cara Bayar", "tglpiutang", "tgltempo"
+            "Uang Muka", "Dibayar", "Sisa Piutang", "Jatuh Tempo", "Cara Bayar", "tglpiutang",
+            "tgltempo", "Penjamin Piutang", "Keterangan Penjamin"
         };
         
         tabMode=new DefaultTableModel(null,rowRwJlDr){
@@ -70,7 +71,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
              Class[] types = new Class[] {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -82,7 +84,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 12; i++) {
+        for (int i = 0; i < 14; i++) {
             TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -110,13 +112,17 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 12) {
+                column.setPreferredWidth(170);
+            } else if (i == 13) {
+                column.setPreferredWidth(250);
             }
         }
         tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
             "Tgl. Bayar", "No. RM", "Pasien", "Cicilan (Rp)", "Keterangan", "No. Tagihan",
-            "tglbayar", "waktu_simpan", "Sisa Piutang (Rp)"
+            "tglbayar", "waktu_simpan", "Sisa Piutang (Rp)", "Penjamin Piutang", "Keterangan Penjamin"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -128,7 +134,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbBayar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBayar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 9; i++) {
+        for (int i = 0; i < 11; i++) {
             TableColumn column = tbBayar.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(75);
@@ -150,6 +156,10 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 8) {
                 column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(170);
+            } else if (i == 10) {
+                column.setPreferredWidth(250);
             }
         }
         tbBayar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1592,7 +1602,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             if (cmbPiutang.getSelectedIndex() == 0 || cmbPiutang.getSelectedIndex() == 3) {
                 ps = koneksi.prepareStatement("select pp.no_rawat, date_format(pp.tgl_piutang,'%d/%m/%Y') tglpiutang, concat(pp.no_rkm_medis,' - ',p.nm_pasien), "
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
-                        + "pp.tgl_piutang, pp.tgltempo FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
+                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
                         + "pj.png_jawab like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
                         + "pj.png_jawab like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
@@ -1600,7 +1610,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else {
                 ps = koneksi.prepareStatement("select pp.no_rawat, date_format(pp.tgl_piutang,'%d/%m/%Y') tglpiutang, concat(pp.no_rkm_medis,' - ',p.nm_pasien), "
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
-                        + "pp.tgl_piutang, pp.tgltempo FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
+                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
                         + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
                         + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
@@ -1635,7 +1645,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs.getString(8),
                         rs.getString(9),
                         rs.getString(10),
-                        rs.getString(11)
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13)
                     });
         
                     if (belumdibayar == 0) {
@@ -1729,7 +1741,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     rs1.getString(6),
                     rs1.getString("tglbayar"),
                     rs1.getString("waktu_simpan"),
-                    Valid.SetAngka(rs1.getDouble("sisa_piutang"))
+                    Valid.SetAngka(rs1.getDouble("sisa_piutang")),
+                    rs1.getString("penjamin"),
+                    rs1.getString("ket_penjamin")
                 });
             }
         } catch (SQLException e) {

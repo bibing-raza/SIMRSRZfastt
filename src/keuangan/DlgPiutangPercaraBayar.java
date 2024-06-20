@@ -25,17 +25,17 @@ import simrskhanza.DlgPenanggungJawab;
 
 public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
-    private Jurnal jur=new Jurnal();
-    private PreparedStatement pspenjab,pspiutang;
-    private ResultSet rspenjab,rspiutang; 
-    private Dimension screen=Toolkit.getDefaultToolkit().getScreenSize(); 
-    private DlgPenanggungJawab penjab=new DlgPenanggungJawab(null,false);
-    private int i=0,a=0;
-    private double ttlpiutang=0,ttlsisapiutang,subttlpiutang,subttlsisapiutang;
-    private String carabayar="",stringpiutang="",stringsisapiutang="";
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
+    private Jurnal jur = new Jurnal();
+    private PreparedStatement pspenjab, pspiutang;
+    private ResultSet rspenjab, rspiutang;
+    private Dimension screen = Toolkit.getDefaultToolkit().getScreenSize();
+    private DlgPenanggungJawab penjab = new DlgPenanggungJawab(null, false);
+    private int i = 0, a = 0;
+    private double ttlpiutang = 0, ttlsisapiutang, subttlpiutang, subttlsisapiutang;
+    private String carabayar = "", stringpiutang = "", stringsisapiutang = "";
 
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -44,37 +44,43 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row={"No.","Cara Bayar","Tanggal Piutang","Total Piutang","Sisa Piutang","Jatuh Tempo"};
+        Object[] row = {"No.", "Cara Bayar", "Tanggal Piutang", "Total Piutang", "Sisa Piutang", "Jatuh Tempo", 
+            "Penjamin Piutang", "Keterangan Penjamin"};
         tabMode=new DefaultTableModel(null,row){
              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
              Class[] types = new Class[] {
                 java.lang.String.class, java.lang.String.class, java.lang.String.class, 
-                java.lang.Double.class, java.lang.Double.class, java.lang.String.class
+                java.lang.Double.class, java.lang.Double.class, java.lang.String.class,
+                java.lang.String.class, java.lang.String.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
                 return types [columnIndex];
              }
         };
+        
         tbDokter.setModel(tabMode);
-
-        tbDokter.setPreferredScrollableViewportSize(new Dimension(800,800));
+        tbDokter.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0;i < 6; i++) {
+        for (i = 0;i < 8; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(420);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(85);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(90);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(90);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(85);
+            } else if (i == 6) {
+                column.setPreferredWidth(170);
+            } else if (i == 7) {
+                column.setPreferredWidth(250);
             }
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());   
@@ -161,7 +167,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Piutang Pasien Per Cara Bayar di Billing ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 11), new java.awt.Color(50, 70, 40))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Rekap Piutang Pasien Per Cara Bayar di Billing ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -189,6 +195,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         panelisi4.setPreferredSize(new java.awt.Dimension(100, 44));
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        label11.setForeground(new java.awt.Color(0, 0, 0));
         label11.setText("Tgl.Piutang :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(80, 23));
@@ -205,6 +212,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         });
         panelisi4.add(Tgl1);
 
+        label18.setForeground(new java.awt.Color(0, 0, 0));
         label18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         label18.setText("s.d.");
         label18.setName("label18"); // NOI18N
@@ -222,25 +230,25 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         });
         panelisi4.add(Tgl2);
 
+        label17.setForeground(new java.awt.Color(0, 0, 0));
         label17.setText("Cara Bayar :");
         label17.setName("label17"); // NOI18N
         label17.setPreferredSize(new java.awt.Dimension(75, 23));
         panelisi4.add(label17);
 
+        kdpenjab.setEditable(false);
+        kdpenjab.setForeground(new java.awt.Color(0, 0, 0));
         kdpenjab.setName("kdpenjab"); // NOI18N
         kdpenjab.setPreferredSize(new java.awt.Dimension(70, 23));
-        kdpenjab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                kdpenjabKeyPressed(evt);
-            }
-        });
         panelisi4.add(kdpenjab);
 
         nmpenjab.setEditable(false);
+        nmpenjab.setForeground(new java.awt.Color(0, 0, 0));
         nmpenjab.setName("nmpenjab"); // NOI18N
         nmpenjab.setPreferredSize(new java.awt.Dimension(199, 23));
         panelisi4.add(nmpenjab);
 
+        BtnSeek2.setForeground(new java.awt.Color(0, 0, 0));
         BtnSeek2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnSeek2.setMnemonic('3');
         BtnSeek2.setToolTipText("Alt+3");
@@ -258,6 +266,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         });
         panelisi4.add(BtnSeek2);
 
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
         BtnCari.setToolTipText("Alt+2");
@@ -281,6 +290,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         panelisi1.setPreferredSize(new java.awt.Dimension(100, 56));
         panelisi1.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
         BtnAll.setText("Semua");
@@ -299,6 +309,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         });
         panelisi1.add(BtnAll);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
@@ -317,10 +328,12 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         });
         panelisi1.add(BtnPrint);
 
+        label9.setForeground(new java.awt.Color(0, 0, 0));
         label9.setName("label9"); // NOI18N
         label9.setPreferredSize(new java.awt.Dimension(450, 30));
         panelisi1.add(label9);
 
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
         BtnKeluar.setText("Keluar");
@@ -411,20 +424,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             dispose();
         }else{Valid.pindah(evt,BtnPrint,Tgl1);}
     }//GEN-LAST:event_BtnKeluarKeyPressed
-
-    private void kdpenjabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpenjabKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText()); 
-        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText()); 
-            BtnAll.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText()); 
-            Tgl2.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            BtnSeek2ActionPerformed(null);
-        }
-    }//GEN-LAST:event_kdpenjabKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
        kdpenjab.setText("");
@@ -528,14 +527,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 ttlpiutang=0;ttlsisapiutang=0;
                 while(rspenjab.next()){
                     tabMode.addRow(new Object[]{i+". ",rspenjab.getString("png_jawab"),"",null,null,""});
-                    pspiutang=koneksi.prepareStatement(
-                       "select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien) as pasien, "+
-                       "detail_piutang_pasien.totalpiutang, detail_piutang_pasien.sisapiutang, detail_piutang_pasien.tgltempo "+
-                       "from piutang_pasien inner join pasien inner join reg_periksa inner join detail_piutang_pasien inner join penjab on  "+
-                       "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "+
-                       "piutang_pasien.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj and "+
-                       "piutang_pasien.no_rawat=detail_piutang_pasien.no_rawat where "+
-                       "penjab.png_jawab like ? and piutang_pasien.tgl_piutang between ? and ? order by piutang_pasien.tgl_piutang");
+                    pspiutang = koneksi.prepareStatement(
+                            "select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien) as pasien, "
+                            + "detail_piutang_pasien.totalpiutang, detail_piutang_pasien.sisapiutang, detail_piutang_pasien.tgltempo, piutang_pasien.penjamin, piutang_pasien.ket_penjamin "
+                            + "from piutang_pasien inner join pasien inner join reg_periksa inner join detail_piutang_pasien inner join penjab on  "
+                            + "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "
+                            + "piutang_pasien.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj and "
+                            + "piutang_pasien.no_rawat=detail_piutang_pasien.no_rawat where "
+                            + "penjab.png_jawab like ? and piutang_pasien.tgl_piutang between ? and ? order by piutang_pasien.tgl_piutang");
                     try {
                         pspiutang.setString(1,rspenjab.getString("png_jawab"));
                         pspiutang.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
@@ -549,7 +548,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             subttlsisapiutang=subttlsisapiutang+rspiutang.getDouble("sisapiutang");
                             ttlsisapiutang=ttlsisapiutang+rspiutang.getDouble("sisapiutang");
                             tabMode.addRow(new Object[]{
-                                "",a+". "+rspiutang.getString("no_rawat")+" "+rspiutang.getString("pasien"),rspiutang.getString("tgl_piutang"),rspiutang.getDouble("totalpiutang"),rspiutang.getDouble("sisapiutang"),rspiutang.getString("tgltempo")
+                                "", 
+                                a + ". " + rspiutang.getString("no_rawat") + " " + rspiutang.getString("pasien"), 
+                                rspiutang.getString("tgl_piutang"), 
+                                rspiutang.getDouble("totalpiutang"), 
+                                rspiutang.getDouble("sisapiutang"), 
+                                rspiutang.getString("tgltempo"),
+                                rspiutang.getString("penjamin"),
+                                rspiutang.getString("ket_penjamin")
                             });
                             a++;
                         }

@@ -62,17 +62,18 @@ public final class DlgPiutangRanap extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] rowRwJlDr={"Tgl.Pulang","No.Nota","Nama Pasien","Jenis Bayar","Perujuk","Registrasi","Tindakan","Obt+Emb+Tsl","Retur Obat","Resep Pulang",
-                            "Laborat","Radiologi","Potongan","Tambahan","Kamar+Service","Operasi","Harian","Total","Nama Kamar","kodekamar"};
+        Object[] rowRwJlDr={"Tgl.Pulang", "No.Nota", "Nama Pasien", "Jenis Bayar", "Perujuk", "Registrasi", "Tindakan", "Obt+Emb+Tsl", "Retur Obat", "Resep Pulang",
+            "Laborat", "Radiologi", "Potongan", "Tambahan", "Kamar+Service", "Operasi", "Harian", "Total", "Nama Kamar", 
+            "kodekamar","Penjamin Piutang", "Keterangan Penjamin"};
         tabMode=new DefaultTableModel(null,rowRwJlDr){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
+        
         tbBangsal.setModel(tabMode);
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 20; i++) {
+        for (int i = 0; i < 22; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(70);
@@ -606,16 +607,16 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
         Valid.tabelKosong(tabMode);
         try{      
-            ps= koneksi.prepareStatement(
-                "select kamar_inap.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,kamar_inap.tgl_keluar, "+
-                "penjab.png_jawab,kamar_inap.stts_pulang,kamar.kd_kamar, bangsal.nm_bangsal "+
-                "from kamar_inap inner join reg_periksa inner join pasien inner join penjab "+
-                "inner join kamar inner join bangsal inner join piutang_pasien "+
-                "on kamar_inap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj "+
-                "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "+
-                "and kamar_inap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal "+
-                "and piutang_pasien.no_rawat=reg_periksa.no_rawat where kamar_inap.tgl_keluar between ? and ? and reg_periksa.kd_pj like ? "+
-                "order by kamar_inap.tgl_keluar,kamar_inap.jam_keluar");
+            ps = koneksi.prepareStatement(
+                    "select kamar_inap.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,kamar_inap.tgl_keluar, "
+                    + "penjab.png_jawab,kamar_inap.stts_pulang,kamar.kd_kamar, bangsal.nm_bangsal, piutang_pasien.penjamin, piutang_pasien.ket_penjamin "
+                    + "from kamar_inap inner join reg_periksa inner join pasien inner join penjab "
+                    + "inner join kamar inner join bangsal inner join piutang_pasien "
+                    + "on kamar_inap.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj "
+                    + "and reg_periksa.no_rkm_medis=pasien.no_rkm_medis "
+                    + "and kamar_inap.kd_kamar=kamar.kd_kamar and kamar.kd_bangsal=bangsal.kd_bangsal "
+                    + "and piutang_pasien.no_rawat=reg_periksa.no_rawat where kamar_inap.tgl_keluar between ? and ? and reg_periksa.kd_pj like ? "
+                    + "order by kamar_inap.tgl_keluar,kamar_inap.jam_keluar");
             try {
                 ps.setString(1,Valid.SetTgl(Tgl1.getSelectedItem()+""));
                 ps.setString(2,Valid.SetTgl(Tgl2.getSelectedItem()+""));
@@ -1009,14 +1010,14 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
 
                         tabMode.addRow(new Object[]{
-                            rs.getString("tgl_keluar"),Sequel.cariIsi("select no_nota from nota_inap where no_rawat=?",rs.getString("no_rawat")),
-                            rs.getString("no_rkm_medis")+" "+rs.getString("nm_pasien"),rs.getString("png_jawab"),
-                            Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat=?",rs.getString("no_rawat")),Valid.SetAngka(Registrasi),
-                            Valid.SetAngka(Ranap_Dokter+Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis),
-                            Valid.SetAngka(Obat),Valid.SetAngka(Retur_Obat),Valid.SetAngka(Resep_Pulang),Valid.SetAngka(Laborat),Valid.SetAngka(Radiologi),Valid.SetAngka(Potongan),
-                            Valid.SetAngka(Tambahan),Valid.SetAngka(Kamar+Service),Valid.SetAngka(Operasi),Valid.SetAngka(Harian),Valid.SetAngka(Laborat+Radiologi+Operasi+Obat+Ranap_Dokter+
-                                    Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis+Tambahan+Potongan+Kamar+Registrasi+Harian+Retur_Obat+Resep_Pulang+Service),
-                                    rs.getString("nm_bangsal"),rs.getString("kd_kamar")
+                            rs.getString("tgl_keluar"), Sequel.cariIsi("select no_nota from nota_inap where no_rawat=?", rs.getString("no_rawat")),
+                            rs.getString("no_rkm_medis") + " " + rs.getString("nm_pasien"), rs.getString("png_jawab"),
+                            Sequel.cariIsi("select perujuk from rujuk_masuk where no_rawat=?", rs.getString("no_rawat")), Valid.SetAngka(Registrasi),
+                            Valid.SetAngka(Ranap_Dokter + Ranap_Dokter_Paramedis + Ranap_Paramedis + Ralan_Dokter + Ralan_Dokter_Paramedis + Ralan_Paramedis),
+                            Valid.SetAngka(Obat), Valid.SetAngka(Retur_Obat), Valid.SetAngka(Resep_Pulang), Valid.SetAngka(Laborat), Valid.SetAngka(Radiologi), Valid.SetAngka(Potongan),
+                            Valid.SetAngka(Tambahan), Valid.SetAngka(Kamar + Service), Valid.SetAngka(Operasi), Valid.SetAngka(Harian), Valid.SetAngka(Laborat + Radiologi + Operasi + Obat + Ranap_Dokter
+                            + Ranap_Dokter_Paramedis + Ranap_Paramedis + Ralan_Dokter + Ralan_Dokter_Paramedis + Ralan_Paramedis + Tambahan + Potongan + Kamar + Registrasi + Harian + Retur_Obat + Resep_Pulang + Service),
+                            rs.getString("nm_bangsal"), rs.getString("kd_kamar"), rs.getString("penjamin"), rs.getString("ket_penjamin")
                         });
                         all=all+Laborat+Radiologi+Operasi+Obat+Ranap_Dokter+Ranap_Dokter_Paramedis+Ranap_Paramedis+Ralan_Dokter+Ralan_Dokter_Paramedis+Ralan_Paramedis+Tambahan+Potongan+Kamar+Registrasi+Harian+Retur_Obat+Resep_Pulang+Service;
                     }}                
