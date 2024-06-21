@@ -75,9 +75,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             psreturobat, psdetaillab, pstamkur, psrekening, psakunbayar, psakunpiutang,
             pskamarin, psbiayasekali, psbiayaharian, psreseppulang, pstambahanbiaya, pspotonganbiaya, pstemporary,
             psralandokter, psralandrpr, psranapdrpr, psranapdokter, pssep,
-            psoperasi, psralanperawat, psranapperawat, pscaridpjp, pspenjaminpiutang,
+            psoperasi, psralanperawat, psranapperawat, pscaridpjp, 
             psperiksalab, pssudahmasuk, pskategori, psubahpenjab, psperiksarad, psanak, psnota, psservice;
-    private ResultSet rscekbilling, rscarirm, rscaripasien, rsreg, rskamar, rscarialamat, rsdetaillab, rspenjaminpiutang,
+    private ResultSet rscekbilling, rscarirm, rscaripasien, rsreg, rskamar, rscarialamat, rsdetaillab, 
             rsdokterranap, rsranapdrpr, rsdokterralan, rscariobat, rsobatlangsung, rsobatoperasi, rsreturobat, rsubahpenjab,
             rskamarin, rsbiayasekali, rsbiayaharian, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rssep,
             rsralandokter, rsralandrpr, rsranapdokter, rsoperasi, rsralanperawat, rsranapperawat, rsperiksalab, rskategori,
@@ -123,9 +123,8 @@ public class DlgBilingRanap extends javax.swing.JDialog {
             + "from resep_pulang inner join databarang "
             + "on resep_pulang.kode_brng=databarang.kode_brng where "
             + "resep_pulang.no_rawat=? order by databarang.nama_brng",
-            sqlpstambahanbiaya = "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=?  ",
-            sqlpspotonganbiaya = "select nama_pengurangan, besar_pengurangan from pengurangan_biaya where no_rawat=?  ",
-            sqlpspenjaminpiutang = "select concat(penjamin,' (',ket_penjamin,')') data, count(-1) cek from piutang_pasien where no_rawat=?  ",
+            sqlpstambahanbiaya = "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=? ",
+            sqlpspotonganbiaya = "select nama_pengurangan, besar_pengurangan from pengurangan_biaya where no_rawat=? ",
             sqlpsralandokter = "select jns_perawatan.nm_perawatan,rawat_jl_dr.biaya_rawat as total_byrdr,count(rawat_jl_dr.kd_jenis_prw) as jml, "
             + "sum(rawat_jl_dr.biaya_rawat) as biaya,"
             + "sum(rawat_jl_dr.bhp) as totalbhp,"
@@ -5083,7 +5082,6 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 prosesResepPulang(TNoRw.getText());
                 prosesCariTambahan(TNoRw.getText());
                 prosesCariPotongan(TNoRw.getText());
-                prosesCariPenjaminPiutang(TNoRw.getText());
                 if (!norawatbayi.equals("")) {
                     tabModeRwJlDr.addRow(new Object[]{false, "", "", "", null, null, null, null, "-"});
                     tabModeRwJlDr.addRow(new Object[]{true, "Biaya Perawatan Bayi", ":", "", null, null, null, null, "-"});
@@ -6895,32 +6893,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
     
     private void prosesCariPenjaminPiutang(String norawat) {
-        x++;
-        try {
-            pspenjaminpiutang = koneksi.prepareStatement(sqlpspenjaminpiutang);
+        if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat + "'") > 0) {
+            x++;
             try {
-                pspenjaminpiutang.setString(1, norawat);
-                rspenjaminpiutang = pspenjaminpiutang.executeQuery();
-                while (rspenjaminpiutang.next()) {
-                    if (rspenjaminpiutang.getString("cek").equals("0")) {
-                        tabModeRwJlDr.addRow(new Object[]{false, "Penjamin Piutang", ":", "", null, null, null, null, "Penjamin Piutang"});
-                    } else {
-                        tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": " + rspenjaminpiutang.getString("data") + "",
-                            "", null, null, null, null, "Penjamin Piutang"});
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rspenjaminpiutang != null) {
-                    rspenjaminpiutang.close();
-                }
-                if (pspenjaminpiutang != null) {
-                    pspenjaminpiutang.close();
-                }
+                tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": "
+                    + Sequel.cariIsi("select if(penjamin='-',penjamin,concat(penjamin,' (',ket_penjamin,')')) from piutang_pasien where no_rawat='" + norawat + "'") + "",
+                    "", null, null, null, null, "Penjamin Piutang"});
+            } catch (Exception ex) {
+                System.out.println("Notifikasi : " + ex);
             }
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : " + ex);
         }
     }
 
