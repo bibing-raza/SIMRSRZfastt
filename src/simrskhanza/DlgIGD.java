@@ -4689,7 +4689,6 @@ private void MnTindakanRawatJalanActionPerformed(java.awt.event.ActionEvent evt)
                 dlgrwjl.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 dlgrwjl.setLocationRelativeTo(internalFrame1);
                 dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
-                dlgrwjl.unitRawatJalan(unitIGD.getText());
                 dlgrwjl.tampilDrPr();
                 dlgrwjl.TotalNominal();
                 dlgrwjl.setVisible(true);
@@ -4701,7 +4700,6 @@ private void MnTindakanRawatJalanActionPerformed(java.awt.event.ActionEvent evt)
                 dlgrwjl.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 dlgrwjl.setLocationRelativeTo(internalFrame1);
                 dlgrwjl.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate());
-                dlgrwjl.unitRawatJalan(unitIGD.getText());
                 dlgrwjl.tampilDrPr();
                 dlgrwjl.TotalNominal();
                 dlgrwjl.setVisible(true);

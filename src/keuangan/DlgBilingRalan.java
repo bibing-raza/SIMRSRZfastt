@@ -69,7 +69,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             Jasa_Medik_Dokter_Operasi_Ralan = 0, Jasa_Medik_Paramedis_Operasi_Ralan = 0, Obat_Operasi_Ralan = 0, kekurangan = 0, lab;
     private int i, r, cek, row2, countbayar = 0, z = 0, jml = 0, cekObat = 0, cekSimpan = 0, diagnosa_cek = 0, jmlNota = 0;
     private String status = "", biaya = "", tambahan = "", totals = "", kdptg = "", nmptg = "", kd_pj = "", notaralan = "", centangdokterralan = "",
-            rinciandokterralan = "", Tindakan_Ralan = "", Laborat_Ralan = "", Radiologi_Ralan = "",
+            rinciandokterralan = "", Tindakan_Ralan = "", Laborat_Ralan = "", Radiologi_Ralan = "", ceknonota = "",
             Obat_Ralan = "", Registrasi_Ralan = "", Tambahan_Ralan = "", Potongan_Ralan = "",
             Beban_Jasa_Medik_Dokter_Tindakan_Ralan = "", Utang_Jasa_Medik_Dokter_Tindakan_Ralan = "",
             Beban_Jasa_Medik_Paramedis_Tindakan_Ralan = "", Utang_Jasa_Medik_Paramedis_Tindakan_Ralan = "",
@@ -1987,7 +1987,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2024 10:09:31" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2024 13:32:33" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2506,7 +2506,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass8.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-01-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-06-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2795,7 +2795,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
 
 private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbBillingMouseClicked
     if (tabModeRwJlDr.getRowCount() != 0) {
-        if (evt.getClickCount() == 1) {
+        if (evt.getClickCount() == 2) {
             i = tbBilling.getSelectedColumn();
             if (i == 1) {
                 try {
@@ -2840,7 +2840,11 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                             }
                             break;
                         case "No. Nota":
-                            Sequel.cariIsi("select no_nota from billing where no_nota = (replace('" + tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString() + "',': ',''))", TCekNota);
+                            ceknonota = "";
+                            if (tbBilling.getValueAt(tbBilling.getSelectedRow(), 1).toString().equals("No. Nota")) {
+                                ceknonota = tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString().replaceAll(": ", "");
+                            }
+                            Sequel.cariIsi("select no_nota from billing where no_nota = '" + ceknonota + "'", TCekNota);
                             TNoNota.setText(TCekNota.getText());
                             isRawat();
                             break;
@@ -2887,7 +2891,11 @@ private void tbBillingMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:e
                             }
                             break;
                         case "No. Nota":
-                            Sequel.cariIsi("select no_nota from billing where no_nota = (replace('" + tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString() + "',': ',''))", TCekNota);
+                            ceknonota = "";
+                            if (tbBilling.getValueAt(tbBilling.getSelectedRow(), 1).toString().equals("No. Nota")) {
+                                ceknonota = tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString().replaceAll(": ", "");
+                            }
+                            Sequel.cariIsi("select no_nota from billing where no_nota = '" + ceknonota + "'", TCekNota);
                             TNoNota.setText(TCekNota.getText());
                             isRawat();
                             break;
@@ -3082,15 +3090,28 @@ private void DTPTglKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DT
 }//GEN-LAST:event_DTPTglKeyPressed
 
 private void MnHapusTagihanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusTagihanActionPerformed
-    double a = Sequel.cariIsiAngka("select count(1) from billing where no_nota = (replace('" + tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString() + "',': ',''))");
+    ceknonota = "";
+    if (tbBilling.getValueAt(tbBilling.getSelectedRow(), 1).toString().equals("No. Nota")) {
+        ceknonota = tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString().replaceAll(": ", "");
+    } else {
+        JOptionPane.showMessageDialog(null, "Silahkan klik data pada nomor notanya..!!");
+        tbBilling.requestFocus();
+    }
+    
+    double a = Sequel.cariIsiAngka("select count(1) from billing where no_nota = '" + ceknonota + "'");
     if (a <= 0) {
-        JOptionPane.showMessageDialog(null, "Silakan Pilih No. Nota");
+        tbBilling.requestFocus();
     } else {
 //        cekNota = Sequel.cariIsi("select no_nota from billing where no_nota = (replace('" + tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString() + "',': ',''))");
 //        JOptionPane.showMessageDialog(null, cekNota);
-        Sequel.cariIsi("select no_nota from billing where no_nota = (replace('" + tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString() + "',': ',''))", TCekNota);
-        try {
 
+        ceknonota = "";
+        if (tbBilling.getValueAt(tbBilling.getSelectedRow(), 1).toString().equals("No. Nota")) {
+            ceknonota = tbBilling.getValueAt(tbBilling.getSelectedRow(), 2).toString().replaceAll(": ", "");
+        } 
+
+        Sequel.cariIsi("select no_nota from billing where no_nota = '" + ceknonota + "'", TCekNota);
+        try {
             i = 0;
             pscekbilling = koneksi.prepareStatement("select count(billing.no_rawat) from billing where billing.no_rawat='" + TNoRw.getText() + "' and no_nota = '" + TCekNota.getText() + "'");
             try {
@@ -3110,6 +3131,7 @@ private void MnHapusTagihanActionPerformed(java.awt.event.ActionEvent evt) {//GE
                     pscekbilling.close();
                 }
             }
+            
             if (i > 0) {
                 Sequel.AutoComitFalse();
 //                Valid.editTable(tabModeRwJlDr, "reg_periksa", "no_rawat", TNoRw, "stts='Sudah'");
@@ -3720,7 +3742,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 isRawat();
                 isCekSimpan();
             }
-
         }
     }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -3941,6 +3962,12 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         }
                     }
                 }
+                
+                cmbPenjamin.setEnabled(false);
+                TketPenjamin.setEnabled(false);
+
+                cmbPenjamin.setSelectedIndex(0);
+                TketPenjamin.setText("");
                 isKembali();
             }
         }
@@ -3949,6 +3976,11 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void tbAkunPiutangKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbAkunPiutangKeyPressed
         if (tabModeAkunBayar.getRowCount() != 0) {
             if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+                cmbPenjamin.setEnabled(true);
+                TketPenjamin.setEnabled(true);
+
+                cmbPenjamin.setSelectedIndex(0);
+                TketPenjamin.setText("");
                 isKembali();
             }
         }
@@ -3956,12 +3988,22 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 
     private void tbAkunBayarPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbAkunBayarPropertyChange
         if (this.isVisible() == true) {
+            cmbPenjamin.setEnabled(false);
+            TketPenjamin.setEnabled(false);
+
+            cmbPenjamin.setSelectedIndex(0);
+            TketPenjamin.setText("");
             isKembali();
         }
     }//GEN-LAST:event_tbAkunBayarPropertyChange
 
     private void tbAkunPiutangPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_tbAkunPiutangPropertyChange
         if (this.isVisible() == true) {
+            cmbPenjamin.setEnabled(true);
+            TketPenjamin.setEnabled(true);
+
+            cmbPenjamin.setSelectedIndex(0);
+            TketPenjamin.setText("");
             isKembali();
         }
     }//GEN-LAST:event_tbAkunPiutangPropertyChange
@@ -4087,9 +4129,13 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
             if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cmbPenjamin.setEnabled(true);
+                TketPenjamin.setEnabled(true);
                 cmbPenjamin.setSelectedItem(Sequel.cariIsi("select penjamin from piutang_pasien where no_rawat='" + TNoRw.getText() + "'"));
                 TketPenjamin.setText(Sequel.cariIsi("select ket_penjamin from piutang_pasien where no_rawat='" + TNoRw.getText() + "'"));
             } else {
+                cmbPenjamin.setEnabled(false);
+                TketPenjamin.setEnabled(false);
                 cmbPenjamin.setSelectedIndex(0);
                 TketPenjamin.setText("");
             }
@@ -4434,7 +4480,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             TNoNota.setText("");
 
             if (cekSimpan == 0) {
-                isHitung();
+                isHitung();                
                 Valid.tabelKosong(tabModeAkunBayar);
                 tampilAkunBayar();
                 tampilAkunPiutang();
@@ -4483,6 +4529,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 tampilAkunBayarTersimpan();
                 tampilAkunPiutangTersimpan();
                 isHitung();
+                prosesCariPenjaminPiutang(TNoRw.getText());
                 status = "sudah";
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
@@ -4602,6 +4649,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
 
         isHitung();
+        prosesCariPenjaminPiutang(TNoRw.getText());
         isKembali();
     }
 
@@ -6198,7 +6246,8 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     Sequel.menyimpan2("tagihan_sadewa", "'" + TNoRw.getText() + "','" + TNoRM.getText() + "','" + TPasien.getText() + "','" + alamat + "',concat('" + Valid.SetTgl(DTPTgl.getSelectedItem() + "")
                             + "',' ',CURTIME()),'Uang Muka','" + total + "','" + bayar + "','Belum','" + akses.getkode() + "','" + no_nota + "'", "No.Rawat");
                     Sequel.queryu2("insert into piutang_pasien values ('" + TNoRw.getText() + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','"
-                            + TNoRM.getText() + "','Belum Lunas','" + total + "','" + bayar + "','" + piutang + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','" + no_nota + "')");
+                            + TNoRM.getText() + "','Belum Lunas','" + total + "','" + bayar + "','" + piutang + "','" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "',"
+                            + "'" + no_nota + "','" + cmbPenjamin.getSelectedItem().toString() + "','" + TketPenjamin.getText() + "')");
                 } else if (piutang <= 0) {
                     jur.simpanJurnal(TNoRw.getText(), Valid.SetTgl(DTPTgl.getSelectedItem() + ""), "U", "PEMBAYARAN PASIEN RAWAT JALAN, DIPOSTING OLEH " + akses.getkode());
                     Sequel.menyimpan2("tagihan_sadewa", "'" + TNoRw.getText() + "','" + TNoRM.getText() + "','" + TPasien.getText() + "','" + alamat + "',concat('" + Valid.SetTgl(DTPTgl.getSelectedItem() + "")
@@ -6436,5 +6485,17 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
         Valid.MyReport("rptKwitansiRalanPiutang.jasper", "report", "::[ Kwitansi Pembayaran - PIUTANG (Rawat Jalan) ]::",
                 " SELECT * FROM temporary_bayar_ralan ", param);
+    }
+    
+    private void prosesCariPenjaminPiutang(String norawat) {
+        if (Sequel.cariInteger("select count(-1) from piutang_pasien where no_rawat='" + norawat + "'") > 0) {
+            try {
+                tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": "
+                    + Sequel.cariIsi("select if(penjamin='-',penjamin,concat(penjamin,' (',ket_penjamin,')')) from piutang_pasien where no_rawat='" + norawat + "'") + "",
+                    "", null, null, null, null, "Penjamin Piutang"});
+            } catch (Exception ex) {
+                System.out.println("Notifikasi : " + ex);
+            }
+        }
     }
 }
