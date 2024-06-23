@@ -143,6 +143,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnSkriningUlangGizi = new widget.ButtonBig();
         BtnAsuhanGizi = new widget.ButtonBig();
         BtnMonevAsuhanGizi = new widget.ButtonBig();
+        BtnAsesmenUlangGizi = new widget.ButtonBig();
         internalFrame3 = new widget.InternalFrame();
         BtnRefres = new widget.Button();
         BtnKeluar = new widget.Button();
@@ -665,6 +666,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnMonevAsuhanGizi);
+
+        BtnAsesmenUlangGizi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenUlangGizi.setText("Asesmen Ulang Gizi");
+        BtnAsesmenUlangGizi.setIconTextGap(0);
+        BtnAsesmenUlangGizi.setName("BtnAsesmenUlangGizi"); // NOI18N
+        BtnAsesmenUlangGizi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenUlangGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenUlangGiziActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnAsesmenUlangGizi);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1273,6 +1287,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnDietPasienActionPerformed
 
+    private void BtnAsesmenUlangGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenUlangGiziActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                DlgAssesmenGiziUlang form = new DlgAssesmenGiziUlang(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Data asuhan gizi belum tersimpan untuk pasien ini...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnAsesmenUlangGiziActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1295,6 +1330,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikAnak;
     private widget.ButtonBig BtnAsesmenMedikDewasa;
     private widget.ButtonBig BtnAsesmenRestrain;
+    private widget.ButtonBig BtnAsesmenUlangGizi;
     private widget.ButtonBig BtnAsesmenUlangRJAnak;
     private widget.ButtonBig BtnAsesmenUlangRJDewasa;
     private widget.ButtonBig BtnAsuhanGizi;
@@ -1372,6 +1408,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnMonevAsuhanGizi.setEnabled(akses.getmonev_asuhan_gizi());
         BtnAsuhanGizi.setEnabled(akses.getassesmen_gizi_harian());
         BtnDietPasien.setEnabled(akses.getdiet_pasien());
+        BtnAsesmenUlangGizi.setEnabled(akses.getassesmen_gizi_ulang());
     }
     
     public void setData(String norw, String norm, String nmpasien,
@@ -1536,6 +1573,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnAsuhanGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnAsuhanGizi.setToolTipText("Asuhan Gizi Pasien SUDAH diisi oleh petugas..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from assesmen_gizi_ulang where no_rawat='" + norawat + "' and tgl_assesmen=date(now())") == 0) {
+            BtnAsesmenUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenUlangGizi.setToolTipText("Asesmen Ulang Gizi Pasien BELUM diisi oleh petugas..!!!");
+        } else {
+            BtnAsesmenUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenUlangGizi.setToolTipText("Asesmen Ulang Gizi Pasien SUDAH diisi oleh petugas..!!!");
         }
     }
 }

@@ -913,7 +913,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnPerawatanPasienCorona = new widget.ButtonBig();
         btnInaCBGKlaimBaruManual2 = new widget.ButtonBig();
         btnAsuhanGiziRanap = new widget.ButtonBig();
-        btnAssesmenGiziUlang = new widget.ButtonBig();
+        btnAssesmenUlangGizi = new widget.ButtonBig();
         btnRencanaKontrolBPJS = new widget.ButtonBig();
         btnMonevAsuhanGizi = new widget.ButtonBig();
         btnBridgingEklaimINACBG = new widget.ButtonBig();
@@ -5421,18 +5421,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsuhanGiziRanap);
 
-        btnAssesmenGiziUlang.setForeground(new java.awt.Color(0, 0, 0));
-        btnAssesmenGiziUlang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
-        btnAssesmenGiziUlang.setText("Assesment Asuhan Gizi Ulang");
-        btnAssesmenGiziUlang.setIconTextGap(0);
-        btnAssesmenGiziUlang.setName("btnAssesmenGiziUlang"); // NOI18N
-        btnAssesmenGiziUlang.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnAssesmenGiziUlang.addActionListener(new java.awt.event.ActionListener() {
+        btnAssesmenUlangGizi.setForeground(new java.awt.Color(0, 0, 0));
+        btnAssesmenUlangGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
+        btnAssesmenUlangGizi.setText("Asesmen Ulang Gizi Rawat Inap");
+        btnAssesmenUlangGizi.setIconTextGap(0);
+        btnAssesmenUlangGizi.setName("btnAssesmenUlangGizi"); // NOI18N
+        btnAssesmenUlangGizi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAssesmenUlangGizi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnAssesmenGiziUlangActionPerformed(evt);
+                btnAssesmenUlangGiziActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnAssesmenGiziUlang);
+        Panelmenu.add(btnAssesmenUlangGizi);
 
         btnRencanaKontrolBPJS.setForeground(new java.awt.Color(0, 0, 0));
         btnRencanaKontrolBPJS.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/vclaim.png"))); // NOI18N
@@ -6755,7 +6755,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18/06/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/06/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11939,22 +11939,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsuhanGiziRanapActionPerformed
 
-    private void btnAssesmenGiziUlangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenGiziUlangActionPerformed
+    private void btnAssesmenUlangGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAssesmenUlangGiziActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgAssesmenGiziUlang asesGiziulang = new DlgAssesmenGiziUlang(this, false);
         asesGiziulang.isCek();
         asesGiziulang.emptTeks();
         asesGiziulang.TCari.setText("");
-        asesGiziulang.ChkInput.setSelected(false);
-        asesGiziulang.isForm();
-        asesGiziulang.tampil();
         asesGiziulang.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
         asesGiziulang.setLocationRelativeTo(PanelUtama);
         asesGiziulang.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnAssesmenGiziUlangActionPerformed
+    }//GEN-LAST:event_btnAssesmenUlangGiziActionPerformed
 
     private void btnRencanaKontrolBPJSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnRencanaKontrolBPJSActionPerformed
         isTutup();
@@ -13363,9 +13360,9 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenRestrain;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhAnak;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhDewasa;
-    private widget.ButtonBig btnAssesmenGiziUlang;
     private widget.ButtonBig btnAssesmenKeperawatanIGD;
     private widget.ButtonBig btnAssesmenMedikIGD;
+    private widget.ButtonBig btnAssesmenUlangGizi;
     private widget.ButtonBig btnAsuhanGiziRanap;
     private widget.ButtonBig btnBPJSSEP;
     private widget.ButtonBig btnBPJScekRiwayatRujukanPcare;
@@ -14043,7 +14040,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
 
             if (akses.getassesmen_gizi_ulang() == true) {
-                Panelmenu.add(btnAssesmenGiziUlang);
+                Panelmenu.add(btnAssesmenUlangGizi);
                 jmlmenu++;
             }
 
@@ -16591,7 +16588,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getassesmen_gizi_ulang() == true) {
-            Panelmenu.add(btnAssesmenGiziUlang);
+            Panelmenu.add(btnAssesmenUlangGizi);
             jmlmenu++;
         }
 
@@ -18789,8 +18786,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
 
         if (akses.getassesmen_gizi_ulang() == true) {
-            if (btnAssesmenGiziUlang.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnAssesmenGiziUlang);
+            if (btnAssesmenUlangGizi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAssesmenUlangGizi);
                 jmlmenu++;
             }
         }
