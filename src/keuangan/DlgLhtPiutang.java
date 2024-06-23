@@ -26,6 +26,7 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgPenanggungJawab;
 
 /**
@@ -246,11 +247,14 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         
         try {
             ps1 = koneksi.prepareStatement("select bp.tgl_bayar, bp.no_rkm_medis, p.nm_pasien, bp.besar_cicilan,"
-                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan, bp.sisa_piutang from bayar_piutang bp "
-                    + "inner join pasien p on bp.no_rkm_medis=p.no_rkm_medis where "
+                    + "bp.catatan, bp.no_rawat, date_format(bp.tgl_bayar,'%d/%m/%Y') tglbayar, bp.waktu_simpan, "
+                    +"bp.sisa_piutang, pp.penjamin, pp.ket_penjamin from bayar_piutang bp "
+                    + "inner join pasien p on bp.no_rkm_medis=p.no_rkm_medis inner join piutang_pasien pp on pp.no_rawat=bp.no_rawat where "
                     + "bp.no_rawat like ? or "
                     + "bp.no_rkm_medis like ? or "
                     + "p.nm_pasien like ? or "
+                    + "pp.penjamin like ? or "
+                    + "pp.ket_penjamin like ? or "
                     + "bp.tgl_bayar like ? order by bp.tgl_bayar desc, bp.no_rkm_medis");
         } catch (SQLException e) {
             System.out.println(e);
@@ -291,6 +295,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         BtnAll = new widget.Button();
         jLabel10 = new javax.swing.JLabel();
         LCount = new javax.swing.JLabel();
+        jLabel12 = new widget.Label();
+        cmbPenjamin = new widget.ComboBox();
         label21 = new widget.Label();
         cmbPiutang = new widget.ComboBox();
         BtnPrint = new widget.Button();
@@ -560,6 +566,23 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         LCount.setName("LCount"); // NOI18N
         LCount.setPreferredSize(new java.awt.Dimension(180, 23));
         panelGlass5.add(LCount);
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Penjamin : ");
+        jLabel12.setName("jLabel12"); // NOI18N
+        jLabel12.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass5.add(jLabel12);
+
+        cmbPenjamin.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPenjamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "-", "Keluarga Pasien", "Pasien Sendiri", "Manajemen RSRAZA", "Karyawan RSRAZA", "Asuransi/Pihak 3", "Aparat Desa", "Anggota DPRD", "Ulama/Pemuka Agama", "Tokoh Masyarakat", "Pemerintah Daerah", "Dinas Sosial Kabupaten", "Dinas Kesehatan Kabupaten", "Pemerintah Provinsi", "Dinas Sosial Provinsi", "Dinas Kesehatan Provinsi", "Yayasan", "Panti Asuhan", "Panti Sosial", "Lain-lain" }));
+        cmbPenjamin.setName("cmbPenjamin"); // NOI18N
+        cmbPenjamin.setPreferredSize(new java.awt.Dimension(170, 28));
+        cmbPenjamin.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbPenjaminMouseReleased(evt);
+            }
+        });
+        panelGlass5.add(cmbPenjamin);
 
         label21.setForeground(new java.awt.Color(0, 0, 0));
         label21.setText("Jenis Piutang :");
@@ -987,7 +1010,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelisi1.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-03-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1028,8 +1051,10 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                             + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 5).toString())) + "','"
                             + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 6).toString())) + "','"
                             + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 7).toString())) + "','"
-                            + tabMode.getValueAt(i, 8).toString() + "',"
-                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                            + tabMode.getValueAt(i, 8).toString() + "','"
+                            + tabMode.getValueAt(i, 12).toString() + "','"
+                            + tabMode.getValueAt(i, 13).toString() + "','"
+                            + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Piutang Pasien");
                 }
@@ -1048,17 +1073,17 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                 if (cmbPiutang.getSelectedIndex() == 1) {
                     param.put("judul", "REKAP TAGIHAN PASIEN (PIUTANG " + cmbPiutang.getSelectedItem().toString().toUpperCase() + ")");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10 from temporary3 where "
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12 from temporary3 where "
                             + "temp5='Lunas' order by CONVERT(temp1,int), temp3", param);
                 } else if (cmbPiutang.getSelectedIndex() == 2) {
                     param.put("judul", "REKAP TAGIHAN PASIEN (PIUTANG " + cmbPiutang.getSelectedItem().toString().toUpperCase() + ")");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10 from temporary3 where "
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12 from temporary3 where "
                             + "temp5='Belum Lunas' order by CONVERT(temp1,int), temp3", param);
                 } else if (cmbPiutang.getSelectedIndex() == 3) {
                     param.put("judul", "REKAP TAGIHAN PIUTANG PASIEN");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10 from temporary3 order by CONVERT(temp1,int), temp3", param);
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12 from temporary3 order by CONVERT(temp1,int), temp3", param);
                 }                
                 this.setCursor(Cursor.getDefaultCursor());
             }
@@ -1508,6 +1533,10 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         tampil();        
     }//GEN-LAST:event_cmbPiutangActionPerformed
 
+    private void cmbPenjaminMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbPenjaminMouseReleased
+        AutoCompleteDecorator.decorate(cmbPenjamin);
+    }//GEN-LAST:event_cmbPenjaminMouseReleased
+
     /**
     * @param args the command line arguments
     */
@@ -1558,12 +1587,14 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Tanggal Tgl1;
     private widget.Tanggal Tgl2;
     private widget.Label TotalPiutang;
+    private widget.ComboBox cmbPenjamin;
     private widget.ComboBox cmbPiutang;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame20;
     private widget.InternalFrame internalFrame21;
     private javax.swing.JLabel jLabel10;
     private widget.Label jLabel11;
+    private widget.Label jLabel12;
     private widget.Label jLabel23;
     private javax.swing.JPanel jPanel1;
     private widget.TextBox kdpenjab;
@@ -1604,32 +1635,35 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
                         + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
-                        + "pj.png_jawab like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
-                        + "pj.png_jawab like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
-                        + "pj.png_jawab like ? and p.nm_pasien like ? and pp.tgl_piutang between ? and ? order by pp.tgl_piutang");
+                        + "pj.png_jawab like ? and pp.penjamin like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
+                        + "pj.png_jawab like ? and pp.penjamin like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
+                        + "pj.png_jawab like ? and pp.penjamin like ? and p.nm_pasien like ? and pp.tgl_piutang between ? and ? order by pp.tgl_piutang");
             } else {
                 ps = koneksi.prepareStatement("select pp.no_rawat, date_format(pp.tgl_piutang,'%d/%m/%Y') tglpiutang, concat(pp.no_rkm_medis,' - ',p.nm_pasien), "
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
                         + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin FROM piutang_pasien pp INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis "
                         + "INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
-                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
-                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
-                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and p.nm_pasien like ? and pp.tgl_piutang between ? and ? order by pp.tgl_piutang");
+                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.penjamin like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
+                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.penjamin like ? and pp.no_rkm_medis like ? and pp.tgl_piutang between ? and ? or "
+                        + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and pj.png_jawab like ? and pp.penjamin like ? and p.nm_pasien like ? and pp.tgl_piutang between ? and ? order by pp.tgl_piutang");
             }
             
             try {
                 ps.setString(1, "%" + nmpenjab.getText() + "%");
-                ps.setString(2, "%" + TCari.getText() + "%");
-                ps.setString(3, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(4, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(5, "%" + nmpenjab.getText() + "%");
-                ps.setString(6, "%" + TCari.getText() + "%");
-                ps.setString(7, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(8, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
-                ps.setString(9, "%" + nmpenjab.getText() + "%");
-                ps.setString(10, "%" + TCari.getText() + "%");
-                ps.setString(11, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
-                ps.setString(12, Valid.SetTgl(Tgl2.getSelectedItem() + ""));                
+                ps.setString(2, "%" + cmbPenjamin.getSelectedItem().toString() + "%");
+                ps.setString(3, "%" + TCari.getText() + "%");
+                ps.setString(4, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(6, "%" + nmpenjab.getText() + "%");
+                ps.setString(7, "%" + cmbPenjamin.getSelectedItem().toString() + "%");
+                ps.setString(8, "%" + TCari.getText() + "%");
+                ps.setString(9, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(10, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                ps.setString(11, "%" + nmpenjab.getText() + "%");
+                ps.setString(12, "%" + cmbPenjamin.getSelectedItem().toString() + "%");
+                ps.setString(13, "%" + TCari.getText() + "%");
+                ps.setString(14, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                ps.setString(15, Valid.SetTgl(Tgl2.getSelectedItem() + ""));                
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     cicilan = Sequel.cariIsiAngka("SELECT ifnull(SUM(besar_cicilan),0) FROM bayar_piutang where no_rawat=?", rs.getString(1));
@@ -1728,6 +1762,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             ps1.setString(2, "%" + TCari1.getText() + "%");
             ps1.setString(3, "%" + TCari1.getText() + "%");
             ps1.setString(4, "%" + TCari1.getText() + "%");
+            ps1.setString(5, "%" + TCari1.getText() + "%");
+            ps1.setString(6, "%" + TCari1.getText() + "%");
             rs1 = ps1.executeQuery();
             total = 0;
             while (rs1.next()) {

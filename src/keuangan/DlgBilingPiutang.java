@@ -49,8 +49,8 @@ public class DlgBilingPiutang extends javax.swing.JDialog {
             ttlRanap_Dokter = 0, ttlRanap_Paramedis = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0, TtlSemua = 0,
             ttlTambahan = 0, ttlPotongan = 0, ttlKamar = 0, ttlRegistrasi = 0, ttlHarian = 0, ttlRetur_Obat = 0,
             ttlResep_Pulang = 0, ttlService = 0, uangmuka = 0, ttlRalan_Dokter_Param = 0, sisapiutang = 0, cicilan = 0; 
-    private PreparedStatement ps, psrekening, pspenjaminpiutang;
-    private ResultSet rs, rsrekening, rspenjaminpiutang;
+    private PreparedStatement ps, psrekening;
+    private ResultSet rs, rsrekening;
     private int jawab, i = 0;
 
     /** Creates new form DlgBiling
@@ -745,28 +745,9 @@ private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event
     
     private void prosesCariPenjaminPiutang(String norawat) {
         try {
-            pspenjaminpiutang = koneksi.prepareStatement("select concat(penjamin,' (',ket_penjamin,')') data, count(-1) cek from piutang_pasien where no_rawat=?");
-            try {
-                pspenjaminpiutang.setString(1, norawat);
-                rspenjaminpiutang = pspenjaminpiutang.executeQuery();
-                while (rspenjaminpiutang.next()) {
-                    if (rspenjaminpiutang.getString("cek").equals("0")) {
-                        tabModeRwJlDr.addRow(new Object[]{false, "Penjamin Piutang", ":", "", null, null, null, null, "Penjamin Piutang"});
-                    } else {
-                        tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": " + rspenjaminpiutang.getString("data") + "",
-                            "", null, null, null, null, "Penjamin Piutang"});
-                    }
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rspenjaminpiutang != null) {
-                    rspenjaminpiutang.close();
-                }
-                if (pspenjaminpiutang != null) {
-                    pspenjaminpiutang.close();
-                }
-            }
+            tabModeRwJlDr.addRow(new Object[]{true, "Penjamin Piutang", ": "
+                + Sequel.cariIsi("select if(penjamin='-',penjamin,concat(penjamin,' (',ket_penjamin,')')) from piutang_pasien where no_rawat='" + norawat + "'") + "",
+                "", null, null, null, null, "Penjamin Piutang"});
         } catch (Exception ex) {
             System.out.println("Notifikasi : " + ex);
         }

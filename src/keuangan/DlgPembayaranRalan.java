@@ -173,15 +173,13 @@ public final class DlgPembayaranRalan extends javax.swing.JDialog {
         });
 
         try {
-            ps = koneksi.prepareStatement(
-                    "select reg_periksa.no_rawat,reg_periksa.no_rkm_medis,pasien.nm_pasien,reg_periksa.tgl_registrasi,dokter.nm_dokter,penjab.png_jawab "
-                    + "from reg_periksa inner join pasien inner join penjab inner join dokter "
-                    + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.kd_pj=penjab.kd_pj and "
-                    + "reg_periksa.kd_dokter=dokter.kd_dokter where reg_periksa.status_lanjut='Ralan' and "
-                    + "reg_periksa.no_rawat not in (select piutang_pasien.no_rawat from piutang_pasien where piutang_pasien.no_rawat=reg_periksa.no_rawat) and "
-                    + "reg_periksa.tgl_registrasi between ? and ? and reg_periksa.kd_pj like ? order by reg_periksa.kd_dokter,reg_periksa.tgl_registrasi");
+            ps = koneksi.prepareStatement("SELECT rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, rp.tgl_registrasi, d.nm_dokter, pj.png_jawab "
+                    + "FROM reg_periksa rp INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN dokter d on d.kd_dokter=rp.kd_dokter WHERE "
+                    + "rp.status_lanjut = 'Ralan' AND rp.no_rawat NOT IN (SELECT no_rawat FROM piutang_pasien WHERE no_rawat = rp.no_rawat) "
+                    + "AND rp.tgl_registrasi BETWEEN ? AND ? AND rp.kd_pj LIKE ? ORDER BY rp.kd_dokter, rp.tgl_registrasi");
             ps2 = koneksi.prepareStatement(
-                    "select billing.nm_perawatan,billing.totalbiaya,billing.status from billing where billing.no_nota=? and billing.no_rawat=? ");
+                    "select nm_perawatan, totalbiaya, status from billing where no_nota=? and no_rawat=?");
         } catch (SQLException e) {
             System.out.println(e);
         }

@@ -6264,6 +6264,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 Sequel.mengedittf("operasi", "no_rawat = '" + TNoRw.getText() + "' and stts_bayar = 'Belum' and no_nota = '-' ", "stts_bayar = 'Bayar',no_nota='" + no_nota + "'");
                 koneksi.setAutoCommit(true);
                 JOptionPane.showMessageDialog(null, "Proses simpan selesai...!");
+                TabRawatMouseClicked(null);
                 if (notaralan.equals("Yes")) {
                     this.dispose();
                 }

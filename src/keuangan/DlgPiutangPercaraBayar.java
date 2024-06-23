@@ -59,12 +59,12 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
              }
         };
         
-        tbDokter.setModel(tabMode);
-        tbDokter.setPreferredScrollableViewportSize(new Dimension(800, 800));
-        tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbPiutang.setModel(tabMode);
+        tbPiutang.setPreferredScrollableViewportSize(new Dimension(800, 800));
+        tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0;i < 8; i++) {
-            TableColumn column = tbDokter.getColumnModel().getColumn(i);
+            TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(35);
             } else if (i == 1) {
@@ -83,7 +83,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
                 column.setPreferredWidth(250);
             }
         }
-        tbDokter.setDefaultRenderer(Object.class, new WarnaTable());   
+        tbPiutang.setDefaultRenderer(Object.class, new WarnaTable());   
         
         kdpenjab.setDocument(new batasInput((byte)8).getKata(kdpenjab));
                 
@@ -138,7 +138,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         Kd2 = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         scrollPane1 = new widget.ScrollPane();
-        tbDokter = new widget.Table();
+        tbPiutang = new widget.Table();
         panelisi4 = new widget.panelisi();
         label11 = new widget.Label();
         Tgl1 = new widget.Tanggal();
@@ -174,7 +174,7 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
 
-        tbDokter.setModel(new javax.swing.table.DefaultTableModel(
+        tbPiutang.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
                 {},
@@ -185,9 +185,9 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
 
             }
         ));
-        tbDokter.setToolTipText("");
-        tbDokter.setName("tbDokter"); // NOI18N
-        scrollPane1.setViewportView(tbDokter);
+        tbPiutang.setToolTipText("");
+        tbPiutang.setName("tbPiutang"); // NOI18N
+        scrollPane1.setViewportView(tbPiutang);
 
         internalFrame1.add(scrollPane1, java.awt.BorderLayout.CENTER);
 
@@ -196,12 +196,11 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         label11.setForeground(new java.awt.Color(0, 0, 0));
-        label11.setText("Tgl.Piutang :");
+        label11.setText("Tgl. Piutang :");
         label11.setName("label11"); // NOI18N
         label11.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(label11);
 
-        Tgl1.setEditable(false);
         Tgl1.setDisplayFormat("dd-MM-yyyy");
         Tgl1.setName("Tgl1"); // NOI18N
         Tgl1.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -219,7 +218,6 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         label18.setPreferredSize(new java.awt.Dimension(30, 23));
         panelisi4.add(label18);
 
-        Tgl2.setEditable(false);
         Tgl2.setDisplayFormat("dd-MM-yyyy");
         Tgl2.setName("Tgl2"); // NOI18N
         Tgl2.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -269,9 +267,10 @@ public class DlgPiutangPercaraBayar extends javax.swing.JDialog {
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -511,85 +510,83 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.panelisi panelisi1;
     private widget.panelisi panelisi4;
     private widget.ScrollPane scrollPane1;
-    private widget.Table tbDokter;
+    private widget.Table tbPiutang;
     // End of variables declaration//GEN-END:variables
 
     private void prosesCari() {             
         try{   
-           this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR)); 
-           Valid.tabelKosong(tabMode);
-           pspenjab=koneksi.prepareStatement(
-                        "select kd_pj,png_jawab from penjab where png_jawab like ?");
-           try {                 
-                pspenjab.setString(1,"%"+nmpenjab.getText()+"%"); 
-                rspenjab=pspenjab.executeQuery();
-                i=1;
-                ttlpiutang=0;ttlsisapiutang=0;
-                while(rspenjab.next()){
-                    tabMode.addRow(new Object[]{i+". ",rspenjab.getString("png_jawab"),"",null,null,""});
-                    pspiutang = koneksi.prepareStatement(
-                            "select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien) as pasien, "
-                            + "detail_piutang_pasien.totalpiutang, detail_piutang_pasien.sisapiutang, detail_piutang_pasien.tgltempo, piutang_pasien.penjamin, piutang_pasien.ket_penjamin "
-                            + "from piutang_pasien inner join pasien inner join reg_periksa inner join detail_piutang_pasien inner join penjab on  "
-                            + "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "
-                            + "piutang_pasien.no_rawat=reg_periksa.no_rawat and reg_periksa.kd_pj=penjab.kd_pj and "
-                            + "piutang_pasien.no_rawat=detail_piutang_pasien.no_rawat where "
-                            + "penjab.png_jawab like ? and piutang_pasien.tgl_piutang between ? and ? order by piutang_pasien.tgl_piutang");
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            Valid.tabelKosong(tabMode);
+            pspenjab = koneksi.prepareStatement(
+                    "select kd_pj, png_jawab from penjab where png_jawab like ?");
+            try {
+                pspenjab.setString(1, "%" + nmpenjab.getText() + "%");
+                rspenjab = pspenjab.executeQuery();
+                i = 1;
+                ttlpiutang = 0;
+                ttlsisapiutang = 0;
+                while (rspenjab.next()) {
+                    tabMode.addRow(new Object[]{i + ". ", rspenjab.getString("png_jawab"),"",null,null,""});
+                    pspiutang = koneksi.prepareStatement("select pp.no_rawat, pp.tgl_piutang, concat(pp.no_rkm_medis,' ',p.nm_pasien) pasien, "
+                            + "dp.totalpiutang, dp.sisapiutang, dp.tgltempo, pp.penjamin, pp.ket_penjamin FROM piutang_pasien pp "
+                            + "INNER JOIN pasien p on p.no_rkm_medis=pp.no_rkm_medis INNER JOIN reg_periksa rp on rp.no_rawat=pp.no_rawat "
+                            + "INNER JOIN detail_piutang_pasien dp on dp.no_rawat=pp.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj where "
+                            + "pj.png_jawab like ? and pp.tgl_piutang between ? and ? order by pp.tgl_piutang");
                     try {
-                        pspiutang.setString(1,rspenjab.getString("png_jawab"));
-                        pspiutang.setString(2,Valid.SetTgl(Tgl1.getSelectedItem()+""));
-                        pspiutang.setString(3,Valid.SetTgl(Tgl2.getSelectedItem()+""));
-                        a=1;
-                        rspiutang=pspiutang.executeQuery();               
-                        subttlpiutang=0;subttlsisapiutang=0;
-                        while(rspiutang.next()){
-                            subttlpiutang=subttlpiutang+rspiutang.getDouble("totalpiutang");
-                            ttlpiutang=ttlpiutang+rspiutang.getDouble("totalpiutang");
-                            subttlsisapiutang=subttlsisapiutang+rspiutang.getDouble("sisapiutang");
-                            ttlsisapiutang=ttlsisapiutang+rspiutang.getDouble("sisapiutang");
+                        pspiutang.setString(1, rspenjab.getString("png_jawab"));
+                        pspiutang.setString(2, Valid.SetTgl(Tgl1.getSelectedItem() + ""));
+                        pspiutang.setString(3, Valid.SetTgl(Tgl2.getSelectedItem() + ""));
+                        a = 1;
+                        rspiutang = pspiutang.executeQuery();
+                        subttlpiutang = 0;
+                        subttlsisapiutang = 0;
+                        while (rspiutang.next()) {
+                            subttlpiutang = subttlpiutang + rspiutang.getDouble("totalpiutang");
+                            ttlpiutang = ttlpiutang + rspiutang.getDouble("totalpiutang");
+                            subttlsisapiutang = subttlsisapiutang + rspiutang.getDouble("sisapiutang");
+                            ttlsisapiutang = ttlsisapiutang + rspiutang.getDouble("sisapiutang");
                             tabMode.addRow(new Object[]{
-                                "", 
-                                a + ". " + rspiutang.getString("no_rawat") + " " + rspiutang.getString("pasien"), 
-                                rspiutang.getString("tgl_piutang"), 
-                                rspiutang.getDouble("totalpiutang"), 
-                                rspiutang.getDouble("sisapiutang"), 
+                                "",
+                                a + ". " + rspiutang.getString("no_rawat") + " " + rspiutang.getString("pasien"),
+                                rspiutang.getString("tgl_piutang"),
+                                rspiutang.getDouble("totalpiutang"),
+                                rspiutang.getDouble("sisapiutang"),
                                 rspiutang.getString("tgltempo"),
                                 rspiutang.getString("penjamin"),
                                 rspiutang.getString("ket_penjamin")
                             });
                             a++;
                         }
-                        if(subttlpiutang>0){
-                            tabMode.addRow(new Object[]{"","Subtotal ",":",subttlpiutang,subttlsisapiutang,""});
-                        }  
+                        if (subttlpiutang > 0) {
+                            tabMode.addRow(new Object[]{"", "Subtotal ", ":", subttlpiutang, subttlsisapiutang, ""});
+                        }
                         i++;
                     } catch (Exception e) {
-                        System.out.println("Notifikasi Piutang : "+e);
-                    } finally{
-                        if(rspiutang!=null){
+                        System.out.println("Notifikasi Piutang : " + e);
+                    } finally {
+                        if (rspiutang != null) {
                             rspiutang.close();
                         }
-                        if(pspiutang!=null){
+                        if (pspiutang != null) {
                             pspiutang.close();
                         }
                     }
                     i++;
                 }
-                tabMode.addRow(new Object[]{">>","Total ",":",ttlpiutang,ttlsisapiutang,""});
-           } catch (Exception e) {
-               System.out.println(e);
-           } finally{
-               if(rspenjab!=null){
-                   rspenjab.close();
-               }
-               if(pspenjab!=null){
-                   pspenjab.close();
-               }
-           }                
-           this.setCursor(Cursor.getDefaultCursor());             
-        }catch(Exception e){
-            System.out.println("Catatan  "+e);
-        }        
+                tabMode.addRow(new Object[]{">>", "Total ", ":", ttlpiutang, ttlsisapiutang, ""});
+            } catch (Exception e) {
+                System.out.println(e);
+            } finally {
+                if (rspenjab != null) {
+                    rspenjab.close();
+                }
+                if (pspenjab != null) {
+                    pspenjab.close();
+                }
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        } catch (Exception e) {
+            System.out.println("Catatan  " + e);
+        }
     }
-    
 }

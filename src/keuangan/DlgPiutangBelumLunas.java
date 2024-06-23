@@ -213,7 +213,6 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
         MnDetailPiutang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnDetailPiutang.setForeground(java.awt.Color.darkGray);
         MnDetailPiutang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDetailPiutang.setText("Detail Piutang");
         MnDetailPiutang.setName("MnDetailPiutang"); // NOI18N
@@ -269,7 +268,6 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         label32.setPreferredSize(new java.awt.Dimension(100, 23));
         panelisi4.add(label32);
 
-        Tanggal.setEditable(false);
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setPreferredSize(new java.awt.Dimension(100, 23));
@@ -313,14 +311,10 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         label19.setPreferredSize(new java.awt.Dimension(75, 23));
         panelisi3.add(label19);
 
+        kdpenjab.setEditable(false);
         kdpenjab.setForeground(new java.awt.Color(0, 0, 0));
         kdpenjab.setName("kdpenjab"); // NOI18N
         kdpenjab.setPreferredSize(new java.awt.Dimension(60, 23));
-        kdpenjab.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                kdpenjabKeyPressed(evt);
-            }
-        });
         panelisi3.add(kdpenjab);
 
         nmpenjab.setEditable(false);
@@ -366,9 +360,10 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         BtnCari.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
         BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
         BtnCari.setToolTipText("Alt+2");
         BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
         BtnCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnCariActionPerformed(evt);
@@ -384,9 +379,10 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
+        BtnAll.setText("Semua Data");
         BtnAll.setToolTipText("Alt+M");
         BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnAll.setPreferredSize(new java.awt.Dimension(120, 23));
         BtnAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAllActionPerformed(evt);
@@ -488,39 +484,41 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        if(tabMode.getRowCount()==0){
-            JOptionPane.showMessageDialog(null,"Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
             //TCari.requestFocus();
-        }else if(tabMode.getRowCount()!=0){
+        } else if (tabMode.getRowCount() != 0) {
             Sequel.AutoComitFalse();
             Sequel.queryu("delete from temporary");
-            int row=tabMode.getRowCount();
-            for(int i=0;i<row;i++){  
-                    Sequel.menyimpan("temporary","'0','"+
-                                tabMode.getValueAt(i,0).toString()+"','"+
-                                tabMode.getValueAt(i,1).toString()+"','"+
-                                tabMode.getValueAt(i,2).toString()+"','"+
-                                tabMode.getValueAt(i,3).toString()+"','"+
-                                Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i,4).toString()))+"','"+
-                                Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i,5).toString()))+"','"+
-                                Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i,6).toString()))+"','"+
-                                Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i,7).toString()))+"','"+
-                                tabMode.getValueAt(i,8).toString()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Piutang Pasien"); 
+            int row = tabMode.getRowCount();
+            for (int i = 0; i < row; i++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode.getValueAt(i, 0).toString() + "','"
+                        + tabMode.getValueAt(i, 1).toString() + "','"
+                        + tabMode.getValueAt(i, 2).toString() + "','"
+                        + tabMode.getValueAt(i, 3).toString() + "','"
+                        + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 4).toString())) + "','"
+                        + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 5).toString())) + "','"
+                        + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 6).toString())) + "','"
+                        + Valid.SetAngka(Double.parseDouble(tabMode.getValueAt(i, 7).toString())) + "','"
+                        + tabMode.getValueAt(i, 8).toString() + "','"
+                        + tabMode.getValueAt(i, 12).toString() + "','"
+                        + tabMode.getValueAt(i, 13).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Piutang Pasien");
             }
-            Sequel.menyimpan("temporary","'0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Rekap Harian Tindakan Dokter"); 
-            Sequel.menyimpan("temporary","'0','TOTAL PIUTANG','',':','','','','','"+LCount.getText()+"','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''","Rekap Harian Tindakan Dokter"); 
+            Sequel.menyimpan("temporary", "'0','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
+            Sequel.menyimpan("temporary", "'0','TOTAL PIUTANG','',':','','','','','" + LCount.getText() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Rekap Harian Tindakan Dokter");
             Sequel.AutoComitTrue();
-            
-            Map<String, Object> param = new HashMap<>();                 
-            param.put("namars",akses.getnamars());
-            param.put("alamatrs",akses.getalamatrs());
-            param.put("kotars",akses.getkabupatenrs());
-            param.put("propinsirs",akses.getpropinsirs());
-            param.put("kontakrs",akses.getkontakrs());
-            param.put("emailrs",akses.getemailrs());   
-            param.put("logo",Sequel.cariGambar("select logo from setting")); 
-            Valid.MyReport("rptRPiutangMasuk.jasper","report","::[ Rekap Piutang Masuk ]::",
-                "select no, temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13, temp14 from temporary order by no asc",param);
+
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
+                    "select no, temp1, temp2, temp3, temp4, temp5, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13, temp14 from temporary order by no asc", param);
         }
         this.setCursor(Cursor.getDefaultCursor());
 }//GEN-LAST:event_BtnPrintActionPerformed
@@ -615,25 +613,25 @@ public final class DlgPiutangBelumLunas extends javax.swing.JDialog {
 }//GEN-LAST:event_tbPiutangKeyPressed
 
 private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
-            BtnKeluar.requestFocus();
-        }
+    if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+        BtnCariActionPerformed(null);
+    } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+        BtnCari.requestFocus();
+    } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+        BtnKeluar.requestFocus();
+    }
 }//GEN-LAST:event_TCariKeyPressed
 
 private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampil();
+    tampil();
 }//GEN-LAST:event_BtnCariActionPerformed
 
 private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
-            tampil();
-        }else{
-            Valid.pindah(evt, TKd, BtnAll);
-        }
+    if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+        tampil();
+    } else {
+        Valid.pindah(evt, TKd, BtnAll);
+    }
 }//GEN-LAST:event_BtnCariKeyPressed
 
 private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDetailPiutangActionPerformed
@@ -660,20 +658,6 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
     }//GEN-LAST:event_formWindowOpened
-
-    private void kdpenjabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpenjabKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText());
-        }else if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText());
-            BtnAll.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
-            Sequel.cariIsi("select png_jawab from penjab where kd_pj=?", nmpenjab,kdpenjab.getText());
-            TCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            BtnSeek2ActionPerformed(null);
-        }
-    }//GEN-LAST:event_kdpenjabKeyPressed
 
     private void BtnSeek2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSeek2ActionPerformed
         penjab.isCek();
@@ -711,7 +695,6 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
                         Sequel.menyimpan("tampjurnal", "'" + koderekening + "','" + nama_bayar.getSelectedItem() + "','" + tabMode.getValueAt(i, 11).toString() + "','0'", "Rekening");
                         jur.simpanJurnal(tabMode.getValueAt(i, 1).toString(), Valid.SetTgl(Tanggal.getSelectedItem() + ""), "U", "BAYAR PIUTANG");
                     }
-
                 }
             }
             Sequel.AutoComitTrue();
@@ -782,18 +765,15 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
         Valid.tabelKosong(tabMode);
         try{
             sisapiutang=0;
-            ps = koneksi.prepareStatement("select piutang_pasien.no_rawat, piutang_pasien.tgl_piutang, concat(piutang_pasien.no_rkm_medis,' ',pasien.nm_pasien), "
-                    + "piutang_pasien.status,piutang_pasien.totalpiutang, piutang_pasien.uangmuka, piutang_pasien.sisapiutang, piutang_pasien.tgltempo, "
-                    + "penjab.png_jawab, piutang_pasien.penjamin, piutang_pasien.ket_penjamin "
-                    + "from piutang_pasien inner join pasien inner join reg_periksa inner join penjab on  "
-                    + "piutang_pasien.no_rkm_medis=pasien.no_rkm_medis and "
-                    + "piutang_pasien.no_rawat=reg_periksa.no_rawat and "
-                    + "reg_periksa.kd_pj=penjab.kd_pj where "
-                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rawat like ? or "
-                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.no_rkm_medis like ? or "
-                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and pasien.nm_pasien like ? or "
-                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.status like ? or "
-                    + "piutang_pasien.status='Belum Lunas' and penjab.png_jawab like ? and piutang_pasien.penjamin like ? order by piutang_pasien.tgl_piutang");
+            ps = koneksi.prepareStatement("select pp.no_rawat, pp.tgl_piutang, concat(pp.no_rkm_medis,' ',p.nm_pasien), "
+                    + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, pp.tgltempo, pj.png_jawab, pp.penjamin, pp.ket_penjamin "
+                    + "FROM piutang_pasien pp INNER JOIN pasien p on p.no_rkm_medis=pp.no_rkm_medis "
+                    + "INNER JOIN reg_periksa rp on rp.no_rawat=pp.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj WHERE "
+                    + "pp.status='Belum Lunas' and pj.png_jawab like ? and pp.no_rawat like ? or "
+                    + "pp.status='Belum Lunas' and pj.png_jawab like ? and pp.no_rkm_medis like ? or "
+                    + "pp.status='Belum Lunas' and pj.png_jawab like ? and p.nm_pasien like ? or "
+                    + "pp.status='Belum Lunas' and pj.png_jawab like ? and pp.status like ? or "
+                    + "pp.status='Belum Lunas' and pj.png_jawab like ? and pp.penjamin like ? order by pp.tgl_piutang");
             try {
                 ps.setString(1, "%" + nmpenjab.getText() + "%");
                 ps.setString(2, "%" + TCari.getText() + "%");
@@ -807,7 +787,7 @@ private void MnDetailPiutangActionPerformed(java.awt.event.ActionEvent evt) {//G
                 ps.setString(10, "%" + TCari.getText() + "%");
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    cicilan=Sequel.cariIsiAngka("SELECT ifnull(SUM(bayar_piutang.besar_cicilan),0) FROM bayar_piutang where bayar_piutang.no_rawat=?",rs.getString(1));
+                    cicilan=Sequel.cariIsiAngka("SELECT ifnull(SUM(besar_cicilan),0) FROM bayar_piutang where no_rawat=?",rs.getString(1));
                     tabMode.addRow(new Object[]{
                         false, 
                         rs.getString(1),
