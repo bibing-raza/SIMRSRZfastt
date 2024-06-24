@@ -358,6 +358,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
@@ -452,7 +453,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2024" }));
+        tglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2024" }));
         tglAsesmen.setDisplayFormat("dd-MM-yyyy");
         tglAsesmen.setName("tglAsesmen"); // NOI18N
         tglAsesmen.setOpaque(false);
@@ -1294,6 +1295,25 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrintActionPerformed(evt);
+            }
+        });
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnPrintKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnPrint);
+
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
         BtnAll.setMnemonic('M');
@@ -1344,7 +1364,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel28);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1358,7 +1378,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1749,6 +1769,161 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
 
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (tbAsesmenGZUlang.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            param.put("tglasesmen", "Tgl. Asessmen : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsesmen.getSelectedItem() + "")));
+            param.put("tglasuhan", "Tgl. Asuhan Gizi : " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asuhan from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'")));
+            param.put("bb", Tbb.getText() + " Kg.");
+            param.put("tb", Ttb.getText() + " Cm.");
+            param.put("imt", Timt.getText() + " Kg/Cm3");
+            param.put("lila", Tlila.getText() + " Cm.");
+            param.put("bbi", Tbbi.getText() + " Kg.");
+            param.put("tl", Ttl.getText() + " Cm.");
+            param.put("ulna", Tulna.getText() + " Cm.");
+            param.put("tbest", TtbEst.getText() + " Cm.");
+            param.put("bbkoreksi", TtbEst.getText() + " Kg.");
+            param.put("statusGZ", cmbSttsGizi.getSelectedItem().toString());
+            param.put("biokimia", Tbiokimia.getText() + "\n");
+
+            if (ChkMual.isSelected() == true) {
+                klinis1 = ChkMual.getText() + "\n";
+            } else {
+                klinis1 = "";
+            }
+
+            if (ChkNyeri.isSelected() == true) {
+                klinis2 = ChkNyeri.getText() + "\n";
+            } else {
+                klinis2 = "";
+            }
+
+            if (ChkDiare.isSelected() == true) {
+                klinis3 = ChkDiare.getText() + "\n";
+            } else {
+                klinis3 = "";
+            }
+
+            if (ChkKesulitan.isSelected() == true) {
+                klinis4 = ChkKesulitan.getText();
+            } else {
+                klinis4 = "";
+            }
+            dataKlinis1 = klinis1 + klinis2 + klinis3 + klinis4;
+
+            if (ChkOedema.isSelected() == true) {
+                klinis5 = ChkOedema.getText() + "\n";
+            } else {
+                klinis5 = "";
+            }
+
+            if (ChkKonstipasi.isSelected() == true) {
+                klinis6 = ChkKonstipasi.getText() + "\n";
+            } else {
+                klinis6 = "";
+            }
+
+            if (ChkAnorek.isSelected() == true) {
+                klinis7 = ChkAnorek.getText() + "\n";
+            } else {
+                klinis7 = "";
+            }
+
+            if (ChkGangguan.isSelected() == true) {
+                klinis8 = ChkGangguan.getText() + "\n";
+            } else {
+                klinis8 = "";
+            }
+            dataKlinis2 = klinis5 + klinis6 + klinis7 + klinis8 + TklinisLain.getText();
+
+            if (ChkMakanLebih3.isSelected() == true) {
+                riw1 = ChkMakanLebih3.getText() + "\n";
+            } else {
+                riw1 = "";
+            }
+
+            if (ChkMakanKurang3.isSelected() == true) {
+                riw2 = ChkMakanKurang3.getText() + "\n";
+            } else {
+                riw2 = "";
+            }
+
+            if (TriwayatLain.getText().equals("")) {
+                TriwayatLain.setText("");
+            } else {
+                TriwayatLain.setText(TriwayatLain.getText() + "\n");
+            }
+
+            if (ChkAlergi.isSelected() == true) {
+                riw3 = ChkAlergi.getText() + " : " + Talergi.getText() + "\n";
+            } else {
+                riw3 = "";
+            }
+
+            if (ChkPantangan.isSelected() == true) {
+                riw4 = ChkPantangan.getText() + " : " + Tpantangan.getText();
+            } else {
+                riw4 = "";
+            }
+            dataRiwayat1 = "RIWAYAT GIZI \n"
+            + "Riwayat Makan SMRS \n" + riw1 + riw2 + TriwayatLain.getText() + riw3 + riw4;
+
+            if (ChkAsupanCukup.isSelected() == true) {
+                riw5 = ChkAsupanCukup.getText() + "\n";
+            } else {
+                riw5 = "";
+            }
+
+            if (ChkAsupanMenurun.isSelected() == true) {
+                riw6 = ChkAsupanMenurun.getText() + "\n";
+            } else {
+                riw6 = "";
+            }
+
+            if (ChkAsupanRendah.isSelected() == true) {
+                riw7 = ChkAsupanRendah.getText() + "\n";
+            } else {
+                riw7 = "";
+            }
+
+            if (ChkAsupanTdkCukup.isSelected() == true) {
+                riw8 = ChkAsupanTdkCukup.getText() + "\n";
+            } else {
+                riw8 = "";
+            }
+            dataRiwayat2 = "\nAsupan Makan SMRS \n" + riw5 + riw6 + riw7 + riw8 + "Hasil Recall Intake : " + cmbHasilRecal.getSelectedItem().toString();
+
+            param.put("dataklinis1", dataKlinis1);
+            param.put("dataklinis2", dataKlinis2);
+            param.put("dataRiwayat1", dataRiwayat1);
+            param.put("dataRiwayat2", dataRiwayat2);
+            param.put("catatan", Tcatatan.getText() + "\n");
+            param.put("petugas", TnmPetugas.getText());
+
+            Valid.MyReport("rptCetakAsesmenUlangGiziRanap.jasper", "report", "::[ Asesmen Ulang Gizi Rawat Inap ]::",
+                "SELECT now() tanggal", param);
+
+            emptTeks();
+            tampil();
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
+            tbAsesmenGZUlang.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnGanti, BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -1777,6 +1952,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Button BtnNilaiTB;
     private widget.Button BtnPasteHasil;
     private widget.Button BtnPetugas;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAlergi;
     public widget.CekBox ChkAnorek;
@@ -2028,6 +2204,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkPantangan.setSelected(false);
         Tpantangan.setText("");
         Tpantangan.setEnabled(false);
+        Tcatatan.setText("");
         Tnip.setText("-");
         TnmPetugas.setText("-");
         chkSaya.setSelected(false);
