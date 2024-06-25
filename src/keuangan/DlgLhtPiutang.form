@@ -443,28 +443,27 @@
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                          <StringArray count="21">
-                            <StringItem index="0" value=" "/>
-                            <StringItem index="1" value="-"/>
-                            <StringItem index="2" value="Keluarga Pasien"/>
-                            <StringItem index="3" value="Pasien Sendiri"/>
-                            <StringItem index="4" value="Manajemen RSRAZA"/>
-                            <StringItem index="5" value="Karyawan RSRAZA"/>
-                            <StringItem index="6" value="Asuransi/Pihak 3"/>
-                            <StringItem index="7" value="Aparat Desa"/>
-                            <StringItem index="8" value="Anggota DPRD"/>
-                            <StringItem index="9" value="Ulama/Pemuka Agama"/>
-                            <StringItem index="10" value="Tokoh Masyarakat"/>
-                            <StringItem index="11" value="Pemerintah Daerah"/>
-                            <StringItem index="12" value="Dinas Sosial Kabupaten"/>
-                            <StringItem index="13" value="Dinas Kesehatan Kabupaten"/>
-                            <StringItem index="14" value="Pemerintah Provinsi"/>
-                            <StringItem index="15" value="Dinas Sosial Provinsi"/>
-                            <StringItem index="16" value="Dinas Kesehatan Provinsi"/>
-                            <StringItem index="17" value="Yayasan"/>
-                            <StringItem index="18" value="Panti Asuhan"/>
-                            <StringItem index="19" value="Panti Sosial"/>
-                            <StringItem index="20" value="Lain-lain"/>
+                          <StringArray count="20">
+                            <StringItem index="0" value="-"/>
+                            <StringItem index="1" value="Keluarga Pasien"/>
+                            <StringItem index="2" value="Pasien Sendiri"/>
+                            <StringItem index="3" value="Manajemen RSRAZA"/>
+                            <StringItem index="4" value="Karyawan RSRAZA"/>
+                            <StringItem index="5" value="Asuransi/Pihak 3"/>
+                            <StringItem index="6" value="Aparat Desa"/>
+                            <StringItem index="7" value="Anggota DPRD"/>
+                            <StringItem index="8" value="Ulama/Pemuka Agama"/>
+                            <StringItem index="9" value="Tokoh Masyarakat"/>
+                            <StringItem index="10" value="Pemerintah Daerah"/>
+                            <StringItem index="11" value="Dinas Sosial Kabupaten"/>
+                            <StringItem index="12" value="Dinas Kesehatan Kabupaten"/>
+                            <StringItem index="13" value="Pemerintah Provinsi"/>
+                            <StringItem index="14" value="Dinas Sosial Provinsi"/>
+                            <StringItem index="15" value="Dinas Kesehatan Provinsi"/>
+                            <StringItem index="16" value="Yayasan"/>
+                            <StringItem index="17" value="Panti Asuhan"/>
+                            <StringItem index="18" value="Panti Sosial"/>
+                            <StringItem index="19" value="Lain-lain"/>
                           </StringArray>
                         </Property>
                         <Property name="name" type="java.lang.String" value="cmbPenjamin" noResource="true"/>
@@ -1208,7 +1207,7 @@
                           <Properties>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="23-06-2024"/>
+                                <StringItem index="0" value="25-06-2024"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

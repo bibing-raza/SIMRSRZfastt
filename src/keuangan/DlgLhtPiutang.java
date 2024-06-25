@@ -574,7 +574,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         panelGlass5.add(jLabel12);
 
         cmbPenjamin.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPenjamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "-", "Keluarga Pasien", "Pasien Sendiri", "Manajemen RSRAZA", "Karyawan RSRAZA", "Asuransi/Pihak 3", "Aparat Desa", "Anggota DPRD", "Ulama/Pemuka Agama", "Tokoh Masyarakat", "Pemerintah Daerah", "Dinas Sosial Kabupaten", "Dinas Kesehatan Kabupaten", "Pemerintah Provinsi", "Dinas Sosial Provinsi", "Dinas Kesehatan Provinsi", "Yayasan", "Panti Asuhan", "Panti Sosial", "Lain-lain" }));
+        cmbPenjamin.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Keluarga Pasien", "Pasien Sendiri", "Manajemen RSRAZA", "Karyawan RSRAZA", "Asuransi/Pihak 3", "Aparat Desa", "Anggota DPRD", "Ulama/Pemuka Agama", "Tokoh Masyarakat", "Pemerintah Daerah", "Dinas Sosial Kabupaten", "Dinas Kesehatan Kabupaten", "Pemerintah Provinsi", "Dinas Sosial Provinsi", "Dinas Kesehatan Provinsi", "Yayasan", "Panti Asuhan", "Panti Sosial", "Lain-lain" }));
         cmbPenjamin.setName("cmbPenjamin"); // NOI18N
         cmbPenjamin.setPreferredSize(new java.awt.Dimension(170, 28));
         cmbPenjamin.addMouseListener(new java.awt.event.MouseAdapter() {

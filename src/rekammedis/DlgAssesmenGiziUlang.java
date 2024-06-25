@@ -60,7 +60,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             "bbi", "status_gizi", "biokimia", "mual_muntah", "nyeri_ulu_hati", "diare", "kesulitan_menelan", "oedema", "konstipasi",
             "anoreksia", "gangguan_gigi_geligi", "klinis_lainnya", "makan_lebih_3x", "makan_kurang_3x", "riwayat_gizi_lainnya",
             "alergi_makanan", "ket_alergi_makanan", "pantangan_makan", "ket_pantangan_makan", "asupan_cukup", "asupan_menurun",
-            "asupan_rendah", "asupan_tidak_cukup", "hasil_recall", "catatan", "nip_petugas", "waktu_simpan", "umurcek", "sttsumur"
+            "asupan_rendah", "asupan_tidak_cukup", "hasil_recall", "catatan", "nip_petugas", "waktu_simpan", "umurcek", "sttsumur",
+            "klasifikasi_imt", "persentase_cdc"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -69,7 +70,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         tbAsesmenGZUlang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbAsesmenGZUlang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 47; i++) {
+        for (i = 0; i < 49; i++) {
             TableColumn column = tbAsesmenGZUlang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -202,6 +203,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 46) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 47) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 48) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -350,6 +357,10 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         BtnPetugas = new widget.Button();
         jLabel14 = new widget.Label();
         TtglAsuhan = new widget.TextBox();
+        jLabel97 = new widget.Label();
+        cmbKlasifikasiIMT = new widget.ComboBox();
+        jLabel98 = new widget.Label();
+        cmbPersentase = new widget.ComboBox();
         Scroll = new widget.ScrollPane();
         tbAsesmenGZUlang = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
@@ -403,12 +414,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         scrollInput.setName("scrollInput"); // NOI18N
-        scrollInput.setPreferredSize(new java.awt.Dimension(102, 365));
+        scrollInput.setPreferredSize(new java.awt.Dimension(102, 444));
 
         FormInput.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(190, 603));
+        FormInput.setPreferredSize(new java.awt.Dimension(190, 630));
         FormInput.setLayout(null);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
@@ -756,26 +767,26 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         scrollPane13.setViewportView(Tbiokimia);
 
         FormInput.add(scrollPane13);
-        scrollPane13.setBounds(255, 170, 480, 60);
+        scrollPane13.setBounds(115, 198, 550, 60);
 
         jLabel70.setForeground(new java.awt.Color(0, 0, 0));
         jLabel70.setText("Biokimia :");
         jLabel70.setName("jLabel70"); // NOI18N
         FormInput.add(jLabel70);
-        jLabel70.setBounds(190, 170, 60, 23);
+        jLabel70.setBounds(0, 198, 110, 23);
 
         cmbSttsGizi.setForeground(new java.awt.Color(0, 0, 0));
         cmbSttsGizi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Buruk", "Kurang", "Normal", "Lebih", "Obesitas" }));
         cmbSttsGizi.setName("cmbSttsGizi"); // NOI18N
         cmbSttsGizi.setPreferredSize(new java.awt.Dimension(55, 23));
         FormInput.add(cmbSttsGizi);
-        cmbSttsGizi.setBounds(115, 170, 75, 23);
+        cmbSttsGizi.setBounds(570, 170, 75, 23);
 
         jLabel69.setForeground(new java.awt.Color(0, 0, 0));
         jLabel69.setText("Status Gizi :");
         jLabel69.setName("jLabel69"); // NOI18N
         FormInput.add(jLabel69);
-        jLabel69.setBounds(0, 170, 110, 23);
+        jLabel69.setBounds(485, 170, 80, 23);
 
         BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
@@ -790,13 +801,13 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPasteHasil);
-        BtnPasteHasil.setBounds(740, 170, 100, 23);
+        BtnPasteHasil.setBounds(670, 198, 80, 23);
 
         jLabel71.setForeground(new java.awt.Color(0, 0, 0));
         jLabel71.setText("Klinis / Fisik :");
         jLabel71.setName("jLabel71"); // NOI18N
         FormInput.add(jLabel71);
-        jLabel71.setBounds(0, 235, 110, 23);
+        jLabel71.setBounds(0, 263, 110, 23);
 
         ChkMual.setBackground(new java.awt.Color(255, 255, 250));
         ChkMual.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -810,7 +821,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkMual.setOpaque(false);
         ChkMual.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkMual);
-        ChkMual.setBounds(115, 235, 90, 23);
+        ChkMual.setBounds(115, 263, 90, 23);
 
         ChkOedema.setBackground(new java.awt.Color(255, 255, 250));
         ChkOedema.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -824,18 +835,18 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkOedema.setOpaque(false);
         ChkOedema.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkOedema);
-        ChkOedema.setBounds(250, 235, 72, 23);
+        ChkOedema.setBounds(250, 263, 72, 23);
 
         jLabel72.setForeground(new java.awt.Color(0, 0, 0));
         jLabel72.setText("Klinis / Fisik Lainnya : ");
         jLabel72.setName("jLabel72"); // NOI18N
         FormInput.add(jLabel72);
-        jLabel72.setBounds(330, 235, 110, 23);
+        jLabel72.setBounds(330, 263, 110, 23);
 
         TklinisLain.setForeground(new java.awt.Color(0, 0, 0));
         TklinisLain.setName("TklinisLain"); // NOI18N
         FormInput.add(TklinisLain);
-        TklinisLain.setBounds(440, 235, 294, 23);
+        TklinisLain.setBounds(440, 263, 294, 23);
 
         ChkNyeri.setBackground(new java.awt.Color(255, 255, 250));
         ChkNyeri.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -849,7 +860,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkNyeri.setOpaque(false);
         ChkNyeri.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkNyeri);
-        ChkNyeri.setBounds(115, 263, 90, 23);
+        ChkNyeri.setBounds(115, 291, 90, 23);
 
         ChkKonstipasi.setBackground(new java.awt.Color(255, 255, 250));
         ChkKonstipasi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -863,7 +874,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkKonstipasi.setOpaque(false);
         ChkKonstipasi.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkKonstipasi);
-        ChkKonstipasi.setBounds(250, 263, 78, 23);
+        ChkKonstipasi.setBounds(250, 291, 78, 23);
 
         ChkDiare.setBackground(new java.awt.Color(255, 255, 250));
         ChkDiare.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -877,7 +888,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkDiare.setOpaque(false);
         ChkDiare.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkDiare);
-        ChkDiare.setBounds(115, 291, 90, 23);
+        ChkDiare.setBounds(115, 319, 90, 23);
 
         ChkAnorek.setBackground(new java.awt.Color(255, 255, 250));
         ChkAnorek.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -891,7 +902,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkAnorek.setOpaque(false);
         ChkAnorek.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkAnorek);
-        ChkAnorek.setBounds(250, 291, 78, 23);
+        ChkAnorek.setBounds(250, 319, 78, 23);
 
         ChkKesulitan.setBackground(new java.awt.Color(255, 255, 250));
         ChkKesulitan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -905,7 +916,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkKesulitan.setOpaque(false);
         ChkKesulitan.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkKesulitan);
-        ChkKesulitan.setBounds(115, 319, 114, 23);
+        ChkKesulitan.setBounds(115, 347, 114, 23);
 
         ChkGangguan.setBackground(new java.awt.Color(255, 255, 250));
         ChkGangguan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -919,27 +930,27 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkGangguan.setOpaque(false);
         ChkGangguan.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkGangguan);
-        ChkGangguan.setBounds(250, 319, 125, 23);
+        ChkGangguan.setBounds(250, 347, 125, 23);
 
         jLabel73.setForeground(new java.awt.Color(0, 0, 0));
         jLabel73.setText("Riwayat Gizi :");
         jLabel73.setName("jLabel73"); // NOI18N
         FormInput.add(jLabel73);
-        jLabel73.setBounds(0, 342, 110, 23);
+        jLabel73.setBounds(0, 370, 110, 23);
 
         jLabel74.setForeground(new java.awt.Color(0, 0, 0));
         jLabel74.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel74.setText("Riwayat Makan SMRS :");
         jLabel74.setName("jLabel74"); // NOI18N
         FormInput.add(jLabel74);
-        jLabel74.setBounds(115, 342, 120, 23);
+        jLabel74.setBounds(115, 370, 120, 23);
 
         jLabel76.setForeground(new java.awt.Color(0, 0, 0));
         jLabel76.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel76.setText("Asupan Makan SMRS :");
         jLabel76.setName("jLabel76"); // NOI18N
         FormInput.add(jLabel76);
-        jLabel76.setBounds(260, 342, 120, 23);
+        jLabel76.setBounds(260, 370, 120, 23);
 
         ChkMakanLebih3.setBackground(new java.awt.Color(255, 255, 250));
         ChkMakanLebih3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -953,7 +964,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkMakanLebih3.setOpaque(false);
         ChkMakanLebih3.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkMakanLebih3);
-        ChkMakanLebih3.setBounds(115, 362, 135, 23);
+        ChkMakanLebih3.setBounds(115, 390, 135, 23);
 
         ChkAsupanCukup.setBackground(new java.awt.Color(255, 255, 250));
         ChkAsupanCukup.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -967,7 +978,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkAsupanCukup.setOpaque(false);
         ChkAsupanCukup.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkAsupanCukup);
-        ChkAsupanCukup.setBounds(260, 362, 215, 23);
+        ChkAsupanCukup.setBounds(260, 390, 215, 23);
 
         ChkAsupanRendah.setBackground(new java.awt.Color(255, 255, 250));
         ChkAsupanRendah.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -981,7 +992,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkAsupanRendah.setOpaque(false);
         ChkAsupanRendah.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkAsupanRendah);
-        ChkAsupanRendah.setBounds(485, 362, 230, 23);
+        ChkAsupanRendah.setBounds(485, 390, 230, 23);
 
         ChkMakanKurang3.setBackground(new java.awt.Color(255, 255, 250));
         ChkMakanKurang3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -995,7 +1006,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkMakanKurang3.setOpaque(false);
         ChkMakanKurang3.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkMakanKurang3);
-        ChkMakanKurang3.setBounds(115, 390, 135, 23);
+        ChkMakanKurang3.setBounds(115, 418, 135, 23);
 
         ChkAsupanMenurun.setBackground(new java.awt.Color(255, 255, 250));
         ChkAsupanMenurun.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1009,7 +1020,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkAsupanMenurun.setOpaque(false);
         ChkAsupanMenurun.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkAsupanMenurun);
-        ChkAsupanMenurun.setBounds(260, 390, 215, 23);
+        ChkAsupanMenurun.setBounds(260, 418, 215, 23);
 
         ChkAsupanTdkCukup.setBackground(new java.awt.Color(255, 255, 250));
         ChkAsupanTdkCukup.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1023,31 +1034,31 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         ChkAsupanTdkCukup.setOpaque(false);
         ChkAsupanTdkCukup.setPreferredSize(new java.awt.Dimension(175, 23));
         FormInput.add(ChkAsupanTdkCukup);
-        ChkAsupanTdkCukup.setBounds(485, 390, 250, 23);
+        ChkAsupanTdkCukup.setBounds(485, 418, 250, 23);
 
         jLabel75.setForeground(new java.awt.Color(0, 0, 0));
         jLabel75.setText("Riwayat Gizi Lain :");
         jLabel75.setName("jLabel75"); // NOI18N
         FormInput.add(jLabel75);
-        jLabel75.setBounds(0, 418, 110, 23);
+        jLabel75.setBounds(0, 446, 110, 23);
 
         TriwayatLain.setForeground(new java.awt.Color(0, 0, 0));
         TriwayatLain.setName("TriwayatLain"); // NOI18N
         FormInput.add(TriwayatLain);
-        TriwayatLain.setBounds(115, 418, 420, 23);
+        TriwayatLain.setBounds(115, 446, 420, 23);
 
         jLabel89.setForeground(new java.awt.Color(0, 0, 0));
         jLabel89.setText("Hasil Recall Intake : ");
         jLabel89.setName("jLabel89"); // NOI18N
         FormInput.add(jLabel89);
-        jLabel89.setBounds(540, 418, 120, 23);
+        jLabel89.setBounds(540, 446, 120, 23);
 
         cmbHasilRecal.setForeground(new java.awt.Color(0, 0, 0));
         cmbHasilRecal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "0 %", "5 %", "25 %", "50 %", "75 %", "95 %", "100 %" }));
         cmbHasilRecal.setName("cmbHasilRecal"); // NOI18N
         cmbHasilRecal.setPreferredSize(new java.awt.Dimension(55, 23));
         FormInput.add(cmbHasilRecal);
-        cmbHasilRecal.setBounds(666, 418, 68, 23);
+        cmbHasilRecal.setBounds(666, 446, 68, 23);
 
         ChkAlergi.setBackground(new java.awt.Color(255, 255, 250));
         ChkAlergi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1066,12 +1077,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkAlergi);
-        ChkAlergi.setBounds(115, 446, 105, 23);
+        ChkAlergi.setBounds(115, 474, 105, 23);
 
         Talergi.setForeground(new java.awt.Color(0, 0, 0));
         Talergi.setName("Talergi"); // NOI18N
         FormInput.add(Talergi);
-        Talergi.setBounds(220, 446, 515, 23);
+        Talergi.setBounds(220, 474, 515, 23);
 
         ChkPantangan.setBackground(new java.awt.Color(255, 255, 250));
         ChkPantangan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1090,12 +1101,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkPantangan);
-        ChkPantangan.setBounds(115, 474, 115, 23);
+        ChkPantangan.setBounds(115, 502, 115, 23);
 
         Tpantangan.setForeground(new java.awt.Color(0, 0, 0));
         Tpantangan.setName("Tpantangan"); // NOI18N
         FormInput.add(Tpantangan);
-        Tpantangan.setBounds(230, 474, 505, 23);
+        Tpantangan.setBounds(230, 502, 505, 23);
 
         scrollPane14.setName("scrollPane14"); // NOI18N
 
@@ -1112,31 +1123,31 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         scrollPane14.setViewportView(Tcatatan);
 
         FormInput.add(scrollPane14);
-        scrollPane14.setBounds(114, 502, 620, 60);
+        scrollPane14.setBounds(114, 530, 620, 60);
 
         jLabel77.setForeground(new java.awt.Color(0, 0, 0));
         jLabel77.setText("Catatan Penting : ");
         jLabel77.setName("jLabel77"); // NOI18N
         FormInput.add(jLabel77);
-        jLabel77.setBounds(0, 502, 110, 23);
+        jLabel77.setBounds(0, 530, 110, 23);
 
         jLabel34.setForeground(new java.awt.Color(0, 0, 0));
         jLabel34.setText("Nama Ahli Gizi :");
         jLabel34.setName("jLabel34"); // NOI18N
         FormInput.add(jLabel34);
-        jLabel34.setBounds(0, 568, 110, 23);
+        jLabel34.setBounds(0, 596, 110, 23);
 
         Tnip.setEditable(false);
         Tnip.setForeground(new java.awt.Color(0, 0, 0));
         Tnip.setName("Tnip"); // NOI18N
         FormInput.add(Tnip);
-        Tnip.setBounds(115, 568, 170, 23);
+        Tnip.setBounds(115, 596, 170, 23);
 
         TnmPetugas.setEditable(false);
         TnmPetugas.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugas.setName("TnmPetugas"); // NOI18N
         FormInput.add(TnmPetugas);
-        TnmPetugas.setBounds(289, 568, 390, 23);
+        TnmPetugas.setBounds(289, 596, 390, 23);
 
         chkSaya.setBackground(new java.awt.Color(242, 242, 242));
         chkSaya.setForeground(new java.awt.Color(0, 0, 0));
@@ -1152,7 +1163,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         FormInput.add(chkSaya);
-        chkSaya.setBounds(715, 568, 87, 23);
+        chkSaya.setBounds(715, 596, 87, 23);
 
         BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnPetugas.setMnemonic('2');
@@ -1165,7 +1176,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPetugas);
-        BtnPetugas.setBounds(680, 568, 28, 23);
+        BtnPetugas.setBounds(680, 596, 28, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tgl. Asuhan :");
@@ -1178,6 +1189,42 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         TtglAsuhan.setName("TtglAsuhan"); // NOI18N
         FormInput.add(TtglAsuhan);
         TtglAsuhan.setBounds(290, 38, 90, 23);
+
+        jLabel97.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel97.setText("Klasifikasi IMT :");
+        jLabel97.setName("jLabel97"); // NOI18N
+        FormInput.add(jLabel97);
+        jLabel97.setBounds(0, 170, 110, 23);
+
+        cmbKlasifikasiIMT.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKlasifikasiIMT.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Berdasarkan Kemenkes RI", "Berdasarkan CDC" }));
+        cmbKlasifikasiIMT.setName("cmbKlasifikasiIMT"); // NOI18N
+        cmbKlasifikasiIMT.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbKlasifikasiIMT.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbKlasifikasiIMTActionPerformed(evt);
+            }
+        });
+        FormInput.add(cmbKlasifikasiIMT);
+        cmbKlasifikasiIMT.setBounds(115, 170, 160, 23);
+
+        jLabel98.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel98.setText("Persentase CDC :");
+        jLabel98.setName("jLabel98"); // NOI18N
+        FormInput.add(jLabel98);
+        jLabel98.setBounds(275, 170, 105, 23);
+
+        cmbPersentase.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPersentase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "< 60 %", "60 % - 80 %", "80 % - 120 %", "> 120 %" }));
+        cmbPersentase.setName("cmbPersentase"); // NOI18N
+        cmbPersentase.setPreferredSize(new java.awt.Dimension(55, 23));
+        cmbPersentase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPersentaseActionPerformed(evt);
+            }
+        });
+        FormInput.add(cmbPersentase);
+        cmbPersentase.setBounds(385, 170, 100, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1446,11 +1493,12 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             cekData();
-            if (Sequel.menyimpantf("assesmen_gizi_ulang", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat & Tgl. Asesmen", 38, new String[]{
+            if (Sequel.menyimpantf("assesmen_gizi_ulang", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat & Tgl. Asesmen", 40, new String[]{
                 TNoRw.getText(), Valid.SetTgl(tglAsesmen.getSelectedItem() + ""), TrgRawat.getText(), Tbb.getText(), Ttb.getText(), Timt.getText(), Tlila.getText(), Ttl.getText(), Tulna.getText(),
                 TtbEst.getText(), TbbKoreksi.getText(), Tbbi.getText(), cmbSttsGizi.getSelectedItem().toString(), Tbiokimia.getText(), mual, nyeri, diare, kesulitan, odema, konstipasi, anoreksia, 
                 gangguan, TklinisLain.getText(), makanlebih, makankurang, TriwayatLain.getText(), alergi, Talergi.getText(), pantangan, Tpantangan.getText(), asupanCukup, asupanMenurun, asupanRendah,
-                asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(), Sequel.cariIsi("select now()")
+                asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(), Sequel.cariIsi("select now()"), cmbKlasifikasiIMT.getSelectedItem().toString(), 
+                cmbPersentase.getSelectedItem().toString()
             }) == true) {
                 
                 TCari.setText(TNoRw.getText());
@@ -1471,9 +1519,11 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnGanti);}
+        } else {
+            Valid.pindah(evt, BtnSimpan, BtnGanti);
+        }
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
@@ -1509,17 +1559,19 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             dispose();
-        }else{Valid.pindah(evt,BtnBatal,TCari);}
+        } else {
+            Valid.pindah(evt, BtnBatal, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
@@ -1600,6 +1652,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             if (Tbb.getText().contains(",") == true) {
                 Tbb.setText(Tbb.getText().replaceAll(",", "."));
             }
+            BtnNilaiIMTActionPerformed(null);
             Ttb.requestFocus();
         }
     }//GEN-LAST:event_TbbKeyPressed
@@ -1683,7 +1736,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnNilaiBBKeyPressed
 
     private void TbbKoreksiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbKoreksiKeyPressed
-        Valid.pindah(evt, TtbEst, cmbSttsGizi);
+        Valid.pindah(evt, TtbEst, cmbKlasifikasiIMT);
     }//GEN-LAST:event_TbbKoreksiKeyPressed
 
     private void TbiokimiaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbiokimiaKeyPressed
@@ -1924,6 +1977,21 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void cmbKlasifikasiIMTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKlasifikasiIMTActionPerformed
+        cmbPersentase.setSelectedIndex(0);
+        if (cmbKlasifikasiIMT.getSelectedIndex() == 2) {
+            cmbPersentase.setEnabled(true);
+            cmbPersentase.requestFocus();
+        } else {
+            cmbPersentase.setEnabled(false);
+        }
+        cekStatusGizi();
+    }//GEN-LAST:event_cmbKlasifikasiIMTActionPerformed
+
+    private void cmbPersentaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersentaseActionPerformed
+        cekStatusGizi();
+    }//GEN-LAST:event_cmbPersentaseActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2004,6 +2072,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.TextBox Tumur;
     private widget.CekBox chkSaya;
     private widget.ComboBox cmbHasilRecal;
+    private widget.ComboBox cmbKlasifikasiIMT;
+    private widget.ComboBox cmbPersentase;
     private widget.ComboBox cmbSttsGizi;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel12;
@@ -2030,6 +2100,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Label jLabel76;
     private widget.Label jLabel77;
     private widget.Label jLabel89;
+    private widget.Label jLabel97;
+    private widget.Label jLabel98;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.Label label105;
@@ -2130,7 +2202,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                         rs.getString("nip_petugas"),
                         rs.getString("waktu_simpan"),
                         cekumur,
-                        ceksttsumur
+                        ceksttsumur,
+                        rs.getString("klasifikasi_imt"),
+                        rs.getString("persentase_cdc")
                     });
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -2159,7 +2233,10 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         Ttl.setText("0");
         TbbKoreksi.setText("0");
         Tulna.setText("0");        
-        Tbbi.setText("0");        
+        Tbbi.setText("0");
+        cmbKlasifikasiIMT.setSelectedIndex(0);
+        cmbPersentase.setSelectedIndex(0);
+        cmbPersentase.setEnabled(false);
         cmbSttsGizi.setSelectedIndex(0);
         Tbiokimia.setText("");
         
@@ -2256,7 +2333,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             Tcatatan.setText(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 42).toString());
             Tnip.setText(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 43).toString());
             TnmPetugas.setText(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 7).toString());
-            TtglAsuhan.setText(Sequel.cariIsi("select date_format(tgl_asuhan,'%d-%m-%Y') from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'"));
+            TtglAsuhan.setText(Sequel.cariIsi("select date_format(tgl_asuhan,'%d-%m-%Y') from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'"));            
+            cmbKlasifikasiIMT.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 47).toString());
+            cmbPersentase.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 48).toString());
             dataCek();
         }
     }
@@ -2356,6 +2435,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             } else {
                 Timt.setText(Valid.SetAngka4(Total));
             }
+            cekStatusGizi();
             
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
@@ -2682,16 +2762,18 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     
     private void ganti() {
         cekData();
-        if (Sequel.mengedittf("assesmen_gizi_ulang", "waktu_simpan=?", "tgl_assesmen=?, ruang_rawat=?, bb=?, tb=?, imt=?, lila=?, tinggi_lutut=?, ulna=?, tb_est=?, bb_koreksi=?, "
-                + "bbi=?, status_gizi=?, biokimia=?, mual_muntah=?, nyeri_ulu_hati=?, diare=?, kesulitan_menelan=?, oedema=?, konstipasi=?, "
-                + "anoreksia=?, gangguan_gigi_geligi=?, klinis_lainnya=?, makan_lebih_3x=?, makan_kurang_3x=?, riwayat_gizi_lainnya=?, "
-                + "alergi_makanan=?, ket_alergi_makanan=?, pantangan_makan=?, ket_pantangan_makan=?, asupan_cukup=?, asupan_menurun=?, "
-                + "asupan_rendah=?, asupan_tidak_cukup=?, hasil_recall=?, catatan=?, nip_petugas=?", 37, new String[]{
+        if (Sequel.mengedittf("assesmen_gizi_ulang", "waktu_simpan=?", "tgl_assesmen=?, ruang_rawat=?, bb=?, tb=?, imt=?, lila=?, "
+                + "tinggi_lutut=?, ulna=?, tb_est=?, bb_koreksi=?, bbi=?, status_gizi=?, biokimia=?, mual_muntah=?, nyeri_ulu_hati=?, diare=?, "
+                + "kesulitan_menelan=?, oedema=?, konstipasi=?, anoreksia=?, gangguan_gigi_geligi=?, klinis_lainnya=?, makan_lebih_3x=?, "
+                + "makan_kurang_3x=?, riwayat_gizi_lainnya=?, alergi_makanan=?, ket_alergi_makanan=?, pantangan_makan=?, ket_pantangan_makan=?, "
+                + "asupan_cukup=?, asupan_menurun=?, asupan_rendah=?, asupan_tidak_cukup=?, hasil_recall=?, catatan=?, nip_petugas=?, klasifikasi_imt=?, "
+                + "persentase_cdc=?", 39, new String[]{
                     Valid.SetTgl(tglAsesmen.getSelectedItem() + ""), TrgRawat.getText(), Tbb.getText(), Ttb.getText(), Timt.getText(), Tlila.getText(), 
                     Ttl.getText(), Tulna.getText(), TtbEst.getText(), TbbKoreksi.getText(), Tbbi.getText(), cmbSttsGizi.getSelectedItem().toString(), 
                     Tbiokimia.getText(), mual, nyeri, diare, kesulitan, odema, konstipasi, anoreksia, gangguan, TklinisLain.getText(), makanlebih, 
                     makankurang, TriwayatLain.getText(), alergi, Talergi.getText(), pantangan, Tpantangan.getText(), asupanCukup, asupanMenurun, 
-                    asupanRendah, asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(),
+                    asupanRendah, asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(), cmbKlasifikasiIMT.getSelectedItem().toString(),
+                    cmbPersentase.getSelectedItem().toString(),
                     tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 44).toString()
                 }) == true) {
 
@@ -2718,5 +2800,37 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         asupanTidak = "";
         alergi = "";
         pantangan = "";
+    }
+    
+    private void cekStatusGizi() {
+        if (cmbKlasifikasiIMT.getSelectedIndex() == 1) {
+            double nilaiIMT;
+            nilaiIMT = 0;
+            nilaiIMT = Double.parseDouble(Timt.getText());
+            
+            if (nilaiIMT < 18.5) {
+                cmbSttsGizi.setSelectedIndex(2);
+            } else if (nilaiIMT >= 18.5 && nilaiIMT <= 25) {
+                cmbSttsGizi.setSelectedIndex(3);
+            } else if (nilaiIMT > 25) {
+                cmbSttsGizi.setSelectedIndex(5);
+            } else {
+                cmbSttsGizi.setSelectedIndex(0);
+            }
+        } else if (cmbKlasifikasiIMT.getSelectedIndex() == 2) {
+            if (cmbPersentase.getSelectedIndex() == 1) {
+                cmbSttsGizi.setSelectedIndex(1);
+            } else if (cmbPersentase.getSelectedIndex() == 2) {
+                cmbSttsGizi.setSelectedIndex(2);
+            } else if (cmbPersentase.getSelectedIndex() == 3) {
+                cmbSttsGizi.setSelectedIndex(3);
+            } else if (cmbPersentase.getSelectedIndex() == 4) {
+                cmbSttsGizi.setSelectedIndex(4);
+            } else {
+                cmbSttsGizi.setSelectedIndex(0);
+            }
+        } else {
+            cmbSttsGizi.setSelectedIndex(0);
+        }
     }
 }

@@ -49,6 +49,7 @@
 	<parameter name="lemak" class="java.lang.String"/>
 	<parameter name="karbo" class="java.lang.String"/>
 	<parameter name="petugas" class="java.lang.String"/>
+	<parameter name="rencanaMonev" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT now() tanggal]]>
 	</queryString>
@@ -609,9 +610,9 @@
 		</band>
 	</detail>
 	<summary>
-		<band height="165">
+		<band height="174">
 			<staticText>
-				<reportElement x="7" y="0" width="57" height="12">
+				<reportElement x="7" y="0" width="67" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
@@ -620,7 +621,7 @@
 				<text><![CDATA[Kalori (KKal)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="12" width="57" height="12">
+				<reportElement x="7" y="12" width="67" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
@@ -629,7 +630,7 @@
 				<text><![CDATA[Protein]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="24" width="57" height="12">
+				<reportElement x="7" y="24" width="67" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
@@ -638,7 +639,7 @@
 				<text><![CDATA[Lemak]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="7" y="36" width="57" height="12">
+				<reportElement x="7" y="36" width="67" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
@@ -647,35 +648,35 @@
 				<text><![CDATA[Karbohidrat]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="64" y="0" width="449" height="12"/>
+				<reportElement x="74" y="0" width="439" height="12"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{kalori}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="64" y="12" width="449" height="12"/>
+				<reportElement x="74" y="12" width="439" height="12"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{protein}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="64" y="24" width="449" height="12"/>
+				<reportElement x="74" y="24" width="439" height="12"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{lemak}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="64" y="36" width="449" height="12"/>
+				<reportElement x="74" y="36" width="439" height="12"/>
 				<textElement verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{karbo}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="7" y="48" width="461" height="12">
+				<reportElement x="7" y="61" width="461" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
@@ -684,7 +685,7 @@
 				<text><![CDATA[(perhitungan dengan metode Harrist Benedict/PERKENI/Karyadi/AKG-anak)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="318" y="73" width="194" height="12">
+				<reportElement x="318" y="86" width="194" height="12">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -693,36 +694,52 @@
 				<text><![CDATA[Ahli Gizi,]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="318" y="133" width="195" height="12"/>
+				<reportElement x="318" y="146" width="195" height="12"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["("+$P{petugas}+")"]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="155"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="168"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="0" width="1" height="155"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="519" y="0" width="1" height="168"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="154" width="520" height="1"/>
+				<reportElement x="0" y="167" width="520" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="62" width="520" height="1"/>
+				<reportElement x="0" y="75" width="520" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
+			<staticText>
+				<reportElement x="7" y="47" width="67" height="12">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Left" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[Rencana Monev]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="74" y="47" width="439" height="12"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{rencanaMonev}]]></textFieldExpression>
+			</textField>
 		</band>
 	</summary>
 </jasperReport>
