@@ -4209,7 +4209,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             Sequel.menyimpan("pasien_mati", "'" + Valid.SetTgl(TglMati.getSelectedItem() + "") + "','"
                                     + cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem() + "','"
                                     + TNoRM.getText() + "','" + cmbStatus.getSelectedItem() + " diruang " + TBangsal.getText() + " - "
-                                    + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','',''", "pasien");
+                                    + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','','','-'", "pasien");
 
                         } else if (cmbStatus.getSelectedItem().equals("Dirujuk")) {
                             DlgRujuk dlgrjk = new DlgRujuk(null, false);

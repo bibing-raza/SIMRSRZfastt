@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="550" leftMargin="25" rightMargin="20" topMargin="20" bottomMargin="20">
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="550" leftMargin="25" rightMargin="20" topMargin="20" bottomMargin="20" uuid="3b697d30-684b-4c4d-8e33-a693737d581e">
 	<property name="ireport.zoom" value="1.3660269107301566"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="192"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -11,6 +11,8 @@
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
 	<parameter name="tgl_surat" class="java.lang.String"/>
+	<parameter name="nmdokter" class="java.lang.String"/>
+	<parameter name="nipdokter" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT
 pasien_mati.tanggal,
@@ -110,443 +112,502 @@ ORDER BY
 	<detail>
 		<band height="802" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Opaque" x="9" y="91" width="534" height="19" forecolor="#FFFFFF" backcolor="#666666"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement mode="Opaque" x="9" y="91" width="534" height="19" forecolor="#FFFFFF" backcolor="#666666" uuid="1c135b4e-dbd7-453f-a9bf-fa14a9206ded"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[FORMULIR KETERANGAN PENYEBAB KEMATIAN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="113" width="62" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="113" width="62" height="13" uuid="90efd218-0610-404a-8df8-f48ed634f6a7"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. Surat       :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="126" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="126" width="100" height="13" uuid="448db1a3-fd1e-4dbc-9e24-0aad281a0a4f"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Bulan/Tahun Kematian :]]></text>
 			</staticText>
 			<line direction="BottomUp">
-				<reportElement x="39" y="576" width="109" height="1"/>
+				<reportElement x="39" y="576" width="109" height="1" uuid="2956712f-9952-4ada-8f23-c43ab6891c31"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="502" y="139" width="40" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="502" y="139" width="40" height="13" uuid="80a79974-1eb0-4dbc-8794-138c5b6bba65"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
 			</textField>
 			<textField pattern="MM/yy">
-				<reportElement x="109" y="126" width="39" height="13"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement x="109" y="126" width="39" height="13" uuid="4156d3bf-115e-4b24-95de-0a604486e42c"/>
+				<textElement textAlignment="Left">
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<image scaleImage="FillFrame" onErrorType="Blank">
-				<reportElement x="18" y="23" width="45" height="63"/>
-				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
+				<reportElement x="18" y="23" width="45" height="63" uuid="63a07ce9-2e68-4256-83a4-78ab6144a2f8"/>
+				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="71" y="28" width="353" height="18"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="71" y="28" width="353" height="18" uuid="907d0bff-1f30-449e-94b3-a01d921dfdcd"/>
+				<textElement>
 					<font fontName="Calibri" size="14" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{namars}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="71" y="43" width="353" height="14"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="71" y="43" width="353" height="14" uuid="ef0a371b-0397-4ec6-8711-ae35d4b96314"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{alamatrs}+", "+$P{kotars}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="71" y="65" width="353" height="14"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="71" y="65" width="353" height="14" uuid="eb5977ee-c9cf-4dbf-a4c0-da3ac0135005"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{propinsirs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{propinsirs}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="71" y="54" width="353" height="14"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="71" y="54" width="353" height="14" uuid="fcaa3602-31f8-4a03-8d1f-421ae12f8958"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Website : http://rsraza.banjarkab.go.id/ email : "+$P{emailrs}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Website : http://rsraza.banjarkab.go.id/ email : "+$P{emailrs}]]></textFieldExpression>
 			</textField>
 			<rectangle>
-				<reportElement mode="Transparent" x="9" y="18" width="534" height="73"/>
+				<reportElement mode="Transparent" x="9" y="18" width="534" height="73" uuid="c17b2fc9-28da-4999-8d36-8508ab210f06"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="503" y="5" width="42" height="14"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="503" y="5" width="42" height="14" uuid="3bc64b26-441d-44dd-a029-dcc3d5d50a04"/>
+				<textElement>
 					<font fontName="Arial" size="11" isBold="true" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RM 25.1]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="9" y="91" width="534" height="19" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="9" y="91" width="534" height="19" forecolor="#000000" backcolor="#999999" uuid="a14ad7d0-cae8-4b93-9c19-0bad82bb2f9f"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="150" y="126" width="296" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="126" width="296" height="13" uuid="341928fd-4101-4093-a558-3d94e9161832"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Nama RS/PKM : RSUD Ratu Zalecha       Kode RS/PKM : 6303015]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="447" y="113" width="43" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="447" y="113" width="43" height="13" uuid="1c79dc84-5294-4625-b7f5-ac8a4e9c7f2b"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Prov/Kab :]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="493" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="493" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999" uuid="0cdc71e6-f905-4919-8daf-df6c9334b636"/>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="503" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="503" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999" uuid="1941df8d-6d7e-43a0-ba7c-6bec8cb84f6f"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="513" y="113" width="7" height="16"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="513" y="113" width="7" height="16" uuid="ab3ac9ac-8b96-430f-a213-b159e84e0cc1"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[/]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="530" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="530" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999" uuid="a9e1dc27-44b0-4343-84df-a1b67a6cde63"/>
 			</rectangle>
 			<rectangle>
-				<reportElement mode="Transparent" x="520" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="520" y="116" width="10" height="10" forecolor="#000000" backcolor="#999999" uuid="db5ca366-c973-4809-8f57-2138c8bc65b2"/>
 			</rectangle>
 			<staticText>
-				<reportElement x="424" y="139" width="78" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="424" y="139" width="78" height="13" uuid="a73dc645-2126-462d-b2f0-ce37ca5e1cf9"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. Rekam Medis :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="139" width="180" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="139" width="180" height="13" uuid="42732703-e38c-4fa6-b8a5-64cea841ef4d"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[No. Urut Pencatatan Kematian Tiap Bulan :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="154" width="101" height="16"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="154" width="101" height="16" uuid="ebcfd249-b318-4aa9-9dcd-10650a0f3715"/>
+				<textElement>
 					<font fontName="Calibri" size="12" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Identitas Jenazah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="169" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="169" width="137" height="13" uuid="aba06bea-0a33-48db-8073-d14e0c14fe55"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[1. Nama Lengkap]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="183" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="183" width="137" height="13" uuid="e6552b68-c0be-4182-b6e1-3be555aa53fa"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[2. No. Induk Kependudukan (NIK)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="211" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="211" width="137" height="13" uuid="09ece68b-95be-4990-b5bb-917fa9e6ded9"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[4. Tempat/Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="197" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="197" width="137" height="13" uuid="678e4d60-69f6-4888-9b67-cba59dd82cb0"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[3. Jenis Kelamin]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="238" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="238" width="137" height="13" uuid="d27e7728-f0ff-4b8a-8308-53c248225ce5"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[6. Pekerjaan almarhum/ah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="265" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="265" width="137" height="13" uuid="9d0f2622-9875-4c85-baf5-ec323671991d"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[7. Alamat Sesuai KTP/KK]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="224" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="224" width="137" height="13" uuid="12b8c012-172c-4beb-9f50-15ccb93cc361"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[5. Pendidikan almarhum/ah]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="305" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="305" width="137" height="13" uuid="511a7fec-3282-4122-9d05-76c7892f26de"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[8. Status Kependudukan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="183" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="183" width="5" height="13" uuid="cf9e81f8-b898-4765-a0fe-c0248f44c339"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="197" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="197" width="5" height="13" uuid="a5867af5-3d3d-4b15-a363-295ef9f88e58"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="169" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="169" width="5" height="13" uuid="5dd442c2-4ad4-4d2f-84fe-7b44892191f6"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="238" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="238" width="5" height="13" uuid="f5656766-30ec-4bfd-8407-9f5d933b13b3"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="224" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="224" width="5" height="13" uuid="fa6f2cbd-7709-452e-882f-832e9f885995"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="211" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="211" width="5" height="13" uuid="03d86f9c-056d-459f-bc83-c843a0ac7eae"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="183" width="358" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="183" width="358" height="13" uuid="39f601bc-80b7-4715-b35d-51c04995547d"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_ktp}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{no_ktp}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="197" width="358" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="197" width="358" height="13" uuid="087b4721-0977-4d29-a151-d4e5d94db19b"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{Kelamin}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{Kelamin}]]></textFieldExpression>
 			</textField>
 			<textField pattern="" isBlankWhenNull="false">
-				<reportElement x="150" y="211" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="211" width="392" height="13" uuid="6a826c7c-2859-4c70-8743-61c892220b78"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{tmp_lahir}+", Tanggal "+$F{tgl_lahir}+" Bulan "+$F{bln_lahir}+" Tahun "+$F{thn_lahir}+" Umur "+$F{umur_thn}+" (tahun)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tmp_lahir}+", Tanggal "+$F{tgl_lahir}+" Bulan "+$F{bln_lahir}+" Tahun "+$F{thn_lahir}+" Umur "+$F{umur_thn}+" (tahun)"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="150" y="224" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="224" width="392" height="13" uuid="312ca4d0-99b9-49eb-9a1b-ccc18010cc08"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[1. Tidak Sekolah/Tdk Tamat SD     2. SD     3. SLTP     4. SLTA      5. Akademi/Diploma       6. Sarjana]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="238" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="238" width="392" height="13" uuid="69cf07d1-98fe-418a-afff-5973a4f5038c"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[1. Blm/Tdk bekerja                   2. Sekolah                 3. TNI/POLRI                4. PNS                  5. Petani]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="150" y="251" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="251" width="392" height="13" uuid="6b060346-3c14-4536-afad-3238b66a5574"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[6. Wiraswasta/jasa                   7. Nelayan                8. Buruh                        9. Lainnya ........................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="265" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="265" width="5" height="13" uuid="8eea0322-1d03-4b2f-a3bb-96845c9c0e3d"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="150" y="265" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="265" width="392" height="13" uuid="0bee764a-6fa2-4613-af62-4f17bfc4d858"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{alamat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="278" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="278" width="392" height="13" uuid="b3880c03-8b09-4595-9ad3-aeb1cc71fa0a"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Kelurahan/Desa "+$F{nm_kel}+" Kecamatan "+$F{nm_kec}]]></textFieldExpression>
+				<textFieldExpression><![CDATA["Kelurahan/Desa "+$F{nm_kel}+" Kecamatan "+$F{nm_kec}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="150" y="291" width="392" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="291" width="392" height="13" uuid="556ded92-bedd-4a26-920e-930993af6ab6"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_kab}+" Kode Pos ............... Telp. "+$F{no_tlp}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{nm_kab}+" Kode Pos ............... Telp. "+$F{no_tlp}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="146" y="305" width="396" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="305" width="396" height="13" uuid="f8eef1f8-f9d5-4768-b62c-0687b1c6e4a8"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: 1. Penduduk tetap          2. Bukan Penduduk Tetap]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="319" width="533" height="13"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
+				<reportElement x="9" y="319" width="533" height="13" uuid="3bb214b5-d6fc-44df-90c7-b67a3f1cb49b"/>
+				<textElement textAlignment="Left">
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[------------------------------------------ YANG BERSANGKUTAN DINYATAKAN TELAH MENINGGAL DUNIA --------------------------------------------]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="334" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="334" width="137" height="13" uuid="dc66805e-c32d-417b-8c23-a8ed23de0560"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[9. Waktu meninggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="334" width="5" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="334" width="5" height="13" uuid="198ce3ed-7722-4fa4-9268-d2ed861de91c"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField pattern="dd/MM/yyyy">
-				<reportElement x="150" y="334" width="50" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="150" y="334" width="50" height="13" uuid="29ac0f0d-7e9c-4961-9816-0275b498420a"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[$F{tanggal}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{tanggal}]]></textFieldExpression>
 			</textField>
 			<textField pattern="HH:mm:ss">
-				<reportElement x="291" y="334" width="81" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="291" y="334" width="81" height="13" uuid="ced831b1-cd26-4633-a56a-3932a8dd059e"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.sql.Time"><![CDATA[$F{jam}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{jam}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="201" y="334" width="90" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="201" y="334" width="90" height="13" uuid="6fc026b2-d241-4575-911a-24c823eac09c"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[(Tgl/Bln/Thn), Pukul : ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="347" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="347" width="137" height="13" uuid="7e38b914-99a8-419a-a810-a3e940f821b8"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[10. Umur saat meninggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="347" width="217" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="347" width="217" height="13" uuid="6c4cb456-c068-454c-872e-a0d762e67198"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: ......... Hari (< 29 hari)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="360" width="217" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="360" width="217" height="13" uuid="94542ff0-a5a4-4465-a4cb-66dac0c94e19"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ......... Bulan (29 hari s.d < 5 tahun)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="386" width="533" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="386" width="533" height="13" uuid="40b7da3b-4bb7-4b5d-994b-fda17aee9cae"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[11. Bila yang meninggal wanita umur 10-54 tahun, Almarhumah dalam keadaan :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="399" width="396" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="399" width="396" height="13" uuid="46e5189a-2343-4d5c-be5f-2d67b57b3776"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  1. Hamil                3. Nifas (2 bulan setelah melahirkan/abortus)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="412" width="396" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="412" width="396" height="13" uuid="268b924e-8d0c-49ce-b29c-68cae272a5f3"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  2. Bersalin            4. Lainnya]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="425" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="425" width="137" height="13" uuid="29bbe3c0-f093-4038-b287-cec069eeba0e"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[12. Tempat Meninggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="425" width="344" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="425" width="344" height="13" uuid="bd571c2c-803a-4f4c-b743-bcd22fe04b42"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: 1. Rumah Sakit ; lama dirawat ............ jam (< 1 hr)/ ........... hari]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="438" width="278" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="438" width="278" height="13" uuid="7761876e-aa2d-4093-bf24-d221d68743b2"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  2. Rumah           3. DoA               4. Lainnya ...............................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="451" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="451" width="137" height="13" uuid="8b9d3e6d-b84c-4fd0-8ef4-7c19b9ef8bcb"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[13. Dasar Diagnosis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="451" width="397" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="451" width="397" height="13" uuid="0e1b0575-681c-47f1-82fc-d8939ef6f019"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: 1. Rekam Medis             2. Autopsi verbal                3. Autopsi forensik]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="146" y="464" width="397" height="52"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="464" width="397" height="52" uuid="764934db-1ea0-4a32-b47a-13e0ce3f6875"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: 1. Dikubur                                    : ........./........./......... (Tgl/Bln/Thn)
   2. Dikremasi                                 : ........./........./......... (Tgl/Bln/Thn)
@@ -554,95 +615,101 @@ ORDER BY
   4. Transportasi keluar negeri   : ........./........./......... (Tgl/Bln/Thn)]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="464" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="464" width="137" height="13" uuid="c46cfacc-f582-4d98-9661-8076b0685eaa"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[14. Rencana Pemulasaran]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="47" y="527" width="137" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="47" y="527" width="137" height="13" uuid="c8e2b87d-d7db-4723-9070-a65f9e0dbcaa"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Pihak yang Menerima,]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="321" y="527" width="179" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="321" y="527" width="222" height="13" uuid="33285b53-f5f9-46b2-8a43-6cd3b184f0bc"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Dokter yang Menerangkan,]]></text>
 			</staticText>
-			<line direction="BottomUp">
-				<reportElement x="343" y="575" width="137" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.5"/>
-				</graphicElement>
-			</line>
 			<staticText>
-				<reportElement mode="Transparent" x="468" y="46" width="62" height="16" backcolor="#FFFFFF"/>
-				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single" markup="none">
+				<reportElement mode="Transparent" x="468" y="46" width="62" height="16" backcolor="#FFFFFF" uuid="5e5068ff-6d60-49bf-9fb0-4b52b849713d"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
 					<font fontName="Times New Roman" size="12" isBold="false" isItalic="false"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[RAHASIA]]></text>
 			</staticText>
 			<rectangle>
-				<reportElement mode="Transparent" x="468" y="46" width="62" height="16" forecolor="#000000" backcolor="#999999"/>
+				<reportElement mode="Transparent" x="468" y="46" width="62" height="16" forecolor="#000000" backcolor="#999999" uuid="f9cbf697-3ff4-4755-ad56-5b88e15808b0"/>
 			</rectangle>
 			<staticText>
-				<reportElement mode="Opaque" x="150" y="169" width="308" height="13" backcolor="#333333"/>
-				<textElement lineSpacing="Single">
+				<reportElement mode="Opaque" x="150" y="169" width="308" height="13" backcolor="#333333" uuid="af2b0e04-0629-4cb8-badb-b4821e6a86aa"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="460" y="169" width="82" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="460" y="169" width="82" height="13" uuid="4b2c1a1d-8162-4b91-bdb4-2ad98632fe61"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[(INITIAL : ............. )]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="146" y="373" width="217" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="146" y="373" width="217" height="13" uuid="ec6a6c40-12a8-4d89-9ba3-3cee3fc2e039"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["  "+$F{umur_thn}+" Tahun (>= 5 tahun)"]]></textFieldExpression>
+				<textFieldExpression><![CDATA["  "+$F{umur_thn}+" Tahun (>= 5 tahun)"]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="9" y="585" width="228" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="585" width="228" height="13" uuid="03e4eab6-808d-4ce1-b63a-27d252efc8d0"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Penyebab Kematian Berdasarkan ICD-10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="604" width="228" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="604" width="228" height="13" uuid="b5fb14f1-b99f-4e73-b28f-afdee318625b"/>
+				<textElement>
 					<font fontName="Calibri" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[A. Kematian Umur 7 (tujuh) Hari Ke Atas]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="616" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="616" width="100" height="13" uuid="3ac0ff11-838f-4576-ab8a-0a9f0336b3ea"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[1. Penyebab Langsung]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="626" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="626" width="100" height="13" uuid="be1a7ea4-0e84-4932-ad77-e425b214199b"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[     Penyebab Antara]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="616" width="171" height="90"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="110" y="616" width="171" height="90" uuid="216e779b-52ba-48cd-8a13-e0cba5787262"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[a) ..............................................................
 b) ..............................................................
@@ -653,163 +720,183 @@ d) ..............................................................
 :  ...............................................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="652" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="652" width="100" height="13" uuid="e237f325-43f0-425a-82b5-81d3ac992138"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[     Penyebab Dasar]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="665" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="665" width="100" height="13" uuid="6414b56b-f3fc-4042-84af-c1623ae07907"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[2. Kondisi lain yang]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="676" width="271" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="676" width="271" height="13" uuid="2b7fd82d-4c71-430b-af27-d9f93928e96a"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[berkontribusi tapi tidak terkait dg 1a-d]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="689" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="689" width="100" height="13" uuid="171c640d-aff5-4de5-8b8e-e9d2d7362304"/>
+				<textElement>
 					<font fontName="Calibri" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Final UCod]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="702" width="228" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="702" width="228" height="13" uuid="4e320860-9640-413c-8f71-6735cd4ec886"/>
+				<textElement>
 					<font fontName="Calibri" size="10" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[B. Kematian Umur 0-6 Hari, Termasuk Lahir Mati]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="714" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="714" width="100" height="13" uuid="e3ce6fe0-aa00-43d8-a8b4-451594fa95a1"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[a. Penyebab Utama Bayi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="724" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="724" width="100" height="13" uuid="bd811f8a-74e1-4e7e-8cf1-9980b2d53a6f"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[b. Penyebab Lain Bayi]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="735" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="735" width="100" height="13" uuid="f99b8a49-6edf-46bb-b6d0-24f2f8650840"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[c. Penyebab Utama Ibu]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="9" y="746" width="100" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="9" y="746" width="100" height="13" uuid="93968562-e7d4-4b6f-ad17-a6b128e84145"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[d. Penyebab Lain Ibu]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="715" width="171" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="110" y="715" width="171" height="13" uuid="daabece4-251b-4def-920c-8daaabe89845"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: ................................................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="725" width="171" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="110" y="725" width="171" height="13" uuid="955d9aa1-1b9a-45fa-a36d-7e15d9ebab1e"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: ................................................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="736" width="171" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="110" y="736" width="171" height="13" uuid="992d4fc9-2c4d-45de-9cef-4ba1523f10ab"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: ................................................................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="110" y="747" width="171" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="110" y="747" width="171" height="13" uuid="50a7bf51-076a-460c-9bf8-7dfbad46329d"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[: ................................................................]]></text>
 			</staticText>
 			<line>
-				<reportElement x="282" y="585" width="1" height="175"/>
+				<reportElement x="282" y="585" width="1" height="175" uuid="5d127e9f-114e-4f4d-8669-33aaca285a13"/>
 			</line>
 			<line>
-				<reportElement x="541" y="585" width="1" height="175"/>
+				<reportElement x="541" y="585" width="1" height="175" uuid="71669142-e561-4d78-ab19-f94d9673db0c"/>
 			</line>
 			<line>
-				<reportElement x="470" y="585" width="1" height="175"/>
+				<reportElement x="470" y="585" width="1" height="175" uuid="0bdd5af7-3a4b-49e6-b2ea-04be0dbe7bb6"/>
 			</line>
 			<line>
-				<reportElement x="323" y="610" width="1" height="150"/>
+				<reportElement x="323" y="610" width="1" height="150" uuid="49dac083-bb33-47d8-822b-d6185ce6ad95"/>
 			</line>
 			<line>
-				<reportElement x="371" y="610" width="1" height="150"/>
+				<reportElement x="371" y="610" width="1" height="150" uuid="28ff8302-0c9e-4a9d-a862-174c6b25fcfe"/>
 			</line>
 			<line>
-				<reportElement x="422" y="610" width="1" height="150"/>
+				<reportElement x="422" y="610" width="1" height="150" uuid="c1f0061d-8916-4ddb-b13b-eed0eb6186eb"/>
 			</line>
 			<staticText>
-				<reportElement x="284" y="582" width="185" height="27"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="284" y="582" width="185" height="27" uuid="bd5c3ea2-6375-451a-9d6d-f4748d766d01"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Selang waktu mulai terjadinya
 Penyakit sampai meninggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="472" y="584" width="69" height="38"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="472" y="584" width="69" height="38" uuid="32e08d02-82b3-4128-a5c3-651dc47a4640"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[ICD-10
 Diisi oleh
 petugas kode]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="604" width="37" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="284" y="604" width="37" height="13" uuid="5a846281-356a-46c6-b753-ced696c0672d"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Tahun]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="329" y="604" width="37" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="329" y="604" width="37" height="13" uuid="5a4d488b-5f67-4da8-bd04-0338de24e94f"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Bulan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="377" y="604" width="37" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="377" y="604" width="37" height="13" uuid="105b133e-9734-48a2-9115-54e36f794114"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Hari]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="428" y="604" width="37" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="428" y="604" width="37" height="13" uuid="966ba918-db1a-4c54-9f41-5f8cb41a8168"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="9"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Jam]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="616" width="256" height="90"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="284" y="616" width="256" height="90" uuid="e7b21b41-e01f-40ce-9525-5341df810167"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ..........        ............        ..............       .............        ....................
   ..........        ............        ..............       .............        ....................
@@ -820,67 +907,90 @@ petugas kode]]></text>
   ..........        ............        ..............       .............        ....................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="715" width="256" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="284" y="715" width="256" height="13" uuid="54c4e238-3d2f-4151-a59c-2df64b9748ad"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ..........        ............        ..............       .............        ....................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="725" width="256" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="284" y="725" width="256" height="13" uuid="1872fbea-164a-41f3-97d0-46adcf8a8223"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ..........        ............        ..............       .............        ....................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="736" width="256" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="284" y="736" width="256" height="13" uuid="af1513f7-b2e4-4fe2-8ff9-660150e49b02"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ..........        ............        ..............       .............        ....................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="284" y="747" width="256" height="13"/>
-				<textElement lineSpacing="Single">
+				<reportElement x="284" y="747" width="256" height="13" uuid="a80f8a84-2e25-4252-acc3-88e2c007d05e"/>
+				<textElement>
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[  ..........        ............        ..............       .............        ....................]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="340" y="769" width="179" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="340" y="769" width="179" height="13" uuid="a303f16b-d898-4b91-879c-f07d8f2c737b"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri" size="10"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<text><![CDATA[Dokter Yang Mendiagnosa]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="321" y="517" width="179" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="321" y="517" width="222" height="13" uuid="cdd22260-9a87-440d-abfc-b2e28d646a44"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}+", "+$P{tgl_surat}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+$P{tgl_surat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="340" y="759" width="179" height="13"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
+				<reportElement x="340" y="759" width="179" height="13" uuid="c46e2036-a16d-4f54-8b21-ba5a80669a50"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{kotars}+", "+$P{tgl_surat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="72" y="113" width="333" height="13" uuid="8e846b51-bc2c-425a-aadd-31faf61e408d"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA["474.3/"+$F{nosurat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true">
+				<reportElement x="190" y="139" width="68" height="13" uuid="2c2c49e1-8c56-4875-b8d4-5a7cefda947d"/>
+				<textElement>
+					<font fontName="Calibri" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{noregbulan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="559" width="222" height="13" uuid="b7458079-02b9-40cf-8016-a670608afde0"/>
+				<textElement textAlignment="Center">
+					<font fontName="Calibri" isUnderline="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{nmdokter}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="321" y="570" width="222" height="13" uuid="9b060403-f84e-4311-8922-298aeafe5a40"/>
+				<textElement textAlignment="Center">
 					<font fontName="Calibri"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}+", "+$P{tgl_surat}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="72" y="113" width="333" height="13"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Calibri" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["474.3/"+$F{nosurat}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="190" y="139" width="68" height="13"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Calibri" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{noregbulan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{nipdokter}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>

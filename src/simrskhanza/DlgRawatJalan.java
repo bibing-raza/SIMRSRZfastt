@@ -1434,8 +1434,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel13 = new widget.Label();
         label_tot_pemeriksaan = new widget.Label();
         internalFrame5 = new widget.InternalFrame();
-        panelGlass12 = new widget.panelisi();
-        Scroll36 = new widget.ScrollPane();
+        TabPemeriksaanDokter = new javax.swing.JTabbedPane();
         FormInput2 = new widget.PanelBiasa();
         jLabel8 = new widget.Label();
         jLabel7 = new widget.Label();
@@ -1480,7 +1479,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel44 = new widget.Label();
         Tspo2 = new widget.TextBox();
         BtnPasteResep = new widget.Button();
-        TabPemeriksaanDokter = new javax.swing.JTabbedPane();
         Scroll3 = new widget.ScrollPane();
         tbPemeriksaanDr = new widget.Table();
         panelGlass15 = new widget.panelisi();
@@ -2861,7 +2859,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2875,7 +2873,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3068,7 +3066,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3292,7 +3290,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3306,7 +3304,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3576,14 +3574,18 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         internalFrame5.setBackground(new java.awt.Color(235, 255, 235));
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "2. Pemeriksaan Dokter", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame5.setName("internalFrame5"); // NOI18N
+        internalFrame5.setPreferredSize(new java.awt.Dimension(54, 460));
         internalFrame5.setLayout(new java.awt.BorderLayout(1, 1));
 
-        panelGlass12.setName("panelGlass12"); // NOI18N
-        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 237));
-        panelGlass12.setLayout(new java.awt.BorderLayout());
-
-        Scroll36.setName("Scroll36"); // NOI18N
-        Scroll36.setOpaque(true);
+        TabPemeriksaanDokter.setBackground(new java.awt.Color(250, 255, 245));
+        TabPemeriksaanDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
+        TabPemeriksaanDokter.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabPemeriksaanDokter.setName("TabPemeriksaanDokter"); // NOI18N
+        TabPemeriksaanDokter.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabPemeriksaanDokterMouseClicked(evt);
+            }
+        });
 
         FormInput2.setBackground(new java.awt.Color(255, 255, 255));
         FormInput2.setBorder(null);
@@ -3601,7 +3603,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel7.setText("Suhu Badan(C) :");
         jLabel7.setName("jLabel7"); // NOI18N
         FormInput2.add(jLabel7);
-        jLabel7.setBounds(540, 5, 100, 23);
+        jLabel7.setBounds(540, 5, 120, 23);
 
         TSuhu.setForeground(new java.awt.Color(0, 0, 0));
         TSuhu.setFocusTraversalPolicyProvider(true);
@@ -3612,13 +3614,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TSuhu);
-        TSuhu.setBounds(645, 5, 43, 23);
+        TSuhu.setBounds(665, 5, 43, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Tensi :");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput2.add(jLabel4);
-        jLabel4.setBounds(690, 5, 70, 23);
+        jLabel4.setBounds(710, 5, 90, 23);
 
         TTensi.setForeground(new java.awt.Color(0, 0, 0));
         TTensi.setName("TTensi"); // NOI18N
@@ -3628,13 +3630,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TTensi);
-        TTensi.setBounds(765, 5, 70, 23);
+        TTensi.setBounds(805, 5, 70, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Berat Badan(Kg) :");
         jLabel16.setName("jLabel16"); // NOI18N
         FormInput2.add(jLabel16);
-        jLabel16.setBounds(836, 5, 92, 23);
+        jLabel16.setBounds(886, 5, 92, 23);
 
         TBerat.setForeground(new java.awt.Color(0, 0, 0));
         TBerat.setFocusTraversalPolicyProvider(true);
@@ -3645,19 +3647,19 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TBerat);
-        TBerat.setBounds(932, 5, 70, 23);
+        TBerat.setBounds(982, 5, 70, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Pemeriksaan :");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput2.add(jLabel9);
-        jLabel9.setBounds(0, 88, 95, 23);
+        jLabel9.setBounds(0, 148, 95, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tinggi Badan(Cm) :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput2.add(jLabel17);
-        jLabel17.setBounds(540, 33, 100, 23);
+        jLabel17.setBounds(540, 33, 120, 23);
 
         TTinggi.setForeground(new java.awt.Color(0, 0, 0));
         TTinggi.setName("TTinggi"); // NOI18N
@@ -3667,13 +3669,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TTinggi);
-        TTinggi.setBounds(645, 33, 43, 23);
+        TTinggi.setBounds(665, 33, 43, 23);
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setText("Imun Ke :");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput2.add(jLabel25);
-        jLabel25.setBounds(690, 33, 70, 23);
+        jLabel25.setBounds(710, 33, 90, 23);
 
         cmbImun.setForeground(new java.awt.Color(0, 0, 0));
         cmbImun.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12", "13" }));
@@ -3685,13 +3687,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(cmbImun);
-        cmbImun.setBounds(765, 33, 48, 23);
+        cmbImun.setBounds(805, 33, 48, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Nadi(/menit) :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput2.add(jLabel18);
-        jLabel18.setBounds(836, 33, 92, 23);
+        jLabel18.setBounds(886, 33, 92, 23);
 
         TNadi.setForeground(new java.awt.Color(0, 0, 0));
         TNadi.setFocusTraversalPolicyProvider(true);
@@ -3702,19 +3704,19 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TNadi);
-        TNadi.setBounds(932, 33, 70, 23);
+        TNadi.setBounds(982, 33, 70, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Terapi :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput2.add(jLabel15);
-        jLabel15.setBounds(0, 234, 95, 23);
+        jLabel15.setBounds(0, 294, 95, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Respirasi(/menit) :");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput2.add(jLabel20);
-        jLabel20.setBounds(540, 61, 100, 23);
+        jLabel20.setBounds(540, 61, 120, 23);
 
         TRespirasi.setForeground(new java.awt.Color(0, 0, 0));
         TRespirasi.setName("TRespirasi"); // NOI18N
@@ -3729,13 +3731,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TRespirasi);
-        TRespirasi.setBounds(645, 61, 43, 23);
+        TRespirasi.setBounds(665, 61, 43, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("GCS(E,V,M) :");
         jLabel22.setName("jLabel22"); // NOI18N
         FormInput2.add(jLabel22);
-        jLabel22.setBounds(690, 61, 70, 23);
+        jLabel22.setBounds(710, 61, 90, 23);
 
         TGCS.setForeground(new java.awt.Color(0, 0, 0));
         TGCS.setFocusTraversalPolicyProvider(true);
@@ -3746,19 +3748,19 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(TGCS);
-        TGCS.setBounds(765, 61, 244, 23);
+        TGCS.setBounds(805, 61, 70, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Diagnosa :");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput2.add(jLabel26);
-        jLabel26.setBounds(0, 175, 95, 23);
+        jLabel26.setBounds(0, 235, 95, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setText("Rencana Follow Up :");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput2.add(jLabel28);
-        jLabel28.setBounds(540, 90, 100, 23);
+        jLabel28.setBounds(540, 90, 120, 23);
 
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
@@ -3774,7 +3776,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll6.setViewportView(TDiagnosa);
 
         FormInput2.add(Scroll6);
-        Scroll6.setBounds(100, 175, 430, 55);
+        Scroll6.setBounds(100, 235, 430, 55);
 
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
@@ -3790,7 +3792,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll7.setViewportView(TKeluhan);
 
         FormInput2.add(Scroll7);
-        Scroll7.setBounds(100, 30, 430, 55);
+        Scroll7.setBounds(100, 30, 430, 113);
 
         Scroll8.setName("Scroll8"); // NOI18N
         Scroll8.setOpaque(true);
@@ -3806,7 +3808,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll8.setViewportView(TPemeriksaan);
 
         FormInput2.add(Scroll8);
-        Scroll8.setBounds(100, 88, 430, 55);
+        Scroll8.setBounds(100, 148, 430, 55);
 
         Scroll9.setName("Scroll9"); // NOI18N
         Scroll9.setOpaque(true);
@@ -3822,7 +3824,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll9.setViewportView(TAlergi);
 
         FormInput2.add(Scroll9);
-        Scroll9.setBounds(645, 210, 430, 55);
+        Scroll9.setBounds(665, 270, 430, 55);
 
         Scroll21.setName("Scroll21"); // NOI18N
         Scroll21.setOpaque(true);
@@ -3838,13 +3840,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll21.setViewportView(TRncanaFolow);
 
         FormInput2.add(Scroll21);
-        Scroll21.setBounds(645, 90, 430, 55);
+        Scroll21.setBounds(665, 90, 430, 55);
 
         jLabel54.setForeground(new java.awt.Color(0, 0, 0));
         jLabel54.setText("Rincian Tindakan :");
         jLabel54.setName("jLabel54"); // NOI18N
         FormInput2.add(jLabel54);
-        jLabel54.setBounds(540, 150, 100, 23);
+        jLabel54.setBounds(540, 150, 120, 23);
 
         Scroll22.setName("Scroll22"); // NOI18N
         Scroll22.setOpaque(true);
@@ -3860,13 +3862,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll22.setViewportView(TRincianTindakan);
 
         FormInput2.add(Scroll22);
-        Scroll22.setBounds(645, 150, 430, 55);
+        Scroll22.setBounds(665, 150, 430, 114);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setText("Alergi :");
         jLabel29.setName("jLabel29"); // NOI18N
         FormInput2.add(jLabel29);
-        jLabel29.setBounds(540, 210, 100, 23);
+        jLabel29.setBounds(540, 270, 120, 23);
 
         Scroll28.setName("Scroll28"); // NOI18N
         Scroll28.setOpaque(true);
@@ -3883,7 +3885,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll28.setViewportView(TTerapi);
 
         FormInput2.add(Scroll28);
-        Scroll28.setBounds(100, 234, 430, 55);
+        Scroll28.setBounds(100, 294, 430, 220);
 
         ChkPemeriksaan.setBackground(new java.awt.Color(255, 255, 250));
         ChkPemeriksaan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3919,7 +3921,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(ChkCopyPemeriksaanDR);
-        ChkCopyPemeriksaanDR.setBounds(645, 270, 350, 23);
+        ChkCopyPemeriksaanDR.setBounds(665, 330, 350, 23);
 
         ChkPrmrj.setBackground(new java.awt.Color(255, 255, 250));
         ChkPrmrj.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3937,13 +3939,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(ChkPrmrj);
-        ChkPrmrj.setBounds(100, 148, 220, 23);
+        ChkPrmrj.setBounds(100, 208, 220, 23);
 
         jLabel44.setForeground(new java.awt.Color(0, 0, 0));
         jLabel44.setText("SpO2(%) :");
         jLabel44.setName("jLabel44"); // NOI18N
         FormInput2.add(jLabel44);
-        jLabel44.setBounds(1005, 5, 60, 23);
+        jLabel44.setBounds(886, 60, 92, 23);
 
         Tspo2.setForeground(new java.awt.Color(0, 0, 0));
         Tspo2.setFocusTraversalPolicyProvider(true);
@@ -3954,7 +3956,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(Tspo2);
-        Tspo2.setBounds(1070, 5, 42, 23);
+        Tspo2.setBounds(982, 60, 70, 23);
 
         BtnPasteResep.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
@@ -3969,23 +3971,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         FormInput2.add(BtnPasteResep);
-        BtnPasteResep.setBounds(5, 260, 90, 26);
+        BtnPasteResep.setBounds(5, 320, 90, 26);
 
-        Scroll36.setViewportView(FormInput2);
-
-        panelGlass12.add(Scroll36, java.awt.BorderLayout.CENTER);
-
-        internalFrame5.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
-
-        TabPemeriksaanDokter.setBackground(new java.awt.Color(250, 255, 245));
-        TabPemeriksaanDokter.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(230, 235, 225)));
-        TabPemeriksaanDokter.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
-        TabPemeriksaanDokter.setName("TabPemeriksaanDokter"); // NOI18N
-        TabPemeriksaanDokter.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                TabPemeriksaanDokterMouseClicked(evt);
-            }
-        });
+        TabPemeriksaanDokter.addTab(".: Input Data", FormInput2);
 
         Scroll3.setComponentPopupMenu(jPopupMenu1);
         Scroll3.setName("Scroll3"); // NOI18N
@@ -4007,7 +3995,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         Scroll3.setViewportView(tbPemeriksaanDr);
 
-        TabPemeriksaanDokter.addTab(".: Pemeriksaan Dokter", Scroll3);
+        TabPemeriksaanDokter.addTab(".: Data Pemeriksaan Dokter", Scroll3);
 
         panelGlass15.setName("panelGlass15"); // NOI18N
         panelGlass15.setPreferredSize(new java.awt.Dimension(44, 237));
@@ -5358,7 +5346,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-06-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -5785,6 +5773,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             BtnBatalActionPerformed(evt);
                         } else if (TabRawat.getSelectedIndex() == 1) {
                             SimpanPemeriksaan();
+                            TabPemeriksaanDokter.setSelectedIndex(1);
+                            tbPemeriksaanDr.requestFocus();
                         } else if (TabRawat.getSelectedIndex() == 2) {
                             if (kdptg1.getText().trim().equals("")) {
                                 Valid.textKosong(kdptg1, "Petugas");
@@ -6352,41 +6342,45 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
+
             if (polinya.equals("IRM")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
-                    if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                        TCari.setText(TNoRM.getText());
-                        tampilPemeriksaanDokter();
-                    } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                        tampilMintaLab1();
-                    } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                        tampilMintaRad1();
+                    TCari.setText(TNoRM.getText());
+                    tampilPemeriksaanDokter();
+                    if (tbPemeriksaanDr.getRowCount() != 0) {
+                        TabPemeriksaanDokter.setSelectedIndex(1);
+                        tbPemeriksaanDr.requestFocus();
+                    } else {
+                        emptText();
+                        TabPemeriksaanDokter.setSelectedIndex(0);
                     }
                 } else {
                     if (cekPilihanRehab == 0) {
                         TabRawat.setSelectedIndex(0);
                         JOptionPane.showMessageDialog(rootPane, "Silahkan tentukan pilihan jenis rehabilitasi mediknya dulu...!!!!");
                     } else if (cekPilihanRehab > 0) {
-                        if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                            TCari.setText(TNoRM.getText());
-                            tampilPemeriksaanDokter();
-                        } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                            tampilMintaLab1();
-                        } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                            tampilMintaRad1();
+                        TCari.setText(TNoRM.getText());
+                        tampilPemeriksaanDokter();
+                        if (tbPemeriksaanDr.getRowCount() != 0) {
+                            TabPemeriksaanDokter.setSelectedIndex(1);
+                            tbPemeriksaanDr.requestFocus();
+                        } else {
+                            emptText();
+                            TabPemeriksaanDokter.setSelectedIndex(0);
                         }
                     }
                 }
             } else {
-                if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                    TCari.setText(TNoRM.getText());
-                    tampilPemeriksaanDokter();
-                } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                    tampilMintaLab1();
-                } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                    tampilMintaRad1();
+                TCari.setText(TNoRM.getText());
+                tampilPemeriksaanDokter();
+                if (tbPemeriksaanDr.getRowCount() != 0) {
+                    TabPemeriksaanDokter.setSelectedIndex(1);
+                    tbPemeriksaanDr.requestFocus();
+                } else {
+                    emptText();
+                    TabPemeriksaanDokter.setSelectedIndex(0);
                 }
-            }          
+            }
             
         } else if (TabRawat.getSelectedIndex() == 2) {
             ChkLihat.setEnabled(false);
@@ -6732,6 +6726,8 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                     }
                                     tampilPemeriksaanDokter();
                                     BtnBatalActionPerformed(evt);
+                                    TabPemeriksaanDokter.setSelectedIndex(1);
+                                    tbPemeriksaanDr.requestFocus();
                                 } else {
                                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
                                     TCari.requestFocus();
@@ -6740,6 +6736,8 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                         } else {
                             JOptionPane.showMessageDialog(rootPane, "Yang bisa merubah hanya " + nmOrang1 + ", krn. beliau yang menyimpan datanya.");
                             BtnBatalActionPerformed(evt);
+                            TabPemeriksaanDokter.setSelectedIndex(1);
+                            tbPemeriksaanDr.requestFocus();
                         }
 
                     } else if (TabRawat.getSelectedIndex() == 2) {
@@ -7031,7 +7029,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void TBeratKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TBeratKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER || evt.getKeyCode() == KeyEvent.VK_TAB) {
-            Tspo2.requestFocus();
+            TTinggi.requestFocus();
         }
     }//GEN-LAST:event_TBeratKeyPressed
 
@@ -7055,7 +7053,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void TGCSKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TGCSKeyPressed
         if (TabRawat.getSelectedIndex() == 0) {
-            Valid.pindah(evt, TRespirasi, KdDok);
+            Valid.pindah(evt, TRespirasi, Tspo2);
         } else if (TabRawat.getSelectedIndex() == 1) {
             Valid.pindah(evt, TRespirasi, BtnSimpan);
         }
@@ -7588,12 +7586,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }//GEN-LAST:event_MnPeriksaRadiologiActionPerformed
 
     private void TabPemeriksaanDokterMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabPemeriksaanDokterMouseClicked
-        if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
+        if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
             tampilPemeriksaanDokter();
-        } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
+        } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
             tampilMintaLab1();
             Valid.tabelKosong(tabModeLab2);
-        } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
+        } else if (TabPemeriksaanDokter.getSelectedIndex() == 3) {
             tampilMintaRad1();
             Valid.tabelKosong(tabModeRad2);
         }
@@ -8784,39 +8782,43 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
+            
             if (polinya.equals("IRM")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
-                    if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                        TCari.setText(TNoRM.getText());
-                        tampilPemeriksaanDokter();
-                    } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                        tampilMintaLab1();
-                    } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                        tampilMintaRad1();
+                    TCari.setText(TNoRM.getText());
+                    tampilPemeriksaanDokter();
+                    if (tbPemeriksaanDr.getRowCount() != 0) {
+                        TabPemeriksaanDokter.setSelectedIndex(1);
+                        tbPemeriksaanDr.requestFocus();
+                    } else {
+                        emptText();
+                        TabPemeriksaanDokter.setSelectedIndex(0);
                     }
                 } else {
                     if (cekPilihanRehab == 0) {
                         TabRawat.setSelectedIndex(0);
                         JOptionPane.showMessageDialog(rootPane, "Silahkan tentukan pilihan jenis rehabilitasi mediknya dulu...!!!!");
                     } else if (cekPilihanRehab > 0) {
-                        if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                            TCari.setText(TNoRM.getText());
-                            tampilPemeriksaanDokter();
-                        } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                            tampilMintaLab1();
-                        } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                            tampilMintaRad1();
+                        TCari.setText(TNoRM.getText());
+                        tampilPemeriksaanDokter();
+                        if (tbPemeriksaanDr.getRowCount() != 0) {
+                            TabPemeriksaanDokter.setSelectedIndex(1);
+                            tbPemeriksaanDr.requestFocus();
+                        } else {
+                            emptText();
+                            TabPemeriksaanDokter.setSelectedIndex(0);
                         }
                     }
                 }
             } else {
-                if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                    TCari.setText(TNoRM.getText());
-                    tampilPemeriksaanDokter();
-                } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
-                    tampilMintaLab1();
-                } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
-                    tampilMintaRad1();
+                TCari.setText(TNoRM.getText());
+                tampilPemeriksaanDokter();
+                if (tbPemeriksaanDr.getRowCount() != 0) {
+                    TabPemeriksaanDokter.setSelectedIndex(1);
+                    tbPemeriksaanDr.requestFocus();
+                } else {
+                    emptText();
+                    TabPemeriksaanDokter.setSelectedIndex(0);
                 }
             }
         }
@@ -9687,7 +9689,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.ScrollPane Scroll33;
     private widget.ScrollPane Scroll34;
     private widget.ScrollPane Scroll35;
-    private widget.ScrollPane Scroll36;
     private widget.ScrollPane Scroll37;
     private widget.ScrollPane Scroll38;
     private widget.ScrollPane Scroll39;
@@ -9907,7 +9908,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.TextBox no_rawat;
     private widget.TextBox no_rm;
     private widget.panelisi panelGlass11;
-    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass15;
@@ -10361,6 +10361,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else if (prmrj.equals("Tidak")) {
                 ChkPrmrj.setSelected(false);
             }
+            TabPemeriksaanDokter.setSelectedIndex(0);
         }
     }
 

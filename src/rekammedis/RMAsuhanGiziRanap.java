@@ -52,7 +52,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, ps6, ps7, pscppt, psrestor;
     private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rscppt, rsrestor;
-    private int i = 0, x = 0, jml = 0;
+    private int i = 0, x = 0, jml = 0, cekTahun = 0;
     private boolean[] pilih;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String user = "", dataKonfirmasi = "", mual = "", nyeri = "", diare = "", kesulitan = "", odema = "",
@@ -826,7 +826,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -840,7 +840,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1299,7 +1299,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -2594,7 +2594,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2609,7 +2609,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4194,6 +4194,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     }
 
     private void isRawat() {
+        cekTahun = 0;
         try {
             ps4 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-Laki','Perempuan') jk, "
                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi, rp.umurdaftar, rp.sttsumur, rp.no_rawat "
@@ -4209,20 +4210,31 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     Valid.SetTgl(tglAsuhan, rs4.getString("tgl_registrasi"));
                     DTPCari1.setDate(rs4.getDate("tgl_registrasi"));
                     
-                    if (rs4.getString("sttsumur").equals("Bl") || rs4.getString("sttsumur").equals("Hr")) {
-                        Tumur.setText(rs4.getString("umurdaftar") + " " + rs4.getString("sttsumur"));
+                    cekTahun = Sequel.cariInteger("select TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) from pasien where no_rkm_medis='" + rs4.getString("no_rkm_medis") + "'");
+                    if (cekTahun <= 5) {
+                        Tumur.setText(Sequel.cariIsi("select concat(TIMESTAMPDIFF(MONTH, tgl_lahir, CURDATE()),' ','Bl') "
+                                + "from pasien where no_rkm_medis='" + rs4.getString("no_rkm_medis") + "'"));
                         Tsttsumur.setText("");
                         Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_anak_ranap "
                                 + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
                         Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_anak_ranap "
                                 + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
                     } else {
-                        Tumur.setText(rs4.getString("umurdaftar"));
-                        Tsttsumur.setText("Tahun.");
-                        Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap "
-                                + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
-                        Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_dewasa_ranap "
-                                + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
+                        if (rs4.getString("sttsumur").equals("Bl") || rs4.getString("sttsumur").equals("Hr")) {
+                            Tumur.setText(rs4.getString("umurdaftar") + " " + rs4.getString("sttsumur"));
+                            Tsttsumur.setText("");
+                            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_anak_ranap "
+                                    + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
+                            Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_anak_ranap "
+                                    + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
+                        } else {
+                            Tumur.setText(rs4.getString("umurdaftar"));
+                            Tsttsumur.setText("Tahun.");
+                            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap "
+                                    + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
+                            Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_dewasa_ranap "
+                                    + "where no_rawat='" + rs4.getString("no_rawat") + "'"));
+                        }
                     }
                 }
             } catch (Exception e) {
