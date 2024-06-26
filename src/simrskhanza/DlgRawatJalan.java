@@ -5772,9 +5772,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             SimpanPenangananDokterPetugas();
                             BtnBatalActionPerformed(evt);
                         } else if (TabRawat.getSelectedIndex() == 1) {
-                            SimpanPemeriksaan();
-                            TabPemeriksaanDokter.setSelectedIndex(1);
-                            tbPemeriksaanDr.requestFocus();
+                            SimpanPemeriksaan();                            
                         } else if (TabRawat.getSelectedIndex() == 2) {
                             if (kdptg1.getText().trim().equals("")) {
                                 Valid.textKosong(kdptg1, "Petugas");
@@ -5929,39 +5927,16 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         } else if (TabRawat.getSelectedIndex() == 1) {
             if (TabPemeriksaanDokter.getSelectedIndex() == 0) {
-                if (tabModePemeriksaanDr.getRowCount() == 0) {
-                    JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
-                    TNoRw.requestFocus();
-                } else if (TPasien.getText().trim().equals("")) {
-                    JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih...!!!!");
-                } else if (!(TPasien.getText().trim().equals(""))) {
-                    orang1 = "";
-                    nmOrang1 = "";
-                    orang1 = Sequel.cariIsi("select kd_dokter from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'");
-                    nmOrang1 = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + orang1 + "'");
-
-                    if (orang1.equals(akses.getkode()) || (akses.getadmin() == true)) {
-                        for (i = 0; i < tbPemeriksaanDr.getRowCount(); i++) {
-                            if (tbPemeriksaanDr.getValueAt(i, 0).toString().equals("true")) {
-                                Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='" + tbPemeriksaanDr.getValueAt(i, 1).toString() + "'");
-                            } else {
-                                JOptionPane.showMessageDialog(rootPane, "Conteng dulu datanya...!!");
-                                BtnBatalActionPerformed(evt);
-                            }
-                        }
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Yang bisa menghapus hanya " + nmOrang1 + ", krn. beliau yang menyimpan datanya.");
-                        BtnBatalActionPerformed(evt);
-                    }
-                    tampilPemeriksaanDokter();
-                }
+                hapusPemeriksaanDokter();
             } else if (TabPemeriksaanDokter.getSelectedIndex() == 1) {
+                hapusPemeriksaanDokter();
+            } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
                 if (tabModeLab1.getRowCount() == 0) {
                     JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
                 } else {
                     JOptionPane.showMessageDialog(null, "Silahkan klik kanan pada tabel utk. pilihan hapus data permintaan pemeriksaan Lab...!!!");
                 }
-            } else if (TabPemeriksaanDokter.getSelectedIndex() == 2) {
+            } else if (TabPemeriksaanDokter.getSelectedIndex() == 3) {
                 if (tabModeRad1.getRowCount() == 0) {
                     JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
                 } else {
@@ -6730,6 +6705,7 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                     tbPemeriksaanDr.requestFocus();
                                 } else {
                                     JOptionPane.showMessageDialog(rootPane, "Silahkan pilih data yang mau diganti..!!");
+                                    TabPemeriksaanDokter.setSelectedIndex(1);
                                     TCari.requestFocus();
                                 }
                             }
@@ -10361,7 +10337,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else if (prmrj.equals("Tidak")) {
                 ChkPrmrj.setSelected(false);
             }
-            TabPemeriksaanDokter.setSelectedIndex(0);
         }
     }
 
@@ -13506,6 +13481,8 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 JOptionPane.showMessageDialog(null, "Maaf, dokter yang login tidak sama dg. dokter terjadwal dipoliklinik...!!");
             }
             tampilPemeriksaanDokter();
+            TabPemeriksaanDokter.setSelectedIndex(1);
+            tbPemeriksaanDr.requestFocus();
         }
     }
 
@@ -17082,6 +17059,47 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             }
         } catch (SQLException e) {
             System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void hapusPemeriksaanDokter() {
+        if (tabModePemeriksaanDr.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+            TNoRw.requestFocus();
+        } else {
+            orang1 = "";
+            nmOrang1 = "";
+            orang1 = Sequel.cariIsi("select kd_dokter from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'");
+            nmOrang1 = Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + orang1 + "'");
+
+            if (orang1.equals(akses.getkode()) || (akses.getadmin() == true)) {
+                //cek conteng
+                x = 0;
+                for (i = 0; i < tbPemeriksaanDr.getRowCount(); i++) {
+                    if (tbPemeriksaanDr.getValueAt(i, 0).toString().equals("true")) {
+                        x++;
+                    }
+                }
+
+                if (x == 0) {
+                    JOptionPane.showMessageDialog(null, "Silahkan conteng dulu datanya..!!!!");
+                    TabPemeriksaanDokter.setSelectedIndex(1);
+                    tbPemeriksaanDr.requestFocus();
+                } else {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        for (i = 0; i < tbPemeriksaanDr.getRowCount(); i++) {
+                            if (tbPemeriksaanDr.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.queryu("delete from pemeriksaan_ralan where no_rawat='" + tbPemeriksaanDr.getValueAt(i, 1).toString() + "'");
+                            }
+                        }
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Yang bisa menghapus hanya " + nmOrang1 + ", krn. beliau yang menyimpan datanya.");
+                BtnBatalActionPerformed(null);
+            }
+            tampilPemeriksaanDokter();
         }
     }
 }
