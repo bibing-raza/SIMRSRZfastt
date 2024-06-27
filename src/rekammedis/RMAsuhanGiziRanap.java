@@ -573,6 +573,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         MnRiwayatData = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHapusConteng = new javax.swing.JMenuItem();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
+        MnHapusRiwayat = new javax.swing.JMenuItem();
         WindowRiwayat = new javax.swing.JDialog();
         internalFrame13 = new widget.InternalFrame();
         internalFrame18 = new widget.InternalFrame();
@@ -847,6 +849,24 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         });
         jPopupMenu2.add(MnHapusConteng);
 
+        jPopupMenu3.setName("jPopupMenu3"); // NOI18N
+
+        MnHapusRiwayat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusRiwayat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapusRiwayat.setText("Hapus Riwayat Data");
+        MnHapusRiwayat.setToolTipText("");
+        MnHapusRiwayat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusRiwayat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusRiwayat.setIconTextGap(5);
+        MnHapusRiwayat.setName("MnHapusRiwayat"); // NOI18N
+        MnHapusRiwayat.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnHapusRiwayat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusRiwayatActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnHapusRiwayat);
+
         WindowRiwayat.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowRiwayat.setName("WindowRiwayat"); // NOI18N
         WindowRiwayat.setUndecorated(true);
@@ -875,7 +895,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -889,7 +909,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1013,6 +1033,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         Scroll6.setOpaque(true);
 
         tbRiwayat.setToolTipText("Silahkan pilih salah satu data yang mau dihapus/direstore");
+        tbRiwayat.setComponentPopupMenu(jPopupMenu3);
         tbRiwayat.setName("tbRiwayat"); // NOI18N
         tbRiwayat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1348,7 +1369,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -2546,11 +2567,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         cmbBbu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BB Sangat Kurang", "BB Kurang", "BB Normal", "Resiko BB Lebih" }));
         cmbBbu.setName("cmbBbu"); // NOI18N
         cmbBbu.setPreferredSize(new java.awt.Dimension(55, 23));
-        cmbBbu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbBbuActionPerformed(evt);
-            }
-        });
         FormInput.add(cmbBbu);
         cmbBbu.setBounds(480, 208, 120, 23);
 
@@ -2594,11 +2610,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         cmbPbu.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Sangat Pendek", "Pendek", "Normal", "Tinggi" }));
         cmbPbu.setName("cmbPbu"); // NOI18N
         cmbPbu.setPreferredSize(new java.awt.Dimension(55, 23));
-        cmbPbu.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPbuActionPerformed(evt);
-            }
-        });
         FormInput.add(cmbPbu);
         cmbPbu.setBounds(480, 236, 110, 23);
 
@@ -2642,11 +2653,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         cmbBbpb.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Gizi Buruk", "Gizi Kurang", "Gizi Baik (Normal)", "Beresiko Gizi Lebih", "Gizi Lebih", "Obesitas" }));
         cmbBbpb.setName("cmbBbpb"); // NOI18N
         cmbBbpb.setPreferredSize(new java.awt.Dimension(55, 23));
-        cmbBbpb.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbBbpbActionPerformed(evt);
-            }
-        });
         FormInput.add(cmbBbpb);
         cmbBbpb.setBounds(480, 264, 130, 23);
 
@@ -2660,11 +2666,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         cmbAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dewasa", "Anak" }));
         cmbAsuhan.setName("cmbAsuhan"); // NOI18N
         cmbAsuhan.setPreferredSize(new java.awt.Dimension(55, 23));
-        cmbAsuhan.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbAsuhanActionPerformed(evt);
-            }
-        });
         FormInput.add(cmbAsuhan);
         cmbAsuhan.setBounds(302, 38, 75, 23);
 
@@ -2800,7 +2801,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2815,7 +2816,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3893,7 +3894,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         cmbPersentase.setSelectedIndex(0);
         if (cmbKlasifikasiIMT.getSelectedIndex() == 2) {
             cmbPersentase.setEnabled(true);
-            cmbPersentase.requestFocus();
         } else {
             cmbPersentase.setEnabled(false);
         }
@@ -3903,18 +3903,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private void cmbPersentaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersentaseActionPerformed
         cekStatusGizi();
     }//GEN-LAST:event_cmbPersentaseActionPerformed
-
-    private void cmbBbuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBbuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbBbuActionPerformed
-
-    private void cmbPbuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPbuActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbPbuActionPerformed
-
-    private void cmbBbpbActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBbpbActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_cmbBbpbActionPerformed
 
     private void ChkBbuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkBbuActionPerformed
         TketBbu.setText("");
@@ -3955,53 +3943,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkBbpbActionPerformed
 
-    private void cmbAsuhanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbAsuhanActionPerformed
-        cmbPersentase.setEnabled(false);
-        TketBbu.setEnabled(false);
-        TketPbu.setEnabled(false);
-        TketBbpb.setEnabled(false);
-        cmbBbu.setEnabled(false);
-        cmbPbu.setEnabled(false);
-        cmbBbpb.setEnabled(false);
-        
-        cmbKlasifikasiIMT.setSelectedIndex(0);
-        cmbPersentase.setSelectedIndex(0);
-        cmbSttsGizi.setSelectedIndex(0);
-        
-        ChkBbu.setSelected(false);
-        ChkPbu.setSelected(false);
-        ChkBbpb.setSelected(false);
-        TketBbu.setText("");
-        TketPbu.setText("");
-        TketBbpb.setText("");
-        cmbBbu.setSelectedIndex(0);
-        cmbPbu.setSelectedIndex(0);
-        cmbBbpb.setSelectedIndex(0);
-
-        if (cmbAsuhan.getSelectedIndex() == 0) {
-            cmbKlasifikasiIMT.setEnabled(false);
-            cmbSttsGizi.setEnabled(false);
-            
-            ChkBbu.setEnabled(false);
-            ChkPbu.setEnabled(false);
-            ChkBbpb.setEnabled(false);
-        } else if (cmbAsuhan.getSelectedIndex() == 1) {
-            cmbKlasifikasiIMT.setEnabled(true);
-            cmbSttsGizi.setEnabled(true);
-            
-            ChkBbu.setEnabled(false);
-            ChkPbu.setEnabled(false);
-            ChkBbpb.setEnabled(false);
-        } else if (cmbAsuhan.getSelectedIndex() == 2) {
-            cmbKlasifikasiIMT.setEnabled(false);
-            cmbSttsGizi.setEnabled(false);
-            
-            ChkBbu.setEnabled(true);
-            ChkPbu.setEnabled(true);
-            ChkBbpb.setEnabled(true);
-        }
-    }//GEN-LAST:event_cmbAsuhanActionPerformed
-
     private void TketBbuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketBbuKeyPressed
         Valid.pindah(evt, TketBbu, cmbBbu);
     }//GEN-LAST:event_TketBbuKeyPressed
@@ -4013,6 +3954,27 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private void TketBbpbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketBbpbKeyPressed
         Valid.pindah(evt, TketBbpb, cmbBbpb);
     }//GEN-LAST:event_TketBbpbKeyPressed
+
+    private void MnHapusRiwayatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusRiwayatActionPerformed
+        if (tbRiwayat.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data riwayat mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {                
+                if (Sequel.queryu2tf("delete from asuhan_gizi_ranap_histori where waktu_eksekusi=?", 1, new String[]{
+                    tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 5).toString()
+                }) == true) {
+                    Sequel.meghapus("detail_diagnosa_asuhan_gizi_histori", "waktu_eksekusi",
+                            tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 5).toString());
+
+                    tampilRiwayat();
+                    tampilRiwayatDiagnosa();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnHapusRiwayatActionPerformed
 
     /**
     * @param args the command line arguments
@@ -4088,6 +4050,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Label LCount1;
     private javax.swing.JMenuItem MnDokumenJangMed;
     private javax.swing.JMenuItem MnHapusConteng;
+    private javax.swing.JMenuItem MnHapusRiwayat;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnRiwayatData;
     private widget.PanelBiasa PanelAccor;
@@ -4220,6 +4183,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Label jLabel99;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
     private widget.Label label105;
     private widget.Label label106;
     private widget.Label label107;
@@ -4402,15 +4366,14 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         Tulna.setText("0");        
         Tbbi.setText("0");
         cmbAsuhan.setSelectedIndex(0);
-        cmbKlasifikasiIMT.setEnabled(false);
         cmbKlasifikasiIMT.setSelectedIndex(0);
         cmbPersentase.setSelectedIndex(0);
         cmbPersentase.setEnabled(false);
         cmbSttsGizi.setSelectedIndex(0);
         
-        ChkBbu.setEnabled(false);
-        ChkPbu.setEnabled(false);
-        ChkBbpb.setEnabled(false);
+        bbu = "";
+        pbu = "";
+        bbpb = "";
         TketBbu.setEnabled(false);
         TketPbu.setEnabled(false);
         TketBbpb.setEnabled(false);

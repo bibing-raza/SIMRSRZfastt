@@ -1297,7 +1297,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 DlgAssesmenGiziUlang form = new DlgAssesmenGiziUlang(null, false);
                 form.emptTeks();
                 form.isCek();
-                form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setData(TNoRW.getText(), nmUnit.getText(), gedung);
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

@@ -6326,7 +6326,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         TabPemeriksaanDokter.setSelectedIndex(1);
                         tbPemeriksaanDr.requestFocus();
                     } else {
-                        emptText();
                         TabPemeriksaanDokter.setSelectedIndex(0);
                     }
                 } else {
@@ -6340,7 +6339,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                             TabPemeriksaanDokter.setSelectedIndex(1);
                             tbPemeriksaanDr.requestFocus();
                         } else {
-                            emptText();
                             TabPemeriksaanDokter.setSelectedIndex(0);
                         }
                     }
@@ -6352,7 +6350,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                     TabPemeriksaanDokter.setSelectedIndex(1);
                     tbPemeriksaanDr.requestFocus();
                 } else {
-                    emptText();
                     TabPemeriksaanDokter.setSelectedIndex(0);
                 }
             }
@@ -8767,7 +8764,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         TabPemeriksaanDokter.setSelectedIndex(1);
                         tbPemeriksaanDr.requestFocus();
                     } else {
-                        emptText();
                         TabPemeriksaanDokter.setSelectedIndex(0);
                     }
                 } else {
@@ -8781,7 +8777,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             TabPemeriksaanDokter.setSelectedIndex(1);
                             tbPemeriksaanDr.requestFocus();
                         } else {
-                            emptText();
                             TabPemeriksaanDokter.setSelectedIndex(0);
                         }
                     }
@@ -8793,7 +8788,6 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     TabPemeriksaanDokter.setSelectedIndex(1);
                     tbPemeriksaanDr.requestFocus();
                 } else {
-                    emptText();
                     TabPemeriksaanDokter.setSelectedIndex(0);
                 }
             }
