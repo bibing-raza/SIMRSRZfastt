@@ -2126,7 +2126,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pg.nama nmPetugas, date_format(ag.tgl_assesmen,'%d-%m-%Y') tgl, "
-                    + "if(p.jk='L','Laki-Laki','Perempuan') jk, rp.umurdaftar, rp.sttsumur, ag.* FROM reg_periksa rp inner join assesmen_gizi_ulang ag on ag.no_rawat=rp.no_rawat "
+                    + "if(p.jk='L','Laki-Laki','Perempuan') jk, rp.umurdaftar, rp.sttsumur, TIMESTAMPDIFF(YEAR,p.tgl_lahir, rp.tgl_registrasi) umurTahun, "
+                    + "concat(TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi),' ','Bl') umurBulan, ag.* "
+                    + "FROM reg_periksa rp inner join assesmen_gizi_ulang ag on ag.no_rawat=rp.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg on pg.nik=ag.nip_petugas WHERE "
                     + "ag.tgl_assesmen BETWEEN ? AND ? AND rp.no_rawat LIKE ? OR "
                     + "ag.tgl_assesmen BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
@@ -2147,12 +2149,17 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                 ps.setString(12, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    if (rs.getString("sttsumur").equals("Bl") || rs.getString("sttsumur").equals("Hr")) {
-                        cekumur = rs.getString("umurdaftar") + " " + rs.getString("sttsumur");
+                    if (Integer.parseInt(rs.getString("umurTahun")) <= 5) {
+                        cekumur = rs.getString("umurBulan");
                         ceksttsumur = "";
                     } else {
-                        cekumur = rs.getString("umurdaftar");
-                        ceksttsumur = "Tahun.";
+                        if (rs.getString("sttsumur").equals("Bl") || rs.getString("sttsumur").equals("Hr")) {
+                            cekumur = rs.getString("umurdaftar") + " " + rs.getString("sttsumur");
+                            ceksttsumur = "";
+                        } else {
+                            cekumur = rs.getString("umurdaftar");
+                            ceksttsumur = "Tahun.";
+                        }
                     }
                     
                     tabMode.addRow(new Object[]{
@@ -2359,7 +2366,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps1 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-Laki','Perempuan') jk, "
-                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi, rp.umurdaftar, rp.sttsumur, rp.no_rawat "
+                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, rp.tgl_registrasi, rp.umurdaftar, rp.sttsumur, rp.no_rawat, "
+                    + "TIMESTAMPDIFF(YEAR,p.tgl_lahir, rp.tgl_registrasi) umurTahun, "
+                    + "concat(TIMESTAMPDIFF(MONTH,p.tgl_lahir, rp.tgl_registrasi),' ','Bl') umurBulan "
                     + "FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "WHERE rp.no_rawat = ?");
             try {
@@ -2372,20 +2381,29 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                     Valid.SetTgl(tglAsesmen, rs1.getString("tgl_registrasi"));
                     DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
                     
-                    if (rs1.getString("sttsumur").equals("Bl") || rs1.getString("sttsumur").equals("Hr")) {
-                        Tumur.setText(rs1.getString("umurdaftar") + " " + rs1.getString("sttsumur"));
+                    if (Integer.parseInt(rs1.getString("umurTahun")) <= 5) {
+                        Tumur.setText(rs1.getString("umurBulan"));
                         Tsttsumur.setText("");
                         Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_anak_ranap "
                                 + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
                         Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_anak_ranap "
                                 + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
                     } else {
-                        Tumur.setText(rs1.getString("umurdaftar"));
-                        Tsttsumur.setText("Tahun.");
-                        Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap "
-                                + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
-                        Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_dewasa_ranap "
-                                + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                        if (rs1.getString("sttsumur").equals("Bl") || rs1.getString("sttsumur").equals("Hr")) {
+                            Tumur.setText(rs1.getString("umurdaftar") + " " + rs1.getString("sttsumur"));
+                            Tsttsumur.setText("");
+                            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_anak_ranap "
+                                    + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                            Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_anak_ranap "
+                                    + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                        } else {
+                            Tumur.setText(rs1.getString("umurdaftar"));
+                            Tsttsumur.setText("Tahun.");
+                            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap "
+                                    + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                            Ttb.setText(Sequel.cariIsi("select ifnull(tb,'0') from penilaian_awal_keperawatan_dewasa_ranap "
+                                    + "where no_rawat='" + rs1.getString("no_rawat") + "'"));
+                        }
                     }
                 }
             } catch (Exception e) {
