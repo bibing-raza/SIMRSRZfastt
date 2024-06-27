@@ -4064,31 +4064,31 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         
         if (nadi >= 0 && nadi <= 40) {
             nadiEWS = "<= 40";
-            nilaitensi = 0;
+            nilainadi = 0;
             skorNadi = "C. Blue";
         } else if (nadi >= 41 && nadi <= 50) {
             nadiEWS = "41 - 50";
-            nilaitensi = 1;
+            nilainadi = 1;
             skorNadi = "1";
         } else if (nadi >= 51 && nadi <= 90) {
             nadiEWS = "51 - 90";
-            nilaitensi = 0;
+            nilainadi = 0;
             skorNadi = "0";
         } else if (nadi >= 91 && nadi <= 110) {
             nadiEWS = "91 - 110";
-            nilaitensi = 1;
+            nilainadi = 1;
             skorNadi = "1";
         } else if (nadi >= 111 && nadi <= 130) {
             nadiEWS = "111 - 130";
-            nilaitensi = 2;
+            nilainadi = 2;
             skorNadi = "2";
         } else if (nadi >= 131 && nadi <= 140) {
             nadiEWS = "131 - 140";
-            nilaitensi = 3;
+            nilainadi = 3;
             skorNadi = "3";
         } else if (nadi >= 140) {
             nadiEWS = ">= 140";
-            nilaitensi = 0;
+            nilainadi = 0;
             skorNadi = "C. Blue";
         }
         

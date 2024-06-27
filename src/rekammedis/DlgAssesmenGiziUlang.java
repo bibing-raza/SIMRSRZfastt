@@ -55,7 +55,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Umur", "Jns. Kelamin", "Tgl. Asesmen", "Ruang Perawatan", "Nama Ahli Gizi",
+            "No. Rawat", "No. RM", "Nama Pasien", "Umur/Jns. Asuhan", "Jns. Kelamin", "Tgl. Asesmen", "Ruang Perawatan", "Nama Ahli Gizi",
             "tgl_assesmen", "ruang_rawat", "bb", "tb", "imt", "lila", "tinggi_lutut", "ulna", "tb_est", "bb_koreksi",
             "bbi", "status_gizi", "biokimia", "mual_muntah", "nyeri_ulu_hati", "diare", "kesulitan_menelan", "oedema", "konstipasi",
             "anoreksia", "gangguan_gigi_geligi", "klinis_lainnya", "makan_lebih_3x", "makan_kurang_3x", "riwayat_gizi_lainnya",
@@ -80,7 +80,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(250);
             } else if (i == 3) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(120);
             } else if (i == 4) {
                 column.setPreferredWidth(90);
             } else if (i == 5) {
@@ -2472,8 +2472,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                     tabMode.addRow(new Object[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
-                        rs.getString("nm_pasien"),
-                        rs.getString("umurdaftar") + " " + rs.getString("sttsumur") + ".",
+                        rs.getString("nm_pasien"),                        
+                        rs.getString("umurdaftar") + " " + rs.getString("sttsumur") + ". (" + rs.getString("jenis_asuhan") + ")",
                         rs.getString("jk"),
                         rs.getString("tgl"),
                         rs.getString("ruang_rawat"),
