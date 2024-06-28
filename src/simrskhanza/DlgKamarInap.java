@@ -14192,6 +14192,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     public void ctkSuratMati() {
+        String nik = "";
+        nik = Sequel.cariIsi("select nip_dokter from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "'");
+
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -14200,11 +14203,18 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("tgl_surat", Sequel.cariIsi("select day(now())") + " " + Sequel.bulanINDONESIA("select month(now())") + " " + Sequel.cariIsi("select year(now())"));
+        param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
         param.put("tgl_lahir", Sequel.cariIsi("select tmp_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + ", "
-                + Sequel.cariIsi("select date_format(tgl_lahir,'%d') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + " "
-                + Sequel.bulanINDONESIA("select month(tgl_lahir) from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + " "
-                + Sequel.cariIsi("select year(tgl_lahir) from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+                    + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
+        
+        if (nik.equals("-")) {
+            param.put("nmdokter", "");
+            param.put("nipdokter", "");
+        } else {
+            param.put("nmdokter", Sequel.cariIsi("select nama from pegawai where nik='" + nik + "'"));
+            param.put("nipdokter", "NIP/NR. " + nik);
+        }
+
         Valid.MyReport("rptSuratKematian.jasper", "report", "::[ Surat Keterangan Kematian ]::",
                 " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
                 + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
@@ -14220,7 +14230,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
                 + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
                 + " and (pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' or pasien_mati.no_rkm_medis='" + NoRMmati.getText() + "') ", param);
-        this.setCursor(Cursor.getDefaultCursor());
     }
 
     public void ctkSuratMatiICU() {
@@ -14232,11 +14241,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("tgl_surat", Sequel.cariIsi("select day(now())") + " " + Sequel.bulanINDONESIA("select month(now())") + " " + Sequel.cariIsi("select year(now())"));
+        param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
         param.put("tgl_lahir", Sequel.cariIsi("select tmp_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + ", "
-                + Sequel.cariIsi("select date_format(tgl_lahir,'%d') from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + " "
-                + Sequel.bulanINDONESIA("select month(tgl_lahir) from pasien where no_rkm_medis='" + TNoRM.getText() + "'") + " "
-                + Sequel.cariIsi("select year(tgl_lahir) from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+                    + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
+        
         Valid.MyReport("rptSuratKematianManual.jasper", "report", "::[ Surat Keterangan Kematian Ruang ICU/ICCU]::",
                 " SELECT p.no_rkm_medis, p.nm_pasien, TIMESTAMPDIFF(YEAR, p.tgl_lahir, CURDATE()) AS umur_thn, "
                 + "(TIMESTAMPDIFF(MONTH, p.tgl_lahir, CURDATE()) - ((TIMESTAMPDIFF(MONTH, p.tgl_lahir, CURDATE()) div 12) * 12)) AS umur_bln, "
@@ -14244,10 +14252,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 + "p.alamat, p.no_ktp, p.no_tlp, IF (jk = 'L','Laki-laki','Perempuan') AS Kelamin, p.gol_darah, p.stts_nikah, p.agama, kl.nm_kel, "
                 + "kc.nm_kec, kb.nm_kab FROM pasien p INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
                 + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel WHERE p.no_rkm_medis = '" + TNoRM.getText() + "'", param);
-        this.setCursor(Cursor.getDefaultCursor());
     }
 
     public void ctkFormulirMati() {
+        String nik = "";
+        nik = Sequel.cariIsi("select nip_dokter from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "'");
+
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("alamatrs", akses.getalamatrs());
@@ -14256,7 +14266,16 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         param.put("kontakrs", akses.getkontakrs());
         param.put("emailrs", akses.getemailrs());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
-        param.put("tgl_surat", Sequel.cariIsi("select day(now())") + " " + Sequel.bulanINDONESIA("select month(now())") + " " + Sequel.cariIsi("select year(now())"));
+        param.put("tgl_surat", Valid.SetTglINDONESIA(Sequel.cariIsi("select date(now())")));
+
+        if (nik.equals("-")) {
+            param.put("nmdokter", "");
+            param.put("nipdokter", "");
+        } else {
+            param.put("nmdokter", Sequel.cariIsi("select nama from pegawai where nik='" + nik + "'"));
+            param.put("nipdokter", "NIP/NR. " + nik);
+        }
+
         Valid.MyReport("rptFormulirKematianRM.jasper", "report", "::[ Surat Kematian Untuk KELUARGA PASIEN ]::",
                 " SELECT pasien_mati.tanggal, pasien_mati.jam, pasien_mati.no_rkm_medis, "
                 + " pasien.nm_pasien, TIMESTAMPDIFF(Year,pasien.tgl_lahir,CURDATE()) as umur_thn, "
@@ -14276,7 +14295,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 + " INNER JOIN kelurahan ON kelurahan.kd_kel = pasien.kd_kel "
                 + " WHERE pasien_mati.no_rkm_medis = pasien.no_rkm_medis "
                 + " and (pasien_mati.no_rkm_medis='" + TNoRM.getText() + "' or pasien_mati.no_rkm_medis='" + NoRMmati.getText() + "') ", param);
-        this.setCursor(Cursor.getDefaultCursor());
     }
 
     public void cekKetMati() {

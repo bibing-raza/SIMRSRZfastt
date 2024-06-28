@@ -671,9 +671,11 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             emptTeks();
-        }else{Valid.pindah(evt, BtnSimpan, BtnGanti);}
+        } else {
+            Valid.pindah(evt, BtnSimpan, BtnGanti);
+        }
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
@@ -984,7 +986,6 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                         rs.getString("waktu_simpan")
                     });
                 }
-                this.setCursor(Cursor.getDefaultCursor());
             } catch (Exception e) {
                 System.out.println("rekammedis.DlgMonevAsuhanGizi.tampil() : " + e);
             } finally {
