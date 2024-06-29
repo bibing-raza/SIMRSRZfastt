@@ -9964,7 +9964,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         }
 
         //khusus dr. riswan di ruang as-sami
-        if (akses.getkode().equals("D0000020") && namagedung.equals("AS-SAMI")) {
+        if (akses.getkode().equals("197606202002121006") && namagedung.equals("AS-SAMI")) {
             chkDpjp.setSelected(true);
             kddpjp.setText(akses.getkode());
             nmdpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + kddpjp.getText() + "'"));
