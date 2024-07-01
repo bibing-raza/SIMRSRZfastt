@@ -9994,7 +9994,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         if (rs6.getString("klasifikasi_imt").equals("Berdasarkan Kemenkes RI")) {
                             cekSttsGizi = "Klasifikasi IMT (" + rs6.getString("klasifikasi_imt") + "), Status Gizi : " + rs6.getString("status_gizi");
                         } else if (rs6.getString("klasifikasi_imt").equals("Berdasarkan CDC")) {
-                            cekSttsGizi = "Klasifikasi IMT (" + rs6.getString("klasifikasi_imt") + "), Persentase CDC : " + rs6.getString("persentase_cdc") + ", Status Gizi : " + rs6.getString("status_gizi");
+                            cekSttsGizi = "Klasifikasi IMT (" + rs6.getString("klasifikasi_imt") + "), Persentase CDC : " + rs6.getString("persentase_cdc") + " %, Status Gizi : " + rs6.getString("status_gizi");
                         } else {
                             cekSttsGizi = "Status Gizi : " + rs6.getString("status_gizi");
                         }

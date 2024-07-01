@@ -256,6 +256,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         TbbKoreksi.setDocument(new batasInput((int) 40).getKata(TbbKoreksi));
         Talergi.setDocument(new batasInput((int) 220).getKata(Talergi));
         Tpantangan.setDocument(new batasInput((int) 220).getKata(Tpantangan));
+        Tpersentase.setDocument(new batasInput((int) 6).getKata(Tpersentase));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -350,7 +351,6 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         Tbiokimia = new widget.TextArea();
         jLabel70 = new widget.Label();
         cmbSttsGizi = new widget.ComboBox();
-        jLabel69 = new widget.Label();
         BtnPasteHasil = new widget.Button();
         jLabel71 = new widget.Label();
         ChkMual = new widget.CekBox();
@@ -393,7 +393,6 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel97 = new widget.Label();
         cmbKlasifikasiIMT = new widget.ComboBox();
         jLabel98 = new widget.Label();
-        cmbPersentase = new widget.ComboBox();
         ChkBbu = new widget.CekBox();
         TketBbu = new widget.TextBox();
         jLabel99 = new widget.Label();
@@ -408,6 +407,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         cmbBbpb = new widget.ComboBox();
         jLabel78 = new widget.Label();
         cmbAsuhan = new widget.ComboBox();
+        Tpersentase = new widget.TextBox();
+        label114 = new widget.Label();
+        BtnCekSttsGizi = new widget.Button();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmenGZUlang = new widget.Table();
@@ -832,17 +834,11 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         jLabel70.setBounds(0, 282, 110, 23);
 
         cmbSttsGizi.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSttsGizi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Buruk", "Kurang", "Normal", "Lebih", "Obesitas" }));
+        cmbSttsGizi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Buruk", "Kurang", "Normal", "Lebih", "Obesitas", "Baik" }));
         cmbSttsGizi.setName("cmbSttsGizi"); // NOI18N
         cmbSttsGizi.setPreferredSize(new java.awt.Dimension(55, 23));
         FormInput.add(cmbSttsGizi);
-        cmbSttsGizi.setBounds(570, 170, 75, 23);
-
-        jLabel69.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel69.setText("Status Gizi :");
-        jLabel69.setName("jLabel69"); // NOI18N
-        FormInput.add(jLabel69);
-        jLabel69.setBounds(485, 170, 80, 23);
+        cmbSttsGizi.setBounds(623, 170, 75, 23);
 
         BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
         BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
@@ -1270,18 +1266,6 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         FormInput.add(jLabel98);
         jLabel98.setBounds(275, 170, 105, 23);
 
-        cmbPersentase.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPersentase.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "< 60 %", "60 % - 80 %", "80 % - 120 %", "> 120 %" }));
-        cmbPersentase.setName("cmbPersentase"); // NOI18N
-        cmbPersentase.setPreferredSize(new java.awt.Dimension(55, 23));
-        cmbPersentase.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbPersentaseActionPerformed(evt);
-            }
-        });
-        FormInput.add(cmbPersentase);
-        cmbPersentase.setBounds(385, 170, 100, 23);
-
         ChkBbu.setBackground(new java.awt.Color(255, 255, 250));
         ChkBbu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         ChkBbu.setForeground(new java.awt.Color(0, 0, 0));
@@ -1423,6 +1407,46 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         cmbAsuhan.setPreferredSize(new java.awt.Dimension(55, 23));
         FormInput.add(cmbAsuhan);
         cmbAsuhan.setBounds(645, 66, 75, 23);
+
+        Tpersentase.setForeground(new java.awt.Color(0, 0, 0));
+        Tpersentase.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tpersentase.setName("Tpersentase"); // NOI18N
+        Tpersentase.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TpersentaseKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tpersentase);
+        Tpersentase.setBounds(385, 170, 70, 23);
+
+        label114.setForeground(new java.awt.Color(0, 0, 0));
+        label114.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label114.setText("%");
+        label114.setName("label114"); // NOI18N
+        label114.setPreferredSize(new java.awt.Dimension(70, 23));
+        FormInput.add(label114);
+        label114.setBounds(460, 170, 20, 23);
+
+        BtnCekSttsGizi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCekSttsGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnCekSttsGizi.setMnemonic('I');
+        BtnCekSttsGizi.setText("Cek Status Gizi :");
+        BtnCekSttsGizi.setToolTipText("Alt+I");
+        BtnCekSttsGizi.setGlassColor(new java.awt.Color(255, 204, 0));
+        BtnCekSttsGizi.setName("BtnCekSttsGizi"); // NOI18N
+        BtnCekSttsGizi.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnCekSttsGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCekSttsGiziActionPerformed(evt);
+            }
+        });
+        BtnCekSttsGizi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCekSttsGiziKeyPressed(evt);
+            }
+        });
+        FormInput.add(BtnCekSttsGizi);
+        BtnCekSttsGizi.setBounds(490, 170, 128, 23);
 
         scrollInput.setViewportView(FormInput);
 
@@ -1695,6 +1719,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         } else if (cmbAsuhan.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis asuhan gizinya..!!");
             cmbAsuhan.requestFocus();
+        } else if (cmbKlasifikasiIMT.getSelectedIndex() == 2 && Tpersentase.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Angka persentase CDC harus diisi dulu..!!");
+            Tpersentase.requestFocus();
         } else {
             cekData();
             if (Sequel.menyimpantf("assesmen_gizi_ulang", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
@@ -1704,7 +1731,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                         Tbiokimia.getText(), mual, nyeri, diare, kesulitan, odema, konstipasi, anoreksia, gangguan, TklinisLain.getText(), makanlebih, makankurang,
                         TriwayatLain.getText(), alergi, Talergi.getText(), pantangan, Tpantangan.getText(), asupanCukup, asupanMenurun, asupanRendah,
                         asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(), Sequel.cariIsi("select now()"),
-                        cmbKlasifikasiIMT.getSelectedItem().toString(), cmbPersentase.getSelectedItem().toString(), cmbAsuhan.getSelectedItem().toString(),
+                        cmbKlasifikasiIMT.getSelectedItem().toString(), Tpersentase.getText(), cmbAsuhan.getSelectedItem().toString(),
                         bbu, pbu, bbpb, TketBbu.getText(), TketPbu.getText(), TketBbpb.getText(), cmbBbu.getSelectedItem().toString(), cmbPbu.getSelectedItem().toString(),
                         cmbBbpb.getSelectedItem().toString()
                     }) == true) {
@@ -1741,6 +1768,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         } else if (cmbAsuhan.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu jenis asuhan gizinya..!!");
             cmbAsuhan.requestFocus();
+        } else if (cmbKlasifikasiIMT.getSelectedIndex() == 2 && Tpersentase.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Angka persentase CDC harus diisi dulu..!!");
+            Tpersentase.requestFocus();
         } else {
             if (tbAsesmenGZUlang.getSelectedRow() > -1) {
                 if (akses.getadmin() == true) {
@@ -2213,18 +2243,15 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void cmbKlasifikasiIMTActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbKlasifikasiIMTActionPerformed
-        cmbPersentase.setSelectedIndex(0);
+        Tpersentase.setText("");
         if (cmbKlasifikasiIMT.getSelectedIndex() == 2) {
-            cmbPersentase.setEnabled(true);
+            Tpersentase.setEnabled(true);
+            Tpersentase.requestFocus();
         } else {
-            cmbPersentase.setEnabled(false);
+            Tpersentase.setEnabled(false);
         }
         cekStatusGizi();
     }//GEN-LAST:event_cmbKlasifikasiIMTActionPerformed
-
-    private void cmbPersentaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPersentaseActionPerformed
-        cekStatusGizi();
-    }//GEN-LAST:event_cmbPersentaseActionPerformed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 1) {
@@ -2283,6 +2310,35 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         Valid.pindah(evt, TketBbpb, cmbBbpb);
     }//GEN-LAST:event_TketBbpbKeyPressed
 
+    private void TpersentaseKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpersentaseKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Tpersentase.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Angka persentase CDC harus terisi dulu..!!");
+                Tpersentase.requestFocus();
+            } else {
+                if (Tpersentase.getText().trim().contains(",") == true) {
+                    Tpersentase.setText(Tpersentase.getText().trim().replaceAll(",", "."));
+                }
+
+                if (Tpersentase.getText().trim().contains("%") == true) {
+                    Tpersentase.setText(Tpersentase.getText().trim().replaceAll("%", ""));
+                }
+                cekStatusGizi();
+                cmbSttsGizi.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_TpersentaseKeyPressed
+
+    private void BtnCekSttsGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekSttsGiziActionPerformed
+        cekStatusGizi();
+    }//GEN-LAST:event_BtnCekSttsGiziActionPerformed
+
+    private void BtnCekSttsGiziKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCekSttsGiziKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCekSttsGiziActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnCekSttsGiziKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -2303,6 +2359,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCekSttsGizi;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
@@ -2359,6 +2416,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.TextBox Tnip;
     private widget.TextBox TnmPetugas;
     private widget.TextBox Tpantangan;
+    private widget.TextBox Tpersentase;
     private widget.TextBox TrgRawat;
     private widget.TextBox TriwayatLain;
     private widget.Label Tsttsumur;
@@ -2375,7 +2433,6 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.ComboBox cmbHasilRecal;
     private widget.ComboBox cmbKlasifikasiIMT;
     private widget.ComboBox cmbPbu;
-    private widget.ComboBox cmbPersentase;
     private widget.ComboBox cmbSttsGizi;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -2395,7 +2452,6 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Label jLabel66;
     private widget.Label jLabel67;
     private widget.Label jLabel68;
-    private widget.Label jLabel69;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
     private widget.Label jLabel71;
@@ -2420,6 +2476,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     private widget.Label label111;
     private widget.Label label112;
     private widget.Label label113;
+    private widget.Label label114;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollInput;
@@ -2560,8 +2617,8 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
         Tbbi.setText("0");
         cmbAsuhan.setSelectedIndex(0);
         cmbKlasifikasiIMT.setSelectedIndex(0);
-        cmbPersentase.setSelectedIndex(0);
-        cmbPersentase.setEnabled(false);
+        Tpersentase.setText("");
+        Tpersentase.setEnabled(false);
         cmbSttsGizi.setSelectedIndex(0);
         
         bbu = "";
@@ -2680,7 +2737,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             TnmPetugas.setText(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 7).toString());
             TtglAsuhan.setText(Sequel.cariIsi("select date_format(tgl_asuhan,'%d-%m-%Y') from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'"));            
             cmbKlasifikasiIMT.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 47).toString());
-            cmbPersentase.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 48).toString());            
+            Tpersentase.setText(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 48).toString());            
             cmbAsuhan.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 49).toString());
             bbu = tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 50).toString();
             pbu = tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 51).toString();
@@ -3202,7 +3259,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                     Tbiokimia.getText(), mual, nyeri, diare, kesulitan, odema, konstipasi, anoreksia, gangguan, TklinisLain.getText(), makanlebih,
                     makankurang, TriwayatLain.getText(), alergi, Talergi.getText(), pantangan, Tpantangan.getText(), asupanCukup, asupanMenurun,
                     asupanRendah, asupanTidak, cmbHasilRecal.getSelectedItem().toString(), Tcatatan.getText(), Tnip.getText(), cmbKlasifikasiIMT.getSelectedItem().toString(),
-                    cmbPersentase.getSelectedItem().toString(), cmbAsuhan.getSelectedItem().toString(), bbu, pbu, bbpb, TketBbu.getText(), TketPbu.getText(),
+                    Tpersentase.getText(), cmbAsuhan.getSelectedItem().toString(), bbu, pbu, bbpb, TketBbu.getText(), TketPbu.getText(),
                     TketBbpb.getText(), cmbBbu.getSelectedItem().toString(), cmbPbu.getSelectedItem().toString(), cmbBbpb.getSelectedItem().toString(),
                     tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 44).toString()
                 }) == true) {
@@ -3238,31 +3295,67 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
     
     private void cekStatusGizi() {
         if (cmbKlasifikasiIMT.getSelectedIndex() == 1) {
-            double nilaiIMT;
-            nilaiIMT = 0;
-            nilaiIMT = Double.parseDouble(Timt.getText());
-            
-            if (nilaiIMT < 18.5) {
-                cmbSttsGizi.setSelectedIndex(2);
-            } else if (nilaiIMT >= 18.5 && nilaiIMT <= 25) {
-                cmbSttsGizi.setSelectedIndex(3);
-            } else if (nilaiIMT > 25) {
-                cmbSttsGizi.setSelectedIndex(5);
-            } else {
+            try {
+                double nilaiIMT;
+                nilaiIMT = 0;
+                nilaiIMT = Double.parseDouble(Timt.getText());
+
+                if (nilaiIMT < 18.5) {
+                    //kurang
+                    cmbSttsGizi.setSelectedIndex(2);
+                } else if (nilaiIMT >= 18.5 && nilaiIMT <= 25) {
+                    //normal
+                    cmbSttsGizi.setSelectedIndex(3);
+                } else if (nilaiIMT > 25) {
+                    //obesitas
+                    cmbSttsGizi.setSelectedIndex(5);
+                } else {
+                    //-
+                    cmbSttsGizi.setSelectedIndex(0);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
                 cmbSttsGizi.setSelectedIndex(0);
             }
         } else if (cmbKlasifikasiIMT.getSelectedIndex() == 2) {
-            if (cmbPersentase.getSelectedIndex() == 1) {
-                cmbSttsGizi.setSelectedIndex(1);
-            } else if (cmbPersentase.getSelectedIndex() == 2) {
-                cmbSttsGizi.setSelectedIndex(2);
-            } else if (cmbPersentase.getSelectedIndex() == 3) {
-                cmbSttsGizi.setSelectedIndex(3);
-            } else if (cmbPersentase.getSelectedIndex() == 4) {
-                cmbSttsGizi.setSelectedIndex(4);
-            } else {
+            try {
+                double nilaiPersen;
+                nilaiPersen = 0;
+
+                if (Tpersentase.getText().trim().contains(",") == true) {
+                    Tpersentase.setText(Tpersentase.getText().trim().replaceAll(",", "."));
+                }
+
+                if (Tpersentase.getText().trim().contains("%") == true) {
+                    Tpersentase.setText(Tpersentase.getText().trim().replaceAll("%", ""));
+                }
+
+                nilaiPersen = Double.parseDouble(Tpersentase.getText());
+
+                if (nilaiPersen < 69.5) {
+                    //gizi baik
+                    cmbSttsGizi.setSelectedIndex(6);
+                } else if (nilaiPersen >= 69.5 && nilaiPersen <= 89.4) {
+                    //gizi kurang
+                    cmbSttsGizi.setSelectedIndex(2);
+                } else if (nilaiPersen >= 89.5 && nilaiPersen <= 110.4) {
+                    //normal
+                    cmbSttsGizi.setSelectedIndex(3);
+                } else if (nilaiPersen >= 110.5 && nilaiPersen <= 120.4) {
+                    //lebih
+                    cmbSttsGizi.setSelectedIndex(4);
+                } else if (nilaiPersen >= 120.5) {
+                    //obesitas
+                    cmbSttsGizi.setSelectedIndex(5);
+                } else {
+                    //-
+                    cmbSttsGizi.setSelectedIndex(0);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
                 cmbSttsGizi.setSelectedIndex(0);
             }
+
         } else {
             cmbSttsGizi.setSelectedIndex(0);
         }
