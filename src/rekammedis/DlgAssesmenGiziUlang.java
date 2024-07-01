@@ -2749,6 +2749,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             cmbPbu.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 57).toString());
             cmbBbpb.setSelectedItem(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 58).toString());
             dataCek();
+            cekStatusGizi();
         }
     }
     

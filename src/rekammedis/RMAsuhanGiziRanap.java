@@ -4615,6 +4615,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             cmbPbu.setSelectedItem(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 80).toString());
             cmbBbpb.setSelectedItem(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 81).toString());
             dataCek();
+            cekStatusGizi();
         }
     }
 
