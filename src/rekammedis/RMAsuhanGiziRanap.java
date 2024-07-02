@@ -897,7 +897,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -911,7 +911,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1371,7 +1371,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -2825,7 +2825,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2840,7 +2840,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2916,6 +2916,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Angka persentase CDC harus diisi dulu..!!");
             Tpersentase.requestFocus();
         } else {
+            hitungIMT();
             cekData();
             if (Sequel.menyimpantf("asuhan_gizi_ranap", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No. Rawat", 73, new String[]{
@@ -3011,6 +3012,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             Tpersentase.requestFocus();
         } else {
             if (tbAsuhan.getSelectedRow() > -1) {
+                hitungIMT();
                 user = "";
                 if (akses.getadmin() == true) {
                     user = "-";
@@ -3928,6 +3930,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         } else {
             Tpersentase.setEnabled(false);
         }
+        hitungIMT();
         cekStatusGizi();
     }//GEN-LAST:event_cmbKlasifikasiIMTActionPerformed
 

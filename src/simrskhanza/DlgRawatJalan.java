@@ -1435,6 +1435,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         label_tot_pemeriksaan = new widget.Label();
         internalFrame5 = new widget.InternalFrame();
         TabPemeriksaanDokter = new javax.swing.JTabbedPane();
+        Scroll36 = new widget.ScrollPane();
         FormInput2 = new widget.PanelBiasa();
         jLabel8 = new widget.Label();
         jLabel7 = new widget.Label();
@@ -2859,7 +2860,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2873,7 +2874,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3066,7 +3067,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3290,7 +3291,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3304,7 +3305,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3587,10 +3588,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
 
+        Scroll36.setName("Scroll36"); // NOI18N
+        Scroll36.setOpaque(true);
+
         FormInput2.setBackground(new java.awt.Color(255, 255, 255));
         FormInput2.setBorder(null);
         FormInput2.setName("FormInput2"); // NOI18N
-        FormInput2.setPreferredSize(new java.awt.Dimension(1087, 300));
+        FormInput2.setPreferredSize(new java.awt.Dimension(1130, 525));
         FormInput2.setLayout(null);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
@@ -3973,7 +3977,9 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput2.add(BtnPasteResep);
         BtnPasteResep.setBounds(5, 320, 90, 26);
 
-        TabPemeriksaanDokter.addTab(".: Input Data", FormInput2);
+        Scroll36.setViewportView(FormInput2);
+
+        TabPemeriksaanDokter.addTab(".: Input Data", Scroll36);
 
         Scroll3.setComponentPopupMenu(jPopupMenu1);
         Scroll3.setName("Scroll3"); // NOI18N
@@ -5346,7 +5352,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -9659,6 +9665,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.ScrollPane Scroll33;
     private widget.ScrollPane Scroll34;
     private widget.ScrollPane Scroll35;
+    private widget.ScrollPane Scroll36;
     private widget.ScrollPane Scroll37;
     private widget.ScrollPane Scroll38;
     private widget.ScrollPane Scroll39;
