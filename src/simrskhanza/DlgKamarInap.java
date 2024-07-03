@@ -11736,7 +11736,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }//GEN-LAST:event_MnCovidActionPerformed
 
     private void MnLapStatusGZActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLapStatusGZActionPerformed
-        DlgStatusGizi statusgz = new DlgStatusGizi(null, false);
+        RMAsuhanGiziRanap statusgz = new RMAsuhanGiziRanap(null, false);
         statusgz.WindowLapStatusGZ.setSize(363, 143);
         statusgz.WindowLapStatusGZ.setLocationRelativeTo(internalFrame1);        
         statusgz.WindowLapStatusGZ.setVisible(true);

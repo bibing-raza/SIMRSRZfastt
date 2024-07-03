@@ -64,7 +64,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(885,674);
 
-        Object[] row = {"NIP", "Nama Petugas", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama", "Stts.Nikah", 
+        Object[] row = {"NIP", "Nama Petugas", "J.K.", "Tmp. Lahir", "Tgl. Lahir", "G.D.", "Agama", "Stts. Nikah", 
             "Alamat", "Jabatan", "No.Telp", "NIK/No. KTP", "User Id"};
         tabMode = new DefaultTableModel(null, row) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -77,15 +77,15 @@ public final class DlgPetugas extends javax.swing.JDialog {
         for (int i = 0; i < 13; i++) {
             TableColumn column = tbPetugas.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             } else if (i == 1) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(250);
             } else if (i == 2) {
                 column.setPreferredWidth(40);
             } else if (i == 3) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(180);
             } else if (i == 4) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(80);
             } else if (i == 5) {
                 column.setPreferredWidth(40);
             } else if (i == 6) {
@@ -93,13 +93,13 @@ public final class DlgPetugas extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(150);
             } else if (i == 8) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(250);
             } else if (i == 9) {
                 column.setPreferredWidth(200);
             } else if (i == 10) {
                 column.setPreferredWidth(100);
             } else if (i == 11) {
-                column.setPreferredWidth(140);
+                column.setPreferredWidth(120);
             } else if (i == 12) {
                 column.setPreferredWidth(130);
             }
