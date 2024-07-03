@@ -152,17 +152,6 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         jLabel22 = new widget.Label();
         tgl2 = new widget.Tanggal();
         internalFrame1 = new widget.InternalFrame();
-        Scroll = new widget.ScrollPane();
-        tbStatusGZ = new widget.Table();
-        jPanel3 = new javax.swing.JPanel();
-        panelGlass8 = new widget.panelisi();
-        BtnSimpan = new widget.Button();
-        BtnBatal = new widget.Button();
-        BtnEdit = new widget.Button();
-        BtnAll = new widget.Button();
-        BtnKeluar = new widget.Button();
-        jLabel7 = new widget.Label();
-        LCount = new widget.Label();
         panelGlass9 = new widget.panelisi();
         jLabel65 = new widget.Label();
         norw = new widget.TextBox();
@@ -174,6 +163,17 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         cmbrgPasienGZ = new widget.ComboBox();
         jLabel67 = new widget.Label();
         nmUnit = new widget.TextBox();
+        Scroll = new widget.ScrollPane();
+        tbStatusGZ = new widget.Table();
+        jPanel3 = new javax.swing.JPanel();
+        panelGlass8 = new widget.panelisi();
+        BtnSimpan = new widget.Button();
+        BtnBatal = new widget.Button();
+        BtnEdit = new widget.Button();
+        BtnAll = new widget.Button();
+        BtnKeluar = new widget.Button();
+        jLabel7 = new widget.Label();
+        LCount = new widget.Label();
         panelGlass10 = new widget.panelisi();
         jLabel19 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -185,7 +185,6 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnCetakLapRekap.setBackground(new java.awt.Color(255, 255, 255));
         MnCetakLapRekap.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakLapRekap.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakLapRekap.setText("Cetak Lap. Rekap");
@@ -198,7 +197,6 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnCetakLapRekap);
 
-        MnCetakLapStatusGZ.setBackground(new java.awt.Color(255, 255, 255));
         MnCetakLapStatusGZ.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnCetakLapStatusGZ.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnCetakLapStatusGZ.setText("Cetak Lap. Status Gizi");
@@ -258,7 +256,6 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
         cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
-        cmbGedung.setOpaque(false);
         internalFrame5.add(cmbGedung);
         cmbGedung.setBounds(120, 28, 205, 23);
 
@@ -269,7 +266,7 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         jLabel18.setBounds(0, 58, 118, 23);
 
         tgl1.setEditable(false);
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2021" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -286,7 +283,7 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         jLabel22.setBounds(207, 58, 30, 23);
 
         tgl2.setEditable(false);
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2021" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -310,6 +307,81 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Status Gizi Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 75));
+        panelGlass9.setLayout(null);
+
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setText("Pasien : ");
+        jLabel65.setName("jLabel65"); // NOI18N
+        jLabel65.setPreferredSize(new java.awt.Dimension(60, 24));
+        panelGlass9.add(jLabel65);
+        jLabel65.setBounds(6, 10, 60, 24);
+
+        norw.setEditable(false);
+        norw.setForeground(new java.awt.Color(0, 0, 0));
+        norw.setName("norw"); // NOI18N
+        norw.setPreferredSize(new java.awt.Dimension(140, 24));
+        panelGlass9.add(norw);
+        norw.setBounds(71, 10, 140, 24);
+
+        norm.setEditable(false);
+        norm.setForeground(new java.awt.Color(0, 0, 0));
+        norm.setName("norm"); // NOI18N
+        norm.setPreferredSize(new java.awt.Dimension(70, 24));
+        panelGlass9.add(norm);
+        norm.setBounds(216, 10, 70, 24);
+
+        nmpasien.setEditable(false);
+        nmpasien.setForeground(new java.awt.Color(0, 0, 0));
+        nmpasien.setName("nmpasien"); // NOI18N
+        nmpasien.setPreferredSize(new java.awt.Dimension(300, 24));
+        panelGlass9.add(nmpasien);
+        nmpasien.setBounds(291, 10, 300, 24);
+
+        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel66.setText("Status Gizi : ");
+        jLabel66.setName("jLabel66"); // NOI18N
+        jLabel66.setPreferredSize(new java.awt.Dimension(70, 24));
+        panelGlass9.add(jLabel66);
+        jLabel66.setBounds(596, 10, 70, 24);
+
+        cmbstatusGZ.setForeground(new java.awt.Color(0, 0, 0));
+        cmbstatusGZ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BURUK", "KURANG", "NORMAL", "LEBIH", "OBESITAS" }));
+        cmbstatusGZ.setName("cmbstatusGZ"); // NOI18N
+        cmbstatusGZ.setPreferredSize(new java.awt.Dimension(77, 24));
+        panelGlass9.add(cmbstatusGZ);
+        cmbstatusGZ.setBounds(671, 10, 77, 24);
+
+        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel70.setText("Bangsal : ");
+        jLabel70.setName("jLabel70"); // NOI18N
+        jLabel70.setPreferredSize(new java.awt.Dimension(75, 24));
+        panelGlass9.add(jLabel70);
+        jLabel70.setBounds(410, 40, 60, 24);
+
+        cmbrgPasienGZ.setForeground(new java.awt.Color(0, 0, 0));
+        cmbrgPasienGZ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VIP/SVIP", "ICU/ICCU", "RKPD", "ZAAL", "BEDAH", "ANAK", "PARU", "AS-SAMI UMUM", "AS-SAMI JANTUNG", "AR-RAUDAH SYARAF", "AR-RAUDAH MT-KK-THT", "BERSALIN", "ISOLASI COVID19", "ISOLASI BAYI COVID19" }));
+        cmbrgPasienGZ.setName("cmbrgPasienGZ"); // NOI18N
+        cmbrgPasienGZ.setPreferredSize(new java.awt.Dimension(144, 24));
+        panelGlass9.add(cmbrgPasienGZ);
+        cmbrgPasienGZ.setBounds(474, 40, 144, 24);
+
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setText("Rg. Perawatan : ");
+        jLabel67.setName("jLabel67"); // NOI18N
+        jLabel67.setPreferredSize(new java.awt.Dimension(60, 24));
+        panelGlass9.add(jLabel67);
+        jLabel67.setBounds(6, 40, 100, 24);
+
+        nmUnit.setEditable(false);
+        nmUnit.setForeground(new java.awt.Color(0, 0, 0));
+        nmUnit.setName("nmUnit"); // NOI18N
+        panelGlass9.add(nmUnit);
+        nmUnit.setBounds(108, 40, 300, 23);
+
+        internalFrame1.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
 
         Scroll.setComponentPopupMenu(jPopupMenu1);
         Scroll.setName("Scroll"); // NOI18N
@@ -335,11 +407,11 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(44, 180));
+        jPanel3.setPreferredSize(new java.awt.Dimension(44, 100));
         jPanel3.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass8.setName("panelGlass8"); // NOI18N
-        panelGlass8.setPreferredSize(new java.awt.Dimension(55, 55));
+        panelGlass8.setPreferredSize(new java.awt.Dimension(55, 50));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
@@ -437,81 +509,6 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
 
         jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
-        panelGlass9.setName("panelGlass9"); // NOI18N
-        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 75));
-        panelGlass9.setLayout(null);
-
-        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel65.setText("Pasien : ");
-        jLabel65.setName("jLabel65"); // NOI18N
-        jLabel65.setPreferredSize(new java.awt.Dimension(60, 24));
-        panelGlass9.add(jLabel65);
-        jLabel65.setBounds(6, 10, 60, 24);
-
-        norw.setEditable(false);
-        norw.setForeground(new java.awt.Color(0, 0, 0));
-        norw.setName("norw"); // NOI18N
-        norw.setPreferredSize(new java.awt.Dimension(140, 24));
-        panelGlass9.add(norw);
-        norw.setBounds(71, 10, 140, 24);
-
-        norm.setEditable(false);
-        norm.setForeground(new java.awt.Color(0, 0, 0));
-        norm.setName("norm"); // NOI18N
-        norm.setPreferredSize(new java.awt.Dimension(70, 24));
-        panelGlass9.add(norm);
-        norm.setBounds(216, 10, 70, 24);
-
-        nmpasien.setEditable(false);
-        nmpasien.setForeground(new java.awt.Color(0, 0, 0));
-        nmpasien.setName("nmpasien"); // NOI18N
-        nmpasien.setPreferredSize(new java.awt.Dimension(300, 24));
-        panelGlass9.add(nmpasien);
-        nmpasien.setBounds(291, 10, 300, 24);
-
-        jLabel66.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel66.setText("Status Gizi : ");
-        jLabel66.setName("jLabel66"); // NOI18N
-        jLabel66.setPreferredSize(new java.awt.Dimension(70, 24));
-        panelGlass9.add(jLabel66);
-        jLabel66.setBounds(596, 10, 70, 24);
-
-        cmbstatusGZ.setForeground(new java.awt.Color(0, 0, 0));
-        cmbstatusGZ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "BURUK", "KURANG", "NORMAL", "LEBIH", "OBESITAS" }));
-        cmbstatusGZ.setName("cmbstatusGZ"); // NOI18N
-        cmbstatusGZ.setPreferredSize(new java.awt.Dimension(77, 24));
-        panelGlass9.add(cmbstatusGZ);
-        cmbstatusGZ.setBounds(671, 10, 77, 24);
-
-        jLabel70.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel70.setText("Bangsal : ");
-        jLabel70.setName("jLabel70"); // NOI18N
-        jLabel70.setPreferredSize(new java.awt.Dimension(75, 24));
-        panelGlass9.add(jLabel70);
-        jLabel70.setBounds(410, 40, 60, 24);
-
-        cmbrgPasienGZ.setForeground(new java.awt.Color(0, 0, 0));
-        cmbrgPasienGZ.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VIP/SVIP", "ICU/ICCU", "RKPD", "ZAAL", "BEDAH", "ANAK", "PARU", "AS-SAMI UMUM", "AS-SAMI JANTUNG", "AR-RAUDAH SYARAF", "AR-RAUDAH MT-KK-THT", "BERSALIN", "ISOLASI COVID19", "ISOLASI BAYI COVID19" }));
-        cmbrgPasienGZ.setName("cmbrgPasienGZ"); // NOI18N
-        cmbrgPasienGZ.setPreferredSize(new java.awt.Dimension(144, 24));
-        panelGlass9.add(cmbrgPasienGZ);
-        cmbrgPasienGZ.setBounds(474, 40, 144, 24);
-
-        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel67.setText("Rg. Perawatan : ");
-        jLabel67.setName("jLabel67"); // NOI18N
-        jLabel67.setPreferredSize(new java.awt.Dimension(60, 24));
-        panelGlass9.add(jLabel67);
-        jLabel67.setBounds(6, 40, 100, 24);
-
-        nmUnit.setEditable(false);
-        nmUnit.setForeground(new java.awt.Color(0, 0, 0));
-        nmUnit.setName("nmUnit"); // NOI18N
-        panelGlass9.add(nmUnit);
-        nmUnit.setBounds(108, 40, 300, 23);
-
-        jPanel3.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
-
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
@@ -523,7 +520,7 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         panelGlass10.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2021" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -538,7 +535,7 @@ public final class DlgStatusGizi extends javax.swing.JDialog {
         panelGlass10.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2021" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-11-2022" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

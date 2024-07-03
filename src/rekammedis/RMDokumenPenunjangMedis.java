@@ -133,6 +133,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNoRW = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TNmPasien = new widget.TextBox();
+        ChkDokumen = new widget.CekBox();
         PanelContent = new widget.panelisi();
         panelGlass10 = new widget.panelisi();
         panelGlass12 = new widget.panelisi();
@@ -211,6 +212,19 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNmPasien.setName("TNmPasien"); // NOI18N
         TNmPasien.setPreferredSize(new java.awt.Dimension(291, 24));
         panelGlass7.add(TNmPasien);
+
+        ChkDokumen.setBackground(new java.awt.Color(255, 255, 250));
+        ChkDokumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkDokumen.setForeground(new java.awt.Color(0, 0, 0));
+        ChkDokumen.setText("Semua Dokumen Penunjang Medis");
+        ChkDokumen.setBorderPainted(true);
+        ChkDokumen.setBorderPaintedFlat(true);
+        ChkDokumen.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkDokumen.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkDokumen.setName("ChkDokumen"); // NOI18N
+        ChkDokumen.setOpaque(false);
+        ChkDokumen.setPreferredSize(new java.awt.Dimension(210, 23));
+        panelGlass7.add(ChkDokumen);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -533,6 +547,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnUpload;
+    public widget.CekBox ChkDokumen;
     private javax.swing.JMenuItem MnJenisDokumen;
     private widget.panelisi PanelContent;
     private usu.widget.glass.PanelGlass PanelWallpublic;
@@ -560,11 +575,19 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
     private void tampilDokumen() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
-                    + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
-                    + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                    + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and "
-                    + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
+            if (ChkDokumen.isSelected() == true) {
+                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
+                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
+                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
+                        + "left join pegawai pg on pg.nik=rf.petugas where rf.nomr='" + TNoRM.getText() + "' and "
+                        + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
+            } else {
+                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
+                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
+                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
+                        + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and "
+                        + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
+            }
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {
@@ -713,5 +736,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNoRW.setText(norw);
         TNoRM.setText(norm);
         TNmPasien.setText(nmpasien);
+        ChkDokumen.setSelected(false);
     }
 }

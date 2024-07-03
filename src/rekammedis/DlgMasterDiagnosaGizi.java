@@ -71,7 +71,7 @@ public class DlgMasterDiagnosaGizi extends javax.swing.JDialog {
         tbDiagnosa.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        kdDiagnosa.setDocument(new batasInput((byte) 5).getKata(kdDiagnosa));
+        kdDiagnosa.setDocument(new batasInput((byte) 20).getKata(kdDiagnosa));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){

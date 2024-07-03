@@ -40,6 +40,7 @@ import kepegawaian.DlgCariPetugas;
 import laporan.DlgHasilPenunjangMedis;
 import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
+import simrskhanza.DlgStatusGizi;
 
 /**
  *
@@ -63,7 +64,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             dataRiwayat1 = "", dataRiwayat2 = "", riw1 = "", riw2 = "", riw3 = "", riw4 = "", riw5 = "", riw6 = "",
             riw7 = "", riw8 = "", riw9 = "", asupanmakan = "", antro = "", biokimia = "", klinis = "", lainlain = "",
             rencanamonev = "", ren1 = "", ren2 = "", ren3 = "", ren4 = "", ren5 = "", bbu = "", pbu = "", bbpb = "",
-            gizianak1 = "", gizianak2 = "", gizianak3 = "";
+            gizianak1 = "", gizianak2 = "", gizianak3 = "", kodekamar = "", sttsgizi = "", nmgedung = "";
     private String[] kode, diagnosa;
     
     /** Creates new form DlgRujuk
@@ -572,6 +573,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnDokumenJangMed = new javax.swing.JMenuItem();
         MnRiwayatData = new javax.swing.JMenuItem();
+        MnStatusGizi = new javax.swing.JMenuItem();
+        MnMonev = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHapusConteng = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
@@ -607,7 +610,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
         BtnNotepad = new widget.Button();
-        BtnMonev = new widget.Button();
         BtnKeluar = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -832,6 +834,36 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnRiwayatData);
+
+        MnStatusGizi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnStatusGizi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnStatusGizi.setText("Status Gizi Pasien");
+        MnStatusGizi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnStatusGizi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnStatusGizi.setIconTextGap(5);
+        MnStatusGizi.setName("MnStatusGizi"); // NOI18N
+        MnStatusGizi.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnStatusGizi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnStatusGiziActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnStatusGizi);
+
+        MnMonev.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnMonev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnMonev.setText("Monitoring & Evaluasi Gizi");
+        MnMonev.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnMonev.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnMonev.setIconTextGap(5);
+        MnMonev.setName("MnMonev"); // NOI18N
+        MnMonev.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnMonev.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnMonevActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnMonev);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
@@ -1211,21 +1243,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnNotepad);
-
-        BtnMonev.setForeground(new java.awt.Color(0, 0, 0));
-        BtnMonev.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-edit24.png"))); // NOI18N
-        BtnMonev.setMnemonic('O');
-        BtnMonev.setText("Monitoring & Evaluasi");
-        BtnMonev.setToolTipText("Alt+O");
-        BtnMonev.setGlassColor(new java.awt.Color(0, 204, 204));
-        BtnMonev.setName("BtnMonev"); // NOI18N
-        BtnMonev.setPreferredSize(new java.awt.Dimension(180, 30));
-        BtnMonev.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnMonevActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnMonev);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2939,6 +2956,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     }
                 }
                 
+                simpanSttsGizi();
                 TCari.setText(TNoRw.getText());
                 TabRawat.setSelectedIndex(1);
                 emptTeks();
@@ -3021,10 +3039,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }
 
                 if (akses.getadmin() == true) {
+                    gantiSttsGizi();
                     gantiDisimpan();
                     ganti();
                 } else {
                     if (Tnip.getText().equals(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 62).toString())) {
+                        gantiSttsGizi();
                         gantiDisimpan();
                         ganti();
                     } else {
@@ -3581,27 +3601,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSayaActionPerformed
 
-    private void BtnMonevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMonevActionPerformed
-        ChkAccor.setSelected(false);
-        isMenu();
-        
-        if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("RMAsuhanGiziRanap");
-            DlgMonevAsuhanGizi form = new DlgMonevAsuhanGizi(null, false);
-            form.emptTeks();
-            form.isCek();
-            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), TrgRawat.getText());
-            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            form.setLocationRelativeTo(internalFrame1);
-            form.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        } else {
-            JOptionPane.showMessageDialog(null, "Sebelum mengisi monitoring & evaluasi gizi, simpan dulu data asuhan gizinya...!!!");
-            TabRawat.setSelectedIndex(0);
-        }
-    }//GEN-LAST:event_BtnMonevActionPerformed
-
     private void TtbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtbKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             if (Tbb.getText().contains(",") == true) {
@@ -4035,6 +4034,66 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCekSttsGiziKeyPressed
 
+    private void MnStatusGiziActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnStatusGiziActionPerformed
+        if (tbAsuhan.getSelectedRow() > -1) {
+            ChkAccor.setSelected(false);
+            isMenu();
+
+            if (Sequel.cariInteger("SELECT count(-1) FROM status_gizi_inap where "
+                    + "no_rawat='" + tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString() + "'") > 0) {
+                x = JOptionPane.showConfirmDialog(null, "Data status gizi utk. pasien yg bernama " + TPasien.getText() + " sudah tersimpan, apakah mau diperbaiki...?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    akses.setform("RMAsuhanGiziRanap");
+                    DlgStatusGizi statusGZ = new DlgStatusGizi(null, false);
+                    statusGZ.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    statusGZ.setLocationRelativeTo(internalFrame1);
+                    statusGZ.emptTeks();
+                    statusGZ.setPasien(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), kodekamar);
+                    statusGZ.tampil();
+                    statusGZ.BtnSimpan.setEnabled(false);
+                    statusGZ.BtnEdit.setEnabled(true);
+                    statusGZ.setVisible(true);
+                } else {
+                    tbAsuhan.requestFocus();
+                }
+            } else {
+                akses.setform("RMAsuhanGiziRanap");
+                DlgStatusGizi statusGZ = new DlgStatusGizi(null, false);
+                statusGZ.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                statusGZ.setLocationRelativeTo(internalFrame1);
+                statusGZ.emptTeks();
+                statusGZ.setPasien(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), kodekamar);
+                statusGZ.tampil();
+                statusGZ.BtnSimpan.setEnabled(true);
+                statusGZ.BtnEdit.setEnabled(false);
+                statusGZ.cmbstatusGZ.requestFocus();
+                statusGZ.setVisible(true);
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }  
+    }//GEN-LAST:event_MnStatusGiziActionPerformed
+
+    private void MnMonevActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnMonevActionPerformed
+        if (tbAsuhan.getSelectedRow() > -1) {
+            ChkAccor.setSelected(false);
+            isMenu();
+
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMAsuhanGiziRanap");
+            DlgMonevAsuhanGizi form = new DlgMonevAsuhanGizi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), TrgRawat.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnMonevActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4064,7 +4123,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
-    private widget.Button BtnMonev;
     private widget.Button BtnNilaiBB;
     private widget.Button BtnNilaiIMT;
     private widget.Button BtnNilaiKalori;
@@ -4112,7 +4170,9 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnHapusRiwayat;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
+    private javax.swing.JMenuItem MnMonev;
     private javax.swing.JMenuItem MnRiwayatData;
+    private javax.swing.JMenuItem MnStatusGizi;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll4;
@@ -4617,6 +4677,9 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             cmbBbu.setSelectedItem(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 79).toString());
             cmbPbu.setSelectedItem(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 80).toString());
             cmbBbpb.setSelectedItem(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 81).toString());
+            kodekamar = Sequel.cariIsi("SELECT k.kd_kamar from bangsal b inner join kamar k on k.kd_bangsal=b.kd_bangsal WHERE "
+                    + "b.nm_bangsal='" + TrgRawat.getText() + "' limit 1");
+            nmgedung = Sequel.cariIsi("SELECT nm_gedung from bangsal WHERE nm_bangsal='" + TrgRawat.getText() + "' limit 1");
             dataCek();
             cekStatusGizi();
         }
@@ -4680,11 +4743,13 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norwt, String rgrawat, String gedung) {
+    public void setData(String norwt, String rgrawat, String gedung, String kdkmr) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(new Date());
         TrgRawat.setText(rgrawat);
+        kodekamar = kdkmr;
+        nmgedung = gedung;
      
         if (gedung.equals("ANAK")) {
             cmbAsuhan.setSelectedIndex(2);
@@ -4704,7 +4769,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getassesmen_gizi_harian());
         BtnHapus.setEnabled(akses.getassesmen_gizi_harian());
         BtnEdit.setEnabled(akses.getassesmen_gizi_harian());
-        BtnMonev.setEnabled(akses.getassesmen_gizi_harian());
         MnRiwayatData.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {            
@@ -5584,6 +5648,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         bbu = "";
         pbu = "";
         bbpb = "";
+        kodekamar = "";
+        nmgedung = "";
     }
     
     public void tampilDiagnosa() {
@@ -6082,6 +6148,65 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         } else {
             cmbSttsGizi.setSelectedIndex(0);
+        }
+    }
+    
+    private void simpanSttsGizi() {
+        //asuhan gizi dewasa
+        if (cmbAsuhan.getSelectedIndex() == 1) {
+            sttsgizi = "";
+            if (cmbSttsGizi.getSelectedIndex() == 0) {
+                sttsgizi = "-";
+            } else if (cmbSttsGizi.getSelectedIndex() == 1) {
+                sttsgizi = "BURUK";
+            } else if (cmbSttsGizi.getSelectedIndex() == 2) {
+                sttsgizi = "KURANG";
+            } else if (cmbSttsGizi.getSelectedIndex() == 3 || cmbSttsGizi.getSelectedIndex() == 6) {
+                sttsgizi = "NORMAL";
+            } else if (cmbSttsGizi.getSelectedIndex() == 4) {
+                sttsgizi = "LEBIH";
+            } else if (cmbSttsGizi.getSelectedIndex() == 5) {
+                sttsgizi = "OBESITAS";
+            }
+
+            Sequel.menyimpanIgnore("status_gizi_inap", "'" + TNoRw.getText() + "','" + Sequel.cariIsi("SELECT DATE(NOW())") + "',"
+                    + "'" + sttsgizi + "','" + nmgedung + "','" + kodekamar + "' ", "Data status gizi");
+
+            //asuhan gizi anak
+        } else {
+
+        }
+    }
+    
+    private void gantiSttsGizi() {
+        //asuhan gizi dewasa
+        if (cmbAsuhan.getSelectedIndex() == 1) {
+            sttsgizi = "";
+            if (cmbSttsGizi.getSelectedIndex() == 0) {
+                sttsgizi = "-";
+            } else if (cmbSttsGizi.getSelectedIndex() == 1) {
+                sttsgizi = "BURUK";
+            } else if (cmbSttsGizi.getSelectedIndex() == 2) {
+                sttsgizi = "KURANG";
+            } else if (cmbSttsGizi.getSelectedIndex() == 3 || cmbSttsGizi.getSelectedIndex() == 6) {
+                sttsgizi = "NORMAL";
+            } else if (cmbSttsGizi.getSelectedIndex() == 4) {
+                sttsgizi = "LEBIH";
+            } else if (cmbSttsGizi.getSelectedIndex() == 5) {
+                sttsgizi = "OBESITAS";
+            }
+
+            if (Sequel.cariInteger("select count(-1) from status_gizi_inap where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                Sequel.mengedit("status_gizi_inap", "no_rawat='" + TNoRw.getText() + "'",
+                        "status_gizi='" + sttsgizi + "', ruang_rawat='" + nmgedung + "',kd_kamar='" + kodekamar + "' ");
+            } else {
+                Sequel.menyimpanIgnore("status_gizi_inap", "'" + TNoRw.getText() + "','" + Sequel.cariIsi("SELECT DATE(NOW())") + "',"
+                    + "'" + sttsgizi + "','" + nmgedung + "','" + kodekamar + "' ", "Data status gizi");
+            }
+
+            //asuhan gizi anak
+        } else {
+
         }
     }
 }
