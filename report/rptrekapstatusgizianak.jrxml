@@ -1,0 +1,928 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="762" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20">
+	<property name="ireport.zoom" value="2.0000000000000404"/>
+	<property name="ireport.x" value="360"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="alamatrs" class="java.lang.String"/>
+	<parameter name="kotars" class="java.lang.String"/>
+	<parameter name="propinsirs" class="java.lang.String"/>
+	<parameter name="kontakrs" class="java.lang.String"/>
+	<parameter name="emailrs" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="periode" class="java.lang.String"/>
+	<parameter name="tgl_surat" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select b.nm_gedung, 
+COUNT(CASE WHEN ag.stts_gizi_bbu = 'BB Sangat Kurang' THEN 1 END) as bbu_sangat, 
+COUNT(CASE WHEN ag.stts_gizi_bbu = 'BB Kurang' THEN 1 END) as bbu_kurang, 
+COUNT(CASE WHEN ag.stts_gizi_bbu = 'BB Normal' THEN 1 END) as bbu_normal, 
+COUNT(CASE WHEN ag.stts_gizi_bbu = 'Resiko BB Lebih' THEN 1 END) as bbu_resiko,
+COUNT(CASE WHEN ag.stts_gizi_pbu = 'Sangat Pendek' THEN 1 END) as pbu_sangat, 
+COUNT(CASE WHEN ag.stts_gizi_pbu = 'Pendek' THEN 1 END) as pbu_pendek, 
+COUNT(CASE WHEN ag.stts_gizi_pbu = 'Normal' THEN 1 END) as pbu_normal, 
+COUNT(CASE WHEN ag.stts_gizi_pbu = 'Tinggi' THEN 1 END) as pbu_tinggi, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Gizi Buruk' THEN 1 END) as bbpb_buruk, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Gizi Kurang' THEN 1 END) as bbpb_kurang, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Gizi Baik (Normal)' THEN 1 END) as bbpb_baik, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Beresiko Gizi Lebih' THEN 1 END) as bbpb_beresiko, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Gizi Lebih' THEN 1 END) as bbpb_lebih, 
+COUNT(CASE WHEN ag.stts_gizi_bbpb = 'Obesitas' THEN 1 END) as bbpb_obes, 
+ COUNT(ag.no_rawat) total from asuhan_gizi_ranap ag inner join reg_periksa r on r.no_rawat=ag.no_rawat 
+ left join bangsal b on b.nm_bangsal=ag.ruang_rawat where 
+ r.tgl_registrasi BETWEEN '2024-07-01' AND '2024-07-31' 
+ and ag.jenis_asuhan='Anak' group by b.nm_gedung order by b.nm_gedung desc]]>
+	</queryString>
+	<field name="nm_gedung" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="bbu_sangat" class="java.lang.Long"/>
+	<field name="bbu_kurang" class="java.lang.Long"/>
+	<field name="bbu_normal" class="java.lang.Long"/>
+	<field name="bbu_resiko" class="java.lang.Long"/>
+	<field name="pbu_sangat" class="java.lang.Long"/>
+	<field name="pbu_pendek" class="java.lang.Long"/>
+	<field name="pbu_normal" class="java.lang.Long"/>
+	<field name="pbu_tinggi" class="java.lang.Long"/>
+	<field name="bbpb_buruk" class="java.lang.Long"/>
+	<field name="bbpb_kurang" class="java.lang.Long"/>
+	<field name="bbpb_baik" class="java.lang.Long"/>
+	<field name="bbpb_beresiko" class="java.lang.Long"/>
+	<field name="bbpb_lebih" class="java.lang.Long"/>
+	<field name="bbpb_obes" class="java.lang.Long"/>
+	<field name="total" class="java.lang.Long">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<variable name="bbu_sangat_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbu_sangat}]]></variableExpression>
+	</variable>
+	<variable name="bbu_kurang_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbu_kurang}]]></variableExpression>
+	</variable>
+	<variable name="bbu_normal_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbu_normal}]]></variableExpression>
+	</variable>
+	<variable name="bbu_resiko_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbu_resiko}]]></variableExpression>
+	</variable>
+	<variable name="pbu_sangat_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{pbu_sangat}]]></variableExpression>
+	</variable>
+	<variable name="pbu_pendek_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{pbu_pendek}]]></variableExpression>
+	</variable>
+	<variable name="pbu_normal_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{pbu_normal}]]></variableExpression>
+	</variable>
+	<variable name="pbu_tinggi_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{pbu_tinggi}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_buruk_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_buruk}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_kurang_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_kurang}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_baik_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_baik}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_beresiko_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_beresiko}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_lebih_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_lebih}]]></variableExpression>
+	</variable>
+	<variable name="bbpb_obes_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{bbpb_obes}]]></variableExpression>
+	</variable>
+	<variable name="total_1" class="java.lang.Long" calculation="Sum">
+		<variableExpression><![CDATA[$F{total}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="153">
+			<line>
+				<reportElement x="0" y="50" width="762" height="1"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="28" y="91" width="170" height="61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[RUANGAN]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="117" width="40" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BB Sangat
+Kurang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="275" y="117" width="37" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BB
+Normal]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="198" y="104" width="149" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Indeks (BB/U)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="705" y="91" width="54" height="61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[JUMLAH
+PASIEN]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="90" width="760" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="2" y="92" width="21" height="61"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[NO.]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="0" y="30" width="762" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["E-mail : "+$P{emailrs}]]></textFieldExpression>
+			</textField>
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="234" y="4" width="30" height="38"/>
+				<imageExpression class="java.lang.String"><![CDATA[$P{logo}]]></imageExpression>
+			</image>
+			<textField>
+				<reportElement x="0" y="5" width="762" height="17"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="12"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="0" y="19" width="762" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="239" y="117" width="35" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[BB
+Kurang]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="58" width="762" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[LAPORAN STATUS GIZI RUANG RAWAT INAP]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="152" width="760" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="0" y="70" width="762" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="10"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{periode}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="312" y="117" width="35" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Resiko
+BB
+Lebih]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="348" y="117" width="35" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Sangat
+Pendek]]></text>
+			</staticText>
+			<line>
+				<reportElement x="198" y="104" width="506" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="91" width="1" height="61"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="23" y="91" width="1" height="61"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="197" y="91" width="1" height="61"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="517" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="383" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="238" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="274" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="311" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="347" y="104" width="1" height="49"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="348" y="104" width="139" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Indeks (PB/U atau TB/U)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="384" y="117" width="35" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pendek]]></text>
+			</staticText>
+			<line>
+				<reportElement x="419" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="420" y="117" width="35" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Normal]]></text>
+			</staticText>
+			<line>
+				<reportElement x="455" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="456" y="117" width="30" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tinggi]]></text>
+			</staticText>
+			<line>
+				<reportElement x="486" y="104" width="1" height="49"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="198" y="91" width="506" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[STATUS GIZI]]></text>
+			</staticText>
+			<line>
+				<reportElement x="198" y="117" width="506" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="487" y="104" width="217" height="13"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Indeks (BB/PB atau BB/TB)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="487" y="117" width="30" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Gizi
+Buruk]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="518" y="117" width="34" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Gizi
+Kurang]]></text>
+			</staticText>
+			<line>
+				<reportElement x="551" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="552" y="117" width="40" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Gizi
+Baik
+(Normal)]]></text>
+			</staticText>
+			<line>
+				<reportElement x="592" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="593" y="117" width="40" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Beresiko
+Gizi
+Lebih]]></text>
+			</staticText>
+			<line>
+				<reportElement x="633" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="634" y="117" width="27" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Gizi
+Lebih]]></text>
+			</staticText>
+			<line>
+				<reportElement x="661" y="117" width="1" height="36"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="662" y="117" width="43" height="35"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Obesitas]]></text>
+			</staticText>
+			<line>
+				<reportElement x="704" y="91" width="1" height="61"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="760" y="91" width="1" height="61"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</pageHeader>
+	<detail>
+		<band height="16" splitType="Stretch">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="28" y="0" width="170" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_gedung}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="198" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbu_sangat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="239" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbu_kurang}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="275" y="0" width="37" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbu_normal}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="312" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbu_resiko}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="348" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pbu_sangat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="384" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pbu_pendek}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="2" y="0" width="21" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{REPORT_COUNT}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="1" y="15" width="760" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="23" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="197" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="238" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="274" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="311" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="347" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="383" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="419" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="420" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pbu_normal}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="455" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="456" y="0" width="30" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pbu_tinggi}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="486" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="487" y="0" width="30" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_buruk}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="517" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="518" y="0" width="34" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_kurang}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="551" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="552" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_baik}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="592" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="593" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_beresiko}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="633" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="634" y="0" width="27" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_lebih}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="661" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="662" y="0" width="43" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{bbpb_obes}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="704" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="705" y="0" width="54" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{total}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="760" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</detail>
+	<summary>
+		<band height="93" splitType="Stretch">
+			<staticText>
+				<reportElement x="2" y="0" width="196" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[TOTAL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="1" y="15" width="760" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<staticText>
+				<reportElement x="492" y="37" width="187" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Petugas, ]]></text>
+			</staticText>
+			<line>
+				<reportElement x="540" y="89" width="88" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.5" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="1" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="197" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="238" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="274" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="311" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="347" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="383" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="419" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement x="492" y="26" width="187" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{kotars}+", "+$P{tgl_surat}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="198" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbu_sangat_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="239" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbu_kurang_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="275" y="0" width="37" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbu_normal_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="312" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbu_resiko_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="348" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{pbu_sangat_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="384" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{pbu_pendek_1}]]></textFieldExpression>
+			</textField>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="420" y="0" width="35" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{pbu_normal_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="455" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="456" y="0" width="30" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{pbu_tinggi_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="486" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="487" y="0" width="30" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_buruk_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="517" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="518" y="0" width="34" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_kurang_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="551" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="552" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_baik_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="592" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="593" y="0" width="40" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_beresiko_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="633" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="634" y="0" width="27" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_lebih_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="661" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="662" y="0" width="43" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{bbpb_obes_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="704" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+			<textField isStretchWithOverflow="true" pattern="#,##0">
+				<reportElement x="705" y="0" width="54" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$V{total_1}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement x="760" y="0" width="1" height="16"/>
+				<graphicElement>
+					<pen lineWidth="0.5"/>
+				</graphicElement>
+			</line>
+		</band>
+	</summary>
+</jasperReport>
