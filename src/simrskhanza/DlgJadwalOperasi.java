@@ -785,7 +785,9 @@ private void btnPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.cariIsiComboDB("select nm_perawatan FROM paket_operasi WHERE STATUS='1' ORDER BY kode_paket", cmbPaketOperasi);
-        Sequel.cariIsiComboDB("SELECT nm_poli from poliklinik where kd_poli in ('KLT','BDO','BED','132','GIG','GND','GPR','JAN','OBG','MAT','ORT','PAR','SAR','THT') order by nm_poli", cmbJnsOperasi);
+        Sequel.cariIsiComboDB("SELECT nm_poli from poliklinik where kd_poli in "
+                + "('KLT','BDO','BED','132','GIG','GND','GPR','JAN','OBG','MAT','ORT','PAR','SAR','THT','BDM') "
+                + "order by nm_poli", cmbJnsOperasi);
         tampil();
     }//GEN-LAST:event_formWindowOpened
 

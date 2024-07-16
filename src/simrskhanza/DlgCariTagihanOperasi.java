@@ -481,9 +481,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnHapusObatOperasi.setBackground(new java.awt.Color(255, 255, 255));
         MnHapusObatOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHapusObatOperasi.setForeground(new java.awt.Color(0, 0, 0));
         MnHapusObatOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHapusObatOperasi.setText("Hapus Obat Operasi");
         MnHapusObatOperasi.setIconTextGap(5);
@@ -496,9 +494,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHapusObatOperasi);
 
-        MnHapusTagihanOperasi.setBackground(new java.awt.Color(255, 255, 255));
         MnHapusTagihanOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHapusTagihanOperasi.setForeground(new java.awt.Color(0, 0, 0));
         MnHapusTagihanOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHapusTagihanOperasi.setText("Hapus Tagihan Operasi");
         MnHapusTagihanOperasi.setIconTextGap(5);
@@ -511,9 +507,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHapusTagihanOperasi);
 
-        MnUbahOperatorPetugas.setBackground(new java.awt.Color(255, 255, 255));
         MnUbahOperatorPetugas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnUbahOperatorPetugas.setForeground(new java.awt.Color(0, 0, 0));
         MnUbahOperatorPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnUbahOperatorPetugas.setText("Ubah Operator & Paramedis");
         MnUbahOperatorPetugas.setIconTextGap(5);
@@ -527,7 +521,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         jPopupMenu1.add(MnUbahOperatorPetugas);
 
         MnLaporan.setBackground(new java.awt.Color(248, 253, 243));
-        MnLaporan.setForeground(new java.awt.Color(0, 0, 0));
         MnLaporan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnLaporan.setText("Laporan");
         MnLaporan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -538,9 +531,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         MnLaporan.setOpaque(true);
         MnLaporan.setPreferredSize(new java.awt.Dimension(200, 26));
 
-        MnDataOperasi.setBackground(new java.awt.Color(255, 255, 255));
         MnDataOperasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnDataOperasi.setForeground(new java.awt.Color(0, 0, 0));
         MnDataOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnDataOperasi.setText("Data Operasi");
         MnDataOperasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -555,9 +546,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         MnLaporan.add(MnDataOperasi);
 
-        MnRekapPembedahan.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPembedahan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapPembedahan.setForeground(new java.awt.Color(0, 0, 0));
         MnRekapPembedahan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPembedahan.setText("Rekap Kegiatan Pembedahan");
         MnRekapPembedahan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -572,9 +561,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         MnLaporan.add(MnRekapPembedahan);
 
-        MnRekapPerJenis.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPerJenis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapPerJenis.setForeground(new java.awt.Color(0, 0, 0));
         MnRekapPerJenis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPerJenis.setText("Rekap Pembedahan PerJenis");
         MnRekapPerJenis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -589,9 +576,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         MnLaporan.add(MnRekapPerJenis);
 
-        MnRekapPerDokterOper.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPerDokterOper.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapPerDokterOper.setForeground(new java.awt.Color(0, 0, 0));
         MnRekapPerDokterOper.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPerDokterOper.setText("Rekap Pembedahan PerDokter Opertr.");
         MnRekapPerDokterOper.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -606,9 +591,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         MnLaporan.add(MnRekapPerDokterOper);
 
-        MnRekapPerDokterAnas.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPerDokterAnas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapPerDokterAnas.setForeground(new java.awt.Color(0, 0, 0));
         MnRekapPerDokterAnas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPerDokterAnas.setText("Rekap Pembedahan PerDokter Anas.");
         MnRekapPerDokterAnas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -623,9 +606,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         });
         MnLaporan.add(MnRekapPerDokterAnas);
 
-        MnRekapPerSpes.setBackground(new java.awt.Color(255, 255, 255));
         MnRekapPerSpes.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapPerSpes.setForeground(new java.awt.Color(0, 0, 0));
         MnRekapPerSpes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnRekapPerSpes.setText("Rekap Pembedahan PerSpesialisasi");
         MnRekapPerSpes.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -647,7 +628,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         WindowGantiDokterParamedis.setUndecorated(true);
         WindowGantiDokterParamedis.setResizable(false);
 
-        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Operator & Paramedis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Ubah Operator & Paramedis ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame5.setName("internalFrame5"); // NOI18N
         internalFrame5.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame5.setLayout(new java.awt.BorderLayout());
@@ -1602,7 +1583,7 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Tagihan Operasi/VK ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Tagihan Operasi/VK ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -1782,7 +1763,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         jnsOperasi.setForeground(new java.awt.Color(0, 0, 0));
         jnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kecil", "Sedang", "Besar", "Khusus I", "Khusus II" }));
         jnsOperasi.setName("jnsOperasi"); // NOI18N
-        jnsOperasi.setOpaque(false);
         jnsOperasi.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jnsOperasiMouseClicked(evt);
@@ -1803,9 +1783,8 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         jLabel4.setBounds(765, 40, 82, 23);
 
         spes.setForeground(new java.awt.Color(0, 0, 0));
-        spes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Bedah", "Obstetrik & Ginekologi", "Bedah Saraf", "THT", "Mata", "Kulit & Kelamin", "Gigi & Mulut", "Bedah Anak", "Kardiovaskuler", "Bedah Orthopedi", "Thorak", "Digestive", "Urologi", "Onkologi", "Bedah Vaskuler", "Lain-lain" }));
+        spes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Bedah", "Obstetrik & Ginekologi", "Bedah Saraf", "THT", "Mata", "Kulit & Kelamin", "Gigi & Mulut", "Bedah Anak", "Kardiovaskuler", "Bedah Orthopedi", "Thorak", "Digestive", "Urologi", "Onkologi", "Bedah Vaskuler", "Gigi Bedah Mulut", "Lain-lain" }));
         spes.setName("spes"); // NOI18N
-        spes.setOpaque(false);
         spes.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 spesMouseClicked(evt);
