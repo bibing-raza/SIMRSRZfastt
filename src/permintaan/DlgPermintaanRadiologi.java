@@ -786,23 +786,18 @@ public final class DlgPermintaanRadiologi extends javax.swing.JDialog {
         } else if (TnmPemeriksaan.getText().equals("")) {
             Valid.textKosong(TnmPemeriksaan, "nama pemeriksaan radiologi");
         } else {
-            if (Sequel.cariRegistrasi(TNoRw.getText()) > 0) {
-                JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi. Silahkan hubungi bagian kasir/keuangan ..!!");
-                TCariPeriksa.requestFocus();
-            } else {
-                AutoNomerMinta();
-                if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?,?,?,?,?", "No.Permintaan", 10, new String[]{
-                    TNoPermintaan.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"),
-                    Sequel.cariIsi("select time(now())"), kdDokter.getText(), "Belum", TnmUnit.getText(), TnmPemeriksaan.getText(), "-","Menunggu"
-                }) == true) {
-                    
-                    tampilNomor();
-                    tampilPermintaan("Menunggu");
-                    TnmPemeriksaan.setText("");
-                    cekNOMINTA = "";                    
-                    TCariPeriksa.setText("");
-                    tampilDaftar();
-                }
+            AutoNomerMinta();
+            if (Sequel.menyimpantf("permintaan_radiologi", "?,?,?,?,?,?,?,?,?,?", "No.Permintaan", 10, new String[]{
+                TNoPermintaan.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"),
+                Sequel.cariIsi("select time(now())"), kdDokter.getText(), "Belum", TnmUnit.getText(), TnmPemeriksaan.getText(), "-", "Menunggu"
+            }) == true) {
+
+                tampilNomor();
+                tampilPermintaan("Menunggu");
+                TnmPemeriksaan.setText("");
+                cekNOMINTA = "";
+                TCariPeriksa.setText("");
+                tampilDaftar();
             }
         }
     }//GEN-LAST:event_BtnSimpanActionPerformed

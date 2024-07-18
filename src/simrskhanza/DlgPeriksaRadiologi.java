@@ -1457,7 +1457,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
 
     private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
         cekPetugas = "";
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             cekPetugas = "-";
         } else {
             cekPetugas = akses.getkode();
@@ -2003,7 +2003,7 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
     }
 
     private void simpan() {
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             int reply = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data akan disimpan ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (reply == JOptionPane.YES_OPTION) {
                 ChkJln.setSelected(false);

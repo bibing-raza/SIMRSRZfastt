@@ -1730,7 +1730,7 @@ private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void BtnSimpan1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpan1ActionPerformed
         cekPetugas = "";
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             cekPetugas = "-";
         } else {
             cekPetugas = akses.getkode();
