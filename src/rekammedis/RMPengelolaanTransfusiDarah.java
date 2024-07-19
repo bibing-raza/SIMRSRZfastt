@@ -62,9 +62,9 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tanggal", "Jam", "Jns. Darah Transfusi",
             "TD (15 Mnt. Sebelum)", "N (15 Mnt. Sebelum)", "RR (15 Mnt. Sebelum)", "S (15 Mnt. Sebelum)", "Petugas (15 Mnt. Sebelum)",
             "TD (15 Mnt. Masuk)", "N (15 Mnt. Masuk)", "RR (15 Mnt. Masuk)", "S (15 Mnt. Masuk)", "Petugas (15 Mnt. Masuk)",
-            "TD (1 Jam)", "N (1 Jam)", "RR (1 Jam)", "S (1 Jam)", "Petugas (1 Jam)", "tanggal", "jam",
-            "15_sebelum_nip_petugas", "15_masuk_nip_petugas", "1_masuk_nip_petugas", "waktu_simpan", 
-            "reaksiTDmasuk", "reaksi1jamTD"
+            "Reaksi Transfusi (15 Mnt. Masuk)", "TD (1 Jam)", "N (1 Jam)", "RR (1 Jam)", "S (1 Jam)", "Petugas (1 Jam)", 
+            "tanggal", "jam", "15_sebelum_nip_petugas", "15_masuk_nip_petugas", "1_masuk_nip_petugas", "waktu_simpan", 
+            "Reaksi Transfusi (1 Jam)"
         };
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -111,7 +111,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             } else if (i == 16) {
                 column.setPreferredWidth(220);
             } else if (i == 17) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(190);
             } else if (i == 18) {
                 column.setPreferredWidth(75);
             } else if (i == 19) {
@@ -119,10 +119,9 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             } else if (i == 20) {
                 column.setPreferredWidth(75);
             } else if (i == 21) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(75);
             } else if (i == 22) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(220);
             } else if (i == 23) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -142,8 +141,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 29) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(140);
             } 
         }
         tbTransfusi.setDefaultRenderer(Object.class, new WarnaTable());
@@ -445,7 +443,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel37.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel37);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -459,7 +457,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel38.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel38);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -623,7 +621,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -638,7 +636,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -834,7 +832,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -848,7 +846,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -960,7 +958,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 66, 140, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-07-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-07-2024" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1457,7 +1455,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                             Tjenis.getText(), T15TDbelum.getText(), T15Nadibelum.getText(), T15RRbelum.getText(), T15Suhubelum.getText(), nip1,
                             T15TDmasuk.getText(), T15Nadimasuk.getText(), T15RRmasuk.getText(), T15Suhumasuk.getText(), nip2,
                             T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText(),
-                            tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 27).toString()
+                            tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 28).toString()
                         }) == true) {
 
                     TCari.setText(TNoRw.getText());
@@ -1513,8 +1511,9 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariKeyPressed
 
     private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-       emptTeks();
-       tampil();
+        TCari.setText("");
+        emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
@@ -1653,7 +1652,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 riwayatData = "hapus";
                 simpanHistori();
                 if (Sequel.queryu2tf("delete from pengelolaan_transfusi_darah where waktu_simpan=?", 1, new String[]{
-                    tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 27).toString()
+                    tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 28).toString()
                 }) == true) {
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
@@ -2059,6 +2058,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                         rs.getString("15_masuk_rr"),
                         rs.getString("15_masuk_suhu"), 
                         rs.getString("ptgs2"),
+                        rs.getString("reaksi_transfusi_masuk"),
                         rs.getString("1_masuk_td"),
                         rs.getString("1_masuk_nadi"),
                         rs.getString("1_masuk_rr"),
@@ -2070,7 +2070,6 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                         rs.getString("15_masuk_nip_petugas"),
                         rs.getString("1_masuk_nip_petugas"),
                         rs.getString("waktu_simpan"),                        
-                        rs.getString("reaksi_transfusi_masuk"),
                         rs.getString("reaksi_transfusi_1jam")
                     });
                 }
@@ -2135,33 +2134,33 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             TNoRm.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),1).toString());
             TPasien.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),2).toString());
             TruangRwt.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),3).toString());
-            Valid.SetTgl(Ttgl, tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),22).toString());
-            cmbJam.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),23).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),23).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),23).toString().substring(6, 8));
+            Valid.SetTgl(Ttgl, tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),23).toString());
+            cmbJam.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),24).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),24).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),24).toString().substring(6, 8));
             Tjenis.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),6).toString());
             
             T15TDbelum.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),7).toString());
             T15Nadibelum.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),8).toString());
             T15RRbelum.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),9).toString());
             T15Suhubelum.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),10).toString());
-            nip1 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),24).toString();
+            nip1 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),25).toString();
             TnmPetugas1.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),11).toString());
             
             T15TDmasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),12).toString());
             T15Nadimasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),13).toString());
             T15RRmasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),14).toString());
             T15Suhumasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),15).toString());
-            nip2 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),25).toString();
+            nip2 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),26).toString();
             TnmPetugas2.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),16).toString());
+            Treaksi15TDmasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),17).toString());
             
-            T1JamTD.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),17).toString());
-            T1JamNadi.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),18).toString());
-            T1JamRR.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),19).toString());
-            T1JamSuhu.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),20).toString());
-            nip3 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),26).toString();
-            TnmPetugas3.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),21).toString());
-            Treaksi15TDmasuk.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),28).toString());
+            T1JamTD.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),18).toString());
+            T1JamNadi.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),19).toString());
+            T1JamRR.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),20).toString());
+            T1JamSuhu.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),21).toString());
+            nip3 = tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),27).toString();
+            TnmPetugas3.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),22).toString());            
             Treaksi1JamTD.setText(tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),29).toString());
         }
     }
@@ -2200,7 +2199,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
             TNoRw.getText(), TruangRwt.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 Tjenis.getText(), T15TDbelum.getText(), T15Nadibelum.getText(), T15RRbelum.getText(), T15Suhubelum.getText(), nip1,
                 T15TDmasuk.getText(), T15Nadimasuk.getText(), T15RRmasuk.getText(), T15Suhumasuk.getText(), nip2,
-                T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),27).toString(), 
+                T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(),28).toString(), 
                 riwayatData, user, Sequel.cariIsi("select now()"), Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText()
         });
     }
