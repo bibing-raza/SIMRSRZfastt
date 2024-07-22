@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="539" leftMargin="28" rightMargin="28" topMargin="40" bottomMargin="20">
 	<property name="ireport.zoom" value="1.3660269107301666"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.y" value="31"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -11,14 +11,15 @@
 	<parameter name="kontakrs" class="java.lang.String"/>
 	<parameter name="emailrs" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
+	<parameter name="diagnosa" class="java.lang.String"/>
+	<parameter name="tglsurat" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT DISTINCT gb.no_rawat, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, 
-CONCAT(rp.umurdaftar,' ',sttsumur) umur, DATE_FORMAT(gb.tgl_input,'%d/%m/%Y') tgl_input, ki.diagnosa_awal, gb.bb_awal, 
+		<![CDATA[SELECT gb.no_rawat, p.no_rkm_medis, p.nm_pasien, IF(p.jk='L','Laki-laki','Perempuan') jk, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) alamat, 
+CONCAT(rp.umurdaftar,' ',sttsumur) umur, DATE_FORMAT(gb.tgl_input,'%d/%m/%Y') tgl_input, gb.bb_awal, 
 gb.bb_akhir, gb.pb_tb, gb.bb_u, gb.bb_pb, gb.pb_u, gb.penghitungan_zat_gizi, gb.diagnosa_dr_gizi, gb.pemberian_nutrisi, 
 gb.data_albumin, gb.data_hb, gb.data_leukosit, gb.data_plt, gb.asal_rujukan FROM gizi_buruk gb 
 INNER JOIN reg_periksa rp ON rp.no_rawat=gb.no_rawat 
 INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis 
-INNER JOIN kamar_inap ki ON ki.no_rawat=gb.no_rawat 
 INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel 
 INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec 
 INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab 
@@ -43,9 +44,6 @@ where gb.no_rawat='2019/01/21/000314']]>
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="tgl_input" class="java.lang.String">
-		<fieldDescription><![CDATA[]]></fieldDescription>
-	</field>
-	<field name="diagnosa_awal" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<field name="bb_awal" class="java.lang.String">
@@ -182,13 +180,6 @@ where gb.no_rawat='2019/01/21/000314']]>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="78" y="172" width="461" height="15"/>
-				<textElement verticalAlignment="Middle" lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{diagnosa_awal}]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="70" y="187" width="8" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -498,32 +489,18 @@ where gb.no_rawat='2019/01/21/000314']]>
 				<text><![CDATA[PLT]]></text>
 			</staticText>
 			<line>
-				<reportElement x="337" y="504" width="88" height="1"/>
+				<reportElement x="386" y="504" width="88" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5" lineStyle="Solid"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="337" y="453" width="88" height="13"/>
+				<reportElement x="327" y="453" width="211" height="13"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[Petugas, ]]></text>
 			</staticText>
-			<staticText>
-				<reportElement x="327" y="441" width="46" height="13"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[Martapura, ]]></text>
-			</staticText>
-			<textField pattern="dd MMMM yyyy">
-				<reportElement x="375" y="441" width="125" height="13"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="9" isBold="false"/>
-				</textElement>
-				<textFieldExpression class="java.util.Date"><![CDATA[new java.util.Date()]]></textFieldExpression>
-			</textField>
 			<staticText>
 				<reportElement x="1" y="58" width="538" height="15"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -593,6 +570,20 @@ where gb.no_rawat='2019/01/21/000314']]>
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="78" y="172" width="461" height="15"/>
+				<textElement verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{diagnosa}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="327" y="441" width="211" height="13"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglsurat}]]></textFieldExpression>
 			</textField>
 		</band>
 	</pageHeader>

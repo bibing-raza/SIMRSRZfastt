@@ -681,6 +681,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         MnRiwayatData = new javax.swing.JMenuItem();
         MnMonev = new javax.swing.JMenuItem();
         MnAsesmenUlang = new javax.swing.JMenuItem();
+        MnGiziBuruk = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnHapusConteng = new javax.swing.JMenuItem();
         jPopupMenu3 = new javax.swing.JPopupMenu();
@@ -1038,6 +1039,21 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnAsesmenUlang);
+
+        MnGiziBuruk.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnGiziBuruk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnGiziBuruk.setText("Input Data Gizi Buruk");
+        MnGiziBuruk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnGiziBuruk.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnGiziBuruk.setIconTextGap(5);
+        MnGiziBuruk.setName("MnGiziBuruk"); // NOI18N
+        MnGiziBuruk.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnGiziBuruk.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnGiziBurukActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnGiziBuruk);
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
@@ -5302,6 +5318,26 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCetakPersentaseActionPerformed
 
+    private void MnGiziBurukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnGiziBurukActionPerformed
+        if (tbAsuhan.getSelectedRow() > -1) {
+            ChkAccor.setSelected(false);
+            isMenu();
+            
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMAsuhanGiziRanap");
+            RMGiziBuruk form = new RMGiziBuruk(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
+    }//GEN-LAST:event_MnGiziBurukActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5400,6 +5436,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnCetakLapStatusGZ;
     private javax.swing.JMenuItem MnCetakLapStatusGZ1;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnGiziBuruk;
     private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnHapusRiwayat;
     private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;

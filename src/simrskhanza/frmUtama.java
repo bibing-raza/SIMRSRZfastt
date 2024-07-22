@@ -399,6 +399,7 @@ import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMAsuhanGiziRanap;
+import rekammedis.RMGiziBuruk;
 import rekammedis.RMMonitoringEWSDewasa;
 import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPemantauanHarian24Jam;
@@ -11563,22 +11564,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
     private void btnDataGiziBurukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataGiziBurukActionPerformed
         isTutup();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgKamarInap kamarinap = new DlgKamarInap(null, false);
-        kamarinap.isCek();
-        kamarinap.emptTeks();
-        kamarinap.emptGZburuk();
-        kamarinap.tampilGZburuk();
-        kamarinap.TCari3.requestFocus();
-        kamarinap.WindowGiziBuruk.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        kamarinap.WindowGiziBuruk.setLocationRelativeTo(PanelUtama);
-        kamarinap.WindowGiziBuruk.setVisible(true);
-        kamarinap.ChkInput.setSelected(false);
-        kamarinap.isForm();
-        kamarinap.BtnSimpan7.setEnabled(false);
-        kamarinap.BtnHapus.setEnabled(true);
-        kamarinap.BtnEdit2.setEnabled(true);
         DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMGiziBuruk buruk = new RMGiziBuruk(null, false);
+        buruk.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        buruk.setLocationRelativeTo(PanelUtama);
+        buruk.isCek();
+        buruk.emptTeks();
+        buruk.TCari.requestFocus();
+        buruk.ChkInput.setSelected(false);
+        buruk.isForm();
+        buruk.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnDataGiziBurukActionPerformed
 
