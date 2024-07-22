@@ -133,9 +133,10 @@ public class DlgKamarInap extends javax.swing.JDialog {
             TotSkorRJ = "", kesimpulanResikoJatuh = "", tglPemberianObat = "", where_nya = "", konfirmasi_terapi = "", e_resep = "", sttsResep = "",
             evaluasiPG = "", evaluasiSR = "", evaluasiML = "", evaluasi = "", skorFix = "", skorGizi1 = "", skorYaGizi1 = "", skorGizi2 = "",
             kesimpulanGizi = "", resikojatuh = "", resikodecubitus = "", ket_nilai = "", TotSkorDecu = "", kesimpulanResikoDecu = "", manajemenNyeri = "",
-            skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "";
+            skorGZanak1 = "", skorGZanak2 = "", skorGZanak3 = "", skorGZanak4 = "", kodeAsesmen = "", nipDokter = "";
     private DlgIKBBayi lahir = new DlgIKBBayi(null, false);
-    private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);    
+    private DlgPemberianObat beriobat = new DlgPemberianObat(null, false);
+    private DlgCariDokter dokter = new DlgCariDokter(null, false);
 
     /**
      * Creates new form DlgKamarInap
@@ -450,6 +451,43 @@ public class DlgKamarInap extends javax.swing.JDialog {
             }
         });
         
+        dokter.addWindowListener(new WindowListener() {
+            @Override
+            public void windowOpened(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+            }
+
+            @Override
+            public void windowClosed(WindowEvent e) {
+                if (akses.getform().equals("DlgKamarInap")) {
+                    if (dokter.getTable().getSelectedRow() != -1) {
+                        nipDokter = dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 0).toString();
+                        Tdokter.setText(dokter.getTable().getValueAt(dokter.getTable().getSelectedRow(), 1).toString());
+                    }
+                    BtnDokter.requestFocus();
+                }
+            }
+
+            @Override
+            public void windowIconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeiconified(WindowEvent e) {
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+            }
+        });
+        
         penjab.addWindowListener(new WindowListener() {
             @Override
             public void windowOpened(WindowEvent e) {
@@ -508,7 +546,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Valid.LoadTahun(CmbTahun);
         Valid.LoadTahun(CmbTahunpindah);
 
-        WindowInputKamar.setSize(692, 316);
+        WindowInputKamar.setSize(692, 344);
         WindowInputKamar.setLocationRelativeTo(null);
         WindowPindahKamar.setSize(693, 275);
         WindowCaraBayar.setSize(630, 80);
@@ -760,6 +798,9 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbJam1 = new widget.ComboBox();
         cmbMnt1 = new widget.ComboBox();
         cmbDtk1 = new widget.ComboBox();
+        jLabel52 = new widget.Label();
+        Tdokter = new widget.TextBox();
+        BtnDokter = new widget.Button();
         panelGlass5 = new widget.panelisi();
         jLabel30 = new widget.Label();
         stts_bridging = new widget.Label();
@@ -1497,11 +1538,6 @@ public class DlgKamarInap extends javax.swing.JDialog {
                 cmbStatusActionPerformed(evt);
             }
         });
-        cmbStatus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbStatusKeyPressed(evt);
-            }
-        });
         panelGlass4.add(cmbStatus);
         cmbStatus.setBounds(488, 150, 170, 23);
 
@@ -1603,6 +1639,32 @@ public class DlgKamarInap extends javax.swing.JDialog {
         });
         panelGlass4.add(cmbDtk1);
         cmbDtk1.setBounds(425, 206, 45, 23);
+
+        jLabel52.setForeground(new java.awt.Color(0, 0, 153));
+        jLabel52.setText("Dokter Menerangkan :");
+        jLabel52.setName("jLabel52"); // NOI18N
+        panelGlass4.add(jLabel52);
+        jLabel52.setBounds(0, 234, 130, 23);
+
+        Tdokter.setEditable(false);
+        Tdokter.setForeground(new java.awt.Color(0, 0, 0));
+        Tdokter.setName("Tdokter"); // NOI18N
+        Tdokter.setPreferredSize(new java.awt.Dimension(207, 23));
+        panelGlass4.add(Tdokter);
+        Tdokter.setBounds(135, 234, 345, 23);
+
+        BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnDokter.setMnemonic('2');
+        BtnDokter.setToolTipText("Alt+2");
+        BtnDokter.setName("BtnDokter"); // NOI18N
+        BtnDokter.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnDokter.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnDokterActionPerformed(evt);
+            }
+        });
+        panelGlass4.add(BtnDokter);
+        BtnDokter.setBounds(480, 234, 28, 23);
 
         internalFrame2.add(panelGlass4, java.awt.BorderLayout.CENTER);
 
@@ -6558,6 +6620,10 @@ public class DlgKamarInap extends javax.swing.JDialog {
             WindowNamaPasangan.setLocationRelativeTo(internalFrame2);
             WindowNamaPasangan.setVisible(true);
             nmpasangan.requestFocus();
+        } else if ((cmbStatus.getSelectedItem().equals("Meninggal >= 48 Jam") || (cmbStatus.getSelectedItem().equals("Meninggal < 48 Jam")))
+                && (nipDokter.equals("") || nipDokter.equals("-"))) {
+            JOptionPane.showMessageDialog(null, "Dokter yang menerangkan pasien ini meninggal harus diisi dulu..!!!");
+            BtnDokter.requestFocus();
         } else {            
             //pasien masuk rawat inap
             if (norawat.isEditable() == true) {
@@ -6632,7 +6698,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                     Sequel.menyimpan("pasien_mati", "'" + Valid.SetTgl(TglMati.getSelectedItem() + "") + "','"
                                             + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "','"
                                             + TNoRM.getText() + "','" + cmbStatus.getSelectedItem() + " diruang " + TBangsal.getText() + " - "
-                                            + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','','','-'", "pasien");
+                                            + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','','','" + nipDokter + "'", "pasien");
 
                                     x = JOptionPane.showConfirmDialog(null, "Apakah anda akan mencetak surat keterangan kematian ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                                     if (x == JOptionPane.YES_OPTION) {
@@ -6689,10 +6755,10 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             //jika pulang dengan meninggal
                             if (cmbStatus.getSelectedItem().equals("Meninggal >= 48 Jam") || (cmbStatus.getSelectedItem().equals("Meninggal < 48 Jam"))) {
                                 Sequel.menyimpan("pasien_mati", "'" + Valid.SetTgl(TglMati.getSelectedItem() + "") + "','"
-                                        + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "','"
-                                        + TNoRM.getText() + "','" + cmbStatus.getSelectedItem() + " diruang " + TBangsal.getText() + " - "
-                                        + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','','','-'", "pasien");
-
+                                            + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem() + "','"
+                                            + TNoRM.getText() + "','" + cmbStatus.getSelectedItem() + " diruang " + TBangsal.getText() + " - "
+                                            + ket.getText() + "','Rumah Sakit','-','-','-','-','Ruangan Inap','-','','','" + nipDokter + "'", "pasien");
+                                
                                 x = JOptionPane.showConfirmDialog(null, "Apakah anda akan mencetak surat keterangan kematian ?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
                                 if (x == JOptionPane.YES_OPTION) {
                                     ctkSuratMati();
@@ -7060,8 +7126,8 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             rawatinap.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             rawatinap.setLocationRelativeTo(internalFrame1);
             rawatinap.isCek();
+            rawatinap.emptTeks();
             rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate());
-            rawatinap.setHidup((String) cmbStatus.getSelectedItem());
             rawatinap.dataRawat(ruangrawat.getText(), Valid.SetTgl3(tglInap.getText()), JamMasuk.getText());
             rawatinap.setpetugas();
             rawatinap.tampilDr();
@@ -7235,10 +7301,6 @@ private void DTPCari3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
             BtnCariActionPerformed(null);
         }
 }//GEN-LAST:event_DTPCari3KeyPressed
-
-private void cmbStatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbStatusKeyPressed
-
-}//GEN-LAST:event_cmbStatusKeyPressed
 
 private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPeriksaLabActionPerformed
     cekdokter = "";
@@ -8515,8 +8577,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 rawatinap.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 rawatinap.setLocationRelativeTo(internalFrame1);
                 rawatinap.isCek();
+                rawatinap.emptTeks();
                 rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate());
-                rawatinap.setStatus((String) cmbStatus.getSelectedItem());
+                rawatinap.dataRawat(ruangrawat.getText(), Valid.SetTgl3(tglInap.getText()), JamMasuk.getText());
+                rawatinap.setStatus(cmbStatus.getSelectedItem().toString());
                 rawatinap.setpetugas();
                 rawatinap.tampilDr();
                 rawatinap.setVisible(true);
@@ -8529,12 +8593,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 jLabel38.setVisible(true);
                 jLabel41.setVisible(true);
                 jLabel40.setVisible(true);
+                jLabel52.setVisible(true);
                 ket.setVisible(true);
                 ket.requestFocus();
                 TglMati.setVisible(true);
                 cmbJam1.setVisible(true);
                 cmbMnt1.setVisible(true);
                 cmbDtk1.setVisible(true);
+                Tdokter.setVisible(true);
+                BtnDokter.setVisible(true);
 
                 cmbJam1.setSelectedItem(now.substring(11, 13));
                 cmbMnt1.setSelectedItem(now.substring(14, 16));
@@ -11866,6 +11933,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         statusgz.cmbGedung1.requestFocus();
     }//GEN-LAST:event_MnLapStatusGZAnakActionPerformed
 
+    private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
+        akses.setform("DlgKamarInap");
+        dokter.isCek();
+        dokter.setSize(1041, internalFrame1.getHeight() - 40);
+        dokter.setLocationRelativeTo(internalFrame1);
+        dokter.setAlwaysOnTop(false);
+        dokter.setVisible(true);
+    }//GEN-LAST:event_BtnDokterActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11908,6 +11984,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button BtnCloseInpindah;
     private widget.Button BtnCtkJkd;
     private widget.Button BtnCtkJmp;
+    private widget.Button BtnDokter;
     private widget.Button BtnEdit3;
     private widget.Button BtnGantiMati;
     private widget.Button BtnGantiTgl;
@@ -12130,6 +12207,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JTabbedPane TabPencegahanDewasa;
     private javax.swing.JTabbedPane TabPencegahanRuangAnak;
     private javax.swing.JTabbedPane TabTindakanPencegahan;
+    private widget.TextBox Tdokter;
     private widget.Tanggal TglMati;
     private widget.Tanggal TglMati1;
     private widget.Tanggal TglRegRalan;
@@ -12258,6 +12336,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Label jLabel49;
     private widget.Label jLabel50;
     private widget.Label jLabel51;
+    private widget.Label jLabel52;
     private widget.Label jLabel54;
     private widget.Label jLabel58;
     private widget.Label jLabel6;
@@ -13044,11 +13123,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         jLabel38.setVisible(false);
         jLabel41.setVisible(false);
         jLabel40.setVisible(false);
+        jLabel52.setVisible(false);
         ket.setVisible(false);
         TglMati.setVisible(false);
         cmbJam1.setVisible(false);
         cmbMnt1.setVisible(false);
         cmbDtk1.setVisible(false);
+        Tdokter.setVisible(false);
+        BtnDokter.setVisible(false);
     }
 
     public void bukaMenuMati() {
@@ -13381,11 +13463,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             jLabel38.setVisible(true);
                             jLabel41.setVisible(true);
                             jLabel40.setVisible(true);
+                            jLabel52.setVisible(true);
                             ket.setVisible(true);
                             TglMati.setVisible(true);
                             cmbJam1.setVisible(true);
                             cmbMnt1.setVisible(true);
                             cmbDtk1.setVisible(true);
+                            Tdokter.setVisible(true);
+                            BtnDokter.setVisible(true);
                         } else {
                             cekKetMati();
                         }
@@ -13454,11 +13539,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         jLabel38.setVisible(true);
                         jLabel41.setVisible(true);
                         jLabel40.setVisible(true);
+                        jLabel52.setVisible(true);
                         ket.setVisible(true);
                         TglMati.setVisible(true);
                         cmbJam1.setVisible(true);
                         cmbMnt1.setVisible(true);
                         cmbDtk1.setVisible(true);
+                        Tdokter.setVisible(true);
+                        BtnDokter.setVisible(true);
                     } else {
                         cekKetMati();
                     }
@@ -13532,11 +13620,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             jLabel38.setVisible(true);
                             jLabel41.setVisible(true);
                             jLabel40.setVisible(true);
+                            jLabel52.setVisible(true);
                             ket.setVisible(true);
                             TglMati.setVisible(true);
                             cmbJam1.setVisible(true);
                             cmbMnt1.setVisible(true);
                             cmbDtk1.setVisible(true);
+                            Tdokter.setVisible(true);
+                            BtnDokter.setVisible(true);
                         } else {
                             cekKetMati();
                         }
@@ -13605,11 +13696,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         jLabel38.setVisible(true);
                         jLabel41.setVisible(true);
                         jLabel40.setVisible(true);
+                        jLabel52.setVisible(true);
                         ket.setVisible(true);
                         TglMati.setVisible(true);
                         cmbJam1.setVisible(true);
                         cmbMnt1.setVisible(true);
                         cmbDtk1.setVisible(true);
+                        Tdokter.setVisible(true);
+                        BtnDokter.setVisible(true);
                     } else {
                         cekKetMati();
                     }
@@ -13679,11 +13773,14 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     jLabel38.setVisible(true);
                     jLabel41.setVisible(true);
                     jLabel40.setVisible(true);
+                    jLabel52.setVisible(true);
                     ket.setVisible(true);
                     TglMati.setVisible(true);
                     cmbJam1.setVisible(true);
                     cmbMnt1.setVisible(true);
                     cmbDtk1.setVisible(true);
+                    Tdokter.setVisible(true);
+                    BtnDokter.setVisible(true);
                 } else {
                     cekKetMati();
                 }

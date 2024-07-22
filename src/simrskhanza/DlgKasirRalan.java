@@ -116,7 +116,6 @@ import rekammedis.RMTransferSerahTerimaIGD;
  * @author dosen
  */
 public final class DlgKasirRalan extends javax.swing.JDialog {
-
     private final DefaultTableModel tabModekasir, tabModeMati, tabModeKunjungan, tabModeResiko;
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
@@ -133,7 +132,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             namapoli = "", norw_dipilih = "", kddokter_dipilih = "", TPngJwb = "", TAlmt = "", THbngn = "", TBiaya = "", TStatus = "", sttsumur1 = "",
             kdsuku = "", kdbahasa = "", skorAsesIGD = "", kesimpulanGZanak = "", kesimpulanGZDewasa = "", TotSkorGZD = "", TotSkorGZA = "",
             faktorresikoigd = "", TotSkorRJ = "", kesimpulanResikoJatuh = "", kdItemrad = "", itemDipilih = "", tglRad = "", jamRad = "", pilihMenu = "",
-            konfirmasi_terapi = "";
+            konfirmasi_terapi = "", aksesRM = "";
     private String bangsal = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), nonota = "", URUTNOREG = "",
             sqlpsotomatis2 = "insert into rawat_jl_dr values (?,?,?,?,?,?,?,?,?,?,?)",
             sqlpsotomatis2petugas = "insert into rawat_jl_pr values (?,?,?,?,?,?,?,?,?,?,?)",
@@ -183,7 +182,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
 
         tabModekasir = new DefaultTableModel(null, new String[]{
             "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst.", "Jenis Bayar", "Jns. Kunjungan",
-            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
+            "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
             "cek_penanganan_dokter_poli", "cekantrian"
         }) {
             @Override
@@ -227,7 +226,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setPreferredWidth(60);
             } else if (i == 13) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(122);
             } else if (i == 14) {
                 column.setPreferredWidth(90);
             } else if (i == 15) {
@@ -8326,6 +8325,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             Sequel.menyimpan("riwayat_akses_rekam_medis", "'" + TNoRw.getText() + "','" + nip + "',"
                     + "'" + Sequel.cariIsi("select now()") + "','0000-00-00 00:00:00','ralan','terbuka',"
                     + "'" + Sequel.cariIsi("select now()") + "'");
+            tampilkasir();
+            empttext();
         }
     }//GEN-LAST:event_MnDibukaActionPerformed
 
@@ -8343,6 +8344,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
             Sequel.mengedit("riwayat_akses_rekam_medis", "waktu_simpan='" + wktSimpan + "'",
                     "waktu_tutup='" + Sequel.cariIsi("select now()") + "', status_akses='tertutup'");
+            tampilkasir();
+            empttext();
         }
     }//GEN-LAST:event_MnDitutupActionPerformed
 
@@ -8684,6 +8687,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     // End of variables declaration//GEN-END:variables
 
     public void tampilkasir() {
+        aksesRM = "";
         Valid.tabelKosong(tabModekasir);
         try {
             pskasir = koneksi.prepareStatement("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, "
@@ -8780,6 +8784,19 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 pskasir.setString(72, "%" + TCari.getText().trim() + "%");
                 rskasir = pskasir.executeQuery();
                 while (rskasir.next()) {
+                    if (rskasir.getString("nm_poli").contains("IGD") == true) {
+                        if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "'") == 0
+                                || Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1
+                                || Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat = '" + rskasir.getString("no_rawat") + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1 
+                                || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where no_rawat='" + rskasir.getString("no_rawat") + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                            aksesRM = "(Open)";
+                        } else {
+                            aksesRM = "(Locked)";
+                        }
+                    } else {
+                        aksesRM = "";
+                    }
+                    
                     tabModekasir.addRow(new String[]{
                         rskasir.getString("no_rawat"),
                         rskasir.getString("kd_dokter"),
@@ -8794,7 +8811,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("tgl_registrasi"),
                         rskasir.getString("jam_reg"),
                         rskasir.getString("no_reg"),
-                        rskasir.getString("stts_klaim"),
+                        rskasir.getString("stts_klaim") + " " + aksesRM,
                         rskasir.getString("no_tlp"),
                         rskasir.getString("almt_pasien"),
                         Sequel.cariIsi("select ifnull(no_rawat,'') from penilaian_awal_medis_igd where no_rawat='" + rskasir.getString("no_rawat") + "'"),
