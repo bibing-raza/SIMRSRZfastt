@@ -49,13 +49,13 @@ import restore.DlgRestoreDokter;
  */
 public class DlgDokter extends javax.swing.JDialog {
     private final DefaultTableModel tabMode, tabMode1;
-    private Connection koneksi=koneksiDB.condb();
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private DlgCariPegawai pegawai=new DlgCariPegawai(null,false);
-    private DlgCariSpesialis spesial=new DlgCariSpesialis(null,false);
+    private Connection koneksi = koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private DlgCariPegawai pegawai = new DlgCariPegawai(null, false);
+    private DlgCariSpesialis spesial = new DlgCariSpesialis(null, false);
     private BPJSCekReferensiDokterDPJP dpjp = new BPJSCekReferensiDokterDPJP(null, false);
-    private SatuSehatCekNIK cekViaSatuSehat=new SatuSehatCekNIK();
+    private SatuSehatCekNIK cekViaSatuSehat = new SatuSehatCekNIK();
     private PreparedStatement stat, stat1;
     private ResultSet rs, rs1;
     private String kerja1 = "", kerja2 = "", urlfoto = "", kddokterBPJS = "", kddokterSatuSehat = "";
@@ -86,7 +86,7 @@ public class DlgDokter extends javax.swing.JDialog {
         for (int i = 0; i < 18; i++) {
             TableColumn column = tbDokter.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
@@ -125,14 +125,15 @@ public class DlgDokter extends javax.swing.JDialog {
         }
         tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode1=new DefaultTableModel(null,new Object[]{"Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir","Tgl.Lahir","G.D.","Agama",
-            "Alamat Tinggal","No.HP/Telp","Stts.Nikah","Spesialis","Alumni","No.Ijin Praktek","NIK/No. KTP","Status Kerja","URL Foto"}) {
-            Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
-            };
+        tabMode1=new DefaultTableModel(null,new Object[]{
+            "Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir", "Tgl.Lahir", "G.D.", "Agama",
+            "Alamat Tinggal", "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni", "No.Ijin Praktek", 
+            "NIK/No. KTP", "Status Kerja", "URL Foto"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         tbDokter1.setModel(tabMode1);
         tbDokter1.setPreferredScrollableViewportSize(new Dimension(800,800));
@@ -141,7 +142,7 @@ public class DlgDokter extends javax.swing.JDialog {
         for (int i = 0; i < 16; i++) {
             TableColumn column = tbDokter1.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {
@@ -1787,7 +1788,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 stat.setString(52, "%" + TCari.getText().trim() + "%");
                 rs = stat.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    tabMode.addRow(new String[]{
                         rs.getString(1),
                         rs.getString(2),
                         rs.getString(3),
@@ -1902,7 +1903,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 stat1.setString(52, "%" + TCari.getText().trim() + "%");
                 rs1 = stat1.executeQuery();
                 while (rs1.next()) {
-                    tabMode1.addRow(new Object[]{
+                    tabMode1.addRow(new String[]{
                         rs1.getString(1),
                         rs1.getString(2),
                         rs1.getString(3),

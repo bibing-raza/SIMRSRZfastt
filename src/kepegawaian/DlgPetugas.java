@@ -1084,6 +1084,7 @@ public final class DlgPetugas extends javax.swing.JDialog {
                 Sequel.mengedit("pegawai", "nik='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'",
                         "nik='" + TNip.getText() + "',nama='" + TNm.getText() + "',jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
                         + "tmp_lahir='" + TTmp.getText() + "',tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "',alamat='" + TAlmt.getText() + "',no_ktp='" + TnoKTP.getText() + "' ");
+                
                 Sequel.mengedit("petugas", "nip='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'",
                         "nip='" + TNip.getText() + "',nama='" + TNm.getText()
                         + "',jk='" + CmbJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim()
@@ -1096,6 +1097,11 @@ public final class DlgPetugas extends javax.swing.JDialog {
                         + "',kd_jbtn='" + KdJbtn.getText()
                         + "',no_telp='" + TTlp.getText()
                         + "',user_id='" + TUserId.getText() + "'");
+                
+                Sequel.mengedit("rawat_inap_dr", "kd_dokter='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", 
+                        "kd_dokter='" + TNip.getText() + "'");
+                Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", 
+                        "kd_dokter_mewakili='" + TNip.getText() + "'");
                 koneksi.setAutoCommit(true);
                 if (tabMode.getRowCount() != 0) {
                     tampil();

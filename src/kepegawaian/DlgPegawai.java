@@ -37,7 +37,7 @@ public final class DlgPegawai extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private PreparedStatement ps, ps1;
     private ResultSet rs, rs1;
-    private String idDep = "", idSttsWP = "", idSttsKJ = "", idJenjang = "", idIndex = "";
+    private String idDep = "", idSttsWP = "", idSttsKJ = "", idJenjang = "", idIndex = "", nipDipilih = "";
     private int cekNIK = 0;
 
     /** Creates new form DlgPetugas
@@ -1169,19 +1169,27 @@ public final class DlgPegawai extends javax.swing.JDialog {
         } else if (cmbMasaKJ.getSelectedIndex() == 0) {
             Valid.textKosong(cmbMasaKJ, "Masa kerja");
         } else {
-            cekData();
-            Sequel.mengedit("pegawai", "nik='" + TNip.getText() + "'",
-                    "nama='" + TNm.getText() + "', jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
-                    + "jbtn='" + cmbJabatan.getSelectedItem().toString() + "', jnj_jabatan='" + idJenjang + "', departemen='" + idDep + "', bidang='" + cmbBid.getSelectedItem().toString() + "',"
-                    + "stts_wp='" + idSttsWP + "', stts_kerja='" + idSttsKJ + "', npwp='" + npwp.getText() + "', pendidikan='" + cmbPendidikan.getSelectedItem().toString() + "', gapok='" + TGapok.getText() + "',"
-                    + "tmp_lahir='" + TTmp.getText() + "', tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "', alamat='" + TAlmt.getText() + "', kota='" + TKota.getText() + "',"
-                    + "mulai_kerja='" + Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + "") + "', ms_kerja='" + cmbMasaKJ.getSelectedItem().toString() + "', indexins='" + idIndex + "',"
-                    + "bpd='" + cmbBank.getSelectedItem().toString() + "', rekening='" + TRek.getText() + "', stts_aktif='" + cmbSttsAktif.getSelectedItem().toString() + "', wajibmasuk='" + TwajibMsk.getText() + "',"
-                    + "pengurang='" + Tpengurang.getText() + "', indek='" + Tindek.getText() + "', mulai_kontrak='" + Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + "") + "', cuti_diambil='" + Tcuti.getText() + "',"
-                    + "dankes='" + Tdankes.getText() + "', no_ktp='" + TnoKTP.getText() + "'");
+            if (tbPegawai.getSelectedRow() > -1) {
+                cekData();
+                Sequel.mengedit("pegawai", "nik='" + nipDipilih + "'",
+                        "nik='" + TNip.getText() + "', nama='" + TNm.getText() + "', jk='" + CmbJk.getSelectedItem().toString().replaceAll("PEREMPUAN", "Wanita").replaceAll("LAKI-LAKI", "Pria") + "',"
+                        + "jbtn='" + cmbJabatan.getSelectedItem().toString() + "', jnj_jabatan='" + idJenjang + "', departemen='" + idDep + "', bidang='" + cmbBid.getSelectedItem().toString() + "',"
+                        + "stts_wp='" + idSttsWP + "', stts_kerja='" + idSttsKJ + "', npwp='" + npwp.getText() + "', pendidikan='" + cmbPendidikan.getSelectedItem().toString() + "', gapok='" + TGapok.getText() + "',"
+                        + "tmp_lahir='" + TTmp.getText() + "', tgl_lahir='" + Valid.SetTgl(DTPLahir.getSelectedItem() + "") + "', alamat='" + TAlmt.getText() + "', kota='" + TKota.getText() + "',"
+                        + "mulai_kerja='" + Valid.SetTgl(DTPmulaiKJ.getSelectedItem() + "") + "', ms_kerja='" + cmbMasaKJ.getSelectedItem().toString() + "', indexins='" + idIndex + "',"
+                        + "bpd='" + cmbBank.getSelectedItem().toString() + "', rekening='" + TRek.getText() + "', stts_aktif='" + cmbSttsAktif.getSelectedItem().toString() + "', wajibmasuk='" + TwajibMsk.getText() + "',"
+                        + "pengurang='" + Tpengurang.getText() + "', indek='" + Tindek.getText() + "', mulai_kontrak='" + Valid.SetTgl(DTPmulaiKontrak.getSelectedItem() + "") + "', cuti_diambil='" + Tcuti.getText() + "',"
+                        + "dankes='" + Tdankes.getText() + "', no_ktp='" + TnoKTP.getText() + "'");
+                
+                Sequel.mengedit("rawat_inap_dr", "kd_dokter='" + nipDipilih + "'", "kd_dokter='" + TNip.getText() + "'");
+                Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + nipDipilih + "'", "kd_dokter_mewakili='" + TNip.getText() + "'");
 
-            TabPegawaiMouseClicked(null);
-            emptTeks();
+                TabPegawaiMouseClicked(null);
+                emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbPegawai.requestFocus();
+            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -1651,6 +1659,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     public void emptTeks() {
+        nipDipilih = "";
         TNip.setText("");
         TNm.setText("");
         CmbJk.setSelectedIndex(0);
@@ -1683,8 +1692,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     private void getDataAktif() {
+        nipDipilih = "";
         if (tbPegawai.getSelectedRow() != -1) {
-            TNip.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 0).toString());
+            nipDipilih = tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 0).toString();
+            TNip.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 0).toString());            
             TNm.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 1).toString());
             TnoKTP.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 10).toString());
             TTmp.setText(tbPegawai.getValueAt(tbPegawai.getSelectedRow(), 2).toString());
@@ -1725,7 +1736,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
     
     private void getDataNonAktif() {
+        nipDipilih = "";
         if (tbPegawai1.getSelectedRow() != -1) {
+            nipDipilih = tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 0).toString();
             TNip.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 0).toString());
             TNm.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 1).toString());
             TnoKTP.setText(tbPegawai1.getValueAt(tbPegawai1.getSelectedRow(), 10).toString());
