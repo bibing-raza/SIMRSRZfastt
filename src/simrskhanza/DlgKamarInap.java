@@ -943,6 +943,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnCatatanTindakanKeperawatan = new javax.swing.JMenuItem();
         MnGrafikPantau = new javax.swing.JMenuItem();
         MnTransferSerahTerimaPasien = new javax.swing.JMenuItem();
+        MnDietPasien = new javax.swing.JMenuItem();
         MnSpirometri = new javax.swing.JMenuItem();
         MnDiagnosa = new javax.swing.JMenuItem();
         ppDataPersalinan = new javax.swing.JMenuItem();
@@ -3682,6 +3683,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnBacaRawatInap.add(MnTransferSerahTerimaPasien);
 
         MnRekamMedis.add(MnBacaRawatInap);
+
+        MnDietPasien.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDietPasien.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDietPasien.setText("Diet Pasien");
+        MnDietPasien.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDietPasien.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDietPasien.setIconTextGap(5);
+        MnDietPasien.setName("MnDietPasien"); // NOI18N
+        MnDietPasien.setPreferredSize(new java.awt.Dimension(210, 26));
+        MnDietPasien.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnDietPasienActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnDietPasien);
 
         MnSpirometri.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSpirometri.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -11942,6 +11958,30 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         dokter.setVisible(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
+    private void MnDietPasienActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDietPasienActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgKamarInap");
+            DlgPemberianDiet form = new DlgPemberianDiet(null, false);
+            form.emptTeks();
+            form.cekWaktu.setSelected(true);
+            form.TCari.setText("");
+            form.isCek();
+            form.setNoRm(norawat.getText());
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnDietPasienActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12065,6 +12105,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnDiagnosa;
     private javax.swing.JMenuItem MnDiagnosaAwal;
     private javax.swing.JMenuItem MnDietMakanan;
+    private javax.swing.JMenuItem MnDietPasien;
     private javax.swing.JMenuItem MnFormulirKematian;
     private javax.swing.JMenu MnGantiData;
     private javax.swing.JMenu MnGelangBayi;
@@ -12941,6 +12982,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         MnPindahNyangkut.setEnabled(akses.getadmin());
         MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
         MnPiutangPasien.setEnabled(akses.getbayar_piutang());
+        MnDietPasien.setEnabled(akses.getdiet_pasien());
         
         //membaca e-RM ranap
         if (akses.getpenyakit() == true || akses.getasesmen_medik_dewasa_ranap() == true) {
