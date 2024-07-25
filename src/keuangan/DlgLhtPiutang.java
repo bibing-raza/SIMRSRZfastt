@@ -73,7 +73,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         Object[] rowRwJlDr={
             "No.Rawat/No.tagihan", "Tgl.Piutang", "Pasien", "Status", "Total Piutang",
             "Uang Muka", "Dibayar", "Sisa Piutang", "Jatuh Tempo", "Cara Bayar", "tglpiutang",
-            "tgltempo", "Penjamin Piutang", "Keterangan Penjamin", "status_lanjut"
+            "tgltempo", "Penjamin Piutang", "Keterangan Penjamin", "status_lanjut", "cekPen", "cekKetPen"
         };
         
         tabMode=new DefaultTableModel(null,rowRwJlDr){
@@ -88,7 +88,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Double.class, java.lang.Double.class, java.lang.Double.class, java.lang.Double.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class
              };
              @Override
              public Class getColumnClass(int columnIndex) {
@@ -100,7 +101,7 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
         tbPiutang.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPiutang.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 15; i++) {
+        for (int i = 0; i < 17; i++) {
             TableColumn column = tbPiutang.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -133,6 +134,12 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
             } else if (i == 13) {
                 column.setPreferredWidth(250);
             } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1186,7 +1193,8 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                             + tabMode.getValueAt(i, 12).toString() + "','"
                             + tabMode.getValueAt(i, 13).toString() + "','"
                             + tabMode.getValueAt(i, 9).toString() + "','"
-                            + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                            + tabMode.getValueAt(i, 15).toString() + "','"
+                            + tabMode.getValueAt(i, 16).toString() + "','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
                             + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Piutang Pasien");
                 }
@@ -1205,17 +1213,18 @@ public final class DlgLhtPiutang extends javax.swing.JDialog {
                 if (cmbPiutang.getSelectedIndex() == 1) {
                     param.put("judul", "REKAP TAGIHAN PASIEN (PIUTANG " + cmbPiutang.getSelectedItem().toString().toUpperCase() + ")");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13 from temporary3 where "
-                            + "temp5='Lunas' order by CONVERT(temp1,int), temp3", param);
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, concat('(',temp13,')') temp13, temp14, temp15 "
+                            + "from temporary3 where temp5='Lunas' order by CONVERT(temp1,int), temp3", param);
                 } else if (cmbPiutang.getSelectedIndex() == 2) {
                     param.put("judul", "REKAP TAGIHAN PASIEN (PIUTANG " + cmbPiutang.getSelectedItem().toString().toUpperCase() + ")");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13 from temporary3 where "
-                            + "temp5='Belum Lunas' order by CONVERT(temp1,int), temp3", param);
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, concat('(',temp13,')') temp13, temp14, temp15 "
+                            + "from temporary3 where temp5='Belum Lunas' order by CONVERT(temp1,int), temp3", param);
                 } else if (cmbPiutang.getSelectedIndex() == 3) {
                     param.put("judul", "REKAP TAGIHAN PIUTANG PASIEN");
                     Valid.MyReport("rptRPiutangMasuk.jasper", "report", "::[ Rekap Piutang Masuk ]::",
-                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, temp13 from temporary3 order by CONVERT(temp1,int), temp3", param);
+                            "select temp2, temp3, temp4, temp6, temp7, temp8, temp9, temp10, temp11, temp12, concat('(',temp13,')') temp13, temp14, temp15 "
+                            + "from temporary3 order by CONVERT(temp1,int), temp3", param);
                 }                
                 this.setCursor(Cursor.getDefaultCursor());
             }
@@ -1674,7 +1683,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnBillingActionPerformed
         if (tbPiutang.getSelectedRow() > -1) {
-            if (tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 13).toString().equals("Ranap")) {
+            if (tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 14).toString().equals("Ranap")) {
                 kodekmr = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
                         + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "' "
                         + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
@@ -1850,7 +1859,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             if (cmbPiutang.getSelectedIndex() == 0 || cmbPiutang.getSelectedIndex() == 3) {
                 ps = koneksi.prepareStatement("select pp.no_rawat, date_format(pp.tgl_piutang,'%d/%m/%Y') tglpiutang, concat(pp.no_rkm_medis,' - ',p.nm_pasien), "
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
-                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin, rp.status_lanjut FROM piutang_pasien pp "
+                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin, rp.status_lanjut, if(pp.penjamin='-','',pp.penjamin) cekPen, "
+                        + "if(pp.ket_penjamin='','',concat(' (',pp.ket_penjamin,')\n')) cekKetPen FROM piutang_pasien pp "
                         + "INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat "
                         + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
                         + "" + penjabOK + " pp.penjamin like ? and pp.no_rawat like ? and pp.tgl_piutang between ? and ? or "
@@ -1859,7 +1869,8 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else {
                 ps = koneksi.prepareStatement("select pp.no_rawat, date_format(pp.tgl_piutang,'%d/%m/%Y') tglpiutang, concat(pp.no_rkm_medis,' - ',p.nm_pasien), "
                         + "pp.status, pp.totalpiutang, pp.uangmuka, pp.sisapiutang, date_format(pp.tgltempo,'%d/%m/%Y') tgljatuhtempo, pj.png_jawab, "
-                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin, rp.status_lanjut FROM piutang_pasien pp "
+                        + "pp.tgl_piutang, pp.tgltempo, pp.penjamin, pp.ket_penjamin, rp.status_lanjut, if(pp.penjamin='-','',pp.penjamin) cekPen, "
+                        + "if(pp.ket_penjamin='','',concat(' (',pp.ket_penjamin,')\n')) cekKetPen FROM piutang_pasien pp "
                         + "INNER JOIN pasien p on pp.no_rkm_medis = p.no_rkm_medis INNER JOIN reg_periksa rp on pp.no_rawat = rp.no_rawat "
                         + "INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj where "
                         + "pp.status ='" + cmbPiutang.getSelectedItem().toString() + "' and " + penjabOK + " pp.penjamin like ? and "
@@ -1901,7 +1912,9 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         rs.getString(11),
                         rs.getString(12),
                         rs.getString(13),
-                        rs.getString(14)
+                        rs.getString(14),
+                        rs.getString(15),
+                        rs.getString(16)
                     });
         
                     if (belumdibayar == 0) {
