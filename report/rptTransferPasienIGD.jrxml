@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
-	<property name="ireport.zoom" value="2.000000000000005"/>
-	<property name="ireport.x" value="278"/>
-	<property name="ireport.y" value="0"/>
+	<property name="ireport.zoom" value="1.6528925619834751"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="239"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -84,8 +84,15 @@
 	<parameter name="tgllainalat" class="java.lang.String"/>
 	<parameter name="tgltransferserah" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT * FROM pemberian_obat WHERE no_rawat ='2023/09/01/000001' 
-and status='Ralan' ORDER BY waktu_simpan desc]]>
+		<![CDATA[SELECT *, if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')) jam1,
+if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')) jam2,
+if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')) jam3,
+if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')) jam4,
+if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')) jam5,
+if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')) jam6,
+if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')) jam7,
+if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i')) jam8 FROM pemberian_obat WHERE no_rawat ='2021/10/03/000003' 
+and status='Ranap' ORDER BY waktu_simpan desc]]>
 	</queryString>
 	<field name="no_rawat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
@@ -111,6 +118,110 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 	<field name="waktu_simpan" class="java.sql.Timestamp">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="kode_brng" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_pemberian" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_unit" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jlh_obat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jenis_obat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam7" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_jam8" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian2" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian3" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian4" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian5" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian6" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian7" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jadwal_pemberian8" class="java.sql.Time">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket3" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket4" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket5" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket7" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ket8" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="cek_dobel" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_petugas1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_petugas2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="sift" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="jam1" class="java.lang.String"/>
+	<field name="jam2" class="java.lang.String"/>
+	<field name="jam3" class="java.lang.String"/>
+	<field name="jam4" class="java.lang.String"/>
+	<field name="jam5" class="java.lang.String"/>
+	<field name="jam6" class="java.lang.String"/>
+	<field name="jam7" class="java.lang.String"/>
+	<field name="jam8" class="java.lang.String"/>
 	<title>
 		<band height="480">
 			<staticText>
@@ -1106,7 +1217,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="23" y="468" width="175" height="11">
+				<reportElement x="23" y="468" width="221" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -1146,7 +1257,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</rectangle>
 			<staticText>
-				<reportElement x="199" y="468" width="52" height="11">
+				<reportElement x="244" y="468" width="52" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -1155,7 +1266,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Dosis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="253" y="468" width="127" height="11">
+				<reportElement x="295" y="468" width="85" height="11">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
@@ -1182,13 +1293,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<text><![CDATA[Jlh. (Sisa Obat)]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="198" y="467" width="1" height="13"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="244" y="467" width="1" height="13"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="251" y="467" width="1" height="13"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="296" y="467" width="1" height="13"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1228,7 +1339,7 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 	<detail>
 		<band height="13">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="26" y="0" width="169" height="12"/>
+				<reportElement x="26" y="0" width="216" height="12"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -1266,14 +1377,14 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="201" y="0" width="48" height="12"/>
+				<reportElement x="248" y="0" width="46" height="12"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{dosis}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="255" y="0" width="123" height="12"/>
+				<reportElement x="300" y="0" width="79" height="12"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -1287,13 +1398,13 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{jlh_sisa_obat}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="198" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="244" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="251" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="296" y="0" width="1" height="12" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -1310,12 +1421,12 @@ and status='Ralan' ORDER BY waktu_simpan desc]]>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
-			<textField isStretchWithOverflow="true" pattern="HH:mm:ss">
-				<reportElement x="383" y="0" width="67" height="12"/>
+			<textField isStretchWithOverflow="true" pattern="">
+				<reportElement x="386" y="0" width="60" height="12"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{jadwal_pemberian}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{jam1}+""+$F{jam2}+""+$F{jam3}+""+$F{jam4}+""+$F{jam5}+""+$F{jam6}+""+$F{jam7}+""+$F{jam8}]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
