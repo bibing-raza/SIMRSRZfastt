@@ -10632,10 +10632,17 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                                 "SELECT date(now())", param);
                     } else {
                         Valid.MyReport("rptTransferPasienIGD.jasper", "report", "::[ Laporan Data Transfer & Serah Terima Pasien Rawat Jalan/IGD ]::",
-                                "SELECT * FROM pemberian_obat WHERE no_rawat ='" + rsLaprm.getString("no_rawat") + "' "
-                                + "and status='Ralan' and nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli "
-                                        + "WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' "
-                                + "ORDER BY waktu_simpan desc", param);
+                                "SELECT *, if(jadwal_pemberian='00:00:00','',concat(time_format(jadwal_pemberian,'%H:%i'),', ')) jam1, "
+                                + "if(jadwal_pemberian2='00:00:00','',concat(time_format(jadwal_pemberian2,'%H:%i'),', ')) jam2, "
+                                + "if(jadwal_pemberian3='00:00:00','',concat(time_format(jadwal_pemberian3,'%H:%i'),', ')) jam3, "
+                                + "if(jadwal_pemberian4='00:00:00','',concat(time_format(jadwal_pemberian4,'%H:%i'),', ')) jam4, "
+                                + "if(jadwal_pemberian5='00:00:00','',concat(time_format(jadwal_pemberian5,'%H:%i'),', ')) jam5, "
+                                + "if(jadwal_pemberian6='00:00:00','',concat(time_format(jadwal_pemberian6,'%H:%i'),', ')) jam6, "
+                                + "if(jadwal_pemberian7='00:00:00','',concat(time_format(jadwal_pemberian7,'%H:%i'),', ')) jam7, "
+                                + "if(jadwal_pemberian8='00:00:00','',time_format(jadwal_pemberian8,'%H:%i')) jam8 FROM pemberian_obat WHERE "
+                                + "no_rawat ='" + rsLaprm.getString("no_rawat") + "' and status='Ralan' and "
+                                + "nm_unit='" + Sequel.cariIsi("SELECT p.nm_poli FROM reg_periksa r inner join poliklinik p on p.kd_poli=r.kd_poli "
+                                        + "WHERE r.no_rawat='" + rsLaprm.getString("no_rawat") + "'") + "' ORDER BY waktu_simpan desc", param);
                     }
                 }
             } catch (Exception e) {
