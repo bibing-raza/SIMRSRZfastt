@@ -1756,7 +1756,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-05-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-07-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -5109,6 +5109,12 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         TRingkasanRiwayat.setText(rs1.getString("riw_penyakit_sekarang"));
                     } else {
                         TRingkasanRiwayat.setText(TRingkasanRiwayat.getText() + "\n\n" + rs1.getString("riw_penyakit_sekarang"));
+                    }
+                    
+                    if (TPemeriksaanPenunjang.getText().equals("")) {
+                        TPemeriksaanPenunjang.setText(rs1.getString("hasil_pemeriksaan"));
+                    } else {
+                        TPemeriksaanPenunjang.setText(TPemeriksaanPenunjang.getText() + "\n\n" + rs1.getString("hasil_pemeriksaan"));
                     }
                 }
             } catch (Exception e) {

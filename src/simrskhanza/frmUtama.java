@@ -399,7 +399,6 @@ import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMAsuhanGiziRanap;
-import rekammedis.RMGiziBuruk;
 import rekammedis.RMMonitoringEWSDewasa;
 import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPemantauanHarian24Jam;
@@ -889,7 +888,6 @@ public class frmUtama extends javax.swing.JFrame {
         btnPermintaanRadiologi = new widget.ButtonBig();
         btnJumlahPorsiDiet = new widget.ButtonBig();
         btnJumlahMacamDiet = new widget.ButtonBig();
-        btnDataGiziBuruk = new widget.ButtonBig();
         btnMasterFaskes = new widget.ButtonBig();
         btnCekSisruteFaskes = new widget.ButtonBig();
         btnCekSisruteAlasanRujuk = new widget.ButtonBig();
@@ -5096,19 +5094,6 @@ public class frmUtama extends javax.swing.JFrame {
             }
         });
         Panelmenu.add(btnJumlahMacamDiet);
-
-        btnDataGiziBuruk.setForeground(new java.awt.Color(0, 0, 0));
-        btnDataGiziBuruk.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
-        btnDataGiziBuruk.setText("Rekap Data Gizi Buruk");
-        btnDataGiziBuruk.setIconTextGap(0);
-        btnDataGiziBuruk.setName("btnDataGiziBuruk"); // NOI18N
-        btnDataGiziBuruk.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnDataGiziBuruk.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnDataGiziBurukActionPerformed(evt);
-            }
-        });
-        Panelmenu.add(btnDataGiziBuruk);
 
         btnMasterFaskes.setForeground(new java.awt.Color(0, 0, 0));
         btnMasterFaskes.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1360815935_contacts.png"))); // NOI18N
@@ -11562,22 +11547,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnJumlahMacamDietActionPerformed
 
-    private void btnDataGiziBurukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDataGiziBurukActionPerformed
-        isTutup();
-        DlgHome.dispose();
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        RMGiziBuruk buruk = new RMGiziBuruk(null, false);
-        buruk.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
-        buruk.setLocationRelativeTo(PanelUtama);
-        buruk.isCek();
-        buruk.emptTeks();
-        buruk.TCari.requestFocus();
-        buruk.ChkInput.setSelected(false);
-        buruk.isForm();
-        buruk.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnDataGiziBurukActionPerformed
-
     private void btnMasterFaskesActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterFaskesActionPerformed
         isTutup();
         DlgHome.dispose();
@@ -13427,7 +13396,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnDaruratStok;
     private widget.ButtonBig btnDashboardeResepRalan;
     private widget.ButtonBig btnDashboardeResepRanap;
-    private widget.ButtonBig btnDataGiziBuruk;
     private widget.ButtonBig btnDataHAIs;
     private widget.ButtonBig btnDataJabatan;
     private widget.ButtonBig btnDataNomorSuratKontrolBPJS;
@@ -14895,11 +14863,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getjumlah_porsi_diet() == true) {
                 Panelmenu.add(btnJumlahPorsiDiet);
-                jmlmenu++;
-            }
-
-            if (akses.getgizi_buruk() == true) {
-                Panelmenu.add(btnDataGiziBuruk);
                 jmlmenu++;
             }
 
@@ -16565,11 +16528,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpermintaan_radiologi() == true) {
             Panelmenu.add(btnPermintaanRadiologi);
-            jmlmenu++;
-        }
-
-        if (akses.getgizi_buruk() == true) {
-            Panelmenu.add(btnDataGiziBuruk);
             jmlmenu++;
         }
 
@@ -18756,13 +18714,6 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getjumlah_macam_diet() == true) {
             if (btnJumlahMacamDiet.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnJumlahMacamDiet);
-                jmlmenu++;
-            }
-        }
-
-        if (akses.getgizi_buruk() == true) {
-            if (btnDataGiziBuruk.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnDataGiziBuruk);
                 jmlmenu++;
             }
         }
