@@ -2535,7 +2535,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
     private void hapus() {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
-            if (Sequel.queryu2tf("delete from skrining_gizi_ulang where no_rawat=?", 1, new String[]{
+            if (Sequel.queryu2tf("delete from skrining_gizi_ulang where ruang_rawat='" + tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 3).toString() + "' and no_rawat=?", 1, new String[]{
                 tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 0).toString()
             }) == true) {
                 tampil();
@@ -2548,13 +2548,14 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
 
     private void ganti() {
         cekData();
-        if (Sequel.mengedittf("skrining_gizi_ulang", "no_rawat=?", "ruang_rawat=?, "
+        if (Sequel.mengedittf("skrining_gizi_ulang", "no_rawat=? and ruang_rawat=?", "ruang_rawat=?, "
                 + "tgl_skrining=?, jam_skrining=?, jenis_skrining=?, gizi_dewasa1=?, gizi_dewasa1ya=?, gizi_dewasa2=?, "
-                + "gizi_anak1=?, gizi_anak2=?, gizi_anak3=?, gizi_anak_penyakit=?, gizi_anak_penyakit_lain=?, nip_petugas=?, total_skor=?, kesimpulan=?", 16, new String[]{
+                + "gizi_anak1=?, gizi_anak2=?, gizi_anak3=?, gizi_anak_penyakit=?, gizi_anak_penyakit_lain=?, nip_petugas=?, total_skor=?, kesimpulan=?", 17, new String[]{
                     TrgRawat.getText(), Valid.SetTgl(TtglSkrining.getSelectedItem() + ""),
                     cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), jnsSkrining, cmbDewasaGZ1.getSelectedItem().toString(),
                     cmbDewasaYaGZ1.getSelectedItem().toString(), cmbDewasaGZ2.getSelectedItem().toString(), gz_anak1, gz_anak2, gz_anak3, gz_anak4,
-                    lainGZanak.getText(), nip, totSkor, kesimpulan, tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 0).toString()
+                    lainGZanak.getText(), nip, totSkor, kesimpulan, tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 0).toString(),
+                    tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 3).toString()
                 }) == true) {
 
             TCari.setText(TNoRW.getText());
