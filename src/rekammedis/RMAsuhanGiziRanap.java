@@ -5248,8 +5248,10 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnCetakActionPerformed
 
     private void MnCetakLapRekapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakLapRekapActionPerformed
-        if (Sequel.cariInteger("SELECT COUNT(no_rawat) FROM status_gizi_inap WHERE tgl_input BETWEEN "
-                + " '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "'") == 0) {
+        tampilSGDewasa();
+        if (Sequel.cariInteger("select count(-1) from status_gizi_inap sg inner join reg_periksa r on r.no_rawat=sg.no_rawat "
+                + " where sg.tgl_input BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                + " and r.status_lanjut='ranap'") == 0) {
             JOptionPane.showMessageDialog(null, "Data status gizi pasien dewasa utk. periode tgl. " + DTPCari5.getSelectedItem() + " s.d " + DTPCari6.getSelectedItem() + " tidak ditemukan,...!!!");
             DTPCari5.requestFocus();
         } else {
@@ -5272,7 +5274,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 + " COUNT(CASE WHEN sg.status_gizi = 'OBESITAS' THEN 1 END) as obesitas, "
                 + " COUNT(sg.no_rawat) total from status_gizi_inap sg "
                 + " inner join reg_periksa r on r.no_rawat=sg.no_rawat "
-                + " where r.tgl_registrasi BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
+                + " where sg.tgl_input BETWEEN '" + Valid.SetTgl(DTPCari5.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari6.getSelectedItem() + "") + "' "
                 + " and r.status_lanjut='ranap' group by sg.ruang_rawat order by sg.ruang_rawat desc", param);
             this.setCursor(Cursor.getDefaultCursor());
 
@@ -5287,6 +5289,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         WindowLapStatusGZ.setLocationRelativeTo(internalFrame1);
         WindowLapStatusGZ.setVisible(true);
         cmbGedung.requestFocus();
+        tampilSGDewasa();
     }//GEN-LAST:event_MnCetakLapStatusGZActionPerformed
 
     private void TCari3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari3KeyPressed
@@ -6105,12 +6108,12 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 while (rs.next()) {
                     cekUlangStatusGiziDewasa(Sequel.cariIsi("select klasifikasi_imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
                             Sequel.cariIsi("select imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
-                            Sequel.cariIsi("select persentase_cdc from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"));
+                            Sequel.cariIsi("select if(persentase_cdc='','0',persentase_cdc) from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"));
 
                     if (rs.getString("status_gizi").equals("-")) {
                         Sequel.mengedit("asuhan_gizi_ranap", "no_rawat='" + rs.getString("no_rawat") + "' and ruang_rawat='" + rs.getString("ruang_rawat") + "'", 
                                 "status_gizi='" + sttsgizi + "'");
-                        System.out.println("Proses update status gizi pada data asuhan berhasil tersimpan..!!");
+                        System.out.println("Update status gizi no. rawat " + rs.getString("no_rawat") + " pada data asuhan berhasil disimpan..!!");
                     }
                     
                     if (Integer.parseInt(rs.getString("umurTahun")) <= 5) {
@@ -8129,7 +8132,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 while (rs8.next()) {
                     verifikasiStatusGizi(Sequel.cariIsi("select klasifikasi_imt from asuhan_gizi_ranap where no_rawat='" + rs8.getString(1) + "'"),
                             Sequel.cariIsi("select imt from asuhan_gizi_ranap where no_rawat='" + rs8.getString(1) + "'"),
-                            Sequel.cariIsi("select persentase_cdc from asuhan_gizi_ranap where no_rawat='" + rs8.getString(1) + "'"));
+                            Sequel.cariIsi("select if(persentase_cdc='','0',persentase_cdc) from asuhan_gizi_ranap where no_rawat='" + rs8.getString(1) + "'"));
 
                     if (rs8.getString(5).equals("-")) {
                         Sequel.mengedit("status_gizi_inap", "no_rawat='" + rs8.getString(1) + "' and ruang_rawat='" + rs8.getString(6) + "'", 
