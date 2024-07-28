@@ -390,7 +390,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbCPPT.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
-            "Dilakukan Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Asuhan", "Tgl. Eksekusi", "Status Data"}) {
+            "Dilakukan Oleh", "No. Rawat", "No. RM", "Nama Pasien", "Tgl. Asuhan", 
+            "Tgl. Eksekusi", "Status Data", "Ruang Rawat"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -401,7 +402,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         tbRiwayat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbRiwayat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 7; i++) {
+        for (int i = 0; i < 8; i++) {
             TableColumn column = tbRiwayat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -417,6 +418,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 column.setPreferredWidth(130);
             } else if (i == 6) {
                 column.setPreferredWidth(80);
+            } else if (i == 7) {
+                column.setPreferredWidth(200);
             } 
         }
         tbRiwayat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1257,7 +1260,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1271,7 +1274,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1482,7 +1485,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 58, 118, 23);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1498,7 +1501,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel23);
         jLabel23.setBounds(207, 58, 30, 23);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1564,7 +1567,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel27);
         jLabel27.setBounds(0, 58, 118, 23);
 
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -1580,7 +1583,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel28);
         jLabel28.setBounds(207, 58, 30, 23);
 
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1727,7 +1730,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -3390,7 +3393,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3405,7 +3408,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3523,7 +3526,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3537,7 +3540,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3655,7 +3658,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass11.add(jLabel24);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3669,7 +3672,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -3896,7 +3899,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel109.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass13.add(jLabel109);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -3910,7 +3913,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel110.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass13.add(jLabel110);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-07-2024" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-07-2024" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);
@@ -4051,8 +4054,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 //simpan diagnosa gizi
                 for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                     if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?", 2, new String[]{
-                            TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString()});
+                        Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?,?", 3, new String[]{
+                            TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), TrgRawat.getText()});
                     }
                 }
                 
@@ -4140,14 +4143,34 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }
 
                 if (akses.getadmin() == true) {
-                    gantiSttsGiziDewasa();
-                    gantiGiziBuruk();
+                    if (cmbAsuhan.getSelectedIndex() == 1) {
+                        gantiSttsGiziDewasa(nmgedung, kodekamar, Valid.SetTgl(tglAsuhan.getSelectedItem() + ""),
+                                tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString(), cmbAsuhan.getSelectedItem().toString(),
+                                cmbSttsGizi.getSelectedItem().toString());
+                    } else if (cmbAsuhan.getSelectedIndex() == 2) {
+                        gantiGiziBuruk(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString(), cmbAsuhan.getSelectedItem().toString(),
+                                cmbBbu.getSelectedItem().toString(), cmbPbu.getSelectedItem().toString(), cmbBbpb.getSelectedItem().toString(),
+                                Tbb.getText().toString(), TbbAkhir.getText().toString(), Ttb.getText().toString(), TketBbu.getText().toString(),
+                                TketBbpb.getText().toString(), TketPbu.getText().toString(), ThitungZat.getText().toString(),
+                                TdiagnosaDokter.getText().toString(), Tpemberian.getText().toString(), Tfaskes.getText().toString(),
+                                Valid.SetTgl(tglAsuhan.getSelectedItem() + ""));
+                    }
                     gantiDisimpan();
                     ganti();
                 } else {
                     if (Tnip.getText().equals(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 62).toString())) {
-                        gantiSttsGiziDewasa();
-                        gantiGiziBuruk();
+                        if (cmbAsuhan.getSelectedIndex() == 1) {
+                            gantiSttsGiziDewasa(nmgedung, kodekamar, Valid.SetTgl(tglAsuhan.getSelectedItem() + ""),
+                                    tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString(), cmbAsuhan.getSelectedItem().toString(),
+                                    cmbSttsGizi.getSelectedItem().toString());
+                        } else if (cmbAsuhan.getSelectedIndex() == 2) {
+                            gantiGiziBuruk(tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString(), cmbAsuhan.getSelectedItem().toString(),
+                                    cmbBbu.getSelectedItem().toString(), cmbPbu.getSelectedItem().toString(), cmbBbpb.getSelectedItem().toString(),
+                                    Tbb.getText().toString(), TbbAkhir.getText().toString(), Ttb.getText().toString(), TketBbu.getText().toString(),
+                                    TketBbpb.getText().toString(), TketPbu.getText().toString(), ThitungZat.getText().toString(),
+                                    TdiagnosaDokter.getText().toString(), Tpemberian.getText().toString(), Tfaskes.getText().toString(),
+                                    Valid.SetTgl(tglAsuhan.getSelectedItem() + ""));
+                        }
                         gantiDisimpan();
                         ganti();
                     } else {
@@ -4630,8 +4653,9 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             if (x == JOptionPane.YES_OPTION) {
                 if (tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 6).toString().equals("DIHAPUS")) {
                     if (Sequel.cariInteger("select count(-1) from asuhan_gizi_ranap where "
-                            + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "'") > 0) {
-                        JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore data gagal, krn. sudah ada datanya dg. no. rawat yg. sama..!!");
+                            + "no_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString() + "' and "
+                            + "ruang_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString() + "'") > 0) {
+                        JOptionPane.showMessageDialog(rootPane, "Proses kembalikan/restore gagal, krn. sudah ada datanya dg. no. rawat & ruang rawat yg. sama..!!");
                     } else {
                         kembalikanData();
                         TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
@@ -5101,7 +5125,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                             tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 5).toString());
 
                     tampilRiwayat();
-                    tampilRiwayatDiagnosa();
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
@@ -6106,14 +6129,16 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 ps.setString(12, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    cekUlangStatusGiziDewasa(Sequel.cariIsi("select klasifikasi_imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
-                            Sequel.cariIsi("select imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
-                            Sequel.cariIsi("select if(persentase_cdc='','0',persentase_cdc) from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"));
+                    if (rs.getString("jenis_asuhan").equals("Dewasa")) {
+                        cekUlangStatusGiziDewasa(Sequel.cariIsi("select klasifikasi_imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
+                                Sequel.cariIsi("select imt from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"),
+                                Sequel.cariIsi("select if(persentase_cdc='','0',persentase_cdc) from asuhan_gizi_ranap where no_rawat='" + rs.getString("no_rawat") + "'"));
 
-                    if (rs.getString("status_gizi").equals("-")) {
-                        Sequel.mengedit("asuhan_gizi_ranap", "no_rawat='" + rs.getString("no_rawat") + "' and ruang_rawat='" + rs.getString("ruang_rawat") + "'", 
-                                "status_gizi='" + sttsgizi + "'");
-                        System.out.println("Update status gizi no. rawat " + rs.getString("no_rawat") + " pada data asuhan berhasil disimpan..!!");
+                        if (rs.getString("status_gizi").equals("-")) {
+                            Sequel.mengedit("asuhan_gizi_ranap", "no_rawat='" + rs.getString("no_rawat") + "' and ruang_rawat='" + rs.getString("ruang_rawat") + "'",
+                                    "status_gizi='" + sttsgizi + "'");
+                            System.out.println("Update status gizi no. rawat " + rs.getString("no_rawat") + " pada data asuhan berhasil disimpan..!!");
+                        }
                     }
                     
                     if (Integer.parseInt(rs.getString("umurTahun")) <= 5) {
@@ -6445,7 +6470,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             Tfaskes.setText(Sequel.cariIsi("select ifnull(perujuk,'') from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'"));
             dataCek();
             cekStatusGizi();
-            cekGiziBuruk();
+            cekGiziBuruk(TNoRw.getText());
         }
     }
 
@@ -6565,14 +6590,14 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }) == true) {
 
             //diagnosa dihapus dulu
-            Sequel.meghapus("detail_diagnosa_asuhan_gizi", "no_rawat",
+            Sequel.meghapus("detail_diagnosa_asuhan_gizi", "ruang_rawat='" + tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 9).toString() + "' and no_rawat",
                     tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString());
 
             //simpan diagnosa gizi
             for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                 if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?", 2, new String[]{
-                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString()});
+                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?,?", 3, new String[]{
+                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), TrgRawat.getText()});
                 }
             }
 
@@ -6753,8 +6778,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             if (Sequel.queryu2tf("delete from asuhan_gizi_ranap where ruang_rawat='" + tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 9).toString() + "' and no_rawat=?", 1, new String[]{
                 tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString()
             }) == true) {
-                Sequel.meghapus("detail_diagnosa_asuhan_gizi", "no_rawat",
-                        tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString());                
+                Sequel.meghapus2("detail_diagnosa_asuhan_gizi", "ruang_rawat='" + tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 9).toString() + "' and no_rawat",
+                        tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString());              
                 Sequel.meghapus2("status_gizi_inap", "ruang_rawat='" + nmgedung + "' and no_rawat",
                         tbAsuhan.getValueAt(tbAsuhan.getSelectedRow(), 0).toString());
                 Sequel.meghapus("gizi_buruk", "no_rawat", 
@@ -6882,9 +6907,10 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         try {
             ps5 = koneksi.prepareStatement("select k.* from detail_diagnosa_asuhan_gizi d "
                     + "inner join katalog_diagnosa_gizi k on k.kd_diagnosa_gizi=d.kd_diagnosa_gizi where "
-                    + "d.no_rawat like ? order by k.kd_diagnosa_gizi");
+                    + "d.no_rawat like ? and d.ruang_rawat like ? order by k.kd_diagnosa_gizi");
             try {
                 ps5.setString(1, "%" + TNoRw.getText().trim() + "%");
+                ps5.setString(2, "%" + TrgRawat.getText() + "%");
                 rs5 = ps5.executeQuery();
                 while (rs5.next()) {
                     //ditaruh di grid tabel diagnosa
@@ -7133,8 +7159,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             //simpan diagnosa gizi
             for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                 if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi_histori", "?,?,?,?,?", 5, new String[]{
-                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), "hapus", user, tglHistori});
+                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi_histori", "?,?,?,?,?,?", 6, new String[]{
+                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), "hapus", user, tglHistori, TrgRawat.getText()});
                 }
             }
 
@@ -7162,8 +7188,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             //simpan diagnosa gizi
             for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                 if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi_histori", "?,?,?,?,?", 5, new String[]{
-                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), "ganti", user, tglHistori});
+                    Sequel.menyimpan2("detail_diagnosa_asuhan_gizi_histori", "?,?,?,?,?,?", 6, new String[]{
+                        TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), "ganti", user, tglHistori, TrgRawat.getText()});
                 }
             }
 
@@ -7176,7 +7202,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode1);
         try {
             psrestor = koneksi.prepareStatement("SELECT IF(pg.nama='-','Admin Utama',pg.nama) pelaku, a.no_rawat, p.no_rkm_medis, p.nm_pasien, "
-                    + "a.tgl_asuhan, a.waktu_eksekusi, upper(concat('DI',a.status_data)) sttsdata FROM asuhan_gizi_ranap_histori a "
+                    + "a.tgl_asuhan, a.waktu_eksekusi, upper(concat('DI',a.status_data)) sttsdata, a.ruang_rawat FROM asuhan_gizi_ranap_histori a "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = a.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = a.nik_eksekutor WHERE "
                     + "a.tgl_asuhan between ? and ? and pg.nama like ? or "
@@ -7209,7 +7235,8 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                         rsrestor.getString("nm_pasien"),
                         rsrestor.getString("tgl_asuhan"),
                         rsrestor.getString("waktu_eksekusi"),
-                        rsrestor.getString("sttsdata")
+                        rsrestor.getString("sttsdata"),
+                        rsrestor.getString("ruang_rawat")
                     });
                 }
             } catch (Exception e) {
@@ -7229,9 +7256,6 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     }
     
     private void kembalikanData() {
-        sttsgizi = "";
-        nmgedung = "";
-        kodekamar = "";
         try {
             ps2 = koneksi.prepareStatement("select * from asuhan_gizi_ranap_histori where "
                     + "waktu_eksekusi='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 5).toString() + "'");
@@ -7324,10 +7348,11 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                                     rs6 = ps6.executeQuery();
                                     while (rs6.next()) {
                                         try {
-                                            Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?", 2, new String[]{
+                                            Sequel.menyimpan2("detail_diagnosa_asuhan_gizi", "?,?,?", 3, new String[]{
                                                 rs6.getString("no_rawat"),
-                                                rs6.getString("kd_diagnosa_gizi"
-                                                )});
+                                                rs6.getString("kd_diagnosa_gizi"),
+                                                rs6.getString("ruang_rawat")
+                                            });
                                         } catch (Exception e) {
                                             System.out.println("Simpan : " + e);
                                         }
@@ -7345,29 +7370,22 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                             } catch (SQLException e) {
                                 System.out.println("Notifikasi : " + e);
                             }
-                            //kembalikan diagnosa selesai
                             
-                            //kembalikan status gizi
-                            if (rs2.getString("status_gizi").equals("-")) {
-                                sttsgizi = "-";
-                            } else if (rs2.getString("status_gizi").equals("Buruk")) {
-                                sttsgizi = "BURUK";
-                            } else if (rs2.getString("status_gizi").equals("Kurang")) {
-                                sttsgizi = "KURANG";
-                            } else if (rs2.getString("status_gizi").equals("Normal") || rs2.getString("status_gizi").equals("Baik")) {
-                                sttsgizi = "NORMAL";
-                            } else if (rs2.getString("status_gizi").equals("Lebih")) {
-                                sttsgizi = "LEBIH";
-                            } else if (rs2.getString("status_gizi").equals("Obesitas")) {
-                                sttsgizi = "OBESITAS";
+                            if (rs2.getString("jenis_asuhan").equals("Dewasa")) {
+                                //kembalikan status gizi
+                                gantiSttsGiziDewasa(Sequel.cariIsi("SELECT nm_gedung from bangsal WHERE nm_bangsal='" + rs2.getString("ruang_rawat") + "' limit 1"),
+                                        Sequel.cariIsi("SELECT k.kd_kamar from bangsal b inner join kamar k on k.kd_bangsal=b.kd_bangsal WHERE "
+                                                + "b.nm_bangsal='" + rs2.getString("ruang_rawat") + "' limit 1"), rs2.getString("tgl_asuhan"), rs2.getString("no_rawat"),
+                                        rs2.getString("jenis_asuhan"), rs2.getString("status_gizi"));
+                            } else if (rs2.getString("jenis_asuhan").equals("Anak")) {
+                                //kembalikan gizi buruk
+                                cekGiziBuruk(rs2.getString("no_rawat"));
+                                gantiGiziBuruk(rs2.getString("no_rawat"), rs2.getString("jenis_asuhan"), rs2.getString("stts_gizi_bbu"), rs2.getString("stts_gizi_pbu"),
+                                        rs2.getString("stts_gizi_bbpb"), rs2.getString("bb"), TbbAkhir.getText(), rs2.getString("tb"), rs2.getString("ket_indek_bbu"),
+                                        rs2.getString("ket_indek_bbpb"), rs2.getString("ket_indek_pbu"), ThitungZat.getText(), TdiagnosaDokter.getText(), Tpemberian.getText(),
+                                        Sequel.cariIsi("select ifnull(perujuk,'') from rujuk_masuk where no_rawat='" + rs2.getString("no_rawat") + "'"),
+                                        rs2.getString("tgl_asuhan"));
                             }
-                            kodekamar = Sequel.cariIsi("SELECT k.kd_kamar from bangsal b inner join kamar k on k.kd_bangsal=b.kd_bangsal WHERE "
-                                    + "b.nm_bangsal='" + rs2.getString("ruang_rawat") + "' limit 1");
-                            nmgedung = Sequel.cariIsi("SELECT nm_gedung from bangsal WHERE nm_bangsal='" + rs2.getString("ruang_rawat") + "' limit 1");
-
-                            Sequel.menyimpanIgnore("status_gizi_inap", "'" + rs2.getString("no_rawat") + "','" + rs2.getString("tgl_asuhan") + "',"
-                                    + "'" + sttsgizi + "','" + nmgedung + "','" + kodekamar + "' ", "Data status gizi");
-                            //kembalikan status gizi selesai
 
                             System.out.println("Proses mengembalikan data berhasil..!!");
                         }
@@ -7391,12 +7409,15 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     }
     
     private void kembalikanDataDiganti() {
-        if (Sequel.queryu2tf("delete from asuhan_gizi_ranap where no_rawat=?", 1, new String[]{
+        if (Sequel.queryu2tf("delete from asuhan_gizi_ranap where ruang_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString() + "' and no_rawat=?", 1, new String[]{
             tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString()
         }) == true) {
-            Sequel.meghapus("detail_diagnosa_asuhan_gizi", "no_rawat",
+            nmgedung = "";
+            nmgedung = Sequel.cariIsi("SELECT nm_gedung from bangsal WHERE nm_bangsal='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString() + "' limit 1");
+            
+            Sequel.meghapus2("detail_diagnosa_asuhan_gizi", "ruang_rawat='" + tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 7).toString() + "' and no_rawat",
                     tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-            Sequel.meghapus("status_gizi_inap", "no_rawat",
+            Sequel.meghapus("status_gizi_inap", "ruang_rawat='" + nmgedung + "' and no_rawat",
                     tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
             kembalikanData();
         } else {
@@ -8043,56 +8064,58 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         }
     }
     
-    private void gantiSttsGiziDewasa() {
-        if (cmbAsuhan.getSelectedIndex() == 1) {
+    private void gantiSttsGiziDewasa(String gedung, String kamar, String tanggal, String norw, String jnsAsuhan, String sttsgz) {
+        if (jnsAsuhan.equals("Dewasa")) {
             sttsgizi = "";
-            if (cmbSttsGizi.getSelectedIndex() == 0) {
+            if (sttsgz.equals("-")) {
                 sttsgizi = "-";
-            } else if (cmbSttsGizi.getSelectedIndex() == 1) {
+            } else if (sttsgz.equals("Buruk")) {
                 sttsgizi = "BURUK";
-            } else if (cmbSttsGizi.getSelectedIndex() == 2) {
+            } else if (sttsgz.equals("Kurang")) {
                 sttsgizi = "KURANG";
-            } else if (cmbSttsGizi.getSelectedIndex() == 3 || cmbSttsGizi.getSelectedIndex() == 6) {
+            } else if (sttsgz.equals("Normal") || sttsgz.equals("Baik")) {
                 sttsgizi = "NORMAL";
-            } else if (cmbSttsGizi.getSelectedIndex() == 4) {
+            } else if (sttsgz.equals("Lebih")) {
                 sttsgizi = "LEBIH";
-            } else if (cmbSttsGizi.getSelectedIndex() == 5) {
+            } else if (sttsgz.equals("Obesitas")) {
                 sttsgizi = "OBESITAS";
             }
 
-            if (Sequel.cariInteger("select count(-1) from status_gizi_inap where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                Sequel.mengedit("status_gizi_inap", "no_rawat='" + TNoRw.getText() + "' and ruang_rawat='" + nmgedung + "'",
-                        "status_gizi='" + sttsgizi + "', ruang_rawat='" + nmgedung + "',kd_kamar='" + kodekamar + "' ");
+            if (Sequel.cariInteger("select count(-1) from status_gizi_inap where no_rawat='" + norw + "'") > 0) {
+                Sequel.mengedit("status_gizi_inap", "no_rawat='" + norw + "' and ruang_rawat='" + gedung + "'",
+                        "status_gizi='" + sttsgizi + "', ruang_rawat='" + gedung + "', kd_kamar='" + kamar + "' ");
             } else {
-                Sequel.menyimpanIgnore("status_gizi_inap", "'" + TNoRw.getText() + "','" + Valid.SetTgl(tglAsuhan.getSelectedItem() + "") + "',"
-                    + "'" + sttsgizi + "','" + nmgedung + "','" + kodekamar + "' ", "Data status gizi");
+                Sequel.menyimpanIgnore("status_gizi_inap", "'" + norw + "','" + tanggal + "',"
+                    + "'" + sttsgizi + "','" + gedung + "','" + kamar + "' ", "Data status gizi");
             }
         }
     }
     
-    private void gantiGiziBuruk() {
-        if (cmbAsuhan.getSelectedIndex() == 2) {
-            if (Sequel.cariInteger("select count(-1) from gizi_buruk where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                if (cmbBbu.getSelectedIndex() == 1 || cmbBbu.getSelectedIndex() == 2
-                        || cmbPbu.getSelectedIndex() == 1 || cmbPbu.getSelectedIndex() == 2
-                        || cmbBbpb.getSelectedIndex() == 1 || cmbBbpb.getSelectedIndex() == 2) {
-                    Sequel.mengedit("gizi_buruk", "no_rawat='" + TNoRw.getText() + "'", "bb_awal='" + Tbb.getText() + "', "
-                            + "bb_akhir='" + TbbAkhir.getText() + "', pb_tb='" + Ttb.getText() + "', bb_u='" + TketBbu.getText() + "', "
-                            + "bb_pb='" + TketBbpb.getText() + "', pb_u='" + TketPbu.getText() + "', penghitungan_zat_gizi='" + ThitungZat.getText() + "', "
-                            + "diagnosa_dr_gizi='" + TdiagnosaDokter.getText() + "', pemberian_nutrisi='" + Tpemberian.getText() + "', "
-                            + "asal_rujukan='" + Tfaskes.getText() + "'");
+    private void gantiGiziBuruk(String norw, String jnsAsuhan, String bbu, String pbu, String bbpb, String bbAwal, 
+            String bbAkhir, String tb, String nilaiBBU, String nilaiBBPB, String nilaiPBU, String zat, String diagnos,
+            String pemberian, String faskes, String tanggal) {
+        if (jnsAsuhan.equals("Anak")) {
+            if (Sequel.cariInteger("select count(-1) from gizi_buruk where no_rawat='" + norw + "'") > 0) {
+                if (bbu.equals("BB Sangat Kurang") || bbu.equals("BB Kurang")
+                        || pbu.equals("Sangat Pendek") || pbu.equals("Pendek")
+                        || bbpb.equals("Gizi Buruk") || bbpb.equals("Gizi Kurang")) {
+                    Sequel.mengedit("gizi_buruk", "no_rawat='" + norw + "'", "bb_awal='" + bbAwal + "', "
+                            + "bb_akhir='" + bbAkhir + "', pb_tb='" + tb + "', bb_u='" + nilaiBBU + "', "
+                            + "bb_pb='" + nilaiBBPB + "', pb_u='" + nilaiPBU + "', penghitungan_zat_gizi='" + zat + "', "
+                            + "diagnosa_dr_gizi='" + diagnos + "', pemberian_nutrisi='" + pemberian + "', "
+                            + "asal_rujukan='" + faskes + "'");
                 } else {
-                    Sequel.meghapus("gizi_buruk", "no_rawat", TNoRw.getText());
+                    Sequel.meghapus("gizi_buruk", "no_rawat", norw);
                 }
             } else {
-                if (cmbBbu.getSelectedIndex() == 1 || cmbBbu.getSelectedIndex() == 2
-                        || cmbPbu.getSelectedIndex() == 1 || cmbPbu.getSelectedIndex() == 2
-                        || cmbBbpb.getSelectedIndex() == 1 || cmbBbpb.getSelectedIndex() == 2) {
-                    Sequel.menyimpanIgnore("gizi_buruk", "'" + TNoRw.getText() + "','" + Tbb.getText() + "',"
-                            + "'" + TbbAkhir.getText() + "','" + Ttb.getText() + "','" + TketBbu.getText() + "','" + TketBbpb.getText() + "',"
-                            + "'" + TketPbu.getText() + "','" + ThitungZat.getText() + "','" + TdiagnosaDokter.getText() + "',"
-                            + "'" + Tpemberian.getText() + "','','','','','" + Tfaskes.getText() + "',"
-                            + "'" + Valid.SetTgl(tglAsuhan.getSelectedItem() + "") + "' ", "Data gizi buruk anak");
+                if (bbu.equals("BB Sangat Kurang") || bbu.equals("BB Kurang")
+                        || pbu.equals("Sangat Pendek") || pbu.equals("Pendek")
+                        || bbpb.equals("Gizi Buruk") || bbpb.equals("Gizi Kurang")) {
+                    Sequel.menyimpanIgnore("gizi_buruk", "'" + norw + "','" + bbAwal + "',"
+                            + "'" + bbAkhir + "','" + tb + "','" + nilaiBBU + "','" + nilaiBBPB + "',"
+                            + "'" + nilaiPBU + "','" + zat + "','" + diagnos + "',"
+                            + "'" + pemberian + "','','','','','" + faskes + "',"
+                            + "'" + tanggal + "' ", "Data gizi buruk anak");
                 }
             }
         }
@@ -8483,11 +8506,11 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         LCount4.setText("" + tabMode7.getRowCount());
     }
     
-    private void cekGiziBuruk() {
+    private void cekGiziBuruk(String norwt) {
         try {
             ps16 = koneksi.prepareStatement("select * from gizi_buruk where no_rawat like ?");
             try {
-                ps16.setString(1, "%" + TNoRw.getText().trim() + "%");
+                ps16.setString(1, "%" + norwt.trim() + "%");
                 rs16 = ps16.executeQuery();
                 while (rs16.next()) {
                     ThitungZat.setText(rs16.getString("penghitungan_zat_gizi"));

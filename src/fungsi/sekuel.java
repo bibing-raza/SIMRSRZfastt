@@ -625,7 +625,7 @@ public final class sekuel {
             try {
                 ps.setString(1, nilai_field);
                 ps.executeUpdate();
-                JOptionPane.showMessageDialog(null, "Proses hapus berhasil...!!!!");
+                System.out.println("Proses hapus data pada tabel " + table + " berhasil...!!!!");
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
                 JOptionPane.showMessageDialog(null, "Maaf, data gagal dihapus. Kemungkinan data tersebut masih dipakai di table lain...!!!!");
