@@ -12,7 +12,6 @@
 package simrskhanza;
 import bridging.BPJSDataSEP;
 import bridging.INACBGPerawatanCorona;
-import bridging.InhealthDataSJP;
 import bridging.SisruteRujukanKeluar;
 import laporan.DlgFrekuensiPenyakitRalan;
 import keuangan.DlgBilingRalan;
@@ -832,7 +831,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         MnCheckList7 = new javax.swing.JMenuItem();
         MnBridging = new javax.swing.JMenu();
         MnSEP = new javax.swing.JMenuItem();
-        MnSJP = new javax.swing.JMenuItem();
         MnSEPJamkesda = new javax.swing.JMenuItem();
         MnJAMPERSAL = new javax.swing.JMenuItem();
         MnRujukSisrute = new javax.swing.JMenuItem();
@@ -2127,21 +2125,6 @@ public final class DlgIGD extends javax.swing.JDialog {
         });
         MnBridging.add(MnSEP);
 
-        MnSJP.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnSJP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnSJP.setText("Bridging SJP Inhealth");
-        MnSJP.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnSJP.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnSJP.setIconTextGap(5);
-        MnSJP.setName("MnSJP"); // NOI18N
-        MnSJP.setPreferredSize(new java.awt.Dimension(170, 26));
-        MnSJP.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnSJPActionPerformed(evt);
-            }
-        });
-        MnBridging.add(MnSJP);
-
         MnSEPJamkesda.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnSEPJamkesda.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnSEPJamkesda.setText("Bridging SEP Jamkesda");
@@ -2507,7 +2490,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel41.setBounds(10, 20, 120, 23);
 
         TglMati.setEditable(false);
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -2733,7 +2716,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel28.setBounds(0, 20, 110, 23);
 
         TglSurat.setEditable(false);
-        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        TglSurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         TglSurat.setDisplayFormat("dd-MM-yyyy");
         TglSurat.setName("TglSurat"); // NOI18N
         TglSurat.setOpaque(false);
@@ -2862,7 +2845,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel45.setBounds(0, 20, 110, 23);
 
         TglSurat1.setEditable(false);
-        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        TglSurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         TglSurat1.setDisplayFormat("dd-MM-yyyy");
         TglSurat1.setName("TglSurat1"); // NOI18N
         TglSurat1.setOpaque(false);
@@ -3053,7 +3036,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel59.setBounds(0, 20, 70, 23);
 
         Ttgl_lahir.setEditable(false);
-        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        Ttgl_lahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         Ttgl_lahir.setDisplayFormat("dd-MM-yyyy");
         Ttgl_lahir.setName("Ttgl_lahir"); // NOI18N
         Ttgl_lahir.setOpaque(false);
@@ -3390,7 +3373,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass7.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3404,7 +3387,7 @@ public final class DlgIGD extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(24, 23));
         panelGlass7.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-04-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-06-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6164,30 +6147,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_cekTglMatiActionPerformed
 
-    private void MnSJPActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSJPActionPerformed
-        if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
-            TNoReg.requestFocus();
-        } else if (TPasien.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
-            tbregistrasiIGD.requestFocus();
-        } else if (!kdpnj.getText().equals("A01")) {
-            JOptionPane.showMessageDialog(null, "Pasien itu bukan pasien Inhealth...!!!");
-            tbregistrasiIGD.requestFocus();
-        } else if (kdpnj.getText().equals("A01")) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgIGD");
-            InhealthDataSJP dlgki = new InhealthDataSJP(null, false);
-            dlgki.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-            dlgki.setLocationRelativeTo(internalFrame1);
-            dlgki.isCek();
-            dlgki.setNoRm(TNoRw.getText(), tglDaftar, "3 RJTL RAWAT JALAN TINGKAT LANJUT", "IGDK", "IGD");
-            dlgki.tampil();
-            dlgki.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        }
-    }//GEN-LAST:event_MnSJPActionPerformed
-
     private void JnsnoIDItemStateChanged(java.awt.event.ItemEvent evt) {//GEN-FIRST:event_JnsnoIDItemStateChanged
         isPas();
         JnsnoID.requestFocus();
@@ -7125,7 +7084,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private javax.swing.JMenu MnRujukan;
     private javax.swing.JMenuItem MnSEP;
     private javax.swing.JMenuItem MnSEPJamkesda;
-    private javax.swing.JMenuItem MnSJP;
     private javax.swing.JMenuItem MnSuratAPS;
     private javax.swing.JMenuItem MnSuratIstirahatSakit;
     private javax.swing.JMenuItem MnTindakanRawatJalan;

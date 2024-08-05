@@ -68,12 +68,6 @@ import javax.swing.text.Document;
 import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import keuangan.DlgLhtPiutang;
-import keuangan.DlgRBObatPoli;
-import keuangan.DlgRBJmDokter;
-import keuangan.DlgRBJmParamedis;
-import keuangan.DlgRBTindakanPoli;
-import keuangan.DlgRHJmDokter;
-import keuangan.DlgRHJmParamedis;
 import laporan.DlgDataHAIs;
 import laporan.DlgHasilPenunjangMedis;
 import org.springframework.http.HttpEntity;
@@ -690,12 +684,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnCekRujukanJKN = new javax.swing.JMenuItem();
         MnRekap = new javax.swing.JMenu();
         MnDietMakanan = new javax.swing.JMenuItem();
-        MnRekapHarianDokter = new javax.swing.JMenuItem();
-        MnRekapHarianParamedis = new javax.swing.JMenuItem();
-        MnRekapBulananDokter = new javax.swing.JMenuItem();
-        MnRekapBulananParamedis = new javax.swing.JMenuItem();
-        MnRekapHarianPoli = new javax.swing.JMenuItem();
-        MnRekapHarianObat = new javax.swing.JMenuItem();
         MnRekapTindakanPerbup = new javax.swing.JMenuItem();
         MnStatus = new javax.swing.JMenu();
         ppBerkas = new javax.swing.JMenuItem();
@@ -1654,96 +1642,6 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnRekap.add(MnDietMakanan);
-
-        MnRekapHarianDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapHarianDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapHarianDokter.setText("Rekap Harian Dokter ");
-        MnRekapHarianDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapHarianDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapHarianDokter.setIconTextGap(5);
-        MnRekapHarianDokter.setName("MnRekapHarianDokter"); // NOI18N
-        MnRekapHarianDokter.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapHarianDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapHarianDokterActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapHarianDokter);
-
-        MnRekapHarianParamedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapHarianParamedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapHarianParamedis.setText("Rekap Harian Paramedis");
-        MnRekapHarianParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapHarianParamedis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapHarianParamedis.setIconTextGap(5);
-        MnRekapHarianParamedis.setName("MnRekapHarianParamedis"); // NOI18N
-        MnRekapHarianParamedis.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapHarianParamedis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapHarianParamedisActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapHarianParamedis);
-
-        MnRekapBulananDokter.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapBulananDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapBulananDokter.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapBulananDokter.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapBulananDokter.setIconTextGap(5);
-        MnRekapBulananDokter.setLabel("Rekap Bulanan Dokter ");
-        MnRekapBulananDokter.setName("MnRekapBulananDokter"); // NOI18N
-        MnRekapBulananDokter.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapBulananDokter.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapBulananDokterActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapBulananDokter);
-
-        MnRekapBulananParamedis.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapBulananParamedis.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapBulananParamedis.setText("Rekap Bulanan Paramedis");
-        MnRekapBulananParamedis.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapBulananParamedis.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapBulananParamedis.setIconTextGap(5);
-        MnRekapBulananParamedis.setName("MnRekapBulananParamedis"); // NOI18N
-        MnRekapBulananParamedis.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapBulananParamedis.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapBulananParamedisActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapBulananParamedis);
-
-        MnRekapHarianPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapHarianPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapHarianPoli.setText("Rekap Harian Poli");
-        MnRekapHarianPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapHarianPoli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapHarianPoli.setIconTextGap(5);
-        MnRekapHarianPoli.setName("MnRekapHarianPoli"); // NOI18N
-        MnRekapHarianPoli.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapHarianPoli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapHarianPoliActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapHarianPoli);
-
-        MnRekapHarianObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapHarianObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRekapHarianObat.setText("Rekap Harian Obat");
-        MnRekapHarianObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapHarianObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapHarianObat.setIconTextGap(5);
-        MnRekapHarianObat.setName("MnRekapHarianObat"); // NOI18N
-        MnRekapHarianObat.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnRekapHarianObat.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapHarianObatActionPerformed(evt);
-            }
-        });
-        MnRekap.add(MnRekapHarianObat);
 
         MnRekapTindakanPerbup.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRekapTindakanPerbup.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3333,7 +3231,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2024" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4204,7 +4102,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4441,7 +4339,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4460,7 +4358,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5045,87 +4943,6 @@ private void Kd2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Kd2Ke
     // TODO add your handling code here:
 }//GEN-LAST:event_Kd2KeyPressed
 
-private void MnRekapHarianDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHarianDokterActionPerformed
-    int cekForm = Sequel.cekForm("DlgRHJmDokter_Buka"), cekDokter;
-    cekDokter = Sequel.cariInteger("select count(-1) from dokter where kd_dokter = '" + akses.getkode() + "'");
-    if (cekForm == 1) {
-        if (akses.getadmin() == true || cekDokter == 1) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgRHJmDokter rhtindakandokter = new DlgRHJmDokter(null, false);
-            rhtindakandokter.isCek(akses.getkode());
-            rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            rhtindakandokter.setLocationRelativeTo(internalFrame1);
-            rhtindakandokter.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "AKSES DITOLAK !!!");
-        }
-    } else {
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgRHJmDokter rhtindakandokter = new DlgRHJmDokter(null, false);
-        rhtindakandokter.isCek("");
-        rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        rhtindakandokter.setLocationRelativeTo(internalFrame1);
-        rhtindakandokter.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-}//GEN-LAST:event_MnRekapHarianDokterActionPerformed
-
-private void MnRekapHarianParamedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHarianParamedisActionPerformed
-    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    DlgRHJmParamedis rhtindakanparamedis = new DlgRHJmParamedis(null, false);
-    rhtindakanparamedis.isCek();
-    rhtindakanparamedis.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-    rhtindakanparamedis.setLocationRelativeTo(internalFrame1);
-    rhtindakanparamedis.setVisible(true);
-    this.setCursor(Cursor.getDefaultCursor());
-}//GEN-LAST:event_MnRekapHarianParamedisActionPerformed
-
-private void MnRekapBulananDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapBulananDokterActionPerformed
-    int cekForm = Sequel.cekForm("DlgRBJmDokter_Buka"), cekDokter;
-    cekDokter = Sequel.cariInteger("select count(-1) from dokter where kd_dokter = '" + akses.getkode() + "'");
-    if (cekForm == 1) {
-        if (akses.getadmin() == true || cekDokter == 1) {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            DlgRBJmDokter rhtindakandokter = new DlgRBJmDokter(null, false);
-            rhtindakandokter.isCek(akses.getkode());
-            rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            rhtindakandokter.setLocationRelativeTo(internalFrame1);
-            rhtindakandokter.setVisible(true);
-            this.setCursor(Cursor.getDefaultCursor());
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "AKSES DITOLAK !!!");
-        }
-    } else {
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgRBJmDokter rhtindakandokter = new DlgRBJmDokter(null, false);
-        rhtindakandokter.isCek("");
-        rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        rhtindakandokter.setLocationRelativeTo(internalFrame1);
-        rhtindakandokter.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }
-}//GEN-LAST:event_MnRekapBulananDokterActionPerformed
-
-private void MnRekapBulananParamedisActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapBulananParamedisActionPerformed
-    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    DlgRBJmParamedis rhtindakanparamedis = new DlgRBJmParamedis(null, false);
-    rhtindakanparamedis.isCek();
-    rhtindakanparamedis.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-    rhtindakanparamedis.setLocationRelativeTo(internalFrame1);
-    rhtindakanparamedis.setVisible(true);
-    this.setCursor(Cursor.getDefaultCursor());
-}//GEN-LAST:event_MnRekapBulananParamedisActionPerformed
-
-private void MnRekapHarianPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHarianPoliActionPerformed
-    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-    DlgRBTindakanPoli rhtindakandokter = new DlgRBTindakanPoli(null, false);
-    rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-    rhtindakandokter.setLocationRelativeTo(internalFrame1);
-    rhtindakandokter.setVisible(true);
-    this.setCursor(Cursor.getDefaultCursor());
-}//GEN-LAST:event_MnRekapHarianPoliActionPerformed
-
 private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataPemberianObatActionPerformed
     if (tabModekasir.getRowCount() == 0) {
         JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
@@ -5146,15 +4963,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }
 }//GEN-LAST:event_MnDataPemberianObatActionPerformed
-
-    private void MnRekapHarianObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapHarianObatActionPerformed
-        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgRBObatPoli rhtindakandokter = new DlgRBObatPoli(null, false);
-        rhtindakandokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-        rhtindakandokter.setLocationRelativeTo(internalFrame1);
-        rhtindakandokter.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_MnRekapHarianObatActionPerformed
 
     private void MnNoResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnNoResepActionPerformed
         if (tabModekasir.getRowCount() == 0) {
@@ -8491,12 +8299,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnRehabMedik;
     private javax.swing.JMenu MnRekamMedis;
     private javax.swing.JMenu MnRekap;
-    private javax.swing.JMenuItem MnRekapBulananDokter;
-    private javax.swing.JMenuItem MnRekapBulananParamedis;
-    private javax.swing.JMenuItem MnRekapHarianDokter;
-    private javax.swing.JMenuItem MnRekapHarianObat;
-    private javax.swing.JMenuItem MnRekapHarianParamedis;
-    private javax.swing.JMenuItem MnRekapHarianPoli;
     private javax.swing.JMenuItem MnRekapTindakanPerbup;
     private javax.swing.JMenuItem MnRencanaKontrolManual;
     private javax.swing.JMenuItem MnRencanaKontrolNonBPJS;
@@ -8888,12 +8690,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnDataPemberianObat.setEnabled(akses.getberi_obat());
         MnDokter.setEnabled(akses.getkasir_ralan());
         MnPenjab.setEnabled(akses.getkasir_ralan());
-        MnRekapHarianDokter.setEnabled(akses.getharian_dokter());
-        MnRekapHarianParamedis.setEnabled(akses.getharian_paramedis());
-        MnRekapBulananDokter.setEnabled(akses.getbulanan_dokter());
-        MnRekapBulananParamedis.setEnabled(akses.getbulanan_paramedis());
-        MnRekapHarianPoli.setEnabled(akses.getharian_tindakan_poli());
-        MnRekapHarianObat.setEnabled(akses.getobat_per_poli());
         MnDiagnosa.setEnabled(akses.getdiagnosa_pasien());
         ppRiwayat.setEnabled(akses.getresume_pasien());
         MnRujuk.setEnabled(akses.getrujukan_keluar());
