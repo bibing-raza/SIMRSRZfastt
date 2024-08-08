@@ -470,7 +470,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
     private void cmbDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDokumenActionPerformed
         noIDfile = "";        
-        tampilFile();
+        tampilFile("");
         tampilDokumen();
     }//GEN-LAST:event_cmbDokumenActionPerformed
 
@@ -628,27 +628,27 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
             if (kd_periksa.equals("RSM1")) {                
                 Valid.panggilUrlRME("/rme/view/?id=" + noIDfile);
                 noIDfile = "";
-                tampilFile();
+                tampilFile("");
             } else {
-                tampilFile();
+                tampilFile(tbFile.getValueAt(tbFile.getSelectedRow(), 0).toString());
             }
         }
     }
 
-    private void tampilFile() {
+    private void tampilFile(String noid) {
         try {
-            if (noIDfile.equals("")) {
+            if (noid.equals("")) {
                 PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
                         "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                         javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12)));
-                loadURL("");
+                loadURL("","");
                 initComponents2();
             } else {
                 PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
                         "[ Preview File Dokumen Penunjang Medis (" + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + ") ]",
                         javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
                         new java.awt.Font("Tahoma", 0, 12)));
-                loadURL(link + "rme/view/?id=" + noIDfile);          
+                loadURL(link + "rme/view/?id=" + noid, noid);
                 initComponents2();
             }
         } catch (Exception ex) {
@@ -662,10 +662,10 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         PanelContent.add(panel);
     }
     
-    public void loadURL(String url) {
+    public void loadURL(String url, String noidnya) {
         try {            
-            createScene();
-        } catch (Exception e) {
+            createScene(noidnya);
+        } catch (Exception e) {            
         }
 
         Platform.runLater(() -> {
@@ -677,7 +677,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         });
     }
     
-    private void createScene() {
+    private void createScene(String noid) {
         Platform.runLater(new Runnable() {
 
             public void run() {
@@ -713,11 +713,11 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
                     public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
                         if (newState == Worker.State.SUCCEEDED) {
                             try {
-                                if (engine.getLocation().contains(link + "rme/view/?id=" + noIDfile)) {
+                                if (engine.getLocation().contains(link + "rme/view/?id=" + noid)) {
                                     setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                                     engine.executeScript("history.back()");
                                     setCursor(Cursor.getDefaultCursor());
-                                } else if (engine.getLocation().contains(link + "rme/view/?id=" + noIDfile)) {
+                                } else if (engine.getLocation().contains(link + "rme/view/?id=" + noid)) {
                                     dispose();
                                 }
                             } catch (Exception ex) {

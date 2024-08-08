@@ -4454,21 +4454,48 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbSEP.getSelectedRow() != -1) {
-            try {
-                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    if (!Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'").equals("1")) {                        
-                        Sequel.queryu("delete from bridging_sep where no_rawat='" + TNoRw.getText() + "' and no_sep='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 0).toString() + "'");
-                        tampil();
-                        emptTeks();
-                    } else {
-                        bodyWithDeleteRequest();
+            if (tbSEP.getValueAt(tbSEP.getSelectedRow(), 11).toString().equals("IGD")
+                    || tbSEP.getValueAt(tbSEP.getSelectedRow(), 19).toString().contains("Ranap")) {
+                try {
+                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        if (!Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'").equals("1")) {
+                            Sequel.queryu("delete from bridging_sep where no_rawat='" + TNoRw.getText() + "' and no_sep='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 0).toString() + "'");
+                            tampil();
+                            emptTeks();
+                        } else {
+                            bodyWithDeleteRequest();
+                        }
+                    }
+                } catch (Exception ex) {
+                    System.out.println("Notifikasi Bridging : " + ex);
+                    if (ex.toString().contains("UnknownHostException")) {
+                        JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
                     }
                 }
-            } catch (Exception ex) {
-                System.out.println("Notifikasi Bridging : " + ex);
-                if (ex.toString().contains("UnknownHostException")) {
-                    JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
+            } else {
+                if (Sequel.cariInteger("select count(-1) from rawat_jl_drpr where no_rawat='" + TNoRw.getText() + "'") > 0
+                        || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'") > 0
+                        || Sequel.cariInteger("select count(-1) from pemeriksaan_ralan_petugas where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                    JOptionPane.showMessageDialog(null, "SEP gagal dihapus, masih ada data tindakan atau pemeriksaan dokter yang tersimpan...!");
+                } else {
+                    try {
+                        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                        if (x == JOptionPane.YES_OPTION) {
+                            if (!Sequel.cariIsi("select urutan_sep from bridging_sep where no_rawat='" + TNoRw.getText() + "'").equals("1")) {
+                                Sequel.queryu("delete from bridging_sep where no_rawat='" + TNoRw.getText() + "' and no_sep='" + tbSEP.getValueAt(tbSEP.getSelectedRow(), 0).toString() + "'");
+                                tampil();
+                                emptTeks();
+                            } else {
+                                bodyWithDeleteRequest();
+                            }
+                        }
+                    } catch (Exception ex) {
+                        System.out.println("Notifikasi Bridging : " + ex);
+                        if (ex.toString().contains("UnknownHostException")) {
+                            JOptionPane.showMessageDialog(null, "Koneksi ke server BPJS terputus...!");
+                        }
+                    }
                 }
             }
         } else {

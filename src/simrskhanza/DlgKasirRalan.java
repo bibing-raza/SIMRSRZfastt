@@ -177,7 +177,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tabModekasir = new DefaultTableModel(null, new String[]{
             "No.Rawat", "Kd.Dokter", "Dokter Dituju", "Nomer RM", "Nama Pasien", "Status", "Poliklinik/Inst.", "Jenis Bayar", "Jns. Kunjungan",
             "Reg. Online", "Tanggal", "Jam", "No. Reg.", "Status Klaim (RM IGD)", "No. Telpon/HP", "Alamat Pasien", "cek_asesmen_medik_igd", 
-            "cek_penanganan_dokter_poli", "cekantrian"
+            "cek_penanganan_dokter_poli", "cekantrian", "tglreg"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -189,7 +189,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         tbKasirRalan.setPreferredScrollableViewportSize(new Dimension(800, 800));
         tbKasirRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 19; i++) {
+        for (i = 0; i < 20; i++) {
             TableColumn column = tbKasirRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -232,6 +232,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 18) {                
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -8494,8 +8497,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         try {
             pskasir = koneksi.prepareStatement("SELECT rp.no_rawat, rp.kd_dokter, d.nm_dokter, rp.no_rkm_medis, concat(p.nm_pasien,' (Usia : ',CONCAT(rp.umurdaftar,' ',rp.sttsumur),', ',if(p.jk='L','Laki-laki','Perempuan'),')') nm_pasien, "
                     + "rp.stts, if(pl.kd_poli='IGDK',CONCAT(pl.nm_poli,' (',rp.status_lanjut,')'),pl.nm_poli) nm_poli, pj.png_jawab, rp.stts_daftar, IF(br.no_rawat = rp.no_rawat,'Online','-') reg_onlen, "
-                    + "rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien "
-                    + "FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis "
+                    + "rp.tgl_registrasi, rp.jam_reg, rp.no_reg, IFNULL(enc.klaim_final, '-') stts_klaim, p.no_tlp, CONCAT(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,', ',kb.nm_kab) almt_pasien, "
+                    + "date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_reg_format FROM reg_periksa rp INNER JOIN dokter d ON rp.kd_dokter = d.kd_dokter INNER JOIN pasien p ON rp.no_rkm_medis =p.no_rkm_medis "
                     + "INNER JOIN poliklinik pl ON rp.kd_poli = pl.kd_poli INNER JOIN penjab pj ON rp.kd_pj = pj.kd_pj INNER JOIN kelurahan kl ON kl.kd_kel=p.kd_kel INNER JOIN kecamatan kc ON kc.kd_kec=p.kd_kec "
                     + "INNER JOIN kabupaten kb ON kb.kd_kab=p.kd_kab LEFT JOIN booking_registrasi br ON br.no_rawat = rp.no_rawat LEFT JOIN eklaim_new_claim enc ON enc.no_rawat = rp.no_rawat WHERE "
                     + "(rp.status_lanjut='Ralan' OR (rp.kd_poli='IGDK' AND rp.status_lanjut='Ranap')) and pl.nm_poli like ? and d.nm_dokter like ? and rp.stts like ? and rp.tgl_registrasi between ? and ? and rp.no_reg like ? or "
@@ -8610,7 +8613,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("png_jawab"),
                         rskasir.getString("stts_daftar"),
                         rskasir.getString("reg_onlen"),
-                        rskasir.getString("tgl_registrasi"),
+                        rskasir.getString("tgl_reg_format"),
                         rskasir.getString("jam_reg"),
                         rskasir.getString("no_reg"),
                         rskasir.getString("stts_klaim") + " " + aksesRM,
@@ -8618,7 +8621,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         rskasir.getString("almt_pasien"),
                         Sequel.cariIsi("select ifnull(no_rawat,'') from penilaian_awal_medis_igd where no_rawat='" + rskasir.getString("no_rawat") + "'"),
                         Sequel.cariIsi("select ifnull(no_rawat,'') from pemeriksaan_ralan where no_rawat='" + rskasir.getString("no_rawat") + "'"),
-                        Sequel.cariIsi("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'")
+                        Sequel.cariIsi("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'"),
+                        rskasir.getString("tgl_registrasi")
                     });
                 }
             } catch (Exception e) {
@@ -8642,7 +8646,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         if (tbKasirRalan.getSelectedRow() != -1) {
             TNoRw.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 0).toString());
             kdpoli.setText(Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
-            Tanggal.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 10).toString());
+            Tanggal.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 19).toString());
             Jam.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 11).toString());
             NoRM.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 3).toString());
             nmPasien.setText(tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 4).toString());
@@ -8662,7 +8666,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     + "INNER JOIN bridging_jamkesda ON reg_periksa.no_rawat = bridging_jamkesda.no_rawat "
                     + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
                     + "WHERE bridging_jamkesda.no_rawat='" + TNoRw.getText() + "' AND bridging_jamkesda.jns_rawat='Jalan IGD' AND penjab.png_jawab like '%jamkesda%'"));
-        }
+        }        
     }
 
     public JTextField getTextField() {

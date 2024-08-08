@@ -153,7 +153,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
             "Cetak SEP", "Status Resep", "Kode Kamar", "Ruang Rawat Inap", "Tarif Kamar",
             "Diagnosa Awal", "Diagnosa Akhir", "Tgl. Masuk", "Jam Masuk", "Tgl. Keluar", "Jam Keluar",
             "Ttl. Biaya", "Stts. Pulang", "Lama", "Dokter P.J.", "No. Telpon/HP", "dokterDPJP", "cekKonsul", "cekPiutangUmum",
-            "cekResepCito", "cekCpptDpjp"
+            "cekResepCito", "cekCpptDpjp", "tglmasuk", "tglkeluar"
         };
         tabMode = new DefaultTableModel(null, row) {
             @Override
@@ -166,7 +166,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         tbKamIn.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbKamIn.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 27; i++) {
+        for (i = 0; i < 29; i++) {
             TableColumn column = tbKamIn.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(110);
@@ -225,6 +225,12 @@ public class DlgKamarInap extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 28) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -7577,7 +7583,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                                         + "lama='" + TJmlHaripindah.getText() + "',ttl_biaya='" + ttlbiayapindah.getText()
                                         + "' where no_rawat='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()
                                         + "' and kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString()
-                                        + "' and tgl_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                        + "' and tgl_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                         + "' and jam_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "'");
                                 Sequel.mengedit("kamar", "kd_kamar='" + kdkamarpindah.getText() + "'", "status='ISI'");
                                 Sequel.mengedit("kamar", "kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString() + "'", "status='KOSONG'");
@@ -7599,7 +7605,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
 //                                            + "' where no_rawat='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()
 //                                            + "' and kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 7).toString()
 //                                            + "' and tgl_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 12).toString()
-//                                            + "' and jam_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString() + "'");
+//                                            + "' and jam_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString() + "'");
 //                                    Sequel.mengedit("kamar", "kd_kamar='" + kdkamarpindah.getText() + "'", "status='ISI'");
 //                                    Sequel.mengedit("kamar", "kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 7).toString() + "'", "status='KOSONG'");
 //                                    WindowPindahKamar.dispose();
@@ -7617,33 +7623,33 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             Sequel.cariIsi("select (if(to_days('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem()
-                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString()
                                     + "')=0,if(time_to_sec('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem()
-                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-time_to_sec('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-time_to_sec('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "')>(3600*"
                                     + lama + "),1,0),to_days('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem() + ":" + cmbDtkpindah.getSelectedItem()
-                                    + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "'))+1) as lama", TJmlHari);
                         } else {
                             Sequel.cariIsi("select if(to_days('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem()
-                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString()
                                     + "')=0,if(time_to_sec('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem()
-                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-time_to_sec('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + ":" + cmbDtkpindah.getSelectedItem() + "')-time_to_sec('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "')>(3600*"
                                     + lama + "),1,0),to_days('" + CmbTahunpindah.getSelectedItem()
                                     + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + " " + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem() + ":" + cmbDtkpindah.getSelectedItem()
-                                    + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + "')-to_days('" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + " " + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "')) as lama", TJmlHari);
                         }
 
@@ -7654,7 +7660,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         } else {
                             Sequel.mengedit("kamar_inap", "no_rawat='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()
                                     + "' and kd_kamar='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 8).toString()
-                                    + "' and tgl_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString()
+                                    + "' and tgl_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString()
                                     + "' and jam_masuk='" + tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString() + "'",
                                     "trf_kamar='" + TTarif.getText() + "',tgl_keluar='" + CmbTahunpindah.getSelectedItem() + "-" + CmbBlnpindah.getSelectedItem() + "-" + CmbTglpindah.getSelectedItem()
                                     + "',jam_keluar='" + cmbJampindah.getSelectedItem() + ":" + cmbMntpindah.getSelectedItem() + ":" + cmbDtkpindah.getSelectedItem()
@@ -8840,7 +8846,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else if (!cekDataPersalinan.equals("")) {
             x = JOptionPane.showConfirmDialog(null, "Data persalinan pasien yg bernama " + TPasien.getText() + " sudah tersimpan, apakah mau diperbaiki...?", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                persalinan.setSize(943, 595);
+                persalinan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 persalinan.setLocationRelativeTo(internalFrame1);
                 persalinan.setPasien(norawat.getText(), TNoRM.getText(), tglInap.getText(), status_pulang.getText());
                 persalinan.TCari.setText(norawat.getText());
@@ -8857,7 +8863,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 tampil();
             }
         } else if (!norawat.getText().equals("") && (cekKelamin.equals("P")) && (cekDataPersalinan.equals(""))) {
-            persalinan.setSize(943, 595);
+            persalinan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             persalinan.setLocationRelativeTo(internalFrame1);
             persalinan.setPasien(norawat.getText(), TNoRM.getText(), tglInap.getText(), status_pulang.getText());
             persalinan.TCari.setText(norawat.getText());
@@ -12371,7 +12377,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         " SELECT a.no_rawat, a.no_rkm_medis, a.nm_pasien, a.tgl_lahir, a.alamat, a.png_jawab, "
                         + "IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) sep, "
                         + "a.kd_kamar, a.nm_bangsal, a.trf_kamar, a.diagnosa_awal, a.diagnosa_akhir, a.tgl_masuk, a.jam_masuk, a.tgl_keluar, a.jam_keluar, "
-                        + "a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel,a.nm_kec,a.nm_kab, a.dokter2 FROM  "
+                        + "a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel,a.nm_kec,a.nm_kab, a.dokter2, "
+                        + "date_format(a.tgl_masuk,'%d-%m-%Y') tglmsk_format, date_format(a.tgl_keluar,'%d-%m-%Y') tglklr_format FROM  "
                         + "((SELECT ki.no_rawat, r.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
                         + "concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, "
                         + "b.nm_bangsal, ki.trf_kamar, ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF (ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, "
@@ -12422,9 +12429,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         Valid.SetAngka(rs.getDouble("trf_kamar")),
                         rs.getString("diagnosa_awal"),
                         rs.getString("diagnosa_akhir"),
-                        rs.getString("tgl_masuk"),
+                        rs.getString("tglmsk_format"),
                         rs.getString("jam_masuk"),
-                        rs.getString("tgl_keluar"),
+                        rs.getString("tglklr_format"),
                         rs.getString("jam_keluar"),
                         Valid.SetAngka(rs.getDouble("ttl_biaya")),
                         rs.getString("stts_pulang"),
@@ -12437,7 +12444,9 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                         + "where p.status = 'Belum Lunas' and p.no_rkm_medis = '" + rs.getString("no_rkm_medis") + "'"),
                         Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'"),
                         Sequel.cariIsi("SELECT COUNT(-1) cek FROM cppt WHERE jenis_bagian='DPJP' and jenis_ppa='DPJP' and tgl_cppt=date(now()) and "
-                        + "no_rawat='" + rs.getString("no_rawat") + "' and nip_dpjp='" + akses.getkode() + "'")
+                        + "no_rawat='" + rs.getString("no_rawat") + "' and nip_dpjp='" + akses.getkode() + "'"),
+                        rs.getString("tgl_masuk"),
+                        rs.getString("tgl_keluar")
                     });
                 }
             } catch (Exception e) {
@@ -12525,7 +12534,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             norawatCopy.setText(norawat.getText());
             norawatAPS = norawat.getText();
             nmpenjab.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 5).toString());
-            tglInap.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString());
+            tglInap.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
             Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat=? ", TNoRM, norawat.getText());
             Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=? ", kdpenjab, norawat.getText());
             Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis=? ", TPasien, TNoRM.getText());
@@ -12541,10 +12550,10 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             nmgedung = Sequel.cariIsi("SELECT b.nm_gedung FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar.getText() + "'");
             diagnosaawal.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 11).toString());
             diagnosaakhir.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 12).toString());
-            TIn.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString());
-            Valid.SetTgl(tglMasukInap, tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 13).toString());
+            TIn.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
+            Valid.SetTgl(tglMasukInap, tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
             JamMasuk.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 14).toString());
-            TOut.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 15).toString());
+            TOut.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 28).toString());
             ttlbiaya.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 17).toString());
             status_pulang.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 18).toString());
             statusSEP.setText(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 6).toString());
@@ -12587,7 +12596,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 noSrt1.setText(Sequel.cariIsi("SELECT no_surat FROM bridging_jampersal WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap'"));
                 sepJmp.setText(Sequel.cariIsi("SELECT no_sep FROM bridging_jampersal WHERE no_rawat='" + norawat.getText() + "' AND jns_rawat='Inap'"));
             }
-        }
+        }        
     }
 
     private void isKmr() {
