@@ -135,7 +135,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(58);
             } else if (i == 2) {
                 column.setPreferredWidth(65);
             } else if (i == 3) {
@@ -185,7 +185,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(58);
             } else if (i == 2) {
                 column.setPreferredWidth(65);
             } else if (i == 3) {
@@ -433,7 +433,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         MnObservasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnObservasi.setIconTextGap(5);
         MnObservasi.setName("MnObservasi"); // NOI18N
-        MnObservasi.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnObservasi.setPreferredSize(new java.awt.Dimension(170, 26));
         MnObservasi.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnObservasiActionPerformed(evt);
@@ -448,7 +448,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         MnCetak.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCetak.setIconTextGap(5);
         MnCetak.setName("MnCetak"); // NOI18N
-        MnCetak.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnCetak.setPreferredSize(new java.awt.Dimension(170, 26));
         MnCetak.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakActionPerformed(evt);
@@ -465,7 +465,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         MnHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHapus.setIconTextGap(5);
         MnHapus.setName("MnHapus"); // NOI18N
-        MnHapus.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnHapus.setPreferredSize(new java.awt.Dimension(170, 26));
         MnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusActionPerformed(evt);
@@ -1658,6 +1658,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
                 emptTeksObs();
                 tampilObs2();
+                tampilObs1();
             }
         }
     }//GEN-LAST:event_BtnSimpan1ActionPerformed
@@ -2199,6 +2200,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString()
             }) == true) {
                 tampilObs2();
+                tampilObs1();
                 emptTeksObs();
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
@@ -2216,6 +2218,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 }) == true) {
 
             tampilObs2();
+            tampilObs1();
             emptTeksObs();
         }
     }
