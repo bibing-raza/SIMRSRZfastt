@@ -91,6 +91,7 @@ import rekammedis.DlgTerapiAntiretroviralHIV;
 import rekammedis.DlgVerifikasiCPPT;
 import rekammedis.RMAsesmenKebidananRalan;
 import rekammedis.RMDokumenPenunjangMedis;
+import rekammedis.RMLembarObservasi;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
@@ -726,6 +727,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnLihatDataTransferSerahTerimaIGD = new javax.swing.JMenuItem();
         MnPemberianObat = new javax.swing.JMenuItem();
         MnPetugasPemberianObat = new javax.swing.JMenuItem();
+        MnLembarObservasi = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetriIGD = new javax.swing.JMenu();
         MnInputDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
         MnLihatDataAsesmenMedikObstetri = new javax.swing.JMenuItem();
@@ -2233,6 +2235,23 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
         MnRMGawatDarurat.add(MnPetugasPemberianObat);
 
+        MnLembarObservasi.setBackground(new java.awt.Color(255, 255, 254));
+        MnLembarObservasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLembarObservasi.setForeground(new java.awt.Color(50, 50, 50));
+        MnLembarObservasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLembarObservasi.setText("Lembar Observasi");
+        MnLembarObservasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLembarObservasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLembarObservasi.setIconTextGap(5);
+        MnLembarObservasi.setName("MnLembarObservasi"); // NOI18N
+        MnLembarObservasi.setPreferredSize(new java.awt.Dimension(230, 26));
+        MnLembarObservasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLembarObservasiActionPerformed(evt);
+            }
+        });
+        MnRMGawatDarurat.add(MnLembarObservasi);
+
         MnAsesmenMedikObstetriIGD.setBackground(new java.awt.Color(255, 255, 254));
         MnAsesmenMedikObstetriIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAsesmenMedikObstetriIGD.setText("Asesmen Medik Obstetri");
@@ -3234,7 +3253,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4105,7 +4124,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4342,7 +4361,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4361,7 +4380,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8160,6 +8179,37 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnDitutupActionPerformed
 
+    private void MnLembarObservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarObservasiActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("IGDK")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di IGD saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                if (akses.getadmin() == true) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    RMLembarObservasi obs = new RMLembarObservasi(null, false);
+                    akses.setform("DlgKasirRalan");
+                    obs.emptTeks();
+                    obs.isCek();
+                    obs.setData(TNoRw.getText(), NoRM.getText(), nmPasien.getText(), Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
+                    obs.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    obs.setLocationRelativeTo(internalFrame1);
+                    obs.setAlwaysOnTop(false);
+                    obs.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan, segera diinfokan jika sudah selesai...!!!");
+                }
+            }
+        }
+    }//GEN-LAST:event_MnLembarObservasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8264,6 +8314,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnKlaimCOVID;
     private javax.swing.JMenuItem MnKlaimJKN;
     private javax.swing.JMenuItem MnKlaimKIPI;
+    private javax.swing.JMenuItem MnLembarObservasi;
     private javax.swing.JMenuItem MnLembarStatusPasien;
     private javax.swing.JMenuItem MnLihatDataAsesmenMedikObstetri;
     private javax.swing.JMenuItem MnLihatDataAssesmenKeperawatanIGD;
@@ -8746,6 +8797,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         ppPersetujuanTindakan.setEnabled(akses.getcppt());
         MnProtokolKemoterapi.setEnabled(akses.getkemoterapi());
         MnAksesRM.setEnabled(akses.getadmin());
+        MnLembarObservasi.setEnabled(akses.getcppt());
 
         if (akses.getbpjs_sep() == true || akses.getberi_obat() == true || akses.getadmin() == true) {
             ppProgramPRB.setEnabled(true);
