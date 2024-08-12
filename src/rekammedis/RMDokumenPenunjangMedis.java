@@ -19,6 +19,7 @@ import fungsi.validasi;
 import fungsi.akses;
 import java.awt.BorderLayout;
 import java.awt.Cursor;
+import java.awt.Desktop;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
@@ -42,26 +43,25 @@ import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.SwingUtilities;
 import javax.swing.event.DocumentEvent;
+import javax.swing.event.HyperlinkEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import javax.swing.text.Document;
+import javax.swing.text.html.HTMLEditorKit;
+import javax.swing.text.html.StyleSheet;
 
 /**
  *
  * @author dosen
  */
 public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private PreparedStatement ps;
+    private validasi Valid=new validasi();    
     private ResultSet rs;
-    private String link = "", noIDfile = "", kd_periksa = "";
-    private int x = 0;
-    private WebEngine engine;
-    private final JFXPanel jfxPanel = new JFXPanel();
-    private final JPanel panel = new JPanel(new BorderLayout());
-
+    private String link = "";
+    private int urut = 0;
+    
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
@@ -69,51 +69,31 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        Object[] row = {"id_file", "no_rawat", "Nama Pemeriksaan", "Tgl. Upload", "Jam",
-            "Nama File", "Nama Petugas", "kd_pemeriksaan", "nip_petugas"
-        };
-        tabMode=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
-        };
-
-        tbFile.setModel(tabMode);
-        tbFile.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbFile.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
-
-        for (int i = 0; i < 9; i++) {
-            TableColumn column = tbFile.getColumnModel().getColumn(i);
-            if (i == 0) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 1) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 2) {
-                column.setPreferredWidth(120);
-            } else if (i == 3) {
-                column.setPreferredWidth(75);
-            } else if (i == 4) {
-                column.setPreferredWidth(50);
-            } else if (i == 5) {
-                column.setPreferredWidth(90);
-            } else if (i == 6) {
-                column.setPreferredWidth(220);
-            } else if (i == 7) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            } else if (i == 8) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
-            }
-        }
-
-        tbFile.setDefaultRenderer(Object.class, new WarnaTable());
-        
         try {
             link = koneksiDB.HOSTport();
         } catch (Exception e) {
             System.out.println("E : " + e);
         }
+        
+        LoadHTML1.setEditable(true);
+        HTMLEditorKit kit = new HTMLEditorKit();
+        LoadHTML1.setEditorKit(kit);
+        StyleSheet styleSheet = kit.getStyleSheet();
+        styleSheet.addRule(".isi td{border-right: 1px solid #edf2e8;font: 10px tahoma;height:12px;border-bottom: 1px solid #edf2e8;background: 0000000;color:0000000;}");
+        Document doc = kit.createDefaultDocument();
+        LoadHTML1.setDocument(doc);
+        LoadHTML1.setEditable(false);
+        
+        LoadHTML1.addHyperlinkListener(e -> {
+            if (HyperlinkEvent.EventType.ACTIVATED.equals(e.getEventType())) {
+                Desktop desktop = Desktop.getDesktop();
+                try {
+                    desktop.browse(e.getURL().toURI());
+                } catch (Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        });
     }
 
     /** This method is called from within the constructor to
@@ -133,25 +113,19 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNoRW = new widget.TextBox();
         TNoRM = new widget.TextBox();
         TNmPasien = new widget.TextBox();
-        ChkDokumen = new widget.CekBox();
         PanelContent = new widget.panelisi();
+        Scroll1 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
+        panelGlass8 = new widget.panelisi();
+        ChkDokumen = new widget.CekBox();
+        BtnUpload = new widget.Button();
+        BtnCari = new widget.Button();
+        BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
-        panelGlass12 = new widget.panelisi();
         panelGlass13 = new widget.panelisi();
         PanelWallpublic = new usu.widget.glass.PanelGlass();
         panelGlass14 = new widget.panelisi();
         PanelWallwifi = new usu.widget.glass.PanelGlass();
-        Scroll = new widget.ScrollPane();
-        tbFile = new widget.Table();
-        panelGlass11 = new widget.panelisi();
-        panelGlass9 = new widget.panelisi();
-        jLabel6 = new widget.Label();
-        cmbDokumen = new widget.ComboBox();
-        BtnCari = new widget.Button();
-        panelGlass8 = new widget.panelisi();
-        BtnUpload = new widget.Button();
-        BtnHapus = new widget.Button();
-        BtnKeluar = new widget.Button();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -213,6 +187,31 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         TNmPasien.setPreferredSize(new java.awt.Dimension(291, 24));
         panelGlass7.add(TNmPasien);
 
+        internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+
+        PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        PanelContent.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        PanelContent.setComponentPopupMenu(jPopupMenu1);
+        PanelContent.setName("PanelContent"); // NOI18N
+        PanelContent.setPreferredSize(new java.awt.Dimension(55, 55));
+        PanelContent.setLayout(new java.awt.BorderLayout());
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll1.setViewportView(LoadHTML1);
+
+        PanelContent.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        panelGlass8.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
+        panelGlass8.setComponentPopupMenu(jPopupMenu1);
+        panelGlass8.setName("panelGlass8"); // NOI18N
+        panelGlass8.setPreferredSize(new java.awt.Dimension(44, 40));
+        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 9));
+
         ChkDokumen.setBackground(new java.awt.Color(255, 255, 250));
         ChkDokumen.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         ChkDokumen.setForeground(new java.awt.Color(0, 0, 0));
@@ -224,26 +223,72 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         ChkDokumen.setName("ChkDokumen"); // NOI18N
         ChkDokumen.setOpaque(false);
         ChkDokumen.setPreferredSize(new java.awt.Dimension(210, 23));
-        panelGlass7.add(ChkDokumen);
+        ChkDokumen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkDokumenActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(ChkDokumen);
 
-        internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
+        BtnUpload.setForeground(new java.awt.Color(0, 0, 0));
+        BtnUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
+        BtnUpload.setMnemonic('U');
+        BtnUpload.setText("Upload Dokumen");
+        BtnUpload.setToolTipText("Alt+U");
+        BtnUpload.setName("BtnUpload"); // NOI18N
+        BtnUpload.setPreferredSize(new java.awt.Dimension(140, 23));
+        BtnUpload.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnUploadActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnUpload);
 
-        PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        PanelContent.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
-        PanelContent.setComponentPopupMenu(jPopupMenu1);
-        PanelContent.setName("PanelContent"); // NOI18N
-        PanelContent.setPreferredSize(new java.awt.Dimension(55, 55));
-        PanelContent.setLayout(new java.awt.BorderLayout());
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('1');
+        BtnCari.setText("Tampilkan Data");
+        BtnCari.setToolTipText("Alt+1");
+        BtnCari.setName("BtnCari"); // NOI18N
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariActionPerformed(evt);
+            }
+        });
+        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnCari);
+
+        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar.setMnemonic('K');
+        BtnKeluar.setText("Keluar");
+        BtnKeluar.setToolTipText("Alt+K");
+        BtnKeluar.setName("BtnKeluar"); // NOI18N
+        BtnKeluar.setPreferredSize(new java.awt.Dimension(80, 23));
+        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluarActionPerformed(evt);
+            }
+        });
+        BtnKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnKeluarKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnKeluar);
+
+        PanelContent.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
+
         internalFrame1.add(PanelContent, java.awt.BorderLayout.CENTER);
 
+        panelGlass10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QRCode Untuk Upload File ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         panelGlass10.setName("panelGlass10"); // NOI18N
-        panelGlass10.setPreferredSize(new java.awt.Dimension(410, 422));
-        panelGlass10.setLayout(new java.awt.BorderLayout());
-
-        panelGlass12.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Scan QRCode Untuk Upload Dokumen Via SmartPhone ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        panelGlass12.setName("panelGlass12"); // NOI18N
-        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 160));
-        panelGlass12.setLayout(new java.awt.BorderLayout());
+        panelGlass10.setPreferredSize(new java.awt.Dimension(230, 422));
 
         panelGlass13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 51), 2), "[ Koneksi Paket Data ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(255, 0, 51))); // NOI18N
         panelGlass13.setToolTipText("");
@@ -262,7 +307,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         PanelWallpublic.setLayout(null);
         panelGlass13.add(PanelWallpublic, java.awt.BorderLayout.CENTER);
 
-        panelGlass12.add(panelGlass13, java.awt.BorderLayout.WEST);
+        panelGlass10.add(panelGlass13);
 
         panelGlass14.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 255), 2), "[ Koneksi Wifi RS ]", javax.swing.border.TitledBorder.CENTER, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 255))); // NOI18N
         panelGlass14.setToolTipText("");
@@ -281,141 +326,7 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         PanelWallwifi.setLayout(null);
         panelGlass14.add(PanelWallwifi, java.awt.BorderLayout.CENTER);
 
-        panelGlass12.add(panelGlass14, java.awt.BorderLayout.EAST);
-
-        panelGlass10.add(panelGlass12, java.awt.BorderLayout.PAGE_START);
-
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ File Dokumen ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
-        Scroll.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
-        Scroll.setComponentPopupMenu(jPopupMenu1);
-        Scroll.setName("Scroll"); // NOI18N
-        Scroll.setOpaque(true);
-        Scroll.setPreferredSize(new java.awt.Dimension(352, 402));
-
-        tbFile.setToolTipText("Silahkan klik untuk memilih data yang mau dilihat dokumennya");
-        tbFile.setComponentPopupMenu(jPopupMenu1);
-        tbFile.setName("tbFile"); // NOI18N
-        tbFile.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbFileMouseClicked(evt);
-            }
-        });
-        Scroll.setViewportView(tbFile);
-
-        panelGlass10.add(Scroll, java.awt.BorderLayout.CENTER);
-
-        panelGlass11.setName("panelGlass11"); // NOI18N
-        panelGlass11.setPreferredSize(new java.awt.Dimension(44, 88));
-        panelGlass11.setLayout(new java.awt.BorderLayout());
-
-        panelGlass9.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
-        panelGlass9.setComponentPopupMenu(jPopupMenu1);
-        panelGlass9.setName("panelGlass9"); // NOI18N
-        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 3, 9));
-
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Jenis Dokumen :");
-        jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass9.add(jLabel6);
-
-        cmbDokumen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDokumen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
-        cmbDokumen.setName("cmbDokumen"); // NOI18N
-        cmbDokumen.setPreferredSize(new java.awt.Dimension(200, 23));
-        cmbDokumen.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cmbDokumenActionPerformed(evt);
-            }
-        });
-        panelGlass9.add(cmbDokumen);
-
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnCari.setMnemonic('F');
-        BtnCari.setText("Cek File");
-        BtnCari.setToolTipText("Alt+F");
-        BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(90, 23));
-        BtnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCariActionPerformed(evt);
-            }
-        });
-        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCariKeyPressed(evt);
-            }
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                BtnCariKeyReleased(evt);
-            }
-        });
-        panelGlass9.add(BtnCari);
-
-        panelGlass11.add(panelGlass9, java.awt.BorderLayout.CENTER);
-
-        panelGlass8.setToolTipText("Klik kanan disini untuk menambahkan jenis dokumen penunjang baru");
-        panelGlass8.setComponentPopupMenu(jPopupMenu1);
-        panelGlass8.setName("panelGlass8"); // NOI18N
-        panelGlass8.setPreferredSize(new java.awt.Dimension(44, 40));
-        panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 5, 9));
-
-        BtnUpload.setForeground(new java.awt.Color(0, 0, 0));
-        BtnUpload.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
-        BtnUpload.setMnemonic('U');
-        BtnUpload.setText("Upload Dokumen");
-        BtnUpload.setToolTipText("Alt+U");
-        BtnUpload.setName("BtnUpload"); // NOI18N
-        BtnUpload.setPreferredSize(new java.awt.Dimension(140, 23));
-        BtnUpload.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnUploadActionPerformed(evt);
-            }
-        });
-        panelGlass8.add(BtnUpload);
-
-        BtnHapus.setForeground(new java.awt.Color(0, 0, 0));
-        BtnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
-        BtnHapus.setMnemonic('H');
-        BtnHapus.setText("Hapus Dokumen");
-        BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setName("BtnHapus"); // NOI18N
-        BtnHapus.setPreferredSize(new java.awt.Dimension(140, 23));
-        BtnHapus.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnHapusActionPerformed(evt);
-            }
-        });
-        BtnHapus.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnHapusKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnHapus);
-
-        BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
-        BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
-        BtnKeluar.setMnemonic('K');
-        BtnKeluar.setText("Keluar");
-        BtnKeluar.setToolTipText("Alt+K");
-        BtnKeluar.setName("BtnKeluar"); // NOI18N
-        BtnKeluar.setPreferredSize(new java.awt.Dimension(100, 23));
-        BtnKeluar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnKeluarActionPerformed(evt);
-            }
-        });
-        BtnKeluar.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnKeluarKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnKeluar);
-
-        panelGlass11.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
-
-        panelGlass10.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
+        panelGlass10.add(panelGlass14);
 
         internalFrame1.add(panelGlass10, java.awt.BorderLayout.EAST);
 
@@ -434,32 +345,8 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
-    private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        tampilDokumen();
-}//GEN-LAST:event_BtnCariActionPerformed
-
-    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnCariActionPerformed(null);
-        }
-}//GEN-LAST:event_BtnCariKeyPressed
-
-    private void BtnCariKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyReleased
-        // TODO add your handling code here:
-}//GEN-LAST:event_BtnCariKeyReleased
-
-    private void tbFileMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbFileMouseClicked
-        if(tabMode.getRowCount()!=0){
-            try {
-                getData();
-            } catch (java.lang.NullPointerException e) {
-            }
-        }
-}//GEN-LAST:event_tbFileMouseClicked
-
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        Sequel.cariIsiComboDB("select nama_pemeriksaan from rme_jenis_pemeriksaan order by nama_pemeriksaan", cmbDokumen);
-        tampilDokumen();
+        tampil();
         
         if (akses.getadmin() == true) {
             MnJenisDokumen.setEnabled(true);
@@ -467,43 +354,6 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
             MnJenisDokumen.setEnabled(false);
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void cmbDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbDokumenActionPerformed
-        noIDfile = "";        
-        tampilFile("");
-        tampilDokumen();
-    }//GEN-LAST:event_cmbDokumenActionPerformed
-
-    private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (TNoRW.getText().trim().equals("")) {
-            Valid.textKosong(TNoRW, "Pasien");
-        } else if (tbFile.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(null, "Dokumen/file pemeriksaan penunjang medis pasien masih kosong..!!");
-        } else {
-            if (tbFile.getSelectedRow() > -1) {
-                if (akses.getadmin() == true
-                        || tbFile.getValueAt(tbFile.getSelectedRow(), 8).toString().equals(akses.getkode())) {
-                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin dokumen/file pemeriksaan " 
-                            + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + " akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (x == JOptionPane.YES_OPTION) {
-                        Sequel.mengedit("rme_file_upload", "id_file='" + noIDfile + "'", "stts_data='0'");
-                        cmbDokumenActionPerformed(null);
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Dokumen/file pemeriksaan " + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase()
-                            + " ini hanya bisa dihapus oleh petugas yang mengupload..!!");
-                }
-            } else {
-                JOptionPane.showMessageDialog(null, "Silahkan pilih/klik salah satu dokumen/file penunjang medisnya dulu utk. menghapus data..!!");
-            }
-        }
-    }//GEN-LAST:event_BtnHapusActionPerformed
-
-    private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnHapusActionPerformed(null);
-        }
-    }//GEN-LAST:event_BtnHapusKeyPressed
 
     private void BtnUploadActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnUploadActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -526,6 +376,20 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnJenisDokumenActionPerformed
 
+    private void ChkDokumenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkDokumenActionPerformed
+        tampil();
+    }//GEN-LAST:event_ChkDokumenActionPerformed
+
+    private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
+        tampil();
+    }//GEN-LAST:event_BtnCariActionPerformed
+
+    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCariActionPerformed(null);
+        } 
+    }//GEN-LAST:event_BtnCariKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -544,192 +408,102 @@ public class RMDokumenPenunjangMedis extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnCari;
-    private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnUpload;
     public widget.CekBox ChkDokumen;
+    private widget.editorpane LoadHTML1;
     private javax.swing.JMenuItem MnJenisDokumen;
     private widget.panelisi PanelContent;
     private usu.widget.glass.PanelGlass PanelWallpublic;
     private usu.widget.glass.PanelGlass PanelWallwifi;
-    private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
     private widget.TextBox TNmPasien;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
-    private widget.ComboBox cmbDokumen;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel3;
-    private widget.Label jLabel6;
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
-    private widget.panelisi panelGlass11;
-    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
-    private widget.panelisi panelGlass9;
-    private widget.Table tbFile;
     // End of variables declaration//GEN-END:variables
 
-    private void tampilDokumen() {
-        Valid.tabelKosong(tabMode);
+    private void tampil() {
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         try {
-            if (ChkDokumen.isSelected() == true) {
-                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
-                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
-                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                        + "left join pegawai pg on pg.nik=rf.petugas where rf.nomr='" + TNoRM.getText() + "' and "
-                        + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
-            } else {
-                ps = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d-%m-%Y') tglUpload, "
-                        + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
-                        + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
-                        + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and "
-                        + "rj.nama_pemeriksaan like '%" + cmbDokumen.getSelectedItem().toString() + "%' and rf.stts_data='1' order by rf.tgl_upload desc");
-            }
+            StringBuilder htmlContent = new StringBuilder();
             try {
-                rs = ps.executeQuery();
-                while (rs.next()) {
-                    tabMode.addRow(new String[]{
-                        rs.getString("id_file"), 
-                        rs.getString("no_rawat"),
-                        rs.getString("nama_pemeriksaan"),                        
-                        rs.getString("tglUpload"),
-                        rs.getString("jam"),
-                        rs.getString("nama_file_ori"),
-                        rs.getString("nmpetugas"),
-                        rs.getString("kode"),
-                        rs.getString("nip")
-                    });
+                if (ChkDokumen.isSelected() == true) {
+                    rs = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
+                            + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
+                            + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
+                            + "left join pegawai pg on pg.nik=rf.petugas where rf.nomr='" + TNoRM.getText() + "' and rf.stts_data='1' "
+                            + "order by rf.tgl_upload desc").executeQuery();
+                } else {
+                    rs = koneksi.prepareStatement("SELECT rf.id_file, rf.no_rawat, rf.nama_file_ori, date_format(rf.tgl_upload,'%d/%m/%Y') tglUpload, "
+                            + "time_format(rf.tgl_upload,'%H:%i') jam, rj.nama_pemeriksaan, ifnull(pg.nama,'-') nmpetugas, rf.jenis_pemeriksaan kode, "
+                            + "rf.petugas nip from rme_file_upload rf inner join rme_jenis_pemeriksaan rj on rj.kode_jenis_pemeriksaan=rf.jenis_pemeriksaan "
+                            + "left join pegawai pg on pg.nik=rf.petugas where rf.no_rawat='" + TNoRW.getText() + "' and rf.stts_data='1' "
+                            + "order by rf.tgl_upload desc").executeQuery();
                 }
+
+                urut = 1;
+                if (rs.next()) {
+                    htmlContent.append(
+                            "<table width='100%' class='isi'>"
+                            + "<thead>"
+                            + "<tr class='isi'>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>No.</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Kode File</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Nama Pemeriksaan</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Tgl. Upload</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Jam</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Nama File</b></td>"
+                            + "<td align='center' bgcolor='#f8fdf3'><b>Petugas Yang Upload</b></td>"
+                            + "</tr>"
+                            + "</thead>"
+                            + "<tbody>"
+                    );
+
+                    rs.beforeFirst();
+                    while (rs.next()) {
+                        htmlContent.append(
+                                "<tr class='isi'>"
+                                + "<td valign='top' width='20px'>" + urut + ".</td>"
+                                + "<td valign='top' align='center'>" + rs.getString("id_file") + "</td>"
+                                + "<td valign='top'>" + rs.getString("nama_pemeriksaan") + "</td>"
+                                + "<td valign='top' align='center'>" + rs.getString("tglUpload") + "</td>"
+                                + "<td valign='top' align='center'>" + rs.getString("jam") + " Wita" + "</td>"
+                                + "<td valign='top'>" + rs.getString("nama_file_ori") + " " + "<a href='" + link + "rme/view/?id=" + rs.getString("id_file") + "'>[Klik Untuk Membuka Gambar]</a></td>"
+                                + "<td valign='top'>" + rs.getString("nmpetugas") + "</td>"
+                                + "</tr>"
+                        );
+                        urut++;
+                    }
+                    htmlContent.append(
+                            "</tbody>"
+                            + "</table>"
+                    );
+                }
+                LoadHTML1.setText(
+                        "<html>"
+                        + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                        + htmlContent.toString()
+                        + "</table>"
+                        + "</html>");
             } catch (Exception e) {
-                System.out.println("Notif : " + e);
+                System.out.println("Notifikasi : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
                 }
-                if (ps != null) {
-                    ps.close();
-                }
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
-        } 
-    }
-
-    private void getData() {
-        noIDfile = "";
-        kd_periksa = "";
-        if (tbFile.getSelectedRow() != -1) {
-            noIDfile = tbFile.getValueAt(tbFile.getSelectedRow(), 0).toString();
-            kd_periksa = tbFile.getValueAt(tbFile.getSelectedRow(), 7).toString();
-            
-            if (kd_periksa.equals("RSM1")) {                
-                Valid.panggilUrlRME("/rme/view/?id=" + noIDfile);
-                noIDfile = "";
-                tampilFile("");
-            } else {
-                tampilFile(tbFile.getValueAt(tbFile.getSelectedRow(), 0).toString());
-            }
         }
-    }
-
-    private void tampilFile(String noid) {
-        try {
-            if (noid.equals("")) {
-                PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
-                        "[ Preview File Dokumen Penunjang Medis ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
-                        javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12)));
-                loadURL("","");
-                initComponents2();
-            } else {
-                PanelContent.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
-                        "[ Preview File Dokumen Penunjang Medis (" + tbFile.getValueAt(tbFile.getSelectedRow(), 2).toString().toUpperCase() + ") ]",
-                        javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION,
-                        new java.awt.Font("Tahoma", 0, 12)));
-                loadURL(link + "rme/view/?id=" + noid, noid);
-                initComponents2();
-            }
-        } catch (Exception ex) {
-            System.out.println("Notifikasi : " + ex);
-        } 
-    }
-    
-    private void initComponents2() {
-        panel.add(jfxPanel, BorderLayout.CENTER);        
-        PanelContent.setLayout(new BorderLayout());
-        PanelContent.add(panel);
-    }
-    
-    public void loadURL(String url, String noidnya) {
-        try {            
-            createScene(noidnya);
-        } catch (Exception e) {            
-        }
-
-        Platform.runLater(() -> {
-            try {
-                engine.load(url);
-            } catch (Exception exception) {
-                engine.load(url);
-            }
-        });
-    }
-    
-    private void createScene(String noid) {
-        Platform.runLater(new Runnable() {
-
-            public void run() {
-                WebView view = new WebView();
-                
-                engine = view.getEngine();
-                engine.setJavaScriptEnabled(true);
-                
-                engine.setCreatePopupHandler(new Callback<PopupFeatures, WebEngine>() {
-                    @Override
-                    public WebEngine call(PopupFeatures p) {
-                        Stage stage = new Stage(StageStyle.TRANSPARENT);
-                        return view.getEngine();
-                    }
-                });
-                
-                engine.getLoadWorker().exceptionProperty().addListener((ObservableValue<? extends Throwable> o, Throwable old, final Throwable value) -> {
-                    if (engine.getLoadWorker().getState() == FAILED) {
-                        SwingUtilities.invokeLater(() -> {
-                            JOptionPane.showMessageDialog(
-                                    panel,
-                                    (value != null) ?
-                                            engine.getLocation() + "\n" + value.getMessage() :
-                                            engine.getLocation() + "\nUnexpected Video.",
-                                    "Loading Video...",
-                                    JOptionPane.ERROR_MESSAGE);
-                        });
-                    }
-                });                
-
-                engine.getLoadWorker().stateProperty().addListener(new ChangeListener<Worker.State>() {
-                    @Override
-                    public void changed(ObservableValue ov, Worker.State oldState, Worker.State newState) {
-                        if (newState == Worker.State.SUCCEEDED) {
-                            try {
-                                if (engine.getLocation().contains(link + "rme/view/?id=" + noid)) {
-                                    setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                                    engine.executeScript("history.back()");
-                                    setCursor(Cursor.getDefaultCursor());
-                                } else if (engine.getLocation().contains(link + "rme/view/?id=" + noid)) {
-                                    dispose();
-                                }
-                            } catch (Exception ex) {
-                                System.out.println("Notifikasi : " + ex);
-                            }
-                        }
-                    }
-                });
-                
-                jfxPanel.setScene(new Scene(view));
-            }
-        });
+        this.setCursor(Cursor.getDefaultCursor());
     }
     
     public void setData(String norw, String norm, String nmpasien) {
