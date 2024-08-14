@@ -7781,8 +7781,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("PAR")) {
-            JOptionPane.showMessageDialog(null, "Pemeriksaan spirometri hanya utk. pasien poliklinik paru saja...!!!");
+        } else if (!kdpoli.getText().equals("PAR") || !kdpoli.getText().equals("UMUM")) {
+            JOptionPane.showMessageDialog(null, "Pemeriksaan spirometri hanya utk. pasien poliklinik paru & mcu saja...!!!");
             tbKasirRalan.requestFocus();
         } else {
             if (Sequel.cariInteger("select count(-1) from spirometri s inner join reg_periksa r on r.no_rawat=s.no_rawat where r.no_rkm_medis='" + NoRM.getText() + "'") == 0) {
