@@ -53,8 +53,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nipDokter = "", nipPerawat = "", user = "", dataProtokol = "";
     private int i = 0, x = 0;
-    private Date tgl = new Date();
-
+    
     /** Creates new form DlgSpesialis
      * @param parent
      * @param modal */
@@ -354,10 +353,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         BtnNotepad = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass9 = new widget.panelisi();
-        jLabel21 = new widget.Label();
-        DTPCari1 = new widget.Tanggal();
-        jLabel22 = new widget.Label();
-        DTPCari2 = new widget.Tanggal();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
@@ -905,33 +900,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 3, 9));
 
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("Tgl. Siklus : ");
-        jLabel21.setName("jLabel21"); // NOI18N
-        jLabel21.setPreferredSize(new java.awt.Dimension(80, 23));
-        panelGlass9.add(jLabel21);
-
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
-        DTPCari1.setDisplayFormat("dd-MM-yyyy");
-        DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
-        DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass9.add(DTPCari1);
-
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("s.d.");
-        jLabel22.setName("jLabel22"); // NOI18N
-        jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
-        panelGlass9.add(jLabel22);
-
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
-        DTPCari2.setDisplayFormat("dd-MM-yyyy");
-        DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
-        DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass9.add(DTPCari2);
-
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
         jLabel6.setName("jLabel6"); // NOI18N
@@ -1455,7 +1423,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dulu..!!");
+            tbProtokol.requestFocus();
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1490,7 +1459,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 tampil();
                 emptTeks();
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dahulu..!!");
+                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dulu..!!");
+                tbProtokol.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -1725,7 +1695,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 tampil();
                 emptTeks();
             } else {
-                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih datanya terlebih dahulu pada tabel..!!!!");
+                JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih datanya terlebih dulu pada tabel..!!!!");
                 tampil();
                 tbProtokol.requestFocus();
             }
@@ -1890,7 +1860,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             tampil();
             emptTeks();
         } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih datanya terlebih dahulu pada tabel..!!!!");
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih datanya terlebih dulu pada tabel..!!!!");
             tampil();
             tbProtokol.requestFocus();
         }
@@ -1933,8 +1903,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Button BtnRestor;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
-    private widget.Tanggal DTPCari1;
-    private widget.Tanggal DTPCari2;
     private widget.Tanggal DTPCari3;
     private widget.Tanggal DTPCari4;
     private widget.PanelBiasa FormMenu;
@@ -1992,8 +1960,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
-    private widget.Label jLabel21;
-    private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel3;
     private widget.Label jLabel30;
@@ -2024,36 +1990,38 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT pk.no_rawat, p.no_rkm_medis, p.nm_pasien, pk.nm_protokol, pk.siklus_ke, date_format(pk.tgl_siklus,'%d/%m/%Y') tglkemo, "
-                    + "pk.dosis, pk.tb, pk.bb, pk.lpt, pk.diagnosis, pk.program, pk.nip_perawat, pk.nip_dokter, pk.waktu_simpan, pg1.nama nmperawat, "
-                    + "pg2.nama nmdokter, pk.tgl_siklus, rp.umurdaftar, pk.keterangan from protokol_kemoterapi pk "
-                    + "inner join reg_periksa rp on rp.no_rawat=pk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai pg1 on pg1.nik=pk.nip_perawat inner join pegawai pg2 on pg2.nik=pk.nip_dokter where "
-                    + "pk.tgl_siklus between ? and ? and pk.no_rawat like ? or "
-                    + "pk.tgl_siklus between ? and ? and p.no_rkm_medis like ? or "
-                    + "pk.tgl_siklus between ? and ? and p.nm_pasien like ? or "
-                    + "pk.tgl_siklus between ? and ? and pk.nm_protokol like ? or "
-                    + "pk.tgl_siklus between ? and ? and pk.keterangan like ? or "
-                    + "pk.tgl_siklus between ? and ? and pg1.nama like ? order by pk.siklus_ke desc");
+            if (TCari.getText().trim().equals("")) {
+                ps = koneksi.prepareStatement("SELECT pk.no_rawat, p.no_rkm_medis, p.nm_pasien, pk.nm_protokol, pk.siklus_ke, date_format(pk.tgl_siklus,'%d/%m/%Y') tglkemo, "
+                        + "pk.dosis, pk.tb, pk.bb, pk.lpt, pk.diagnosis, pk.program, pk.nip_perawat, pk.nip_dokter, pk.waktu_simpan, pg1.nama nmperawat, "
+                        + "pg2.nama nmdokter, pk.tgl_siklus, rp.umurdaftar, pk.keterangan from protokol_kemoterapi pk "
+                        + "inner join reg_periksa rp on rp.no_rawat=pk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai pg1 on pg1.nik=pk.nip_perawat inner join pegawai pg2 on pg2.nik=pk.nip_dokter where "
+                        + "pk.no_rawat like ? or "
+                        + "p.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or "
+                        + "pk.nm_protokol like ? or "
+                        + "pk.keterangan like ? or "
+                        + "pg1.nama like ? order by pk.siklus_ke desc limit 100");
+            } else {
+                ps = koneksi.prepareStatement("SELECT pk.no_rawat, p.no_rkm_medis, p.nm_pasien, pk.nm_protokol, pk.siklus_ke, date_format(pk.tgl_siklus,'%d/%m/%Y') tglkemo, "
+                        + "pk.dosis, pk.tb, pk.bb, pk.lpt, pk.diagnosis, pk.program, pk.nip_perawat, pk.nip_dokter, pk.waktu_simpan, pg1.nama nmperawat, "
+                        + "pg2.nama nmdokter, pk.tgl_siklus, rp.umurdaftar, pk.keterangan from protokol_kemoterapi pk "
+                        + "inner join reg_periksa rp on rp.no_rawat=pk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai pg1 on pg1.nik=pk.nip_perawat inner join pegawai pg2 on pg2.nik=pk.nip_dokter where "
+                        + "pk.no_rawat like ? or "
+                        + "p.no_rkm_medis like ? or "
+                        + "p.nm_pasien like ? or "
+                        + "pk.nm_protokol like ? or "
+                        + "pk.keterangan like ? or "
+                        + "pg1.nama like ? order by pk.siklus_ke desc");
+            }            
             try {
-                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(3, "%" + TCari.getText().trim() + "%");                
-                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(1, "%" + TCari.getText().trim() + "%");
+                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
+                ps.setString(5, "%" + TCari.getText().trim() + "%");
                 ps.setString(6, "%" + TCari.getText().trim() + "%");
-                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(9, "%" + TCari.getText().trim() + "%");
-                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(12, "%" + TCari.getText().trim() + "%");
-                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(15, "%" + TCari.getText().trim() + "%");
-                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(18, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -2112,14 +2080,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TnmPerawat.setText("-");
         chkSaya.setSelected(false);
         Tket.setText("");
-        
-        if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + TnoRM.getText() + "'") > 0) {
-            Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_siklus from protokol_kemoterapi where "
-                    + "no_rkm_medis='" + TnoRM.getText() + "' order by tgl_siklus desc limit 1"));
-        } else {
-            tgl.setDate(1);
-            DTPCari1.setDate(tgl);
-        }
     }
 
     private void getData() {
@@ -2181,14 +2141,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         nipDokter = "D0000020";
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         TCari.setText(norm);
-        
-        if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'") > 0) {
-            Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_siklus from protokol_kemoterapi where "
-                    + "no_rkm_medis='" + norm + "' order by tgl_siklus desc limit 1"));
-        } else {
-            tgl.setDate(1);
-            DTPCari1.setDate(tgl);
-        }
         
         if (stts.equals("Ralan")) {
             nipDokter = Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + norw + "'");

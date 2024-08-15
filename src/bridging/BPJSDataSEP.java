@@ -7974,7 +7974,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
                     //Simpan Ke tabel bridging_sep_backup
                     if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                        response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                        response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                         NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                         JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                         NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -7988,7 +7988,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         kdNaikKls.getText(), pembi, pngJwb.getText(), tujuanKun.getSelectedItem().toString(), flag, kdpnjg, asesmen, KddpjpLayan.getText(), api.Decrypt(root.path("response").asText(), utc)
                     }) == false) {
                         Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                            response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                            response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                             NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                             JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                             NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -8031,7 +8031,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     
                     //Simpan Ke tabel bridging_sep_backup
                     if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                        response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                        response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                         NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                         JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                         NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -8045,7 +8045,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         kdNaikKls.getText(), pembi, pngJwb.getText(), tujuanKun.getSelectedItem().toString(), flag, kdpnjg, asesmen, KddpjpLayan.getText(), nmdpjpLayan.getText(),api.Decrypt(root.path("response").asText(), utc)
                     }) == false) {
                         Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                            response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                            response.asText(), TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                             NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                             JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                             NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -8111,7 +8111,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             } else {
                 //Simpan Ke tabel bridging_sep_backup jika gagal membuat sep
                 if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                    "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                    "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                     NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                     JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                     NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -8125,7 +8125,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     kdNaikKls.getText(), pembi, pngJwb.getText(), tujuanKun.getSelectedItem().toString(), flag, kdpnjg, asesmen, KddpjpLayan.getText(), nmdpjpLayan.getText(),respons
                 }) == false) {
                     Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                        "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                        "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                         NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                         JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                         NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -9065,7 +9065,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         //Simpan Ke tabel bridging_sep_backup
         System.out.println("Pesan SEP Backup : Menyiapkan data ketabel bridging_sep_backup utk. disimpan (Waktu : " + Sequel.cariIsi("select date_format(now(),'%d-%m-%Y %H:%i:%s')") + ") ...!!!");
         if (Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-            "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+            "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
             NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
             JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
             NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),
@@ -9079,7 +9079,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             kdNaikKls.getText(), pembi, pngJwb.getText(), tujuanKun.getSelectedItem().toString(), flag, kdpnjg, asesmen, KddpjpLayan.getText(), nmdpjpLayan.getText(), requestJson
         }) == false) {
             Sequel.menyimpantf("bridging_sep_backup", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "SEP", 59, new String[]{
-                "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + ""), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
+                "-", TNoRw.getText(), Valid.SetTgl(TanggalSEP.getSelectedItem() + "") + " " + Sequel.cariIsi("select time(now())"), Valid.SetTgl(TanggalRujuk.getSelectedItem() + ""),
                 NoRujukan.getText(), KdPpkRujukan.getText(), rujukanSEP.getText(), KdPPK.getText(), NmPPK.getText(),
                 JenisPelayanan.getSelectedItem().toString().substring(0, 1), Catatan.getText(), KdPenyakit.getText(),
                 NmPenyakit.getText(), KdPoli.getText(), NmPoli.getText(), hakKelas.getSelectedItem().toString().substring(0, 1),

@@ -134,7 +134,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
 //            }
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 boolean a = true;
-                if ((colIndex == 2) || (colIndex == 3) || (colIndex == 4) || (colIndex == 5) || (colIndex == 7) || (colIndex == 8)) {
+                if ((colIndex == 2) || (colIndex == 3) || (colIndex == 4) || (colIndex == 5) || (colIndex == 8)) {
                     a = false;
                 }
                 return a;

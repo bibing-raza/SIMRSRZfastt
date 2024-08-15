@@ -30,16 +30,16 @@ import javax.swing.table.TableColumn;
 import kepegawaian.DlgCariPetugas;
 
 public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabMode, tabMode1;
     private Connection koneksi=koneksiDB.condb();
     private sekuel Sequel=new sekuel();
     private validasi Valid=new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private int i = 0, x = 0;
-    private String nip = "";
+    private String nip = "", angkaBulan = "";;
 
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -93,6 +93,39 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         }
         tbMonev.setDefaultRenderer(Object.class, new WarnaTable());
         
+        tabMode1 = new DefaultTableModel(null, new String[]{
+            "No.", "Ruang Rawat/Gedung", "Jlh. Pasien Dirawat", "Jlh. Termonev", "Jlh. Belum Termonev", 
+            "Persentase Termonev", "Persentase Belum Termonev"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+
+        tbPersen.setModel(tabMode1);
+        tbPersen.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbPersen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 7; i++) {
+            TableColumn column = tbPersen.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
+                column.setPreferredWidth(150);
+            } else if (i == 2) {
+                column.setPreferredWidth(130);
+            } else if (i == 3) {
+                column.setPreferredWidth(130);
+            } else if (i == 4) {
+                column.setPreferredWidth(150);
+            } else if (i == 5) {
+                column.setPreferredWidth(150);
+            } else if (i == 6) {
+                column.setPreferredWidth(200);
+            } 
+        }
+        tbPersen.setDefaultRenderer(Object.class, new WarnaTable());
+        
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -141,27 +174,6 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private void initComponents() {
 
         internalFrame1 = new widget.InternalFrame();
-        Scroll = new widget.ScrollPane();
-        tbMonev = new widget.Table();
-        jPanel3 = new javax.swing.JPanel();
-        panelGlass8 = new widget.panelisi();
-        BtnSimpan = new widget.Button();
-        BtnBatal = new widget.Button();
-        BtnHapus = new widget.Button();
-        BtnGanti = new widget.Button();
-        BtnPrint = new widget.Button();
-        BtnAll = new widget.Button();
-        BtnKeluar = new widget.Button();
-        panelGlass10 = new widget.panelisi();
-        jLabel28 = new widget.Label();
-        tgl1 = new widget.Tanggal();
-        jLabel29 = new widget.Label();
-        tgl2 = new widget.Tanggal();
-        jLabel6 = new widget.Label();
-        TCari = new widget.TextBox();
-        BtnCari = new widget.Button();
-        jLabel7 = new widget.Label();
-        LCount = new widget.Label();
         PanelInput = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
         jLabel17 = new widget.Label();
@@ -187,6 +199,40 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         chkSaya = new widget.CekBox();
         jLabel30 = new widget.Label();
         TtglAsuhan = new widget.TextBox();
+        TabData = new javax.swing.JTabbedPane();
+        FormData = new widget.PanelBiasa();
+        Scroll = new widget.ScrollPane();
+        tbMonev = new widget.Table();
+        jPanel3 = new javax.swing.JPanel();
+        panelGlass8 = new widget.panelisi();
+        BtnSimpan = new widget.Button();
+        BtnBatal = new widget.Button();
+        BtnHapus = new widget.Button();
+        BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
+        BtnAll = new widget.Button();
+        BtnKeluar = new widget.Button();
+        panelGlass10 = new widget.panelisi();
+        jLabel28 = new widget.Label();
+        tgl1 = new widget.Tanggal();
+        jLabel29 = new widget.Label();
+        tgl2 = new widget.Tanggal();
+        jLabel6 = new widget.Label();
+        TCari = new widget.TextBox();
+        BtnCari = new widget.Button();
+        jLabel7 = new widget.Label();
+        LCount = new widget.Label();
+        FormPersen = new widget.PanelBiasa();
+        Scroll2 = new widget.ScrollPane();
+        tbPersen = new widget.Table();
+        panelGlass12 = new widget.panelisi();
+        jLabel31 = new widget.Label();
+        cmbBulan = new widget.ComboBox();
+        jLabel35 = new widget.Label();
+        Ttahun = new widget.TextBox();
+        BtnCari1 = new widget.Button();
+        BtnCetakPersen = new widget.Button();
+        BtnKeluar1 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -200,6 +246,208 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Monitoring dan Evaluasi Asuhan Gizi Rawat Inap ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
+
+        PanelInput.setName("PanelInput"); // NOI18N
+        PanelInput.setOpaque(false);
+        PanelInput.setPreferredSize(new java.awt.Dimension(380, 338));
+        PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
+
+        FormInput.setName("FormInput"); // NOI18N
+        FormInput.setPreferredSize(new java.awt.Dimension(190, 107));
+        FormInput.setLayout(null);
+
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Perkembangan Fisik/Klinis : ");
+        jLabel17.setName("jLabel17"); // NOI18N
+        FormInput.add(jLabel17);
+        jLabel17.setBounds(0, 94, 175, 23);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("Pasien : ");
+        jLabel25.setName("jLabel25"); // NOI18N
+        FormInput.add(jLabel25);
+        jLabel25.setBounds(0, 10, 120, 23);
+
+        TNoRW.setEditable(false);
+        TNoRW.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRW.setName("TNoRW"); // NOI18N
+        FormInput.add(TNoRW);
+        TNoRW.setBounds(122, 10, 120, 23);
+
+        TNoRM.setEditable(false);
+        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
+        TNoRM.setName("TNoRM"); // NOI18N
+        FormInput.add(TNoRM);
+        TNoRM.setBounds(245, 10, 70, 23);
+
+        Tpasien.setEditable(false);
+        Tpasien.setForeground(new java.awt.Color(0, 0, 0));
+        Tpasien.setName("Tpasien"); // NOI18N
+        FormInput.add(Tpasien);
+        Tpasien.setBounds(318, 10, 310, 23);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Ruang Rawat : ");
+        jLabel26.setName("jLabel26"); // NOI18N
+        FormInput.add(jLabel26);
+        jLabel26.setBounds(0, 38, 120, 23);
+
+        TrgRawat.setEditable(false);
+        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
+        TrgRawat.setName("TrgRawat"); // NOI18N
+        FormInput.add(TrgRawat);
+        TrgRawat.setBounds(122, 38, 505, 23);
+
+        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel27.setText("Tgl. Monev : ");
+        jLabel27.setName("jLabel27"); // NOI18N
+        FormInput.add(jLabel27);
+        jLabel27.setBounds(453, 66, 79, 23);
+
+        tglMonev.setEditable(false);
+        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        tglMonev.setDisplayFormat("dd-MM-yyyy");
+        tglMonev.setName("tglMonev"); // NOI18N
+        tglMonev.setOpaque(false);
+        tglMonev.setPreferredSize(new java.awt.Dimension(95, 23));
+        FormInput.add(tglMonev);
+        tglMonev.setBounds(533, 66, 95, 23);
+
+        Scroll10.setName("Scroll10"); // NOI18N
+        Scroll10.setOpaque(true);
+
+        Tfisik.setColumns(20);
+        Tfisik.setRows(5);
+        Tfisik.setName("Tfisik"); // NOI18N
+        Tfisik.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tfisik.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TfisikKeyPressed(evt);
+            }
+        });
+        Scroll10.setViewportView(Tfisik);
+
+        FormInput.add(Scroll10);
+        Scroll10.setBounds(177, 94, 450, 55);
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Perkembangan Diet : ");
+        jLabel18.setName("jLabel18"); // NOI18N
+        FormInput.add(jLabel18);
+        jLabel18.setBounds(0, 154, 175, 23);
+
+        Scroll11.setName("Scroll11"); // NOI18N
+        Scroll11.setOpaque(true);
+
+        Tdiet.setColumns(20);
+        Tdiet.setRows(5);
+        Tdiet.setName("Tdiet"); // NOI18N
+        Tdiet.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tdiet.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TdietKeyPressed(evt);
+            }
+        });
+        Scroll11.setViewportView(Tdiet);
+
+        FormInput.add(Scroll11);
+        Scroll11.setBounds(177, 154, 450, 55);
+
+        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel19.setText("Evaluasi dan Tindak Lanjut : ");
+        jLabel19.setName("jLabel19"); // NOI18N
+        FormInput.add(jLabel19);
+        jLabel19.setBounds(0, 214, 175, 23);
+
+        Scroll12.setName("Scroll12"); // NOI18N
+        Scroll12.setOpaque(true);
+
+        Tevaluasi.setColumns(20);
+        Tevaluasi.setRows(5);
+        Tevaluasi.setName("Tevaluasi"); // NOI18N
+        Tevaluasi.setPreferredSize(new java.awt.Dimension(190, 1000));
+        Tevaluasi.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TevaluasiKeyPressed(evt);
+            }
+        });
+        Scroll12.setViewportView(Tevaluasi);
+
+        FormInput.add(Scroll12);
+        Scroll12.setBounds(177, 214, 450, 82);
+
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Ahli Gizi : ");
+        jLabel20.setName("jLabel20"); // NOI18N
+        FormInput.add(jLabel20);
+        jLabel20.setBounds(0, 302, 120, 23);
+
+        TnmPetugas.setEditable(false);
+        TnmPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        TnmPetugas.setName("TnmPetugas"); // NOI18N
+        FormInput.add(TnmPetugas);
+        TnmPetugas.setBounds(122, 302, 390, 23);
+
+        BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPetugas.setMnemonic('1');
+        BtnPetugas.setToolTipText("Alt+1");
+        BtnPetugas.setName("BtnPetugas"); // NOI18N
+        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPetugasActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPetugas);
+        BtnPetugas.setBounds(515, 302, 28, 23);
+
+        chkSaya.setBackground(new java.awt.Color(242, 242, 242));
+        chkSaya.setForeground(new java.awt.Color(0, 0, 0));
+        chkSaya.setText("Saya Sendiri");
+        chkSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkSaya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkSaya.setName("chkSaya"); // NOI18N
+        chkSaya.setOpaque(false);
+        chkSaya.setPreferredSize(new java.awt.Dimension(220, 23));
+        chkSaya.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkSayaActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkSaya);
+        chkSaya.setBounds(550, 302, 90, 23);
+
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("Tgl. Asuhan Gizi : ");
+        jLabel30.setName("jLabel30"); // NOI18N
+        FormInput.add(jLabel30);
+        jLabel30.setBounds(0, 66, 120, 23);
+
+        TtglAsuhan.setEditable(false);
+        TtglAsuhan.setForeground(new java.awt.Color(0, 0, 0));
+        TtglAsuhan.setName("TtglAsuhan"); // NOI18N
+        FormInput.add(TtglAsuhan);
+        TtglAsuhan.setBounds(122, 66, 170, 23);
+
+        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
+
+        internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
+
+        TabData.setBackground(new java.awt.Color(255, 255, 254));
+        TabData.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TabData.setName("TabData"); // NOI18N
+        TabData.setPreferredSize(new java.awt.Dimension(270, 106));
+        TabData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabDataMouseClicked(evt);
+            }
+        });
+
+        FormData.setBorder(null);
+        FormData.setToolTipText("");
+        FormData.setName("FormData"); // NOI18N
+        FormData.setPreferredSize(new java.awt.Dimension(870, 2421));
+        FormData.setLayout(new java.awt.BorderLayout());
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
@@ -226,7 +474,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbMonev);
 
-        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
+        FormData.add(Scroll, java.awt.BorderLayout.CENTER);
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
@@ -382,7 +630,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass10.add(jLabel28);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -396,7 +644,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass10.add(jLabel29);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -452,193 +700,114 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
 
         jPanel3.add(panelGlass10, java.awt.BorderLayout.CENTER);
 
-        internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
+        FormData.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
-        PanelInput.setName("PanelInput"); // NOI18N
-        PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(380, 338));
-        PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
+        TabData.addTab("Data Monitoring & Evaluasi", FormData);
 
-        FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(190, 107));
-        FormInput.setLayout(null);
+        FormPersen.setBorder(null);
+        FormPersen.setToolTipText("");
+        FormPersen.setName("FormPersen"); // NOI18N
+        FormPersen.setPreferredSize(new java.awt.Dimension(870, 2421));
+        FormPersen.setLayout(new java.awt.BorderLayout());
 
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Perkembangan Fisik/Klinis : ");
-        jLabel17.setName("jLabel17"); // NOI18N
-        FormInput.add(jLabel17);
-        jLabel17.setBounds(0, 94, 175, 23);
+        Scroll2.setName("Scroll2"); // NOI18N
+        Scroll2.setOpaque(true);
 
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel25.setText("Pasien : ");
-        jLabel25.setName("jLabel25"); // NOI18N
-        FormInput.add(jLabel25);
-        jLabel25.setBounds(0, 10, 120, 23);
+        tbPersen.setToolTipText("");
+        tbPersen.setName("tbPersen"); // NOI18N
+        Scroll2.setViewportView(tbPersen);
 
-        TNoRW.setEditable(false);
-        TNoRW.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRW.setName("TNoRW"); // NOI18N
-        FormInput.add(TNoRW);
-        TNoRW.setBounds(122, 10, 120, 23);
+        FormPersen.add(Scroll2, java.awt.BorderLayout.CENTER);
 
-        TNoRM.setEditable(false);
-        TNoRM.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM.setName("TNoRM"); // NOI18N
-        FormInput.add(TNoRM);
-        TNoRM.setBounds(245, 10, 70, 23);
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
-        Tpasien.setEditable(false);
-        Tpasien.setForeground(new java.awt.Color(0, 0, 0));
-        Tpasien.setName("Tpasien"); // NOI18N
-        FormInput.add(Tpasien);
-        Tpasien.setBounds(318, 10, 310, 23);
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Bulan :");
+        jLabel31.setName("jLabel31"); // NOI18N
+        jLabel31.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass12.add(jLabel31);
 
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel26.setText("Ruang Rawat : ");
-        jLabel26.setName("jLabel26"); // NOI18N
-        FormInput.add(jLabel26);
-        jLabel26.setBounds(0, 38, 120, 23);
-
-        TrgRawat.setEditable(false);
-        TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
-        TrgRawat.setName("TrgRawat"); // NOI18N
-        FormInput.add(TrgRawat);
-        TrgRawat.setBounds(122, 38, 505, 23);
-
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel27.setText("Tgl. Monev : ");
-        jLabel27.setName("jLabel27"); // NOI18N
-        FormInput.add(jLabel27);
-        jLabel27.setBounds(453, 66, 79, 23);
-
-        tglMonev.setEditable(false);
-        tglMonev.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-06-2024" }));
-        tglMonev.setDisplayFormat("dd-MM-yyyy");
-        tglMonev.setName("tglMonev"); // NOI18N
-        tglMonev.setOpaque(false);
-        tglMonev.setPreferredSize(new java.awt.Dimension(95, 23));
-        FormInput.add(tglMonev);
-        tglMonev.setBounds(533, 66, 95, 23);
-
-        Scroll10.setName("Scroll10"); // NOI18N
-        Scroll10.setOpaque(true);
-
-        Tfisik.setColumns(20);
-        Tfisik.setRows(5);
-        Tfisik.setName("Tfisik"); // NOI18N
-        Tfisik.setPreferredSize(new java.awt.Dimension(190, 1000));
-        Tfisik.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TfisikKeyPressed(evt);
-            }
-        });
-        Scroll10.setViewportView(Tfisik);
-
-        FormInput.add(Scroll10);
-        Scroll10.setBounds(177, 94, 450, 55);
-
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setText("Perkembangan Diet : ");
-        jLabel18.setName("jLabel18"); // NOI18N
-        FormInput.add(jLabel18);
-        jLabel18.setBounds(0, 154, 175, 23);
-
-        Scroll11.setName("Scroll11"); // NOI18N
-        Scroll11.setOpaque(true);
-
-        Tdiet.setColumns(20);
-        Tdiet.setRows(5);
-        Tdiet.setName("Tdiet"); // NOI18N
-        Tdiet.setPreferredSize(new java.awt.Dimension(190, 1000));
-        Tdiet.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TdietKeyPressed(evt);
-            }
-        });
-        Scroll11.setViewportView(Tdiet);
-
-        FormInput.add(Scroll11);
-        Scroll11.setBounds(177, 154, 450, 55);
-
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Evaluasi dan Tindak Lanjut : ");
-        jLabel19.setName("jLabel19"); // NOI18N
-        FormInput.add(jLabel19);
-        jLabel19.setBounds(0, 214, 175, 23);
-
-        Scroll12.setName("Scroll12"); // NOI18N
-        Scroll12.setOpaque(true);
-
-        Tevaluasi.setColumns(20);
-        Tevaluasi.setRows(5);
-        Tevaluasi.setName("Tevaluasi"); // NOI18N
-        Tevaluasi.setPreferredSize(new java.awt.Dimension(190, 1000));
-        Tevaluasi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TevaluasiKeyPressed(evt);
-            }
-        });
-        Scroll12.setViewportView(Tevaluasi);
-
-        FormInput.add(Scroll12);
-        Scroll12.setBounds(177, 214, 450, 82);
-
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setText("Ahli Gizi : ");
-        jLabel20.setName("jLabel20"); // NOI18N
-        FormInput.add(jLabel20);
-        jLabel20.setBounds(0, 302, 120, 23);
-
-        TnmPetugas.setEditable(false);
-        TnmPetugas.setForeground(new java.awt.Color(0, 0, 0));
-        TnmPetugas.setName("TnmPetugas"); // NOI18N
-        FormInput.add(TnmPetugas);
-        TnmPetugas.setBounds(122, 302, 390, 23);
-
-        BtnPetugas.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPetugas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnPetugas.setMnemonic('1');
-        BtnPetugas.setToolTipText("Alt+1");
-        BtnPetugas.setName("BtnPetugas"); // NOI18N
-        BtnPetugas.addActionListener(new java.awt.event.ActionListener() {
+        cmbBulan.setForeground(new java.awt.Color(0, 0, 0));
+        cmbBulan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Januari", "Februari", "Maret", "April", "Mei", "Juni", "Juli", "Agustus", "September", "Oktober", "Nopember", "Desember" }));
+        cmbBulan.setName("cmbBulan"); // NOI18N
+        cmbBulan.setPreferredSize(new java.awt.Dimension(85, 23));
+        cmbBulan.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPetugasActionPerformed(evt);
+                cmbBulanActionPerformed(evt);
             }
         });
-        FormInput.add(BtnPetugas);
-        BtnPetugas.setBounds(515, 302, 28, 23);
+        panelGlass12.add(cmbBulan);
 
-        chkSaya.setBackground(new java.awt.Color(242, 242, 242));
-        chkSaya.setForeground(new java.awt.Color(0, 0, 0));
-        chkSaya.setText("Saya Sendiri");
-        chkSaya.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkSaya.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkSaya.setName("chkSaya"); // NOI18N
-        chkSaya.setOpaque(false);
-        chkSaya.setPreferredSize(new java.awt.Dimension(220, 23));
-        chkSaya.addActionListener(new java.awt.event.ActionListener() {
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setText("Tahun :");
+        jLabel35.setName("jLabel35"); // NOI18N
+        jLabel35.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelGlass12.add(jLabel35);
+
+        Ttahun.setForeground(new java.awt.Color(0, 0, 0));
+        Ttahun.setName("Ttahun"); // NOI18N
+        Ttahun.setPreferredSize(new java.awt.Dimension(60, 23));
+        Ttahun.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TtahunKeyPressed(evt);
+            }
+        });
+        panelGlass12.add(Ttahun);
+
+        BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari1.setMnemonic('T');
+        BtnCari1.setText("Tampilkan Data");
+        BtnCari1.setToolTipText("Alt+T");
+        BtnCari1.setName("BtnCari1"); // NOI18N
+        BtnCari1.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkSayaActionPerformed(evt);
+                BtnCari1ActionPerformed(evt);
             }
         });
-        FormInput.add(chkSaya);
-        chkSaya.setBounds(550, 302, 90, 23);
+        BtnCari1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCari1KeyPressed(evt);
+            }
+        });
+        panelGlass12.add(BtnCari1);
 
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel30.setText("Tgl. Asuhan Gizi : ");
-        jLabel30.setName("jLabel30"); // NOI18N
-        FormInput.add(jLabel30);
-        jLabel30.setBounds(0, 66, 120, 23);
+        BtnCetakPersen.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCetakPersen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        BtnCetakPersen.setMnemonic('K');
+        BtnCetakPersen.setText("Cetak");
+        BtnCetakPersen.setToolTipText("Alt+K");
+        BtnCetakPersen.setName("BtnCetakPersen"); // NOI18N
+        BtnCetakPersen.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnCetakPersen.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCetakPersenActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnCetakPersen);
 
-        TtglAsuhan.setEditable(false);
-        TtglAsuhan.setForeground(new java.awt.Color(0, 0, 0));
-        TtglAsuhan.setName("TtglAsuhan"); // NOI18N
-        FormInput.add(TtglAsuhan);
-        TtglAsuhan.setBounds(122, 66, 170, 23);
+        BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
+        BtnKeluar1.setText("Keluar");
+        BtnKeluar1.setToolTipText("Alt+K");
+        BtnKeluar1.setName("BtnKeluar1"); // NOI18N
+        BtnKeluar1.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnKeluar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar1ActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnKeluar1);
 
-        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
+        FormPersen.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
 
-        internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
+        TabData.addTab("Persentase Monev Asuhan Gizi", FormPersen);
+
+        internalFrame1.add(TabData, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -868,6 +1037,107 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void cmbBulanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbBulanActionPerformed
+        angkaBulan = "";
+        if (cmbBulan.getSelectedIndex() == 0) {
+            angkaBulan = "1";
+        } else if (cmbBulan.getSelectedIndex() == 1) {
+            angkaBulan = "2";
+        } else if (cmbBulan.getSelectedIndex() == 2) {
+            angkaBulan = "3";
+        } else if (cmbBulan.getSelectedIndex() == 3) {
+            angkaBulan = "4";
+        } else if (cmbBulan.getSelectedIndex() == 4) {
+            angkaBulan = "5";
+        } else if (cmbBulan.getSelectedIndex() == 5) {
+            angkaBulan = "6";
+        } else if (cmbBulan.getSelectedIndex() == 6) {
+            angkaBulan = "7";
+        } else if (cmbBulan.getSelectedIndex() == 7) {
+            angkaBulan = "8";
+        } else if (cmbBulan.getSelectedIndex() == 8) {
+            angkaBulan = "9";
+        } else if (cmbBulan.getSelectedIndex() == 9) {
+            angkaBulan = "10";
+        } else if (cmbBulan.getSelectedIndex() == 10) {
+            angkaBulan = "11";
+        } else if (cmbBulan.getSelectedIndex() == 11) {
+            angkaBulan = "12";
+        }
+        BtnCari1ActionPerformed(null);
+    }//GEN-LAST:event_cmbBulanActionPerformed
+
+    private void TtahunKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtahunKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari1ActionPerformed(null);
+        }
+    }//GEN-LAST:event_TtahunKeyPressed
+
+    private void BtnCari1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari1ActionPerformed
+        tampilPersentase();
+    }//GEN-LAST:event_BtnCari1ActionPerformed
+
+    private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCari1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnCari1ActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnCari1KeyPressed
+
+    private void BtnCetakPersenActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCetakPersenActionPerformed
+        if (tbPersen.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan tampilkan datanya terlebih dulu..!!!");
+        } else {
+            this.setCursor(Cursor.getDefaultCursor());
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("periode", "PERIODE BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText());
+
+            Valid.MyReport("rptPersentaseMonevAsuhan.jasper", "report", "::[ Persentase Monev Asuhan Gizi Pasien ]::",
+                    "select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_monev, "
+                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_monev, "
+                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_termonev, "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_termonev from "
+                    + "( "
+                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "inner join "
+                    + "(SELECT b.nm_gedung, count(m.no_rawat) jlh_px_asuhan from monev_asuhan_gizi m "
+                    + "inner join kamar_inap ki on ki.no_rawat=m.no_rawat "
+                    + "inner join bangsal b on b.nm_bangsal=m.ruang_rawat "
+                    + "WHERE MONTH(m.tgl_monev)=" + angkaBulan + " and YEAR(m.tgl_monev)=" + Ttahun.getText().trim() + " GROUP BY month(m.tgl_monev), b.nm_gedung) "
+                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung", param);
+            this.setCursor(Cursor.getDefaultCursor());
+
+            tampilPersentase();
+            emptTeks();
+            BtnKeluar1.requestFocus();
+        }
+    }//GEN-LAST:event_BtnCetakPersenActionPerformed
+
+    private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
+        BtnKeluarActionPerformed(null);
+    }//GEN-LAST:event_BtnKeluar1ActionPerformed
+
+    private void TabDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabDataMouseClicked
+        if (TabData.getSelectedIndex() == 0) {
+            tampil();
+        } else if (TabData.getSelectedIndex() == 1) {
+            cmbBulan.setSelectedItem(Sequel.bulanINDONESIA("select month(now())"));
+            angkaBulan = Sequel.cariIsi("select month(now())");
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+            tampilPersentase();
+        } 
+    }//GEN-LAST:event_TabDataMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -888,30 +1158,39 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCari1;
+    private widget.Button BtnCetakPersen;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKeluar1;
     private widget.Button BtnPetugas;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
+    private widget.PanelBiasa FormData;
     private widget.PanelBiasa FormInput;
+    private widget.PanelBiasa FormPersen;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll10;
     private widget.ScrollPane Scroll11;
     private widget.ScrollPane Scroll12;
+    private widget.ScrollPane Scroll2;
     public widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRW;
+    private javax.swing.JTabbedPane TabData;
     private widget.TextArea Tdiet;
     private widget.TextArea Tevaluasi;
     private widget.TextArea Tfisik;
     private widget.TextBox TnmPetugas;
     private widget.TextBox Tpasien;
     private widget.TextBox TrgRawat;
+    private widget.TextBox Ttahun;
     private widget.TextBox TtglAsuhan;
     private widget.CekBox chkSaya;
+    private widget.ComboBox cmbBulan;
     private widget.InternalFrame internalFrame1;
     private widget.Label jLabel17;
     private widget.Label jLabel18;
@@ -923,12 +1202,16 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
     private widget.Label jLabel28;
     private widget.Label jLabel29;
     private widget.Label jLabel30;
+    private widget.Label jLabel31;
+    private widget.Label jLabel35;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPanel jPanel3;
     private widget.panelisi panelGlass10;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass8;
     private widget.Table tbMonev;
+    private widget.Table tbPersen;
     private widget.Tanggal tgl1;
     private widget.Tanggal tgl2;
     private widget.Tanggal tglMonev;
@@ -1078,6 +1361,61 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        }
+    }
+    
+    private void tampilPersentase() {
+        if (Ttahun.getText().equals("")) {
+            Ttahun.setText(Sequel.cariIsi("select year(now())"));
+        } else {
+            Ttahun.setText(Ttahun.getText());
+        }
+
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("select * from (select a.nm_gedung, a.jlh_px_ranap, ifnull(b.jlh_px_asuhan,0) jlh_px_monev, "
+                    + "(a.jlh_px_ranap-ifnull(b.jlh_px_asuhan,0)) px_belum_monev, "
+                    + "concat(format(((ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_termonev, "
+                    + "concat(format((100-(ifnull(b.jlh_px_asuhan,0)/a.jlh_px_ranap)*100),0),' %') persen_blm_termonev from "
+                    + "( "
+                    + "(SELECT b.nm_gedung, count(ki.no_rawat) jlh_px_ranap FROM kamar_inap ki "
+                    + "inner join reg_periksa rp on rp.no_rawat=ki.no_rawat "
+                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "WHERE MONTH(ki.tgl_masuk)=" + angkaBulan + " and YEAR(ki.tgl_masuk)=" + Ttahun.getText().trim() + " GROUP BY MONTH(ki.tgl_masuk), b.nm_gedung) as a "
+                    + "inner join "
+                    + "(SELECT b.nm_gedung, count(m.no_rawat) jlh_px_asuhan from monev_asuhan_gizi m "
+                    + "inner join kamar_inap ki on ki.no_rawat=m.no_rawat "
+                    + "inner join bangsal b on b.nm_bangsal=m.ruang_rawat "
+                    + "WHERE MONTH(m.tgl_monev)=" + angkaBulan + " and YEAR(m.tgl_monev)=" + Ttahun.getText().trim() + " GROUP BY month(m.tgl_monev), b.nm_gedung) "
+                    + "as b on a.nm_gedung = b.nm_gedung)) as z order by z.nm_gedung");
+            try {
+                rs1 = ps1.executeQuery();
+                x = 1;
+                while (rs1.next()) {
+                    tabMode1.addRow(new String[]{
+                        x + ".",
+                        rs1.getString(1),
+                        rs1.getString(2),
+                        rs1.getString(3),
+                        rs1.getString(4),
+                        rs1.getString(5),
+                        rs1.getString(6)
+                    });
+                    x++;
+                }
+            } catch (Exception e) {
+                System.out.println("tampilPersentase : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }
