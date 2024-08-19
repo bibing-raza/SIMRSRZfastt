@@ -265,6 +265,7 @@ import keuangan.DlgPiutangPercaraBayar;
 import keuangan.DlgPiutangRalan;
 import keuangan.DlgPiutangRanap;
 import keuangan.DlgRincianPiutangPasien;
+import keuangan.DlgTransaksiPanjar;
 import laporan.DlgBulananHAIs;
 import laporan.DlgBulananHAIsRalan;
 import laporan.DlgBulananHAIsRanap;
@@ -861,6 +862,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnMasterDiagnosaGizi = new widget.ButtonBig();
         btnSkriningGiziUlang = new widget.ButtonBig();
         btnLembarObservasi = new widget.ButtonBig();
+        btnTransaksiPanjar = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5813,6 +5815,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnLembarObservasi);
 
+        btnTransaksiPanjar.setForeground(new java.awt.Color(0, 0, 0));
+        btnTransaksiPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404046811_money.png"))); // NOI18N
+        btnTransaksiPanjar.setText("Transaksi Panjar Pasien");
+        btnTransaksiPanjar.setIconTextGap(0);
+        btnTransaksiPanjar.setName("btnTransaksiPanjar"); // NOI18N
+        btnTransaksiPanjar.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTransaksiPanjar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransaksiPanjarActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnTransaksiPanjar);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5821,7 +5836,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11/08/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19/08/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11516,6 +11531,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnLembarObservasiActionPerformed
 
+    private void btnTransaksiPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransaksiPanjarActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgTransaksiPanjar aplikasi = new DlgTransaksiPanjar(this, false);
+        aplikasi.emptTeks();
+        aplikasi.isCek();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnTransaksiPanjarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11912,6 +11940,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnToolLab;
     private widget.ButtonBig btnToolRad;
     private widget.ButtonBig btnTracker;
+    private widget.ButtonBig btnTransaksiPanjar;
     private widget.ButtonBig btnTransferSerahTerimaPasien;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
@@ -12730,6 +12759,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 7) {
             jmlmenu = 0;
+            if (akses.getbilling_ranap() == true) {
+                Panelmenu.add(btnTransaksiPanjar);
+                jmlmenu++;
+            }
+            
             if (akses.getobat_per_cara_bayar() == true) {
                 Panelmenu.add(btnObatPerCaraBayar);
                 jmlmenu++;
@@ -14723,6 +14757,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getperiksa_radiologi() == true) {
             Panelmenu.add(btnPeriksaRadiologi);
+            jmlmenu++;
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            Panelmenu.add(btnTransaksiPanjar);
             jmlmenu++;
         }
 
@@ -16853,6 +16892,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkasir_ralan() == true) {
             if (btnKasir.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnKasir);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getbilling_ranap() == true) {
+            if (btnTransaksiPanjar.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnTransaksiPanjar);
                 jmlmenu++;
             }
         }
