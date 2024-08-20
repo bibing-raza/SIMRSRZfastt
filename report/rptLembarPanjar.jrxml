@@ -1,0 +1,264 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="385" columnWidth="540" leftMargin="35" rightMargin="20" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.5026296018031555"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="8"/>
+	<parameter name="namars" class="java.lang.String"/>
+	<parameter name="logo" class="java.io.InputStream"/>
+	<queryString>
+		<![CDATA[SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d-%m-%Y') tglpanjar, 
+TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, 
+pg1.nama petugas1, pg2.nama petugas2 from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat 
+INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan 
+INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.no_rawat='2024/08/14/000497']]>
+	</queryString>
+	<field name="no_panjar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tgl_panjar" class="java.sql.Date">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="ruang_rawat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rawat" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telp_1" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telp_2" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nominal_panjar" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="status_panjar" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nominal_balik" class="java.lang.Double">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_petugas_simpan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waktu_simpan" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nip_petugas_ganti" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="waktu_ganti" class="java.sql.Timestamp">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="keterangan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="telah_terima" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="no_rkm_medis" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nm_pasien" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="tglpanjar" class="java.lang.String"/>
+	<field name="jam" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="nomPanjar" class="java.lang.String"/>
+	<field name="nomStatus" class="java.lang.String"/>
+	<field name="petugas1" class="java.lang.String"/>
+	<field name="petugas2" class="java.lang.String"/>
+	<background>
+		<band height="216">
+			<image scaleImage="FillFrame" onErrorType="Blank">
+				<reportElement x="374" y="11" width="149" height="180"/>
+				<imageExpression class="java.lang.String"><![CDATA["setting/logo2.jpg"]]></imageExpression>
+			</image>
+		</band>
+	</background>
+	<title>
+		<band height="214">
+			<staticText>
+				<reportElement x="0" y="5" width="540" height="15"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[LEMBAR BUKTI PEMBAYARAN PANJAR]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="26" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No. Panjar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="40" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Pasien]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="68" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Tgl. Jam Panjar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="54" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Ruang Perawatan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="82" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[No. Hp/Telp. Konfirmasi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="96" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Alternatif No. Hp/Telp.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="110" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jml. Nominal Panjar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="124" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Status Panjar]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="138" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Jml. Nominal Status]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="152" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Waktu Simpan Trans.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="8" y="166" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Petugas Yang Menerima]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="26" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_panjar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="40" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{no_rawat}+" - "+$F{no_rkm_medis}+" - "+$F{nm_pasien}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="54" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{ruang_rawat}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="68" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{tglpanjar}+", Jam : "+$F{jam}+" Wita"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="82" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{telp_1}+", Telah terima dari : "+$F{telah_terima}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="96" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{telp_2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="110" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Rp. "+$F{nomPanjar}+",-"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="124" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{status_panjar}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="138" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": Rp. "+$F{nomStatus}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="152" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{waktu_simpan}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="112" y="166" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{petugas1}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="8" y="180" width="105" height="13"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" lineSpacing="Single">
+					<font fontName="Tahoma" size="9" isBold="false"/>
+				</textElement>
+				<text><![CDATA[Perbaikan Panjar Oleh]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="112" y="180" width="424" height="13"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$F{petugas2}]]></textFieldExpression>
+			</textField>
+			<rectangle radius="5">
+				<reportElement mode="Transparent" x="0" y="0" width="540" height="200"/>
+			</rectangle>
+		</band>
+	</title>
+</jasperReport>

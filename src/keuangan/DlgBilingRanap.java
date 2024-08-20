@@ -4814,19 +4814,23 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             TNoRw.requestFocus();
         } else {
-            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("DlgBilingRanap");
-            DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
-            panjar.emptTeks();
-            panjar.isCek();
-            panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
-                    Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
-            panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            panjar.setLocationRelativeTo(internalFrame1);
-            panjar.setVisible(true);
-            BtnCariActionPerformed(null);
-            this.setCursor(Cursor.getDefaultCursor());
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgBilingRanap");
+                DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                panjar.emptTeks();
+                panjar.isCek();
+                panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
+                        Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
+                        Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+                panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                panjar.setLocationRelativeTo(internalFrame1);
+                panjar.setVisible(true);
+                BtnCariActionPerformed(null);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan, kalau sudah selesai dikabari...!!!");
+            }
         }
     }//GEN-LAST:event_MnPanjarPasienActionPerformed
 

@@ -832,8 +832,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', "
-                    + "d.nm_dokter 'Nama Dokter', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', "
-                    + "concat('   ',enc.klaim_final) 'Status Klaim',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
+                    + "d.nm_dokter 'Nama Dokter',s.nm_sps 'Spesialis', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', "
+                    + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', "
                     + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
                     + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') 'Pemakaian Obat (%)' FROM eklaim_new_claim enc "
@@ -842,7 +842,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
                     + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli "
                     + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter "
-                    + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep WHERE "
+                    + "inner join spesialis s on s.kd_sps = d.kd_sps "
+                    + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
+                    + "LEFT join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' "
+                    + "LEFT join penyakit pk on pk.kd_penyakit = dp.kd_penyakit WHERE "
                     + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and "
                     + "enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "ORDER BY enc.tglsep", dialog_simpan);
@@ -921,8 +924,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }
 
             dialog_simpan = Valid.openDialog();
-            Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP', "
-                    + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', concat('   ',enc.klaim_final) 'Status Klaim',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
+            Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', "
+                    + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
                     + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') 'Pemakaian Obat (%)' "
                     + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
@@ -931,9 +934,12 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                    + "inner join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' "
+                    + "inner join penyakit pk on pk.kd_penyakit = dp.kd_penyakit "
                     + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
                     + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
-                    + "left join dokter d on d.kd_dokter=dr.kd_dokter WHERE "
+                    + "left join dokter d on d.kd_dokter=dr.kd_dokter "
+                    + "left join spesialis s on s.kd_sps = d.kd_sps WHERE "
                     + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
                     + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "ORDER BY enc.tglsep", dialog_simpan);

@@ -11884,17 +11884,22 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             tbKamIn.requestFocus();
         } else {
             if (tbKamIn.getSelectedRow() != -1) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgKamarInap");
-                DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
-                panjar.emptTeks();
-                panjar.isCek();
-                panjar.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
-                panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                panjar.setLocationRelativeTo(internalFrame1);
-                panjar.setVisible(true);
-                BtnCariActionPerformed(null);
-                this.setCursor(Cursor.getDefaultCursor());
+                if (akses.getadmin() == true) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKamarInap");
+                    DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+                    panjar.emptTeks();
+                    panjar.isCek();
+                    panjar.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
+                    panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    panjar.setLocationRelativeTo(internalFrame1);
+                    panjar.setVisible(true);
+                    BtnCariActionPerformed(null);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan, kalau sudah selesai dikabari...!!!");
+                    tbKamIn.requestFocus();
+                }
             }
         }
     }//GEN-LAST:event_MnPanjarPasienBtnPrintActionPerformed

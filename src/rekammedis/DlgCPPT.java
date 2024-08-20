@@ -4955,6 +4955,10 @@ public class DlgCPPT extends javax.swing.JDialog {
 
     private void ChkJamActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkJamActionPerformed
         if (ChkJam.isSelected() == true) {
+            cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+            cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+            cmbDtk.setSelectedIndex(0);
+
             cmbJam.setEnabled(true);
             cmbMnt.setEnabled(true);
             cmbDtk.setEnabled(true);

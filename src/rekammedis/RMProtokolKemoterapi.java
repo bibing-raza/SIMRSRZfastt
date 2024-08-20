@@ -400,6 +400,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel23 = new widget.Label();
         Tket = new widget.TextBox();
         BtnProgram = new widget.Button();
+        ChkKunjungan = new widget.CekBox();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -468,7 +469,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -482,7 +483,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1036,16 +1037,16 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setText("Tgl. Siklus : ");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass7.add(jLabel8);
-        jLabel8.setBounds(160, 66, 100, 23);
+        jLabel8.setBounds(160, 66, 70, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
-        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-05-2024" }));
+        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
         TtglSiklus.setDisplayFormat("dd-MM-yyyy");
         TtglSiklus.setName("TtglSiklus"); // NOI18N
         TtglSiklus.setOpaque(false);
         TtglSiklus.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass7.add(TtglSiklus);
-        TtglSiklus.setBounds(263, 66, 90, 23);
+        TtglSiklus.setBounds(233, 66, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Dosis : ");
@@ -1292,6 +1293,25 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         });
         panelGlass7.add(BtnProgram);
         BtnProgram.setBounds(1357, 10, 100, 23);
+
+        ChkKunjungan.setBackground(new java.awt.Color(255, 255, 250));
+        ChkKunjungan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkKunjungan.setForeground(new java.awt.Color(0, 0, 0));
+        ChkKunjungan.setText("Protokol Kemoterapi Untuk Kunjungan Saat Ini");
+        ChkKunjungan.setBorderPainted(true);
+        ChkKunjungan.setBorderPaintedFlat(true);
+        ChkKunjungan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkKunjungan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkKunjungan.setName("ChkKunjungan"); // NOI18N
+        ChkKunjungan.setOpaque(false);
+        ChkKunjungan.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkKunjungan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkKunjunganActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(ChkKunjungan);
+        ChkKunjungan.setBounds(330, 66, 340, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1866,6 +1886,18 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnCetakPemberianCairanActionPerformed
 
+    private void ChkKunjunganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkKunjunganActionPerformed
+        if (ChkKunjungan.isSelected() == true) {
+            TnoRW.setText(Sequel.cariIsi("select no_rawat from reg_periksa where no_rkm_medis='" + TnoRM.getText() + "' order by tgl_registrasi desc, jam_reg desc limit 1"));
+        } else if (ChkKunjungan.isSelected() == false) {
+            if (tbProtokol.getRowCount() == 0) {
+                TnoRW.setText(TnoRW.getText());
+            } else {
+                TnoRW.setText(tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 0).toString());
+            }
+        }
+    }//GEN-LAST:event_ChkKunjunganActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1903,6 +1935,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
     private widget.Button BtnRestor;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
+    public widget.CekBox ChkKunjungan;
     private widget.Tanggal DTPCari3;
     private widget.Tanggal DTPCari4;
     private widget.PanelBiasa FormMenu;
@@ -2080,6 +2113,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         TnmPerawat.setText("-");
         chkSaya.setSelected(false);
         Tket.setText("");
+        ChkKunjungan.setSelected(false);
     }
 
     private void getData() {

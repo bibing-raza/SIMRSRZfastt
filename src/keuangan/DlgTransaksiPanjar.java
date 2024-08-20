@@ -53,8 +53,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Panjar", "No. Rawat", "No. RM", "Nama Pasien", "Ruang Rawat", "Tgl. Panjar", "Jam",
             "No. Hp/Telp. Konfirmasi", "Alternatif No. Hp.Telp.", "Nominal Panjar (Rp.)", "Status Panjar",
-            "Nominal Status (Rp.)", "Petugas Penerima", "Perbaikan Panjar Oleh", "tgl_panjar", "nip_petugas_simpan",
-            "waktu_simpan", "nip_petugas_ganti", "waktu_ganti", "nominal_panjar", "nominal_balik"
+            "Nominal Status (Rp.)", "Petugas Penerima", "Perbaikan Panjar Oleh", "Keterangan", "Telah Terima Dari", 
+            "tgl_panjar", "nip_petugas_simpan", "waktu_simpan", "nip_petugas_ganti", "waktu_ganti", "nominal_panjar",
+            "nominal_balik"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -66,7 +67,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         tbPanjar.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPanjar.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 21; i++) {
+        for (i = 0; i < 23; i++) {
             TableColumn column = tbPanjar.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -97,11 +98,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             } else if (i == 13) {
                 column.setPreferredWidth(220);
             } else if (i == 14) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(220);
             } else if (i == 15) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(220);
             } else if (i == 16) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -117,6 +116,12 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             } else if (i == 20) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbPanjar.setDefaultRenderer(Object.class, new WarnaTable());
@@ -126,6 +131,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TnoTelp2.setDocument(new batasInput((byte) 16).getOnlyAngka(TnoTelp2));
         TnominalPanjar.setDocument(new batasInput((byte) 9).getOnlyAngka(TnominalPanjar));
         TnominalStatus.setDocument(new batasInput((byte) 9).getOnlyAngka(TnominalStatus));
+        TtelahTerima.setDocument(new batasInput((int) 150).getKata(TtelahTerima));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -148,6 +154,9 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnKwitansi = new javax.swing.JMenuItem();
+        MnLembarPanjar = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -190,9 +199,50 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TrgRawat = new widget.TextBox();
         jLabel17 = new widget.Label();
         TtglMrs = new widget.TextBox();
+        labelnom_panjar = new widget.Label();
+        labelnom_status = new widget.Label();
+        jLabel18 = new widget.Label();
+        scrollPane13 = new widget.ScrollPane();
+        Tketerangan = new widget.TextArea();
+        jLabel20 = new widget.Label();
+        TtelahTerima = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPanjar = new widget.Table();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnKwitansi.setBackground(new java.awt.Color(242, 242, 242));
+        MnKwitansi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKwitansi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnKwitansi.setText("Kwitansi Pembayaran");
+        MnKwitansi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKwitansi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKwitansi.setIconTextGap(5);
+        MnKwitansi.setName("MnKwitansi"); // NOI18N
+        MnKwitansi.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnKwitansi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKwitansiActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnKwitansi);
+
+        MnLembarPanjar.setBackground(new java.awt.Color(242, 242, 242));
+        MnLembarPanjar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLembarPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PrinterSettings.png"))); // NOI18N
+        MnLembarPanjar.setText("Lembar Panjar");
+        MnLembarPanjar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLembarPanjar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLembarPanjar.setIconTextGap(5);
+        MnLembarPanjar.setName("MnLembarPanjar"); // NOI18N
+        MnLembarPanjar.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnLembarPanjar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLembarPanjarActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnLembarPanjar);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -342,7 +392,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(78, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -356,7 +406,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -416,7 +466,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 160));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 320));
         PanelInput.setLayout(null);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
@@ -460,21 +510,21 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         jLabel11.setText("Tgl. Panjar :");
         jLabel11.setName("jLabel11"); // NOI18N
         PanelInput.add(jLabel11);
-        jLabel11.setBounds(355, 66, 240, 23);
+        jLabel11.setBounds(525, 94, 70, 23);
 
-        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19-08-2024" }));
+        TtglPanjar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "20-08-2024" }));
         TtglPanjar.setDisplayFormat("dd-MM-yyyy");
         TtglPanjar.setName("TtglPanjar"); // NOI18N
         TtglPanjar.setOpaque(false);
         TtglPanjar.setPreferredSize(new java.awt.Dimension(90, 23));
         PanelInput.add(TtglPanjar);
-        TtglPanjar.setBounds(600, 66, 90, 23);
+        TtglPanjar.setBounds(600, 94, 90, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("No. Hp/Telp. Konfirmasi :");
         jLabel12.setName("jLabel12"); // NOI18N
         PanelInput.add(jLabel12);
-        jLabel12.setBounds(0, 94, 140, 23);
+        jLabel12.setBounds(0, 122, 140, 23);
 
         TnoTelp1.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp1.setName("TnoTelp1"); // NOI18N
@@ -484,13 +534,13 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnoTelp1);
-        TnoTelp1.setBounds(144, 94, 131, 23);
+        TnoTelp1.setBounds(144, 122, 131, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Alternatif No. Hp/Telp. Konfirmasi :");
         jLabel13.setName("jLabel13"); // NOI18N
         PanelInput.add(jLabel13);
-        jLabel13.setBounds(355, 94, 240, 23);
+        jLabel13.setBounds(355, 122, 240, 23);
 
         TnoTelp2.setForeground(new java.awt.Color(0, 0, 0));
         TnoTelp2.setName("TnoTelp2"); // NOI18N
@@ -500,46 +550,67 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             }
         });
         PanelInput.add(TnoTelp2);
-        TnoTelp2.setBounds(600, 94, 131, 23);
+        TnoTelp2.setBounds(600, 122, 131, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Nominal Panjar : Rp.");
+        jLabel14.setText("Nominal Panjar :");
         jLabel14.setName("jLabel14"); // NOI18N
         PanelInput.add(jLabel14);
-        jLabel14.setBounds(0, 122, 140, 23);
+        jLabel14.setBounds(0, 150, 140, 23);
 
         TnominalPanjar.setForeground(new java.awt.Color(0, 0, 0));
         TnominalPanjar.setName("TnominalPanjar"); // NOI18N
+        TnominalPanjar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TnominalPanjarActionPerformed(evt);
+            }
+        });
         TnominalPanjar.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TnominalPanjarKeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TnominalPanjarKeyReleased(evt);
+            }
         });
         PanelInput.add(TnominalPanjar);
-        TnominalPanjar.setBounds(144, 122, 131, 23);
+        TnominalPanjar.setBounds(144, 150, 131, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Status Panjar :");
         jLabel15.setName("jLabel15"); // NOI18N
         PanelInput.add(jLabel15);
-        jLabel15.setBounds(275, 122, 90, 23);
+        jLabel15.setBounds(0, 178, 140, 23);
 
         cmbStatus.setForeground(new java.awt.Color(0, 0, 0));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Selesai", "Kurang Bayar", "Lebih Bayar", "Lanjut Piutang" }));
         cmbStatus.setName("cmbStatus"); // NOI18N
         PanelInput.add(cmbStatus);
-        cmbStatus.setBounds(370, 122, 105, 23);
+        cmbStatus.setBounds(144, 178, 105, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Nominal Status : Rp.");
+        jLabel16.setText("Nominal Status :");
         jLabel16.setName("jLabel16"); // NOI18N
         PanelInput.add(jLabel16);
-        jLabel16.setBounds(475, 122, 122, 23);
+        jLabel16.setBounds(0, 206, 140, 23);
 
         TnominalStatus.setForeground(new java.awt.Color(0, 0, 0));
         TnominalStatus.setName("TnominalStatus"); // NOI18N
+        TnominalStatus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                TnominalStatusActionPerformed(evt);
+            }
+        });
+        TnominalStatus.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnominalStatusKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                TnominalStatusKeyReleased(evt);
+            }
+        });
         PanelInput.add(TnominalStatus);
-        TnominalStatus.setBounds(600, 122, 131, 23);
+        TnominalStatus.setBounds(144, 206, 131, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Ruang Rawat :");
@@ -562,13 +633,65 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TtglMrs.setEditable(false);
         TtglMrs.setForeground(new java.awt.Color(0, 0, 0));
         TtglMrs.setName("TtglMrs"); // NOI18N
-        TtglMrs.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TtglMrsKeyPressed(evt);
-            }
-        });
         PanelInput.add(TtglMrs);
         TtglMrs.setBounds(600, 38, 131, 23);
+
+        labelnom_panjar.setForeground(new java.awt.Color(0, 0, 0));
+        labelnom_panjar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelnom_panjar.setText("0");
+        labelnom_panjar.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelnom_panjar.setName("labelnom_panjar"); // NOI18N
+        PanelInput.add(labelnom_panjar);
+        labelnom_panjar.setBounds(280, 150, 320, 23);
+
+        labelnom_status.setForeground(new java.awt.Color(0, 0, 0));
+        labelnom_status.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        labelnom_status.setText("0");
+        labelnom_status.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        labelnom_status.setName("labelnom_status"); // NOI18N
+        PanelInput.add(labelnom_status);
+        labelnom_status.setBounds(280, 206, 320, 23);
+
+        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel18.setText("Keterangan :");
+        jLabel18.setToolTipText("");
+        jLabel18.setName("jLabel18"); // NOI18N
+        PanelInput.add(jLabel18);
+        jLabel18.setBounds(0, 234, 140, 23);
+
+        scrollPane13.setName("scrollPane13"); // NOI18N
+        scrollPane13.setPreferredSize(new java.awt.Dimension(174, 100));
+
+        Tketerangan.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        Tketerangan.setColumns(20);
+        Tketerangan.setRows(5);
+        Tketerangan.setName("Tketerangan"); // NOI18N
+        Tketerangan.setPreferredSize(new java.awt.Dimension(162, 700));
+        Tketerangan.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TketeranganKeyPressed(evt);
+            }
+        });
+        scrollPane13.setViewportView(Tketerangan);
+
+        PanelInput.add(scrollPane13);
+        scrollPane13.setBounds(144, 234, 590, 72);
+
+        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel20.setText("Telah Terima Dari :");
+        jLabel20.setName("jLabel20"); // NOI18N
+        PanelInput.add(jLabel20);
+        jLabel20.setBounds(0, 94, 110, 23);
+
+        TtelahTerima.setForeground(new java.awt.Color(0, 0, 0));
+        TtelahTerima.setName("TtelahTerima"); // NOI18N
+        TtelahTerima.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TtelahTerimaKeyPressed(evt);
+            }
+        });
+        PanelInput.add(TtelahTerima);
+        TtelahTerima.setBounds(115, 94, 410, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -580,6 +703,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbPanjar.setToolTipText("Silahkan klik untuk memilih data yang diperbaiki");
+        tbPanjar.setComponentPopupMenu(jPopupMenu1);
         tbPanjar.setName("tbPanjar"); // NOI18N
         tbPanjar.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -658,10 +782,11 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             }
             AutoNomorPanjar();
             
-            if (Sequel.menyimpantf("transaksi_panjar", "?,?,?,?,?,?,?,?,?,?,?,?,?", "Transaksi Panjar", 13, new String[]{
+            if (Sequel.menyimpantf("transaksi_panjar", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Transaksi Panjar", 15, new String[]{
                 TnoPanjar.getText(), Valid.SetTgl(TtglPanjar.getSelectedItem() + ""), TrgRawat.getText(), TNoRw.getText(),
-                TnoTelp1.getText(), TnoTelp2.getText(), TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(), 
-                TnominalStatus.getText(), nipSimpan, Sequel.cariIsi("select now()"), "-", "0000-00-00 00:00:00"
+                TnoTelp1.getText(), TnoTelp2.getText(), TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(),
+                TnominalStatus.getText(), nipSimpan, Sequel.cariIsi("select now()"), "-", "0000-00-00 00:00:00", Tketerangan.getText(),
+                TtelahTerima.getText()
             }) == true) {
 
                 TCari.setText(TNoRw.getText());
@@ -701,10 +826,10 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                 }
 
                 if (Sequel.mengedittf("transaksi_panjar", "no_panjar=?", "tgl_panjar=?, telp_1=?, telp_2=?, nominal_panjar=?, "
-                        + "status_panjar=?, nominal_balik=?, nip_petugas_ganti=?, waktu_ganti=?", 9, new String[]{
+                        + "status_panjar=?, nominal_balik=?, nip_petugas_ganti=?, waktu_ganti=?, keterangan=?, telah_terima=?", 11, new String[]{
                             Valid.SetTgl(TtglPanjar.getSelectedItem() + ""), TnoTelp1.getText(), TnoTelp2.getText(),
-                            TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(), TnominalStatus.getText(), 
-                            nipGanti, Sequel.cariIsi("select now()"),
+                            TnominalPanjar.getText(), cmbStatus.getSelectedItem().toString(), TnominalStatus.getText(),
+                            nipGanti, Sequel.cariIsi("select now()"), Tketerangan.getText(), TtelahTerima.getText(),
                             tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 0).toString()
                         }) == true) {
 
@@ -771,21 +896,23 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Data yang ditampilkan pada tabel masih kosong..!!!!");
             DTPCari1.requestFocus();
         } else {
-            Map<String, Object> param = new HashMap<>();
-            param.put("namars", akses.getnamars());
-            param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("norm", TNoRM.getText());
-            param.put("nmpasien", TPasien.getText());
-            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-            param.put("tanggal", "Pengkajian Tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asesmen from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'"))
-                + ", Pukul : " + Sequel.cariIsi("select time_format(jam_asesmen,'%H:%i') from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") + " WITA");
-//            param.put("petugas", "(" + TnmPetugas.getText() + ")");
-
-            Valid.MyReport("rptCetakAsesmenRestrain.jasper", "report", "::[ Laporan Asesmen Restrain hal. 1 ]::",
-                "SELECT now() tanggal", param);
-
-            emptTeks();
-            tampil();
+            JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!!!");
+            
+//            Map<String, Object> param = new HashMap<>();
+//            param.put("namars", akses.getnamars());
+//            param.put("logo", Sequel.cariGambar("select logo from setting"));
+//            param.put("norm", TNoRM.getText());
+//            param.put("nmpasien", TPasien.getText());
+//            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+//            param.put("tanggal", "Pengkajian Tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asesmen from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'"))
+//                + ", Pukul : " + Sequel.cariIsi("select time_format(jam_asesmen,'%H:%i') from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") + " WITA");
+////            param.put("petugas", "(" + TnmPetugas.getText() + ")");
+//
+//            Valid.MyReport("rptCetakAsesmenRestrain.jasper", "report", "::[ Laporan Asesmen Restrain hal. 1 ]::",
+//                "SELECT now() tanggal", param);
+//
+//            emptTeks();
+//            tampil();
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -807,9 +934,120 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
-    private void TtglMrsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtglMrsKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TtglMrsKeyPressed
+    private void TketeranganKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TketeranganKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_TAB) {
+            BtnSimpan.requestFocus();
+        }
+    }//GEN-LAST:event_TketeranganKeyPressed
+
+    private void TnominalStatusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnominalStatusKeyPressed
+        Valid.pindah(evt, cmbStatus, Tketerangan);
+    }//GEN-LAST:event_TnominalStatusKeyPressed
+
+    private void TnominalPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TnominalPanjarActionPerformed
+        if (TnominalPanjar.getText().trim().equals("")) {
+            labelnom_panjar.setText("Rp. 0");
+        } else {
+            labelnom_panjar.setText("Rp. " + Valid.SetAngka(Double.parseDouble(TnominalPanjar.getText())));
+        }
+    }//GEN-LAST:event_TnominalPanjarActionPerformed
+
+    private void TnominalStatusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_TnominalStatusActionPerformed
+        if (TnominalStatus.getText().trim().equals("")) {
+            labelnom_status.setText("Rp. 0");
+        } else {
+            labelnom_status.setText("Rp. " + Valid.SetAngka(Double.parseDouble(TnominalStatus.getText())));
+        }
+    }//GEN-LAST:event_TnominalStatusActionPerformed
+
+    private void TnominalPanjarKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnominalPanjarKeyReleased
+        if (TnominalPanjar.getText().trim().equals("")) {
+            labelnom_panjar.setText("Rp. 0");
+        } else {
+            labelnom_panjar.setText("Rp. " + Valid.SetAngka(Double.parseDouble(TnominalPanjar.getText())));
+        }
+    }//GEN-LAST:event_TnominalPanjarKeyReleased
+
+    private void TnominalStatusKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnominalStatusKeyReleased
+        if (TnominalStatus.getText().trim().equals("")) {
+            labelnom_status.setText("Rp. 0");
+        } else {
+            labelnom_status.setText("Rp. " + Valid.SetAngka(Double.parseDouble(TnominalStatus.getText())));
+        }
+    }//GEN-LAST:event_TnominalStatusKeyReleased
+
+    private void MnKwitansiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnKwitansiActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+        } else {
+            if (tbPanjar.getSelectedRow() > -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("norm", TNoRM.getText());
+                param.put("nmpasien", TPasien.getText());
+                param.put("nopanjar", TnoPanjar.getText());
+                param.put("telahTerima", TtelahTerima.getText());                
+                param.put("keterangan", Tketerangan.getText() + "\nNo. Hp/Telp. yang bisa dihubungi " + TnoTelp1.getText() + " / " + TnoTelp2.getText());
+                param.put("tanggal", "Martapura, " + Valid.SetTglINDONESIA(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 16).toString()));
+                
+                if (cmbStatus.getSelectedIndex() == 2 || cmbStatus.getSelectedIndex() == 3) {
+                    param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalStatus.getText())).toUpperCase() + " RUPIAH");
+                    param.put("nominal", labelnom_status.getText().replaceAll(",", "."));
+                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 13).toString() + ")");
+                } else {
+                    param.put("terbilang", Sequel.Terbilang(Double.parseDouble(TnominalPanjar.getText())).toUpperCase() + " RUPIAH");
+                    param.put("nominal", labelnom_panjar.getText().replaceAll(",", "."));
+                    param.put("petugas", "(" + tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 12).toString() + ")");
+                }
+
+                Valid.MyReport("rptKwitansiPanjar.jasper", "report", "::[ Kuitansi Transaksi Panjar ]::",
+                        "SELECT now() tanggal", param);
+
+                emptTeks();
+                tampil();
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbPanjar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnKwitansiActionPerformed
+
+    private void MnLembarPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLembarPanjarActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, data sudah habis...!!!!");
+        } else {
+            if (tbPanjar.getSelectedRow() > -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("logo", Sequel.cariGambar("select logo from setting"));
+                Valid.MyReport("rptLembarPanjar.jasper", "report", "::[ Lembar Transaksi Panjar ]::",
+                        "SELECT tp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(tp.tgl_panjar,'%d-%m-%Y') tglpanjar, "
+                        + "TIME_FORMAT(tp.waktu_simpan,'%H:%i') jam, format(tp.nominal_panjar,0) nomPanjar, format(tp.nominal_balik,0) nomStatus, "
+                        + "pg1.nama petugas1, pg2.nama petugas2 from transaksi_panjar tp INNER JOIN reg_periksa rp on rp.no_rawat=tp.no_rawat "
+                        + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg1 on pg1.nik=tp.nip_petugas_simpan "
+                        + "INNER JOIN pegawai pg2 on pg2.nik=tp.nip_petugas_ganti where tp.no_rawat='" + TNoRw.getText() + "'", param);
+
+                emptTeks();
+                tampil();
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbPanjar.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnLembarPanjarActionPerformed
+
+    private void TtelahTerimaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtelahTerimaKeyPressed
+        Valid.pindah(evt, TtelahTerima, TtglPanjar);
+    }//GEN-LAST:event_TtelahTerimaKeyPressed
 
     /**
     * @param args the command line arguments
@@ -838,18 +1076,22 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnKwitansi;
+    private javax.swing.JMenuItem MnLembarPanjar;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
+    private widget.TextArea Tketerangan;
     private widget.TextBox TnoPanjar;
     private widget.TextBox TnoTelp1;
     private widget.TextBox TnoTelp2;
     private widget.TextBox TnominalPanjar;
     private widget.TextBox TnominalStatus;
     private widget.TextBox TrgRawat;
+    private widget.TextBox TtelahTerima;
     private widget.TextBox TtglMrs;
     private widget.Tanggal TtglPanjar;
     private widget.ComboBox cmbStatus;
@@ -863,15 +1105,21 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
     private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
+    private widget.Label jLabel18;
     private widget.Label jLabel19;
+    private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel7;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JPopupMenu jPopupMenu1;
+    private widget.Label labelnom_panjar;
+    private widget.Label labelnom_status;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
+    private widget.ScrollPane scrollPane13;
     private widget.Table tbPanjar;
     // End of variables declaration//GEN-END:variables
 
@@ -937,6 +1185,8 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
                         rs.getString("nomStatus"),
                         rs.getString("petugas1"),
                         rs.getString("petugas2"),
+                        rs.getString("keterangan"),
+                        rs.getString("telah_terima"),
                         rs.getString("tgl_panjar"),
                         rs.getString("nip_petugas_simpan"),
                         rs.getString("waktu_simpan"),
@@ -969,11 +1219,15 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TrgRawat.setText("");
         TtglMrs.setText("");
         TtglPanjar.setDate(new Date());
+        TtelahTerima.setText("");
         TnoTelp1.setText("0");
         TnoTelp2.setText("0");
         TnominalPanjar.setText("0");
         TnominalStatus.setText("0");
         cmbStatus.setSelectedIndex(0);
+        Tketerangan.setText("");
+        labelnom_panjar.setText("Rp. 0");
+        labelnom_status.setText("Rp. 0");
         AutoNomorPanjar();
     }
 
@@ -987,14 +1241,18 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
             TPasien.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 3).toString());
             TrgRawat.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 4).toString());
             TtglMrs.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
-            Valid.SetTgl(TtglPanjar, tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString());
+            Valid.SetTgl(TtglPanjar, tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 16).toString());
             TnoTelp1.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 7).toString());
             TnoTelp2.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 8).toString());
-            TnominalPanjar.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 19).toString());
-            cmbStatus.setSelectedItem(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 10).toString());
-            TnominalStatus.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 20).toString());
-            nipSimpan = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 15).toString();
-            nipGanti = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString();
+            TnominalPanjar.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 21).toString());
+            cmbStatus.setSelectedItem(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 10).toString());            
+            TnominalStatus.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 22).toString());
+            Tketerangan.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 14).toString());
+            TtelahTerima.setText(tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 15).toString());
+            nipSimpan = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 17).toString();
+            nipGanti = tbPanjar.getValueAt(tbPanjar.getSelectedRow(), 19).toString();
+            TnominalPanjarKeyReleased(null);
+            TnominalStatusKeyReleased(null);
         }
     }
     
