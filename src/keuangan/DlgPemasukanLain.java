@@ -49,7 +49,6 @@ import org.apache.poi.hssf.record.PageBreakRecord;
  * @author perpustakaan
  */
 public final class DlgPemasukanLain extends javax.swing.JDialog {
-
     private final DefaultTableModel tabMode;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
@@ -62,7 +61,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
     private double total = 0, totTagihan = 0, sdhByr = 0, sisaTagihan = 0, byrKe = 0, stlhByr = 0,
             rumus1 = 0, rumus2 = 0, rumus3 = 0, hasilrumus = 0, hasilmaksimal = 0, tarifAmbulan = 0;
     private int cekData = 0;
-    private String norw = "", ambulanDibayar = "";
+    private String norw = "", ambulanDibayar = "", kdkamar = "";
 
     /**
      * Creates new form DlgResepObat
@@ -306,7 +305,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                         NmKategori.setText(kategori.getTabel().getValueAt(kategori.getTabel().getSelectedRow(), 1).toString());
 
                         if (KdKategori.getText().equals("SBPJS")) {
-                            WindowSelisihTarif.setSize(813, 608);
+                            WindowSelisihTarif.setSize(813, 688);
                             WindowSelisihTarif.setLocationRelativeTo(internalFrame1);
                             WindowSelisihTarif.setVisible(true);
                             NoSEP.requestFocus();
@@ -480,6 +479,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         jLabel56 = new widget.Label();
         Scroll39 = new widget.ScrollPane();
         TKalkulasi = new widget.TextArea();
+        jLabel57 = new widget.Label();
+        jLabel58 = new widget.Label();
+        jLabel59 = new widget.Label();
+        TnoPanjar = new widget.TextBox();
+        TtglPanjar = new widget.TextBox();
+        TnominalPanjar = new widget.TextBox();
+        BtnPanjar = new widget.Button();
         internalFrame10 = new widget.InternalFrame();
         BtnSelisihBaru = new widget.Button();
         BtnSimpan6 = new widget.Button();
@@ -1071,6 +1077,57 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         internalFrame9.add(Scroll39);
         Scroll39.setBounds(106, 53, 670, 165);
 
+        jLabel57.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel57.setText("No. Panjar : ");
+        jLabel57.setName("jLabel57"); // NOI18N
+        internalFrame9.add(jLabel57);
+        jLabel57.setBounds(370, 337, 110, 23);
+
+        jLabel58.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel58.setText("Tgl. Panjar : ");
+        jLabel58.setName("jLabel58"); // NOI18N
+        internalFrame9.add(jLabel58);
+        jLabel58.setBounds(370, 365, 110, 23);
+
+        jLabel59.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel59.setText("Uang Panjar : Rp. ");
+        jLabel59.setName("jLabel59"); // NOI18N
+        internalFrame9.add(jLabel59);
+        jLabel59.setBounds(370, 393, 110, 23);
+
+        TnoPanjar.setEditable(false);
+        TnoPanjar.setForeground(new java.awt.Color(0, 0, 0));
+        TnoPanjar.setName("TnoPanjar"); // NOI18N
+        internalFrame9.add(TnoPanjar);
+        TnoPanjar.setBounds(480, 337, 131, 23);
+
+        TtglPanjar.setEditable(false);
+        TtglPanjar.setForeground(new java.awt.Color(0, 0, 0));
+        TtglPanjar.setHighlighter(null);
+        TtglPanjar.setName("TtglPanjar"); // NOI18N
+        internalFrame9.add(TtglPanjar);
+        TtglPanjar.setBounds(480, 365, 260, 23);
+
+        TnominalPanjar.setEditable(false);
+        TnominalPanjar.setForeground(new java.awt.Color(0, 0, 0));
+        TnominalPanjar.setName("TnominalPanjar"); // NOI18N
+        internalFrame9.add(TnominalPanjar);
+        TnominalPanjar.setBounds(480, 393, 131, 23);
+
+        BtnPanjar.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPanjar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
+        BtnPanjar.setMnemonic('3');
+        BtnPanjar.setToolTipText("Alt+3");
+        BtnPanjar.setName("BtnPanjar"); // NOI18N
+        BtnPanjar.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPanjar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPanjarActionPerformed(evt);
+            }
+        });
+        internalFrame9.add(BtnPanjar);
+        BtnPanjar.setBounds(612, 337, 25, 23);
+
         internalFrame7.add(internalFrame9, java.awt.BorderLayout.CENTER);
 
         internalFrame10.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
@@ -1609,7 +1666,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1628,7 +1685,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1643,7 +1700,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1777,7 +1834,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -2412,6 +2469,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             } else if (!cekNoSEP.getText().equals("")) {                
                 cekSEP();
                 cekINACBG();
+                cekPanjar();
                 telahTerimaPAS.setText(nmpasien.getText() + " (" + norm.getText() + ")");
                 BtnSimpan6.requestFocus();
 
@@ -2518,7 +2576,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             JOptionPane.showMessageDialog(null, "Transaksi pembayaran tidak sesuai...!!!");
             tbPemasukan.requestFocus();
         } else {
-            WindowSelisihTarif.setSize(813, 608);
+            WindowSelisihTarif.setSize(813, 688);
             WindowSelisihTarif.setLocationRelativeTo(internalFrame1);
             WindowSelisihTarif.setVisible(true);
 
@@ -2527,6 +2585,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             BtnPrint.setEnabled(true);
             cekSEP();
             cekINACBG();
+            cekPanjar();
             hitungSelisih();
             cektagihan();
 
@@ -3003,6 +3062,26 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_cetakNotaAmbulanActionPerformed
 
+    private void BtnPanjarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPanjarActionPerformed
+        if (norm.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgPemasukanLain");
+            DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
+            panjar.emptTeks();
+            panjar.isCek();
+            panjar.setData(norawat.getText(), norm.getText(), nmpasien.getText(),
+                    Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"));
+            panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            panjar.setLocationRelativeTo(internalFrame1);
+            panjar.setVisible(true);
+            BtnCariActionPerformed(null);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnPanjarActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -3028,6 +3107,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnHapus;
     private widget.Button BtnHitung;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPanjar;
     private widget.Button BtnPrint;
     private widget.Button BtnSelisihBaru;
     private widget.Button BtnSimpan;
@@ -3069,11 +3149,14 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox TjlhBayar;
     private widget.TextBox TjlhBiayaPihak3;
     private widget.TextBox Tnmpasien;
+    private widget.TextBox TnoPanjar;
+    private widget.TextBox TnominalPanjar;
     private widget.TextBox Tnorm;
     private widget.TextBox Totdibayar;
     private widget.TextBox TselisihJrk;
     private widget.TextBox Ttarif;
     private widget.TextBox TtarifSelisihJrk;
+    private widget.TextBox TtglPanjar;
     private widget.TextBox TtotBayar;
     private widget.TextBox TtujuanAlamat;
     private javax.swing.JDialog WindowAmbulan;
@@ -3143,6 +3226,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel54;
     private widget.Label jLabel55;
     private widget.Label jLabel56;
+    private widget.Label jLabel57;
+    private widget.Label jLabel58;
+    private widget.Label jLabel59;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -4174,5 +4260,20 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             }
             telahTerimaPAS.setText(Tnmpasien.getText() + " (" + Tnorm.getText() + ")");            
         }
-    }  
+    }
+    
+    private void cekPanjar() {
+        if (Sequel.cariInteger("select count(-1) from transaksi_panjar where no_rawat='" + norawat.getText() + "'") > 0) {
+            kdkamar = Sequel.cariIsi("select kd_kamar from kamar_inap where no_rawat='" + norawat.getText() + "' order by tgl_masuk desc, jam_masuk desc limit 1");
+            TnoPanjar.setText(Sequel.cariIsi("select no_panjar from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));
+            TtglPanjar.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_panjar from transaksi_panjar where no_rawat='" + norawat.getText() + "'"))
+                    + ", Jam : " + Sequel.cariIsi("select time_format(waktu_simpan,'%H:%i Wita') from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));
+            TnominalPanjar.setText(Sequel.cariIsi("select REPLACE(format(nominal_panjar,0),',','.') from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));            
+        } else {
+            kdkamar = "";
+            TnoPanjar.setText("-");
+            TtglPanjar.setText("-");
+            TnominalPanjar.setText("0");
+        }
+    }
 }

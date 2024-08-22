@@ -1157,7 +1157,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2023" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1298,7 +1298,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         TDiagKerja.setColumns(20);
         TDiagKerja.setRows(5);
         TDiagKerja.setName("TDiagKerja"); // NOI18N
-        TDiagKerja.setPreferredSize(new java.awt.Dimension(162, 250));
+        TDiagKerja.setPreferredSize(new java.awt.Dimension(162, 1000));
         TDiagKerja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TDiagKerjaKeyPressed(evt);
@@ -1315,7 +1315,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         TDasarDiag.setColumns(20);
         TDasarDiag.setRows(5);
         TDasarDiag.setName("TDasarDiag"); // NOI18N
-        TDasarDiag.setPreferredSize(new java.awt.Dimension(162, 250));
+        TDasarDiag.setPreferredSize(new java.awt.Dimension(162, 1000));
         TDasarDiag.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TDasarDiagKeyPressed(evt);
@@ -1338,7 +1338,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Ttindakan.setColumns(20);
         Ttindakan.setRows(5);
         Ttindakan.setName("Ttindakan"); // NOI18N
-        Ttindakan.setPreferredSize(new java.awt.Dimension(162, 250));
+        Ttindakan.setPreferredSize(new java.awt.Dimension(162, 1000));
         Ttindakan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TtindakanKeyPressed(evt);
@@ -1361,7 +1361,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Tindikasi.setColumns(20);
         Tindikasi.setRows(5);
         Tindikasi.setName("Tindikasi"); // NOI18N
-        Tindikasi.setPreferredSize(new java.awt.Dimension(162, 250));
+        Tindikasi.setPreferredSize(new java.awt.Dimension(162, 1000));
         Tindikasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TindikasiKeyPressed(evt);
@@ -1384,7 +1384,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Ttatacara.setColumns(20);
         Ttatacara.setRows(5);
         Ttatacara.setName("Ttatacara"); // NOI18N
-        Ttatacara.setPreferredSize(new java.awt.Dimension(162, 250));
+        Ttatacara.setPreferredSize(new java.awt.Dimension(162, 1000));
         Ttatacara.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TtatacaraKeyPressed(evt);
@@ -1407,7 +1407,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Ttujuan.setColumns(20);
         Ttujuan.setRows(5);
         Ttujuan.setName("Ttujuan"); // NOI18N
-        Ttujuan.setPreferredSize(new java.awt.Dimension(162, 250));
+        Ttujuan.setPreferredSize(new java.awt.Dimension(162, 1000));
         Ttujuan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TtujuanKeyPressed(evt);
@@ -1436,7 +1436,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Tresiko.setColumns(20);
         Tresiko.setRows(5);
         Tresiko.setName("Tresiko"); // NOI18N
-        Tresiko.setPreferredSize(new java.awt.Dimension(162, 250));
+        Tresiko.setPreferredSize(new java.awt.Dimension(162, 1000));
         Tresiko.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TresikoKeyPressed(evt);
@@ -1459,7 +1459,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Tkomplikasi.setColumns(20);
         Tkomplikasi.setRows(5);
         Tkomplikasi.setName("Tkomplikasi"); // NOI18N
-        Tkomplikasi.setPreferredSize(new java.awt.Dimension(162, 250));
+        Tkomplikasi.setPreferredSize(new java.awt.Dimension(162, 1000));
         Tkomplikasi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TkomplikasiKeyPressed(evt);
@@ -1482,7 +1482,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Tprognosis.setColumns(20);
         Tprognosis.setRows(5);
         Tprognosis.setName("Tprognosis"); // NOI18N
-        Tprognosis.setPreferredSize(new java.awt.Dimension(162, 250));
+        Tprognosis.setPreferredSize(new java.awt.Dimension(162, 1000));
         Tprognosis.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TprognosisKeyPressed(evt);
@@ -1505,7 +1505,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Talternatif.setColumns(20);
         Talternatif.setRows(5);
         Talternatif.setName("Talternatif"); // NOI18N
-        Talternatif.setPreferredSize(new java.awt.Dimension(162, 250));
+        Talternatif.setPreferredSize(new java.awt.Dimension(162, 1000));
         Talternatif.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TalternatifKeyPressed(evt);
@@ -1528,7 +1528,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         Tlain.setColumns(20);
         Tlain.setRows(5);
         Tlain.setName("Tlain"); // NOI18N
-        Tlain.setPreferredSize(new java.awt.Dimension(162, 250));
+        Tlain.setPreferredSize(new java.awt.Dimension(162, 1000));
         scrollPane13.setViewportView(Tlain);
 
         FormInput.add(scrollPane13);
@@ -1541,7 +1541,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2023" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1609,7 +1609,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2023" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1875,7 +1875,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78.setBounds(455, 188, 70, 23);
 
         cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi" }));
         cmbKategori.setName("cmbKategori"); // NOI18N
         cmbKategori.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -1884,7 +1884,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             }
         });
         FormInput.add(cmbKategori);
-        cmbKategori.setBounds(527, 188, 140, 23);
+        cmbKategori.setBounds(527, 188, 152, 23);
 
         chkSamaPelaksana.setBackground(new java.awt.Color(242, 242, 242));
         chkSamaPelaksana.setForeground(new java.awt.Color(0, 0, 0));
@@ -1943,7 +1943,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1958,7 +1958,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2846,6 +2846,115 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             Tprognosis.setText("Dubia");
             Talternatif.setText("-");
             Tlain.setText("-");
+            
+            //Pengobatan Kemoterapi
+        } else if (cmbKategori.getSelectedIndex() == 10) {
+            TDiagKerja.setText("");
+            TDasarDiag.setText("- Histopatologi/Imunohistokimia dari jaringan\n"
+                    + "- Sitopatologi/Imunohistokimia\n"
+                    + "- Mutasi genetik\n"
+                    + "- Pemeriksaan darah tepi\n"
+                    + "- Pemeriksaan lain : ...\n");
+            Ttindakan.setText("Kemoterapi ...\n"
+                    + "Jumlah Siklus ...\n"
+                    + "Tipe Kemoterapi : \n"
+                    + "- Lini Pertama : ...\n"
+                    + "- Lini Kedua : ...\n"
+                    + "- Lain-lain ...\n");
+            Tindikasi.setText("Pengobatan sistemis kanker");
+            Ttatacara.setText("Sesuai protokol kemoterapi yang dibuat pada lembar infus pasien");
+            Ttujuan.setText("Tujuan Tindakan :\n"
+                    + "- Neoajuvan\n"
+                    + "  Mengecilkan ukuran tumor sebelum operasi/radioterapi\n"
+                    + "- Ajuvan\n"
+                    + "  Menghabiskan sisa sel kanker pasca operasi/radioterapi\n"
+                    + "- Primer\n"
+                    + "  Membunuh sel kanker yang tersebar di seluruh tubuh tanpa didampingi\n"
+                    + "  modalitas pengobatan lain (Operasi atau radioterapi)\n"
+                    + "- Sensitizer\n"
+                    + "  Diberikan dalam dosis kecil bersamaan dengan radioterapi untuk\n"
+                    + "  memperkuat efek radioterapi\n"
+                    + "- Concurent\n"
+                    + "  Diberikan dalam dosis penuh bersamaan dengan radioterapi sebagai\n"
+                    + "  terapi utama membunuh sel kanker\n\n"
+                    + "Tujuan Pengobatan :\n"
+                    + "- Cure/Sembuh\n"
+                    + "- Prolonged Life/Perpanjang Umur\n"
+                    + "- Quality Of Life/Meningkatkan Kualitas Hidup\n"
+                    + "- Paliatif\n");
+            Tresiko.setText("- Mual/muntah dan gangguan nafsu makan\n"
+                    + "- Gangguan siklus buang air besar (dari sembelit sampai diare)\n"
+                    + "- Rambut rontok sampai kebotakan\n"
+                    + "- Sariawan/radang mulut\n"
+                    + "- Mulut/kerongkongan kering\n"
+                    + "- Penurunan kadar hemoglobin (anemia dan atau jumlah sel darah\n"
+                    + "  (sel darah merah, sel darah putih, keping darah))\n"
+                    + "- Perubahan warna kulit\n"
+                    + "- Kesemutan pada ujung-ujung jari\n"
+                    + "- Rasa lelah dan lemas seluruh tubuh\n"
+                    + "- Gatal atau timbul lenting/bentol pada kulit\n"
+                    + "- Gangguan siklus menstruasi/haid (khusus perempuan)\n"
+                    + "- Gangguan ereksi (khusus pria)\n"
+                    + "- Rasa panas/nyeri pada lokasi infus\n"
+                    + "- Pengentalan darah berlebih\n"
+                    + "- Resiko lain : ...\n");
+            Tkomplikasi.setText("- Gangguan fungsi atau kerusakan organ vital\n"
+                    + "  (ginjal, hati, paru, jantung, otak)\n"
+                    + "- Infeksi\n"
+                    + "- Perdarahan\n"
+                    + "- Berat badan turun atau malnutrisi\n"
+                    + "- Kejang\n"
+                    + "- Dehidrasi\n"
+                    + "- Kebocoran usus\n"
+                    + "- Reaksi alergi (mulai dari gatal, bentol, hingga bengkak pada\n"
+                    + "  bagian tubuh tertentu)\n"
+                    + "- Gangguan kesuburan sampai kemandulan\n"
+                    + "- Keguguran/kematian janin dalam rahim (bila pasien hamil)\n"
+                    + "- Buang air kecil berdarah\n"
+                    + "- Kulit melepuh\n"
+                    + "- Penyumbatan pembuluh darah (trombosis)\n"
+                    + "- Kecacatan\n"
+                    + "- Kematian\n"
+                    + "- Komplikasi lain : ...\n");
+            Tprognosis.setText("Kualitatif\n"
+                    + "- Baik\n"
+                    + "- Sedang cenderung baik\n"
+                    + "- Sedang\n"
+                    + "- Sedang cenderung buruk\n"
+                    + "- Buruk\n\n"
+                    + "Kuantitatif\n"
+                    + "- Harapan hidup ... tahun sekitar ... %\n"
+                    + "Lain-lain : ...\n");
+            Talternatif.setText("- Bila kemoterapi sebagai pendamping terapi utama (operasi/radioterapi)\n"
+                    + "  tidak diberikan, maka keefektifan terapi utama akan berkurang dan\n"
+                    + "  kanker menjadi tidak hilang di akhir pengobatan serta mudah terjadi\n"
+                    + "  kekambuhan\n\n"
+                    + "- Bila kemoterapi sebagai terapi utama tidak diberikan, stadium kanker\n"
+                    + "  dapat bertambah dan dapat mengancam jiwa pasien. Modalitas lain (radioterapi/operasi)\n"
+                    + "  mungkin dapat diberikan sesuai kondisi masing-masing pasien namun tidak seefektif\n"
+                    + "  kemoterapi\n\n"
+                    + "- Rejimen kemoterapi dapat diubah menjadi ...\n"
+                    + "  untuk alasan ...\n"
+                    + "  Namun efektifitas pengobatan mungkin dapat berkurang\n");
+            Tlain.setText("- Selama kemoterapi, kondisi pasien akan dipantau oleh dokter dan perawat.\n"
+                    + "  Pasien dapat melaporkan kepada perawat atau dokter kapan saja jika terdapat\n"
+                    + "  keluhan selama proses kemoterapi berlangsung. Proses kemoterapi dapat dihentikan\n"
+                    + "  sewaktu-waktu sebelum selesai sesuai atas pertimbangan tertentu dari dokter atau\n"
+                    + "  permintaan pasien\n\n"
+                    + "- Keadaan umum pasien akan dipantau selama ...\n"
+                    + "  jam/hari setelah kemoterapi selesai, bila dinilai stabil maka pasien dapat\n"
+                    + "  dipulangkan\n\n"
+                    + "- Obat kemoterapi yang benbentuk obat minum (tablet/kapsul) dapat dilanjutkan\n"
+                    + "  dirumah sesuai petunjuk dari dokter dan harus dihabiskan, pastikan untuk mendapatkan\n"
+                    + "  informasi secara jelas sebelum pulang karena dapat mempengaruhi hasil pengobatan\n\n"
+                    + "- Pasien akan dibekali obat anti mual dan beberapa obat pendukung lainnya bila\n"
+                    + "  diperlukan untuk diminum dirumah dan harus diminum sesuai petunjuk walaupun rasa\n"
+                    + "  mual belum muncul\n\n"
+                    + "- Pasien harus kembali berobat ke dokter spesialis penyakit dalam konsultan Hemato-Onkologi Medik\n"
+                    + "  sesuai jadwal yang telah ditentukan agar program kemoterapi dapat diberikan tepat waktu\n\n"
+                    + "- Bila timbul gejala-gejala efek samping/komplikasi (seperti yang tertera diatas pada\n"
+                    + "  bagian resiko dan komplikasi) segera berobat ke poliklinik Onkologi Medik, IGD atau\n"
+                    + "  tenaga medis terdekat untuk mendapatkan pertolongan medis.\n");
         }
     }//GEN-LAST:event_cmbKategoriActionPerformed
 

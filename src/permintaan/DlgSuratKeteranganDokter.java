@@ -1348,7 +1348,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         } else {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from surat_keterangan_dokter where no_rawat=?", 1, new String[]{
+                if (Sequel.queryu2tf("delete from surat_keterangan_dokter where no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?", 1, new String[]{
                     tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
                 }) == true) {
                     TCari.setText("");
