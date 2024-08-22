@@ -3802,6 +3802,7 @@ private void MnPotonganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FI
 
 private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
     isRawat();
+    cekPanjar();
 }//GEN-LAST:event_BtnCariActionPerformed
 
 private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
@@ -4863,17 +4864,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 cmbPenjamin.setSelectedIndex(0);
                 TketPenjamin.setText("");
             }
-            
-            if (Sequel.cariInteger("select count(-1) from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'") > 0) {
-                TnoPanjar.setText(Sequel.cariIsi("select no_panjar from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
-                TtglPanjar.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_panjar from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"))
-                        + ", Jam : " + Sequel.cariIsi("select time_format(waktu_simpan,'%H:%i Wita') from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
-                TnominalPanjar.setText(Sequel.cariIsi("select REPLACE(format(nominal_panjar,0),',','.') from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
-            } else {
-                TnoPanjar.setText("-");
-                TtglPanjar.setText("-");
-                TnominalPanjar.setText("0");
-            }
+            cekPanjar();            
         } else {
             cmbPenjamin.setSelectedIndex(0);
             TketPenjamin.setText("");
@@ -7898,5 +7889,18 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         hasilLM.setText("");
         lmrawat.setText("0");
         naikKLS.setText("");
+    }
+    
+    private void cekPanjar() {
+        if (Sequel.cariInteger("select count(-1) from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'") > 0) {
+            TnoPanjar.setText(Sequel.cariIsi("select no_panjar from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
+            TtglPanjar.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_panjar from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"))
+                    + ", Jam : " + Sequel.cariIsi("select time_format(waktu_simpan,'%H:%i Wita') from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
+            TnominalPanjar.setText(Sequel.cariIsi("select REPLACE(format(nominal_panjar,0),',','.') from transaksi_panjar where no_rawat='" + TNoRw.getText() + "'"));
+        } else {
+            TnoPanjar.setText("-");
+            TtglPanjar.setText("-");
+            TnominalPanjar.setText("0");
+        }
     }
 }

@@ -314,6 +314,10 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             labelSewa.setVisible(false);
                             nominalSewa.setVisible(false);
                             selisihBaru();
+                            kdkamar = "";
+                            TnoPanjar.setText("-");
+                            TtglPanjar.setText("-");
+                            TnominalPanjar.setText("0");
 
                             if (WindowSelisihTarif.isVisible() == true) {
                                 BtnSimpan.setVisible(false);
