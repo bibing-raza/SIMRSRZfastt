@@ -11889,7 +11889,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
                 panjar.emptTeks();
                 panjar.isCek();
-                panjar.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(), tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString());
+                panjar.setData(norawat.getText(), TNoRM.getText(), TPasien.getText(), ruangrawat.getText(),
+                        tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 27).toString(), "0");
                 panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 panjar.setLocationRelativeTo(internalFrame1);
                 panjar.setVisible(true);

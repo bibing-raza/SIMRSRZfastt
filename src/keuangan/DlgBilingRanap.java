@@ -4883,7 +4883,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             panjar.isCek();
             panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
                     Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), "0");
             panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             panjar.setLocationRelativeTo(internalFrame1);
             panjar.setVisible(true);

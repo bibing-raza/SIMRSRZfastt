@@ -2950,8 +2950,9 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     + "- Pasien akan dibekali obat anti mual dan beberapa obat pendukung lainnya bila\n"
                     + "  diperlukan untuk diminum dirumah dan harus diminum sesuai petunjuk walaupun rasa\n"
                     + "  mual belum muncul\n\n"
-                    + "- Pasien harus kembali berobat ke dokter spesialis penyakit dalam konsultan Hemato-Onkologi Medik\n"
-                    + "  sesuai jadwal yang telah ditentukan agar program kemoterapi dapat diberikan tepat waktu\n\n"
+                    + "- Pasien harus kembali berobat ke dokter spesialis penyakit dalam konsultan\n"
+                    + "  Hemato-Onkologi Medik sesuai jadwal yang telah ditentukan agar program kemoterapi\n"
+                    + "  dapat diberikan tepat waktu\n\n"
                     + "- Bila timbul gejala-gejala efek samping/komplikasi (seperti yang tertera diatas pada\n"
                     + "  bagian resiko dan komplikasi) segera berobat ke poliklinik Onkologi Medik, IGD atau\n"
                     + "  tenaga medis terdekat untuk mendapatkan pertolongan medis.\n");

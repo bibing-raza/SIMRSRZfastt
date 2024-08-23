@@ -3077,7 +3077,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             panjar.isCek();
             panjar.setData(norawat.getText(), norm.getText(), nmpasien.getText(),
                     Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"));
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"), Totdibayar.getText());
             panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             panjar.setLocationRelativeTo(internalFrame1);
             panjar.setVisible(true);
