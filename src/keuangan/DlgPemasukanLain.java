@@ -61,7 +61,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
     private double total = 0, totTagihan = 0, sdhByr = 0, sisaTagihan = 0, byrKe = 0, stlhByr = 0,
             rumus1 = 0, rumus2 = 0, rumus3 = 0, hasilrumus = 0, hasilmaksimal = 0, tarifAmbulan = 0;
     private int cekData = 0;
-    private String norw = "", ambulanDibayar = "", kdkamar = "";
+    private String norw = "", ambulanDibayar = "";
 
     /**
      * Creates new form DlgResepObat
@@ -314,7 +314,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             labelSewa.setVisible(false);
                             nominalSewa.setVisible(false);
                             selisihBaru();
-                            kdkamar = "";
                             TnoPanjar.setText("-");
                             TtglPanjar.setText("-");
                             TnominalPanjar.setText("0");
@@ -1670,7 +1669,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1689,7 +1688,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1704,7 +1703,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1838,7 +1837,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -3075,9 +3074,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
             panjar.emptTeks();
             panjar.isCek();
-            panjar.setData(norawat.getText(), norm.getText(), nmpasien.getText(),
-                    Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"), Totdibayar.getText());
+            panjar.setData(norawat.getText(), norm.getText(), nmpasien.getText(), rginap.getText(),
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat.getText() + "'"), 
+                    Totdibayar.getText(), tarifrc.getText());
             panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             panjar.setLocationRelativeTo(internalFrame1);
             panjar.setVisible(true);
@@ -4268,13 +4267,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     
     private void cekPanjar() {
         if (Sequel.cariInteger("select count(-1) from transaksi_panjar where no_rawat='" + norawat.getText() + "'") > 0) {
-            kdkamar = Sequel.cariIsi("select kd_kamar from kamar_inap where no_rawat='" + norawat.getText() + "' order by tgl_masuk desc, jam_masuk desc limit 1");
             TnoPanjar.setText(Sequel.cariIsi("select no_panjar from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));
             TtglPanjar.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_panjar from transaksi_panjar where no_rawat='" + norawat.getText() + "'"))
                     + ", Jam : " + Sequel.cariIsi("select time_format(waktu_simpan,'%H:%i Wita') from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));
             TnominalPanjar.setText(Sequel.cariIsi("select REPLACE(format(nominal_panjar,0),',','.') from transaksi_panjar where no_rawat='" + norawat.getText() + "'"));            
         } else {
-            kdkamar = "";
             TnoPanjar.setText("-");
             TtglPanjar.setText("-");
             TnominalPanjar.setText("0");

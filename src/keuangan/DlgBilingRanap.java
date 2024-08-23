@@ -852,6 +852,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         TabRawat = new javax.swing.JTabbedPane();
         Scroll = new widget.ScrollPane();
         tbBilling = new widget.Table();
+        Scroll1 = new widget.ScrollPane();
         panelBayar = new widget.panelisi();
         TtlSemua = new widget.TextBox();
         TKembali = new widget.TextBox();
@@ -2363,7 +2364,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         });
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -2444,7 +2445,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024 14:47:04" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024 22:12:36" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2556,7 +2557,7 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass2.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -2640,9 +2641,12 @@ public class DlgBilingRanap extends javax.swing.JDialog {
 
         TabRawat.addTab(".: Data Tagihan ", Scroll);
 
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+
         panelBayar.setForeground(new java.awt.Color(153, 0, 51));
         panelBayar.setName("panelBayar"); // NOI18N
-        panelBayar.setPreferredSize(new java.awt.Dimension(100, 137));
+        panelBayar.setPreferredSize(new java.awt.Dimension(100, 544));
         panelBayar.setLayout(null);
 
         TtlSemua.setEditable(false);
@@ -2990,7 +2994,9 @@ public class DlgBilingRanap extends javax.swing.JDialog {
         panelBayar.add(BtnPanjar);
         BtnPanjar.setBounds(242, 443, 25, 23);
 
-        TabRawat.addTab(".: Pembayaran ", panelBayar);
+        Scroll1.setViewportView(panelBayar);
+
+        TabRawat.addTab(".: Pembayaran ", Scroll1);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -4877,13 +4883,15 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             TNoRw.requestFocus();
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            isHitung();
             akses.setform("DlgBilingRanap");
             DlgTransaksiPanjar panjar = new DlgTransaksiPanjar(null, false);
             panjar.emptTeks();
             panjar.isCek();
             panjar.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText(),
                     Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE k.kd_kamar='" + kdkamar + "'"),
-                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), "0");
+                    Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), 
+                    "0", TtlSemua.getText());
             panjar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             panjar.setLocationRelativeTo(internalFrame1);
             panjar.setVisible(true);
@@ -4986,6 +4994,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JPopupMenu PopupBayar;
     private javax.swing.JPopupMenu PopupPiutang;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll39;
     private widget.TextBox TCari;
     private widget.TextBox TCari1;
