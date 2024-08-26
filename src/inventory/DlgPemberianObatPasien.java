@@ -56,7 +56,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String kdobat = "", status = "", statusOK = "", dataDipilih = "", kdobatFix = "", waktuSimpan = "",
             cekjam1 = "", cekjam2 = "", cekjam3 = "", cekjam4 = "", cekjam5 = "", cekjam6 = "", cekjam7 = "", cekjam8 = "",
-            dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "", dataDobelCek = "";
+            dataKonfirmasi = "", nip1 = "", nip2 = "", cekDobel = "", dataDobelCek = "", unitAsalnya = "";
 
     /** Creates new form DlgSpesialis
      * @param parent
@@ -899,6 +899,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         chkSaya2 = new widget.CekBox();
         jLabel30 = new widget.Label();
         cmbSift = new widget.ComboBox();
+        ChkRuangan = new widget.CekBox();
         panelGlass11 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
         tbResep = new widget.Table();
@@ -1420,7 +1421,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2024" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
@@ -2270,6 +2271,25 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelGlass7.add(cmbSift);
         cmbSift.setBounds(277, 150, 70, 23);
 
+        ChkRuangan.setBackground(new java.awt.Color(255, 255, 250));
+        ChkRuangan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkRuangan.setForeground(new java.awt.Color(0, 0, 0));
+        ChkRuangan.setText("Rg. Rawat Sekarang");
+        ChkRuangan.setBorderPainted(true);
+        ChkRuangan.setBorderPaintedFlat(true);
+        ChkRuangan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkRuangan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkRuangan.setName("ChkRuangan"); // NOI18N
+        ChkRuangan.setOpaque(false);
+        ChkRuangan.setPreferredSize(new java.awt.Dimension(175, 23));
+        ChkRuangan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkRuanganActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(ChkRuangan);
+        ChkRuangan.setBounds(635, 38, 140, 23);
+
         panelGlass10.add(panelGlass7);
 
         panelGlass11.setName("panelGlass11"); // NOI18N
@@ -2525,7 +2545,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2539,7 +2559,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4221,6 +4241,18 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnDiCopyActionPerformed
 
+    private void ChkRuanganActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkRuanganActionPerformed
+        if (ChkRuangan.isSelected() == true) {
+            nmUnit.setText(unitAsalnya);
+        } else {
+            if (tbObat.getRowCount() == 0) {
+                nmUnit.setText(unitAsalnya);
+            } else {
+                nmUnit.setText(tbObat.getValueAt(tbObat.getSelectedRow(), 5).toString());
+            }
+        }
+    }//GEN-LAST:event_ChkRuanganActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4262,6 +4294,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
+    public widget.CekBox ChkRuangan;
     private widget.CekBox ChkTglBeri;
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
@@ -4624,6 +4657,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
+        ChkRuangan.setSelected(false);
         nmObat.setText("");
         dosis.setText("");
         kdobat = "";
@@ -4752,6 +4786,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         
         if (tbObat.getSelectedRow() != -1) {
             waktuSimpan = tbObat.getValueAt(tbObat.getSelectedRow(), 47).toString();
+            ChkRuangan.setSelected(false);
             tampilData();
             dataCek();
         }
@@ -4805,6 +4840,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         status = sttsrawat;
         TNmPasien.setText(nmpasien);
         nmUnit.setText(unit);
+        unitAsalnya = unit;
         Valid.SetTgl(DTPCari2, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         
         if (sttsrawat.equals("IGD (Ralan)") || sttsrawat.equals("IGD (Ranap)")) {
