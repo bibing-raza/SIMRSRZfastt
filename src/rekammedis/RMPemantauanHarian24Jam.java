@@ -50,7 +50,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private String urutanJam = "", dataParental = "", wktSimpan = "", tglPANTAU = "", norawatPANTAU = "", dataKonfirmasi = "", tglBekasInput = "",
             respiEWS = "", saturEWS = "", tensiEWS = "", nadiEWS = "", suhuEWS = "", skorRespi = "", skorSatur = "", skorSuplemen = "",
             skorTensi = "", skorNadi = "", skorKesadaran = "", skorTemperatur = "", totSkor = "", ruangranap = "";
-    private int i = 0, x = 0, pilih = 0, 
+    private int i = 0, x = 0, pilih = 0,
             total = 0, respirasi = 0, saturasi = 0, suplemen = 0, nilaitensi = 0, nilainadi = 0, kesadaran = 0, temperatur = 0;
     private double totParental = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);  
@@ -62,13 +62,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {
+        String[] row = {
             "No. Rawat", "Kode Pantau", "No. RM", "Nama Pasien", "Tgl. Pantau", "Jam", "Nadi", "Suhu",
             "GCS", "Kesadaran", "Tensi (MAP)", "Frek. Nafas", "SPO2 (Oksigen)", "Makan Minum", "NGT", "Jml. Parental", "Tot. Intake",
             "Urine", "NGT/Darah", "Drain", "Muntah", "BAB", "Lain-lain", "IWL", "Tot. Output", "Balance",
             "gcse", "gcsm", "gcsv", "tgl_pantau", "urutan_jam", "wktu_simpan", "bb_msk_rs",
             "transfusi", "reaksi_transfusi", "lain_lain", "catatan", "nip_petugas", "nmpetugas", "pengali_iwl", 
-            "oksigen", "spo2", "sistol", "distol", "map", "tensi", "ruangrawat"
+            "oksigen", "spo2", "sistol", "distol", "map", "tensi", "ruangrawat", "pengali_iwl_bb"
         };
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
@@ -78,7 +78,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         tbPantau.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbPantau.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 47; i++) {
+        for (int i = 0; i < 48; i++) {
             TableColumn column = tbPantau.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -193,6 +193,9 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 46) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 47) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -566,6 +569,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         Tdistole = new widget.TextBox();
         jLabel76 = new widget.Label();
         TlabelTensi = new widget.Label();
+        Tumur = new widget.TextBox();
+        jLabel78 = new widget.Label();
+        cmbPerhari = new widget.ComboBox();
+        jLabel79 = new widget.Label();
         Scroll1 = new widget.ScrollPane();
         tbParental = new widget.Table();
         panelGlass11 = new widget.panelisi();
@@ -751,7 +758,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -765,7 +772,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1035,7 +1042,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -1164,7 +1171,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tkesadaran);
-        Tkesadaran.setBounds(395, 94, 390, 23);
+        Tkesadaran.setBounds(395, 94, 408, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tekanan Darah :");
@@ -1481,10 +1488,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel61.setText("Kg.");
+        jLabel61.setText("Kg.  Umur :");
         jLabel61.setName("jLabel61"); // NOI18N
         panelGlass7.add(jLabel61);
-        jLabel61.setBounds(512, 66, 30, 23);
+        jLabel61.setBounds(512, 66, 60, 23);
 
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("Kode Pemantauan :");
@@ -1798,6 +1805,37 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(TlabelTensi);
         TlabelTensi.setBounds(615, 122, 170, 23);
 
+        Tumur.setEditable(false);
+        Tumur.setForeground(new java.awt.Color(0, 0, 0));
+        Tumur.setToolTipText("");
+        Tumur.setName("Tumur"); // NOI18N
+        panelGlass7.add(Tumur);
+        Tumur.setBounds(570, 66, 60, 23);
+
+        jLabel78.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel78.setText("Kg BB/Hari (IWL) : ");
+        jLabel78.setName("jLabel78"); // NOI18N
+        panelGlass7.add(jLabel78);
+        jLabel78.setBounds(630, 66, 100, 23);
+
+        cmbPerhari.setForeground(new java.awt.Color(0, 0, 0));
+        cmbPerhari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "15", "20", "30", "40", "50" }));
+        cmbPerhari.setName("cmbPerhari"); // NOI18N
+        cmbPerhari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbPerhariActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(cmbPerhari);
+        cmbPerhari.setBounds(732, 66, 45, 23);
+
+        jLabel79.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel79.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel79.setText("Cc.");
+        jLabel79.setName("jLabel79"); // NOI18N
+        panelGlass7.add(jLabel79);
+        jLabel79.setBounds(783, 66, 25, 23);
+
         panelGlass10.add(panelGlass7, java.awt.BorderLayout.CENTER);
 
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, " [ Parental / Line / Obat-obatan ] ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -2013,7 +2051,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2027,7 +2065,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-05-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2414,7 +2452,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
     private void BtnTotOutputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTotOutputActionPerformed
         ChkAccor.setSelected(false);
-        isMenu();
+        isMenu();        
         hitungParental();
         hitungIntake();
         hitungIWL();
@@ -2802,6 +2840,12 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_TdistoleKeyPressed
 
+    private void cmbPerhariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbPerhariActionPerformed
+        if (cmbPerhari.getSelectedIndex() != 0) {
+            hitungIWL();
+        }
+    }//GEN-LAST:event_cmbPerhariActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2896,6 +2940,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.TextBox Ttotintake;
     private widget.TextBox Ttotouput;
     private widget.TextBox Ttransfusi;
+    private widget.TextBox Tumur;
     private widget.TextBox Turin;
     private javax.swing.JDialog WindowEWS;
     private javax.swing.JDialog WindowParental;
@@ -2906,6 +2951,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.ComboBox cmbKali;
     private widget.ComboBox cmbKesadaran;
     private widget.ComboBox cmbMnt1;
+    private widget.ComboBox cmbPerhari;
     private widget.ComboBox cmbSuplemen;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame10;
@@ -2985,6 +3031,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     private widget.Label jLabel74;
     private widget.Label jLabel75;
     private widget.Label jLabel76;
+    private widget.Label jLabel78;
+    private widget.Label jLabel79;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
@@ -3017,7 +3065,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                     + "ph.total_parental, ph.total_intake, ph.urine, ph.ngt_darah, ph.drain, ph.muntah, ph.bab, ph.iwl, ph.total_output, ph.balance, ph.gcs_e, "
                     + "ph.gcs_m, ph.gcs_v, ph.tgl_pantau, ph.urutan_jam, ph.waktu_simpan, ph.bb_msk_rs, ph.transfusi, ph.reaksi_transfusi, ph.defekasi, "
                     + "ph.defekasi lainlain, ph.catatan, ph.nip_petugas, pg.nama, ph.pengali, ph.oksigen, ph.spo2, ph.sistole, ph.distole, ph.map, "
-                    + "ph.ruang_rawat from pemantauan_harian_24jam ph inner join reg_periksa rp on rp.no_rawat=ph.no_rawat "
+                    + "ph.ruang_rawat, ph.pengali_iwl_bb from pemantauan_harian_24jam ph inner join reg_periksa rp on rp.no_rawat=ph.no_rawat "
                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=ph.nip_petugas where "
                     + "ph.tgl_pantau between ? and ? and ph.no_rawat like '%" + TNoRw.getText() + "%' and ph.kd_pantau like ? or "
                     + "ph.tgl_pantau between ? and ? and ph.no_rawat like '%" + TNoRw.getText() + "%' and p.no_rkm_medis like ? or "
@@ -3088,7 +3136,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                         rs.getString("distole"),
                         rs.getString("map"),
                         rs.getString("tensi"),
-                        rs.getString("ruang_rawat")
+                        rs.getString("ruang_rawat"),
+                        rs.getString("pengali_iwl_bb")
                     });
                 }
             } catch (Exception e) {
@@ -3110,7 +3159,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     public void emptTeks() {
         tglPantau.setDate(new Date());
         tglPantau.requestFocus();
-        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));        
         Tnadi.setText("");        
         Tsuhu.setText("");
         cmbJam.setSelectedIndex(0);
@@ -3206,6 +3255,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             Tmap.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(), 44).toString());
             TlabelTensi.setText("Tensi : " + tbPantau.getValueAt(tbPantau.getSelectedRow(), 45).toString() + " mmHg");
             TrgRawat.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(), 46).toString());
+            cmbPerhari.setSelectedItem(tbPantau.getValueAt(tbPantau.getSelectedRow(),47).toString());
+            Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));            
             tampilParental();
             tampilTotal24Jam(tbPantau.getValueAt(tbPantau.getSelectedRow(),29).toString(), TNoRw.getText());
         }
@@ -3218,13 +3269,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
        MnHapusSemuaPemantauan.setEnabled(akses.getadmin());
     }
     
-    private void hitungIWL() {
+    private void hitungIWL() {        
         try {
-            double bb, jamPengali, hasil_kali, Total_perjam, Total_akhir;
+            double bb, jamPengali, hasil_kali, Total_perjam, Total_akhir, angkaIWL;
             hasil_kali = 0;
             Total_perjam = 0;
             jamPengali = 0;
             Total_akhir = 0;
+            angkaIWL = 0;
             if (Tbb.getText().equals("")) {
                 Tbb.setText("0");
             }
@@ -3233,9 +3285,16 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 Tbb.setText(Tbb.getText().replaceAll(",", "."));
             }
 
-            bb = Double.parseDouble(Tbb.getText());
+            if (cmbPerhari.getSelectedIndex() == 0) {
+                angkaIWL = 0;
+            } else {
+                angkaIWL = Double.parseDouble(cmbPerhari.getSelectedItem().toString());
+            }
+            
+            bb = Double.parseDouble(Tbb.getText());            
             jamPengali = Double.parseDouble(cmbKali.getSelectedItem().toString());
-            hasil_kali = bb * 15;
+
+            hasil_kali = bb * angkaIWL;
             Total_perjam = hasil_kali / 24;
             Total_akhir = jamPengali * Total_perjam;            
 
@@ -3246,9 +3305,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
 
         } catch (Exception e) {
-            System.out.println("Notifikasi : " + e);
-            JOptionPane.showMessageDialog(rootPane, "Silahkan koreksi lagi angka BB masuk RS,    \n"
-                    + "jika menggunakan koma, gantilah tanda koma dengan titik sebagai komanya !!");
+            System.out.println("Notifikasi : " + e);            
         }
     }
     
@@ -3514,6 +3571,13 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
         TrgRawat.setText(rgrawat);
         ruangranap = rgrawat;
+        Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+        
+        if (TrgRawat.getText().contains("Anak") || TrgRawat.getText().contains("VIP") || TrgRawat.getText().contains("ICU/I")) {            
+            cmbPerhari.setSelectedIndex(0);
+        } else {
+            cmbPerhari.setSelectedIndex(1);
+        }
         
         //pasien dewasa
         if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'") > 0) {
@@ -3610,13 +3674,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         autoNomorPerJam();
         jamDiurutkan();
         BtnTotOutputActionPerformed(null);
-        if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 39, new String[]{
+        if (Sequel.menyimpantf("pemantauan_harian_24jam", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat, Tgl. Pantau & Jam", 40, new String[]{
             TNoRw.getText(), TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
             urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Tsistole.getText() + "/" + Tdistole.getText(),
             Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
             Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Sequel.cariIsi("select now()"),
             Tbb.getText(), Ttransfusi.getText(), TreaksiTransfusi.getText(), Tlain.getText(), Tcatatan.getText(), Tnip.getText(),
-            cmbKali.getSelectedItem().toString(), Toksigen.getText(), Tsistole.getText(), Tdistole.getText(), Tmap.getText(), TrgRawat.getText()
+            cmbKali.getSelectedItem().toString(), Toksigen.getText(), Tsistole.getText(), Tdistole.getText(), Tmap.getText(), TrgRawat.getText(),
+            cmbPerhari.getSelectedItem().toString()
         }) == true) {
 
             //simpan Parental_Line_Obat-obatan
@@ -3710,13 +3775,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 + "urutan_jam=?, nadi=?, suhu=?, gcs_e=?, gcs_m=?, gcs_v=?, kesadaran=?, td=?, nafas=?, spo2=?, makan_minum=?, "
                 + "ngt=?, total_parental=?, total_intake=?, urine=?, ngt_darah=?, drain=?, muntah=?, bab=?, iwl=?, total_output=?, "
                 + "balance=?, bb_msk_rs=?, transfusi=?, reaksi_transfusi=?, defekasi=?, catatan=?, nip_petugas=?, pengali=?, oksigen=?, "
-                + "sistole=?, distole=?, map=?, ruang_rawat=?", 38, new String[]{
+                + "sistole=?, distole=?, map=?, ruang_rawat=?, pengali_iwl_bb=?", 39, new String[]{
                     TkdPantau.getText(), Valid.SetTgl(tglPantau.getSelectedItem() + ""), cmbJam.getSelectedItem().toString(),
                     urutanJam, Tnadi.getText(), Tsuhu.getText(), Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Tkesadaran.getText(), Tsistole.getText() + "/" + Tdistole.getText(),
                     Trr.getText(), Tspo.getText(), Tmm.getText(), Tngt.getText(), TjmlParental.getText(), Ttotintake.getText(), Turin.getText(), TngtDarah.getText(),
                     Tdrain.getText(), Tmuntah.getText(), Tbab.getText(), Tiwl.getText(), Ttotouput.getText(), Tbalance.getText(), Tbb.getText(),
                     Ttransfusi.getText(), TreaksiTransfusi.getText(), Tlain.getText(), Tcatatan.getText(), Tnip.getText(), cmbKali.getSelectedItem().toString(), 
-                    Toksigen.getText(), Tsistole.getText(), Tdistole.getText(), Tmap.getText(), TrgRawat.getText(), wktSimpan
+                    Toksigen.getText(), Tsistole.getText(), Tdistole.getText(), Tmap.getText(), TrgRawat.getText(), cmbPerhari.getSelectedItem().toString(), 
+                    wktSimpan
                 }) == true) {
 
             //simpan Parental_Line_Obat-obatan

@@ -26,6 +26,9 @@
 	<parameter name="goldarah" class="java.lang.String"/>
 	<parameter name="alamat" class="java.lang.String"/>
 	<parameter name="keperluan" class="java.lang.String"/>
+	<parameter name="tensi" class="java.lang.String"/>
+	<parameter name="nadi" class="java.lang.String"/>
+	<parameter name="bmi" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT date(now())]]>
 	</queryString>
@@ -359,14 +362,14 @@ MARTAPURA]]></text>
 				<text><![CDATA[Berat Badan]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="408" width="363" height="14"/>
+				<reportElement x="70" y="408" width="200" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{bb}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="70" y="423" width="363" height="14"/>
+				<reportElement x="70" y="423" width="200" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
@@ -380,7 +383,7 @@ MARTAPURA]]></text>
 				<text><![CDATA[Tinggi Badan]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="70" y="438" width="363" height="14"/>
+				<reportElement x="70" y="438" width="200" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="false"/>
 				</textElement>
@@ -435,6 +438,48 @@ MARTAPURA]]></text>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{keperluan}.toUpperCase()]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement x="0" y="468" width="70" height="14"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Nadi]]></text>
+			</staticText>
+			<staticText>
+				<reportElement x="0" y="453" width="70" height="14"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[Tensi]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="70" y="453" width="200" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{tensi}+" mmHg"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="468" width="200" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{nadi}+" x/mnt"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="70" y="483" width="200" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[": "+$P{bmi}+" Kg."]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="0" y="483" width="70" height="14"/>
+				<textElement textAlignment="Left" lineSpacing="Single">
+					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
+				</textElement>
+				<text><![CDATA[BMI]]></text>
+			</staticText>
 		</band>
 	</title>
 	<pageFooter>
