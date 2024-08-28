@@ -599,7 +599,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -614,7 +614,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -793,7 +793,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TAlamat.setBounds(105, 94, 380, 23);
 
         Ttgl_no_surat.setEditable(false);
-        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         Ttgl_no_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_no_surat.setName("Ttgl_no_surat"); // NOI18N
         Ttgl_no_surat.setOpaque(false);
@@ -893,7 +893,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel25.setBounds(505, 270, 80, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2024" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -1071,7 +1071,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         Scroll10.setViewportView(Tdiagnosa);
 
         panelGlass7.add(Scroll10);
-        Scroll10.setBounds(800, 225, 500, 90);
+        Scroll10.setBounds(800, 225, 500, 120);
 
         TnoDokumen.setEditable(false);
         TnoDokumen.setForeground(new java.awt.Color(0, 0, 0));
@@ -1173,14 +1173,14 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tnadi);
-        Tnadi.setBounds(254, 299, 70, 23);
+        Tnadi.setBounds(254, 299, 50, 23);
 
         jLabel32.setForeground(new java.awt.Color(0, 0, 0));
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel32.setText("x/mnt     BMI :");
         jLabel32.setName("jLabel32"); // NOI18N
         panelGlass7.add(jLabel32);
-        jLabel32.setBounds(330, 299, 73, 23);
+        jLabel32.setBounds(310, 299, 73, 23);
 
         Tbmi.setForeground(new java.awt.Color(0, 0, 0));
         Tbmi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
@@ -1191,14 +1191,14 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tbmi);
-        Tbmi.setBounds(404, 299, 70, 23);
+        Tbmi.setBounds(384, 299, 50, 23);
 
         jLabel33.setForeground(new java.awt.Color(0, 0, 0));
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel33.setText("Kg.");
         jLabel33.setName("jLabel33"); // NOI18N
         panelGlass7.add(jLabel33);
-        jLabel33.setBounds(478, 299, 25, 23);
+        jLabel33.setBounds(438, 299, 25, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 

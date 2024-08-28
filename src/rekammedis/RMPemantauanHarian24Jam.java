@@ -1819,7 +1819,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel78.setBounds(630, 66, 100, 23);
 
         cmbPerhari.setForeground(new java.awt.Color(0, 0, 0));
-        cmbPerhari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "15", "20", "30", "40", "50" }));
+        cmbPerhari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "10", "15", "20", "30", "40", "50" }));
         cmbPerhari.setName("cmbPerhari"); // NOI18N
         cmbPerhari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -3281,8 +3281,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 Tbb.setText("0");
             }
             
-            if (Tbb.getText().contains(",") == true) {
-                Tbb.setText(Tbb.getText().replaceAll(",", "."));
+            if (Tbb.getText().trim().contains(",") == true) {
+                Tbb.setText(Tbb.getText().trim().replaceAll(",", "."));
             }
 
             if (cmbPerhari.getSelectedIndex() == 0) {
@@ -3576,7 +3576,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         if (TrgRawat.getText().contains("Anak") || TrgRawat.getText().contains("VIP") || TrgRawat.getText().contains("ICU/I")) {            
             cmbPerhari.setSelectedIndex(0);
         } else {
-            cmbPerhari.setSelectedIndex(1);
+            cmbPerhari.setSelectedIndex(2);
         }
         
         //pasien dewasa
