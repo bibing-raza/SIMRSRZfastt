@@ -88,7 +88,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(65);
             } else if (i == 6) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(75);
             } else if (i == 7) {
                 column.setPreferredWidth(250);
             } else if (i == 8) {
@@ -1436,7 +1436,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 hapus();
             } else {
-                if (akses.getkode().equals(tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 15).toString())) {
+                if (akses.getkode().equals(tbProtokol.getValueAt(tbProtokol.getSelectedRow(), 16).toString())) {
                     hapus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya bisa dihapus " + TnmDokter.getText() + "..!!");

@@ -6060,8 +6060,8 @@ public final class DlgReg extends javax.swing.JDialog {
         rmMati.setText(Sequel.cariIsi("select no_rkm_medis from pasien_mati where no_rkm_medis='" + TNoRM.getText() + "' "));
         Sequel.cariIsi("select no_rkm_medis from reg_periksa where tgl_registrasi='" + tglDaftar + "' and "
                 + "kd_poli='" + kdpoli.getText() + "' and no_rkm_medis=?", cekPasien, TNoRM.getText());
-        cekSEP = Sequel.cariInteger("SELECT count(-1) tgl FROM kelengkapan_booking_sep_bpjs k "
-                + "INNER JOIN booking_registrasi b on b.kd_booking=k.kd_booking WHERE k.status_cetak_sep='gagal' and b.tanggal_periksa <DATE(NOW())");
+        cekSEP = Sequel.cariInteger("SELECT count(-1) FROM kelengkapan_booking_sep_bpjs k INNER JOIN booking_registrasi b on b.kd_booking=k.kd_booking WHERE "
+                + "k.status_cetak_sep='gagal' and b.tanggal_periksa <DATE(NOW())");
 
         if (TNoReg.getText().trim().equals("")) {
             Valid.textKosong(TNoReg, "No.Regristrasi");
@@ -6102,6 +6102,7 @@ public final class DlgReg extends javax.swing.JDialog {
         } else if (cekUmur > Sequel.cariInteger("select batas_maksimal from set_batas_umur") || cekUmur < Sequel.cariInteger("select batas_minimal from set_batas_umur")) {
             JOptionPane.showMessageDialog(null, "Silahkan perbaiki dulu tgl. lahir pasien ini, karena umurnya " + umur + " " + sttsumur1);
         } else {
+            //jika sep booking berhasil tersimpan
             if (cekSEP == 0) {
                 if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
                         || kdpoli.getText().equals("LAA") || kdpoli.getText().equals("LAB")) {
@@ -6120,11 +6121,17 @@ public final class DlgReg extends javax.swing.JDialog {
                         simpanRegistrasi();
                     }
                 }
-            } else if ((cekSEP >= 1 && !kdpoli.getText().equals("-")) || (cekSEP >= 1 && !kdpoli.getText().equals("HDL"))
-                    || (cekSEP >= 1 && !kdpoli.getText().equals("RAD")) || (cekSEP >= 1 && !kdpoli.getText().equals("LAB"))
-                    || (cekSEP >= 1 && !kdpoli.getText().equals("LAA"))) {
-                JOptionPane.showMessageDialog(null, "Data tdk. bisa disimpan, silahkan perbaiki dulu SEP BPJS dari menu booking\n"
-                        + "untuk yg. sdh. tercetak manual di anjungan elektronik pasien (SIPO)");
+                
+            //jika sep booking gagal simpan
+            } else if (cekSEP >= 1) {
+                if (kdpoli.getText().equals("-") || kdpoli.getText().equals("HDL") || kdpoli.getText().equals("RAD")
+                        || kdpoli.getText().equals("LAB") || kdpoli.getText().equals("LAA")) {
+                    cmbAntrianKhusus.setEnabled(false);
+                    simpanRegistrasi();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Data tdk. bisa disimpan, silahkan perbaiki dulu SEP BPJS dari menu booking\n"
+                            + "untuk yg. sdh. tercetak manual di anjungan elektronik pasien (SIPO)");
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
