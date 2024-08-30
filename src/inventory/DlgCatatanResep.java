@@ -309,6 +309,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         MnDiCopy = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
         MnRiwayatData = new javax.swing.JMenuItem();
+        jPopupMenu3 = new javax.swing.JPopupMenu();
+        MnCopyObat = new javax.swing.JMenuItem();
         WindowRiwayat = new javax.swing.JDialog();
         internalFrame13 = new widget.InternalFrame();
         internalFrame18 = new widget.InternalFrame();
@@ -454,6 +456,23 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         });
         jPopupMenu2.add(MnRiwayatData);
 
+        jPopupMenu3.setName("jPopupMenu3"); // NOI18N
+
+        MnCopyObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCopyObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCopyObat.setText("Copy Resep");
+        MnCopyObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCopyObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCopyObat.setIconTextGap(5);
+        MnCopyObat.setName("MnCopyObat"); // NOI18N
+        MnCopyObat.setPreferredSize(new java.awt.Dimension(100, 26));
+        MnCopyObat.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCopyObatActionPerformed(evt);
+            }
+        });
+        jPopupMenu3.add(MnCopyObat);
+
         WindowRiwayat.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowRiwayat.setName("WindowRiwayat"); // NOI18N
         WindowRiwayat.setUndecorated(true);
@@ -482,7 +501,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -496,7 +515,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -673,7 +692,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -689,7 +708,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-05-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1124,6 +1143,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
 
         tbItemObat.setAutoCreateRowSorter(true);
         tbItemObat.setToolTipText("Silahkan klik untuk memilih data obatnya");
+        tbItemObat.setComponentPopupMenu(jPopupMenu3);
         tbItemObat.setName("tbItemObat"); // NOI18N
         tbItemObat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1941,6 +1961,32 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSetujuActionPerformed
 
+    private void MnCopyObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCopyObatActionPerformed
+        if (tbItemObat.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu data tgl. pemberian obatnya...!!!!");
+            tbTglBeriObat.requestFocus();
+        } else {
+            String resep;
+            resep = "";
+            if (tbTglBeriObat.getSelectedRow() > -1) {
+                try {
+                    for (i = 0; i < tbItemObat.getRowCount(); i++) {
+                        if (resep.equals("")) {
+                            resep = tbItemObat.getValueAt(i, 2).toString() + " Jlh. "
+                                    + tbItemObat.getValueAt(i, 3).toString();
+                        } else {
+                            resep = resep + "\n" + tbItemObat.getValueAt(i, 2).toString() + " Jlh. "
+                                    + tbItemObat.getValueAt(i, 3).toString();
+                        }
+                    }
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
+                akses.setCopyData("Resep Tgl. " + tbTglBeriObat.getValueAt(tbTglBeriObat.getSelectedRow(), 1).toString() + " :\n" + resep);
+            }
+        }
+    }//GEN-LAST:event_MnCopyObatActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -1981,6 +2027,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Tanggal DTPCariB;
     private widget.Label LCount;
     private widget.Label LCount1;
+    private javax.swing.JMenuItem MnCopyObat;
     private javax.swing.JMenuItem MnDiCopy;
     private javax.swing.JMenuItem MnDibatalkan;
     private javax.swing.JMenuItem MnRiwayatData;
@@ -2005,7 +2052,6 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.TextBox Tjk;
     private widget.TextBox TtglLahir;
     private javax.swing.JDialog WindowRiwayat;
-    private widget.ComboBox cmbJnsObat;
     private widget.ComboBox cmbJnsResep;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame13;
@@ -2032,6 +2078,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPopupMenu jPopupMenu2;
+    private javax.swing.JPopupMenu jPopupMenu3;
     private widget.TextBox noIdObat;
     private widget.panelisi panelGlass13;
     private widget.panelisi panelGlass16;

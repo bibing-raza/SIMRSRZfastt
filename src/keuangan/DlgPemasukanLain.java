@@ -206,7 +206,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         tbPemasukan.setDefaultRenderer(Object.class, new WarnaTable());
 
         KdPtg.setDocument(new batasInput((byte) 20).getKata(KdPtg));
-        pemasukan.setDocument(new batasInput((byte) 15).getKata(pemasukan));
+        pemasukan.setDocument(new batasInput((byte) 15).getOnlyAngka(pemasukan));
         Tjarak.setDocument(new batasInput((byte) 3).getOnlyAngka(Tjarak));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         Tnorm.setDocument(new batasInput((byte) 6).getKata(Tnorm));
@@ -1669,7 +1669,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass8.add(jLabel29);
 
         tglNota.setEditable(false);
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -1688,7 +1688,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1703,7 +1703,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1837,7 +1837,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         btnKategori.setBounds(610, 40, 28, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -1865,11 +1865,13 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         pemasukan.setForeground(new java.awt.Color(0, 0, 0));
         pemasukan.setText("0");
         pemasukan.setToolTipText("Khusus utk. pembayaran sewa kantin isikan harga sewanya saja, pajaknya sdh dihitung otomatis...!!!");
-        pemasukan.setHighlighter(null);
         pemasukan.setName("pemasukan"); // NOI18N
         pemasukan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 pemasukanKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                pemasukanKeyReleased(evt);
             }
         });
         FormInput.add(pemasukan);
@@ -1990,7 +1992,6 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         nominalSewa.setForeground(new java.awt.Color(0, 0, 0));
         nominalSewa.setText("0");
         nominalSewa.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        nominalSewa.setHighlighter(null);
         nominalSewa.setName("nominalSewa"); // NOI18N
         FormInput.add(nominalSewa);
         nominalSewa.setBounds(925, 70, 139, 23);
@@ -3085,6 +3086,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_BtnPanjarActionPerformed
 
+    private void pemasukanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pemasukanKeyReleased
+        pemasukanKeyPressed(null);
+    }//GEN-LAST:event_pemasukanKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -3961,15 +3966,18 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }
 
     public void hitungSewaTempat() {
-        DecimalFormat df4 = new DecimalFormat("####");
-        double a = Double.parseDouble(pemasukan.getText().trim());
-        double b = Double.parseDouble(persenSewa.getText());
-
-        nominalPajakSewa.setText(df4.format(a * b / 100));
-        double c = Double.parseDouble(nominalPajakSewa.getText());
-        totalbyrsewa.setText(df4.format(a + c));
-
-        nominalSewa.setText(Valid.SetAngka3(a + c));
+        try {
+            double a, b, c, totbayar;
+            a = Double.parseDouble(pemasukan.getText().trim());
+            b = Double.parseDouble(persenSewa.getText().trim());
+            c = a * b / 100;
+            nominalPajakSewa.setText(Valid.SetAngka2(c));
+            totbayar = a + c;
+            totalbyrsewa.setText(Valid.SetAngka2(totbayar));
+            nominalSewa.setText(Valid.SetAngka3(totbayar));
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 
     public void simpanpemasukan() {
