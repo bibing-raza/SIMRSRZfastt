@@ -55,7 +55,7 @@ public class DlgDpjp extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"Tgl.Rawat", "No.Rawat", "No.R.M.", "Nama Pasien", "Kode Dokter", "Nama Dokter", "tgl_reg"};
+        String[] row = {"Tgl.Rawat", "No.Rawat", "No.R.M.", "Nama Pasien", "Kode Dokter", "Nama Dokter", "tgl_reg"};
         TabModePasien=new DefaultTableModel(null,row){
             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -664,7 +664,7 @@ public class DlgDpjp extends javax.swing.JDialog {
         } else if (!(TNoRw.getText().trim().equals(""))) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {                
-                if (Sequel.queryu2tf("delete from dpjp_ranap where no_rawat=?", 1, new String[]{
+                if (Sequel.queryu2tf("delete from dpjp_ranap where kd_dokter='" + tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 4).toString() + "' and no_rawat=?", 1, new String[]{
                     tbDPJP.getValueAt(tbDPJP.getSelectedRow(), 1).toString()
                 }) == true) {
                     tampil();
@@ -768,8 +768,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         } else {
             if (tbDPJP.getSelectedRow() > -1) {
                 Sequel.mengedit("dpjp_ranap", "no_rawat='" + TNoRw.getText() + "'", "kd_dokter='" + Tkddokter.getText() + "'");
-               tampil();
-               BtnBatalActionPerformed(null);
+                tampil();
+                BtnBatalActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
                 tbDPJP.requestFocus();

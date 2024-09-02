@@ -60,7 +60,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
     private DlgKategoriPemasukan kategori = new DlgKategoriPemasukan(null, false);
     private double total = 0, totTagihan = 0, sdhByr = 0, sisaTagihan = 0, byrKe = 0, stlhByr = 0,
             rumus1 = 0, rumus2 = 0, rumus3 = 0, hasilrumus = 0, hasilmaksimal = 0, tarifAmbulan = 0;
-    private int cekData = 0;
+    private int cekData = 0, x = 0;
     private String norw = "", ambulanDibayar = "";
 
     /**
@@ -2123,8 +2123,27 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         } else {
             if (tbPemasukan.getSelectedRow() > -1) {
                 if (KdKategori.getText().equals("SBPJS")) {
-                    JOptionPane.showMessageDialog(null, "Data tdk. bisa dihapus karena accounting sudah tervalidasi utk. transaksi pembayaran biaya selisih tarif naik kls. rawat...!!!!");
-                    BtnBatal.requestFocus();
+                    if (akses.getadmin() == true) {
+                        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data ini mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                        if (x == JOptionPane.YES_OPTION) {
+                            if (Sequel.queryu2tf("delete from pemasukan_lain where no_transaksi=?", 1, new String[]{
+                                tbPemasukan.getValueAt(tbPemasukan.getSelectedRow(), 0).toString()
+                            }) == true) {
+                                Sequel.queryu("delete from biaya_naik_kelas_bpjs where "
+                                        + "no_transaksi='" + tbPemasukan.getValueAt(tbPemasukan.getSelectedRow(), 0).toString() + "'");
+                                tampil();
+                                emptTeks();
+                            } else {
+                                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                            }
+                        } else {
+                            tampil();
+                            emptTeks();
+                        }
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Data tdk. bisa dihapus karena accounting sudah tervalidasi utk. transaksi pembayaran biaya selisih tarif naik kls. rawat...!!!!");
+                        BtnBatal.requestFocus();
+                    }
                 } else {
                     Sequel.AutoComitFalse();
                     try {
