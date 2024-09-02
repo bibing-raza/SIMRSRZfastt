@@ -311,6 +311,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             NoSEP.requestFocus();
                             BtnSimpan6.setEnabled(true);
                             BtnPrint.setEnabled(false);
+                            label_pajak.setVisible(false);
                             labelSewa.setVisible(false);
                             nominalSewa.setVisible(false);
                             selisihBaru();
@@ -328,6 +329,8 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
 
                         } else if (KdKategori.getText().equals("SWKTN")) {
                             persenSewa.setText(Sequel.cariIsi("select pajak_sewa_tempat from set_tarif"));
+                            label_pajak.setText("Sudah Ditambahkan Pajak " + persenSewa.getText() + " %");
+                            label_pajak.setVisible(true);
                             labelSewa.setVisible(true);
                             nominalSewa.setVisible(true);
 
@@ -335,6 +338,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                             WindowAmbulan.setSize(609, 310);
                             WindowAmbulan.setLocationRelativeTo(internalFrame1);
                             WindowAmbulan.setVisible(true);
+                            label_pajak.setVisible(false);
                             labelSewa.setVisible(false);
                             nominalSewa.setVisible(false);
                             
@@ -350,6 +354,7 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
                         
                         } else if (!KdKategori.getText().equals("SBPJS") || !KdKategori.getText().equals("SWKTN") || !KdKategori.getText().equals("AMBLN")) {
                             pemasukan.requestFocus();
+                            label_pajak.setVisible(false);
                             labelSewa.setVisible(false);
                             nominalSewa.setVisible(false);
                         }
@@ -592,6 +597,8 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         nominalSewa = new widget.TextBox();
         jLabel16 = new widget.Label();
         telahTerimaAN = new widget.TextBox();
+        label_pajak = new widget.Label();
+        label_nominal = new widget.Label();
         ChkInput = new widget.CekBox();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
@@ -2007,6 +2014,21 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
         FormInput.add(telahTerimaAN);
         telahTerimaAN.setBounds(925, 128, 315, 23);
 
+        label_pajak.setForeground(new java.awt.Color(0, 0, 0));
+        label_pajak.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label_pajak.setText("pajak");
+        label_pajak.setName("label_pajak"); // NOI18N
+        FormInput.add(label_pajak);
+        label_pajak.setBounds(1070, 70, 280, 23);
+
+        label_nominal.setForeground(new java.awt.Color(0, 0, 0));
+        label_nominal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        label_nominal.setText("nominal");
+        label_nominal.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        label_nominal.setName("label_nominal"); // NOI18N
+        FormInput.add(label_nominal);
+        label_nominal.setBounds(1070, 40, 280, 23);
+
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
@@ -2060,14 +2082,15 @@ public final class DlgPemasukanLain extends javax.swing.JDialog {
             if (KdKategori.getText().equals("SWKTN") || (cekNoTransaksi.getText().equals(""))) {
                 hitungSewaTempat();
                 simpanpemasukan();
+                tampil();
+                emptTeks();
 
                 //kondisi menyimpan selain transaksi selisih tarif naik kls rawat
             } else if (!KdKategori.getText().equals("SWKTN") && (cekNoTransaksi.getText().equals(""))) {
                 simpanpemasukan();
+                tampil();
+                emptTeks();
             }
-
-            tampil();
-            emptTeks();
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -2219,7 +2242,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_TanggalKeyPressed
 
     private void pemasukanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pemasukanKeyPressed
-        if ((pemasukan.getText().equals("0")) || (pemasukan.getText().equals(""))) {
+        if (pemasukan.getText().equals("0") || pemasukan.getText().equals("")) {
             nominalSewa.setText("0");
         } else {
             if (KdKategori.getText().equals("SWKTN")) {
@@ -3087,6 +3110,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_BtnPanjarActionPerformed
 
     private void pemasukanKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_pemasukanKeyReleased
+        if (pemasukan.getText().equals("0") || pemasukan.getText().equals("")) {
+            label_nominal.setText("Rp. 0");
+        } else {
+            label_nominal.setText("Rp. " + Valid.SetAngka(Double.parseDouble(pemasukan.getText())));
+        }
         pemasukanKeyPressed(null);
     }//GEN-LAST:event_pemasukanKeyReleased
 
@@ -3247,6 +3275,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox jumlhBayar;
     private widget.TextBox kdINACBG;
     private widget.Label labelSewa;
+    private widget.Label label_nominal;
+    private widget.Label label_pajak;
     private widget.Label labelbyr;
     private javax.swing.JMenuItem lihatSelisihTarif;
     private widget.TextBox lmrawat;
@@ -3371,6 +3401,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void emptTeks() {
         norw = "";
         pemasukan.setText("0");
+        label_nominal.setText("Rp. 0");
         Keterangan.setText("");
         KdKategori.setText("");
         NmKategori.setText("");
@@ -3387,6 +3418,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         nominalSewa.setText("0");
         labelSewa.setVisible(false);
         nominalSewa.setVisible(false);
+        label_pajak.setVisible(false);
         totalbyrsewa.setText("0");
         cekNoTransaksi.setText("");
         bayarKe.setText("");
@@ -3428,8 +3460,16 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             norw = Sequel.cariIsi("select no_rawat from biaya_naik_kelas_bpjs where no_transaksi='" + noTransaksi.getText() + "'");
             telahTerimaAN.setText(Sequel.cariIsi("select p_jawab from reg_periksa where no_rawat='" + norw + "'"));
 
+            if (pemasukan.getText().equals("0") || pemasukan.getText().equals("")) {
+                label_nominal.setText("Rp. 0");
+            } else {
+                label_nominal.setText("Rp. " + Valid.SetAngka(Double.parseDouble(pemasukan.getText())));
+            }
+
             if (KdKategori.getText().equals("SWKTN")) {
                 persenSewa.setText(Sequel.cariIsi("select pajak_sewa_tempat from set_tarif"));
+                label_pajak.setText("Sudah Ditambahkan Pajak " + persenSewa.getText() + " %");
+                label_pajak.setVisible(true);
                 hitungSewaTempat();
                 labelSewa.setVisible(true);
                 nominalSewa.setVisible(true);

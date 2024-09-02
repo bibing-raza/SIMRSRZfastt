@@ -344,6 +344,7 @@ import rekammedis.RMAsuhanGiziRanap;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMMonitoringEWSDewasa;
 import rekammedis.RMMonitoringPEWSAnak;
+import rekammedis.RMPasienUntukTindakan;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPengelolaanTransfusiDarah;
 import rekammedis.RMProtokolKemoterapi;
@@ -863,6 +864,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnSkriningGiziUlang = new widget.ButtonBig();
         btnLembarObservasi = new widget.ButtonBig();
         btnTransaksiPanjar = new widget.ButtonBig();
+        btnTransferPasienTindakan = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5828,6 +5830,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnTransaksiPanjar);
 
+        btnTransferPasienTindakan.setForeground(new java.awt.Color(0, 0, 0));
+        btnTransferPasienTindakan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
+        btnTransferPasienTindakan.setText("Transfer Pasien Untuk Tindakan");
+        btnTransferPasienTindakan.setIconTextGap(0);
+        btnTransferPasienTindakan.setName("btnTransferPasienTindakan"); // NOI18N
+        btnTransferPasienTindakan.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTransferPasienTindakan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTransferPasienTindakanActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnTransferPasienTindakan);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5836,7 +5851,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "19/08/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/08/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11544,6 +11559,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnTransaksiPanjarActionPerformed
 
+    private void btnTransferPasienTindakanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTransferPasienTindakanActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPasienUntukTindakan aplikasi = new RMPasienUntukTindakan(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeksSebelum();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnTransferPasienTindakanActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11941,6 +11969,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnToolRad;
     private widget.ButtonBig btnTracker;
     private widget.ButtonBig btnTransaksiPanjar;
+    private widget.ButtonBig btnTransferPasienTindakan;
     private widget.ButtonBig btnTransferSerahTerimaPasien;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
@@ -12246,6 +12275,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt()== true) {
                 Panelmenu.add(btnCPPT);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnTransferPasienTindakan);
                 jmlmenu++;
             }
             
@@ -14087,6 +14121,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkemoterapi() == true) {
             Panelmenu.add(btnProtokolKemoterapi);
+            jmlmenu++;
+        }
+
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnTransferPasienTindakan);
             jmlmenu++;
         }
 
@@ -15954,6 +15993,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkemenkes_sitt()== true) {
             if (btnSpirometri.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSpirometri);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnTransferPasienTindakan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnTransferPasienTindakan);
                 jmlmenu++;
             }
         }
