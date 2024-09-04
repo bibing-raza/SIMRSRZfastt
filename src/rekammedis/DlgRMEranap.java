@@ -134,6 +134,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnMonitoringPEWSanak = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnTransferTindakan = new widget.ButtonBig();
+        BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
         BtnJawabKonsul = new widget.ButtonBig();
         BtnPersetujuanTindakan = new widget.ButtonBig();
@@ -550,6 +551,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnTransferTindakan);
+
+        BtnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
+        BtnAsesmenPraSedasi.setText("Asesmen Pra Sedasi");
+        BtnAsesmenPraSedasi.setIconTextGap(0);
+        BtnAsesmenPraSedasi.setName("BtnAsesmenPraSedasi"); // NOI18N
+        BtnAsesmenPraSedasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenPraSedasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenPraSedasiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnAsesmenPraSedasi);
 
         BtnKonsul.setForeground(new java.awt.Color(0, 0, 0));
         BtnKonsul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/email_open.png"))); // NOI18N
@@ -1337,6 +1351,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnTransferTindakanActionPerformed
 
+    private void BtnAsesmenPraSedasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenPraSedasiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            if (akses.getadmin() == true) {
+                akses.setform("DlgRMEranap");
+                RMAsesmenPraSedasi form = new RMAsesmenPraSedasi(null, false);
+                form.emptTeks();
+                form.isCek();
+//            form.setNoRm(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenPraSedasiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1358,6 +1393,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenKeperawatanDewasa;
     private widget.ButtonBig BtnAsesmenMedikAnak;
     private widget.ButtonBig BtnAsesmenMedikDewasa;
+    private widget.ButtonBig BtnAsesmenPraSedasi;
     private widget.ButtonBig BtnAsesmenRestrain;
     private widget.ButtonBig BtnAsesmenUlangGizi;
     private widget.ButtonBig BtnAsesmenUlangRJAnak;

@@ -59,9 +59,9 @@ public class ApiEKLAIM_inacbg {
 
     public boolean ngirimJKN(String noRawat) {
         try {
-            ps = koneksi.prepareStatement("select bs.no_kartu, bs.no_sep, bs.nomr, bs.nama_pasien, "
+            ps = koneksi.prepareStatement("select bs.no_kartu, bs.no_sep, bs.nomr, REPLACE(REPLACE(bs.nama_pasien,'\\\\',''),'''','') nama_pasien, "
                     + "concat(bs.tanggal_lahir,' ','00:00:00') tgl_lhr, if(p.jk='L','1','2') jk, bs.tglsep, "
-                    + "bs.jnspelayanan from bridging_sep bs INNER JOIN pasien p ON p.no_rkm_medis=bs.nomr where no_rawat='" + noRawat + "'");
+                    + "bs.jnspelayanan from bridging_sep bs INNER JOIN pasien p ON p.no_rkm_medis=bs.nomr where bs.no_rawat='" + noRawat + "'");
             try {
                 rs = ps.executeQuery();
                 while (rs.next()) {

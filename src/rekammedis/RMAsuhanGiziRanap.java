@@ -1260,7 +1260,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1274,7 +1274,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1485,7 +1485,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel18);
         jLabel18.setBounds(0, 58, 118, 23);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -1501,7 +1501,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame5.add(jLabel23);
         jLabel23.setBounds(207, 58, 30, 23);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -1567,7 +1567,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel27);
         jLabel27.setBounds(0, 58, 118, 23);
 
-        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        tgl3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         tgl3.setDisplayFormat("dd-MM-yyyy");
         tgl3.setName("tgl3"); // NOI18N
         tgl3.setOpaque(false);
@@ -1583,7 +1583,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         internalFrame7.add(jLabel28);
         jLabel28.setBounds(207, 58, 30, 23);
 
-        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        tgl4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         tgl4.setDisplayFormat("dd-MM-yyyy");
         tgl4.setName("tgl4"); // NOI18N
         tgl4.setOpaque(false);
@@ -1730,7 +1730,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        tglAsuhan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         tglAsuhan.setDisplayFormat("dd-MM-yyyy");
         tglAsuhan.setName("tglAsuhan"); // NOI18N
         tglAsuhan.setOpaque(false);
@@ -3267,7 +3267,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(400, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
@@ -3393,7 +3393,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3408,7 +3408,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3526,7 +3526,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel20.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass10.add(jLabel20);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3540,7 +3540,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel22);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3658,7 +3658,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel24.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass11.add(jLabel24);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3672,7 +3672,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -3899,7 +3899,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel109.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass13.add(jLabel109);
 
-        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari9.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari9.setDisplayFormat("dd-MM-yyyy");
         DTPCari9.setName("DTPCari9"); // NOI18N
         DTPCari9.setOpaque(false);
@@ -3913,7 +3913,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
         jLabel110.setPreferredSize(new java.awt.Dimension(20, 23));
         panelGlass13.add(jLabel110);
 
-        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-07-2024" }));
+        DTPCari10.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-08-2024" }));
         DTPCari10.setDisplayFormat("dd-MM-yyyy");
         DTPCari10.setName("DTPCari10"); // NOI18N
         DTPCari10.setOpaque(false);

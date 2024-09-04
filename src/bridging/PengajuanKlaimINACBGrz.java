@@ -6871,8 +6871,8 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         try {
             //kalau kode payor 3 adalah JKN
             if (kodePayor.equals("3")) {
-                ps = koneksi.prepareStatement("select bs.nomr, bs.nama_pasien, p.jk jkel, bs.tanggal_lahir, "
-                        + "UPPER(DATE_FORMAT(bs.tanggal_lahir,'%d %b %Y')) tgllhr, bs.tglsep, "
+                ps = koneksi.prepareStatement("select bs.nomr, REPLACE(REPLACE(bs.nama_pasien,'\\\\',''),'''','') nama_pasien, "
+                        + "p.jk jkel, bs.tanggal_lahir, UPPER(DATE_FORMAT(bs.tanggal_lahir,'%d %b %Y')) tgllhr, bs.tglsep, "
                         + "bs.no_kartu, bs.jnspelayanan, bs.klsrawat from bridging_sep bs "
                         + "INNER JOIN pasien p ON p.no_rkm_medis=bs.nomr where bs.no_sep='" + nosep + "' and bs.tglsep='" + tglsep + "'");
 
@@ -8205,7 +8205,7 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         try {
             if (kodePayor.equals("3")) {
-                ps5 = koneksi.prepareStatement("select nomr, nama_pasien, jkel, tanggal_lahir, tglsep, "
+                ps5 = koneksi.prepareStatement("select nomr, REPLACE(REPLACE(nama_pasien,'\\\\',''),'''','') nama_pasien, jkel, tanggal_lahir, tglsep, "
                         + "UPPER(DATE_FORMAT(tanggal_lahir,'%d %b %Y')) tgllhr from bridging_sep where no_sep='" + noseP + "' and tglsep='" + tglsep + "'");
 
             } else {
