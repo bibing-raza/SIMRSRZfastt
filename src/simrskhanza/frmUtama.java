@@ -337,6 +337,7 @@ import rekammedis.RMPenilaianTambahanGeriatri;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriaseIGD;
 import rekammedis.RMAsesmenMedikDewasaRanap;
+import rekammedis.RMAsesmenPraSedasi;
 import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
@@ -865,6 +866,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnLembarObservasi = new widget.ButtonBig();
         btnTransaksiPanjar = new widget.ButtonBig();
         btnTransferPasienTindakan = new widget.ButtonBig();
+        btnAsesmenPraSedasi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5843,6 +5845,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnTransferPasienTindakan);
 
+        btnAsesmenPraSedasi.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenPraSedasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/anastesi2.png"))); // NOI18N
+        btnAsesmenPraSedasi.setText("Asesmen Pra Sedasi");
+        btnAsesmenPraSedasi.setIconTextGap(0);
+        btnAsesmenPraSedasi.setName("btnAsesmenPraSedasi"); // NOI18N
+        btnAsesmenPraSedasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenPraSedasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenPraSedasiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenPraSedasi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5851,7 +5866,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31/08/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11572,6 +11587,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnTransferPasienTindakanActionPerformed
 
+    private void btnAsesmenPraSedasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenPraSedasiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenPraSedasi aplikasi = new RMAsesmenPraSedasi(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenPraSedasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11633,6 +11661,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenMedikAnakRanap;
     private widget.ButtonBig btnAsesmenMedikDewasaRanap;
     private widget.ButtonBig btnAsesmenMedikObstetriRalan;
+    private widget.ButtonBig btnAsesmenPraSedasi;
     private widget.ButtonBig btnAsesmenRestrain;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhAnak;
     private widget.ButtonBig btnAsesmenUlangResikoJatuhDewasa;
@@ -12290,6 +12319,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getringkasanpulangranap() == true) {
                 Panelmenu.add(btnRingkasanPulangRanap);
+                jmlmenu++;
+            }
+            
+            if (akses.getresep_dokter()== true) {
+                Panelmenu.add(btnAsesmenPraSedasi);
                 jmlmenu++;
             }
             
@@ -14068,6 +14102,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnAsesmenUlangResikoJatuhDewasa);
+            jmlmenu++;
+        }
+        
+        if (akses.getresep_dokter() == true) {
+            Panelmenu.add(btnAsesmenPraSedasi);
             jmlmenu++;
         }
         
@@ -15916,6 +15955,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnPemantauanHarian24Jam.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPemantauanHarian24Jam);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getresep_dokter()== true) {
+            if (btnAsesmenPraSedasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenPraSedasi);
                 jmlmenu++;
             }
         }
