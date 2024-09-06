@@ -2848,200 +2848,224 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbSedasi.getSelectedRow() > -1) {
             Map<String, Object> param = new HashMap<>();
+            //report rptAsesmenPraSedasi1
             param.put("namars", akses.getnamars());            
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             param.put("norm", TNoRM.getText());
             param.put("nmpasien", TPasien.getText());
             param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            
+            param.put("riwAlergiObat", TriwAlergiObat.getText() + "\n");
+            param.put("obatSaatIni", TobatSaatIni.getText() + "\n");
+            param.put("riwAnastesi", "Riwayat Anastesi & Komplikasi :\n"
+                    + TriwAnastesi.getText() + "\n\n"
+                    + "KEADAAN UMUM\n"
+                    + "Kepala : " + Tkepala.getText() + ", Sklera : " + Tsklera.getText() + ", Conjungtiva : " + Tconjung.getText() + ", Leher : " + Tleher.getText() + "\n"
+                    + "Paru-paru : " + Tparu.getText() + "\n"
+                    + "Jantung : " + Tjantung.getText() + "\n"
+                    + "Abdomen : " + Tabdomen.getText() + "\n"
+                    + "Ekstremitas : " + Tekstremitas.getText() + "\n\n"
+                    + "PEMERIKSAAN FISIK\n"
+                    + "GCS : " + Tgcs.getText() + ", Tekanan Darah : " + Ttd.getText() + " mmHg, RR : " + Trr.getText() + " x/menit, Nadi : " + Tnadi.getText() + " x/menit\n"
+                    + "Suhu : " + Tsuhu.getText() + " °C, Tinggi Badan : " + Ttb.getText() + " Cm, Berat Badan : " + Tbb.getText() + " Kg, VAS : " + Tvas.getText() + "\n");
+            
+            param.put("kajian1", "KAJIAN SISTEM\n"
+                    + "Hilangnya Gigi : " + cmbHilang.getSelectedItem().toString() + "\n"
+                    + "Masalah Mobilisasi Leher : " + cmbMasalah.getSelectedItem().toString() + "\n"
+                    + "Leher Pendek : " + cmbLeher.getSelectedItem().toString() + "\n"
+                    + "Stroke : " + cmbStroke.getSelectedItem().toString() + "\n"
+                    + "Sesak Nafas : " + cmbSesak.getSelectedItem().toString() + "\n"
+                    + "Buka Mulut > 2 Jari : " + cmbBuka.getSelectedItem().toString() + "\n"
+                    + "Jarak Thyromental > 3 Jari : " + cmbJarak.getSelectedItem().toString() + "\n");
+            
+            param.put("kajian2", "\nSakit Dada : " + cmbSakit.getSelectedItem().toString() + "\n"
+                    + "Denyut Jantung Tidak Normal : " + cmbDenyut.getSelectedItem().toString() + "\n"
+                    + "Sedang Hamil : " + cmbSedang.getSelectedItem().toString() + "\n"
+                    + "Kejang : " + cmbKejang.getSelectedItem().toString() + "\n"
+                    + "Obesitas : " + cmbObes.getSelectedItem().toString() + "\n"
+                    + "Gigi Palsu : " + cmbGigi.getSelectedItem().toString() + "\n"
+                    + "Gerakan Leher Maksimal : " + cmbGerakan.getSelectedItem().toString() + "\n");
 
-//            if (ChkCompos.isSelected() == true) {
-//                param.put("compos", "V");
-//            } else {
-//                param.put("compos", "");
-//            }
-//            
-//            if (ChkApatis.isSelected() == true) {
-//                param.put("apatis", "V");
-//            } else {
-//                param.put("apatis", "");
-//            }
-//            
-//            if (ChkDelirium.isSelected() == true) {
-//                param.put("delirium", "V");
-//            } else {
-//                param.put("delirium", "");
-//            }
-//            
-//            if (ChkSomnolen.isSelected() == true) {
-//                param.put("somnolen", "V");
-//            } else {
-//                param.put("somnolen", "");
-//            }
-//            
-//            if (ChkSopor.isSelected() == true) {
-//                param.put("sopor", "V");
-//            } else {
-//                param.put("sopor", "");
-//            }
-//            
-//            if (ChkKoma.isSelected() == true) {
-//                param.put("koma", "V");
-//            } else {
-//                param.put("koma", "");
-//            }
-//            
-//            param.put("gcs", "E : " + Tgcse.getText() + ", M : " + Tgcsm.getText() + ", V : " + Tgcsv.getText());
-//            param.put("tensi", Ttensi.getText() + " mmHg");
-//            param.put("nadi", Tnadi.getText() + " x/menit");
-//            param.put("suhu", Tsuhu.getText() + " °C");
-//            param.put("napas", Tnapas.getText() + " x/menit");
-//            param.put("skala", Tskala.getText());
-//
-//            if (ChkGelisah.isSelected() == true) {
-//                param.put("gelisah", "V");
-//            } else {
-//                param.put("gelisah", "");
-//            }
-//            
-//            if (ChkKooperatif.isSelected() == true) {
-//                param.put("kooperatif", "V");
-//            } else {
-//                param.put("kooperatif", "");
-//            }
-//            
-//            if (ChkKetidakmampuan.isSelected() == true) {
-//                param.put("ketidakmampuan", "V");
-//            } else {
-//                param.put("ketidakmampuan", "");
-//            }
-//
-//            if (ChkKlinisDiri.isSelected() == true) {
-//                param.put("klinis_diri", "V");
-//            } else {
-//                param.put("klinis_diri", "");
-//            }
-//            
-//            if (ChkKlinisOrang.isSelected() == true) {
-//                param.put("klinis_orang", "V");
-//            } else {
-//                param.put("klinis_orang", "");
-//            }
-//            
-//            if (ChkKlinisGagal.isSelected() == true) {
-//                param.put("klinis_gagal", "V");
-//            } else {
-//                param.put("klinis_gagal", "");
-//            }
-//            
-//            if (ChkResTempatTidur.isSelected() == true) {
-//                param.put("res_tempat", "V");
-//            } else {
-//                param.put("res_tempat", "");
-//            }
-//            
-//            if (ChkResGelangTangan.isSelected() == true) {
-//                param.put("res_gelang_tangan", "V");
-//            } else {
-//                param.put("res_gelang_tangan", "");
-//            }
-//            
-//            if (ChkResTanganKiri.isSelected() == true) {
-//                param.put("res_tangan_kiri", "V");
-//            } else {
-//                param.put("res_tangan_kiri", "");
-//            }
-//            
-//            if (ChkResTanganKanan.isSelected() == true) {
-//                param.put("res_tangan_kanan", "V");
-//            } else {
-//                param.put("res_tangan_kanan", "");
-//            }
-//            
-//            if (ChkResGelangKaki.isSelected() == true) {
-//                param.put("res_gelang_kaki", "V");
-//            } else {
-//                param.put("res_gelang_kaki", "");
-//            }
-//            
-//            if (ChkResKakiKiri.isSelected() == true) {
-//                param.put("res_kaki_kiri", "V");
-//            } else {
-//                param.put("res_kaki_kiri", "");
-//            }
-//            
-//            if (ChkResKakiKanan.isSelected() == true) {
-//                param.put("res_kaki_kanan", "V");
-//            } else {
-//                param.put("res_kaki_kanan", "");
-//            }
-//            
-//            if (ChkResLain.isSelected() == true) {
-//                param.put("res_lain", "V");
-//            } else {
-//                param.put("res_lain", "");
-//            }
-//            
-//            param.put("res_farmakologi", TResFarmakologi.getText());
-//            
-//            if (ChkKajian1Jam.isSelected() == true) {
-//                param.put("kajian1jam", "V");
-//            } else {
-//                param.put("kajian1jam", "");
-//            }
-//            
-//            if (ChkKajian2Jam.isSelected() == true) {
-//                param.put("kajian2jam", "V");
-//            } else {
-//                param.put("kajian2jam", "");
-//            }
-//            
-//            if (ChkKajianLanjut2Jam.isSelected() == true) {
-//                param.put("kajian_lanjut2jam", "V");
-//            } else {
-//                param.put("kajian_lanjut2jam", "");
-//            }
-//            
-//            if (ChkKajianLanjut4Jam.isSelected() == true) {
-//                param.put("kajian_lanjut4jam", "V");
-//            } else {
-//                param.put("kajian_lanjut4jam", "");
-//            }
-//            
-//            if (ChkObsTanda.isSelected() == true) {
-//                param.put("kajian_tanda", "V");
-//            } else {
-//                param.put("kajian_tanda", "");
-//            }
-//            
-//            if (ChkObsLanjutan.isSelected() == true) {
-//                param.put("kajian_lanjutan", "V");
-//            } else {
-//                param.put("kajian_lanjutan", "");
-//            }
-//            
-//            if (ChkAlasan.isSelected() == true) {
-//                param.put("jelas_alasan", "V");
-//            } else {
-//                param.put("jelas_alasan", "");
-//            }
-//            
-//            if (ChkKriteria.isSelected() == true) {
-//                param.put("jelas_kriteria", "V");
-//            } else {
-//                param.put("jelas_kriteria", "");
-//            }
-//            
-//            if (ChkInformasi.isSelected() == true) {
-//                param.put("jelas_informasi", "V");
-//            } else {
-//                param.put("jelas_informasi", "");
-//            }
+            if (ChkSatu.isSelected() == true) {
+                param.put("mal1", "V");
+            } else {
+                param.put("mal1", "");
+            }
+            
+            if (ChkDua.isSelected() == true) {
+                param.put("mal2", "V");
+            } else {
+                param.put("mal2", "");
+            }
+            
+            if (ChkTiga.isSelected() == true) {
+                param.put("mal3", "V");
+            } else {
+                param.put("mal3", "");
+            }
+            
+            if (ChkEmpat.isSelected() == true) {
+                param.put("mal4", "V");
+            } else {
+                param.put("mal4", "");
+            }
+            
+            param.put("penunjang", Tpemeriksaan.getText() + "\n");
+            param.put("diagnosa", Tdiagnosa.getText() + "\n");            
+            
+            //report rptAsesmenPraSedasi2 
+            if (ChkSedasi.isSelected() == true) {
+                param.put("sedasi", "V");
+                param.put("obat1", Tobat1.getText());
+                param.put("obat2", Tobat2.getText());
+                param.put("obat3", Tobat3.getText());
+            } else {
+                param.put("sedasi", "");
+                param.put("obat1", "");
+                param.put("obat2", "");
+                param.put("obat3", "");
+            }
+            
+            if (ChkGA.isSelected() == true) {
+                param.put("ga", "V");
+                param.put("ketGa", Tga.getText());
+            } else {
+                param.put("ga", "");
+                param.put("ketGa", "");
+            }
+            
+            if (ChkRegional.isSelected() == true) {
+                param.put("regional", "V");
+            } else {
+                param.put("regional", "");
+            }
+            
+            if (ChkSpinal.isSelected() == true) {
+                param.put("spinal", "V");
+            } else {
+                param.put("spinal", "");
+            }
+            
+            if (ChkEpidural.isSelected() == true) {
+                param.put("epidural", "V");
+            } else {
+                param.put("epidural", "");
+            }
+            
+            if (ChkKaudal.isSelected() == true) {
+                param.put("kaudal", "V");
+            } else {
+                param.put("kaudal", "");
+            }
+            
+            if (ChkBlok.isSelected() == true) {
+                param.put("blok", "V");
+            } else {
+                param.put("blok", "");
+            }
+            
+            if (ChkEkg.isSelected() == true) {
+                param.put("ekg", "V");
+            } else {
+                param.put("ekg", "");
+            }
+            
+            if (ChkSpo.isSelected() == true) {
+                param.put("spo2", "V");
+            } else {
+                param.put("spo2", "");
+            }
+            
+            if (ChkNibp.isSelected() == true) {
+                param.put("nibp", "V");
+            } else {
+                param.put("nibp", "");
+            }
+            
+            if (ChkTemp.isSelected() == true) {
+                param.put("temp", "V");
+            } else {
+                param.put("temp", "");
+            }
+            
+            if (ChkLain.isSelected() == true) {
+                param.put("lain", "V");
+                param.put("ketLain", Tlain.getText());
+            } else {
+                param.put("lain", "");
+                param.put("ketLain", "");
+            }
+            
+            if (ChkRanap.isSelected() == true) {
+                param.put("ranap", "V");
+            } else {
+                param.put("ranap", "");
+            }
+            
+            if (ChkRalan.isSelected() == true) {
+                param.put("ralan", "V");
+            } else {
+                param.put("ralan", "");
+            }
+            
+            if (ChkRakhus.isSelected() == true) {
+                param.put("rakhus", "V");
+            } else {
+                param.put("rakhus", "");
+            }
+            
+            if (ChkIcu.isSelected() == true) {
+                param.put("icu", "V");
+            } else {
+                param.put("icu", "");
+            }
+            
+            if (ChkHcu.isSelected() == true) {
+                param.put("hcu", "V");
+            } else {
+                param.put("hcu", "");
+            }
+            
+            param.put("catatan", "CATATAN : " + Tcatatan.getText() + "\n");
+            
+            if (ChkAsa1.isSelected() == true) {
+                param.put("asa1", "V");
+            } else {
+                param.put("asa1", "");
+            }
+            
+            if (ChkAsa2.isSelected() == true) {
+                param.put("asa2", "V");
+            } else {
+                param.put("asa2", "");
+            }
+            
+            if (ChkAsa3.isSelected() == true) {
+                param.put("asa3", "V");
+            } else {
+                param.put("asa3", "");
+            }
+            
+            if (ChkAsa4.isSelected() == true) {
+                param.put("asa4", "V");
+            } else {
+                param.put("asa4", "");
+            }
+            
+            if (ChkEmergency.isSelected() == true) {
+                param.put("emer", "V");
+            } else {
+                param.put("emer", "");
+            }
+            
+            param.put("penyulit", Tpenyulit.getText() + "\n");
+            param.put("puasaMulai", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita, Tanggal : " + TtglPuasa.getSelectedItem().toString());
+            param.put("rencana", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita, Tanggal : " + TtglRencana.getSelectedItem().toString());
+            param.put("dokter", "(" + TnmDokter.getText() + ")");
 
-            param.put("tanggal", "Pengkajian Tanggal " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_asesmen from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'"))
-                    + ", Pukul : " + Sequel.cariIsi("select time_format(jam_asesmen,'%H:%i') from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") + " WITA");
-            param.put("petugas", "(" + TnmDokter.getText() + ")");
-
-            Valid.MyReport("rptCetakAsesmenRestrain.jasper", "report", "::[ Laporan Asesmen Restrain hal. 1 ]::",
+            Valid.MyReport("rptAsesmenPraSedasi1.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 1 ]::",
+                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptAsesmenPraSedasi2.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 2 ]::",
                     "SELECT now() tanggal", param);
             
             emptTeks();            
