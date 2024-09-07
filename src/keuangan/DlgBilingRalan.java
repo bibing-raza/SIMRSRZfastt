@@ -989,6 +989,8 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         Scroll1 = new widget.ScrollPane();
         tbObat = new widget.Table();
         internalFrame10 = new widget.InternalFrame();
+        jLabel15 = new widget.Label();
+        LCount = new widget.Label();
         BtnConteng = new widget.Button();
         BtnHapus1 = new widget.Button();
         BtnHapusTuslah = new widget.Button();
@@ -1956,7 +1958,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         WindowTuslahObat.setUndecorated(true);
         WindowTuslahObat.setResizable(false);
 
-        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Tuslah Obat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame9.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Nama Obat Yang Sudah Diberikan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame9.setName("internalFrame9"); // NOI18N
         internalFrame9.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame9.setLayout(new java.awt.BorderLayout());
@@ -1974,6 +1976,19 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         internalFrame10.setPreferredSize(new java.awt.Dimension(0, 50));
         internalFrame10.setWarnaBawah(new java.awt.Color(240, 245, 235));
         internalFrame10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 9));
+
+        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel15.setText("Record :");
+        jLabel15.setName("jLabel15"); // NOI18N
+        jLabel15.setPreferredSize(new java.awt.Dimension(55, 30));
+        internalFrame10.add(jLabel15);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(45, 30));
+        internalFrame10.add(LCount);
 
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
@@ -4451,6 +4466,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button BtnTambahPotongan;
     private widget.Button BtnView;
     private widget.Tanggal DTPTgl;
+    private widget.Label LCount;
     private javax.swing.JMenuItem MnCariPeriksaLab;
     private javax.swing.JMenuItem MnCariRadiologi;
     private javax.swing.JMenuItem MnDokter;
@@ -4527,6 +4543,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Label jLabel12;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
+    private widget.Label jLabel15;
     private widget.Label jLabel16;
     private widget.Label jLabel17;
     private widget.Label jLabel19;
@@ -6807,5 +6824,6 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+        LCount.setText(tabModeObat.getRowCount() + "");
     }
 }
