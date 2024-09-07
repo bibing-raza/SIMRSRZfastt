@@ -2180,6 +2180,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         
         if (ruangan.equals("IGD")) {
             cmbObservasi.setSelectedIndex(1);
+        } else if (!ruangan.equals("IGD")) {
+            cmbObservasi.setSelectedIndex(2);
         } else {
             cmbObservasi.setSelectedIndex(0);
         }

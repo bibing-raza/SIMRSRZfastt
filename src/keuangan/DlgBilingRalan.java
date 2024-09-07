@@ -602,7 +602,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(30);
             } else if (i == 1) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(360);
             } else if (i == 2) {
                 column.setPreferredWidth(75);
             } else if (i == 3) {
@@ -991,6 +991,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         internalFrame10 = new widget.InternalFrame();
         jLabel15 = new widget.Label();
         LCount = new widget.Label();
+        chkHargaBeli = new widget.CekBox();
         BtnConteng = new widget.Button();
         BtnHapus1 = new widget.Button();
         BtnHapusTuslah = new widget.Button();
@@ -1990,6 +1991,21 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         LCount.setPreferredSize(new java.awt.Dimension(45, 30));
         internalFrame10.add(LCount);
 
+        chkHargaBeli.setBackground(new java.awt.Color(242, 242, 242));
+        chkHargaBeli.setForeground(new java.awt.Color(0, 0, 0));
+        chkHargaBeli.setText("Obat Dengan Harga Beli");
+        chkHargaBeli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkHargaBeli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkHargaBeli.setName("chkHargaBeli"); // NOI18N
+        chkHargaBeli.setOpaque(false);
+        chkHargaBeli.setPreferredSize(new java.awt.Dimension(150, 23));
+        chkHargaBeli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkHargaBeliActionPerformed(evt);
+            }
+        });
+        internalFrame10.add(chkHargaBeli);
+
         BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
         BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
         BtnConteng.setMnemonic('G');
@@ -2170,7 +2186,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel4.setPreferredSize(new java.awt.Dimension(50, 23));
         panelGlass1.add(jLabel4);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024 14:32:53" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2024 14:47:50" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2689,7 +2705,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(110, 23));
         panelGlass8.add(jLabel23);
 
-        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024" }));
+        tglNota.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2024" }));
         tglNota.setDisplayFormat("dd-MM-yyyy");
         tglNota.setName("tglNota"); // NOI18N
         tglNota.setOpaque(false);
@@ -4335,10 +4351,11 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi, lakukan hapus nota salah dulu utk. hapus tuslah obat ..!!");
         } else {
             if (Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + TNoRw.getText() + "' and kd_poli in ('HIV','TBD')") > 0) {
-                WindowTuslahObat.setSize(800, internalFrame1.getHeight() - 40);
+                WindowTuslahObat.setSize(891, internalFrame1.getHeight() - 40);
                 WindowTuslahObat.setLocationRelativeTo(internalFrame1);
                 WindowTuslahObat.setAlwaysOnTop(false);
                 WindowTuslahObat.setVisible(true);
+                chkHargaBeli.setSelected(false);
                 tampilTuslahObat();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Hanya utk. pasien yang berobat dipoli VCT & TB DOTS..!!");                
@@ -4373,7 +4390,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                             }
                         }
                         JOptionPane.showMessageDialog(null, "Tuslah & embalasenya sudah terhapus..!!!!");
-                        tampilTuslahObat();                        
+                        tampilTuslahObat();
                     } catch (Exception e) {
                         System.out.println("Notifikasi : " + e);
                     }
@@ -4418,6 +4435,10 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             }
         }
     }//GEN-LAST:event_BtnHapus1ActionPerformed
+
+    private void chkHargaBeliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkHargaBeliActionPerformed
+        tampilTuslahObat();
+    }//GEN-LAST:event_chkHargaBeliActionPerformed
 
     /**
      * @param args the command line arguments
@@ -4519,6 +4540,7 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private widget.Button btnPenjab;
     private widget.CekBox chkAdministrasi;
     private widget.CekBox chkBayar;
+    private widget.CekBox chkHargaBeli;
     private widget.CekBox chkLaborat;
     private widget.CekBox chkObat;
     private widget.CekBox chkPotongan;
@@ -6791,11 +6813,19 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private void tampilTuslahObat() {
         Valid.tabelKosong(tabModeObat);
         try {
-            psTuslah = koneksi.prepareStatement("select db.nama_brng, format(dpo.biaya_obat,0) biaya, format(dpo.tuslah,0) tuslah, "
-                    + "format(sum(dpo.jml),0) jml, format(sum(dpo.embalase+dpo.tuslah),0) tambahan, "
-                    + "format((sum(dpo.total)-sum(dpo.embalase+dpo.tuslah)),0) total, format(sum((dpo.h_beli*dpo.jml)),0) totalbeli, dpo.kode_brng "
-                    + "FROM detail_pemberian_obat dpo INNER JOIN databarang db ON dpo.kode_brng = db.kode_brng "
-                    + "WHERE dpo.no_rawat = '" + TNoRw.getText() + "' GROUP BY db.nama_brng");
+            if (chkHargaBeli.isSelected() == true) {
+                psTuslah = koneksi.prepareStatement("select db.nama_brng, format(dpo.biaya_obat,0) biaya, format(dpo.tuslah,0) tuslah, "
+                        + "format(sum(dpo.jml),0) jml, format(sum(dpo.embalase+dpo.tuslah),0) tambahan, "
+                        + "format((sum(dpo.total)-sum(dpo.embalase+dpo.tuslah)),0) total, format(sum((dpo.h_beli*dpo.jml)),0) totalbeli, dpo.kode_brng "
+                        + "FROM detail_pemberian_obat dpo INNER JOIN databarang db ON dpo.kode_brng = db.kode_brng "
+                        + "WHERE dpo.no_rawat = '" + TNoRw.getText() + "' GROUP BY db.nama_brng");
+            } else if (chkHargaBeli.isSelected() == false) {
+                psTuslah = koneksi.prepareStatement("select db.nama_brng, format(dpo.biaya_obat,0) biaya, format(dpo.tuslah,0) tuslah, "
+                        + "format(sum(dpo.jml),0) jml, format(sum(dpo.embalase+dpo.tuslah),0) tambahan, "
+                        + "format((sum(dpo.total)-sum(dpo.embalase+dpo.tuslah)),0) total, format(sum((dpo.h_beli*dpo.jml)),0) totalbeli, dpo.kode_brng "
+                        + "FROM detail_pemberian_obat dpo INNER JOIN databarang db ON dpo.kode_brng = db.kode_brng "
+                        + "WHERE dpo.no_rawat = '" + TNoRw.getText() + "' and dpo.h_beli=0 GROUP BY db.nama_brng");
+            }            
             try {
                 rsTuslah = psTuslah.executeQuery();
                 while (rsTuslah.next()) {
