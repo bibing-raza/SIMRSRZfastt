@@ -1356,19 +1356,15 @@ public class DlgRMEranap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            if (akses.getadmin() == true) {
-                akses.setform("DlgRMEranap");
-                RMAsesmenPraSedasi form = new RMAsesmenPraSedasi(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setNoRm(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(),
-                        Sequel.cariIsi("select ifnull(status_lanjut,'') from reg_periksa where no_rawat='" + TNoRW.getText() + "'"));
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-            }
+            akses.setform("DlgRMEranap");
+            RMAsesmenPraSedasi form = new RMAsesmenPraSedasi(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setNoRm(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText(),
+                    Sequel.cariIsi("select ifnull(status_lanjut,'') from reg_periksa where no_rawat='" + TNoRW.getText() + "'"));
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnAsesmenPraSedasiActionPerformed
@@ -1477,6 +1473,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenUlangGizi.setEnabled(akses.getassesmen_gizi_ulang());
         BtnLembarObservasi.setEnabled(akses.getcppt());
         BtnTransferTindakan.setEnabled(akses.getcppt());
+        BtnAsesmenPraSedasi.setEnabled(akses.getresep_dokter());
     }
     
     public void setData(String norw, String norm, String nmpasien,

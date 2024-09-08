@@ -421,7 +421,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         Tsklera.setDocument(new batasInput((int) 100).getKata(Tsklera));
         Tconjung.setDocument(new batasInput((int) 100).getKata(Tconjung));
         Tleher.setDocument(new batasInput((int) 100).getKata(Tleher));        
-        Tgcs.setDocument(new batasInput((int) 7).getKata(Tgcs));
+        Tgcs.setDocument(new batasInput((int) 15).getKata(Tgcs));
         Ttd.setDocument(new batasInput((int) 7).getKata(Ttd));
         Trr.setDocument(new batasInput((int) 7).getKata(Trr));
         Tnadi.setDocument(new batasInput((int) 7).getKata(Tnadi));
@@ -815,7 +815,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -829,7 +829,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1238,7 +1238,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         PanelAsesmen.add(jLabel12);
         jLabel12.setBounds(310, 1490, 60, 23);
 
-        TtglPuasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        TtglPuasa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         TtglPuasa.setDisplayFormat("dd-MM-yyyy");
         TtglPuasa.setName("TtglPuasa"); // NOI18N
         TtglPuasa.setOpaque(false);
@@ -1523,13 +1523,13 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             }
         });
         PanelAsesmen.add(Tgcs);
-        Tgcs.setBounds(114, 540, 60, 23);
+        Tgcs.setBounds(114, 540, 90, 23);
 
         jLabel80.setForeground(new java.awt.Color(0, 0, 0));
         jLabel80.setText("Tekanan Darah :");
         jLabel80.setName("jLabel80"); // NOI18N
         PanelAsesmen.add(jLabel80);
-        jLabel80.setBounds(175, 540, 90, 23);
+        jLabel80.setBounds(205, 540, 90, 23);
 
         Ttd.setForeground(new java.awt.Color(0, 0, 0));
         Ttd.setName("Ttd"); // NOI18N
@@ -1539,7 +1539,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             }
         });
         PanelAsesmen.add(Ttd);
-        Ttd.setBounds(270, 540, 60, 23);
+        Ttd.setBounds(300, 540, 60, 23);
 
         label42.setForeground(new java.awt.Color(0, 0, 0));
         label42.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1547,7 +1547,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         label42.setName("label42"); // NOI18N
         label42.setPreferredSize(new java.awt.Dimension(70, 23));
         PanelAsesmen.add(label42);
-        label42.setBounds(335, 540, 70, 23);
+        label42.setBounds(365, 540, 70, 23);
 
         Trr.setForeground(new java.awt.Color(0, 0, 0));
         Trr.setName("Trr"); // NOI18N
@@ -1557,7 +1557,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             }
         });
         PanelAsesmen.add(Trr);
-        Trr.setBounds(405, 540, 60, 23);
+        Trr.setBounds(435, 540, 60, 23);
 
         label45.setForeground(new java.awt.Color(0, 0, 0));
         label45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1565,7 +1565,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         label45.setName("label45"); // NOI18N
         label45.setPreferredSize(new java.awt.Dimension(70, 23));
         PanelAsesmen.add(label45);
-        label45.setBounds(470, 540, 85, 23);
+        label45.setBounds(500, 540, 85, 23);
 
         Tnadi.setForeground(new java.awt.Color(0, 0, 0));
         Tnadi.setName("Tnadi"); // NOI18N
@@ -1575,7 +1575,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             }
         });
         PanelAsesmen.add(Tnadi);
-        Tnadi.setBounds(557, 540, 60, 23);
+        Tnadi.setBounds(587, 540, 60, 23);
 
         label43.setForeground(new java.awt.Color(0, 0, 0));
         label43.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1583,7 +1583,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         label43.setName("label43"); // NOI18N
         label43.setPreferredSize(new java.awt.Dimension(70, 23));
         PanelAsesmen.add(label43);
-        label43.setBounds(620, 540, 50, 23);
+        label43.setBounds(650, 540, 50, 23);
 
         jLabel81.setForeground(new java.awt.Color(0, 0, 0));
         jLabel81.setText("Suhu :");
@@ -2474,7 +2474,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         PanelAsesmen.add(jLabel13);
         jLabel13.setBounds(310, 1518, 60, 23);
 
-        TtglRencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        TtglRencana.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         TtglRencana.setDisplayFormat("dd-MM-yyyy");
         TtglRencana.setName("TtglRencana"); // NOI18N
         TtglRencana.setOpaque(false);
@@ -2644,7 +2644,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2659,7 +2659,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2857,34 +2857,32 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             
             param.put("riwAlergiObat", TriwAlergiObat.getText() + "\n");
             param.put("obatSaatIni", TobatSaatIni.getText() + "\n");
-            param.put("riwAnastesi", "Riwayat Anastesi & Komplikasi :\n"
-                    + TriwAnastesi.getText() + "\n\n"
-                    + "KEADAAN UMUM\n"
-                    + "Kepala : " + Tkepala.getText() + ", Sklera : " + Tsklera.getText() + ", Conjungtiva : " + Tconjung.getText() + ", Leher : " + Tleher.getText() + "\n"
+            param.put("riwAnastesi", TriwAnastesi.getText() + "\n");
+            
+            param.put("keadaan", "Kepala : " + Tkepala.getText() + ", Sklera : " + Tsklera.getText() + ", Conjungtiva : " + Tconjung.getText() + ", Leher : " + Tleher.getText() + "\n"
                     + "Paru-paru : " + Tparu.getText() + "\n"
                     + "Jantung : " + Tjantung.getText() + "\n"
                     + "Abdomen : " + Tabdomen.getText() + "\n"
-                    + "Ekstremitas : " + Tekstremitas.getText() + "\n\n"
-                    + "PEMERIKSAAN FISIK\n"
-                    + "GCS : " + Tgcs.getText() + ", Tekanan Darah : " + Ttd.getText() + " mmHg, RR : " + Trr.getText() + " x/menit, Nadi : " + Tnadi.getText() + " x/menit\n"
+                    + "Ekstremitas : " + Tekstremitas.getText() + "\n");
+            
+            param.put("pemeriksaan", "GCS : " + Tgcs.getText() + ", Tekanan Darah : " + Ttd.getText() + " mmHg, RR : " + Trr.getText() + " x/menit, Nadi : " + Tnadi.getText() + " x/menit\n"
                     + "Suhu : " + Tsuhu.getText() + " °C, Tinggi Badan : " + Ttb.getText() + " Cm, Berat Badan : " + Tbb.getText() + " Kg, VAS : " + Tvas.getText() + "\n");
             
-            param.put("kajian1", "KAJIAN SISTEM\n"
-                    + "Hilangnya Gigi : " + cmbHilang.getSelectedItem().toString() + "\n"
-                    + "Masalah Mobilisasi Leher : " + cmbMasalah.getSelectedItem().toString() + "\n"
-                    + "Leher Pendek : " + cmbLeher.getSelectedItem().toString() + "\n"
-                    + "Stroke : " + cmbStroke.getSelectedItem().toString() + "\n"
-                    + "Sesak Nafas : " + cmbSesak.getSelectedItem().toString() + "\n"
-                    + "Buka Mulut > 2 Jari : " + cmbBuka.getSelectedItem().toString() + "\n"
-                    + "Jarak Thyromental > 3 Jari : " + cmbJarak.getSelectedItem().toString() + "\n");
+            param.put("kajian1", ": " + cmbHilang.getSelectedItem().toString() + "\n"
+                    + ": " + cmbMasalah.getSelectedItem().toString() + "\n"
+                    + ": " + cmbLeher.getSelectedItem().toString() + "\n"
+                    + ": " + cmbStroke.getSelectedItem().toString() + "\n"
+                    + ": " + cmbSesak.getSelectedItem().toString() + "\n"
+                    + ": " + cmbBuka.getSelectedItem().toString() + "\n"
+                    + ": " + cmbJarak.getSelectedItem().toString());
             
-            param.put("kajian2", "\nSakit Dada : " + cmbSakit.getSelectedItem().toString() + "\n"
-                    + "Denyut Jantung Tidak Normal : " + cmbDenyut.getSelectedItem().toString() + "\n"
-                    + "Sedang Hamil : " + cmbSedang.getSelectedItem().toString() + "\n"
-                    + "Kejang : " + cmbKejang.getSelectedItem().toString() + "\n"
-                    + "Obesitas : " + cmbObes.getSelectedItem().toString() + "\n"
-                    + "Gigi Palsu : " + cmbGigi.getSelectedItem().toString() + "\n"
-                    + "Gerakan Leher Maksimal : " + cmbGerakan.getSelectedItem().toString() + "\n");
+            param.put("kajian2", ": " + cmbSakit.getSelectedItem().toString() + "\n"
+                    + ": " + cmbDenyut.getSelectedItem().toString() + "\n"
+                    + ": " + cmbSedang.getSelectedItem().toString() + "\n"
+                    + ": " + cmbKejang.getSelectedItem().toString() + "\n"
+                    + ": " + cmbObes.getSelectedItem().toString() + "\n"
+                    + ": " + cmbGigi.getSelectedItem().toString() + "\n"
+                    + ": " + cmbGerakan.getSelectedItem().toString());
 
             if (ChkSatu.isSelected() == true) {
                 param.put("mal1", "V");
@@ -3026,7 +3024,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                 param.put("hcu", "");
             }
             
-            param.put("catatan", "CATATAN : " + Tcatatan.getText() + "\n");
+            param.put("catatan", Tcatatan.getText() + "\n");
             
             if (ChkAsa1.isSelected() == true) {
                 param.put("asa1", "V");
@@ -3063,9 +3061,9 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             param.put("rencana", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita, Tanggal : " + TtglRencana.getSelectedItem().toString());
             param.put("dokter", "(" + TnmDokter.getText() + ")");
 
-            Valid.MyReport("rptAsesmenPraSedasi1.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 1 ]::",
-                    "SELECT now() tanggal", param);
             Valid.MyReport("rptAsesmenPraSedasi2.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 2 ]::",
+                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptAsesmenPraSedasi1.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 1 ]::",
                     "SELECT now() tanggal", param);
             
             emptTeks();            
