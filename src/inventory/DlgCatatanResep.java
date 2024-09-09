@@ -31,6 +31,7 @@ import java.util.HashMap;
 import java.util.Map;
 import javax.swing.JTable;
 import javax.swing.table.TableColumn;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import simrskhanza.DlgNotepad;
 
 /**
@@ -389,6 +390,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel64 = new widget.Label();
         TCariObat = new widget.TextBox();
         BtnCari1 = new widget.Button();
+        cmbObat = new widget.ComboBox();
+        BtnPilih = new widget.Button();
         Scroll33 = new widget.ScrollPane();
         tbObat = new widget.Table();
 
@@ -501,7 +504,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -515,7 +518,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -692,7 +695,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel54);
         jLabel54.setBounds(0, 66, 105, 23);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -708,7 +711,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelGlass13.add(jLabel55);
         jLabel55.setBounds(200, 66, 23, 23);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -1175,14 +1178,15 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         panelisi4.setBorder(null);
         panelisi4.setComponentPopupMenu(jPopupMenu2);
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi4.setLayout(null);
 
         jLabel64.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel64.setText("Cari Obat/Alkes : ");
+        jLabel64.setText("Cari Obat/Alkes :");
         jLabel64.setName("jLabel64"); // NOI18N
         jLabel64.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi4.add(jLabel64);
+        jLabel64.setBounds(5, 10, 100, 23);
 
         TCariObat.setForeground(new java.awt.Color(0, 0, 0));
         TCariObat.setName("TCariObat"); // NOI18N
@@ -1193,6 +1197,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             }
         });
         panelisi4.add(TCariObat);
+        TCariObat.setBounds(110, 10, 180, 23);
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -1207,6 +1212,36 @@ public class DlgCatatanResep extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnCari1);
+        BtnCari1.setBounds(295, 10, 70, 23);
+
+        cmbObat.setForeground(new java.awt.Color(0, 0, 0));
+        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbObat.setName("cmbObat"); // NOI18N
+        cmbObat.setPreferredSize(new java.awt.Dimension(55, 28));
+        cmbObat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbObatMouseReleased(evt);
+            }
+        });
+        panelisi4.add(cmbObat);
+        cmbObat.setBounds(140, 38, 300, 23);
+
+        BtnPilih.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnPilih.setMnemonic('P');
+        BtnPilih.setText("Pilih Obat/Alkes :");
+        BtnPilih.setToolTipText("Alt+P");
+        BtnPilih.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnPilih.setGlassColor(new java.awt.Color(51, 204, 255));
+        BtnPilih.setName("BtnPilih"); // NOI18N
+        BtnPilih.setPreferredSize(new java.awt.Dimension(65, 30));
+        BtnPilih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPilihActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnPilih);
+        BtnPilih.setBounds(8, 38, 125, 23);
 
         jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -1746,6 +1781,9 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         ChkInput1.setSelected(false);
         isFormRiwayatObat();
         tampilResepObat();
+        Sequel.cariIsiComboDB("SELECT db.nama_brng FROM gudangbarang gd INNER JOIN databarang db on db.kode_brng=gd.kode_brng where "
+                + "gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' and db.nama_brng not like '-%'group by gd.kode_brng "
+                + "order by db.nama_brng", cmbObat);
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnCopyResepTerakhirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCopyResepTerakhirActionPerformed
@@ -1987,6 +2025,24 @@ public class DlgCatatanResep extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnCopyObatActionPerformed
 
+    private void cmbObatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbObatMouseReleased
+        AutoCompleteDecorator.decorate(cmbObat);
+    }//GEN-LAST:event_cmbObatMouseReleased
+
+    private void BtnPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihActionPerformed
+        if (cmbObat.getSelectedItem().equals("-")) {
+            JOptionPane.showMessageDialog(null, "Obat/alkes belum dipilih dengan benar...!!!!");
+            cmbObat.requestFocus();
+        } else {
+            if (TResepObat.getText().equals("")) {
+                TResepObat.setText(cmbObat.getSelectedItem().toString() + " ");
+            } else {
+                TResepObat.setText(TResepObat.getText() + " " + cmbObat.getSelectedItem().toString());
+            }
+            TResepObat.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPilihActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2014,6 +2070,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnNotepad;
+    private widget.Button BtnPilih;
     private widget.Button BtnPrint;
     private widget.Button BtnRestor;
     private widget.Button BtnSetuju;
@@ -2053,6 +2110,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
     private widget.TextBox TtglLahir;
     private javax.swing.JDialog WindowRiwayat;
     private widget.ComboBox cmbJnsResep;
+    private widget.ComboBox cmbObat;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame13;
     private widget.InternalFrame internalFrame17;

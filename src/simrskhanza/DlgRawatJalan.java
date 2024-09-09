@@ -52,6 +52,7 @@ import javax.swing.text.html.HTMLEditorKit;
 import javax.swing.text.html.StyleSheet;
 import kepegawaian.DlgCariPetugas;
 import laporan.DlgDiagnosaPenyakit;
+import org.jdesktop.swingx.autocomplete.AutoCompleteDecorator;
 import permintaan.DlgPermintaanRadiologi;
 import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
@@ -1593,6 +1594,8 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel64 = new widget.Label();
         TCariObat = new widget.TextBox();
         BtnCari1 = new widget.Button();
+        BtnPilih = new widget.Button();
+        cmbObat = new widget.ComboBox();
         Scroll33 = new widget.ScrollPane();
         tbObat = new widget.Table();
         internalFrame7 = new widget.InternalFrame();
@@ -2879,7 +2882,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2893,7 +2896,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3086,7 +3089,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3102,6 +3105,11 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBackground(new java.awt.Color(204, 255, 204));
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Perawatan/Tindakan Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
@@ -3310,7 +3318,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3324,7 +3332,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4868,14 +4876,15 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         panelisi4.setBorder(null);
         panelisi4.setComponentPopupMenu(jPopupMenu4);
         panelisi4.setName("panelisi4"); // NOI18N
-        panelisi4.setPreferredSize(new java.awt.Dimension(100, 40));
-        panelisi4.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT));
+        panelisi4.setPreferredSize(new java.awt.Dimension(100, 70));
+        panelisi4.setLayout(null);
 
         jLabel64.setForeground(new java.awt.Color(0, 0, 0));
         jLabel64.setText("Cari Obat/Alkes : ");
         jLabel64.setName("jLabel64"); // NOI18N
         jLabel64.setPreferredSize(new java.awt.Dimension(90, 23));
         panelisi4.add(jLabel64);
+        jLabel64.setBounds(0, 10, 110, 23);
 
         TCariObat.setForeground(new java.awt.Color(0, 0, 0));
         TCariObat.setName("TCariObat"); // NOI18N
@@ -4886,6 +4895,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(TCariObat);
+        TCariObat.setBounds(113, 10, 170, 23);
 
         BtnCari1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCari1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -4905,6 +4915,36 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         panelisi4.add(BtnCari1);
+        BtnCari1.setBounds(285, 10, 70, 23);
+
+        BtnPilih.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPilih.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnPilih.setMnemonic('P');
+        BtnPilih.setText("Pilih Obat/Alkes :");
+        BtnPilih.setToolTipText("Alt+P");
+        BtnPilih.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        BtnPilih.setGlassColor(new java.awt.Color(51, 204, 255));
+        BtnPilih.setName("BtnPilih"); // NOI18N
+        BtnPilih.setPreferredSize(new java.awt.Dimension(65, 30));
+        BtnPilih.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPilihActionPerformed(evt);
+            }
+        });
+        panelisi4.add(BtnPilih);
+        BtnPilih.setBounds(8, 38, 125, 23);
+
+        cmbObat.setForeground(new java.awt.Color(0, 0, 0));
+        cmbObat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-" }));
+        cmbObat.setName("cmbObat"); // NOI18N
+        cmbObat.setPreferredSize(new java.awt.Dimension(55, 28));
+        cmbObat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                cmbObatMouseReleased(evt);
+            }
+        });
+        panelisi4.add(cmbObat);
+        cmbObat.setBounds(140, 38, 300, 23);
 
         jPanel2.add(panelisi4, java.awt.BorderLayout.PAGE_START);
 
@@ -5390,7 +5430,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-07-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -9588,6 +9628,30 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             tampilRiwayatRujukanKeluar();
         }
     }//GEN-LAST:event_BtnRiwayatRujukanKeluarActionPerformed
+
+    private void BtnPilihActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPilihActionPerformed
+        if (cmbObat.getSelectedItem().equals("-")) {
+            JOptionPane.showMessageDialog(null, "Obat/alkes belum dipilih dengan benar...!!!!");
+            cmbObat.requestFocus();
+        } else {
+            if (TResepObat.getText().equals("")) {
+                TResepObat.setText(cmbObat.getSelectedItem().toString() + " ");
+            } else {
+                TResepObat.setText(TResepObat.getText() + " " + cmbObat.getSelectedItem().toString());
+            }
+            TResepObat.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPilihActionPerformed
+
+    private void cmbObatMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbObatMouseReleased
+        AutoCompleteDecorator.decorate(cmbObat);
+    }//GEN-LAST:event_cmbObatMouseReleased
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        Sequel.cariIsiComboDB("SELECT db.nama_brng FROM gudangbarang gd INNER JOIN databarang db on db.kode_brng=gd.kode_brng where "
+                + "gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' and db.nama_brng not like '-%'group by gd.kode_brng "
+                + "order by db.nama_brng", cmbObat);
+    }//GEN-LAST:event_formWindowOpened
     /**
      * @param args the command line arguments
      */
@@ -9638,6 +9702,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnPenilaianAwalMedisMata;
     private widget.Button BtnPenilaianAwalMedisTHT;
     private widget.Button BtnPenilaianKeperawatan;
+    private widget.Button BtnPilih;
     private widget.Button BtnPrinResep;
     private widget.Button BtnPrint;
     private widget.Button BtnRM;
@@ -9848,6 +9913,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.ComboBox cmbImun1;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
+    private widget.ComboBox cmbObat;
     private widget.ComboBox cmbRM;
     private widget.ComboBox cmbStatus;
     private widget.TextBox dokterMenjawab;
