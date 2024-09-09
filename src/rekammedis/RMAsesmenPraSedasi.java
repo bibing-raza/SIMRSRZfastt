@@ -73,7 +73,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             "malampati2", "malampati3", "malampati4", "pemeriksaan_penunjang", "diagnosa", "sedasi", "obat1", "obat2", "obat3", "ga", "keterangan_ga",
             "regional", "spinal", "epidural", "kaudal", "blok_perifer", "ekg", "spo2", "nibp", "temp", "lain_lain", "ket_lainlain", "rawat_inap", "rawat_jalan",
             "rawat_khusus", "icu", "hcu", "catatan", "asa1", "asa2", "asa3", "asa4", "emergency", "penyulit", "jam_mulai", "tgl_mulai", "jam_rencana",
-            "tgl_rencana", "nip_dokter", "waktu_simpan"
+            "tgl_rencana", "nip_dokter", "waktu_simpan", "nmdokter"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -82,7 +82,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
         tbSedasi.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSedasi.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 85; i++) {
+        for (i = 0; i < 86; i++) {
             TableColumn column = tbSedasi.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -326,6 +326,9 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 84) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 85) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -2777,10 +2780,10 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 hapus();
             } else {
-                if (Tnip.getText().equals(tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString())) {
+                if (tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString().equals(akses.getkode())) {
                     hapus();
                 } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh dokter anastesi yang bersangkutan..!!");
+                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh " + tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 85).toString() + " ...!!");
                 }
             }
         } else {
@@ -2813,11 +2816,11 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                     gantiDisimpan();
                     ganti();
                 } else {
-                    if (Tnip.getText().equals(tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString())) {
+                    if (tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString().equals(akses.getkode())) {
                         gantiDisimpan();
                         ganti();
                     } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat/bidan yang bersangkutan..!!");
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh " + tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 85).toString() + " ...!!");
                     }
                 }
             } else {
@@ -3844,13 +3847,14 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
     private widget.Table tbSedasi;
     // End of variables declaration//GEN-END:variables
 
-     private void tampil() {
+    private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT ap.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
                     + "DATE_FORMAT(ap.tgl_mulai,'%d-%m-%Y') tglPuasa, TIME_FORMAT(ap.jam_mulai,'%H:%i Wita') jamPuasa, DATE_FORMAT(ap.tgl_rencana,'%d-%m-%Y') tglOperasi, "
-                    + "TIME_FORMAT(ap.jam_rencana,'%H:%i Wita') jamOperasi FROM asesmen_pra_sedasi ap INNER JOIN reg_periksa rp on rp.no_rawat=ap.no_rawat "
-                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg on pg.nik=ap.nip_dokter WHERE "
+                    + "TIME_FORMAT(ap.jam_rencana,'%H:%i Wita') jamOperasi, pg.nama nmDokter FROM asesmen_pra_sedasi ap "
+                    + "INNER JOIN reg_periksa rp on rp.no_rawat=ap.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "INNER JOIN pegawai pg on pg.nik=ap.nip_dokter WHERE "
                     + "ap.tgl_rencana BETWEEN ? AND ? AND ap.no_rawat LIKE ? OR "
                     + "ap.tgl_rencana BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
                     + "ap.tgl_rencana BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
@@ -3967,7 +3971,8 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                         rs.getString("jam_rencana"),
                         rs.getString("tgl_rencana"),
                         rs.getString("nip_dokter"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("nmDokter")
                     });
                 }
             } catch (Exception e) {
@@ -4163,7 +4168,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             cmbDtk1.setSelectedItem(tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 81).toString().substring(6, 8));
             Valid.SetTgl(TtglRencana, tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 82).toString());
             Tnip.setText(tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString());            
-            TnmDokter.setText(Sequel.cariIsi("select nama from pegawai where nik='" + Tnip.getText() + "'"));
+            TnmDokter.setText(tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 85).toString());
             sttsrawat = Sequel.cariIsi("select ifnull(status_lanjut,'') from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
             dataCek();
         }
