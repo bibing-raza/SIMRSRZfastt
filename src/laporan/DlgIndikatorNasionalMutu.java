@@ -34,19 +34,19 @@ import rekammedis.DlgMasterIndikatorMutu;
  * @author dosen
  */
 public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ResultSet rs;
-    private int i = 0, x = 0;
-    private String kdIndikator = "", gedungDIpilih = "", tglDipilih = "", angkaBulan = "", cekBulan = "", 
+    private PreparedStatement ps, ps1, ps2;
+    private ResultSet rs, rs1, rs2;
+    private int i = 0, x = 0, n = 0;
+    private double hitungTot = 0;
+    private String kdIndikator = "", gedungDIpilih = "", tglDipilih = "", angkaBulan = "", cekBulan = "", total = "",
             tgl1 = "", tgl2 = "", tgl3 = "", tgl4 = "", tgl5 = "", tgl6 = "", tgl7 = "", tgl8 = "", tgl9 = "", tgl10 = "",
             tgl11 = "", tgl12 = "", tgl13 = "", tgl14 = "", tgl15 = "", tgl16 = "", tgl17 = "", tgl18 = "", tgl19 = "", tgl20 = "",
-            tgl21 = "", tgl22 = "", tgl23 = "", tgl24 = "", tgl25 = "", tgl26 = "", tgl27 = "", tgl28 = "", tgl29 = "", tgl30 = "",
-            tgl31 = "", total = "";
+            tgl21 = "", tgl22 = "", tgl23 = "", tgl24 = "", tgl25 = "", tgl26 = "", tgl27 = "", tgl28 = "", tgl29 = "", tgl30 = "", tgl31 = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -56,9 +56,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Ruangan", "No.", "Indikator", "1", "2", "3", "4", "5", "6", "7", "8", "9", "10",
-            "11", "12", "13", "14", "15", "16", "17", "18", "19", "20",
-            "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "Total",
+            "Ruangan", "No.", "Indikator", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
+            "Tgl. 11", "Tgl. 12", "Tgl. 13", "Tgl. 14", "Tgl. 15", "Tgl. 16", "Tgl. 17", "Tgl. 18", "Tgl. 19", "Tgl. 20",
+            "Tgl. 21", "Tgl. 22", "Tgl. 23", "Tgl. 24", "Tgl. 25", "Tgl. 26", "Tgl. 27", "Tgl. 28", "Tgl. 29", "Tgl. 30", "Tgl. 31", "Total",
             "kdindikator", "tglcatat"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -75,73 +75,73 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(130);
             } else if (i == 1) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(30);
             } else if (i == 2) {
                 column.setPreferredWidth(400);
             } else if (i == 3) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 4) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 5) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 6) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 7) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 8) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 9) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 10) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 11) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 12) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 13) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 14) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 15) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 16) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 17) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 18) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 19) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 20) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 21) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 22) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 23) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 24) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 25) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 26) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 27) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 28) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 29) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 30) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 31) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 32) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 33) {
-                column.setPreferredWidth(40);
+                column.setPreferredWidth(48);
             } else if (i == 34) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(55);
             } else if (i == 35) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -151,9 +151,74 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         }
         tbIndikator.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode1 = new DefaultTableModel(null, new Object[]{
+            "Cek", "Tgl. Dilaporkan", "Jlh. Dilaporkan", "tgl_catat"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
+            }
+        };
+        tbHapus.setModel(tabMode1);
+        tbHapus.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbHapus.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 4; i++) {
+            TableColumn column = tbHapus.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(38);
+            } else if (i == 1) {
+                column.setPreferredWidth(100);
+            } else if (i == 2) {
+                column.setPreferredWidth(100);
+            } else if (i == 3) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } 
+        }
+        tbHapus.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode2 = new DefaultTableModel(null, new String[]{
+            "Tgl. Dilaporkan", "Jlh. Dilaporkan", "tgl_catat"
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        tbGanti.setModel(tabMode2);
+        tbGanti.setPreferredScrollableViewportSize(new Dimension(500, 500));
+        tbGanti.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (int i = 0; i < 3; i++) {
+            TableColumn column = tbGanti.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(100);
+            } else if (i == 1) {
+                column.setPreferredWidth(100);
+            } else if (i == 2) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbGanti.setDefaultRenderer(Object.class, new WarnaTable());
 
         Ttahun.setDocument(new batasInput((byte) 4).getOnlyAngka(Ttahun));
-        Tjumlah.setDocument(new batasInput((byte) 3).getOnlyAngka(Tjumlah));
+        Tjumlah.setDocument(new batasInput((int) 5).getKata(Tjumlah));
+        Tjumlah1.setDocument(new batasInput((int) 5).getKata(Tjumlah1));
     }
  
     /** This method is called from within the constructor to
@@ -167,6 +232,39 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnMasterIndikator = new javax.swing.JMenuItem();
+        WindowHapus = new javax.swing.JDialog();
+        internalFrame6 = new widget.InternalFrame();
+        internalFrame7 = new widget.InternalFrame();
+        jLabel31 = new widget.Label();
+        jLabel32 = new widget.Label();
+        Truangan = new widget.TextBox();
+        TkdIndikator = new widget.TextBox();
+        scrollPane13 = new widget.ScrollPane();
+        TnmIndikator = new widget.TextArea();
+        Scroll3 = new widget.ScrollPane();
+        tbHapus = new widget.Table();
+        internalFrame15 = new widget.InternalFrame();
+        BtnHapus1 = new widget.Button();
+        BtnConteng = new widget.Button();
+        BtnHapusINM = new widget.Button();
+        BtnCloseIn4 = new widget.Button();
+        WindowGanti = new javax.swing.JDialog();
+        internalFrame8 = new widget.InternalFrame();
+        internalFrame9 = new widget.InternalFrame();
+        jLabel33 = new widget.Label();
+        jLabel34 = new widget.Label();
+        Truangan1 = new widget.TextBox();
+        TkdIndikator1 = new widget.TextBox();
+        TnmIndikator1 = new widget.TextBox();
+        jLabel36 = new widget.Label();
+        TtglCatat1 = new widget.Tanggal();
+        jLabel10 = new widget.Label();
+        Tjumlah1 = new widget.TextBox();
+        Scroll4 = new widget.ScrollPane();
+        tbGanti = new widget.Table();
+        internalFrame16 = new widget.InternalFrame();
+        BtnGantiINM = new widget.Button();
+        BtnCloseIn5 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -194,7 +292,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         TtglCatat = new widget.Tanggal();
         jLabel9 = new widget.Label();
         Tjumlah = new widget.TextBox();
-        internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbIndikator = new widget.Table();
 
@@ -214,6 +311,271 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnMasterIndikator);
+
+        WindowHapus.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowHapus.setName("WindowHapus"); // NOI18N
+        WindowHapus.setUndecorated(true);
+        WindowHapus.setResizable(false);
+
+        internalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Hapus Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame6.setName("internalFrame6"); // NOI18N
+        internalFrame6.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame6.setLayout(new java.awt.BorderLayout());
+
+        internalFrame7.setName("internalFrame7"); // NOI18N
+        internalFrame7.setPreferredSize(new java.awt.Dimension(0, 107));
+        internalFrame7.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame7.setLayout(null);
+
+        jLabel31.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel31.setText("Ruangan : ");
+        jLabel31.setName("jLabel31"); // NOI18N
+        internalFrame7.add(jLabel31);
+        jLabel31.setBounds(0, 10, 100, 23);
+
+        jLabel32.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel32.setText("Jenis Indikator : ");
+        jLabel32.setName("jLabel32"); // NOI18N
+        internalFrame7.add(jLabel32);
+        jLabel32.setBounds(0, 38, 100, 23);
+
+        Truangan.setEditable(false);
+        Truangan.setForeground(new java.awt.Color(0, 0, 0));
+        Truangan.setName("Truangan"); // NOI18N
+        internalFrame7.add(Truangan);
+        Truangan.setBounds(101, 10, 180, 23);
+
+        TkdIndikator.setEditable(false);
+        TkdIndikator.setForeground(new java.awt.Color(0, 0, 0));
+        TkdIndikator.setName("TkdIndikator"); // NOI18N
+        internalFrame7.add(TkdIndikator);
+        TkdIndikator.setBounds(101, 38, 70, 23);
+
+        scrollPane13.setName("scrollPane13"); // NOI18N
+
+        TnmIndikator.setEditable(false);
+        TnmIndikator.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
+        TnmIndikator.setColumns(20);
+        TnmIndikator.setRows(5);
+        TnmIndikator.setName("TnmIndikator"); // NOI18N
+        TnmIndikator.setPreferredSize(new java.awt.Dimension(162, 700));
+        scrollPane13.setViewportView(TnmIndikator);
+
+        internalFrame7.add(scrollPane13);
+        scrollPane13.setBounds(174, 38, 320, 60);
+
+        internalFrame6.add(internalFrame7, java.awt.BorderLayout.PAGE_START);
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+        Scroll3.setPreferredSize(new java.awt.Dimension(487, 140));
+
+        tbHapus.setToolTipText("Silahkan klik/pilih salah satu data pada tabel utk. dihapus");
+        tbHapus.setName("tbHapus"); // NOI18N
+        Scroll3.setViewportView(tbHapus);
+
+        internalFrame6.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        internalFrame15.setBorder(null);
+        internalFrame15.setName("internalFrame15"); // NOI18N
+        internalFrame15.setPreferredSize(new java.awt.Dimension(0, 44));
+        internalFrame15.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame15.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 9));
+
+        BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnHapus1.setMnemonic('M');
+        BtnHapus1.setText("Hapus Conteng");
+        BtnHapus1.setToolTipText("Alt+M");
+        BtnHapus1.setName("BtnHapus1"); // NOI18N
+        BtnHapus1.setPreferredSize(new java.awt.Dimension(140, 26));
+        BtnHapus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapus1ActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnHapus1);
+
+        BtnConteng.setForeground(new java.awt.Color(0, 0, 0));
+        BtnConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnConteng.setMnemonic('G');
+        BtnConteng.setText("Conteng Semua");
+        BtnConteng.setToolTipText("Alt+G");
+        BtnConteng.setName("BtnConteng"); // NOI18N
+        BtnConteng.setPreferredSize(new java.awt.Dimension(150, 26));
+        BtnConteng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnContengActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnConteng);
+
+        BtnHapusINM.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusINM.setMnemonic('H');
+        BtnHapusINM.setText("Hapus");
+        BtnHapusINM.setToolTipText("Alt+H");
+        BtnHapusINM.setName("BtnHapusINM"); // NOI18N
+        BtnHapusINM.setPreferredSize(new java.awt.Dimension(95, 26));
+        BtnHapusINM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusINMActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnHapusINM);
+
+        BtnCloseIn4.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn4.setMnemonic('U');
+        BtnCloseIn4.setText("Tutup");
+        BtnCloseIn4.setToolTipText("Alt+U");
+        BtnCloseIn4.setName("BtnCloseIn4"); // NOI18N
+        BtnCloseIn4.setPreferredSize(new java.awt.Dimension(90, 26));
+        BtnCloseIn4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn4ActionPerformed(evt);
+            }
+        });
+        internalFrame15.add(BtnCloseIn4);
+
+        internalFrame6.add(internalFrame15, java.awt.BorderLayout.PAGE_END);
+
+        WindowHapus.getContentPane().add(internalFrame6, java.awt.BorderLayout.CENTER);
+
+        WindowGanti.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowGanti.setName("WindowGanti"); // NOI18N
+        WindowGanti.setUndecorated(true);
+        WindowGanti.setResizable(false);
+
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ganti Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame8.setName("internalFrame8"); // NOI18N
+        internalFrame8.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame8.setLayout(new java.awt.BorderLayout());
+
+        internalFrame9.setName("internalFrame9"); // NOI18N
+        internalFrame9.setPreferredSize(new java.awt.Dimension(0, 100));
+        internalFrame9.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame9.setLayout(null);
+
+        jLabel33.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel33.setText("Ruangan : ");
+        jLabel33.setName("jLabel33"); // NOI18N
+        internalFrame9.add(jLabel33);
+        jLabel33.setBounds(0, 10, 100, 23);
+
+        jLabel34.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel34.setText("Jenis Indikator : ");
+        jLabel34.setName("jLabel34"); // NOI18N
+        internalFrame9.add(jLabel34);
+        jLabel34.setBounds(0, 38, 100, 23);
+
+        Truangan1.setEditable(false);
+        Truangan1.setForeground(new java.awt.Color(0, 0, 0));
+        Truangan1.setName("Truangan1"); // NOI18N
+        internalFrame9.add(Truangan1);
+        Truangan1.setBounds(101, 10, 180, 23);
+
+        TkdIndikator1.setEditable(false);
+        TkdIndikator1.setForeground(new java.awt.Color(0, 0, 0));
+        TkdIndikator1.setName("TkdIndikator1"); // NOI18N
+        internalFrame9.add(TkdIndikator1);
+        TkdIndikator1.setBounds(101, 38, 70, 23);
+
+        TnmIndikator1.setEditable(false);
+        TnmIndikator1.setForeground(new java.awt.Color(0, 0, 0));
+        TnmIndikator1.setName("TnmIndikator1"); // NOI18N
+        internalFrame9.add(TnmIndikator1);
+        TnmIndikator1.setBounds(174, 38, 430, 23);
+
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setText("Tgl. Dilaporkan : ");
+        jLabel36.setName("jLabel36"); // NOI18N
+        internalFrame9.add(jLabel36);
+        jLabel36.setBounds(0, 66, 100, 23);
+
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2024" }));
+        TtglCatat1.setDisplayFormat("dd-MM-yyyy");
+        TtglCatat1.setName("TtglCatat1"); // NOI18N
+        TtglCatat1.setOpaque(false);
+        TtglCatat1.setPreferredSize(new java.awt.Dimension(90, 23));
+        internalFrame9.add(TtglCatat1);
+        TtglCatat1.setBounds(101, 66, 90, 23);
+
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel10.setText("Jumlah Dilaporkan :");
+        jLabel10.setName("jLabel10"); // NOI18N
+        internalFrame9.add(jLabel10);
+        jLabel10.setBounds(190, 66, 110, 23);
+
+        Tjumlah1.setForeground(new java.awt.Color(0, 0, 0));
+        Tjumlah1.setName("Tjumlah1"); // NOI18N
+        Tjumlah1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                Tjumlah1KeyPressed(evt);
+            }
+        });
+        internalFrame9.add(Tjumlah1);
+        Tjumlah1.setBounds(306, 66, 60, 23);
+
+        internalFrame8.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
+
+        Scroll4.setName("Scroll4"); // NOI18N
+        Scroll4.setOpaque(true);
+        Scroll4.setPreferredSize(new java.awt.Dimension(487, 140));
+
+        tbGanti.setToolTipText("Silahkan klik/pilih salah satu data pada tabel utk. diganti");
+        tbGanti.setName("tbGanti"); // NOI18N
+        tbGanti.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbGantiMouseClicked(evt);
+            }
+        });
+        tbGanti.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbGantiKeyPressed(evt);
+            }
+        });
+        Scroll4.setViewportView(tbGanti);
+
+        internalFrame8.add(Scroll4, java.awt.BorderLayout.CENTER);
+
+        internalFrame16.setBorder(null);
+        internalFrame16.setName("internalFrame16"); // NOI18N
+        internalFrame16.setPreferredSize(new java.awt.Dimension(0, 44));
+        internalFrame16.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame16.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 9));
+
+        BtnGantiINM.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGantiINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/inventaris.png"))); // NOI18N
+        BtnGantiINM.setMnemonic('G');
+        BtnGantiINM.setText("Ganti");
+        BtnGantiINM.setToolTipText("Alt+G");
+        BtnGantiINM.setName("BtnGantiINM"); // NOI18N
+        BtnGantiINM.setPreferredSize(new java.awt.Dimension(95, 26));
+        BtnGantiINM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGantiINMActionPerformed(evt);
+            }
+        });
+        internalFrame16.add(BtnGantiINM);
+
+        BtnCloseIn5.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn5.setMnemonic('U');
+        BtnCloseIn5.setText("Tutup");
+        BtnCloseIn5.setToolTipText("Alt+U");
+        BtnCloseIn5.setName("BtnCloseIn5"); // NOI18N
+        BtnCloseIn5.setPreferredSize(new java.awt.Dimension(90, 26));
+        BtnCloseIn5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn5ActionPerformed(evt);
+            }
+        });
+        internalFrame16.add(BtnCloseIn5);
+
+        internalFrame8.add(internalFrame16, java.awt.BorderLayout.PAGE_END);
+
+        WindowGanti.getContentPane().add(internalFrame8, java.awt.BorderLayout.CENTER);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -318,6 +680,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setEnabled(false);
         BtnPrint.setName("BtnPrint"); // NOI18N
         BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -450,7 +813,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 107));
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 100));
         PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
@@ -495,7 +858,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 66, 130, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-09-2024" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -517,15 +880,11 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
         PanelInput.add(Tjumlah);
-        Tjumlah.setBounds(345, 66, 50, 23);
+        Tjumlah.setBounds(345, 66, 60, 23);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
-        internalFrame2.setBorder(null);
-        internalFrame2.setName("internalFrame2"); // NOI18N
-        internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
-
-        Scroll.setComponentPopupMenu(jPopupMenu1);
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
@@ -544,9 +903,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         });
         Scroll.setViewportView(tbIndikator);
 
-        internalFrame2.add(Scroll, java.awt.BorderLayout.CENTER);
-
-        internalFrame1.add(internalFrame2, java.awt.BorderLayout.CENTER);
+        internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -566,12 +923,13 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         } else {
             kdIndikator = Sequel.cariIsi("select kd_indikator from master_indikator_nasional_mutu "
                 + "where gedung='" + cmbGedung.getSelectedItem().toString() + "' and "
-                + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");
+                + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");            
             
             Sequel.menyimpan("indikator_nasional_mutu", "'" + kdIndikator + "','" + cmbGedung.getSelectedItem().toString() + "',"
-                    + "'" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "','" + Tjumlah.getText() + "'", "Indikator & Tgl. Dilaporkan");
+                    + "'" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "',"
+                    + "'" + Tjumlah.getText().trim().replaceAll(",", ".") + "'", "Indikator & Tgl. Dilaporkan");
             
-            cekBulanTahun();
+            cekBulanTahun(Valid.SetTgl(TtglCatat.getSelectedItem() + ""));
             BtnCariActionPerformed(null);
             emptTeks();
         }
@@ -596,40 +954,34 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-        if (cmbGedung.getSelectedItem().toString().equals("-")) {
-            Valid.textKosong(cmbGedung, "ruang perawatan");
-            cmbGedung.requestFocus();
-        } else if (cmbIndikator.getSelectedItem().toString().equals("-")) {
-            Valid.textKosong(cmbIndikator, "jenis indikator");
-            cmbIndikator.requestFocus();
-        } else if (Tjumlah.getText().equals("")) {
-            Valid.textKosong(Tjumlah, "jumlah dilaporkan");
-            Tjumlah.requestFocus();
+        if (tbIndikator.getSelectedRow() > -1) {
+            WindowGanti.setSize(636, internalFrame1.getHeight() - 40);
+            WindowGanti.setLocationRelativeTo(internalFrame1);
+            WindowGanti.setAlwaysOnTop(false);
+            WindowGanti.setVisible(true);
+            
+            TtglCatat1.setDate(new Date());
+            Tjumlah1.setText("0");
+            cekBulanTahun(tglDipilih);
+            tampilGanti();
         } else {
-            kdIndikator = Sequel.cariIsi("select kd_indikator from master_indikator_nasional_mutu "
-                + "where gedung='" + cmbGedung.getSelectedItem().toString() + "' and "
-                + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");
-            
-            Sequel.mengedit("indikator_nasional_mutu", "kd_indikator='" + kdIndikator + "' and gedung='" + gedungDIpilih + "' and tgl_catat='" + tglDipilih + "'",
-                    "kd_indikator='" + kdIndikator + "',gedung='" + cmbGedung.getSelectedItem().toString() + "', "
-                    + "tgl_catat='" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "', jumlah_pertanggal='" + Tjumlah.getText() + "'");
-            
-            cekBulanTahun();
-            BtnCariActionPerformed(null);
-            emptTeks();
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tbIndikator.requestFocus();
         }
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnGantiActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnKeluar);
         }
 }//GEN-LAST:event_BtnGantiKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
+        WindowHapus.dispose();
+        WindowGanti.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -680,7 +1032,12 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 }//GEN-LAST:event_tbIndikatorKeyPressed
 
     private void TjumlahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TjumlahKeyPressed
-        Valid.pindah(evt, TtglCatat, BtnSimpan);
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Tjumlah.getText().contains(",") == true) {
+                Tjumlah.setText(Tjumlah.getText().trim().replaceAll(",", "."));
+            }
+            BtnSimpan.requestFocus();
+        }
     }//GEN-LAST:event_TjumlahKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
@@ -704,19 +1061,12 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbIndikator.getSelectedRow() > -1) {
-            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                if (Sequel.queryu2tf("delete from indikator_nasional_mutu where gedung='" + gedungDIpilih + "' and "
-                        + "tgl_catat='" + tglDipilih + "' and kd_indikator=?", 1, new String[]{
-                    tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 84).toString()
-                }) == true) {
-                    cekBulanTahun();
-                    tampil();
-                    emptTeks();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                }
-            }
+            WindowHapus.setSize(527, internalFrame1.getHeight() - 40);
+            WindowHapus.setLocationRelativeTo(internalFrame1);
+            WindowHapus.setAlwaysOnTop(false);
+            WindowHapus.setVisible(true);
+            cekBulanTahun(tglDipilih);
+            tampilHapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tbIndikator.requestFocus();
@@ -776,7 +1126,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbIndikator.getSelectedRow() > -1) {
             Map<String, Object> param = new HashMap<>();
-            //report rptAsesmenPraSedasi1
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
 //            param.put("norm", TNoRM.getText());
@@ -1018,6 +1367,132 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         mutu.setVisible(true);
     }//GEN-LAST:event_MnMasterIndikatorActionPerformed
 
+    private void BtnHapusINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusINMActionPerformed
+        if (tbHapus.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data indikator nasional mutu yang diinput belum ada..!!");
+            BtnCloseIn4.requestFocus();
+        } else {
+            //cek conteng
+            x = 0;
+            for (i = 0; i < tbHapus.getRowCount(); i++) {
+                if (tbHapus.getValueAt(i, 0).toString().equals("true")) {
+                    x++;
+                }
+            }
+
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu utk. memilih data yang akan dihapus..!!!!");
+                tbHapus.requestFocus();
+            } else {
+                n = JOptionPane.showConfirmDialog(rootPane, "Yakin data yang dipilih akan dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    try {
+                        for (i = 0; i < tbHapus.getRowCount(); i++) {
+                            if (tbHapus.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.queryu("delete from indikator_nasional_mutu where kd_indikator='" + TkdIndikator.getText() + "' "
+                                        + "and gedung='" + Truangan.getText() + "' and tgl_catat='" + tbHapus.getValueAt(i, 3).toString() + "'");
+                            }
+                        }
+                        tampilHapus();
+                        tampil();
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                } else {
+                    tampilHapus();
+                    tampil();
+                }
+            }
+        }
+    }//GEN-LAST:event_BtnHapusINMActionPerformed
+
+    private void BtnCloseIn4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn4ActionPerformed
+        WindowHapus.dispose();
+        Truangan.setText("");
+        TkdIndikator.setText("");
+        TnmIndikator.setText("");
+    }//GEN-LAST:event_BtnCloseIn4ActionPerformed
+
+    private void BtnContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnContengActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data belum ada...!!!!");
+            tbHapus.requestFocus();
+        } else {
+            tampilHapus();
+            for (i = 0; i < tbHapus.getRowCount(); i++) {
+                tbHapus.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_BtnContengActionPerformed
+
+    private void BtnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapus1ActionPerformed
+        if (tabMode1.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data belum ada...!!!!");
+            tbHapus.requestFocus();
+        } else {
+            tampilHapus();
+            for (i = 0; i < tbHapus.getRowCount(); i++) {
+                tbHapus.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_BtnHapus1ActionPerformed
+
+    private void BtnGantiINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiINMActionPerformed
+        if (tbGanti.getSelectedRow() > -1) {
+            if (Tjumlah1.getText().trim().equals("")) {
+                JOptionPane.showMessageDialog(rootPane, "Angka jumlah dilaporkan harus diisi dengan benar..!!");
+                Tjumlah1.requestFocus();
+            } else {                
+                Sequel.mengedit("indikator_nasional_mutu", "kd_indikator='" + TkdIndikator1.getText() + "' and "
+                        + "gedung='" + Truangan1.getText() + "' and tgl_catat='" + tbGanti.getValueAt(tbGanti.getSelectedRow(), 2).toString() + "'",
+                        "tgl_catat='" + Valid.SetTgl(TtglCatat1.getSelectedItem() + "") + "', jumlah_pertanggal='" + Tjumlah1.getText().trim().replaceAll(",", ".") + "'");
+                tampilGanti();
+                tampil();
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            tbGanti.requestFocus();
+        }
+    }//GEN-LAST:event_BtnGantiINMActionPerformed
+
+    private void BtnCloseIn5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn5ActionPerformed
+        WindowGanti.dispose();
+        Truangan1.setText("");
+        TkdIndikator1.setText("");
+        TnmIndikator1.setText("");
+        TtglCatat1.setDate(new Date());
+        Tjumlah1.setText("0");
+    }//GEN-LAST:event_BtnCloseIn5ActionPerformed
+
+    private void Tjumlah1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Tjumlah1KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            if (Tjumlah1.getText().contains(",") == true) {
+                Tjumlah1.setText(Tjumlah1.getText().trim().replaceAll(",", "."));
+            }
+            BtnGantiINM.requestFocus();
+        }
+    }//GEN-LAST:event_Tjumlah1KeyPressed
+
+    private void tbGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbGantiKeyPressed
+        if (tabMode2.getRowCount() != 0) {
+            if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
+                try {
+                    getDataGanti();
+                } catch (java.lang.NullPointerException e) {
+                }
+            }
+        }
+    }//GEN-LAST:event_tbGantiKeyPressed
+
+    private void tbGantiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbGantiMouseClicked
+        if (tabMode2.getRowCount() != 0) {
+            try {
+                getDataGanti();
+            } catch (java.lang.NullPointerException e) {
+            }
+        }
+    }//GEN-LAST:event_tbGantiMouseClicked
+
     /**
     * @param args the command line arguments
     */
@@ -1038,25 +1513,54 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private widget.Button BtnAll;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
+    private widget.Button BtnCloseIn4;
+    private widget.Button BtnCloseIn5;
+    private widget.Button BtnConteng;
     private widget.Button BtnGanti;
+    private widget.Button BtnGantiINM;
     private widget.Button BtnHapus;
+    private widget.Button BtnHapus1;
+    private widget.Button BtnHapusINM;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private javax.swing.JMenuItem MnMasterIndikator;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
+    private widget.ScrollPane Scroll3;
+    private widget.ScrollPane Scroll4;
     private widget.TextBox Tjumlah;
+    private widget.TextBox Tjumlah1;
+    private widget.TextBox TkdIndikator;
+    private widget.TextBox TkdIndikator1;
+    private widget.TextArea TnmIndikator;
+    private widget.TextBox TnmIndikator1;
+    private widget.TextBox Truangan;
+    private widget.TextBox Truangan1;
     private widget.TextBox Ttahun;
     private widget.Tanggal TtglCatat;
+    private widget.Tanggal TtglCatat1;
+    private javax.swing.JDialog WindowGanti;
+    private javax.swing.JDialog WindowHapus;
     private widget.ComboBox cmbBulan;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbIndikator;
     private widget.InternalFrame internalFrame1;
-    private widget.InternalFrame internalFrame2;
+    private widget.InternalFrame internalFrame15;
+    private widget.InternalFrame internalFrame16;
+    private widget.InternalFrame internalFrame6;
+    private widget.InternalFrame internalFrame7;
+    private widget.InternalFrame internalFrame8;
+    private widget.InternalFrame internalFrame9;
+    private widget.Label jLabel10;
     private widget.Label jLabel29;
+    private widget.Label jLabel31;
+    private widget.Label jLabel32;
+    private widget.Label jLabel33;
+    private widget.Label jLabel34;
     private widget.Label jLabel35;
+    private widget.Label jLabel36;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -1066,63 +1570,300 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
+    private widget.ScrollPane scrollPane13;
+    private widget.Table tbGanti;
+    private widget.Table tbHapus;
     private widget.Table tbIndikator;
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
+                ".: Data Indikator Nasional Mutu Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Ruang Perawatan " + cmbGedung1.getSelectedItem().toString() + " :.",
+                javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
+                javax.swing.border.TitledBorder.DEFAULT_POSITION,
+                new java.awt.Font("Tahoma", 0, 13)));
+        
         if (Ttahun.getText().equals("")) {
             Ttahun.setText(Sequel.cariIsi("select year(now())"));
         } else {
             Ttahun.setText(Ttahun.getText());
         }
         
+        hitungTot = 0;
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT inm.*, m.no_urut, m.nm_indikator from indikator_nasional_mutu inm "
-                    + "INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator where "
+            ps = koneksi.prepareStatement("SELECT inm.*, m.no_urut, m.nm_indikator, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=4 THEN inm.jumlah_pertanggal END),'0') tgl4, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=5 THEN inm.jumlah_pertanggal END),'0') tgl5, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=6 THEN inm.jumlah_pertanggal END),'0') tgl6, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=7 THEN inm.jumlah_pertanggal END),'0') tgl7, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=8 THEN inm.jumlah_pertanggal END),'0') tgl8, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=9 THEN inm.jumlah_pertanggal END),'0') tgl9, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=10 THEN inm.jumlah_pertanggal END),'0') tgl10, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=11 THEN inm.jumlah_pertanggal END),'0') tgl11, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=12 THEN inm.jumlah_pertanggal END),'0') tgl12, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=13 THEN inm.jumlah_pertanggal END),'0') tgl13, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=14 THEN inm.jumlah_pertanggal END),'0') tgl14, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=15 THEN inm.jumlah_pertanggal END),'0') tgl15, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=16 THEN inm.jumlah_pertanggal END),'0') tgl16, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=17 THEN inm.jumlah_pertanggal END),'0') tgl17, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=18 THEN inm.jumlah_pertanggal END),'0') tgl18, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=19 THEN inm.jumlah_pertanggal END),'0') tgl19, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=20 THEN inm.jumlah_pertanggal END),'0') tgl20, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=21 THEN inm.jumlah_pertanggal END),'0') tgl21, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=22 THEN inm.jumlah_pertanggal END),'0') tgl22, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=23 THEN inm.jumlah_pertanggal END),'0') tgl23, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=24 THEN inm.jumlah_pertanggal END),'0') tgl24, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=25 THEN inm.jumlah_pertanggal END),'0') tgl25, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=26 THEN inm.jumlah_pertanggal END),'0') tgl26, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=27 THEN inm.jumlah_pertanggal END),'0') tgl27, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=28 THEN inm.jumlah_pertanggal END),'0') tgl28, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=29 THEN inm.jumlah_pertanggal END),'0') tgl29, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=30 THEN inm.jumlah_pertanggal END),'0') tgl30, "
+                    + "ifnull(sum(case when day(inm.tgl_catat)=31 THEN inm.jumlah_pertanggal END),'0') tgl31 "
+                    + "from indikator_nasional_mutu inm INNER JOIN master_indikator_nasional_mutu m on m.kd_indikator=inm.kd_indikator where "
                     + "MONTH(inm.tgl_catat)='" + angkaBulan + "' and YEAR(inm.tgl_catat)='" + Ttahun.getText() + "' "
-                    + "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' order by m.no_urut");
+                    + "and inm.gedung='" + cmbGedung1.getSelectedItem().toString() + "' "
+                    + "GROUP BY inm.kd_indikator, MONTH(inm.tgl_catat), YEAR(inm.tgl_catat), inm.gedung order by m.no_urut");
             try {
                 rs = ps.executeQuery();
                 x = 1;
                 while (rs.next()) {
-                    cekJumlahPertanggal(rs.getString("tgl_catat"), rs.getString("gedung"));
-                    tabMode.addRow(new String[]{                        
+                    try {
+                        hitungTot = Double.parseDouble(rs.getString("tgl1"))
+                                + Double.parseDouble(rs.getString("tgl2"))
+                                + Double.parseDouble(rs.getString("tgl3"))
+                                + Double.parseDouble(rs.getString("tgl4"))
+                                + Double.parseDouble(rs.getString("tgl5"))
+                                + Double.parseDouble(rs.getString("tgl6"))
+                                + Double.parseDouble(rs.getString("tgl7"))
+                                + Double.parseDouble(rs.getString("tgl8"))
+                                + Double.parseDouble(rs.getString("tgl9"))
+                                + Double.parseDouble(rs.getString("tgl10"))
+                                + Double.parseDouble(rs.getString("tgl11"))
+                                + Double.parseDouble(rs.getString("tgl12"))
+                                + Double.parseDouble(rs.getString("tgl13"))
+                                + Double.parseDouble(rs.getString("tgl14"))
+                                + Double.parseDouble(rs.getString("tgl15"))
+                                + Double.parseDouble(rs.getString("tgl16"))
+                                + Double.parseDouble(rs.getString("tgl17"))
+                                + Double.parseDouble(rs.getString("tgl18"))
+                                + Double.parseDouble(rs.getString("tgl19"))
+                                + Double.parseDouble(rs.getString("tgl20"))
+                                + Double.parseDouble(rs.getString("tgl21"))
+                                + Double.parseDouble(rs.getString("tgl22"))
+                                + Double.parseDouble(rs.getString("tgl23"))
+                                + Double.parseDouble(rs.getString("tgl24"))
+                                + Double.parseDouble(rs.getString("tgl25"))
+                                + Double.parseDouble(rs.getString("tgl26"))
+                                + Double.parseDouble(rs.getString("tgl27"))
+                                + Double.parseDouble(rs.getString("tgl28"))
+                                + Double.parseDouble(rs.getString("tgl29"))
+                                + Double.parseDouble(rs.getString("tgl30"))
+                                + Double.parseDouble(rs.getString("tgl31"));
+                        total = Valid.SetAngka2(hitungTot);
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                        total = "error";
+                    }
+                    
+                    //cek angka jumlah
+                    if (rs.getString("tgl1").equals("0")) {
+                        tgl1 = "";
+                    } else {
+                        tgl1 = rs.getString("tgl1");
+                    }
+                    
+                    if (rs.getString("tgl2").equals("0")) {
+                        tgl2 = "";
+                    } else {
+                        tgl2 = rs.getString("tgl2");
+                    }
+                    
+                    if (rs.getString("tgl3").equals("0")) {
+                        tgl3 = "";
+                    } else {
+                        tgl3 = rs.getString("tgl3");
+                    }
+                    
+                    if (rs.getString("tgl4").equals("0")) {
+                        tgl4 = "";
+                    } else {
+                        tgl4 = rs.getString("tgl4");
+                    }
+                    
+                    if (rs.getString("tgl5").equals("0")) {
+                        tgl5 = "";
+                    } else {
+                        tgl5 = rs.getString("tgl5");
+                    }
+                    
+                    if (rs.getString("tgl6").equals("0")) {
+                        tgl6 = "";
+                    } else {
+                        tgl6 = rs.getString("tgl6");
+                    }
+                    
+                    if (rs.getString("tgl7").equals("0")) {
+                        tgl7 = "";
+                    } else {
+                        tgl7 = rs.getString("tgl7");
+                    }
+                    
+                    if (rs.getString("tgl8").equals("0")) {
+                        tgl8 = "";
+                    } else {
+                        tgl8 = rs.getString("tgl8");
+                    }
+                    
+                    if (rs.getString("tgl9").equals("0")) {
+                        tgl9 = "";
+                    } else {
+                        tgl9 = rs.getString("tgl9");
+                    }
+                    
+                    if (rs.getString("tgl10").equals("0")) {
+                        tgl10 = "";
+                    } else {
+                        tgl10 = rs.getString("tgl10");
+                    }
+                    
+                    if (rs.getString("tgl11").equals("0")) {
+                        tgl11 = "";
+                    } else {
+                        tgl11 = rs.getString("tgl11");
+                    }
+                    
+                    if (rs.getString("tgl12").equals("0")) {
+                        tgl12 = "";
+                    } else {
+                        tgl12 = rs.getString("tgl12");
+                    }
+                    
+                    if (rs.getString("tgl13").equals("0")) {
+                        tgl13 = "";
+                    } else {
+                        tgl13 = rs.getString("tgl13");
+                    }
+                    
+                    if (rs.getString("tgl14").equals("0")) {
+                        tgl14 = "";
+                    } else {
+                        tgl14 = rs.getString("tgl14");
+                    }
+                    
+                    if (rs.getString("tgl15").equals("0")) {
+                        tgl15 = "";
+                    } else {
+                        tgl15 = rs.getString("tgl15");
+                    }
+                    
+                    if (rs.getString("tgl16").equals("0")) {
+                        tgl16 = "";
+                    } else {
+                        tgl16 = rs.getString("tgl16");
+                    }
+                    
+                    if (rs.getString("tgl17").equals("0")) {
+                        tgl17 = "";
+                    } else {
+                        tgl17 = rs.getString("tgl17");
+                    }
+                    
+                    if (rs.getString("tgl18").equals("0")) {
+                        tgl18 = "";
+                    } else {
+                        tgl18 = rs.getString("tgl18");
+                    }
+                    
+                    if (rs.getString("tgl19").equals("0")) {
+                        tgl19 = "";
+                    } else {
+                        tgl19 = rs.getString("tgl19");
+                    }
+                    
+                    if (rs.getString("tgl20").equals("0")) {
+                        tgl20 = "";
+                    } else {
+                        tgl20 = rs.getString("tgl20");
+                    }
+                    
+                    if (rs.getString("tgl21").equals("0")) {
+                        tgl21 = "";
+                    } else {
+                        tgl21 = rs.getString("tgl21");
+                    }
+                    
+                    if (rs.getString("tgl22").equals("0")) {
+                        tgl22 = "";
+                    } else {
+                        tgl22 = rs.getString("tgl22");
+                    }
+                    
+                    if (rs.getString("tgl23").equals("0")) {
+                        tgl23 = "";
+                    } else {
+                        tgl23 = rs.getString("tgl23");
+                    }
+                    
+                    if (rs.getString("tgl24").equals("0")) {
+                        tgl24 = "";
+                    } else {
+                        tgl24 = rs.getString("tgl24");
+                    }
+                    
+                    if (rs.getString("tgl25").equals("0")) {
+                        tgl25 = "";
+                    } else {
+                        tgl25 = rs.getString("tgl25");
+                    }
+
+                    if (rs.getString("tgl26").equals("0")) {
+                        tgl26 = "";
+                    } else {
+                        tgl26 = rs.getString("tgl26");
+                    }
+                    
+                    if (rs.getString("tgl27").equals("0")) {
+                        tgl27 = "";
+                    } else {
+                        tgl27 = rs.getString("tgl27");
+                    }
+                    
+                    if (rs.getString("tgl28").equals("0")) {
+                        tgl28 = "";
+                    } else {
+                        tgl28 = rs.getString("tgl28");
+                    }
+                    
+                    if (rs.getString("tgl29").equals("0")) {
+                        tgl29 = "";
+                    } else {
+                        tgl29 = rs.getString("tgl29");
+                    }
+                    
+                    if (rs.getString("tgl30").equals("0")) {
+                        tgl30 = "";
+                    } else {
+                        tgl30 = rs.getString("tgl30");
+                    }
+                    
+                    if (rs.getString("tgl31").equals("0")) {
+                        tgl31 = "";
+                    } else {
+                        tgl31 = rs.getString("tgl31");
+                    }
+                    
+                    tabMode.addRow(new String[]{
                         rs.getString("gedung"),
                         x + ".",
                         rs.getString("nm_indikator"),
-                        tgl1,
-                        tgl2,
-                        tgl3,
-                        tgl4,
-                        tgl5,
-                        tgl6,
-                        tgl7,
-                        tgl8,
-                        tgl9,
-                        tgl10,
-                        tgl11,
-                        tgl12,
-                        tgl13,
-                        tgl14,
-                        tgl15,
-                        tgl16,
-                        tgl17,
-                        tgl18,
-                        tgl19,
-                        tgl20,
-                        tgl21,
-                        tgl22,
-                        tgl23,
-                        tgl24,
-                        tgl25,
-                        tgl26,
-                        tgl27,
-                        tgl28,
-                        tgl29,
-                        tgl30,
-                        tgl31,
-                        total,
+                        tgl1, tgl2, tgl3, tgl4, tgl5, tgl6, tgl7, tgl8, tgl9, tgl10,
+                        tgl11, tgl12, tgl13, tgl14, tgl15, tgl16, tgl17, tgl18, tgl19, tgl20,
+                        tgl21, tgl22, tgl23, tgl24, tgl25, tgl26, tgl27, tgl28, tgl29, tgl30, tgl31, total,
                         rs.getString("kd_indikator"),
                         rs.getString("tgl_catat")
                     });
@@ -1155,14 +1896,22 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tglDipilih = "";
 
         if (tbIndikator.getSelectedRow() != -1) {
-//            kdkomite.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 0).toString());
-//            nmkomite.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 1).toString());        
+            gedungDIpilih = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 0).toString();
+            kdIndikator = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 35).toString();
+            tglDipilih = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 36).toString();
+            
+            Truangan.setText(gedungDIpilih);
+            TkdIndikator.setText(kdIndikator);
+            TnmIndikator.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 2).toString());
+            Truangan1.setText(gedungDIpilih);
+            TkdIndikator1.setText(kdIndikator);
+            TnmIndikator1.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 2).toString());
         }
     }
     
-    private void cekBulanTahun() {
-        cekBulan = Sequel.cariIsi("select MONTH('" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "')");
-        Ttahun.setText(Sequel.cariIsi("select YEAR('" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "')"));
+    private void cekBulanTahun(String tanggal) {
+        cekBulan = Sequel.cariIsi("select MONTH('" + tanggal + "')");
+        Ttahun.setText(Sequel.cariIsi("select YEAR('" + tanggal + "')"));
 
         if (cekBulan.equals("1")) {
             cmbBulan.setSelectedIndex(0);
@@ -1191,7 +1940,71 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         }
     }
     
-    private void cekJumlahPertanggal(String bln, String nmGedung) {
-        
+    private void tampilHapus() {
+        Valid.tabelKosong(tabMode1);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT *, DATE_FORMAT(tgl_catat,'%d-%m-%Y') tgl from indikator_nasional_mutu "
+                    + "WHERE kd_indikator='" + TkdIndikator.getText() + "' and gedung='" + Truangan.getText() + "' and "
+                    + "MONTH(tgl_catat)=" + cekBulan + " and YEAR(tgl_catat)=" + Ttahun.getText() + " order by tgl_catat");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    tabMode1.addRow(new Object[]{
+                        false,
+                        rs1.getString("tgl"),
+                        rs1.getString("jumlah_pertanggal"),
+                        rs1.getString("tgl_catat")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+    }
+    
+    private void tampilGanti() {
+        Valid.tabelKosong(tabMode2);
+        try {
+            ps2 = koneksi.prepareStatement("SELECT *, DATE_FORMAT(tgl_catat,'%d-%m-%Y') tgl from indikator_nasional_mutu "
+                    + "WHERE kd_indikator='" + TkdIndikator1.getText() + "' and gedung='" + Truangan1.getText() + "' and "
+                    + "MONTH(tgl_catat)=" + cekBulan + " and YEAR(tgl_catat)=" + Ttahun.getText() + " order by tgl_catat");
+            try {
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabMode2.addRow(new String[]{
+                        rs2.getString("tgl"),
+                        rs2.getString("jumlah_pertanggal"),
+                        rs2.getString("tgl_catat")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+    }
+    
+    private void getDataGanti() {
+        if (tbGanti.getSelectedRow() != -1) {
+            Valid.SetTgl(TtglCatat1, tbGanti.getValueAt(tbGanti.getSelectedRow(), 2).toString());
+            Tjumlah1.setText(tbGanti.getValueAt(tbGanti.getSelectedRow(), 1).toString());
+        }
     }
 }

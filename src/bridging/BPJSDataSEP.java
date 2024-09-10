@@ -7200,10 +7200,10 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             if (cmbRawat2.getSelectedIndex() == 0) {
                 dialog_simpan = Valid.openDialog();
                 Valid.MyReportToExcel("SELECT DISTINCT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
-                        + "DATE_FORMAT(lr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', lh.pemeriksaan_nama 'Nama Pemeriksaan Lab.' "
-                        + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli INNER JOIN lis_reg lr ON lr.no_rawat = bs.no_rawat "
-                        + "INNER JOIN lis_hasil_periksa_lab lh ON lh.no_lab = lr.no_lab where "
+                        + "DATE_FORMAT(lr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', pl.nm_poli 'Poliklinik', lh.pemeriksaan_nama 'Nama Pemeriksaan Lab.', "
+                        + "concat(lh.nilai_hasil,' ',lh.satuan) 'Hasil' FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN poliklinik pl ON pl.kd_poli = rp.kd_poli "
+                        + "INNER JOIN lis_reg lr ON lr.no_rawat = bs.no_rawat INNER JOIN lis_hasil_periksa_lab lh ON lh.no_lab = lr.no_lab where "
                         + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari7.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari8.getSelectedItem() + "") + "' "
                         + "and rp.status_lanjut='ralan' and lh.pemeriksaan_nama like '%" + TperiksaCari.getText() + "%'", dialog_simpan);
 
@@ -7212,11 +7212,11 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             } else {
                 dialog_simpan = Valid.openDialog();
                 Valid.MyReportToExcel("SELECT DISTINCT bs.no_sep 'No. SEP', DATE_FORMAT(bs.tglsep,'%d/%m/%Y') 'Tgl. SEP', p.no_rkm_medis 'No. RM', p.nm_pasien 'Nama Pasien', "
-                        + "DATE_FORMAT(lr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', lh.pemeriksaan_nama 'Nama Pemeriksaan Lab.' "
-                        + "FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
-                        + "INNER JOIN kamar_inap ki ON ki.no_rawat = rp.no_rawat INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
-                        + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal INNER JOIN lis_reg lr ON lr.no_rawat = bs.no_rawat "
-                        + "INNER JOIN lis_hasil_periksa_lab lh ON lh.no_lab = lr.no_lab where "
+                        + "DATE_FORMAT(lr.tgl_periksa,'%d/%m/%Y') 'Tgl. Pemeriksaan', b.nm_bangsal 'Ruang Perawatan', lh.pemeriksaan_nama 'Nama Pemeriksaan Lab.', "
+                        + "concat(lh.nilai_hasil,' ',lh.satuan) 'Hasil' FROM bridging_sep bs INNER JOIN reg_periksa rp ON rp.no_rawat = bs.no_rawat "
+                        + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kamar_inap ki ON ki.no_rawat = rp.no_rawat "
+                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                        + "INNER JOIN lis_reg lr ON lr.no_rawat = bs.no_rawat INNER JOIN lis_hasil_periksa_lab lh ON lh.no_lab = lr.no_lab where "
                         + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari7.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari8.getSelectedItem() + "") + "' "
                         + "and rp.status_lanjut='ranap' and lh.pemeriksaan_nama like '%" + TperiksaCari.getText() + "%'", dialog_simpan);
 
