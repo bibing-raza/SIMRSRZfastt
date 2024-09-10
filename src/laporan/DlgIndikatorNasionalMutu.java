@@ -153,7 +153,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbIndikator.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new Object[]{
-            "Cek", "Tgl. Dilaporkan", "Jlh. Dilaporkan", "tgl_catat"
+            "Cek", "Tgl. Dilaporkan", "Jumlah Dilaporkan", "tgl_catat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -183,7 +183,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(140);
             } else if (i == 3) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -192,7 +192,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbHapus.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode2 = new DefaultTableModel(null, new String[]{
-            "Tgl. Dilaporkan", "Jlh. Dilaporkan", "tgl_catat"
+            "Tgl. Dilaporkan", "Jumlah Dilaporkan", "tgl_catat"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -208,7 +208,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(100);
             } else if (i == 1) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(140);
             } else if (i == 2) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -323,7 +323,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame6.setLayout(new java.awt.BorderLayout());
 
         internalFrame7.setName("internalFrame7"); // NOI18N
-        internalFrame7.setPreferredSize(new java.awt.Dimension(0, 107));
+        internalFrame7.setPreferredSize(new java.awt.Dimension(0, 92));
         internalFrame7.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame7.setLayout(null);
 
@@ -362,7 +362,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         scrollPane13.setViewportView(TnmIndikator);
 
         internalFrame7.add(scrollPane13);
-        scrollPane13.setBounds(174, 38, 320, 60);
+        scrollPane13.setBounds(174, 38, 320, 45);
 
         internalFrame6.add(internalFrame7, java.awt.BorderLayout.PAGE_START);
 
@@ -680,7 +680,6 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         BtnPrint.setMnemonic('T');
         BtnPrint.setText("Cetak");
         BtnPrint.setToolTipText("Alt+T");
-        BtnPrint.setEnabled(false);
         BtnPrint.setName("BtnPrint"); // NOI18N
         BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
         BtnPrint.addActionListener(new java.awt.event.ActionListener() {
@@ -885,6 +884,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll.setComponentPopupMenu(jPopupMenu1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
@@ -1124,230 +1124,74 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     }//GEN-LAST:event_cmbGedung1MouseReleased
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (tbIndikator.getSelectedRow() > -1) {
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Data indikator nasional mutu belum ditampilkan pada tabel..!!");
+        } else if (Ttahun.getText().equals("")) {
+            JOptionPane.showMessageDialog(rootPane, "Tahun harus diisi dulu dengan benar..!!");
+            Ttahun.requestFocus();
+        } else if (cmbGedung1.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu ruang perawatannya dulu..!!");
+            cmbGedung1.requestFocus();
+        } else {
+            tampil();
+            this.setCursor(Cursor.getDefaultCursor());
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
+            param.put("alamatrs", akses.getalamatrs());
+            param.put("kotars", akses.getkabupatenrs());
+            param.put("propinsirs", akses.getpropinsirs());
+            param.put("kontakrs", akses.getkontakrs());
+            param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-//            param.put("norm", TNoRM.getText());
-//            param.put("nmpasien", TPasien.getText());
-//            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-//
-//            param.put("riwAlergiObat", TriwAlergiObat.getText() + "\n");
-//            param.put("obatSaatIni", TobatSaatIni.getText() + "\n");
-//            param.put("riwAnastesi", TriwAnastesi.getText() + "\n");
-//
-//            param.put("keadaan", "Kepala : " + Tkepala.getText() + ", Sklera : " + Tsklera.getText() + ", Conjungtiva : " + Tconjung.getText() + ", Leher : " + Tleher.getText() + "\n"
-//                + "Paru-paru : " + Tparu.getText() + "\n"
-//                + "Jantung : " + Tjantung.getText() + "\n"
-//                + "Abdomen : " + Tabdomen.getText() + "\n"
-//                + "Ekstremitas : " + Tekstremitas.getText() + "\n");
-//
-//            param.put("pemeriksaan", "GCS : " + Tgcs.getText() + ", Tekanan Darah : " + Ttd.getText() + " mmHg, RR : " + Trr.getText() + " x/menit, Nadi : " + Tnadi.getText() + " x/menit\n"
-//                + "Suhu : " + Tsuhu.getText() + " °C, Tinggi Badan : " + Ttb.getText() + " Cm, Berat Badan : " + Tbb.getText() + " Kg, VAS : " + Tvas.getText() + "\n");
-//
-//            param.put("kajian1", ": " + cmbHilang.getSelectedItem().toString() + "\n"
-//                + ": " + cmbMasalah.getSelectedItem().toString() + "\n"
-//                + ": " + cmbLeher.getSelectedItem().toString() + "\n"
-//                + ": " + cmbStroke.getSelectedItem().toString() + "\n"
-//                + ": " + cmbSesak.getSelectedItem().toString() + "\n"
-//                + ": " + cmbBuka.getSelectedItem().toString() + "\n"
-//                + ": " + cmbJarak.getSelectedItem().toString());
-//
-//            param.put("kajian2", ": " + cmbSakit.getSelectedItem().toString() + "\n"
-//                + ": " + cmbDenyut.getSelectedItem().toString() + "\n"
-//                + ": " + cmbSedang.getSelectedItem().toString() + "\n"
-//                + ": " + cmbKejang.getSelectedItem().toString() + "\n"
-//                + ": " + cmbObes.getSelectedItem().toString() + "\n"
-//                + ": " + cmbGigi.getSelectedItem().toString() + "\n"
-//                + ": " + cmbGerakan.getSelectedItem().toString());
-//
-//            if (ChkSatu.isSelected() == true) {
-//                param.put("mal1", "V");
-//            } else {
-//                param.put("mal1", "");
-//            }
-//
-//            if (ChkDua.isSelected() == true) {
-//                param.put("mal2", "V");
-//            } else {
-//                param.put("mal2", "");
-//            }
-//
-//            if (ChkTiga.isSelected() == true) {
-//                param.put("mal3", "V");
-//            } else {
-//                param.put("mal3", "");
-//            }
-//
-//            if (ChkEmpat.isSelected() == true) {
-//                param.put("mal4", "V");
-//            } else {
-//                param.put("mal4", "");
-//            }
-//
-//            param.put("penunjang", Tpemeriksaan.getText() + "\n");
-//            param.put("diagnosa", Tdiagnosa.getText() + "\n");
-//
-//            //report rptAsesmenPraSedasi2
-//            if (ChkSedasi.isSelected() == true) {
-//                param.put("sedasi", "V");
-//                param.put("obat1", Tobat1.getText());
-//                param.put("obat2", Tobat2.getText());
-//                param.put("obat3", Tobat3.getText());
-//            } else {
-//                param.put("sedasi", "");
-//                param.put("obat1", "");
-//                param.put("obat2", "");
-//                param.put("obat3", "");
-//            }
-//
-//            if (ChkGA.isSelected() == true) {
-//                param.put("ga", "V");
-//                param.put("ketGa", Tga.getText());
-//            } else {
-//                param.put("ga", "");
-//                param.put("ketGa", "");
-//            }
-//
-//            if (ChkRegional.isSelected() == true) {
-//                param.put("regional", "V");
-//            } else {
-//                param.put("regional", "");
-//            }
-//
-//            if (ChkSpinal.isSelected() == true) {
-//                param.put("spinal", "V");
-//            } else {
-//                param.put("spinal", "");
-//            }
-//
-//            if (ChkEpidural.isSelected() == true) {
-//                param.put("epidural", "V");
-//            } else {
-//                param.put("epidural", "");
-//            }
-//
-//            if (ChkKaudal.isSelected() == true) {
-//                param.put("kaudal", "V");
-//            } else {
-//                param.put("kaudal", "");
-//            }
-//
-//            if (ChkBlok.isSelected() == true) {
-//                param.put("blok", "V");
-//            } else {
-//                param.put("blok", "");
-//            }
-//
-//            if (ChkEkg.isSelected() == true) {
-//                param.put("ekg", "V");
-//            } else {
-//                param.put("ekg", "");
-//            }
-//
-//            if (ChkSpo.isSelected() == true) {
-//                param.put("spo2", "V");
-//            } else {
-//                param.put("spo2", "");
-//            }
-//
-//            if (ChkNibp.isSelected() == true) {
-//                param.put("nibp", "V");
-//            } else {
-//                param.put("nibp", "");
-//            }
-//
-//            if (ChkTemp.isSelected() == true) {
-//                param.put("temp", "V");
-//            } else {
-//                param.put("temp", "");
-//            }
-//
-//            if (ChkLain.isSelected() == true) {
-//                param.put("lain", "V");
-//                param.put("ketLain", Tlain.getText());
-//            } else {
-//                param.put("lain", "");
-//                param.put("ketLain", "");
-//            }
-//
-//            if (ChkRanap.isSelected() == true) {
-//                param.put("ranap", "V");
-//            } else {
-//                param.put("ranap", "");
-//            }
-//
-//            if (ChkRalan.isSelected() == true) {
-//                param.put("ralan", "V");
-//            } else {
-//                param.put("ralan", "");
-//            }
-//
-//            if (ChkRakhus.isSelected() == true) {
-//                param.put("rakhus", "V");
-//            } else {
-//                param.put("rakhus", "");
-//            }
-//
-//            if (ChkIcu.isSelected() == true) {
-//                param.put("icu", "V");
-//            } else {
-//                param.put("icu", "");
-//            }
-//
-//            if (ChkHcu.isSelected() == true) {
-//                param.put("hcu", "V");
-//            } else {
-//                param.put("hcu", "");
-//            }
-//
-//            param.put("catatan", Tcatatan.getText() + "\n");
-//
-//            if (ChkAsa1.isSelected() == true) {
-//                param.put("asa1", "V");
-//            } else {
-//                param.put("asa1", "");
-//            }
-//
-//            if (ChkAsa2.isSelected() == true) {
-//                param.put("asa2", "V");
-//            } else {
-//                param.put("asa2", "");
-//            }
-//
-//            if (ChkAsa3.isSelected() == true) {
-//                param.put("asa3", "V");
-//            } else {
-//                param.put("asa3", "");
-//            }
-//
-//            if (ChkAsa4.isSelected() == true) {
-//                param.put("asa4", "V");
-//            } else {
-//                param.put("asa4", "");
-//            }
-//
-//            if (ChkEmergency.isSelected() == true) {
-//                param.put("emer", "V");
-//            } else {
-//                param.put("emer", "");
-//            }
-//
-//            param.put("penyulit", Tpenyulit.getText() + "\n");
-//            param.put("puasaMulai", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita, Tanggal : " + TtglPuasa.getSelectedItem().toString());
-//            param.put("rencana", cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita, Tanggal : " + TtglRencana.getSelectedItem().toString());
-//            param.put("dokter", "(" + TnmDokter.getText() + ")");
-//
-//            Valid.MyReport("rptAsesmenPraSedasi2.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 2 ]::",
-//                "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenPraSedasi1.jasper", "report", "::[ Laporan Asesmen Pra Sedasi hal. 1 ]::",
-//                "SELECT now() tanggal", param);
+            param.put("judul", "RUANG " + cmbGedung1.getSelectedItem().toString().toUpperCase() + " BULAN " + cmbBulan.getSelectedItem().toString().toUpperCase() + " TAHUN " + Ttahun.getText());
+
+            Sequel.AutoComitFalse();
+            Sequel.queryu("delete from temporary");
+            int row = tabMode.getRowCount();
+            for (int r = 0; r < row; r++) {
+                Sequel.menyimpan("temporary", "'0','"
+                        + tabMode.getValueAt(r, 1).toString() + "','"
+                        + tabMode.getValueAt(r, 2).toString() + "','"
+                        + tabMode.getValueAt(r, 3).toString() + "','"
+                        + tabMode.getValueAt(r, 4).toString() + "','"
+                        + tabMode.getValueAt(r, 5).toString() + "','"
+                        + tabMode.getValueAt(r, 6).toString() + "','"
+                        + tabMode.getValueAt(r, 7).toString() + "','"
+                        + tabMode.getValueAt(r, 8).toString() + "','"
+                        + tabMode.getValueAt(r, 9).toString() + "','"
+                        + tabMode.getValueAt(r, 10).toString() + "','"
+                        + tabMode.getValueAt(r, 11).toString() + "','"
+                        + tabMode.getValueAt(r, 12).toString() + "','"
+                        + tabMode.getValueAt(r, 13).toString() + "','"
+                        + tabMode.getValueAt(r, 14).toString() + "','"
+                        + tabMode.getValueAt(r, 15).toString() + "','"
+                        + tabMode.getValueAt(r, 16).toString() + "','"
+                        + tabMode.getValueAt(r, 17).toString() + "','"
+                        + tabMode.getValueAt(r, 18).toString() + "','"
+                        + tabMode.getValueAt(r, 19).toString() + "','"
+                        + tabMode.getValueAt(r, 20).toString() + "','"
+                        + tabMode.getValueAt(r, 21).toString() + "','"
+                        + tabMode.getValueAt(r, 22).toString() + "','"
+                        + tabMode.getValueAt(r, 23).toString() + "','"
+                        + tabMode.getValueAt(r, 24).toString() + "','"
+                        + tabMode.getValueAt(r, 25).toString() + "','"
+                        + tabMode.getValueAt(r, 26).toString() + "','"
+                        + tabMode.getValueAt(r, 27).toString() + "','"
+                        + tabMode.getValueAt(r, 28).toString() + "','"
+                        + tabMode.getValueAt(r, 29).toString() + "','"
+                        + tabMode.getValueAt(r, 30).toString() + "','"
+                        + tabMode.getValueAt(r, 31).toString() + "','"
+                        + tabMode.getValueAt(r, 32).toString() + "','"
+                        + tabMode.getValueAt(r, 33).toString() + "','"
+                        + tabMode.getValueAt(r, 34).toString() + "','','',''", "Indikator Nasional Mutu (INM)");
+            }
+            Sequel.AutoComitTrue();
+            Valid.MyReport("rptIndikatorNasionalMutu.jasper", "report", "::[ Indikator Nasional Mutu (INM) ]::",
+                    "select * from temporary", param);
+            this.setCursor(Cursor.getDefaultCursor());
 
             emptTeks();
             tampil();
-        } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
-            tbIndikator.requestFocus();
         }
     }//GEN-LAST:event_BtnPrintActionPerformed
 
