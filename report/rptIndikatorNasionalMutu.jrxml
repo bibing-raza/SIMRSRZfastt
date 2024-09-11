@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1008" pageHeight="612" orientation="Landscape" columnWidth="937" leftMargin="20" rightMargin="51" topMargin="20" bottomMargin="20">
-	<property name="ireport.zoom" value="1.0245201830476065"/>
-	<property name="ireport.x" value="0"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="1008" pageHeight="612" orientation="Landscape" columnWidth="907" leftMargin="22" rightMargin="79" topMargin="20" bottomMargin="20">
+	<property name="ireport.zoom" value="1.2396694214876047"/>
+	<property name="ireport.x" value="53"/>
 	<property name="ireport.y" value="0"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -131,35 +131,35 @@
 	<title>
 		<band height="91" splitType="Stretch">
 			<staticText>
-				<reportElement x="0" y="54" width="921" height="16"/>
+				<reportElement x="0" y="54" width="892" height="16"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11" isBold="false"/>
 				</textElement>
 				<text><![CDATA[INDIKATOR MUTU RUMAH SAKIT UMUM DAERAH RATU ZALECHA]]></text>
 			</staticText>
 			<textField>
-				<reportElement x="0" y="19" width="921" height="14"/>
+				<reportElement x="0" y="19" width="892" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{alamatrs}+", "+$P{kotars}+", "+$P{propinsirs}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="31" width="921" height="14"/>
+				<reportElement x="0" y="31" width="892" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["e-Mail : "+$P{emailrs}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="0" y="3" width="921" height="17"/>
+				<reportElement x="0" y="3" width="892" height="17"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="12"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{namars}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement x="0" y="48" width="921" height="1"/>
+				<reportElement x="0" y="48" width="892" height="1"/>
 				<graphicElement>
 					<pen lineWidth="2.0" lineStyle="Double"/>
 				</graphicElement>
@@ -169,7 +169,7 @@
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement x="0" y="68" width="921" height="16"/>
+				<reportElement x="0" y="68" width="892" height="16"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="11"/>
 				</textElement>
@@ -183,21 +183,21 @@
 	<columnHeader>
 		<band height="34" splitType="Stretch">
 			<staticText>
-				<reportElement mode="Transparent" x="21" y="0" width="203" height="33" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="21" y="0" width="174" height="33" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Indikator]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="224" y="0" width="651" height="17" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="195" y="0" width="650" height="17" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[Tanggal]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="224" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="195" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
@@ -211,229 +211,229 @@
 				<text><![CDATA[No.]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="0" width="921" height="1"/>
+				<reportElement x="0" y="0" width="892" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="33" width="921" height="1"/>
+				<reportElement x="0" y="33" width="892" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement mode="Transparent" x="245" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="216" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[2]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="266" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="237" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[3]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="287" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="258" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[4]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="308" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="279" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[5]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="350" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="320" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[7]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="328" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="299" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[6]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="371" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="341" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[8]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="392" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="362" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[9]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="476" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="446" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[13]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="434" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="404" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[11]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="413" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="383" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[10]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="518" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="488" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[15]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="539" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="509" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[16]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="497" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="467" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[14]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="455" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="425" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[12]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="623" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="593" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[20]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="581" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="551" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[18]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="602" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="572" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[19]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="707" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="677" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[24]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="665" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="635" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[22]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="686" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="656" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[23]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="728" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="698" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[25]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="644" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="614" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[21]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="560" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="530" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[17]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="749" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="719" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[26]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="854" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="824" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[31]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="833" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="803" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[30]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="791" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="761" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[28]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="812" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="782" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[29]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="770" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="740" y="17" width="21" height="16" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
 				<text><![CDATA[27]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="875" y="0" width="47" height="33" forecolor="#000000" backcolor="#F0F0DC"/>
+				<reportElement mode="Transparent" x="846" y="0" width="47" height="33" forecolor="#000000" backcolor="#F0F0DC"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="8" isBold="true"/>
 				</textElement>
@@ -452,205 +452,205 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="223" y="0" width="1" height="34"/>
+				<reportElement x="194" y="0" width="1" height="34"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="921" y="0" width="1" height="34"/>
+				<reportElement x="892" y="0" width="1" height="34"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="874" y="0" width="1" height="34"/>
+				<reportElement x="845" y="0" width="1" height="34"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="223" y="17" width="652" height="1"/>
+				<reportElement x="195" y="17" width="650" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="244" y="17" width="1" height="16"/>
+				<reportElement x="215" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="265" y="17" width="1" height="16"/>
+				<reportElement x="236" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="286" y="17" width="1" height="16"/>
+				<reportElement x="257" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="307" y="17" width="1" height="16"/>
+				<reportElement x="278" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="328" y="17" width="1" height="16"/>
+				<reportElement x="300" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="349" y="17" width="1" height="16"/>
+				<reportElement x="319" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="370" y="17" width="1" height="16"/>
+				<reportElement x="340" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="391" y="17" width="1" height="16"/>
+				<reportElement x="361" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="412" y="17" width="1" height="16"/>
+				<reportElement x="382" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="433" y="17" width="1" height="16"/>
+				<reportElement x="403" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="454" y="17" width="1" height="16"/>
+				<reportElement x="424" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="475" y="17" width="1" height="16"/>
+				<reportElement x="445" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="496" y="17" width="1" height="16"/>
+				<reportElement x="466" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="517" y="17" width="1" height="16"/>
+				<reportElement x="487" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="538" y="17" width="1" height="16"/>
+				<reportElement x="508" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="559" y="17" width="1" height="16"/>
+				<reportElement x="529" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="580" y="17" width="1" height="16"/>
+				<reportElement x="550" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="601" y="17" width="1" height="16"/>
+				<reportElement x="571" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="622" y="17" width="1" height="16"/>
+				<reportElement x="592" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="643" y="17" width="1" height="16"/>
+				<reportElement x="613" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="664" y="17" width="1" height="16"/>
+				<reportElement x="634" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="685" y="17" width="1" height="16"/>
+				<reportElement x="655" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="706" y="17" width="1" height="16"/>
+				<reportElement x="676" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="727" y="17" width="1" height="16"/>
+				<reportElement x="697" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="748" y="17" width="1" height="16"/>
+				<reportElement x="718" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="769" y="17" width="1" height="16"/>
+				<reportElement x="739" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="790" y="17" width="1" height="16"/>
+				<reportElement x="760" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="811" y="17" width="1" height="16"/>
+				<reportElement x="781" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="832" y="17" width="1" height="16"/>
+				<reportElement x="802" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="853" y="17" width="1" height="16"/>
+				<reportElement x="823" y="17" width="1" height="16"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -660,56 +660,56 @@
 	<detail>
 		<band height="11" splitType="Stretch">
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="24" y="0" width="196" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="24" y="0" width="167" height="10"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp2}+"\n"]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="224" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="195" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp3}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="475" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="446" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp15}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="433" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="404" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp13}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="538" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="509" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp18}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="412" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="383" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp12}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="391" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="362" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp11}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="370" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="341" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -723,175 +723,175 @@
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp1}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="454" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="425" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp14}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="496" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="467" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp16}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="517" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="488" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp17}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="245" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="216" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp4}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="266" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="237" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp5}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="287" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="258" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp6}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="308" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="279" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp7}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="328" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="299" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp8}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="349" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="320" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp9}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="559" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="530" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp19}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="580" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="551" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp20}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="601" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="572" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp21}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="622" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="593" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp22}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="643" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="614" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp23}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="664" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="635" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp24}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="685" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="656" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp25}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="706" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="677" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp26}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="727" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="698" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp27}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="748" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="719" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp28}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="769" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="740" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp29}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="790" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="761" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp30}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="811" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="782" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp31}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="832" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="803" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp32}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="853" y="0" width="21" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="824" y="0" width="21" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{temp33}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="true">
-				<reportElement stretchType="RelativeToBandHeight" x="875" y="0" width="47" height="10"/>
+				<reportElement stretchType="RelativeToBandHeight" x="846" y="0" width="47" height="10"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" size="8"/>
 				</textElement>
@@ -910,205 +910,205 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="223" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="194" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="244" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="215" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="265" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="236" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="286" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="257" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="307" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="278" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="328" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="300" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="349" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="319" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="370" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="340" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="391" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="361" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="412" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="382" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="433" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="403" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="454" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="424" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="475" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="445" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="496" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="466" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="517" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="487" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="538" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="508" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="559" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="529" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="580" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="550" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="601" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="571" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="622" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="592" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="643" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="613" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="664" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="634" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="685" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="655" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="706" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="676" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="727" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="697" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="748" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="718" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="769" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="739" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="790" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="760" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="811" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="781" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="832" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="802" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="853" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="823" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="874" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="845" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="921" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
+				<reportElement stretchType="RelativeToTallestObject" x="892" y="0" width="1" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="921" height="1"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="10" width="892" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
