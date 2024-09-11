@@ -1559,6 +1559,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Tkesadaran = new widget.TextBox();
         jLabel46 = new widget.Label();
         TlingkarPerut = new widget.TextBox();
+        ChkCopyTerapi = new widget.CekBox();
         Scroll10 = new widget.ScrollPane();
         tbPemeriksaanPr = new widget.Table();
         internalFrame9 = new widget.InternalFrame();
@@ -2882,7 +2883,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2896,7 +2897,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3089,7 +3090,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3318,7 +3319,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3332,7 +3333,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4150,7 +4151,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput3.setBorder(null);
         FormInput3.setComponentPopupMenu(jPopupMenu5);
         FormInput3.setName("FormInput3"); // NOI18N
-        FormInput3.setPreferredSize(new java.awt.Dimension(1087, 282));
+        FormInput3.setPreferredSize(new java.awt.Dimension(1087, 306));
         FormInput3.setLayout(null);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
@@ -4433,6 +4434,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TRncanaFolow1.setColumns(20);
         TRncanaFolow1.setRows(5);
         TRncanaFolow1.setName("TRncanaFolow1"); // NOI18N
+        TRncanaFolow1.setPreferredSize(new java.awt.Dimension(170, 1000));
         TRncanaFolow1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TRncanaFolow1KeyPressed(evt);
@@ -4456,6 +4458,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TRincianTindakan1.setRows(5);
         TRincianTindakan1.setComponentPopupMenu(jPopupMenu5);
         TRincianTindakan1.setName("TRincianTindakan1"); // NOI18N
+        TRincianTindakan1.setPreferredSize(new java.awt.Dimension(170, 1000));
         TRincianTindakan1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TRincianTindakan1KeyPressed(evt);
@@ -4470,7 +4473,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel56.setText("Terapi :");
         jLabel56.setName("jLabel56"); // NOI18N
         FormInput3.add(jLabel56);
-        jLabel56.setBounds(540, 211, 100, 23);
+        jLabel56.setBounds(570, 235, 70, 23);
 
         Scroll26.setName("Scroll26"); // NOI18N
         Scroll26.setOpaque(true);
@@ -4478,6 +4481,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TTerapi1.setColumns(20);
         TTerapi1.setRows(5);
         TTerapi1.setName("TTerapi1"); // NOI18N
+        TTerapi1.setPreferredSize(new java.awt.Dimension(170, 1000));
         TTerapi1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TTerapi1KeyPressed(evt);
@@ -4486,7 +4490,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         Scroll26.setViewportView(TTerapi1);
 
         FormInput3.add(Scroll26);
-        Scroll26.setBounds(645, 211, 430, 55);
+        Scroll26.setBounds(645, 235, 430, 60);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("SpO2(%) :");
@@ -4538,6 +4542,23 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         FormInput3.add(TlingkarPerut);
         TlingkarPerut.setBounds(1070, 33, 42, 23);
+
+        ChkCopyTerapi.setBackground(new java.awt.Color(255, 255, 250));
+        ChkCopyTerapi.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkCopyTerapi.setForeground(new java.awt.Color(0, 0, 0));
+        ChkCopyTerapi.setText("Copy Terapi Pemeriksaan Dokter");
+        ChkCopyTerapi.setBorderPainted(true);
+        ChkCopyTerapi.setBorderPaintedFlat(true);
+        ChkCopyTerapi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkCopyTerapi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkCopyTerapi.setName("ChkCopyTerapi"); // NOI18N
+        ChkCopyTerapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkCopyTerapiActionPerformed(evt);
+            }
+        });
+        FormInput3.add(ChkCopyTerapi);
+        ChkCopyTerapi.setBounds(645, 211, 190, 23);
 
         Scroll37.setViewportView(FormInput3);
 
@@ -5430,7 +5451,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-07-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -9652,6 +9673,22 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 + "gd.kd_bangsal in ('APT01','APT02') and db.nama_brng not like '(FR)%' and db.nama_brng not like '-%'group by gd.kode_brng "
                 + "order by db.nama_brng", cmbObat);
     }//GEN-LAST:event_formWindowOpened
+
+    private void ChkCopyTerapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkCopyTerapiActionPerformed
+        if (tbPemeriksaanPr.getSelectedRow() > -1) {
+            if (ChkCopyTerapi.isSelected() == true) {
+                if (TTerapi1.getText().equals("")) {
+                    TTerapi1.setText(Sequel.cariIsi("select ifnull(terapi,'') from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'"));
+                } else {
+                    TTerapi1.setText(TTerapi1.getText() + "\n" + Sequel.cariIsi("select ifnull(terapi,'') from pemeriksaan_ralan where no_rawat='" + TNoRw.getText() + "'"));
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            ChkCopyTerapi.setSelected(false);
+            tbPemeriksaanPr.requestFocus();
+        }
+    }//GEN-LAST:event_ChkCopyTerapiActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -9722,6 +9759,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private widget.Button BtnUnit;
     public widget.CekBox ChkAccor;
     private widget.CekBox ChkCopyPemeriksaanDR;
+    private widget.CekBox ChkCopyTerapi;
     private widget.CekBox ChkInput;
     private widget.CekBox ChkInput1;
     private widget.CekBox ChkJln;
@@ -10555,6 +10593,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
 
     private void getDataPemeriksaanPr() {
+        ChkCopyTerapi.setSelected(false);
         if (tbPemeriksaanPr.getSelectedRow() != -1) {
 //            TNoRw.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 1).toString());
             TNoRw2.setText(tbPemeriksaanPr.getValueAt(tbPemeriksaanPr.getSelectedRow(), 1).toString());
@@ -15638,6 +15677,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         Tspo2.setText("");
         Tkesadaran.setText("");
         TlingkarPerut.setText("");
+        ChkCopyTerapi.setSelected(false);
 
         TNoRw2.setText("");
         ChkPemeriksaan.setSelected(false);
