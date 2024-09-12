@@ -299,6 +299,7 @@ import permintaan.DlgCariPermintaanLab;
 import permintaan.DlgCariPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
 import permintaan.DlgSuratJawabanKonsul;
+import permintaan.DlgSuratKeteranganDisabilitas;
 import permintaan.DlgSuratKeteranganDokter;
 import permintaan.DlgSuratKeteranganNapza;
 import permintaan.DlgSuratKeteranganRohani;
@@ -871,6 +872,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenPraSedasi = new widget.ButtonBig();
         btnMasterIndikatorNasionalMutu = new widget.ButtonBig();
         btnIndikatorNasionalMutu = new widget.ButtonBig();
+        btnSuratKeteranganDisabilitas = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5877,7 +5879,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         btnIndikatorNasionalMutu.setForeground(new java.awt.Color(0, 0, 0));
         btnIndikatorNasionalMutu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1491582089_Finance_financial_report.png"))); // NOI18N
-        btnIndikatorNasionalMutu.setText("Indikator Mutu Nasional");
+        btnIndikatorNasionalMutu.setText("Indikator Nasional Mutu (INM)");
         btnIndikatorNasionalMutu.setIconTextGap(0);
         btnIndikatorNasionalMutu.setName("btnIndikatorNasionalMutu"); // NOI18N
         btnIndikatorNasionalMutu.setPreferredSize(new java.awt.Dimension(200, 90));
@@ -5888,6 +5890,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnIndikatorNasionalMutu);
 
+        btnSuratKeteranganDisabilitas.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratKeteranganDisabilitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1481002123_wheelchair.png"))); // NOI18N
+        btnSuratKeteranganDisabilitas.setText("Surat Keterangan Dokter (Disabilitas)");
+        btnSuratKeteranganDisabilitas.setIconTextGap(0);
+        btnSuratKeteranganDisabilitas.setName("btnSuratKeteranganDisabilitas"); // NOI18N
+        btnSuratKeteranganDisabilitas.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKeteranganDisabilitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratKeteranganDisabilitasActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratKeteranganDisabilitas);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5896,7 +5911,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11655,6 +11670,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnIndikatorNasionalMutuActionPerformed
 
+    private void btnSuratKeteranganDisabilitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratKeteranganDisabilitasActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgSuratKeteranganDisabilitas aplikasi = new DlgSuratKeteranganDisabilitas(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratKeteranganDisabilitasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12034,6 +12063,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSuplierIPSRS;
     private widget.ButtonBig btnSuratIstirahatSakit;
     private widget.ButtonBig btnSuratJawabanKonsulRanap;
+    private widget.ButtonBig btnSuratKeteranganDisabilitas;
     private widget.ButtonBig btnSuratKeteranganDokter;
     private widget.ButtonBig btnSuratKeteranganNAPZA;
     private widget.ButtonBig btnSuratKeteranganRohani;
@@ -12860,6 +12890,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getsurat_keterangan_kir_mcu() == true) {
                 Panelmenu.add(btnSuratKeteranganDokter);
+                jmlmenu++;
+            }
+            
+            if (akses.getsurat_keterangan_kir_mcu() == true) {
+                Panelmenu.add(btnSuratKeteranganDisabilitas);
                 jmlmenu++;
             }
             
@@ -14278,6 +14313,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getsurat_keterangan_kir_mcu() == true) {
             Panelmenu.add(btnSuratKeteranganDokter);
+            jmlmenu++;
+        }
+
+        if (akses.getsurat_keterangan_kir_mcu() == true) {
+            Panelmenu.add(btnSuratKeteranganDisabilitas);
             jmlmenu++;
         }
         
@@ -16180,6 +16220,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsurat_keterangan_kir_mcu() == true) {
             if (btnSuratKeteranganDokter.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSuratKeteranganDokter);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getsurat_keterangan_kir_mcu() == true) {
+            if (btnSuratKeteranganDisabilitas.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratKeteranganDisabilitas);
                 jmlmenu++;
             }
         }

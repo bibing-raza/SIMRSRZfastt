@@ -39,13 +39,13 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps;
-    private ResultSet rs;
+    private PreparedStatement ps, ps1;
+    private ResultSet rs, rs1;
     private int i = 0, x = 0;
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String sttsnomor = "", kddokter = "", thn = "", der1 = "", der2 = "", der3 = "", der4 = "", der5 = "", der6 = "",
-            fisik = "", sensorik = "", intelek = "", mental = "";
+            fisik = "", sensorik = "", intelek = "", mental = "", idumur = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -55,7 +55,15 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Kode Komite", "Nama Komite"}) {
+            "No. Rawat", "No. Surat", "No. RM", "Nama Pasien", "Tempat Lahir", "Tgl. Lahir", "Jns. Kelamin", "Alamat",
+            "Keperluan", "Dokter Pemeriksa", "Tgl. Surat", "disabilitas_fisik", "disabilitas_sensorik",
+            "disabilitas_intelektual", "disabilitas_mental", "fisik", "tangan_kaki", "sensorik", "intelektual", "mental", 
+            "derajat_disabilitas1", "derajat_disabilitas2", "derajat_disabilitas3", "derajat_disabilitas4", "derajat_disabilitas5", 
+            "derajat_disabilitas6", "kemampuan_mobilitas1", "kemampuan_mobilitas2", "gangguan_ekstremitas_atas", "ekstremitas_atas_kanan", 
+            "ekstremitas_atas_kiri", "gangguan_ekstremitas_bawah", "ekstremitas_bawah_kanan", "ekstremitas_bawah_kiri", "alat_bantu", 
+            "ket_alat_bantu", "penyebab", "tahun_penyebab", "penyakit_lain", "ket_penyakit_lain", "pengobatan", "ket_pengobatan", 
+            "catatan", "no_dokumen", "nip_dokter"
+        }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -66,12 +74,132 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         tbSurat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSurat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 45; i++) {
             TableColumn column = tbSurat.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(120);
+            } else if (i == 2) {
+                column.setPreferredWidth(65);
+            } else if (i == 3) {
+                column.setPreferredWidth(250);
+            } else if (i == 4) {
+                column.setPreferredWidth(180);
+            } else if (i == 5) {
+                column.setPreferredWidth(80);
+            } else if (i == 6) {
+                column.setPreferredWidth(80);
+            } else if (i == 7) {
+                column.setPreferredWidth(220);
+            } else if (i == 8) {
+                column.setPreferredWidth(250);
+            } else if (i == 9) {
+                column.setPreferredWidth(220);
+            } else if (i == 10) {
+                column.setPreferredWidth(80);
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 12) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 13) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 18) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 29) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 30) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 31) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 32) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 33) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 34) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 35) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 36) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 39) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 40) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 41) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 42) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 43) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 44) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbSurat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -264,6 +392,13 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         Tnmdokter = new widget.TextBox();
         BtnDokter = new widget.Button();
         jLabel33 = new widget.Label();
+        panelGlass8 = new widget.panelisi();
+        BtnSimpan = new widget.Button();
+        BtnBatal = new widget.Button();
+        BtnHapus = new widget.Button();
+        BtnGanti = new widget.Button();
+        BtnPrint = new widget.Button();
+        BtnKeluar = new widget.Button();
         internalFrame4 = new widget.InternalFrame();
         Scroll1 = new widget.ScrollPane();
         tbSurat = new widget.Table();
@@ -275,19 +410,21 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         jLabel49 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
+        BtnAll = new widget.Button();
         jLabel50 = new widget.Label();
         LCount = new widget.Label();
-        panelGlass8 = new widget.panelisi();
-        BtnSimpan = new widget.Button();
-        BtnBatal = new widget.Button();
-        BtnHapus = new widget.Button();
-        BtnGanti = new widget.Button();
-        BtnAll = new widget.Button();
-        BtnKeluar = new widget.Button();
+        BtnHapus1 = new widget.Button();
+        BtnPrint1 = new widget.Button();
+        BtnKeluar1 = new widget.Button();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Keterangan Dokter (Disabilitas) ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -665,7 +802,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         ChkDerajat6.setBounds(185, 374, 590, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel14.setText("Kemampuan Mobilitas 1.) :");
+        jLabel14.setText("Kemampuan Mobilitas : 1.");
         jLabel14.setName("jLabel14"); // NOI18N
         PanelInput.add(jLabel14);
         jLabel14.setBounds(0, 402, 180, 23);
@@ -678,7 +815,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         cmbKemampuan1.setBounds(185, 402, 150, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("2.) : ");
+        jLabel15.setText("2.  ");
         jLabel15.setName("jLabel15"); // NOI18N
         PanelInput.add(jLabel15);
         jLabel15.setBounds(335, 402, 40, 23);
@@ -999,119 +1136,6 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
 
         internalFrame3.add(scrollInput, java.awt.BorderLayout.CENTER);
 
-        TabSurat.addTab("Input Surat", internalFrame3);
-
-        internalFrame4.setBorder(null);
-        internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
-
-        Scroll1.setName("Scroll1"); // NOI18N
-        Scroll1.setOpaque(true);
-        Scroll1.setPreferredSize(new java.awt.Dimension(452, 200));
-
-        tbSurat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbSurat.setName("tbSurat"); // NOI18N
-        tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbSuratMouseClicked(evt);
-            }
-        });
-        tbSurat.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbSuratKeyPressed(evt);
-            }
-        });
-        Scroll1.setViewportView(tbSurat);
-
-        internalFrame4.add(Scroll1, java.awt.BorderLayout.CENTER);
-
-        panelGlass9.setName("panelGlass9"); // NOI18N
-        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
-
-        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel46.setText("Tgl. Surat :");
-        jLabel46.setName("jLabel46"); // NOI18N
-        jLabel46.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass9.add(jLabel46);
-
-        DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
-        DTPCari1.setDisplayFormat("dd-MM-yyyy");
-        DTPCari1.setName("DTPCari1"); // NOI18N
-        DTPCari1.setOpaque(false);
-        DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass9.add(DTPCari1);
-
-        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setText("s.d.");
-        jLabel48.setName("jLabel48"); // NOI18N
-        jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
-        panelGlass9.add(jLabel48);
-
-        DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
-        DTPCari2.setDisplayFormat("dd-MM-yyyy");
-        DTPCari2.setName("DTPCari2"); // NOI18N
-        DTPCari2.setOpaque(false);
-        DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
-        panelGlass9.add(DTPCari2);
-
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel49.setText("Key Word :");
-        jLabel49.setName("jLabel49"); // NOI18N
-        jLabel49.setPreferredSize(new java.awt.Dimension(80, 23));
-        panelGlass9.add(jLabel49);
-
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
-        TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(195, 23));
-        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCariKeyPressed(evt);
-            }
-        });
-        panelGlass9.add(TCari);
-
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('T');
-        BtnCari.setText("Tampilkan Data");
-        BtnCari.setToolTipText("Alt+T");
-        BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
-        BtnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCariActionPerformed(evt);
-            }
-        });
-        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCariKeyPressed(evt);
-            }
-        });
-        panelGlass9.add(BtnCari);
-
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel50.setText("Record :");
-        jLabel50.setName("jLabel50"); // NOI18N
-        jLabel50.setPreferredSize(new java.awt.Dimension(60, 23));
-        panelGlass9.add(jLabel50);
-
-        LCount.setForeground(new java.awt.Color(0, 0, 0));
-        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount.setText("0");
-        LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass9.add(LCount);
-
-        internalFrame4.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
-
-        TabSurat.addTab("Data Surat", internalFrame4);
-
-        internalFrame1.add(TabSurat, java.awt.BorderLayout.CENTER);
-
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(55, 47));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
@@ -1192,24 +1216,24 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
-        BtnAll.setText("Semua");
-        BtnAll.setToolTipText("Alt+M");
-        BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnAll.addActionListener(new java.awt.event.ActionListener() {
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAllActionPerformed(evt);
+                BtnPrintActionPerformed(evt);
             }
         });
-        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnAllKeyPressed(evt);
+                BtnPrintKeyPressed(evt);
             }
         });
-        panelGlass8.add(BtnAll);
+        panelGlass8.add(BtnPrint);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -1230,7 +1254,181 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnKeluar);
 
-        internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
+        internalFrame3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
+
+        TabSurat.addTab("Input Surat", internalFrame3);
+
+        internalFrame4.setBorder(null);
+        internalFrame4.setName("internalFrame4"); // NOI18N
+        internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
+
+        Scroll1.setName("Scroll1"); // NOI18N
+        Scroll1.setOpaque(true);
+        Scroll1.setPreferredSize(new java.awt.Dimension(452, 200));
+
+        tbSurat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbSurat.setName("tbSurat"); // NOI18N
+        tbSurat.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                tbSuratMouseClicked(evt);
+            }
+        });
+        tbSurat.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                tbSuratKeyPressed(evt);
+            }
+        });
+        Scroll1.setViewportView(tbSurat);
+
+        internalFrame4.add(Scroll1, java.awt.BorderLayout.CENTER);
+
+        panelGlass9.setName("panelGlass9"); // NOI18N
+        panelGlass9.setPreferredSize(new java.awt.Dimension(44, 47));
+        panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel46.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel46.setText("Tgl. Surat :");
+        jLabel46.setName("jLabel46"); // NOI18N
+        jLabel46.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(jLabel46);
+
+        DTPCari1.setEditable(false);
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
+        DTPCari1.setDisplayFormat("dd-MM-yyyy");
+        DTPCari1.setName("DTPCari1"); // NOI18N
+        DTPCari1.setOpaque(false);
+        DTPCari1.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass9.add(DTPCari1);
+
+        jLabel48.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel48.setText("s.d.");
+        jLabel48.setName("jLabel48"); // NOI18N
+        jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelGlass9.add(jLabel48);
+
+        DTPCari2.setEditable(false);
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
+        DTPCari2.setDisplayFormat("dd-MM-yyyy");
+        DTPCari2.setName("DTPCari2"); // NOI18N
+        DTPCari2.setOpaque(false);
+        DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass9.add(DTPCari2);
+
+        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel49.setText("Key Word :");
+        jLabel49.setName("jLabel49"); // NOI18N
+        jLabel49.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass9.add(jLabel49);
+
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
+        TCari.setName("TCari"); // NOI18N
+        TCari.setPreferredSize(new java.awt.Dimension(195, 23));
+        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(TCari);
+
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('T');
+        BtnCari.setText("Tampilkan Data");
+        BtnCari.setToolTipText("Alt+T");
+        BtnCari.setName("BtnCari"); // NOI18N
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariActionPerformed(evt);
+            }
+        });
+        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(BtnCari);
+
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
+        BtnAll.setText("Semua");
+        BtnAll.setToolTipText("Alt+M");
+        BtnAll.setName("BtnAll"); // NOI18N
+        BtnAll.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnAll.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAllActionPerformed(evt);
+            }
+        });
+        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnAllKeyPressed(evt);
+            }
+        });
+        panelGlass9.add(BtnAll);
+
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("Record :");
+        jLabel50.setName("jLabel50"); // NOI18N
+        jLabel50.setPreferredSize(new java.awt.Dimension(60, 23));
+        panelGlass9.add(jLabel50);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(LCount);
+
+        BtnHapus1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus1.setMnemonic('H');
+        BtnHapus1.setText("Hapus");
+        BtnHapus1.setToolTipText("Alt+H");
+        BtnHapus1.setName("BtnHapus1"); // NOI18N
+        BtnHapus1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapus1ActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnHapus1);
+
+        BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint1.setMnemonic('T');
+        BtnPrint1.setText("Cetak");
+        BtnPrint1.setToolTipText("Alt+T");
+        BtnPrint1.setName("BtnPrint1"); // NOI18N
+        BtnPrint1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPrint1ActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnPrint1);
+
+        BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnKeluar1.setMnemonic('K');
+        BtnKeluar1.setText("Keluar");
+        BtnKeluar1.setToolTipText("Alt+K");
+        BtnKeluar1.setName("BtnKeluar1"); // NOI18N
+        BtnKeluar1.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnKeluar1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnKeluar1ActionPerformed(evt);
+            }
+        });
+        panelGlass9.add(BtnKeluar1);
+
+        internalFrame4.add(panelGlass9, java.awt.BorderLayout.PAGE_END);
+
+        TabSurat.addTab("Data Surat", internalFrame4);
+
+        internalFrame1.add(TabSurat, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(internalFrame1, java.awt.BorderLayout.CENTER);
 
@@ -1311,7 +1509,52 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         } else {
             if (tbSurat.getSelectedRow() > -1) {
                 cekData();
+                if (Sequel.mengedittf("surat_keterangan_dokter", "no_rawat=?", "tgl_surat=?, tempat_tinggal=?, keperluan=?, nip_dokter=?, tmpt_lahir=?, "
+                        + "nm_pasien=?, no_dokumen=?", 8, new String[]{
+                            Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TAlamat.getText(), Tkeperluan.getText(), kddokter, TTempLahr.getText(),
+                            TPasien.getText(), TnoDokumen.getText(),
+                            tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                        }) == true) {
 
+                    Sequel.mengedit("surat_keterangan_dokter_disabilitas", "no_rawat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString() + "'",
+                            "disabilitas_fisik='" + fisik + "', "
+                            + "disabilitas_sensorik='" + sensorik + "', "
+                            + "disabilitas_intelektual='" + intelek + "', "
+                            + "disabilitas_mental='" + mental + "', "
+                            + "fisik='" + cmbFisik.getSelectedItem().toString() + "', "
+                            + "tangan_kaki='" + cmbTanganKaki.getSelectedItem().toString() + "', "
+                            + "sensorik='" + cmbSensorik.getSelectedItem().toString() + "', "
+                            + "intelektual='" + cmbIntelektual.getSelectedItem().toString() + "', "
+                            + "mental='" + cmbMental.getSelectedItem().toString() + "', "
+                            + "derajat_disabilitas1='" + der1 + "', "
+                            + "derajat_disabilitas2='" + der2 + "', "
+                            + "derajat_disabilitas3='" + der3 + "', "
+                            + "derajat_disabilitas4='" + der4 + "', "
+                            + "derajat_disabilitas5='" + der5 + "', "
+                            + "derajat_disabilitas6='" + der6 + "', "
+                            + "kemampuan_mobilitas1='" + cmbKemampuan1.getSelectedItem().toString() + "', "
+                            + "kemampuan_mobilitas2='" + cmbKemampuan2.getSelectedItem().toString() + "', "
+                            + "gangguan_ekstremitas_atas='" + TekstremAtas.getText() + "', "
+                            + "ekstremitas_atas_kanan='" + cmbKananAtas.getSelectedItem().toString() + "', "
+                            + "ekstremitas_atas_kiri='" + cmbKiriAtas.getSelectedItem().toString() + "', "
+                            + "gangguan_ekstremitas_bawah='" + TekstremBawah.getText() + "', "
+                            + "ekstremitas_bawah_kanan='" + cmbKananBawah.getSelectedItem().toString() + "', "
+                            + "ekstremitas_bawah_kiri='" + cmbKiriBawah.getSelectedItem().toString() + "', "
+                            + "alat_bantu='" + cmbAlat.getSelectedItem().toString() + "', "
+                            + "ket_alat_bantu='" + Talat.getText() + "', "
+                            + "penyebab='" + cmbPenyebab.getSelectedItem().toString() + "', "
+                            + "tahun_penyebab='" + Ttahun.getText() + "', "
+                            + "penyakit_lain='" + cmbPenyakit.getSelectedItem().toString() + "', "
+                            + "ket_penyakit_lain='" + Tpenyakit.getText() + "', "
+                            + "pengobatan='" + cmbPengobatan.getSelectedItem().toString() + "', "
+                            + "ket_pengobatan='" + Tpengobatan.getText() + "', "
+                            + "catatan='" + Tcatatan.getText() + "'");
+
+                    TCari.setText(TNoRW.getText());
+                    tampil();
+                    emptTeks();
+                    TabSurat.setSelectedIndex(1);
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
                 TabSurat.setSelectedIndex(1);
@@ -1528,9 +1771,6 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
                 getData();
             } catch (java.lang.NullPointerException e) {
             }
-            if ((evt.getClickCount() == 2) && (tbSurat.getSelectedColumn() == 0)) {
-                TabSurat.setSelectedIndex(0);
-            }
         }
     }//GEN-LAST:event_tbSuratMouseClicked
 
@@ -1546,11 +1786,11 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     }//GEN-LAST:event_tbSuratKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
     }//GEN-LAST:event_TCariKeyPressed
@@ -1576,31 +1816,30 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     }//GEN-LAST:event_TabSuratMouseClicked
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (TNoRW.getText().trim().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data pasiennya pada tabel...!!!!");
-            tbSurat.requestFocus();
-        } else {
-            if (tbSurat.getSelectedRow() > -1) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    if (Sequel.queryu2tf("delete from surat_keterangan_dokter where no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?", 1, new String[]{
-                        tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                    }) == true) {
-                        Sequel.meghapus("surat_keterangan_dokter_disabilitas", "no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?",
-                                tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
+        if (tbSurat.getSelectedRow() > -1) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.queryu2tf("delete from surat_keterangan_dokter where no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?", 1, new String[]{
+                    tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                }) == true) {
+                    Sequel.meghapus("surat_keterangan_dokter_disabilitas", "no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?",
+                            tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
 
-                        TCari.setText("");
-                        emptTeks();
-                        tampil();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                    }
+                    TCari.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
+                    emptTeks();
+                    tampil();
+                    TabSurat.setSelectedIndex(1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
-                TabSurat.setSelectedIndex(1);
-                tbSurat.requestFocus();
+                emptTeks();
+                tampil();
             }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            TabSurat.setSelectedIndex(1);
+            tbSurat.requestFocus();
         }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1609,6 +1848,271 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
             BtnHapusActionPerformed(null);
         }
     }//GEN-LAST:event_BtnHapusKeyPressed
+
+    private void BtnKeluar1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluar1ActionPerformed
+        BtnKeluarActionPerformed(null);
+    }//GEN-LAST:event_BtnKeluar1ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+        if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter_disabilitas where no_rawat='" + TNoRW.getText() + "'") > 0) {
+            TabSurat.setSelectedIndex(1);
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_dokter_disabilitas where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            TabSurat.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_formWindowOpened
+
+    private void BtnHapus1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapus1ActionPerformed
+        BtnHapusActionPerformed(null);
+    }//GEN-LAST:event_BtnHapus1ActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (tbSurat.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+//            param.put("tglasuhan", "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(tglAsuhan.getSelectedItem() + "")));
+//            param.put("bb", Tbb.getText() + " Kg.");
+//            param.put("tb", Ttb.getText() + " Cm.");
+//            param.put("imt", Timt.getText() + " Kg/Cm3");
+//            param.put("lila", Tlila.getText() + " Cm.");
+//            param.put("bbi", Tbbi.getText() + " Kg.");
+//            param.put("tl", Ttl.getText() + " Cm.");
+//            param.put("ulna", Tulna.getText() + " Cm.");
+//            param.put("tbest", TtbEst.getText() + " Cm.");
+//            param.put("bbkoreksi", TtbEst.getText() + " Kg.");
+//            param.put("biokimia", Tbiokimia.getText() + "\n");
+//
+//            if (cmbAsuhan.getSelectedIndex() == 1) {
+//                param.put("statusGZ", cmbSttsGizi.getSelectedItem().toString());
+//            } else if (cmbAsuhan.getSelectedIndex() == 2) {
+//                if (ChkBbu.isSelected() == true) {
+//                    gizianak1 = ChkBbu.getText() + " : " + TketBbu.getText() + ", Kategori Status Gizi : " + cmbBbu.getSelectedItem().toString() + "\n";
+//                } else {
+//                    gizianak1 = "";
+//                }
+//
+//                if (ChkPbu.isSelected() == true) {
+//                    gizianak2 = ChkPbu.getText() + " : " + TketPbu.getText() + ", Kategori Status Gizi : " + cmbPbu.getSelectedItem().toString() + "\n";
+//                } else {
+//                    gizianak2 = "";
+//                }
+//
+//                if (ChkBbpb.isSelected() == true) {
+//                    gizianak3 = ChkBbpb.getText() + " : " + TketBbpb.getText() + ", Kategori Status Gizi : " + cmbBbpb.getSelectedItem().toString() + "\n";
+//                } else {
+//                    gizianak3 = "";
+//                }
+//                param.put("statusGZ", gizianak1 + gizianak2 + gizianak3);
+//            }
+//
+//            if (ChkMual.isSelected() == true) {
+//                klinis1 = ChkMual.getText() + "\n";
+//            } else {
+//                klinis1 = "";
+//            }
+//
+//            if (ChkNyeri.isSelected() == true) {
+//                klinis2 = ChkNyeri.getText() + "\n";
+//            } else {
+//                klinis2 = "";
+//            }
+//
+//            if (ChkDiare.isSelected() == true) {
+//                klinis3 = ChkDiare.getText() + "\n";
+//            } else {
+//                klinis3 = "";
+//            }
+//
+//            if (ChkKesulitan.isSelected() == true) {
+//                klinis4 = ChkKesulitan.getText();
+//            } else {
+//                klinis4 = "";
+//            }
+//            dataKlinis1 = klinis1 + klinis2 + klinis3 + klinis4;
+//
+//            if (ChkOedema.isSelected() == true) {
+//                klinis5 = ChkOedema.getText() + "\n";
+//            } else {
+//                klinis5 = "";
+//            }
+//
+//            if (ChkKonstipasi.isSelected() == true) {
+//                klinis6 = ChkKonstipasi.getText() + "\n";
+//            } else {
+//                klinis6 = "";
+//            }
+//
+//            if (ChkAnorek.isSelected() == true) {
+//                klinis7 = ChkAnorek.getText() + "\n";
+//            } else {
+//                klinis7 = "";
+//            }
+//
+//            if (ChkGangguan.isSelected() == true) {
+//                klinis8 = ChkGangguan.getText() + "\n";
+//            } else {
+//                klinis8 = "";
+//            }
+//            dataKlinis2 = klinis5 + klinis6 + klinis7 + klinis8 + TklinisLain.getText();
+//
+//            if (ChkMakanLebih3.isSelected() == true) {
+//                riw1 = ChkMakanLebih3.getText() + "\n";
+//            } else {
+//                riw1 = "";
+//            }
+//
+//            if (ChkMakanKurang3.isSelected() == true) {
+//                riw2 = ChkMakanKurang3.getText() + "\n";
+//            } else {
+//                riw2 = "";
+//            }
+//
+//            if (TriwayatLain.getText().equals("")) {
+//                TriwayatLain.setText("");
+//            } else {
+//                TriwayatLain.setText(TriwayatLain.getText() + "\n");
+//            }
+//
+//            if (ChkAlergi.isSelected() == true) {
+//                riw3 = ChkAlergi.getText() + " : " + Talergi.getText() + "\n";
+//            } else {
+//                riw3 = "";
+//            }
+//
+//            if (ChkPantangan.isSelected() == true) {
+//                riw4 = ChkPantangan.getText() + " : " + Tpantangan.getText();
+//            } else {
+//                riw4 = "";
+//            }
+//            dataRiwayat1 = "RIWAYAT GIZI \n"
+//            + "Riwayat Makan SMRS \n" + riw1 + riw2 + TriwayatLain.getText() + riw3 + riw4;
+//
+//            if (ChkAsupanCukup.isSelected() == true) {
+//                riw5 = ChkAsupanCukup.getText() + "\n";
+//            } else {
+//                riw5 = "";
+//            }
+//
+//            if (ChkAsupanMenurun.isSelected() == true) {
+//                riw6 = ChkAsupanMenurun.getText() + "\n";
+//            } else {
+//                riw6 = "";
+//            }
+//
+//            if (ChkAsupanRendah.isSelected() == true) {
+//                riw7 = ChkAsupanRendah.getText() + "\n";
+//            } else {
+//                riw7 = "";
+//            }
+//
+//            if (ChkAsupanTdkCukup.isSelected() == true) {
+//                riw8 = ChkAsupanTdkCukup.getText() + "\n";
+//            } else {
+//                riw8 = "";
+//            }
+//            dataRiwayat2 = "\nAsupan Makan SMRS \n" + riw5 + riw6 + riw7 + riw8 + "Hasil Recall Intake : " + cmbHasilRecal.getSelectedItem().toString();
+//
+//            if (cmbProtein.getSelectedIndex() == 3) {
+//                param.put("protein", Tprotein.getText());
+//            } else {
+//                param.put("protein", cmbProtein.getSelectedItem().toString());
+//            }
+//
+//            if (cmbLemak.getSelectedIndex() == 3) {
+//                param.put("lemak", Tlemak.getText());
+//            } else {
+//                param.put("lemak", cmbLemak.getSelectedItem().toString());
+//            }
+//
+//            if (cmbKarbo.getSelectedIndex() == 3) {
+//                param.put("karbo", Tkarbo.getText());
+//            } else {
+//                param.put("karbo", cmbKarbo.getSelectedItem().toString());
+//            }
+//
+//            if (ChkAsupanMakan.isSelected() == true) {
+//                ren1 = ChkAsupanMakan.getText() + ", ";
+//            } else {
+//                ren1 = "";
+//            }
+//
+//            if (ChkAntropometri.isSelected() == true) {
+//                ren2 = ChkAntropometri.getText() + ", ";
+//            } else {
+//                ren2 = "";
+//            }
+//
+//            if (ChkBiokimia.isSelected() == true) {
+//                ren3 = ChkBiokimia.getText() + ", ";
+//            } else {
+//                ren3 = "";
+//            }
+//
+//            if (ChkKlinis.isSelected() == true) {
+//                ren4 = ChkKlinis.getText() + ", ";
+//            } else {
+//                ren4 = "";
+//            }
+//
+//            if (ChkLain_lain.isSelected() == true) {
+//                ren5 = ChkLain_lain.getText();
+//            } else {
+//                ren5 = "";
+//            }
+//
+//            if (ren1.equals("") && ren2.equals("") && ren3.equals("") && ren4.equals("") && ren5.equals("")) {
+//                rencanamonev = "-";
+//            } else {
+//                rencanamonev = ren1 + ren2 + ren3 + ren4 + ren5;
+//            }
+//
+//            param.put("dataklinis1", dataKlinis1);
+//            param.put("dataklinis2", dataKlinis2);
+//            param.put("dataRiwayat1", dataRiwayat1);
+//            param.put("dataRiwayat2", dataRiwayat2);
+//            param.put("riwayatpenyakit", TriwPenyakit.getText() + "\n");
+//            param.put("diagnosa", diagnosaPrin + "\n");
+//            param.put("berkaitan", Tberkaitan.getText() + "\n");
+//            param.put("ditandai", Tditandai.getText() + "\n");
+//            param.put("bentuk", cmbBentuk.getSelectedItem().toString() + ", ");
+//            param.put("rute", cmbRute.getSelectedItem().toString() + ", ");
+//            param.put("jenisdiet", TjnsDiet.getText());
+//            param.put("kalori", Tkalori.getText());
+//            param.put("rencanaMonev", rencanamonev);
+//            param.put("petugas", TnmPetugas.getText());
+//
+//            Valid.MyReport("rptCetakAsuhanGiziRanap.jasper", "report", "::[ Asuhan Gizi Pasien Rawat Inap ]::",
+//                "SELECT now() tanggal", param);
+//
+//            emptTeks();
+//            TabRawat.setSelectedIndex(1);
+//            tampil();
+//
+//            for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
+//                tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+//            }
+//            TCariDiagnosa.setText("");
+//            tampilDiagnosa();
+        } else {
+            JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
+            TabSurat.setSelectedIndex(1);
+            tbSurat.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrint1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrint1ActionPerformed
+        BtnPrintActionPerformed(null);
+    }//GEN-LAST:event_BtnPrint1ActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1634,7 +2138,11 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     private widget.Button BtnDokumen;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
+    private widget.Button BtnHapus1;
     private widget.Button BtnKeluar;
+    private widget.Button BtnKeluar1;
+    private widget.Button BtnPrint;
+    private widget.Button BtnPrint1;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkDerajat1;
     public widget.CekBox ChkDerajat2;
@@ -1736,22 +2244,93 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT kd_komite, nm_komite FROM jabatan_komite WHERE "
-                    + "kd_komite LIKE ? or "
-                    + "nm_komite like ? ORDER BY kd_komite");
-
+            ps = koneksi.prepareStatement("SELECT sd.*, p.no_rkm_medis, p.nm_pasien, sk.tmpt_lahir, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, "
+                    + "IF(p.jk='L','Laki-laki','Perempuan') jk, sk.tempat_tinggal, sk.keperluan, pg.nama dokter, sk.nip_dokter, "
+                    + "DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_dokumen FROM surat_keterangan_dokter_disabilitas sd "
+                    + "inner join surat_keterangan_dokter sk on sk.no_rawat=sd.no_rawat and sk.no_surat=sd.no_surat "
+                    + "inner join reg_periksa rp on rp.no_rawat=sd.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=sk.nip_dokter WHERE "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sd.no_rawat LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sd.no_surat LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.nm_pasien LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.tmpt_lahir LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND pg.nama LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.tempat_tinggal LIKE ? ORDER BY sk.tgl_surat DESC, sk.no_surat DESC");
             try {
-                ps.setString(1, "%" + TCari.getText().trim() + "%");
-                ps.setString(2, "%" + TCari.getText().trim() + "%");
-                rs = ps.executeQuery();                
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
+                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(21, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{                        
-                        rs.getString(1),
-                        rs.getString(2)
+                    tabMode.addRow(new String[]{
+                        rs.getString("no_rawat"),
+                        rs.getString("no_surat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("tmpt_lahir"),
+                        rs.getString("tgllahir"),
+                        rs.getString("jk"),
+                        rs.getString("tempat_tinggal"),
+                        rs.getString("keperluan"),
+                        rs.getString("dokter"),
+                        rs.getString("tglsurat"),
+                        rs.getString("disabilitas_fisik"),
+                        rs.getString("disabilitas_sensorik"),
+                        rs.getString("disabilitas_intelektual"),
+                        rs.getString("disabilitas_mental"),
+                        rs.getString("fisik"),
+                        rs.getString("tangan_kaki"),
+                        rs.getString("sensorik"),
+                        rs.getString("intelektual"),
+                        rs.getString("mental"),
+                        rs.getString("derajat_disabilitas1"),
+                        rs.getString("derajat_disabilitas2"),
+                        rs.getString("derajat_disabilitas3"),
+                        rs.getString("derajat_disabilitas4"),
+                        rs.getString("derajat_disabilitas5"),
+                        rs.getString("derajat_disabilitas6"),
+                        rs.getString("kemampuan_mobilitas1"),
+                        rs.getString("kemampuan_mobilitas2"),
+                        rs.getString("gangguan_ekstremitas_atas"),
+                        rs.getString("ekstremitas_atas_kanan"),
+                        rs.getString("ekstremitas_atas_kiri"),
+                        rs.getString("gangguan_ekstremitas_bawah"),
+                        rs.getString("ekstremitas_bawah_kanan"),
+                        rs.getString("ekstremitas_bawah_kiri"),
+                        rs.getString("alat_bantu"),
+                        rs.getString("ket_alat_bantu"),
+                        rs.getString("penyebab"),
+                        rs.getString("tahun_penyebab"),
+                        rs.getString("penyakit_lain"),
+                        rs.getString("ket_penyakit_lain"),
+                        rs.getString("pengobatan"),
+                        rs.getString("ket_pengobatan"),
+                        rs.getString("catatan"),
+                        rs.getString("no_dokumen"),
+                        rs.getString("nip_dokter")
                     });
                 }
             } catch (Exception e) {
-                System.out.println("rekammedis.DlgMasterJabatanKomite.tampil() : " + e);
+                System.out.println("permintaan.DlgSuratKeteranganDisabilitas.tampil() : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
@@ -1776,6 +2355,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         Tumur.setText("");
         TnoDokumen.setText("");
         sttsnomor = "";
+        TNoSurat.setText("");
         Tjk.setText("");
         TAlamat.setText("");
         
@@ -1825,12 +2405,81 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         Tkeperluan.setText("MELENGKAPI PERSYARATAN ");
         kddokter = "-";
         Tnmdokter.setText("-");
+        autoNomorSurat();
     }
 
     private void getData() {
+        kddokter = "";
+        der1 = "";
+        der2 = "";
+        der3 = "";
+        der4 = "";
+        der5 = "";
+        der6 = "";
+        fisik = "";
+        sensorik = "";
+        intelek = "";
+        mental = "";
+        idumur = "";
+        
         if (tbSurat.getSelectedRow() != -1) {
-//            kdkomite.setText(tbKomite.getValueAt(tbKomite.getSelectedRow(), 0).toString());
-//            nmkomite.setText(tbKomite.getValueAt(tbKomite.getSelectedRow(), 1).toString());        
+            TNoRW.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
+            TNoSurat.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString());
+            TNoRM.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 2).toString());
+            TPasien.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 3).toString());
+            TnoDokumen.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 43).toString());
+            TTempLahr.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 4).toString());
+            TtglLahir.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
+            Tjk.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 6).toString());
+            TAlamat.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 7).toString());
+            
+            fisik = tbSurat.getValueAt(tbSurat.getSelectedRow(), 11).toString();
+            sensorik = tbSurat.getValueAt(tbSurat.getSelectedRow(), 12).toString();
+            intelek = tbSurat.getValueAt(tbSurat.getSelectedRow(), 13).toString();
+            mental = tbSurat.getValueAt(tbSurat.getSelectedRow(), 14).toString();
+            cmbFisik.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 15).toString());
+            cmbTanganKaki.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 16).toString());
+            cmbSensorik.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 17).toString());
+            cmbIntelektual.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 18).toString());
+            cmbMental.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 19).toString());
+            
+            der1 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 20).toString();
+            der2 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 21).toString();
+            der3 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 22).toString();
+            der4 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 23).toString();
+            der5 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 24).toString();
+            der6 = tbSurat.getValueAt(tbSurat.getSelectedRow(), 25).toString();
+            
+            cmbKemampuan1.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 26).toString());
+            cmbKemampuan2.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 27).toString());
+            TekstremAtas.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 28).toString());
+            cmbKananAtas.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 29).toString());
+            cmbKiriAtas.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 30).toString());
+            TekstremBawah.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 31).toString());
+            cmbKananBawah.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 32).toString());
+            cmbKiriBawah.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 33).toString());
+            cmbAlat.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 34).toString());
+            Talat.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 35).toString());
+            cmbPenyebab.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 36).toString());
+            Ttahun.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 37).toString());
+            cmbPenyakit.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 38).toString());
+            Tpenyakit.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 39).toString());
+            cmbPengobatan.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 40).toString());
+            Tpengobatan.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 41).toString());
+            Tcatatan.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 42).toString());
+            Tkeperluan.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 8).toString());
+            kddokter = tbSurat.getValueAt(tbSurat.getSelectedRow(), 44).toString();
+            Tnmdokter.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 9).toString());
+            
+            if (Sequel.cariIsi("select sttsumur from reg_periksa where no_rawat='" + TNoRW.getText() + "'").equals("Th")) {
+                idumur = "Tahun";
+            } else if (Sequel.cariIsi("select sttsumur from reg_periksa where no_rawat='" + TNoRW.getText() + "'").equals("Bl")) {
+                idumur = "Bulan";
+            } else {
+                idumur = "Hari";
+            }
+            Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + TNoRW.getText() + "'") + " " + idumur);
+            dataCek();
         }
     }
     
@@ -1838,13 +2487,14 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getsurat_keterangan_kir_mcu());
         BtnGanti.setEnabled(akses.getsurat_keterangan_kir_mcu());
         BtnHapus.setEnabled(akses.getsurat_keterangan_kir_mcu());
+        BtnHapus1.setEnabled(akses.getsurat_keterangan_kir_mcu());
     }
     
     public void autoNomorSurat() {
         thn = "";
         thn = Sequel.cariIsi("select date_format(tgl_surat,'%Y') from surat_keterangan_dokter order by tgl_surat desc limit 1");
         Valid.autoNomer6("select ifnull(MAX(CONVERT(LEFT(no_surat,4),signed)),0) from surat_keterangan_dokter where "
-                + "year(tgl_surat) ='" + thn + "'", " / RAZA", 4, TNoSurat);
+                + "year(tgl_surat) ='" + thn + "'", " / RAZA / " + thn, 4, TNoSurat);
     }
     
     private void cekData() {
@@ -1908,5 +2558,161 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         } else {
             der6 = "tidak";
         }
+    }
+    
+    private void dataCek() {
+        if (fisik.equals("ya")) {
+            ChkFisik.setSelected(true);
+            cmbFisik.setEnabled(true);
+            if (cmbFisik.getSelectedIndex() == 1 || cmbFisik.getSelectedIndex() == 2) {
+                cmbTanganKaki.setEnabled(true);
+            } else {
+                cmbTanganKaki.setEnabled(false);
+            }
+        } else {
+            ChkFisik.setSelected(false);
+            cmbFisik.setEnabled(false);
+            cmbTanganKaki.setEnabled(false);
+        }
+
+        if (sensorik.equals("ya")) {
+            ChkSensorik.setSelected(true);
+            cmbSensorik.setEnabled(true);
+        } else {
+            ChkSensorik.setSelected(false);
+            cmbSensorik.setEnabled(false);
+        }
+        
+        if (intelek.equals("ya")) {
+            ChkIntelektual.setSelected(true);
+            cmbIntelektual.setEnabled(true);
+        } else {
+            ChkIntelektual.setSelected(false);
+            cmbIntelektual.setEnabled(false);
+        }
+        
+        if (mental.equals("ya")) {
+            ChkMental.setSelected(true);
+            cmbMental.setEnabled(true);
+        } else {
+            ChkMental.setSelected(false);
+            cmbMental.setEnabled(false);
+        }
+        
+        //-----------------------------------------
+        if (der1.equals("ya")) {
+            ChkDerajat1.setSelected(true);
+        } else {
+            ChkDerajat1.setSelected(false);
+        }
+        
+        if (der2.equals("ya")) {
+            ChkDerajat2.setSelected(true);
+        } else {
+            ChkDerajat2.setSelected(false);
+        }
+        
+        if (der3.equals("ya")) {
+            ChkDerajat3.setSelected(true);
+        } else {
+            ChkDerajat3.setSelected(false);
+        }
+        
+        if (der4.equals("ya")) {
+            ChkDerajat4.setSelected(true);
+        } else {
+            ChkDerajat4.setSelected(false);
+        }
+        
+        if (der5.equals("ya")) {
+            ChkDerajat5.setSelected(true);
+        } else {
+            ChkDerajat5.setSelected(false);
+        }
+        
+        if (der6.equals("ya")) {
+            ChkDerajat6.setSelected(true);
+        } else {
+            ChkDerajat6.setSelected(false);
+        }
+        
+        //-----------------------------------------
+        if (cmbAlat.getSelectedIndex() == 1) {
+            Talat.setEnabled(true);
+        } else {
+            Talat.setEnabled(false);
+        }
+        
+        if (cmbPenyebab.getSelectedIndex() == 7) {
+            Ttahun.setEnabled(true);
+        } else {
+            Ttahun.setEnabled(false);
+        }
+        
+        if (cmbPenyakit.getSelectedIndex() == 1) {
+            Tpenyakit.setEnabled(true);
+        } else {
+            Tpenyakit.setEnabled(false);
+        }
+        
+        if (cmbPengobatan.getSelectedIndex() == 1) {
+            Tpengobatan.setEnabled(true);
+        } else {
+            Tpengobatan.setEnabled(false);
+        }
+    }
+    
+    public void setData(String norw) {
+        TPasien.requestFocus();
+        TCari.setText(norw);
+        try {
+            ps1 = koneksi.prepareStatement("SELECT rp.no_rawat, p.no_rkm_medis, p.nm_pasien, p.tmp_lahir, p.tgl_lahir, "
+                    + "concat(p.alamat,', Kel./Desa ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab./Kodya ',kb.nm_kab) alamat, "
+                    + "d.kd_dokter, d.nm_dokter, rp.tgl_registrasi, if(p.jk='L','Laki-laki','Perempuan') jk, rp.umurdaftar, rp.sttsumur FROM reg_periksa rp "
+                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel_domisili_pasien "
+                    + "INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab_domisili_pasien "
+                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE rp.no_rawat = '" + norw + "'");
+            try {
+                rs1 = ps1.executeQuery();
+                while (rs1.next()) {
+                    if (rs1.getString("sttsumur").equals("Th")) {
+                        idumur = "Tahun";
+                    } else if (rs1.getString("sttsumur").equals("Bl")) {
+                        idumur = "Bulan";
+                    } else if (rs1.getString("sttsumur").equals("Hr")) {
+                        idumur = "Hari";
+                    }
+                    
+                    TNoRW.setText(rs1.getString("no_rawat"));
+                    TNoRM.setText(rs1.getString("no_rkm_medis"));
+                    TPasien.setText(rs1.getString("nm_pasien"));
+                    TTempLahr.setText(rs1.getString("tmp_lahir"));
+                    TtglLahir.setText(Valid.SetTglINDONESIA(rs1.getString("tgl_lahir")));
+                    Tumur.setText(rs1.getString("umurdaftar") + " " + idumur);
+                    Tjk.setText(rs1.getString("jk"));
+                    TAlamat.setText(rs1.getString("alamat"));
+                    kddokter = rs1.getString("kd_dokter");
+                    Tnmdokter.setText(rs1.getString("nm_dokter"));
+                    DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
+                    DTPCari2.setDate(new Date());
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs1 != null) {
+                    rs1.close();
+                }
+                if (ps1 != null) {
+                    ps1.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    public void setTampil() {
+        TabSurat.setSelectedIndex(1);
+        TCari.requestFocus();
     }
 }

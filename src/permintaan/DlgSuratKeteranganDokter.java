@@ -1478,6 +1478,9 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 if (Sequel.queryu2tf("delete from surat_keterangan_dokter where no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?", 1, new String[]{
                     tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
                 }) == true) {
+                    Sequel.meghapus("surat_keterangan_dokter_disabilitas", "no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?",
+                            tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString());
+
                     TCari.setText("");
                     emptTeks();
                     tampil();                                  
@@ -2131,7 +2134,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         try {
             ps = koneksi.prepareStatement("SELECT rp.no_rawat, sk.no_surat, p.no_rkm_medis, sk.nm_pasien, sk.tmpt_lahir, "
                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, sk.pekerjaan, sk.tempat_tinggal, sk.permintaan_dari, sk.no_surat_dari, "
-                    + "sk.ada_tgl_nosurat, DATE_FORMAT(sk.tgl_surat_dari,'%d-%m-%Y') tglnosurat, sk.pemeriksaan_dinyatakan, "
+                    + "sk.ada_tgl_nosurat, if(sk.ada_tgl_nosurat='ya',DATE_FORMAT(sk.tgl_surat_dari,'%d-%m-%Y'),'') tglnosurat, sk.pemeriksaan_dinyatakan, "
                     + "sk.keperluan, sk.lama_berlaku, sk.satuan_lama, sk.bb, sk.tb, sk.gol_darah, pg.nama dokter, if(p.jk='L','Laki-laki','Perempuan') jk, "
                     + "DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_surat, sk.tgl_surat, sk.tgl_surat_dari, sk.nip_dokter, rp.kd_poli, "
                     + "sk.hasil_pemeriksaan, sk.diagnosa, sk.no_dokumen, sk.caten, sk.td, sk.nadi, sk.bmi, sk.disabilitas FROM reg_periksa rp "
@@ -2238,6 +2241,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TTempLahr.setText("");
         TtglLahir.setText("");
         TnoDokumen.setText("");
+        TNoSurat.setText("");
         sttsnomor = "";
         Tjk.setText("");
         TPekerjaan.setText("");
@@ -2267,6 +2271,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         Ttensi.setText("");
         Tnadi.setText("");
         Tbmi.setText("");
+        noSuratFix = "";
         autoNomorSurat();
     }
 

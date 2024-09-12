@@ -78,6 +78,7 @@ import permintaan.DlgCariPermintaanLab;
 import permintaan.DlgCariPermintaanRadiologi;
 import permintaan.DlgPermintaanRadiologi;
 import permintaan.DlgSuratIstirahatSakit;
+import permintaan.DlgSuratKeteranganDisabilitas;
 import permintaan.DlgSuratKeteranganDokter;
 import permintaan.DlgSuratKeteranganNapza;
 import permintaan.DlgSuratKeteranganRohani;
@@ -677,6 +678,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnSuratKeteranganNapza = new javax.swing.JMenuItem();
         MnSuratKeteranganRohani = new javax.swing.JMenuItem();
         MnSuratKeteranganDokter = new javax.swing.JMenuItem();
+        MnSuratKeteranganDisabilitas = new javax.swing.JMenuItem();
         MnRegistrasiKeTBDOT = new javax.swing.JMenuItem();
         MnPermintaanLab = new javax.swing.JMenuItem();
         MnPermintaanRadiologi = new javax.swing.JMenuItem();
@@ -1446,6 +1448,22 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
             }
         });
         MnPermintaan.add(MnSuratKeteranganDokter);
+
+        MnSuratKeteranganDisabilitas.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSuratKeteranganDisabilitas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnSuratKeteranganDisabilitas.setText("Surat Keterangan Disabilitas");
+        MnSuratKeteranganDisabilitas.setEnabled(false);
+        MnSuratKeteranganDisabilitas.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnSuratKeteranganDisabilitas.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnSuratKeteranganDisabilitas.setIconTextGap(5);
+        MnSuratKeteranganDisabilitas.setName("MnSuratKeteranganDisabilitas"); // NOI18N
+        MnSuratKeteranganDisabilitas.setPreferredSize(new java.awt.Dimension(200, 26));
+        MnSuratKeteranganDisabilitas.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSuratKeteranganDisabilitasActionPerformed(evt);
+            }
+        });
+        MnPermintaan.add(MnSuratKeteranganDisabilitas);
 
         MnRegistrasiKeTBDOT.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnRegistrasiKeTBDOT.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3256,7 +3274,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         norwBoking.setBounds(298, 110, 177, 23);
 
         tglPeriksa.setEditable(false);
-        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024" }));
+        tglPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
         tglPeriksa.setDisplayFormat("dd-MM-yyyy");
         tglPeriksa.setName("tglPeriksa"); // NOI18N
         tglPeriksa.setOpaque(false);
@@ -4127,7 +4145,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -4364,7 +4382,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel15.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass8.add(jLabel15);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4383,7 +4401,7 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         jLabel17.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel17);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -8232,6 +8250,28 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         }
     }//GEN-LAST:event_MnLembarObservasiActionPerformed
 
+    private void MnSuratKeteranganDisabilitasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSuratKeteranganDisabilitasActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            BtnCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                DlgSuratKeteranganDisabilitas form = new DlgSuratKeteranganDisabilitas(null, false);
+                form.isCek();
+                form.emptTeks();
+                form.setData(TNoRw.getText());
+                form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnSuratKeteranganDisabilitasActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -8389,6 +8429,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnStatusPasienAllKunjungan;
     private javax.swing.JMenuItem MnSudah;
     private javax.swing.JMenuItem MnSuratIstirahatSakit;
+    private javax.swing.JMenuItem MnSuratKeteranganDisabilitas;
     private javax.swing.JMenuItem MnSuratKeteranganDokter;
     private javax.swing.JMenuItem MnSuratKeteranganNapza;
     private javax.swing.JMenuItem MnSuratKeteranganRohani;
@@ -8815,6 +8856,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         MnSuratKeteranganNapza.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnSuratKeteranganRohani.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnSuratKeteranganDokter.setEnabled(akses.getsurat_keterangan_kir_mcu());
+        MnSuratKeteranganDisabilitas.setEnabled(akses.getsurat_keterangan_kir_mcu());
         MnCekRujukanJKN.setEnabled(akses.getbpjs_cek_kartu());
         MnAsesmenMedikObstetri.setEnabled(akses.getpenilaian_awal_medis_ralan_kebidanan());
         MnInputDataTransferSerahTerimaIGD.setEnabled(akses.getpemberian_obat());
