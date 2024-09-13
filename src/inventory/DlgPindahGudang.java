@@ -45,6 +45,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
     private riwayatobat Trackobat = new riwayatobat();
+    private String dialog_simpan = "";
     private double stokbarang2;
     ResultSet rs;
 
@@ -190,6 +191,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         MnSummaryMutasiPerUnit = new javax.swing.JMenuItem();
         MnSummaryMutasiPerAllUnit = new javax.swing.JMenuItem();
         MnSummaryMutasiGlobalUnit = new javax.swing.JMenuItem();
+        MnSummaryMutasiGlobalUnitExcel = new javax.swing.JMenuItem();
         panelisi4 = new widget.panelisi();
         label32 = new widget.Label();
         Tanggal = new widget.Tanggal();
@@ -284,6 +286,18 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
             }
         });
         jMnLaporan.add(MnSummaryMutasiGlobalUnit);
+
+        MnSummaryMutasiGlobalUnitExcel.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnSummaryMutasiGlobalUnitExcel.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        MnSummaryMutasiGlobalUnitExcel.setText("Global Summary Mutasi Unit Farmasi Excel");
+        MnSummaryMutasiGlobalUnitExcel.setName("MnSummaryMutasiGlobalUnitExcel"); // NOI18N
+        MnSummaryMutasiGlobalUnitExcel.setPreferredSize(new java.awt.Dimension(220, 27));
+        MnSummaryMutasiGlobalUnitExcel.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnSummaryMutasiGlobalUnitExcelActionPerformed(evt);
+            }
+        });
+        jMnLaporan.add(MnSummaryMutasiGlobalUnitExcel);
 
         Popup.add(jMnLaporan);
 
@@ -473,7 +487,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-04-2018" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2020" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -488,7 +502,7 @@ public final class DlgPindahGudang extends javax.swing.JDialog {
         panelisi3.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-04-2018" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2020" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -908,6 +922,27 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnSummaryMutasiGlobalUnitActionPerformed
 
+    private void MnSummaryMutasiGlobalUnitExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnSummaryMutasiGlobalUnitExcelActionPerformed
+        // TODO add your handling code here:
+        dialog_simpan = "";
+        dialog_simpan = Valid.openDialog();
+        if (!dialog_simpan.equals("the user cancelled the operation")) {
+            if (Valid.MyReportToExcelBoolean(
+                    " select (select nm_bangsal from bangsal where kd_bangsal=kd_bangsaldari) as 'Dari', "
+                    + " (select nm_bangsal from bangsal where kd_bangsal=kd_bangsalke) as 'Ke', "
+                    + " databarang.nama_brng 'Nama Barang',sum(mutasibarang.jml) as 'Jumlah', databarang.h_beli as 'Harga', sum(mutasibarang.jml)*databarang.ralan as 'Total' "
+                    + " from mutasibarang inner join databarang "
+                    + " on mutasibarang.kode_brng=databarang.kode_brng "
+                    + " where mutasibarang.tanggal between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
+                    + " GROUP BY mutasibarang.kode_brng, mutasibarang.keterangan "
+                    + " order by databarang.nama_brng", dialog_simpan) == true) {
+                JOptionPane.showMessageDialog(null, "Data berhasil diexport menjadi file excel,..!!!");
+            } else {
+                JOptionPane.showMessageDialog(null, "Data gagal diexport menjadi file excel,..!!!");
+            }
+        }
+    }//GEN-LAST:event_MnSummaryMutasiGlobalUnitExcelActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -935,6 +970,7 @@ private void BtnCetakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
     private widget.TextBox Keterangan;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnSummaryMutasiGlobalUnit;
+    private javax.swing.JMenuItem MnSummaryMutasiGlobalUnitExcel;
     private javax.swing.JMenuItem MnSummaryMutasiPerAllUnit;
     private javax.swing.JMenuItem MnSummaryMutasiPerUnit;
     private javax.swing.JPopupMenu Popup;
