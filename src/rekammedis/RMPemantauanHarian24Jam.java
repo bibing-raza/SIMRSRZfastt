@@ -3163,7 +3163,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
     public void emptTeks() {
         tglPantau.setDate(new Date());
         tglPantau.requestFocus();
-        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));        
+//        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        DTPCariB.setDate(new Date());
         Tnadi.setText("");        
         Tsuhu.setText("");
         cmbJam.setSelectedIndex(0);
@@ -3572,7 +3573,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TNoRw.setText(norw);
         TNoRm.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norw + "'"));
         TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRm.getText() + "'"));
-        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+//        Valid.SetTgl(DTPCariB, Sequel.cariIsi("select DATE_ADD(now(),interval 30 day)"));
+        DTPCariB.setDate(new Date());
         TrgRawat.setText(rgrawat);
         ruangranap = rgrawat;
         Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));

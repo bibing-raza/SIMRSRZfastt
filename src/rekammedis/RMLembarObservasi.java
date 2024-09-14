@@ -118,7 +118,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbObservasi.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1=new DefaultTableModel(null,new String[]{
-            "No. Rawat", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
+            "No. Rawat", "Tgl. Observasi", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
             "Tindakan", "Ruangan", "jam", "wktSimpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -130,14 +130,14 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbObsPasien.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbObsPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 14; i++) {
+        for (i = 0; i < 15; i++) {
             TableColumn column = tbObsPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(58);
             } else if (i == 3) {
                 column.setPreferredWidth(65);
             } else if (i == 4) {
@@ -149,7 +149,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(65);
             } else if (i == 8) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(65);
             } else if (i == 9) {
                 column.setPreferredWidth(200);
             } else if (i == 10) {
@@ -157,9 +157,11 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setPreferredWidth(200);
             } else if (i == 12) {
+                column.setPreferredWidth(200);
+            } else if (i == 13) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 13) {
+            } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } 
@@ -167,7 +169,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbObsPasien.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode2=new DefaultTableModel(null,new String[]{
-            "No. Rawat", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
+            "No. Rawat", "Tgl. Observasi", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
             "Tindakan", "Ruangan", "jam", "wktSimpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -179,15 +181,15 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbDetailObs.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDetailObs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 14; i++) {
+        for (i = 0; i < 15; i++) {
             TableColumn column = tbDetailObs.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(58);
             } else if (i == 3) {
                 column.setPreferredWidth(65);
             } else if (i == 4) {
@@ -199,7 +201,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(65);
             } else if (i == 8) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(65);
             } else if (i == 9) {
                 column.setPreferredWidth(200);
             } else if (i == 10) {
@@ -207,9 +209,11 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 11) {
                 column.setPreferredWidth(200);
             } else if (i == 12) {
+                column.setPreferredWidth(200);
+            } else if (i == 13) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 13) {
+            } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -966,7 +970,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -980,7 +984,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1077,7 +1081,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 66, 110, 23);
 
-        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-09-2024" }));
+        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         tglObservasi.setDisplayFormat("dd-MM-yyyy");
         tglObservasi.setName("tglObservasi"); // NOI18N
         tglObservasi.setOpaque(false);
@@ -1804,8 +1808,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                         param.put("dokter", TnmDokter.getText());
                         Valid.MyReport("rptLembarObservasi.jasper", "report", "::[ Lembar Observasi Pasien ]::",
                                 "SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
-                                + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat where d.no_rawat='" + TNoRw.getText() + "' "
-                                + "and d.ruang_rawat='" + Truangan1.getText() + "' and d.waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by d.jam", param);
+                                + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
+                                + "d.waktu_simpan_lembar_obs='" + wktSimpanObs + "' order by d.jam", param);
                     }
 
                     TCari.setText(TNoRw.getText());
@@ -2114,19 +2118,19 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     
     private void getDataObs2() {
         if (tbObsPasien.getSelectedRow() != -1) {
-            cmbJam1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 12).toString().substring(0, 2));
-            cmbMnt1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 12).toString().substring(3, 5));
-            cmbDtk1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 12).toString().substring(6, 8));
-            Tgcs.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 2).toString());
-            Ttensi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 3).toString());
-            Tnadi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 4).toString());
-            Trespi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 5).toString());
-            Ttemp.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 6).toString());
-            Tspo.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 7).toString());
-            Tcairan.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 8).toString());
-            Tlain.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 9).toString());
-            Ttindakan.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 10).toString());
-            Truangan2.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 11).toString());
+            cmbJam1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString().substring(0, 2));
+            cmbMnt1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString().substring(3, 5));
+            cmbDtk1.setSelectedItem(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString().substring(6, 8));
+            Tgcs.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 3).toString());
+            Ttensi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 4).toString());
+            Tnadi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 5).toString());
+            Trespi.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 6).toString());
+            Ttemp.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 7).toString());
+            Tspo.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 8).toString());
+            Tcairan.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 9).toString());
+            Tlain.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 10).toString());
+            Ttindakan.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 11).toString());
+            Truangan2.setText(tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 12).toString());
         }
     }
     
@@ -2216,14 +2220,16 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     public void tampilObs1(String tgl) {     
         Valid.tabelKosong(tabMode2);
         try {
-            ps2 = koneksi.prepareStatement("SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
-                    + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat where d.no_rawat='" + TNoRw.getText() + "' "
-                    + "and d.ruang_rawat='" + Truangan1.getText() + "' and d.waktu_simpan_lembar_obs='" + tgl + "' order by d.jam");
+            ps2 = koneksi.prepareStatement("SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan, "
+                    + "date_format(lo.tgl_observasi,'%d-%m-%Y') tglobs FROM detail_lembar_observasi d "
+                    + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
+                    + "d.waktu_simpan_lembar_obs='" + tgl + "' order by d.jam");
             try {
                 rs2 = ps2.executeQuery();                
                 while (rs2.next()) {
                     tabMode2.addRow(new String[]{                        
                         rs2.getString("no_rawat"),
+                        rs2.getString("tglobs"),
                         rs2.getString("jamnya"),
                         rs2.getString("gcs"),
                         rs2.getString("td"),
@@ -2257,14 +2263,16 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     public void tampilObs2(String tgl) {     
         Valid.tabelKosong(tabMode1);
         try {
-            ps1 = koneksi.prepareStatement("SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan FROM detail_lembar_observasi d "
-                    + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat where d.no_rawat='" + TNoRw.getText() + "' "
-                    + "and d.ruang_rawat='" + Truangan2.getText() + "' and d.waktu_simpan_lembar_obs='" + tgl + "' order by d.jam");
+            ps1 = koneksi.prepareStatement("SELECT d.*, time_format(d.jam,'%H:%i') jamnya, d.ruang_rawat ruangan, "
+                    + "date_format(lo.tgl_observasi,'%d-%m-%Y') tglobs FROM detail_lembar_observasi d "
+                    + "INNER JOIN lembar_observasi lo on lo.no_rawat=d.no_rawat and lo.waktu_simpan=d.waktu_simpan_lembar_obs where "
+                    + "d.waktu_simpan_lembar_obs='" + tgl + "' order by d.jam");
             try {
                 rs1 = ps1.executeQuery();                
                 while (rs1.next()) {
                     tabMode1.addRow(new String[]{                        
                         rs1.getString("no_rawat"),
+                        rs1.getString("tglobs"),
                         rs1.getString("jamnya"),
                         rs1.getString("gcs"),
                         rs1.getString("td"),
@@ -2300,7 +2308,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from detail_lembar_observasi where waktu_simpan=?", 1, new String[]{
-                tbDetailObs.getValueAt(tbDetailObs.getSelectedRow(), 13).toString()
+                tbDetailObs.getValueAt(tbDetailObs.getSelectedRow(), 14).toString()
             }) == true) {
                 tampilObs1(wktSimpanObs);
             } else {
@@ -2313,7 +2321,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from detail_lembar_observasi where waktu_simpan=?", 1, new String[]{
-                tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString()
+                tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 14).toString()
             }) == true) {
                 tampilObs2(wktSimpanObs);
                 tampilObs1(wktSimpanObs);
@@ -2330,7 +2338,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                     cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                     Tgcs.getText(), Ttensi.getText(), Tnadi.getText(), Trespi.getText(), Ttemp.getText(), Tspo.getText(),
                     Tcairan.getText(), Tlain.getText(), Ttindakan.getText(),
-                    tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 13).toString()
+                    tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 14).toString()
                 }) == true) {
 
             tampilObs2(wktSimpanObs);
