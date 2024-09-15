@@ -610,7 +610,7 @@ public class DlgUpdateUser extends javax.swing.JDialog {
                     + "penilaian_awal_medis_ralan_kebidanan,penilaian_awal_keperawatan_kebidanan,ikhtisar_perawatan_hiv,survey_kepuasan,kemenkes_kanker,"
                     + "aktivasi_bridging,operator_antrian,penilaian_awal_medis_ralan_tht,rekam_psikologis,penilaian_pasien_geriatri,penilaian_awal_medis_ralan_mata,"
                     + "surat_sakit,surat_keterangan_kir_mcu,asesmen_medik_dewasa_ranap,pemberian_obat,cppt,bridging_satu_sehat,kemoterapi,cek_piutang,"
-                    + "asesmen_medik_anak_ranap from user where id_user=AES_ENCRYPT(?,'nur')");
+                    + "asesmen_medik_anak_ranap,kegiatan_operasi from user where id_user=AES_ENCRYPT(?,'nur')");
             try {
                 ps.setString(1, user);
                 rs = ps.executeQuery();
@@ -777,6 +777,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
                     if ("[A]Tindakan Ranap".toLowerCase().contains(TCari.getText().toLowerCase())) {
                         tabMode.addRow(new Object[]{false, "[A]Tindakan Ranap", rs.getBoolean("tindakan_ranap")});
+                    }
+                    
+                    if ("[B]Checklist Pra Operasi".toLowerCase().contains(TCari.getText().toLowerCase())) {
+                        tabMode.addRow(new Object[]{false, "[B]Checklist Pra Operasi", rs.getBoolean("kegiatan_operasi")});
                     }
 
                     if ("[B]Barcode Ralan".toLowerCase().contains(TCari.getText().toLowerCase())) {
@@ -2320,6 +2324,10 @@ public class DlgUpdateUser extends javax.swing.JDialog {
 
             if("[A]Tindakan Ranap".equals(tbUser.getValueAt(i,1).toString())){
                 Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","tindakan_ranap='"+tbUser.getValueAt(i,2).toString()+"'");
+            }
+            
+            if("[B]Checklist Pra Operasi".equals(tbUser.getValueAt(i,1).toString())){
+                Sequel.mengedit("user","id_user=AES_ENCRYPT('"+TKd.getText()+"','nur')","kegiatan_operasi='"+tbUser.getValueAt(i,2).toString()+"'");
             }
 
             if("[B]Barcode Ralan".equals(tbUser.getValueAt(i,1).toString())){
