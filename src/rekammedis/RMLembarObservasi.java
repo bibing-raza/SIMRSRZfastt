@@ -35,14 +35,14 @@ import simrskhanza.DlgCariDokter;
  * @author dosen
  */
 public class RMLembarObservasi extends javax.swing.JDialog {
-    private final DefaultTableModel tabMode, tabMode1, tabMode2;
+    private final DefaultTableModel tabMode, tabMode1, tabMode2, tabMode3;
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2;
-    private ResultSet rs, rs1, rs2;
-    private int i = 0, x = 0;
+    private PreparedStatement ps, ps1, ps2, ps3;
+    private ResultSet rs, rs1, rs2, rs3;
+    private int i = 0, x = 0, n = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String nipPerawat = "", nipDokter = "", wktSimpanObs = "";
@@ -168,12 +168,28 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         }
         tbObsPasien.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2=new DefaultTableModel(null,new String[]{
-            "No. Rawat", "Tgl. Observasi", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
-            "Tindakan", "Ruangan", "jam", "wktSimpan"}) {
+        tabMode2 = new DefaultTableModel(null, new Object[]{
+            "Cek", "No. Rawat", "Tgl. Observasi", "Jam", "GCS", "TD", "N", "R", "Temp", "SpO2", "Cairan", "Lain-lain",
+            "Tindakan", "Ruangan", "jam", "wktSimpan"
+        }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
-                return false;
+                boolean a = false;
+                if (colIndex == 0) {
+                    a = true;
+                }
+                return a;
+            }
+            Class[] types = new Class[]{
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class
+            };
+
+            @Override
+            public Class getColumnClass(int columnIndex) {
+                return types[columnIndex];
             }
         };
         
@@ -181,17 +197,17 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbDetailObs.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbDetailObs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 15; i++) {
+        for (i = 0; i < 16; i++) {
             TableColumn column = tbDetailObs.getColumnModel().getColumn(i);
             if (i == 0) {
+                column.setPreferredWidth(30);
+            } else if (i == 1) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 1) {
-                column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(58);
+                column.setPreferredWidth(80);
             } else if (i == 3) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(58);
             } else if (i == 4) {
                 column.setPreferredWidth(65);
             } else if (i == 5) {
@@ -203,7 +219,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 8) {
                 column.setPreferredWidth(65);
             } else if (i == 9) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(65);
             } else if (i == 10) {
                 column.setPreferredWidth(200);
             } else if (i == 11) {
@@ -211,14 +227,41 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 12) {
                 column.setPreferredWidth(200);
             } else if (i == 13) {
+                column.setPreferredWidth(200);
+            } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 14) {
+            } else if (i == 15) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
         }
         tbDetailObs.setDefaultRenderer(Object.class, new WarnaTable());
+        
+        tabMode3=new DefaultTableModel(null,new String[]{
+            "Ruang Rawat", "Tgl. Observasi", "waktuSimpan"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
+        tbTanggalObs.setModel(tabMode3);
+        tbTanggalObs.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbTanggalObs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+
+        for (i = 0; i < 3; i++) {
+            TableColumn column = tbTanggalObs.getColumnModel().getColumn(i);
+            if (i == 0) {
+                column.setPreferredWidth(250);
+            } else if (i == 1) {
+                column.setPreferredWidth(85);
+            } else if (i == 2) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
+        }
+        tbTanggalObs.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TdataA.setDocument(new batasInput((int) 200).getKata(TdataA));
@@ -332,7 +375,10 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         MnObservasi = new javax.swing.JMenuItem();
         MnCetak = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnContengSemua = new javax.swing.JMenuItem();
+        MnHapusConteng = new javax.swing.JMenuItem();
         MnHapus = new javax.swing.JMenuItem();
+        MnPindahObservasi = new javax.swing.JMenuItem();
         WindowObservasi = new javax.swing.JDialog();
         internalFrame5 = new widget.InternalFrame();
         panelGlass11 = new widget.panelisi();
@@ -371,6 +417,13 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         BtnKeluar1 = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
+        WindowPindahObservasi = new javax.swing.JDialog();
+        internalFrame7 = new widget.InternalFrame();
+        Scroll3 = new widget.ScrollPane();
+        tbTanggalObs = new widget.Table();
+        internalFrame8 = new widget.InternalFrame();
+        BtnGantijkd = new widget.Button();
+        BtnCloseIn1 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
@@ -464,6 +517,36 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
         jPopupMenu2.setName("jPopupMenu2"); // NOI18N
 
+        MnContengSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSemua.setText("Conteng Semua");
+        MnContengSemua.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnContengSemua.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnContengSemua.setIconTextGap(5);
+        MnContengSemua.setName("MnContengSemua"); // NOI18N
+        MnContengSemua.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnContengSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSemuaActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnContengSemua);
+
+        MnHapusConteng.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusConteng.setText("Hapus Conteng");
+        MnHapusConteng.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapusConteng.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapusConteng.setIconTextGap(5);
+        MnHapusConteng.setName("MnHapusConteng"); // NOI18N
+        MnHapusConteng.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnHapusConteng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusContengActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusConteng);
+
         MnHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
         MnHapus.setText("Hapus Observasi Dilakukan");
@@ -471,13 +554,28 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         MnHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnHapus.setIconTextGap(5);
         MnHapus.setName("MnHapus"); // NOI18N
-        MnHapus.setPreferredSize(new java.awt.Dimension(170, 26));
+        MnHapus.setPreferredSize(new java.awt.Dimension(190, 26));
         MnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnHapusActionPerformed(evt);
             }
         });
         jPopupMenu2.add(MnHapus);
+
+        MnPindahObservasi.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPindahObservasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPindahObservasi.setText("Pindah Obs. Ke Tanggal Tujuan");
+        MnPindahObservasi.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPindahObservasi.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPindahObservasi.setIconTextGap(5);
+        MnPindahObservasi.setName("MnPindahObservasi"); // NOI18N
+        MnPindahObservasi.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnPindahObservasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPindahObservasiActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnPindahObservasi);
 
         WindowObservasi.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         WindowObservasi.setName("WindowObservasi"); // NOI18N
@@ -827,6 +925,62 @@ public class RMLembarObservasi extends javax.swing.JDialog {
 
         WindowObservasi.getContentPane().add(internalFrame5, java.awt.BorderLayout.CENTER);
 
+        WindowPindahObservasi.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
+        WindowPindahObservasi.setName("WindowPindahObservasi"); // NOI18N
+        WindowPindahObservasi.setUndecorated(true);
+        WindowPindahObservasi.setResizable(false);
+
+        internalFrame7.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Pindahkan Observasi Dilakukan Ke Tanggal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame7.setName("internalFrame7"); // NOI18N
+        internalFrame7.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame7.setLayout(new java.awt.BorderLayout());
+
+        Scroll3.setName("Scroll3"); // NOI18N
+        Scroll3.setOpaque(true);
+
+        tbTanggalObs.setToolTipText("Silahkan klik/pilih salah satu tanggal observasinya");
+        tbTanggalObs.setName("tbTanggalObs"); // NOI18N
+        Scroll3.setViewportView(tbTanggalObs);
+
+        internalFrame7.add(Scroll3, java.awt.BorderLayout.CENTER);
+
+        internalFrame8.setName("internalFrame8"); // NOI18N
+        internalFrame8.setPreferredSize(new java.awt.Dimension(0, 44));
+        internalFrame8.setWarnaBawah(new java.awt.Color(245, 250, 240));
+        internalFrame8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 9));
+
+        BtnGantijkd.setForeground(new java.awt.Color(0, 0, 0));
+        BtnGantijkd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnGantijkd.setMnemonic('P');
+        BtnGantijkd.setText("Pindahkan Observasi");
+        BtnGantijkd.setToolTipText("Alt+P");
+        BtnGantijkd.setName("BtnGantijkd"); // NOI18N
+        BtnGantijkd.setPreferredSize(new java.awt.Dimension(170, 30));
+        BtnGantijkd.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnGantijkdActionPerformed(evt);
+            }
+        });
+        internalFrame8.add(BtnGantijkd);
+
+        BtnCloseIn1.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn1.setMnemonic('U');
+        BtnCloseIn1.setText("Tutup");
+        BtnCloseIn1.setToolTipText("Alt+U");
+        BtnCloseIn1.setName("BtnCloseIn1"); // NOI18N
+        BtnCloseIn1.setPreferredSize(new java.awt.Dimension(90, 30));
+        BtnCloseIn1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn1ActionPerformed(evt);
+            }
+        });
+        internalFrame8.add(BtnCloseIn1);
+
+        internalFrame7.add(internalFrame8, java.awt.BorderLayout.PAGE_END);
+
+        WindowPindahObservasi.getContentPane().add(internalFrame7, java.awt.BorderLayout.CENTER);
+
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
@@ -970,7 +1124,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -984,7 +1138,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1081,7 +1235,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 66, 110, 23);
 
-        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
         tglObservasi.setDisplayFormat("dd-MM-yyyy");
         tglObservasi.setName("tglObservasi"); // NOI18N
         tglObservasi.setOpaque(false);
@@ -1418,6 +1572,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
         WindowObservasi.dispose();
+        WindowPindahObservasi.dispose();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -1755,7 +1910,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan conteng dulu datanya pada tabel..!!");
             tbDetailObs.requestFocus();
         }
     }//GEN-LAST:event_MnHapusActionPerformed
@@ -1826,6 +1981,94 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnCetakActionPerformed
 
+    private void MnPindahObservasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPindahObservasiActionPerformed
+        //cek conteng
+        x = 0;
+        for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+            if (tbDetailObs.getValueAt(i, 0).toString().equals("true")) {
+                x++;
+            }
+        }
+        
+        if (x == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu utk. memilih datanya pada tabel..!!!!");
+            tbDetailObs.requestFocus();
+        } else {
+            WindowPindahObservasi.setSize(430, internalFrame1.getHeight() - 40);
+            WindowPindahObservasi.setLocationRelativeTo(internalFrame1);
+            WindowPindahObservasi.setAlwaysOnTop(false);
+            WindowPindahObservasi.setVisible(true);
+            tbTanggalObs.requestFocus();
+            tampilTanggal();
+        }
+    }//GEN-LAST:event_MnPindahObservasiActionPerformed
+
+    private void BtnCloseIn1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCloseIn1ActionPerformed
+        WindowPindahObservasi.dispose();
+    }//GEN-LAST:event_BtnCloseIn1ActionPerformed
+
+    private void BtnGantijkdActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantijkdActionPerformed
+        if (tbTanggalObs.getSelectedRow() > -1) {
+            //cek conteng
+            x = 0;
+            for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+                if (tbDetailObs.getValueAt(i, 0).toString().equals("true")) {
+                    x++;
+                }
+            }
+
+            if (x == 0) {
+                JOptionPane.showMessageDialog(null, "Silahkan conteng dulu utk. memilih data yang akan dipindahkan tgl. observasinya..!!!!");
+            } else {
+                n = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dipindahkan ke tgl. observasi yang dipilih..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (n == JOptionPane.YES_OPTION) {
+                    try {
+                        for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+                            if (tbDetailObs.getValueAt(i, 0).toString().equals("true")) {
+                                Sequel.mengedit("detail_lembar_observasi", "waktu_simpan='" + tbDetailObs.getValueAt(i, 15).toString() + "'",
+                                        "waktu_simpan_lembar_obs='" + tbTanggalObs.getValueAt(tbTanggalObs.getSelectedRow(), 2).toString().substring(0, 19) + "'");
+                            }
+                        }
+                        tampilObs1(tbTanggalObs.getValueAt(tbTanggalObs.getSelectedRow(), 2).toString().substring(0, 19));
+                        WindowPindahObservasi.dispose();
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                } else {
+                    tampilObs1(wktSimpanObs);
+                    WindowPindahObservasi.dispose();
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");
+            tbTanggalObs.requestFocus();
+        }
+    }//GEN-LAST:event_BtnGantijkdActionPerformed
+
+    private void MnContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemuaActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data observasi yang dilakukan belum ada...!!!!");
+            tbDetailObs.requestFocus();
+        } else {
+            tampilObs1(wktSimpanObs);
+            for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+                tbDetailObs.setValueAt(Boolean.TRUE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnContengSemuaActionPerformed
+
+    private void MnHapusContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengActionPerformed
+        if (tabMode2.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Data observasi yang dilakukan belum ada...!!!!");
+            tbDetailObs.requestFocus();
+        } else {
+            tampilObs1(wktSimpanObs);
+            for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+                tbDetailObs.setValueAt(Boolean.FALSE, i, 0);
+            }
+        }
+    }//GEN-LAST:event_MnHapusContengActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1847,9 +2090,11 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.Button BtnBatal;
     private widget.Button BtnBatal1;
     private widget.Button BtnCari;
+    private widget.Button BtnCloseIn1;
     private widget.Button BtnDokter;
     private widget.Button BtnEdit;
     private widget.Button BtnGanti;
+    private widget.Button BtnGantijkd;
     private widget.Button BtnHapus;
     private widget.Button BtnHapus1;
     private widget.Button BtnKeluar;
@@ -1862,12 +2107,16 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetak;
+    private javax.swing.JMenuItem MnContengSemua;
     private javax.swing.JMenuItem MnHapus;
+    private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnObservasi;
+    private javax.swing.JMenuItem MnPindahObservasi;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
     private widget.ScrollPane Scroll2;
+    private widget.ScrollPane Scroll3;
     public widget.TextBox TCari;
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
@@ -1891,6 +2140,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.TextBox Ttensi;
     private widget.TextBox Ttindakan;
     private javax.swing.JDialog WindowObservasi;
+    private javax.swing.JDialog WindowPindahObservasi;
     private widget.CekBox chkSaya;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbDtk1;
@@ -1903,6 +2153,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame5;
+    private widget.InternalFrame internalFrame7;
+    private widget.InternalFrame internalFrame8;
     private widget.Label jLabel10;
     private widget.Label jLabel12;
     private widget.Label jLabel13;
@@ -1943,6 +2195,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private widget.Table tbDetailObs;
     private widget.Table tbObsPasien;
     private widget.Table tbObservasi;
+    private widget.Table tbTanggalObs;
     private widget.Tanggal tglObservasi;
     // End of variables declaration//GEN-END:variables
 
@@ -2227,7 +2480,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             try {
                 rs2 = ps2.executeQuery();                
                 while (rs2.next()) {
-                    tabMode2.addRow(new String[]{                        
+                    tabMode2.addRow(new Object[]{
+                        false,
                         rs2.getString("no_rawat"),
                         rs2.getString("tglobs"),
                         rs2.getString("jamnya"),
@@ -2305,14 +2559,32 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     }
     
     private void hapusObs1() {
-        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-        if (x == JOptionPane.YES_OPTION) {
-            if (Sequel.queryu2tf("delete from detail_lembar_observasi where waktu_simpan=?", 1, new String[]{
-                tbDetailObs.getValueAt(tbDetailObs.getSelectedRow(), 14).toString()
-            }) == true) {
-                tampilObs1(wktSimpanObs);
+        //cek conteng
+        x = 0;
+        for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+            if (tbDetailObs.getValueAt(i, 0).toString().equals("true")) {
+                x++;
+            }
+        }
+
+        if (x == 0) {
+            JOptionPane.showMessageDialog(null, "Silahkan conteng dulu utk. memilih data yang akan dihapus..!!!!");
+            tbDetailObs.requestFocus();
+        } else {
+            n = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (n == JOptionPane.YES_OPTION) {
+                try {
+                    for (i = 0; i < tbDetailObs.getRowCount(); i++) {
+                        if (tbDetailObs.getValueAt(i, 0).toString().equals("true")) {
+                            Sequel.meghapus("detail_lembar_observasi", "waktu_simpan", tbDetailObs.getValueAt(i, 15).toString());
+                        }
+                    }
+                    tampilObs1(wktSimpanObs);
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                }
             } else {
-                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+                tampilObs1(wktSimpanObs);
             }
         }
     }
@@ -2344,6 +2616,35 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             tampilObs2(wktSimpanObs);
             tampilObs1(wktSimpanObs);
             emptTeksObs();
+        }
+    }
+    
+    private void tampilTanggal() {
+        Valid.tabelKosong(tabMode3);
+        try {
+            ps3 = koneksi.prepareStatement("SELECT *, date_format(tgl_observasi,'%d-%m-%Y') tglObs FROM lembar_observasi "
+                    + "where no_rawat='" + TNoRw.getText() + "' order by tgl_observasi");
+            try {
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabMode3.addRow(new String[]{
+                        rs3.getString("ruang_rawat"),
+                        rs3.getString("tglObs"),
+                        rs3.getString("waktu_simpan")
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("rekammedis.RMLembarObservasi.tampilTanggal() : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }
