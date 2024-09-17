@@ -1770,10 +1770,12 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
     private void chkLainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkLainActionPerformed
         Tlain.setText("");
         if (chkLain.isSelected() == true) {
+            BtnPaste.setEnabled(true);
             Tlain.setEnabled(true);
             Tlain.requestFocus();
         } else {
             Tlain.setEnabled(false);
+            BtnPaste.setEnabled(false);
         }
     }//GEN-LAST:event_chkLainActionPerformed
 
@@ -2091,7 +2093,8 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         chkAntibiotik.setSelected(false);
         chkLain.setSelected(false);        
         Tlain.setText("");
-        Tlain.setEnabled(false);        
+        Tlain.setEnabled(false);
+        BtnPaste.setEnabled(false);
         TnipPerawat.setText("-");
         TnmPerawat.setText("-");
         chkSaya.setSelected(false);
@@ -2412,9 +2415,11 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         if (lain.equals("ya")) {
             chkLain.setSelected(true);
             Tlain.setEnabled(true);
+            BtnPaste.setEnabled(true);
         } else {
             chkLain.setSelected(false);
             Tlain.setEnabled(false);
+            BtnPaste.setEnabled(false);
         }
     }
     
