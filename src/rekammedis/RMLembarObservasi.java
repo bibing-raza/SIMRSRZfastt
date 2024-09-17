@@ -239,7 +239,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbDetailObs.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode3=new DefaultTableModel(null,new String[]{
-            "Ruang Rawat", "Tgl. Observasi", "waktuSimpan"}) {
+            "Ruang Rawat", "Tgl. Observasi", "waktuSimpan", "Jam"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -250,7 +250,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         tbTanggalObs.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbTanggalObs.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 3; i++) {
+        for (i = 0; i < 4; i++) {
             TableColumn column = tbTanggalObs.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(250);
@@ -259,6 +259,8 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 3) {
+                column.setPreferredWidth(55);
             }
         }
         tbTanggalObs.setDefaultRenderer(Object.class, new WarnaTable());
@@ -2622,15 +2624,16 @@ public class RMLembarObservasi extends javax.swing.JDialog {
     private void tampilTanggal() {
         Valid.tabelKosong(tabMode3);
         try {
-            ps3 = koneksi.prepareStatement("SELECT *, date_format(tgl_observasi,'%d-%m-%Y') tglObs FROM lembar_observasi "
-                    + "where no_rawat='" + TNoRw.getText() + "' order by tgl_observasi");
+            ps3 = koneksi.prepareStatement("SELECT *, date_format(tgl_observasi,'%d-%m-%Y') tglObs, time_format(jam_observasi,'%H:%i') jamObs FROM lembar_observasi "
+                    + "where no_rawat='" + TNoRw.getText() + "' order by tgl_observasi, jam_observasi");
             try {
                 rs3 = ps3.executeQuery();
                 while (rs3.next()) {
                     tabMode3.addRow(new String[]{
                         rs3.getString("ruang_rawat"),
                         rs3.getString("tglObs"),
-                        rs3.getString("waktu_simpan")
+                        rs3.getString("waktu_simpan"),
+                        rs3.getString("jamObs")
                     });
                 }
             } catch (Exception e) {
