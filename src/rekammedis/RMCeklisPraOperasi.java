@@ -2400,5 +2400,15 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
         TNoRM.setText(norm);
         TPasien.setText(nmpasien);
         TrgRawat.setText(ruangan);
+        
+        if (akses.getadmin() == true) {
+            TnipIbs.setText("-");
+            TnmPerawatIbs.setText("-");
+            chkSaya2.setSelected(false);
+        } else {
+            TnipIbs.setText(akses.getkode());
+            TnmPerawatIbs.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipIbs.getText() + "'"));
+            chkSaya2.setSelected(true);
+        }
     }
 }

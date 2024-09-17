@@ -6,6 +6,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCatatanResep;
 import java.awt.Cursor;
 import java.awt.Dimension;
 import java.awt.event.KeyEvent;
@@ -51,7 +52,8 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
             sungkup = "", oropa = "", batang = "", bilah = "", gagang = "", ett = "", stilet = "", spuit = "", forcep = "",
             kabel = "", elek = "", nibp = "", spo2 = "", kapno = "", pemantau = "",
             stetos = "", suction = "", selangSuction = "", plester = "", lida = "",
-            epin = "", atro = "", sedatif = "", opi = "", pelumpuh = "", anal = "", anti = "", lain = "";
+            epin = "", atro = "", sedatif = "", opi = "", pelumpuh = "", anal = "", anti = "", lain = "",
+            kodekamar = "", status = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -302,7 +304,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
-        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
+        MnResepObat = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         Scroll1 = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
@@ -379,6 +381,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         chkAnalgetik = new widget.CekBox();
         chkAntibiotik = new widget.CekBox();
         chkLain = new widget.CekBox();
+        BtnPaste = new widget.Button();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -405,20 +408,20 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
-        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
-        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
-        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(195, 26));
-        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+        MnResepObat.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnResepObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnResepObat.setText("Resep Obat");
+        MnResepObat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnResepObat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnResepObat.setIconTextGap(5);
+        MnResepObat.setName("MnResepObat"); // NOI18N
+        MnResepObat.setPreferredSize(new java.awt.Dimension(110, 26));
+        MnResepObat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+                MnResepObatActionPerformed(evt);
             }
         });
-        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
+        jPopupMenu1.add(MnResepObat);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -439,7 +442,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
-        FormInput.setToolTipText("Klik Kanan Pada Area Ini Untuk Melihat Hasil Pemeriksaan Penunjang Medis");
+        FormInput.setToolTipText("Klik Kanan Pada Area Ini Untuk Melihat Resep Dokter");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(760, 885));
@@ -1039,7 +1042,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
 
         chkLidacaine.setBackground(new java.awt.Color(242, 242, 242));
         chkLidacaine.setForeground(new java.awt.Color(0, 0, 0));
-        chkLidacaine.setText("Licaine spray/jelly");
+        chkLidacaine.setText("Lidacaine spray/jelly");
         chkLidacaine.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         chkLidacaine.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         chkLidacaine.setName("chkLidacaine"); // NOI18N
@@ -1147,6 +1150,21 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         });
         FormInput.add(chkLain);
         chkLain.setBounds(145, 766, 70, 23);
+
+        BtnPaste.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPaste.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPaste.setMnemonic('L');
+        BtnPaste.setText("Paste");
+        BtnPaste.setToolTipText("Alt+L");
+        BtnPaste.setName("BtnPaste"); // NOI18N
+        BtnPaste.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPaste.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPaste);
+        BtnPaste.setBounds(116, 796, 90, 23);
 
         Scroll1.setViewportView(FormInput);
 
@@ -1713,18 +1731,31 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
-    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
-            Valid.textKosong(TNoRw, "Pasien");
+    private void MnResepObatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnResepObatActionPerformed
+        if (TNoRw.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih salah satu data pasiennya terlebih dulu.!!!!");
         } else {
-            akses.setform("RMCeklisPraOperasi");
-            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("RMCeklisKesiapanAnestesi");
+            DlgCatatanResep form = new DlgCatatanResep(null, false);
+            form.isCek();
+
+            if (status.equals("IGD (Ralan)") || status.equals("IGD (Ranap)") || status.equals("ralan")) {
+                form.setData(TNoRw.getText(), status);
+            } else if (status.equals("ranap")) {
+                kodekamar = "";
+                kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                        + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+                        + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+                form.setData(TNoRw.getText(), status);
+            }
+
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
-            form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
             form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
-    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+    }//GEN-LAST:event_MnResepObatActionPerformed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
@@ -1745,6 +1776,20 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
             Tlain.setEnabled(false);
         }
     }//GEN-LAST:event_chkLainActionPerformed
+
+    private void BtnPasteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu data yg. dipilih..!!!!");
+        } else {
+            if (Tlain.getText().equals("")) {
+                Tlain.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                Tlain.setText(Tlain.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteActionPerformed
 
     /**
     * @param args the command line arguments
@@ -1769,6 +1814,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPaste;
     private widget.Button BtnPerawat;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
@@ -1776,7 +1822,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
-    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
+    private javax.swing.JMenuItem MnResepObat;
     private javax.swing.JPanel PanelInput1;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll1;
@@ -1869,20 +1915,19 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT cp.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d/%m/%Y') tglLahir, pg1.nama nmOperator, "
-                    + "pg2.nama nmAnastesi, DATE_FORMAT(cp.tgl_ceklis,'%d/%m/%Y') tglCeklis, pg3.nama nmPerawatBangsal, pg4.nama nmPerawatIbs from ceklis_pra_operasi cp "
-                    + "inner join reg_periksa rp on rp.no_rawat=cp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join pegawai pg1 on pg1.nik=cp.nip_operator inner join pegawai pg2 on pg2.nik=cp.nip_anastesi "
-                    + "inner join pegawai pg3 on pg3.nik=cp.nip_perawat_bangsal inner join pegawai pg4 on pg4.nik=cp.nip_perawat_ibs WHERE "
-                    + "cp.tgl_ceklis between ? and ? and cp.no_rawat LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and p.no_rkm_medis LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and p.nm_pasien LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and pg1.nama LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and pg2.nama LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and pg3.nama LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and pg4.nama LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and cp.diagnosa_pra_tindakan LIKE ? or "
-                    + "cp.tgl_ceklis between ? and ? and cp.rencana_tindakan LIKE ? ORDER BY cp.tgl_ceklis desc");
+            ps = koneksi.prepareStatement("SELECT ck.*, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir,'%d/%m/%Y') tglLahir, "
+                    + "DATE_FORMAT(ck.tgl_ceklis,'%d/%m/%Y') tglCeklis, TIME_FORMAT(ck.jam_ceklis,'%H:%i Wita') jam, "
+                    + "DATE_FORMAT(ck.tgl_tindakan,'%d/%m/%Y') tglTindakan, pg.nama nmPerawat from ceklis_kesiapan_anestesi ck "
+                    + "inner join reg_periksa rp on rp.no_rawat=ck.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=ck.nip_perawat WHERE "
+                    + "ck.tgl_ceklis between ? and ? and ck.no_rawat LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and p.no_rkm_medis LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and p.nm_pasien LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and pg.nama LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and ck.ruang_rawat LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and ck.jenis_operasi LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and ck.diagnosis LIKE ? or "
+                    + "ck.tgl_ceklis between ? and ? and ck.teknik_anastesia LIKE ? ORDER BY ck.tgl_ceklis desc, ck.jam_ceklis desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1908,73 +1953,73 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
                 ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
                 ps.setString(24, "%" + TCari.getText() + "%");
-                ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(27, "%" + TCari.getText() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
                         rs.getString("waktu_simpan"),
-                        rs.getString("no_rawat"),                        
+                        rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("tglLahir"),
                         rs.getString("ruang_rawat"),
-                        rs.getString("diagnosa_pra_tindakan"),
-                        rs.getString("rencana_tindakan"),
-                        rs.getString("nmOperator"),
-                        rs.getString("nmAnastesi"),
-                        rs.getString("kesadaran"),
-                        rs.getString("td"),
-                        rs.getString("suhu"),
-                        rs.getString("nadi"),
-                        rs.getString("respi"),
-                        rs.getString("persiapan_darah"),
-                        rs.getString("persiapan_puasa"),
                         rs.getString("tglCeklis"),
-                        rs.getString("nmPerawatBangsal"),
-                        rs.getString("nmPerawatIbs"),
-                        rs.getString("no_rawat"),
-                        rs.getString("ruang_rawat"),
-                        rs.getString("diagnosa_pra_tindakan"),
-                        rs.getString("rencana_tindakan"),
-                        rs.getString("nip_operator"),
-                        rs.getString("nip_anastesi"),
-                        rs.getString("kesadaran"),
-                        rs.getString("td"),
-                        rs.getString("suhu"),
-                        rs.getString("nadi"),
-                        rs.getString("respi"),
-                        rs.getString("pasang_infus"),
-                        rs.getString("ket_infus"),
-                        rs.getString("pasang_kateter"),
-                        rs.getString("ket_kateter"),
-                        rs.getString("cukur_daerah_operasi"),
-                        rs.getString("ket_cukur"),
-                        rs.getString("lavemen"),
-                        rs.getString("ket_lavemen"),
-                        rs.getString("gigi_palsu"),
-                        rs.getString("baju"),
-                        rs.getString("penandaan"),
-                        rs.getString("super_anastesi"),
-                        rs.getString("super_tindakan"),
-                        rs.getString("super_transfusi"),
-                        rs.getString("antibiotik_profilaksi"),
-                        rs.getString("ket_antibiotik"),
-                        rs.getString("jam_antibiotik"),
-                        rs.getString("pemeriksaan_penunjang"),
-                        rs.getString("ekg"),
-                        rs.getString("interpretasi_ekg"),
-                        rs.getString("interpretasi_ro"),
-                        rs.getString("persiapan_darah"),
-                        rs.getString("persiapan_puasa"),
+                        rs.getString("jam"),
+                        rs.getString("diagnosis"),
+                        rs.getString("teknik_anastesia"),
+                        rs.getString("jenis_operasi"),
+                        rs.getString("tglTindakan"),
+                        rs.getString("nmPerawat"),
                         rs.getString("tgl_ceklis"),
-                        rs.getString("nip_perawat_bangsal"),
-                        rs.getString("nip_perawat_ibs")
+                        rs.getString("jam_ceklis"),
+                        rs.getString("diagnosis"),
+                        rs.getString("teknik_anastesia"),
+                        rs.getString("jenis_operasi"),
+                        rs.getString("tgl_tindakan"),
+                        rs.getString("mesin"),
+                        rs.getString("layar"),
+                        rs.getString("syrine_pump"),
+                        rs.getString("selang"),
+                        rs.getString("flow_meter_o2"),
+                        rs.getString("n2o"),
+                        rs.getString("flow_meter_n20"),
+                        rs.getString("power_on"),
+                        rs.getString("tidak_ada_kebocoran"),
+                        rs.getString("zat_volatil"),
+                        rs.getString("absorber"),
+                        rs.getString("sungkup"),
+                        rs.getString("oroparingeal"),
+                        rs.getString("batang"),
+                        rs.getString("bilah"),
+                        rs.getString("gagang"),
+                        rs.getString("ett"),
+                        rs.getString("stilet"),
+                        rs.getString("spuit"),
+                        rs.getString("forceps"),
+                        rs.getString("kabel_ekg"),
+                        rs.getString("elektroda_ekg"),
+                        rs.getString("nibp"),
+                        rs.getString("spo2"),
+                        rs.getString("kapnografi"),
+                        rs.getString("pemantau_suhu"),
+                        rs.getString("stetoskop"),
+                        rs.getString("suction"),
+                        rs.getString("selang_suction"),
+                        rs.getString("plester"),
+                        rs.getString("lidacaine"),
+                        rs.getString("epinefrin"),
+                        rs.getString("atropin"),
+                        rs.getString("sedatif"),
+                        rs.getString("opiat"),
+                        rs.getString("pelumpuh_otot"),
+                        rs.getString("analgetik"),
+                        rs.getString("antibiotik"),
+                        rs.getString("lain"),
+                        rs.getString("ket_lain"),
+                        rs.getString("nip_perawat")
                     });
-                }                
+                }
             } catch (Exception e) {
-                System.out.println("rekammedis.RMCeklisPraOperasi.tampil() : " + e);
+                System.out.println("rekammedis.RMCeklisKesiapanAnestesi.tampil() : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
@@ -2054,13 +2099,70 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
 
     private void getData() {
         emptVariabel();
+        status = "";
         if (tbCeklis.getSelectedRow() != -1) {
             TNoRw.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 1).toString());
             TNoRM.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 2).toString());
             TPasien.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 3).toString());
-            TrgRawat.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 21).toString());
-            Tdiagnosis.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 6).toString());
-            Tteknik.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 7).toString());            
+            TrgRawat.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 5).toString());
+            Valid.SetTgl(Ttglceklis, tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 13).toString());
+            cmbJam.setSelectedItem(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 14).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 14).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 14).toString().substring(6, 8));
+            Tdiagnosis.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 15).toString());
+            Tteknik.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 16).toString());
+            Tjenis.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 17).toString());
+            Valid.SetTgl(TtglTindakan, tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 18).toString());
+            
+            mesin = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 19).toString();
+            layar = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 20).toString();
+            syrine = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 21).toString();
+            
+            selang = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 22).toString();
+            flowMeterO2 = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 23).toString();
+            n2o = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 24).toString();
+            flowMeterN2o = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 25).toString();
+            
+            power = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 26).toString();
+            tidak = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 27).toString();
+            zat = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 28).toString();
+            absorber = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 29).toString();
+            
+            sungkup = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 30).toString();
+            oropa = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 31).toString();
+            batang = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 32).toString();
+            bilah = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 33).toString();
+            gagang = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 34).toString();
+            ett = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 35).toString();
+            stilet = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 36).toString();
+            spuit = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 37).toString();
+            forcep = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 38).toString();
+            
+            kabel = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 39).toString();
+            elek = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 40).toString();
+            nibp = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 41).toString();
+            spo2 = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 42).toString();
+            kapno = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 43).toString();
+            pemantau = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 44).toString();
+            
+            stetos = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 45).toString();
+            suction = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 46).toString();
+            selangSuction = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 47).toString();
+            plester = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 48).toString();
+            lida = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 49).toString();
+            
+            epin = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 50).toString();
+            atro = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 51).toString();
+            sedatif = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 52).toString();
+            opi = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 53).toString();
+            pelumpuh = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 54).toString();
+            anal = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 55).toString();
+            anti = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 56).toString();
+            lain = tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 57).toString();
+            Tlain.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 58).toString());
+            TnipPerawat.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 59).toString());
+            TnmPerawat.setText(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 12).toString());
+            status = Sequel.cariIsi("select if(status_lanjut='Ranap','ranap','ralan') from reg_periksa where no_rawat='" + TNoRw.getText() + "'");
             dataCek();
         }
     }
@@ -2316,11 +2418,22 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
         }
     }
     
-    public void setData(String norw, String norm, String nmpasien, String ruangan) {
+    public void setData(String norw, String norm, String nmpasien, String ruangan, String stts_rwt) {
         TNoRw.setText(norw);
         TNoRM.setText(norm);
         TPasien.setText(nmpasien);
         TrgRawat.setText(ruangan);
+        status = stts_rwt;
+        
+        if (akses.getadmin() == true) {
+            TnipPerawat.setText("-");
+            TnmPerawat.setText("-");
+            chkSaya.setSelected(false);
+        } else {
+            TnipPerawat.setText(akses.getkode());
+            TnmPerawat.setText(Sequel.cariIsi("select nama from pegawai where nik='" + TnipPerawat.getText() + "'"));
+            chkSaya.setSelected(true);
+        }
     }
     
     private void cekData() {

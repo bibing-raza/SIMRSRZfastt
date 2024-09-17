@@ -345,6 +345,7 @@ import rekammedis.RMAsesmenRestrain;
 import rekammedis.RMAsesmenUlangResikoJatuhAnak;
 import rekammedis.RMAsesmenUlangResikoJatuhDewasa;
 import rekammedis.RMAsuhanGiziRanap;
+import rekammedis.RMCeklisKesiapanAnestesi;
 import rekammedis.RMCeklisPraOperasi;
 import rekammedis.RMLembarObservasi;
 import rekammedis.RMMonitoringEWSDewasa;
@@ -875,6 +876,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnIndikatorNasionalMutu = new widget.ButtonBig();
         btnSuratKeteranganDisabilitas = new widget.ButtonBig();
         btnCeklisPraOperasi = new widget.ButtonBig();
+        btnCeklisKesiapanAnestesi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5918,6 +5920,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnCeklisPraOperasi);
 
+        btnCeklisKesiapanAnestesi.setForeground(new java.awt.Color(0, 0, 0));
+        btnCeklisKesiapanAnestesi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
+        btnCeklisKesiapanAnestesi.setText("Checklist Kesiapan Anestesi");
+        btnCeklisKesiapanAnestesi.setIconTextGap(0);
+        btnCeklisKesiapanAnestesi.setName("btnCeklisKesiapanAnestesi"); // NOI18N
+        btnCeklisKesiapanAnestesi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnCeklisKesiapanAnestesi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnCeklisKesiapanAnestesiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnCeklisKesiapanAnestesi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5926,7 +5941,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11712,6 +11727,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnCeklisPraOperasiActionPerformed
 
+    private void btnCeklisKesiapanAnestesiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCeklisKesiapanAnestesiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMCeklisKesiapanAnestesi aplikasi = new RMCeklisKesiapanAnestesi(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnCeklisKesiapanAnestesiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11835,6 +11863,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnCekSisruteAlasanRujuk;
     private widget.ButtonBig btnCekSisruteDiagnosa;
     private widget.ButtonBig btnCekSisruteFaskes;
+    private widget.ButtonBig btnCeklisKesiapanAnestesi;
     private widget.ButtonBig btnCeklisPraOperasi;
     private widget.ButtonBig btnClosingKasir;
     private widget.ButtonBig btnDaftarPermintaanResep;
@@ -12415,6 +12444,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu = 0;
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(btnCeklisPraOperasi);
+                jmlmenu++;
+            }
+            
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(btnCeklisKesiapanAnestesi);
                 jmlmenu++;
             }
             
@@ -14234,6 +14268,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(btnCeklisPraOperasi);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(btnCeklisKesiapanAnestesi);
             jmlmenu++;
         }
         
@@ -16105,6 +16144,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (btnCeklisPraOperasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCeklisPraOperasi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (btnCeklisKesiapanAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnCeklisKesiapanAnestesi);
                 jmlmenu++;
             }
         }
