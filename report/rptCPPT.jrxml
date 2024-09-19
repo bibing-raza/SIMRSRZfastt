@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="9017580a-af77-482a-b341-e0ccab60d924">
-	<property name="ireport.zoom" value="2.0000000000000395"/>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="521" leftMargin="56" rightMargin="18" topMargin="18" bottomMargin="18" uuid="8c3a167b-4c9a-43b8-9ac9-1a580762a931">
+	<property name="ireport.zoom" value="1.818181818181854"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
@@ -11,49 +11,128 @@
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="judul" class="java.lang.String"/>
 	<parameter name="logo" class="java.io.InputStream"/>
-	<parameter name="konfirmasiTerapi" class="java.lang.String"/>
 	<queryString>
-		<![CDATA[SELECT DISTINCT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, IF(c.cek_jam='ya',concat(date_format(c.tgl_cppt,'%d-%m-%Y'),', ',date_format(c.jam_cppt,'%H:%i')), 
-date_format(c.tgl_cppt,'%d-%m-%Y')) tglcppt, c.bagian, 
-ifnull(if(c.jenis_bagian='' or c.jenis_bagian='-','-',if(c.jenis_bagian='Dokter IGD' or c.jenis_bagian='DPJP',c.jenis_bagian,concat(c.jenis_bagian,' : ',c.jenis_ppa))),'-') bagian_cppt, 
-c.hasil_pemeriksaan, 
-concat(c.instruksi_nakes,if(c.jenis_bagian='DPJP',concat('\n\n(',pg1.nama,')'),if(c.jenis_bagian='PPA',concat('\n\n(',pg2.nama,')'),''))) instruksi_nakes, 
-concat('(', c.verifikasi,') - ',pg.nama) verif, 
-if(c.serah_terima_cppt='ya',concat('\n\nTgl. ',date_format(c.tgl_cppt,'%d-%m-%Y'),', Jam : ',ifnull(date_format(c.jam_serah_terima,'%H:%i'),'00:00'),'\n','Menyerahkan :\n',pg3.nama),'') ptgsSerah, 
-if(c.serah_terima_cppt='ya',concat('Menerima :\n',pg4.nama),'') ptgsTerima  
-FROM cppt c INNER JOIN reg_periksa rp ON rp.no_rawat = c.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis 
-INNER JOIN pegawai pg ON pg.nik = c.nip_dpjp LEFT JOIN pegawai pg1 on pg1.nik=c.nip_konsulen  LEFT JOIN pegawai pg2 on pg2.nik=c.nip_ppa 
-LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg4.nik=c.nip_petugas_terima limit 1]]>
+		<![CDATA[SELECT * from temporary_cppt]]>
 	</queryString>
-	<field name="no_rkm_medis" class="java.lang.String">
+	<field name="temp1" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="nm_pasien" class="java.lang.String">
+	<field name="temp2" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="tgllhr" class="java.lang.String"/>
-	<field name="tglcppt" class="java.lang.String"/>
-	<field name="bagian" class="java.lang.String">
+	<field name="temp3" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="bagian_cppt" class="java.lang.String"/>
-	<field name="hasil_pemeriksaan" class="java.lang.String">
+	<field name="temp4" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="instruksi_nakes" class="java.lang.String">
+	<field name="temp5" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<field name="verif" class="java.lang.String"/>
-	<field name="ptgsSerah" class="java.lang.String"/>
-	<field name="ptgsTerima" class="java.lang.String"/>
+	<field name="temp6" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp7" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp8" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp9" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp10" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp11" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp12" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp13" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp14" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp15" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp16" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp17" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp18" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp19" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp20" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp21" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp22" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp23" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp24" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp25" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp26" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp27" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp28" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp29" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp30" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp31" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp32" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp33" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp34" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp35" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp36" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
+	<field name="temp37" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<title>
 		<band height="55">
 			<image scaleImage="FillFrame" isUsingCache="true" onErrorType="Blank">
-				<reportElement x="10" y="14" width="35" height="40" uuid="a563a9ca-4739-4149-9638-616e492bdedc"/>
+				<reportElement x="10" y="14" width="35" height="40" uuid="24e3772b-de4a-439a-aca6-615f56013b33"/>
 				<imageExpression><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<staticText>
-				<reportElement x="354" y="17" width="7" height="11" uuid="953affc0-01d0-4743-9b24-cd221315b201">
+				<reportElement x="354" y="17" width="7" height="11" uuid="1e9f141e-54f1-414f-bf2d-d2df02e3d475">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -63,7 +142,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="39" width="52" height="11" uuid="2377cc68-dfa3-4205-9825-09d8229cba43">
+				<reportElement x="302" y="39" width="52" height="11" uuid="caf897d8-5821-4943-98b0-9bb58c5db0af">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -73,7 +152,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[Tanggal Lahir]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="28" width="52" height="11" uuid="236c796a-e5f9-4f0f-81df-d549798c0edb">
+				<reportElement x="302" y="28" width="52" height="11" uuid="6abe0d6a-36c6-4e67-ac96-95de39b1dc52">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -83,7 +162,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<line>
-				<reportElement x="0" y="12" width="520" height="1" uuid="18e2c12d-b0f2-4c17-b878-d693bec4291f">
+				<reportElement x="0" y="12" width="520" height="1" uuid="e7d113e2-a5da-4432-8d0b-02c9e601346e">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -91,7 +170,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="51" y="34" width="154" height="12" uuid="210f550b-4df1-4449-821b-482a74a76b17">
+				<reportElement x="51" y="34" width="154" height="12" uuid="2721e481-5105-490f-9166-4f52dbaf3f1a">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -102,7 +181,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[RATU ZALECHA MARTAPURA]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="354" y="39" width="7" height="11" uuid="c8a1a245-3c5b-487b-865f-fe478c500243">
+				<reportElement x="354" y="39" width="7" height="11" uuid="aced6f0a-be4e-40a4-8b34-8528111947ce">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -112,7 +191,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="302" y="17" width="52" height="11" uuid="8fd14c49-78c6-495a-9d87-6a0bf610c4d2">
+				<reportElement x="302" y="17" width="52" height="11" uuid="cdae03c9-4300-4aff-bcaf-68e21488662e">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -122,7 +201,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[No. RM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="446" y="0" width="75" height="13" uuid="f9eee231-8c97-4e75-a257-8ed56a5e31b5">
+				<reportElement x="446" y="0" width="75" height="13" uuid="7005de9b-47f5-4971-b791-a1bbaa007482">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -132,7 +211,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[RM 10 REV 01]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="354" y="28" width="7" height="11" uuid="1905dbad-779b-4a6b-8359-259dff28566d">
+				<reportElement x="354" y="28" width="7" height="11" uuid="493a3157-8629-4ab5-af34-3b73af06c855">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Left" verticalAlignment="Middle">
@@ -142,7 +221,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="51" y="21" width="154" height="12" uuid="ec27dfeb-2874-4b1b-9f7c-4f2cff99916a">
+				<reportElement x="51" y="21" width="154" height="12" uuid="e24dcd29-4f03-4f2c-9369-323831f174a3">
 					<property name="com.jaspersoft.studio.unit.x" value="px"/>
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
@@ -153,40 +232,43 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[RUMAH SAKIT UMUM DAERAH]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="296" y="12" width="1" height="43" uuid="cae908e4-fbd2-47bc-b67f-0a08015737c0"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="296" y="12" width="1" height="43" uuid="b90bc79a-7ba5-4293-91ac-afeee2bb7ff2"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="361" y="17" width="158" height="11" uuid="eca9321a-ebe9-40c3-84d9-fb4a5649954a"/>
+				<reportElement x="361" y="17" width="158" height="11" uuid="8fd677d9-e196-4143-bb0a-0aa9655286ba"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{no_rkm_medis}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp1}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="361" y="28" width="158" height="11" uuid="2f1a9f68-9617-417f-bdcc-556063b5e7ad"/>
+				<reportElement x="361" y="28" width="158" height="11" uuid="8e3eeef1-0cf4-4540-8df2-5c59ef1c24fe"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp2}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="361" y="39" width="158" height="11" uuid="0cb9ea61-a008-4e07-a55a-a761693164b5"/>
+				<reportElement x="361" y="39" width="158" height="11" uuid="ec396e43-4f31-4fbc-870f-1735765ed4bf"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tgllhr}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp3}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="12" width="1" height="43" uuid="2fbad1f2-ca04-41cf-bbec-06a9aa7111e1"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="12" width="1" height="43" uuid="e4807437-c606-4553-8e72-7005cb6a616d"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="12" width="1" height="43" uuid="1838af0f-1911-41e6-ab02-3d19d9f6d5d3"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="12" width="1" height="43" uuid="6af20f3d-34fe-4bc6-a995-6af55c79f8ac"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
@@ -196,7 +278,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 	<pageHeader>
 		<band height="63">
 			<line>
-				<reportElement x="0" y="28" width="520" height="1" uuid="9cf763df-798f-4dad-9316-59e9ae02647c">
+				<reportElement x="0" y="28" width="520" height="1" uuid="8ce754d3-960e-4428-a67f-ba09eafdc3ea">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -204,7 +286,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="0" width="520" height="1" uuid="ad0fbd63-1e2a-432e-bc5b-823f045df88a">
+				<reportElement x="0" y="0" width="520" height="1" uuid="983b5380-8dd8-445a-9747-b49d47c4557c">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -212,14 +294,15 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement mode="Opaque" x="0" y="1" width="520" height="27" backcolor="#F0F0DC" uuid="4fcfb97b-da2d-4a9a-8a40-c39a9fdc1cc3"/>
+				<reportElement mode="Opaque" x="0" y="1" width="520" height="27" backcolor="#F0F0DC" uuid="2fbbfccc-d2e8-4102-8800-ae1ba917c420"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
 					<font fontName="Tahoma" isBold="true"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{judul}]]></textFieldExpression>
 			</textField>
 			<staticText>
-				<reportElement x="4" y="29" width="52" height="33" uuid="27351d2c-8c77-48d0-8669-c59702933a31">
+				<reportElement x="4" y="29" width="52" height="33" uuid="b8a80333-0517-4e4f-a8c1-2123dfc16faa">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -229,7 +312,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[TANGGAL, JAM]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="57" y="29" width="81" height="33" uuid="58b39c23-9407-4e46-8eb3-624078cd862c">
+				<reportElement x="57" y="29" width="81" height="33" uuid="0dc119d5-eeea-4249-a962-10b6a88e4515">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -239,7 +322,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[BAGIAN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="141" y="29" width="130" height="33" uuid="3842df2c-2d6c-4146-b00a-3956ef6672f7">
+				<reportElement x="141" y="29" width="130" height="33" uuid="811a3f0d-3316-4e89-8277-2fa2113fe1eb">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -249,7 +332,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[HASIL PEMERIKSAAN, ANALISA, RENCANA, PENATALAKSAAAN PASIEN]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="277" y="29" width="128" height="33" uuid="52a6ee58-268f-4cf4-979a-b8a155a91d8b">
+				<reportElement x="277" y="29" width="128" height="33" uuid="f27e5980-a4d2-488e-ae1e-b712f54a4d3d">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -259,7 +342,7 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[INSTRUKSI TENAGA KESEHATAN TERMASUK PASCA BEDAH/PROSEDUR]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="411" y="29" width="105" height="33" uuid="6aeb4eed-792f-47ef-9c99-5c4ecfa3ba48">
+				<reportElement x="411" y="29" width="105" height="33" uuid="c7b9dd51-33bb-47a6-9293-a57b9cfdad47">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle">
@@ -269,43 +352,43 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 				<text><![CDATA[VERIFIKASI TANDA TANGAN DAN NAMA JELAS DPJP]]></text>
 			</staticText>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="62" uuid="d4759ab4-5aea-487f-a913-f575b250a7d8"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="0" y="0" width="1" height="62" uuid="a860c4a3-133e-49ca-9347-f4bca2d2f9cb"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="1" width="1" height="62" uuid="19952ca5-cdcd-4b65-8d8f-ecd66d84bb94"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="520" y="1" width="1" height="62" uuid="b2969ff8-6347-44d5-b954-8d06e038e05b"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="56" y="29" width="1" height="33" uuid="fe49cf02-c29f-4055-b010-e439ff2e4d15"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="56" y="29" width="1" height="33" uuid="1363a33a-389c-4e81-aacb-6b80a7ea072d"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="138" y="29" width="1" height="33" uuid="8268a7d5-fa29-4a94-8acb-f35969093290"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="138" y="29" width="1" height="33" uuid="473e178b-b325-47ad-8c28-929f2d54f907"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="274" y="29" width="1" height="33" uuid="85d094dc-ecf0-4880-bbbc-f1134ecd807b"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="274" y="29" width="1" height="33" uuid="2c5ed893-1722-4008-b3ab-dd7ebd8994fc"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="406" y="29" width="1" height="33" uuid="5edb11ad-93b2-45e7-8e99-318867b6940f"/>
+				<reportElement positionType="Float" stretchType="RelativeToBandHeight" x="406" y="29" width="1" height="33" uuid="fe3e4a20-6d54-4867-8784-c69e208e6521"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="0" y="62" width="520" height="1" uuid="ba2f86d7-013f-4b35-b2be-55ec7c984688">
+				<reportElement x="0" y="62" width="520" height="1" uuid="2e2cb294-90ab-4b4a-8a73-666df3ffcf28">
 					<property name="com.jaspersoft.studio.unit.y" value="px"/>
 				</reportElement>
 				<graphicElement>
@@ -317,97 +400,104 @@ LEFT JOIN pegawai pg3 on pg3.nik=c.nip_petugas_serah LEFT JOIN pegawai pg4 on pg
 	<detail>
 		<band height="23" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
-				<reportElement x="4" y="0" width="52" height="11" uuid="c6e59490-44da-4e81-a639-55e4bf49fc73"/>
+				<reportElement x="4" y="0" width="52" height="11" uuid="b5f38ea5-1f77-4623-9b0a-0285185cdf46"/>
 				<textElement textAlignment="Center">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{tglcppt}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp4}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="142" y="0" width="130" height="11" uuid="5b41caf8-3237-4e38-bc76-d7bd1a75694e"/>
+				<reportElement x="142" y="0" width="130" height="11" uuid="3cc538f6-d6b2-47b9-b746-5259e28d98ed"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{hasil_pemeriksaan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp7}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="278" y="0" width="127" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="09fea1a6-f47a-4f17-90dc-1cf98ed0ff49"/>
+				<reportElement x="278" y="0" width="127" height="11" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="28caaa39-9392-49b0-ba74-705c905dea70"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{instruksi_nakes}+"\n\n"+$P{konfirmasiTerapi}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp8}+"\n\n"+$F{temp16}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="409" y="0" width="110" height="11" uuid="2329630c-7005-40e1-9836-1811e83b8635"/>
+				<reportElement x="409" y="0" width="110" height="11" uuid="a615908d-17a2-4a2d-bd9a-6d1d01e8493d"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{verif}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp9}]]></textFieldExpression>
 			</textField>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="3daa42fa-fad2-4f08-9d3b-2299f2b7655d"/>
+				<reportElement stretchType="RelativeToTallestObject" x="0" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="a5642c26-884b-4c8b-860e-38e8ddfee4b3"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="56" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="6ec33fe7-fc92-4269-a903-2c46807e3193"/>
+				<reportElement stretchType="RelativeToTallestObject" x="56" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="bcd36974-64d8-46a2-97c8-f68b7a4ff9fb"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="138" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="2a4038bd-df13-46c1-aa2a-442cf7ac3d9a"/>
+				<reportElement stretchType="RelativeToTallestObject" x="138" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="4d3d65ad-ab72-46f1-a468-8b570e904512"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="274" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="e40f7c6f-3c7f-4328-bd2e-b7b6d18b58ad"/>
+				<reportElement stretchType="RelativeToTallestObject" x="274" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="89ed8d91-888b-4ee6-938d-83c418307dee"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="406" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="db844ac8-2d7a-4696-89bd-c60b16beb1b1"/>
+				<reportElement stretchType="RelativeToTallestObject" x="406" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="87e8edc3-d980-4260-a22e-ac50f8732c78"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement stretchType="RelativeToTallestObject" x="520" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="fac5906a-772b-48b9-a2b5-502c70a2b65c"/>
+				<reportElement stretchType="RelativeToTallestObject" x="520" y="0" width="1" height="23" isPrintInFirstWholeBand="true" isPrintWhenDetailOverflows="true" uuid="03c26960-52b8-4cfb-971c-0916502e4330"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement positionType="FixRelativeToBottom" x="0" y="22" width="520" height="1" uuid="0c2385e7-cadc-4ec2-a4e8-24a45002623d"/>
+				<reportElement positionType="FixRelativeToBottom" x="0" y="22" width="520" height="1" uuid="bb697e32-5975-4078-8f16-4166f95c9504"/>
 				<graphicElement>
 					<pen lineWidth="0.5"/>
 				</graphicElement>
 			</line>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="59" y="0" width="79" height="11" uuid="bc7c06f0-58c6-4844-bcea-22509aefcf8c"/>
+				<reportElement x="59" y="0" width="79" height="11" uuid="68e34f6d-04a0-483f-9de9-7909c67cda7f"/>
 				<textElement>
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{bagian_cppt}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp6}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
-				<reportElement x="409" y="11" width="110" height="11" forecolor="#CC0033" uuid="304d91e5-bf44-4335-ba8c-7d8a1b2e08cb"/>
+				<reportElement x="409" y="11" width="110" height="11" forecolor="#CC0033" uuid="7896b4a6-cf53-4988-827f-da52798ee3f7"/>
 				<textElement textAlignment="Left">
 					<font fontName="Tahoma" size="8"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$F{ptgsSerah}+"\n\n"+$F{ptgsTerima}+"\n"]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$F{temp10}+"\n\n"+$F{temp11}+"\n"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<pageFooter>
 		<band height="18">
 			<textField>
-				<reportElement x="447" y="4" width="67" height="11" uuid="241b51d9-c439-47a5-999c-a54e1b7062ba"/>
+				<reportElement x="447" y="4" width="67" height="11" uuid="26766142-f5f8-4e86-8ecb-a8528004bf33"/>
 				<textElement verticalAlignment="Middle">
 					<font fontName="Tahoma" size="7"/>
+					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA["Lembar Ke : "+$V{PAGE_NUMBER}]]></textFieldExpression>
 			</textField>
