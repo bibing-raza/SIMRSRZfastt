@@ -6593,6 +6593,13 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                         ChkLihatActionPerformed(null);
                     }
                 }
+                
+            //khusus dr. rully    
+            } else if (akses.getkode().equals("197807242003121005")) {
+                kdpoli.setText("");
+                TPoli.setText("");
+                TCari.setText(TNoRM.getText());
+                ChkLihatActionPerformed(null);
             } else {
                 kdpoli.setText(polinya);
                 TPoli.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));
@@ -9069,6 +9076,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         ChkLihatActionPerformed(null);
                     }
                 }
+
+                //khusus dr. rully    
+            } else if (akses.getkode().equals("197807242003121005")) {
+                kdpoli.setText("");
+                TPoli.setText("");
+                TCari.setText(TNoRM.getText());
+                ChkLihatActionPerformed(null);
             } else {
                 kdpoli.setText(polinya);
                 TPoli.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + kdpoli.getText() + "'"));

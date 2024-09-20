@@ -1157,7 +1157,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel58.setBounds(0, 328, 130, 23);
 
         TglBeriTindakan.setEditable(false);
-        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        TglBeriTindakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         TglBeriTindakan.setDisplayFormat("dd-MM-yyyy");
         TglBeriTindakan.setName("TglBeriTindakan"); // NOI18N
         TglBeriTindakan.setOpaque(false);
@@ -1541,7 +1541,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel73.setBounds(0, 216, 130, 23);
 
         TglSetuju.setEditable(false);
-        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        TglSetuju.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         TglSetuju.setDisplayFormat("dd-MM-yyyy");
         TglSetuju.setName("TglSetuju"); // NOI18N
         TglSetuju.setOpaque(false);
@@ -1609,7 +1609,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel75.setBounds(0, 244, 130, 23);
 
         TglTolak.setEditable(false);
-        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        TglTolak.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         TglTolak.setDisplayFormat("dd-MM-yyyy");
         TglTolak.setName("TglTolak"); // NOI18N
         TglTolak.setOpaque(false);
@@ -1875,7 +1875,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         jLabel78.setBounds(455, 188, 70, 23);
 
         cmbKategori.setForeground(new java.awt.Color(0, 0, 0));
-        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi" }));
+        cmbKategori.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Transfusi Darah", "Trombopharesis", "Restrain", "Leukopharesis", "BMP", "NGT", "DC", "Transfusi Zat Besi", "Biopsi", "Pengobatan Kemoterapi", "Punksi Cairan Pleura" }));
         cmbKategori.setName("cmbKategori"); // NOI18N
         cmbKategori.setPreferredSize(new java.awt.Dimension(55, 28));
         cmbKategori.addActionListener(new java.awt.event.ActionListener() {
@@ -1943,7 +1943,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1958,7 +1958,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-08-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-08-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2956,6 +2956,20 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                     + "- Bila timbul gejala-gejala efek samping/komplikasi (seperti yang tertera diatas pada\n"
                     + "  bagian resiko dan komplikasi) segera berobat ke poliklinik Onkologi Medik, IGD atau\n"
                     + "  tenaga medis terdekat untuk mendapatkan pertolongan medis.\n");
+            
+            //punksi cairan pleura
+        } else if (cmbKategori.getSelectedIndex() == 11) {
+            TDiagKerja.setText("Efusi Pleura Sinistra");
+            TDasarDiag.setText("Ro Thorax, USG Thorak Marker");
+            Ttindakan.setText("Punksi Cairan Pleura");
+            Tindikasi.setText("Diagnosis dan Terapi");
+            Ttatacara.setText("Sesuai SOP");
+            Ttujuan.setText("Mengeluarkan cairan berlebih dari pleura dan diagnostik");
+            Tresiko.setText("Trauma, Perdarahan");
+            Tkomplikasi.setText("Perdarahan, Pneumuthorax");
+            Tprognosis.setText("Dubia");
+            Talternatif.setText("WSD");
+            Tlain.setText("");
         }
     }//GEN-LAST:event_cmbKategoriActionPerformed
 

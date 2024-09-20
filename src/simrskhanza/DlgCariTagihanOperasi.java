@@ -1763,16 +1763,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         jnsOperasi.setForeground(new java.awt.Color(0, 0, 0));
         jnsOperasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kecil", "Sedang", "Besar", "Khusus I", "Khusus II" }));
         jnsOperasi.setName("jnsOperasi"); // NOI18N
-        jnsOperasi.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jnsOperasiMouseClicked(evt);
-            }
-        });
-        jnsOperasi.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jnsOperasiKeyPressed(evt);
-            }
-        });
         panelisi3.add(jnsOperasi);
         jnsOperasi.setBounds(849, 10, 90, 23);
 
@@ -1783,18 +1773,8 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         jLabel4.setBounds(765, 40, 82, 23);
 
         spes.setForeground(new java.awt.Color(0, 0, 0));
-        spes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Bedah", "Obstetrik & Ginekologi", "Bedah Saraf", "THT", "Mata", "Kulit & Kelamin", "Gigi & Mulut", "Bedah Anak", "Kardiovaskuler", "Bedah Orthopedi", "Thorak", "Digestive", "Urologi", "Onkologi", "Bedah Vaskuler", "Gigi Bedah Mulut", "Lain-lain" }));
+        spes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Bedah Umum", "Obstetrik & Ginekologi", "Bedah Saraf", "THT", "Mata", "Kulit & Kelamin", "Gigi & Mulut", "Bedah Anak", "Kardiovaskuler", "Bedah Orthopedi", "Thorak", "Digestive", "Urologi", "Onkologi", "Bedah Vaskuler", "Gigi Bedah Mulut", "Lain-lain" }));
         spes.setName("spes"); // NOI18N
-        spes.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                spesMouseClicked(evt);
-            }
-        });
-        spes.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                spesKeyPressed(evt);
-            }
-        });
         panelisi3.add(spes);
         spes.setBounds(849, 40, 150, 23);
 
@@ -1808,11 +1788,6 @@ public class DlgCariTagihanOperasi extends javax.swing.JDialog {
         kddokter1.setForeground(new java.awt.Color(0, 0, 0));
         kddokter1.setHighlighter(null);
         kddokter1.setName("kddokter1"); // NOI18N
-        kddokter1.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                kddokter1KeyPressed(evt);
-            }
-        });
         panelisi3.add(kddokter1);
         kddokter1.setBounds(401, 68, 100, 23);
 
@@ -2962,9 +2937,9 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
     }//GEN-LAST:event_kdonloop5KeyPressed
 
     private void kddokterKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kddokterKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
-            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?",TDokter,kddokter.getText());
-        }else if(evt.getKeyCode()==KeyEvent.VK_UP){
+        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            Sequel.cariIsi("select nm_dokter from dokter where kd_dokter=?", TDokter, kddokter.getText());
+        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
             btnCariDokterActionPerformed(null);
         }
     }//GEN-LAST:event_kddokterKeyPressed
@@ -2978,22 +2953,6 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
         dokter.setLocationRelativeTo(internalFrame1);
         dokter.setVisible(true);
     }//GEN-LAST:event_btnCariDokterActionPerformed
-
-    private void jnsOperasiMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jnsOperasiMouseClicked
-        
-    }//GEN-LAST:event_jnsOperasiMouseClicked
-
-    private void jnsOperasiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jnsOperasiKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jnsOperasiKeyPressed
-
-    private void spesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_spesMouseClicked
-
-    }//GEN-LAST:event_spesMouseClicked
-
-    private void spesKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_spesKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_spesKeyPressed
 
     private void MnDataOperasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnDataOperasiActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -3146,10 +3105,6 @@ private void MnHapusObatOperasiActionPerformed(java.awt.event.ActionEvent evt) {
         }
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_MnRekapPerSpesActionPerformed
-
-    private void kddokter1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kddokter1KeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_kddokter1KeyPressed
 
     private void btnCariDokter1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnCariDokter1ActionPerformed
         akses.setform("DlgCariTagihanOperasi");

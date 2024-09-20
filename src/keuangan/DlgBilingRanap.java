@@ -4870,7 +4870,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 cmbPenjamin.setSelectedIndex(0);
                 TketPenjamin.setText("");
             }
-            cekPanjar();            
+            cekPanjar();
         } else {
             cmbPenjamin.setSelectedIndex(0);
             TketPenjamin.setText("");

@@ -2510,10 +2510,6 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="jnsOperasi" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jnsOperasiMouseClicked"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="jnsOperasiKeyPressed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="849" y="10" width="90" height="23"/>
@@ -2542,7 +2538,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="18">
                     <StringItem index="0" value="-"/>
-                    <StringItem index="1" value="Bedah"/>
+                    <StringItem index="1" value="Bedah Umum"/>
                     <StringItem index="2" value="Obstetrik &amp; Ginekologi"/>
                     <StringItem index="3" value="Bedah Saraf"/>
                     <StringItem index="4" value="THT"/>
@@ -2563,10 +2559,6 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="spes" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="spesMouseClicked"/>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="spesKeyPressed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="849" y="40" width="150" height="23"/>
@@ -2598,9 +2590,6 @@
                 </Property>
                 <Property name="name" type="java.lang.String" value="kddokter1" noResource="true"/>
               </Properties>
-              <Events>
-                <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="kddokter1KeyPressed"/>
-              </Events>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                   <AbsoluteConstraints x="401" y="68" width="100" height="23"/>

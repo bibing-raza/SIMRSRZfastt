@@ -665,7 +665,7 @@ public class DlgTransaksiPanjar extends javax.swing.JDialog {
         TnominalStatus.setBounds(144, 206, 131, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel63.setText("Ruang Rawat :");
+        jLabel63.setText("Rg. Rawat/Unit :");
         jLabel63.setName("jLabel63"); // NOI18N
         PanelInput.add(jLabel63);
         jLabel63.setBounds(0, 38, 110, 23);
