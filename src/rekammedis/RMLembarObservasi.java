@@ -2426,6 +2426,10 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            TCari.setText(TNoRw.getText());
+            emptTeks();
+            tampil();
         }
     }
     
@@ -2603,6 +2607,10 @@ public class RMLembarObservasi extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampilObs2(wktSimpanObs);
+            tampilObs1(wktSimpanObs);
+            emptTeksObs();
         }
     }
     

@@ -1099,7 +1099,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1113,7 +1113,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1501,7 +1501,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 10, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024 13:33:06" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024 07:36:14" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -3352,7 +3352,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3367,7 +3367,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3464,15 +3464,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbPenilaian.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
-                hapus();
-            } else {
-                if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 87).toString())) {
-                    hapus();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh DPJP yang bersangkutan..!!");
-                }
-            }
+            hapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
         }   
@@ -3500,18 +3492,8 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
                 } else {
                     user = akses.getkode();
                 }
-
-                if (akses.getadmin() == true) {
-                    gantiDisimpan();
-                    ganti();
-                } else {
-                    if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 87).toString())) {
-                        gantiDisimpan();
-                        ganti();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh DPJP yang bersangkutan..!!");
-                    }
-                }
+                gantiDisimpan();
+                ganti();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
             }
@@ -5393,6 +5375,9 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
         }
     }
     

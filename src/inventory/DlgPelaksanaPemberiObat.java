@@ -1353,6 +1353,9 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                tampil();
+                emptTeks();
             }
         }
 }//GEN-LAST:event_BtnHapusActionPerformed

@@ -2643,55 +2643,27 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
 
             try {
-                if (akses.getadmin() == true) {
-                    Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRW.getText() + "'", "alasan_masuk_dirawat='" + TAlasanDirawat.getText() + "', "
-                            + "ringkasan_riwayat_penyakit='" + TRingkasanRiwayat.getText() + "', pemeriksaan_fisik='" + Valid.mysql_real_escape_stringERM(TPemeriksaanFisik.getText()) + "', "
-                            + "pemeriksaan_penunjang='" + Valid.mysql_real_escape_stringERM(TPemeriksaanPenunjang.getText()) + "',terapi_pengobatan='" + TTerapiPengobatan.getText() + "',"
-                            + "diagnosa_utama='" + TDiagUtama.getText() + "',diagnosa_sekunder='" + TDiagSekunder.getText() + "',keadaan_umum='" + TKeadaanumum.getText() + "',"
-                            + "kesadaran='" + TKesadaran.getText() + "',tekanan_darah='" + TTensi.getText() + "',suhu='" + TSuhu.getText() + "',nadi='" + TNadi.getText() + "',"
-                            + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
-                            + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
-                            + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
-                            + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
-                            + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
+                Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRW.getText() + "'", "alasan_masuk_dirawat='" + TAlasanDirawat.getText() + "', "
+                        + "ringkasan_riwayat_penyakit='" + TRingkasanRiwayat.getText() + "', pemeriksaan_fisik='" + Valid.mysql_real_escape_stringERM(TPemeriksaanFisik.getText()) + "', "
+                        + "pemeriksaan_penunjang='" + Valid.mysql_real_escape_stringERM(TPemeriksaanPenunjang.getText()) + "',terapi_pengobatan='" + TTerapiPengobatan.getText() + "',"
+                        + "diagnosa_utama='" + TDiagUtama.getText() + "',diagnosa_sekunder='" + TDiagSekunder.getText() + "',keadaan_umum='" + TKeadaanumum.getText() + "',"
+                        + "kesadaran='" + TKesadaran.getText() + "',tekanan_darah='" + TTensi.getText() + "',suhu='" + TSuhu.getText() + "',nadi='" + TNadi.getText() + "',"
+                        + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
+                        + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
+                        + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
+                        + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
+                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
 
-                    if (nmgedung.equals("AL-HAKIM/PARU")) {
-                        if (noreg.getText().length() == 16) {
-                            Sequel.simpanReplaceInto("nomor_reg_tb", "'" + TNoRM.getText() + "','" + noreg.getText() + "'", "No. Registrasi Pasien TB");
-                        }
-                    }
-
-                    TCari.setText(TNoRW.getText());
-                    emptTeks();
-                    tampil();
-                    TabRingkasan.setSelectedIndex(1);
-                } else {
-                    if (akses.getkode().equals(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString())) {
-                        Sequel.mengedit("ringkasan_pulang_ranap", "no_rawat='" + TNoRW.getText() + "'", "alasan_masuk_dirawat='" + TAlasanDirawat.getText() + "', "
-                                + "ringkasan_riwayat_penyakit='" + TRingkasanRiwayat.getText() + "', pemeriksaan_fisik='" + Valid.mysql_real_escape_stringERM(TPemeriksaanFisik.getText()) + "', "
-                                + "pemeriksaan_penunjang='" + Valid.mysql_real_escape_stringERM(TPemeriksaanPenunjang.getText()) + "',terapi_pengobatan='" + TTerapiPengobatan.getText() + "',"
-                                + "diagnosa_utama='" + TDiagUtama.getText() + "',diagnosa_sekunder='" + TDiagSekunder.getText() + "',keadaan_umum='" + TKeadaanumum.getText() + "',"
-                                + "kesadaran='" + TKesadaran.getText() + "',tekanan_darah='" + TTensi.getText() + "',suhu='" + TSuhu.getText() + "',nadi='" + TNadi.getText() + "',"
-                                + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
-                                + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
-                                + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
-                                + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
-                                + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
-
-                        if (nmgedung.equals("AL-HAKIM/PARU")) {
-                            if (noreg.getText().length() == 16) {
-                                Sequel.simpanReplaceInto("nomor_reg_tb", "'" + TNoRM.getText() + "','" + noreg.getText() + "'", "No. Registrasi Pasien TB");
-                            }
-                        }
-
-                        TCari.setText(TNoRW.getText());
-                        emptTeks();
-                        tampil();
-                        TabRingkasan.setSelectedIndex(1);
-                    } else {
-                        JOptionPane.showMessageDialog(rootPane, "Maaf, data hanya bisa diperbaiki oleh " + Sequel.cariIsi("select nama from petugas where nip='" + tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString() + "'"));
+                if (nmgedung.equals("AL-HAKIM/PARU")) {
+                    if (noreg.getText().length() == 16) {
+                        Sequel.simpanReplaceInto("nomor_reg_tb", "'" + TNoRM.getText() + "','" + noreg.getText() + "'", "No. Registrasi Pasien TB");
                     }
                 }
+
+                TCari.setText(TNoRW.getText());
+                emptTeks();
+                tampil();
+                TabRingkasan.setSelectedIndex(1);
             } catch (Exception e) {
                 System.out.println("Ganti Ringkasan Pulang Pasien : " + e);
             }
@@ -2930,38 +2902,22 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbRingkasan.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
-                    if (Sequel.queryu2tf("delete from ringkasan_pulang_ranap where no_rawat=?", 1, new String[]{
-                        tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 0).toString()
-                    }) == true) {
-                        TCari.setText(TNoRW.getText());
-                        tampil();
-                        emptTeks();
-                        TabRingkasan.setSelectedIndex(1);
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                    }
+            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                if (Sequel.queryu2tf("delete from ringkasan_pulang_ranap where no_rawat=?", 1, new String[]{
+                    tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 0).toString()
+                }) == true) {
+                    TCari.setText(TNoRW.getText());
+                    tampil();
+                    emptTeks();
+                    TabRingkasan.setSelectedIndex(1);
+                } else {
+                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
-                if (akses.getkode().equals(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString())) {
-                    x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (x == JOptionPane.YES_OPTION) {
-                        if (Sequel.queryu2tf("delete from ringkasan_pulang_ranap where no_rawat=?", 1, new String[]{
-                            tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 0).toString()
-                        }) == true) {
-                            TCari.setText(TNoRW.getText());
-                            tampil();
-                            emptTeks();
-                            TabRingkasan.setSelectedIndex(1);
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                        }
-                    }
-                } else {
-                    JOptionPane.showMessageDialog(rootPane, "Maaf, hanya bisa dihapus oleh " + Sequel.cariIsi("select nama from petugas where nip='" + tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 35).toString() + "'"));
-                }
+                TCari.setText(TNoRW.getText());
+                tampil();
+                emptTeks();
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dahulu pada tabel..!!");

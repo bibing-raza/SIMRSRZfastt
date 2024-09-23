@@ -1387,6 +1387,11 @@ public class RMAsesmenUlangResikoJatuhAnak extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                TCari.setText(TNoRw.getText());
+                Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
+                emptTeks();
+                BtnCariActionPerformed(null);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");

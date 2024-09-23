@@ -4012,7 +4012,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbPenilaian.getSelectedRow() > -1) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 hapus();
             } else {
                 if (kddpjp.getText().equals(tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 120).toString())) {
@@ -6107,7 +6107,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from penilaian_awal_medis_igd where no_rawat=?", 1, new String[]{
                 tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
-            }) == true) {                             
+            }) == true) {
                 tampil();
                 Ttd.setText("");
                 Trr.setText("");
@@ -6124,6 +6124,20 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            Ttd.setText("");
+            Trr.setText("");
+            Ttemp.setText("");
+            emptTeks();
+            ChkMeninggal.setSelected(false);
+            cmbJam.setSelectedIndex(0);
+            cmbMnt.setSelectedIndex(0);
+            cmbDtk.setSelectedIndex(0);
+
+            cmbJam.setEnabled(false);
+            cmbMnt.setEnabled(false);
+            cmbDtk.setEnabled(false);
         }
     }
     

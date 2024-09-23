@@ -4679,6 +4679,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                     });
                     tampil();
                     emptTeks();
+                } else {
+                    tampil();
+                    emptTeks();
                 }
             }
 

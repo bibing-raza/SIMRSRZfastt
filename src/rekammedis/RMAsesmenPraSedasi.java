@@ -2777,15 +2777,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbSedasi.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
-                hapus();
-            } else {
-                if (tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString().equals(akses.getkode())) {
-                    hapus();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh " + tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 85).toString() + " ...!!");
-                }
-            }
+            hapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tbSedasi.requestFocus();
@@ -2812,17 +2804,8 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                     user = akses.getkode();
                 }
 
-                if (akses.getadmin() == true) {
-                    gantiDisimpan();
-                    ganti();
-                } else {
-                    if (tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 83).toString().equals(akses.getkode())) {
-                        gantiDisimpan();
-                        ganti();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh " + tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 85).toString() + " ...!!");
-                    }
-                }
+                gantiDisimpan();
+                ganti();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
@@ -4406,6 +4389,9 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
         }
     }
     

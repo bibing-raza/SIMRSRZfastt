@@ -2064,6 +2064,9 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                tampil();
+                BtnBatalActionPerformed(null);
             }
         }
 }//GEN-LAST:event_BtnHapusActionPerformed

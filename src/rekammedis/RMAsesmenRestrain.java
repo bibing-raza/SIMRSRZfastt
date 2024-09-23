@@ -2007,15 +2007,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbRestrain.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
-                hapus();
-            } else {
-                if (Tnip.getText().equals(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 50).toString())) {
-                    hapus();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat/bidan yang bersangkutan..!!");
-                }
-            }
+            hapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         }   
@@ -2041,17 +2033,8 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
                     user = akses.getkode();
                 }
 
-                if (akses.getadmin() == true) {
-                    gantiDisimpan();
-                    ganti();
-                } else {
-                    if (Tnip.getText().equals(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 50).toString())) {
-                        gantiDisimpan();
-                        ganti();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat/bidan yang bersangkutan..!!");
-                    }
-                }
+                gantiDisimpan();
+                ganti();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
@@ -3396,6 +3379,9 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                tampil();
+                emptTeks();
             }
         } else {
             JOptionPane.showMessageDialog(null, "Data observasi restrain sudah ada tersimpan, hapus dulu data observasinya..!!");

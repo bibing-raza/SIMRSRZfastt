@@ -1773,15 +1773,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             Tpersentase.requestFocus();
         } else {
             if (tbAsesmenGZUlang.getSelectedRow() > -1) {
-                if (akses.getadmin() == true) {
-                    ganti();
-                } else {
-                    if (Tnip.getText().equals(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 43).toString())) {
-                        ganti();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh ahli gizi yang sudah menyimpan asesmen ulang gizi pasien ini..!!");
-                    }
-                }
+                ganti();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
@@ -1789,9 +1781,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnGantiActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, BtnBatal, BtnKeluar);
         }
 }//GEN-LAST:event_BtnGantiKeyPressed
@@ -1874,15 +1866,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbAsesmenGZUlang.getSelectedRow() > -1) {
-            if (akses.getadmin() == true) {
-                hapus();
-            } else {
-                if (Tnip.getText().equals(tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 43).toString())) {
-                    hapus();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh ahli gizi yang sudah menyimpan asesmen ulang gizi pasien ini..!!");
-                }
-            }
+            hapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         } 
@@ -3243,6 +3227,9 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
         }
     }
     

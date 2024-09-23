@@ -3894,12 +3894,15 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from transfer_serah_terima_pasien_igd where no_rawat='" + TNoRw.getText() + "' "
                     + "and waktu_simpan=?", 1, new String[]{wktSimpan
-            }) == true) {                             
+                    }) == true) {
                 tampil();
-                emptTeks();                
+                emptTeks();
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
         }
     }
     

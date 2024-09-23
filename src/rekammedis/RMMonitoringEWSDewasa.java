@@ -1339,7 +1339,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbEWS.getSelectedRow() > -1) {
             x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {                
+            if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from monitoring_ews_dewasa where waktu_simpan=?", 1, new String[]{
                     tbEWS.getValueAt(tbEWS.getSelectedRow(), 28).toString()
                 }) == true) {
@@ -1350,6 +1350,11 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
+            } else {
+                TCari.setText(TNoRw.getText());
+                Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
+                emptTeks();
+                BtnCariActionPerformed(null);
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salh satu datanya terlebih dahulu..!!");

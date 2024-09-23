@@ -3122,7 +3122,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbAsesmen.getSelectedRow() > -1) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 hapus();
             } else {
                 if (nip.equals(akses.getkode())) {
@@ -4889,6 +4889,10 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
+            tampilFaktorResiko();
         }
     }
     

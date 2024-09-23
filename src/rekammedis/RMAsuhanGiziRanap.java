@@ -6793,6 +6793,14 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            emptTeks();
+            for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
+                tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+            }
+            TCariDiagnosa.setText("");
+            tampilDiagnosa();
         }
     }
     

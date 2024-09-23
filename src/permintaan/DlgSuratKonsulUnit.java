@@ -854,6 +854,10 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     } else {
                         JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                     }
+                } else {
+                    TCari.setText("");
+                    tampil();
+                    emptTeks();
                 }
             }
         } else {

@@ -2806,7 +2806,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbTriase.getSelectedRow() > -1) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 hapus();
             } else {
                 if (nip.equals(tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString())) {
@@ -4684,12 +4684,15 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         if (x == JOptionPane.YES_OPTION) {
             if (Sequel.queryu2tf("delete from triase_igd where no_rawat=?", 1, new String[]{
                 tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
-            }) == true) {                             
+            }) == true) {
                 tampil();
-                BtnBatalActionPerformed(null);               
+                BtnBatalActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
+        } else {
+            tampil();
+            BtnBatalActionPerformed(null);
         }
     }
     
