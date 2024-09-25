@@ -1093,7 +1093,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="23-09-2024"/>
+                                <StringItem index="0" value="25-09-2024"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2006,7 +2006,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="23-09-2024"/>
+                                <StringItem index="0" value="25-09-2024"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2264,7 +2264,7 @@
                             <Property name="editable" type="boolean" value="false"/>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                               <StringArray count="1">
-                                <StringItem index="0" value="23-09-2024"/>
+                                <StringItem index="0" value="25-09-2024"/>
                               </StringArray>
                             </Property>
                             <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -2860,7 +2860,7 @@
                               <Color blue="0" green="0" red="0" type="rgb"/>
                             </Property>
                             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
-                              <StringArray count="12">
+                              <StringArray count="13">
                                 <StringItem index="0" value="-"/>
                                 <StringItem index="1" value="Transfusi Darah"/>
                                 <StringItem index="2" value="Trombopharesis"/>
@@ -2873,6 +2873,7 @@
                                 <StringItem index="9" value="Biopsi"/>
                                 <StringItem index="10" value="Pengobatan Kemoterapi"/>
                                 <StringItem index="11" value="Punksi Cairan Pleura"/>
+                                <StringItem index="12" value="Punksi Ascites"/>
                               </StringArray>
                             </Property>
                             <Property name="name" type="java.lang.String" value="cmbKategori" noResource="true"/>
@@ -3008,7 +3009,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="23-09-2024"/>
+                            <StringItem index="0" value="25-09-2024"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -3037,7 +3038,7 @@
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                           <StringArray count="1">
-                            <StringItem index="0" value="23-09-2024"/>
+                            <StringItem index="0" value="25-09-2024"/>
                           </StringArray>
                         </Property>
                         <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>

@@ -6320,19 +6320,27 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         } else if (TabRawat.getSelectedIndex() == 5) {
             if (ChkLihat.isSelected() == true) {
                 if (kdpoli.getText().equals("")) {
-                    x = JOptionPane.showConfirmDialog(rootPane, "Jika poliklinik tdk. dipilih maka data ringkasan riwayat rawat jalan akan memerlukan      \n"
-                            + "waktu beberapa menit utk. ditampilkan, apakah prosesnya akan dilanjutkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                    if (x == JOptionPane.YES_OPTION) {
+                    //khusus dr. rully
+                    if (akses.getkode().equals("197807242003121005")) {
                         lihatRingkasan();
                         cmbBulan.setEnabled(true);
                         cmbBulan.requestFocus();
                         ChkTanggal.setSelected(false);
                     } else {
-                        tampilRingkasan();
-                        ChkLihat.setSelected(false);
-                        cmbBulan.setSelectedIndex(0);
-                        cmbBulan.setEnabled(false);
-                        ChkTanggal.setSelected(false);
+                        x = JOptionPane.showConfirmDialog(rootPane, "Jika poliklinik tdk. dipilih maka data ringkasan riwayat rawat jalan akan memerlukan      \n"
+                                + "waktu beberapa menit utk. ditampilkan, apakah prosesnya akan dilanjutkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                        if (x == JOptionPane.YES_OPTION) {
+                            lihatRingkasan();
+                            cmbBulan.setEnabled(true);
+                            cmbBulan.requestFocus();
+                            ChkTanggal.setSelected(false);
+                        } else {
+                            tampilRingkasan();
+                            ChkLihat.setSelected(false);
+                            cmbBulan.setSelectedIndex(0);
+                            cmbBulan.setEnabled(false);
+                            ChkTanggal.setSelected(false);
+                        }
                     }
                 } else {
                     lihatRingkasan();
@@ -9424,19 +9432,27 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         if (ChkLihat.isSelected() == true) {
             if (kdpoli.getText().equals("")) {
-                x = JOptionPane.showConfirmDialog(rootPane, "Jika poliklinik tdk. dipilih maka data ringkasan riwayat rawat jalan akan memerlukan      \n"
-                        + "waktu beberapa menit utk. ditampilkan, apakah prosesnya akan dilanjutkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-                if (x == JOptionPane.YES_OPTION) {
+                //khusus dr. rully
+                if (akses.getkode().equals("197807242003121005")) {
                     lihatRingkasan();
                     cmbBulan.setEnabled(true);
                     cmbBulan.requestFocus();
                     ChkTanggal.setSelected(false);
                 } else {
-                    tampilRingkasan();
-                    ChkLihat.setSelected(false);
-                    cmbBulan.setSelectedIndex(0);
-                    cmbBulan.setEnabled(false);
-                    ChkTanggal.setSelected(false);
+                    x = JOptionPane.showConfirmDialog(rootPane, "Jika poliklinik tdk. dipilih maka data ringkasan riwayat rawat jalan akan memerlukan      \n"
+                            + "waktu beberapa menit utk. ditampilkan, apakah prosesnya akan dilanjutkan..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                    if (x == JOptionPane.YES_OPTION) {
+                        lihatRingkasan();
+                        cmbBulan.setEnabled(true);
+                        cmbBulan.requestFocus();
+                        ChkTanggal.setSelected(false);
+                    } else {
+                        tampilRingkasan();
+                        ChkLihat.setSelected(false);
+                        cmbBulan.setSelectedIndex(0);
+                        cmbBulan.setEnabled(false);
+                        ChkTanggal.setSelected(false);
+                    }
                 }
             } else {
                 lihatRingkasan();

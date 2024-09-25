@@ -571,7 +571,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol = new widget.CekBox();
         TglKontrol = new widget.Tanggal();
         jLabel41 = new widget.Label();
-        TKondisiPulang = new widget.TextBox();
         jLabel36 = new widget.Label();
         Scroll25 = new widget.ScrollPane();
         TCatatan = new widget.TextArea();
@@ -605,6 +604,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnNamaDPJP = new widget.Button();
         cmbAsesmen = new widget.ComboBox();
         jLabel7 = new widget.Label();
+        cmbKondisiWP = new widget.ComboBox();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -1857,7 +1857,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-08-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -1874,13 +1874,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel41.setName("jLabel41"); // NOI18N
         panelisi1.add(jLabel41);
         jLabel41.setBounds(956, 884, 130, 23);
-
-        TKondisiPulang.setEditable(false);
-        TKondisiPulang.setForeground(new java.awt.Color(0, 0, 0));
-        TKondisiPulang.setToolTipText("");
-        TKondisiPulang.setName("TKondisiPulang"); // NOI18N
-        panelisi1.add(TKondisiPulang);
-        TKondisiPulang.setBounds(1090, 884, 360, 23);
 
         jLabel36.setForeground(new java.awt.Color(0, 0, 0));
         jLabel36.setText("Catatan Penting ");
@@ -2168,6 +2161,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         jLabel7.setName("jLabel7"); // NOI18N
         panelisi1.add(jLabel7);
         jLabel7.setBounds(500, 162, 80, 23);
+
+        cmbKondisiWP.setForeground(new java.awt.Color(0, 0, 0));
+        cmbKondisiWP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Dirujuk", "APS", "Meninggal >= 48 Jam", "Meninggal < 48 Jam", "Sembuh/BLPL", "Kabur" }));
+        cmbKondisiWP.setName("cmbKondisiWP"); // NOI18N
+        cmbKondisiWP.setPreferredSize(new java.awt.Dimension(55, 28));
+        panelisi1.add(cmbKondisiWP);
+        cmbKondisiWP.setBounds(1090, 884, 140, 23);
 
         Scroll2.setViewportView(panelisi1);
 
@@ -3013,7 +3013,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             param.put("tindakan", TTindakan.getText());
             param.put("tindakanList", tindakan);            
             param.put("png_jawab_px", TKlgPasien.getText());
-            param.put("kondisiPlg", TKondisiPulang.getText());
+            param.put("kondisiPlg", cmbKondisiWP.getSelectedItem().toString());
             param.put("keadaanumum", TKeadaanumum.getText());
             param.put("kesadaran", TKesadaran.getText() + ", GCS : " + Tgcs.getText());
             param.put("tandavital", "Tekanan Darah : " + TTensi.getText() + " mmHg, Suhu : " + TSuhu.getText() + " °C, Nadi : " + TNadi.getText() + " x/mnt, Frekuensi Nafas : " + TFrekuensiNafas.getText() + " x/mnt");
@@ -3027,9 +3027,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'")));
             }
 
-            param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where "
+            param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select if(tgl_keluar='0000-00-00',date(now()),tgl_keluar) from kamar_inap where "
                     + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1")));
-            param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(jam_keluar,'%H:%i') from kamar_inap where "
+            param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select if(jam_keluar='00:00:00',time_format(time(now()),'%H:%i'),time_format(jam_keluar,'%H:%i')) from kamar_inap where "
                     + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
 
             Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
@@ -3347,7 +3347,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     param.put("tindakan", TTindakan.getText());
                     param.put("tindakanList", tindakan);
                     param.put("png_jawab_px", TKlgPasien.getText());
-                    param.put("kondisiPlg", TKondisiPulang.getText());
+                    param.put("kondisiPlg", cmbKondisiWP.getSelectedItem().toString());
                     param.put("keadaanumum", TKeadaanumum.getText());
                     param.put("kesadaran", TKesadaran.getText() + ", GCS : " + Tgcs.getText());
                     param.put("tandavital", "Tekanan Darah : " + TTensi.getText() + " mmHg, Suhu : " + TSuhu.getText() + " °C, Nadi : " + TNadi.getText() + " x/mnt, Frekuensi Nafas : " + TFrekuensiNafas.getText() + " x/mnt");
@@ -3361,9 +3361,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + TNoRW.getText() + "'")));
                     }
 
-                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where "
+                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select if(tgl_keluar='0000-00-00',date(now()),tgl_keluar) from kamar_inap where "
                             + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1")));
-                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(jam_keluar,'%H:%i') from kamar_inap where "
+                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select if(jam_keluar='00:00:00',time_format(time(now()),'%H:%i'),time_format(jam_keluar,'%H:%i')) from kamar_inap where "
                             + "no_rawat='" + TNoRW.getText() + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
 
                     data = Valid.saveToPDFTte("rptRingkasanPulangRanapEnc.jasper", "report", TNoRW.getText(), param);
@@ -3759,7 +3759,6 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.TextArea TKeadaanumum;
     private widget.TextArea TKesadaran;
     private widget.TextBox TKlgPasien;
-    private widget.TextBox TKondisiPulang;
     private widget.TextBox TNadi;
     public widget.TextBox TNmDokter;
     private widget.TextBox TNmPasien;
@@ -3798,6 +3797,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Button btnDokter1;
     private widget.CekBox chkTglKontrol;
     private widget.ComboBox cmbAsesmen;
+    private widget.ComboBox cmbKondisiWP;
     private widget.ComboBox cmbLanjutan;
     private widget.TextArea dewasaA;
     private widget.TextArea dewasaB;
@@ -4062,7 +4062,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         Tgcs.setText("");
         cmbLanjutan.setSelectedIndex(0);
         TDokterLuar.setText("");
-        TKondisiPulang.setText("");
+        cmbKondisiWP.setSelectedIndex(0);
         TCatatan.setText("");
         TTerapiPulang.setText("");
         chkTglKontrol.setSelected(false);
@@ -4107,7 +4107,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             TDiagUtama.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 15).toString());
             TDiagSekunder.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 16).toString());
             TTindakan.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 17).toString());
-            TKondisiPulang.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 18).toString());
+            cmbKondisiWP.setSelectedItem(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 18).toString());
             TKeadaanumum.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 19).toString());
             TKesadaran.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 20).toString());
             TTensi.setText(tbRingkasan.getValueAt(tbRingkasan.getSelectedRow(), 22).toString());
@@ -4174,7 +4174,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     TTglPulang.setText(rsPasien.getString("tgl_pulang").replaceAll("00-00-0000", "-"));
                     TRuangrawat.setText(rsPasien.getString("nm_bangsal"));
                     TCaraBayar.setText(rsPasien.getString("png_jawab"));
-                    TKondisiPulang.setText(rsPasien.getString("stts_pulang"));
+                    cmbKondisiWP.setSelectedItem(rsPasien.getString("stts_pulang"));
                     Tdpjp.setText(rsPasien.getString("dpjp"));
                     nmgedung = rsPasien.getString("nm_gedung");
                     TNmDokter.setText(rsPasien.getString("dokter_ralan"));

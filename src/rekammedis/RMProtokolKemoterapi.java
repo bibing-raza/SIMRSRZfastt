@@ -469,7 +469,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -483,7 +483,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1040,7 +1040,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         jLabel8.setBounds(160, 66, 70, 23);
 
         TtglSiklus.setForeground(new java.awt.Color(50, 70, 50));
-        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-08-2024" }));
+        TtglSiklus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         TtglSiklus.setDisplayFormat("dd-MM-yyyy");
         TtglSiklus.setName("TtglSiklus"); // NOI18N
         TtglSiklus.setOpaque(false);
@@ -2107,7 +2107,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Tlpt.setText("");
         Tdiagnosis.setText("");
         Tprogram.setText("");
-        nipDokter = "D0000020";
+        nipDokter = "197606202002121006";
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         nipPerawat = "-";
         TnmPerawat.setText("-");
@@ -2176,7 +2176,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         Ttb.setText(Sequel.cariIsi("select ifnull(tb,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
         Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norw + "'"));
         Tsiklus.setText(Sequel.cariIsi("select ifnull(MAX(siklus_ke)+1,1) from protokol_kemoterapi where no_rkm_medis='" + norm + "'"));
-        nipDokter = "D0000020";
+        nipDokter = "197606202002121006";
         TnmDokter.setText(Sequel.cariIsi("select ifnull(nm_dokter,'') from dokter where kd_dokter='" + nipDokter + "'"));
         TCari.setText(norm);
         
@@ -2186,18 +2186,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             Tdiagnosis.setText(Sequel.cariIsi("select ifnull(diagnosa,'') from pemeriksaan_ralan where no_rawat='" + norw + "'"));
             nipPerawat = "-";
             TnmPerawat.setText("-");
-        } else {
-            nipDokter = "-";
-            TnmDokter.setText("-");
+        } else {            
             Tdiagnosis.setText("");
-            
-            if (akses.getadmin() == true) {
-                nipPerawat = "-";
-                TnmPerawat.setText("-");
-            } else {
-                nipPerawat = akses.getkode();
-                TnmPerawat.setText(Sequel.cariIsi("select nama from pegawai where nik='" + nipPerawat + "'"));
-            }
+            nipPerawat = "-";
+            TnmPerawat.setText("-");
         }
         
         //jika bukan dokter atau admin utama

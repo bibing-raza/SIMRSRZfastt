@@ -1102,6 +1102,8 @@ public final class DlgPetugas extends javax.swing.JDialog {
                         "kd_dokter='" + TNip.getText() + "'");
                 Sequel.mengedit("rawat_inap_dr", "kd_dokter_mewakili='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", 
                         "kd_dokter_mewakili='" + TNip.getText() + "'");
+                Sequel.mengedit("ringkasan_pulang_ranap", "nip_penyimpan='" + tbPetugas.getValueAt(tbPetugas.getSelectedRow(), 0).toString() + "'", 
+                        "nip_penyimpan='" + TNip.getText() + "'");
                 koneksi.setAutoCommit(true);
                 if (tabMode.getRowCount() != 0) {
                     tampil();

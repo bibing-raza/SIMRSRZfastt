@@ -1067,9 +1067,9 @@ public class DlgRMEranap extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             akses.setform("DlgRMEranap");
             RMProtokolKemoterapi form = new RMProtokolKemoterapi(null, false);
-            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), "Ranap");
             form.emptTeks();
             form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), "Ranap");
             form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);

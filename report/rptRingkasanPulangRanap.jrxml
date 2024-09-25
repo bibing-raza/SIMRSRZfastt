@@ -917,7 +917,7 @@ Nama Obat (Dosis, Frekuensi, Jumlah, Cara Pemberian)]]></text>
 	<summary>
 		<band height="154">
 			<staticText>
-				<reportElement x="325" y="52" width="195" height="13" uuid="9cd369be-6332-47dd-9d15-409f2ff5f3cb"/>
+				<reportElement x="325" y="42" width="195" height="13" uuid="9cd369be-6332-47dd-9d15-409f2ff5f3cb"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -925,7 +925,7 @@ Nama Obat (Dosis, Frekuensi, Jumlah, Cara Pemberian)]]></text>
 				<text><![CDATA[Dokter Penanggung Jawab Pelayanan]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="12" y="52" width="212" height="12" uuid="c9aaf878-f94e-4760-b9c8-f5937150cb98"/>
+				<reportElement x="12" y="42" width="212" height="12" uuid="c9aaf878-f94e-4760-b9c8-f5937150cb98"/>
 				<textElement verticalAlignment="Top">
 					<font fontName="Tahoma" size="9"/>
 					<paragraph lineSpacing="Single"/>
@@ -968,14 +968,6 @@ Lembar 4	: Faskes Tingkat 1]]></text>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
 				<textFieldExpression><![CDATA[$P{tglRingkasan}]]></textFieldExpression>
-			</textField>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="325" y="41" width="226" height="13" uuid="b06980b5-68e7-406c-9e57-237d1e6b417f"/>
-				<textElement>
-					<font fontName="Tahoma" size="9"/>
-					<paragraph lineSpacing="Single"/>
-				</textElement>
-				<textFieldExpression><![CDATA[$P{jamRingkasan}]]></textFieldExpression>
 			</textField>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="325" y="95" width="195" height="13" uuid="68933afc-728a-4821-be59-6b86dc2cd5e8"/>
