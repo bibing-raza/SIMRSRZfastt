@@ -2578,7 +2578,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         + "'" + TTensi.getText() + "','" + TSuhu.getText() + "','" + TNadi.getText() + "','" + TFrekuensiNafas.getText() + "','" + TCatatan.getText() + "',"
                         + "'" + TTerapiPulang.getText() + "','" + cmbLanjutan.getSelectedItem().toString() + "','" + kontrolPoli + "',"
                         + "'" + TNmDokter.getText() + "','" + Tgcs.getText() + "','" + TTindakan.getText() + "','" + TDokterLuar.getText() + "',"
-                        + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "'", "Ringkasan Pulang Pasien Rawat Inap");
+                        + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "',"
+                        + "'" + cmbKondisiWP.getSelectedItem().toString() + "'", "Ringkasan Pulang Pasien Rawat Inap");
             } catch (Exception e) {
                 System.out.println("Simpan Ringkasan Pulang Pasien : " + e);
             }
@@ -2652,7 +2653,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
                         + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
                         + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
-                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "'");
+                        + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "',stts_pulang='" + cmbKondisiWP.getSelectedItem().toString() + "'");
 
                 if (nmgedung.equals("AL-HAKIM/PARU")) {
                     if (noreg.getText().length() == 16) {
@@ -3905,13 +3906,13 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "b.nm_bangsal, DATE_FORMAT(rp.tgl_registrasi,'%d-%m-%Y') tgl_msk, DATE_FORMAT(ki.tgl_keluar,'%d-%m-%Y') tgl_pulang, "
                     + "IF(rr.nm_dokter_pengirim='','-',rr.nm_dokter_pengirim) dr_pengirim, pj.png_jawab, rr.alasan_masuk_dirawat, rr.ringkasan_riwayat_penyakit, "
                     + "rr.pemeriksaan_fisik, rr.pemeriksaan_penunjang, rr.terapi_pengobatan, rr.diagnosa_utama, rr.diagnosa_sekunder, rr.tindakan_prosedur, "
-                    + "ki.stts_pulang, rr.keadaan_umum, rr.kesadaran, rr.gcs, rr.tekanan_darah, rr.suhu, rr.nadi, rr.frekuensi_nafas, rr.catatan_penting, "
+                    + "rr.keadaan_umum, rr.kesadaran, rr.gcs, rr.tekanan_darah, rr.suhu, rr.nadi, rr.frekuensi_nafas, rr.catatan_penting, "
                     + "rr.terapi_pulang, rr.pengobatan_dilanjutkan, rr.dokter_luar_lanjutan dr_luar, rr.tgl_kontrol_poliklinik tgl_kontrol, ifnull(d.nm_dokter,'-') dpjp, "
                     + "rr.cek_tgl_kontrol, rr.edukasi, rr.penanggung_jwb_pasien, rr.nip_penyimpan, ifnull(rr.hasil_pemeriksaan,'') hasil_pemeriksaan, "
-                    + "pg.nama disimpan_oleh FROM ringkasan_pulang_ranap rr INNER JOIN kamar_inap ki on ki.no_rawat=rr.no_rawat INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal INNER JOIN reg_periksa rp on rp.no_rawat=rr.no_rawat INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
-                    + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg on pg.nik=rr.nip_penyimpan LEFT JOIN dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
-                    + "LEFT JOIN dokter d on d.kd_dokter=dr.kd_dokter where "
+                    + "pg.nama disimpan_oleh, rr.stts_pulang FROM ringkasan_pulang_ranap rr INNER JOIN kamar_inap ki on ki.no_rawat=rr.no_rawat "
+                    + "INNER JOIN kamar k on k.kd_kamar=ki.kd_kamar INNER JOIN bangsal b on b.kd_bangsal=k.kd_bangsal INNER JOIN reg_periksa rp on rp.no_rawat=rr.no_rawat "
+                    + "INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis INNER JOIN pegawai pg on pg.nik=rr.nip_penyimpan "
+                    + "LEFT JOIN dpjp_ranap dr on dr.no_rawat=ki.no_rawat LEFT JOIN dokter d on d.kd_dokter=dr.kd_dokter where "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.no_rawat like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and p.no_rkm_medis like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and p.nm_pasien like ? or "
@@ -3926,8 +3927,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.terapi_pengobatan like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.diagnosa_utama like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.diagnosa_sekunder like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and rr.tindakan_prosedur like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and ki.stts_pulang like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.tindakan_prosedur like ? or "                    
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.keadaan_umum like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.kesadaran like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.gcs like ? or "
@@ -3940,6 +3940,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.pengobatan_dilanjutkan like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.dokter_luar_lanjutan like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.tgl_kontrol_poliklinik like ? or "
+                    + "ki.stts_pulang<>'Pindah Kamar' and rr.stts_pulang like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and d.nm_dokter like ? or "
                     + "ki.stts_pulang<>'Pindah Kamar' and rr.penanggung_jwb_pasien like ? ORDER BY ki.tgl_masuk desc, ki.jam_masuk desc, rr.no_rawat desc LIMIT 100");
             try {

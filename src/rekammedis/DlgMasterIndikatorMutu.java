@@ -111,7 +111,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         BtnBatal = new widget.Button();
         BtnGanti = new widget.Button();
         BtnAll = new widget.Button();
-        BtnAll1 = new widget.Button();
+        BtnNumdenom = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
         jLabel6 = new widget.Label();
@@ -234,19 +234,19 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
-        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-add24.png"))); // NOI18N
-        BtnAll1.setMnemonic('M');
-        BtnAll1.setText("Master Numerator Demonimator");
-        BtnAll1.setToolTipText("Alt+M");
-        BtnAll1.setName("BtnAll1"); // NOI18N
-        BtnAll1.setPreferredSize(new java.awt.Dimension(250, 30));
-        BtnAll1.addActionListener(new java.awt.event.ActionListener() {
+        BtnNumdenom.setForeground(new java.awt.Color(0, 0, 0));
+        BtnNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/addressbook-add24.png"))); // NOI18N
+        BtnNumdenom.setMnemonic('M');
+        BtnNumdenom.setText("Master Numerator Denominator");
+        BtnNumdenom.setToolTipText("Alt+M");
+        BtnNumdenom.setName("BtnNumdenom"); // NOI18N
+        BtnNumdenom.setPreferredSize(new java.awt.Dimension(250, 30));
+        BtnNumdenom.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAll1ActionPerformed(evt);
+                BtnNumdenomActionPerformed(evt);
             }
         });
-        panelGlass8.add(BtnAll1);
+        panelGlass8.add(BtnNumdenom);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -634,7 +634,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung);
     }//GEN-LAST:event_formWindowOpened
 
-    private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
+    private void BtnNumdenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNumdenomActionPerformed
         akses.setform("DlgIndikatorNasionalMutu");
         DlgMasterNumdemonINM mutu = new DlgMasterNumdemonINM(null, false);
         mutu.isCek();
@@ -642,7 +642,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         mutu.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         mutu.setLocationRelativeTo(internalFrame1);
         mutu.setVisible(true);
-    }//GEN-LAST:event_BtnAll1ActionPerformed
+    }//GEN-LAST:event_BtnNumdenomActionPerformed
 
     /**
     * @param args the command line arguments
@@ -662,11 +662,11 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
-    private widget.Button BtnAll1;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnGanti;
     private widget.Button BtnKeluar;
+    private widget.Button BtnNumdenom;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkInput;
     private widget.PanelBiasa FormInput;

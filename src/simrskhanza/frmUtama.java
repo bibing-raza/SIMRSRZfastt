@@ -880,7 +880,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnCeklisPraOperasi = new widget.ButtonBig();
         btnCeklisKesiapanAnestesi = new widget.ButtonBig();
         btnAsesmenPreInduksi = new widget.ButtonBig();
-        btnMasterNumdemonINM = new widget.ButtonBig();
+        btnMasterNumdenomINM = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5950,18 +5950,18 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenPreInduksi);
 
-        btnMasterNumdemonINM.setForeground(new java.awt.Color(0, 0, 0));
-        btnMasterNumdemonINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
-        btnMasterNumdemonINM.setText("Master Numerator Demonimator INM");
-        btnMasterNumdemonINM.setIconTextGap(0);
-        btnMasterNumdemonINM.setName("btnMasterNumdemonINM"); // NOI18N
-        btnMasterNumdemonINM.setPreferredSize(new java.awt.Dimension(200, 90));
-        btnMasterNumdemonINM.addActionListener(new java.awt.event.ActionListener() {
+        btnMasterNumdenomINM.setForeground(new java.awt.Color(0, 0, 0));
+        btnMasterNumdenomINM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/if_address-book_285679.png"))); // NOI18N
+        btnMasterNumdenomINM.setText("Master Numerator Denominator INM");
+        btnMasterNumdenomINM.setIconTextGap(0);
+        btnMasterNumdenomINM.setName("btnMasterNumdenomINM"); // NOI18N
+        btnMasterNumdenomINM.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnMasterNumdenomINM.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnMasterNumdemonINMActionPerformed(evt);
+                btnMasterNumdenomINMActionPerformed(evt);
             }
         });
-        Panelmenu.add(btnMasterNumdemonINM);
+        Panelmenu.add(btnMasterNumdenomINM);
 
         scrollPane2.setViewportView(Panelmenu);
 
@@ -5971,7 +5971,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11783,7 +11783,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenPreInduksiActionPerformed
 
-    private void btnMasterNumdemonINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNumdemonINMActionPerformed
+    private void btnMasterNumdenomINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnMasterNumdenomINMActionPerformed
         isTutup();
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgMasterNumdemonINM mutu = new DlgMasterNumdemonINM(this, false);
@@ -11794,7 +11794,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         mutu.setVisible(true);
         DlgHome.dispose();
         this.setCursor(Cursor.getDefaultCursor());
-    }//GEN-LAST:event_btnMasterNumdemonINMActionPerformed
+    }//GEN-LAST:event_btnMasterNumdenomINMActionPerformed
 
     /**
      * @param args the command line arguments
@@ -12038,7 +12038,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnMasterKeluhanPsikologis;
     private widget.ButtonBig btnMasterMasalahKeperawatan;
     private widget.ButtonBig btnMasterNomorDokumen;
-    private widget.ButtonBig btnMasterNumdemonINM;
+    private widget.ButtonBig btnMasterNumdenomINM;
     private widget.ButtonBig btnMasterRencanaTritmenPsikologis;
     private widget.ButtonBig btnMasterResikoDecubitus;
     private widget.ButtonBig btnMerkInventaris;
@@ -13882,7 +13882,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
             
             if (akses.getadmin()== true) {
-                Panelmenu.add(btnMasterNumdemonINM);
+                Panelmenu.add(btnMasterNumdenomINM);
                 jmlmenu++;
             }
                     
@@ -14578,7 +14578,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getadmin() == true) {
-            Panelmenu.add(btnMasterNumdemonINM);
+            Panelmenu.add(btnMasterNumdenomINM);
             jmlmenu++;
         }
         
@@ -16500,8 +16500,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         }
         
         if (akses.getadmin()== true) {
-            if (btnMasterNumdemonINM.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
-                Panelmenu.add(btnMasterNumdemonINM);
+            if (btnMasterNumdenomINM.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnMasterNumdenomINM);
                 jmlmenu++;
             }
         }

@@ -50,7 +50,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Kode Numdemon", "No. Urut", "Kode Indikator", "Nama Indikator", "Nama Numerator Demonimator", "Ruang Perawatan/Gedung", "Status Data"}) {
+            "Kode Numdenom", "No. Urut", "Kode Indikator", "Nama Indikator", "Nama Numerator Denominator", "Ruang Perawatan/Gedung", "Status Data"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -64,7 +64,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         for (i = 0; i < 7; i++) {
             TableColumn column = tbMutu.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(90);
+                column.setPreferredWidth(100);
             } else if (i == 1) {
                 column.setPreferredWidth(60);
             } else if (i == 2) {
@@ -83,7 +83,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         TnoUrut.setDocument(new batasInput((byte) 3).getOnlyAngka(TnoUrut));
-        TnmNumdemon.setDocument(new batasInput((int) 255).getKata(TnmNumdemon));        
+        TnmNumdenom.setDocument(new batasInput((int) 255).getKata(TnmNumdenom));        
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -126,9 +126,9 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         PanelInput = new javax.swing.JPanel();
         FormInput = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
-        kdNumdemon = new widget.TextBox();
+        kdNumdenom = new widget.TextBox();
         jLabel9 = new widget.Label();
-        TnmNumdemon = new widget.TextBox();
+        TnmNumdenom = new widget.TextBox();
         jLabel5 = new widget.Label();
         TnoUrut = new widget.TextBox();
         jLabel10 = new widget.Label();
@@ -151,7 +151,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Master Numerator Demonimator Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Master Numerator Denominator Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -326,27 +326,27 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         FormInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("Kode Numdemon : ");
+        jLabel4.setText("Kode Numdenom : ");
         jLabel4.setName("jLabel4"); // NOI18N
         FormInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 115, 23);
 
-        kdNumdemon.setEditable(false);
-        kdNumdemon.setForeground(new java.awt.Color(0, 0, 0));
-        kdNumdemon.setName("kdNumdemon"); // NOI18N
-        FormInput.add(kdNumdemon);
-        kdNumdemon.setBounds(118, 10, 90, 23);
+        kdNumdenom.setEditable(false);
+        kdNumdenom.setForeground(new java.awt.Color(0, 0, 0));
+        kdNumdenom.setName("kdNumdenom"); // NOI18N
+        FormInput.add(kdNumdenom);
+        kdNumdenom.setBounds(118, 10, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("Nama Numdemon : ");
+        jLabel9.setText("Nama Numdenom : ");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
         jLabel9.setBounds(0, 94, 115, 23);
 
-        TnmNumdemon.setForeground(new java.awt.Color(0, 0, 0));
-        TnmNumdemon.setName("TnmNumdemon"); // NOI18N
-        FormInput.add(TnmNumdemon);
-        TnmNumdemon.setBounds(118, 94, 530, 23);
+        TnmNumdenom.setForeground(new java.awt.Color(0, 0, 0));
+        TnmNumdenom.setName("TnmNumdenom"); // NOI18N
+        FormInput.add(TnmNumdenom);
+        TnmNumdenom.setBounds(118, 94, 530, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("No. Urut :");
@@ -469,15 +469,15 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if (kdNumdemon.getText().trim().equals("")) {
-            Valid.textKosong(kdNumdemon, "kode numerator demonimator/numdemon");
-            kdNumdemon.requestFocus();
+        if (kdNumdenom.getText().trim().equals("")) {
+            Valid.textKosong(kdNumdenom, "kode numerator denominator/numdenom");
+            kdNumdenom.requestFocus();
         } else if (TnoUrut.getText().trim().equals("")) {
             Valid.textKosong(TnoUrut, "no. urut");
             TnoUrut.requestFocus();
-        } else if (TnmNumdemon.getText().trim().equals("")) {
-            Valid.textKosong(TnmNumdemon, "nama numerator demonimator/numdemon");
-            TnmNumdemon.requestFocus();
+        } else if (TnmNumdenom.getText().trim().equals("")) {
+            Valid.textKosong(TnmNumdenom, "nama numerator denominator/numdenom");
+            TnmNumdenom.requestFocus();
         } else if (cmbGedung.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu gedung perawatanya...!!");
             cmbGedung.requestFocus();
@@ -487,12 +487,12 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             } else {
                 stts = "non aktif";
             }
-            kdNumdemon.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 3));
+            kdNumdenom.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 3));
             kdINM = Sequel.cariIsi("select kd_indikator from master_indikator_nasional_mutu where gedung='" + cmbGedung.getSelectedItem().toString() + "' and "
                     + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");
             
-            Sequel.menyimpan("master_numdemon_indikator_nasional_mutu", "'" + kdNumdemon.getText() + "','" + kdINM + "',"
-                    + "'" + TnoUrut.getText() + "','" + TnmNumdemon.getText() + "','" + stts + "'", "Numerator Demonimator Indikator Nasional Mutu");
+            Sequel.menyimpan("master_numdemon_indikator_nasional_mutu", "'" + kdNumdenom.getText() + "','" + kdINM + "',"
+                    + "'" + TnoUrut.getText() + "','" + TnmNumdenom.getText() + "','" + stts + "'", "Numerator Demonimator Indikator Nasional Mutu");
             emptTeks();
             BtnCariActionPerformed(null);
         }
@@ -502,7 +502,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
         } else {
-            Valid.pindah(evt, kdNumdemon, BtnBatal);
+            Valid.pindah(evt, kdNumdenom, BtnBatal);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
@@ -521,15 +521,15 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-        if (kdNumdemon.getText().trim().equals("")) {
-            Valid.textKosong(kdNumdemon, "kode numerator demonimator/numdemon");
-            kdNumdemon.requestFocus();
+        if (kdNumdenom.getText().trim().equals("")) {
+            Valid.textKosong(kdNumdenom, "kode numerator denominator/numdenom");
+            kdNumdenom.requestFocus();
         } else if (TnoUrut.getText().trim().equals("")) {
             Valid.textKosong(TnoUrut, "no. urut");
             TnoUrut.requestFocus();
-        } else if (TnmNumdemon.getText().trim().equals("")) {
-            Valid.textKosong(TnmNumdemon, "nama numerator demonimator/numdemon");
-            TnmNumdemon.requestFocus();
+        } else if (TnmNumdenom.getText().trim().equals("")) {
+            Valid.textKosong(TnmNumdenom, "nama numerator denominator/numdenom");
+            TnmNumdenom.requestFocus();
         } else if (cmbGedung.getSelectedIndex() == 0) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu gedung perawatanya...!!");
             cmbGedung.requestFocus();
@@ -545,8 +545,8 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                         + "nm_indikator='" + cmbIndikator.getSelectedItem().toString() + "'");
                 
                 Sequel.mengedit("master_numdemon_indikator_nasional_mutu", "kd_numdemon='" + kode + "'",
-                        "kd_numdemon='" + kdNumdemon.getText() + "', kd_indikator='" + kdINM + "', no_urut='" + TnoUrut.getText() + "', "
-                        + "nm_numdemon='" + TnmNumdemon.getText() + "', status_data='" + stts + "'");
+                        "kd_numdemon='" + kdNumdenom.getText() + "', kd_indikator='" + kdINM + "', no_urut='" + TnoUrut.getText() + "', "
+                        + "nm_numdemon='" + TnmNumdenom.getText() + "', status_data='" + stts + "'");
                 emptTeks();                
                 BtnCariActionPerformed(null);
             } else {
@@ -607,7 +607,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
             BtnCariActionPerformed(null);
             TCari.setText("");
         } else {
-            Valid.pindah(evt, BtnCari, kdNumdemon);
+            Valid.pindah(evt, BtnCari, kdNumdenom);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
@@ -683,7 +683,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
-    private widget.TextBox TnmNumdemon;
+    private widget.TextBox TnmNumdenom;
     private widget.TextBox TnoUrut;
     private widget.ComboBox cmbGedung;
     private widget.ComboBox cmbIndikator;
@@ -699,7 +699,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     private widget.Label jLabel7;
     private widget.Label jLabel9;
     private javax.swing.JPanel jPanel3;
-    private widget.TextBox kdNumdemon;
+    private widget.TextBox kdNumdenom;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.Table tbMutu;
@@ -753,10 +753,10 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
     }
     
     public void emptTeks() {
-        kdNumdemon.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 3));
+        kdNumdenom.setText(Valid.autoNomer("master_numdemon_indikator_nasional_mutu", "ND", 3));
         TnoUrut.setText("");
         TnoUrut.requestFocus();
-        TnmNumdemon.setText("");
+        TnmNumdenom.setText("");
         cmbGedung.setSelectedIndex(0);        
         cmbStatus.setSelectedIndex(0);
         kdINM = "";
@@ -770,10 +770,10 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
         
         if (tbMutu.getSelectedRow() != -1) {
             kode = tbMutu.getValueAt(tbMutu.getSelectedRow(), 0).toString();
-            kdNumdemon.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 0).toString());
+            kdNumdenom.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 0).toString());
             TnoUrut.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 1).toString());
             kdINM = tbMutu.getValueAt(tbMutu.getSelectedRow(), 2).toString();            
-            TnmNumdemon.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 4).toString());
+            TnmNumdenom.setText(tbMutu.getValueAt(tbMutu.getSelectedRow(), 4).toString());
             cmbGedung.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 5).toString());
             cmbIndikator.setSelectedItem(tbMutu.getValueAt(tbMutu.getSelectedRow(), 3).toString());
             

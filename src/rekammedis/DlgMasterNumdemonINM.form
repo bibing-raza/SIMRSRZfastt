@@ -32,7 +32,7 @@
       <Properties>
         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-            <TitledBorder title="::[ Master Numerator Demonimator Indikator Nasional Mutu ]::">
+            <TitledBorder title="::[ Master Numerator Denominator Indikator Nasional Mutu ]::">
               <Border PropertyName="innerBorder" info="org.netbeans.modules.form.compat2.border.LineBorderInfo">
                 <LineBorder thickness="3">
                   <Color PropertyName="color" blue="ff" green="99" red="0" type="rgb"/>
@@ -336,7 +336,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Kode Numdemon : "/>
+                    <Property name="text" type="java.lang.String" value="Kode Numdenom : "/>
                     <Property name="name" type="java.lang.String" value="jLabel4" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -345,13 +345,13 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="widget.TextBox" name="kdNumdemon">
+                <Component class="widget.TextBox" name="kdNumdenom">
                   <Properties>
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="kdNumdemon" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="kdNumdenom" noResource="true"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -364,7 +364,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Nama Numdemon : "/>
+                    <Property name="text" type="java.lang.String" value="Nama Numdenom : "/>
                     <Property name="name" type="java.lang.String" value="jLabel9" noResource="true"/>
                   </Properties>
                   <Constraints>
@@ -373,12 +373,12 @@
                     </Constraint>
                   </Constraints>
                 </Component>
-                <Component class="widget.TextBox" name="TnmNumdemon">
+                <Component class="widget.TextBox" name="TnmNumdenom">
                   <Properties>
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="0" green="0" red="0" type="rgb"/>
                     </Property>
-                    <Property name="name" type="java.lang.String" value="TnmNumdemon" noResource="true"/>
+                    <Property name="name" type="java.lang.String" value="TnmNumdenom" noResource="true"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">

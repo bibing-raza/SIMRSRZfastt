@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="767" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19">
-	<property name="ireport.zoom" value="1.2418426461183139"/>
+	<property name="ireport.zoom" value="1.241842646118314"/>
 	<property name="ireport.x" value="0"/>
 	<property name="ireport.y" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
@@ -110,7 +110,7 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="174" width="560" height="1"/>
+				<reportElement x="207" y="201" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -185,19 +185,19 @@
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="129" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="144" width="560" height="1"/>
+				<reportElement x="207" y="137" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
 				<reportElement x="207" y="159" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="180" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -276,7 +276,7 @@
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="264" y="90" width="193" height="23">
+				<reportElement x="264" y="90" width="177" height="23">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -285,13 +285,13 @@
 				<text><![CDATA[ISI CAIRAN INFUS]]></text>
 			</staticText>
 			<line>
-				<reportElement x="457" y="89" width="1" height="417"/>
+				<reportElement x="441" y="89" width="1" height="417"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="457" y="90" width="71" height="23">
+				<reportElement x="442" y="90" width="54" height="23">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -300,13 +300,13 @@
 				<text><![CDATA[DI MULAI PUKUL]]></text>
 			</staticText>
 			<line>
-				<reportElement x="528" y="89" width="1" height="417"/>
+				<reportElement x="495" y="89" width="1" height="417"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="528" y="90" width="111" height="23">
+				<reportElement x="549" y="90" width="111" height="23">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -316,13 +316,13 @@
 NAMA PERAWAT]]></text>
 			</staticText>
 			<line>
-				<reportElement x="639" y="89" width="1" height="417"/>
+				<reportElement x="660" y="89" width="1" height="417"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<staticText>
-				<reportElement x="640" y="90" width="127" height="23">
+				<reportElement x="659" y="90" width="108" height="23">
 					<property name="com.jaspersoft.studio.unit.height" value="px"/>
 				</reportElement>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
@@ -331,115 +331,31 @@ NAMA PERAWAT]]></text>
 				<text><![CDATA[KETERANGAN]]></text>
 			</staticText>
 			<line>
-				<reportElement x="207" y="234" width="560" height="1"/>
+				<reportElement x="207" y="289" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="189" width="560" height="1"/>
+				<reportElement x="207" y="223" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="204" width="560" height="1"/>
+				<reportElement x="207" y="245" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="219" width="560" height="1"/>
+				<reportElement x="207" y="267" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="353" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="308" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="323" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="293" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="248" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="263" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="338" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="278" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="473" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="428" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="443" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="413" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="368" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="383" width="560" height="1"/>
-				<graphicElement>
-					<pen lineWidth="0.75"/>
-				</graphicElement>
-			</line>
-			<line>
-				<reportElement x="207" y="458" width="560" height="1"/>
+				<reportElement x="207" y="465" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -451,7 +367,43 @@ NAMA PERAWAT]]></text>
 				</graphicElement>
 			</line>
 			<line>
-				<reportElement x="207" y="489" width="560" height="1"/>
+				<reportElement x="207" y="420" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="376" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="310" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="332" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="442" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="354" width="560" height="1"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement x="207" y="486" width="560" height="1"/>
 				<graphicElement>
 					<pen lineWidth="0.75"/>
 				</graphicElement>
@@ -468,6 +420,21 @@ NAMA PERAWAT]]></text>
 2. Cairan dan obat di tuliskan pada kolom " isi cairan infus "
 3. Aturan tetesan dan keterangan lain (bila ada) dituliskan pada kolom " keterangan "]]></text>
 			</staticText>
+			<staticText>
+				<reportElement x="496" y="90" width="54" height="23">
+					<property name="com.jaspersoft.studio.unit.height" value="px"/>
+				</reportElement>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="8"/>
+				</textElement>
+				<text><![CDATA[SELESAI PUKUL]]></text>
+			</staticText>
+			<line>
+				<reportElement x="550" y="89" width="1" height="417"/>
+				<graphicElement>
+					<pen lineWidth="0.75"/>
+				</graphicElement>
+			</line>
 		</band>
 	</title>
 </jasperReport>

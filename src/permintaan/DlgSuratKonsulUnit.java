@@ -811,9 +811,9 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
-        Sequel.cariIsiComboDB("SELECT nm_sps from spesialis WHERE kd_sps not in ('-','S0021') and "
+        Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
                 + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%') ORDER BY nm_sps", cmbUnitDari);
-        Sequel.cariIsiComboDB("SELECT nm_sps from spesialis WHERE kd_sps not in ('-','S0021') and "
+        Sequel.cariIsiComboDB("SELECT if(nm_sps='Saraf','Neurologi',nm_sps) spes from spesialis WHERE kd_sps not in ('-','S0021') and "
                 + "(nm_sps not like '%patologi%' and nm_sps not like '%radiologi%' and nm_sps not like '%anaste%')ORDER BY nm_sps", cmbUnitKe);
     }//GEN-LAST:event_formWindowOpened
 
