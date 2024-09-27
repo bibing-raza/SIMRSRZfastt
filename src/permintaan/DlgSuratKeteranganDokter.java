@@ -1357,20 +1357,37 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 cekCaten = "tidak";
                 noSuratFix = tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString().substring(0, 4) + " / RAZA";
             }
-            
+
             if (tbSurat.getSelectedRow() > -1) {
-                Sequel.mengedit("surat_keterangan_dokter", "no_rawat=?", "no_surat=?, tgl_surat=?, pekerjaan=?, tempat_tinggal=?, permintaan_dari=?, "
-                        + "no_surat_dari=?, ada_tgl_nosurat=?, tgl_surat_dari=?, pemeriksaan_dinyatakan=?, keperluan=?, lama_berlaku=?, "
-                        + "satuan_lama=?, bb=?, tb=?, gol_darah=?, nip_dokter=?, tmpt_lahir=?, hasil_pemeriksaan=?, diagnosa=?, nm_pasien=?, "
-                        + "no_dokumen=?, caten=?, td=?, nadi=?, bmi=?", 26, new String[]{
-                            noSuratFix, Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), TAlamat.getText(), 
-                            Tpermintaan.getText(), Tno_surat_dari.getText(), cekTgl, Valid.SetTgl(Ttgl_no_surat.getSelectedItem() + ""),
-                            cmbDinyatakan.getSelectedItem().toString(), Tkeperluan.getText(), Tberlaku.getText(),
-                            cmbSelama.getSelectedItem().toString(), Tbb.getText(), Ttb.getText(), Tgol.getText(),
-                            kddokter, TTempLahr.getText(), Thasil.getText(), Tdiagnosa.getText(), TPasien.getText(), 
-                            TnoDokumen.getText(), cekCaten, Ttensi.getText(), Tnadi.getText(), Tbmi.getText(),
-                            tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                        });
+                if (tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString().equals(noSuratFix)) {
+                    Sequel.mengedit("surat_keterangan_dokter", "no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?",
+                            "tgl_surat=?, pekerjaan=?, tempat_tinggal=?, permintaan_dari=?, "
+                            + "no_surat_dari=?, ada_tgl_nosurat=?, tgl_surat_dari=?, pemeriksaan_dinyatakan=?, keperluan=?, lama_berlaku=?, "
+                            + "satuan_lama=?, bb=?, tb=?, gol_darah=?, nip_dokter=?, tmpt_lahir=?, hasil_pemeriksaan=?, diagnosa=?, nm_pasien=?, "
+                            + "no_dokumen=?, caten=?, td=?, nadi=?, bmi=?", 25, new String[]{
+                                Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), TAlamat.getText(),
+                                Tpermintaan.getText(), Tno_surat_dari.getText(), cekTgl, Valid.SetTgl(Ttgl_no_surat.getSelectedItem() + ""),
+                                cmbDinyatakan.getSelectedItem().toString(), Tkeperluan.getText(), Tberlaku.getText(),
+                                cmbSelama.getSelectedItem().toString(), Tbb.getText(), Ttb.getText(), Tgol.getText(),
+                                kddokter, TTempLahr.getText(), Thasil.getText(), Tdiagnosa.getText(), TPasien.getText(),
+                                TnoDokumen.getText(), cekCaten, Ttensi.getText(), Tnadi.getText(), Tbmi.getText(),
+                                tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                            });
+                } else if (!tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString().equals(noSuratFix)) {
+                    Sequel.mengedit("surat_keterangan_dokter", "no_surat='" + tbSurat.getValueAt(tbSurat.getSelectedRow(), 1).toString() + "' and no_rawat=?",
+                            "no_surat=?, tgl_surat=?, pekerjaan=?, tempat_tinggal=?, permintaan_dari=?, "
+                            + "no_surat_dari=?, ada_tgl_nosurat=?, tgl_surat_dari=?, pemeriksaan_dinyatakan=?, keperluan=?, lama_berlaku=?, "
+                            + "satuan_lama=?, bb=?, tb=?, gol_darah=?, nip_dokter=?, tmpt_lahir=?, hasil_pemeriksaan=?, diagnosa=?, nm_pasien=?, "
+                            + "no_dokumen=?, caten=?, td=?, nadi=?, bmi=?", 26, new String[]{
+                                noSuratFix, Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), TAlamat.getText(),
+                                Tpermintaan.getText(), Tno_surat_dari.getText(), cekTgl, Valid.SetTgl(Ttgl_no_surat.getSelectedItem() + ""),
+                                cmbDinyatakan.getSelectedItem().toString(), Tkeperluan.getText(), Tberlaku.getText(),
+                                cmbSelama.getSelectedItem().toString(), Tbb.getText(), Ttb.getText(), Tgol.getText(),
+                                kddokter, TTempLahr.getText(), Thasil.getText(), Tdiagnosa.getText(), TPasien.getText(),
+                                TnoDokumen.getText(), cekCaten, Ttensi.getText(), Tnadi.getText(), Tbmi.getText(),
+                                tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
+                            });
+                }
                 if (tabMode.getRowCount() != 0) {
                     TCari.setText(TNoRW.getText());
                     tbSurat.requestFocus();
