@@ -328,6 +328,7 @@ import rekammedis.MasterResikoDecubitus;
 import rekammedis.RMAsesmenKebidananRalan;
 import rekammedis.RMAsesmenKeperawatanAnakRanap;
 import rekammedis.RMAsesmenKeperawatanDewasaRanap;
+import rekammedis.RMAsesmenKeperawatanPerioperatif;
 import rekammedis.RMAsesmenMedikAnakRanap;
 import rekammedis.RMPenilaianAwalKeperawatanIGDrz;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
@@ -881,6 +882,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnCeklisKesiapanAnestesi = new widget.ButtonBig();
         btnAsesmenPreInduksi = new widget.ButtonBig();
         btnMasterNumdenomINM = new widget.ButtonBig();
+        btnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5963,6 +5965,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnMasterNumdenomINM);
 
+        btnAsesmenKeperawatanPerioperatif.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenKeperawatanPerioperatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnAsesmenKeperawatanPerioperatif.setText("Assesmen Keperawatan Perioperatif");
+        btnAsesmenKeperawatanPerioperatif.setIconTextGap(0);
+        btnAsesmenKeperawatanPerioperatif.setName("btnAsesmenKeperawatanPerioperatif"); // NOI18N
+        btnAsesmenKeperawatanPerioperatif.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenKeperawatanPerioperatif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenKeperawatanPerioperatifActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5971,7 +5986,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/09/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11796,6 +11811,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnMasterNumdenomINMActionPerformed
 
+    private void btnAsesmenKeperawatanPerioperatifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenKeperawatanPerioperatifActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenKeperawatanPerioperatif aplikasi = new RMAsesmenKeperawatanPerioperatif(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenKeperawatanPerioperatifActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -11854,6 +11882,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenKebidananRalan;
     private widget.ButtonBig btnAsesmenKeperawatanAnak;
     private widget.ButtonBig btnAsesmenKeperawatanDewasa;
+    private widget.ButtonBig btnAsesmenKeperawatanPerioperatif;
     private widget.ButtonBig btnAsesmenMedikAnakRanap;
     private widget.ButtonBig btnAsesmenMedikDewasaRanap;
     private widget.ButtonBig btnAsesmenMedikObstetriRalan;
@@ -12500,6 +12529,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getkegiatan_operasi() == true) {
+                Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
+                jmlmenu++;
+            }
+            
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(btnCeklisPraOperasi);
                 jmlmenu++;
@@ -14331,6 +14365,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnSuratJawabanKonsulRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getkegiatan_operasi() == true) {
+            Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
             jmlmenu++;
         }
         
@@ -16215,6 +16254,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpermintaan_lab()== true) {
             if (btnSuratJawabanKonsulRanap.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnSuratJawabanKonsulRanap);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getkegiatan_operasi()== true) {
+            if (btnAsesmenKeperawatanPerioperatif.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
                 jmlmenu++;
             }
         }

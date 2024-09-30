@@ -136,6 +136,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnTransferTindakan = new widget.ButtonBig();
         BtnAsesmenPraSedasi = new widget.ButtonBig();
         BtnAsesmenPreInduksi = new widget.ButtonBig();
+        BtnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
         BtnCeklisPraOperasi = new widget.ButtonBig();
         BtnCeklisKesiapanAnestesi = new widget.ButtonBig();
         BtnKonsul = new widget.ButtonBig();
@@ -580,6 +581,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnAsesmenPreInduksi);
+
+        BtnAsesmenKeperawatanPerioperatif.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenKeperawatanPerioperatif.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        BtnAsesmenKeperawatanPerioperatif.setText("Assesmen Keprwtn. Perioperatif");
+        BtnAsesmenKeperawatanPerioperatif.setIconTextGap(0);
+        BtnAsesmenKeperawatanPerioperatif.setName("BtnAsesmenKeperawatanPerioperatif"); // NOI18N
+        BtnAsesmenKeperawatanPerioperatif.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenKeperawatanPerioperatif.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenKeperawatanPerioperatifActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnAsesmenKeperawatanPerioperatif);
 
         BtnCeklisPraOperasi.setForeground(new java.awt.Color(0, 0, 0));
         BtnCeklisPraOperasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/checklist.png"))); // NOI18N
@@ -1462,6 +1476,23 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenPreInduksiActionPerformed
 
+    private void BtnAsesmenKeperawatanPerioperatifActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenKeperawatanPerioperatifActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMAsesmenKeperawatanPerioperatif form = new RMAsesmenKeperawatanPerioperatif(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setData(TNoRW.getText(), TNoRM.getText(), TNmPasien.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_BtnAsesmenKeperawatanPerioperatifActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1481,6 +1512,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.ButtonBig BtnAsesmenKeperawatanAnak;
     private widget.ButtonBig BtnAsesmenKeperawatanDewasa;
+    private widget.ButtonBig BtnAsesmenKeperawatanPerioperatif;
     private widget.ButtonBig BtnAsesmenMedikAnak;
     private widget.ButtonBig BtnAsesmenMedikDewasa;
     private widget.ButtonBig BtnAsesmenPraSedasi;
@@ -1573,6 +1605,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCeklisPraOperasi.setEnabled(akses.getkegiatan_operasi());
         BtnCeklisKesiapanAnestesi.setEnabled(akses.getkegiatan_operasi());
         BtnAsesmenPreInduksi.setEnabled(akses.getresep_dokter());
+        BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getkegiatan_operasi());
     }
     
     public void setData(String norw, String norm, String nmpasien,
