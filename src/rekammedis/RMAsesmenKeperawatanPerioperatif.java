@@ -4527,6 +4527,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         TNoRM.setText(norm);
         TPasien.setText(nmpasien);
         TrgRawat.setText(ruangan);
+        Tjk.setText(Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + norm + "'"));
         
         if (akses.getadmin() == true) {
             TnipPerawatOperasi.setText("-");

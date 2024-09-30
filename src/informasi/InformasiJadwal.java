@@ -45,26 +45,30 @@ public class InformasiJadwal extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(628,674);
 
-        Object[] row={"Nama Dokter","Hari Kerja","Jam Mulai","Jam Selesai","Poliklinik"};
-        tabMode=new DefaultTableModel(null,row){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        Object[] row = {"Nama Dokter", "Hari Kerja", "Jam Mulai", "Jam Selesai", "Poliklinik"
         };
+        tabMode = new DefaultTableModel(null, row) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
+        };
+        
         tbJadwal.setModel(tabMode);
-
         tbJadwal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbJadwal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 5; i++) {
             TableColumn column = tbJadwal.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(350);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(150);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(150);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(150);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(250);
             }
         }
@@ -117,15 +121,13 @@ public class InformasiJadwal extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Informasi Jadwal Praktek Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Informasi Jadwal Praktek Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbJadwal.setAutoCreateRowSorter(true);
-        tbJadwal.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbJadwal.setName("tbJadwal"); // NOI18N
         Scroll.setViewportView(tbJadwal);
 
@@ -143,7 +145,7 @@ public class InformasiJadwal extends javax.swing.JDialog {
 
         TCari.setForeground(new java.awt.Color(0, 0, 0));
         TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(400, 23));
+        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
         TCari.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCariKeyPressed(evt);
@@ -224,34 +226,32 @@ public class InformasiJadwal extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
 
     private void BtnCariActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCariActionPerformed
-        String sql=" jadwal.kd_dokter=dokter.kd_dokter "+
-                "and jadwal.kd_poli=poliklinik.kd_poli ";
-        prosesCari("select nm_dokter,hari_kerja, "+
-                "jam_mulai,jam_selesai,nm_poli from jadwal,poliklinik,dokter "+
-                "where "+
-                sql+"and jadwal.kd_dokter like '%"+TCari.getText().trim()+"%' or "+
-                sql+"and nm_dokter like '%"+TCari.getText().trim()+"%' or "+
-                sql+"and hari_kerja like '%"+TCari.getText().trim()+"%' or "+
-                sql+"and jam_mulai like '%"+TCari.getText().trim()+"%' or "+
-                sql+"and jam_selesai like '%"+TCari.getText().trim()+"%' or "+
-                sql+"and nm_poli like '%"+TCari.getText().trim()+"%' "+
-                "order by jadwal.kd_dokter ");
+        String sql = " jadwal.kd_dokter=dokter.kd_dokter "
+                + "and jadwal.kd_poli=poliklinik.kd_poli ";
+        prosesCari("select nm_dokter, hari_kerja, jam_mulai, jam_selesai, nm_poli from jadwal, poliklinik, dokter where "
+                + sql + "and jadwal.kd_dokter like '%" + TCari.getText().trim() + "%' or "
+                + sql + "and nm_dokter like '%" + TCari.getText().trim() + "%' or "
+                + sql + "and hari_kerja like '%" + TCari.getText().trim() + "%' or "
+                + sql + "and jam_mulai like '%" + TCari.getText().trim() + "%' or "
+                + sql + "and jam_selesai like '%" + TCari.getText().trim() + "%' or "
+                + sql + "and nm_poli like '%" + TCari.getText().trim() + "%' "
+                + "order by jadwal.kd_poli, jadwal.urutan_hari");
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -262,11 +262,11 @@ public class InformasiJadwal extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             tampil();
             TCari.setText("");
-        }else{
-            Valid.pindah(evt, BtnCari,BtnKeluar);
+        } else {
+            Valid.pindah(evt, BtnCari, BtnKeluar);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
@@ -313,32 +313,28 @@ public class InformasiJadwal extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-        String sql="select nm_dokter,hari_kerja, "+
-                "jam_mulai,jam_selesai,nm_poli from jadwal,poliklinik,dokter "+
-                "where jadwal.kd_dokter=dokter.kd_dokter "+
-                "and jadwal.kd_poli=poliklinik.kd_poli "+
-                " order by jadwal.kd_dokter";
+        String sql = "select nm_dokter, hari_kerja, jam_mulai, jam_selesai, nm_poli from jadwal, poliklinik, dokter "
+                + "where jadwal.kd_dokter=dokter.kd_dokter and jadwal.kd_poli=poliklinik.kd_poli "
+                + "order by jadwal.kd_poli, jadwal.urutan_hari";
         prosesCari(sql);
     }
 
     private void prosesCari(String sql) {
         Valid.tabelKosong(tabMode);
-        try{
-            ResultSet rs=koneksi.prepareStatement(sql).executeQuery();
-            while(rs.next()){
-                String[] data={rs.getString(1),
-                               rs.getString(2),
-                               rs.getString(3),
-                               rs.getString(4),
-                               rs.getString(5)};
+        try {
+            ResultSet rs = koneksi.prepareStatement(sql).executeQuery();
+            while (rs.next()) {
+                String[] data = {rs.getString(1),
+                    rs.getString(2),
+                    rs.getString(3),
+                    rs.getString(4),
+                    rs.getString(5)
+                };
                 tabMode.addRow(data);
             }
-        }catch(SQLException e){
-            System.out.println("Notifikasi : "+e);
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText("" + tabMode.getRowCount());
     }
-
-
-    
 }
