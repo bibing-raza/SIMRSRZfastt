@@ -100,7 +100,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(120);
             } else if (i == 8) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(135);
             } else if (i == 9) {
                 column.setPreferredWidth(80);
             } else if (i == 10) {
@@ -376,7 +376,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(60);
             } else if (i == 4) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(195);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -876,7 +876,6 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
-        FormInput.setToolTipText("Klik Kanan Pada Area Ini Untuk Melihat Hasil Pemeriksaan Penunjang Medis");
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 1319));
         FormInput.setLayout(null);

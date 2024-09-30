@@ -12350,6 +12350,11 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        //update status pulang ringkasan/resume pulang pasien
+        Sequel.queryu("update ringkasan_pulang_ranap r, kamar_inap k set r.stts_pulang=k.stts_pulang WHERE "
+                + "r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
+        //----------------------------------------------------------------------
+        
         if (R1.isSelected() == true) {
             kmr = " a.stts_pulang='-' ";
             if (!BangsalCari.getText().equals("")) {
