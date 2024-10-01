@@ -731,13 +731,13 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
-        BtnAll1 = new widget.Button();
+        BtnAll = new widget.Button();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnGanti = new widget.Button();
-        BtnAll = new widget.Button();
+        BtnPrint = new widget.Button();
         BtnKeluar = new widget.Button();
 
         WindowTemplate.setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
@@ -2460,24 +2460,24 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         });
         panelGlass10.add(BtnCari);
 
-        BtnAll1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll1.setMnemonic('M');
-        BtnAll1.setText("Semua");
-        BtnAll1.setToolTipText("Alt+M");
-        BtnAll1.setName("BtnAll1"); // NOI18N
-        BtnAll1.setPreferredSize(new java.awt.Dimension(100, 23));
-        BtnAll1.addActionListener(new java.awt.event.ActionListener() {
+        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll.setMnemonic('M');
+        BtnAll.setText("Semua");
+        BtnAll.setToolTipText("Alt+M");
+        BtnAll.setName("BtnAll"); // NOI18N
+        BtnAll.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnAll.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAll1ActionPerformed(evt);
+                BtnAllActionPerformed(evt);
             }
         });
-        BtnAll1.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnAll1KeyPressed(evt);
+                BtnAllKeyPressed(evt);
             }
         });
-        panelGlass10.add(BtnAll1);
+        panelGlass10.add(BtnAll);
 
         panelGlass11.add(panelGlass10, java.awt.BorderLayout.PAGE_END);
 
@@ -2560,24 +2560,24 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnGanti);
 
-        BtnAll.setForeground(new java.awt.Color(0, 0, 0));
-        BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
-        BtnAll.setMnemonic('M');
-        BtnAll.setText("Semua");
-        BtnAll.setToolTipText("Alt+M");
-        BtnAll.setName("BtnAll"); // NOI18N
-        BtnAll.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnAll.addActionListener(new java.awt.event.ActionListener() {
+        BtnPrint.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPrint.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
+        BtnPrint.setMnemonic('T');
+        BtnPrint.setText("Cetak");
+        BtnPrint.setToolTipText("Alt+T");
+        BtnPrint.setName("BtnPrint"); // NOI18N
+        BtnPrint.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnPrint.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnAllActionPerformed(evt);
+                BtnPrintActionPerformed(evt);
             }
         });
-        BtnAll.addKeyListener(new java.awt.event.KeyAdapter() {
+        BtnPrint.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnAllKeyPressed(evt);
+                BtnPrintKeyPressed(evt);
             }
         });
-        panelGlass8.add(BtnAll);
+        panelGlass8.add(BtnPrint);
 
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -2736,21 +2736,6 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
             dispose();
         }else{Valid.pindah(evt,BtnBatal,TCari);}
 }//GEN-LAST:event_BtnKeluarKeyPressed
-
-    private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
-        TCari.setText("");
-        BtnCariActionPerformed(null);
-        emptTeks();        
-}//GEN-LAST:event_BtnAllActionPerformed
-
-    private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            BtnCariActionPerformed(null);
-            TCari.setText("");
-        } else {
-//            Valid.pindah(evt, BtnCari, kdkomite);
-        }
-}//GEN-LAST:event_BtnAllKeyPressed
 
     private void cmbJamMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_cmbJamMouseReleased
         AutoCompleteDecorator.decorate(cmbJam);
@@ -3266,18 +3251,18 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnCariKeyPressed
 
-    private void BtnAll1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll1ActionPerformed
+    private void BtnAllActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAllActionPerformed
         TCari.setText("");
         BtnCariActionPerformed(null);
         emptTeks();
-    }//GEN-LAST:event_BtnAll1ActionPerformed
+    }//GEN-LAST:event_BtnAllActionPerformed
 
-    private void BtnAll1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAll1KeyPressed
+    private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
             TCari.setText("");
         }
-    }//GEN-LAST:event_BtnAll1KeyPressed
+    }//GEN-LAST:event_BtnAllKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbAsesmen.getSelectedRow() > -1) {
@@ -3308,6 +3293,91 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
+        if (tbAsesmen.getSelectedRow() > -1) {
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+
+//            param.put("diagnosa", Tdiagnosa.getText());
+//            param.put("rencana", Trencana.getText());
+//            param.put("dokterOperator", TnmOperator.getText());
+//            param.put("dokterAnastesi", TnmAnastesi.getText());
+//            param.put("kesadaran", Tkesadaran.getText());
+//            param.put("tensi", Ttensi.getText() + " mmHg");
+//            param.put("suhu", Tsuhu.getText() + " °C");
+//            param.put("nadi", Tnadi.getText() + " x/menit");
+//            param.put("respi", Trespi.getText() + " x/menit");
+//
+//            if (cmbInfus.getSelectedIndex() == 1) {
+//                param.put("infus", cmbInfus.getSelectedItem().toString() + ", " + Tinfus.getText());
+//            } else {
+//                param.put("infus", cmbInfus.getSelectedItem().toString());
+//            }
+//
+//            if (cmbKateter.getSelectedIndex() == 1) {
+//                param.put("kateter", cmbKateter.getSelectedItem().toString() + ", " + Tkateter.getText());
+//            } else {
+//                param.put("kateter", cmbKateter.getSelectedItem().toString());
+//            }
+//
+//            if (cmbCukur.getSelectedIndex() == 1) {
+//                param.put("cukur", cmbCukur.getSelectedItem().toString() + ", " + Tcukur.getText());
+//            } else {
+//                param.put("cukur", cmbCukur.getSelectedItem().toString());
+//            }
+//
+//            if (cmbLavemen.getSelectedIndex() == 1) {
+//                param.put("lavemen", cmbLavemen.getSelectedItem().toString() + ", " + Tlavemen.getText());
+//            } else {
+//                param.put("lavemen", cmbLavemen.getSelectedItem().toString());
+//            }
+//
+//            param.put("gigi", cmbGigi.getSelectedItem().toString());
+//            param.put("baju", cmbBaju.getSelectedItem().toString());
+//            param.put("penandaan", cmbPenandaan.getSelectedItem().toString());
+//            param.put("superAnastesi", cmbSuperAnastesi.getSelectedItem().toString());
+//            param.put("superTindakan", cmbSuperTindakan.getSelectedItem().toString());
+//            param.put("superTransfusi", cmbSuperTransfusi.getSelectedItem().toString());
+//
+//            if (cmbAntibiotik.getSelectedIndex() == 1) {
+//                param.put("antibiotik", cmbAntibiotik.getSelectedItem().toString() + ", " + Tantibiotik.getText() + " gr, Jam " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " WITA");
+//            } else {
+//                param.put("antibiotik", cmbAntibiotik.getSelectedItem().toString());
+//            }
+//
+//            param.put("pemeriksaan", Tpemeriksaan.getText() + "\n");
+//            param.put("ekg", cmbEkg.getSelectedItem().toString());
+//            param.put("intepretasiEkg", TintepretasiEkg.getText());
+//            param.put("intepretasiRo", cmbIntepretasiRo.getSelectedItem().toString());
+//            param.put("darah", cmbPersiapanDarah.getSelectedItem().toString());
+//            param.put("puasa", cmbPersiapanPuasa.getSelectedItem().toString());
+//            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 54).toString()));
+//            param.put("perawatBangsal", "(" + TnmPerawatBangsal.getText() + ")");
+//            param.put("perawatIbs", "(" + TnmPerawatIbs.getText() + ")");
+
+//            Valid.MyReport("rptCeklisPraOperasi.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
+//                "SELECT now() tanggal", param);
+
+            tampil();
+            emptTeks();
+        } else {
+            JOptionPane.showMessageDialog(null, "Silahkan klik/pilih salah satu datanya terlebih dulu pada tabel..!!!!");
+            tbAsesmen.requestFocus();
+        }
+    }//GEN-LAST:event_BtnPrintActionPerformed
+
+    private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnPrintKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
+            BtnPrintActionPerformed(null);
+        } else {
+            Valid.pindah(evt, BtnGanti, BtnKeluar);
+        }
+    }//GEN-LAST:event_BtnPrintKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3326,7 +3396,6 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
-    private widget.Button BtnAll1;
     private widget.Button BtnAsisten;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
@@ -3343,6 +3412,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnPerawatAnestesi;
     private widget.Button BtnPerawatOperasi;
+    private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
     private widget.Button BtnTambah;
     private widget.Tanggal DTPCari1;
