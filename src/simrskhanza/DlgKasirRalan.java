@@ -6741,7 +6741,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Klik dulu salah satu nama pasiennya pada tabel...!!!!");
             tbKasirRalan.requestFocus();
-        } else if (!kdpoli.getText().equals("IRM")) {
+        } else if (!kdpoli.getText().equals("IRM") && !kdpoli.getText().equals("IRS")) {
             JOptionPane.showMessageDialog(rootPane, "Hanya utk. pasien yg. berkunjung ke poliklinik rehabilitasi medik...!!!!");
             tbKasirRalan.requestFocus();
         } else {

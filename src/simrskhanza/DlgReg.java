@@ -1828,7 +1828,7 @@ public final class DlgReg extends javax.swing.JDialog {
         jLabel58 = new widget.Label();
         panelGlass14 = new widget.panelisi();
         BtnSimpanOperator = new widget.Button();
-        BtnSimpanOperator1 = new widget.Button();
+        BtnCekAudio = new widget.Button();
         BtnKeluar1 = new widget.Button();
         internalFrame11 = new widget.InternalFrame();
         internalFrame18 = new widget.InternalFrame();
@@ -5790,21 +5790,21 @@ public final class DlgReg extends javax.swing.JDialog {
         });
         panelGlass14.add(BtnSimpanOperator);
 
-        BtnSimpanOperator1.setForeground(new java.awt.Color(0, 0, 0));
-        BtnSimpanOperator1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
-        BtnSimpanOperator1.setMnemonic('U');
-        BtnSimpanOperator1.setText("Cek Audio");
-        BtnSimpanOperator1.setToolTipText("Alt+U");
-        BtnSimpanOperator1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        BtnSimpanOperator1.setIconTextGap(5);
-        BtnSimpanOperator1.setName("BtnSimpanOperator1"); // NOI18N
-        BtnSimpanOperator1.setPreferredSize(new java.awt.Dimension(110, 30));
-        BtnSimpanOperator1.addActionListener(new java.awt.event.ActionListener() {
+        BtnCekAudio.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCekAudio.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/icons8-audio-24.png"))); // NOI18N
+        BtnCekAudio.setMnemonic('U');
+        BtnCekAudio.setText("Cek Audio");
+        BtnCekAudio.setToolTipText("Alt+U");
+        BtnCekAudio.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        BtnCekAudio.setIconTextGap(5);
+        BtnCekAudio.setName("BtnCekAudio"); // NOI18N
+        BtnCekAudio.setPreferredSize(new java.awt.Dimension(110, 30));
+        BtnCekAudio.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnSimpanOperator1ActionPerformed(evt);
+                BtnCekAudioActionPerformed(evt);
             }
         });
-        panelGlass14.add(BtnSimpanOperator1);
+        panelGlass14.add(BtnCekAudio);
 
         BtnKeluar1.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
@@ -8445,15 +8445,11 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         } else if (TabRawat.getSelectedIndex() == 1) {
             if (akses.getJenisLoket().equals("") && akses.getNomorLoket().equals("")) {
                 statusOperator.setText("Anda belum menentukan jenis & no. loketnya.");
-                cekLoket();
             } else if (!akses.getJenisLoket().equals("") && akses.getNomorLoket().equals("")) {
-                cekLoket();
                 statusOperator.setText("Anda sebagai loket " + akses.getJenisLoket() + " dan nomor loketnya belum dipilih.");
             } else if (akses.getJenisLoket().equals("") && !akses.getNomorLoket().equals("")) {
-                cekLoket();
                 statusOperator.setText("Anda belum memilih jenis loketnya dan memilih nomor loket " + akses.getNomorLoket());
             } else {
-                cekLoket();
                 statusOperator.setText("Anda sebagai loket " + akses.getJenisLoket() + " utk. melayani pasien diloket " + akses.getNomorLoket());
             }
         } else if (TabRawat.getSelectedIndex() == 3) {
@@ -9708,7 +9704,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
         }
     }//GEN-LAST:event_BtnRestorActionPerformed
 
-    private void BtnSimpanOperator1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanOperator1ActionPerformed
+    private void BtnCekAudioActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCekAudioActionPerformed
         i = JOptionPane.showConfirmDialog(null, "Apakah cek audio/suara panggilan antrian pasien akan dilakukan...??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
         if (i == JOptionPane.YES_OPTION) {
             Sequel.mengedit("antrian_pemanggil_bpjs", "status='proses' and date(waktu_panggil)=date(now())", "status='ok'");
@@ -9718,7 +9714,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
 
             JOptionPane.showMessageDialog(null, "Perbaikan error audio/suara panggilan antrian pasien berhasil dilakukan, proses pemanggilan antrian bisa dilakukan lagi...!!");
         }
-    }//GEN-LAST:event_BtnSimpanOperator1ActionPerformed
+    }//GEN-LAST:event_BtnCekAudioActionPerformed
 
     private void MnPrinterBaruActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPrinterBaruActionPerformed
         if (tabMode.getRowCount() == 0) {
@@ -10224,6 +10220,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
     private widget.Button BtnCari2;
+    private widget.Button BtnCekAudio;
     private widget.Button BtnCloseIn1;
     private widget.Button BtnCloseIn2;
     private widget.Button BtnCloseIn3;
@@ -10264,7 +10261,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     private widget.Button BtnSimpan1;
     private widget.Button BtnSimpan2;
     private widget.Button BtnSimpanOperator;
-    private widget.Button BtnSimpanOperator1;
     private widget.Button BtnSimpanRujuk;
     private widget.Button BtnSuku;
     private widget.Button BtnUlangPangBPJS;
@@ -11276,84 +11272,6 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             label_pesan.setText("Pada tgl. periksa pasien " + Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT b.tanggal_periksa FROM kelengkapan_booking_sep_bpjs k "
                     + "INNER JOIN booking_registrasi b on b.kd_booking=k.kd_booking WHERE status_cetak_sep='gagal' ORDER BY b.tanggal_periksa limit 1")) + " ditemukan SEP "
                     + "manual tercetak dari anjungan elektronik pasien, cek lagi dimenu booking registrasi & mohon dibikinkan SEP nya lagi..!!");
-        }
-    }
-
-    private void cekLoket() {
-        if (akses.getJenisLoket().equals("Rawat Jalan")) {
-            loketRalan.setSelected(true);
-            loketRanap.setSelected(false);
-        } else if (akses.getJenisLoket().equals("Rawat Inap")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(true);
-        } else {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-        }
-
-        if (akses.getNomorLoket().equals("1")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(true);
-            loket2.setSelected(false);
-            loket3.setSelected(false);
-            loket4.setSelected(false);
-            loket5.setSelected(false);
-            loket6.setSelected(false);
-        } else if (akses.getNomorLoket().equals("2")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(true);
-            loket3.setSelected(false);
-            loket4.setSelected(false);
-            loket5.setSelected(false);
-            loket6.setSelected(false);
-        } else if (akses.getNomorLoket().equals("3")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(false);
-            loket3.setSelected(true);
-            loket4.setSelected(false);
-            loket5.setSelected(false);
-            loket6.setSelected(false);
-        } else if (akses.getNomorLoket().equals("4")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(false);
-            loket3.setSelected(false);
-            loket4.setSelected(true);
-            loket5.setSelected(false);
-            loket6.setSelected(false);
-        } else if (akses.getNomorLoket().equals("5")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(false);
-            loket3.setSelected(false);
-            loket4.setSelected(false);
-            loket5.setSelected(true);
-            loket6.setSelected(false);
-        } else if (akses.getNomorLoket().equals("6")) {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(false);
-            loket3.setSelected(false);
-            loket4.setSelected(false);
-            loket5.setSelected(false);
-            loket6.setSelected(true);
-        } else {
-            loketRalan.setSelected(false);
-            loketRanap.setSelected(false);
-            loket1.setSelected(false);
-            loket2.setSelected(false);
-            loket3.setSelected(false);
-            loket4.setSelected(false);
-            loket5.setSelected(false);
-            loket6.setSelected(false);
         }
     }
 

@@ -2883,7 +2883,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2897,7 +2897,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3090,7 +3090,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3319,7 +3319,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3333,7 +3333,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5451,7 +5451,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-09-2024" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "25-09-2024" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -6456,7 +6456,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             kdpoli.setText("");
             TPoli.setText("");
 
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     tampilPemeriksaanDokter();
@@ -6499,7 +6499,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     if (ChkCopyPemeriksaanDR.isSelected() == true) {
                         kdptg1.setText(Sequel.cariIsi("select nip from hak_akses_unit where kode_unit='" + polinya + "'"));
@@ -6553,7 +6553,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     TResepObat.setText("");
@@ -6588,7 +6588,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             cmbBulan.setEnabled(false);
             ChkLihat.setSelected(false);
             cmbBulan.setSelectedIndex(0);
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     ChkLihatActionPerformed(null);
@@ -8486,7 +8486,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         
         if (TNoRw.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Klik dulu salah satu nama pasiennya pada tabel...!!!!");
-        } else if (!polinya.equals("IRM")) {
+        } else if (!polinya.equals("IRM") && !polinya.equals("IRS")) {
             JOptionPane.showMessageDialog(rootPane, "Hanya utk. pasien yg. berkunjung ke poliklinik rehabilitasi medik...!!!!");
         } else {
             cekPilihanRehab = Sequel.cariInteger("select count(-1) from data_rehab_medik where no_rawat='" + TNoRw.getText() + "'");
@@ -8910,7 +8910,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             kdpoli.setText("");
             TPoli.setText("");
             
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     tampilPemeriksaanDokter();
@@ -8960,7 +8960,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     if (ChkCopyPemeriksaanDR.isSelected() == true) {
                         kdptg1.setText(Sequel.cariIsi("select nip from hak_akses_unit where kode_unit='" + polinya + "'"));
@@ -9029,7 +9029,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbBulan.setSelectedIndex(0);
             kdpoli.setText("");
             TPoli.setText("");
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     TResepObat.setText("");
@@ -9071,7 +9071,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             cmbBulan.setEnabled(false);
             ChkLihat.setSelected(false);
             cmbBulan.setSelectedIndex(0);
-            if (polinya.equals("IRM")) {
+            if (polinya.equals("IRM") && polinya.equals("IRS")) {
                 if (akses.getadmin() == true || akses.getkode().equals("D0000029")) {
                     TCari.setText(TNoRM.getText());
                     ChkLihatActionPerformed(null);
