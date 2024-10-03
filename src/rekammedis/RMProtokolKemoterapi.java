@@ -1400,15 +1400,19 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Siklus ke " + Tsiklus.getText() + " kemoterapi pasien ini sudah ada..!!");
                 Tsiklus.requestFocus();
             } else {
-                Sequel.menyimpan("protokol_kemoterapi", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
-                        + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
-                        + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
-                        + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "',"
-                        + "'" + TnoRM.getText() + "','" + Tket.getText() + "'", "Protokol Kemoterapi");
-                
-                TCari.setText(TnoRM.getText());
-                tampil();
-                emptTeks();
+                try {
+                    Sequel.menyimpan("protokol_kemoterapi", "'" + TnoRW.getText() + "','" + TnmProtokol.getText() + "',"
+                            + "'" + Tsiklus.getText() + "','" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "','" + Tdosis.getText() + "',"
+                            + "'" + Ttb.getText() + "','" + Tbb.getText() + "','" + Tlpt.getText() + "','" + Tdiagnosis.getText() + "',"
+                            + "'" + Tprogram.getText() + "','" + nipPerawat + "','" + nipDokter + "','" + Sequel.cariIsi("select now()") + "',"
+                            + "'" + TnoRM.getText() + "','" + Tket.getText() + "'", "Protokol Kemoterapi");
+
+                    TCari.setText(TnoRM.getText());
+                    tampil();
+                    emptTeks();
+                } catch (Exception e) {
+                    System.out.println("Simpan Protokol Kemoterapi Hematologi & Onkologi Medik : " + e);
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1421,6 +1425,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1467,17 +1472,21 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
             Tsiklus.requestFocus();
         } else {
             if (tbProtokol.getSelectedRow() > -1) {
-                gantiDisimpan();
-                Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
-                        "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
-                        + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
-                        + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
-                        + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
-                        + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
+                try {
+                    gantiDisimpan();
+                    Sequel.mengedit("protokol_kemoterapi", "no_rawat='" + TnoRW.getText() + "'",
+                            "nm_protokol='" + TnmProtokol.getText() + "',siklus_ke='" + Tsiklus.getText() + "',"
+                            + "tgl_siklus='" + Valid.SetTgl(TtglSiklus.getSelectedItem() + "") + "',dosis='" + Tdosis.getText() + "',"
+                            + "tb='" + Ttb.getText() + "',bb='" + Tbb.getText() + "',lpt='" + Tlpt.getText() + "',diagnosis='" + Tdiagnosis.getText() + "',"
+                            + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
+                            + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
 
-                TCari.setText(TnoRM.getText());
-                tampil();
-                emptTeks();
+                    TCari.setText(TnoRM.getText());
+                    tampil();
+                    emptTeks();
+                } catch (Exception e) {
+                    System.out.println("Ganti Protokol Kemoterapi Hematologi & Onkologi Medik : " + e);
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih datanya terlebih dulu..!!");
                 tbProtokol.requestFocus();

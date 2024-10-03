@@ -4084,6 +4084,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
         TCariDiagnosa.setText("");
+        tampil();
 
         for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
             tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);

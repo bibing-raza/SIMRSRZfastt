@@ -2794,6 +2794,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         pernapasan.setText("");
         temperatur.setText("");
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed

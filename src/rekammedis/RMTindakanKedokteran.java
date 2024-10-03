@@ -2032,13 +2032,14 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                 
                 TCari.setText(TNoRw.getText());                
                 tampil();
-                BtnBatalActionPerformed(null);
+                emptTeks();
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -2060,13 +2061,13 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
             if (x == JOptionPane.YES_OPTION) {
                 if (Sequel.queryu2tf("delete from surat_tindakan_kedokteran where waktu_simpan=?", 1, new String[]{wktSimpan}) == true) {
                     tampil();
-                    BtnBatalActionPerformed(null);
+                    emptTeks();
                 } else {
                     JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
                 }
             } else {
                 tampil();
-                BtnBatalActionPerformed(null);
+                emptTeks();
             }
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
@@ -2101,7 +2102,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
 
                 TCari.setText(TNoRw.getText());
                 tampil();
-                BtnBatalActionPerformed(null);
+                emptTeks();
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed

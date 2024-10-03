@@ -735,17 +735,21 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
         } else if (wktSimpan.equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         } else {
-            Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
-                    "unit_ke=?, jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 7, new String[]{
-                        cmbUnitKe.getSelectedItem().toString(), TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
-                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
-                        "Sudah",
-                        wktSimpan
-                    });
-            TCari.setText(TNoRW.getText());
-            tbKonsul.requestFocus();
-            emptTeks();
-            tampil();
+            try {
+                Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
+                        "unit_ke=?, jawaban_konsul=?, tgl_jawab=?, jam_jawab=?, nip_dokter_jawab=?, status_dijawab=?", 7, new String[]{
+                            cmbUnitKe.getSelectedItem().toString(), TJawaban.getText(), Valid.SetTgl(TtglJawab.getSelectedItem() + ""),
+                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kddokter,
+                            "Sudah",
+                            wktSimpan
+                        });
+                TCari.setText(TNoRW.getText());
+                tbKonsul.requestFocus();
+                emptTeks();
+                tampil();
+            } catch (Exception e) {
+                System.out.println("Ganti Surat Konsul Antar Unit Rawat Inap : " + e);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 

@@ -3535,6 +3535,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -3547,7 +3548,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         if (tbAsesmen.getSelectedRow() > -1) {
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 hapus();
             } else {
                 if (nip.equals(akses.getkode())) {
@@ -3566,7 +3567,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             if (tbAsesmen.getSelectedRow() > -1) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (nip.equals(akses.getkode())) {

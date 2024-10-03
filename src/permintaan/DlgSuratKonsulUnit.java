@@ -671,15 +671,19 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
             Valid.textKosong(TPermintaan, "Kalimat Permintaan Konsul");
             TPermintaan.requestFocus();
         } else {
-            Sequel.menyimpan("surat_konsul_unit_ranap", "'" + TNoRW.getText() + "','" + cmbUnitDari.getSelectedItem().toString() + "',"
-                    + "'" + cmbUnitKe.getSelectedItem().toString() + "','" + TPermintaan.getText() + "','" + Valid.SetTgl(TtglMinta.getSelectedItem() + "") + "',"
-                    + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
-                    + "'" + kddokter + "','','0000-00-00','00:00:00','-','" + Sequel.cariIsi("select now()") + "','Belum'", "Surat Konsul Antar Unit");
-            
-            TCari.setText(TNoRW.getText());            
-            tbKonsul.requestFocus();
-            emptTeks();
-            tampil();            
+            try {
+                Sequel.menyimpan("surat_konsul_unit_ranap", "'" + TNoRW.getText() + "','" + cmbUnitDari.getSelectedItem().toString() + "',"
+                        + "'" + cmbUnitKe.getSelectedItem().toString() + "','" + TPermintaan.getText() + "','" + Valid.SetTgl(TtglMinta.getSelectedItem() + "") + "',"
+                        + "'" + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem() + "',"
+                        + "'" + kddokter + "','','0000-00-00','00:00:00','-','" + Sequel.cariIsi("select now()") + "','Belum'", "Surat Konsul Antar Unit");
+
+                TCari.setText(TNoRW.getText());
+                tbKonsul.requestFocus();
+                emptTeks();
+                tampil();
+            } catch (Exception e) {
+                System.out.println("Simpan Surat Konsul Antar Unit Rawat Inap : " + e);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -691,6 +695,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -717,16 +722,20 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     tampil();
                     emptTeks();
                 } else {
-                    Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
-                            "unit_dari=?, unit_ke=?, permintaan_konsul=?, tgl_minta=?, jam_minta=?, nip_dokter_minta=?", 7, new String[]{
-                                cmbUnitDari.getSelectedItem().toString(), cmbUnitKe.getSelectedItem().toString(), TPermintaan.getText(), 
-                                Valid.SetTgl(TtglMinta.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), 
-                                kddokter, wktSimpan
-                            });
-                    TCari.setText(TNoRW.getText());
-                    tbKonsul.requestFocus();
-                    emptTeks();
-                    tampil();
+                    try {
+                        Sequel.mengedit("surat_konsul_unit_ranap", "waktu_simpan=?",
+                                "unit_dari=?, unit_ke=?, permintaan_konsul=?, tgl_minta=?, jam_minta=?, nip_dokter_minta=?", 7, new String[]{
+                                    cmbUnitDari.getSelectedItem().toString(), cmbUnitKe.getSelectedItem().toString(), TPermintaan.getText(),
+                                    Valid.SetTgl(TtglMinta.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                    kddokter, wktSimpan
+                                });
+                        TCari.setText(TNoRW.getText());
+                        tbKonsul.requestFocus();
+                        emptTeks();
+                        tampil();
+                    } catch (Exception e) {
+                        System.out.println("Ganti Surat Konsul Antar Unit Rawat Inap : " + e);
+                    }
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");

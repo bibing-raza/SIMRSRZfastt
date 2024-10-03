@@ -2613,6 +2613,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
         asesmenMedikIGD(TNoRw.getText());
 }//GEN-LAST:event_BtnBatalActionPerformed
 

@@ -3992,6 +3992,7 @@ public final class RMPenilaianAwalMedikIGD extends javax.swing.JDialog {
         Trr.setText("");
         Ttemp.setText("");
         emptTeks();
+        tampil();
         ChkMeninggal.setSelected(false);
         cmbJam.setSelectedIndex(0);
         cmbMnt.setSelectedIndex(0);

@@ -1307,15 +1307,19 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                     + "and tgl_pemberian='" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "' and nm_unit='" + nmUnit.getText() + "'") > 0) {
                 JOptionPane.showMessageDialog(rootPane, "Petugas pelaksana pemberian obat utk. tgl. " + tgl_beri.getSelectedItem() + " An. Pasien " + TNmPasien.getText() + " di " + nmUnit.getText() + " sudah tersimpan..!!");
             } else {
-                Sequel.menyimpan("pelaksana_pemberian_obat",
-                        "'" + TNoRW.getText() + "','" + Sequel.cariIsi("select now()") + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
-                        + "'" + nipPetugas1 + "', '" + nipPetugas2 + "', '" + nipPetugas3 + "', '" + nipPetugas4 + "', "
-                        + "'" + nipPetugas5 + "', '" + nipPetugas6 + "', '" + nipPetugas7 + "', '" + nipPetugas8 + "', "
-                        + "'" + nmUnit.getText() + "'", "Petugas Pelaksana Pemberian Obat");
+                try {
+                    Sequel.menyimpan("pelaksana_pemberian_obat",
+                            "'" + TNoRW.getText() + "','" + Sequel.cariIsi("select now()") + "','" + Valid.SetTgl(tgl_beri.getSelectedItem() + "") + "',"
+                            + "'" + nipPetugas1 + "', '" + nipPetugas2 + "', '" + nipPetugas3 + "', '" + nipPetugas4 + "', "
+                            + "'" + nipPetugas5 + "', '" + nipPetugas6 + "', '" + nipPetugas7 + "', '" + nipPetugas8 + "', "
+                            + "'" + nmUnit.getText() + "'", "Petugas Pelaksana Pemberian Obat");
 
-                Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
-                emptTeks();
-                tampil();
+                    Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
+                    emptTeks();
+                    tampil();
+                } catch (Exception e) {
+                    System.out.println("Simpan Petugas Pelaksana Pemberian Obat Pasien : " + e);
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1328,6 +1332,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1377,16 +1382,20 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             tbPelaksana.requestFocus();
         } else {
-            Sequel.mengedit("pelaksana_pemberian_obat", "waktu_simpan=?", "tgl_pemberian=?, nip_petugas_jam1=?, nip_petugas_jam2=?, "
-                    + "nip_petugas_jam3=?, nip_petugas_jam4=?, nip_petugas_jam5=?, nip_petugas_jam6=?, nip_petugas_jam7=?, nip_petugas_jam8=?, nm_unit=?", 11, new String[]{
-                        Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nipPetugas1, nipPetugas2, nipPetugas3, 
-                        nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8, nmUnit.getText(),
-                        wktSimpan
-                    });
+            try {
+                Sequel.mengedit("pelaksana_pemberian_obat", "waktu_simpan=?", "tgl_pemberian=?, nip_petugas_jam1=?, nip_petugas_jam2=?, "
+                        + "nip_petugas_jam3=?, nip_petugas_jam4=?, nip_petugas_jam5=?, nip_petugas_jam6=?, nip_petugas_jam7=?, nip_petugas_jam8=?, nm_unit=?", 11, new String[]{
+                            Valid.SetTgl(tgl_beri.getSelectedItem() + ""), nipPetugas1, nipPetugas2, nipPetugas3,
+                            nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8, nmUnit.getText(),
+                            wktSimpan
+                        });
 
-            Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
-            emptTeks();
-            tampil();
+                Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
+                emptTeks();
+                tampil();
+            } catch (Exception e) {
+                System.out.println("Ganti Petugas Pelaksana Pemberian Obat Pasien : " + e);
+            }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 

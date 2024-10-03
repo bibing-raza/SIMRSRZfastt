@@ -4604,7 +4604,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "A : " + TAsesmen.getText() + "\n";
                 instruksi_nakes = TPlaning.getText();
             }
-            
+
             try {
                 Sequel.menyimpan("cppt", "'" + TNoRw.getText() + "',"
                         + "'" + Valid.SetTgl(tglCppt.getSelectedItem() + "") + "',"
@@ -4619,36 +4619,38 @@ public class DlgCPPT extends javax.swing.JDialog {
                         + "'tidak','-','" + soap + "','" + Valid.mysql_real_escape_stringERM(TSubjektif.getText()) + "',"
                         + "'" + Valid.mysql_real_escape_stringERM(TObjektif.getText()) + "','" + Valid.mysql_real_escape_stringERM(TAsesmen.getText()) + "',"
                         + "'" + Valid.mysql_real_escape_stringERM(TPlaning.getText()) + "'", "CPPT Pasien");
+
+                //menyamakan tgl, jam & sift cppt dengan data konfirmasi terapi
+                if (tbKonfirmasi.getRowCount() != 0) {
+                    try {
+                        for (i = 0; i < tbKonfirmasi.getRowCount(); i++) {
+                            Sequel.mengedit("cppt_konfirmasi_terapi", "waktu_simpan=?", "no_rawat=?, tgl_cppt=?, "
+                                    + "cppt_shift=?, jam_cppt=?", 5, new String[]{
+                                        TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), cmbSift.getSelectedItem().toString(),
+                                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                                        tbKonfirmasi.getValueAt(i, 18).toString()
+                                    });
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+                }
+
+                TCari.setText(TNoRw.getText());
+                cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
+                tampil();
+                emptTeks();
+                TabCPPT.setSelectedIndex(1);
+
             } catch (Exception e) {
                 System.out.println("Simpan CPPT : " + e);
             }
-            
-            //menyamakan tgl, jam & sift cppt dengan data konfirmasi terapi
-            if (tbKonfirmasi.getRowCount() != 0) {
-                try {
-                    for (i = 0; i < tbKonfirmasi.getRowCount(); i++) {
-                        Sequel.mengedit("cppt_konfirmasi_terapi", "waktu_simpan=?", "no_rawat=?, tgl_cppt=?, "
-                                + "cppt_shift=?, jam_cppt=?", 5, new String[]{
-                                    TNoRw.getText(), Valid.SetTgl(tglCppt.getSelectedItem() + ""), cmbSift.getSelectedItem().toString(),
-                                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                                    tbKonfirmasi.getValueAt(i, 18).toString()
-                                });
-                    }                    
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
-                }
-            }
-
-            TCari.setText(TNoRw.getText());
-            cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
-            tampil();
-            emptTeks();
-            TabCPPT.setSelectedIndex(1);
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed

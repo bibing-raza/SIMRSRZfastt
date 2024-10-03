@@ -2570,7 +2570,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             } else {
                 TNmDokter.setText(TNmDokter.getText());
             }
-            
+
             try {
                 Sequel.menyimpan("ringkasan_pulang_ranap", "'" + TNoRW.getText() + "','" + TAlasanDirawat.getText() + "','" + TRingkasanRiwayat.getText() + "',"
                         + "'" + Valid.mysql_real_escape_stringERM(TPemeriksaanFisik.getText()) + "','" + Valid.mysql_real_escape_stringERM(TPemeriksaanPenunjang.getText()) + "',"
@@ -2580,20 +2580,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         + "'" + TNmDokter.getText() + "','" + Tgcs.getText() + "','" + TTindakan.getText() + "','" + TDokterLuar.getText() + "',"
                         + "'" + cekTgl + "','" + Tedukasi.getText() + "','" + TKlgPasien.getText() + "','" + akses.getkode() + "','" + THasil.getText() + "',"
                         + "'" + cmbKondisiWP.getSelectedItem().toString() + "'", "Ringkasan Pulang Pasien Rawat Inap");
+
+                if (nmgedung.equals("AL-HAKIM/PARU")) {
+                    if (noreg.getText().length() == 16) {
+                        Sequel.simpanReplaceInto("nomor_reg_tb", "'" + TNoRM.getText() + "','" + noreg.getText() + "'", "No. Registrasi Pasien TB");
+                    }
+                }
+
+                TCari.setText(TNoRW.getText());
+                emptTeks();
+                tampil();
+                TabRingkasan.setSelectedIndex(1);
+
             } catch (Exception e) {
                 System.out.println("Simpan Ringkasan Pulang Pasien : " + e);
             }
-            
-            if (nmgedung.equals("AL-HAKIM/PARU")) {
-                if (noreg.getText().length() == 16) {
-                    Sequel.simpanReplaceInto("nomor_reg_tb", "'" + TNoRM.getText() + "','" + noreg.getText() + "'", "No. Registrasi Pasien TB");
-                }
-            }
-            
-            TCari.setText(TNoRW.getText());
-            emptTeks();
-            tampil();
-            TabRingkasan.setSelectedIndex(1);
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -2607,6 +2608,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed

@@ -975,18 +975,22 @@ public class DlgSpirometri extends javax.swing.JDialog {
                 kodedok = Sequel.cariIsi("select nik from pegawai where nama like '%" + cmbDokter.getSelectedItem().toString() + "%'");
             }
 
-            Sequel.menyimpan("spirometri", "'" + TNoRw.getText() + "','" + TTmptPeriksa.getText() + "','" + Ttb.getText() + "',"
-                    + "'" + Tbb.getText() + "','" + Tkeluhan.getText() + "','" + TkebiasaanRokok.getText() + "','" + TriwAsma.getText() + "',"
-                    + "'" + TukurVC.getText() + "','" + TukurFVC.getText() + "','" + TukurFEV1.getText() + "','" + TukurFEV1_FVC.getText() + "',"
-                    + "'" + TpredVC.getText() + "','" + TpredFVC.getText() + "','" + TpredFEV1.getText() + "','" + TpredFEV1_FVC.getText() + "',"
-                    + "'" + TpersenVC.getText() + "','" + TpersenFVC.getText() + "','" + TpersenFEV1.getText() + "','" + TpersenFEV1_FVC.getText() + "',"
-                    + "'" + Tkesimpulan.getText() + "','" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',"
-                    + "'" + Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)") + "',"
-                    + "'" + kodedok + "'", "Spirometri Pasien");
+            try {
+                Sequel.menyimpan("spirometri", "'" + TNoRw.getText() + "','" + TTmptPeriksa.getText() + "','" + Ttb.getText() + "',"
+                        + "'" + Tbb.getText() + "','" + Tkeluhan.getText() + "','" + TkebiasaanRokok.getText() + "','" + TriwAsma.getText() + "',"
+                        + "'" + TukurVC.getText() + "','" + TukurFVC.getText() + "','" + TukurFEV1.getText() + "','" + TukurFEV1_FVC.getText() + "',"
+                        + "'" + TpredVC.getText() + "','" + TpredFVC.getText() + "','" + TpredFEV1.getText() + "','" + TpredFEV1_FVC.getText() + "',"
+                        + "'" + TpersenVC.getText() + "','" + TpersenFVC.getText() + "','" + TpersenFEV1.getText() + "','" + TpersenFEV1_FVC.getText() + "',"
+                        + "'" + Tkesimpulan.getText() + "','" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',"
+                        + "'" + Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)") + "',"
+                        + "'" + kodedok + "'", "Spirometri Pasien");
 
-            DTPCari1.setDate(tglPeriksa.getDate());
-            emptTeks();
-            tampil();
+                DTPCari1.setDate(tglPeriksa.getDate());
+                emptTeks();
+                tampil();
+            } catch (Exception e) {
+                System.out.println("Simpan Hasil Pemeriksaan Spirometri Pasien : " + e);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -998,6 +1002,7 @@ public class DlgSpirometri extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
+        tampil();
         ChkInput.setSelected(true);
         isForm(); 
 }//GEN-LAST:event_BtnBatalActionPerformed
@@ -1019,24 +1024,28 @@ public class DlgSpirometri extends javax.swing.JDialog {
             } else {
                 kodedok = Sequel.cariIsi("select nik from pegawai where nama like '%" + cmbDokter.getSelectedItem().toString() + "%'");
             }
-            
+
             if (tbSpirometri.getSelectedRow() > -1) {
-                Sequel.mengedit("spirometri", "no_rawat=?", "tmpt_pemeriksaan=?, tb=?, bb=?, "
-                        + "keluhan=?, kebiasaan_merokok=?, riwayat_asma=?, pengukuran_vc=?, pengukuran_fvc=?, "
-                        + "pengukuran_fev1=?, pengukuran_fev1_fvc=?, prediksi_vc=?, prediksi_fvc=?, prediksi_fev1=?, "
-                        + "prediksi_fev1_fvc=?, persen_vc=?, persen_fvc=?, persen_fev1=?, persen_fev1_fvc=?, "
-                        + "kesimpulan=?, tgl_periksa=?, tgl_habis_berlaku=?, kd_dokter=?", 23, new String[]{
-                            TTmptPeriksa.getText(), Ttb.getText(), Tbb.getText(), Tkeluhan.getText(), TkebiasaanRokok.getText(),
-                            TriwAsma.getText(), TukurVC.getText(), TukurFVC.getText(), TukurFEV1.getText(), TukurFEV1_FVC.getText(),
-                            TpredVC.getText(), TpredFVC.getText(), TpredFEV1.getText(), TpredFEV1_FVC.getText(), TpersenVC.getText(),
-                            TpersenFVC.getText(), TpersenFEV1.getText(), TpersenFEV1_FVC.getText(), Tkesimpulan.getText(),
-                            Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)"), kodedok,
-                            tbSpirometri.getValueAt(tbSpirometri.getSelectedRow(), 0).toString()
-                        });
-                
-                DTPCari1.setDate(tglPeriksa.getDate());
-                tampil();
-                emptTeks();
+                try {
+                    Sequel.mengedit("spirometri", "no_rawat=?", "tmpt_pemeriksaan=?, tb=?, bb=?, "
+                            + "keluhan=?, kebiasaan_merokok=?, riwayat_asma=?, pengukuran_vc=?, pengukuran_fvc=?, "
+                            + "pengukuran_fev1=?, pengukuran_fev1_fvc=?, prediksi_vc=?, prediksi_fvc=?, prediksi_fev1=?, "
+                            + "prediksi_fev1_fvc=?, persen_vc=?, persen_fvc=?, persen_fev1=?, persen_fev1_fvc=?, "
+                            + "kesimpulan=?, tgl_periksa=?, tgl_habis_berlaku=?, kd_dokter=?", 23, new String[]{
+                                TTmptPeriksa.getText(), Ttb.getText(), Tbb.getText(), Tkeluhan.getText(), TkebiasaanRokok.getText(),
+                                TriwAsma.getText(), TukurVC.getText(), TukurFVC.getText(), TukurFEV1.getText(), TukurFEV1_FVC.getText(),
+                                TpredVC.getText(), TpredFVC.getText(), TpredFEV1.getText(), TpredFEV1_FVC.getText(), TpersenVC.getText(),
+                                TpersenFVC.getText(), TpersenFEV1.getText(), TpersenFEV1_FVC.getText(), Tkesimpulan.getText(),
+                                Valid.SetTgl(tglPeriksa.getSelectedItem() + ""), Sequel.cariIsi("select DATE_ADD('" + Valid.SetTgl(tglPeriksa.getSelectedItem() + "") + "',interval 181 day)"), kodedok,
+                                tbSpirometri.getValueAt(tbSpirometri.getSelectedRow(), 0).toString()
+                            });
+
+                    DTPCari1.setDate(tglPeriksa.getDate());
+                    tampil();
+                    emptTeks();
+                } catch (Exception e) {
+                    System.out.println("Ganti Hasil Pemeriksaan Spirometri Pasien : " + e);
+                }
             }
         }
 }//GEN-LAST:event_BtnGantiActionPerformed
