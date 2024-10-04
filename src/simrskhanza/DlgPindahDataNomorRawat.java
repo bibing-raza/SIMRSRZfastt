@@ -264,7 +264,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(80, 23));
         panelisi4.add(jLabel21);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -278,7 +278,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelisi4.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-10-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -400,7 +400,6 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
         FormInput.add(jLabel65);
         jLabel65.setBounds(0, 66, 150, 23);
 
-        TNoRwTujuan.setEditable(false);
         TNoRwTujuan.setForeground(new java.awt.Color(0, 0, 0));
         TNoRwTujuan.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         TNoRwTujuan.setName("TNoRwTujuan"); // NOI18N

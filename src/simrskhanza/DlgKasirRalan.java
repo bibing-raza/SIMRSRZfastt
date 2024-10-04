@@ -5489,7 +5489,6 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             Sequel.queryu("delete from detail_nota_jalan where no_rawat='" + TNoRw.getText() + "'");
             Sequel.queryu("delete from detail_nota_inap where no_rawat='" + TNoRw.getText() + "'");
             Sequel.queryu("delete from detail_piutang_pasien where no_rawat='" + TNoRw.getText() + "'");
-            Sequel.queryu("delete from mutasi_berkas where no_rawat='" + TNoRw.getText() + "'");
             Sequel.queryu("delete from ralan_aps where no_rawat='" + TNoRw.getText() + "'");
             Sequel.meghapus("reg_rujukan_intern", "no_rawat_ke", TNoRw.getText());
 
