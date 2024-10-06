@@ -1556,7 +1556,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                         emptTeks();
                     }
                 } catch (Exception e) {
-                    System.out.println("Simpan Checklist Pra Operasi : " + e);
+                    System.out.println("Ganti Checklist Pra Operasi : " + e);
                 }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan klik/pilih dulu salah satu datanya pada tabel..!!");

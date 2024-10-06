@@ -222,7 +222,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbGanti.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode3 = new DefaultTableModel(null, new String[]{
-            "kode", "Numerator Demonimator"
+            "kode", "Numerator Denominator"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {

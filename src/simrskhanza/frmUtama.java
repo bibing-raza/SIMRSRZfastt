@@ -356,6 +356,7 @@ import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPasienUntukTindakan;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPengelolaanTransfusiDarah;
+import rekammedis.RMPerencanaanPulang;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMSkriningUlangGizi;
 import rekammedis.RMTindakanKedokteran;
@@ -883,6 +884,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenPreInduksi = new widget.ButtonBig();
         btnMasterNumdenomINM = new widget.ButtonBig();
         btnAsesmenKeperawatanPerioperatif = new widget.ButtonBig();
+        btnPerencanaanPulang = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -5978,6 +5980,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
 
+        btnPerencanaanPulang.setForeground(new java.awt.Color(0, 0, 0));
+        btnPerencanaanPulang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/folder.png"))); // NOI18N
+        btnPerencanaanPulang.setText("Perencanaan Pulang (Discharge Planning)");
+        btnPerencanaanPulang.setIconTextGap(0);
+        btnPerencanaanPulang.setName("btnPerencanaanPulang"); // NOI18N
+        btnPerencanaanPulang.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPerencanaanPulang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPerencanaanPulangActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPerencanaanPulang);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -5986,7 +6001,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/09/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06/10/2024" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11824,6 +11839,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenKeperawatanPerioperatifActionPerformed
 
+    private void btnPerencanaanPulangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPerencanaanPulangActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPerencanaanPulang aplikasi = new RMPerencanaanPulang(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPerencanaanPulangActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12115,6 +12143,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPenjualanPerTanggal;
     private widget.ButtonBig btnPenyakitPD3I;
     private widget.ButtonBig btnPerawatanPasienCorona;
+    private widget.ButtonBig btnPerencanaanPulang;
     private widget.ButtonBig btnPeriksaRadiologi;
     private widget.ButtonBig btnPermintaanLab;
     private widget.ButtonBig btnPermintaanRadiologi;
@@ -12529,6 +12558,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnPerencanaanPulang);
+                jmlmenu++;
+            }
+            
             if (akses.getkegiatan_operasi() == true) {
                 Panelmenu.add(btnAsesmenKeperawatanPerioperatif);
                 jmlmenu++;
@@ -14385,6 +14419,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getcppt() == true) {
             Panelmenu.add(btnPemantauanHarian24Jam);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnPerencanaanPulang);
             jmlmenu++;
         }
 
@@ -16275,6 +16314,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (btnCeklisKesiapanAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCeklisKesiapanAnestesi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnPerencanaanPulang.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPerencanaanPulang);
                 jmlmenu++;
             }
         }
