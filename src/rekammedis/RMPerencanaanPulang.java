@@ -1470,64 +1470,38 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
             param.put("nmpasien", TPasien.getText());
             param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
             
-//            param.put("diagnosa", Tdiagnosa.getText());
-//            param.put("rencana", Trencana.getText());
-//            param.put("dokterOperator", TnmDpjp.getText());
-//            param.put("dokterAnastesi", TnmAnastesi.getText());
-//            param.put("kesadaran", Tkesadaran.getText());
-//            param.put("tensi", Ttensi.getText() + " mmHg");
-//            param.put("suhu", Tsuhu.getText() + " °C");
-//            param.put("nadi", Tnadi.getText() + " x/menit");
-//            param.put("respi", Trespi.getText() + " x/menit");
-//            
-//            if (cmbInfus.getSelectedIndex() == 1) {
-//                param.put("infus", cmbInfus.getSelectedItem().toString() + ", " + Tinfus.getText());
-//            } else {
-//                param.put("infus", cmbInfus.getSelectedItem().toString());
-//            }
-//            
-//            if (cmbKateter.getSelectedIndex() == 1) {
-//                param.put("kateter", cmbKateter.getSelectedItem().toString() + ", " + Tkateter.getText());
-//            } else {
-//                param.put("kateter", cmbKateter.getSelectedItem().toString());
-//            }
-//            
-//            if (cmbCukur.getSelectedIndex() == 1) {
-//                param.put("cukur", cmbCukur.getSelectedItem().toString() + ", " + Tcukur.getText());
-//            } else {
-//                param.put("cukur", cmbCukur.getSelectedItem().toString());
-//            }
-//            
-//            if (cmbLavemen.getSelectedIndex() == 1) {
-//                param.put("lavemen", cmbLavemen.getSelectedItem().toString() + ", " + Tlavemen.getText());
-//            } else {
-//                param.put("lavemen", cmbLavemen.getSelectedItem().toString());
-//            }
-//
-//            param.put("gigi", cmbGigi.getSelectedItem().toString());
-//            param.put("baju", cmbBaju.getSelectedItem().toString());
-//            param.put("penandaan", cmbPenandaan.getSelectedItem().toString());
-//            param.put("superAnastesi", cmbSuperAnastesi.getSelectedItem().toString());
-//            param.put("superTindakan", cmbSuperTindakan.getSelectedItem().toString());
-//            param.put("superTransfusi", cmbSuperTransfusi.getSelectedItem().toString());
-//            
-//            if (cmbAntibiotik.getSelectedIndex() == 1) {
-//                param.put("antibiotik", cmbAntibiotik.getSelectedItem().toString() + ", " + Tantibiotik.getText() + " gr, Jam " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " WITA");
-//            } else {
-//                param.put("antibiotik", cmbAntibiotik.getSelectedItem().toString());
-//            }
-//            
-//            param.put("pemeriksaan", Tterapi.getText() + "\n");
-//            param.put("ekg", cmbEkg.getSelectedItem().toString());
-//            param.put("intepretasiEkg", TintepretasiEkg.getText());
-//            param.put("intepretasiRo", cmbIntepretasiRo.getSelectedItem().toString());
-//            param.put("darah", cmbPersiapanDarah.getSelectedItem().toString());
-//            param.put("puasa", cmbPersiapanPuasa.getSelectedItem().toString());
-//            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 54).toString()));
-//            param.put("perawatBangsal", "(" + TnmPerawatBangsal.getText() + ")");
-//            param.put("perawatIbs", "(" + TnmPerawatIbs.getText() + ")");
+            param.put("umur", Tumur.getText() + "/" + Tjk.getText());
+            param.put("agama", Tagama.getText());
+            param.put("alamat", Talamat.getText());
+            param.put("tglmrs", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'")));
+            param.put("pekerjaan", Tpekerjaan.getText());
+            param.put("notelp", Ttelp.getText());
+            param.put("lamarwt", TlamaRwt.getText() + " hari");
+            param.put("tglPerkiraanPlg", Valid.SetTglINDONESIA(tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 18).toString()));
+            param.put("target", Ttarget.getText());
+            param.put("keadaanPulang", cmbPulang.getSelectedItem().toString());
+            
+            if (chkRencana1.isSelected() == true) {
+                param.put("rencana1", "1. Tanggal Kontrol : " + Thari1.getText() + ", " + Valid.SetTglINDONESIA(tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 25).toString())
+                        + " Tempat : " + Ttempat1.getText());
+            } else {
+                param.put("rencana1", "1. Tanggal Kontrol : ..... Tempat : .....");
+            }
+            
+            if (chkRencana2.isSelected() == true) {
+                param.put("rencana2", "2. Tanggal Kontrol : " + Thari2.getText() + ", " + Valid.SetTglINDONESIA(tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 26).toString())
+                        + " Tempat : " + Ttempat2.getText());
+            } else {
+                param.put("rencana2", "2. Tanggal Kontrol : ..... Tempat : .....");
+            }
+            
+            param.put("terapi", Tterapi.getText() + "\n");
+            param.put("catatan", Tcatatan.getText() + "\n");
+            param.put("tglTtd", "Martapura, " + Valid.SetTglINDONESIA(tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 33).toString()));
+            param.put("dpjp", "(" + TnmDpjp.getText() + ")");
+            param.put("keluargaPasien", "(" + TnmKeluarga.getText() + ")");
 
-            Valid.MyReport("rptCeklisPraOperasi.jasper", "report", "::[ Lembar Checklist Pra Operasi ]::",
+            Valid.MyReport("rptPerencanaanPulang.jasper", "report", "::[ Lembar Perencanaan Pulang (Discharge Planning) ]::",
                 "SELECT now() tanggal", param);
 
             tampil();
