@@ -335,7 +335,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         MnMasterIndikator.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnMasterIndikator.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnMasterIndikator.setText("Master Indikator NM");
+        MnMasterIndikator.setText("Master Indikator MRS");
         MnMasterIndikator.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnMasterIndikator.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnMasterIndikator.setIconTextGap(5);
@@ -353,7 +353,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         WindowHapus.setUndecorated(true);
         WindowHapus.setResizable(false);
 
-        internalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Hapus Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame6.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Hapus Indikator Mutu Rumah Sakit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         internalFrame6.setName("internalFrame6"); // NOI18N
         internalFrame6.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame6.setLayout(new java.awt.BorderLayout());
@@ -494,7 +494,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         WindowGanti.setUndecorated(true);
         WindowGanti.setResizable(false);
 
-        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ganti Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame8.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Ganti Indikator Mutu Rumah Sakit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         internalFrame8.setName("internalFrame8"); // NOI18N
         internalFrame8.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame8.setLayout(new java.awt.BorderLayout());
@@ -540,7 +540,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2024" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -651,7 +651,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Indikator Nasional Mutu ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Indikator Mutu Rumah Sakit ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -917,7 +917,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-09-2024" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-10-2024" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -969,7 +969,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13))); // NOI18N
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "Judul", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 13), new java.awt.Color(0, 0, 0))); // NOI18N
         Scroll.setComponentPopupMenu(jPopupMenu1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
@@ -1216,7 +1216,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tabMode.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Data indikator nasional mutu belum ditampilkan pada tabel..!!");
+            JOptionPane.showMessageDialog(rootPane, "Data indikator mutu rumah sakit belum ditampilkan pada tabel..!!");
         } else if (Ttahun.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Tahun harus diisi dulu dengan benar..!!");
             Ttahun.requestFocus();
@@ -1275,10 +1275,10 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                         + tabMode.getValueAt(r, 32).toString() + "','"
                         + tabMode.getValueAt(r, 33).toString() + "','"
                         + tabMode.getValueAt(r, 34).toString() + "','"
-                        + tabMode.getValueAt(r, 35).toString() + "','',''", "Indikator Nasional Mutu (INM)");
+                        + tabMode.getValueAt(r, 35).toString() + "','',''", "Indikator Mutu Rumah Sakit");
             }
             Sequel.AutoComitTrue();
-            Valid.MyReport("rptIndikatorNasionalMutu.jasper", "report", "::[ Indikator Nasional Mutu (INM) ]::",
+            Valid.MyReport("rptIndikatorNasionalMutu.jasper", "report", "::[ Indikator Mutu Rumah Sakit ]::",
                     "select * from temporary", param);
             this.setCursor(Cursor.getDefaultCursor());
 
@@ -1305,7 +1305,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     private void BtnHapusINMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusINMActionPerformed
         if (tbHapus.getRowCount() == 0) {
-            JOptionPane.showMessageDialog(rootPane, "Data indikator nasional mutu yang diinput belum ada..!!");
+            JOptionPane.showMessageDialog(rootPane, "Data indikator mutu rumah sakit yang diinput belum ada..!!");
             BtnCloseIn4.requestFocus();
         } else {
             //cek conteng
@@ -1535,7 +1535,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
     public void tampil() {
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
-                ".: Data Indikator Nasional Mutu Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Ruang Perawatan " + cmbGedung1.getSelectedItem().toString() + " :.",
+                ".: Data Indikator Mutu Rumah Sakit Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Ruang Perawatan " + cmbGedung1.getSelectedItem().toString() + " :.",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
                 javax.swing.border.TitledBorder.DEFAULT_POSITION,
                 new java.awt.Font("Tahoma", 0, 13)));

@@ -395,7 +395,7 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2019" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-03-2020" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -410,7 +410,7 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2019" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-03-2020" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -473,7 +473,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         cekDeku.setForeground(new java.awt.Color(0, 0, 0));
         cekDeku.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "SEMUA", "IYA", "TIDAK" }));
         cekDeku.setName("cekDeku"); // NOI18N
-        cekDeku.setOpaque(false);
         cekDeku.setPreferredSize(new java.awt.Dimension(70, 23));
         cekDeku.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -506,7 +505,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel3.setBounds(416, 40, 40, 23);
 
         CVL.setForeground(new java.awt.Color(0, 0, 0));
-        CVL.setHighlighter(null);
         CVL.setName("CVL"); // NOI18N
         CVL.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -524,7 +522,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel8.setBounds(195, 70, 130, 23);
 
         ETT.setForeground(new java.awt.Color(0, 0, 0));
-        ETT.setHighlighter(null);
         ETT.setName("ETT"); // NOI18N
         ETT.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -542,30 +539,18 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
-        TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRwKeyPressed(evt);
-            }
-        });
         FormInput.add(TNoRw);
         TNoRw.setBounds(75, 10, 141, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
-        TPasien.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TPasienKeyPressed(evt);
-            }
-        });
         FormInput.add(TPasien);
         TPasien.setBounds(340, 10, 340, 23);
 
         Tanggal.setEditable(false);
-        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-08-2019" }));
+        Tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-03-2020" }));
         Tanggal.setDisplayFormat("dd-MM-yyyy");
         Tanggal.setName("Tanggal"); // NOI18N
         Tanggal.setOpaque(false);
@@ -585,13 +570,7 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
-        TNoRM.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRMKeyPressed(evt);
-            }
-        });
         FormInput.add(TNoRM);
         TNoRM.setBounds(218, 10, 120, 23);
 
@@ -604,7 +583,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         Deku.setForeground(new java.awt.Color(0, 0, 0));
         Deku.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "IYA", "TIDAK" }));
         Deku.setName("Deku"); // NOI18N
-        Deku.setOpaque(false);
         Deku.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 DekuMouseClicked(evt);
@@ -625,7 +603,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel5.setBounds(511, 40, 35, 23);
 
         IVL.setForeground(new java.awt.Color(0, 0, 0));
-        IVL.setHighlighter(null);
         IVL.setName("IVL"); // NOI18N
         IVL.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -642,7 +619,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel9.setBounds(601, 40, 35, 23);
 
         UC.setForeground(new java.awt.Color(0, 0, 0));
-        UC.setHighlighter(null);
         UC.setName("UC"); // NOI18N
         UC.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -659,7 +635,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel10.setBounds(330, 70, 35, 23);
 
         VAP.setForeground(new java.awt.Color(0, 0, 0));
-        VAP.setHighlighter(null);
         VAP.setName("VAP"); // NOI18N
         VAP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -676,7 +651,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel11.setBounds(416, 70, 40, 23);
 
         IAD.setForeground(new java.awt.Color(0, 0, 0));
-        IAD.setHighlighter(null);
         IAD.setName("IAD"); // NOI18N
         IAD.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -693,7 +667,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel14.setBounds(511, 70, 35, 23);
 
         PLEB.setForeground(new java.awt.Color(0, 0, 0));
-        PLEB.setHighlighter(null);
         PLEB.setName("PLEB"); // NOI18N
         PLEB.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -710,7 +683,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel15.setBounds(601, 70, 35, 23);
 
         ISK.setForeground(new java.awt.Color(0, 0, 0));
-        ISK.setHighlighter(null);
         ISK.setName("ISK"); // NOI18N
         ISK.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -741,7 +713,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel18.setBounds(0, 99, 71, 23);
 
         Sputum.setForeground(new java.awt.Color(0, 0, 0));
-        Sputum.setHighlighter(null);
         Sputum.setName("Sputum"); // NOI18N
         Sputum.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -752,7 +723,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         Sputum.setBounds(75, 99, 260, 23);
 
         Urine.setForeground(new java.awt.Color(0, 0, 0));
-        Urine.setHighlighter(null);
         Urine.setName("Urine"); // NOI18N
         Urine.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -769,7 +739,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel20.setBounds(345, 99, 71, 23);
 
         Antibiotik.setForeground(new java.awt.Color(0, 0, 0));
-        Antibiotik.setHighlighter(null);
         Antibiotik.setName("Antibiotik"); // NOI18N
         Antibiotik.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -786,7 +755,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel22.setBounds(345, 128, 71, 23);
 
         Darah.setForeground(new java.awt.Color(0, 0, 0));
-        Darah.setHighlighter(null);
         Darah.setName("Darah"); // NOI18N
         Darah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -809,7 +777,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         jLabel24.setBounds(690, 70, 50, 23);
 
         IDO_ILO.setForeground(new java.awt.Color(0, 0, 0));
-        IDO_ILO.setHighlighter(null);
         IDO_ILO.setName("IDO_ILO"); // NOI18N
         IDO_ILO.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -857,19 +824,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
     private void ETTKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_ETTKeyPressed
         Valid.pindah(evt, Tanggal, CVL);
 }//GEN-LAST:event_ETTKeyPressed
-
-    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            isRawat();
-            isPsien();
-        } else {
-            //Valid.pindah(evt,TTmpRujuk,TDiagnosa);
-        }
-}//GEN-LAST:event_TNoRwKeyPressed
-
-    private void TPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPasienKeyPressed
-        //Valid.pindah(evt,TDokter,BtnSimpan);
-}//GEN-LAST:event_TPasienKeyPressed
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
@@ -1056,10 +1010,6 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
     private void TanggalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TanggalKeyPressed
         Valid.pindah(evt, TNoRw, ETT);
 }//GEN-LAST:event_TanggalKeyPressed
-
-    private void TNoRMKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRMKeyPressed
-        // Valid.pindah(evt, TNm, BtnSimpan);
-}//GEN-LAST:event_TNoRMKeyPressed
 
     private void tbObatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbObatMouseClicked
         if (tabMode.getRowCount() != 0) {
@@ -1353,10 +1303,10 @@ public final class DlgDataHAIs extends javax.swing.JDialog {
         Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "' ", TPasien);
     }
 
-    public void setNoRm(String norwt, Date tgl1, Date tgl2) {
+    public void setNoRm(String norwt, Date tgl2) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
-        DTPCari1.setDate(tgl1);
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(tgl2);
         isRawat();
         isPsien();

@@ -503,7 +503,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Keterangan Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Surat Keterangan Dokter ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -647,7 +647,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -662,7 +662,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -841,7 +841,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         TAlamat.setBounds(105, 94, 380, 23);
 
         Ttgl_no_surat.setEditable(false);
-        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        Ttgl_no_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2024" }));
         Ttgl_no_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_no_surat.setName("Ttgl_no_surat"); // NOI18N
         Ttgl_no_surat.setOpaque(false);
@@ -941,7 +941,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel25.setBounds(505, 270, 80, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-09-2024" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -955,7 +955,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         jLabel22.setBounds(0, 178, 105, 23);
 
         cmbDinyatakan.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDinyatakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Baik kesehatannya", "Baik kesehatannya, Tidak bertindik, dan Tidak bertato", "Baik kesehatannya, dapat melangsungkan pernikahan", "Kurang baik kesehatannya, besar harapan dapat diperbaiki", "Tidak baik kesehatannya, dengan diagnosa", "Tidak baik kesehatannya untuk melangsungkan pernikahan", "Lainnya" }));
+        cmbDinyatakan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Baik kesehatannya", "Baik kesehatannya, Tidak bertindik, dan Tidak bertato", "Baik kesehatannya, dapat melangsungkan pernikahan", "Baik kesehatannya, tidak menyandang disabilitas", "Kurang baik kesehatannya, besar harapan dapat diperbaiki", "Tidak baik kesehatannya, dengan diagnosa", "Tidak baik kesehatannya untuk melangsungkan pernikahan", "Lainnya" }));
         cmbDinyatakan.setName("cmbDinyatakan"); // NOI18N
         cmbDinyatakan.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass7.add(cmbDinyatakan);
@@ -1574,7 +1574,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                     param.put("nadi", Tnadi.getText());
                     param.put("bmi", Tbmi.getText());
                     
-                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 7) {
+                    if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
                         param.put("dinyatakan", "....................................................................................................."
                                 + "..................................................................................................................."
                                 + "........................................................................................");
@@ -1582,7 +1582,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                                 + "..................................................................................................................."
                                 + "..................................................................................................................."
                                 + ".............................................................................................................");
-                    } else if (cmbDinyatakan.getSelectedIndex() == 5) {
+                    } else if (cmbDinyatakan.getSelectedIndex() == 6) {
                         param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText());
                         param.put("keperluan", Tkeperluan.getText());
                     } else {
@@ -1615,7 +1615,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                 } else if (kodepoli.equals("KLT")) {
                     param.put("hasil", Thasil.getText() + "\n");
                     param.put("keperluan", Tkeperluan.getText() + "\n");
-                    if (cmbDinyatakan.getSelectedIndex() == 5) {
+                    if (cmbDinyatakan.getSelectedIndex() == 6) {
                         param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + " " + Tdiagnosa.getText() + "\n");
                     } else {
                         param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString() + "\n");
@@ -1942,7 +1942,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                     }
 
                     if (kodepoli.equals("UMUM")) {
-                        if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 7) {
+                        if (cmbDinyatakan.getSelectedIndex() == 0 || cmbDinyatakan.getSelectedIndex() == 8) {
                             param.put("dinyatakan", "....................................................................................................."
                                     + "..................................................................................................................."
                                     + "........................................................................................");
@@ -1950,7 +1950,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
                                     + "..................................................................................................................."
                                     + "..................................................................................................................."
                                     + ".............................................................................................................");
-                        } else if (cmbDinyatakan.getSelectedIndex() == 6) {
+                        } else if (cmbDinyatakan.getSelectedIndex() == 7) {
                             param.put("dinyatakan", cmbDinyatakan.getSelectedItem().toString());
                             param.put("keperluan", Tkeperluan.getText());
                         } else {
