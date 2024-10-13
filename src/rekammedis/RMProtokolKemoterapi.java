@@ -2643,7 +2643,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                     + ", Berat Badan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 10).toString()+" Kg.\n"
                     + "LPT : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 11).toString() + "\n"
                     + "Diagnosis : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 12).toString() + "\n\n"
-                    + "Program : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 13).toString() + "\n\n"
+                    + "Program : \n" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 13).toString() + "\n\n"
                     + "Nama Perawat Ruangan : " + Sequel.cariIsi("select nama from pegawai where nik='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 14).toString() + "'") + "\n"
                     + "Keterangan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 18).toString();
             Ttemplate.setText(protokolKemoPasienLain);
