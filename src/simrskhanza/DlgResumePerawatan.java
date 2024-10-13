@@ -47,7 +47,8 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
     private final sekuel Sequel = new sekuel();
     private final Properties prop = new Properties();
     private validasi Valid = new validasi();
-    private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsObat, rsDiag, rsDiag1, rsasesmenRJ,rsLIS1, rsLIS2, rsLIS3, rsLISMaster;
+    private ResultSet rs, rs2, rs3, rs4, rs5, rs6, rs7, rs8, rshal, rsObat, rsDiag, rsDiag1, rsasesmenRJ,
+            rsLIS1, rsLIS2, rsLIS3, rsLISMaster, rsTHT;
     private String sql, host = "";
     private int x = 0,lis1 = 0, lis2 = 0, lisM = 0;
 
@@ -563,9 +564,6 @@ public final class DlgResumePerawatan extends javax.swing.JDialog {
         TabRawat.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 TabRawatMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                TabRawatMouseEntered(evt);
             }
         });
 
@@ -1269,10 +1267,6 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         }
     }//GEN-LAST:event_TabRawatMouseClicked
 
-    private void TabRawatMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TabRawatMouseEntered
-
     /**
      * @param args the command line arguments
      */
@@ -1421,8 +1415,8 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             rs2 = koneksi.prepareStatement(
                                     "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='ranap','Rawat Inap','Rawat Jalan') status_lanjut,penjab.png_jawab "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
+                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
                                     + "reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and "
@@ -1430,11 +1424,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         } else {
                             rs2 = koneksi.prepareStatement(
                                     "select a.no_reg, a.no_rawat,a.tgl_registrasi,a.jam_reg,a.kd_dokter,a.nm_dokter,"
-                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab from "
+                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, a.kd_poli from "
                                     + "(select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,penjab.png_jawab "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
+                                    + "penjab.png_jawab, eg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
                                     + "reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' ORDER BY reg_periksa.tgl_registrasi DESC LIMIT 3)"
@@ -1718,6 +1712,30 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             } finally {
                                 if (rs3 != null) {
                                     rs3.close();
+                                }
+                            }
+                            
+                            //menampilkan pemeriksaan THT
+                            if (rs2.getString("kd_poli").equals("THT")) {
+                                try {
+                                    rsTHT = koneksi.prepareStatement(
+                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
+                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    if (rsTHT.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pemeriksaan Tindakan Poliklinik THT</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>Nama Pemeriksaan : <span style='font-weight:bold'>" + rsTHT.getString("namanya").toUpperCase().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>") + "</span>"
+                                                + "<br/><br/><span style='font-weight:bold'>Hasil Pemeriksaan : </span><br/>" + rsTHT.getString("hasilnya").replaceAll("(\r\n|\r|\n|\n\r)", "<br/>") + "</td>"
+                                                + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rsTHT != null) {
+                                        rsTHT.close();
+                                    }
                                 }
                             }
                             
@@ -6333,8 +6351,8 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             rs2 = koneksi.prepareStatement(
                                     "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='ranap','Rawat Inap','Rawat Jalan') status_lanjut,penjab.png_jawab "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
+                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
                                     + "reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and "
@@ -6342,11 +6360,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                         } else {
                             rs2 = koneksi.prepareStatement(
                                     "select a.no_reg, a.no_rawat,a.tgl_registrasi,a.jam_reg,a.kd_dokter,a.nm_dokter,"
-                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab from "
+                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, a.kd_poli from "
                                     + "(select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
                                     + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,penjab.png_jawab "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
+                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
+                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
                                     + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
                                     + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where stts<>'Batal' and "
                                     + "reg_periksa.status_lanjut = 'ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' ORDER BY reg_periksa.tgl_registrasi DESC LIMIT 3)"
@@ -6630,6 +6648,30 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
                             } finally {
                                 if (rs3 != null) {
                                     rs3.close();
+                                }
+                            }
+                            
+                            //menampilkan pemeriksaan THT
+                            if (rs2.getString("kd_poli").equals("THT")) {
+                                try {
+                                    rsTHT = koneksi.prepareStatement(
+                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
+                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    if (rsTHT.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Pemeriksaan Tindakan THT</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>Nama Pemeriksaan : <span style='font-weight:bold'>" + rsTHT.getString("namanya").toUpperCase().replaceAll("(\r\n|\r|\n|\n\r)", "<br/>") + "</span>"
+                                                + "<br/><br/><span style='font-weight:bold'>Hasil Pemeriksaan : </span><br/>" + rsTHT.getString("hasilnya").replaceAll("(\r\n|\r|\n|\n\r)", "<br/>") + "</td>"
+                                                + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rsTHT != null) {
+                                        rsTHT.close();
+                                    }
                                 }
                             }
                             
