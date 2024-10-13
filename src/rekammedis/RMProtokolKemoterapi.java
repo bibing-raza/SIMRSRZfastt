@@ -1937,8 +1937,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                     Valid.SetTgl(TtglSiklus, tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 7).toString());
                     Tdosis.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 8).toString());
                     Tumur.setText(Sequel.cariIsi("select umurdaftar from reg_periksa where no_rawat='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 4).toString() + "' and sttsumur='Th'"));
-                    Ttb.setText(Sequel.cariIsi("select ifnull(tb,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 4).toString() + "'"));
-                    Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 4).toString() + "'"));
+                    Ttb.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 9).toString());
+                    Tbb.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 10).toString());
                     Tlpt.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 11).toString());
                     Tdiagnosis.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 12).toString());
                     Tprogram.setText(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 13).toString());
@@ -1947,10 +1947,10 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                 WindowTemplate.dispose();
             } else {
                 tampilTemplate();
-                Ttemplate.setText("");
             }
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tbTemplate.requestFocus();
         }
     }//GEN-LAST:event_BtnCopasActionPerformed
 
@@ -2026,7 +2026,6 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
         WindowTemplate.setLocationRelativeTo(internalFrame1);
         WindowTemplate.setAlwaysOnTop(false);
         WindowTemplate.setVisible(true);
-        TCari1.setText(TnoRM.getText());
         TCari1.requestFocus();
         tampilTemplate();
     }//GEN-LAST:event_BtnProtokolKemoActionPerformed
@@ -2639,8 +2638,8 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                     + "Tgl. Siklus : " + Valid.SetTglINDONESIA(tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 7).toString()) + "\n"
                     + "Dosis : \n" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 8).toString() + "\n\n"
                     + "Umur : " + Sequel.cariIsi("select concat(umurdaftar,' Tahun') from reg_periksa where no_rawat='" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 4).toString() + "' and sttsumur='Th'")
-                    + ", Tinggi Badan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 9).toString()+" Cm"
-                    + ", Berat Badan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 10).toString()+" Kg.\n"
+                    + ", Tinggi Badan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 9).toString() + " Cm"
+                    + ", Berat Badan : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 10).toString() + " Kg.\n"
                     + "LPT : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 11).toString() + "\n"
                     + "Diagnosis : " + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 12).toString() + "\n\n"
                     + "Program : \n" + tbTemplate.getValueAt(tbTemplate.getSelectedRow(), 13).toString() + "\n\n"
