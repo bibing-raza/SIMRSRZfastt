@@ -1275,7 +1275,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1289,7 +1289,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1615,7 +1615,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.setBorder(null);
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(870, 2110));
+        FormInput.setPreferredSize(new java.awt.Dimension(870, 2510));
         FormInput.setLayout(null);
 
         TNoRw.setEditable(false);
@@ -1676,7 +1676,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024 07:34:31" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024 16:10:34" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1979,7 +1979,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label12);
         label12.setBounds(625, 360, 100, 23);
 
-        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024 07:34:31" }));
+        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024 16:10:35" }));
         TglAnamnesa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAnamnesa.setName("TglAnamnesa"); // NOI18N
         TglAnamnesa.setOpaque(false);
@@ -3404,7 +3404,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Trencana_kerja.setColumns(20);
         Trencana_kerja.setRows(5);
         Trencana_kerja.setName("Trencana_kerja"); // NOI18N
-        Trencana_kerja.setPreferredSize(new java.awt.Dimension(162, 200));
+        Trencana_kerja.setPreferredSize(new java.awt.Dimension(162, 9000));
         Trencana_kerja.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Trencana_kerjaKeyPressed(evt);
@@ -3413,7 +3413,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         scrollPane16.setViewportView(Trencana_kerja);
 
         FormInput.add(scrollPane16);
-        scrollPane16.setBounds(24, 1775, 830, 80);
+        scrollPane16.setBounds(24, 1775, 830, 480);
 
         label84.setForeground(new java.awt.Color(0, 0, 0));
         label84.setText("PERENCANAAN PEMULANGAN PASIEN :");
@@ -3421,7 +3421,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         label84.setName("label84"); // NOI18N
         label84.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label84);
-        label84.setBounds(0, 1860, 230, 23);
+        label84.setBounds(0, 2260, 230, 23);
 
         scrollPane17.setName("scrollPane17"); // NOI18N
 
@@ -3429,7 +3429,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Trencana_pulang.setColumns(20);
         Trencana_pulang.setRows(5);
         Trencana_pulang.setName("Trencana_pulang"); // NOI18N
-        Trencana_pulang.setPreferredSize(new java.awt.Dimension(162, 200));
+        Trencana_pulang.setPreferredSize(new java.awt.Dimension(162, 2000));
         Trencana_pulang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Trencana_pulangKeyPressed(evt);
@@ -3438,7 +3438,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         scrollPane17.setViewportView(Trencana_pulang);
 
         FormInput.add(scrollPane17);
-        scrollPane17.setBounds(24, 1880, 830, 80);
+        scrollPane17.setBounds(24, 2280, 830, 80);
 
         label85.setForeground(new java.awt.Color(0, 0, 0));
         label85.setText("CATATAN PENTING :");
@@ -3446,7 +3446,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         label85.setName("label85"); // NOI18N
         label85.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label85);
-        label85.setBounds(0, 1968, 132, 23);
+        label85.setBounds(0, 2368, 132, 23);
 
         scrollPane18.setName("scrollPane18"); // NOI18N
 
@@ -3454,7 +3454,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Tcatatan.setColumns(20);
         Tcatatan.setRows(5);
         Tcatatan.setName("Tcatatan"); // NOI18N
-        Tcatatan.setPreferredSize(new java.awt.Dimension(162, 200));
+        Tcatatan.setPreferredSize(new java.awt.Dimension(162, 2000));
         Tcatatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TcatatanKeyPressed(evt);
@@ -3463,21 +3463,21 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         scrollPane18.setViewportView(Tcatatan);
 
         FormInput.add(scrollPane18);
-        scrollPane18.setBounds(24, 1988, 830, 80);
+        scrollPane18.setBounds(24, 2388, 830, 80);
 
         label86.setForeground(new java.awt.Color(0, 0, 0));
         label86.setText("Tanggal / Jam : ");
         label86.setName("label86"); // NOI18N
         label86.setPreferredSize(new java.awt.Dimension(70, 23));
         FormInput.add(label86);
-        label86.setBounds(625, 2075, 100, 23);
+        label86.setBounds(625, 2475, 100, 23);
 
-        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024 07:34:32" }));
+        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024 16:10:36" }));
         TglDpjp.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglDpjp.setName("TglDpjp"); // NOI18N
         TglDpjp.setOpaque(false);
         FormInput.add(TglDpjp);
-        TglDpjp.setBounds(725, 2075, 130, 23);
+        TglDpjp.setBounds(725, 2475, 130, 23);
 
         BtnKamar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnKamar.setMnemonic('2');
@@ -3581,7 +3581,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnPerencana);
-        BtnPerencana.setBounds(860, 1880, 100, 23);
+        BtnPerencana.setBounds(860, 2280, 100, 23);
 
         BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -3596,7 +3596,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnCatatan);
-        BtnCatatan.setBounds(860, 1988, 100, 23);
+        BtnCatatan.setBounds(860, 2388, 100, 23);
 
         label87.setForeground(new java.awt.Color(0, 0, 0));
         label87.setText("Lain-lain : ");
@@ -3855,7 +3855,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3870,7 +3870,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
