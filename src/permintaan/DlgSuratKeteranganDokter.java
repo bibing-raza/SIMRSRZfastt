@@ -1802,7 +1802,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         dokumen.isForm();
         dokumen.setSize(650, internalFrame1.getHeight() - 40);
         dokumen.setLocationRelativeTo(internalFrame1);
-        dokumen.setAlwaysOnTop(false);
+        dokumen.setAlwaysOnTop(true);
         dokumen.setVisible(true);
     }//GEN-LAST:event_BtnDokumenActionPerformed
 

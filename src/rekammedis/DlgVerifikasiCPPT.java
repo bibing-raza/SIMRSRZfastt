@@ -1119,15 +1119,29 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                             konfirmasiTerapiPreview(TNoRw.getText(), rsPrev.getString("tgl_cppt"), rsPrev.getString("jam_cppt"), rsPrev.getString("cppt_shift"));
                         }
 
-                        htmlContent.append(
-                                "<tr class='isi'>"
-                                + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
-                                + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
-                                + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
-                                + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
-                                + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
-                                + "</tr>"
-                        );
+                        if (rsPrev.getString("bagian_cppt").contains("DPJP")
+                                || rsPrev.getString("bagian_cppt").contains("DPJP (K)")
+                                || rsPrev.getString("bagian_cppt").contains("DPJP Raber")) {
+                            htmlContent.append(
+                                    "<tr style='background-color: #d2e9e9' class='isi'>"
+                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                    + "</tr>"
+                            );
+                        } else {
+                            htmlContent.append(
+                                    "<tr class='isi'>"
+                                    + "<td width='20%' valign='top' align='center'>" + rsPrev.getString("tglcppt") + "</td>"
+                                    + "<td width='50%' valign='top'>" + rsPrev.getString("bagian_cppt") + "</td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("hasil_pemeriksaan").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/></td>"
+                                    + "<td width='80%' valign='top'>" + rsPrev.getString("instruksi_nakes").replaceAll(":&lt", ": kurang dari ").replaceAll(" &lt", " kurang dari ").replaceAll("\n", "<br/>") + "<br/><br/>" + konfirmasi_terapi + "<br/></td>"
+                                    + "<td width='60%' valign='top'>" + rsPrev.getString("verif") + "<br/><span style='color:CC0033'>" + rsPrev.getString("ptgsSerah") + "<br/><br/>" + rsPrev.getString("ptgsTerima") + "<br/></td>"
+                                    + "</tr>"
+                            );
+                        }
                     }
                     htmlContent.append(
                             "</tbody>"

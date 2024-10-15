@@ -6934,9 +6934,19 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi.getText() + "'");
 
                                     if (polinya.equals("THT")) {
-                                        Sequel.mengedit("pemeriksaan_tht", "no_rawat='" + tbPemeriksaanDr.getValueAt(tbPemeriksaanDr.getSelectedRow(), 1) + "'",
-                                                "nama_pemeriksaan='" + TnmPemeriksaanTHT.getText() + "', tgl_periksa='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', "
-                                                + "hasil_pemeriksaan='" + ThasilPemeriksaanTHT.getText() + "', nip_dokter='" + KdDok.getText() + "'");
+                                        if (TnmPemeriksaanTHT.getText().equals("") && ThasilPemeriksaanTHT.getText().equals("")) {
+                                            Sequel.queryu("delete from pemeriksaan_tht where no_rawat='" + tbPemeriksaanDr.getValueAt(tbPemeriksaanDr.getSelectedRow(), 1) + "'");
+                                        } else {
+                                            if (Sequel.cariInteger("select count(-1) from pemeriksaan_tht where no_rawat='" + tbPemeriksaanDr.getValueAt(tbPemeriksaanDr.getSelectedRow(), 1) + "'") > 0) {
+                                                Sequel.mengedit("pemeriksaan_tht", "no_rawat='" + tbPemeriksaanDr.getValueAt(tbPemeriksaanDr.getSelectedRow(), 1) + "'",
+                                                        "nama_pemeriksaan='" + TnmPemeriksaanTHT.getText() + "', tgl_periksa='" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "', "
+                                                        + "hasil_pemeriksaan='" + ThasilPemeriksaanTHT.getText() + "', nip_dokter='" + KdDok.getText() + "'");
+                                            } else {
+                                                Sequel.menyimpanIgnore("pemeriksaan_tht", "'" + TNoRw.getText() + "','" + TnmPemeriksaanTHT.getText() + "',"
+                                                        + "'" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','" + ThasilPemeriksaanTHT.getText() + "',"
+                                                        + "'" + KdDok.getText() + "'", "Pemeriksaan THT");
+                                            }
+                                        }
                                     }
 
                                     if (ChkCopyPemeriksaanDR.isSelected() == true) {
@@ -13925,7 +13935,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     Sequel.mengedit("pasien", "no_rkm_medis='" + TNoRM.getText() + "'", "tinggi_badan='" + TTinggi.getText() + "'");
                     Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
                     
-                    if (polinya.equals("THT")) {
+                    if (polinya.equals("THT") && !TnmPemeriksaanTHT.getText().equals("") && !ThasilPemeriksaanTHT.getText().equals("")) {
                         Sequel.menyimpanIgnore("pemeriksaan_tht", "'" + TNoRw.getText() + "','" + TnmPemeriksaanTHT.getText() + "',"
                                 + "'" + Valid.SetTgl(DTPTgl.getSelectedItem() + "") + "','" + ThasilPemeriksaanTHT.getText() + "',"
                                 + "'" + KdDok.getText() + "'", "Pemeriksaan THT");
