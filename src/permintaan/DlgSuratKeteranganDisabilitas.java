@@ -411,13 +411,13 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         DTPCari1 = new widget.Tanggal();
         jLabel48 = new widget.Label();
         DTPCari2 = new widget.Tanggal();
+        jLabel50 = new widget.Label();
+        LCount = new widget.Label();
         panelGlass11 = new widget.panelisi();
         jLabel49 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         BtnAll = new widget.Button();
-        jLabel50 = new widget.Label();
-        LCount = new widget.Label();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -441,11 +441,11 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         internalFrame3.setLayout(new java.awt.BorderLayout(1, 1));
 
         scrollInput.setName("scrollInput"); // NOI18N
-        scrollInput.setPreferredSize(new java.awt.Dimension(102, 557));
+        scrollInput.setPreferredSize(new java.awt.Dimension(300, 557));
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 860));
+        PanelInput.setPreferredSize(new java.awt.Dimension(300, 860));
         PanelInput.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
@@ -1259,7 +1259,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
 
         internalFrame4.setBorder(null);
         internalFrame4.setName("internalFrame4"); // NOI18N
-        internalFrame4.setPreferredSize(new java.awt.Dimension(700, 248));
+        internalFrame4.setPreferredSize(new java.awt.Dimension(610, 248));
         internalFrame4.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Data Surat Keterangan Disabilitas ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
@@ -1317,6 +1317,19 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         DTPCari2.setOpaque(false);
         DTPCari2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(DTPCari2);
+
+        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel50.setText("Record :");
+        jLabel50.setName("jLabel50"); // NOI18N
+        jLabel50.setPreferredSize(new java.awt.Dimension(60, 23));
+        panelGlass9.add(jLabel50);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass9.add(LCount);
 
         panelGlass10.add(panelGlass9, java.awt.BorderLayout.CENTER);
 
@@ -1377,19 +1390,6 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
             }
         });
         panelGlass11.add(BtnAll);
-
-        jLabel50.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel50.setText("Record :");
-        jLabel50.setName("jLabel50"); // NOI18N
-        jLabel50.setPreferredSize(new java.awt.Dimension(60, 23));
-        panelGlass11.add(jLabel50);
-
-        LCount.setForeground(new java.awt.Color(0, 0, 0));
-        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount.setText("0");
-        LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass11.add(LCount);
 
         panelGlass10.add(panelGlass11, java.awt.BorderLayout.PAGE_END);
 
