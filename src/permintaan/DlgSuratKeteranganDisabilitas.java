@@ -670,7 +670,7 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         cmbFisik.setBounds(322, 122, 460, 23);
 
         cmbSensorik.setForeground(new java.awt.Color(0, 0, 0));
-        cmbSensorik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Netral (Buta Total)", "Netral (Persepsi Cahaya / Low Vision)", "Rungu", "Wicara" }));
+        cmbSensorik.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Netral (Buta Total)", "Netral (Persepsi Cahaya / Low Vision)", "Rungu", "Wicara", "Rungu dan Wicara" }));
         cmbSensorik.setName("cmbSensorik"); // NOI18N
         cmbSensorik.setPreferredSize(new java.awt.Dimension(55, 28));
         PanelInput.add(cmbSensorik);
