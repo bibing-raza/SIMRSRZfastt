@@ -3244,7 +3244,6 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                     } else {
                         kembalikanData();
                         TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                        BtnCloseIn10ActionPerformed(null);
                         tampil();
                         emptTeks();
                         TabRawat.setSelectedIndex(1);
@@ -3252,7 +3251,6 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                 } else {
                     kembalikanDataDiganti();
                     TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                    BtnCloseIn10ActionPerformed(null);
                     tampil();
                     emptTeks();
                     TabRawat.setSelectedIndex(1);
@@ -4884,7 +4882,8 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                                     rs2.getString("nip_dokter"),
                                     rs2.getString("waktu_simpan")
                                 }) == true) {
-                            System.out.println("Proses mengembalikan data berhasil..!!");
+                            System.out.println("Proses mengembalikan/restore data berhasil..!!");
+                            JOptionPane.showMessageDialog(rootPane, "Proses mengembalikan/restore data berhasil..!!");
                         }
                     } catch (Exception e) {
                         System.out.println("Simpan : " + e);

@@ -4894,7 +4894,6 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                     } else {
                         kembalikanData();
                         TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                        BtnCloseIn10ActionPerformed(null);
                         tampil();
                         emptTeks();
                         TabRawat.setSelectedIndex(1);
@@ -4902,7 +4901,6 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                 } else {
                     kembalikanDataDiganti();
                     TCari.setText(tbRiwayat.getValueAt(tbRiwayat.getSelectedRow(), 1).toString());
-                    BtnCloseIn10ActionPerformed(null);
                     tampil();
                     emptTeks();
                     TabRawat.setSelectedIndex(1);
@@ -6734,6 +6732,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                             if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + rs8.getString("no_rawat") + "'") == 0) {
                                 Sequel.menyimpan("dpjp_ranap", "'" + rs8.getString("no_rawat") + "','" + rs8.getString("nip_dpjp") + "'");
                             }                            
+                            JOptionPane.showMessageDialog(rootPane, "Proses mengembalikan/restore data berhasil..!!");
                         }
                     } catch (Exception e) {
                         System.out.println("Simpan : " + e);
