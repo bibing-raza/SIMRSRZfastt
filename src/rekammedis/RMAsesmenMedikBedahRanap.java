@@ -4491,18 +4491,19 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
             
             if (chkLainlain.isSelected() == true) {
                 param.put("lainlain", "V");
-                param.put("ketLainlain", "Lainnya " + TlainLokasi.getText());
+                param.put("ketLainlain", "16. Lainnya " + TlainLokasi.getText());
             } else {
                 param.put("lainlain", "");
-                param.put("ketLainlain", "Lainnya .............");
+                param.put("ketLainlain", "16. Lainnya .............");
             }
             
+            param.put("deskripsi", Tdeskripsi.getText() + "\n");
             param.put("tanggal", "Tanggal / Jam : " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""))
                     + ", Jam : " + cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " WITA");
             param.put("dpjp", "(" + TnmDpjp.getText() + ")");
             
-//            Valid.MyReport("rptCetakAsesmenMedikBedahRanap2.jasper", "report", "::[ Laporan Asesmen Medik Bedah Rawat Inap hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
+            Valid.MyReport("rptCetakAsesmenMedikBedahRanap2.jasper", "report", "::[ Laporan Asesmen Medik Bedah Rawat Inap hal. 2 ]::",
+                    "SELECT now() tanggal", param);
             Valid.MyReport("rptCetakAsesmenMedikBedahRanap1.jasper", "report", "::[ Laporan Asesmen Medik Bedah Rawat Inap hal. 1 ]::",
                     "SELECT now() tanggal", param);
             
