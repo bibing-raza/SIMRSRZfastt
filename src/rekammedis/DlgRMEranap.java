@@ -1627,21 +1627,17 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private void BtnAsesmenMedikBedahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenMedikBedahActionPerformed
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
-        } else {            
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgRMEranap");
-                RMAsesmenMedikBedahRanap form = new RMAsesmenMedikBedahRanap(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setNoRm(TNoRW.getText(), nmUnit.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-            }            
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMAsesmenMedikBedahRanap form = new RMAsesmenMedikBedahRanap(null, false);
+            form.emptTeks();
+            form.isCek();
+            form.setNoRm(TNoRW.getText(), nmUnit.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnAsesmenMedikBedahActionPerformed
 
