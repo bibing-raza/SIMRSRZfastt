@@ -52,14 +52,14 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
 
-        tbSpesialis.setModel(tabMode);
+        tbMasalah.setModel(tabMode);
         //tampil();
         //tbJabatan.setDefaultRenderer(Object.class, new WarnaTable(Scroll.getBackground(),Color.GREEN));
-        tbSpesialis.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbSpesialis.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbMasalah.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbMasalah.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 2; i++) {
-            TableColumn column = tbSpesialis.getColumnModel().getColumn(i);
+            TableColumn column = tbMasalah.getColumnModel().getColumn(i);
             if(i==0){
                 column.setPreferredWidth(50);
             }else if(i==1){
@@ -67,7 +67,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
             }
         }
 
-        tbSpesialis.setDefaultRenderer(Object.class, new WarnaTable());
+        tbMasalah.setDefaultRenderer(Object.class, new WarnaTable());
 
         TKd.setDocument(new batasInput((byte)3).getKata(TKd));
         TNm.setDocument(new batasInput((int)100).getKata(TNm));
@@ -107,7 +107,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbSpesialis = new widget.Table();
+        tbMasalah = new widget.Table();
         jPanel3 = new javax.swing.JPanel();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
@@ -140,30 +140,29 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Master Masalah Keperawatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Master Masalah Keperawatan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbSpesialis.setAutoCreateRowSorter(true);
-        tbSpesialis.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbSpesialis.setName("tbSpesialis"); // NOI18N
-        tbSpesialis.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbMasalah.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbMasalah.setName("tbMasalah"); // NOI18N
+        tbMasalah.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbSpesialisMouseClicked(evt);
+                tbMasalahMouseClicked(evt);
             }
         });
-        tbSpesialis.addKeyListener(new java.awt.event.KeyAdapter() {
+        tbMasalah.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbSpesialisKeyPressed(evt);
+                tbMasalahKeyPressed(evt);
             }
             public void keyReleased(java.awt.event.KeyEvent evt) {
-                tbSpesialisKeyReleased(evt);
+                tbMasalahKeyReleased(evt);
             }
         });
-        Scroll.setViewportView(tbSpesialis);
+        Scroll.setViewportView(tbMasalah);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -367,14 +366,10 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
         panelGlass7.add(jLabel4);
         jLabel4.setBounds(122, 10, 130, 23);
 
+        TKd.setEditable(false);
         TKd.setForeground(new java.awt.Color(0, 0, 0));
         TKd.setHighlighter(null);
         TKd.setName("TKd"); // NOI18N
-        TKd.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TKdKeyPressed(evt);
-            }
-        });
         panelGlass7.add(TKd);
         TKd.setBounds(48, 10, 70, 23);
 
@@ -386,7 +381,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TNm);
-        TNm.setBounds(255, 10, 260, 23);
+        TNm.setBounds(255, 10, 410, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -394,10 +389,6 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
-    private void TKdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKeyPressed
-        Valid.pindah(evt,TCari,TNm);
-}//GEN-LAST:event_TKdKeyPressed
 
     private void TNmKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNmKeyPressed
         Valid.pindah(evt,TKd,BtnSimpan);
@@ -453,9 +444,9 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
         }else if(TNm.getText().trim().equals("")){
             Valid.textKosong(TNm,"Masalah");
         }else{
-            if(tbSpesialis.getSelectedRow()> -1){
+            if(tbMasalah.getSelectedRow()> -1){
                 Sequel.mengedit("master_masalah_keperawatan","kode_masalah=?","kode_masalah=?,nama_masalah=?",3,new String[]{
-                    TKd.getText(),TNm.getText(),tbSpesialis.getValueAt(tbSpesialis.getSelectedRow(),0).toString()
+                    TKd.getText(),TNm.getText(),tbMasalah.getValueAt(tbMasalah.getSelectedRow(),0).toString()
                 });
                 if(tabMode.getRowCount()!=0){tampil();}
                 emptTeks();
@@ -489,7 +480,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
         }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
             BtnKeluar.requestFocus();
         }else if(evt.getKeyCode()==KeyEvent.VK_UP){
-            tbSpesialis.requestFocus();
+            tbMasalah.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
 
@@ -522,23 +513,23 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void tbSpesialisMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbSpesialisMouseClicked
+    private void tbMasalahMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbMasalahMouseClicked
         if(tabMode.getRowCount()!=0){
             try {
                 getData();
             } catch (java.lang.NullPointerException e) {
             }
         }
-}//GEN-LAST:event_tbSpesialisMouseClicked
+}//GEN-LAST:event_tbMasalahMouseClicked
 
-    private void tbSpesialisKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbSpesialisKeyPressed
+    private void tbMasalahKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbMasalahKeyPressed
         if(tabMode.getRowCount()!=0){
             if(evt.getKeyCode()==KeyEvent.VK_SHIFT){
                 TCari.setText("");
                 TCari.requestFocus();
             }           
         }
-}//GEN-LAST:event_tbSpesialisKeyPressed
+}//GEN-LAST:event_tbMasalahKeyPressed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated
         TCari.requestFocus();
@@ -549,7 +540,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
         emptTeks();
     }//GEN-LAST:event_formWindowOpened
 
-    private void tbSpesialisKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbSpesialisKeyReleased
+    private void tbMasalahKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbMasalahKeyReleased
         if(tabMode.getRowCount()!=0){
             if((evt.getKeyCode()==KeyEvent.VK_ENTER)||(evt.getKeyCode()==KeyEvent.VK_UP)||(evt.getKeyCode()==KeyEvent.VK_DOWN)){
                 try {
@@ -558,7 +549,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
                 }
             }          
         }
-    }//GEN-LAST:event_tbSpesialisKeyReleased
+    }//GEN-LAST:event_tbMasalahKeyReleased
 
     /**
     * @param args the command line arguments
@@ -598,7 +589,7 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
     private widget.panelisi panelGlass7;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
-    private widget.Table tbSpesialis;
+    private widget.Table tbMasalah;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
@@ -638,19 +629,19 @@ public class MasterMasalahKeperawatan extends javax.swing.JDialog {
     }
 
     private void getData() {
-        if(tbSpesialis.getSelectedRow()!= -1){
-            TKd.setText(tbSpesialis.getValueAt(tbSpesialis.getSelectedRow(),0).toString());
-            TNm.setText(tbSpesialis.getValueAt(tbSpesialis.getSelectedRow(),1).toString());
+        if(tbMasalah.getSelectedRow()!= -1){
+            TKd.setText(tbMasalah.getValueAt(tbMasalah.getSelectedRow(),0).toString());
+            TNm.setText(tbMasalah.getValueAt(tbMasalah.getSelectedRow(),1).toString());
         }
     }
     
     public JTable getTable(){
-        return tbSpesialis;
+        return tbMasalah;
     }
     
     public void isCek(){
-       BtnSimpan.setEnabled(akses.getmaster_masalah_keperawatan());
+       BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
        BtnHapus.setEnabled(akses.getmaster_masalah_keperawatan());
-       BtnEdit.setEnabled(akses.getmaster_masalah_keperawatan());
+       BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
     }
 }

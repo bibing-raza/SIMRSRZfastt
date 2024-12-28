@@ -3108,7 +3108,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
 
     private void BtnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDokterActionPerformed
         petugas.isCek();
-        petugas.setSize(981, 397);
+        petugas.setSize(981, internalFrame1.getHeight() - 40);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setAlwaysOnTop(false);
         petugas.setVisible(true);
@@ -3370,7 +3370,7 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         MasterMasalahKeperawatan form = new MasterMasalahKeperawatan(null, false);
         form.isCek();
-        form.setSize(739, 435);
+        form.setSize(739, internalFrame1.getHeight() - 40);
         form.setLocationRelativeTo(internalFrame1);
         form.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());
@@ -4117,19 +4117,18 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         BtnHapus.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnEdit.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
-        BtnTambahMasalah.setEnabled(akses.getmaster_masalah_keperawatan());  
+        BtnTambahMasalah.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         
-        if(akses.getjml2()>=1){
+        if (akses.getjml2() >= 1) {
             KdPetugas.setEditable(false);
             BtnDokter.setEnabled(false);
             KdPetugas.setText(akses.getkode());
-            Sequel.cariIsi("select nama from petugas where nip=?", NmPetugas,KdPetugas.getText());
-            if(NmPetugas.getText().equals("")){
+            Sequel.cariIsi("select nama from petugas where nip=?", NmPetugas, KdPetugas.getText());
+            if (NmPetugas.getText().equals("")) {
                 KdPetugas.setText("");
-                JOptionPane.showMessageDialog(null,"User login bukan petugas...!!");
+                JOptionPane.showMessageDialog(null, "User login bukan petugas...!!");
             }
-        }            
+        }        
     }
     
     private void tampilMasalah() {
