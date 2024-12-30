@@ -809,7 +809,8 @@ public class ApiEKLAIM_inacbg {
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
-                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+//                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                System.out.println("Pesan : " + root.path("metadata").path("message").asText());
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
             }

@@ -880,7 +880,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -894,7 +894,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-09-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1212,11 +1212,11 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         btnTambahPenyakit1.setBounds(403, 180, 28, 23);
 
         cmbDiagPro.setForeground(new java.awt.Color(0, 0, 0));
-        cmbDiagPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "STATISTIK", "INADRG" }));
+        cmbDiagPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "STATISTIK (V5)", "INADRG (V6)" }));
         cmbDiagPro.setName("cmbDiagPro"); // NOI18N
         cmbDiagPro.setPreferredSize(new java.awt.Dimension(308, 23));
         FormInput.add(cmbDiagPro);
-        cmbDiagPro.setBounds(943, 12, 85, 23);
+        cmbDiagPro.setBounds(943, 12, 108, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Jns. Diagnosa & Prosedur : ");
@@ -1268,7 +1268,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         internalFrame9.setName("internalFrame9"); // NOI18N
         internalFrame9.setLayout(new java.awt.GridLayout(1, 2));
 
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa Statistik ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa Statistik (V5) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
 
         tbDiagnosaPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
@@ -1286,8 +1286,9 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll.setViewportView(tbDiagnosaPasien);
 
         internalFrame9.add(Scroll);
+        Scroll.getAccessibleContext().setAccessibleName("[ Diagnosa Statistik (V5) ]");
 
-        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa INADRG ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa INADRG (V6) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
 
         tbDiagnosaPasien1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
@@ -1609,6 +1610,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         kdpoli.setText("");
         nmpoli.setText("");
         Prosedur.setText("");
+        cmbDiagPro.setSelectedIndex(0);
         TNoRw.requestFocus();
         
         for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
@@ -1619,12 +1621,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         }
         for (i = 0; i < tbProsedur.getRowCount(); i++) {
             tbProsedur.setValueAt(false, i, 0);
-        }
-        
-        if (Status.getSelectedIndex() == 0) {
-            cmbDiagPro.setSelectedIndex(1);
-        } else {
-            cmbDiagPro.setSelectedIndex(0);
         }
         
         ChkInput.setSelected(true);
@@ -2377,13 +2373,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
         DTPCari2.setDate(tgl);
         ChkInput.setSelected(true);
+        cmbDiagPro.setSelectedIndex(0);
         isForm();
-        
-        if (Status.getSelectedIndex() == 0) {
-            cmbDiagPro.setSelectedIndex(1);
-        } else {
-            cmbDiagPro.setSelectedIndex(0);
-        }
     }
 
     private void isForm() {
