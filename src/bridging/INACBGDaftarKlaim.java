@@ -2235,10 +2235,11 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             tbINACBG.requestFocus();
         } else {
             BtnCari1ActionPerformed(null);
-            for (i = 0; i < tbINACBG.getRowCount(); i++) {                
-                if (tbINACBG.getValueAt(i, 22).toString().equals("Belum Terkirim")) {
+            for (i = 0; i < tbINACBG.getRowCount(); i++) {
+                if (!tbINACBG.getValueAt(i, 2).toString().equals("")
+                        && tbINACBG.getValueAt(i, 22).toString().equals("Belum Terkirim")) {
                     tbINACBG.setValueAt(Boolean.TRUE, i, 0);
-                }                
+                }             
             }
         }
     }//GEN-LAST:event_ppContengSemuaBtnPrintActionPerformed
@@ -2407,7 +2408,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         
         try {
             if (!cmbLimit.getSelectedItem().equals("Semuanya")) {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,esc.payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
+                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
                         + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
                         + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
                         + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
@@ -2430,7 +2431,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                         + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? "
                         + "order by enc.tglsep desc limit " + cmbLimit.getSelectedItem().toString() + "");
             } else {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,esc.payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
+                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
                         + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
                         + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
                         + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
@@ -2831,7 +2832,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         
         try {
             if (!cmbLimit.getSelectedItem().equals("Semuanya")) {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,esc.payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
+                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
                         + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
                         + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
                         + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
@@ -2855,7 +2856,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                         + "order by enc.tgl_input desc limit " + cmbLimit.getSelectedItem().toString() + "");
 
             } else {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,esc.payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
+                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
                         + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
                         + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
                         + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "

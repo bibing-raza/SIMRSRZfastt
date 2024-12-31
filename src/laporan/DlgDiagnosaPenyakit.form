@@ -359,7 +359,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-12-2024"/>
+                        <StringItem index="0" value="31-12-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -387,7 +387,7 @@
                     <Property name="editable" type="boolean" value="false"/>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="30-12-2024"/>
+                        <StringItem index="0" value="31-12-2024"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1124,9 +1124,6 @@
                         </Property>
                         <Property name="name" type="java.lang.String" value="Scroll" noResource="true"/>
                       </Properties>
-                      <AccessibilityProperties>
-                        <Property name="AccessibleContext.accessibleName" type="java.lang.String" value="[ Diagnosa Statistik (V5) ]"/>
-                      </AccessibilityProperties>
 
                       <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
                       <SubComponents>
@@ -1214,7 +1211,7 @@
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title="[ Prosedur Statistik]">
+                            <TitledBorder title="[ Prosedur Statistik (V5) ]">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
                             </TitledBorder>
                           </Border>
@@ -1240,7 +1237,7 @@
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title="[ Prosedur INADRG ]">
+                            <TitledBorder title="[ Prosedur INADRG (V6) ]">
                               <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
                             </TitledBorder>
                           </Border>

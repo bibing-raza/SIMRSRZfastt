@@ -880,7 +880,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -894,7 +894,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-12-2023" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1286,7 +1286,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll.setViewportView(tbDiagnosaPasien);
 
         internalFrame9.add(Scroll);
-        Scroll.getAccessibleContext().setAccessibleName("[ Diagnosa Statistik (V5) ]");
 
         Scroll5.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Diagnosa INADRG (V6) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll5.setName("Scroll5"); // NOI18N
@@ -1319,7 +1318,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         internalFrame4.setName("internalFrame4"); // NOI18N
         internalFrame4.setLayout(new java.awt.GridLayout(1, 2));
 
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur Statistik]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur Statistik (V5) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
 
         tbTindakanPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
@@ -1338,7 +1337,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame4.add(Scroll3);
 
-        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur INADRG ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Prosedur INADRG (V6) ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
 
         tbTindakanPasien1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
