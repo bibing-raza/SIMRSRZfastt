@@ -48,7 +48,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     private ResultSet rs, rs1;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
-    private String thn = "", nosrt = "", kddokter = "", sttsnomor = "";
+    private String nosrt = "", kddokter = "", sttsnomor = "";
     private int x = 0;
 
     /** Creates new form DlgSpesialis
@@ -61,7 +61,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         Object[] row = {"No. Rawat", "No. Surat", "No. RM", "Nama Pasien", "Tempat Lahir", "Tgl. Lahir",
             "Stts. Pernikahan", "Agama", "Pendidikan", "Pekerjaan", "Alamat", "Tgl. Psikiatrik", "Nama",
             "Jabatan", "Instansi", "No. Surat Dari", "Perihal", "Keperluan", "Dokter Yg. Memeriksa", "Tgl. Surat",
-            "nosrt", "tgl_surat", "kd_dokter", "tgl_pemeriksaan", "no_dokumen"};
+            "nosrt", "tgl_surat", "kd_dokter", "tgl_pemeriksaan", "no_dokumen", "nomor_surat"};
         tabMode=new DefaultTableModel(null,row){
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -70,7 +70,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         tbSurat.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSurat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 25; i++) {
+        for (int i = 0; i < 26; i++) {
             TableColumn column = tbSurat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -125,6 +125,9 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -252,6 +255,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSuratRohaniMMPI = new javax.swing.JMenuItem();
         MnSuratRohaniBiasa = new javax.swing.JMenuItem();
+        Tnomor = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSurat = new widget.Table();
@@ -348,6 +352,10 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnSuratRohaniBiasa);
+
+        Tnomor.setEditable(false);
+        Tnomor.setForeground(new java.awt.Color(0, 0, 0));
+        Tnomor.setName("Tnomor"); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -958,7 +966,8 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                     + "'" + Tno_surat_dari.getText() + "','" + Tperihal.getText() + "',"
                     + "'" + Valid.SetTgl(Ttgl_psikiatrik.getSelectedItem() + "") + "','" + TPendidikan.getText() + "',"
                     + "'" + TPekerjaan.getText() + "','" + TAlamat.getText() + "','" + Tkeperluan.getText() + "',"
-                    + "'" + TTempLahr.getText() + "','" + TPasien.getText() + "','" + TnoDokumen.getText() + "'", "Surat Keterangan Rohani");
+                    + "'" + TTempLahr.getText() + "','" + TPasien.getText() + "','" + TnoDokumen.getText() + "',"
+                    + "'" + Tnomor.getText() + "'", "Surat Keterangan Rohani");
             
             TCari.setText(TNoRW.getText());
             tbSurat.requestFocus();
@@ -1366,6 +1375,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     private widget.TextBox Tnmdokter;
     private widget.TextBox TnoDokumen;
     private widget.TextBox Tno_surat_dari;
+    private widget.TextBox Tnomor;
     private widget.TextArea Tperihal;
     private widget.TextBox Tstts_nikah;
     private widget.TextBox TtglLahir;
@@ -1410,7 +1420,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, p.stts_nikah, p.agama, sk.pendidikan, sk.pekerjaan, sk.alamat, "
                     + "DATE_FORMAT(sk.tgl_pemeriksaan,'%d-%m-%Y') tglpsikiatrik, sk.nama_tertulis, sk.jabatan, sk.instansi, sk.no_surat_dari, "
                     + "sk.perihal_permintaan, sk.keperluan, pg.nama dokter, DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, "
-                    + "sk.no_surat, sk.tgl_surat, sk.kd_dokter, sk.tgl_pemeriksaan, sk.no_dokumen FROM reg_periksa rp "
+                    + "sk.no_surat, sk.tgl_surat, sk.kd_dokter, sk.tgl_pemeriksaan, sk.no_dokumen, sk.nomor_surat FROM reg_periksa rp "
                     + "INNER JOIN surat_keterangan_rohani sk ON sk.no_rawat = rp.no_rawat "
                     + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN pegawai pg ON pg.nik = sk.kd_dokter WHERE "
@@ -1483,7 +1493,8 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                         rs.getString("tgl_surat"),
                         rs.getString("kd_dokter"),
                         rs.getString("tgl_pemeriksaan"),
-                        rs.getString("no_dokumen")
+                        rs.getString("no_dokumen"),
+                        rs.getString("nomor_surat")
                     });
                 }
             } catch (Exception e) {
@@ -1617,9 +1628,10 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
     }
     
     public void autoNomorSurat() {
-        thn = "";        
-        thn = Sequel.cariIsi("select date_format(tgl_surat,'%Y') from surat_keterangan_rohani order by tgl_surat desc limit 1");
-        Valid.autoNomer6("select ifnull(MAX(CONVERT(LEFT(no_surat,4),signed)),0) from surat_keterangan_rohani where "
-                + "year(tgl_surat) ='" + thn + "'", " / JIWA / RAZA", 4, TNoSurat);
+        Tnomor.setText("");        
+        Valid.autoNomer6("select ifnull(MAX(CONVERT(LEFT(nomor_surat,4),signed)),0) from surat_keterangan_rohani where "
+                + "tgl_surat like '%" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "").substring(0, 4) + "%'", 
+                "/" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "").substring(0, 4), 4, Tnomor);
+        TNoSurat.setText(Tnomor.getText().substring(0, 4) + " / JIWA / RAZA");
     }
 }

@@ -49,7 +49,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private ResultSet rs, rs1, rsNoLis, rs11, rs22, rs33;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DlgMasterNomorDokumen dokumen = new DlgMasterNomorDokumen(null, false);
-    private String nosurat = "", thn = "", thc = "", bzo = "", met = "", mop = "", coc = "",
+    private String nosurat = "", thc = "", bzo = "", met = "", mop = "", coc = "",
             amp = "", opi = "", tglsurat = "", kddokter = "", noLIS = "", cekLIS = "", ketLIS = "",
             tglLIS = "", jamLIS = "", drpengirim = "", tglPeriksaLIS = "", jamPeriksaLIS = "", sttsnomor = "", cekNarkoba = "";
     private int x = 0, n = 0;
@@ -68,7 +68,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             "Pekerjaan", "Tmpt. Tinggal", "Permintaan Dari", "No. Surat Dari", "Tanggalnya", "Tgl. Surat Dari", "Keperluan",
             "NIP", "Dokter Pemeriksa", "Tes THC", "Tes BZO", "Tes MET", "Tes MOP", "Tes COC", "Tes AMP",
             "Hasil THC", "Hasil BZO", "Hasil MET", "Hasil MOP", "Hasil COC", "Hasil AMP", "Hasil Kesimpulan",
-            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen", "tes_opi", "hasil_opi"};
+            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen", "tes_opi", "hasil_opi", "nomor_surat"};
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -80,7 +80,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         tbSurat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbSurat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 36; i++) {
+        for (int i = 0; i < 37; i++) {
             TableColumn column = tbSurat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -158,6 +158,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 35) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 36) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -401,6 +404,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         MnCetakSurat = new javax.swing.JMenuItem();
         Scroll5 = new widget.ScrollPane();
         tbHasilTes = new widget.Table();
+        Tnomor = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSurat = new widget.Table();
@@ -511,6 +515,10 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         tbHasilTes.setToolTipText("");
         tbHasilTes.setName("tbHasilTes"); // NOI18N
         Scroll5.setViewportView(tbHasilTes);
+
+        Tnomor.setEditable(false);
+        Tnomor.setForeground(new java.awt.Color(0, 0, 0));
+        Tnomor.setName("Tnomor"); // NOI18N
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -664,7 +672,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -678,7 +686,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -876,7 +884,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel14.setBounds(940, 262, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2024" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
@@ -944,10 +952,10 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TnoSuratDari);
-        TnoSuratDari.setBounds(105, 178, 387, 23);
+        TnoSuratDari.setBounds(105, 178, 360, 23);
 
         TtglSuratDari.setEditable(false);
-        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-06-2024" }));
+        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
         TtglSuratDari.setDisplayFormat("dd-MM-yyyy");
         TtglSuratDari.setName("TtglSuratDari"); // NOI18N
         TtglSuratDari.setOpaque(false);
@@ -1217,7 +1225,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         ChkTglSurat.setBackground(new java.awt.Color(255, 255, 250));
         ChkTglSurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         ChkTglSurat.setForeground(new java.awt.Color(0, 0, 0));
-        ChkTglSurat.setText("Tgl. Surat : ");
+        ChkTglSurat.setText("Tgl. Surat Dari : ");
         ChkTglSurat.setBorderPainted(true);
         ChkTglSurat.setBorderPaintedFlat(true);
         ChkTglSurat.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
@@ -1231,7 +1239,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkTglSurat);
-        ChkTglSurat.setBounds(494, 178, 80, 23);
+        ChkTglSurat.setBounds(464, 178, 110, 23);
 
         TnoDokumen.setEditable(false);
         TnoDokumen.setForeground(new java.awt.Color(0, 0, 0));
@@ -1465,7 +1473,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         + "'" + cmbMOP.getSelectedItem().toString() + "','" + cmbCOC.getSelectedItem().toString() + "','" + cmbAMP.getSelectedItem().toString() + "',"
                         + "'" + cmbKesHasil.getSelectedItem().toString() + "','" + Tkeperluan.getText() + "','" + kddokter + "',"
                         + "'" + tglsurat + "','" + TPasien.getText() + "','" + TTempLahr.getText() + "','" + TnoDokumen.getText() + "','" + opi + "',"
-                        + "'" + cmbOPI.getSelectedItem().toString() + "'", "Surat Keterangan NAPZA");
+                        + "'" + cmbOPI.getSelectedItem().toString() + "','" + Tnomor.getText() + "'", "Surat Keterangan NAPZA");
 
                 TCari.setText(TNoRW.getText());
                 tbSurat.requestFocus();
@@ -2167,6 +2175,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.TextBox Tnmdokter;
     private widget.TextBox TnoDokumen;
     private widget.TextBox TnoSuratDari;
+    private widget.TextBox Tnomor;
     private widget.TextBox TtglLahir;
     private widget.Tanggal TtglSuratDari;
     private widget.Tanggal Ttgl_surat;
@@ -2223,7 +2232,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "if(sk.ada_tgl_nosurat='ya',DATE_FORMAT(sk.tgl_surat_dari,'%d-%m-%Y'),'-') tglsuratdari, sk.keperluan, sk.nip_dokter, pg.nama nmdokter, "
                     + "sk.thc, sk.bzo, sk.met, sk.mop, sk.coc, sk.amp, sk.hasil_thc, sk.hasil_bzo, sk.hasil_met, sk.hasil_mop, sk.hasil_coc, sk.hasil_amp, "
                     + "sk.kesimpulan_hasil, DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_surat, sk.tgl_surat, sk.tgl_surat_dari, sk.no_dokumen, "
-                    + "sk.opi, sk.hasil_opi FROM reg_periksa rp "
+                    + "sk.opi, sk.hasil_opi, sk.nomor_surat FROM reg_periksa rp "
                     + "INNER JOIN surat_keterangan_napza sk ON sk.no_rawat = rp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec_domisili_pasien "
                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab_domisili_pasien INNER JOIN pegawai pg ON pg.nik = sk.nip_dokter WHERE "
@@ -2318,7 +2327,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         rs.getString("tgl_surat_dari"),
                         rs.getString("no_dokumen"),
                         rs.getString("opi"),
-                        rs.getString("hasil_opi")
+                        rs.getString("hasil_opi"),
+                        rs.getString("nomor_surat")
                     });
                 }
             } catch (Exception e) {
@@ -2393,7 +2403,6 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
     private void getData() {
         nosurat = "";
-        thn = "";
         thc = "";
         bzo = "";
         met = "";
@@ -2496,10 +2505,11 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     }
 
     public void autoNomorSurat() {
-        thn = "";
-        thn = Sequel.cariIsi("select date_format(tgl_surat,'%Y') from surat_keterangan_napza order by tgl_surat desc limit 1");
-        Valid.autoNomer6("select ifnull(MAX(CONVERT(LEFT(no_surat,4),signed)),0) from surat_keterangan_napza where "
-                + "year(tgl_surat) ='" + thn + "'", " / RAZA", 4, TNoSurat);
+        Tnomor.setText("");
+        Valid.autoNomer6("select ifnull(MAX(CONVERT(LEFT(nomor_surat,4),signed)),0) from surat_keterangan_napza where "
+                + "tgl_surat like '%" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "").substring(0, 4) + "%'", 
+                "/" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "").substring(0, 4), 4, Tnomor);
+        TNoSurat.setText(Tnomor.getText().substring(0, 4) + " / RAZA");
     }
 
     private void cekData() {

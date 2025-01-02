@@ -181,9 +181,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         jPopupMenu1.setForeground(new java.awt.Color(60, 80, 50));
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        MnHakAkses.setBackground(new java.awt.Color(255, 255, 255));
         MnHakAkses.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHakAkses.setForeground(new java.awt.Color(0, 0, 0));
         MnHakAkses.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHakAkses.setText("Hapus Hak Akses Nomor Antrian");
         MnHakAkses.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -198,9 +196,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         });
         jPopupMenu1.add(MnHakAkses);
 
-        MnHariLibur.setBackground(new java.awt.Color(255, 255, 255));
         MnHariLibur.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnHariLibur.setForeground(new java.awt.Color(0, 0, 0));
         MnHariLibur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnHariLibur.setText("Hapus Hari Libur");
         MnHariLibur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -224,7 +220,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 215)), "::[ Set Antrian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(215, 225, 215)), "::[ Set Antrian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -327,8 +323,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         panelGlass1.add(ChkHariLibur);
         ChkHariLibur.setBounds(0, 220, 128, 23);
 
-        tglLibur.setEditable(false);
-        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2022" }));
+        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2022" }));
         tglLibur.setDisplayFormat("dd-MM-yyyy");
         tglLibur.setName("tglLibur"); // NOI18N
         tglLibur.setOpaque(false);
@@ -384,7 +379,6 @@ public class DlgRunTeks extends javax.swing.JDialog {
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
         cmbJam.setName("cmbJam"); // NOI18N
-        cmbJam.setOpaque(false);
         cmbJam.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbJamKeyPressed(evt);
@@ -396,7 +390,6 @@ public class DlgRunTeks extends javax.swing.JDialog {
         cmbMnt.setForeground(new java.awt.Color(0, 0, 0));
         cmbMnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbMnt.setName("cmbMnt"); // NOI18N
-        cmbMnt.setOpaque(false);
         cmbMnt.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbMntKeyPressed(evt);
@@ -408,7 +401,6 @@ public class DlgRunTeks extends javax.swing.JDialog {
         cmbDtk.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
         cmbDtk.setName("cmbDtk"); // NOI18N
-        cmbDtk.setOpaque(false);
         cmbDtk.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 cmbDtkKeyPressed(evt);
@@ -422,7 +414,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         internalFrame2.setName("internalFrame2"); // NOI18N
         internalFrame2.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Display Monitor ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Display Monitor ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
         Scroll.setPreferredSize(new java.awt.Dimension(452, 100));
@@ -443,7 +435,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
 
         internalFrame2.add(Scroll, java.awt.BorderLayout.PAGE_START);
 
-        Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Hak Akses Nomor Antrian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll1.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Hak Akses Nomor Antrian ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
         Scroll1.setPreferredSize(new java.awt.Dimension(460, 100));
@@ -469,7 +461,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         internalFrame3.setPreferredSize(new java.awt.Dimension(460, 380));
         internalFrame3.setLayout(new java.awt.BorderLayout(1, 1));
 
-        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Set Hari Libur / Tutup Pelayanan Normal Poliklinik Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        Scroll3.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "::[ Set Hari Libur / Tutup Pelayanan Normal Poliklinik Rawat Jalan ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll3.setName("Scroll3"); // NOI18N
         Scroll3.setOpaque(true);
         Scroll3.setPreferredSize(new java.awt.Dimension(460, 250));
@@ -723,9 +715,11 @@ public class DlgRunTeks extends javax.swing.JDialog {
                 Sequel.mengedit("hari_libur", "tgl_libur='" + tglnya + "'",
                         "tgl_libur='" + Valid.SetTgl(tglLibur.getSelectedItem() + "") + "',"
                         + "keterangan='" + ketLibur.getText() + "'");
+
                 tampilLibur();
-                emptTeks();
-            }                      
+                ketLibur.setText("");
+                ketLibur.requestFocus();
+            }                 
         }
 }//GEN-LAST:event_BtnEditActionPerformed
 
@@ -797,8 +791,10 @@ public class DlgRunTeks extends javax.swing.JDialog {
                 } else {
                     Sequel.menyimpan("hari_libur", "'" + Valid.SetTgl(tglLibur.getSelectedItem() + "") + "',"
                             + "'" + ketLibur.getText() + "'", "Set Hari Libur");
+                    
                     tampilLibur();
-                    emptTeks();
+                    ketLibur.setText("");
+                    ketLibur.requestFocus();
                 }
             }
         }
