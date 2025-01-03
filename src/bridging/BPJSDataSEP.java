@@ -1445,7 +1445,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         ppAmbilRujukanBiasaVclaim = new javax.swing.JMenuItem();
         ppRujukanKhusus = new javax.swing.JMenuItem();
         jSeparator1 = new javax.swing.JPopupMenu.Separator();
-        MnRekapSEPPasienMeninggal = new javax.swing.JMenuItem();
+        MnRekapSEPRanapPasienMati = new javax.swing.JMenuItem();
         MnRekapSEPRalanKunjunganBanyak = new javax.swing.JMenuItem();
         MnRekapSemuaSEPKunjunganBanyak = new javax.swing.JMenuItem();
         MnRekapSEPRanap = new javax.swing.JMenuItem();
@@ -1942,21 +1942,21 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jSeparator1.setName("jSeparator1"); // NOI18N
         Popup.add(jSeparator1);
 
-        MnRekapSEPPasienMeninggal.setBackground(new java.awt.Color(242, 242, 242));
-        MnRekapSEPPasienMeninggal.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRekapSEPPasienMeninggal.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
-        MnRekapSEPPasienMeninggal.setText("Rekap No. SEP Pasien Meninggal");
-        MnRekapSEPPasienMeninggal.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRekapSEPPasienMeninggal.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRekapSEPPasienMeninggal.setIconTextGap(8);
-        MnRekapSEPPasienMeninggal.setName("MnRekapSEPPasienMeninggal"); // NOI18N
-        MnRekapSEPPasienMeninggal.setPreferredSize(new java.awt.Dimension(300, 25));
-        MnRekapSEPPasienMeninggal.addActionListener(new java.awt.event.ActionListener() {
+        MnRekapSEPRanapPasienMati.setBackground(new java.awt.Color(242, 242, 242));
+        MnRekapSEPRanapPasienMati.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRekapSEPRanapPasienMati.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/export-excel.png"))); // NOI18N
+        MnRekapSEPRanapPasienMati.setText("Rekap No. SEP Ranap Pasien Meninggal");
+        MnRekapSEPRanapPasienMati.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRekapSEPRanapPasienMati.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRekapSEPRanapPasienMati.setIconTextGap(8);
+        MnRekapSEPRanapPasienMati.setName("MnRekapSEPRanapPasienMati"); // NOI18N
+        MnRekapSEPRanapPasienMati.setPreferredSize(new java.awt.Dimension(300, 25));
+        MnRekapSEPRanapPasienMati.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRekapSEPPasienMeninggalBtnPrintActionPerformed(evt);
+                MnRekapSEPRanapPasienMatiBtnPrintActionPerformed(evt);
             }
         });
-        Popup.add(MnRekapSEPPasienMeninggal);
+        Popup.add(MnRekapSEPRanapPasienMati);
 
         MnRekapSEPRalanKunjunganBanyak.setBackground(new java.awt.Color(242, 242, 242));
         MnRekapSEPRalanKunjunganBanyak.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -7508,14 +7508,14 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         evt.setKeyChar(Character.toUpperCase(evt.getKeyChar()));
     }//GEN-LAST:event_TperiksaCariKeyTyped
 
-    private void MnRekapSEPPasienMeninggalBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapSEPPasienMeninggalBtnPrintActionPerformed
+    private void MnRekapSEPRanapPasienMatiBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapSEPRanapPasienMatiBtnPrintActionPerformed
         if (tbSEP.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa diexport menjadi file excel...!!!!");
             BtnBatal.requestFocus();
         } else if (tbSEP.getRowCount() != 0) {
-            ExportSEPMeninggal();
+            ExportSEPRanapMeninggal();
         }
-    }//GEN-LAST:event_MnRekapSEPPasienMeninggalBtnPrintActionPerformed
+    }//GEN-LAST:event_MnRekapSEPRanapPasienMatiBtnPrintActionPerformed
 
     private void MnRekapSEPRalanKunjunganBanyakBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRekapSEPRalanKunjunganBanyakBtnPrintActionPerformed
         if (tbSEP.getRowCount() == 0) {
@@ -7645,11 +7645,11 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     private javax.swing.JMenuItem MnFingerPrin1;
     private javax.swing.JMenuItem MnRekapObatDicari;
     private javax.swing.JMenuItem MnRekapPeriksaLab;
-    private javax.swing.JMenuItem MnRekapSEPPasienMeninggal;
     private javax.swing.JMenuItem MnRekapSEPRalan;
     private javax.swing.JMenuItem MnRekapSEPRalanKunjunganBanyak;
     private javax.swing.JMenuItem MnRekapSEPRalanRM;
     private javax.swing.JMenuItem MnRekapSEPRanap;
+    private javax.swing.JMenuItem MnRekapSEPRanapPasienMati;
     private javax.swing.JMenuItem MnRekapSemuaSEPKunjunganBanyak;
     private javax.swing.JMenuItem MnRekapTindakan;
     private widget.TextBox NmDPJP;
@@ -9153,7 +9153,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         this.setCursor(Cursor.getDefaultCursor());
     }
 
-    private void ExportSEPMeninggal() {
+    private void ExportSEPRanapMeninggal() {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         dialog_simpan = Valid.openDialog();
         Valid.MyReportToExcel("select bs.no_sep 'No. SEP', bs.no_kartu 'No. Kartu BPJS', ifnull(concat('474.3/',pm.no_surat),'-') 'No. Surat Kematian', "
@@ -9161,7 +9161,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                 + "time_format(pm.jam,'%H:%i:%s') 'Jam Meninggal' from pasien_mati pm inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis "
                 + "inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE "
                 + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                + "order by pm.tanggal, pm.jam", dialog_simpan);
+                + "and bs.jnspelayanan='1' order by pm.tanggal, pm.jam", dialog_simpan);
 
         JOptionPane.showMessageDialog(null, "Data SEP Pasien Meninggal berhasil diexport menjadi file excel,..!!!");
         this.setCursor(Cursor.getDefaultCursor());
