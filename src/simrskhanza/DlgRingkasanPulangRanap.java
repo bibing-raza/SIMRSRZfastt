@@ -82,7 +82,9 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             mata = "", telinga = "", hidung = "", mulut = "", poinDE = "", leher = "", bentuk_dada = "", retraksi_dada = "", inspeksi_jan = "",
             palpasi_jan = "", perkusi_jan = "", auskultasi_jan = "", inspeksi_par = "", palpasi_par = "", perkusi_par = "", auskultasi_par = "",
             poinF = "", inspeksi_per = "", palpasi_per = "", perkusi_per = "", auskultasi_per = "", poinG = "", umum = "", neurologis = "", poinH = "",
-            susunan = "", tanda = "", genitalia = "", anus = "", nipPenyimpan = "";
+            susunan = "", tanda = "", genitalia = "", anus = "", nipPenyimpan = "",
+            keadaanUmum = "", gizi = "", gcsDewasa = "", tindakanResus = "", beratBdn = "", tinggiBdn = "", td = "", nadiDewasa = "",
+            respi = "", suhuAxila = "", suhuRektal = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private JsonNode root;
@@ -605,6 +607,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         cmbAsesmen = new widget.ComboBox();
         jLabel7 = new widget.Label();
         cmbKondisiWP = new widget.ComboBox();
+        jLabel64 = new widget.Label();
+        jLabel65 = new widget.Label();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -1857,7 +1861,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2024" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -2144,7 +2148,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnNamaDPJP.setBounds(460, 92, 30, 23);
 
         cmbAsesmen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Asesmen Medik Dewasa", "Asesmen Medik Anak" }));
+        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Asesmen Medik Dewasa", "Asesmen Medik Anak", "Asesmen Medik Bedah" }));
         cmbAsesmen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmbAsesmen.setName("cmbAsesmen"); // NOI18N
         cmbAsesmen.addActionListener(new java.awt.event.ActionListener() {
@@ -2168,6 +2172,18 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         cmbKondisiWP.setPreferredSize(new java.awt.Dimension(55, 28));
         panelisi1.add(cmbKondisiWP);
         cmbKondisiWP.setBounds(1090, 884, 140, 23);
+
+        jLabel64.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel64.setText("Saat Selesai  ");
+        jLabel64.setName("jLabel64"); // NOI18N
+        panelisi1.add(jLabel64);
+        jLabel64.setBounds(730, 595, 130, 23);
+
+        jLabel65.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel65.setText("Perawatan  ");
+        jLabel65.setName("jLabel65"); // NOI18N
+        panelisi1.add(jLabel65);
+        jLabel65.setBounds(730, 610, 130, 23);
 
         Scroll2.setViewportView(panelisi1);
 
@@ -3620,6 +3636,22 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 TRingkasanRiwayat.setText("");
                 TPemeriksaanFisik.setText("");
             }
+        } else if (cmbAsesmen.getSelectedIndex() == 3) {
+            if (akses.getadmin() == true) {
+                if (Sequel.cariInteger("select count(-1) from asesmen_medik_bedah_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+//                tampilAsesmenAnak();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maaf, asesmen medik bedah utk. pasien ini belum diisi..!!!!");
+                    cmbAsesmen.setSelectedIndex(0);
+                    TTerapiPengobatan.setText("");
+                    TDiagUtama.setText("");
+                    TAlasanDirawat.setText("");
+                    TRingkasanRiwayat.setText("");
+                    TPemeriksaanFisik.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
+            }
         }
     }//GEN-LAST:event_cmbAsesmenActionPerformed
 
@@ -3875,6 +3907,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private widget.Label jLabel61;
     private widget.Label jLabel62;
     private widget.Label jLabel63;
+    private widget.Label jLabel64;
+    private widget.Label jLabel65;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -4991,6 +5025,73 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             try {
                 rs1 = ps1.executeQuery();
                 while (rs1.next()) {
+                    //tanda vital
+                    if (rs1.getString("keadaan_umum").equals("")) {
+                        keadaanUmum = "";
+                    } else {
+                        keadaanUmum = "Keadaan Umum : " + rs1.getString("keadaan_umum") + ", ";
+                    }
+                    
+                    if (rs1.getString("gizi").equals("")) {
+                        gizi = "";
+                    } else {
+                        gizi = "Gizi : " + rs1.getString("gizi") + ", ";
+                    }
+                    
+                    if (rs1.getString("gcs_e").equals("") && rs1.getString("gcs_m").equals("") && rs1.getString("gcs_v").equals("")) {
+                        gcsDewasa = "";
+                    } else {
+                        gcsDewasa = "GCS : E " + rs1.getString("gcs_e") + ", M " + rs1.getString("gcs_m") + ", V " + rs1.getString("gcs_v") + ", ";
+                    }
+                    
+                    if (rs1.getString("tindakan_resus").equals("tidak")) {
+                        tindakanResus = "";
+                    } else {
+                        tindakanResus = "Tindakan Resusitasi : Ya, ";
+                    }
+                    
+                    if (rs1.getString("bb").equals("")) {
+                        beratBdn = "";
+                    } else {
+                        beratBdn = "Berat Badan : " + rs1.getString("bb") + " Kg., ";
+                    }
+                    
+                    if (rs1.getString("tb").equals("")) {
+                        tinggiBdn = "";
+                    } else {
+                        tinggiBdn = "Tinggi Badan : " + rs1.getString("tb") + " Cm., ";
+                    }
+                    
+                    if (rs1.getString("td").equals("")) {
+                        td = "";
+                    } else {
+                        td = "Tekanan Darah : " + rs1.getString("td") + " mmHg, ";
+                    }
+                    
+                    if (rs1.getString("nadi").equals("")) {
+                        nadiDewasa = "";
+                    } else {
+                        nadiDewasa = "Nadi : " + rs1.getString("nadi") + " x/mnt, ";
+                    }
+                    
+                    if (rs1.getString("respirasi").equals("")) {
+                        respi = "";
+                    } else {
+                        respi = "Respirasi : " + rs1.getString("respirasi") + " x/mnt, ";
+                    }
+                    
+                    if (rs1.getString("suhu_axila").equals("")) {
+                        suhuAxila = "";
+                    } else {
+                        suhuAxila = "Suhu Axilla : " + rs1.getString("suhu_axila") + " °C, ";
+                    }
+                    
+                    if (rs1.getString("suhu_rektal").equals("")) {
+                        suhuRektal = "";
+                    } else {
+                        suhuRektal = "Suhu Rectal : " + rs1.getString("suhu_rektal") + " °C, ";
+                    }
+                    
                     //pemeriksaan fisik
                     if (rs1.getString("mata_anemis").equals("")) {
                         anemis = "";
@@ -5197,14 +5298,17 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     }
 
                     if (TPemeriksaanFisik.getText().equals("")) {
-                        TPemeriksaanFisik.setText(anemis + ikterik + pupil + dia_kanan + dia_kiri + udem_palpe + tonsil + faring
+                        TPemeriksaanFisik.setText(keadaanUmum + gizi + gcsDewasa + tindakanResus + beratBdn + tinggiBdn + td
+                                + nadiDewasa + respi + suhuAxila + suhuRektal 
+                                + anemis + ikterik + pupil + dia_kanan + dia_kiri + udem_palpe + tonsil + faring
                                 + satur + lidah + bibir + jvp + limfe + kuduk + thorak + cor + reguler + ireguler + lain1 + nafas
                                 + ronci + whezing + disten + meteo + peris + asites + nyeri + hepar + lien + extrem + udem + lain2);
                     } else {
-                        TPemeriksaanFisik.setText(TPemeriksaanFisik.getText() + "\n\n" + anemis + ikterik + pupil + dia_kanan + dia_kiri
-                                + udem_palpe + tonsil + faring + satur + lidah + bibir + jvp + limfe + kuduk + thorak + cor + reguler
-                                + ireguler + lain1 + nafas + ronci + whezing + disten + meteo + peris + asites + nyeri + hepar + lien
-                                + extrem + udem + lain2);
+                        TPemeriksaanFisik.setText(TPemeriksaanFisik.getText() + "\n\n" + keadaanUmum + gizi + gcsDewasa + tindakanResus 
+                                + beratBdn + tinggiBdn + td + nadiDewasa + respi + suhuAxila + suhuRektal
+                                + anemis + ikterik + pupil + dia_kanan + dia_kiri + udem_palpe + tonsil + faring + satur + lidah + bibir 
+                                + jvp + limfe + kuduk + thorak + cor + reguler + ireguler + lain1 + nafas + ronci + whezing + disten 
+                                + meteo + peris + asites + nyeri + hepar + lien + extrem + udem + lain2);
                     }
                     //-------------------------------------------------------------------------------------------------------------------
                     

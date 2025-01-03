@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="515" leftMargin="40" rightMargin="40" topMargin="40" bottomMargin="20">
 	<property name="ireport.zoom" value="1.818181818181852"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="333"/>
+	<property name="ireport.y" value="0"/>
 	<property name="ireport.callouts" value="##Mon Aug 21 21:59:06 SGT 2017"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
@@ -233,7 +233,7 @@ INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter WHERE  r.no_rawat='2021/10/04/
 				</graphicElement>
 			</line>
 			<textField>
-				<reportElement x="0" y="60" width="515" height="14"/>
+				<reportElement x="0" y="59" width="515" height="16"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>

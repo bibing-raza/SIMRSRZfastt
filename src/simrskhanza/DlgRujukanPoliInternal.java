@@ -178,10 +178,10 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         jLabel16 = new widget.Label();
         Scroll3 = new widget.ScrollPane();
         keterangan = new widget.TextArea();
-        Scroll6 = new widget.ScrollPane();
-        tbRujukInternal = new widget.Table();
         jLabel17 = new widget.Label();
         ketHari = new widget.Label();
+        Scroll6 = new widget.ScrollPane();
+        tbRujukInternal = new widget.Table();
         panelGlass8 = new widget.panelisi();
         BtnBatal = new widget.Button();
         BtnSimpan = new widget.Button();
@@ -199,13 +199,13 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rujukan Poliklinik Internal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Rujukan Poliklinik Internal ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setPreferredSize(new java.awt.Dimension(875, 160));
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(865, 110));
+        FormInput.setPreferredSize(new java.awt.Dimension(865, 390));
         FormInput.setLayout(null);
 
         BtnUnit.setForeground(new java.awt.Color(0, 0, 0));
@@ -229,13 +229,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
 
         kdpoli.setEditable(false);
         kdpoli.setForeground(new java.awt.Color(0, 0, 0));
-        kdpoli.setHighlighter(null);
         kdpoli.setName("kdpoli"); // NOI18N
-        kdpoli.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                kdpoliKeyPressed(evt);
-            }
-        });
         FormInput.add(kdpoli);
         kdpoli.setBounds(100, 40, 66, 23);
 
@@ -253,26 +247,18 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRw.setHighlighter(null);
         TNoRw.setName("TNoRw"); // NOI18N
-        TNoRw.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TNoRwKeyPressed(evt);
-            }
-        });
         FormInput.add(TNoRw);
         TNoRw.setBounds(100, 12, 153, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
-        TNoRM.setHighlighter(null);
         TNoRM.setName("TNoRM"); // NOI18N
         FormInput.add(TNoRM);
         TNoRM.setBounds(257, 12, 90, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
-        TPasien.setHighlighter(null);
         TPasien.setName("TPasien"); // NOI18N
         FormInput.add(TPasien);
         TPasien.setBounds(350, 12, 410, 23);
@@ -284,7 +270,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         jLabel15.setBounds(0, 68, 100, 23);
 
         tglDirujuk.setEditable(false);
-        tglDirujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-06-2022" }));
+        tglDirujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-09-2022" }));
         tglDirujuk.setDisplayFormat("dd-MM-yyyy");
         tglDirujuk.setName("tglDirujuk"); // NOI18N
         tglDirujuk.setOpaque(false);
@@ -319,7 +305,25 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         FormInput.add(Scroll3);
         Scroll3.setBounds(100, 96, 660, 290);
 
-        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Daftar Poliklinik Tujuan Rujukan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel17.setText("Ket. : ");
+        jLabel17.setName("jLabel17"); // NOI18N
+        FormInput.add(jLabel17);
+        jLabel17.setBounds(190, 68, 40, 23);
+
+        ketHari.setForeground(new java.awt.Color(0, 0, 0));
+        ketHari.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ketHari.setText("-");
+        ketHari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        ketHari.setName("ketHari"); // NOI18N
+        FormInput.add(ketHari);
+        ketHari.setBounds(230, 68, 530, 23);
+
+        internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
+        FormInput.getAccessibleContext().setAccessibleName("");
+        FormInput.getAccessibleContext().setAccessibleDescription("");
+
+        Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Daftar Poliklinik Tujuan Rujukan ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
 
@@ -338,26 +342,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         });
         Scroll6.setViewportView(tbRujukInternal);
 
-        FormInput.add(Scroll6);
-        Scroll6.setBounds(100, 390, 660, 120);
-
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel17.setText("Ket. : ");
-        jLabel17.setName("jLabel17"); // NOI18N
-        FormInput.add(jLabel17);
-        jLabel17.setBounds(190, 68, 40, 23);
-
-        ketHari.setForeground(new java.awt.Color(0, 0, 0));
-        ketHari.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ketHari.setText("-");
-        ketHari.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        ketHari.setName("ketHari"); // NOI18N
-        FormInput.add(ketHari);
-        ketHari.setBounds(230, 68, 530, 23);
-
-        internalFrame1.add(FormInput, java.awt.BorderLayout.CENTER);
-        FormInput.getAccessibleContext().setAccessibleName("");
-        FormInput.getAccessibleContext().setAccessibleDescription("");
+        internalFrame1.add(Scroll6, java.awt.BorderLayout.CENTER);
 
         panelGlass8.setName("panelGlass8"); // NOI18N
         panelGlass8.setPreferredSize(new java.awt.Dimension(100, 46));
@@ -537,20 +522,6 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
         poli.setVisible(true);
         poli.emptTeks();
     }//GEN-LAST:event_BtnUnitActionPerformed
-
-    private void kdpoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_kdpoliKeyPressed
-        if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
-            Sequel.cariIsi("select nm_poli from poliklinik where kd_poli=?", TPoli, kdpoli.getText());
-        } else if (evt.getKeyCode() == KeyEvent.VK_UP) {
-            BtnUnitActionPerformed(null);
-        } else {
-            Valid.pindah(evt, kdpoli, TNoRM);
-        }
-    }//GEN-LAST:event_kdpoliKeyPressed
-
-    private void TNoRwKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoRwKeyPressed
-        
-    }//GEN-LAST:event_TNoRwKeyPressed
 
     private void tglDirujukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_tglDirujukActionPerformed
         cekHariLibur();
