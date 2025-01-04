@@ -894,6 +894,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnMasterCatatanMaterialOperasi = new widget.ButtonBig();
         btnCatatanMaterialOperasi = new widget.ButtonBig();
         btnAsesmenMedikBedahRanap = new widget.ButtonBig();
+        btnSuratKonsulInternalPoli = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6067,6 +6068,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenMedikBedahRanap);
 
+        btnSuratKonsulInternalPoli.setForeground(new java.awt.Color(0, 0, 0));
+        btnSuratKonsulInternalPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_TextEdit_37595.png"))); // NOI18N
+        btnSuratKonsulInternalPoli.setText("Surat Konsul Internal Poliklinik");
+        btnSuratKonsulInternalPoli.setIconTextGap(0);
+        btnSuratKonsulInternalPoli.setName("btnSuratKonsulInternalPoli"); // NOI18N
+        btnSuratKonsulInternalPoli.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSuratKonsulInternalPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSuratKonsulInternalPoliActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSuratKonsulInternalPoli);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6075,7 +6089,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12/11/2024" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04/01/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -11992,6 +12006,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenMedikBedahRanapActionPerformed
 
+    private void btnSuratKonsulInternalPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSuratKonsulInternalPoliActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgSuratKonsulRalan aplikasi = new DlgSuratKonsulRalan(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSuratKonsulInternalPoliActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12387,6 +12414,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSuratKeteranganNAPZA;
     private widget.ButtonBig btnSuratKeteranganRohani;
     private widget.ButtonBig btnSuratKeteranganSakit;
+    private widget.ButtonBig btnSuratKonsulInternalPoli;
     private widget.ButtonBig btnSuratKonsulUnitRanap;
     private widget.ButtonBig btnSurveilansPD3I;
     private widget.ButtonBig btnSurveilansRalan;
@@ -13242,6 +13270,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 6) {
             jmlmenu = 0;
+            if (akses.gettindakan_ralan()== true) {
+                Panelmenu.add(btnSuratKonsulInternalPoli);
+                jmlmenu++;
+            }
+            
             if (akses.getpermintaan_lab()== true) {
                 Panelmenu.add(btnSuratKonsulUnitRanap);
                 jmlmenu++;
@@ -14566,6 +14599,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             Panelmenu.add(btnKirimMedicationDispenseSatuSehat);
             jmlmenu++;
         }
+        
+        if (akses.gettindakan_ralan() == true) {
+            Panelmenu.add(btnSuratKonsulInternalPoli);
+            jmlmenu++;
+        }        
         
         if (akses.getpermintaan_lab() == true) {
             Panelmenu.add(btnSuratKonsulUnitRanap);
@@ -16481,6 +16519,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getsatu_sehat()== true) {
             if (btnKirimMedicationDispenseSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnKirimMedicationDispenseSatuSehat);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.gettindakan_ralan()== true) {
+            if (btnSuratKonsulInternalPoli.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSuratKonsulInternalPoli);
                 jmlmenu++;
             }
         }
