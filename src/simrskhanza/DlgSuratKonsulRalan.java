@@ -55,7 +55,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         tabMode=new DefaultTableModel(null,new String[]{
             "waktu_simpan", "No. Rawat", "No. RM", "Nama Pasien", "Poliklinik Awal", "Poliklinik Tujuan", "Jenis Konsul", "Tujuan Konsul",
             "Ket. Lain Tujuan Konsul", "Tgl. Permintaan Konsul", "Keterangan Klinis", "Status Jawaban", "tgl_permintaan_konsul", "kd_poli",
-            "kasus_ditemukan", "ket_klinis_jawaban", "tgl_menjawab", "tgl_konsul_ulang", "dokterPenjawab", "konsul_ulang"
+            "kasus_ditemukan", "ket_klinis_jawaban", "tgl_menjawab", "tgl_konsul_ulang", "dokterPenjawab", "konsul_ulang", "kd_poli_pembalas"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -67,7 +67,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
         tbKonsul.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKonsul.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 20; i++) {
+        for (i = 0; i < 21; i++) {
             TableColumn column = tbKonsul.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
@@ -116,6 +116,9 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 19) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 20) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -675,9 +678,10 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                     + ", silahkan ganti hari lain utk. tgl. rencana konsulnya");
         } else {
             if (Sequel.menyimpantf("surat_konsul_unit_ralan", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 19, new String[]{
-                TNoRw.getText(), kdpoli.getText(), cmbJenisKonsul.getSelectedItem().toString(), cmbTujuanKonsul.getSelectedItem().toString(),
-                TketLain.getText(), Valid.SetTgl(TtglMintaKonsul.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"), TketKlinis.getText(),
-                "Belum", "-", "-", "", "", "tidak", "0000-00-00", "0000-00-00", "00:00:00", "-", Sequel.cariIsi("select now()")
+                TNoRw.getText(), Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "' and status_lanjut='Ralan'"), 
+                cmbJenisKonsul.getSelectedItem().toString(), cmbTujuanKonsul.getSelectedItem().toString(), TketLain.getText(), 
+                Valid.SetTgl(TtglMintaKonsul.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"), TketKlinis.getText(),
+                "Belum", "-", kdpoli.getText(), "", "", "tidak", "0000-00-00", "0000-00-00", "00:00:00", "-", Sequel.cariIsi("select now()")
             }) == true) {
                 TCari.setText(TNoRw.getText());
                 Valid.SetTgl(DTPCari2, Valid.SetTgl(TtglMintaKonsul.getSelectedItem() + ""));
@@ -717,11 +721,11 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                     + Sequel.cariIsi("select keterangan from hari_libur where tgl_libur='" + Valid.SetTgl(TtglMintaKonsul.getSelectedItem() + "") + "'")
                     + ", silahkan ganti hari lain utk. tgl. rencana konsulnya");
         } else {
-            if (Sequel.mengedittf("surat_konsul_unit_ralan", "waktu_simpan=?", "kd_poli=?, jenis_konsul=?, tujuan=?, "
-                    + "ket_tujuan_lain=?, tgl_permintaan_konsul=?, jam_permintaan_konsul=?, keterangan_klinis=?", 8, new String[]{
-                        kdpoli.getText(), cmbJenisKonsul.getSelectedItem().toString(), cmbTujuanKonsul.getSelectedItem().toString(),
+            if (Sequel.mengedittf("surat_konsul_unit_ralan", "waktu_simpan=?", "jenis_konsul=?, tujuan=?, "
+                    + "ket_tujuan_lain=?, tgl_permintaan_konsul=?, jam_permintaan_konsul=?, keterangan_klinis=?, kd_poli_pembalas=?", 8, new String[]{
+                        cmbJenisKonsul.getSelectedItem().toString(), cmbTujuanKonsul.getSelectedItem().toString(),
                         TketLain.getText(), Valid.SetTgl(TtglMintaKonsul.getSelectedItem() + ""), Sequel.cariIsi("select time(now())"), 
-                        TketKlinis.getText(),
+                        TketKlinis.getText(), kdpoli.getText(),
                         tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString()
                     }) == true) {
 
@@ -1019,7 +1023,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             ps = koneksi.prepareStatement("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, "
                     + "pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul from surat_konsul_unit_ralan sk "
                     + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "inner join poliklinik pl1 on pl1.kd_poli=rp.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli "
+                    + "inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas "
                     + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas where "
                     + "sk.tgl_permintaan_konsul between ? and ? and sk.no_rawat like ? or "
                     + "sk.tgl_permintaan_konsul between ? and ? and p.no_rkm_medis like ? or "
@@ -1080,7 +1084,8 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
                         rs.getString("tgl_menjawab"),
                         rs.getString("tgl_konsul_ulang"),
                         rs.getString("nm_dokter"),
-                        rs.getString("konsul_ulang")
+                        rs.getString("konsul_ulang"),
+                        rs.getString("kd_poli_pembalas")
                     });
                 }                
             } catch (Exception e) {
@@ -1123,7 +1128,7 @@ public class DlgSuratKonsulRalan extends javax.swing.JDialog {
             TNoRw.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 1).toString());
             TNoRM.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 2).toString());
             TPasien.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 3).toString());
-            kdpoli.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 13).toString());
+            kdpoli.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 20).toString());
             TPoli.setText(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 5).toString());
             cmbJenisKonsul.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 6).toString());
             cmbTujuanKonsul.setSelectedItem(tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 7).toString());
