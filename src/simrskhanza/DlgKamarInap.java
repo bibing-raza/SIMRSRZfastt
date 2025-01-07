@@ -6697,7 +6697,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                                 //jika pulang dengan dirujuk
                                 } else if (cmbStatus.getSelectedItem().equals("Dirujuk")) {
                                     DlgRujuk dlgrjk = new DlgRujuk(null, false);
-                                    dlgrjk.setSize(987, 547);
+                                    dlgrjk.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                                     dlgrjk.setLocationRelativeTo(internalFrame1);
                                     dlgrjk.emptTeks();
                                     dlgrjk.isCek();
@@ -6757,7 +6757,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             //jika pulang dengan dirujuk
                             } else if (cmbStatus.getSelectedItem().equals("Dirujuk")) {
                                 DlgRujuk dlgrjk = new DlgRujuk(null, false);
-                                dlgrjk.setSize(987, 547);
+                                dlgrjk.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                                 dlgrjk.setLocationRelativeTo(internalFrame1);
                                 dlgrjk.emptTeks();
                                 dlgrjk.isCek();
@@ -9250,7 +9250,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             Sequel.meghapus("ranap_aps", "no_rawat", norawat.getText());
 
             DlgRujuk dlgrjk = new DlgRujuk(null, false);
-            dlgrjk.setSize(987, 547);
+            dlgrjk.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrjk.setLocationRelativeTo(internalFrame1);
             dlgrjk.emptTeks();
             dlgrjk.isCek();

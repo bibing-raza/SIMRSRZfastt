@@ -6832,7 +6832,7 @@ private void MnRujukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     } else {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         DlgRujuk dlgrjk = new DlgRujuk(null, false);
-        dlgrjk.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+        dlgrjk.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dlgrjk.setLocationRelativeTo(internalFrame1);
         dlgrjk.emptTeks();
         dlgrjk.isCek();

@@ -16,7 +16,7 @@
 		<![CDATA[SELECT CONCAT(r.rujuk_ke,' (Poli : ',IFNULL(r.poliklinik_tujuan,'-'),')') rujukKe,r.no_rujuk,rp.no_rawat,
 CONCAT(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',nm_kec,', ',nm_kab) alamat, d.nm_dokter, 
 rp.no_rkm_medis, IF(p.jk='L','Laki-laki','Perempuan') jk,p.keluarga,p.namakeluarga,
-DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLhr,p.nm_pasien,
+DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLhr,p.nm_pasien, p.pekerjaan,
 CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') umur, r.keterangan 
 FROM reg_periksa rp INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis
 INNER JOIN kelurahan kl ON p.kd_kel = kl.kd_kel INNER JOIN kecamatan kc ON p.kd_kec = kc.kd_kec
@@ -52,6 +52,9 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 	<field name="nm_pasien" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
+	<field name="pekerjaan" class="java.lang.String">
+		<fieldDescription><![CDATA[]]></fieldDescription>
+	</field>
 	<field name="umur" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
@@ -59,13 +62,13 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
 	<title>
-		<band height="308">
+		<band height="249">
 			<image scaleImage="FillFrame" onErrorType="Blank">
 				<reportElement x="120" y="2" width="30" height="38"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
 			<textField>
-				<reportElement mode="Transparent" x="151" y="240" width="231" height="14"/>
+				<reportElement mode="Transparent" x="151" y="222" width="231" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
@@ -74,7 +77,7 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 			<staticText>
 				<reportElement mode="Transparent" x="50" y="92" width="134" height="14"/>
 				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
+					<font fontName="Tahoma" size="9" isBold="true"/>
 				</textElement>
 				<text><![CDATA[SURAT RUJUKAN]]></text>
 			</staticText>
@@ -97,57 +100,29 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<text><![CDATA[Bersama ini kami beritahukan bahwa kami telah merawat / memeriksa pasien berikut ini. ]]></text>
+				<text><![CDATA[Bersama ini kami rujuk penderita / bahan (Specimen), sebagai berikut :]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="50" y="196" width="467" height="14"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[Mohon pemeriksaan dan penanganan lebih lanjut penderita sebagai berikut : ]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="50" y="227" width="93" height="14"/>
+				<reportElement mode="Transparent" x="50" y="209" width="93" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[Nama Pasien]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="143" y="227" width="8" height="14"/>
+				<reportElement mode="Transparent" x="143" y="209" width="8" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<textField pattern="">
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="227" width="366" height="14"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="209" width="366" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{nm_pasien}+" (Umur : "+$F{umur}+")"]]></textFieldExpression>
 			</textField>
-			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="253" width="366" height="28"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
-			</textField>
-			<staticText>
-				<reportElement mode="Transparent" x="143" y="253" width="8" height="14"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="50" y="253" width="93" height="14"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[Alamat Pasien]]></text>
-			</staticText>
 			<textField>
 				<reportElement x="0" y="16" width="517" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -211,54 +186,33 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 				<text><![CDATA[Di Tempat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="50" y="214" width="93" height="14"/>
+				<reportElement mode="Transparent" x="50" y="196" width="93" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[Tanggal Rawat]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="143" y="214" width="8" height="14"/>
+				<reportElement mode="Transparent" x="143" y="196" width="8" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="50" y="240" width="93" height="14"/>
+				<reportElement mode="Transparent" x="50" y="222" width="93" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[No. Rekam Medis]]></text>
 			</staticText>
 			<staticText>
-				<reportElement mode="Transparent" x="143" y="240" width="8" height="14"/>
+				<reportElement mode="Transparent" x="143" y="222" width="8" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<text><![CDATA[:]]></text>
 			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="50" y="280" width="93" height="14"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[Diagnosa Klinis]]></text>
-			</staticText>
-			<staticText>
-				<reportElement mode="Transparent" x="143" y="280" width="8" height="14"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<text><![CDATA[:]]></text>
-			</staticText>
-			<textField pattern="" isBlankWhenNull="false">
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="280" width="366" height="28"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$P{diagnosa}]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement mode="Transparent" x="305" y="57" width="212" height="14"/>
 				<textElement lineSpacing="Single">
@@ -267,30 +221,97 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglSurat}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement mode="Transparent" x="50" y="79" width="283" height="14"/>
+				<reportElement mode="Transparent" x="50" y="79" width="467" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{no_rujuk}]]></textFieldExpression>
 			</textField>
 			<textField>
-				<reportElement x="151" y="214" width="210" height="14"/>
+				<reportElement x="151" y="196" width="210" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$P{tglReg}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement mode="Transparent" x="151" y="235" width="366" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{pekerjaan}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="235" width="93" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Pekerjaan]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="143" y="235" width="8" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="169" width="93" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Dengan Hormat,]]></text>
+			</staticText>
 		</band>
 	</title>
 	<detail>
 		<band height="14">
 			<staticText>
+				<reportElement mode="Transparent" x="143" y="0" width="8" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="0" width="366" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}+"\n"]]></textFieldExpression>
+			</textField>
+			<staticText>
 				<reportElement mode="Transparent" x="50" y="0" width="93" height="14"/>
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<text><![CDATA[Keterangan]]></text>
+				<text><![CDATA[Alamat Pasien]]></text>
 			</staticText>
+		</band>
+		<band height="14">
+			<staticText>
+				<reportElement mode="Transparent" x="143" y="0" width="8" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="0" width="93" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Diagnosa Klinis]]></text>
+			</staticText>
+			<textField isStretchWithOverflow="true" pattern="" isBlankWhenNull="false">
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="151" y="0" width="366" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{diagnosa}+"\n"]]></textFieldExpression>
+			</textField>
+		</band>
+		<band height="14">
 			<staticText>
 				<reportElement mode="Transparent" x="143" y="0" width="8" height="14"/>
 				<textElement lineSpacing="Single">
@@ -303,33 +324,49 @@ INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter WHERE rp.no_rawat='2021/03/09/0
 				<textElement lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA[$F{keterangan}]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$F{keterangan}+"\n"]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="50" y="0" width="93" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Keterangan Klinis]]></text>
+			</staticText>
+		</band>
+		<band height="14">
+			<textField isStretchWithOverflow="true">
+				<reportElement x="50" y="0" width="467" height="14"/>
+				<textElement lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA["Demikian surat rujukan keluar dari "+$P{namars}+" dengan diagnosa akhir "+$P{diagnosa}+". Mohon penatalaksanaan selanjutnya dan jawaban rujukan. Terima Kasih"]]></textFieldExpression>
 			</textField>
 		</band>
 	</detail>
 	<summary>
 		<band height="168">
 			<staticText>
-				<reportElement mode="Transparent" x="287" y="71" width="212" height="14"/>
+				<reportElement mode="Transparent" x="287" y="14" width="230" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
-				<text><![CDATA[Dokter yang merawat,]]></text>
+				<text><![CDATA[An. Direktur RSUD Ratu Zalecha]]></text>
 			</staticText>
-			<textField isStretchWithOverflow="true">
-				<reportElement x="50" y="9" width="467" height="48"/>
-				<textElement lineSpacing="Single">
-					<font fontName="Tahoma" size="9"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["Demikian surat rujukan keluar dari "+$P{namars}+" dengan diagnosa akhir "+$P{diagnosa}+". Atas kerjasamanya kami ucapkan terima kasih."]]></textFieldExpression>
-			</textField>
 			<textField pattern="">
-				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="287" y="127" width="212" height="14"/>
+				<reportElement stretchType="RelativeToBandHeight" mode="Transparent" x="287" y="90" width="230" height="14"/>
 				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
 					<font fontName="Tahoma" size="9"/>
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA["( "+$F{nm_dokter}+" )"]]></textFieldExpression>
 			</textField>
+			<staticText>
+				<reportElement mode="Transparent" x="287" y="27" width="230" height="14"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" lineSpacing="Single">
+					<font fontName="Tahoma" size="9"/>
+				</textElement>
+				<text><![CDATA[Dokter yang merujuk,]]></text>
+			</staticText>
 		</band>
 	</summary>
 </jasperReport>
