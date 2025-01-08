@@ -903,22 +903,26 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, Pasien belum dipilih...!!!");
             tbPasien.requestFocus();
         } else {
-            if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat) > 0) {
-                DlgPemberianObat formobat = new DlgPemberianObat(null, false);
-                formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                formobat.setLocationRelativeTo(internalFrame1);
-                formobat.isCek();
-                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
-                formobat.tampilPO();
-                formobat.setVisible(true);
+            if (Sequel.cariRegistrasi(norawat) > 0 && Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + norawat + "' and kd_pj='U01'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi. Silahkan hubungi bagian kasir/keuangan ..!!");
             } else {
-                DlgPemberianObat formobat = new DlgPemberianObat(null, false);
-                formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                formobat.setLocationRelativeTo(internalFrame1);
-                formobat.isCek();
-                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan");
-                formobat.tampilPO();
-                formobat.setVisible(true);
+                if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", norawat) > 0) {
+                    DlgPemberianObat formobat = new DlgPemberianObat(null, false);
+                    formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    formobat.setLocationRelativeTo(internalFrame1);
+                    formobat.isCek();
+                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
+                    formobat.tampilPO();
+                    formobat.setVisible(true);
+                } else {
+                    DlgPemberianObat formobat = new DlgPemberianObat(null, false);
+                    formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    formobat.setLocationRelativeTo(internalFrame1);
+                    formobat.isCek();
+                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan");
+                    formobat.tampilPO();
+                    formobat.setVisible(true);
+                }
             }
         }
     }//GEN-LAST:event_MnDataPemberianObatActionPerformed
@@ -927,14 +931,18 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         if (norawat.equals("")) {
             JOptionPane.showMessageDialog(null, "Pilih dulu salah satu data pasiennya pada tabel..!!!");
         } else {
-            akses.setform("DlgDashboardEresepRanap");
-            dlgobt.setNoRm(norawat, tglCari2.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"), 
-                    Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
-            dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-            dlgobt.isCek();
-            dlgobt.tampil();
-            dlgobt.setLocationRelativeTo(internalFrame1);
-            dlgobt.setVisible(true);
+            if (Sequel.cariRegistrasi(norawat) > 0 && Sequel.cariInteger("select count(-1) from reg_periksa where no_rawat='" + norawat + "' and kd_pj='U01'") > 0) {
+                JOptionPane.showMessageDialog(rootPane, "Data billing sudah terverifikasi. Silahkan hubungi bagian kasir/keuangan ..!!");
+            } else {
+                akses.setform("DlgDashboardEresepRanap");
+                dlgobt.setNoRm(norawat, tglCari2.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"),
+                        Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
+                dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                dlgobt.isCek();
+                dlgobt.tampil();
+                dlgobt.setLocationRelativeTo(internalFrame1);
+                dlgobt.setVisible(true);
+            }
         }
     }//GEN-LAST:event_MnInputPemberianObatActionPerformed
 
