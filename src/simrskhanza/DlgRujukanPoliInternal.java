@@ -89,7 +89,7 @@ public class DlgRujukanPoliInternal extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 4) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(380);
             } else if (i == 5) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);

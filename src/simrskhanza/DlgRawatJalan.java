@@ -1394,6 +1394,10 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         MnPenilaianAwalMedisRalanTHT = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisRalanMata = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetri = new javax.swing.JMenuItem();
+        MnRujukanKonsul = new javax.swing.JMenu();
+        MnKonsulInternalPoli = new javax.swing.JMenuItem();
+        MnRujukanInternalPoli = new javax.swing.JMenuItem();
+        MnRujukKeluar = new javax.swing.JMenuItem();
         ppDokumenJangMed = new javax.swing.JMenuItem();
         ppProtokolKemoterapi = new javax.swing.JMenuItem();
         MnCetakPemeriksaanTHT = new javax.swing.JMenuItem();
@@ -1403,8 +1407,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         MnSuratPengantarRanap = new javax.swing.JMenuItem();
         MnRehabMedik = new javax.swing.JMenuItem();
         MnDataParu = new javax.swing.JMenuItem();
-        MnRujukanInternalPoli = new javax.swing.JMenuItem();
-        MnKonsulInternalPoli = new javax.swing.JMenuItem();
         MnStatusPasienPerKunjungan = new javax.swing.JMenuItem();
         MnStatusPasienAllKunjungan = new javax.swing.JMenuItem();
         jPopupMenu2 = new javax.swing.JPopupMenu();
@@ -2175,6 +2177,63 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
 
         jPopupMenu1.add(MnRekamMedis);
 
+        MnRujukanKonsul.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRujukanKonsul.setText("Rujukan / Konsul");
+        MnRujukanKonsul.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRujukanKonsul.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRujukanKonsul.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRujukanKonsul.setIconTextGap(5);
+        MnRujukanKonsul.setName("MnRujukanKonsul"); // NOI18N
+        MnRujukanKonsul.setOpaque(true);
+        MnRujukanKonsul.setPreferredSize(new java.awt.Dimension(245, 26));
+
+        MnKonsulInternalPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnKonsulInternalPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnKonsulInternalPoli.setText("Konsultasi Internal");
+        MnKonsulInternalPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnKonsulInternalPoli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnKonsulInternalPoli.setIconTextGap(5);
+        MnKonsulInternalPoli.setName("MnKonsulInternalPoli"); // NOI18N
+        MnKonsulInternalPoli.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnKonsulInternalPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnKonsulInternalPoliBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRujukanKonsul.add(MnKonsulInternalPoli);
+
+        MnRujukanInternalPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRujukanInternalPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRujukanInternalPoli.setText("Rujukan Internal");
+        MnRujukanInternalPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRujukanInternalPoli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRujukanInternalPoli.setIconTextGap(5);
+        MnRujukanInternalPoli.setName("MnRujukanInternalPoli"); // NOI18N
+        MnRujukanInternalPoli.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnRujukanInternalPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRujukanInternalPoliBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRujukanKonsul.add(MnRujukanInternalPoli);
+
+        MnRujukKeluar.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnRujukKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnRujukKeluar.setText("Rujukan Keluar");
+        MnRujukKeluar.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnRujukKeluar.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnRujukKeluar.setIconTextGap(5);
+        MnRujukKeluar.setName("MnRujukKeluar"); // NOI18N
+        MnRujukKeluar.setPreferredSize(new java.awt.Dimension(150, 26));
+        MnRujukKeluar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnRujukKeluarBtnPrintActionPerformed(evt);
+            }
+        });
+        MnRujukanKonsul.add(MnRujukKeluar);
+
+        jPopupMenu1.add(MnRujukanKonsul);
+
         ppDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         ppDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppDokumenJangMed.setText("Dokumen Penunjang Medis");
@@ -2309,36 +2368,6 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnDataParu);
-
-        MnRujukanInternalPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnRujukanInternalPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnRujukanInternalPoli.setText("Rujukan Internal Poliklinik");
-        MnRujukanInternalPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnRujukanInternalPoli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnRujukanInternalPoli.setIconTextGap(5);
-        MnRujukanInternalPoli.setName("MnRujukanInternalPoli"); // NOI18N
-        MnRujukanInternalPoli.setPreferredSize(new java.awt.Dimension(245, 26));
-        MnRujukanInternalPoli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnRujukanInternalPoliBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnRujukanInternalPoli);
-
-        MnKonsulInternalPoli.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        MnKonsulInternalPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        MnKonsulInternalPoli.setText("Konsultasi Internal Poliklinik");
-        MnKonsulInternalPoli.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        MnKonsulInternalPoli.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        MnKonsulInternalPoli.setIconTextGap(5);
-        MnKonsulInternalPoli.setName("MnKonsulInternalPoli"); // NOI18N
-        MnKonsulInternalPoli.setPreferredSize(new java.awt.Dimension(245, 26));
-        MnKonsulInternalPoli.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                MnKonsulInternalPoliBtnPrintActionPerformed(evt);
-            }
-        });
-        jPopupMenu1.add(MnKonsulInternalPoli);
 
         MnStatusPasienPerKunjungan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnStatusPasienPerKunjungan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -3089,7 +3118,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel47.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame23.add(jLabel47);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3103,7 +3132,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel48.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame23.add(jLabel48);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3296,7 +3325,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
 
         TglKunRwt.setEditable(false);
-        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        TglKunRwt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         TglKunRwt.setDisplayFormat("dd-MM-yyyy");
         TglKunRwt.setName("TglKunRwt"); // NOI18N
         TglKunRwt.setOpaque(false);
@@ -3525,7 +3554,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         });
         panelGlass9.add(ChkTanggal);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3539,7 +3568,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5909,7 +5938,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         ChkKonsul.setBounds(113, 115, 102, 23);
 
         TtglKonsulUlang.setEditable(false);
-        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        TtglKonsulUlang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         TtglKonsulUlang.setDisplayFormat("dd-MM-yyyy");
         TtglKonsulUlang.setName("TtglKonsulUlang"); // NOI18N
         TtglKonsulUlang.setOpaque(false);
@@ -6074,7 +6103,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         FormInput.add(jLabel23);
         jLabel23.setBounds(675, 34, 60, 23);
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-01-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09-01-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -6882,21 +6911,30 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
                 }
             }
         } else if (TabRawat.getSelectedIndex() == 8) {
-            hapusJawabanRujukan();
-            tampilRujukanInternal();
-            if (tabModeRujukan.getRowCount() != 0) {
-                TabRawat.setBackgroundAt(8, Color.ORANGE);
-                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
+            if (Tnorawat.getText().equals("")) {
+                JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data rujukannya pada tabel...!!");
+                tbRujukan.requestFocus();
+            } else if (Sequel.cariIsi("select no_rawat_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals("")) {
+                JOptionPane.showMessageDialog(null, "Sebelum menghapus, data rujukan ini harus tersimpan dulu...!!");
+                emptTeksRujukanInternal();
+                tampilRujukanInternal();
             } else {
-                TabRawat.setBackgroundAt(8, TabRawat.getBackground());
-                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
+                hapusJawabanRujukan();
+                tampilRujukanInternal();
+                if (tabModeRujukan.getRowCount() != 0) {
+                    TabRawat.setBackgroundAt(8, Color.ORANGE);
+                    BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
+                } else {
+                    TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                    BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
+                }
             }
         } else if (TabRawat.getSelectedIndex() == 14) {
             if (TNoRwKonsul.getText().equals("")) {
                 JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data konsulnya pada tabel...!!");
                 tbKonsul.requestFocus();
             } else if (Sequel.cariIsi("select no_rawat_pembalas from surat_konsul_unit_ralan where waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'").equals("-")) {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, balasan/jawaban konsulnya harus disimpan dulu..!!");
+                JOptionPane.showMessageDialog(null, "Sebelum menghapus, data konsultasi ini harus tersimpan dulu...!!");
                 emptTeksKonsulInternal();
                 tampilKonsulInternal();
             } else {
@@ -7750,21 +7788,33 @@ private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                         }
 
                     } else if (TabRawat.getSelectedIndex() == 8) {
-                        gantiJawabanRujukan();
-                        tampilRujukanInternal();
-                        if (tabModeRujukan.getRowCount() != 0) {
-                            TabRawat.setBackgroundAt(8, Color.ORANGE);
-                            BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
+                        if (Tnorawat.getText().equals("")) {
+                            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data rujukannya pada tabel...!!");
+                            tbRujukan.requestFocus();
+                        } else if (Sequel.cariIsi("select no_rawat_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals("")) {
+                            JOptionPane.showMessageDialog(null, "Sebelum mengganti, data rujukan ini harus tersimpan dulu...!!");
+                            emptTeksRujukanInternal();
+                            tampilRujukanInternal();
+                        } else if (TJwbnRujukan.getText().trim().equals("") || TJwbnRujukan.getText().trim().length() < 6) {
+                            JOptionPane.showMessageDialog(null, "Kalimat uraian balasan/jawaban rujukan belum terisi dg. benar, silahkan lengkapi lagi...!!");
+                            TJwbnRujukan.requestFocus();
                         } else {
-                            TabRawat.setBackgroundAt(8, TabRawat.getBackground());
-                            BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
+                            gantiJawabanRujukan();
+                            tampilRujukanInternal();
+                            if (tabModeRujukan.getRowCount() != 0) {
+                                TabRawat.setBackgroundAt(8, Color.ORANGE);
+                                BtnMenjawabRujukan.setGlassColor(Color.ORANGE);
+                            } else {
+                                TabRawat.setBackgroundAt(8, TabRawat.getBackground());
+                                BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
+                            }
                         }
                     } else if (TabRawat.getSelectedIndex() == 14) {
                         if (TNoRwKonsul.getText().equals("")) {
                             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data konsulnya pada tabel...!!");
                             tbKonsul.requestFocus();
                         } else if (Sequel.cariIsi("select no_rawat_pembalas from surat_konsul_unit_ralan where waktu_simpan='" + tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString() + "'").equals("-")) {
-                            JOptionPane.showMessageDialog(rootPane, "Maaf, balasan/jawaban konsulnya harus disimpan dulu..!!");
+                            JOptionPane.showMessageDialog(null, "Sebelum mengganti, data konsul ini harus tersimpan dulu...!!");
                             emptTeksKonsulInternal();
                             tampilKonsulInternal();
                         } else if (TJwbnKonsul.getText().trim().equals("") || TJwbnKonsul.getText().trim().length() < 6) {
@@ -10830,6 +10880,23 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             Trekomendasi.requestFocus();
         }
     }//GEN-LAST:event_TkesimpulanKeyPressed
+
+    private void MnRujukKeluarBtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnRujukKeluarBtnPrintActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu data pasiennya pada tabel rawat jalan...!!!");
+        } else {
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            DlgRujuk rujukKeluar = new DlgRujuk(null, false);
+            rujukKeluar.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            rujukKeluar.setLocationRelativeTo(internalFrame1);
+            rujukKeluar.emptTeks();
+            rujukKeluar.isCek();
+            rujukKeluar.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate());
+            rujukKeluar.tampilLain();
+            rujukKeluar.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
+        }
+    }//GEN-LAST:event_MnRujukKeluarBtnPrintActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -10973,7 +11040,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenu MnRekamMedis;
     private javax.swing.JMenuItem MnRiwayatData;
     private javax.swing.JMenuItem MnRiwayatPerawatanICareNoKartu;
+    private javax.swing.JMenuItem MnRujukKeluar;
     private javax.swing.JMenuItem MnRujukanInternalPoli;
+    private javax.swing.JMenu MnRujukanKonsul;
     private javax.swing.JMenuItem MnSemuanya;
     private javax.swing.JMenuItem MnStatusPasienAllKunjungan;
     private javax.swing.JMenuItem MnStatusPasienPerKunjungan;
@@ -11590,6 +11659,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         ppPersetujuanTindakan.setEnabled(akses.getcppt());
         MnRujukanInternalPoli.setEnabled(akses.getrujukan_poli_internal());
         MnKonsulInternalPoli.setEnabled(akses.gettindakan_ralan());
+        MnRujukKeluar.setEnabled(akses.getrujukan_keluar());
         MnContengResep.setEnabled(akses.getrujukan_poli_internal());
         BtnResep.setEnabled(akses.getrujukan_poli_internal());
         BtnCopyResepTerakhir.setEnabled(akses.getrujukan_poli_internal());
@@ -17506,6 +17576,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 TTujuanKonsul.setText("");
                 TKetKlinis.setText("");
 
+                cmbStatusKonsul.setSelectedIndex(0);
                 TPoliMenjawabKonsul.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
                 dokterMenjawabKonsul.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
                         + "inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'"));
@@ -17527,86 +17598,40 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                     + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas where "
                     + "sk.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from surat_konsul_unit_ralan where no_rawat='" + TNoRwKonsul.getText() + "'") + "'")
                     + " yg. bisa memperbaiki balasan/jawaban konsulnya..!!");
+            TNoRwKonsul.setText("");
+            TtglKonsulMinta.setText("");
+            TPoliAwal.setText("");
+            OlehDokterKonsul.setText("");
+            TJnsKonsul.setText("");
+            TTujuanKonsul.setText("");
+            TKetKlinis.setText("");
+
+            cmbStatusKonsul.setSelectedIndex(0);
+            TPoliMenjawabKonsul.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+            dokterMenjawabKonsul.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'"));
+            TKasusDitemukan.setText("");
+            ChkKonsul.setSelected(false);
+            TtglKonsulUlang.setEnabled(false);
+            TtglKonsulUlang.setDate(new Date());
+            TJwbnKonsul.setText("");
+            tbKonsul.requestFocus();
+
+            if (cmbStatusKonsul.getSelectedIndex() == 0) {
+                sttsJawabKonsul = "Sudah";
+            } else {
+                sttsJawabKonsul = "Belum";
+            }
         }
     }
 
     private void gantiJawabanRujukan() {
-        if (Tnorawat.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data rujukannya pada tabel...!!");
-            tbRujukan.requestFocus();
-        } else if (TJwbnRujukan.getText().trim().equals("") || TJwbnRujukan.getText().trim().length() < 6) {
-            JOptionPane.showMessageDialog(null, "Kalimat uraian balasan/jawaban rujukan belum terisi dg. benar, silahkan lengkapi lagi...!!");
-            TJwbnRujukan.requestFocus();
-        } else {
-            if (Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
-
-                Sequel.mengedit("rujukan_internal_poli", "no_rawat='" + Tnorawat.getText() + "' and tgl_simpan='" + tglSimpanRujukan + "'",
-                        "status_jawaban='Sudah', no_rawat_pembalas='" + TNoRw.getText() + "', keterangan_balasan='" + TJwbnRujukan.getText() + "', "
-                        + "kd_dokter_pembalas='" + Sequel.cariIsi("select kd_dokter from reg_periksa where no_rawat='" + TNoRw.getText() + "'") + "'");
-
-                Tnorawat.setText("");
-                TDariPoli.setText("");
-                tglDirujuk.setText("");
-                OlehDokter.setText("");
-                TKetAsalRujukan.setText("");
-
-                poliMenjawab.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
-                dokterMenjawab.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
-                        + "inner join dokter d on d.kd_dokter=rp.kd_dokter where no_rawat='" + TNoRw.getText() + "'"));
-                TJwbnRujukan.setText("");
-                tbRujukan.requestFocus();
-
-                if (cmbStatus.getSelectedIndex() == 0) {
-                    jawaban = "Sudah";
-                } else {
-                    jawaban = "Belum";
-                }
-            } else {
-                JOptionPane.showMessageDialog(rootPane, "Maaf, hanya " + Sequel.cariIsi("select d.nm_dokter from rujukan_internal_poli r "
-                        + "inner join dokter d on d.kd_dokter=r.kd_dokter_pembalas where "
-                        + "r.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'") + "'")
-                        + " yg. bisa memperbaiki balasan/jawaban rujukannya..!!");
-            }
-        }
-    }
-
-    private void hapusJawabanKonsul() {
-        if (Sequel.cariIsi("select kd_dokter_pembalas from surat_konsul_unit_ralan where no_rawat='" + TNoRwKonsul.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
-            String cekKonsul = "", tglKonsulUlang = "";
-            if (ChkKonsul.isSelected() == true) {
-                cekKonsul = "ya";
-                tglKonsulUlang = Valid.SetTgl(TtglKonsulUlang.getSelectedItem() + "");
-            } else {
-                cekKonsul = "tidak";
-                tglKonsulUlang = "0000-00-00";
-            }
-
-            if (Sequel.mengedittf("surat_konsul_unit_ralan", "waktu_simpan=?", "status_jawaban=?, "
-                    + "no_rawat_pembalas=?, kasus_ditemukan=?, ket_klinis_jawaban=?, konsul_ulang=?, "
-                    + "tgl_konsul_ulang=?, tgl_menjawab=?, jam_menjawab=?, kd_dokter_pembalas=?", 10, new String[]{
-                        "Belum", "-", "", "", "tidak", "0000-00-00", "0000-00-00", "00:00:00", "-",
-                        tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString()
+        if (Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
+            if (Sequel.mengedittf("rujukan_internal_poli", "no_rawat='" + Tnorawat.getText() + "' and tgl_simpan=?",
+                    "status_jawaban = ?, no_rawat_pembalas = ?, keterangan_balasan = ?, kd_dokter_pembalas = ?", 5, new String[]{
+                        "Sudah", TNoRw.getText(), TJwbnRujukan.getText(), akses.getkode(),
+                        tglSimpanRujukan
                     }) == true) {
-                emptTeksKonsulInternal();
-            }
-        } else {
-            JOptionPane.showMessageDialog(rootPane, "Maaf, hanya " + Sequel.cariIsi("select d.nm_dokter from surat_konsul_unit_ralan sk "
-                    + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas where "
-                    + "sk.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from surat_konsul_unit_ralan where no_rawat='" + TNoRwKonsul.getText() + "'") + "'")
-                    + " yg. bisa menghapus balasan/jawaban konsulnya..!!");
-        }
-    }
-
-    private void hapusJawabanRujukan() {
-        if (Tnorawat.getText().equals("")) {
-            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data rujukannya pada tabel...!!");
-            tbRujukan.requestFocus();
-        } else {
-            if (Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
-
-                Sequel.mengedit("rujukan_internal_poli", "no_rawat='" + Tnorawat.getText() + "' and tgl_simpan='" + tglSimpanRujukan + "'",
-                        "status_jawaban='Belum', no_rawat_pembalas='', keterangan_balasan='', kd_dokter_pembalas=''");
-
                 Tnorawat.setText("");
                 TDariPoli.setText("");
                 tglDirujuk.setText("");
@@ -17625,12 +17650,187 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 } else {
                     jawaban = "Belum";
                 }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Maaf, hanya " + Sequel.cariIsi("select d.nm_dokter from rujukan_internal_poli r "
+                    + "inner join dokter d on d.kd_dokter=r.kd_dokter_pembalas where "
+                    + "r.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'") + "'")
+                    + " yg. bisa memperbaiki balasan/jawaban rujukannya..!!");
+            Tnorawat.setText("");
+            TDariPoli.setText("");
+            tglDirujuk.setText("");
+            OlehDokter.setText("");
+            TKetAsalRujukan.setText("");
+
+            cmbStatus.setSelectedIndex(0);
+            poliMenjawab.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+            dokterMenjawab.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter where no_rawat='" + TNoRw.getText() + "'"));
+            TJwbnRujukan.setText("");
+            tbRujukan.requestFocus();
+
+            if (cmbStatus.getSelectedIndex() == 0) {
+                jawaban = "Sudah";
+            } else {
+                jawaban = "Belum";
+            }
+        }
+    }
+
+    private void hapusJawabanKonsul() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.cariIsi("select kd_dokter_pembalas from surat_konsul_unit_ralan where no_rawat='" + TNoRwKonsul.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
+                String cekKonsul = "", tglKonsulUlang = "";
+                if (ChkKonsul.isSelected() == true) {
+                    cekKonsul = "ya";
+                    tglKonsulUlang = Valid.SetTgl(TtglKonsulUlang.getSelectedItem() + "");
+                } else {
+                    cekKonsul = "tidak";
+                    tglKonsulUlang = "0000-00-00";
+                }
+
+                if (Sequel.mengedittf("surat_konsul_unit_ralan", "waktu_simpan=?", "status_jawaban=?, "
+                        + "no_rawat_pembalas=?, kasus_ditemukan=?, ket_klinis_jawaban=?, konsul_ulang=?, "
+                        + "tgl_konsul_ulang=?, tgl_menjawab=?, jam_menjawab=?, kd_dokter_pembalas=?", 10, new String[]{
+                            "Belum", "-", "", "", "tidak", "0000-00-00", "0000-00-00", "00:00:00", "-",
+                            tbKonsul.getValueAt(tbKonsul.getSelectedRow(), 0).toString()
+                        }) == true) {
+                    emptTeksKonsulInternal();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Maaf, hanya " + Sequel.cariIsi("select d.nm_dokter from surat_konsul_unit_ralan sk "
+                        + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas where "
+                        + "sk.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from surat_konsul_unit_ralan where no_rawat='" + TNoRwKonsul.getText() + "'") + "'")
+                        + " yg. bisa menghapus balasan/jawaban konsulnya..!!");
+                TNoRwKonsul.setText("");
+                TtglKonsulMinta.setText("");
+                TPoliAwal.setText("");
+                OlehDokterKonsul.setText("");
+                TJnsKonsul.setText("");
+                TTujuanKonsul.setText("");
+                TKetKlinis.setText("");
+
+                cmbStatusKonsul.setSelectedIndex(0);
+                TPoliMenjawabKonsul.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+                dokterMenjawabKonsul.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                        + "inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'"));
+                TKasusDitemukan.setText("");
+                ChkKonsul.setSelected(false);
+                TtglKonsulUlang.setEnabled(false);
+                TtglKonsulUlang.setDate(new Date());
+                TJwbnKonsul.setText("");
+                tbKonsul.requestFocus();
+
+                if (cmbStatusKonsul.getSelectedIndex() == 0) {
+                    sttsJawabKonsul = "Sudah";
+                } else {
+                    sttsJawabKonsul = "Belum";
+                }
+                tampilKonsulInternal();
+            }
+        } else {
+            TNoRwKonsul.setText("");
+            TtglKonsulMinta.setText("");
+            TPoliAwal.setText("");
+            OlehDokterKonsul.setText("");
+            TJnsKonsul.setText("");
+            TTujuanKonsul.setText("");
+            TKetKlinis.setText("");
+
+            cmbStatusKonsul.setSelectedIndex(0);
+            TPoliMenjawabKonsul.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+            dokterMenjawabKonsul.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter where rp.no_rawat='" + TNoRw.getText() + "'"));
+            TKasusDitemukan.setText("");
+            ChkKonsul.setSelected(false);
+            TtglKonsulUlang.setEnabled(false);
+            TtglKonsulUlang.setDate(new Date());
+            TJwbnKonsul.setText("");
+            tbKonsul.requestFocus();
+
+            if (cmbStatusKonsul.getSelectedIndex() == 0) {
+                sttsJawabKonsul = "Sudah";
+            } else {
+                sttsJawabKonsul = "Belum";
+            }
+            tampilKonsulInternal();
+        }
+    }
+
+    private void hapusJawabanRujukan() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.cariIsi("select kd_dokter_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'").equals(akses.getkode()) || akses.getadmin() == true) {
+                if (Sequel.mengedittf("rujukan_internal_poli", "no_rawat='" + Tnorawat.getText() + "' and tgl_simpan=?",
+                        "status_jawaban =?, no_rawat_pembalas =?, keterangan_balasan =?, kd_dokter_pembalas =?", 5, new String[]{
+                            "Belum", "", "", "",
+                            tglSimpanRujukan
+                        }) == true) {
+                    Tnorawat.setText("");
+                    TDariPoli.setText("");
+                    tglDirujuk.setText("");
+                    OlehDokter.setText("");
+                    TKetAsalRujukan.setText("");
+
+                    cmbStatus.setSelectedIndex(1);
+                    poliMenjawab.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+                    dokterMenjawab.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                            + "inner join dokter d on d.kd_dokter=rp.kd_dokter where no_rawat='" + TNoRw.getText() + "'"));
+                    TJwbnRujukan.setText("");
+                    tbRujukan.requestFocus();
+
+                    if (cmbStatus.getSelectedIndex() == 0) {
+                        jawaban = "Sudah";
+                    } else {
+                        jawaban = "Belum";
+                    }
+                }
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Maaf, hanya " + Sequel.cariIsi("select d.nm_dokter from rujukan_internal_poli r "
                         + "inner join dokter d on d.kd_dokter=r.kd_dokter_pembalas where "
                         + "r.no_rawat_pembalas='" + Sequel.cariIsi("select no_rawat_pembalas from rujukan_internal_poli where no_rawat='" + Tnorawat.getText() + "'") + "'")
                         + " yg. bisa menghapus balasan/jawaban rujukannya..!!");
+                Tnorawat.setText("");
+                TDariPoli.setText("");
+                tglDirujuk.setText("");
+                OlehDokter.setText("");
+                TKetAsalRujukan.setText("");
+
+                cmbStatus.setSelectedIndex(0);
+                poliMenjawab.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+                dokterMenjawab.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                        + "inner join dokter d on d.kd_dokter=rp.kd_dokter where no_rawat='" + TNoRw.getText() + "'"));
+                TJwbnRujukan.setText("");
+                tbRujukan.requestFocus();
+
+                if (cmbStatus.getSelectedIndex() == 0) {
+                    jawaban = "Sudah";
+                } else {
+                    jawaban = "Belum";
+                }
+                tampilRujukanInternal();
             }
+        } else {
+            Tnorawat.setText("");
+            TDariPoli.setText("");
+            tglDirujuk.setText("");
+            OlehDokter.setText("");
+            TKetAsalRujukan.setText("");
+
+            cmbStatus.setSelectedIndex(0);
+            poliMenjawab.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + polinya + "'"));
+            dokterMenjawab.setText(Sequel.cariIsi("select ifnull(d.nm_dokter,'') from reg_periksa rp "
+                    + "inner join dokter d on d.kd_dokter=rp.kd_dokter where no_rawat='" + TNoRw.getText() + "'"));
+            TJwbnRujukan.setText("");
+            tbRujukan.requestFocus();
+
+            if (cmbStatus.getSelectedIndex() == 0) {
+                jawaban = "Sudah";
+            } else {
+                jawaban = "Belum";
+            }
+            tampilRujukanInternal();
         }
     }
 
