@@ -51,7 +51,19 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rscppt, rsrestor;
     private int i = 0, x = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String user = "", dataKonfirmasi = "";
+    private String user = "", dataKonfirmasi = "", kodekamar = "", hipertensi = "", diabet = "", jantung = "", strok = "", asma = "", kejang = "", hati = "",
+            kanker = "", tb = "", pms = "", perdarahan = "", ginjal = "", lainRiwayat = "", turgor = "", sianosisKulit = "", perdarahanKulit = "",
+            ikterusPos = "", ikterusNeg = "", kramer = "", hematoma = "", sklere = "", kutis = "", lainKulit = "", simetrisKepala = "",
+            asimetrisKepala = "", cepal = "", caput = "", anen = "", micros = "", hidro = "", lainKepala = "", datar = "", cembung = "",
+            cekung = "", lainUub = "", normalMata = "", anemia = "", ikterus = "", sekretMata = "", LainMata = "", normalTht = "",
+            nch = "", sianosisTht = "", sekretTht = "", lainTht = "", normalMulut = "", labioS = "", labioP = "", labioG = "",
+            mukosa = "", reflek = "", lainMulut = "", normalLeher = "", torti = "", benjolKanan = "", benjolKiri = "", lainLeher = "",
+            simetrisDada = "", tidakSimetris = "", retraksiPos = "", retraksiNeg = "", sesak = "", merintih = "", sianosisDada = "",
+            lainDada = "", bj = "", murni = "", tidakMurni = "", reguler = "", tidakReguler = "", bunyi = "", vesikuler = "", ronchi = "",
+            wezing = "", stridor = "", lainParu = "", supel = "", disten = "", bising = "", hepar = "", limpa = "", nyeri = "", masaPos = "",
+            masaNeg = "", uk = "", lokasi = "", segar = "", layu = "", lainTali = "", normalPunggung = "", spina = "", gibus = "",
+            lainPunggung = "", sex = "", kelainanUro = "", bak = "", bab = "", simetrisEks = "", asimetrisEks = "", reflekMoroPos = "",
+            reflekMoroNeg = "", lainEks = "", edema = "", kelainanEks = "";
 
     /** Creates new form DlgRujuk
      * @param parent
@@ -345,7 +357,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         TKetLainTali.setDocument(new batasInput((int) 140).getKata(TKetLainTali));
         TKetLainPunggung.setDocument(new batasInput((int) 140).getKata(TKetLainPunggung));
         Tsex.setDocument(new batasInput((int) 140).getKata(Tsex));
-        Tkelainan.setDocument(new batasInput((int) 140).getKata(Tkelainan));
+        TkelainanUro.setDocument(new batasInput((int) 140).getKata(TkelainanUro));
         Tbak.setDocument(new batasInput((int) 140).getKata(Tbak));
         Tbab.setDocument(new batasInput((int) 140).getKata(Tbab));
         TKetLainEks.setDocument(new batasInput((int) 140).getKata(TKetLainEks));
@@ -426,6 +438,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private void initComponents() {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHasilPemeriksaanPenunjang = new javax.swing.JMenuItem();
         MnDokumenJangMed = new javax.swing.JMenuItem();
         MnRiwayatData = new javax.swing.JMenuItem();
         WindowRiwayat = new javax.swing.JDialog();
@@ -455,6 +468,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
+        BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -549,7 +563,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         Tkramer = new widget.TextBox();
         chkHematoma = new widget.CekBox();
         chkSklerema = new widget.CekBox();
-        chkKulitMarmorata = new widget.CekBox();
+        chkKutisMarmorata = new widget.CekBox();
         chkLainKulit = new widget.CekBox();
         TKetLainKulit = new widget.TextBox();
         jLabel85 = new widget.Label();
@@ -570,7 +584,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         TKetLainUUB = new widget.TextBox();
         jLabel87 = new widget.Label();
         chkNormalMata = new widget.CekBox();
-        chkAnemiaMata = new widget.CekBox();
+        chkAnemia = new widget.CekBox();
         chkIkterusMata = new widget.CekBox();
         chkSekretMata = new widget.CekBox();
         chkLainMata = new widget.CekBox();
@@ -623,7 +637,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkVesikuler = new widget.CekBox();
         chkRonchi = new widget.CekBox();
         chkWhezing = new widget.CekBox();
-        chkBenjolanKiri1 = new widget.CekBox();
+        chkStridor = new widget.CekBox();
         chkLainParu = new widget.CekBox();
         TKetLainParu = new widget.TextBox();
         jLabel94 = new widget.Label();
@@ -654,8 +668,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel97 = new widget.Label();
         chkSex = new widget.CekBox();
         Tsex = new widget.TextBox();
-        chkKelainan = new widget.CekBox();
-        Tkelainan = new widget.TextBox();
+        chkKelainanUro = new widget.CekBox();
+        TkelainanUro = new widget.TextBox();
         chkBAK = new widget.CekBox();
         Tbak = new widget.TextBox();
         jLabel98 = new widget.Label();
@@ -690,6 +704,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         scrollPane21 = new widget.ScrollPane();
         Trencana = new widget.TextArea();
         jLabel105 = new widget.Label();
+        BtnPasteHasil = new widget.Button();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -715,6 +730,21 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         LCount = new widget.Label();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnHasilPemeriksaanPenunjang.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHasilPemeriksaanPenunjang.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHasilPemeriksaanPenunjang.setText("Hasil Pemeriksaan Penunjang");
+        MnHasilPemeriksaanPenunjang.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHasilPemeriksaanPenunjang.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHasilPemeriksaanPenunjang.setIconTextGap(5);
+        MnHasilPemeriksaanPenunjang.setName("MnHasilPemeriksaanPenunjang"); // NOI18N
+        MnHasilPemeriksaanPenunjang.setPreferredSize(new java.awt.Dimension(195, 26));
+        MnHasilPemeriksaanPenunjang.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHasilPemeriksaanPenunjangActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHasilPemeriksaanPenunjang);
 
         MnDokumenJangMed.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnDokumenJangMed.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -774,7 +804,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -788,7 +818,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1045,6 +1075,20 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
+        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setMnemonic('R');
+        BtnResep.setText("Resep Obat");
+        BtnResep.setToolTipText("Alt+R");
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResep);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -1084,7 +1128,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
         FormInput.setBackground(new java.awt.Color(255, 255, 255));
         FormInput.setBorder(null);
-        FormInput.setToolTipText("");
+        FormInput.setToolTipText("Klik Kanan Pada Area Ini Untuk Melihat Hasil Pemeriksaan Penunjang");
         FormInput.setComponentPopupMenu(jPopupMenu1);
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 2055));
@@ -1152,7 +1196,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1927,19 +1971,19 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(chkSklerema);
         chkSklerema.setBounds(523, 630, 75, 23);
 
-        chkKulitMarmorata.setBackground(new java.awt.Color(255, 255, 250));
-        chkKulitMarmorata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKulitMarmorata.setForeground(new java.awt.Color(0, 0, 0));
-        chkKulitMarmorata.setText("Kulit Marmorata");
-        chkKulitMarmorata.setBorderPainted(true);
-        chkKulitMarmorata.setBorderPaintedFlat(true);
-        chkKulitMarmorata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkKulitMarmorata.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkKulitMarmorata.setName("chkKulitMarmorata"); // NOI18N
-        chkKulitMarmorata.setOpaque(false);
-        chkKulitMarmorata.setPreferredSize(new java.awt.Dimension(175, 23));
-        FormInput.add(chkKulitMarmorata);
-        chkKulitMarmorata.setBounds(614, 630, 103, 23);
+        chkKutisMarmorata.setBackground(new java.awt.Color(255, 255, 250));
+        chkKutisMarmorata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkKutisMarmorata.setForeground(new java.awt.Color(0, 0, 0));
+        chkKutisMarmorata.setText("Kutis Marmorata");
+        chkKutisMarmorata.setBorderPainted(true);
+        chkKutisMarmorata.setBorderPaintedFlat(true);
+        chkKutisMarmorata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkKutisMarmorata.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkKutisMarmorata.setName("chkKutisMarmorata"); // NOI18N
+        chkKutisMarmorata.setOpaque(false);
+        chkKutisMarmorata.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkKutisMarmorata);
+        chkKutisMarmorata.setBounds(614, 630, 103, 23);
 
         chkLainKulit.setBackground(new java.awt.Color(255, 255, 250));
         chkLainKulit.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2200,19 +2244,19 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(chkNormalMata);
         chkNormalMata.setBounds(147, 770, 64, 23);
 
-        chkAnemiaMata.setBackground(new java.awt.Color(255, 255, 250));
-        chkAnemiaMata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkAnemiaMata.setForeground(new java.awt.Color(0, 0, 0));
-        chkAnemiaMata.setText("Anemia");
-        chkAnemiaMata.setBorderPainted(true);
-        chkAnemiaMata.setBorderPaintedFlat(true);
-        chkAnemiaMata.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkAnemiaMata.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkAnemiaMata.setName("chkAnemiaMata"); // NOI18N
-        chkAnemiaMata.setOpaque(false);
-        chkAnemiaMata.setPreferredSize(new java.awt.Dimension(175, 23));
-        FormInput.add(chkAnemiaMata);
-        chkAnemiaMata.setBounds(220, 770, 70, 23);
+        chkAnemia.setBackground(new java.awt.Color(255, 255, 250));
+        chkAnemia.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkAnemia.setForeground(new java.awt.Color(0, 0, 0));
+        chkAnemia.setText("Anemia");
+        chkAnemia.setBorderPainted(true);
+        chkAnemia.setBorderPaintedFlat(true);
+        chkAnemia.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkAnemia.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkAnemia.setName("chkAnemia"); // NOI18N
+        chkAnemia.setOpaque(false);
+        chkAnemia.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkAnemia);
+        chkAnemia.setBounds(220, 770, 70, 23);
 
         chkIkterusMata.setBackground(new java.awt.Color(255, 255, 250));
         chkIkterusMata.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -2898,19 +2942,19 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(chkWhezing);
         chkWhezing.setBounds(300, 1050, 76, 23);
 
-        chkBenjolanKiri1.setBackground(new java.awt.Color(255, 255, 250));
-        chkBenjolanKiri1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkBenjolanKiri1.setForeground(new java.awt.Color(0, 0, 0));
-        chkBenjolanKiri1.setText("Stridor");
-        chkBenjolanKiri1.setBorderPainted(true);
-        chkBenjolanKiri1.setBorderPaintedFlat(true);
-        chkBenjolanKiri1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkBenjolanKiri1.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkBenjolanKiri1.setName("chkBenjolanKiri1"); // NOI18N
-        chkBenjolanKiri1.setOpaque(false);
-        chkBenjolanKiri1.setPreferredSize(new java.awt.Dimension(175, 23));
-        FormInput.add(chkBenjolanKiri1);
-        chkBenjolanKiri1.setBounds(386, 1050, 60, 23);
+        chkStridor.setBackground(new java.awt.Color(255, 255, 250));
+        chkStridor.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkStridor.setForeground(new java.awt.Color(0, 0, 0));
+        chkStridor.setText("Stridor");
+        chkStridor.setBorderPainted(true);
+        chkStridor.setBorderPaintedFlat(true);
+        chkStridor.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkStridor.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkStridor.setName("chkStridor"); // NOI18N
+        chkStridor.setOpaque(false);
+        chkStridor.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkStridor);
+        chkStridor.setBounds(386, 1050, 60, 23);
 
         chkLainParu.setBackground(new java.awt.Color(255, 255, 250));
         chkLainParu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3307,34 +3351,34 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(Tsex);
         Tsex.setBounds(198, 1218, 110, 23);
 
-        chkKelainan.setBackground(new java.awt.Color(255, 255, 250));
-        chkKelainan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
-        chkKelainan.setForeground(new java.awt.Color(0, 0, 0));
-        chkKelainan.setText("Kelainan :");
-        chkKelainan.setBorderPainted(true);
-        chkKelainan.setBorderPaintedFlat(true);
-        chkKelainan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        chkKelainan.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        chkKelainan.setName("chkKelainan"); // NOI18N
-        chkKelainan.setOpaque(false);
-        chkKelainan.setPreferredSize(new java.awt.Dimension(175, 23));
-        chkKelainan.addActionListener(new java.awt.event.ActionListener() {
+        chkKelainanUro.setBackground(new java.awt.Color(255, 255, 250));
+        chkKelainanUro.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkKelainanUro.setForeground(new java.awt.Color(0, 0, 0));
+        chkKelainanUro.setText("Kelainan :");
+        chkKelainanUro.setBorderPainted(true);
+        chkKelainanUro.setBorderPaintedFlat(true);
+        chkKelainanUro.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkKelainanUro.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkKelainanUro.setName("chkKelainanUro"); // NOI18N
+        chkKelainanUro.setOpaque(false);
+        chkKelainanUro.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkKelainanUro.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                chkKelainanActionPerformed(evt);
+                chkKelainanUroActionPerformed(evt);
             }
         });
-        FormInput.add(chkKelainan);
-        chkKelainan.setBounds(315, 1218, 70, 23);
+        FormInput.add(chkKelainanUro);
+        chkKelainanUro.setBounds(315, 1218, 70, 23);
 
-        Tkelainan.setForeground(new java.awt.Color(0, 0, 0));
-        Tkelainan.setName("Tkelainan"); // NOI18N
-        Tkelainan.addKeyListener(new java.awt.event.KeyAdapter() {
+        TkelainanUro.setForeground(new java.awt.Color(0, 0, 0));
+        TkelainanUro.setName("TkelainanUro"); // NOI18N
+        TkelainanUro.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TkelainanKeyPressed(evt);
+                TkelainanUroKeyPressed(evt);
             }
         });
-        FormInput.add(Tkelainan);
-        Tkelainan.setBounds(386, 1218, 130, 23);
+        FormInput.add(TkelainanUro);
+        TkelainanUro.setBounds(386, 1218, 130, 23);
 
         chkBAK.setBackground(new java.awt.Color(255, 255, 250));
         chkBAK.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -3685,6 +3729,21 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel105);
         jLabel105.setBounds(0, 1936, 160, 23);
 
+        BtnPasteHasil.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteHasil.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/paste.png"))); // NOI18N
+        BtnPasteHasil.setMnemonic('L');
+        BtnPasteHasil.setText("Paste");
+        BtnPasteHasil.setToolTipText("Alt+L");
+        BtnPasteHasil.setName("BtnPasteHasil"); // NOI18N
+        BtnPasteHasil.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnPasteHasil.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteHasilActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPasteHasil);
+        BtnPasteHasil.setBounds(740, 1358, 100, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -3817,7 +3876,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3832,7 +3891,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4410,7 +4469,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih salah satu datanya terlebih dahulu..!!");
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-            akses.setform("RMAsesmenRestrain");
+            akses.setform("RMAsesmenMedikPerinatologi");
             RMDokumenPenunjangMedis form = new RMDokumenPenunjangMedis(null, false);
             form.setData(TNoRw.getText(), TNoRM.getText(), TPasien.getText());
             form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
@@ -4702,15 +4761,15 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkSexActionPerformed
 
-    private void chkKelainanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkKelainanActionPerformed
-        Tkelainan.setText("");
-        if (chkKelainan.isSelected() == true) {
-            Tkelainan.setEnabled(true);
-            Tkelainan.requestFocus();
+    private void chkKelainanUroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkKelainanUroActionPerformed
+        TkelainanUro.setText("");
+        if (chkKelainanUro.isSelected() == true) {
+            TkelainanUro.setEnabled(true);
+            TkelainanUro.requestFocus();
         } else {
-            Tkelainan.setEnabled(false);
+            TkelainanUro.setEnabled(false);
         }
-    }//GEN-LAST:event_chkKelainanActionPerformed
+    }//GEN-LAST:event_chkKelainanUroActionPerformed
 
     private void chkBAKActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkBAKActionPerformed
         Tbak.setText("");
@@ -4964,15 +5023,15 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
     private void TsexKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TsexKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            chkKelainan.requestFocus();
+            chkKelainanUro.requestFocus();
         }
     }//GEN-LAST:event_TsexKeyPressed
 
-    private void TkelainanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkelainanKeyPressed
+    private void TkelainanUroKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TkelainanUroKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             chkBAK.requestFocus();
         }
-    }//GEN-LAST:event_TkelainanKeyPressed
+    }//GEN-LAST:event_TkelainanUroKeyPressed
 
     private void TbakKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbakKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -4997,6 +5056,52 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             Tpemerikaaan.requestFocus();
         }
     }//GEN-LAST:event_TkelainanEksKeyPressed
+
+    private void MnHasilPemeriksaanPenunjangActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHasilPemeriksaanPenunjangActionPerformed
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            akses.setform("RMAsesmenMedikPerinatologi");
+            DlgHasilPenunjangMedis form = new DlgHasilPenunjangMedis(null, false);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+            form.setLocationRelativeTo(internalFrame1);
+            form.setData(TNoRw.getText(), TPasien.getText(), TNoRM.getText());
+            form.setVisible(true);
+        }
+    }//GEN-LAST:event_MnHasilPemeriksaanPenunjangActionPerformed
+
+    private void BtnPasteHasilActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPasteHasilActionPerformed
+        if (akses.getPasteData().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan copy dulu data yg. dipilih..!!!!");
+        } else {
+            if (Tpemerikaaan.getText().equals("")) {
+                Tpemerikaaan.setText(akses.getPasteData());
+                akses.setCopyData("");
+            } else {
+                Tpemerikaaan.setText(Tpemerikaaan.getText() + "\n\n" + akses.getPasteData());
+                akses.setCopyData("");
+            }
+        }
+    }//GEN-LAST:event_BtnPasteHasilActionPerformed
+
+    private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
+        kodekamar = "";
+        kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+            + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMAsesmenMedikPerinatologi");
+        DlgCatatanResep form = new DlgCatatanResep(null, false);
+        form.isCek();
+        form.setData(TNoRw.getText(), "ranap");
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        ChkAccor.setSelected(false);
+        isMenu();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnResepActionPerformed
 
     /**
     * @param args the command line arguments
@@ -5025,7 +5130,9 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnPasteHasil;
     private widget.Button BtnPrint;
+    private widget.Button BtnResep;
     private widget.Button BtnRestor;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
@@ -5038,6 +5145,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.Label LCount;
     private widget.Label LCount1;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private javax.swing.JMenuItem MnHasilPemeriksaanPenunjang;
     private javax.swing.JMenuItem MnRiwayatData;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
@@ -5077,8 +5185,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.TextBox Thr;
     private widget.TextArea Tinstruksi;
     private widget.TextBox Tjk;
-    private widget.TextBox Tkelainan;
     private widget.TextBox TkelainanEks;
+    private widget.TextBox TkelainanUro;
     private widget.TextArea Tkeluhan;
     private widget.TextBox TketAs;
     private widget.TextBox TketLainLain;
@@ -5106,7 +5214,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.TextBox Tuk;
     private widget.TextBox TwarnaKulit;
     private javax.swing.JDialog WindowRiwayat;
-    public widget.CekBox chkAnemiaMata;
+    public widget.CekBox chkAnemia;
     public widget.CekBox chkAnensefali;
     public widget.CekBox chkAsimetrisEks;
     public widget.CekBox chkAsimetrisKepala;
@@ -5115,7 +5223,6 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     public widget.CekBox chkBAK;
     public widget.CekBox chkBenjolanKanan;
     public widget.CekBox chkBenjolanKiri;
-    public widget.CekBox chkBenjolanKiri1;
     public widget.CekBox chkBising;
     public widget.CekBox chkBji;
     public widget.CekBox chkBunyi;
@@ -5138,10 +5245,10 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     public widget.CekBox chkJantung;
     public widget.CekBox chkKanker;
     public widget.CekBox chkKejang;
-    public widget.CekBox chkKelainan;
     public widget.CekBox chkKelainanEks;
+    public widget.CekBox chkKelainanUro;
     public widget.CekBox chkKrammer;
-    public widget.CekBox chkKulitMarmorata;
+    public widget.CekBox chkKutisMarmorata;
     public widget.CekBox chkLabiog;
     public widget.CekBox chkLabiopalatos;
     public widget.CekBox chkLabioschisis;
@@ -5198,6 +5305,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     public widget.CekBox chkSimetrisKepala;
     public widget.CekBox chkSklerema;
     public widget.CekBox chkSpina;
+    public widget.CekBox chkStridor;
     public widget.CekBox chkStrok;
     public widget.CekBox chkSupel;
     public widget.CekBox chkTB;
@@ -5471,10 +5579,10 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }    
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getcppt());
-        BtnHapus.setEnabled(akses.getcppt());
-        BtnEdit.setEnabled(akses.getcppt());
-        BtnPrint.setEnabled(akses.getcppt());
+        BtnSimpan.setEnabled(akses.getasesmen_medik_anak_ranap());
+        BtnHapus.setEnabled(akses.getasesmen_medik_anak_ranap());
+        BtnEdit.setEnabled(akses.getasesmen_medik_anak_ranap());
+        BtnPrint.setEnabled(akses.getasesmen_medik_anak_ranap());
         MnRiwayatData.setEnabled(akses.getadmin());
         
         if (akses.getjml2() >= 1) {            
@@ -5516,12 +5624,646 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }
     
     private void cekData() {
-        //kesadaran
-//        if (ChkCompos.isSelected() == true) {
-//            compos = "ya";
-//        } else {
-//            compos = "tidak";
-//        }
+        //riwayat penyakit keluarga
+        if (chkHipertensi.isSelected() == true) {
+            hipertensi = "ya";
+        } else {
+            hipertensi = "tidak";
+        }
+        
+        if (chkDiabetes.isSelected() == true) {
+            diabet = "ya";
+        } else {
+            diabet = "tidak";
+        }
+        
+        if (chkJantung.isSelected() == true) {
+            jantung = "ya";
+        } else {
+            jantung = "tidak";
+        }
+        
+        if (chkStrok.isSelected() == true) {
+            strok = "ya";
+        } else {
+            strok = "tidak";
+        }
+        
+        if (chkAsma.isSelected() == true) {
+            asma = "ya";
+        } else {
+            asma = "tidak";
+        }
+        
+        if (chkKejang.isSelected() == true) {
+            kejang = "ya";
+        } else {
+            kejang = "tidak";
+        }
+        
+        if (chkHati.isSelected() == true) {
+            hati = "ya";
+        } else {
+            hati = "tidak";
+        }
+        
+        if (chkKanker.isSelected() == true) {
+            kanker = "ya";
+        } else {
+            kanker = "tidak";
+        }
+        
+        if (chkTB.isSelected() == true) {
+            tb = "ya";
+        } else {
+            tb = "tidak";
+        }
+        
+        if (chkPMS.isSelected() == true) {
+            pms = "ya";
+        } else {
+            pms = "tidak";
+        }
+        
+        if (chkPerdarahan.isSelected() == true) {
+            perdarahan = "ya";
+        } else {
+            perdarahan = "tidak";
+        }
+        
+        if (chkGinjal.isSelected() == true) {
+            ginjal = "ya";
+        } else {
+            ginjal = "tidak";
+        }
+        
+        if (chkLainLain.isSelected() == true) {
+            lainRiwayat = "ya";
+        } else {
+            lainRiwayat = "tidak";
+        }
+        
+        //pemeriksaan umum (kulit)
+        if (chkTurgor.isSelected() == true) {
+            turgor = "ya";
+        } else {
+            turgor = "tidak";
+        }
+        
+        if (chkSianosisKulit.isSelected() == true) {
+            sianosisKulit = "ya";
+        } else {
+            sianosisKulit = "tidak";
+        }
+        
+        if (chkPerdarahanKulit.isSelected() == true) {
+            perdarahanKulit = "ya";
+        } else {
+            perdarahanKulit = "tidak";
+        }
+        
+        if (chkIkterusPositif.isSelected() == true) {
+            ikterusPos = "ya";
+        } else {
+            ikterusPos = "tidak";
+        }
+        
+        if (chkIkterusNegatif.isSelected() == true) {
+            ikterusNeg = "ya";
+        } else {
+            ikterusNeg = "tidak";
+        }
+        
+        if (chkKrammer.isSelected() == true) {
+            kramer = "ya";
+        } else {
+            kramer = "tidak";
+        }
+        
+        if (chkHematoma.isSelected() == true) {
+            hematoma = "ya";
+        } else {
+            hematoma = "tidak";
+        }
+        
+        if (chkSklerema.isSelected() == true) {
+            sklere = "ya";
+        } else {
+            sklere = "tidak";
+        }
+        
+        if (chkKutisMarmorata.isSelected() == true) {
+            kutis = "ya";
+        } else {
+            kutis = "tidak";
+        }
+        
+        if (chkLainKulit.isSelected() == true) {
+            lainKulit = "ya";
+        } else {
+            lainKulit = "tidak";
+        }
+        
+        //pemeriksaan umum (kepala)
+        if (chkSimetrisKepala.isSelected() == true) {
+            simetrisKepala = "ya";
+        } else {
+            simetrisKepala = "tidak";
+        }
+        
+        if (chkAsimetrisKepala.isSelected() == true) {
+            asimetrisKepala = "ya";
+        } else {
+            asimetrisKepala = "tidak";
+        }
+        
+        if (chkCephal.isSelected() == true) {
+            cepal = "ya";
+        } else {
+            cepal = "tidak";
+        }
+        
+        if (chkCaput.isSelected() == true) {
+            caput = "ya";
+        } else {
+            caput = "tidak";
+        }
+        
+        if (chkAnensefali.isSelected() == true) {
+            anen = "ya";
+        } else {
+            anen = "tidak";
+        }
+        
+        if (chkMicrosefal.isSelected() == true) {
+            micros = "ya";
+        } else {
+            micros = "tidak";
+        }
+        
+        if (chkhydrosefalus.isSelected() == true) {
+            hidro = "ya";
+        } else {
+            hidro = "tidak";
+        }
+        
+        if (chkLainKepala.isSelected() == true) {
+            lainKepala = "ya";
+        } else {
+            lainKepala = "tidak";
+        }
+        
+        //pemeriksaan umum (uub)
+        if (chkDatar.isSelected() == true) {
+            datar = "ya";
+        } else {
+            datar = "tidak";
+        }
+        
+        if (chkCembung.isSelected() == true) {
+            cembung = "ya";
+        } else {
+            cembung = "tidak";
+        }
+        
+        if (chkCekung.isSelected() == true) {
+            cekung = "ya";
+        } else {
+            cekung = "tidak";
+        }
+        
+        if (chkLainUUB.isSelected() == true) {
+            lainUub = "ya";
+        } else {
+            lainUub = "tidak";
+        }
+        
+        //pemeriksaan umum (mata)
+        if (chkNormalMata.isSelected() == true) {
+            normalMata = "ya";
+        } else {
+            normalMata = "tidak";
+        }
+        
+        if (chkAnemia.isSelected() == true) {
+            anemia = "ya";
+        } else {
+            anemia = "tidak";
+        }
+        
+        if (chkIkterusMata.isSelected() == true) {
+            ikterus = "ya";
+        } else {
+            ikterus = "tidak";
+        }
+        
+        if (chkSekretMata.isSelected() == true) {
+            sekretMata = "ya";
+        } else {
+            sekretMata = "tidak";
+        }
+        
+        if (chkLainMata.isSelected() == true) {
+            LainMata = "ya";
+        } else {
+            LainMata = "tidak";
+        }
+        
+        //pemeriksaan umum (tht)
+        if (chkNormalTHT.isSelected() == true) {
+            normalTht = "ya";
+        } else {
+            normalTht = "tidak";
+        }
+        
+        if (chkNCH.isSelected() == true) {
+            nch = "ya";
+        } else {
+            nch = "tidak";
+        }
+        
+        if (chkSianosisTHT.isSelected() == true) {
+            sianosisTht = "ya";
+        } else {
+            sianosisTht = "tidak";
+        }
+        
+        if (chkSekretTHT.isSelected() == true) {
+            sekretTht = "ya";
+        } else {
+            sekretTht = "tidak";
+        }
+        
+        if (chkLainTHT.isSelected() == true) {
+            lainTht = "ya";
+        } else {
+            lainTht = "tidak";
+        }
+        
+        //pemeriksaan umum (mulut)
+        if (chkNormalMulut.isSelected() == true) {
+            normalMulut = "ya";
+        } else {
+            normalMulut = "tidak";
+        }
+        
+        if (chkLabioschisis.isSelected() == true) {
+            labioS = "ya";
+        } else {
+            labioS = "tidak";
+        }
+        
+        if (chkLabiopalatos.isSelected() == true) {
+            labioP = "ya";
+        } else {
+            labioP = "tidak";
+        }
+        
+        if (chkLabiog.isSelected() == true) {
+            labioG = "ya";
+        } else {
+            labioG = "tidak";
+        }
+        
+        if (chkMukosa.isSelected() == true) {
+            mukosa = "ya";
+        } else {
+            mukosa = "tidak";
+        }
+        
+        if (chkReflek.isSelected() == true) {
+            reflek = "ya";
+        } else {
+            reflek = "tidak";
+        }
+        
+        if (chkLainMulut.isSelected() == true) {
+            lainMulut = "ya";
+        } else {
+            lainMulut = "tidak";
+        }
+        
+        //pemeriksaan umum (leher)
+        if (chkNormalLeher.isSelected() == true) {
+            normalLeher = "ya";
+        } else {
+            normalLeher = "tidak";
+        }
+        
+        if (chkTortikolis.isSelected() == true) {
+            torti = "ya";
+        } else {
+            torti = "tidak";
+        }
+        
+        if (chkBenjolanKanan.isSelected() == true) {
+            benjolKanan = "ya";
+        } else {
+            benjolKanan = "tidak";
+        }
+        
+        if (chkBenjolanKiri.isSelected() == true) {
+            benjolKiri = "ya";
+        } else {
+            benjolKiri = "tidak";
+        }
+        
+        if (chkLainLeher.isSelected() == true) {
+            lainLeher = "ya";
+        } else {
+            lainLeher = "tidak";
+        }
+        
+        //pemeriksaan umum (dada)
+        if (chkSimetrisDada.isSelected() == true) {
+            simetrisDada = "ya";
+        } else {
+            simetrisDada = "tidak";
+        }
+        
+        if (chkTidakSimetris.isSelected() == true) {
+            tidakSimetris = "ya";
+        } else {
+            tidakSimetris = "tidak";
+        }
+        
+        if (chkRetraksiNegatif.isSelected() == true) {
+            retraksiNeg = "ya";
+        } else {
+            retraksiNeg = "tidak";
+        }
+        
+        if (chkRetraksiPositif.isSelected() == true) {
+            retraksiPos = "ya";
+        } else {
+            retraksiPos = "tidak";
+        }
+        
+        if (chkSesak.isSelected() == true) {
+            sesak = "ya";
+        } else {
+            sesak = "tidak";
+        }
+        
+        if (chkMerintih.isSelected() == true) {
+            merintih = "ya";
+        } else {
+            merintih = "tidak";
+        }
+        
+        if (chkSianosisDada.isSelected() == true) {
+            sianosisDada = "ya";
+        } else {
+            sianosisDada = "tidak";
+        }
+        
+        if (chkLainDada.isSelected() == true) {
+            lainDada = "ya";
+        } else {
+            lainDada = "tidak";
+        }
+        
+        //pemeriksaan umum (jantung)
+        if (chkBji.isSelected() == true) {
+            bj = "ya";
+        } else {
+            bj = "tidak";
+        }
+        
+        if (chkMurni.isSelected() == true) {
+            murni = "ya";
+        } else {
+            murni = "tidak";
+        }
+        
+        if (chkTidakMurni.isSelected() == true) {
+            tidakMurni = "ya";
+        } else {
+            tidakMurni = "tidak";
+        }
+        
+        if (chkReguler.isSelected() == true) {
+            reguler = "ya";
+        } else {
+            reguler = "tidak";
+        }
+        
+        if (chkTidakReguler.isSelected() == true) {
+            tidakReguler = "ya";
+        } else {
+            tidakReguler = "tidak";
+        }
+        
+        if (chkBunyi.isSelected() == true) {
+            bunyi = "ya";
+        } else {
+            bunyi = "tidak";
+        }
+        
+        //pemeriksaan umum (paru)
+        if (chkVesikuler.isSelected() == true) {
+            vesikuler = "ya";
+        } else {
+            vesikuler = "tidak";
+        }
+        
+        if (chkRonchi.isSelected() == true) {
+            ronchi = "ya";
+        } else {
+            ronchi = "tidak";
+        }
+        
+        if (chkWhezing.isSelected() == true) {
+            wezing = "ya";
+        } else {
+            wezing = "tidak";
+        }
+        
+        if (chkStridor.isSelected() == true) {
+            stridor = "ya";
+        } else {
+            stridor = "tidak";
+        }
+        
+        if (chkLainParu.isSelected() == true) {
+            lainParu = "ya";
+        } else {
+            lainParu = "tidak";
+        }
+        
+        //pemeriksaan umum (perut)
+        if (chkSupel.isSelected() == true) {
+            supel = "ya";
+        } else {
+            supel = "tidak";
+        }
+        
+        if (chkDistensi.isSelected() == true) {
+            disten = "ya";
+        } else {
+            disten = "tidak";
+        }
+        
+        if (chkBising.isSelected() == true) {
+            bising = "ya";
+        } else {
+            bising = "tidak";
+        }
+        
+        if (chkPembesaranHepar.isSelected() == true) {
+            hepar = "ya";
+        } else {
+            hepar = "tidak";
+        }
+        
+        if (chkPembesaranLimpa.isSelected() == true) {
+            limpa = "ya";
+        } else {
+            limpa = "tidak";
+        }
+        
+        if (chkNyeri.isSelected() == true) {
+            nyeri = "ya";
+        } else {
+            nyeri = "tidak";
+        }
+        
+        if (chkMasaNegatif.isSelected() == true) {
+            masaNeg = "ya";
+        } else {
+            masaNeg = "tidak";
+        }
+        
+        if (chkMasaPositif.isSelected() == true) {
+            masaPos = "ya";
+        } else {
+            masaPos = "tidak";
+        }
+        
+        if (chkUK.isSelected() == true) {
+            uk = "ya";
+        } else {
+            uk = "tidak";
+        }
+        
+        if (chkLokasi.isSelected() == true) {
+            lokasi = "ya";
+        } else {
+            lokasi = "tidak";
+        }
+        
+        //pemeriksaan umum (tali pusat)
+        if (chkSegar.isSelected() == true) {
+            segar = "ya";
+        } else {
+            segar = "tidak";
+        }
+        
+        if (chkLayu.isSelected() == true) {
+            layu = "ya";
+        } else {
+            layu = "tidak";
+        }
+        
+        if (chkLainTali.isSelected() == true) {
+            lainTali = "ya";
+        } else {
+            lainTali = "tidak";
+        }
+        
+        //pemeriksaan umum (punggung)
+        if (chkNormalPunggung.isSelected() == true) {
+            normalPunggung = "ya";
+        } else {
+            normalPunggung = "tidak";
+        }
+        
+        if (chkSpina.isSelected() == true) {
+            spina = "ya";
+        } else {
+            spina = "tidak";
+        }
+        
+        if (chkGibus.isSelected() == true) {
+            gibus = "ya";
+        } else {
+            gibus = "tidak";
+        }
+        
+        if (chkLainPunggung.isSelected() == true) {
+            lainPunggung = "ya";
+        } else {
+            lainPunggung = "tidak";
+        }
+        
+        //pemeriksaan umum (urogenitalia)
+        if (chkSex.isSelected() == true) {
+            sex = "ya";
+        } else {
+            sex = "tidak";
+        }
+        
+        if (chkKelainanUro.isSelected() == true) {
+            kelainanUro = "ya";
+        } else {
+            kelainanUro = "tidak";
+        }
+        
+        if (chkBAK.isSelected() == true) {
+            bak = "ya";
+        } else {
+            bak = "tidak";
+        }
+        
+        //pemeriksaan umum (anus)
+        if (chkBAB.isSelected() == true) {
+            bab = "ya";
+        } else {
+            bab = "tidak";
+        }
+        
+        //pemeriksaan umum (ekstremitas)
+        if (chkSimetrisEks.isSelected() == true) {
+            simetrisEks = "ya";
+        } else {
+            simetrisEks = "tidak";
+        }
+        
+        if (chkAsimetrisEks.isSelected() == true) {
+            asimetrisEks = "ya";
+        } else {
+            asimetrisEks = "tidak";
+        }
+        
+        if (chkReflekMoroNegatif.isSelected() == true) {
+            reflekMoroNeg = "ya";
+        } else {
+            reflekMoroNeg = "tidak";
+        }
+        
+        if (chkReflekMoroPositif.isSelected() == true) {
+            reflekMoroPos = "ya";
+        } else {
+            reflekMoroPos = "tidak";
+        }
+        
+        if (chkLainEks.isSelected() == true) {
+            lainEks = "ya";
+        } else {
+            lainEks = "tidak";
+        }
+        
+        if (chkEdema.isSelected() == true) {
+            edema = "ya";
+        } else {
+            edema = "tidak";
+        }
+        
+        if (chkKelainanEks.isSelected() == true) {
+            kelainanEks = "ya";
+        } else {
+            kelainanEks = "tidak";
+        }
     }
     
     private void hapus() {
@@ -5554,12 +6296,698 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }
     
     private void dataCek() {
-        //kesadaran
-//        if (compos.equals("ya")) {
-//            ChkCompos.setSelected(true);
-//        } else {
-//            ChkCompos.setSelected(false);
-//        }
+        //riwayat penyakit keluarga        
+        if (hipertensi.equals("ya")) {
+            chkHipertensi.setSelected(true);
+        } else {
+            chkHipertensi.setSelected(false);
+        }
+        
+        if (diabet.equals("ya")) {
+            chkDiabetes.setSelected(true);
+        } else {
+            chkDiabetes.setSelected(false);
+        }
+        
+        if (jantung.equals("ya")) {
+            chkJantung.setSelected(true);
+        } else {
+            chkJantung.setSelected(false);
+        }
+        
+        if (strok.equals("ya")) {
+            chkStrok.setSelected(true);
+        } else {
+            chkStrok.setSelected(false);
+        }
+        
+        if (asma.equals("ya")) {
+            chkAsma.setSelected(true);
+        } else {
+            chkAsma.setSelected(false);
+        }
+        
+        if (kejang.equals("ya")) {
+            chkKejang.setSelected(true);
+        } else {
+            chkKejang.setSelected(false);
+        }
+        
+        if (hati.equals("ya")) {
+            chkHati.setSelected(true);
+        } else {
+            chkHati.setSelected(false);
+        }
+        
+        if (kanker.equals("ya")) {
+            chkKanker.setSelected(true);
+        } else {
+            chkKanker.setSelected(false);
+        }
+        
+        if (tb.equals("ya")) {
+            chkTB.setSelected(true);
+        } else {
+            chkTB.setSelected(false);
+        }
+        
+        if (pms.equals("ya")) {
+            chkPMS.setSelected(true);
+        } else {
+            chkPMS.setSelected(false);
+        }
+        
+        if (perdarahan.equals("ya")) {
+            chkPerdarahan.setSelected(true);
+        } else {
+            chkPerdarahan.setSelected(false);
+        }
+        
+        if (ginjal.equals("ya")) {
+            chkGinjal.setSelected(true);
+        } else {
+            chkGinjal.setSelected(false);
+        }
+        
+        if (lainRiwayat.equals("ya")) {
+            chkLainLain.setSelected(true);
+            TketLainLain.setEnabled(true);
+        } else {
+            chkLainLain.setSelected(false);
+            TketLainLain.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (kulit)
+        if (turgor.equals("ya")) {
+            chkTurgor.setSelected(true);
+            Tturgor.setEnabled(true);
+        } else {
+            chkTurgor.setSelected(false);
+            Tturgor.setEnabled(false);
+        }
+        
+        if (sianosisKulit.equals("ya")) {
+            chkSianosisKulit.setSelected(true);
+        } else {
+            chkSianosisKulit.setSelected(false);
+        }
+        
+        if (perdarahanKulit.equals("ya")) {
+            chkPerdarahanKulit.setSelected(true);
+        } else {
+            chkPerdarahanKulit.setSelected(false);
+        }
+        
+        if (ikterusPos.equals("ya")) {
+            chkIkterusPositif.setSelected(true);
+        } else {
+            chkIkterusPositif.setSelected(false);
+        }
+        
+        if (ikterusNeg.equals("ya")) {
+            chkIkterusNegatif.setSelected(true);
+        } else {
+            chkIkterusNegatif.setSelected(false);
+        }
+        
+        if (kramer.equals("ya")) {
+            chkKrammer.setSelected(true);
+            Tkramer.setEnabled(true);
+        } else {
+            chkKrammer.setSelected(false);
+            Tkramer.setEnabled(false);
+        }
+        
+        if (hematoma.equals("ya")) {
+            chkHematoma.setSelected(true);
+        } else {
+            chkHematoma.setSelected(false);
+        }
+        
+        if (sklere.equals("ya")) {
+            chkSklerema.setSelected(true);
+        } else {
+            chkSklerema.setSelected(false);
+        }
+        
+        if (kutis.equals("ya")) {
+            chkKutisMarmorata.setSelected(true);
+        } else {
+            chkKutisMarmorata.setSelected(false);
+        }
+        
+        if (lainKulit.equals("ya")) {
+            chkLainKulit.setSelected(true);
+            TKetLainKulit.setEnabled(true);
+        } else {
+            chkLainKulit.setSelected(false);
+            TKetLainKulit.setEnabled(false);
+        }        
+        
+        //pemeriksaan umum (kepala)
+        if (simetrisKepala.equals("ya")) {
+            chkSimetrisKepala.setSelected(true);
+        } else {
+            chkSimetrisKepala.setSelected(false);
+        }
+        
+        if (asimetrisKepala.equals("ya")) {
+            chkAsimetrisKepala.setSelected(true);
+        } else {
+            chkAsimetrisKepala.setSelected(false);
+        }
+        
+        if (cepal.equals("ya")) {
+            chkCephal.setSelected(true);
+        } else {
+            chkCephal.setSelected(false);
+        }
+        
+        if (caput.equals("ya")) {
+            chkCaput.setSelected(true);
+        } else {
+            chkCaput.setSelected(false);
+        }
+        
+        if (anen.equals("ya")) {
+            chkAnensefali.setSelected(true);
+        } else {
+            chkAnensefali.setSelected(false);
+        }
+        
+        if (micros.equals("ya")) {
+            chkMicrosefal.setSelected(true);
+        } else {
+            chkMicrosefal.setSelected(false);
+        }
+        
+        if (hidro.equals("ya")) {
+            chkhydrosefalus.setSelected(true);
+        } else {
+            chkhydrosefalus.setSelected(false);
+        }
+        
+        if (lainKepala.equals("ya")) {
+            chkLainKepala.setSelected(true);
+            TKetLainKepala.setEnabled(true);
+        } else {
+            chkLainKepala.setSelected(false);
+            TKetLainKepala.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (uub)
+        if (datar.equals("ya")) {
+            chkDatar.setSelected(true);
+        } else {
+            chkDatar.setSelected(false);
+        }
+        
+        if (cembung.equals("ya")) {
+            chkCembung.setSelected(true);
+        } else {
+            chkCembung.setSelected(false);
+        }
+        
+        if (cekung.equals("ya")) {
+            chkCekung.setSelected(true);
+        } else {
+            chkCekung.setSelected(false);
+        }
+        
+        if (lainUub.equals("ya")) {
+            chkLainUUB.setSelected(true);
+            TKetLainUUB.setEnabled(true);
+        } else {
+            chkLainUUB.setSelected(false);
+            TKetLainUUB.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (mata)
+        if (normalMata.equals("ya")) {
+            chkNormalMata.setSelected(true);
+        } else {
+            chkNormalMata.setSelected(false);
+        }
+        
+        if (anemia.equals("ya")) {
+            chkAnemia.setSelected(true);
+        } else {
+            chkAnemia.setSelected(false);
+        }
+        
+        if (ikterus.equals("ya")) {
+            chkIkterusMata.setSelected(true);
+        } else {
+            chkIkterusMata.setSelected(false);
+        }
+        
+        if (sekretMata.equals("ya")) {
+            chkSekretMata.setSelected(true);
+        } else {
+            chkSekretMata.setSelected(false);
+        }
+        
+        if (LainMata.equals("ya")) {
+            chkLainMata.setSelected(true);
+            TKetLainMata.setEnabled(true);
+        } else {
+            chkLainMata.setSelected(false);
+            TKetLainMata.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (tht)
+        if (normalTht.equals("ya")) {
+            chkNormalTHT.setSelected(true);
+        } else {
+            chkNormalTHT.setSelected(false);
+        }
+        
+        if (nch.equals("ya")) {
+            chkNCH.setSelected(true);
+        } else {
+            chkNCH.setSelected(false);
+        }
+        
+        if (sianosisTht.equals("ya")) {
+            chkSianosisTHT.setSelected(true);
+        } else {
+            chkSianosisTHT.setSelected(false);
+        }
+        
+        if (sekretTht.equals("ya")) {
+            chkSekretTHT.setSelected(true);
+        } else {
+            chkSekretTHT.setSelected(false);
+        }
+        
+        if (lainTht.equals("ya")) {
+            chkLainTHT.setSelected(true);
+            TKetLainTHT.setEnabled(true);
+        } else {
+            chkLainTHT.setSelected(false);
+            TKetLainTHT.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (mulut)
+        if (normalMulut.equals("ya")) {
+            chkNormalMulut.setSelected(true);
+        } else {
+            chkNormalMulut.setSelected(false);
+        }
+        
+        if (labioS.equals("ya")) {
+            chkLabioschisis.setSelected(true);
+        } else {
+            chkLabioschisis.setSelected(false);
+        }
+        
+        if (labioP.equals("ya")) {
+            chkLabiopalatos.setSelected(true);
+        } else {
+            chkLabiopalatos.setSelected(false);
+        }
+        
+        if (labioG.equals("ya")) {
+            chkLabiog.setSelected(true);
+        } else {
+            chkLabiog.setSelected(false);
+        }
+        
+        if (mukosa.equals("ya")) {
+            chkMukosa.setSelected(true);
+            TMukosa.setEnabled(true);
+        } else {
+            chkMukosa.setSelected(false);
+            TMukosa.setEnabled(false);
+        }
+        
+        if (reflek.equals("ya")) {
+            chkReflek.setSelected(true);
+            TReflek.setEnabled(true);
+        } else {
+            chkReflek.setSelected(false);
+            TReflek.setEnabled(false);
+        }
+        
+        if (lainMulut.equals("ya")) {
+            chkLainMulut.setSelected(true);
+            TKetLainMulut.setEnabled(true);
+        } else {
+            chkLainMulut.setSelected(false);
+            TKetLainMulut.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (leher)
+        if (normalLeher.equals("ya")) {
+            chkNormalLeher.setSelected(true);
+        } else {
+            chkNormalLeher.setSelected(false);
+        }
+        
+        if (torti.equals("ya")) {
+            chkTortikolis.setSelected(true);
+        } else {
+            chkTortikolis.setSelected(false);
+        }
+        
+        if (benjolKanan.equals("ya")) {
+            chkBenjolanKanan.setSelected(true);
+        } else {
+            chkBenjolanKanan.setSelected(false);
+        }
+        
+        if (benjolKiri.equals("ya")) {
+            chkBenjolanKiri.setSelected(true);
+        } else {
+            chkBenjolanKiri.setSelected(false);
+        }
+        
+        if (lainLeher.equals("ya")) {
+            chkLainLeher.setSelected(true);
+            TKetLainLeher.setEnabled(true);
+        } else {
+            chkLainLeher.setSelected(false);
+            TKetLainLeher.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (dada)
+        if (simetrisDada.equals("ya")) {
+            chkSimetrisDada.setSelected(true);
+        } else {
+            chkSimetrisDada.setSelected(false);
+        }
+        
+        if (tidakSimetris.equals("ya")) {
+            chkTidakSimetris.setSelected(true);
+        } else {
+            chkTidakSimetris.setSelected(false);
+        }
+        
+        if (retraksiPos.equals("ya")) {
+            chkRetraksiPositif.setSelected(true);
+        } else {
+            chkRetraksiPositif.setSelected(false);
+        }
+        
+        if (retraksiNeg.equals("ya")) {
+            chkRetraksiNegatif.setSelected(true);
+        } else {
+            chkRetraksiNegatif.setSelected(false);
+        }
+        
+        if (sesak.equals("ya")) {
+            chkSesak.setSelected(true);
+        } else {
+            chkSesak.setSelected(false);
+        }
+        
+        if (merintih.equals("ya")) {
+            chkMerintih.setSelected(true);
+        } else {
+            chkMerintih.setSelected(false);
+        }
+        
+        if (sianosisDada.equals("ya")) {
+            chkSianosisDada.setSelected(true);
+        } else {
+            chkSianosisDada.setSelected(false);
+        }
+        
+        if (lainDada.equals("ya")) {
+            chkLainDada.setSelected(true);
+            TKetLainDada.setEnabled(true);
+        } else {
+            chkLainDada.setSelected(false);
+            TKetLainDada.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (jantung)
+        if (bj.equals("ya")) {
+            chkBji.setSelected(true);
+        } else {
+            chkBji.setSelected(false);
+        }
+        
+        if (murni.equals("ya")) {
+            chkMurni.setSelected(true);
+        } else {
+            chkMurni.setSelected(false);
+        }
+        
+        if (tidakMurni.equals("ya")) {
+            chkTidakMurni.setSelected(true);
+        } else {
+            chkTidakMurni.setSelected(false);
+        }
+        
+        if (reguler.equals("ya")) {
+            chkReguler.setSelected(true);
+        } else {
+            chkReguler.setSelected(false);
+        }
+        
+        if (tidakReguler.equals("ya")) {
+            chkTidakReguler.setSelected(true);
+        } else {
+            chkTidakReguler.setSelected(false);
+        }
+        
+        if (bunyi.equals("ya")) {
+            chkBunyi.setSelected(true);
+            TKetBunyi.setEnabled(true);
+        } else {
+            chkBunyi.setSelected(false);
+            TKetBunyi.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (paru)
+        if (vesikuler.equals("ya")) {
+            chkVesikuler.setSelected(true);
+        } else {
+            chkVesikuler.setSelected(false);
+        }
+        
+        if (ronchi.equals("ya")) {
+            chkRonchi.setSelected(true);
+        } else {
+            chkRonchi.setSelected(false);
+        }
+        
+        if (wezing.equals("ya")) {
+            chkWhezing.setSelected(true);
+        } else {
+            chkWhezing.setSelected(false);
+        }
+        
+        if (stridor.equals("ya")) {
+            chkStridor.setSelected(true);
+        } else {
+            chkStridor.setSelected(false);
+        }
+        
+        if (lainParu.equals("ya")) {
+            chkLainParu.setSelected(true);
+            TKetLainParu.setEnabled(true);
+        } else {
+            chkLainParu.setSelected(false);
+            TKetLainParu.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (perut)
+        if (supel.equals("ya")) {
+            chkSupel.setSelected(true);
+        } else {
+            chkSupel.setSelected(false);
+        }
+        
+        if (disten.equals("ya")) {
+            chkDistensi.setSelected(true);
+        } else {
+            chkDistensi.setSelected(false);
+        }
+        
+        if (bising.equals("ya")) {
+            chkBising.setSelected(true);
+        } else {
+            chkBising.setSelected(false);
+        }
+        
+        if (hepar.equals("ya")) {
+            chkPembesaranHepar.setSelected(true);
+        } else {
+            chkPembesaranHepar.setSelected(false);
+        }
+        
+        if (limpa.equals("ya")) {
+            chkPembesaranLimpa.setSelected(true);
+        } else {
+            chkPembesaranLimpa.setSelected(false);
+        }
+        
+        if (nyeri.equals("ya")) {
+            chkNyeri.setSelected(true);
+            TNyeri.setEnabled(true);
+        } else {
+            chkNyeri.setSelected(false);
+            TNyeri.setEnabled(false);
+        }
+        
+        if (masaPos.equals("ya")) {
+            chkMasaPositif.setSelected(true);
+        } else {
+            chkMasaPositif.setSelected(false);
+        }
+        
+        if (masaNeg.equals("ya")) {
+            chkMasaNegatif.setSelected(true);
+        } else {
+            chkMasaNegatif.setSelected(false);
+        }
+        
+        if (uk.equals("ya")) {
+            chkUK.setSelected(true);
+            Tuk.setEnabled(true);
+        } else {
+            chkUK.setSelected(false);
+            Tuk.setEnabled(false);
+        }
+        
+        if (lokasi.equals("ya")) {
+            chkLokasi.setSelected(true);
+            Tlokasi.setEnabled(true);
+        } else {
+            chkLokasi.setSelected(false);
+            Tlokasi.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (tali pusat)
+        if (segar.equals("ya")) {
+            chkSegar.setSelected(true);
+        } else {
+            chkSegar.setSelected(false);
+        }
+        
+        if (layu.equals("ya")) {
+            chkLayu.setSelected(true);
+        } else {
+            chkLayu.setSelected(false);
+        }
+        
+        if (lainTali.equals("ya")) {
+            chkLainTali.setSelected(true);
+            TKetLainTali.setEnabled(true);
+        } else {
+            chkLainTali.setSelected(false);
+            TKetLainTali.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (punggung)
+        if (normalPunggung.equals("ya")) {
+            chkNormalPunggung.setSelected(true);
+        } else {
+            chkNormalPunggung.setSelected(false);
+        }
+        
+        if (spina.equals("ya")) {
+            chkSpina.setSelected(true);
+        } else {
+            chkSpina.setSelected(false);
+        }
+        
+        if (gibus.equals("ya")) {
+            chkGibus.setSelected(true);
+        } else {
+            chkGibus.setSelected(false);
+        }
+        
+        if (lainPunggung.equals("ya")) {
+            chkLainPunggung.setSelected(true);
+            TKetLainPunggung.setEnabled(true);
+        } else {
+            chkLainPunggung.setSelected(false);
+            TKetLainPunggung.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (urogenitalia)
+        if (sex.equals("ya")) {
+            chkSex.setSelected(true);
+            Tsex.setEnabled(true);
+        } else {
+            chkSex.setSelected(false);
+            Tsex.setEnabled(false);
+        }
+        
+        if (kelainanUro.equals("ya")) {
+            chkKelainanUro.setSelected(true);
+            TkelainanUro.setEnabled(true);
+        } else {
+            chkKelainanUro.setSelected(false);
+            TkelainanUro.setEnabled(false);
+        }
+        
+        if (bak.equals("ya")) {
+            chkBAK.setSelected(true);
+            Tbak.setEnabled(true);
+        } else {
+            chkBAK.setSelected(false);
+            Tbak.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (anus)
+        if (bab.equals("ya")) {
+            chkBAB.setSelected(true);
+            Tbab.setEnabled(true);
+        } else {
+            chkBAB.setSelected(false);
+            Tbab.setEnabled(false);
+        }
+        
+        //pemeriksaan umum (ekstremitas)
+        if (simetrisEks.equals("ya")) {
+            chkSimetrisEks.setSelected(true);
+        } else {
+            chkSimetrisEks.setSelected(false);
+        }
+        
+        if (asimetrisEks.equals("ya")) {
+            chkAsimetrisEks.setSelected(true);
+        } else {
+            chkAsimetrisEks.setSelected(false);
+        }
+        
+        if (reflekMoroPos.equals("ya")) {
+            chkReflekMoroPositif.setSelected(true);
+        } else {
+            chkReflekMoroPositif.setSelected(false);
+        }
+        
+        if (reflekMoroNeg.equals("ya")) {
+            chkReflekMoroNegatif.setSelected(true);
+        } else {
+            chkReflekMoroNegatif.setSelected(false);
+        }
+        
+        if (lainEks.equals("ya")) {
+            chkLainEks.setSelected(true);
+            TKetLainEks.setEnabled(true);
+        } else {
+            chkLainEks.setSelected(false);
+            TKetLainEks.setEnabled(false);
+        }
+        
+        if (edema.equals("ya")) {
+            chkEdema.setSelected(true);
+        } else {
+            chkEdema.setSelected(false);
+        }
+        
+        if (kelainanEks.equals("ya")) {
+            chkKelainanEks.setSelected(true);
+            TkelainanEks.setEnabled(true);
+        } else {
+            chkKelainanEks.setSelected(false);
+            TkelainanEks.setEnabled(false);
+        }
     }
     
     public void isMenu() {
@@ -5866,7 +7294,112 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         }
     }
     
-    private void variabelBersih() {        
+    private void variabelBersih() {
         user = "";
+        dataKonfirmasi = "";
+        hipertensi = "";
+        diabet = "";
+        jantung = "";
+        strok = "";
+        asma = "";
+        kejang = "";
+        hati = "";
+        kanker = "";
+        tb = "";
+        pms = "";
+        perdarahan = "";
+        ginjal = "";
+        lainRiwayat = "";
+        turgor = "";
+        sianosisKulit = "";
+        perdarahanKulit = "";
+        ikterusPos = "";
+        ikterusNeg = "";
+        kramer = "";
+        hematoma = "";
+        sklere = "";
+        kutis = "";
+        lainKulit = "";
+        simetrisKepala = "";
+        asimetrisKepala = "";
+        cepal = "";
+        caput = "";
+        anen = "";
+        micros = "";
+        hidro = "";
+        lainKepala = "";
+        datar = "";
+        cembung = "";
+        cekung = "";
+        lainUub = "";
+        normalMata = "";
+        anemia = "";
+        ikterus = "";
+        sekretMata = "";
+        LainMata = "";
+        normalTht = "";
+        nch = "";
+        sianosisTht = "";
+        sekretTht = "";
+        lainTht = "";
+        normalMulut = "";
+        labioS = "";
+        labioP = "";
+        labioG = "";
+        mukosa = "";
+        reflek = "";
+        lainMulut = "";
+        normalLeher = "";
+        torti = "";
+        benjolKanan = "";
+        benjolKiri = "";
+        lainLeher = "";
+        simetrisDada = "";
+        tidakSimetris = "";
+        retraksiPos = "";
+        retraksiNeg = "";
+        sesak = "";
+        merintih = "";
+        sianosisDada = "";
+        lainDada = "";
+        bj = "";
+        murni = "";
+        tidakMurni = "";
+        reguler = "";
+        tidakReguler = "";
+        bunyi = "";
+        vesikuler = "";
+        ronchi = "";
+        wezing = "";
+        stridor = "";
+        lainParu = "";
+        supel = "";
+        disten = "";
+        bising = "";
+        hepar = "";
+        limpa = "";
+        nyeri = "";
+        masaPos = "";
+        masaNeg = "";
+        uk = "";
+        lokasi = "";
+        segar = "";
+        layu = "";
+        lainTali = "";
+        normalPunggung = "";
+        spina = "";
+        gibus = "";
+        lainPunggung = "";
+        sex = "";
+        kelainanUro = "";
+        bak = "";
+        bab = "";
+        simetrisEks = "";
+        asimetrisEks = "";
+        reflekMoroPos = "";
+        reflekMoroNeg = "";
+        lainEks = "";
+        edema = "";
+        kelainanEks = "";
     }
 }
