@@ -2318,7 +2318,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         noSrtMati.setBounds(130, 62, 280, 23);
 
         tglMati.setEditable(false);
-        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        tglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         tglMati.setDisplayFormat("dd-MM-yyyy");
         tglMati.setName("tglMati"); // NOI18N
         tglMati.setOpaque(false);
@@ -2334,7 +2334,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel48.setBounds(220, 91, 90, 23);
 
         noLP.setEditable(false);
-        noLP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        noLP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         noLP.setDisplayFormat("dd-MM-yyyy");
         noLP.setName("noLP"); // NOI18N
         noLP.setOpaque(false);
@@ -2424,7 +2424,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel30.setBounds(0, 25, 160, 23);
 
         TanggalRujukKeluar.setEditable(false);
-        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        TanggalRujukKeluar.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         TanggalRujukKeluar.setDisplayFormat("dd-MM-yyyy");
         TanggalRujukKeluar.setName("TanggalRujukKeluar"); // NOI18N
         TanggalRujukKeluar.setOpaque(false);
@@ -2644,7 +2644,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel49.setBounds(0, 54, 160, 23);
 
         tglRencanaKunjungan.setEditable(false);
-        tglRencanaKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        tglRencanaKunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         tglRencanaKunjungan.setDisplayFormat("dd-MM-yyyy");
         tglRencanaKunjungan.setName("tglRencanaKunjungan"); // NOI18N
         tglRencanaKunjungan.setOpaque(false);
@@ -3232,7 +3232,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame15.add(jLabel35);
         jLabel35.setBounds(2, 25, 90, 23);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -3248,7 +3248,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame15.add(jLabel43);
         jLabel43.setBounds(195, 25, 23, 23);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -3333,7 +3333,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame16.add(jLabel57);
         jLabel57.setBounds(2, 25, 110, 23);
 
-        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari5.setDisplayFormat("dd-MM-yyyy");
         DTPCari5.setName("DTPCari5"); // NOI18N
         DTPCari5.setOpaque(false);
@@ -3349,7 +3349,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame16.add(jLabel58);
         jLabel58.setBounds(215, 25, 23, 23);
 
-        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari6.setDisplayFormat("dd-MM-yyyy");
         DTPCari6.setName("DTPCari6"); // NOI18N
         DTPCari6.setOpaque(false);
@@ -3434,7 +3434,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame17.add(jLabel62);
         jLabel62.setBounds(2, 25, 120, 23);
 
-        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari7.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari7.setDisplayFormat("dd-MM-yyyy");
         DTPCari7.setName("DTPCari7"); // NOI18N
         DTPCari7.setOpaque(false);
@@ -3450,7 +3450,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         internalFrame17.add(jLabel63);
         jLabel63.setBounds(225, 25, 23, 23);
 
-        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari8.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari8.setDisplayFormat("dd-MM-yyyy");
         DTPCari8.setName("DTPCari8"); // NOI18N
         DTPCari8.setOpaque(false);
@@ -3610,7 +3610,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel20.setBounds(233, 96, 50, 23);
 
         TanggalSEP.setEditable(false);
-        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        TanggalSEP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         TanggalSEP.setDisplayFormat("dd-MM-yyyy");
         TanggalSEP.setName("TanggalSEP"); // NOI18N
         TanggalSEP.setOpaque(false);
@@ -3631,7 +3631,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel22.setBounds(0, 96, 110, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3983,7 +3983,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel36.setBounds(0, 403, 110, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -4617,7 +4617,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(55, 23));
         panelGlass11.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4636,7 +4636,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -4809,7 +4809,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
 
         internalFrame13.add(jPanel6, java.awt.BorderLayout.PAGE_END);
 
-        TabRawat.addTab("10 Riwayat Kunjungan Terakhir", internalFrame13);
+        TabRawat.addTab("25 Riwayat Kunjungan Terakhir", internalFrame13);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -9582,7 +9582,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                     + "p.nm_poli, pj.png_jawab, ifnull(bs.no_sep,'-') no_sep, ifnull(bs.no_rujukan,'-') no_rujukan, r.kd_pj, ifnull(bs.jkel,'-') jkel, "
                     + "ifnull(bs.noskdp,'-') noskdp, ifnull(bs.urutan_sep,'-') urutan_sep, r.no_rawat, bs.no_kartu,bs.nama_pasien, bs.tanggal_lahir, bs.diagawal, "
                     + "bs.nmdiagnosaawal FROM reg_periksa r INNER JOIN poliklinik p ON p.kd_poli=r.kd_poli INNER JOIN penjab pj ON pj.kd_pj=r.kd_pj "
-                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat=r.no_rawat WHERE r.no_rkm_medis ='" + TCari.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 10");
+                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat=r.no_rawat WHERE r.no_rkm_medis ='" + TCari.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 25");
             try {
                 rs3 = ps3.executeQuery();
                 i = 1;

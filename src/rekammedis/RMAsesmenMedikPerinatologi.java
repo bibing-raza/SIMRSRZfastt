@@ -73,13 +73,24 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         initComponents();
         
         tabMode = new DefaultTableModel(null, new Object[]{
-            "No. Rawat", "Kode Restrain", "No. RM", "Nama Pasien", "Tgl. Pengkajian", "Jam", "Perawat/Bidan", "Ruang Perawatan",
-            "tgl_asesmen", "jam_asesmen", "compos", "apatis", "delirium", "somnolen", "sopor", "koma", "gcs_e", "gcs_m", "gcs_v",
-            "tensi", "nadi", "suhu", "napas", "skala_nyeri", "obs_gelisah", "obs_kooperatif", "obs_ketidakmampuan", "klinis_diri_sendiri",
-            "klinis_orang_lain", "klinis_gagal", "res_non_farmakologi", "res_tempat_tidur", "res_pergelangan_tangan", "res_tangan_kiri",
-            "res_tangan_kanan", "res_pergelangan_kaki", "res_kaki_kiri", "res_kaki_kanan", "res_lainlain", "res_farmakologi", 
-            "kalimat_res_farmakologi", "kajian_1_jam", "kajian_2_jam", "kajian_lanjutan_2_jam", "kajian_lanjutan_4_jam", "obs_tanda", "obs_lanjutan",
-            "menjelaskan_alasan", "menjelaskan_kriteria", "menjelaskan_informasi", "nip_petugas"
+            "No. Rawat", "No. RM", "Nama Pasien", "Jenis Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Asesmen", "Jam Asesmen", "Dokter Memeriksa",
+            "keluhan", "riw_penyakit_dahulu", "hipertensi", "diabetes", "jantung", "stroke", "asma", "kejang", "hati", "kanker", "tb", "pms", "perdarahan",
+            "ginjal", "lain_lain", "ket_lain_lain", "kondisi_saat_lahir", "ket_as", "gerak", "tangis", "warna_kulit", "hr", "suhu", "rr", "saturasi",
+            "capilary_refill", "bbl", "pb", "lk", "ld", "lp", "lla", "turgor", "ket_turgor", "sianosis_kulit", "perdarahan_kulit", "ikterus_positif",
+            "ikterus_negatif", "krammer", "ket_krammer", "hematoma", "sklerema", "kutis", "lainya_kulit", "ket_lainya_kulit", "simetris_kapala",
+            "asimetris_kepala", "cephal_hematom", "caput_succedaneum", "anensefali", "microsefal", "hydrosefalus", "lainya_kepala", "ket_lainya_kepala",
+            "datar", "cembung", "cekung", "lainya_uub", "ket_lainya_uub", "normal_mata", "anemia", "ikterus_mata", "sekret_mata", "lainya_mata",
+            "ket_lainya_mata", "normal_tht", "nch", "sianosis_tht", "sekret_tht", "lainya_tht", "ket_lainya_tht", "normal_mulut", "labioschisis",
+            "labiopalatoschisis", "labiognatopalatoschisis", "mucosa_warna", "ket_warna", "reflek_hisap", "ket_reflek_hisap", "lainya_mulut", "ket_lainya_mulut",
+            "normal_leher", "tortikolis", "benjolan_kanan", "benjolan_kiri", "lainya_leher", "ket_lainya_leher", "simetris_dada", "tidak_simetris",
+            "retraksi_positif", "retraksi_negatif", "ket_retraksi", "sesak", "merintih", "sianosis_dada", "lainya_dada", "ket_lainya_dada", "bji", "murni",
+            "tidak_murni", "reguler", "tidak_reguler", "bunyi_tambahan", "ket_bunyi_tambahan", "vesikuler", "ronchi", "whezing", "stridor", "lainya_paru",
+            "ket_lainya_paru", "supel", "distensi", "bising_usus", "pembesaran_hepar", "pembesaran_limpa", "nyeri", "ket_nyeri", "massa_positif",
+            "massa_negatif", "uk", "ket_uk", "lokasi", "ket_lokasi", "segar", "layu", "lainya_tali_pusat", "ket_lainya_tali_pusat", "normal_punggung",
+            "spina", "gibus", "lainya_punggung", "ket_lainya_punggung", "sex", "ket_sex", "kelainan_urogenitalia", "ket_kelainan_urogenitalia", "bak",
+            "ket_bak", "anus", "bab", "ket_bab", "simetris_ekstremitas", "asimetris_ekstremitas", "reflek_moro_positif", "reflek_moro_negatif",
+            "lainya_ekstremitas", "ket_lainya_ekstremitas", "edema", "kelainan_ekstremitas", "ket_kelainan_ekstremitas", "pemeriksaan_penunjang",
+            "diagnosa_kerja", "diagnosa_banding", "pengobatan", "diet", "rencana", "tgl_asesmen", "jam_asesmen", "nip_dpjp", "waktu_simpan"
         }) {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
@@ -88,27 +99,26 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         tbRestrain.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbRestrain.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 51; i++) {
+        for (i = 0; i < 169; i++) {
             TableColumn column = tbRestrain.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(100);
-            } else if (i == 2) {
                 column.setPreferredWidth(65);
+            } else if (i == 2) {
+                column.setPreferredWidth(250);
             } else if (i == 3) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(80);
             } else if (i == 4) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(75);
             } else if (i == 5) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(250);
             } else if (i == 6) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(80);
             } else if (i == 7) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(80);
             } else if (i == 8) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(250);
             } else if (i == 9) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -235,7 +245,361 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             } else if (i == 50) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } 
+            } else if (i == 51) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 52) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 53) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 54) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 55) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 56) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 57) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 58) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 59) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 60) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 61) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 62) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 63) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 64) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 65) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 66) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 67) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 68) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 69) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 70) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 71) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 72) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 73) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 74) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 75) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 76) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 77) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 78) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 79) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 80) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 81) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 82) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 83) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 84) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 85) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 86) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 87) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 88) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 89) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 90) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 91) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 92) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 93) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 94) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 95) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 96) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 97) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 98) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 99) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 100) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 101) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 102) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 103) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 104) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 105) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 106) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 107) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 108) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 109) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 110) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 111) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 112) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 113) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 114) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 115) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 116) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 117) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 118) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 119) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 120) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 121) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 122) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 123) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 124) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 125) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 126) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 127) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 128) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 129) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 130) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 131) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 132) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 133) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 134) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 135) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 136) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 137) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 138) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 139) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 140) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 141) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 142) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 143) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 144) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 145) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 146) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 147) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 148) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 149) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 150) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 151) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 152) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 153) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 154) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 155) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 156) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 157) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 158) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 159) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 160) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 161) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 162) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 163) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 164) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 165) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 166) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 167) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 168) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
         }
         tbRestrain.setDefaultRenderer(Object.class, new WarnaTable()); 
         
@@ -705,6 +1069,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         Trencana = new widget.TextArea();
         jLabel105 = new widget.Label();
         BtnPasteHasil = new widget.Button();
+        TtglLahir = new widget.TextBox();
+        jLabel16 = new widget.Label();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -804,7 +1170,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -818,7 +1184,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1196,7 +1562,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -1247,14 +1613,14 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel14.setText("Jenis Kelamin :");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(535, 38, 90, 23);
+        jLabel14.setBounds(535, 38, 110, 23);
 
         Tjk.setEditable(false);
         Tjk.setForeground(new java.awt.Color(0, 0, 0));
         Tjk.setHighlighter(null);
         Tjk.setName("Tjk"); // NOI18N
         FormInput.add(Tjk);
-        Tjk.setBounds(629, 38, 100, 23);
+        Tjk.setBounds(649, 38, 80, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Ruang Rawat :");
@@ -1266,7 +1632,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         FormInput.add(TrgRawat);
-        TrgRawat.setBounds(115, 66, 615, 23);
+        TrgRawat.setBounds(115, 66, 460, 23);
 
         jLabel64.setForeground(new java.awt.Color(0, 0, 0));
         jLabel64.setText("1. KELUHAN UTAMA :");
@@ -3744,6 +4110,18 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(BtnPasteHasil);
         BtnPasteHasil.setBounds(740, 1358, 100, 23);
 
+        TtglLahir.setEditable(false);
+        TtglLahir.setForeground(new java.awt.Color(0, 0, 0));
+        TtglLahir.setName("TtglLahir"); // NOI18N
+        FormInput.add(TtglLahir);
+        TtglLahir.setBounds(649, 66, 80, 23);
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Tgl. Lahir :");
+        jLabel16.setName("jLabel16"); // NOI18N
+        FormInput.add(jLabel16);
+        jLabel16.setBounds(575, 66, 70, 23);
+
         scrollInput.setViewportView(FormInput);
 
         internalFrame2.add(scrollInput, java.awt.BorderLayout.CENTER);
@@ -3876,7 +4254,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3891,7 +4269,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5210,6 +5588,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.TextBox Tsuhu;
     private widget.TextBox Ttangis;
     private widget.Tanggal TtglAsesmen;
+    private widget.TextBox TtglLahir;
     private widget.TextBox Tturgor;
     private widget.TextBox Tuk;
     private widget.TextBox TwarnaKulit;
@@ -5342,6 +5721,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
+    private widget.Label jLabel16;
     private widget.Label jLabel19;
     private widget.Label jLabel21;
     private widget.Label jLabel30;
@@ -5415,14 +5795,15 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
      private void tampil() {
         Valid.tabelKosong(tabMode);
-        try {
-            ps = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, pg.nama nmPetugas, date_format(ar.tgl_asesmen,'%d-%m-%Y') tglpengkajian, "
-                    + "time_format(ar.jam_asesmen,'%H:%i') jam, ar.* FROM reg_periksa rp inner join asesmen_restrain ar on ar.no_rawat=rp.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis left join pegawai pg on pg.nik=ar.nip_petugas WHERE "
-                    + "ar.tgl_asesmen BETWEEN ? AND ? AND rp.no_rawat LIKE ? OR "
-                    + "ar.tgl_asesmen BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
-                    + "ar.tgl_asesmen BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
-                    + "ar.tgl_asesmen BETWEEN ? AND ? AND pg.nama LIKE ? ORDER BY ar.tgl_asesmen");
+         try {
+             ps = koneksi.prepareStatement("SELECT am.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, "
+                     + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tgllahir, DATE_FORMAT(am.tgl_asesmen,'%d-%m-%Y') tglAses, TIME_FORMAT(am.jam_asesmen,'%H:%i') jamAses, "
+                     + "pg.nama nmDokter from asesmen_medik_perinatologi am inner join reg_periksa rp on rp.no_rawat=am.no_rawat "
+                     + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=am.nip_dpjp WHERE "
+                     + "am.tgl_asesmen BETWEEN ? AND ? AND rp.no_rawat LIKE ? OR "
+                     + "am.tgl_asesmen BETWEEN ? AND ? AND p.no_rkm_medis LIKE ? OR "
+                     + "am.tgl_asesmen BETWEEN ? AND ? AND p.nm_pasien LIKE ? OR "
+                     + "am.tgl_asesmen BETWEEN ? AND ? AND pg.nama LIKE ? ORDER BY am.tgl_asesmen");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -5440,56 +5821,174 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
-                        rs.getString("kd_restrain"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        rs.getString("tglpengkajian"),
-                        rs.getString("jam"),
-                        rs.getString("nmPetugas"),
+                        rs.getString("jenkel"),
+                        rs.getString("tgllahir"),
                         rs.getString("ruang_rawat"),
+                        rs.getString("tglAses"),
+                        rs.getString("jamAses"),
+                        rs.getString("nmDokter"),                        
+                        rs.getString("keluhan"),
+                        rs.getString("riw_penyakit_dahulu"),
+                        rs.getString("hipertensi"),
+                        rs.getString("diabetes"),
+                        rs.getString("jantung"),
+                        rs.getString("stroke"),
+                        rs.getString("asma"),
+                        rs.getString("kejang"),
+                        rs.getString("hati"),
+                        rs.getString("kanker"),
+                        rs.getString("tb"),
+                        rs.getString("pms"),
+                        rs.getString("perdarahan"),
+                        rs.getString("ginjal"),
+                        rs.getString("lain_lain"),
+                        rs.getString("ket_lain_lain"),
+                        rs.getString("kondisi_saat_lahir"),
+                        rs.getString("ket_as"),
+                        rs.getString("gerak"),
+                        rs.getString("tangis"),
+                        rs.getString("warna_kulit"),
+                        rs.getString("hr"),
+                        rs.getString("suhu"),
+                        rs.getString("rr"),
+                        rs.getString("saturasi"),
+                        rs.getString("capilary_refill"),
+                        rs.getString("bbl"),
+                        rs.getString("pb"),
+                        rs.getString("lk"),
+                        rs.getString("ld"),
+                        rs.getString("lp"),
+                        rs.getString("lla"),
+                        rs.getString("turgor"),
+                        rs.getString("ket_turgor"),
+                        rs.getString("sianosis_kulit"),
+                        rs.getString("perdarahan_kulit"),
+                        rs.getString("ikterus_positif"),
+                        rs.getString("ikterus_negatif"),
+                        rs.getString("krammer"),
+                        rs.getString("ket_krammer"),
+                        rs.getString("hematoma"),
+                        rs.getString("sklerema"),
+                        rs.getString("kutis"),
+                        rs.getString("lainya_kulit"),
+                        rs.getString("ket_lainya_kulit"),
+                        rs.getString("simetris_kapala"),
+                        rs.getString("asimetris_kepala"),
+                        rs.getString("cephal_hematom"),
+                        rs.getString("caput_succedaneum"),
+                        rs.getString("anensefali"),
+                        rs.getString("microsefal"),
+                        rs.getString("hydrosefalus"),
+                        rs.getString("lainya_kepala"),
+                        rs.getString("ket_lainya_kepala"),
+                        rs.getString("datar"),
+                        rs.getString("cembung"),
+                        rs.getString("cekung"),
+                        rs.getString("lainya_uub"),
+                        rs.getString("ket_lainya_uub"),
+                        rs.getString("normal_mata"),
+                        rs.getString("anemia"),
+                        rs.getString("ikterus_mata"),
+                        rs.getString("sekret_mata"),
+                        rs.getString("lainya_mata"),
+                        rs.getString("ket_lainya_mata"),
+                        rs.getString("normal_tht"),
+                        rs.getString("nch"),
+                        rs.getString("sianosis_tht"),
+                        rs.getString("sekret_tht"),
+                        rs.getString("lainya_tht"),
+                        rs.getString("ket_lainya_tht"),
+                        rs.getString("normal_mulut"),
+                        rs.getString("labioschisis"),
+                        rs.getString("labiopalatoschisis"),
+                        rs.getString("labiognatopalatoschisis"),
+                        rs.getString("mucosa_warna"),
+                        rs.getString("ket_warna"),
+                        rs.getString("reflek_hisap"),
+                        rs.getString("ket_reflek_hisap"),
+                        rs.getString("lainya_mulut"),
+                        rs.getString("ket_lainya_mulut"),
+                        rs.getString("normal_leher"),
+                        rs.getString("tortikolis"),
+                        rs.getString("benjolan_kanan"),
+                        rs.getString("benjolan_kiri"),
+                        rs.getString("lainya_leher"),
+                        rs.getString("ket_lainya_leher"),
+                        rs.getString("simetris_dada"),
+                        rs.getString("tidak_simetris"),
+                        rs.getString("retraksi_positif"),
+                        rs.getString("retraksi_negatif"),
+                        rs.getString("ket_retraksi"),
+                        rs.getString("sesak"),
+                        rs.getString("merintih"),
+                        rs.getString("sianosis_dada"),
+                        rs.getString("lainya_dada"),
+                        rs.getString("ket_lainya_dada"),
+                        rs.getString("bji"),
+                        rs.getString("murni"),
+                        rs.getString("tidak_murni"),
+                        rs.getString("reguler"),
+                        rs.getString("tidak_reguler"),
+                        rs.getString("bunyi_tambahan"),
+                        rs.getString("ket_bunyi_tambahan"),
+                        rs.getString("vesikuler"),
+                        rs.getString("ronchi"),
+                        rs.getString("whezing"),
+                        rs.getString("stridor"),
+                        rs.getString("lainya_paru"),
+                        rs.getString("ket_lainya_paru"),
+                        rs.getString("supel"),
+                        rs.getString("distensi"),
+                        rs.getString("bising_usus"),
+                        rs.getString("pembesaran_hepar"),
+                        rs.getString("pembesaran_limpa"),
+                        rs.getString("nyeri"),
+                        rs.getString("ket_nyeri"),
+                        rs.getString("massa_positif"),
+                        rs.getString("massa_negatif"),
+                        rs.getString("uk"),
+                        rs.getString("ket_uk"),
+                        rs.getString("lokasi"),
+                        rs.getString("ket_lokasi"),
+                        rs.getString("segar"),
+                        rs.getString("layu"),
+                        rs.getString("lainya_tali_pusat"),
+                        rs.getString("ket_lainya_tali_pusat"),
+                        rs.getString("normal_punggung"),
+                        rs.getString("spina"),
+                        rs.getString("gibus"),
+                        rs.getString("lainya_punggung"),
+                        rs.getString("ket_lainya_punggung"),
+                        rs.getString("sex"),
+                        rs.getString("ket_sex"),
+                        rs.getString("kelainan_urogenitalia"),
+                        rs.getString("ket_kelainan_urogenitalia"),
+                        rs.getString("bak"),
+                        rs.getString("ket_bak"),
+                        rs.getString("anus"),
+                        rs.getString("bab"),
+                        rs.getString("ket_bab"),
+                        rs.getString("simetris_ekstremitas"),
+                        rs.getString("asimetris_ekstremitas"),
+                        rs.getString("reflek_moro_positif"),
+                        rs.getString("reflek_moro_negatif"),
+                        rs.getString("lainya_ekstremitas"),
+                        rs.getString("ket_lainya_ekstremitas"),
+                        rs.getString("edema"),
+                        rs.getString("kelainan_ekstremitas"),
+                        rs.getString("ket_kelainan_ekstremitas"),
+                        rs.getString("pemeriksaan_penunjang"),
+                        rs.getString("diagnosa_kerja"),
+                        rs.getString("diagnosa_banding"),
+                        rs.getString("pengobatan"),
+                        rs.getString("diet"),
+                        rs.getString("rencana"),
                         rs.getString("tgl_asesmen"),
                         rs.getString("jam_asesmen"),
-                        rs.getString("compos"),
-                        rs.getString("apatis"),
-                        rs.getString("delirium"),
-                        rs.getString("somnolen"),
-                        rs.getString("sopor"),
-                        rs.getString("koma"),
-                        rs.getString("gcs_e"),
-                        rs.getString("gcs_m"),
-                        rs.getString("gcs_v"),
-                        rs.getString("tensi"),
-                        rs.getString("nadi"),
-                        rs.getString("suhu"),
-                        rs.getString("napas"),
-                        rs.getString("skala_nyeri"),
-                        rs.getString("obs_gelisah"),
-                        rs.getString("obs_kooperatif"),
-                        rs.getString("obs_ketidakmampuan"),
-                        rs.getString("klinis_diri_sendiri"),
-                        rs.getString("klinis_orang_lain"),
-                        rs.getString("klinis_gagal"),
-                        rs.getString("res_non_farmakologi"),
-                        rs.getString("res_tempat_tidur"),
-                        rs.getString("res_pergelangan_tangan"),
-                        rs.getString("res_tangan_kiri"),
-                        rs.getString("res_tangan_kanan"),
-                        rs.getString("res_pergelangan_kaki"),
-                        rs.getString("res_kaki_kiri"),
-                        rs.getString("res_kaki_kanan"),
-                        rs.getString("res_lainlain"),
-                        rs.getString("res_farmakologi"),
-                        rs.getString("kalimat_res_farmakologi"),
-                        rs.getString("kajian_1_jam"),
-                        rs.getString("kajian_2_jam"),
-                        rs.getString("kajian_lanjutan_2_jam"),
-                        rs.getString("kajian_lanjutan_4_jam"),
-                        rs.getString("obs_tanda"),
-                        rs.getString("obs_lanjutan"),
-                        rs.getString("menjelaskan_alasan"),
-                        rs.getString("menjelaskan_kriteria"),
-                        rs.getString("menjelaskan_informasi"),
-                        rs.getString("nip_petugas")
+                        rs.getString("nip_dpjp"),
+                        rs.getString("waktu_simpan")
                     });
                 }
             } catch (Exception e) {
@@ -5510,7 +6009,186 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }
 
     public void emptTeks() {
-        Tsuhu.setText("");        
+        TtglAsesmen.setDate(new Date());
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
+        
+        Tkeluhan.setText("");
+        TriwPenyakitDahulu.setText("");
+        variabelBersih();
+        chkHipertensi.setSelected(false);
+        chkDiabetes.setSelected(false);
+        chkJantung.setSelected(false);
+        chkStrok.setSelected(false);
+        chkAsma.setSelected(false);
+        chkKejang.setSelected(false);
+        chkHati.setSelected(false);
+        chkKanker.setSelected(false);
+        chkTB.setSelected(false);
+        chkPMS.setSelected(false);
+        chkPerdarahan.setSelected(false);
+        chkGinjal.setSelected(false);
+        chkLainLain.setSelected(false);
+        TketLainLain.setText("");
+        
+        cmbKondisi.setSelectedIndex(0);
+        TketAs.setText("");
+        Tgerak.setText("");
+        Ttangis.setText("");
+        TwarnaKulit.setText("");
+        Thr.setText("");
+        Tsuhu.setText("");
+        Trr.setText("");
+        Tsaturasi.setText("");
+        cmbCapilary.setSelectedIndex(0);
+        Tbbl.setText("");
+        Tlk.setText("");
+        Tld.setText("");
+        Tlp.setText("");
+        Tlla.setText("");
+        
+        chkTurgor.setSelected(false);
+        Tturgor.setText("");
+        chkSianosisKulit.setSelected(false);
+        chkPerdarahanKulit.setSelected(false);
+        chkIkterusNegatif.setSelected(false);
+        chkIkterusPositif.setSelected(false);
+        chkKrammer.setSelected(false);
+        Tkramer.setText("");
+        chkHematoma.setSelected(false);
+        chkSklerema.setSelected(false);
+        chkKutisMarmorata.setSelected(false);
+        chkLainKulit.setSelected(false);
+        TKetLainKulit.setText("");
+        
+        chkSimetrisKepala.setSelected(false);
+        chkAsimetrisKepala.setSelected(false);
+        chkCephal.setSelected(false);
+        chkCaput.setSelected(false);
+        chkAnensefali.setSelected(false);
+        chkMicrosefal.setSelected(false);
+        chkhydrosefalus.setSelected(false);
+        chkLainKepala.setSelected(false);
+        TKetLainKepala.setText("");
+        
+        chkDatar.setSelected(false);
+        chkCembung.setSelected(false);
+        chkCekung.setSelected(false);
+        chkLainUUB.setSelected(false);
+        TKetLainUUB.setText("");
+        
+        chkNormalMata.setSelected(false);
+        chkAnemia.setSelected(false);
+        chkIkterusMata.setSelected(false);
+        chkSekretMata.setSelected(false);
+        chkLainMata.setSelected(false);
+        TKetLainMata.setText("");
+        
+        chkNormalTHT.setSelected(false);
+        chkNCH.setSelected(false);
+        chkSianosisTHT.setSelected(false);
+        chkSekretTHT.setSelected(false);
+        chkLainTHT.setSelected(false);
+        TKetLainTHT.setText("");
+        
+        chkNormalMulut.setSelected(false);
+        chkLabioschisis.setSelected(false);
+        chkLabiopalatos.setSelected(false);
+        chkLabiog.setSelected(false);
+        chkMukosa.setSelected(false);
+        TMukosa.setText("");
+        chkReflek.setSelected(false);
+        TReflek.setText("");
+        chkLainMulut.setSelected(false);
+        TKetLainMulut.setText("");
+        
+        chkNormalLeher.setSelected(false);
+        chkTortikolis.setSelected(false);
+        chkBenjolanKanan.setSelected(false);
+        chkBenjolanKiri.setSelected(false);
+        chkLainLeher.setSelected(false);
+        TKetLainLeher.setText("");
+        
+        chkSimetrisDada.setSelected(false);
+        chkTidakSimetris.setSelected(false);
+        chkRetraksiPositif.setSelected(false);
+        chkRetraksiNegatif.setSelected(false);
+        TKetRetraksi.setText("");
+        chkSesak.setSelected(false);
+        chkMerintih.setSelected(false);
+        chkSianosisDada.setSelected(false);
+        chkLainDada.setSelected(false);
+        TKetLainDada.setText("");
+        
+        chkBji.setSelected(false);
+        chkMurni.setSelected(false);
+        chkTidakMurni.setSelected(false);
+        chkReguler.setSelected(false);
+        chkTidakReguler.setSelected(false);
+        chkBunyi.setSelected(false);
+        TKetBunyi.setText("");
+        
+        chkVesikuler.setSelected(false);
+        chkRonchi.setSelected(false);
+        chkWhezing.setSelected(false);
+        chkStridor.setSelected(false);
+        chkLainParu.setSelected(false);
+        TKetLainParu.setText("");
+        
+        chkSupel.setSelected(false);
+        chkDistensi.setSelected(false);
+        chkBising.setSelected(false);
+        chkPembesaranHepar.setSelected(false);
+        chkPembesaranLimpa.setSelected(false);
+        chkNyeri.setSelected(false);
+        TNyeri.setText("");
+        chkMasaPositif.setSelected(false);
+        chkMasaNegatif.setSelected(false);
+        chkUK.setSelected(false);
+        Tuk.setText("");
+        chkLokasi.setSelected(false);
+        Tlokasi.setText("");
+        
+        chkSegar.setSelected(false);
+        chkLayu.setSelected(false);
+        chkLainTali.setSelected(false);
+        TKetLainTali.setText("");
+        
+        chkNormalPunggung.setSelected(false);
+        chkSpina.setSelected(false);
+        chkGibus.setSelected(false);
+        chkLainPunggung.setSelected(false);
+        TKetLainPunggung.setText("");
+        
+        chkSex.setSelected(false);
+        Tsex.setText("");
+        chkKelainanUro.setSelected(false);
+        TkelainanUro.setText("");
+        chkBAK.setSelected(false);
+        Tbak.setText("");
+        
+        cmbAnus.setSelectedIndex(0);
+        chkBAB.setSelected(false);
+        Tbab.setText("");
+        
+        chkSimetrisEks.setSelected(false);
+        chkAsimetrisEks.setSelected(false);
+        chkReflekMoroPositif.setSelected(false);
+        chkReflekMoroNegatif.setSelected(false);
+        chkLainEks.setSelected(false);
+        TKetLainEks.setText("");
+        chkEdema.setSelected(false);
+        chkKelainanEks.setSelected(false);
+        TkelainanEks.setText("");
+        
+        Tpemerikaaan.setText("");
+        TdiagnosaKerja.setText("");
+        TdiagnosaBanding.setText("");
+        Tpengobatan.setText("");
+        Tdiet.setText("");
+        Trencana.setText("");
+        
         Tnip.setText("-");
         TnmDokter.setText("-");
         user = "";

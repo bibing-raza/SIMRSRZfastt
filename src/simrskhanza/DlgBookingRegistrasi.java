@@ -1780,7 +1780,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         Popup1.add(ppRencanaKontrollagi1);
 
         TanggalBooking.setEditable(false);
-        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        TanggalBooking.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         TanggalBooking.setDisplayFormat("dd-MM-yyyy");
         TanggalBooking.setName("TanggalBooking"); // NOI18N
         TanggalBooking.setOpaque(false);
@@ -2322,7 +2322,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(125, 23));
         panelCari.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2346,7 +2346,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2367,7 +2367,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(135, 23));
         panelCari.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2391,7 +2391,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelCari.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2561,7 +2561,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel14.setBounds(0, 66, 115, 23);
 
         TanggalPeriksa.setEditable(false);
-        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        TanggalPeriksa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         TanggalPeriksa.setDisplayFormat("dd-MM-yyyy");
         TanggalPeriksa.setName("TanggalPeriksa"); // NOI18N
         TanggalPeriksa.setOpaque(false);
@@ -2952,7 +2952,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         jLabel28.setBounds(0, 67, 95, 23);
 
         TanggalRujuk.setEditable(false);
-        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        TanggalRujuk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         TanggalRujuk.setDisplayFormat("dd-MM-yyyy");
         TanggalRujuk.setName("TanggalRujuk"); // NOI18N
         TanggalRujuk.setOpaque(false);
@@ -3563,7 +3563,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
         LabTglkll.setBounds(0, 38, 90, 23);
 
         TanggalKejadian.setEditable(false);
-        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-10-2024" }));
+        TanggalKejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "29-10-2024" }));
         TanggalKejadian.setDisplayFormat("dd-MM-yyyy");
         TanggalKejadian.setName("TanggalKejadian"); // NOI18N
         TanggalKejadian.setOpaque(false);
@@ -3784,7 +3784,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
         internalFrame10.add(scrollInput2, java.awt.BorderLayout.CENTER);
 
-        FormInput.addTab(".: 10 Riwayat Kunjungan Terakhir", internalFrame10);
+        FormInput.addTab(".: 25 Riwayat Kunjungan Terakhir", internalFrame10);
 
         internalFrame11.setName("internalFrame11"); // NOI18N
         internalFrame11.setLayout(new java.awt.BorderLayout());
@@ -6653,7 +6653,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     + "p.nm_poli, pj.png_jawab, ifnull(bs.no_sep,'-') no_sep, ifnull(bs.no_rujukan,'-') no_rujukan, r.kd_pj, ifnull(bs.jkel,'-') jkel, "
                     + "ifnull(bs.noskdp,'-') noskdp, ifnull(bs.urutan_sep,'-') urutan_sep, r.no_rawat, bs.no_kartu,bs.nama_pasien, bs.tanggal_lahir, bs.diagawal, "
                     + "bs.nmdiagnosaawal FROM reg_periksa r INNER JOIN poliklinik p ON p.kd_poli=r.kd_poli INNER JOIN penjab pj ON pj.kd_pj=r.kd_pj "
-                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat=r.no_rawat WHERE r.no_rkm_medis ='" + TNoRM.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 10");
+                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat=r.no_rawat WHERE r.no_rkm_medis ='" + TNoRM.getText() + "' ORDER BY r.tgl_registrasi DESC LIMIT 25");
             try {
                 rs3 = ps3.executeQuery();
                 i = 1;

@@ -11,6 +11,7 @@ import fungsi.koneksiDB;
 import fungsi.sekuel;
 import fungsi.validasi;
 import fungsi.akses;
+import inventory.DlgCatatanResep;
 import java.awt.Cursor;
 import java.awt.Desktop;
 import java.awt.Dimension;
@@ -52,7 +53,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
     private ResultSet rs, rs1, rs2, rscppt, rsrestor;
     private int i = 0, x = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
-    private String user = "", dataKonfirmasi = "", napza = "", alkohol = "", pejalan = "", spdGayung = "", spdMotor = "", mobil = "",
+    private String user = "", dataKonfirmasi = "", kodekamar = "", napza = "", alkohol = "", pejalan = "", spdGayung = "", spdMotor = "", mobil = "",
             jatuh = "", pohon = "", gedung = "", lainJatuh = "", lukaTembak = "", lukaTusuk = "", lukaHancur = "", lukaBakar = "",
             lainLuka = "", jelasKanan = "", menurunKanan = "", ronciKanan = "", wezingKanan = "", jelasKiri = "", menurunKiri = "", ronciKiri = "", 
             wezingKiri = "", suhu = "", nasal = "", nrm = "", lainSatur = "", kuat = "", lemah = "", reguler = "", ireguler = "",
@@ -723,6 +724,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         BtnEdit = new widget.Button();
         BtnPrint = new widget.Button();
         BtnAll = new widget.Button();
+        BtnResep = new widget.Button();
         BtnKeluar = new widget.Button();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -1081,7 +1083,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-12-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1095,7 +1097,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-12-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1353,6 +1355,20 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         });
         panelGlass8.add(BtnAll);
 
+        BtnResep.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResep.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Vial-Pills.png"))); // NOI18N
+        BtnResep.setMnemonic('R');
+        BtnResep.setText("Resep Obat");
+        BtnResep.setToolTipText("Alt+R");
+        BtnResep.setName("BtnResep"); // NOI18N
+        BtnResep.setPreferredSize(new java.awt.Dimension(130, 30));
+        BtnResep.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResepActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResep);
+
         BtnKeluar.setForeground(new java.awt.Color(0, 0, 0));
         BtnKeluar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
         BtnKeluar.setMnemonic('K');
@@ -1523,7 +1539,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(218, 2200, 60, 23);
 
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-12-2024" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -3815,7 +3831,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3830,7 +3846,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "18-12-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5335,6 +5351,25 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnHapusActionPerformed
 
+    private void BtnResepActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResepActionPerformed
+        kodekamar = "";
+        kodekamar = Sequel.cariIsi("select ki.kd_kamar from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+            + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        akses.setform("RMAsesmenMedikBedahRanap");
+        DlgCatatanResep form = new DlgCatatanResep(null, false);
+        form.isCek();
+        form.setData(TNoRw.getText(), "ranap");
+        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+        form.setLocationRelativeTo(internalFrame1);
+        form.setVisible(true);
+        ChkAccor.setSelected(false);
+        isMenu();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_BtnResepActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -5363,6 +5398,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnPrint;
+    private widget.Button BtnResep;
     private widget.Button BtnRestor;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
