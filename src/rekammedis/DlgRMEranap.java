@@ -121,6 +121,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenMedikBedah = new widget.ButtonBig();
         BtnAsesmenMedikDewasa = new widget.ButtonBig();
         BtnAsesmenMedikAnak = new widget.ButtonBig();
+        BtnAsesmenMedikPerinatologi = new widget.ButtonBig();
         BtnAsesmenKeperawatanDewasa = new widget.ButtonBig();
         BtnAsesmenKeperawatanAnak = new widget.ButtonBig();
         BtnCPPT = new widget.ButtonBig();
@@ -386,6 +387,20 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnAsesmenMedikAnak);
+
+        BtnAsesmenMedikPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAsesmenMedikPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
+        BtnAsesmenMedikPerinatologi.setText("Asesmen Medik Perinatologi");
+        BtnAsesmenMedikPerinatologi.setToolTipText("");
+        BtnAsesmenMedikPerinatologi.setIconTextGap(0);
+        BtnAsesmenMedikPerinatologi.setName("BtnAsesmenMedikPerinatologi"); // NOI18N
+        BtnAsesmenMedikPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnAsesmenMedikPerinatologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAsesmenMedikPerinatologiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnAsesmenMedikPerinatologi);
 
         BtnAsesmenKeperawatanDewasa.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenKeperawatanDewasa.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -1641,6 +1656,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenMedikBedahActionPerformed
 
+    private void BtnAsesmenMedikPerinatologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAsesmenMedikPerinatologiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMAsesmenMedikPerinatologi form = new RMAsesmenMedikPerinatologi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setNoRm(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnAsesmenMedikPerinatologiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1664,6 +1700,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnAsesmenMedikAnak;
     private widget.ButtonBig BtnAsesmenMedikBedah;
     private widget.ButtonBig BtnAsesmenMedikDewasa;
+    private widget.ButtonBig BtnAsesmenMedikPerinatologi;
     private widget.ButtonBig BtnAsesmenPraSedasi;
     private widget.ButtonBig BtnAsesmenPreInduksi;
     private widget.ButtonBig BtnAsesmenRestrain;
@@ -1730,6 +1767,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenMedikBedah.setEnabled(akses.getasesmen_medik_bedah_ranap());
         BtnAsesmenMedikDewasa.setEnabled(akses.getasesmen_medik_dewasa_ranap());
         BtnAsesmenMedikAnak.setEnabled(akses.getasesmen_medik_anak_ranap());
+        BtnAsesmenMedikPerinatologi.setEnabled(akses.getasesmen_medik_anak_ranap());
         BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());
         BtnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
         BtnAsesmenRestrain.setEnabled(akses.getcppt());
@@ -1905,6 +1943,14 @@ public class DlgRMEranap extends javax.swing.JDialog {
         } else {
             BtnAsesmenMedikAnak.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
             BtnAsesmenMedikAnak.setToolTipText("Asesmen Medik Anak SUDAH diisi oleh dokter..!!!");
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + norawat + "'") == 0) {
+            BtnAsesmenMedikPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record_merah.png")));
+            BtnAsesmenMedikPerinatologi.setToolTipText("Asesmen Medik Perinatologi BELUM diisi oleh dokter..!!!");
+        } else {
+            BtnAsesmenMedikPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png")));
+            BtnAsesmenMedikPerinatologi.setToolTipText("Asesmen Medik Perinatologi SUDAH diisi oleh dokter..!!!");
         }
         
         if (Sequel.cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "' and tgl_asesmen=date(now())") == 0) {

@@ -72,7 +72,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         
-        tabMode = new DefaultTableModel(null, new Object[]{
+        tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Jenis Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Asesmen", "Jam Asesmen", "Dokter Memeriksa",
             "keluhan", "riw_penyakit_dahulu", "hipertensi", "diabetes", "jantung", "stroke", "asma", "kejang", "hati", "kanker", "tb", "pms", "perdarahan",
             "ginjal", "lain_lain", "ket_lain_lain", "kondisi_saat_lahir", "ket_as", "gerak", "tangis", "warna_kulit", "hr", "suhu", "rr", "saturasi",
@@ -95,12 +95,12 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
               @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
         };
         
-        tbRestrain.setModel(tabMode);
-        tbRestrain.setPreferredScrollableViewportSize(new Dimension(500,500));
-        tbRestrain.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        tbAsesmen.setModel(tabMode);
+        tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500,500));
+        tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 169; i++) {
-            TableColumn column = tbRestrain.getColumnModel().getColumn(i);
+            TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
             } else if (i == 1) {
@@ -601,7 +601,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             }
         }
-        tbRestrain.setDefaultRenderer(Object.class, new WarnaTable()); 
+        tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable()); 
         
         tabModeCppt=new DefaultTableModel(null, new Object[]{
             "Tgl. CPPT", "Jam CPPT", "Jenis Bagian", "DPJP Konsulen", "Jenis PPA",
@@ -1083,7 +1083,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         Tinstruksi = new widget.TextArea();
         internalFrame3 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbRestrain = new widget.Table();
+        tbAsesmen = new widget.Table();
         panelGlass9 = new widget.panelisi();
         jLabel19 = new widget.Label();
         DTPCari1 = new widget.Tanggal();
@@ -1562,6 +1562,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 38, 110, 23);
 
+        TtglAsesmen.setEditable(false);
         TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-01-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
@@ -4128,7 +4129,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(500, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
@@ -4226,20 +4227,20 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         Scroll.setOpaque(true);
         Scroll.setPreferredSize(new java.awt.Dimension(452, 200));
 
-        tbRestrain.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
-        tbRestrain.setComponentPopupMenu(jPopupMenu1);
-        tbRestrain.setName("tbRestrain"); // NOI18N
-        tbRestrain.addMouseListener(new java.awt.event.MouseAdapter() {
+        tbAsesmen.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbAsesmen.setComponentPopupMenu(jPopupMenu1);
+        tbAsesmen.setName("tbAsesmen"); // NOI18N
+        tbAsesmen.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
-                tbRestrainMouseClicked(evt);
+                tbAsesmenMouseClicked(evt);
             }
         });
-        tbRestrain.addKeyListener(new java.awt.event.KeyAdapter() {
+        tbAsesmen.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                tbRestrainKeyPressed(evt);
+                tbAsesmenKeyPressed(evt);
             }
         });
-        Scroll.setViewportView(tbRestrain);
+        Scroll.setViewportView(tbAsesmen);
 
         internalFrame3.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -4340,18 +4341,37 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
             cekData();
-//            if (Sequel.menyimpantf("asesmen_restrain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 46, new String[]{
-//                        TNoRw.getText(), Tjk.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
-//                        compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(), Tnapas.getText(), Tskala.getText(), gelisah, kooperatif,
-//                        ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan, restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi,
-//                        TResFarmakologi.getText(), kajian1jam, kajian2jam, kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText()
-//                    }) == true) {
-//
-//                TCari.setText(TNoRw.getText());
-//                TabRawat.setSelectedIndex(1);
-//                emptTeks();
-//                tampil();
-//            }
+            try {
+                if (Sequel.menyimpantf("asesmen_medik_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 162, new String[]{
+                            TNoRw.getText(), TrgRawat.getText(), Tkeluhan.getText(), TriwPenyakitDahulu.getText(), hipertensi, diabet, jantung, strok, asma, kejang,
+                            hati, kanker, tb, pms, perdarahan, ginjal, lainRiwayat, TketLainLain.getText(), cmbKondisi.getSelectedItem().toString(), TketAs.getText(),
+                            Tgerak.getText(), Ttangis.getText(), TwarnaKulit.getText(), Thr.getText(), Tsuhu.getText(), Trr.getText(), Tsaturasi.getText(),
+                            cmbCapilary.getSelectedItem().toString(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(), Tlp.getText(), Tlla.getText(),
+                            turgor, Tturgor.getText(), sianosisKulit, perdarahanKulit, ikterusPos, ikterusNeg, kramer, Tkramer.getText(), hematoma, sklere, kutis,
+                            lainKulit, TKetLainKulit.getText(), simetrisKepala, asimetrisKepala, cepal, caput, anen, micros, hidro, lainKepala, TKetLainKepala.getText(),
+                            datar, cembung, cekung, lainUub, TKetLainUUB.getText(), normalMata, anemia, ikterus, sekretMata, LainMata, TKetLainMata.getText(),
+                            normalTht, nch, sianosisTht, sekretTht, lainTht, TKetLainTHT.getText(), normalMulut, labioS, labioP, labioG, mukosa, TMukosa.getText(),
+                            reflek, TReflek.getText(), lainMulut, TKetLainMulut.getText(), normalLeher, torti, benjolKanan, benjolKiri, lainLeher, TKetLainLeher.getText(),
+                            simetrisDada, tidakSimetris, retraksiPos, retraksiNeg, TKetRetraksi.getText(), sesak, merintih, sianosisDada, lainDada, TKetLainDada.getText(),
+                            bj, murni, tidakMurni, reguler, tidakReguler, bunyi, TKetBunyi.getText(), vesikuler, ronchi, wezing, stridor, lainParu, TKetLainParu.getText(),
+                            supel, disten, bising, hepar, limpa, nyeri, TNyeri.getText(), masaPos, masaNeg, uk, Tuk.getText(), lokasi, Tlokasi.getText(), segar, layu,
+                            lainTali, TKetLainTali.getText(), normalPunggung, spina, gibus, lainPunggung, TKetLainPunggung.getText(), sex, Tsex.getText(), kelainanUro,
+                            TkelainanUro.getText(), bak, Tbak.getText(), cmbAnus.getSelectedItem().toString(), bab, Tbab.getText(), simetrisEks, asimetrisEks,
+                            reflekMoroPos, reflekMoroNeg, lainEks, TKetLainEks.getText(), edema, kelainanEks, TkelainanEks.getText(), Valid.mysql_real_escape_stringERM(Tpemerikaaan.getText()),
+                            TdiagnosaKerja.getText(), TdiagnosaBanding.getText(), Tpengobatan.getText(), Tdiet.getText(), Trencana.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""),
+                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tnip.getText(), Sequel.cariIsi("select now()")
+                        }) == true) {
+
+                    TCari.setText(TNoRw.getText());
+                    TabRawat.setSelectedIndex(1);
+                    emptTeks();
+                    tampil();
+                }
+            } catch (Exception e) {
+                System.out.println("Simpan Asesmen Medik Perinatologi : " + e);
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -4375,7 +4395,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (tbRestrain.getSelectedRow() > -1) {
+        if (tbAsesmen.getSelectedRow() > -1) {
             hapus();
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
@@ -4394,7 +4414,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Nama Pasien");
         } else {
-            if (tbRestrain.getSelectedRow() > -1) {
+            if (tbAsesmen.getSelectedRow() > -1) {
                 user = "";
                 if (akses.getadmin() == true) {
                     user = "-";
@@ -4430,7 +4450,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-        if (tbRestrain.getSelectedRow() > -1) {
+        if (tbAsesmen.getSelectedRow() > -1) {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());            
             param.put("logo", Sequel.cariGambar("select logo from setting"));
@@ -4633,7 +4653,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
             tampil();            
         } else {
             JOptionPane.showMessageDialog(null, "Maaf, silahkan klik/pilih datanya pada tabel terlebih dahulu..!!!!");
-            tbRestrain.requestFocus();
+            tbAsesmen.requestFocus();
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -4681,19 +4701,19 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         }
 }//GEN-LAST:event_BtnAllKeyPressed
 
-    private void tbRestrainMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbRestrainMouseClicked
+    private void tbAsesmenMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbAsesmenMouseClicked
         if (tabMode.getRowCount() != 0) {
             try {                
                 getData();
             } catch (java.lang.NullPointerException e) {
             }
-            if ((evt.getClickCount() == 2) && (tbRestrain.getSelectedColumn() == 0)) {
+            if ((evt.getClickCount() == 2) && (tbAsesmen.getSelectedColumn() == 0)) {
                 TabRawat.setSelectedIndex(0);
             }
         }
-}//GEN-LAST:event_tbRestrainMouseClicked
+}//GEN-LAST:event_tbAsesmenMouseClicked
 
-    private void tbRestrainKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbRestrainKeyPressed
+    private void tbAsesmenKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_tbAsesmenKeyPressed
         if (tabMode.getRowCount() != 0) {
             if ((evt.getKeyCode() == KeyEvent.VK_ENTER) || (evt.getKeyCode() == KeyEvent.VK_UP) || (evt.getKeyCode() == KeyEvent.VK_DOWN)) {
                 try {                    
@@ -4702,7 +4722,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                 }
             }
         }
-}//GEN-LAST:event_tbRestrainKeyPressed
+}//GEN-LAST:event_tbAsesmenKeyPressed
 
     private void TabRawatMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabRawatMouseClicked
         if (TabRawat.getSelectedIndex() == 0) {
@@ -4714,20 +4734,12 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }//GEN-LAST:event_TabRawatMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        if (Sequel.cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") > 0) {
+        if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
-        } else if (Sequel.cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + TNoRw.getText() + "'") == 0) {
+        } else if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
         }
     }//GEN-LAST:event_formWindowOpened
-
-    private void ChkMerokokActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkMerokokActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChkMerokokActionPerformed
-
-    private void ChkAsma1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAsma1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_ChkAsma1ActionPerformed
 
     private void ChkAccorActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkAccorActionPerformed
         isMenu();
@@ -5788,8 +5800,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private widget.ScrollPane scrollPane21;
     private widget.ScrollPane scrollPane4;
     private widget.ScrollPane scrollPane5;
+    private widget.Table tbAsesmen;
     private widget.Table tbCPPT;
-    private widget.Table tbRestrain;
     private widget.Table tbRiwayat;
     // End of variables declaration//GEN-END:variables
 
@@ -6031,6 +6043,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkGinjal.setSelected(false);
         chkLainLain.setSelected(false);
         TketLainLain.setText("");
+        TketLainLain.setEnabled(false);
         
         cmbKondisi.setSelectedIndex(0);
         TketAs.setText("");
@@ -6050,17 +6063,20 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         
         chkTurgor.setSelected(false);
         Tturgor.setText("");
+        Tturgor.setEnabled(false);
         chkSianosisKulit.setSelected(false);
         chkPerdarahanKulit.setSelected(false);
         chkIkterusNegatif.setSelected(false);
         chkIkterusPositif.setSelected(false);
         chkKrammer.setSelected(false);
         Tkramer.setText("");
+        Tkramer.setEnabled(false);
         chkHematoma.setSelected(false);
         chkSklerema.setSelected(false);
         chkKutisMarmorata.setSelected(false);
         chkLainKulit.setSelected(false);
         TKetLainKulit.setText("");
+        TKetLainKulit.setEnabled(false);
         
         chkSimetrisKepala.setSelected(false);
         chkAsimetrisKepala.setSelected(false);
@@ -6071,12 +6087,14 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkhydrosefalus.setSelected(false);
         chkLainKepala.setSelected(false);
         TKetLainKepala.setText("");
+        TKetLainKepala.setEnabled(false);
         
         chkDatar.setSelected(false);
         chkCembung.setSelected(false);
         chkCekung.setSelected(false);
         chkLainUUB.setSelected(false);
         TKetLainUUB.setText("");
+        TKetLainUUB.setEnabled(false);
         
         chkNormalMata.setSelected(false);
         chkAnemia.setSelected(false);
@@ -6084,6 +6102,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkSekretMata.setSelected(false);
         chkLainMata.setSelected(false);
         TKetLainMata.setText("");
+        TKetLainMata.setEnabled(false);
         
         chkNormalTHT.setSelected(false);
         chkNCH.setSelected(false);
@@ -6091,6 +6110,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkSekretTHT.setSelected(false);
         chkLainTHT.setSelected(false);
         TKetLainTHT.setText("");
+        TKetLainTHT.setEnabled(false);
         
         chkNormalMulut.setSelected(false);
         chkLabioschisis.setSelected(false);
@@ -6098,10 +6118,13 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkLabiog.setSelected(false);
         chkMukosa.setSelected(false);
         TMukosa.setText("");
+        TMukosa.setEnabled(false);
         chkReflek.setSelected(false);
         TReflek.setText("");
+        TReflek.setEnabled(false);
         chkLainMulut.setSelected(false);
         TKetLainMulut.setText("");
+        TKetLainMulut.setEnabled(false);
         
         chkNormalLeher.setSelected(false);
         chkTortikolis.setSelected(false);
@@ -6109,6 +6132,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkBenjolanKiri.setSelected(false);
         chkLainLeher.setSelected(false);
         TKetLainLeher.setText("");
+        TKetLainLeher.setEnabled(false);
         
         chkSimetrisDada.setSelected(false);
         chkTidakSimetris.setSelected(false);
@@ -6120,6 +6144,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkSianosisDada.setSelected(false);
         chkLainDada.setSelected(false);
         TKetLainDada.setText("");
+        TKetLainDada.setEnabled(false);
         
         chkBji.setSelected(false);
         chkMurni.setSelected(false);
@@ -6128,6 +6153,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkTidakReguler.setSelected(false);
         chkBunyi.setSelected(false);
         TKetBunyi.setText("");
+        TKetBunyi.setEnabled(false);
         
         chkVesikuler.setSelected(false);
         chkRonchi.setSelected(false);
@@ -6135,6 +6161,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkStridor.setSelected(false);
         chkLainParu.setSelected(false);
         TKetLainParu.setText("");
+        TKetLainParu.setEnabled(false);
         
         chkSupel.setSelected(false);
         chkDistensi.setSelected(false);
@@ -6143,34 +6170,43 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkPembesaranLimpa.setSelected(false);
         chkNyeri.setSelected(false);
         TNyeri.setText("");
+        TNyeri.setEnabled(false);
         chkMasaPositif.setSelected(false);
         chkMasaNegatif.setSelected(false);
         chkUK.setSelected(false);
         Tuk.setText("");
+        Tuk.setEnabled(false);
         chkLokasi.setSelected(false);
         Tlokasi.setText("");
+        Tlokasi.setEnabled(false);
         
         chkSegar.setSelected(false);
         chkLayu.setSelected(false);
         chkLainTali.setSelected(false);
         TKetLainTali.setText("");
+        TKetLainTali.setEnabled(false);
         
         chkNormalPunggung.setSelected(false);
         chkSpina.setSelected(false);
         chkGibus.setSelected(false);
         chkLainPunggung.setSelected(false);
         TKetLainPunggung.setText("");
+        TKetLainPunggung.setEnabled(false);
         
         chkSex.setSelected(false);
         Tsex.setText("");
+        Tsex.setEnabled(false);
         chkKelainanUro.setSelected(false);
         TkelainanUro.setText("");
+        TkelainanUro.setEnabled(false);
         chkBAK.setSelected(false);
         Tbak.setText("");
+        Tbak.setEnabled(false);
         
         cmbAnus.setSelectedIndex(0);
         chkBAB.setSelected(false);
         Tbab.setText("");
+        Tbab.setEnabled(false);
         
         chkSimetrisEks.setSelected(false);
         chkAsimetrisEks.setSelected(false);
@@ -6178,9 +6214,11 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         chkReflekMoroNegatif.setSelected(false);
         chkLainEks.setSelected(false);
         TKetLainEks.setText("");
+        TKetLainEks.setEnabled(false);
         chkEdema.setSelected(false);
         chkKelainanEks.setSelected(false);
         TkelainanEks.setText("");
+        TkelainanEks.setEnabled(false);
         
         Tpemerikaaan.setText("");
         TdiagnosaKerja.setText("");
@@ -6196,19 +6234,175 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
     private void getData() {
         variabelBersih();
-        if (tbRestrain.getSelectedRow() != -1) {
-            TNoRw.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString());
-            Tjk.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 1).toString());
-            TNoRM.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 2).toString());
-            TPasien.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 3).toString());
-            Valid.SetTgl(TtglAsesmen, tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 8).toString());
-            cmbJam.setSelectedItem(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 9).toString().substring(0, 2));
-            cmbMnt.setSelectedItem(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 9).toString().substring(3, 5));
-            cmbDtk.setSelectedItem(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 9).toString().substring(6, 8));
-            TnmDokter.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 6).toString());
-            TrgRawat.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 7).toString());
-            Tsuhu.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 21).toString());            
-            Tnip.setText(tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 50).toString());
+        if (tbAsesmen.getSelectedRow() != -1) {
+            TNoRw.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString());
+            TNoRM.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 1).toString());
+            TPasien.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 2).toString());
+            Valid.SetTgl(TtglAsesmen, tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 165).toString());
+            cmbJam.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 166).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 166).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 166).toString().substring(6, 8));
+            Tjk.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 3).toString());
+            TtglLahir.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 4).toString());
+            TrgRawat.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 5).toString());
+            Tkeluhan.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 9).toString());
+            TriwPenyakitDahulu.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 10).toString());
+            hipertensi = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 11).toString();
+            diabet = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 12).toString();
+            jantung = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 13).toString();
+            strok = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 14).toString();
+            asma = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 15).toString();
+            kejang = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 16).toString();
+            hati = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 17).toString();
+            kanker = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 18).toString();
+            tb = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 19).toString();
+            pms = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 20).toString();
+            perdarahan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 21).toString();
+            ginjal = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 22).toString();
+            lainRiwayat = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 23).toString();
+            TketLainLain.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 24).toString());
+            cmbKondisi.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 25).toString());
+            TketAs.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 26).toString());
+            Tgerak.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 27).toString());
+            Ttangis.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 28).toString());
+            TwarnaKulit.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 29).toString());
+            Thr.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 30).toString());
+            Tsuhu.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 31).toString());
+            Trr.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 32).toString());
+            Tsaturasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 33).toString());
+            cmbCapilary.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 34).toString());
+            Tbbl.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 35).toString());
+            Tpb.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 36).toString());
+            Tlk.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 37).toString());
+            Tld.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 38).toString());
+            Tlp.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 39).toString());
+            Tlla.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 40).toString());
+            turgor = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 41).toString();
+            Tturgor.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 42).toString());
+            sianosisKulit = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 43).toString();
+            perdarahanKulit = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 44).toString();
+            ikterusPos = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 45).toString();
+            ikterusNeg = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 46).toString();
+            kramer = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 47).toString();
+            Tkramer.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 48).toString());
+            hematoma = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 49).toString();
+            sklere = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 50).toString();
+            kutis = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 51).toString();
+            lainKulit = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 52).toString();
+            TKetLainKulit.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 53).toString());
+            simetrisKepala = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 54).toString();
+            asimetrisKepala = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 55).toString();
+            cepal = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 56).toString();
+            caput = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 57).toString();
+            anen = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 58).toString();
+            micros = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 59).toString();
+            hidro = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 60).toString();
+            lainKepala = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 61).toString();
+            TKetLainKepala.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 62).toString());
+            datar = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 63).toString();
+            cembung = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 64).toString();
+            cekung = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 65).toString();
+            lainUub = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 66).toString();
+            TKetLainUUB.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 67).toString());
+            normalMata = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 68).toString();
+            anemia = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 69).toString();
+            ikterus = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 70).toString();
+            sekretMata = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 71).toString();
+            LainMata = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 72).toString();
+            TKetLainMata.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 73).toString());
+            normalTht = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 74).toString();
+            nch = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 75).toString();
+            sianosisTht = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 76).toString();
+            sekretTht = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 77).toString();
+            lainTht = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 78).toString();
+            TKetLainTHT.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 79).toString());
+            normalMulut = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 80).toString();
+            labioS = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 81).toString();
+            labioP = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 82).toString();
+            labioG = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 83).toString();
+            mukosa = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 84).toString();
+            TMukosa.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 85).toString());
+            reflek = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 86).toString();
+            TReflek.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 87).toString());
+            lainMulut = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 88).toString();
+            TKetLainMulut.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 89).toString());
+            normalLeher = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 90).toString();
+            torti = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 91).toString();
+            benjolKanan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 92).toString();
+            benjolKiri = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 93).toString();
+            lainLeher = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 94).toString();
+            TKetLainLeher.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 95).toString());
+            simetrisDada = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 96).toString();
+            tidakSimetris = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 97).toString();
+            retraksiPos = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 98).toString();
+            retraksiNeg = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 99).toString();
+            TKetRetraksi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 100).toString());
+            sesak = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 101).toString();
+            merintih = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 102).toString();
+            sianosisDada = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 103).toString();
+            lainDada = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 104).toString();
+            TKetLainDada.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 105).toString());
+            bj = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 106).toString();
+            murni = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 107).toString();
+            tidakMurni = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 108).toString();
+            reguler = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 109).toString();
+            tidakReguler = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 110).toString();
+            bunyi = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 111).toString();
+            TKetBunyi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 112).toString());
+            vesikuler = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 113).toString();
+            ronchi = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 114).toString();
+            wezing = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 115).toString();
+            stridor = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 116).toString();
+            lainParu = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 117).toString();
+            TKetLainParu.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 118).toString());
+            supel = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 119).toString();
+            disten = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 120).toString();
+            bising = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 121).toString();
+            hepar = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 122).toString();
+            limpa = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 123).toString();
+            nyeri = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 124).toString();
+            TNyeri.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 125).toString());
+            masaPos = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 126).toString();
+            masaNeg = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 127).toString();
+            uk = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 128).toString();
+            Tuk.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 129).toString());
+            lokasi = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 130).toString();
+            Tlokasi.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 131).toString());
+            segar = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 132).toString();
+            layu = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 133).toString();
+            lainTali = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 134).toString();
+            TKetLainTali.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 135).toString());
+            normalPunggung = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 136).toString();
+            spina = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 137).toString();
+            gibus = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 138).toString();
+            lainPunggung = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 139).toString();
+            TKetLainPunggung.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 140).toString());
+            sex = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 141).toString();
+            Tsex.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 142).toString());
+            kelainanUro = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 143).toString();
+            TkelainanUro.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 144).toString());
+            bak = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 145).toString();
+            Tbak.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 146).toString());
+            cmbAnus.setSelectedItem(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 147).toString());
+            bab = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 148).toString();
+            Tbab.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 149).toString());
+            simetrisEks = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 150).toString();
+            asimetrisEks = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 151).toString();
+            reflekMoroPos = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 152).toString();
+            reflekMoroNeg = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 153).toString();
+            lainEks = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 154).toString();
+            TKetLainEks.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 155).toString());
+            edema = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 156).toString();
+            kelainanEks = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 157).toString();
+            TkelainanEks.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 158).toString());
+            Tpemerikaaan.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 159).toString());
+            TdiagnosaKerja.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 160).toString());
+            TdiagnosaBanding.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 161).toString());
+            Tpengobatan.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 162).toString());
+            Tdiet.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 163).toString());
+            Trencana.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 164).toString());
+            Tnip.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 167).toString());            
+            TnmDokter.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 8).toString());
             dataCek();
         }
     }
@@ -6226,10 +6420,11 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                     TNoRM.setText(rs.getString("no_rkm_medis"));
                     TPasien.setText(rs.getString("nm_pasien"));
                     Tjk.setText(rs.getString("jk"));
-                    Valid.SetTgl(TtglAsesmen, rs.getString("tgl_registrasi"));
-                    cmbJam.setSelectedItem(rs.getString("jam_reg").toString().substring(0, 2));
-                    cmbMnt.setSelectedItem(rs.getString("jam_reg").toString().substring(3, 5));
-                    cmbDtk.setSelectedItem(rs.getString("jam_reg").toString().substring(6, 8));
+                    TtglLahir.setText(rs.getString("tgllahir"));
+//                    Valid.SetTgl(TtglAsesmen, rs.getString("tgl_registrasi"));
+//                    cmbJam.setSelectedItem(rs.getString("jam_reg").toString().substring(0, 2));
+//                    cmbMnt.setSelectedItem(rs.getString("jam_reg").toString().substring(3, 5));
+//                    cmbDtk.setSelectedItem(rs.getString("jam_reg").toString().substring(6, 8));
                     DTPCari1.setDate(rs.getDate("tgl_registrasi"));
                 }
             } catch (Exception e) {
@@ -6279,26 +6474,58 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     
     private void ganti() {
         cekData();
-//        if (Sequel.mengedittf("asesmen_restrain", "no_rawat=?", "tgl_asesmen=?, jam_asesmen=?, ruang_rawat=?, compos=?, "
-//                + "apatis=?, delirium=?, somnolen=?, sopor=?, koma=?, gcs_e=?, gcs_m=?, gcs_v=?, tensi=?, nadi=?, suhu=?, napas=?, skala_nyeri=?, "
-//                + "obs_gelisah=?, obs_kooperatif=?, obs_ketidakmampuan=?, klinis_diri_sendiri=?, klinis_orang_lain=?, klinis_gagal=?, "
-//                + "res_non_farmakologi=?, res_tempat_tidur=?, res_pergelangan_tangan=?, res_tangan_kiri=?, res_tangan_kanan=?, "
-//                + "res_pergelangan_kaki=?, res_kaki_kiri=?, res_kaki_kanan=?, res_lainlain=?, res_farmakologi=?, kalimat_res_farmakologi=?, "
-//                + "kajian_1_jam=?, kajian_2_jam=?, kajian_lanjutan_2_jam=?, kajian_lanjutan_4_jam=?, obs_tanda=?, obs_lanjutan=?, "
-//                + "menjelaskan_alasan=?, menjelaskan_kriteria=?, menjelaskan_informasi=?, nip_petugas=?", 45, new String[]{
-//                    Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
-//                    compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(),
-//                    Tnapas.getText(), Tskala.getText(), gelisah, kooperatif, ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan,
-//                    restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi, TResFarmakologi.getText(), kajian1jam, kajian2jam,
-//                    kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText(),
-//                    tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString()
-//                }) == true) {
-//
-//            TCari.setText(TNoRw.getText());
-//            tampil();
-//            emptTeks();
-//            TabRawat.setSelectedIndex(1);
-//        }
+        try {
+            if (Sequel.mengedittf("asesmen_medik_perinatologi", "no_rawat=?",
+                    "keluhan=?, riw_penyakit_dahulu=?, hipertensi=?, diabetes=?, jantung=?, stroke=?, asma=?, kejang=?, "
+                    + "hati=?, kanker=?, tb=?, pms=?, perdarahan=?, ginjal=?, lain_lain=?, ket_lain_lain=?, kondisi_saat_lahir=?, "
+                    + "ket_as=?, gerak=?, tangis=?, warna_kulit=?, hr=?, suhu=?, rr=?, saturasi=?, capilary_refill=?, bbl=?, pb=?, "
+                    + "lk=?, ld=?, lp=?, lla=?, turgor=?, ket_turgor=?, sianosis_kulit=?, perdarahan_kulit=?, ikterus_positif=?, "
+                    + "ikterus_negatif=?, krammer=?, ket_krammer=?, hematoma=?, sklerema=?, kutis=?, lainya_kulit=?, ket_lainya_kulit=?, "
+                    + "simetris_kapala=?, asimetris_kepala=?, cephal_hematom=?, caput_succedaneum=?, anensefali=?, microsefal=?, "
+                    + "hydrosefalus=?, lainya_kepala=?, ket_lainya_kepala=?, datar=?, cembung=?, cekung=?, lainya_uub=?, "
+                    + "ket_lainya_uub=?, normal_mata=?, anemia=?, ikterus_mata=?, sekret_mata=?, lainya_mata=?, ket_lainya_mata=?, "
+                    + "normal_tht=?, nch=?, sianosis_tht=?, sekret_tht=?, lainya_tht=?, ket_lainya_tht=?, normal_mulut=?, "
+                    + "labioschisis=?, labiopalatoschisis=?, labiognatopalatoschisis=?, mucosa_warna=?, ket_warna=?, reflek_hisap=?, "
+                    + "ket_reflek_hisap=?, lainya_mulut=?, ket_lainya_mulut=?, normal_leher=?, tortikolis=?, benjolan_kanan=?, "
+                    + "benjolan_kiri=?, lainya_leher=?, ket_lainya_leher=?, simetris_dada=?, tidak_simetris=?, retraksi_positif=?, "
+                    + "retraksi_negatif=?, ket_retraksi=?, sesak=?, merintih=?, sianosis_dada=?, lainya_dada=?, ket_lainya_dada=?, "
+                    + "bji=?, murni=?, tidak_murni=?, reguler=?, tidak_reguler=?, bunyi_tambahan=?, ket_bunyi_tambahan=?, vesikuler=?, "
+                    + "ronchi=?, whezing=?, stridor=?, lainya_paru=?, ket_lainya_paru=?, supel=?, distensi=?, bising_usus=?, "
+                    + "pembesaran_hepar=?, pembesaran_limpa=?, nyeri=?, ket_nyeri=?, massa_positif=?, massa_negatif=?, uk=?, ket_uk=?, "
+                    + "lokasi=?, ket_lokasi=?, segar=?, layu=?, lainya_tali_pusat=?, ket_lainya_tali_pusat=?, normal_punggung=?, "
+                    + "spina=?, gibus=?, lainya_punggung=?, ket_lainya_punggung=?, sex=?, ket_sex=?, kelainan_urogenitalia=?, "
+                    + "ket_kelainan_urogenitalia=?, bak=?, ket_bak=?, anus=?, bab=?, ket_bab=?, simetris_ekstremitas=?, "
+                    + "asimetris_ekstremitas=?, reflek_moro_positif=?, reflek_moro_negatif=?, lainya_ekstremitas=?, "
+                    + "ket_lainya_ekstremitas=?, edema=?, kelainan_ekstremitas=?, ket_kelainan_ekstremitas=?, pemeriksaan_penunjang=?, "
+                    + "diagnosa_kerja=?, diagnosa_banding=?, pengobatan=?, diet=?, rencana=?, tgl_asesmen=?, jam_asesmen=?, nip_dpjp=?", 160, new String[]{
+                        Tkeluhan.getText(), TriwPenyakitDahulu.getText(), hipertensi, diabet, jantung, strok, asma, kejang,
+                        hati, kanker, tb, pms, perdarahan, ginjal, lainRiwayat, TketLainLain.getText(), cmbKondisi.getSelectedItem().toString(), TketAs.getText(),
+                        Tgerak.getText(), Ttangis.getText(), TwarnaKulit.getText(), Thr.getText(), Tsuhu.getText(), Trr.getText(), Tsaturasi.getText(),
+                        cmbCapilary.getSelectedItem().toString(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(), Tlp.getText(), Tlla.getText(),
+                        turgor, Tturgor.getText(), sianosisKulit, perdarahanKulit, ikterusPos, ikterusNeg, kramer, Tkramer.getText(), hematoma, sklere, kutis,
+                        lainKulit, TKetLainKulit.getText(), simetrisKepala, asimetrisKepala, cepal, caput, anen, micros, hidro, lainKepala, TKetLainKepala.getText(),
+                        datar, cembung, cekung, lainUub, TKetLainUUB.getText(), normalMata, anemia, ikterus, sekretMata, LainMata, TKetLainMata.getText(),
+                        normalTht, nch, sianosisTht, sekretTht, lainTht, TKetLainTHT.getText(), normalMulut, labioS, labioP, labioG, mukosa, TMukosa.getText(),
+                        reflek, TReflek.getText(), lainMulut, TKetLainMulut.getText(), normalLeher, torti, benjolKanan, benjolKiri, lainLeher, TKetLainLeher.getText(),
+                        simetrisDada, tidakSimetris, retraksiPos, retraksiNeg, TKetRetraksi.getText(), sesak, merintih, sianosisDada, lainDada, TKetLainDada.getText(),
+                        bj, murni, tidakMurni, reguler, tidakReguler, bunyi, TKetBunyi.getText(), vesikuler, ronchi, wezing, stridor, lainParu, TKetLainParu.getText(),
+                        supel, disten, bising, hepar, limpa, nyeri, TNyeri.getText(), masaPos, masaNeg, uk, Tuk.getText(), lokasi, Tlokasi.getText(), segar, layu,
+                        lainTali, TKetLainTali.getText(), normalPunggung, spina, gibus, lainPunggung, TKetLainPunggung.getText(), sex, Tsex.getText(), kelainanUro,
+                        TkelainanUro.getText(), bak, Tbak.getText(), cmbAnus.getSelectedItem().toString(), bab, Tbab.getText(), simetrisEks, asimetrisEks,
+                        reflekMoroPos, reflekMoroNeg, lainEks, TKetLainEks.getText(), edema, kelainanEks, TkelainanEks.getText(), Valid.mysql_real_escape_stringERM(Tpemerikaaan.getText()),
+                        TdiagnosaKerja.getText(), TdiagnosaBanding.getText(), Tpengobatan.getText(), Tdiet.getText(), Trencana.getText(),
+                        Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                        Tnip.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
+                    }) == true) {
+
+                TCari.setText(TNoRw.getText());
+                tampil();
+                emptTeks();
+                TabRawat.setSelectedIndex(1);
+            }
+        } catch (Exception e) {
+            System.out.println("Ganti Asesmen Medik Perinatologi : " + e);
+        }
     }
     
     private void cekData() {
@@ -6945,31 +7172,27 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }
     
     private void hapus() {
-        if (Sequel.cariInteger("select count(-1) from observasi_restrain where no_rawat='" + TNoRw.getText() + "'") == 0) {
-            x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
-            if (x == JOptionPane.YES_OPTION) {
-                user = "";
-                if (akses.getadmin() == true) {
-                    user = "-";
-                } else {
-                    user = akses.getkode();
-                }
-
-                hapusDisimpan();
-                if (Sequel.queryu2tf("delete from asesmen_restrain where no_rawat=?", 1, new String[]{
-                    tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString()
-                }) == true) {
-                    tampil();
-                    emptTeks();
-                } else {
-                    JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
-                }
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            user = "";
+            if (akses.getadmin() == true) {
+                user = "-";
             } else {
-                tampil();
+                user = akses.getkode();
+            }
+            
+            hapusDisimpan();
+            if (Sequel.queryu2tf("delete from asesmen_medik_perinatologi where no_rawat=?", 1, new String[]{
+                tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
+            }) == true) {
+                tampil();                
                 emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
         } else {
-            JOptionPane.showMessageDialog(null, "Data observasi restrain sudah ada tersimpan, hapus dulu data observasinya..!!");
+            tampil();
+            emptTeks();
         }
     }
     
@@ -7805,28 +8028,66 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     
     private void hapusDisimpan() {
         cekData();
-//        if (Sequel.menyimpantf("asesmen_restrain_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 49, new String[]{
-//                    TNoRw.getText(), Tjk.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
-//                    compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(), Tnapas.getText(), Tskala.getText(), gelisah, kooperatif,
-//                    ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan, restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi,
-//                    TResFarmakologi.getText(), kajian1jam, kajian2jam, kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText(),
-//                    "hapus", user, Sequel.cariIsi("select now()")
-//                }) == true) {
-//            System.out.println("Asesmen Restrain Dihapus Berhasil Tersimpan Sebagai Data Histori..!!");
-//        }
+        try {
+            if (Sequel.menyimpantf("asesmen_medik_perinatologi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 165, new String[]{
+                        TNoRw.getText(), TrgRawat.getText(), Tkeluhan.getText(), TriwPenyakitDahulu.getText(), hipertensi, diabet, jantung, strok, asma, kejang,
+                        hati, kanker, tb, pms, perdarahan, ginjal, lainRiwayat, TketLainLain.getText(), cmbKondisi.getSelectedItem().toString(), TketAs.getText(),
+                        Tgerak.getText(), Ttangis.getText(), TwarnaKulit.getText(), Thr.getText(), Tsuhu.getText(), Trr.getText(), Tsaturasi.getText(),
+                        cmbCapilary.getSelectedItem().toString(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(), Tlp.getText(), Tlla.getText(),
+                        turgor, Tturgor.getText(), sianosisKulit, perdarahanKulit, ikterusPos, ikterusNeg, kramer, Tkramer.getText(), hematoma, sklere, kutis,
+                        lainKulit, TKetLainKulit.getText(), simetrisKepala, asimetrisKepala, cepal, caput, anen, micros, hidro, lainKepala, TKetLainKepala.getText(),
+                        datar, cembung, cekung, lainUub, TKetLainUUB.getText(), normalMata, anemia, ikterus, sekretMata, LainMata, TKetLainMata.getText(),
+                        normalTht, nch, sianosisTht, sekretTht, lainTht, TKetLainTHT.getText(), normalMulut, labioS, labioP, labioG, mukosa, TMukosa.getText(),
+                        reflek, TReflek.getText(), lainMulut, TKetLainMulut.getText(), normalLeher, torti, benjolKanan, benjolKiri, lainLeher, TKetLainLeher.getText(),
+                        simetrisDada, tidakSimetris, retraksiPos, retraksiNeg, TKetRetraksi.getText(), sesak, merintih, sianosisDada, lainDada, TKetLainDada.getText(),
+                        bj, murni, tidakMurni, reguler, tidakReguler, bunyi, TKetBunyi.getText(), vesikuler, ronchi, wezing, stridor, lainParu, TKetLainParu.getText(),
+                        supel, disten, bising, hepar, limpa, nyeri, TNyeri.getText(), masaPos, masaNeg, uk, Tuk.getText(), lokasi, Tlokasi.getText(), segar, layu,
+                        lainTali, TKetLainTali.getText(), normalPunggung, spina, gibus, lainPunggung, TKetLainPunggung.getText(), sex, Tsex.getText(), kelainanUro,
+                        TkelainanUro.getText(), bak, Tbak.getText(), cmbAnus.getSelectedItem().toString(), bab, Tbab.getText(), simetrisEks, asimetrisEks,
+                        reflekMoroPos, reflekMoroNeg, lainEks, TKetLainEks.getText(), edema, kelainanEks, TkelainanEks.getText(), Valid.mysql_real_escape_stringERM(Tpemerikaaan.getText()),
+                        TdiagnosaKerja.getText(), TdiagnosaBanding.getText(), Tpengobatan.getText(), Tdiet.getText(), Trencana.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""),
+                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tnip.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 168).toString(),
+                        "hapus", user, Sequel.cariIsi("select now()")
+                    }) == true) {
+                System.out.println("Asesmen Medik Perinatologi Dihapus Berhasil Tersimpan Sebagai Data Histori..!!");
+            }
+        } catch (Exception e) {
+            System.out.println("Hapus Histori Asesmen Medik Perinatologi : " + e);
+        }
     }
     
     private void gantiDisimpan() {
         cekData();
-//        if (Sequel.menyimpantf("asesmen_restrain_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 49, new String[]{
-//                    TNoRw.getText(), Tjk.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
-//                    compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(), Tnapas.getText(), Tskala.getText(), gelisah, kooperatif,
-//                    ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan, restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi,
-//                    TResFarmakologi.getText(), kajian1jam, kajian2jam, kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText(),
-//                    "ganti", user, Sequel.cariIsi("select now()")
-//                }) == true) {
-//            System.out.println("Asesmen Restrain Diganti Berhasil Tersimpan Sebagai Data Histori..!!");
-//        }
+        try {
+            if (Sequel.menyimpantf("asesmen_medik_perinatologi_histori", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 165, new String[]{
+                        TNoRw.getText(), TrgRawat.getText(), Tkeluhan.getText(), TriwPenyakitDahulu.getText(), hipertensi, diabet, jantung, strok, asma, kejang,
+                        hati, kanker, tb, pms, perdarahan, ginjal, lainRiwayat, TketLainLain.getText(), cmbKondisi.getSelectedItem().toString(), TketAs.getText(),
+                        Tgerak.getText(), Ttangis.getText(), TwarnaKulit.getText(), Thr.getText(), Tsuhu.getText(), Trr.getText(), Tsaturasi.getText(),
+                        cmbCapilary.getSelectedItem().toString(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(), Tlp.getText(), Tlla.getText(),
+                        turgor, Tturgor.getText(), sianosisKulit, perdarahanKulit, ikterusPos, ikterusNeg, kramer, Tkramer.getText(), hematoma, sklere, kutis,
+                        lainKulit, TKetLainKulit.getText(), simetrisKepala, asimetrisKepala, cepal, caput, anen, micros, hidro, lainKepala, TKetLainKepala.getText(),
+                        datar, cembung, cekung, lainUub, TKetLainUUB.getText(), normalMata, anemia, ikterus, sekretMata, LainMata, TKetLainMata.getText(),
+                        normalTht, nch, sianosisTht, sekretTht, lainTht, TKetLainTHT.getText(), normalMulut, labioS, labioP, labioG, mukosa, TMukosa.getText(),
+                        reflek, TReflek.getText(), lainMulut, TKetLainMulut.getText(), normalLeher, torti, benjolKanan, benjolKiri, lainLeher, TKetLainLeher.getText(),
+                        simetrisDada, tidakSimetris, retraksiPos, retraksiNeg, TKetRetraksi.getText(), sesak, merintih, sianosisDada, lainDada, TKetLainDada.getText(),
+                        bj, murni, tidakMurni, reguler, tidakReguler, bunyi, TKetBunyi.getText(), vesikuler, ronchi, wezing, stridor, lainParu, TKetLainParu.getText(),
+                        supel, disten, bising, hepar, limpa, nyeri, TNyeri.getText(), masaPos, masaNeg, uk, Tuk.getText(), lokasi, Tlokasi.getText(), segar, layu,
+                        lainTali, TKetLainTali.getText(), normalPunggung, spina, gibus, lainPunggung, TKetLainPunggung.getText(), sex, Tsex.getText(), kelainanUro,
+                        TkelainanUro.getText(), bak, Tbak.getText(), cmbAnus.getSelectedItem().toString(), bab, Tbab.getText(), simetrisEks, asimetrisEks,
+                        reflekMoroPos, reflekMoroNeg, lainEks, TKetLainEks.getText(), edema, kelainanEks, TkelainanEks.getText(), Valid.mysql_real_escape_stringERM(Tpemerikaaan.getText()),
+                        TdiagnosaKerja.getText(), TdiagnosaBanding.getText(), Tpengobatan.getText(), Tdiet.getText(), Trencana.getText(), Valid.SetTgl(TtglAsesmen.getSelectedItem() + ""),
+                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tnip.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 168).toString(),
+                        "ganti", user, Sequel.cariIsi("select now()")
+                    }) == true) {
+                System.out.println("Asesmen Medik Perinatologi Diganti Berhasil Tersimpan Sebagai Data Histori..!!");
+            }
+        } catch (Exception e) {
+            System.out.println("Ganti Histori Asesmen Medik Perinatologi : " + e);
+        }
     }
     
     private void tampilRiwayat() {
