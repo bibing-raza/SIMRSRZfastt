@@ -2137,7 +2137,7 @@ public final class validasi {
         cek_string = cek_string.replaceAll("\\\\", "\\\\\\\\");
 //        cek_string = cek_string.replaceAll("\\n", "\\\\n");
         cek_string = cek_string.replaceAll("\\r", "\\\\r");
-        cek_string = cek_string.replaceAll("\\t", "\\\\t");
+//        cek_string = cek_string.replaceAll("\\t", "\\\\t");
         cek_string = cek_string.replaceAll("\\00", "\\\\0");
         cek_string = cek_string.replaceAll("'", "\\\\'");
         cek_string = cek_string.replaceAll("\\\"", "\\\\\"");
