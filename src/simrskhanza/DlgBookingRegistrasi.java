@@ -6170,7 +6170,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 + "'" + verif_data.getSelectedItem().toString() + "',"
                 + "'" + no_telp.getText() + "',"
                 + "'-',"
-                + "'" + cmbAntrianKhusus.getSelectedItem().toString() + "'");
+                + "'" + cmbAntrianKhusus.getSelectedItem().toString() + "',"
+                + "'" + akses.getkode() + "'");
     }
 
     private void simpanKelengkapanSEP() {
@@ -6693,8 +6694,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             System.out.println("Notifikasi : " + e);
         }        
 
-        if (TNoRM.getText().trim().equals("") || tabMode5.getRowCount() < 1) {
-            JOptionPane.showMessageDialog(rootPane, "Periksa lagi No. RM pasien & harus terisi dengan benar...!!!");
+        if (FormInput.getSelectedIndex() == 3) {
+            if (TNoRM.getText().trim().equals("") || tabMode5.getRowCount() < 1) {
+                JOptionPane.showMessageDialog(rootPane, "Periksa lagi No. RM pasien & harus terisi dengan benar...!!!");
+            }
         }
     }
     
