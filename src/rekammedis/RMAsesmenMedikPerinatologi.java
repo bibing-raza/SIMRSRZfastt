@@ -4149,7 +4149,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(400, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
@@ -4557,7 +4557,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                 param.put("LainRiwayat", "V");
                 param.put("ketLainRiwayat", "Lain-lain : " + TketLainLain.getText());
             } else {
-                param.put("ketLainRiwayat", "");
+                param.put("LainRiwayat", "");
                 param.put("ketLainRiwayat", "Lain-lain : ........");
             }
             
@@ -4587,17 +4587,17 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                 param.put("warna", "Warna Kulit : " + TwarnaKulit.getText());
             }
             
-            param.put("hr", Thr.getText() + " x/menit");
-            param.put("suhu", Tsuhu.getText() + " °C");
-            param.put("rr", Trr.getText() + " x/menit");
-            param.put("saturasi", Tsaturasi.getText() + " %");
-            param.put("capilary", cmbCapilary.getSelectedItem().toString());
-            param.put("bbl", Tbbl.getText() + " gram");
-            param.put("pb", Tpb.getText() + " cm");
-            param.put("lk", Tlk.getText() + " cm");
-            param.put("ld", Tld.getText() + " cm");
-            param.put("lp", Tlp.getText() + " cm");
-            param.put("lla", Tlla.getText() + " cm");
+            param.put("hr", "HR : " + Thr.getText() + " x/menit");
+            param.put("suhu", "Suhu : " + Tsuhu.getText() + " °C");
+            param.put("rr", "RR : " + Trr.getText() + " x/menit");
+            param.put("saturasi", "Sat O2" + Tsaturasi.getText() + " %");
+            param.put("capilary", "Capillary Refill : " + cmbCapilary.getSelectedItem().toString());
+            param.put("bbl", "BBL : " + Tbbl.getText() + " gram");
+            param.put("pb", "PB : " + Tpb.getText() + " cm");
+            param.put("lk", "LK : " + Tlk.getText() + " cm");
+            param.put("ld", "LD : " + Tld.getText() + " cm");
+            param.put("lp", "LP : " + Tlp.getText() + " cm");
+            param.put("lla", "LLA : " + Tlla.getText() + " cm");
 
             if (chkTurgor.isSelected() == true) {
                 param.put("turgor", "V");
