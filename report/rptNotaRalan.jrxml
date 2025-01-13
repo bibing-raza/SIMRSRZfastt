@@ -14,6 +14,7 @@
 	<parameter name="petugas_ksr" class="java.lang.String"/>
 	<parameter name="tot_bayar" class="java.lang.String"/>
 	<parameter name="tglNota" class="java.lang.String"/>
+	<parameter name="judul" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT temp1, temp2, temp5, temp7 , 
 (SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='No. Nota') no_nota,
@@ -46,9 +47,6 @@ FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Ta
 	<field name="alamat" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
 		<band height="137" splitType="Stretch">
 			<line>
@@ -82,13 +80,6 @@ FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Ta
 				<reportElement x="0" y="0" width="30" height="38"/>
 				<imageExpression class="java.io.InputStream"><![CDATA[$P{logo}]]></imageExpression>
 			</image>
-			<textField>
-				<reportElement x="0" y="44" width="266" height="14"/>
-				<textElement textAlignment="Center" lineSpacing="Single">
-					<font fontName="Tahoma" isBold="true"/>
-				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["NOTA PEMBAYARAN ("+$P{cara_byr}+")"]]></textFieldExpression>
-			</textField>
 			<textField>
 				<reportElement x="76" y="58" width="188" height="13"/>
 				<textElement lineSpacing="Single">
@@ -194,11 +185,15 @@ FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Ta
 				</textElement>
 				<textFieldExpression class="java.lang.String"><![CDATA[$F{alamat}]]></textFieldExpression>
 			</textField>
+			<textField>
+				<reportElement x="0" y="44" width="266" height="14"/>
+				<textElement textAlignment="Center" lineSpacing="Single">
+					<font fontName="Tahoma" isBold="true"/>
+				</textElement>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judul}]]></textFieldExpression>
+			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
 	<detail>
 		<band height="12" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
@@ -231,9 +226,6 @@ FROM temporary_bayar_ralan WHERE temp1 not in ('No. Nota','Poliklinik/Inst.','Ta
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
 	<summary>
 		<band height="81" splitType="Stretch">
 			<staticText>

@@ -14,6 +14,7 @@
 	<parameter name="petugas_ksr" class="java.lang.String"/>
 	<parameter name="tot_bayar" class="java.lang.String"/>
 	<parameter name="tglNota" class="java.lang.String"/>
+	<parameter name="judul" class="java.lang.String"/>
 	<queryString>
 		<![CDATA[SELECT temp1, temp2, temp5, temp7 FROM temporary_bayar_ralan WHERE temp1<>'TOTAL BAYAR']]>
 	</queryString>
@@ -29,9 +30,6 @@
 	<field name="temp7" class="java.lang.String">
 		<fieldDescription><![CDATA[]]></fieldDescription>
 	</field>
-	<background>
-		<band splitType="Stretch"/>
-	</background>
 	<title>
 		<band height="58" splitType="Stretch">
 			<line>
@@ -70,13 +68,10 @@
 				<textElement textAlignment="Center" lineSpacing="Single">
 					<font fontName="Tahoma" isBold="true"/>
 				</textElement>
-				<textFieldExpression class="java.lang.String"><![CDATA["NOTA PEMBAYARAN ("+$P{cara_byr}+")"]]></textFieldExpression>
+				<textFieldExpression class="java.lang.String"><![CDATA[$P{judul}]]></textFieldExpression>
 			</textField>
 		</band>
 	</title>
-	<pageHeader>
-		<band splitType="Stretch"/>
-	</pageHeader>
 	<detail>
 		<band height="12" splitType="Stretch">
 			<textField isStretchWithOverflow="true">
@@ -109,9 +104,6 @@
 			</textField>
 		</band>
 	</detail>
-	<columnFooter>
-		<band splitType="Stretch"/>
-	</columnFooter>
 	<summary>
 		<band height="81" splitType="Stretch">
 			<staticText>

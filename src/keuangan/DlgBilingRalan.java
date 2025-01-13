@@ -76,7 +76,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             Beban_KSO_Tindakan_Ralan = "", Utang_KSO_Tindakan_Ralan = "", Beban_Jasa_Medik_Dokter_Laborat_Ralan = "",
             Utang_Jasa_Medik_Dokter_Laborat_Ralan = "", Beban_Jasa_Medik_Petugas_Laborat_Ralan = "",
             Utang_Jasa_Medik_Petugas_Laborat_Ralan = "", Beban_Kso_Laborat_Ralan = "", Utang_Kso_Laborat_Ralan = "",
-            HPP_Persediaan_Laborat_Rawat_Jalan = "", Persediaan_BHP_Laborat_Rawat_Jalan = "",
+            HPP_Persediaan_Laborat_Rawat_Jalan = "", Persediaan_BHP_Laborat_Rawat_Jalan = "", judulBanyak = "", judulTunggal = "",
             Beban_Jasa_Medik_Dokter_Radiologi_Ralan = "", Utang_Jasa_Medik_Dokter_Radiologi_Ralan = "",
             Beban_Jasa_Medik_Petugas_Radiologi_Ralan = "", Utang_Jasa_Medik_Petugas_Radiologi_Ralan = "",
             Beban_Kso_Radiologi_Ralan = "", Utang_Kso_Radiologi_Ralan = "", HPP_Persediaan_Radiologi_Rawat_Jalan = "",
@@ -2916,7 +2916,6 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             Valid.textKosong(TNoRw, "Pasien");
         } else if (tabModeRwJlDr.getRowCount() == 0) {
             JOptionPane.showMessageDialog(null, "Maaf, data sudah habis. Tidak ada data yang bisa anda print...!!!!");
-            //TCari.requestFocus();
         } else if (tabModeRwJlDr.getRowCount() != 0) {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             try {
@@ -2987,7 +2986,7 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                 i = 0;
                 try {
                     biaya = (String) JOptionPane.showInputDialog(null, "Silahkan pilih nota/kwitansi yang mau dicetak..!", "Nota",
-                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi"}, "Nota");
+                            JOptionPane.QUESTION_MESSAGE, null, new Object[]{"Nota", "Kwitansi", "Kwitansi (Datanya Adalah Nota)"}, "Nota");
                     switch (biaya) {
                         case "Nota":
                             i = 1;
@@ -2995,9 +2994,9 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                         case "Kwitansi":
                             i = 2;
                             break;
-//                        case "Nota & Kwitansi":
-//                            i = 3;
-//                            break;
+                        case "Kwitansi (Datanya Adalah Nota)":
+                            i = 3;
+                            break;
                     }
                 } catch (Exception e) {
                     i = 0;
@@ -3007,31 +3006,16 @@ public class DlgBilingRalan extends javax.swing.JDialog {
                     this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                     kd_pj = Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?", TNoRw.getText());
                     if (i == 1) {
-                        cetakNota();
-//                        Valid.panggilUrl("billing/LaporanBilling.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
+                        cetakNota("nota");
                     } else if (i == 2) {
                         if (piutang > 0) {
                             cetakKwitansiPIUTANG();
-
-//                            Valid.panggilUrl("billing/LaporanBilling7.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(reg_periksa.no_rawat) from reg_periksa "
-//                                    + "where reg_periksa.kd_pj='" + kd_pj + "' and reg_periksa.tgl_registrasi like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RJ/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
                         } else if (piutang <= 0) {
                             cetakKwitansiLUNAS();
-
-//                            Valid.panggilUrl("billing/LaporanBilling5.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(reg_periksa.no_rawat) from reg_periksa "
-//                                    + "where reg_periksa.kd_pj='" + kd_pj + "' and reg_periksa.tgl_registrasi like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RJ/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
                         }
+                    } else if (i == 3) {
+                        cetakNota("kwitansi_nota");
                     }
-//                    else if (i == 3) {
-//                        Valid.panggilUrl("billing/LaporanBilling.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&tanggal=" + DTPTgl.getSelectedItem().toString().replaceAll(" ", "_"));
-//                        if (piutang > 0) {
-//                            Valid.panggilUrl("billing/LaporanBilling7.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(reg_periksa.no_rawat) from reg_periksa "
-//                                    + "where reg_periksa.kd_pj='" + kd_pj + "' and reg_periksa.tgl_registrasi like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RJ/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
-//                        } else if (piutang <= 0) {
-//                            Valid.panggilUrl("billing/LaporanBilling5.php?petugas=" + var.getkode().replaceAll(" ", "_") + "&nonota=" + Sequel.cariIsi("select count(reg_periksa.no_rawat) from reg_periksa "
-//                                    + "where reg_periksa.kd_pj='" + kd_pj + "' and reg_periksa.tgl_registrasi like '%" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 7) + "%'") + "/RJ/" + kd_pj + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(5, 7) + "/" + Valid.SetTgl(DTPTgl.getSelectedItem() + "").substring(0, 4));
-//                        }
-//                    }
                     this.setCursor(Cursor.getDefaultCursor());
                 }
 
@@ -6887,7 +6871,9 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat=?", kdpoli, TNoRw.getText());
     }
 
-    private void cetakNota() {
+    private void cetakNota(String judulnya) {
+        judulBanyak = "";
+        judulTunggal = "";
         jmlNota = 0;
         jmlNota = Sequel.cariInteger("SELECT count(-1) cek FROM temporary_bayar_ralan WHERE temp1='No. Nota'");
 
@@ -6908,12 +6894,22 @@ private void MnPeriksaLabActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else if (akses.getbilling_ralan()) {
             param.put("petugas_ksr", "( " + Sequel.cariIsi("select nama from petugas where nip='" + akses.getkode() + "'") + " )");
         }
+        
+        if (judulnya.equals("nota")) {
+            param.put("judul", "NOTA PEMBAYARAN (" + Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'") + ")");
+            judulBanyak = "::[ Nota Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
+            judulTunggal = "::[ Nota Pembayaran - LUNAS (Rawat Jalan) ]::";
+        } else if (judulnya.equals("kwitansi_nota")) {
+            param.put("judul", "KUITANSI PEMBAYARAN (" + Sequel.cariIsi("select p.png_jawab from reg_periksa r inner join penjab p on p.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'") + ")");
+            judulBanyak = "::[ Kuitansi Pembayaran Banyak - LUNAS (Rawat Jalan) ]::";
+            judulTunggal = "::[ Kuitansi Pembayaran - LUNAS (Rawat Jalan) ]::";
+        }
 
         if (jmlNota > 1) {
-            Valid.MyReport("rptNotaRalanBanyak.jasper", "report", "::[ Nota Pembayaran Banyak - LUNAS (Rawat Jalan) ]::",
+            Valid.MyReport("rptNotaRalanBanyak.jasper", "report", judulBanyak,
                     " SELECT temp1, temp2, temp5, temp7 FROM temporary_bayar_ralan WHERE temp1 <> 'TOTAL BAYAR'", param);
         } else if (jmlNota <= 1) {
-            Valid.MyReport("rptNotaRalan.jasper", "report", "::[ Nota Pembayaran - LUNAS (Rawat Jalan) ]::",
+            Valid.MyReport("rptNotaRalan.jasper", "report", judulTunggal,
                     " SELECT temp1, temp2, temp5, temp7 , "
                     + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='No. Nota') no_nota,"
                     + "(SELECT REPLACE(temp2,': ','') FROM temporary_bayar_ralan WHERE temp1='Poliklinik/Inst.') poli,"
