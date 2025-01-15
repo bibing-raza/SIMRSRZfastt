@@ -2148,7 +2148,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         BtnNamaDPJP.setBounds(460, 92, 30, 23);
 
         cmbAsesmen.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Asesmen Medik Dewasa", "Asesmen Medik Anak", "Asesmen Medik Bedah" }));
+        cmbAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Asesmen Medik Dewasa", "Asesmen Medik Anak", "Asesmen Medik Bedah", "Asesmen Medik Perinatologi" }));
         cmbAsesmen.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         cmbAsesmen.setName("cmbAsesmen"); // NOI18N
         cmbAsesmen.addActionListener(new java.awt.event.ActionListener() {
@@ -2157,7 +2157,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             }
         });
         panelisi1.add(cmbAsesmen);
-        cmbAsesmen.setBounds(582, 162, 170, 23);
+        cmbAsesmen.setBounds(582, 162, 196, 23);
 
         jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setText("Lihat Data : ");
@@ -3652,6 +3652,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             } else {
                 JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
             }
+        } else if (cmbAsesmen.getSelectedIndex() == 4) {
+            JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
         }
     }//GEN-LAST:event_cmbAsesmenActionPerformed
 

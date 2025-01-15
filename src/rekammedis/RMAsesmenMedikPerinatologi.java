@@ -4149,7 +4149,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
 
         PanelAccor.setBackground(new java.awt.Color(255, 255, 255));
         PanelAccor.setName("PanelAccor"); // NOI18N
-        PanelAccor.setPreferredSize(new java.awt.Dimension(400, 43));
+        PanelAccor.setPreferredSize(new java.awt.Dimension(900, 43));
         PanelAccor.setLayout(new java.awt.BorderLayout());
 
         ChkAccor.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/2rightarrow.png"))); // NOI18N
