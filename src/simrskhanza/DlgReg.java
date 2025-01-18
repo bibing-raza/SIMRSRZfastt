@@ -8076,6 +8076,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             dlgki.tampil();
             dlgki.setVisible(true);
             dlgki.cekLAYAN();
+            dlgki.cekPoli();
 //            dlgki.tampilNoRujukan(NoPeserta.getText());
             this.setCursor(Cursor.getDefaultCursor());
         }

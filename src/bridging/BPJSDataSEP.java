@@ -9834,4 +9834,14 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public void cekPoli() {
+        if (KdPoli.getText().equals("INT2")) {
+            KdPoli.setText("INT");
+            NmPoli.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli.getText() + "'"));
+        } else if (KdPoli.getText().equals("IRS")) {
+            KdPoli.setText("IRM");
+            NmPoli.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli.getText() + "'"));            
+        }
+    }
 }

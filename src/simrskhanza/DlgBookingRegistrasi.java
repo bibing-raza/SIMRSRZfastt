@@ -931,7 +931,7 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
             public void windowClosing(WindowEvent e) {}
             @Override
             public void windowClosed(WindowEvent e) {
-                if(surat_suratan.getTable().getSelectedRow()!= -1){                   
+                if(surat_suratan.getTable().getSelectedRow()!= -1){
                     noSurat.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 9).toString());                    
                     Kddpjp.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 11).toString());
                     NmDPJP.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 12).toString());
@@ -940,7 +940,15 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                     KdPenyakit.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 15).toString());
                     NmPenyakit.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 7).toString());
                     KdPoli1.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 13).toString());
-                    NmPoli1.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 14).toString());
+                    NmPoli1.setText(surat_suratan.getTable().getValueAt(surat_suratan.getTable().getSelectedRow(), 14).toString());                    
+                    
+                    if (KdPoli1.getText().equals("INT2")) {
+                        KdPoli1.setText("INT");
+                        NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                    } else if (KdPoli1.getText().equals("IRS")) {
+                        KdPoli1.setText("IRM");                        
+                        NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                    }
                     btnNoSurat.requestFocus();
                 }                  
             }
@@ -986,10 +994,26 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
 
                         KdPoli1.setText(poliBPJS.getTable().getValueAt(poliBPJS.getTable().getSelectedRow(), 1).toString());
                         NmPoli1.setText(poliBPJS.getTable().getValueAt(poliBPJS.getTable().getSelectedRow(), 2).toString());
+                        if (KdPoli1.getText().equals("INT2")) {
+                            KdPoli1.setText("INT");
+                            NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                        } else if (KdPoli1.getText().equals("IRS")) {
+                            KdPoli1.setText("IRM");
+                            NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                        }
+
                         KdPoli1.requestFocus();
                     } else if (pilihan == 2) {
                         KdPoli1.setText(poliBPJS.getTable().getValueAt(poliBPJS.getTable().getSelectedRow(), 1).toString());
                         NmPoli1.setText(poliBPJS.getTable().getValueAt(poliBPJS.getTable().getSelectedRow(), 2).toString());
+                        if (KdPoli1.getText().equals("INT2")) {
+                            KdPoli1.setText("INT");
+                            NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                        } else if (KdPoli1.getText().equals("IRS")) {
+                            KdPoli1.setText("IRM");
+                            NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                        }
+
                         KdPoli1.requestFocus();
                     }
                 }
@@ -1211,6 +1235,14 @@ public class DlgBookingRegistrasi extends javax.swing.JDialog {
                     isNomer();
                     KdDokter.setText("");
                     NmDokter.setText("");
+                    
+                    if (KdPoli1.getText().equals("INT2")) {
+                        KdPoli1.setText("INT");
+                        NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                    } else if (KdPoli1.getText().equals("IRS")) {
+                        KdPoli1.setText("IRM");
+                        NmPoli1.setText(Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + KdPoli1.getText() + "'"));
+                    }
                     TanggalPeriksa.requestFocus();
                 }
             }
