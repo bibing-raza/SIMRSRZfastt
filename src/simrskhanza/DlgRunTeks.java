@@ -96,19 +96,21 @@ public class DlgRunTeks extends javax.swing.JDialog {
         }
         tbNomor.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2 = new DefaultTableModel(null, new Object[]{
-            "Tgl. Libur", "Keterangan Libur"}) {
+        tabMode2 = new DefaultTableModel(null, new String[]{
+            "Tgl. Libur", "Hari", "Keterangan Libur"}) {
             @Override public boolean isCellEditable(int rowIndex, int colIndex) {return false;}            
         };
         tbHari.setModel(tabMode2);
         tbHari.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbHari.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 3; i++) {
             TableColumn column = tbHari.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(75);
             } else if (i == 1) {
+                column.setPreferredWidth(70);
+            } else if (i == 2) {
                 column.setPreferredWidth(450);
             }
         }
@@ -164,6 +166,8 @@ public class DlgRunTeks extends javax.swing.JDialog {
         Scroll3 = new widget.ScrollPane();
         tbHari = new widget.Table();
         panelisi2 = new widget.panelisi();
+        jLabel16 = new widget.Label();
+        cmbBulan = new widget.ComboBox();
         jLabel15 = new widget.Label();
         taun = new widget.TextBox();
         jLabel6 = new widget.Label();
@@ -323,7 +327,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         panelGlass1.add(ChkHariLibur);
         ChkHariLibur.setBounds(0, 220, 128, 23);
 
-        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-12-2022" }));
+        tglLibur.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
         tglLibur.setDisplayFormat("dd-MM-yyyy");
         tglLibur.setName("tglLibur"); // NOI18N
         tglLibur.setOpaque(false);
@@ -486,6 +490,18 @@ public class DlgRunTeks extends javax.swing.JDialog {
         panelisi2.setName("panelisi2"); // NOI18N
         panelisi2.setPreferredSize(new java.awt.Dimension(100, 54));
         panelisi2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel16.setText("Bulan Libur :");
+        jLabel16.setName("jLabel16"); // NOI18N
+        jLabel16.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelisi2.add(jLabel16);
+
+        cmbBulan.setForeground(new java.awt.Color(0, 0, 0));
+        cmbBulan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "1", "2", "3", "4", "5", "6", "7", "8", "9", "10", "11", "12" }));
+        cmbBulan.setName("cmbBulan"); // NOI18N
+        cmbBulan.setPreferredSize(new java.awt.Dimension(50, 23));
+        panelisi2.add(cmbBulan);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Tahun Libur : ");
@@ -835,6 +851,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        cmbBulan.setSelectedItem(Sequel.cariIsi("SELECT MONTH(now())"));
         taun.setText(Sequel.cariIsi("SELECT YEAR(NOW())"));
         tampil();
         tampilNomor();
@@ -1019,6 +1036,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
     private widget.ScrollPane Scroll3;
     private widget.TextBox TCari;
     private widget.TextArea TTeks;
+    private widget.ComboBox cmbBulan;
     private widget.ComboBox cmbDtk;
     private widget.ComboBox cmbJam;
     private widget.ComboBox cmbMnt;
@@ -1026,6 +1044,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.Label jLabel15;
+    private widget.Label jLabel16;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -1103,13 +1122,15 @@ public class DlgRunTeks extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode2);
         try {
             ps2 = koneksi.prepareStatement("select tgl_libur, keterangan from hari_libur where "
-                    + "year(tgl_libur)='" + taun.getText() + "' and keterangan like ? order by tgl_libur desc");
+                    + "month(tgl_libur)='" + cmbBulan.getSelectedItem().toString() + "' and year(tgl_libur)='" + taun.getText() + "' "
+                    + "and keterangan like ? order by tgl_libur desc");
             try {
                 ps2.setString(1, "%" + TCari.getText().trim() + "%");
                 rs2 = ps2.executeQuery();
                 while (rs2.next()) {
-                    tabMode2.addRow(new Object[]{
+                    tabMode2.addRow(new String[]{
                         rs2.getString("tgl_libur"),
+                        Sequel.hariINDONESIA("select date_format('" + rs2.getString("tgl_libur") + "','%W')"),
                         rs2.getString("keterangan")
                     });
                 }
@@ -1167,7 +1188,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         if (tbHari.getSelectedRow() != -1) {
             tglnya = tbHari.getValueAt(tbHari.getSelectedRow(), 0).toString();
             Valid.SetTgl(tglLibur, tbHari.getValueAt(tbHari.getSelectedRow(), 0).toString());
-            ketLibur.setText(tbHari.getValueAt(tbHari.getSelectedRow(), 1).toString());
+            ketLibur.setText(tbHari.getValueAt(tbHari.getSelectedRow(), 2).toString());
             
             if (!tglnya.equals("")) {
                 ChkHariLibur.setSelected(true);
@@ -1194,6 +1215,7 @@ public class DlgRunTeks extends javax.swing.JDialog {
         cmbDtk.setSelectedIndex(0);
         TTeks.requestFocus();
         taun.setText(Sequel.cariIsi("SELECT YEAR(NOW())"));
+        cmbBulan.setSelectedItem(Sequel.cariIsi("SELECT MONTH(now())"));
         tampil();
         tampilNomor();
         tampilLibur();

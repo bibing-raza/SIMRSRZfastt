@@ -5477,6 +5477,11 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         } else if (TNoRw.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
             TCari.requestFocus();
+        } else if (Sequel.cekRekamMedisIGD(TNoRw.getText()) > 1) {
+            JOptionPane.showMessageDialog(null, "Data rekam medis IGD pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
+        } else if (Sequel.cekRekamMedisRanap1(TNoRw.getText()) > 1
+                || Sequel.cekRekamMedisRanap2(TNoRw.getText()) > 1) {
+            JOptionPane.showMessageDialog(null, "Data rekam medis rawat inap pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
         } else {
             cekSEPboking = Sequel.cariIsi("select kd_booking from booking_registrasi where no_rawat='" + TNoRw.getText() + "'");
 

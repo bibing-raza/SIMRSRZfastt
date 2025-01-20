@@ -7793,12 +7793,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         } else if (TPasien.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Gagal menghapus. Pilih dulu data yang mau dihapus. Klik data pada tabel untuk memilih. "
                     + "Untuk menghapus pasien bayi lewat ranap gabung!!!!");
+        } else if (Sequel.cekRekamMedisRanap1(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 1
+                || Sequel.cekRekamMedisRanap2(tbKamIn.getValueAt(tbKamIn.getSelectedRow(), 0).toString()) > 1) {
+            JOptionPane.showMessageDialog(null, "Data rekam medis rawat inap pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
         } else if (!(TPasien.getText().trim().equals(""))) {
             cekInapDR = 0;
             cekInapPR = 0;
             cekInapDRPR = 0;
             
-            if (akses.getkode().equals("Admin Utama")) {
+            if (akses.getadmin() == true) {
                 hapusDataRanap();
             } else {
                 cekInapDR = Sequel.cariInteger("select count(-1) from rawat_inap_dr where no_rawat='" + norawat.getText() + "'");

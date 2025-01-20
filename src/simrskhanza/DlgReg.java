@@ -6356,38 +6356,42 @@ public final class DlgReg extends javax.swing.JDialog {
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         cekSEPboking = "";
 
-        for (i = 0; i < tbregistrasiRalan.getRowCount(); i++) {
-            if (tbregistrasiRalan.getValueAt(i, 0).toString().equals("true")) {
-                sepJkd.setText(Sequel.cariIsi("SELECT bridging_jamkesda.no_sep FROM reg_periksa "
-                        + "INNER JOIN bridging_jamkesda ON reg_periksa.no_rawat = bridging_jamkesda.no_rawat "
-                        + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                        + "WHERE bridging_jamkesda.no_rawat='" + TNoRw.getText() + "' AND bridging_jamkesda.jns_rawat='Jalan' AND penjab.png_jawab like '%jamkesda%'"));
+        if (Sequel.cekRekamMedisRanap1(TNoRw.getText()) > 1 || Sequel.cekRekamMedisRanap2(TNoRw.getText()) > 1) {
+            JOptionPane.showMessageDialog(null, "Data rekam medis rawat inap pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
+        } else {
+            for (i = 0; i < tbregistrasiRalan.getRowCount(); i++) {
+                if (tbregistrasiRalan.getValueAt(i, 0).toString().equals("true")) {
+                    sepJkd.setText(Sequel.cariIsi("SELECT bridging_jamkesda.no_sep FROM reg_periksa "
+                            + "INNER JOIN bridging_jamkesda ON reg_periksa.no_rawat = bridging_jamkesda.no_rawat "
+                            + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
+                            + "WHERE bridging_jamkesda.no_rawat='" + TNoRw.getText() + "' AND bridging_jamkesda.jns_rawat='Jalan' AND penjab.png_jawab like '%jamkesda%'"));
 
-                cekSEPboking = Sequel.cariIsi("select kd_booking from booking_registrasi where no_rawat='" + TNoRw.getText() + "'");
+                    cekSEPboking = Sequel.cariIsi("select kd_booking from booking_registrasi where no_rawat='" + TNoRw.getText() + "'");
 
-                Sequel.meghapus("rujuk_masuk", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
-                Sequel.meghapus("rujuk", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
-                Sequel.meghapus("pasien_mati", "no_rkm_medis", tbregistrasiRalan.getValueAt(i, 7).toString());
-                Sequel.meghapus("bridging_jamkesda", "no_sep", sepJkd.getText());
-                Sequel.meghapus("reg_periksa", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
-                Sequel.meghapus("antrian_prioritas", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
-                Sequel.meghapus("reg_rujukan_intern", "no_rawat_ke", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    Sequel.meghapus("rujuk_masuk", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    Sequel.meghapus("rujuk", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    Sequel.meghapus("pasien_mati", "no_rkm_medis", tbregistrasiRalan.getValueAt(i, 7).toString());
+                    Sequel.meghapus("bridging_jamkesda", "no_sep", sepJkd.getText());
+                    Sequel.meghapus("reg_periksa", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    Sequel.meghapus("antrian_prioritas", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    Sequel.meghapus("reg_rujukan_intern", "no_rawat_ke", tbregistrasiRalan.getValueAt(i, 2).toString());
 
-                if (!cekSEPboking.equals("")) {
-                    Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + cekSEPboking + "'", "status_cetak_sep='BELUM' ");
-                    Sequel.mengedit("booking_registrasi", "kd_booking='" + cekSEPboking + "'", "status_booking='Batal' ");
-                }
+                    if (!cekSEPboking.equals("")) {
+                        Sequel.mengedit("kelengkapan_booking_sep_bpjs", "kd_booking='" + cekSEPboking + "'", "status_cetak_sep='BELUM' ");
+                        Sequel.mengedit("booking_registrasi", "kd_booking='" + cekSEPboking + "'", "status_booking='Batal' ");
+                    }
 
-                if (akses.getadmin() == true) {
-                    Sequel.meghapus("nota_inap", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
-                    Sequel.meghapus("nota_jalan", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    if (akses.getadmin() == true) {
+                        Sequel.meghapus("nota_inap", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                        Sequel.meghapus("nota_jalan", "no_rawat", tbregistrasiRalan.getValueAt(i, 2).toString());
+                    }
                 }
             }
+            Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Hapus'");
+            tampilAwal();
+            emptTeks();
+            tampilCekFinger();
         }
-        Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi Pasien','Hapus'");
-        tampilAwal();
-        emptTeks();
-        tampilCekFinger();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed

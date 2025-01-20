@@ -1027,6 +1027,163 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public int cekRekamMedisIGD(String norawat) {
+        angka = 0;
+        try {
+            //nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
+            ps = connect.prepareStatement(
+                    "select count(*) from reg_periksa rp left join triase_igd rm1 on rm1.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_medis_igd rm2 on rm2.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_igdrz rm3 on rm3.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_igd_resiko rm4 on rm4.no_rawat=rp.no_rawat "
+                    + "left join transfer_serah_terima_pasien_igd rm5 on rm5.no_rawat=rp.no_rawat "
+                    + "left join pemberian_obat rm6 on rm6.no_rawat=rp.no_rawat "
+                    + "left join pelaksana_pemberian_obat rm7 on rm7.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_medis_obstetri_ralan rm8 on rm8.no_rawat=rp.no_rawat "
+                    + "left join cppt rm9 on rm9.no_rawat=rp.no_rawat "
+                    + "left join cppt_konfirmasi_terapi rm10 on rm10.no_rawat=rp.no_rawat "
+                    + "left join surat_tindakan_kedokteran rm11 on rm11.no_rawat=rp.no_rawat "
+                    + "left join permintaan_lab_raza rm12 on rm12.no_rawat=rp.no_rawat "
+                    + "left join permintaan_radiologi rm13 on rm13.no_rawat=rp.no_rawat "
+                    + "left join surat_istirahat_sakit rm14 on rm14.no_rawat=rp.no_rawat "
+                    + "left join surat_keterangan_sakit rm15 on rm15.no_rawat=rp.no_rawat "
+                    + "left join catatan_resep rm16 on rm16.no_rawat=rp.no_rawat "
+                    + "left join lembar_observasi rm17 on rm17.no_rawat=rp.no_rawat "
+                    + "left join detail_lembar_observasi rm18 on rm18.no_rawat=rp.no_rawat "
+                    + "left join asesmen_pra_sedasi rm19 on rm19.no_rawat=rp.no_rawat where rp.no_rawat=?");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return angka;
+    }
+    
+    public int cekRekamMedisRanap1(String norawat) {
+        angka = 0;
+        try {
+            //maksimal join 61 tabel, nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
+            ps = connect.prepareStatement(
+                    "select count(*) from reg_periksa rp left join catatan_tindakan_keperawatan rm1 on rm1.no_rawat=rp.no_rawat "
+                    + "left join evaluasi_catatan_tindakan_keperawatan rm2 on rm2.no_rawat=rp.no_rawat "
+                    + "left join manajemen_catatan_tindakan_keperawatan rm3 on rm3.no_rawat=rp.no_rawat "
+                    + "left join surat_konsul_unit_ranap rm4 on rm4.no_rawat=rp.no_rawat "
+                    + "left join asesmen_medik_dewasa_ranap rm5 on rm5.no_rawat=rp.no_rawat "
+                    + "left join ringkasan_pulang_ranap rm6 on rm6.no_rawat=rp.no_rawat "
+                    + "left join cppt rm7 on rm7.no_rawat=rp.no_rawat "
+                    + "left join cppt_konfirmasi_terapi rm8 on rm8.no_rawat=rp.no_rawat "
+                    + "left join transfer_serah_terima_pasien_igd rm9 on rm9.no_rawat=rp.no_rawat "
+                    + "left join pemberian_obat rm10 on rm10.no_rawat=rp.no_rawat "
+                    + "left join pelaksana_pemberian_obat rm11 on rm11.no_rawat=rp.no_rawat "
+                    + "left join surat_tindakan_kedokteran rm12 on rm12.no_rawat=rp.no_rawat "
+                    + "left join spirometri rm13 on rm13.no_rawat=rp.no_rawat "
+                    + "left join data_persalinan rm14 on rm14.no_rawat=rp.no_rawat "
+                    + "left join permintaan_lab_raza rm15 on rm15.no_rawat=rp.no_rawat "
+                    + "left join permintaan_radiologi rm16 on rm16.no_rawat=rp.no_rawat "
+                    + "left join surat_istirahat_sakit rm17 on rm17.no_rawat=rp.no_rawat "
+                    + "left join surat_keterangan_sakit rm18 on rm18.no_rawat=rp.no_rawat "
+                    + "left join catatan_resep_ranap rm19 on rm19.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_dewasa_ranap rm20 on rm20.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_dewasa_ranap_resiko rm21 on rm21.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_dewasa_ranap_decubitus rm22 on rm22.no_rawat=rp.no_rawat "
+                    + "left join pemantauan_harian_parental rm23 on rm23.no_rawat=rp.no_rawat "
+                    + "left join pemantauan_harian_24jam rm24 on rm24.no_rawat=rp.no_rawat "
+                    + "left join protokol_kemoterapi rm25 on rm25.no_rawat=rp.no_rawat "
+                    + "left join asesmen_ulang_resiko_jatuh rm26 on rm26.no_rawat=rp.no_rawat "
+                    + "left join detail_asesmen_ulang_resiko_jatuh rm27 on rm27.no_rawat=rp.no_rawat "
+                    + "left join pengelolaan_transfusi_darah rm28 on rm28.no_rawat=rp.no_rawat "
+                    + "left join monitoring_ews_dewasa rm29 on rm29.no_rawat=rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_anak_ranap rm30 on rm30.no_rawat=rp.no_rawat where rp.no_rawat=?");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return angka;
+    }
+    
+    public int cekRekamMedisRanap2(String norawat) {
+        angka = 0;
+        try {
+            //maksimal join 61 tabel, nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
+            ps = connect.prepareStatement(
+                    "select count(*) from reg_periksa rp left join penilaian_awal_keperawatan_anak_ranap_resiko rm31 on rm31.no_rawat=rp.no_rawat "
+                    + "left join asesmen_medik_anak_ranap rm32 on rm32.no_rawat=rp.no_rawat "
+                    + "left join asesmen_ulang_resiko_jatuh_anak rm33 on rm33.no_rawat=rp.no_rawat "
+                    + "left join detail_asesmen_ulang_resiko_jatuh_anak rm34 on rm34.no_rawat=rp.no_rawat "
+                    + "left join monitoring_pews_anak rm35 on rm35.no_rawat=rp.no_rawat "
+                    + "left join asesmen_restrain rm36 on rm36.no_rawat=rp.no_rawat "
+                    + "left join observasi_restrain rm37 on rm37.no_rawat=rp.no_rawat "
+                    + "left join skrining_gizi_ulang rm38 on rm38.no_rawat=rp.no_rawat "
+                    + "left join monev_asuhan_gizi rm39 on rm39.no_rawat=rp.no_rawat "
+                    + "left join assesmen_gizi_ulang rm40 on rm40.no_rawat=rp.no_rawat "
+                    + "left join lembar_observasi rm41 on rm41.no_rawat=rp.no_rawat "
+                    + "left join detail_lembar_observasi rm42 on rm42.no_rawat=rp.no_rawat "
+                    + "left join transfer_sebelum_tindakan rm43 on rm43.no_rawat=rp.no_rawat "
+                    + "left join transfer_sesudah_tindakan rm44 on rm44.no_rawat=rp.no_rawat "
+                    + "left join asesmen_pra_sedasi rm45 on rm45.no_rawat=rp.no_rawat "
+                    + "left join ceklis_pra_operasi rm46 on rm46.no_rawat=rp.no_rawat "
+                    + "left join ceklis_kesiapan_anestesi rm47 on rm47.no_rawat=rp.no_rawat "
+                    + "left join asesmen_pre_induksi rm48 on rm48.no_rawat=rp.no_rawat "
+                    + "left join asesmen_keperawatan_perioperatif rm49 on rm49.no_rawat=rp.no_rawat "
+                    + "left join hitungan_asesmen_keperawatan_perioperatif rm50 on rm50.no_rawat=rp.no_rawat "
+                    + "left join perencanaan_pulang_ranap rm51 on rm51.no_rawat=rp.no_rawat "
+                    + "left join ceklis_keselamatan_operasi1 rm52 on rm52.no_rawat=rp.no_rawat "
+                    + "left join ceklis_keselamatan_operasi2 rm53 on rm53.no_rawat=rp.no_rawat "
+                    + "left join ceklis_keselamatan_operasi3 rm54 on rm54.no_rawat=rp.no_rawat "
+                    + "left join catatan_material_operasi rm55 on rm55.no_rawat=rp.no_rawat "
+                    + "left join asesmen_medik_bedah_ranap rm56 on rm56.no_rawat=rp.no_rawat "
+                    + "left join asesmen_medik_perinatologi rm57 on rm57.no_rawat=rp.no_rawat where rp.no_rawat=?");
+            try {
+                ps.setString(1, norawat);
+                rs = ps.executeQuery();
+                if (rs.next()) {
+                    angka = rs.getInt(1);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println(e);
+        }
+        return angka;
+    }
 
     public int cariRegistrasi(String norawat) {
         angka = 0;

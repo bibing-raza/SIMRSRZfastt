@@ -65,8 +65,8 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Properties prop = new Properties();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes, pscppt;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes, rscppt;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, ps5, psPasien, psdiag, pspros, psLaprm, psFakIGD, psRes, pscppt;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rs5, rsPasien, rsdiag, rspros, rsLaprm, rsFakIGD, rsRes, rscppt;
     private int i = 0, x = 0, totskorTriase = 0, skorGZ1 = 0, skorYaGZ1 = 0, skorGZ2 = 0, skor = 0, pilihan = 0;
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kontrolPoli = "", cekTgl = "", diagnosa = "", tindakan = "", kodekamar = "", skorAsesIGD = "", kesimpulanGZanak = "",
@@ -85,6 +85,20 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             susunan = "", tanda = "", genitalia = "", anus = "", nipPenyimpan = "",
             keadaanUmum = "", gizi = "", gcsDewasa = "", tindakanResus = "", beratBdn = "", tinggiBdn = "", td = "", nadiDewasa = "",
             respi = "", suhuAxila = "", suhuRektal = "";
+    private String turgorPeri = "", sianosisKulitPeri = "", perdarahanKulitPeri = "", ikterusPosPeri = "", ikterusNegPeri = "", kramerPeri = "", hematomaPeri = "", sklerePeri = "", kutisPeri = "",
+            lainKulitPeri = "", simetrisKepalaPeri = "", asimetrisKepalaPeri = "", cepalPeri = "", caputPeri = "", anenPeri = "", microsPeri = "",
+            hidroPeri = "", lainKepalaPeri = "", datarPeri = "", cembungPeri = "", cekungPeri = "", lainUubPeri = "", normalMataPeri = "",
+            anemiaPeri = "", ikterusPeri = "", sekretMataPeri = "", LainMataPeri = "", normalThtPeri = "", nchPeri = "", sianosisThtPeri = "",
+            sekretThtPeri = "", lainThtPeri = "", normalMulutPeri = "", labioSPeri = "", labioPPeri = "", labioGPeri = "", mukosaPeri = "",
+            reflekPeri = "", lainMulutPeri = "", normalLeherPeri = "", tortiPeri = "", benjolKananPeri = "", benjolKiriPeri = "", lainLeherPeri = "",
+            simetrisDadaPeri = "", tidakSimetrisPeri = "", retraksiPosPeri = "", retraksiNegPeri = "", sesakPeri = "", merintihPeri = "", sianosisDadaPeri = "",
+            lainDadaPeri = "", bjPeri = "", murniPeri = "", tidakMurniPeri = "", regulerPeri = "", tidakRegulerPeri = "", bunyiPeri = "", vesikulerPeri = "",
+            ronchiPeri = "", wezingPeri = "", stridorPeri = "", lainParuPeri = "", supelPeri = "", distenPeri = "", bisingPeri = "", heparPeri = "",
+            limpaPeri = "", nyeriPeri = "", masaPosPeri = "", masaNegPeri = "", ukPeri = "", lokasiPeri = "", segarPeri = "", layuPeri = "", lainTaliPeri = "",
+            normalPunggungPeri = "", spinaPeri = "", gibusPeri = "", lainPunggungPeri = "", sexPeri = "", kelainanUroPeri = "", bakPeri = "", babPeri = "",
+            simetrisEksPeri = "", asimetrisEksPeri = "", reflekMoroPosPeri = "", reflekMoroNegPeri = "", lainEksPeri = "", edemaPeri = "", kelainanEksPeri = "",
+            kondisiLahir = "", ketAS = "", gerak = "", tangis = "", warnaKulit = "", hrPeri = "", suhuPeri = "", rrPeri = "", satuPeri = "", capilari = "",
+            bblPeri = "", pbPeri = "", lkPeri = "", ldPeri = "", lpPeri = "", llaPeri = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private JsonNode root;
@@ -1861,7 +1875,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-01-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-01-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3653,7 +3667,21 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
             }
         } else if (cmbAsesmen.getSelectedIndex() == 4) {
-            JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
+            if (akses.getadmin() == true) {
+                if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                    tampilAsesmenPerinatologi();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Maaf, asesmen medik perinatologi utk. pasien ini belum diisi..!!!!");
+                    cmbAsesmen.setSelectedIndex(0);
+                    TTerapiPengobatan.setText("");
+                    TDiagUtama.setText("");
+                    TAlasanDirawat.setText("");
+                    TRingkasanRiwayat.setText("");
+                    TPemeriksaanFisik.setText("");
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Maaf, masih dalam proses dikerjakan..!!!!");
+            }
         }
     }//GEN-LAST:event_cmbAsesmenActionPerformed
 
@@ -5372,6 +5400,161 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         }
     }
     
+    private void tampilAsesmenPerinatologi() {
+        emptPemeriksaanFisik();
+        try {
+            ps5 = koneksi.prepareStatement("select * from asesmen_medik_perinatologi where no_rawat='" + TNoRW.getText() + "'");
+            try {
+                rs5 = ps5.executeQuery();
+                while (rs5.next()) {
+                    if (TAlasanDirawat.getText().equals("")) {
+                        TAlasanDirawat.setText(rs5.getString("keluhan"));
+                    } else {
+                        TAlasanDirawat.setText(TAlasanDirawat.getText() + "\n\n" + rs5.getString("keluhan"));
+                    }
+                    
+                    if (TRingkasanRiwayat.getText().equals("")) {
+                        TRingkasanRiwayat.setText(rs5.getString("riw_penyakit_dahulu"));
+                    } else {
+                        TRingkasanRiwayat.setText(TRingkasanRiwayat.getText() + "\n\n" + rs5.getString("riw_penyakit_dahulu"));
+                    }
+                    
+                    //pemeriksaan fisik
+                    //tanda vital ----->>
+                    if (rs5.getString("kondisi_saat_lahir").equals("-")) {
+                        kondisiLahir = "";
+                    } else {
+                        kondisiLahir = "Kondisi Saat Lahir : " + rs5.getString("kondisi_saat_lahir") + ", ";
+                    }
+                    
+                    if (rs5.getString("ket_as").equals("")) {
+                        ketAS = "";
+                    } else {
+                        ketAS = "AS : " + rs5.getString("ket_as") + "\n\n";
+                    }
+                    
+                    if (rs5.getString("gerak").equals("")) {
+                        gerak = "";
+                    } else {
+                        gerak = "Gerak : " + rs5.getString("gerak") + ", ";
+                    }
+                    
+                    if (rs5.getString("tangis").equals("")) {
+                        tangis = "";
+                    } else {
+                        tangis = "Tangis : " + rs5.getString("tangis") + ", ";
+                    }
+                    
+                    if (rs5.getString("warna_kulit").equals("")) {
+                        warnaKulit = "";
+                    } else {
+                        warnaKulit = "Warna Kulit : " + rs5.getString("warna_kulit") + ", ";
+                    }
+                    
+                    if (rs5.getString("hr").equals("")) {
+                        hrPeri = "";
+                    } else {
+                        hrPeri = "HR : " + rs5.getString("hr") + " x/menit, ";
+                    }
+                    
+                    if (rs5.getString("suhu").equals("")) {
+                        suhuPeri = "";
+                    } else {
+                        suhuPeri = "Suhu : " + rs5.getString("suhu") + " °C, ";
+                    }
+                    
+                    if (rs5.getString("rr").equals("")) {
+                        rrPeri = "";
+                    } else {
+                        rrPeri = "RR : " + rs5.getString("rr") + " x/menit, ";
+                    }
+                    
+                    if (rs5.getString("saturasi").equals("")) {
+                        satuPeri = "";
+                    } else {
+                        satuPeri = "Sat O2 : " + rs5.getString("saturasi") + " %, ";
+                    }
+                    
+                    if (rs5.getString("capilary_refill").equals("-")) {
+                        capilari = "";
+                    } else {
+                        capilari = "Capillary Refill : " + rs5.getString("capilary_refill") + ", ";
+                    }
+                    
+                    if (rs5.getString("bbl").equals("")) {
+                        bblPeri = "";
+                    } else {
+                        bblPeri = "BBL : " + rs5.getString("bbl") + " gram, ";
+                    }
+                    
+                    if (rs5.getString("pb").equals("")) {
+                        pbPeri = "";
+                    } else {
+                        pbPeri = "PB : " + rs5.getString("pb") + " cm, ";
+                    }
+                    
+                    if (rs5.getString("lk").equals("")) {
+                        lkPeri = "";
+                    } else {
+                        lkPeri = "LK : " + rs5.getString("lk") + " cm, ";
+                    }
+                    
+                    if (rs5.getString("ld").equals("")) {
+                        ldPeri = "";
+                    } else {
+                        ldPeri = "LD : " + rs5.getString("ld") + " cm, ";
+                    }
+                    
+                    if (rs5.getString("lp").equals("")) {
+                        lpPeri = "";
+                    } else {
+                        lpPeri = "LP : " + rs5.getString("lp") + " cm, ";
+                    }
+                    
+                    if (rs5.getString("lla").equals("")) {
+                        llaPeri = "";
+                    } else {
+                        llaPeri = "LLA : " + rs5.getString("lla") + " cm";
+                    }
+
+                    poinA = kondisiLahir + ketAS + "Tanda Vital :\n" + gerak + tangis + warnaKulit + hrPeri + suhuPeri + rrPeri + satuPeri + capilari
+                            + bblPeri + pbPeri + lkPeri + ldPeri + lpPeri + llaPeri + "\n\n";
+                    
+                    //pemeriksaan umum ----->>
+//                    if (rs5.getString("hipertensi").equals("tidak")) {
+//                        hipertensiPeri = "";
+//                    } else {
+//                        hipertensiPeri = "Hipertensi, ";
+//                    }
+
+                    //-------------------------------------------------------------------------------------------------------------------
+                    if (TPemeriksaanFisik.getText().equals("")) {
+                        TPemeriksaanFisik.setText(poinA);
+                        
+//                        TPemeriksaanFisik.setText(poinA + poinB + "\n" + poinC + poinDE + "\n" + poinF + "\n" + poinG
+//                                + "\n" + poinH + "\n" + susunan + tanda + genitalia + anus);
+                    } else {
+                        TPemeriksaanFisik.setText(TPemeriksaanFisik.getText() + "\n\n" + poinA);
+                        
+//                        TPemeriksaanFisik.setText(TPemeriksaanFisik.getText() + "\n\n" + poinA + poinB + "\n" + poinC
+//                                + poinDE + "\n" + poinF + "\n" + poinG + "\n" + poinH + "\n" + susunan + tanda + genitalia + anus);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs5 != null) {
+                    rs5.close();
+                }
+                if (ps5 != null) {
+                    ps5.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
     private void tampilAsesmenAnak() {
         emptPemeriksaanFisik();
         try {
@@ -5857,6 +6040,115 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         tanda = "";
         genitalia = "";
         anus = "";
+        
+        //pemeriksaan fisik perinatologi        
+        turgorPeri = "";
+        sianosisKulitPeri = "";
+        perdarahanKulitPeri = "";
+        ikterusPosPeri = "";
+        ikterusNegPeri = "";
+        kramerPeri = "";
+        hematomaPeri = "";
+        sklerePeri = "";
+        kutisPeri = "";
+        lainKulitPeri = "";
+        simetrisKepalaPeri = "";
+        asimetrisKepalaPeri = "";
+        cepalPeri = "";
+        caputPeri = "";
+        anenPeri = "";
+        microsPeri = "";
+        hidroPeri = "";
+        lainKepalaPeri = "";
+        datarPeri = "";
+        cembungPeri = "";
+        cekungPeri = "";
+        lainUubPeri = "";
+        normalMataPeri = "";
+        anemiaPeri = "";
+        ikterusPeri = "";
+        sekretMataPeri = "";
+        LainMataPeri = "";
+        normalThtPeri = "";
+        nchPeri = "";
+        sianosisThtPeri = "";
+        sekretThtPeri = "";
+        lainThtPeri = "";
+        normalMulutPeri = "";
+        labioSPeri = "";
+        labioPPeri = "";
+        labioGPeri = "";
+        mukosaPeri = "";
+        reflekPeri = "";
+        lainMulutPeri = "";
+        normalLeherPeri = "";
+        tortiPeri = "";
+        benjolKananPeri = "";
+        benjolKiriPeri = "";
+        lainLeherPeri = "";
+        simetrisDadaPeri = "";
+        tidakSimetrisPeri = "";
+        retraksiPosPeri = "";
+        retraksiNegPeri = "";
+        sesakPeri = "";
+        merintihPeri = "";
+        sianosisDadaPeri = "";
+        lainDadaPeri = "";
+        bjPeri = "";
+        murniPeri = "";
+        tidakMurniPeri = "";
+        regulerPeri = "";
+        tidakRegulerPeri = "";
+        bunyiPeri = "";
+        vesikulerPeri = "";
+        ronchiPeri = "";
+        wezingPeri = "";
+        stridorPeri = "";
+        lainParuPeri = "";
+        supelPeri = "";
+        distenPeri = "";
+        bisingPeri = "";
+        heparPeri = "";
+        limpaPeri = "";
+        nyeriPeri = "";
+        masaPosPeri = "";
+        masaNegPeri = "";
+        ukPeri = "";
+        lokasiPeri = "";
+        segarPeri = "";
+        layuPeri = "";
+        lainTaliPeri = "";
+        normalPunggungPeri = "";
+        spinaPeri = "";
+        gibusPeri = "";
+        lainPunggungPeri = "";
+        sexPeri = "";
+        kelainanUroPeri = "";
+        bakPeri = "";
+        babPeri = "";
+        simetrisEksPeri = "";
+        asimetrisEksPeri = "";
+        reflekMoroPosPeri = "";
+        reflekMoroNegPeri = "";
+        lainEksPeri = "";
+        edemaPeri = "";
+        kelainanEksPeri = "";
+        kondisiLahir = "";
+        ketAS = "";
+        gerak = "";
+        tangis = "";
+        warnaKulit = "";
+        hrPeri = "";
+        suhuPeri = "";
+        rrPeri = "";
+        satuPeri = "";
+        capilari = "";
+        bblPeri = "";
+        pbPeri = "";
+        lkPeri = "";
+        ldPeri = "";
+        lpPeri = "";
+        llaPeri = "";
     }
 
     private void tampilPasien() {

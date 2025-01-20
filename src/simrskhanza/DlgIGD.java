@@ -4279,25 +4279,29 @@ public final class DlgIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        for (i = 0; i < tbregistrasiIGD.getRowCount(); i++) {
-            if (tbregistrasiIGD.getValueAt(i, 0).toString().equals("true")) {
-                sepJkd.setText(Sequel.cariIsi("SELECT bridging_jamkesda.no_sep FROM reg_periksa "
-                        + "INNER JOIN bridging_jamkesda ON reg_periksa.no_rawat = bridging_jamkesda.no_rawat "
-                        + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
-                        + "WHERE bridging_jamkesda.no_rawat='" + TNoRw.getText() + "' AND bridging_jamkesda.jns_rawat='Jalan IGD' AND penjab.png_jawab like '%jamkesda%'"));
-                
-                Sequel.meghapus("data_igd", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
-                Sequel.meghapus("rujuk_masuk", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
-                Sequel.meghapus("rujuk", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
-                Sequel.meghapus("pasien_mati", "no_rkm_medis", tbregistrasiIGD.getValueAt(i, 7).toString());
-                Sequel.meghapus("bridging_jamkesda", "no_sep", sepJkd.getText());
-                Sequel.meghapus("ralan_aps", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
-                Sequel.meghapus("reg_periksa", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+        if (Sequel.cekRekamMedisIGD(TNoRw.getText()) > 1) {
+            JOptionPane.showMessageDialog(null, "Data rekam medis IGD pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
+        } else {
+            for (i = 0; i < tbregistrasiIGD.getRowCount(); i++) {
+                if (tbregistrasiIGD.getValueAt(i, 0).toString().equals("true")) {
+                    sepJkd.setText(Sequel.cariIsi("SELECT bridging_jamkesda.no_sep FROM reg_periksa "
+                            + "INNER JOIN bridging_jamkesda ON reg_periksa.no_rawat = bridging_jamkesda.no_rawat "
+                            + "INNER JOIN penjab ON reg_periksa.kd_pj = penjab.kd_pj "
+                            + "WHERE bridging_jamkesda.no_rawat='" + TNoRw.getText() + "' AND bridging_jamkesda.jns_rawat='Jalan IGD' AND penjab.png_jawab like '%jamkesda%'"));
+
+                    Sequel.meghapus("data_igd", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    Sequel.meghapus("rujuk_masuk", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    Sequel.meghapus("rujuk", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    Sequel.meghapus("pasien_mati", "no_rkm_medis", tbregistrasiIGD.getValueAt(i, 7).toString());
+                    Sequel.meghapus("bridging_jamkesda", "no_sep", sepJkd.getText());
+                    Sequel.meghapus("ralan_aps", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                    Sequel.meghapus("reg_periksa", "no_rawat", tbregistrasiIGD.getValueAt(i, 2).toString());
+                }
             }
+            Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi IGD','Hapus'");
+            tampilAwal();
+            emptTeks();
         }
-        Sequel.menyimpan("history_user", "Now(),'" + TNoRw.getText() + "','" + akses.getkode() + "','Registrasi IGD','Hapus'");
-        tampilAwal();
-        emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
