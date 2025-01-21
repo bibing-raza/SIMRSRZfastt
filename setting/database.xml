@@ -86,4 +86,6 @@
     <entry key="KODEPOSSATUSEHAT">70611</entry>
 	<entry key="HOSTport">enkripsi ip addres server & portnya</entry>
 	<entry key="FOLDERPDF">lokasi file pdf setelah dibubuhi tte</entry>
+	<entry key="FOLDERQRRAD">/home/unitsimrs/Documents/QRRad/</entry>
+	<entry key="FOLDERPRINTQRRAD">/home/unitsimrs/Documents/QRRad/QRRad.jpg</entry>
 </properties>

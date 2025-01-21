@@ -2711,4 +2711,30 @@ public final class sekuel {
         }
         return bool;
     }
+	
+	public String cariFolderRad() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERQRRAD").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
+    
+    public String cariFolderPrintRad() {
+        dicari = "";
+        try {
+            prop.loadFromXML(new FileInputStream("setting/database.xml"));
+            dicari = prop.getProperty("FOLDERPRINTQRRAD").toString();
+
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+
+        return dicari;
+    }
 }
