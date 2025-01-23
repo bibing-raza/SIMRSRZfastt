@@ -361,6 +361,7 @@ import rekammedis.RMMonitoringPEWSAnak;
 import rekammedis.RMPasienUntukTindakan;
 import rekammedis.RMPemantauanHarian24Jam;
 import rekammedis.RMPengelolaanTransfusiDarah;
+import rekammedis.RMPenilaianAwalKeperawatanRalanKemoterapi;
 import rekammedis.RMPerencanaanPulang;
 import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMSkriningUlangGizi;
@@ -897,6 +898,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnAsesmenMedikBedahRanap = new widget.ButtonBig();
         btnSuratKonsulInternalPoli = new widget.ButtonBig();
         btnAsesmenMedikPerinatologi = new widget.ButtonBig();
+        btnPenilaianAwalKeperawatanRalanKemoterapi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6096,6 +6098,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenMedikPerinatologi);
 
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setForeground(new java.awt.Color(0, 0, 0));
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/iconfinder_basket_8726.png"))); // NOI18N
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setText("Assesmen Keperawatan Kemoterapi Ralan");
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setIconTextGap(0);
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setName("btnPenilaianAwalKeperawatanRalanKemoterapi"); // NOI18N
+        btnPenilaianAwalKeperawatanRalanKemoterapi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPenilaianAwalKeperawatanRalanKemoterapi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPenilaianAwalKeperawatanRalanKemoterapiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPenilaianAwalKeperawatanRalanKemoterapi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6104,7 +6119,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11/01/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/01/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12048,6 +12063,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenMedikPerinatologiActionPerformed
 
+    private void btnPenilaianAwalKeperawatanRalanKemoterapiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPenilaianAwalKeperawatanRalanKemoterapiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPenilaianAwalKeperawatanRalanKemoterapi aplikasi = new RMPenilaianAwalKeperawatanRalanKemoterapi(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();        
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPenilaianAwalKeperawatanRalanKemoterapiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12337,6 +12365,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPenggajian;
     private widget.ButtonBig btnPenilaianAwalKeperawatanKebidananRalan;
     private widget.ButtonBig btnPenilaianAwalKeperawatanRalan;
+    private widget.ButtonBig btnPenilaianAwalKeperawatanRalanKemoterapi;
     private widget.ButtonBig btnPenilaianAwalMedisRalanGeriatri;
     private widget.ButtonBig btnPenilaianAwalMedisRalanMata;
     private widget.ButtonBig btnPenilaianAwalMedisRalanTHT;
@@ -12958,6 +12987,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
                 Panelmenu.add(btnPenilaianAwalKeperawatanRalan);
+                jmlmenu++;
+            }
+            
+            if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
+                Panelmenu.add(btnPenilaianAwalKeperawatanRalanKemoterapi);
                 jmlmenu++;
             }
 
@@ -15010,6 +15044,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
             Panelmenu.add(btnPenilaianAwalKeperawatanRalan);
+            jmlmenu++;
+        }
+        
+        if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
+            Panelmenu.add(btnPenilaianAwalKeperawatanRalanKemoterapi);
             jmlmenu++;
         }
 
@@ -17126,6 +17165,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
             if (btnPenilaianAwalKeperawatanRalan.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnPenilaianAwalKeperawatanRalan);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getpenilaian_awal_keperawatan_ralan() == true) {
+            if (btnPenilaianAwalKeperawatanRalanKemoterapi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPenilaianAwalKeperawatanRalanKemoterapi);
                 jmlmenu++;
             }
         }

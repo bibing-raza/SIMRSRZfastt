@@ -2610,6 +2610,12 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
                         KetDokter.getText(), Rencana.getText(), KdPetugas.getText(), CacatFisik.getText(),
                         tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString()
                     }) == true) {
+                Sequel.meghapus("penilaian_awal_keperawatan_ralan_masalah", "no_rawat", tbPenilaian.getValueAt(tbPenilaian.getSelectedRow(), 0).toString());
+                for (i = 0; i < tbMasalahKeperawatan.getRowCount(); i++) {
+                    if (tbMasalahKeperawatan.getValueAt(i, 0).toString().equals("true")) {
+                        Sequel.menyimpan2("penilaian_awal_keperawatan_ralan_masalah", "?,?", 2, new String[]{TNoRw.getText(), tbMasalahKeperawatan.getValueAt(i, 1).toString()});
+                    }
+                }
                 getMasalah();
                 tampil();
                 BtnBatalActionPerformed(null);
@@ -4104,11 +4110,11 @@ public final class RMPenilaianAwalKeperawatanRalan extends javax.swing.JDialog {
         }
     }
     
-    public void setNoRm(String norwt, Date tgl2) {
+    public void setNoRm(String norwt) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'", DTPCari1);
-        DTPCari2.setDate(tgl2);
+        Valid.SetTgl2(DTPCari2, Sequel.cariIsi("select date(now())"));
         isRawat();
         cekDataPerawat();
     }    

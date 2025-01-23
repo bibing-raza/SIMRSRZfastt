@@ -57,6 +57,7 @@ import permintaan.DlgPermintaanRadiologi;
 import rekammedis.RMDokumenPenunjangMedis;
 import rekammedis.RMPenilaianAwalKeperawatanKebidanan;
 import rekammedis.RMPenilaianAwalKeperawatanRalan;
+import rekammedis.RMPenilaianAwalKeperawatanRalanKemoterapi;
 import rekammedis.RMPenilaianAwalMedikObstetriRalan;
 import rekammedis.RMPenilaianAwalMedisRalanGeriatri;
 import rekammedis.RMPenilaianAwalMedisRalanMata;
@@ -1390,6 +1391,7 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         MnPenilaianAwalMedisRalanGeriatri = new javax.swing.JMenuItem();
         MnPenilaianTambahanGeriatri = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanRalan = new javax.swing.JMenuItem();
+        MnPenilaianAwalKeperawatanRalanKemo = new javax.swing.JMenuItem();
         MnPenilaianAwalKeperawatanKebidanan = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisRalanTHT = new javax.swing.JMenuItem();
         MnPenilaianAwalMedisRalanMata = new javax.swing.JMenuItem();
@@ -2110,6 +2112,22 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
             }
         });
         MnRekamMedis.add(MnPenilaianAwalKeperawatanRalan);
+
+        MnPenilaianAwalKeperawatanRalanKemo.setBackground(new java.awt.Color(255, 255, 254));
+        MnPenilaianAwalKeperawatanRalanKemo.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnPenilaianAwalKeperawatanRalanKemo.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnPenilaianAwalKeperawatanRalanKemo.setText("Assesmen Keperawatan Kemoterapi Rawat Jalan");
+        MnPenilaianAwalKeperawatanRalanKemo.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnPenilaianAwalKeperawatanRalanKemo.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnPenilaianAwalKeperawatanRalanKemo.setIconTextGap(5);
+        MnPenilaianAwalKeperawatanRalanKemo.setName("MnPenilaianAwalKeperawatanRalanKemo"); // NOI18N
+        MnPenilaianAwalKeperawatanRalanKemo.setPreferredSize(new java.awt.Dimension(300, 26));
+        MnPenilaianAwalKeperawatanRalanKemo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnPenilaianAwalKeperawatanRalanKemoActionPerformed(evt);
+            }
+        });
+        MnRekamMedis.add(MnPenilaianAwalKeperawatanRalanKemo);
 
         MnPenilaianAwalKeperawatanKebidanan.setBackground(new java.awt.Color(255, 255, 254));
         MnPenilaianAwalKeperawatanKebidanan.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
@@ -8513,7 +8531,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                 RMPenilaianAwalKeperawatanRalan form = new RMPenilaianAwalKeperawatanRalan(null, false);
                 form.isCek();
                 form.emptTeks();
-                form.setNoRm(TNoRw.getText(), DTPCari2.getDate());
+                form.setNoRm(TNoRw.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);
@@ -10897,6 +10915,27 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnRujukKeluarBtnPrintActionPerformed
+
+    private void MnPenilaianAwalKeperawatanRalanKemoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnPenilaianAwalKeperawatanRalanKemoActionPerformed
+        if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu pasien...!!!");
+            TCari.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(no_rawat) from kamar_inap where no_rawat=?", TNoRw.getText()) > 0) {
+                JOptionPane.showMessageDialog(null, "Maaf, Pasien sudah masuk Kamar Inap. Masukkan diagnosa lewat kamar inap..!!!");
+            } else {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                RMPenilaianAwalKeperawatanRalanKemoterapi form = new RMPenilaianAwalKeperawatanRalanKemoterapi(null, false);
+                form.isCek();
+                form.emptTeks();
+                form.setNoRm(TNoRw.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            }
+        }
+    }//GEN-LAST:event_MnPenilaianAwalKeperawatanRalanKemoActionPerformed
     /**
      * @param args the command line arguments
      */
@@ -11028,6 +11067,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     private javax.swing.JMenuItem MnKonsulInternalPoli;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanKebidanan;
     private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalan;
+    private javax.swing.JMenuItem MnPenilaianAwalKeperawatanRalanKemo;
     private javax.swing.JMenuItem MnPenilaianAwalMedisRalanGeriatri;
     private javax.swing.JMenuItem MnPenilaianAwalMedisRalanMata;
     private javax.swing.JMenuItem MnPenilaianAwalMedisRalanTHT;
@@ -11669,6 +11709,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         ppProtokolKemoterapi.setEnabled(akses.getkemoterapi());
 
         MnPenilaianAwalKeperawatanRalan.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
+        MnPenilaianAwalKeperawatanRalanKemo.setEnabled(akses.getpenilaian_awal_keperawatan_ralan());
         MnAsesmenMedikObstetri.setEnabled(akses.getpenilaian_awal_medis_ralan_kebidanan());
         MnPenilaianAwalKeperawatanKebidanan.setEnabled(akses.getpenilaian_awal_keperawatan_kebidanan());
         MnPenilaianAwalMedisRalanTHT.setEnabled(akses.getpenilaian_awal_medis_ralan_tht());
