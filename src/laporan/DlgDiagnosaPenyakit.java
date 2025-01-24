@@ -99,9 +99,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(110);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 4) {
                 column.setPreferredWidth(200);
             } else if (i == 5) {
@@ -109,11 +110,11 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(55);
             } else if (i == 8) {
                 column.setPreferredWidth(100);
             } else if (i == 9) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             }
         }
         tbDiagnosaPasien.setDefaultRenderer(Object.class, new WarnaTable());
@@ -150,9 +151,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(110);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 4) {
                 column.setPreferredWidth(200);
             } else if (i == 5) {
@@ -160,11 +162,11 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(55);
             } else if (i == 8) {
                 column.setPreferredWidth(100);
             } else if (i == 9) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             }
         }
         tbDiagnosaPasien1.setDefaultRenderer(Object.class, new WarnaTable());
@@ -339,9 +341,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(110);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 4) {
                 column.setPreferredWidth(200);
             } else if (i == 5) {
@@ -349,9 +352,9 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(70);
             } else if (i == 8) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             }
         }
         tbTindakanPasien.setDefaultRenderer(Object.class, new WarnaTable());
@@ -388,9 +391,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(80);
             } else if (i == 2) {
-                column.setPreferredWidth(110);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(70);
+                column.setPreferredWidth(60);
             } else if (i == 4) {
                 column.setPreferredWidth(200);
             } else if (i == 5) {
@@ -398,11 +402,11 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 6) {
                 column.setPreferredWidth(200);
             } else if (i == 7) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(70);
             } else if (i == 8) {
                 column.setPreferredWidth(40);
             } else if (i == 9) {
-                column.setPreferredWidth(250);
+                column.setPreferredWidth(220);
             }
         }
         tbTindakanPasien1.setDefaultRenderer(Object.class, new WarnaTable());
@@ -578,6 +582,9 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnSimpanQTYinadrg = new javax.swing.JMenuItem();
+        jPopupMenu2 = new javax.swing.JPopupMenu();
+        MnContengSemua = new javax.swing.JMenuItem();
+        MnHapusConteng = new javax.swing.JMenuItem();
         kdpoli = new widget.TextBox();
         nmpoli = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
@@ -687,6 +694,32 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         jPopupMenu1.add(MnSimpanQTYinadrg);
+
+        jPopupMenu2.setName("jPopupMenu2"); // NOI18N
+
+        MnContengSemua.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnContengSemua.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnContengSemua.setText("Conteng Semua");
+        MnContengSemua.setName("MnContengSemua"); // NOI18N
+        MnContengSemua.setPreferredSize(new java.awt.Dimension(155, 26));
+        MnContengSemua.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnContengSemuaActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnContengSemua);
+
+        MnHapusConteng.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapusConteng.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnHapusConteng.setText("Hapus Conteng Semua");
+        MnHapusConteng.setName("MnHapusConteng"); // NOI18N
+        MnHapusConteng.setPreferredSize(new java.awt.Dimension(155, 26));
+        MnHapusConteng.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusContengActionPerformed(evt);
+            }
+        });
+        jPopupMenu2.add(MnHapusConteng);
 
         kdpoli.setEditable(false);
         kdpoli.setForeground(new java.awt.Color(0, 0, 0));
@@ -880,7 +913,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -894,7 +927,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1272,6 +1305,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
 
         tbDiagnosaPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbDiagnosaPasien.setComponentPopupMenu(jPopupMenu2);
         tbDiagnosaPasien.setName("tbDiagnosaPasien"); // NOI18N
         tbDiagnosaPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1322,6 +1356,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll3.setName("Scroll3"); // NOI18N
 
         tbTindakanPasien.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
+        tbTindakanPasien.setComponentPopupMenu(jPopupMenu2);
         tbTindakanPasien.setName("tbTindakanPasien"); // NOI18N
         tbTindakanPasien.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2049,6 +2084,64 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         // TODO add your handling code here:
     }//GEN-LAST:event_BtnKlaimKeyPressed
 
+    private void MnContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemuaActionPerformed
+        BtnCariActionPerformed(null);
+        if (TabRawat.getSelectedIndex() == 0) {
+            if (tbDiagnosaPasien.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada diagnosa statistik (V5) yang tersimpan...!!!");
+            } else {                
+                for (i = 0; i < tbDiagnosaPasien.getRowCount(); i++) {
+                    tbDiagnosaPasien.setValueAt(Boolean.TRUE, i, 0);
+                }
+                
+                for (i = 0; i < tbDiagnosaPasien1.getRowCount(); i++) {
+                    tbDiagnosaPasien1.setValueAt(Boolean.TRUE, i, 0);
+                }
+            }
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            if (tbTindakanPasien.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada prosedur statistik (V5) yang tersimpan...!!!");
+            } else {                
+                for (i = 0; i < tbTindakanPasien.getRowCount(); i++) {
+                    tbTindakanPasien.setValueAt(Boolean.TRUE, i, 0);
+                }
+                
+                for (i = 0; i < tbTindakanPasien1.getRowCount(); i++) {
+                    tbTindakanPasien1.setValueAt(Boolean.TRUE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnContengSemuaActionPerformed
+
+    private void MnHapusContengActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusContengActionPerformed
+        BtnCariActionPerformed(null);
+        if (TabRawat.getSelectedIndex() == 0) {
+            if (tbDiagnosaPasien.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada diagnosa statistik (V5) yang tersimpan...!!!");
+            } else {                
+                for (i = 0; i < tbDiagnosaPasien.getRowCount(); i++) {
+                    tbDiagnosaPasien.setValueAt(Boolean.FALSE, i, 0);
+                }
+
+                for (i = 0; i < tbDiagnosaPasien1.getRowCount(); i++) {
+                    tbDiagnosaPasien1.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        } else if (TabRawat.getSelectedIndex() == 1) {
+            if (tbTindakanPasien.getRowCount() == 0) {
+                JOptionPane.showMessageDialog(null, "Belum ada prosedur statistik (V5) yang tersimpan...!!!");
+            } else {                
+                for (i = 0; i < tbTindakanPasien.getRowCount(); i++) {
+                    tbTindakanPasien.setValueAt(Boolean.FALSE, i, 0);
+                }
+                
+                for (i = 0; i < tbTindakanPasien1.getRowCount(); i++) {
+                    tbTindakanPasien1.setValueAt(Boolean.FALSE, i, 0);
+                }
+            }
+        }
+    }//GEN-LAST:event_MnHapusContengActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2088,6 +2181,8 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label LCount;
     private widget.editorpane LoadHTML1;
     private widget.editorpane LoadHTML2;
+    private javax.swing.JMenuItem MnContengSemua;
+    private javax.swing.JMenuItem MnHapusConteng;
     private javax.swing.JMenuItem MnSimpanQTYinadrg;
     private javax.swing.JPanel PanelInput;
     private widget.TextBox Prosedur;
@@ -2151,6 +2246,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Label jLabel6;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JPopupMenu jPopupMenu2;
     private javax.swing.JSeparator jSeparator5;
     private widget.TextBox kdpoli;
     private widget.TextBox nmpoli;
