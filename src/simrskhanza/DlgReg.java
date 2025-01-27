@@ -6356,7 +6356,7 @@ public final class DlgReg extends javax.swing.JDialog {
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
         cekSEPboking = "";
 
-        if (Sequel.cekRekamMedisRanap1(TNoRw.getText()) > 1 || Sequel.cekRekamMedisRanap2(TNoRw.getText()) > 1) {
+        if (Sequel.cekRekamMedisRanap(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(null, "Data rekam medis rawat inap pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
         } else {
             for (i = 0; i < tbregistrasiRalan.getRowCount(); i++) {

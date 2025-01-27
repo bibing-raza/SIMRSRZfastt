@@ -1027,164 +1027,185 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
-    
+
     public int cekRekamMedisIGD(String norawat) {
         angka = 0;
-        try {
-            //nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
-            ps = connect.prepareStatement(
-                    "select count(*) from reg_periksa rp left join triase_igd rm1 on rm1.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_medis_igd rm2 on rm2.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_igdrz rm3 on rm3.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_igd_resiko rm4 on rm4.no_rawat=rp.no_rawat "
-                    + "left join transfer_serah_terima_pasien_igd rm5 on rm5.no_rawat=rp.no_rawat "
-                    + "left join pemberian_obat rm6 on rm6.no_rawat=rp.no_rawat "
-                    + "left join pelaksana_pemberian_obat rm7 on rm7.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_medis_obstetri_ralan rm8 on rm8.no_rawat=rp.no_rawat "
-                    + "left join cppt rm9 on rm9.no_rawat=rp.no_rawat "
-                    + "left join cppt_konfirmasi_terapi rm10 on rm10.no_rawat=rp.no_rawat "
-                    + "left join surat_tindakan_kedokteran rm11 on rm11.no_rawat=rp.no_rawat "
-                    + "left join permintaan_lab_raza rm12 on rm12.no_rawat=rp.no_rawat "
-                    + "left join permintaan_radiologi rm13 on rm13.no_rawat=rp.no_rawat "
-                    + "left join surat_istirahat_sakit rm14 on rm14.no_rawat=rp.no_rawat "
-                    + "left join surat_keterangan_sakit rm15 on rm15.no_rawat=rp.no_rawat "
-                    + "left join catatan_resep rm16 on rm16.no_rawat=rp.no_rawat "
-                    + "left join lembar_observasi rm17 on rm17.no_rawat=rp.no_rawat "
-                    + "left join detail_lembar_observasi rm18 on rm18.no_rawat=rp.no_rawat "
-                    + "left join asesmen_pra_sedasi rm19 on rm19.no_rawat=rp.no_rawat where rp.no_rawat=?");
-            try {
-                ps.setString(1, norawat);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    angka = rs.getInt(1);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return angka;
-    }
-    
-    public int cekRekamMedisRanap1(String norawat) {
-        angka = 0;
-        try {
-            //maksimal join 61 tabel, nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
-            ps = connect.prepareStatement(
-                    "select count(*) from reg_periksa rp left join catatan_tindakan_keperawatan rm1 on rm1.no_rawat=rp.no_rawat "
-                    + "left join evaluasi_catatan_tindakan_keperawatan rm2 on rm2.no_rawat=rp.no_rawat "
-                    + "left join manajemen_catatan_tindakan_keperawatan rm3 on rm3.no_rawat=rp.no_rawat "
-                    + "left join surat_konsul_unit_ranap rm4 on rm4.no_rawat=rp.no_rawat "
-                    + "left join asesmen_medik_dewasa_ranap rm5 on rm5.no_rawat=rp.no_rawat "
-                    + "left join ringkasan_pulang_ranap rm6 on rm6.no_rawat=rp.no_rawat "
-                    + "left join cppt rm7 on rm7.no_rawat=rp.no_rawat "
-                    + "left join cppt_konfirmasi_terapi rm8 on rm8.no_rawat=rp.no_rawat "
-                    + "left join transfer_serah_terima_pasien_igd rm9 on rm9.no_rawat=rp.no_rawat "
-                    + "left join pemberian_obat rm10 on rm10.no_rawat=rp.no_rawat "
-                    + "left join pelaksana_pemberian_obat rm11 on rm11.no_rawat=rp.no_rawat "
-                    + "left join surat_tindakan_kedokteran rm12 on rm12.no_rawat=rp.no_rawat "
-                    + "left join spirometri rm13 on rm13.no_rawat=rp.no_rawat "
-                    + "left join data_persalinan rm14 on rm14.no_rawat=rp.no_rawat "
-                    + "left join permintaan_lab_raza rm15 on rm15.no_rawat=rp.no_rawat "
-                    + "left join permintaan_radiologi rm16 on rm16.no_rawat=rp.no_rawat "
-                    + "left join surat_istirahat_sakit rm17 on rm17.no_rawat=rp.no_rawat "
-                    + "left join surat_keterangan_sakit rm18 on rm18.no_rawat=rp.no_rawat "
-                    + "left join catatan_resep_ranap rm19 on rm19.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_dewasa_ranap rm20 on rm20.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_dewasa_ranap_resiko rm21 on rm21.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_dewasa_ranap_decubitus rm22 on rm22.no_rawat=rp.no_rawat "
-                    + "left join pemantauan_harian_parental rm23 on rm23.no_rawat=rp.no_rawat "
-                    + "left join pemantauan_harian_24jam rm24 on rm24.no_rawat=rp.no_rawat "
-                    + "left join protokol_kemoterapi rm25 on rm25.no_rawat=rp.no_rawat "
-                    + "left join asesmen_ulang_resiko_jatuh rm26 on rm26.no_rawat=rp.no_rawat "
-                    + "left join detail_asesmen_ulang_resiko_jatuh rm27 on rm27.no_rawat=rp.no_rawat "
-                    + "left join pengelolaan_transfusi_darah rm28 on rm28.no_rawat=rp.no_rawat "
-                    + "left join monitoring_ews_dewasa rm29 on rm29.no_rawat=rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_anak_ranap rm30 on rm30.no_rawat=rp.no_rawat where rp.no_rawat=?");
-            try {
-                ps.setString(1, norawat);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    angka = rs.getInt(1);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return angka;
-    }
-    
-    public int cekRekamMedisRanap2(String norawat) {
-        angka = 0;
-        try {
-            //maksimal join 61 tabel, nilai count harus lebih dari 1, karena 1 adalah count dari tabel reg_periksa
-            ps = connect.prepareStatement(
-                    "select count(*) from reg_periksa rp left join penilaian_awal_keperawatan_anak_ranap_resiko rm31 on rm31.no_rawat=rp.no_rawat "
-                    + "left join asesmen_medik_anak_ranap rm32 on rm32.no_rawat=rp.no_rawat "
-                    + "left join asesmen_ulang_resiko_jatuh_anak rm33 on rm33.no_rawat=rp.no_rawat "
-                    + "left join detail_asesmen_ulang_resiko_jatuh_anak rm34 on rm34.no_rawat=rp.no_rawat "
-                    + "left join monitoring_pews_anak rm35 on rm35.no_rawat=rp.no_rawat "
-                    + "left join asesmen_restrain rm36 on rm36.no_rawat=rp.no_rawat "
-                    + "left join observasi_restrain rm37 on rm37.no_rawat=rp.no_rawat "
-                    + "left join skrining_gizi_ulang rm38 on rm38.no_rawat=rp.no_rawat "
-                    + "left join monev_asuhan_gizi rm39 on rm39.no_rawat=rp.no_rawat "
-                    + "left join assesmen_gizi_ulang rm40 on rm40.no_rawat=rp.no_rawat "
-                    + "left join lembar_observasi rm41 on rm41.no_rawat=rp.no_rawat "
-                    + "left join detail_lembar_observasi rm42 on rm42.no_rawat=rp.no_rawat "
-                    + "left join transfer_sebelum_tindakan rm43 on rm43.no_rawat=rp.no_rawat "
-                    + "left join transfer_sesudah_tindakan rm44 on rm44.no_rawat=rp.no_rawat "
-                    + "left join asesmen_pra_sedasi rm45 on rm45.no_rawat=rp.no_rawat "
-                    + "left join ceklis_pra_operasi rm46 on rm46.no_rawat=rp.no_rawat "
-                    + "left join ceklis_kesiapan_anestesi rm47 on rm47.no_rawat=rp.no_rawat "
-                    + "left join asesmen_pre_induksi rm48 on rm48.no_rawat=rp.no_rawat "
-                    + "left join asesmen_keperawatan_perioperatif rm49 on rm49.no_rawat=rp.no_rawat "
-                    + "left join hitungan_asesmen_keperawatan_perioperatif rm50 on rm50.no_rawat=rp.no_rawat "
-                    + "left join perencanaan_pulang_ranap rm51 on rm51.no_rawat=rp.no_rawat "
-                    + "left join ceklis_keselamatan_operasi1 rm52 on rm52.no_rawat=rp.no_rawat "
-                    + "left join ceklis_keselamatan_operasi2 rm53 on rm53.no_rawat=rp.no_rawat "
-                    + "left join ceklis_keselamatan_operasi3 rm54 on rm54.no_rawat=rp.no_rawat "
-                    + "left join catatan_material_operasi rm55 on rm55.no_rawat=rp.no_rawat "
-                    + "left join asesmen_medik_bedah_ranap rm56 on rm56.no_rawat=rp.no_rawat "
-                    + "left join asesmen_medik_perinatologi rm57 on rm57.no_rawat=rp.no_rawat where rp.no_rawat=?");
-            try {
-                ps.setString(1, norawat);
-                rs = ps.executeQuery();
-                if (rs.next()) {
-                    angka = rs.getInt(1);
-                }
-            } catch (Exception e) {
-                System.out.println("Notifikasi : " + e);
-            } finally {
-                if (rs != null) {
-                    rs.close();
-                }
-                if (ps != null) {
-                    ps.close();
-                }
-            }
-        } catch (Exception e) {
-            System.out.println(e);
-        }
-        return angka;
-    }
+        int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0;
+        a = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
+        b = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
+        c = cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'");
+        d = cariInteger("select count(-1) from penilaian_awal_keperawatan_igd_resiko where no_rawat='" + norawat + "'");
+        e = cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "'");
+        f = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "'");
+        g = cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + norawat + "'");
+        h = cariInteger("select count(-1) from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat + "'");
+        i = cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and flag_hapus='tidak'");
+        j = cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'");
+        k = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "'");
+        l = cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat + "'");
+        m = cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + norawat + "'");
+        n = cariInteger("select count(-1) from surat_istirahat_sakit where no_rawat='" + norawat + "'");
+        o = cariInteger("select count(-1) from surat_keterangan_sakit where no_rawat='" + norawat + "'");
+        p = cariInteger("select count(-1) from catatan_resep where no_rawat='" + norawat + "'");
+        q = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "'");
+        r = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "'");
+        s = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "'");
 
+        System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel triase_igd KOSONG','tabel triase_igd ADA DATANYA (" + norawat + ")') from triase_igd where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_medis_igd KOSONG','tabel penilaian_awal_medis_igd ADA DATANYA (" + norawat + ")') from penilaian_awal_medis_igd where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_igdrz KOSONG','tabel penilaian_awal_keperawatan_igdrz ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_igd_resiko KOSONG','tabel penilaian_awal_keperawatan_igd_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_igd_resiko where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel transfer_serah_terima_pasien_igd KOSONG','tabel transfer_serah_terima_pasien_igd ADA DATANYA (" + norawat + ")') from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pemberian_obat KOSONG','tabel pemberian_obat ADA DATANYA (" + norawat + ")') from pemberian_obat where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pelaksana_pemberian_obat KOSONG','tabel pelaksana_pemberian_obat ADA DATANYA (" + norawat + ")') from pelaksana_pemberian_obat where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_medis_obstetri_ralan KOSONG','tabel penilaian_awal_medis_obstetri_ralan ADA DATANYA (" + norawat + ")') from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel cppt KOSONG','tabel cppt ADA DATANYA (" + norawat + ")') from cppt where no_rawat='" + norawat + "' and flag_hapus='tidak'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel cppt_konfirmasi_terapi KOSONG','tabel cppt_konfirmasi_terapi ADA DATANYA (" + norawat + ")') from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_tindakan_kedokteran KOSONG','tabel surat_tindakan_kedokteran ADA DATANYA (" + norawat + ")') from surat_tindakan_kedokteran where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel permintaan_lab_raza KOSONG','tabel permintaan_lab_raza ADA DATANYA (" + norawat + ")') from permintaan_lab_raza where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel permintaan_radiologi KOSONG','tabel permintaan_radiologi ADA DATANYA (" + norawat + ")') from permintaan_radiologi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_istirahat_sakit KOSONG','tabel surat_istirahat_sakit ADA DATANYA (" + norawat + ")') from surat_istirahat_sakit where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_keterangan_sakit KOSONG','tabel surat_keterangan_sakit ADA DATANYA (" + norawat + ")') from surat_keterangan_sakit where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel catatan_resep KOSONG','tabel catatan_resep ADA DATANYA (" + norawat + ")') from catatan_resep where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel lembar_observasi KOSONG','tabel lembar_observasi ADA DATANYA (" + norawat + ")') from lembar_observasi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel detail_lembar_observasi KOSONG','tabel detail_lembar_observasi ADA DATANYA (" + norawat + ")') from detail_lembar_observasi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "'") + "\n");
+
+        angka = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s;
+        return angka;
+    }
+    
+    public int cekRekamMedisRanap(String norawat) {
+        angka = 0;
+        int rm1 = 0, rm2 = 0, rm3 = 0, rm4 = 0, rm5 = 0, rm6 = 0, rm7 = 0, rm8 = 0, rm9 = 0, rm10 = 0, rm11 = 0, rm12 = 0, rm13 = 0,
+                rm14 = 0, rm15 = 0, rm16 = 0, rm17 = 0, rm18 = 0, rm19 = 0, rm20 = 0, rm21 = 0, rm22 = 0, rm23 = 0, rm24 = 0, rm25 = 0, rm26 = 0,
+                rm27 = 0, rm28 = 0, rm29 = 0, rm30 = 0, rm31 = 0, rm32 = 0, rm33 = 0, rm34 = 0, rm35 = 0, rm36 = 0, rm37 = 0, rm38 = 0, rm39 = 0,
+                rm40 = 0, rm41 = 0, rm42 = 0, rm43 = 0, rm44 = 0, rm45 = 0, rm46 = 0, rm47 = 0, rm48 = 0, rm49 = 0, rm50 = 0, rm51 = 0, rm52 = 0,
+                rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0;
+
+        rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
+        rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
+        rm3 = cariInteger("select count(-1) from manajemen_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
+        rm4 = cariInteger("select count(-1) from surat_konsul_unit_ranap where no_rawat='" + norawat + "'");
+        rm5 = cariInteger("select count(-1) from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "'");
+        rm6 = cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + norawat + "'");
+        rm7 = cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and status='Ranap' and flag_hapus='tidak'");
+        rm8 = cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'");
+        rm9 = cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and status='Ranap'");
+        rm10 = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'");
+        rm11 = cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'");
+        rm12 = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "'");
+        rm13 = cariInteger("select count(-1) from spirometri where no_rawat='" + norawat + "'");
+        rm14 = cariInteger("select count(-1) from data_persalinan where no_rawat='" + norawat + "'");
+        rm15 = cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat + "' and status_rawat='Ranap'");
+        rm16 = cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + norawat + "' and dari_unit not like '%igd%'");
+        rm17 = cariInteger("select count(-1) from surat_istirahat_sakit where no_rawat='" + norawat + "'");
+        rm18 = cariInteger("select count(-1) from surat_keterangan_sakit where no_rawat='" + norawat + "'");
+        rm19 = cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + norawat + "'");
+        rm20 = cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "'");
+        rm21 = cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap_resiko where no_rawat='" + norawat + "'");
+        rm22 = cariInteger("select count(-1) from penilaian_awal_keperawatan_dewasa_ranap_decubitus where no_rawat='" + norawat + "'");
+        rm23 = cariInteger("select count(-1) from pemantauan_harian_parental where no_rawat='" + norawat + "'");
+        rm24 = cariInteger("select count(-1) from pemantauan_harian_24jam where no_rawat='" + norawat + "'");
+        rm25 = cariInteger("select count(-1) from protokol_kemoterapi where no_rawat='" + norawat + "'");
+        rm26 = cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'");
+        rm27 = cariInteger("select count(-1) from detail_asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'");
+        rm28 = cariInteger("select count(-1) from pengelolaan_transfusi_darah where no_rawat='" + norawat + "'");
+        rm29 = cariInteger("select count(-1) from monitoring_ews_dewasa where no_rawat='" + norawat + "'");
+        rm30 = cariInteger("select count(-1) from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norawat + "'");
+        rm31 = cariInteger("select count(-1) from penilaian_awal_keperawatan_anak_ranap_resiko where no_rawat='" + norawat + "'");
+        rm32 = cariInteger("select count(-1) from asesmen_medik_anak_ranap where no_rawat='" + norawat + "'");
+        rm33 = cariInteger("select count(-1) from asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'");
+        rm34 = cariInteger("select count(-1) from detail_asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'");
+        rm35 = cariInteger("select count(-1) from monitoring_pews_anak where no_rawat='" + norawat + "'");
+        rm36 = cariInteger("select count(-1) from asesmen_restrain where no_rawat='" + norawat + "'");
+        rm37 = cariInteger("select count(-1) from observasi_restrain where no_rawat='" + norawat + "'");
+        rm38 = cariInteger("select count(-1) from skrining_gizi_ulang where no_rawat='" + norawat + "'");
+        rm39 = cariInteger("select count(-1) from monev_asuhan_gizi where no_rawat='" + norawat + "'");
+        rm40 = cariInteger("select count(-1) from assesmen_gizi_ulang where no_rawat='" + norawat + "'");
+        rm41 = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
+        rm42 = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
+        rm43 = cariInteger("select count(-1) from transfer_sebelum_tindakan where no_rawat='" + norawat + "'");
+        rm44 = cariInteger("select count(-1) from transfer_sesudah_tindakan where no_rawat='" + norawat + "'");
+        rm45 = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'");
+        rm46 = cariInteger("select count(-1) from ceklis_pra_operasi where no_rawat='" + norawat + "'");
+        rm47 = cariInteger("select count(-1) from ceklis_kesiapan_anestesi where no_rawat='" + norawat + "'");
+        rm48 = cariInteger("select count(-1) from asesmen_pre_induksi where no_rawat='" + norawat + "'");
+        rm49 = cariInteger("select count(-1) from asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'");
+        rm50 = cariInteger("select count(-1) from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'");
+        rm51 = cariInteger("select count(-1) from perencanaan_pulang_ranap where no_rawat='" + norawat + "'");
+        rm52 = cariInteger("select count(-1) from ceklis_keselamatan_operasi1 where no_rawat='" + norawat + "'");
+        rm53 = cariInteger("select count(-1) from ceklis_keselamatan_operasi2 where no_rawat='" + norawat + "'");
+        rm54 = cariInteger("select count(-1) from ceklis_keselamatan_operasi3 where no_rawat='" + norawat + "'");
+        rm55 = cariInteger("select count(-1) from catatan_material_operasi where no_rawat='" + norawat + "'");
+        rm56 = cariInteger("select count(-1) from asesmen_medik_bedah_ranap where no_rawat='" + norawat + "'");
+        rm57 = cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + norawat + "'");
+
+        System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel catatan_tindakan_keperawatan KOSONG','tabel catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel evaluasi_catatan_tindakan_keperawatan KOSONG','tabel evaluasi_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel manajemen_catatan_tindakan_keperawatan KOSONG','tabel manajemen_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from manajemen_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_konsul_unit_ranap KOSONG','tabel surat_konsul_unit_ranap ADA DATANYA (" + norawat + ")') from surat_konsul_unit_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_dewasa_ranap KOSONG','tabel asesmen_medik_dewasa_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ringkasan_pulang_ranap KOSONG','tabel ringkasan_pulang_ranap ADA DATANYA (" + norawat + ")') from ringkasan_pulang_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel cppt KOSONG','tabel cppt ADA DATANYA (" + norawat + ")') from cppt where no_rawat='" + norawat + "' and status='Ranap' and flag_hapus='tidak'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel cppt_konfirmasi_terapi KOSONG','tabel cppt_konfirmasi_terapi ADA DATANYA (" + norawat + ")') from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel transfer_serah_terima_pasien_igd KOSONG','tabel transfer_serah_terima_pasien_igd ADA DATANYA (" + norawat + ")') from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and status='Ranap'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pemberian_obat KOSONG','tabel pemberian_obat ADA DATANYA (" + norawat + ")') from pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pelaksana_pemberian_obat KOSONG','tabel pelaksana_pemberian_obat ADA DATANYA (" + norawat + ")') from pelaksana_pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_tindakan_kedokteran KOSONG','tabel surat_tindakan_kedokteran ADA DATANYA (" + norawat + ")') from surat_tindakan_kedokteran where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel spirometri KOSONG','tabel spirometri ADA DATANYA (" + norawat + ")') from spirometri where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel data_persalinan KOSONG','tabel data_persalinan ADA DATANYA (" + norawat + ")') from data_persalinan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel permintaan_lab_raza KOSONG','tabel permintaan_lab_raza ADA DATANYA (" + norawat + ")') from permintaan_lab_raza where no_rawat='" + norawat + "' and status_rawat='Ranap'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel permintaan_radiologi KOSONG','tabel permintaan_radiologi ADA DATANYA (" + norawat + ")') from permintaan_radiologi where no_rawat='" + norawat + "' and dari_unit not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_istirahat_sakit KOSONG','tabel surat_istirahat_sakit ADA DATANYA (" + norawat + ")') from surat_istirahat_sakit where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel surat_keterangan_sakit KOSONG','tabel surat_keterangan_sakit ADA DATANYA (" + norawat + ")') from surat_keterangan_sakit where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel catatan_resep_ranap KOSONG','tabel catatan_resep_ranap ADA DATANYA (" + norawat + ")') from catatan_resep_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap_resiko KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap_resiko where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap_decubitus KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap_decubitus ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap_decubitus where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pemantauan_harian_parental KOSONG','tabel pemantauan_harian_parental ADA DATANYA (" + norawat + ")') from pemantauan_harian_parental where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pemantauan_harian_24jam KOSONG','tabel pemantauan_harian_24jam ADA DATANYA (" + norawat + ")') from pemantauan_harian_24jam where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel protokol_kemoterapi KOSONG','tabel protokol_kemoterapi ADA DATANYA (" + norawat + ")') from protokol_kemoterapi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_ulang_resiko_jatuh KOSONG','tabel asesmen_ulang_resiko_jatuh ADA DATANYA (" + norawat + ")') from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel detail_asesmen_ulang_resiko_jatuh KOSONG','tabel detail_asesmen_ulang_resiko_jatuh ADA DATANYA (" + norawat + ")') from detail_asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pengelolaan_transfusi_darah KOSONG','tabel pengelolaan_transfusi_darah ADA DATANYA (" + norawat + ")') from pengelolaan_transfusi_darah where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel monitoring_ews_dewasa KOSONG','tabel monitoring_ews_dewasa ADA DATANYA (" + norawat + ")') from monitoring_ews_dewasa where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_anak_ranap KOSONG','tabel penilaian_awal_keperawatan_anak_ranap ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_anak_ranap_resiko KOSONG','tabel penilaian_awal_keperawatan_anak_ranap_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_anak_ranap_resiko where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_anak_ranap KOSONG','tabel asesmen_medik_anak_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_anak_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_ulang_resiko_jatuh_anak KOSONG','tabel asesmen_ulang_resiko_jatuh_anak ADA DATANYA (" + norawat + ")') from asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel detail_asesmen_ulang_resiko_jatuh_anak KOSONG','tabel detail_asesmen_ulang_resiko_jatuh_anak ADA DATANYA (" + norawat + ")') from detail_asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel monitoring_pews_anak KOSONG','tabel monitoring_pews_anak ADA DATANYA (" + norawat + ")') from monitoring_pews_anak where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_restrain KOSONG','tabel asesmen_restrain ADA DATANYA (" + norawat + ")') from asesmen_restrain where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel observasi_restrain KOSONG','tabel observasi_restrain ADA DATANYA (" + norawat + ")') from observasi_restrain where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel skrining_gizi_ulang KOSONG','tabel skrining_gizi_ulang ADA DATANYA (" + norawat + ")') from skrining_gizi_ulang where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel monev_asuhan_gizi KOSONG','tabel monev_asuhan_gizi ADA DATANYA (" + norawat + ")') from monev_asuhan_gizi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel assesmen_gizi_ulang KOSONG','tabel assesmen_gizi_ulang ADA DATANYA (" + norawat + ")') from assesmen_gizi_ulang where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel lembar_observasi KOSONG','tabel lembar_observasi ADA DATANYA (" + norawat + ")') from lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel detail_lembar_observasi KOSONG','tabel detail_lembar_observasi ADA DATANYA (" + norawat + ")') from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel transfer_sebelum_tindakan KOSONG','tabel transfer_sebelum_tindakan ADA DATANYA (" + norawat + ")') from transfer_sebelum_tindakan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel transfer_sesudah_tindakan KOSONG','tabel transfer_sesudah_tindakan ADA DATANYA (" + norawat + ")') from transfer_sesudah_tindakan where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ceklis_pra_operasi KOSONG','tabel ceklis_pra_operasi ADA DATANYA (" + norawat + ")') from ceklis_pra_operasi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ceklis_kesiapan_anestesi KOSONG','tabel ceklis_kesiapan_anestesi ADA DATANYA (" + norawat + ")') from ceklis_kesiapan_anestesi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_pre_induksi KOSONG','tabel asesmen_pre_induksi ADA DATANYA (" + norawat + ")') from asesmen_pre_induksi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_keperawatan_perioperatif KOSONG','tabel asesmen_keperawatan_perioperatif ADA DATANYA (" + norawat + ")') from asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel hitungan_asesmen_keperawatan_perioperatif KOSONG','tabel hitungan_asesmen_keperawatan_perioperatif ADA DATANYA (" + norawat + ")') from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel perencanaan_pulang_ranap KOSONG','tabel perencanaan_pulang_ranap ADA DATANYA (" + norawat + ")') from perencanaan_pulang_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi1 KOSONG','tabel ceklis_keselamatan_operasi1 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi1 where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi2 KOSONG','tabel ceklis_keselamatan_operasi2 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi2 where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi3 KOSONG','tabel ceklis_keselamatan_operasi3 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi3 where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel catatan_material_operasi KOSONG','tabel catatan_material_operasi ADA DATANYA (" + norawat + ")') from catatan_material_operasi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_bedah_ranap KOSONG','tabel asesmen_medik_bedah_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_bedah_ranap where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_perinatologi KOSONG','tabel asesmen_medik_perinatologi ADA DATANYA (" + norawat + ")') from asesmen_medik_perinatologi where no_rawat='" + norawat + "'") + "\n");
+        
+        angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19
+                + rm20 + rm21 + rm22 + rm23 + rm24 + rm25 + rm26 + rm27 + rm28 + rm29 + rm30 + rm31 + rm32 + rm33 + rm34 + rm35 + rm36 + rm37
+                + rm38 + rm39 + rm40 + rm41 + rm42 + rm43 + rm44 + rm45 + rm46 + rm47 + rm48 + rm49 + rm50 + rm51 + rm52 + rm53 + rm54 + rm55 + rm56 + rm57;
+
+        return angka;
+    }
+    
     public int cariRegistrasi(String norawat) {
         angka = 0;
         try {

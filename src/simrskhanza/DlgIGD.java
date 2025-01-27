@@ -4279,7 +4279,7 @@ public final class DlgIGD extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        if (Sequel.cekRekamMedisIGD(TNoRw.getText()) > 1) {
+        if (Sequel.cekRekamMedisIGD(TNoRw.getText()) > 0) {
             JOptionPane.showMessageDialog(null, "Data rekam medis IGD pasien ini sudah tersimpan, silahkan konfirmasi ulang lagi...!!!");
         } else {
             for (i = 0; i < tbregistrasiIGD.getRowCount(); i++) {
