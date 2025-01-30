@@ -671,6 +671,12 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnDokumenJangMed = new javax.swing.JMenuItem();
+        buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
+        buttonGroup3 = new javax.swing.ButtonGroup();
+        buttonGroup4 = new javax.swing.ButtonGroup();
+        buttonGroup5 = new javax.swing.ButtonGroup();
+        buttonGroup6 = new javax.swing.ButtonGroup();
         internalFrame1 = new widget.InternalFrame();
         TabRawat = new javax.swing.JTabbedPane();
         FormAsesmen = new widget.InternalFrame();
@@ -886,26 +892,136 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel87 = new widget.Label();
         jLabel88 = new widget.Label();
         cmbCrying = new widget.ComboBox();
-        TskorCrying = new widget.TextBox();
+        TnilaiCrying = new widget.TextBox();
         jLabel89 = new widget.Label();
         jLabel90 = new widget.Label();
         cmbRequires = new widget.ComboBox();
         jLabel91 = new widget.Label();
-        TskorRequires = new widget.TextBox();
+        TnilaiRequires = new widget.TextBox();
         jLabel92 = new widget.Label();
         cmbIncreased = new widget.ComboBox();
         jLabel93 = new widget.Label();
-        TskorIncreased = new widget.TextBox();
+        TnilaiIncreased = new widget.TextBox();
         jLabel94 = new widget.Label();
         cmbExpresion = new widget.ComboBox();
         jLabel97 = new widget.Label();
-        TskorExpresion = new widget.TextBox();
+        TnilaiExpresion = new widget.TextBox();
         jLabel98 = new widget.Label();
         cmbSleepless = new widget.ComboBox();
         jLabel100 = new widget.Label();
-        TskorSleepless = new widget.TextBox();
+        TnilaiSleepless = new widget.TextBox();
         jLabel101 = new widget.Label();
-        TtotSkor = new widget.TextBox();
+        TtotNilaiNyeri = new widget.TextBox();
+        jLabel102 = new widget.Label();
+        TkesimpulanNyeri = new widget.TextBox();
+        jLabel103 = new widget.Label();
+        jLabel104 = new widget.Label();
+        PanelWall = new usu.widget.glass.PanelGlass();
+        chkSikap0 = new widget.CekBox();
+        jLabel105 = new widget.Label();
+        chkSikap1 = new widget.CekBox();
+        PanelWall1 = new usu.widget.glass.PanelGlass();
+        chkSikap2 = new widget.CekBox();
+        PanelWall2 = new usu.widget.glass.PanelGlass();
+        chkSikap3 = new widget.CekBox();
+        PanelWall3 = new usu.widget.glass.PanelGlass();
+        chkSikap4 = new widget.CekBox();
+        PanelWall4 = new usu.widget.glass.PanelGlass();
+        jLabel106 = new widget.Label();
+        TnilaiSikap = new widget.TextBox();
+        jLabel107 = new widget.Label();
+        jLabel108 = new widget.Label();
+        jLabel109 = new widget.Label();
+        jLabel110 = new widget.Label();
+        jLabel111 = new widget.Label();
+        jLabel112 = new widget.Label();
+        jLabel113 = new widget.Label();
+        PanelWall5 = new usu.widget.glass.PanelGlass();
+        PanelWall6 = new usu.widget.glass.PanelGlass();
+        PanelWall7 = new usu.widget.glass.PanelGlass();
+        PanelWall8 = new usu.widget.glass.PanelGlass();
+        PanelWall9 = new usu.widget.glass.PanelGlass();
+        PanelWall10 = new usu.widget.glass.PanelGlass();
+        jLabel114 = new widget.Label();
+        jLabel115 = new widget.Label();
+        jLabel116 = new widget.Label();
+        chkPersegi0 = new widget.CekBox();
+        chkPersegi1 = new widget.CekBox();
+        chkPersegi2 = new widget.CekBox();
+        chkPersegi3 = new widget.CekBox();
+        chkPersegi4 = new widget.CekBox();
+        chkPersegi_1 = new widget.CekBox();
+        jLabel117 = new widget.Label();
+        TnilaiPersegi = new widget.TextBox();
+        PanelWall12 = new usu.widget.glass.PanelGlass();
+        PanelWall13 = new usu.widget.glass.PanelGlass();
+        PanelWall14 = new usu.widget.glass.PanelGlass();
+        PanelWall15 = new usu.widget.glass.PanelGlass();
+        PanelWall16 = new usu.widget.glass.PanelGlass();
+        PanelWall18 = new usu.widget.glass.PanelGlass();
+        PanelWall19 = new usu.widget.glass.PanelGlass();
+        PanelWall20 = new usu.widget.glass.PanelGlass();
+        PanelWall21 = new usu.widget.glass.PanelGlass();
+        PanelWall22 = new usu.widget.glass.PanelGlass();
+        PanelWall23 = new usu.widget.glass.PanelGlass();
+        PanelWall24 = new usu.widget.glass.PanelGlass();
+        chkRekoli0 = new widget.CekBox();
+        chkRekoli1 = new widget.CekBox();
+        chkRekoli2 = new widget.CekBox();
+        chkRekoli3 = new widget.CekBox();
+        chkRekoli4 = new widget.CekBox();
+        jLabel118 = new widget.Label();
+        jLabel119 = new widget.Label();
+        TnilaiRekoli = new widget.TextBox();
+        chkSudut0 = new widget.CekBox();
+        chkSudut1 = new widget.CekBox();
+        chkSudut2 = new widget.CekBox();
+        chkSudut3 = new widget.CekBox();
+        chkSudut4 = new widget.CekBox();
+        chkSudut5 = new widget.CekBox();
+        chkSudut_1 = new widget.CekBox();
+        jLabel120 = new widget.Label();
+        TnilaiSudut = new widget.TextBox();
+        jLabel121 = new widget.Label();
+        PanelWall25 = new usu.widget.glass.PanelGlass();
+        PanelWall26 = new usu.widget.glass.PanelGlass();
+        PanelWall27 = new usu.widget.glass.PanelGlass();
+        PanelWall28 = new usu.widget.glass.PanelGlass();
+        PanelWall29 = new usu.widget.glass.PanelGlass();
+        PanelWall30 = new usu.widget.glass.PanelGlass();
+        chkTanda_1 = new widget.CekBox();
+        chkTanda0 = new widget.CekBox();
+        chkTanda1 = new widget.CekBox();
+        chkTanda2 = new widget.CekBox();
+        chkTanda3 = new widget.CekBox();
+        chkTanda4 = new widget.CekBox();
+        jLabel122 = new widget.Label();
+        TnilaiTanda = new widget.TextBox();
+        jLabel123 = new widget.Label();
+        PanelWall31 = new usu.widget.glass.PanelGlass();
+        PanelWall32 = new usu.widget.glass.PanelGlass();
+        PanelWall33 = new usu.widget.glass.PanelGlass();
+        PanelWall34 = new usu.widget.glass.PanelGlass();
+        PanelWall35 = new usu.widget.glass.PanelGlass();
+        PanelWall36 = new usu.widget.glass.PanelGlass();
+        chkTumit_1 = new widget.CekBox();
+        chkTumit0 = new widget.CekBox();
+        chkTumit1 = new widget.CekBox();
+        chkTumit2 = new widget.CekBox();
+        chkTumit3 = new widget.CekBox();
+        chkTumit4 = new widget.CekBox();
+        jLabel124 = new widget.Label();
+        TnilaiTumit = new widget.TextBox();
+        jLabel125 = new widget.Label();
+        jLabel126 = new widget.Label();
+        TtotNilaiMatur = new widget.TextBox();
+        jSeparator7 = new javax.swing.JSeparator();
+        jSeparator8 = new javax.swing.JSeparator();
+        jSeparator9 = new javax.swing.JSeparator();
+        jSeparator10 = new javax.swing.JSeparator();
+        jSeparator11 = new javax.swing.JSeparator();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1030,6 +1146,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TrgRawat);
         TrgRawat.setBounds(114, 38, 450, 23);
 
+        TtglMsk.setEditable(false);
         TtglMsk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2025" }));
         TtglMsk.setDisplayFormat("dd-MM-yyyy");
         TtglMsk.setName("TtglMsk"); // NOI18N
@@ -1184,7 +1301,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(TlainSumber);
-        TlainSumber.setBounds(195, 66, 368, 23);
+        TlainSumber.setBounds(195, 66, 525, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jenis Rujukan : ");
@@ -1944,6 +2061,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(jLabel52);
         jLabel52.setBounds(0, 682, 110, 23);
 
+        TtglLahir.setEditable(false);
         TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "30-01-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
@@ -2982,21 +3100,17 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(cmbCrying);
         cmbCrying.setBounds(165, 1578, 280, 23);
 
-        TskorCrying.setEditable(false);
-        TskorCrying.setBackground(new java.awt.Color(245, 250, 240));
-        TskorCrying.setForeground(new java.awt.Color(0, 0, 0));
-        TskorCrying.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TskorCrying.setName("TskorCrying"); // NOI18N
-        TskorCrying.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TskorCryingKeyPressed(evt);
-            }
-        });
-        FormInput.add(TskorCrying);
-        TskorCrying.setBounds(564, 1578, 40, 23);
+        TnilaiCrying.setEditable(false);
+        TnilaiCrying.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiCrying.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiCrying.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiCrying.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiCrying.setName("TnilaiCrying"); // NOI18N
+        FormInput.add(TnilaiCrying);
+        TnilaiCrying.setBounds(564, 1578, 40, 23);
 
         jLabel89.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel89.setText("Skor : ");
+        jLabel89.setText("Nilai : ");
         jLabel89.setName("jLabel89"); // NOI18N
         FormInput.add(jLabel89);
         jLabel89.setBounds(522, 1578, 40, 23);
@@ -3020,23 +3134,19 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbRequires.setBounds(165, 1606, 125, 23);
 
         jLabel91.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel91.setText("Skor : ");
+        jLabel91.setText("Nilai : ");
         jLabel91.setName("jLabel91"); // NOI18N
         FormInput.add(jLabel91);
         jLabel91.setBounds(522, 1606, 40, 23);
 
-        TskorRequires.setEditable(false);
-        TskorRequires.setBackground(new java.awt.Color(245, 250, 240));
-        TskorRequires.setForeground(new java.awt.Color(0, 0, 0));
-        TskorRequires.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TskorRequires.setName("TskorRequires"); // NOI18N
-        TskorRequires.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TskorRequiresKeyPressed(evt);
-            }
-        });
-        FormInput.add(TskorRequires);
-        TskorRequires.setBounds(564, 1606, 40, 23);
+        TnilaiRequires.setEditable(false);
+        TnilaiRequires.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiRequires.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiRequires.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiRequires.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiRequires.setName("TnilaiRequires"); // NOI18N
+        FormInput.add(TnilaiRequires);
+        TnilaiRequires.setBounds(564, 1606, 40, 23);
 
         jLabel92.setForeground(new java.awt.Color(0, 0, 0));
         jLabel92.setText("3. Increased : ");
@@ -3057,23 +3167,19 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbIncreased.setBounds(165, 1634, 340, 23);
 
         jLabel93.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel93.setText("Skor : ");
+        jLabel93.setText("Nilai : ");
         jLabel93.setName("jLabel93"); // NOI18N
         FormInput.add(jLabel93);
         jLabel93.setBounds(522, 1634, 40, 23);
 
-        TskorIncreased.setEditable(false);
-        TskorIncreased.setBackground(new java.awt.Color(245, 250, 240));
-        TskorIncreased.setForeground(new java.awt.Color(0, 0, 0));
-        TskorIncreased.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TskorIncreased.setName("TskorIncreased"); // NOI18N
-        TskorIncreased.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TskorIncreasedKeyPressed(evt);
-            }
-        });
-        FormInput.add(TskorIncreased);
-        TskorIncreased.setBounds(564, 1634, 40, 23);
+        TnilaiIncreased.setEditable(false);
+        TnilaiIncreased.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiIncreased.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiIncreased.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiIncreased.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiIncreased.setName("TnilaiIncreased"); // NOI18N
+        FormInput.add(TnilaiIncreased);
+        TnilaiIncreased.setBounds(564, 1634, 40, 23);
 
         jLabel94.setForeground(new java.awt.Color(0, 0, 0));
         jLabel94.setText("4. Expression : ");
@@ -3094,23 +3200,19 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbExpresion.setBounds(165, 1662, 120, 23);
 
         jLabel97.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel97.setText("Skor : ");
+        jLabel97.setText("Nilai : ");
         jLabel97.setName("jLabel97"); // NOI18N
         FormInput.add(jLabel97);
         jLabel97.setBounds(522, 1662, 40, 23);
 
-        TskorExpresion.setEditable(false);
-        TskorExpresion.setBackground(new java.awt.Color(245, 250, 240));
-        TskorExpresion.setForeground(new java.awt.Color(0, 0, 0));
-        TskorExpresion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TskorExpresion.setName("TskorExpresion"); // NOI18N
-        TskorExpresion.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TskorExpresionKeyPressed(evt);
-            }
-        });
-        FormInput.add(TskorExpresion);
-        TskorExpresion.setBounds(564, 1662, 40, 23);
+        TnilaiExpresion.setEditable(false);
+        TnilaiExpresion.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiExpresion.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiExpresion.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiExpresion.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiExpresion.setName("TnilaiExpresion"); // NOI18N
+        FormInput.add(TnilaiExpresion);
+        TnilaiExpresion.setBounds(564, 1662, 40, 23);
 
         jLabel98.setForeground(new java.awt.Color(0, 0, 0));
         jLabel98.setText("5. Sleepless : ");
@@ -3131,23 +3233,19 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbSleepless.setBounds(165, 1690, 220, 23);
 
         jLabel100.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel100.setText("Skor : ");
+        jLabel100.setText("Nilai : ");
         jLabel100.setName("jLabel100"); // NOI18N
         FormInput.add(jLabel100);
         jLabel100.setBounds(522, 1690, 40, 23);
 
-        TskorSleepless.setEditable(false);
-        TskorSleepless.setBackground(new java.awt.Color(245, 250, 240));
-        TskorSleepless.setForeground(new java.awt.Color(0, 0, 0));
-        TskorSleepless.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TskorSleepless.setName("TskorSleepless"); // NOI18N
-        TskorSleepless.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TskorSleeplessKeyPressed(evt);
-            }
-        });
-        FormInput.add(TskorSleepless);
-        TskorSleepless.setBounds(564, 1690, 40, 23);
+        TnilaiSleepless.setEditable(false);
+        TnilaiSleepless.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiSleepless.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiSleepless.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiSleepless.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiSleepless.setName("TnilaiSleepless"); // NOI18N
+        FormInput.add(TnilaiSleepless);
+        TnilaiSleepless.setBounds(564, 1690, 40, 23);
 
         jLabel101.setForeground(new java.awt.Color(0, 0, 0));
         jLabel101.setText("Total Nilai :");
@@ -3155,18 +3253,1139 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(jLabel101);
         jLabel101.setBounds(610, 1690, 60, 23);
 
-        TtotSkor.setEditable(false);
-        TtotSkor.setBackground(new java.awt.Color(245, 250, 240));
-        TtotSkor.setForeground(new java.awt.Color(0, 0, 0));
-        TtotSkor.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        TtotSkor.setName("TtotSkor"); // NOI18N
-        TtotSkor.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TtotSkorKeyPressed(evt);
-            }
-        });
-        FormInput.add(TtotSkor);
-        TtotSkor.setBounds(674, 1690, 40, 23);
+        TtotNilaiNyeri.setEditable(false);
+        TtotNilaiNyeri.setBackground(new java.awt.Color(245, 250, 240));
+        TtotNilaiNyeri.setForeground(new java.awt.Color(0, 0, 0));
+        TtotNilaiNyeri.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TtotNilaiNyeri.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TtotNilaiNyeri.setName("TtotNilaiNyeri"); // NOI18N
+        FormInput.add(TtotNilaiNyeri);
+        TtotNilaiNyeri.setBounds(674, 1690, 50, 23);
+
+        jLabel102.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel102.setText("Kesimpulan Penilaian Nyeri : ");
+        jLabel102.setName("jLabel102"); // NOI18N
+        FormInput.add(jLabel102);
+        jLabel102.setBounds(0, 1718, 162, 23);
+
+        TkesimpulanNyeri.setEditable(false);
+        TkesimpulanNyeri.setBackground(new java.awt.Color(245, 250, 240));
+        TkesimpulanNyeri.setForeground(new java.awt.Color(0, 0, 0));
+        TkesimpulanNyeri.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        TkesimpulanNyeri.setName("TkesimpulanNyeri"); // NOI18N
+        FormInput.add(TkesimpulanNyeri);
+        TkesimpulanNyeri.setBounds(165, 1718, 560, 23);
+
+        jLabel103.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel103.setText("8. PENILAIAN UMUR KEHAMILAN");
+        jLabel103.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel103.setName("jLabel103"); // NOI18N
+        FormInput.add(jLabel103);
+        jLabel103.setBounds(0, 1746, 200, 23);
+
+        jLabel104.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel104.setText("Maturitas Neomuskular : ");
+        jLabel104.setName("jLabel104"); // NOI18N
+        FormInput.add(jLabel104);
+        jLabel104.setBounds(0, 1774, 162, 23);
+
+        PanelWall.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sikap_tubuh0.jpg"))); // NOI18N
+        PanelWall.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall.setRound(false);
+        PanelWall.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall.setLayout(null);
+        FormInput.add(PanelWall);
+        PanelWall.setBounds(269, 1815, 60, 60);
+
+        chkSikap0.setBackground(new java.awt.Color(255, 255, 250));
+        chkSikap0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkSikap0);
+        chkSikap0.setForeground(new java.awt.Color(0, 0, 0));
+        chkSikap0.setBorderPainted(true);
+        chkSikap0.setBorderPaintedFlat(true);
+        chkSikap0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSikap0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSikap0.setName("chkSikap0"); // NOI18N
+        chkSikap0.setOpaque(false);
+        chkSikap0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSikap0);
+        chkSikap0.setBounds(238, 1830, 25, 23);
+
+        jLabel105.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel105.setText("Sikap Tubuh : ");
+        jLabel105.setName("jLabel105"); // NOI18N
+        FormInput.add(jLabel105);
+        jLabel105.setBounds(0, 1830, 125, 23);
+
+        chkSikap1.setBackground(new java.awt.Color(255, 255, 250));
+        chkSikap1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkSikap1);
+        chkSikap1.setForeground(new java.awt.Color(0, 0, 0));
+        chkSikap1.setBorderPainted(true);
+        chkSikap1.setBorderPaintedFlat(true);
+        chkSikap1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSikap1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSikap1.setName("chkSikap1"); // NOI18N
+        chkSikap1.setOpaque(false);
+        chkSikap1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSikap1);
+        chkSikap1.setBounds(345, 1830, 25, 23);
+
+        PanelWall1.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall1.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sikap_tubuh1.jpg"))); // NOI18N
+        PanelWall1.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall1.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall1.setRound(false);
+        PanelWall1.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall1.setLayout(null);
+        FormInput.add(PanelWall1);
+        PanelWall1.setBounds(375, 1815, 60, 60);
+
+        chkSikap2.setBackground(new java.awt.Color(255, 255, 250));
+        chkSikap2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkSikap2);
+        chkSikap2.setForeground(new java.awt.Color(0, 0, 0));
+        chkSikap2.setBorderPainted(true);
+        chkSikap2.setBorderPaintedFlat(true);
+        chkSikap2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSikap2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSikap2.setName("chkSikap2"); // NOI18N
+        chkSikap2.setOpaque(false);
+        chkSikap2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSikap2);
+        chkSikap2.setBounds(450, 1830, 25, 23);
+
+        PanelWall2.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall2.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sikap_tubuh2.jpg"))); // NOI18N
+        PanelWall2.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall2.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall2.setRound(false);
+        PanelWall2.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall2.setLayout(null);
+        FormInput.add(PanelWall2);
+        PanelWall2.setBounds(481, 1815, 60, 60);
+
+        chkSikap3.setBackground(new java.awt.Color(255, 255, 250));
+        chkSikap3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkSikap3);
+        chkSikap3.setForeground(new java.awt.Color(0, 0, 0));
+        chkSikap3.setBorderPainted(true);
+        chkSikap3.setBorderPaintedFlat(true);
+        chkSikap3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSikap3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSikap3.setName("chkSikap3"); // NOI18N
+        chkSikap3.setOpaque(false);
+        chkSikap3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSikap3);
+        chkSikap3.setBounds(555, 1830, 25, 23);
+
+        PanelWall3.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall3.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sikap_tubuh3.jpg"))); // NOI18N
+        PanelWall3.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall3.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall3.setRound(false);
+        PanelWall3.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall3.setLayout(null);
+        FormInput.add(PanelWall3);
+        PanelWall3.setBounds(585, 1815, 60, 60);
+
+        chkSikap4.setBackground(new java.awt.Color(255, 255, 250));
+        chkSikap4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup1.add(chkSikap4);
+        chkSikap4.setForeground(new java.awt.Color(0, 0, 0));
+        chkSikap4.setBorderPainted(true);
+        chkSikap4.setBorderPaintedFlat(true);
+        chkSikap4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSikap4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSikap4.setName("chkSikap4"); // NOI18N
+        chkSikap4.setOpaque(false);
+        chkSikap4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSikap4);
+        chkSikap4.setBounds(660, 1830, 25, 23);
+
+        PanelWall4.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall4.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sikap_tubuh4.jpg"))); // NOI18N
+        PanelWall4.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall4.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall4.setRound(false);
+        PanelWall4.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall4.setLayout(null);
+        FormInput.add(PanelWall4);
+        PanelWall4.setBounds(690, 1815, 60, 60);
+
+        jLabel106.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel106.setText("Nilai : ");
+        jLabel106.setName("jLabel106"); // NOI18N
+        FormInput.add(jLabel106);
+        jLabel106.setBounds(860, 1830, 40, 23);
+
+        TnilaiSikap.setEditable(false);
+        TnilaiSikap.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiSikap.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiSikap.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiSikap.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiSikap.setName("TnilaiSikap"); // NOI18N
+        FormInput.add(TnilaiSikap);
+        TnilaiSikap.setBounds(902, 1830, 40, 23);
+
+        jLabel107.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel107.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel107.setText("-1");
+        jLabel107.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel107.setName("jLabel107"); // NOI18N
+        FormInput.add(jLabel107);
+        jLabel107.setBounds(185, 1786, 20, 23);
+
+        jLabel108.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel108.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel108.setText("0");
+        jLabel108.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel108.setName("jLabel108"); // NOI18N
+        FormInput.add(jLabel108);
+        jLabel108.setBounds(293, 1786, 20, 23);
+
+        jLabel109.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel109.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel109.setText("1");
+        jLabel109.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel109.setName("jLabel109"); // NOI18N
+        FormInput.add(jLabel109);
+        jLabel109.setBounds(395, 1786, 20, 23);
+
+        jLabel110.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel110.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel110.setText("2");
+        jLabel110.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel110.setName("jLabel110"); // NOI18N
+        FormInput.add(jLabel110);
+        jLabel110.setBounds(500, 1786, 20, 23);
+
+        jLabel111.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel111.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel111.setText("3");
+        jLabel111.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel111.setName("jLabel111"); // NOI18N
+        FormInput.add(jLabel111);
+        jLabel111.setBounds(604, 1786, 20, 23);
+
+        jLabel112.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel112.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel112.setText("4");
+        jLabel112.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel112.setName("jLabel112"); // NOI18N
+        FormInput.add(jLabel112);
+        jLabel112.setBounds(708, 1786, 20, 23);
+
+        jLabel113.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel113.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel113.setText("5");
+        jLabel113.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        jLabel113.setName("jLabel113"); // NOI18N
+        FormInput.add(jLabel113);
+        jLabel113.setBounds(812, 1786, 20, 23);
+
+        PanelWall5.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall5.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi0.jpg"))); // NOI18N
+        PanelWall5.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall5.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall5.setRound(false);
+        PanelWall5.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall5.setLayout(null);
+        FormInput.add(PanelWall5);
+        PanelWall5.setBounds(269, 1880, 60, 60);
+
+        PanelWall6.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall6.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi1.jpg"))); // NOI18N
+        PanelWall6.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall6.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall6.setRound(false);
+        PanelWall6.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall6.setLayout(null);
+        FormInput.add(PanelWall6);
+        PanelWall6.setBounds(375, 1880, 60, 60);
+
+        PanelWall7.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall7.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi2.jpg"))); // NOI18N
+        PanelWall7.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall7.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall7.setRound(false);
+        PanelWall7.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall7.setLayout(null);
+        FormInput.add(PanelWall7);
+        PanelWall7.setBounds(481, 1880, 60, 60);
+
+        PanelWall8.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall8.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi3.jpg"))); // NOI18N
+        PanelWall8.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall8.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall8.setRound(false);
+        PanelWall8.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall8.setLayout(null);
+        FormInput.add(PanelWall8);
+        PanelWall8.setBounds(585, 1880, 60, 60);
+
+        PanelWall9.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall9.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi4.jpg"))); // NOI18N
+        PanelWall9.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall9.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall9.setRound(false);
+        PanelWall9.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall9.setLayout(null);
+        FormInput.add(PanelWall9);
+        PanelWall9.setBounds(690, 1880, 60, 60);
+
+        PanelWall10.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall10.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/persegi-1.jpg"))); // NOI18N
+        PanelWall10.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall10.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall10.setRound(false);
+        PanelWall10.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall10.setLayout(null);
+        FormInput.add(PanelWall10);
+        PanelWall10.setBounds(163, 1880, 60, 60);
+
+        jLabel114.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel114.setText("Persegi Jendela  ");
+        jLabel114.setName("jLabel114"); // NOI18N
+        FormInput.add(jLabel114);
+        jLabel114.setBounds(0, 1883, 125, 23);
+
+        jLabel115.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel115.setText("(Pergelangan  ");
+        jLabel115.setName("jLabel115"); // NOI18N
+        FormInput.add(jLabel115);
+        jLabel115.setBounds(0, 1899, 125, 23);
+
+        jLabel116.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel116.setText("Tangan) : ");
+        jLabel116.setName("jLabel116"); // NOI18N
+        FormInput.add(jLabel116);
+        jLabel116.setBounds(0, 1916, 125, 23);
+
+        chkPersegi0.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi0);
+        chkPersegi0.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi0.setBorderPainted(true);
+        chkPersegi0.setBorderPaintedFlat(true);
+        chkPersegi0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi0.setName("chkPersegi0"); // NOI18N
+        chkPersegi0.setOpaque(false);
+        chkPersegi0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi0);
+        chkPersegi0.setBounds(238, 1898, 25, 23);
+
+        chkPersegi1.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi1);
+        chkPersegi1.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi1.setBorderPainted(true);
+        chkPersegi1.setBorderPaintedFlat(true);
+        chkPersegi1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi1.setName("chkPersegi1"); // NOI18N
+        chkPersegi1.setOpaque(false);
+        chkPersegi1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi1);
+        chkPersegi1.setBounds(345, 1898, 25, 23);
+
+        chkPersegi2.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi2);
+        chkPersegi2.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi2.setBorderPainted(true);
+        chkPersegi2.setBorderPaintedFlat(true);
+        chkPersegi2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi2.setName("chkPersegi2"); // NOI18N
+        chkPersegi2.setOpaque(false);
+        chkPersegi2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi2);
+        chkPersegi2.setBounds(450, 1898, 25, 23);
+
+        chkPersegi3.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi3);
+        chkPersegi3.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi3.setBorderPainted(true);
+        chkPersegi3.setBorderPaintedFlat(true);
+        chkPersegi3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi3.setName("chkPersegi3"); // NOI18N
+        chkPersegi3.setOpaque(false);
+        chkPersegi3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi3);
+        chkPersegi3.setBounds(555, 1898, 25, 23);
+
+        chkPersegi4.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi4);
+        chkPersegi4.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi4.setBorderPainted(true);
+        chkPersegi4.setBorderPaintedFlat(true);
+        chkPersegi4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi4.setName("chkPersegi4"); // NOI18N
+        chkPersegi4.setOpaque(false);
+        chkPersegi4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi4);
+        chkPersegi4.setBounds(660, 1898, 25, 23);
+
+        chkPersegi_1.setBackground(new java.awt.Color(255, 255, 250));
+        chkPersegi_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup2.add(chkPersegi_1);
+        chkPersegi_1.setForeground(new java.awt.Color(0, 0, 0));
+        chkPersegi_1.setBorderPainted(true);
+        chkPersegi_1.setBorderPaintedFlat(true);
+        chkPersegi_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkPersegi_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkPersegi_1.setName("chkPersegi_1"); // NOI18N
+        chkPersegi_1.setOpaque(false);
+        chkPersegi_1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkPersegi_1);
+        chkPersegi_1.setBounds(133, 1898, 25, 23);
+
+        jLabel117.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel117.setText("Nilai : ");
+        jLabel117.setName("jLabel117"); // NOI18N
+        FormInput.add(jLabel117);
+        jLabel117.setBounds(860, 1898, 40, 23);
+
+        TnilaiPersegi.setEditable(false);
+        TnilaiPersegi.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiPersegi.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiPersegi.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiPersegi.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiPersegi.setName("TnilaiPersegi"); // NOI18N
+        FormInput.add(TnilaiPersegi);
+        TnilaiPersegi.setBounds(902, 1898, 40, 23);
+
+        PanelWall12.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall12.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/rekoli0.jpg"))); // NOI18N
+        PanelWall12.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall12.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall12.setRound(false);
+        PanelWall12.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall12.setLayout(null);
+        FormInput.add(PanelWall12);
+        PanelWall12.setBounds(269, 1945, 60, 60);
+
+        PanelWall13.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall13.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/rekoli1.jpg"))); // NOI18N
+        PanelWall13.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall13.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall13.setRound(false);
+        PanelWall13.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall13.setLayout(null);
+        FormInput.add(PanelWall13);
+        PanelWall13.setBounds(375, 1945, 60, 60);
+
+        PanelWall14.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall14.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/rekoli2.jpg"))); // NOI18N
+        PanelWall14.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall14.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall14.setRound(false);
+        PanelWall14.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall14.setLayout(null);
+        FormInput.add(PanelWall14);
+        PanelWall14.setBounds(481, 1945, 60, 60);
+
+        PanelWall15.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall15.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/rekoli3.jpg"))); // NOI18N
+        PanelWall15.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall15.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall15.setRound(false);
+        PanelWall15.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall15.setLayout(null);
+        FormInput.add(PanelWall15);
+        PanelWall15.setBounds(585, 1945, 60, 60);
+
+        PanelWall16.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall16.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/rekoli4.jpg"))); // NOI18N
+        PanelWall16.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall16.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall16.setRound(false);
+        PanelWall16.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall16.setLayout(null);
+        FormInput.add(PanelWall16);
+        PanelWall16.setBounds(690, 1945, 60, 60);
+
+        PanelWall18.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall18.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut-1.jpg"))); // NOI18N
+        PanelWall18.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall18.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall18.setRound(false);
+        PanelWall18.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall18.setLayout(null);
+        FormInput.add(PanelWall18);
+        PanelWall18.setBounds(163, 2010, 60, 60);
+
+        PanelWall19.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall19.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut0.jpg"))); // NOI18N
+        PanelWall19.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall19.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall19.setRound(false);
+        PanelWall19.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall19.setLayout(null);
+        FormInput.add(PanelWall19);
+        PanelWall19.setBounds(269, 2010, 60, 60);
+
+        PanelWall20.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall20.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut1.jpg"))); // NOI18N
+        PanelWall20.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall20.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall20.setRound(false);
+        PanelWall20.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall20.setLayout(null);
+        FormInput.add(PanelWall20);
+        PanelWall20.setBounds(375, 2010, 60, 60);
+
+        PanelWall21.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall21.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut2.jpg"))); // NOI18N
+        PanelWall21.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall21.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall21.setRound(false);
+        PanelWall21.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall21.setLayout(null);
+        FormInput.add(PanelWall21);
+        PanelWall21.setBounds(481, 2010, 60, 60);
+
+        PanelWall22.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall22.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut3.jpg"))); // NOI18N
+        PanelWall22.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall22.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall22.setRound(false);
+        PanelWall22.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall22.setLayout(null);
+        FormInput.add(PanelWall22);
+        PanelWall22.setBounds(585, 2010, 60, 60);
+
+        PanelWall23.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall23.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut4.jpg"))); // NOI18N
+        PanelWall23.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall23.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall23.setRound(false);
+        PanelWall23.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall23.setLayout(null);
+        FormInput.add(PanelWall23);
+        PanelWall23.setBounds(690, 2010, 60, 60);
+
+        PanelWall24.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall24.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/sudut5.jpg"))); // NOI18N
+        PanelWall24.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall24.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall24.setRound(false);
+        PanelWall24.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall24.setLayout(null);
+        FormInput.add(PanelWall24);
+        PanelWall24.setBounds(795, 2010, 60, 60);
+
+        chkRekoli0.setBackground(new java.awt.Color(255, 255, 250));
+        chkRekoli0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup3.add(chkRekoli0);
+        chkRekoli0.setForeground(new java.awt.Color(0, 0, 0));
+        chkRekoli0.setBorderPainted(true);
+        chkRekoli0.setBorderPaintedFlat(true);
+        chkRekoli0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkRekoli0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkRekoli0.setName("chkRekoli0"); // NOI18N
+        chkRekoli0.setOpaque(false);
+        chkRekoli0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkRekoli0);
+        chkRekoli0.setBounds(238, 1963, 25, 23);
+
+        chkRekoli1.setBackground(new java.awt.Color(255, 255, 250));
+        chkRekoli1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup3.add(chkRekoli1);
+        chkRekoli1.setForeground(new java.awt.Color(0, 0, 0));
+        chkRekoli1.setBorderPainted(true);
+        chkRekoli1.setBorderPaintedFlat(true);
+        chkRekoli1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkRekoli1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkRekoli1.setName("chkRekoli1"); // NOI18N
+        chkRekoli1.setOpaque(false);
+        chkRekoli1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkRekoli1);
+        chkRekoli1.setBounds(345, 1963, 25, 23);
+
+        chkRekoli2.setBackground(new java.awt.Color(255, 255, 250));
+        chkRekoli2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup3.add(chkRekoli2);
+        chkRekoli2.setForeground(new java.awt.Color(0, 0, 0));
+        chkRekoli2.setBorderPainted(true);
+        chkRekoli2.setBorderPaintedFlat(true);
+        chkRekoli2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkRekoli2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkRekoli2.setName("chkRekoli2"); // NOI18N
+        chkRekoli2.setOpaque(false);
+        chkRekoli2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkRekoli2);
+        chkRekoli2.setBounds(450, 1963, 25, 23);
+
+        chkRekoli3.setBackground(new java.awt.Color(255, 255, 250));
+        chkRekoli3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup3.add(chkRekoli3);
+        chkRekoli3.setForeground(new java.awt.Color(0, 0, 0));
+        chkRekoli3.setBorderPainted(true);
+        chkRekoli3.setBorderPaintedFlat(true);
+        chkRekoli3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkRekoli3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkRekoli3.setName("chkRekoli3"); // NOI18N
+        chkRekoli3.setOpaque(false);
+        chkRekoli3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkRekoli3);
+        chkRekoli3.setBounds(555, 1963, 25, 23);
+
+        chkRekoli4.setBackground(new java.awt.Color(255, 255, 250));
+        chkRekoli4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup3.add(chkRekoli4);
+        chkRekoli4.setForeground(new java.awt.Color(0, 0, 0));
+        chkRekoli4.setBorderPainted(true);
+        chkRekoli4.setBorderPaintedFlat(true);
+        chkRekoli4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkRekoli4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkRekoli4.setName("chkRekoli4"); // NOI18N
+        chkRekoli4.setOpaque(false);
+        chkRekoli4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkRekoli4);
+        chkRekoli4.setBounds(660, 1963, 25, 23);
+
+        jLabel118.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel118.setText("Rekoli Lengan : ");
+        jLabel118.setName("jLabel118"); // NOI18N
+        FormInput.add(jLabel118);
+        jLabel118.setBounds(0, 1963, 125, 23);
+
+        jLabel119.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel119.setText("Nilai : ");
+        jLabel119.setName("jLabel119"); // NOI18N
+        FormInput.add(jLabel119);
+        jLabel119.setBounds(860, 1963, 40, 23);
+
+        TnilaiRekoli.setEditable(false);
+        TnilaiRekoli.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiRekoli.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiRekoli.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiRekoli.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiRekoli.setName("TnilaiRekoli"); // NOI18N
+        FormInput.add(TnilaiRekoli);
+        TnilaiRekoli.setBounds(902, 1963, 40, 23);
+
+        chkSudut0.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut0);
+        chkSudut0.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut0.setBorderPainted(true);
+        chkSudut0.setBorderPaintedFlat(true);
+        chkSudut0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut0.setName("chkSudut0"); // NOI18N
+        chkSudut0.setOpaque(false);
+        chkSudut0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut0);
+        chkSudut0.setBounds(238, 2031, 25, 23);
+
+        chkSudut1.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut1);
+        chkSudut1.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut1.setBorderPainted(true);
+        chkSudut1.setBorderPaintedFlat(true);
+        chkSudut1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut1.setName("chkSudut1"); // NOI18N
+        chkSudut1.setOpaque(false);
+        chkSudut1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut1);
+        chkSudut1.setBounds(345, 2031, 25, 23);
+
+        chkSudut2.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut2);
+        chkSudut2.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut2.setBorderPainted(true);
+        chkSudut2.setBorderPaintedFlat(true);
+        chkSudut2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut2.setName("chkSudut2"); // NOI18N
+        chkSudut2.setOpaque(false);
+        chkSudut2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut2);
+        chkSudut2.setBounds(450, 2031, 25, 23);
+
+        chkSudut3.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut3);
+        chkSudut3.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut3.setBorderPainted(true);
+        chkSudut3.setBorderPaintedFlat(true);
+        chkSudut3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut3.setName("chkSudut3"); // NOI18N
+        chkSudut3.setOpaque(false);
+        chkSudut3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut3);
+        chkSudut3.setBounds(555, 2031, 25, 23);
+
+        chkSudut4.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut4);
+        chkSudut4.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut4.setBorderPainted(true);
+        chkSudut4.setBorderPaintedFlat(true);
+        chkSudut4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut4.setName("chkSudut4"); // NOI18N
+        chkSudut4.setOpaque(false);
+        chkSudut4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut4);
+        chkSudut4.setBounds(660, 2031, 25, 23);
+
+        chkSudut5.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut5);
+        chkSudut5.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut5.setBorderPainted(true);
+        chkSudut5.setBorderPaintedFlat(true);
+        chkSudut5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut5.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut5.setName("chkSudut5"); // NOI18N
+        chkSudut5.setOpaque(false);
+        chkSudut5.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut5);
+        chkSudut5.setBounds(765, 2031, 25, 23);
+
+        chkSudut_1.setBackground(new java.awt.Color(255, 255, 250));
+        chkSudut_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup4.add(chkSudut_1);
+        chkSudut_1.setForeground(new java.awt.Color(0, 0, 0));
+        chkSudut_1.setBorderPainted(true);
+        chkSudut_1.setBorderPaintedFlat(true);
+        chkSudut_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkSudut_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkSudut_1.setName("chkSudut_1"); // NOI18N
+        chkSudut_1.setOpaque(false);
+        chkSudut_1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkSudut_1);
+        chkSudut_1.setBounds(133, 2031, 25, 23);
+
+        jLabel120.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel120.setText("Nilai : ");
+        jLabel120.setName("jLabel120"); // NOI18N
+        FormInput.add(jLabel120);
+        jLabel120.setBounds(860, 2031, 40, 23);
+
+        TnilaiSudut.setEditable(false);
+        TnilaiSudut.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiSudut.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiSudut.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiSudut.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiSudut.setName("TnilaiSudut"); // NOI18N
+        FormInput.add(TnilaiSudut);
+        TnilaiSudut.setBounds(902, 2031, 40, 23);
+
+        jLabel121.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel121.setText("Sudut Popliteal : ");
+        jLabel121.setName("jLabel121"); // NOI18N
+        FormInput.add(jLabel121);
+        jLabel121.setBounds(0, 2031, 125, 23);
+
+        PanelWall25.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall25.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda-1.jpg"))); // NOI18N
+        PanelWall25.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall25.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall25.setRound(false);
+        PanelWall25.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall25.setLayout(null);
+        FormInput.add(PanelWall25);
+        PanelWall25.setBounds(163, 2078, 60, 60);
+
+        PanelWall26.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall26.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda0.jpg"))); // NOI18N
+        PanelWall26.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall26.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall26.setRound(false);
+        PanelWall26.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall26.setLayout(null);
+        FormInput.add(PanelWall26);
+        PanelWall26.setBounds(269, 2078, 60, 60);
+
+        PanelWall27.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall27.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda1.jpg"))); // NOI18N
+        PanelWall27.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall27.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall27.setRound(false);
+        PanelWall27.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall27.setLayout(null);
+        FormInput.add(PanelWall27);
+        PanelWall27.setBounds(375, 2078, 60, 60);
+
+        PanelWall28.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall28.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda2.jpg"))); // NOI18N
+        PanelWall28.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall28.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall28.setRound(false);
+        PanelWall28.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall28.setLayout(null);
+        FormInput.add(PanelWall28);
+        PanelWall28.setBounds(481, 2078, 60, 60);
+
+        PanelWall29.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall29.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda3.jpg"))); // NOI18N
+        PanelWall29.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall29.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall29.setRound(false);
+        PanelWall29.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall29.setLayout(null);
+        FormInput.add(PanelWall29);
+        PanelWall29.setBounds(585, 2078, 60, 60);
+
+        PanelWall30.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall30.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tanda4.jpg"))); // NOI18N
+        PanelWall30.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall30.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall30.setRound(false);
+        PanelWall30.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall30.setLayout(null);
+        FormInput.add(PanelWall30);
+        PanelWall30.setBounds(690, 2078, 60, 60);
+
+        chkTanda_1.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda_1);
+        chkTanda_1.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda_1.setBorderPainted(true);
+        chkTanda_1.setBorderPaintedFlat(true);
+        chkTanda_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda_1.setName("chkTanda_1"); // NOI18N
+        chkTanda_1.setOpaque(false);
+        chkTanda_1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda_1);
+        chkTanda_1.setBounds(133, 2099, 25, 23);
+
+        chkTanda0.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda0);
+        chkTanda0.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda0.setBorderPainted(true);
+        chkTanda0.setBorderPaintedFlat(true);
+        chkTanda0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda0.setName("chkTanda0"); // NOI18N
+        chkTanda0.setOpaque(false);
+        chkTanda0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda0);
+        chkTanda0.setBounds(238, 2099, 25, 23);
+
+        chkTanda1.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda1);
+        chkTanda1.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda1.setBorderPainted(true);
+        chkTanda1.setBorderPaintedFlat(true);
+        chkTanda1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda1.setName("chkTanda1"); // NOI18N
+        chkTanda1.setOpaque(false);
+        chkTanda1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda1);
+        chkTanda1.setBounds(345, 2099, 25, 23);
+
+        chkTanda2.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda2);
+        chkTanda2.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda2.setBorderPainted(true);
+        chkTanda2.setBorderPaintedFlat(true);
+        chkTanda2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda2.setName("chkTanda2"); // NOI18N
+        chkTanda2.setOpaque(false);
+        chkTanda2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda2);
+        chkTanda2.setBounds(450, 2099, 25, 23);
+
+        chkTanda3.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda3);
+        chkTanda3.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda3.setBorderPainted(true);
+        chkTanda3.setBorderPaintedFlat(true);
+        chkTanda3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda3.setName("chkTanda3"); // NOI18N
+        chkTanda3.setOpaque(false);
+        chkTanda3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda3);
+        chkTanda3.setBounds(555, 2099, 25, 23);
+
+        chkTanda4.setBackground(new java.awt.Color(255, 255, 250));
+        chkTanda4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup5.add(chkTanda4);
+        chkTanda4.setForeground(new java.awt.Color(0, 0, 0));
+        chkTanda4.setBorderPainted(true);
+        chkTanda4.setBorderPaintedFlat(true);
+        chkTanda4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTanda4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTanda4.setName("chkTanda4"); // NOI18N
+        chkTanda4.setOpaque(false);
+        chkTanda4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTanda4);
+        chkTanda4.setBounds(660, 2099, 25, 23);
+
+        jLabel122.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel122.setText("Nilai : ");
+        jLabel122.setName("jLabel122"); // NOI18N
+        FormInput.add(jLabel122);
+        jLabel122.setBounds(860, 2099, 40, 23);
+
+        TnilaiTanda.setEditable(false);
+        TnilaiTanda.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiTanda.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiTanda.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiTanda.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiTanda.setName("TnilaiTanda"); // NOI18N
+        FormInput.add(TnilaiTanda);
+        TnilaiTanda.setBounds(902, 2099, 40, 23);
+
+        jLabel123.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel123.setText("Tanda Selempang : ");
+        jLabel123.setName("jLabel123"); // NOI18N
+        FormInput.add(jLabel123);
+        jLabel123.setBounds(0, 2099, 125, 23);
+
+        PanelWall31.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall31.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit-1.jpg"))); // NOI18N
+        PanelWall31.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall31.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall31.setRound(false);
+        PanelWall31.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall31.setLayout(null);
+        FormInput.add(PanelWall31);
+        PanelWall31.setBounds(163, 2146, 60, 60);
+
+        PanelWall32.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall32.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit0.jpg"))); // NOI18N
+        PanelWall32.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall32.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall32.setRound(false);
+        PanelWall32.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall32.setLayout(null);
+        FormInput.add(PanelWall32);
+        PanelWall32.setBounds(269, 2146, 60, 60);
+
+        PanelWall33.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall33.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit1.jpg"))); // NOI18N
+        PanelWall33.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall33.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall33.setRound(false);
+        PanelWall33.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall33.setLayout(null);
+        FormInput.add(PanelWall33);
+        PanelWall33.setBounds(375, 2146, 60, 60);
+
+        PanelWall34.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall34.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit2.jpg"))); // NOI18N
+        PanelWall34.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall34.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall34.setRound(false);
+        PanelWall34.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall34.setLayout(null);
+        FormInput.add(PanelWall34);
+        PanelWall34.setBounds(481, 2146, 60, 60);
+
+        PanelWall35.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall35.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit3.jpg"))); // NOI18N
+        PanelWall35.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall35.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall35.setRound(false);
+        PanelWall35.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall35.setLayout(null);
+        FormInput.add(PanelWall35);
+        PanelWall35.setBounds(585, 2146, 60, 60);
+
+        PanelWall36.setBackground(new java.awt.Color(29, 29, 29));
+        PanelWall36.setBackgroundImage(new javax.swing.ImageIcon(getClass().getResource("/picture/tumit4.jpg"))); // NOI18N
+        PanelWall36.setBackgroundImageType(usu.widget.constan.BackgroundConstan.BACKGROUND_IMAGE_STRECT);
+        PanelWall36.setPreferredSize(new java.awt.Dimension(200, 200));
+        PanelWall36.setRound(false);
+        PanelWall36.setWarna(new java.awt.Color(110, 110, 110));
+        PanelWall36.setLayout(null);
+        FormInput.add(PanelWall36);
+        PanelWall36.setBounds(690, 2146, 60, 60);
+
+        chkTumit_1.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit_1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit_1);
+        chkTumit_1.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit_1.setBorderPainted(true);
+        chkTumit_1.setBorderPaintedFlat(true);
+        chkTumit_1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit_1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit_1.setName("chkTumit_1"); // NOI18N
+        chkTumit_1.setOpaque(false);
+        chkTumit_1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit_1);
+        chkTumit_1.setBounds(133, 2167, 25, 23);
+
+        chkTumit0.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit0.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit0);
+        chkTumit0.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit0.setBorderPainted(true);
+        chkTumit0.setBorderPaintedFlat(true);
+        chkTumit0.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit0.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit0.setName("chkTumit0"); // NOI18N
+        chkTumit0.setOpaque(false);
+        chkTumit0.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit0);
+        chkTumit0.setBounds(238, 2167, 25, 23);
+
+        chkTumit1.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit1);
+        chkTumit1.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit1.setBorderPainted(true);
+        chkTumit1.setBorderPaintedFlat(true);
+        chkTumit1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit1.setName("chkTumit1"); // NOI18N
+        chkTumit1.setOpaque(false);
+        chkTumit1.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit1);
+        chkTumit1.setBounds(345, 2167, 25, 23);
+
+        chkTumit2.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit2);
+        chkTumit2.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit2.setBorderPainted(true);
+        chkTumit2.setBorderPaintedFlat(true);
+        chkTumit2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit2.setName("chkTumit2"); // NOI18N
+        chkTumit2.setOpaque(false);
+        chkTumit2.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit2);
+        chkTumit2.setBounds(450, 2167, 25, 23);
+
+        chkTumit3.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit3);
+        chkTumit3.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit3.setBorderPainted(true);
+        chkTumit3.setBorderPaintedFlat(true);
+        chkTumit3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit3.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit3.setName("chkTumit3"); // NOI18N
+        chkTumit3.setOpaque(false);
+        chkTumit3.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit3);
+        chkTumit3.setBounds(555, 2167, 25, 23);
+
+        chkTumit4.setBackground(new java.awt.Color(255, 255, 250));
+        chkTumit4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        buttonGroup6.add(chkTumit4);
+        chkTumit4.setForeground(new java.awt.Color(0, 0, 0));
+        chkTumit4.setBorderPainted(true);
+        chkTumit4.setBorderPaintedFlat(true);
+        chkTumit4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        chkTumit4.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        chkTumit4.setName("chkTumit4"); // NOI18N
+        chkTumit4.setOpaque(false);
+        chkTumit4.setPreferredSize(new java.awt.Dimension(175, 23));
+        FormInput.add(chkTumit4);
+        chkTumit4.setBounds(660, 2167, 25, 23);
+
+        jLabel124.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel124.setText("Nilai : ");
+        jLabel124.setName("jLabel124"); // NOI18N
+        FormInput.add(jLabel124);
+        jLabel124.setBounds(860, 2167, 40, 23);
+
+        TnilaiTumit.setEditable(false);
+        TnilaiTumit.setBackground(new java.awt.Color(245, 250, 240));
+        TnilaiTumit.setForeground(new java.awt.Color(0, 0, 0));
+        TnilaiTumit.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TnilaiTumit.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TnilaiTumit.setName("TnilaiTumit"); // NOI18N
+        FormInput.add(TnilaiTumit);
+        TnilaiTumit.setBounds(902, 2167, 40, 23);
+
+        jLabel125.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel125.setText("Tumit Ke Kuping : ");
+        jLabel125.setName("jLabel125"); // NOI18N
+        FormInput.add(jLabel125);
+        jLabel125.setBounds(0, 2167, 125, 23);
+
+        jLabel126.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel126.setText("Total Nilai : ");
+        jLabel126.setName("jLabel126"); // NOI18N
+        FormInput.add(jLabel126);
+        jLabel126.setBounds(820, 2195, 80, 23);
+
+        TtotNilaiMatur.setEditable(false);
+        TtotNilaiMatur.setBackground(new java.awt.Color(245, 250, 240));
+        TtotNilaiMatur.setForeground(new java.awt.Color(0, 0, 0));
+        TtotNilaiMatur.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        TtotNilaiMatur.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TtotNilaiMatur.setName("TtotNilaiMatur"); // NOI18N
+        FormInput.add(TtotNilaiMatur);
+        TtotNilaiMatur.setBounds(902, 2195, 40, 23);
+
+        jSeparator7.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator7.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator7.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator7.setName("jSeparator7"); // NOI18N
+        FormInput.add(jSeparator7);
+        jSeparator7.setBounds(30, 1813, 840, 1);
+
+        jSeparator8.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator8.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator8.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        FormInput.add(jSeparator8);
+        jSeparator8.setBounds(30, 1877, 840, 1);
+
+        jSeparator9.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator9.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator9.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator9.setName("jSeparator9"); // NOI18N
+        FormInput.add(jSeparator9);
+        jSeparator9.setBounds(30, 1943, 840, 1);
+
+        jSeparator10.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator10.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator10.setName("jSeparator10"); // NOI18N
+        FormInput.add(jSeparator10);
+        jSeparator10.setBounds(30, 2007, 840, 1);
+
+        jSeparator11.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator11.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator11.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator11.setName("jSeparator11"); // NOI18N
+        FormInput.add(jSeparator11);
+        jSeparator11.setBounds(30, 2075, 840, 1);
+
+        jSeparator12.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator12.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator12.setName("jSeparator12"); // NOI18N
+        FormInput.add(jSeparator12);
+        jSeparator12.setBounds(30, 2143, 840, 1);
+
+        jSeparator13.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator13.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator13.setName("jSeparator13"); // NOI18N
+        FormInput.add(jSeparator13);
+        jSeparator13.setBounds(30, 2210, 800, 1);
 
         ScrollTriase1.setViewportView(FormInput);
 
@@ -4193,12 +5412,13 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbIncreased.setSelectedIndex(0);
         cmbExpresion.setSelectedIndex(0);
         cmbSleepless.setSelectedIndex(0);
-        TskorCrying.setText("0");
-        TskorRequires.setText("0");
-        TskorIncreased.setText("0");
-        TskorExpresion.setText("0");
-        TskorSleepless.setText("0");
-        TtotSkor.setText("0");
+        TnilaiCrying.setText("0");
+        TnilaiRequires.setText("0");
+        TnilaiIncreased.setText("0");
+        TnilaiExpresion.setText("0");
+        TnilaiSleepless.setText("0");
+        TtotNilaiNyeri.setText("0");
+        TkesimpulanNyeri.setText("-");
         
         if (cmbNyeri.getSelectedIndex() == 2) {
             cmbCrying.setEnabled(true);
@@ -4213,52 +5433,28 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             cmbIncreased.setEnabled(false);
             cmbExpresion.setEnabled(false);
             cmbSleepless.setEnabled(false);
-        }
+        }        
     }//GEN-LAST:event_cmbNyeriActionPerformed
 
     private void cmbCryingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbCryingActionPerformed
-        // TODO add your handling code here:
+        hitungNilaiNyeri();
     }//GEN-LAST:event_cmbCryingActionPerformed
 
-    private void TskorCryingKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorCryingKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TskorCryingKeyPressed
-
     private void cmbRequiresActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbRequiresActionPerformed
-        // TODO add your handling code here:
+        hitungNilaiNyeri();
     }//GEN-LAST:event_cmbRequiresActionPerformed
 
-    private void TskorRequiresKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorRequiresKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TskorRequiresKeyPressed
-
     private void cmbIncreasedActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbIncreasedActionPerformed
-        // TODO add your handling code here:
+        hitungNilaiNyeri();
     }//GEN-LAST:event_cmbIncreasedActionPerformed
 
-    private void TskorIncreasedKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorIncreasedKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TskorIncreasedKeyPressed
-
     private void cmbExpresionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbExpresionActionPerformed
-        // TODO add your handling code here:
+        hitungNilaiNyeri();
     }//GEN-LAST:event_cmbExpresionActionPerformed
 
-    private void TskorExpresionKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorExpresionKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TskorExpresionKeyPressed
-
     private void cmbSleeplessActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbSleeplessActionPerformed
-        // TODO add your handling code here:
+        hitungNilaiNyeri();
     }//GEN-LAST:event_cmbSleeplessActionPerformed
-
-    private void TskorSleeplessKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TskorSleeplessKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TskorSleeplessKeyPressed
-
-    private void TtotSkorKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TtotSkorKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TtotSkorKeyPressed
 
     /**
     * @param args the command line arguments
@@ -4293,6 +5489,41 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnDokumenJangMed;
+    private usu.widget.glass.PanelGlass PanelWall;
+    private usu.widget.glass.PanelGlass PanelWall1;
+    private usu.widget.glass.PanelGlass PanelWall10;
+    private usu.widget.glass.PanelGlass PanelWall12;
+    private usu.widget.glass.PanelGlass PanelWall13;
+    private usu.widget.glass.PanelGlass PanelWall14;
+    private usu.widget.glass.PanelGlass PanelWall15;
+    private usu.widget.glass.PanelGlass PanelWall16;
+    private usu.widget.glass.PanelGlass PanelWall18;
+    private usu.widget.glass.PanelGlass PanelWall19;
+    private usu.widget.glass.PanelGlass PanelWall2;
+    private usu.widget.glass.PanelGlass PanelWall20;
+    private usu.widget.glass.PanelGlass PanelWall21;
+    private usu.widget.glass.PanelGlass PanelWall22;
+    private usu.widget.glass.PanelGlass PanelWall23;
+    private usu.widget.glass.PanelGlass PanelWall24;
+    private usu.widget.glass.PanelGlass PanelWall25;
+    private usu.widget.glass.PanelGlass PanelWall26;
+    private usu.widget.glass.PanelGlass PanelWall27;
+    private usu.widget.glass.PanelGlass PanelWall28;
+    private usu.widget.glass.PanelGlass PanelWall29;
+    private usu.widget.glass.PanelGlass PanelWall3;
+    private usu.widget.glass.PanelGlass PanelWall30;
+    private usu.widget.glass.PanelGlass PanelWall31;
+    private usu.widget.glass.PanelGlass PanelWall32;
+    private usu.widget.glass.PanelGlass PanelWall33;
+    private usu.widget.glass.PanelGlass PanelWall34;
+    private usu.widget.glass.PanelGlass PanelWall35;
+    private usu.widget.glass.PanelGlass PanelWall36;
+    private usu.widget.glass.PanelGlass PanelWall4;
+    private usu.widget.glass.PanelGlass PanelWall5;
+    private usu.widget.glass.PanelGlass PanelWall6;
+    private usu.widget.glass.PanelGlass PanelWall7;
+    private usu.widget.glass.PanelGlass PanelWall8;
+    private usu.widget.glass.PanelGlass PanelWall9;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane ScrollTriase1;
     private widget.TextBox TCari;
@@ -4315,6 +5546,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.TextBox TkegiatanSpiritual;
     private widget.TextBox Tkelainan;
     private widget.TextBox Tkeluhan;
+    private widget.TextBox TkesimpulanNyeri;
     private widget.TextBox Tkk;
     private widget.TextBox TlainCara;
     private widget.TextBox TlainDukungan;
@@ -4330,6 +5562,17 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.TextBox Tlp;
     private widget.TextBox TmakananAlergi;
     private widget.TextBox Tnadi;
+    private widget.TextBox TnilaiCrying;
+    private widget.TextBox TnilaiExpresion;
+    private widget.TextBox TnilaiIncreased;
+    private widget.TextBox TnilaiPersegi;
+    private widget.TextBox TnilaiRekoli;
+    private widget.TextBox TnilaiRequires;
+    private widget.TextBox TnilaiSikap;
+    private widget.TextBox TnilaiSleepless;
+    private widget.TextBox TnilaiSudut;
+    private widget.TextBox TnilaiTanda;
+    private widget.TextBox TnilaiTumit;
     private widget.TextBox TnmIdentitas;
     private widget.TextBox TnmKerabat;
     private widget.TextBox TnmPerawat;
@@ -4340,18 +5583,20 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.TextBox Treaksi;
     private widget.TextBox TrgRawat;
     private widget.TextBox Trr;
-    private widget.TextBox TskorCrying;
-    private widget.TextBox TskorExpresion;
-    private widget.TextBox TskorIncreased;
-    private widget.TextBox TskorRequires;
-    private widget.TextBox TskorSleepless;
     private widget.TextBox Tsuhu;
     private widget.TextBox TtelpKerabat;
     private widget.Tanggal TtglAses;
     private widget.Tanggal TtglLahir;
     private widget.Tanggal TtglMsk;
-    private widget.TextBox TtotSkor;
+    private widget.TextBox TtotNilaiMatur;
+    private widget.TextBox TtotNilaiNyeri;
     private widget.TextBox TumurHamil;
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
+    private javax.swing.ButtonGroup buttonGroup3;
+    private javax.swing.ButtonGroup buttonGroup4;
+    private javax.swing.ButtonGroup buttonGroup5;
+    private javax.swing.ButtonGroup buttonGroup6;
     public widget.CekBox chkAsfiksia;
     public widget.CekBox chkAsma;
     public widget.CekBox chkBblr;
@@ -4384,13 +5629,48 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     public widget.CekBox chkObatAlergi;
     public widget.CekBox chkOrangTua;
     public widget.CekBox chkPMS;
+    public widget.CekBox chkPersegi0;
+    public widget.CekBox chkPersegi1;
+    public widget.CekBox chkPersegi2;
+    public widget.CekBox chkPersegi3;
+    public widget.CekBox chkPersegi4;
+    public widget.CekBox chkPersegi_1;
+    public widget.CekBox chkRekoli0;
+    public widget.CekBox chkRekoli1;
+    public widget.CekBox chkRekoli2;
+    public widget.CekBox chkRekoli3;
+    public widget.CekBox chkRekoli4;
     public widget.CekBox chkSectio;
     public widget.CekBox chkSegar;
+    public widget.CekBox chkSikap0;
+    public widget.CekBox chkSikap1;
+    public widget.CekBox chkSikap2;
+    public widget.CekBox chkSikap3;
+    public widget.CekBox chkSikap4;
     public widget.CekBox chkSimpul;
     public widget.CekBox chkSpontan;
     public widget.CekBox chkSuami;
+    public widget.CekBox chkSudut0;
+    public widget.CekBox chkSudut1;
+    public widget.CekBox chkSudut2;
+    public widget.CekBox chkSudut3;
+    public widget.CekBox chkSudut4;
+    public widget.CekBox chkSudut5;
+    public widget.CekBox chkSudut_1;
     public widget.CekBox chkSuhuIbu;
     public widget.CekBox chkTBC;
+    public widget.CekBox chkTanda0;
+    public widget.CekBox chkTanda1;
+    public widget.CekBox chkTanda2;
+    public widget.CekBox chkTanda3;
+    public widget.CekBox chkTanda4;
+    public widget.CekBox chkTanda_1;
+    public widget.CekBox chkTumit0;
+    public widget.CekBox chkTumit1;
+    public widget.CekBox chkTumit2;
+    public widget.CekBox chkTumit3;
+    public widget.CekBox chkTumit4;
+    public widget.CekBox chkTumit_1;
     public widget.CekBox chkUK;
     public widget.CekBox chkVakum;
     private widget.ComboBox cmbAdaMengalami;
@@ -4437,8 +5717,33 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel10;
     private widget.Label jLabel100;
     private widget.Label jLabel101;
+    private widget.Label jLabel102;
+    private widget.Label jLabel103;
+    private widget.Label jLabel104;
+    private widget.Label jLabel105;
+    private widget.Label jLabel106;
+    private widget.Label jLabel107;
+    private widget.Label jLabel108;
+    private widget.Label jLabel109;
     private widget.Label jLabel11;
+    private widget.Label jLabel110;
+    private widget.Label jLabel111;
+    private widget.Label jLabel112;
+    private widget.Label jLabel113;
+    private widget.Label jLabel114;
+    private widget.Label jLabel115;
+    private widget.Label jLabel116;
+    private widget.Label jLabel117;
+    private widget.Label jLabel118;
+    private widget.Label jLabel119;
     private widget.Label jLabel12;
+    private widget.Label jLabel120;
+    private widget.Label jLabel121;
+    private widget.Label jLabel122;
+    private widget.Label jLabel123;
+    private widget.Label jLabel124;
+    private widget.Label jLabel125;
+    private widget.Label jLabel126;
     private widget.Label jLabel13;
     private widget.Label jLabel14;
     private widget.Label jLabel15;
@@ -4533,6 +5838,13 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel98;
     private widget.Label jLabel99;
     private javax.swing.JPopupMenu jPopupMenu1;
+    private javax.swing.JSeparator jSeparator10;
+    private javax.swing.JSeparator jSeparator11;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
+    private javax.swing.JSeparator jSeparator9;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbAsesmen;
@@ -4783,6 +6095,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk1.setSelectedIndex(0);
+        
+        cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk2.setSelectedIndex(0);
         TCari.setText(norwt);
     }
     
@@ -4909,5 +6225,71 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 //        } else {
 //            ChkAlergiObat.setSelected(false);
 //        }
+    }
+    
+    private void hitungNilaiNyeri() {
+        int a = 0, b = 0, c = 0, d = 0, e = 0, hasilNilai = 0;
+        
+        //crying
+        if (cmbCrying.getSelectedIndex() == 0 || cmbCrying.getSelectedIndex() == 1) {
+            a = 0;            
+        } else if (cmbCrying.getSelectedIndex() == 2) {
+            a = 1;
+        } else if (cmbCrying.getSelectedIndex() == 3) {
+            a = 2;
+        }
+        
+        //requires
+        if (cmbRequires.getSelectedIndex() == 0 || cmbRequires.getSelectedIndex() == 1) {
+            b = 0;            
+        } else if (cmbRequires.getSelectedIndex() == 2) {
+            b = 1;
+        } else if (cmbRequires.getSelectedIndex() == 3) {
+            b = 2;
+        }
+        
+        //increased
+        if (cmbIncreased.getSelectedIndex() == 0 || cmbIncreased.getSelectedIndex() == 1) {
+            c = 0;            
+        } else if (cmbIncreased.getSelectedIndex() == 2) {
+            c = 1;
+        } else if (cmbIncreased.getSelectedIndex() == 3) {
+            c = 2;
+        }
+        
+        //expresion
+        if (cmbExpresion.getSelectedIndex() == 0 || cmbExpresion.getSelectedIndex() == 1) {
+            d = 0;            
+        } else if (cmbExpresion.getSelectedIndex() == 2) {
+            d = 1;
+        }
+        
+        //sleepless
+        if (cmbSleepless.getSelectedIndex() == 0 || cmbSleepless.getSelectedIndex() == 1) {
+            e = 0;            
+        } else if (cmbSleepless.getSelectedIndex() == 2) {
+            e = 1;
+        } else if (cmbSleepless.getSelectedIndex() == 3) {
+            e = 2;
+        }
+        
+        //proses menghitung
+        TnilaiCrying.setText(Valid.SetAngka2(a));
+        TnilaiRequires.setText(Valid.SetAngka2(b));
+        TnilaiIncreased.setText(Valid.SetAngka2(c));
+        TnilaiExpresion.setText(Valid.SetAngka2(d));
+        TnilaiSleepless.setText(Valid.SetAngka2(e));
+        
+        hasilNilai = a + b + c + d + e;
+        TtotNilaiNyeri.setText(Valid.SetAngka2(hasilNilai));
+        
+        //kesimpulan penilaian
+        if (hasilNilai == 0) {
+            TkesimpulanNyeri.setText("-");
+        } else if (hasilNilai >= 1 && hasilNilai <= 3) {
+            TkesimpulanNyeri.setText("Nyeri ringan, analgesik oral");
+        } else if (hasilNilai >= 4) {
+            TkesimpulanNyeri.setText("Nyeri sedang, perlu analgesik injeksi");
+        }
     }
 }
