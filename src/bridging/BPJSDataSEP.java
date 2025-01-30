@@ -5319,7 +5319,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                 cekViaBPJSKartu.tampil(no_peserta, Sequel.cariIsi("SELECT DATE(NOW())"));
                 if (cekViaBPJSKartu.informasi.equals("OK")) {
                     if (cekViaBPJSKartu.statusPesertaketerangan.equals("AKTIF")) {
-                        TPasien.setText(Strings.toUpperCase(cekViaBPJSKartu.nama));
+                        TPasien.setText(Strings.toUpperCase(cekViaBPJSKartu.nama).replaceAll("'", " "));
                         TglLahir.setText(cekViaBPJSKartu.tglLahir);
                         NoKartu.setText(no_peserta);
                         JenisPeserta.setText(cekViaBPJSKartu.jenisPesertaketerangan);
@@ -5361,7 +5361,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
                         NoTelp.requestFocus();
                     } else {
                         JOptionPane.showMessageDialog(null, "Status kepesertaan tidak aktif..!!");
-                        TPasien.setText(Strings.toUpperCase(cekViaBPJSKartu.nama));
+                        TPasien.setText(Strings.toUpperCase(cekViaBPJSKartu.nama).replaceAll("'", " "));
                         TglLahir.setText(cekViaBPJSKartu.tglLahir);
                         NoKartu.setText(no_peserta);
                         JenisPeserta.setText(cekViaBPJSKartu.jenisPesertaketerangan);
@@ -8156,7 +8156,7 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
             Valid.SetTgl(TanggalRujukKeluar, tbSEP.getValueAt(tbSEP.getSelectedRow(), 1).toString());
             TNoRw.setText(tbSEP.getValueAt(tbSEP.getSelectedRow(), 2).toString());
             TNoRM.setText(tbSEP.getValueAt(tbSEP.getSelectedRow(), 3).toString());
-            TPasien.setText(tbSEP.getValueAt(tbSEP.getSelectedRow(), 4).toString());
+            TPasien.setText(tbSEP.getValueAt(tbSEP.getSelectedRow(), 4).toString().replaceAll("'", " "));
             NoRujukan.setText(tbSEP.getValueAt(tbSEP.getSelectedRow(), 5).toString());
             Valid.SetTgl(TanggalRujuk, tbSEP.getValueAt(tbSEP.getSelectedRow(), 6).toString());
             AsalRujukan.setSelectedItem(tbSEP.getValueAt(tbSEP.getSelectedRow(), 7).toString());
