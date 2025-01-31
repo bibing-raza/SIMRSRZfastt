@@ -9200,8 +9200,13 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                     //cek pasien kemoterapi
                     if (rskasir.getString("kd_poli").equals("008")) {
                         if (Sequel.cariInteger("select count(-1) from protokol_kemoterapi where no_rkm_medis='" + rskasir.getString("no_rkm_medis") + "'") > 0) {
-                            Sequel.meghapus("antrian_prioritas", "no_rawat", rskasir.getString("no_rawat"));
-                            Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
+                            if (Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + rskasir.getString("no_rawat") + "'").equals(Sequel.cariIsi("select date(now())"))) {
+                                if (Sequel.cariInteger("select count(-1) from antrian_prioritas where no_rawat='" + rskasir.getString("no_rawat") + "'") == 0) {
+                                    Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
+                                }
+                            }
+//                            Sequel.meghapus("antrian_prioritas", "no_rawat", rskasir.getString("no_rawat"));
+//                            Sequel.menyimpanIgnore("antrian_prioritas", "'" + rskasir.getString("no_rawat") + "','" + Sequel.cariIsi("select now()") + "'", "Data Antrian Prioritas");
                         }
                     }
                     
