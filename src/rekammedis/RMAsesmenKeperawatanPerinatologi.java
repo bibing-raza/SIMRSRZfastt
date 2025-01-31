@@ -7260,8 +7260,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         hasilNilai = a + b;
         TnilaiSkor.setText(Valid.SetAngka2(hasilNilai));
         
-//        if (hasilNilai <= -10) {
-//
-//        }
+        if (hasilNilai >= -10 && hasilNilai <= -4) {
+            TkesimpulanSkor.setText("Skor " + TnilaiSkor.getText() + ", Minggu 20");
+        } else {
+        
+        }
     }
 }
