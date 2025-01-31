@@ -431,7 +431,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
 
         BtnAsesmenKeperawatanPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenKeperawatanPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
-        BtnAsesmenKeperawatanPerinatologi.setText("Asesmen Keperawatan Perinatologi");
+        BtnAsesmenKeperawatanPerinatologi.setText("Asesmen Keprwtn. Perinatologi");
         BtnAsesmenKeperawatanPerinatologi.setIconTextGap(0);
         BtnAsesmenKeperawatanPerinatologi.setName("BtnAsesmenKeperawatanPerinatologi"); // NOI18N
         BtnAsesmenKeperawatanPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));

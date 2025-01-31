@@ -2067,11 +2067,11 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnSimpan.setEnabled(akses.getdokter());
         BtnEdit.setEnabled(akses.getdokter());
         TabDokter.setEnabledAt(1, akses.getstatus_kerja_dokter());
-        CmbSttsKerja.setEnabled(akses.getstatus_kerja_dokter());        
+        CmbSttsKerja.setEnabled(akses.getdokter());
 //        BtnPrint.setEnabled(var.getdokter());
 //        BtnHapus.setEnabled(var.getdokter());
 
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             MnRestore.setEnabled(true);
         } else {
             MnRestore.setEnabled(false);
