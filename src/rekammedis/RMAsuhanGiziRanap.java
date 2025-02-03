@@ -4420,6 +4420,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     }
                 }
                 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asuhan Gizi Rawat Inap", "Simpan");
                 simpanSttsGiziDewasa();
                 simpanGiziBuruk();
                 TCari.setText(TNoRw.getText());
@@ -7055,6 +7056,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }
             }
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asuhan Gizi Rawat Inap", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
@@ -8528,6 +8530,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
 
             Sequel.menyimpanIgnore("status_gizi_inap", "'" + TNoRw.getText() + "','" + Valid.SetTgl(tglAsuhan.getSelectedItem() + "") + "',"
                     + "'" + sttsgizi + "','" + nmgedung + "','" + kodekamar + "' ", "Data status gizi");
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Status Gizi Dewasa", "Simpan");
         } 
     }
     
@@ -8541,6 +8544,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                     + "'" + TketPbu.getText() + "','" + ThitungZat.getText() + "','" + TdiagnosaDokter.getText() + "',"
                     + "'" + Tpemberian.getText() + "','','','','','" + Tfaskes.getText() + "',"
                     + "'" + Valid.SetTgl(tglAsuhan.getSelectedItem() + "") + "' ", "Data gizi buruk anak");
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Data Gizi Buruk Rawat Inap", "Simpan");
             }
         }
     }
@@ -8569,6 +8573,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 Sequel.menyimpanIgnore("status_gizi_inap", "'" + norw + "','" + tanggal + "',"
                     + "'" + sttsgizi + "','" + gedung + "','" + kamar + "' ", "Data status gizi");
             }
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Status Gizi Dewasa", "Ganti");
         }
     }
     
@@ -8600,6 +8605,7 @@ public final class RMAsuhanGiziRanap extends javax.swing.JDialog {
                 }
             }
         }
+        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Data Gizi Buruk", "Ganti");
     }
     
     private void tampilSGDewasa() {

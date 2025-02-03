@@ -1348,13 +1348,14 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
             Valid.textKosong(TNoRW, "Pasien");
         } else {
             if (Sequel.menyimpantf("observasi_restrain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 15, new String[]{
-                TNoRW.getText(), TkodeRestrain.getText(), TrgRawat.getText(), Valid.SetTgl(TtglLokasi.getSelectedItem() + ""), 
+                TNoRW.getText(), TkodeRestrain.getText(), TrgRawat.getText(), Valid.SetTgl(TtglLokasi.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TlokasiPemasangan.getText(), nip1,
                 Valid.SetTgl(TtglObservasi.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                cmbEdema.getSelectedItem().toString(), cmbIritasi.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), Tkondisi.getText(), 
+                cmbEdema.getSelectedItem().toString(), cmbIritasi.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), Tkondisi.getText(),
                 nip2, Sequel.cariIsi("select now()")
             }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Observasi Restrain Pasien", "Simpan");
                 TCari.setText(TNoRW.getText());
                 emptTeks();
                 tampil();
@@ -1809,6 +1810,7 @@ public class RMObservasiRestrain extends javax.swing.JDialog {
                     Tkondisi.getText(), nip2, tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 22).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Observasi Restrain Pasien", "Ganti");
             TCari.setText(TNoRW.getText());
             tampil();
             emptTeks();

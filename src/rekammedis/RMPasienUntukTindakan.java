@@ -2102,6 +2102,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     TtensiBelum.getText(), TrrBelum.getText().trim(), TnadiBelum.getText().trim(), TspoBelum.getText().trim(), TcatatanBelum.getText(), nipSerahBlm,
                     nipTerimaBlm, Sequel.cariIsi("select now()")
                 }) == true) {
+                    Sequel.SimpanHistoriRekamMedis(TNoRwBelum.getText(), "Transfer Pasien Untuk Tindakan (Sebelum)", "Simpan");
                     TCari.setText(TNoRwBelum.getText());
                     emptTeksSebelum();
                     tampilSebelum();
@@ -2122,6 +2123,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     TtensiSudah.getText(), TrrSudah.getText().trim(), TnadiSudah.getText().trim(), TspoSudah.getText().trim(), TcatatanSudah.getText(), nipSerahSdh,
                     nipTerimaSdh, Sequel.cariIsi("select now()")
                 }) == true) {
+                    Sequel.SimpanHistoriRekamMedis(TNoRwSudah.getText(), "Transfer Pasien Untuk Tindakan (Sesudah)", "Simpan");
                     TCari.setText(TNoRwSudah.getText());
                     emptTeksSesudah();
                     tampilSesudah();
@@ -3357,6 +3359,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     "tgl_tindakan='" + Valid.SetTgl(TtglTindakanBelum.getSelectedItem() + "") + "', "
                     + "riwayat_alergi='" + cmbRiwAlergiBelum.getSelectedItem().toString() + "'");
             
+            Sequel.SimpanHistoriRekamMedis(TNoRwBelum.getText(), "Transfer Pasien Untuk Tindakan (Sebelum)", "Ganti");
             TabTransfer.setEnabledAt(1, false);
             TCari.setText(TNoRwBelum.getText());
             tampilSebelum();
@@ -3378,6 +3381,7 @@ public class RMPasienUntukTindakan extends javax.swing.JDialog {
                     wktSimpan
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRwSudah.getText(), "Transfer Pasien Untuk Tindakan (Sesudah)", "Ganti");
             TCari.setText(TNoRwSudah.getText());
             tampilSesudah();
             emptTeksSesudah();

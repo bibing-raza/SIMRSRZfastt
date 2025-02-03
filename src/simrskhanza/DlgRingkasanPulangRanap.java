@@ -2624,6 +2624,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Ringkasan Pulang Pasien Rawat Inap", "Simpan");
                     TCari.setText(TNoRW.getText());
                     emptTeks();
                     tampil();
@@ -2700,6 +2701,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     }
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Ringkasan Pulang Pasien Rawat Inap", "Ganti");
                 TCari.setText(TNoRW.getText());
                 emptTeks();
                 tampil();

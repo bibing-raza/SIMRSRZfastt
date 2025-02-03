@@ -1301,6 +1301,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
                     }
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Pemakaian Obat Dan Material Operasi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 tampil();
                 if (Sequel.cariInteger("select count(-1) from catatan_material_operasi where no_rawat='" + TNoRw.getText() + "'") > 0) {
@@ -1439,6 +1440,7 @@ public class RMCatatanPemakaianObatMaterialOperasi extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Pemakaian Obat Dan Material Operasi", "Ganti");
                     TCari.setText(TNoRw.getText());
                     tampil();
                     if (Sequel.cariInteger("select count(-1) from catatan_material_operasi where no_rawat='" + TNoRw.getText() + "'") > 0) {

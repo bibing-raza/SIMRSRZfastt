@@ -3523,6 +3523,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                     }
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Dewasa", "Simpan");
                 emptTeks();
                 TCari.setText(TNoRw.getText());                
                 tampil();
@@ -5657,6 +5658,7 @@ public final class RMAsesmenKeperawatanDewasaRanap extends javax.swing.JDialog {
                 }
             }
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Dewasa", "Ganti");
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
             tampilResikoDecubitus();

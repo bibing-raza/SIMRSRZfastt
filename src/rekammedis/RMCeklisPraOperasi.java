@@ -1499,6 +1499,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                     Sequel.cariIsi("select now()")
                 }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Pra Operasi", "Simpan");
                     TCari.setText(TNoRw.getText());
                     emptTeks();
                     tampil();
@@ -1551,6 +1552,7 @@ public class RMCeklisPraOperasi extends javax.swing.JDialog {
                                 tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 0).toString()
                             }) == true) {
 
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Pra Operasi", "Ganti");
                         TCari.setText(TNoRw.getText());
                         tampil();
                         emptTeks();

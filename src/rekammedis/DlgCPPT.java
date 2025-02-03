@@ -4633,6 +4633,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "CPPT", "Simpan");
                     TCari.setText(TNoRw.getText());
                     cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
                     tampil();
@@ -4754,6 +4755,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "CPPT", "Ganti");
                     TCari.setText(TNoRw.getText());
                     cmbSiftCppt.setSelectedItem(cmbSift.getSelectedItem());
                     tampil();

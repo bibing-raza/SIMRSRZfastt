@@ -2684,6 +2684,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                     nip, Sequel.cariIsi("select now()")
                 }) == true) {
                     Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
+                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Simpan");
                     tampil();
                     emptTeks();
                 }
@@ -2786,6 +2787,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 });
                 
                 Sequel.simpanReplaceInto("master_catatan_tindakan_keperawatan", "'0','" + TnmTindakan.getText() + "'", "Data Master Catatan");
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Ganti");
                 tampil();
                 emptTeks();
             }

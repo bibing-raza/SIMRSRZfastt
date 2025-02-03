@@ -2530,6 +2530,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
                 Sequel.cariIsi("select now()")
             }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Pre Induksi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -4491,6 +4492,7 @@ public class RMAsesmenPreInduksi extends javax.swing.JDialog {
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Pre Induksi", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

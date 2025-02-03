@@ -2748,6 +2748,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                         Valid.SetTgl(TtglRencana.getSelectedItem() + ""), Tnip.getText(), Sequel.cariIsi("select now()")
                     }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Pra Sedasi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 TabRawat.setSelectedIndex(1);
                 emptTeks();
@@ -4203,6 +4204,7 @@ public final class RMAsesmenPraSedasi extends javax.swing.JDialog {
                     tbSedasi.getValueAt(tbSedasi.getSelectedRow(), 84).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Pra Sedasi", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

@@ -1157,6 +1157,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
                 enumKeadaan, enumKardiovaskular, enumRespirasi, TskorKeadaan.getText(), TskorKardio.getText(), TskorRespi.getText(),
                 TtotSkor.getText(), nip, Sequel.cariIsi("select now()")
             }) == true) {
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Pediatric Early Warning Score (PEWS)", "Simpan");
                 TCari.setText(TNoRw.getText());
                 Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                 emptTeks();
@@ -1238,6 +1239,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
                             TtotSkor.getText(), nip, tbPEWS.getValueAt(tbPEWS.getSelectedRow(), 20).toString()
                         }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Pediatric Early Warning Score (PEWS)", "Ganti");
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                     emptTeks();

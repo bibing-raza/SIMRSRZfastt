@@ -1723,6 +1723,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
                 lainGZanak.getText(), nip, totSkor, kesimpulan
             }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Skrining Ulang Gizi", "Simpan");
                 TCari.setText(TNoRW.getText());
                 Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglSkrining.getSelectedItem() + ""));
                 emptTeks();
@@ -2562,6 +2563,7 @@ public class RMSkriningUlangGizi extends javax.swing.JDialog {
                     tbSkrining.getValueAt(tbSkrining.getSelectedRow(), 3).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Skrining Ulang Gizi", "Ganti");
             TCari.setText(TNoRW.getText());
             Valid.SetTgl(DTPCari1, Valid.SetTgl(TtglSkrining.getSelectedItem() + ""));
             tampil();

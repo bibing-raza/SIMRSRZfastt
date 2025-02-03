@@ -4384,6 +4384,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                             cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), Tnip.getText(), Sequel.cariIsi("select now()")
                         }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Perinatologi", "Simpan");
                     TCari.setText(TNoRw.getText());
                     TabRawat.setSelectedIndex(1);
                     emptTeks();
@@ -7114,6 +7115,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                         Tnip.getText(), tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                     }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Perinatologi", "Ganti");
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();

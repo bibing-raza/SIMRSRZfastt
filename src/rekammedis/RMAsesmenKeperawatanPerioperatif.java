@@ -2623,7 +2623,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                         TlainPenggunaan.getText(), elek, bipo, mono, Tnegatif.getText(), ngt, dc, irigasi, ett, epid, arm, gip, drain, Tdrain.getText(), draKanan, draKiri, 
                         infus, Tinfus.getText(), infKanan, infKiri, ya, tidak, wb, prc, sebanyak, Tsebanyak1.getText(), Tsebanyak2.getText(), Tkejadian.getText(), TnipPerawatOperasi.getText(),                        
                         wktSimpanAses
-                    }) == true) {                
+                    }) == true) {
                 
                 //simpan hitungan selama operasi                
                 for (i = 0; i < tbHitungan.getRowCount(); i++) {
@@ -2639,6 +2639,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                     });
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perioperatif", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -2709,6 +2710,7 @@ public class RMAsesmenKeperawatanPerioperatif extends javax.swing.JDialog {
                         });
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perioperatif", "Ganti");
                     TCari.setText(TNoRw.getText());
                     tampil();
                     emptTeks();

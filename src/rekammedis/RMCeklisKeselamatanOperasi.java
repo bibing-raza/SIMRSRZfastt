@@ -1882,6 +1882,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
                         + "'" + Valid.SetTgl(TtglTindakan.getSelectedItem() + "") + "','" + Tverifikasi.getText() + "','" + TnipPerawatSirkuit2.getText() + "',"
                         + "'" + TnipDokterAnes3.getText() + "','" + wktSimpan + "'", "The Sign Out");
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Keselamatan Operasi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 tampil();
                 if (Sequel.cariInteger("select count(-1) from ceklis_keselamatan_operasi1 where no_rawat='" + TNoRw.getText() + "'") > 0) {
@@ -1965,6 +1966,7 @@ public class RMCeklisKeselamatanOperasi extends javax.swing.JDialog {
                                 + "nip_perawat='" + TnipPerawatSirkuit2.getText() + "', "
                                 + "nip_dokter='" + TnipDokterAnes3.getText() + "'");
                         
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Keselamatan Operasi", "Ganti");
                         TCari.setText(TNoRw.getText());
                         tampil();
                         emptTeks();

@@ -1103,6 +1103,7 @@ public class RMAsesmenUlangResikoJatuhDewasa extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asesmen Ulang Resiko Jatuh Dewasa", "Simpan");
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
                     emptTeks();
@@ -1170,6 +1171,7 @@ public class RMAsesmenUlangResikoJatuhDewasa extends javax.swing.JDialog {
                             }
                         }
 
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asesmen Ulang Resiko Jatuh Dewasa", "Ganti");
                         TCari.setText(TNoRw.getText());
                         Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
                         emptTeks();

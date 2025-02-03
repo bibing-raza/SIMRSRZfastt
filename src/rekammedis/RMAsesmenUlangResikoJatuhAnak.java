@@ -1087,6 +1087,7 @@ public class RMAsesmenUlangResikoJatuhAnak extends javax.swing.JDialog {
                         }
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asesmen Ulang Resiko Jatuh Humpty Dumpty", "Simpan");
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
                     emptTeks();
@@ -1154,6 +1155,7 @@ public class RMAsesmenUlangResikoJatuhAnak extends javax.swing.JDialog {
                             }
                         }
 
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Asesmen Ulang Resiko Jatuh Humpty Dumpty", "Ganti");
                         TCari.setText(TNoRw.getText());
                         Valid.SetTgl(DTPCari1, Valid.SetTgl(tglAsesmen.getSelectedItem() + ""));
                         emptTeks();

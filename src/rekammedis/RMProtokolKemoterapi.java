@@ -1485,6 +1485,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                         Ttb.getText(), Tbb.getText(), Tlpt.getText(), Tdiagnosis.getText(), Tprogram.getText(), nipPerawat, nipDokter,
                         Sequel.cariIsi("select now()"), TnoRM.getText(), Tket.getText()
                     }) == true) {
+                        Sequel.SimpanHistoriRekamMedis(TnoRW.getText(), "Protokol Kemoterapi Hematologi & Onkologi Medik", "Simpan");
                         TCari.setText(TnoRM.getText());
                         tampil();
                         emptTeks();
@@ -1560,6 +1561,7 @@ public class RMProtokolKemoterapi extends javax.swing.JDialog {
                             + "program='" + Tprogram.getText() + "',nip_perawat='" + nipPerawat + "',nip_dokter='" + nipDokter + "',"
                             + "no_rkm_medis='" + TnoRM.getText() + "',keterangan='" + Tket.getText() + "'");
 
+                    Sequel.SimpanHistoriRekamMedis(TnoRW.getText(), "Protokol Kemoterapi Hematologi & Onkologi Medik", "Ganti");
                     TCari.setText(TnoRM.getText());
                     tampil();
                     emptTeks();

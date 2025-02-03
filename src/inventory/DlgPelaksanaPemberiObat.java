@@ -1312,6 +1312,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                         TNoRW.getText(), Sequel.cariIsi("select now()"), Valid.SetTgl(tgl_beri.getSelectedItem() + ""),
                         nipPetugas1, nipPetugas2, nipPetugas3, nipPetugas4, nipPetugas5, nipPetugas6, nipPetugas7, nipPetugas8, nmUnit.getText()
                     }) == true) {
+                        Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Petugas Pelaksana Pemberian Obat", "Simpan");
                         Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
                         emptTeks();
                         tampil();
@@ -1389,6 +1390,7 @@ public class DlgPelaksanaPemberiObat extends javax.swing.JDialog {
                             wktSimpan
                         });
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Petugas Pelaksana Pemberian Obat", "Ganti");
                 Valid.SetTgl(DTPCari1, Valid.SetTgl(tgl_beri.getSelectedItem() + ""));
                 emptTeks();
                 tampil();

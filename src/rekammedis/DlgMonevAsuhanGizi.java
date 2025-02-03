@@ -822,6 +822,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                 TNoRW.getText(), Valid.SetTgl(tglMonev.getSelectedItem() + ""), TrgRawat.getText(), Tfisik.getText(),
                 Tdiet.getText(), Tevaluasi.getText(), nip, Sequel.cariIsi("select now()")
             }) == true) {
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Monitoring dan Evaluasi Asuhan Gizi", "Simpan");
                 Valid.SetTgl(tgl1, Valid.SetTgl(tglMonev.getSelectedItem() + ""));
                 emptTeks();
                 tampil();
@@ -1345,6 +1346,7 @@ public class DlgMonevAsuhanGizi extends javax.swing.JDialog {
                     Tdiet.getText(), Tevaluasi.getText(), nip, tbMonev.getValueAt(tbMonev.getSelectedRow(), 11).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Monitoring dan Evaluasi Asuhan Gizi", "Ganti");
             Valid.SetTgl(tgl1, Valid.SetTgl(tglMonev.getSelectedItem() + ""));
             tampil();
             emptTeks();

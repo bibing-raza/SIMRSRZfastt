@@ -4569,6 +4569,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
                     }
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Anak", "Simpan");
                 emptTeks();
                 TCari.setText(TNoRw.getText());                
                 tampil();
@@ -6967,6 +6968,7 @@ public final class RMAsesmenKeperawatanAnakRanap extends javax.swing.JDialog {
                 }
             }
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Anak", "Ganti");
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
             tampil();

@@ -2597,6 +2597,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                             oksigen, drain, lab, Sequel.cariIsi("select now()"), statusOK
                         }) == true) {
                     
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Transfer & Serah Terima Pasien", "Simpan");
                     if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
                         Sequel.mengedit("penilaian_awal_medis_igd", "no_rawat='" + TNoRw.getText() + "'",
                                 "td='" + Ttd.getText() + "', hr='" + Tnadi.getText() + "', rr='" + Trr.getText() + "', temp='" + Tsuhu.getText() + "', "
@@ -3929,6 +3930,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     wktSimpan
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Transfer & Serah Terima Pasien", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

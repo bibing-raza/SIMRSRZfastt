@@ -760,7 +760,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -774,7 +774,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1044,7 +1044,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -2053,7 +2053,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2067,7 +2067,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-09-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -3701,6 +3701,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 }
             }
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Pemantauan Harian Pasien", "Simpan");
             tglBekasInput = Valid.SetTgl(tglPantau.getSelectedItem() + "");
             emptTeks();
             Valid.SetTgl(DTPCariA, tglBekasInput);
@@ -3804,6 +3805,8 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                     });
                 }
             }
+            
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Pemantauan Harian Pasien", "Ganti");
         }
     }
     
@@ -3974,6 +3977,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             totSkor, Tgds.getText(), TskorNyeri.getText(), Turin.getText(), Tnip.getText(), Sequel.cariIsi("select now()"), skorRespi, skorSatur,
             skorSuplemen, skorTensi, skorNadi, skorKesadaran, skorTemperatur
         }) == true) {
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS)", "Simpan");
             JOptionPane.showMessageDialog(null, "Data pemantauan harian pasien berhasil tersimpan ke monitoring EWS...!!!!");
             tglBekasInput = Valid.SetTgl(tglPantau.getSelectedItem() + "");
             emptTeks();

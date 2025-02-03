@@ -2030,6 +2030,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         CmbJam3.getSelectedItem() + ":" + CmbMenit3.getSelectedItem() + ":" + CmbDetik3.getSelectedItem()
                     }) == true) {
                 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Simpan");
                 TCari.setText(TNoRw.getText());                
                 tampil();
                 emptTeks();
@@ -2100,6 +2101,7 @@ public final class RMTindakanKedokteran extends javax.swing.JDialog {
                         wktSimpan
                     }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Tindakan Kedokteran", "Ganti");
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();

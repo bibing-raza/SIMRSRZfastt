@@ -56,79 +56,85 @@ public final class DlgKunjunganRanap extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
         this.setLocation(8,1);
-        setSize(885,674);
-        tabMode=new DefaultTableModel(null,new String[]{"No.","Lama","Baru","Nama Pasien","L","P","Alamat","Diagnosa","Ruang","Stts.Pulang","Tgl.Masuk","DPJP"}){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        setSize(885, 674);
+        tabMode = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", "Diagnosa", "Ruang", "Stts.Pulang", "Tgl.Masuk", "DPJP"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
+        
         tbBangsal.setModel(tabMode);
-        //tbBangsal.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal.getBackground()));
         tbBangsal.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 12; i++) {
             TableColumn column = tbBangsal.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(70);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(70);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(190);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(40);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(40);
-            }else if(i==6){
-                column.setPreferredWidth(190);
-            }else if(i==7){
-                column.setPreferredWidth(160);
-            }else if(i==8){
-                column.setPreferredWidth(190);
-            }else if(i==9){
+            } else if (i == 6) {
+                column.setPreferredWidth(300);
+            } else if (i == 7) {
+                column.setPreferredWidth(250);
+            } else if (i == 8) {
+                column.setPreferredWidth(250);
+            } else if (i == 9) {
                 column.setPreferredWidth(85);
-            }else if(i==10){
+            } else if (i == 10) {
                 column.setPreferredWidth(75);
-            }else if(i==11){
-                column.setPreferredWidth(135);
+            } else if (i == 11) {
+                column.setPreferredWidth(220);
             }
         }
         tbBangsal.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2=new DefaultTableModel(null,new String[]{"No.","Lama","Baru","Nama Pasien","L","P","Alamat","Diagnosa","Ruang","Stts.Pulang","Tgl.Pulang","DPJP"}){
-              @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        tabMode2 = new DefaultTableModel(null, new String[]{"No.", "Lama", "Baru", "Nama Pasien", "L", "P", "Alamat", "Diagnosa", "Ruang", "Stts.Pulang", "Tgl.Pulang", "DPJP"}) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
+        
         tbBangsal2.setModel(tabMode2);
-        //tbBangsal2.setDefaultRenderer(Object.class, new WarnaTable(jPanel2.getBackground(),tbBangsal2.getBackground()));
         tbBangsal2.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbBangsal2.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (i = 0; i < 12; i++) {
             TableColumn column = tbBangsal2.getColumnModel().getColumn(i);
-            if(i==0){
+            if (i == 0) {
                 column.setPreferredWidth(35);
-            }else if(i==1){
+            } else if (i == 1) {
                 column.setPreferredWidth(70);
-            }else if(i==2){
+            } else if (i == 2) {
                 column.setPreferredWidth(70);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(190);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(40);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(40);
-            }else if(i==6){
-                column.setPreferredWidth(190);
-            }else if(i==7){
-                column.setPreferredWidth(160);
-            }else if(i==8){
-                column.setPreferredWidth(190);
-            }else if(i==9){
+            } else if (i == 6) {
+                column.setPreferredWidth(300);
+            } else if (i == 7) {
+                column.setPreferredWidth(250);
+            } else if (i == 8) {
+                column.setPreferredWidth(250);
+            } else if (i == 9) {
                 column.setPreferredWidth(85);
-            }else if(i==10){
+            } else if (i == 10) {
                 column.setPreferredWidth(75);
-            }else if(i==11){
-                column.setPreferredWidth(135);
+            } else if (i == 11) {
+                column.setPreferredWidth(250);
             }
         }
         tbBangsal2.setDefaultRenderer(Object.class, new WarnaTable());
@@ -832,7 +838,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
                         + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') and "
-                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_bangsal like ? or "
+                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_gedung like ? or "
                         + "(reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.alamat like ? or "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.nm_pasien like ? or "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or "
@@ -848,7 +854,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                         + "on reg_periksa.no_rkm_medis=pasien.no_rkm_medis and reg_periksa.no_rawat=kamar_inap.no_rawat and kamar_inap.kd_kamar=kamar.kd_kamar "
                         + "and kamar.kd_bangsal=bangsal.kd_bangsal and reg_periksa.kd_dokter=dokter.kd_dokter WHERE "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' AND kamar_inap.stts_pulang not in ('-','Pindah Kamar') and "
-                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_bangsal like ? and "
+                        + "reg_periksa.tgl_registrasi between ? and ? and bangsal.nm_gedung like ? and "
                         + "(reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.alamat like ? or "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and pasien.nm_pasien like ? or "
                         + "reg_periksa.status_lanjut='Ranap' and reg_periksa.stts<>'Batal' and reg_periksa.tgl_registrasi between ? and ? and reg_periksa.no_rkm_medis like ? or "

@@ -1126,7 +1126,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1140,7 +1140,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1237,7 +1237,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
         FormInput.add(jLabel12);
         jLabel12.setBounds(0, 66, 110, 23);
 
-        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-09-2024" }));
+        tglObservasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
         tglObservasi.setDisplayFormat("dd-MM-yyyy");
         tglObservasi.setName("tglObservasi"); // NOI18N
         tglObservasi.setOpaque(false);
@@ -1526,6 +1526,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 cmbPrioritas.getSelectedItem().toString()
             }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Lembar Observasi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -1832,6 +1833,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                 Ttindakan.getText(), Sequel.cariIsi("select now()"), wktSimpanObs
             }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Observasi Yang Dilakukan", "Simpan");
                 emptTeksObs();
                 tampilObs2(wktSimpanObs);
                 tampilObs1(wktSimpanObs);
@@ -2406,6 +2408,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                     tbObservasi.getValueAt(tbObservasi.getSelectedRow(), 18).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Lembar Observasi", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();
@@ -2624,6 +2627,7 @@ public class RMLembarObservasi extends javax.swing.JDialog {
                     tbObsPasien.getValueAt(tbObsPasien.getSelectedRow(), 14).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Observasi Yang Dilakukan", "Ganti");
             tampilObs2(wktSimpanObs);
             tampilObs1(wktSimpanObs);
             emptTeksObs();

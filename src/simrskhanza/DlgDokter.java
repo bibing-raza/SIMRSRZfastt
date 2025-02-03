@@ -485,7 +485,6 @@ public class DlgDokter extends javax.swing.JDialog {
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
-        BtnHapus.setEnabled(false);
         BtnHapus.setName("BtnHapus"); // NOI18N
         BtnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -797,7 +796,7 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(2, 102, 153, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2024" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -2066,10 +2065,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     public void isCek(){
         BtnSimpan.setEnabled(akses.getdokter());
         BtnEdit.setEnabled(akses.getdokter());
-        TabDokter.setEnabledAt(1, akses.getstatus_kerja_dokter());
-        CmbSttsKerja.setEnabled(akses.getdokter());
+//        TabDokter.setEnabledAt(1, akses.getstatus_kerja_dokter());
 //        BtnPrint.setEnabled(var.getdokter());
-//        BtnHapus.setEnabled(var.getdokter());
+        BtnHapus.setEnabled(akses.getadmin());
 
         if (akses.getadmin() == true) {
             MnRestore.setEnabled(true);

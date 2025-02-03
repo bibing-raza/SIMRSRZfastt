@@ -1634,6 +1634,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                         TResepObat.getText(), "BELUM", akses.getkode()
                     });
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Ralan Pasien", "Simpan");
                     Sequel.mengedit("reg_periksa", "no_rawat='" + TNoRw.getText() + "'", "stts='Sudah Diperiksa Dokter'");
                     ChkCito.setEnabled(false);
                     cmbJnsResep.setEnabled(false);
@@ -1664,6 +1665,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                         TResepObat.getText(), "BELUM", akses.getkode(), jenisResep, cmbIniResep.getSelectedItem().toString()
                     });
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Ranap Pasien", "Simpan");
                     ChkCito.setEnabled(true);
                     cmbJnsResep.setEnabled(true);
                     BtnSetuju.setEnabled(true);
@@ -1956,6 +1958,8 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                         Sequel.mengedit("catatan_resep", "noId='" + TIdObat.getText() + "'",
                                 "no_rawat='" + TNoRw.getText() + "',tgl_perawatan='" + Sequel.cariIsi("SELECT date(NOW())") + "',"
                                 + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "'");
+                        
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Ralan Pasien", "Ganti");
                         ChkCito.setEnabled(false);
                         cmbJnsResep.setEnabled(false);
                         BtnSetuju.setEnabled(false);
@@ -1987,6 +1991,7 @@ public class DlgCatatanResep extends javax.swing.JDialog {
                                 + "jam_perawatan='" + Sequel.cariIsi("SELECT TIME(NOW())") + "',nama_obat = '" + TResepObat.getText() + "',"
                                 + "jenis_resep='" + jenisResep + "', resep_untuk='" + cmbIniResep.getSelectedItem().toString() + "'");
                         
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Catatan Resep Ranap Pasien", "Ganti");
                         ChkCito.setEnabled(true);
                         cmbJnsResep.setEnabled(true);
                         BtnSetuju.setEnabled(true);

@@ -1736,6 +1736,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                         cmbBbpb.getSelectedItem().toString()
                     }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Ulang Gizi Rawat Inap", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -3253,6 +3254,7 @@ public class DlgAssesmenGiziUlang extends javax.swing.JDialog {
                     tbAsesmenGZUlang.getValueAt(tbAsesmenGZUlang.getSelectedRow(), 44).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Ulang Gizi Rawat Inap", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

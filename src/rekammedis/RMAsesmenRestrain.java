@@ -1973,12 +1973,13 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("asesmen_restrain", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 46, new String[]{
-                        TNoRw.getText(), TkodeRestrain.getText(), Valid.SetTgl(tglPengkajian.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
-                        compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(), Tnapas.getText(), Tskala.getText(), gelisah, kooperatif,
-                        ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan, restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi,
-                        TResFarmakologi.getText(), kajian1jam, kajian2jam, kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText()
-                    }) == true) {
+                TNoRw.getText(), TkodeRestrain.getText(), Valid.SetTgl(tglPengkajian.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TrgRawat.getText(),
+                compos, apatis, delirium, somnolen, sopor, koma, Tgcse.getText(), Tgcsm.getText(), Tgcsv.getText(), Ttensi.getText(), Tnadi.getText(), Tsuhu.getText(), Tnapas.getText(), Tskala.getText(), gelisah, kooperatif,
+                ketidakmampuan, klinik_diri, klinis_orang, klinis_gagal, resnonfarma, restempat, resgelangtangan, restangankiri, restangankanan, resgelangkaki, reskakikiri, reskakikanan, reslain, resfarmakologi,
+                TResFarmakologi.getText(), kajian1jam, kajian2jam, kajianlanjutan2jam, kajianlanjutan4jam, kajiantanda, kajianlanjutan, jelasalasan, jelaskriteria, jelasinformari, Tnip.getText()
+            }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Restrain Rawat Inap", "Simpan");
                 TCari.setText(TNoRw.getText());
                 TabRawat.setSelectedIndex(1);
                 emptTeks();
@@ -2035,7 +2036,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
                 }
 
                 gantiDisimpan();
-                ganti();
+                ganti();                
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
@@ -3159,6 +3160,7 @@ public final class RMAsesmenRestrain extends javax.swing.JDialog {
                     tbRestrain.getValueAt(tbRestrain.getSelectedRow(), 0).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Restrain Rawat Inap", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

@@ -1288,6 +1288,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
                     TnipDpjp.getText(), TnmKeluarga.getText(), Sequel.cariIsi("select now()")
                 }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Perencanaan Pulang (Discharge Planning)", "Simpan");
                     TCari.setText(TNoRw.getText());
                     emptTeks();
                     tampil();
@@ -1337,6 +1338,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
                                 tbPerencanaan.getValueAt(tbPerencanaan.getSelectedRow(), 0).toString()
                             }) == true) {
 
+                        Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Perencanaan Pulang (Discharge Planning)", "Ganti");
                         TCari.setText(TNoRw.getText());
                         tampil();
                         emptTeks();

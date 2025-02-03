@@ -1440,6 +1440,8 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
                 power, tidak, zat, absorber, sungkup, oropa, batang, bilah, gagang, ett, stilet, spuit, forcep, kabel, elek, nibp, spo2, kapno, pemantau, stetos, suction, selangSuction,
                 plester, lida, epin, atro, sedatif, opi, pelumpuh, anal, anti, lain, Tlain.getText(), TnipPerawat.getText(), Sequel.cariIsi("select now()")
             }) == true) {
+                
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Kesiapan Anestesi", "Simpan");
                 TCari.setText(TNoRw.getText());
                 emptTeks();
                 tampil();
@@ -1486,6 +1488,7 @@ public class RMCeklisKesiapanAnestesi extends javax.swing.JDialog {
                             tbCeklis.getValueAt(tbCeklis.getSelectedRow(), 0).toString()
                         }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Checklist Kesiapan Anestesi", "Ganti");
                     TCari.setText(TNoRw.getText());
                     tampil();
                     emptTeks();

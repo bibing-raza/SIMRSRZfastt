@@ -385,6 +385,9 @@ import tranfusidarah.UTDPenyerahanDarah;
 import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
+import java.net.InetAddress;
+import rekammedis.DlgHistoriIPAddressPetugasERM;
+import setting.DlgHistoriLoginUser;
 
 /**
  *
@@ -432,7 +435,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         INACBGCariCoderNIK cariNIK = new INACBGCariCoderNIK(this, false);
         
-        lblTgl.setText(tanggal.getSelectedItem().toString());
+        lblTgl.setText("Tgl. : " + tanggal.getSelectedItem().toString());
         try {
             prop.loadFromXML(new FileInputStream("setting/database.xml"));
         } catch (Exception e) {
@@ -470,7 +473,8 @@ public class frmUtama extends javax.swing.JFrame {
         otomatisRefreshNotifLab();
         akses.tRefreshNotifLab.start();
         otomatisRefreshNotifRad();
-        akses.tRefreshNotifRad.start();        
+        akses.tRefreshNotifRad.start();  
+        tampilIpAddress();
     }
 
     public static frmUtama getInstance() {
@@ -899,6 +903,8 @@ public class frmUtama extends javax.swing.JFrame {
         btnSuratKonsulInternalPoli = new widget.ButtonBig();
         btnAsesmenMedikPerinatologi = new widget.ButtonBig();
         btnPenilaianAwalKeperawatanRalanKemoterapi = new widget.ButtonBig();
+        btnHistoryLoginUser = new widget.ButtonBig();
+        btnHistoryIpAddressPetugasRM = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -928,6 +934,8 @@ public class frmUtama extends javax.swing.JFrame {
         lblUser = new javax.swing.JLabel();
         jSeparator2 = new javax.swing.JSeparator();
         lblTgl = new javax.swing.JLabel();
+        jSeparator8 = new javax.swing.JSeparator();
+        lblIPaddress = new javax.swing.JLabel();
         jSeparator6 = new javax.swing.JSeparator();
         footer_lbl_update = new javax.swing.JLabel();
         PanelUtama = new javax.swing.JPanel();
@@ -6111,6 +6119,32 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPenilaianAwalKeperawatanRalanKemoterapi);
 
+        btnHistoryLoginUser.setForeground(new java.awt.Color(0, 0, 0));
+        btnHistoryLoginUser.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/users.png"))); // NOI18N
+        btnHistoryLoginUser.setText("History Login User");
+        btnHistoryLoginUser.setIconTextGap(0);
+        btnHistoryLoginUser.setName("btnHistoryLoginUser"); // NOI18N
+        btnHistoryLoginUser.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHistoryLoginUser.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoryLoginUserActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnHistoryLoginUser);
+
+        btnHistoryIpAddressPetugasRM.setForeground(new java.awt.Color(0, 0, 0));
+        btnHistoryIpAddressPetugasRM.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/backup-restore.png"))); // NOI18N
+        btnHistoryIpAddressPetugasRM.setText("History IP Address e-RM");
+        btnHistoryIpAddressPetugasRM.setIconTextGap(0);
+        btnHistoryIpAddressPetugasRM.setName("btnHistoryIpAddressPetugasRM"); // NOI18N
+        btnHistoryIpAddressPetugasRM.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnHistoryIpAddressPetugasRM.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnHistoryIpAddressPetugasRMActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnHistoryIpAddressPetugasRM);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6119,7 +6153,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23/01/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03/02/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -6533,8 +6567,24 @@ public class frmUtama extends javax.swing.JFrame {
         lblTgl.setText("Tanggal");
         lblTgl.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         lblTgl.setName("lblTgl"); // NOI18N
-        lblTgl.setPreferredSize(new java.awt.Dimension(100, 23));
+        lblTgl.setPreferredSize(new java.awt.Dimension(95, 23));
         internalFrame4.add(lblTgl);
+
+        jSeparator8.setBackground(new java.awt.Color(170, 190, 145));
+        jSeparator8.setForeground(new java.awt.Color(170, 190, 145));
+        jSeparator8.setOrientation(javax.swing.SwingConstants.VERTICAL);
+        jSeparator8.setName("jSeparator8"); // NOI18N
+        jSeparator8.setOpaque(true);
+        jSeparator8.setPreferredSize(new java.awt.Dimension(1, 20));
+        internalFrame4.add(jSeparator8);
+
+        lblIPaddress.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        lblIPaddress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lblIPaddress.setText("IP Address : localhost");
+        lblIPaddress.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        lblIPaddress.setName("lblIPaddress"); // NOI18N
+        lblIPaddress.setPreferredSize(new java.awt.Dimension(140, 23));
+        internalFrame4.add(lblIPaddress);
 
         jSeparator6.setBackground(new java.awt.Color(170, 190, 145));
         jSeparator6.setForeground(new java.awt.Color(170, 190, 145));
@@ -12076,6 +12126,28 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPenilaianAwalKeperawatanRalanKemoterapiActionPerformed
 
+    private void btnHistoryLoginUserActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryLoginUserActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgHistoriLoginUser aplikasi = new DlgHistoriLoginUser(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnHistoryLoginUserActionPerformed
+
+    private void btnHistoryIpAddressPetugasRMActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnHistoryIpAddressPetugasRMActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgHistoriIPAddressPetugasERM aplikasi = new DlgHistoriIPAddressPetugasERM(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnHistoryIpAddressPetugasRMActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12251,6 +12323,8 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnHarianHAIsRalan;
     private widget.ButtonBig btnHarianHAIsRanap;
     private widget.ButtonBig btnHistoriPelayananPesertaBPJS;
+    private widget.ButtonBig btnHistoryIpAddressPetugasRM;
+    private widget.ButtonBig btnHistoryLoginUser;
     private widget.ButtonBig btnHutangObat;
     private widget.ButtonBig btnICD;
     private widget.ButtonBig btnICD9;
@@ -12534,11 +12608,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private javax.swing.JSeparator jSeparator5;
     private javax.swing.JSeparator jSeparator6;
     private javax.swing.JSeparator jSeparator7;
+    private javax.swing.JSeparator jSeparator8;
     private javax.swing.JSeparator jSeparator9;
     private javax.swing.JLabel kdUser;
     private widget.TextArea ket_update;
     private widget.Label label35;
     private widget.Label label36;
+    private javax.swing.JLabel lblIPaddress;
     private javax.swing.JLabel lblStts;
     private javax.swing.JLabel lblTgl;
     private javax.swing.JLabel lblUser;
@@ -12790,6 +12866,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 1) {
             jmlmenu = 0;
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnHistoryIpAddressPetugasRM);
+                jmlmenu++;
+            }
+            
             if (akses.getadmin() == true) {
                 Panelmenu.add(btnMasterCatatanMaterialOperasi);
                 jmlmenu++;
@@ -14486,6 +14567,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 Panelmenu.add(btnSetPenjab);
                 jmlmenu++;
             }
+            
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnHistoryLoginUser);
+                jmlmenu++;
+            }
 
             if (akses.getsetup_otolokasi() == true) {
                 Panelmenu.add(btnSetupOtoLokasi);
@@ -14611,6 +14697,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getadmin() == true) {
             Panelmenu.add(btnMapingLokasiSatuSehat);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnHistoryIpAddressPetugasRM);
             jmlmenu++;
         }
         
@@ -15259,6 +15350,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getbulananhaisinap() == true) {
             Panelmenu.add(btnBulananHAIsRanap);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnHistoryLoginUser);
             jmlmenu++;
         }
 
@@ -16490,6 +16586,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
+        if (akses.getadmin() == true) {
+            if (btnHistoryIpAddressPetugasRM.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnHistoryIpAddressPetugasRM);
+                jmlmenu++;
+            }
+        }
+        
         if (akses.getsatu_sehat()== true) {
             if (btnReferensiDokterSatuSehat.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnReferensiDokterSatuSehat);
@@ -17209,6 +17312,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
                 Panelmenu.add(btnDataTriaseIGD);
                 jmlmenu++;
             }
+        }
+        
+        if (btnHistoryLoginUser.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+            Panelmenu.add(btnHistoryLoginUser);
+            jmlmenu++;
         }
 
         if (akses.getmaster_cara_bayar() == true) {
@@ -19294,6 +19402,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             System.out.println("Notifikasi : " + e);
         }
         akses.setkdbangsal(cekApt);
+    }
+    
+    private void tampilIpAddress() {
+        String ipAddresKomputer = "";
+        try {
+            InetAddress ip = InetAddress.getLocalHost();
+            ipAddresKomputer = ip.getHostAddress();
+            lblIPaddress.setText("IP Address : " + ipAddresKomputer);
+        } catch (Exception e) {            
+            System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
+        }
     }
 
 }

@@ -45,6 +45,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
+import java.net.InetAddress;
 //import org.apache.poi.hssf.record.formula.functions.Len;
 //import org.apache.poi.hssf.record.formula.functions.Mid;
 import uz.ncipro.calendar.JDateTimePicker;
@@ -64,7 +65,7 @@ public final class sekuel {
     private int angka = 0;
     private static int angka3 = 0;
     private double angka2 = 0;
-    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "";
+    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "";
     private static String dicari2 = "", output2 = "", inputan2 = "";
     private char enkrip;
     private static char enkrip2;
@@ -373,6 +374,36 @@ public final class sekuel {
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
+        }
+    }
+    
+    public void SimpanHistoriRekamMedis(String norawat, String dokumen, String proses) {
+        ipAddresKomputer = "";
+        try {
+            InetAddress ip = InetAddress.getLocalHost();
+            ipAddresKomputer = ip.getHostAddress();
+
+            try {
+                ps = connect.prepareStatement("insert into histori_petugas_erm values(?,?,?,?,?,now())");
+                try {
+                    ps.setString(1, norawat);
+                    ps.setString(2, dokumen);
+                    ps.setString(3, proses);
+                    ps.setString(4, akses.getkode());
+                    ps.setString(5, ipAddresKomputer);
+                    ps.executeUpdate();
+                } catch (Exception e) {
+                    System.out.println("Notifikasi : " + e);
+                } finally {
+                    if (ps != null) {
+                        ps.close();
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            }
+        } catch (Exception e) {
+            System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
         }
     }
 
@@ -1232,7 +1263,7 @@ public final class sekuel {
         }
         return angka;
     }
-
+    
     public void cariIsi(String sql, JTextField txt, String kunci) {
         try {
             ps = connect.prepareStatement(sql);

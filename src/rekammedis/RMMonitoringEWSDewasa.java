@@ -1309,6 +1309,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
                 TtotSkor.getText(), Tgds.getText(), TskorNyeri.getText(), Turin.getText(), nip, Sequel.cariIsi("select now()"), TskorRespi.getText(), TskorSatu.getText(),
                 TskorSuple.getText(), TskorTensi.getText(), TskorNadi.getText(), TskorKesadaran.getText(), TskorTempe.getText()
             }) == true) {
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS)", "Simpan");
                 TCari.setText(TNoRw.getText());
                 Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                 emptTeks();
@@ -1385,6 +1386,7 @@ public class RMMonitoringEWSDewasa extends javax.swing.JDialog {
                             TskorTempe.getText(), tbEWS.getValueAt(tbEWS.getSelectedRow(), 28).toString()
                         }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Monitoring Early Warning Score (EWS)", "Ganti");
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                     emptTeks();

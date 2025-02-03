@@ -5836,6 +5836,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                     Sequel.menyimpan("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'");
                 }
                 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Dewasa Rawat Inap", "Ganti");
                 TCari.setText(TNoRw.getText());
                 tampil();
                 emptTeks();
@@ -5872,6 +5873,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
                     Sequel.menyimpan("dpjp_ranap", "'" + TNoRw.getText() + "','" + kddpjp.getText() + "'");
                 }
                 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Dewasa Rawat Inap", "Simpan");
                 TCari.setText(TNoRw.getText());
                 TabRawat.setSelectedIndex(1);
                 emptTeks();

@@ -1416,6 +1416,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                 T1JamTD.getText(), T1JamNadi.getText(), T1JamRR.getText(), T1JamSuhu.getText(), nip3, Sequel.cariIsi("select now()"),
                 Treaksi15TDmasuk.getText(), Treaksi1JamTD.getText()
             }) == true) {
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Pengelolaan Pasien Transfusi Darah", "Simpan");
                 TCari.setText(TNoRw.getText());
                 Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                 emptTeks();
@@ -1458,6 +1459,7 @@ public class RMPengelolaanTransfusiDarah extends javax.swing.JDialog {
                             tbTransfusi.getValueAt(tbTransfusi.getSelectedRow(), 28).toString()
                         }) == true) {
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Pengelolaan Pasien Transfusi Darah", "Ganti");
                     TCari.setText(TNoRw.getText());
                     Valid.SetTgl(DTPCari1, Valid.SetTgl(Ttgl.getSelectedItem() + ""));
                     emptTeks();

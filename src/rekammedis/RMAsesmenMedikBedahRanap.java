@@ -3938,6 +3938,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
                         cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), TnipDpjp.getText(), Sequel.cariIsi("select now()")
                     }) == true) {
 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Bedah Rawat Inap", "Simpan");
                 TCari.setText(TNoRw.getText());
                 TabRawat.setSelectedIndex(1);
                 emptTeks();
@@ -6272,6 +6273,7 @@ public final class RMAsesmenMedikBedahRanap extends javax.swing.JDialog {
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Medik Bedah Rawat Inap", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             emptTeks();

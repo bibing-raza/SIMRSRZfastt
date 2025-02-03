@@ -677,6 +677,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                     Valid.SetTgl(TtglMinta.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                     kddokter, "", "0000-00-00", "00:00:00", "-", Sequel.cariIsi("select now()"), "Belum"
                 }) == true) {
+                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Surat Konsul Antar Unit Rawat Inap", "Simpan");
                     TCari.setText(TNoRW.getText());
                     tbKonsul.requestFocus();
                     emptTeks();
@@ -730,6 +731,7 @@ public class DlgSuratKonsulUnit extends javax.swing.JDialog {
                                     Valid.SetTgl(TtglMinta.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                                     kddokter, wktSimpan
                                 });
+                        Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Surat Konsul Antar Unit Rawat Inap", "Ganti");
                         TCari.setText(TNoRW.getText());
                         tbKonsul.requestFocus();
                         emptTeks();

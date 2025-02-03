@@ -743,6 +743,7 @@ public class DlgSuratJawabanKonsul extends javax.swing.JDialog {
                             "Sudah",
                             wktSimpan
                         });
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Surat Jawaban Konsul Antar Unit Rawat Inap", "Ganti");
                 TCari.setText(TNoRW.getText());
                 tbKonsul.requestFocus();
                 emptTeks();
