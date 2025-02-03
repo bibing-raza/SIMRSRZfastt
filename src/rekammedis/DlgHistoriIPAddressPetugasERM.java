@@ -38,6 +38,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0;
+    private String gedung = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -47,8 +48,8 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Dokumen Rekam Medis", "Proses", "NIP", "Nama Petugas", "IP Address", 
-            "Nama Gedung", "Tgl. Eksekusi", "Jam Eksekusi"}) {
+            "No. Rawat", "No. RM", "Nama Pasien", "Dokumen Rekam Medis", "Proses", "NIP/NR", "Nama Petugas", "IP Address", 
+            "Ruang Rawat/Poliklinik/Inst.", "Tgl. Eksekusi", "Jam Eksekusi"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -78,7 +79,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(100);
             } else if (i == 8) {
-                column.setPreferredWidth(130);
+                column.setPreferredWidth(200);
             } else if (i == 9) {
                 column.setPreferredWidth(80);
             } else if (i == 10) {
@@ -149,6 +150,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
+        tbHistori.setAutoCreateRowSorter(true);
         tbHistori.setName("tbHistori"); // NOI18N
         Scroll.setViewportView(tbHistori);
 
@@ -388,11 +390,12 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        gedung = "";
         Valid.tabelKosong(tabMode);
         try {
             if (cmbDokumen.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("select h.*, pg.nama nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, time_format(h.waktu_simpan,'%H:%i:%s') jam, "
-                        + "p.no_rkm_medis, p.nm_pasien from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
+                        + "p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=h.nip_petugas where "
                         + "date(h.waktu_simpan) between ? and ? and h.no_rawat like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.proses_eksekusi like ? or "
@@ -403,7 +406,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                         + "date(h.waktu_simpan) between ? and ? and p.nm_pasien like ? order by h.waktu_simpan desc");
             } else {
                 ps = koneksi.prepareStatement("select h.*, pg.nama nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, time_format(h.waktu_simpan,'%H:%i:%s') jam, "
-                        + "p.no_rkm_medis, p.nm_pasien from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
+                        + "p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=h.nip_petugas where "
                         + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.no_rawat like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.proses_eksekusi like ? or "
@@ -466,10 +469,15 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                     ps.setString(27, "%" + cmbDokumen.getSelectedItem().toString() + "%");
                     ps.setString(28, "%" + TCari.getText().trim() + "%");
                 }
-                
-                ps.setString(2, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
+                    if (rs.getString("status_lanjut").equals("Ralan")) {
+                        gedung = Sequel.cariIsi("select nm_poli from poliklinik where kd_poli='" + rs.getString("kd_poli") + "'");
+                    } else {
+                        gedung = Sequel.cariIsi("select b.nm_gedung from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
+                                + "where ki.no_rawat='" + rs.getString("no_rawat") + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+                    }
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
@@ -479,8 +487,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                         rs.getString("nip_petugas"),
                         rs.getString("nmpetugas"),
                         rs.getString("ip_address"),
-                        Sequel.cariIsi("select b.nm_gedung from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                        + "where ki.no_rawat='" + rs.getString("no_rawat") + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"),
+                        gedung,
                         rs.getString("tgl"),
                         rs.getString("jam")
                     });

@@ -2521,6 +2521,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
                         Sequel.menyimpan2("penilaian_awal_keperawatan_ralan_masalah", "?,?", 2, new String[]{TNoRw.getText(), tbMasalahKeperawatan.getValueAt(i, 1).toString()});
                     }
                 }
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Rawat Jalan Kemoterapi", "Simpan");
                 TabRawat.setSelectedIndex(1);
                 BtnBatalActionPerformed(null);
                 tampil();
@@ -2616,6 +2617,7 @@ public final class RMPenilaianAwalKeperawatanRalanKemoterapi extends javax.swing
                         Sequel.menyimpan2("penilaian_awal_keperawatan_ralan_masalah", "?,?", 2, new String[]{TNoRw.getText(), tbMasalahKeperawatan.getValueAt(i, 1).toString()});
                     }
                 }
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Rawat Jalan Kemoterapi", "Ganti");
                 getMasalah();
                 tampil();
                 BtnBatalActionPerformed(null);

@@ -2777,6 +2777,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                         resus, nonresus, klinik, doa, nip, tgl_kejadian_tggl, tgl_kejadian_kll, Tvas.getText(), bb.getText(), tb.getText(), Sequel.cariIsi("select now()")
                     }) == true) {
                 
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Simpan");
                 TCari.setText(TNoRw.getText());
                 BtnBatalActionPerformed(null);
                 tampil();
@@ -4719,6 +4720,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
                 }) == true) {
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Ganti");
             TCari.setText(TNoRw.getText());
             tampil();
             BtnBatalActionPerformed(null);

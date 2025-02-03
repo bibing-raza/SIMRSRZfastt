@@ -88,6 +88,7 @@
               <SubComponents>
                 <Component class="widget.Table" name="tbHistori">
                   <Properties>
+                    <Property name="autoCreateRowSorter" type="boolean" value="true"/>
                     <Property name="name" type="java.lang.String" value="tbHistori" noResource="true"/>
                   </Properties>
                 </Component>

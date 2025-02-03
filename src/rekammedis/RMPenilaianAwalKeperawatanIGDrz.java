@@ -4929,6 +4929,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 }
             }
 
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Gawat Darurat", "Ganti");
             TabRawat.setSelectedIndex(1);
             tampilFaktorResiko();
             tampil();
@@ -5254,6 +5255,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                         TNoRw.getText(), tbFaktorResiko.getValueAt(i, 1).toString()});
                 }
             }
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Gawat Darurat", "Simpan");
             emptTeks();
             tampil();
             TabRawat.setSelectedIndex(1);
