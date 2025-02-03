@@ -485,6 +485,7 @@ public class DlgDokter extends javax.swing.JDialog {
         BtnHapus.setMnemonic('H');
         BtnHapus.setText("Hapus");
         BtnHapus.setToolTipText("Alt+H");
+        BtnHapus.setEnabled(false);
         BtnHapus.setName("BtnHapus"); // NOI18N
         BtnHapus.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -744,7 +745,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(TTmp);
-        TTmp.setBounds(160, 102, 148, 23);
+        TTmp.setBounds(160, 102, 155, 23);
 
         CmbJk.setForeground(new java.awt.Color(0, 0, 0));
         CmbJk.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "LAKI-LAKI", "PEREMPUAN" }));
@@ -755,7 +756,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(CmbJk);
-        CmbJk.setBounds(160, 72, 100, 23);
+        CmbJk.setBounds(160, 72, 95, 23);
 
         TNm.setForeground(new java.awt.Color(0, 0, 0));
         TNm.setName("TNm"); // NOI18N
@@ -777,7 +778,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel9.setText("Gol. Darah :");
         jLabel9.setName("jLabel9"); // NOI18N
         FormInput.add(jLabel9);
-        jLabel9.setBounds(265, 72, 65, 23);
+        jLabel9.setBounds(260, 72, 100, 23);
 
         CMbGd.setForeground(new java.awt.Color(0, 0, 0));
         CMbGd.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "A", "B", "AB", "O", "-" }));
@@ -788,7 +789,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(CMbGd);
-        CMbGd.setBounds(335, 72, 50, 23);
+        CMbGd.setBounds(364, 72, 50, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Tmp/Tgl. Lahir :");
@@ -796,7 +797,7 @@ public class DlgDokter extends javax.swing.JDialog {
         FormInput.add(jLabel13);
         jLabel13.setBounds(2, 102, 153, 23);
 
-        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "31-01-2025" }));
+        DTPLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPLahir.setDisplayFormat("dd-MM-yyyy");
         DTPLahir.setName("DTPLahir"); // NOI18N
         DTPLahir.setOpaque(false);
@@ -806,7 +807,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(DTPLahir);
-        DTPLahir.setBounds(315, 102, 92, 23);
+        DTPLahir.setBounds(322, 102, 92, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Agama :");
@@ -815,22 +816,17 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel18.setBounds(422, 12, 60, 23);
 
         cmbAgama.setForeground(new java.awt.Color(0, 0, 0));
-        cmbAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KONG HU CHU", "-" }));
+        cmbAgama.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "ISLAM", "KRISTEN", "KATOLIK", "HINDU", "BUDHA", "KONG HU CHU" }));
         cmbAgama.setLightWeightPopupEnabled(false);
         cmbAgama.setName("cmbAgama"); // NOI18N
-        cmbAgama.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                cmbAgamaKeyPressed(evt);
-            }
-        });
         FormInput.add(cmbAgama);
-        cmbAgama.setBounds(486, 12, 130, 23);
+        cmbAgama.setBounds(486, 12, 105, 23);
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setText("Stts. Nikah :");
         jLabel19.setName("jLabel19"); // NOI18N
         FormInput.add(jLabel19);
-        jLabel19.setBounds(639, 12, 90, 23);
+        jLabel19.setBounds(593, 12, 80, 23);
 
         CmbStts.setForeground(new java.awt.Color(0, 0, 0));
         CmbStts.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "BELUM MENIKAH", "MENIKAH", "JANDA", "DUDA" }));
@@ -842,7 +838,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(CmbStts);
-        CmbStts.setBounds(733, 12, 130, 23);
+        CmbStts.setBounds(680, 12, 112, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Alamat :");
@@ -866,7 +862,7 @@ public class DlgDokter extends javax.swing.JDialog {
         TSpesialis.setForeground(new java.awt.Color(0, 0, 0));
         TSpesialis.setName("TSpesialis"); // NOI18N
         FormInput.add(TSpesialis);
-        TSpesialis.setBounds(568, 102, 266, 23);
+        TSpesialis.setBounds(568, 102, 296, 23);
 
         TAlmt.setForeground(new java.awt.Color(0, 0, 0));
         TAlmt.setHighlighter(null);
@@ -956,7 +952,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnSpesial);
-        btnSpesial.setBounds(836, 102, 28, 23);
+        btnSpesial.setBounds(865, 102, 28, 23);
 
         BtnCariPegawai.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPegawai.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -975,7 +971,7 @@ public class DlgDokter extends javax.swing.JDialog {
         jLabel23.setText("NIK KTP : ");
         jLabel23.setName("jLabel23"); // NOI18N
         FormInput.add(jLabel23);
-        jLabel23.setBounds(620, 72, 60, 23);
+        jLabel23.setBounds(620, 72, 94, 23);
 
         TnoKTP.setForeground(new java.awt.Color(0, 0, 0));
         TnoKTP.setName("TnoKTP"); // NOI18N
@@ -985,13 +981,13 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(TnoKTP);
-        TnoKTP.setBounds(680, 72, 150, 23);
+        TnoKTP.setBounds(714, 72, 150, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("Status Kerja :");
         jLabel24.setName("jLabel24"); // NOI18N
         FormInput.add(jLabel24);
-        jLabel24.setBounds(879, 12, 80, 23);
+        jLabel24.setBounds(795, 12, 80, 23);
 
         CmbSttsKerja.setForeground(new java.awt.Color(0, 0, 0));
         CmbSttsKerja.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "AKTIF", "NON AKTIF" }));
@@ -1007,7 +1003,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(CmbSttsKerja);
-        CmbSttsKerja.setBounds(965, 12, 100, 23);
+        CmbSttsKerja.setBounds(880, 12, 90, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("URL Foto :");
@@ -1023,7 +1019,7 @@ public class DlgDokter extends javax.swing.JDialog {
             }
         });
         FormInput.add(Turl);
-        Turl.setBounds(160, 162, 705, 23);
+        Turl.setBounds(160, 162, 704, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1139,10 +1135,6 @@ public class DlgDokter extends javax.swing.JDialog {
     private void DTPLahirKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_DTPLahirKeyPressed
         Valid.pindah(evt,TTmp,TNoi);
 }//GEN-LAST:event_DTPLahirKeyPressed
-
-    private void cmbAgamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_cmbAgamaKeyPressed
-        Valid.pindah(evt,DTPLahir,CmbStts);
-}//GEN-LAST:event_cmbAgamaKeyPressed
 
     private void CmbSttsKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_CmbSttsKeyPressed
         Valid.pindah(evt,cmbAgama,TAlmt);
@@ -2067,7 +2059,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         BtnEdit.setEnabled(akses.getdokter());
 //        TabDokter.setEnabledAt(1, akses.getstatus_kerja_dokter());
 //        BtnPrint.setEnabled(var.getdokter());
-        BtnHapus.setEnabled(akses.getadmin());
+//        BtnHapus.setEnabled(akses.getadmin());
 
         if (akses.getadmin() == true) {
             MnRestore.setEnabled(true);
