@@ -9238,7 +9238,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgKamarInap");
                 SisruteRujukanKeluar dlgki = new SisruteRujukanKeluar(null, false);
-                dlgki.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                dlgki.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgki.setLocationRelativeTo(internalFrame1);
                 dlgki.isCek();
                 dlgki.setPasien2(norawat.getText());
@@ -9952,7 +9952,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             CoronaPasien form = new CoronaPasien(null, false);
             form.setPasien(TNoRM.getText(), tglInap.getText(), "NGINAP");
             form.isCek();
-            form.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             form.Inisial.requestFocus();
@@ -9973,7 +9973,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             form.emptTeks();
             form.setPasien(norawat.getText(), TNoRM.getText(), TPasien.getText());
             form.isCek();
-            form.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

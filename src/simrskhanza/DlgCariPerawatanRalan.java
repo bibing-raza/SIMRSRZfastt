@@ -827,7 +827,7 @@ public final class DlgCariPerawatanRalan extends javax.swing.JDialog {
         //perawatan.setModal(true);
         perawatan.emptTeks();
         perawatan.isCek();
-        perawatan.setSize(internalFrame1.getWidth() + 40, internalFrame1.getHeight() + 40);
+        perawatan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         perawatan.setLocationRelativeTo(internalFrame1);
         perawatan.setAlwaysOnTop(false);
         perawatan.setVisible(true);

@@ -314,7 +314,7 @@ public final class DlgCariJenis extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         jenis.emptTeks();
         jenis.isCek();
-        jenis.setSize(internalFrame1.getWidth()+40,internalFrame1.getHeight()+40);
+        jenis.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         jenis.setLocationRelativeTo(internalFrame1);
         jenis.setAlwaysOnTop(false);
         jenis.setVisible(true);

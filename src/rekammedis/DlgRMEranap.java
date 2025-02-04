@@ -1697,7 +1697,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 RMAsesmenKeperawatanPerinatologi form = new RMAsesmenKeperawatanPerinatologi(null, false);
                 form.emptTeks();
                 form.isCek();
-//            form.setData(TNoRW.getText(), kdkamar);
+                form.setData(TNoRW.getText(), nmUnit.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

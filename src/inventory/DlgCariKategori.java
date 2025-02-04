@@ -315,7 +315,7 @@ public final class DlgCariKategori extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         nama.emptTeks();
         nama.isCek();
-        nama.setSize(internalFrame1.getWidth()+40,internalFrame1.getHeight()+40);
+        nama.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         nama.setLocationRelativeTo(internalFrame1);
         nama.setAlwaysOnTop(false);
         nama.setVisible(true);

@@ -315,7 +315,7 @@ public final class DlgCariSatuan extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         satuan.emptTeks();
         satuan.isCek();
-        satuan.setSize(internalFrame1.getWidth()+40,internalFrame1.getHeight()+40);
+        satuan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         satuan.setLocationRelativeTo(internalFrame1);
         satuan.setAlwaysOnTop(false);
         satuan.setVisible(true);

@@ -336,7 +336,7 @@ public final class DlgCariDokter extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         dokter.emptTeks();
         dokter.isCek();
-        dokter.setSize(internalFrame1.getWidth() + 40, internalFrame1.getHeight() + 40);
+        dokter.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         dokter.setLocationRelativeTo(internalFrame1);
         dokter.setAlwaysOnTop(false);
         dokter.setVisible(true);

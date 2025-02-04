@@ -13,9 +13,6 @@
       <SubComponents>
         <MenuItem class="javax.swing.JMenuItem" name="ppBersihkan">
           <Properties>
-            <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="ff" green="ff" red="ff" type="rgb"/>
-            </Property>
             <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
               <Font name="Tahoma" size="11" style="0"/>
             </Property>
@@ -473,7 +470,7 @@
                 </Property>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="28-11-2017"/>
+                    <StringItem index="0" value="04-02-2025"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -523,7 +520,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbJam" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbJamKeyPressed"/>
@@ -601,7 +597,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbMnt" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbMntKeyPressed"/>
@@ -679,7 +674,6 @@
                   </StringArray>
                 </Property>
                 <Property name="name" type="java.lang.String" value="cmbDtk" noResource="true"/>
-                <Property name="opaque" type="boolean" value="false"/>
               </Properties>
               <Events>
                 <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="cmbDtkKeyPressed"/>

@@ -6221,7 +6221,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgIGD");
                 SisruteRujukanKeluar dlgki = new SisruteRujukanKeluar(null, false);
-                dlgki.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                dlgki.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgki.setLocationRelativeTo(internalFrame1);
                 dlgki.isCek();
                 dlgki.setPasien(TNoRw.getText());

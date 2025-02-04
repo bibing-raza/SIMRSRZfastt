@@ -2000,7 +2000,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             CoronaDiagnosa form = new CoronaDiagnosa(null, false);
             form.SetPasien(NoRM.getText(), NamaPasien.getText(), DTPCari1.getDate(), DTPCari2.getDate());
             form.isCek();
-            form.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());

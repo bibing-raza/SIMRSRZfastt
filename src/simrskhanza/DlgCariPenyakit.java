@@ -360,14 +360,14 @@ public final class DlgCariPenyakit extends javax.swing.JDialog {
 
     private void BtnTambahActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTambahActionPerformed
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-        DlgPenyakit penyakit=new DlgPenyakit(null,false);
+        DlgPenyakit penyakit = new DlgPenyakit(null, false);
         penyakit.emptTeks();
         penyakit.isCek();
-        penyakit.setSize(internalFrame1.getWidth()+40,internalFrame1.getHeight()+40);
+        penyakit.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         penyakit.setLocationRelativeTo(internalFrame1);
         penyakit.setAlwaysOnTop(false);
         penyakit.setVisible(true);
-        this.setCursor(Cursor.getDefaultCursor());           
+        this.setCursor(Cursor.getDefaultCursor());         
     }//GEN-LAST:event_BtnTambahActionPerformed
 
     private void formWindowActivated(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowActivated

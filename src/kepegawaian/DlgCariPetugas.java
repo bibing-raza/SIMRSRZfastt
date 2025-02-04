@@ -335,7 +335,7 @@ public final class DlgCariPetugas extends javax.swing.JDialog {
         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
         petugas.emptTeks();
         petugas.isCek();
-        petugas.setSize(internalFrame1.getWidth()+40,internalFrame1.getHeight()+40);
+        petugas.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         petugas.setLocationRelativeTo(internalFrame1);
         petugas.setAlwaysOnTop(false);
         petugas.setVisible(true);

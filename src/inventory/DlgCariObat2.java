@@ -1329,7 +1329,7 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
         //barang.setModal(true);
         barang.emptTeks();
         barang.isCek();
-        barang.setSize(internalFrame1.getWidth() + 40, internalFrame1.getHeight() + 40);
+        barang.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
         barang.setLocationRelativeTo(internalFrame1);
         barang.setVisible(true);
         this.setCursor(Cursor.getDefaultCursor());

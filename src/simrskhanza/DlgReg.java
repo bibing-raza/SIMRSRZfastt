@@ -8672,7 +8672,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
                 this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                 akses.setform("DlgReg");
                 SisruteRujukanKeluar dlgki = new SisruteRujukanKeluar(null, false);
-                dlgki.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+                dlgki.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgki.setLocationRelativeTo(internalFrame1);
                 dlgki.isCek();
                 dlgki.setPasien(TNoRw.getText());
@@ -8971,7 +8971,7 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
             CoronaPasien form = new CoronaPasien(null, false);
             form.setPasien(TNoRM.getText(), tglDaftar, "Poliklinik");
             form.isCek();
-            form.setSize(internalFrame1.getWidth() - 20, internalFrame1.getHeight() - 20);
+            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             form.setLocationRelativeTo(internalFrame1);
             form.setVisible(true);
             form.Inisial.requestFocus();
