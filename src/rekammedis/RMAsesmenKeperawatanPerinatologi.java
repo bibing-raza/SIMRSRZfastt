@@ -83,7 +83,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         this.setLocation(8,1);
         
         tabMode = new DefaultTableModel(null, new String[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Jenis Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Rencana 1", "Jam Rencana 1", "Tgl. Rencana 2", "Jam Rencana 2", "Nama Perawat",
+            "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Rencana 1", "Jam Rencana 1", "Tgl. Rencana 2", "Jam Rencana 2", "Nama Perawat",
             "sumber_data", "ket_lain_sumber_data", "rujukan", "jenis_rujukan", "diagnosa_rujukan", "keluhan", "nm_identitas", "pendidikan", "pekerjaan", "agama", "alamat",
             "bbl", "pb", "lk", "ld", "lp", "ll", "kk", "nadi", "rr", "suhu", "jernih", "keruh", "lumpur", "hijau", "berbau", "kering", "anus", "bab", "bak", "kelainan_bawaan", "anak_ke",
             "umur_kehamilan", "riwayat_penyakit_ibu", "hipertensi", "dm", "pms", "tbc", "asma", "hepatitis_b", "lain_riwayat", "ket_lain_riwayat", "masih_pengobatan", "obat",
@@ -126,13 +126,13 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             } else if (i == 5) {
                 column.setPreferredWidth(250);
             } else if (i == 6) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             } else if (i == 7) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             } else if (i == 8) {
-                column.setPreferredWidth(80);                
+                column.setPreferredWidth(90);                
             } else if (i == 9) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(90);
             } else if (i == 10) {
                 column.setPreferredWidth(220);
             } else if (i == 11) {
@@ -7391,16 +7391,24 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         chkTumit1.setSelected(false);
         chkTumit2.setSelected(false);
         chkTumit3.setSelected(false);
-        chkTumit4.setSelected(false);
+        chkTumit4.setSelected(false);        
         cmbFisikKulit.setSelectedIndex(0);
         cmbFisikPayudara.setSelectedIndex(0);
         cmbFisikMata.setSelectedIndex(0);
         cmbFisikGenPria.setSelectedIndex(0);
         cmbFisikGenWanita.setSelectedIndex(0);
         cmbFisikLanugo.setSelectedIndex(0);
-        cmbFisikPlantar.setSelectedIndex(0);
+        cmbFisikPlantar.setSelectedIndex(0);        
         hitungNilaiNyeri();
         hitungNilaiNeomuskular();
+        TnilaiSikap.setText("0");
+        TnilaiPersegi.setText("0");
+        TnilaiRekoli.setText("0");
+        TnilaiSudut.setText("0");
+        TnilaiTanda.setText("0");
+        TnilaiTumit.setText("0");
+        TtotNilaiNeomuskular.setText("0");
+        TnilaiNeo.setText("0");
         hitungNilaiFisik();
         chkHipotermi.setSelected(false);
         chkResikoHipotermi.setSelected(false);
