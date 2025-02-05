@@ -68,7 +68,9 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             "Pekerjaan", "Tmpt. Tinggal", "Permintaan Dari", "No. Surat Dari", "Tanggalnya", "Tgl. Surat Dari", "Keperluan",
             "NIP", "Dokter Pemeriksa", "Tes THC", "Tes BZO", "Tes MET", "Tes MOP", "Tes COC", "Tes AMP",
             "Hasil THC", "Hasil BZO", "Hasil MET", "Hasil MOP", "Hasil COC", "Hasil AMP", "Hasil Kesimpulan",
-            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen", "tes_opi", "hasil_opi", "nomor_surat"};
+            "Tgl. Surat", "nosrt", "tgl_surat", "tgl_surat_dari", "no_dokumen", "tes_opi", "hasil_opi", "nomor_surat",
+            "Jns. Permintaan", "Nama Penyidik", "NRP", "Keadaan Indikasi"
+        };
         tabMode = new DefaultTableModel(null, row) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -80,7 +82,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         tbSurat.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbSurat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 37; i++) {
+        for (int i = 0; i < 41; i++) {
             TableColumn column = tbSurat.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -163,6 +165,14 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             } else if (i == 36) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setPreferredWidth(100);
+            } else if (i == 38) {
+                column.setPreferredWidth(220);
+            } else if (i == 39) {
+                column.setPreferredWidth(70);
+            } else if (i == 40) {
+                column.setPreferredWidth(150);
             }
         }
         tbSurat.setDefaultRenderer(Object.class, new WarnaTable());
@@ -267,6 +277,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TnoSuratDari.setDocument(new batasInput((int) 150).getKata(TnoSuratDari));
         TTempLahr.setDocument(new batasInput((int) 150).getKata(TTempLahr));
         TPasien.setDocument(new batasInput((int) 40).getKata(TPasien));
+        Tpenyidik.setDocument(new batasInput((int) 200).getKata(Tpenyidik));
+        Tnrp.setDocument(new batasInput((byte) 20).getOnlyAngka(Tnrp));
 
         dokter.addWindowListener(new WindowListener() {
             @Override
@@ -402,6 +414,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
 
         jPopupMenu1 = new javax.swing.JPopupMenu();
         MnCetakSurat = new javax.swing.JMenuItem();
+        MnCetakSuratKepolisian = new javax.swing.JMenuItem();
         Scroll5 = new widget.ScrollPane();
         tbHasilTes = new widget.Table();
         Tnomor = new widget.TextBox();
@@ -478,6 +491,14 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         BtnDokumen = new widget.Button();
         ChkOPI = new widget.CekBox();
         cmbOPI = new widget.ComboBox();
+        jLabel23 = new widget.Label();
+        cmbJnsPermintaan = new widget.ComboBox();
+        jLabel24 = new widget.Label();
+        Tpenyidik = new widget.TextBox();
+        jLabel25 = new widget.Label();
+        Tnrp = new widget.TextBox();
+        jLabel26 = new widget.Label();
+        cmbIndikasi = new widget.ComboBox();
         PanelAccor = new widget.PanelBiasa();
         ChkAccor = new widget.CekBox();
         FormMenu = new widget.PanelBiasa();
@@ -501,13 +522,27 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         MnCetakSurat.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         MnCetakSurat.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         MnCetakSurat.setName("MnCetakSurat"); // NOI18N
-        MnCetakSurat.setPreferredSize(new java.awt.Dimension(250, 26));
+        MnCetakSurat.setPreferredSize(new java.awt.Dimension(300, 26));
         MnCetakSurat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 MnCetakSuratActionPerformed(evt);
             }
         });
         jPopupMenu1.add(MnCetakSurat);
+
+        MnCetakSuratKepolisian.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnCetakSuratKepolisian.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnCetakSuratKepolisian.setText("Cetak Surat Keterangan NAPZA/Narkoba (Kepolisian)");
+        MnCetakSuratKepolisian.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnCetakSuratKepolisian.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnCetakSuratKepolisian.setName("MnCetakSuratKepolisian"); // NOI18N
+        MnCetakSuratKepolisian.setPreferredSize(new java.awt.Dimension(300, 26));
+        MnCetakSuratKepolisian.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnCetakSuratKepolisianActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnCetakSuratKepolisian);
 
         Scroll5.setName("Scroll5"); // NOI18N
         Scroll5.setOpaque(true);
@@ -672,7 +707,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(70, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -686,7 +721,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -768,38 +803,38 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         internalFrame1.add(jPanel3, java.awt.BorderLayout.PAGE_END);
 
         panelGlass7.setName("panelGlass7"); // NOI18N
-        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass7.setPreferredSize(new java.awt.Dimension(44, 328));
         panelGlass7.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setText("Pasien : ");
         jLabel3.setName("jLabel3"); // NOI18N
         panelGlass7.add(jLabel3);
-        jLabel3.setBounds(0, 10, 105, 23);
+        jLabel3.setBounds(0, 10, 135, 23);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("No. Surat : ");
         jLabel4.setName("jLabel4"); // NOI18N
         panelGlass7.add(jLabel4);
-        jLabel4.setBounds(0, 38, 105, 23);
+        jLabel4.setBounds(0, 38, 135, 23);
 
         TNoRW.setEditable(false);
         TNoRW.setForeground(new java.awt.Color(0, 0, 0));
         TNoRW.setName("TNoRW"); // NOI18N
         panelGlass7.add(TNoRW);
-        TNoRW.setBounds(105, 10, 131, 23);
+        TNoRW.setBounds(135, 10, 131, 23);
 
         TNoSurat.setEditable(false);
         TNoSurat.setForeground(new java.awt.Color(0, 0, 0));
         TNoSurat.setName("TNoSurat"); // NOI18N
         panelGlass7.add(TNoSurat);
-        TNoSurat.setBounds(285, 38, 180, 23);
+        TNoSurat.setBounds(315, 38, 180, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         panelGlass7.add(TNoRM);
-        TNoRM.setBounds(240, 10, 70, 23);
+        TNoRM.setBounds(270, 10, 70, 23);
 
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setName("TPasien"); // NOI18N
@@ -809,19 +844,19 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TPasien);
-        TPasien.setBounds(315, 10, 360, 23);
+        TPasien.setBounds(345, 10, 360, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Tgl. Lahir : ");
         jLabel5.setName("jLabel5"); // NOI18N
         panelGlass7.add(jLabel5);
-        jLabel5.setBounds(0, 66, 105, 23);
+        jLabel5.setBounds(0, 66, 135, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tempat Lahir : ");
         jLabel8.setName("jLabel8"); // NOI18N
         panelGlass7.add(jLabel8);
-        jLabel8.setBounds(245, 66, 88, 23);
+        jLabel8.setBounds(275, 66, 88, 23);
 
         TTempLahr.setForeground(new java.awt.Color(0, 0, 0));
         TTempLahr.setName("TTempLahr"); // NOI18N
@@ -831,25 +866,25 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TTempLahr);
-        TTempLahr.setBounds(334, 66, 185, 23);
+        TTempLahr.setBounds(364, 66, 185, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Jns. Kelamin : ");
         jLabel9.setName("jLabel9"); // NOI18N
         panelGlass7.add(jLabel9);
-        jLabel9.setBounds(525, 66, 70, 23);
+        jLabel9.setBounds(555, 66, 70, 23);
 
         Tjk.setEditable(false);
         Tjk.setForeground(new java.awt.Color(0, 0, 0));
         Tjk.setName("Tjk"); // NOI18N
         panelGlass7.add(Tjk);
-        Tjk.setBounds(595, 66, 80, 23);
+        Tjk.setBounds(625, 66, 80, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Pekerjaan : ");
         jLabel10.setName("jLabel10"); // NOI18N
         panelGlass7.add(jLabel10);
-        jLabel10.setBounds(0, 94, 105, 23);
+        jLabel10.setBounds(0, 94, 135, 23);
 
         TPekerjaan.setForeground(new java.awt.Color(0, 0, 0));
         TPekerjaan.setName("TPekerjaan"); // NOI18N
@@ -859,13 +894,13 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TPekerjaan);
-        TPekerjaan.setBounds(105, 94, 570, 23);
+        TPekerjaan.setBounds(135, 94, 570, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Tempat Tinggal : ");
         jLabel11.setName("jLabel11"); // NOI18N
         panelGlass7.add(jLabel11);
-        jLabel11.setBounds(0, 122, 105, 23);
+        jLabel11.setBounds(0, 122, 135, 23);
 
         Ttmpt_tinggal.setForeground(new java.awt.Color(0, 0, 0));
         Ttmpt_tinggal.setName("Ttmpt_tinggal"); // NOI18N
@@ -875,33 +910,33 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Ttmpt_tinggal);
-        Ttmpt_tinggal.setBounds(105, 122, 570, 23);
+        Ttmpt_tinggal.setBounds(135, 122, 570, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Tgl. Surat : ");
         jLabel14.setName("jLabel14"); // NOI18N
         panelGlass7.add(jLabel14);
-        jLabel14.setBounds(940, 262, 70, 23);
+        jLabel14.setBounds(1064, 290, 70, 23);
 
         Ttgl_surat.setEditable(false);
-        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
+        Ttgl_surat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         Ttgl_surat.setDisplayFormat("dd-MM-yyyy");
         Ttgl_surat.setName("Ttgl_surat"); // NOI18N
         Ttgl_surat.setOpaque(false);
         panelGlass7.add(Ttgl_surat);
-        Ttgl_surat.setBounds(1013, 262, 90, 23);
+        Ttgl_surat.setBounds(1137, 290, 90, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Dokter Pemeriksa : ");
         jLabel15.setName("jLabel15"); // NOI18N
         panelGlass7.add(jLabel15);
-        jLabel15.setBounds(0, 267, 105, 23);
+        jLabel15.setBounds(0, 295, 135, 23);
 
         Tnmdokter.setEditable(false);
         Tnmdokter.setForeground(new java.awt.Color(0, 0, 0));
         Tnmdokter.setName("Tnmdokter"); // NOI18N
         panelGlass7.add(Tnmdokter);
-        Tnmdokter.setBounds(105, 267, 540, 23);
+        Tnmdokter.setBounds(135, 295, 540, 23);
 
         BtnDokter.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokter.setMnemonic('2');
@@ -914,19 +949,19 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnDokter);
-        BtnDokter.setBounds(645, 267, 28, 23);
+        BtnDokter.setBounds(675, 295, 28, 23);
 
         TtglLahir.setEditable(false);
         TtglLahir.setForeground(new java.awt.Color(0, 0, 0));
         TtglLahir.setName("TtglLahir"); // NOI18N
         panelGlass7.add(TtglLahir);
-        TtglLahir.setBounds(105, 66, 140, 23);
+        TtglLahir.setBounds(135, 66, 140, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel16.setText("Permintaan Dari : ");
+        jLabel16.setText("Penyidik : ");
         jLabel16.setName("jLabel16"); // NOI18N
         panelGlass7.add(jLabel16);
-        jLabel16.setBounds(0, 150, 105, 23);
+        jLabel16.setBounds(0, 178, 135, 23);
 
         TPermintaanDari.setForeground(new java.awt.Color(0, 0, 0));
         TPermintaanDari.setName("TPermintaanDari"); // NOI18N
@@ -936,13 +971,13 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TPermintaanDari);
-        TPermintaanDari.setBounds(105, 150, 570, 23);
+        TPermintaanDari.setBounds(320, 150, 385, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("No. Surat Dari : ");
         jLabel17.setName("jLabel17"); // NOI18N
         panelGlass7.add(jLabel17);
-        jLabel17.setBounds(0, 178, 105, 23);
+        jLabel17.setBounds(0, 206, 135, 23);
 
         TnoSuratDari.setForeground(new java.awt.Color(0, 0, 0));
         TnoSuratDari.setName("TnoSuratDari"); // NOI18N
@@ -952,21 +987,21 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TnoSuratDari);
-        TnoSuratDari.setBounds(105, 178, 360, 23);
+        TnoSuratDari.setBounds(135, 206, 360, 23);
 
         TtglSuratDari.setEditable(false);
-        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "02-01-2025" }));
+        TtglSuratDari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         TtglSuratDari.setDisplayFormat("dd-MM-yyyy");
         TtglSuratDari.setName("TtglSuratDari"); // NOI18N
         TtglSuratDari.setOpaque(false);
         panelGlass7.add(TtglSuratDari);
-        TtglSuratDari.setBounds(575, 178, 100, 23);
+        TtglSuratDari.setBounds(605, 206, 100, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Keperluan : ");
         jLabel18.setName("jLabel18"); // NOI18N
         panelGlass7.add(jLabel18);
-        jLabel18.setBounds(0, 206, 105, 23);
+        jLabel18.setBounds(0, 234, 135, 23);
 
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
@@ -983,14 +1018,14 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         Scroll7.setViewportView(Tkeperluan);
 
         panelGlass7.add(Scroll7);
-        Scroll7.setBounds(105, 206, 570, 55);
+        Scroll7.setBounds(135, 234, 570, 55);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel13.setText("Hasil Tes Narkoba : ");
         jLabel13.setName("jLabel13"); // NOI18N
         panelGlass7.add(jLabel13);
-        jLabel13.setBounds(700, 10, 130, 23);
+        jLabel13.setBounds(730, 10, 130, 23);
 
         ChkTHC.setBackground(new java.awt.Color(255, 255, 250));
         ChkTHC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1009,7 +1044,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkTHC);
-        ChkTHC.setBounds(700, 38, 143, 23);
+        ChkTHC.setBounds(730, 38, 143, 23);
 
         ChkBZO.setBackground(new java.awt.Color(255, 255, 250));
         ChkBZO.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1028,7 +1063,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkBZO);
-        ChkBZO.setBounds(700, 66, 143, 23);
+        ChkBZO.setBounds(730, 66, 143, 23);
 
         ChkMET.setBackground(new java.awt.Color(255, 255, 250));
         ChkMET.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1047,7 +1082,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkMET);
-        ChkMET.setBounds(700, 94, 143, 23);
+        ChkMET.setBounds(730, 94, 143, 23);
 
         ChkMOP.setBackground(new java.awt.Color(255, 255, 250));
         ChkMOP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1066,7 +1101,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkMOP);
-        ChkMOP.setBounds(700, 122, 143, 23);
+        ChkMOP.setBounds(730, 122, 143, 23);
 
         ChkCOC.setBackground(new java.awt.Color(255, 255, 250));
         ChkCOC.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1085,7 +1120,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkCOC);
-        ChkCOC.setBounds(700, 150, 143, 23);
+        ChkCOC.setBounds(730, 150, 143, 23);
 
         ChkAMP.setBackground(new java.awt.Color(255, 255, 250));
         ChkAMP.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1104,7 +1139,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkAMP);
-        ChkAMP.setBounds(700, 178, 143, 23);
+        ChkAMP.setBounds(730, 178, 143, 23);
 
         cmbTHC.setForeground(new java.awt.Color(0, 0, 0));
         cmbTHC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1116,7 +1151,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbTHC);
-        cmbTHC.setBounds(850, 38, 85, 23);
+        cmbTHC.setBounds(880, 38, 85, 23);
 
         cmbBZO.setForeground(new java.awt.Color(0, 0, 0));
         cmbBZO.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1128,7 +1163,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbBZO);
-        cmbBZO.setBounds(850, 66, 85, 23);
+        cmbBZO.setBounds(880, 66, 85, 23);
 
         cmbMET.setForeground(new java.awt.Color(0, 0, 0));
         cmbMET.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1140,7 +1175,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMET);
-        cmbMET.setBounds(850, 94, 85, 23);
+        cmbMET.setBounds(880, 94, 85, 23);
 
         cmbMOP.setForeground(new java.awt.Color(0, 0, 0));
         cmbMOP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1152,7 +1187,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbMOP);
-        cmbMOP.setBounds(850, 122, 85, 23);
+        cmbMOP.setBounds(880, 122, 85, 23);
 
         cmbCOC.setForeground(new java.awt.Color(0, 0, 0));
         cmbCOC.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1164,7 +1199,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbCOC);
-        cmbCOC.setBounds(850, 150, 85, 23);
+        cmbCOC.setBounds(880, 150, 85, 23);
 
         cmbAMP.setForeground(new java.awt.Color(0, 0, 0));
         cmbAMP.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1176,7 +1211,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbAMP);
-        cmbAMP.setBounds(850, 178, 85, 23);
+        cmbAMP.setBounds(880, 178, 85, 23);
 
         ChkSemuaTes.setBackground(new java.awt.Color(255, 255, 250));
         ChkSemuaTes.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1195,7 +1230,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkSemuaTes);
-        ChkSemuaTes.setBounds(700, 234, 130, 23);
+        ChkSemuaTes.setBounds(730, 234, 130, 23);
 
         cmbSemuaHasilTes.setForeground(new java.awt.Color(0, 0, 0));
         cmbSemuaHasilTes.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1207,20 +1242,20 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbSemuaHasilTes);
-        cmbSemuaHasilTes.setBounds(850, 234, 85, 23);
+        cmbSemuaHasilTes.setBounds(880, 234, 85, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Kesimpulan Hasil Tes : ");
         jLabel20.setName("jLabel20"); // NOI18N
         panelGlass7.add(jLabel20);
-        jLabel20.setBounds(700, 262, 150, 23);
+        jLabel20.setBounds(730, 262, 145, 23);
 
         cmbKesHasil.setForeground(new java.awt.Color(0, 0, 0));
         cmbKesHasil.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
         cmbKesHasil.setName("cmbKesHasil"); // NOI18N
         cmbKesHasil.setPreferredSize(new java.awt.Dimension(55, 28));
         panelGlass7.add(cmbKesHasil);
-        cmbKesHasil.setBounds(850, 262, 85, 23);
+        cmbKesHasil.setBounds(880, 262, 85, 23);
 
         ChkTglSurat.setBackground(new java.awt.Color(255, 255, 250));
         ChkTglSurat.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1239,13 +1274,13 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkTglSurat);
-        ChkTglSurat.setBounds(464, 178, 110, 23);
+        ChkTglSurat.setBounds(494, 206, 110, 23);
 
         TnoDokumen.setEditable(false);
         TnoDokumen.setForeground(new java.awt.Color(0, 0, 0));
         TnoDokumen.setName("TnoDokumen"); // NOI18N
         panelGlass7.add(TnoDokumen);
-        TnoDokumen.setBounds(105, 38, 131, 23);
+        TnoDokumen.setBounds(135, 38, 131, 23);
 
         BtnDokumen.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnDokumen.setMnemonic('2');
@@ -1258,7 +1293,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnDokumen);
-        BtnDokumen.setBounds(237, 38, 28, 23);
+        BtnDokumen.setBounds(267, 38, 28, 23);
 
         ChkOPI.setBackground(new java.awt.Color(255, 255, 250));
         ChkOPI.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1277,7 +1312,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(ChkOPI);
-        ChkOPI.setBounds(700, 206, 143, 23);
+        ChkOPI.setBounds(730, 206, 143, 23);
 
         cmbOPI.setForeground(new java.awt.Color(0, 0, 0));
         cmbOPI.setModel(new javax.swing.DefaultComboBoxModel(new String[] { " ", "Negatif (-)", "Positif (+)" }));
@@ -1289,7 +1324,70 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbOPI);
-        cmbOPI.setBounds(850, 206, 85, 23);
+        cmbOPI.setBounds(880, 206, 85, 23);
+
+        jLabel23.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel23.setText("Jenis Permintaan : ");
+        jLabel23.setName("jLabel23"); // NOI18N
+        panelGlass7.add(jLabel23);
+        jLabel23.setBounds(0, 150, 135, 23);
+
+        cmbJnsPermintaan.setForeground(new java.awt.Color(0, 0, 0));
+        cmbJnsPermintaan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Lainnya", "Kepolisian" }));
+        cmbJnsPermintaan.setName("cmbJnsPermintaan"); // NOI18N
+        cmbJnsPermintaan.setPreferredSize(new java.awt.Dimension(55, 28));
+        cmbJnsPermintaan.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cmbJnsPermintaanActionPerformed(evt);
+            }
+        });
+        panelGlass7.add(cmbJnsPermintaan);
+        cmbJnsPermintaan.setBounds(135, 150, 80, 23);
+
+        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel24.setText("Permintaan Dari : ");
+        jLabel24.setName("jLabel24"); // NOI18N
+        panelGlass7.add(jLabel24);
+        jLabel24.setBounds(215, 150, 105, 23);
+
+        Tpenyidik.setForeground(new java.awt.Color(0, 0, 0));
+        Tpenyidik.setName("Tpenyidik"); // NOI18N
+        Tpenyidik.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TpenyidikKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(Tpenyidik);
+        Tpenyidik.setBounds(135, 178, 400, 23);
+
+        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel25.setText("NRP : ");
+        jLabel25.setName("jLabel25"); // NOI18N
+        panelGlass7.add(jLabel25);
+        jLabel25.setBounds(535, 178, 40, 23);
+
+        Tnrp.setForeground(new java.awt.Color(0, 0, 0));
+        Tnrp.setName("Tnrp"); // NOI18N
+        Tnrp.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TnrpKeyPressed(evt);
+            }
+        });
+        panelGlass7.add(Tnrp);
+        Tnrp.setBounds(575, 178, 130, 23);
+
+        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel26.setText("Indikasi Keadaan : ");
+        jLabel26.setName("jLabel26"); // NOI18N
+        panelGlass7.add(jLabel26);
+        jLabel26.setBounds(730, 290, 145, 23);
+
+        cmbIndikasi.setForeground(new java.awt.Color(0, 0, 0));
+        cmbIndikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "TERINDIKASI NARKOBA", "TIDAK TERINDIKASI NARKOBA" }));
+        cmbIndikasi.setName("cmbIndikasi"); // NOI18N
+        cmbIndikasi.setPreferredSize(new java.awt.Dimension(55, 28));
+        panelGlass7.add(cmbIndikasi);
+        cmbIndikasi.setBounds(880, 290, 180, 23);
 
         internalFrame1.add(panelGlass7, java.awt.BorderLayout.PAGE_START);
 
@@ -1473,7 +1571,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         + "'" + cmbMOP.getSelectedItem().toString() + "','" + cmbCOC.getSelectedItem().toString() + "','" + cmbAMP.getSelectedItem().toString() + "',"
                         + "'" + cmbKesHasil.getSelectedItem().toString() + "','" + Tkeperluan.getText() + "','" + kddokter + "',"
                         + "'" + tglsurat + "','" + TPasien.getText() + "','" + TTempLahr.getText() + "','" + TnoDokumen.getText() + "','" + opi + "',"
-                        + "'" + cmbOPI.getSelectedItem().toString() + "','" + Tnomor.getText() + "'", "Surat Keterangan NAPZA");
+                        + "'" + cmbOPI.getSelectedItem().toString() + "','" + Tnomor.getText() + "','" + cmbJnsPermintaan.getSelectedItem().toString() + "',"
+                        + "'" + Tpenyidik.getText() + "','" + Tnrp.getText() + "','" + cmbIndikasi.getSelectedItem().toString() + "'", "Surat Keterangan NAPZA");
 
                 TCari.setText(TNoRW.getText());
                 tbSurat.requestFocus();
@@ -1497,6 +1596,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         ChkAccor.setSelected(false);
         isMenu();
         emptTeks();
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1550,13 +1650,15 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     Sequel.mengedit("surat_keterangan_napza", "no_rawat=?",
                             "tgl_surat=?,pekerjaan=?,tempat_tinggal=?,permintaan_dari=?,no_surat_dari=?,tgl_surat_dari=?,thc=?,"
                             + "bzo=?,met=?,mop=?,coc=?,amp=?,hasil_thc=?,hasil_bzo=?,hasil_met=?,hasil_mop=?,hasil_coc=?,hasil_amp=?,"
-                            + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?, opi=?, hasil_opi=?", 28, new String[]{
+                            + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?, opi=?, "
+                            + "hasil_opi=?, jns_permintaan=?, nm_penyidik=?, nrp=?, indikasi=?", 32, new String[]{
                                 Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), Ttmpt_tinggal.getText(), TPermintaanDari.getText(),
                                 TnoSuratDari.getText(), Valid.SetTgl(TtglSuratDari.getSelectedItem() + ""), thc, bzo, met, mop, coc, amp,
                                 cmbTHC.getSelectedItem().toString(), cmbBZO.getSelectedItem().toString(), cmbMET.getSelectedItem().toString(),
                                 cmbMOP.getSelectedItem().toString(), cmbCOC.getSelectedItem().toString(), cmbAMP.getSelectedItem().toString(),
                                 cmbKesHasil.getSelectedItem().toString(), Tkeperluan.getText(), kddokter, tglsurat, TPasien.getText(), TTempLahr.getText(),
-                                TnoDokumen.getText(), opi, cmbOPI.getSelectedItem().toString(),
+                                TnoDokumen.getText(), opi, cmbOPI.getSelectedItem().toString(), cmbJnsPermintaan.getSelectedItem().toString(),
+                                Tpenyidik.getText(), Tnrp.getText(), cmbIndikasi.getSelectedItem().toString(),
                                 tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
                             });
                     if (tabMode.getRowCount() != 0) {
@@ -1801,7 +1903,11 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     }//GEN-LAST:event_TkeperluanKeyPressed
 
     private void TPermintaanDariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPermintaanDariKeyPressed
-        Valid.pindah(evt, Ttmpt_tinggal, TnoSuratDari);
+        if (cmbJnsPermintaan.getSelectedIndex() == 1) {
+            Valid.pindah(evt, cmbJnsPermintaan, Tpenyidik);
+        } else {
+            Valid.pindah(evt, cmbJnsPermintaan, TnoSuratDari);
+        }        
     }//GEN-LAST:event_TPermintaanDariKeyPressed
 
     private void ChkTHCActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkTHCActionPerformed
@@ -2113,6 +2219,99 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         cekConteng();
     }//GEN-LAST:event_cmbOPIActionPerformed
 
+    private void cmbJnsPermintaanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbJnsPermintaanActionPerformed
+        Tpenyidik.setText("");
+        Tnrp.setText("");
+        cmbIndikasi.setSelectedIndex(0);
+        if (cmbJnsPermintaan.getSelectedIndex() == 1) {
+            Tpenyidik.setEnabled(true);
+            Tnrp.setEnabled(true);
+            cmbIndikasi.setEnabled(true);
+        } else {
+            Tpenyidik.setEnabled(false);
+            Tnrp.setEnabled(false);
+            cmbIndikasi.setEnabled(false);
+        }
+    }//GEN-LAST:event_cmbJnsPermintaanActionPerformed
+
+    private void TpenyidikKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TpenyidikKeyPressed
+        Valid.pindah(evt, TPermintaanDari, Tnrp);
+    }//GEN-LAST:event_TpenyidikKeyPressed
+
+    private void TnrpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnrpKeyPressed
+        Valid.pindah(evt, Tpenyidik, TnoSuratDari);
+    }//GEN-LAST:event_TnrpKeyPressed
+
+    private void MnCetakSuratKepolisianActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnCetakSuratKepolisianActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu datanya pada tabel...!!!!");
+            tbSurat.requestFocus();
+        } else if (Sequel.cariInteger("select count(-1) from surat_keterangan_napza where no_rawat='" + TNoRW.getText() + "'") == 0) {
+            JOptionPane.showMessageDialog(null, "Data surat keterangan NAPZA pasien yg. bernama " + TPasien.getText() + "    \n"
+                    + "dg. no. rawat " + TNoRW.getText() + " belum tersimpan...!!!!");
+        } else if (!tbSurat.getValueAt(tbSurat.getSelectedRow(), 37).toString().equals("Kepolisian")) {
+            JOptionPane.showMessageDialog(null, "Data pemeriksaan narkoba pasien ini bukan dari permintaan kepolisian...!!!!");
+            tbSurat.requestFocus();
+        } else {
+            cekNarkoba = "";
+
+            if (tbSurat.getSelectedRow() > -1) {
+                Map<String, Object> param = new HashMap<>();
+                param.put("namars", akses.getnamars());
+                param.put("alamatrs", akses.getalamatrs());
+                param.put("kotars", akses.getkabupatenrs());
+                param.put("propinsirs", akses.getpropinsirs());
+                param.put("kontakrs", akses.getkontakrs());
+                param.put("emailrs", akses.getemailrs());
+                param.put("logo", Sequel.cariGambar("select logo_kabupaten from setting"));
+
+                param.put("nosurat", "NOMOR : " + TnoDokumen.getText() + " / " + TNoSurat.getText());
+                param.put("nama", TPasien.getText());
+                param.put("ttl", TTempLahr.getText() + ", " + TtglLahir.getText() + " (" + Sequel.cariIsi("select concat(umurdaftar,' tahun') from reg_periksa where no_rawat='" + TNoRW.getText() + "'") + ")");
+                param.put("jk", Tjk.getText());
+                param.put("pekerjaan", TPekerjaan.getText());
+                param.put("tempattinggal", Ttmpt_tinggal.getText());
+                param.put("permintaandari", TPermintaanDari.getText());
+                param.put("kesimpulan", cmbKesHasil.getSelectedItem().toString());
+                param.put("keperluan", Tkeperluan.getText() + "\n\n");
+                param.put("penyidik", Tpenyidik.getText());
+                param.put("nrp", Tnrp.getText());
+                param.put("indikasi", cmbIndikasi.getSelectedItem().toString());
+                param.put("nosuratdari", TnoSuratDari.getText());
+                param.put("tglsuratdari", Valid.SetTglINDONESIA(tbSurat.getValueAt(tbSurat.getSelectedRow(), 32).toString()));
+                param.put("nik", Sequel.cariIsi("select no_ktp from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+                param.put("agama", Sequel.cariIsi("select agama from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+                param.put("suku", Sequel.cariIsi("select s.nama_suku_bangsa from pasien p inner join suku_bangsa s on s.id=p.suku_bangsa "
+                        + "where p.no_rkm_medis='" + TNoRM.getText() + "'"));
+                param.put("pendidikan", Sequel.cariIsi("select pnd from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));                
+                param.put("tglsurat", Ttgl_surat.getSelectedItem().toString().substring(0, 2) + " "
+                        + Sequel.bulanINDONESIA("select date_format(tgl_surat,'%m') from surat_keterangan_napza where "
+                                + "no_rawat='" + TNoRW.getText() + "'") + " " + Ttgl_surat.getSelectedItem().toString().substring(6, 10));
+                param.put("nmdokter", Tnmdokter.getText());
+                param.put("nipdokter", kddokter);
+
+                for (n = 0; n < tbHasilTes.getRowCount(); n++) {
+                    cekNarkoba = cekNarkoba + "* "
+                            + tbHasilTes.getValueAt(n, 0).toString() + " "
+                            + tbHasilTes.getValueAt(n, 1).toString() + " "
+                            + tbHasilTes.getValueAt(n, 2).toString() + "\n";
+                }
+
+                param.put("hasil_tes", "Catatan :\n" + cekNarkoba);
+                Valid.MyReport("rptSuratNarkobaKepolisian.jasper", "report", "::[ Surat Keterangan Narkoba (Kepolisian) ]::",
+                        "SELECT now() tgl", param);
+            } else {
+                JOptionPane.showMessageDialog(null, "Silahkan klik dulu salah satu datanya pada tabel...!!!!");
+                tbSurat.requestFocus();
+            }
+
+            TCari.setText(TNoRW.getText());
+            tbSurat.requestFocus();
+            emptTeks();
+            tampil();
+        }
+    }//GEN-LAST:event_MnCetakSuratKepolisianActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2155,6 +2354,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.PanelBiasa FormMenu;
     private widget.Label LCount;
     private javax.swing.JMenuItem MnCetakSurat;
+    private javax.swing.JMenuItem MnCetakSuratKepolisian;
     private widget.PanelBiasa PanelAccor;
     private widget.ScrollPane Scroll;
     private widget.ScrollPane Scroll3;
@@ -2176,6 +2376,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.TextBox TnoDokumen;
     private widget.TextBox TnoSuratDari;
     private widget.TextBox Tnomor;
+    private widget.TextBox Tnrp;
+    private widget.TextBox Tpenyidik;
     private widget.TextBox TtglLahir;
     private widget.Tanggal TtglSuratDari;
     private widget.Tanggal Ttgl_surat;
@@ -2184,6 +2386,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.ComboBox cmbBZO;
     private widget.ComboBox cmbCOC;
     private widget.ComboBox cmbHlm;
+    private widget.ComboBox cmbIndikasi;
+    private widget.ComboBox cmbJnsPermintaan;
     private widget.ComboBox cmbKesHasil;
     private widget.ComboBox cmbMET;
     private widget.ComboBox cmbMOP;
@@ -2204,6 +2408,10 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
     private widget.Label jLabel20;
     private widget.Label jLabel21;
     private widget.Label jLabel22;
+    private widget.Label jLabel23;
+    private widget.Label jLabel24;
+    private widget.Label jLabel25;
+    private widget.Label jLabel26;
     private widget.Label jLabel3;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
@@ -2232,7 +2440,7 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "if(sk.ada_tgl_nosurat='ya',DATE_FORMAT(sk.tgl_surat_dari,'%d-%m-%Y'),'-') tglsuratdari, sk.keperluan, sk.nip_dokter, pg.nama nmdokter, "
                     + "sk.thc, sk.bzo, sk.met, sk.mop, sk.coc, sk.amp, sk.hasil_thc, sk.hasil_bzo, sk.hasil_met, sk.hasil_mop, sk.hasil_coc, sk.hasil_amp, "
                     + "sk.kesimpulan_hasil, DATE_FORMAT(sk.tgl_surat,'%d-%m-%Y') tglsurat, sk.no_surat, sk.tgl_surat, sk.tgl_surat_dari, sk.no_dokumen, "
-                    + "sk.opi, sk.hasil_opi, sk.nomor_surat FROM reg_periksa rp "
+                    + "sk.opi, sk.hasil_opi, sk.nomor_surat, sk.jns_permintaan, sk.nm_penyidik, sk.nrp, sk.indikasi FROM reg_periksa rp "
                     + "INNER JOIN surat_keterangan_napza sk ON sk.no_rawat = rp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
                     + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec_domisili_pasien "
                     + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab_domisili_pasien INNER JOIN pegawai pg ON pg.nik = sk.nip_dokter WHERE "
@@ -2247,7 +2455,10 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                     + "sk.tgl_surat BETWEEN ? AND ? AND sk.permintaan_dari LIKE ? OR "
                     + "sk.tgl_surat BETWEEN ? AND ? AND sk.no_surat_dari LIKE ? OR "
                     + "sk.tgl_surat BETWEEN ? AND ? AND sk.keperluan LIKE ? OR "
-                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.kesimpulan_hasil LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.kesimpulan_hasil LIKE ? OR "                    
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.jns_permintaan LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.nm_penyidik LIKE ? OR "
+                    + "sk.tgl_surat BETWEEN ? AND ? AND sk.indikasi LIKE ? OR "
                     + "sk.tgl_surat BETWEEN ? AND ? AND CONCAT('KP.12.09 / ',sk.no_surat) LIKE ? ORDER BY sk.tgl_surat DESC, sk.no_surat DESC");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -2288,7 +2499,16 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                 ps.setString(36, "%" + TCari.getText().trim() + "%");
                 ps.setString(37, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(38, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(39, "%" + TCari.getText().trim() + "%");
+                ps.setString(39, "%" + TCari.getText().trim() + "%");                
+                ps.setString(40, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(41, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(42, "%" + TCari.getText().trim() + "%");
+                ps.setString(43, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(44, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(45, "%" + TCari.getText().trim() + "%");
+                ps.setString(46, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(47, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(48, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
@@ -2328,7 +2548,11 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                         rs.getString("no_dokumen"),
                         rs.getString("opi"),
                         rs.getString("hasil_opi"),
-                        rs.getString("nomor_surat")
+                        rs.getString("nomor_surat"),                        
+                        rs.getString("jns_permintaan"),
+                        rs.getString("nm_penyidik"),
+                        rs.getString("nrp"),
+                        rs.getString("indikasi")
                     });
                 }
             } catch (Exception e) {
@@ -2397,6 +2621,14 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         DTPCari1.setDate(Ttgl_surat.getDate());
         DTPCari2.setDate(new Date());
         Ttgl_surat.setDate(new Date());
+        
+        cmbJnsPermintaan.setSelectedIndex(0);
+        Tpenyidik.setText("");
+        Tnrp.setText("");
+        cmbIndikasi.setSelectedIndex(0);
+        Tpenyidik.setEnabled(false);
+        Tnrp.setEnabled(false);
+        cmbIndikasi.setEnabled(false);
         Valid.tabelKosong(tabMode3);
         autoNomorSurat();
     }
@@ -2451,7 +2683,11 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             cmbKesHasil.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 28).toString());
             nosurat = tbSurat.getValueAt(tbSurat.getSelectedRow(), 30).toString();
             Valid.SetTgl(Ttgl_surat, tbSurat.getValueAt(tbSurat.getSelectedRow(), 31).toString());
-            TnoDokumen.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 33).toString());
+            TnoDokumen.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 33).toString());            
+            cmbJnsPermintaan.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 37).toString());
+            Tpenyidik.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 38).toString());
+            Tnrp.setText(tbSurat.getValueAt(tbSurat.getSelectedRow(), 39).toString());
+            cmbIndikasi.setSelectedItem(tbSurat.getValueAt(tbSurat.getSelectedRow(), 40).toString());
             dataCek();
             cekConteng();
         }
@@ -2625,6 +2861,16 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         } else {
             ChkTglSurat.setSelected(false);
             TtglSuratDari.setEnabled(false);
+        }
+        
+        if (cmbJnsPermintaan.getSelectedIndex() == 1) {
+            Tpenyidik.setEnabled(true);
+            Tnrp.setEnabled(true);
+            cmbIndikasi.setEnabled(true);
+        } else {
+            Tpenyidik.setEnabled(false);
+            Tnrp.setEnabled(false);
+            cmbIndikasi.setEnabled(false);
         }
     }
 
