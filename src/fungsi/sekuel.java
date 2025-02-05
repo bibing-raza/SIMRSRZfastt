@@ -65,7 +65,7 @@ public final class sekuel {
     private int angka = 0;
     private static int angka3 = 0;
     private double angka2 = 0;
-    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "";
+    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "", user = "";
     private static String dicari2 = "", output2 = "", inputan2 = "";
     private char enkrip;
     private static char enkrip2;
@@ -379,17 +379,24 @@ public final class sekuel {
     
     public void SimpanHistoriRekamMedis(String norawat, String dokumen, String proses) {
         ipAddresKomputer = "";
+        user = "";
         try {
             InetAddress ip = InetAddress.getLocalHost();
             ipAddresKomputer = ip.getHostAddress();
-
+            
+            if (akses.getadmin() == true) {
+                user = "-";
+            } else {
+                user = akses.getkode();
+            }
+            
             try {
                 ps = connect.prepareStatement("insert into histori_petugas_erm values(?,?,?,?,?,now())");
                 try {
                     ps.setString(1, norawat);
                     ps.setString(2, dokumen);
                     ps.setString(3, proses);
-                    ps.setString(4, akses.getkode());
+                    ps.setString(4, user);
                     ps.setString(5, ipAddresKomputer);
                     ps.executeUpdate();
                 } catch (Exception e) {
@@ -403,7 +410,7 @@ public final class sekuel {
                 System.out.println("Notifikasi : " + e);
             }
         } catch (Exception e) {
-            System.out.println("Gagal mendapatkan alamat IP host: " + e.getMessage());
+            System.out.println("Gagal mendapatkan alamat IP host : " + e.getMessage());
         }
     }
 

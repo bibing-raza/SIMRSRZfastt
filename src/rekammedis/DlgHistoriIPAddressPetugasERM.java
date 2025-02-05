@@ -37,7 +37,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i = 0;
+    private int i = 0, x = 0;
     private String gedung = "";
     
     /** Creates new form DlgPemberianInfus
@@ -49,7 +49,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new String[]{
             "No. Rawat", "No. RM", "Nama Pasien", "Dokumen Rekam Medis", "Proses", "NIP/NR", "Nama Petugas", "IP Address", 
-            "Ruang Rawat/Poliklinik/Inst.", "Tgl. Eksekusi", "Jam Eksekusi"}) {
+            "Ruang Rawat/Poliklinik/Inst.", "Tgl. Eksekusi", "Jam Eksekusi", "waktu_simpan"}) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -60,7 +60,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         tbHistori.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbHistori.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 11; i++) {
+        for (i = 0; i < 12; i++) {
             TableColumn column = tbHistori.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -84,6 +84,9 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                 column.setPreferredWidth(80);
             } else if (i == 10) {
                 column.setPreferredWidth(80);
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbHistori.setDefaultRenderer(Object.class, new WarnaTable());
@@ -111,6 +114,8 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jPopupMenu1 = new javax.swing.JPopupMenu();
+        MnHapus = new javax.swing.JMenuItem();
         internalFrame1 = new widget.InternalFrame();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
@@ -129,6 +134,23 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         BtnKeluar = new widget.Button();
+
+        jPopupMenu1.setName("jPopupMenu1"); // NOI18N
+
+        MnHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/delete-16x16.png"))); // NOI18N
+        MnHapus.setText("Hapus Data");
+        MnHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnHapus.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnHapus.setIconTextGap(5);
+        MnHapus.setName("MnHapus"); // NOI18N
+        MnHapus.setPreferredSize(new java.awt.Dimension(110, 26));
+        MnHapus.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnHapusActionPerformed(evt);
+            }
+        });
+        jPopupMenu1.add(MnHapus);
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
@@ -151,6 +173,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         Scroll.setOpaque(true);
 
         tbHistori.setAutoCreateRowSorter(true);
+        tbHistori.setComponentPopupMenu(jPopupMenu1);
         tbHistori.setName("tbHistori"); // NOI18N
         Scroll.setViewportView(tbHistori);
 
@@ -168,7 +191,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass8.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -182,7 +205,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass8.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -352,6 +375,31 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         AutoCompleteDecorator.decorate(cmbDokumen);
     }//GEN-LAST:event_cmbDokumenMouseReleased
 
+    private void MnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnHapusActionPerformed
+        if (tbHistori.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong..!!");
+            DTPCari1.requestFocus();
+        } else {
+            if (tbHistori.getSelectedRow() > -1) {
+                x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+                if (x == JOptionPane.YES_OPTION) {
+                    if (Sequel.queryu2tf("delete from histori_petugas_erm where waktu_simpan=?", 1, new String[]{
+                        tbHistori.getValueAt(tbHistori.getSelectedRow(), 11).toString()
+                    }) == true) {
+                        tampil();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Gagal menghapus data..!!");
+                    }
+                } else {
+                    tampil();
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbHistori.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnHapusActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -375,6 +423,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     private widget.Tanggal DTPCari1;
     private widget.Tanggal DTPCari2;
     private widget.Label LCount;
+    private javax.swing.JMenuItem MnHapus;
     private widget.ScrollPane Scroll;
     public widget.TextBox TCari;
     private widget.ComboBox cmbDokumen;
@@ -385,6 +434,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private widget.panelisi panelGlass8;
     private widget.Table tbHistori;
     // End of variables declaration//GEN-END:variables
@@ -485,11 +535,12 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                         rs.getString("dokumen_rekam_medis"),
                         rs.getString("proses_eksekusi"),
                         rs.getString("nip_petugas"),
-                        rs.getString("nmpetugas"),
+                        rs.getString("nmpetugas").replaceAll("-", "Admin Utama"),
                         rs.getString("ip_address"),
                         gedung,
                         rs.getString("tgl"),
-                        rs.getString("jam")
+                        rs.getString("jam"),
+                        rs.getString("waktu_simpan")
                     });
                 }                
             } catch (Exception e) {
