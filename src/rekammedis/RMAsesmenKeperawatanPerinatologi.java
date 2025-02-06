@@ -72,7 +72,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             rekoli2 = "", rekoli3 = "", rekoli4 = "", sudut_1 = "", sudut0 = "", sudut1 = "", sudut2 = "", sudut3 = "", sudut4 = "", sudut5 = "", tanda_1 = "", 
             tanda0 = "", tanda1 = "", tanda2 = "", tanda3 = "", tanda4 = "", tumit_1 = "", tumit0 = "", tumit1 = "", tumit2 = "", tumit3 = "", tumit4 = "", hipotermi = "",
             resikoHipotermi = "", hipertermi = "", pola = "", nyeri = "", kerusakan = "", resikoKerusakan = "", kebutuhan = "", ikterik = "", gangguan = "",
-            bersihan = "", resikoBersihan = "", perubahan = "", kelebihan = "", resikoKelebihan = "", resikoKebutuhan = "";
+            bersihan = "", resikoBersihan = "", perubahan = "", kelebihan = "", resikoKelebihan = "", resikoKebutuhan = "", cekTglLahir = "", jamlahiribu = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -99,7 +99,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             "tanda_selempang4", "tanda_selempang5", "tanda_selempang6", "tumit1", "tumit2", "tumit3", "tumit4", "tumit5", "tumit6", "fisik_kulit", "fisik_payudara", "fisik_mata",
             "fisik_genital_pria", "fisik_genital_wanita", "fisik_lanugo", "fisik_plantar", "hipotermi", "resiko_hipotermi", "hipertermi", "pola_nafas", "nyeri_masalah_keperawatan",
             "kerusakan", "resiko_kerusakan", "kebutuhan", "ikterik", "gangguan_motilitas", "bersihan", "resiko_bersihan", "perubahan_perfusi", "kelebihan", "resiko_kelebihan",
-            "resiko_kebutuhan", "masalah_keperawatan_lain", "tgl_rencana1", "jam_rencana1", "tgl_rencana2", "jam_rencana2", "nip_perawat", "waktu_simpan"
+            "resiko_kebutuhan", "masalah_keperawatan_lain", "tgl_rencana1", "jam_rencana1", "tgl_rencana2", "jam_rencana2", "nip_perawat", "waktu_simpan", "cek_tgllahir_ibu"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -111,7 +111,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 190; i++) {
+        for (i = 0; i < 191; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -672,6 +672,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             } else if (i == 189) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 190) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -886,7 +889,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel50 = new widget.Label();
         jLabel51 = new widget.Label();
         TdiagnosaIbu = new widget.TextBox();
-        jLabel52 = new widget.Label();
         TtglLahir = new widget.Tanggal();
         jLabel53 = new widget.Label();
         cmbJam = new widget.ComboBox();
@@ -1176,6 +1178,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TmasalahLain = new widget.TextArea();
         jLabel145 = new widget.Label();
         cmbJenkel = new widget.ComboBox();
+        chkTgllahirIbu = new widget.CekBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1301,7 +1304,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1355,7 +1358,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -2205,13 +2208,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel52.setText("Tgl. Lahir : ");
-        jLabel52.setName("jLabel52"); // NOI18N
-        FormInput.add(jLabel52);
-        jLabel52.setBounds(0, 682, 110, 23);
-
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5272,6 +5269,25 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(cmbJenkel);
         cmbJenkel.setBounds(635, 430, 90, 23);
 
+        chkTgllahirIbu.setBackground(new java.awt.Color(255, 255, 250));
+        chkTgllahirIbu.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkTgllahirIbu.setForeground(new java.awt.Color(0, 0, 0));
+        chkTgllahirIbu.setText("Tgl. Lahir : ");
+        chkTgllahirIbu.setBorderPainted(true);
+        chkTgllahirIbu.setBorderPaintedFlat(true);
+        chkTgllahirIbu.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        chkTgllahirIbu.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkTgllahirIbu.setName("chkTgllahirIbu"); // NOI18N
+        chkTgllahirIbu.setOpaque(false);
+        chkTgllahirIbu.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkTgllahirIbu.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkTgllahirIbuActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkTgllahirIbu);
+        chkTgllahirIbu.setBounds(22, 682, 90, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormAsesmen.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -5314,7 +5330,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5328,7 +5344,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5544,33 +5560,33 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             cekData();
             if (Sequel.menyimpantf("asesmen_keperawatan_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 181, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 182, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                         cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                         Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
                         Tlp.getText(), Tll.getText(), Tkk.getText(), Tnadi.getText(), Trr.getText(), Tsuhu.getText(), jernih, keruh, lumpur, hijau, berbau, kering,
                         cmbAnus.getSelectedItem().toString(), cmbBab.getSelectedItem().toString(), cmbBak.getSelectedItem().toString(), Tkelainan.getText(), TanakKe.getText(),
                         TumurHamil.getText(), cmbRiwPenyakitIbu.getSelectedItem().toString(), hipertensi, dm, pms, tbc, asma, hepB, lainRiwayatIbu, TlainRiwayat.getText(),
-                        cmbMasih.getSelectedItem().toString(), Tobat.getText(), TdiagnosaIbu.getText(), Valid.SetTgl(TtglLahir.getSelectedItem() + ""),
-                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TkeadaanSaat.getText(), Tas.getText(), spontan, vakum,
-                        forcep, sectio, lainCara, TlainCara.getText(), segar, layu, simpul, ibuDemam, kpd24, ketuban, chorio, fetal, kpd12, asfiksia, bblr, isk, uk, gemeli,
-                        keputihan, suhuIbu, cmbRiwAlergi.getSelectedItem().toString(), obat, TobatAlergi.getText(), makanan, TmakananAlergi.getText(), lainRiwayatAlergi,
-                        TlainyaAlergi.getText(), Treaksi.getText(), cmbMasalah.getSelectedItem().toString(), cmbAdaPerkawinan.getSelectedItem().toString(), TlainPerkawinan.getText(),
-                        cmbMengalami.getSelectedItem().toString(), cmbAdaMengalami.getSelectedItem().toString(), cmbDialami.getSelectedItem().toString(), cmbTrauma.getSelectedItem().toString(),
-                        TjelaskanTrauma.getText(), cmbGangguan.getSelectedItem().toString(), cmbKonsultasi.getSelectedItem().toString(), cmbPenerimaan.getSelectedItem().toString(),
-                        suami, orangTua, keluarga, lainDukungan, TlainDukungan.getText(), cmbStatusNikah.getSelectedItem().toString(), TkaliMenikah.getText(),
-                        cmbHubungan.getSelectedItem().toString(), cmbTinggal.getSelectedItem().toString(), TlainTinggal.getText(), cmbTempat.getSelectedItem().toString(),
-                        TlainTempat.getText(), TnmKerabat.getText(), ThubKerabat.getText(), TtelpKerabat.getText(), TkegiatanAgama.getText(), TkegiatanSpiritual.getText(),
-                        cmbNyeri.getSelectedItem().toString(), cmbCrying.getSelectedItem().toString(), cmbRequires.getSelectedItem().toString(), cmbIncreased.getSelectedItem().toString(),
-                        cmbExpresion.getSelectedItem().toString(), cmbSleepless.getSelectedItem().toString(), TkesimpulanNyeri.getText(), sikap0, sikap1, sikap2, sikap3, sikap4,
-                        persegi_1, persegi0, persegi1, persegi2, persegi3, persegi4, rekoli0, rekoli1, rekoli2, rekoli3, rekoli4, sudut_1, sudut0, sudut1, sudut2, sudut3, sudut4, sudut5,
-                        tanda_1, tanda0, tanda1, tanda2, tanda3, tanda4, tumit_1, tumit0, tumit1, tumit2, tumit3, tumit4, cmbFisikKulit.getSelectedItem().toString(),
-                        cmbFisikPayudara.getSelectedItem().toString(), cmbFisikMata.getSelectedItem().toString(), cmbFisikGenPria.getSelectedItem().toString(),
-                        cmbFisikGenWanita.getSelectedItem().toString(), cmbFisikLanugo.getSelectedItem().toString(), cmbFisikPlantar.getSelectedItem().toString(),
-                        hipotermi, resikoHipotermi, hipertermi, pola, nyeri, kerusakan, resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan,
-                        kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), Valid.SetTgl(TtglRencana1.getSelectedItem() + ""),
-                        cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Valid.SetTgl(TtglRencana2.getSelectedItem() + ""),
-                        cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, Sequel.cariIsi("select now()")
+                        cmbMasih.getSelectedItem().toString(), Tobat.getText(), TdiagnosaIbu.getText(), Valid.SetTgl(TtglLahir.getSelectedItem() + ""), jamlahiribu,
+                        TkeadaanSaat.getText(), Tas.getText(), spontan, vakum, forcep, sectio, lainCara, TlainCara.getText(), segar, layu, simpul, ibuDemam, kpd24, ketuban, 
+                        chorio, fetal, kpd12, asfiksia, bblr, isk, uk, gemeli, keputihan, suhuIbu, cmbRiwAlergi.getSelectedItem().toString(), obat, TobatAlergi.getText(), 
+                        makanan, TmakananAlergi.getText(), lainRiwayatAlergi, TlainyaAlergi.getText(), Treaksi.getText(), cmbMasalah.getSelectedItem().toString(), 
+                        cmbAdaPerkawinan.getSelectedItem().toString(), TlainPerkawinan.getText(), cmbMengalami.getSelectedItem().toString(), cmbAdaMengalami.getSelectedItem().toString(), 
+                        cmbDialami.getSelectedItem().toString(), cmbTrauma.getSelectedItem().toString(), TjelaskanTrauma.getText(), cmbGangguan.getSelectedItem().toString(), 
+                        cmbKonsultasi.getSelectedItem().toString(), cmbPenerimaan.getSelectedItem().toString(), suami, orangTua, keluarga, lainDukungan, TlainDukungan.getText(), 
+                        cmbStatusNikah.getSelectedItem().toString(), TkaliMenikah.getText(), cmbHubungan.getSelectedItem().toString(), cmbTinggal.getSelectedItem().toString(), 
+                        TlainTinggal.getText(), cmbTempat.getSelectedItem().toString(), TlainTempat.getText(), TnmKerabat.getText(), ThubKerabat.getText(), TtelpKerabat.getText(), 
+                        TkegiatanAgama.getText(), TkegiatanSpiritual.getText(), cmbNyeri.getSelectedItem().toString(), cmbCrying.getSelectedItem().toString(), 
+                        cmbRequires.getSelectedItem().toString(), cmbIncreased.getSelectedItem().toString(), cmbExpresion.getSelectedItem().toString(), 
+                        cmbSleepless.getSelectedItem().toString(), TkesimpulanNyeri.getText(), sikap0, sikap1, sikap2, sikap3, sikap4, persegi_1, persegi0, persegi1, persegi2, 
+                        persegi3, persegi4, rekoli0, rekoli1, rekoli2, rekoli3, rekoli4, sudut_1, sudut0, sudut1, sudut2, sudut3, sudut4, sudut5, tanda_1, tanda0, tanda1, tanda2, 
+                        tanda3, tanda4, tumit_1, tumit0, tumit1, tumit2, tumit3, tumit4, cmbFisikKulit.getSelectedItem().toString(), cmbFisikPayudara.getSelectedItem().toString(), 
+                        cmbFisikMata.getSelectedItem().toString(), cmbFisikGenPria.getSelectedItem().toString(), cmbFisikGenWanita.getSelectedItem().toString(), 
+                        cmbFisikLanugo.getSelectedItem().toString(), cmbFisikPlantar.getSelectedItem().toString(), hipotermi, resikoHipotermi, hipertermi, pola, nyeri, kerusakan, 
+                        resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan, kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), 
+                        Valid.SetTgl(TtglRencana1.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
+                        Valid.SetTgl(TtglRencana2.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, 
+                        Sequel.cariIsi("select now()"), cekTglLahir
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perinatologi", "Simpan");
@@ -5691,6 +5707,13 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
             
             param.put("pendidikan", cmbPendidikan.getSelectedItem().toString());
+            
+            if (Tpekerjaan.getText().equals("")) {
+                param.put("pekerjaan", "-");
+            } else {
+                param.put("pekerjaan", Tpekerjaan.getText());
+            }
+            
             param.put("agama", cmbAgama.getSelectedItem().toString());
             
             if (Talamat.getText().equals("")) {
@@ -5703,6 +5726,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             param.put("pb", Tpb.getText() + " cm.");
             param.put("lk", Tlk.getText() + " cm.");
             param.put("ld", Tld.getText() + " cm.");
+            param.put("lp", Tlp.getText() + " cm.");
             param.put("ll", Tll.getText() + " cm.");
             param.put("kk", Tkk.getText() + " cm.");
             param.put("nadi", Tnadi.getText() + " x/menit");
@@ -5763,8 +5787,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 param.put("umurHamil", TumurHamil.getText() + " Minggu");
             }
             
-            param.put("riwPenyakitIbu", cmbRiwPenyakitIbu.getSelectedItem().toString());
-            
+            param.put("riwPenyakitIbu", cmbRiwPenyakitIbu.getSelectedItem().toString() + " (");
+
             if (chkHipertensi.isSelected() == true) {
                 param.put("hipertensi", "V");
             } else {
@@ -5803,10 +5827,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             
             if (chkLainyaRiwayat.isSelected() == true) {
                 param.put("lainRiwayat", "V");
-                param.put("ketlainRiwayat", "Lainnya (" + TlainRiwayat.getText() + ")");
+                param.put("ketlainRiwayat", "Lainnya " + TlainRiwayat.getText() + ")");
             } else {
                 param.put("lainRiwayat", "");
-                param.put("ketlainRiwayat", "Lainnya");
+                param.put("ketlainRiwayat", "Lainnya ....)");
             }
             
             if (cmbMasih.getSelectedIndex() == 2) {                
@@ -5815,9 +5839,29 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 param.put("masih", cmbMasih.getSelectedItem().toString());
             }
             
-            param.put("tglLahirIbu", TtglLahir.getSelectedItem().toString() + ", Jam : " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString());
-            param.put("keadaanSaat", TkeadaanSaat.getText());
-            param.put("as", Tas.getText());
+            if (TdiagnosaIbu.getText().equals("")) {
+                param.put("diagIbu", "-");
+            } else {
+                param.put("diagIbu", TdiagnosaIbu.getText());
+            }
+            
+            if (chkTgllahirIbu.isSelected() == true) {
+                param.put("tglLahirIbu", TtglLahir.getSelectedItem().toString() + ", Jam : " + cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString());
+            } else {
+                param.put("tglLahirIbu", "- , Jam : -");
+            }
+            
+            if (TkeadaanSaat.getText().equals("")) {
+                param.put("keadaanSaat", "-");
+            } else {
+                param.put("keadaanSaat", TkeadaanSaat.getText());
+            }
+            
+            if (Tas.getText().equals("")) {
+                param.put("as", "-");
+            } else {
+                param.put("as", Tas.getText());
+            }            
             
             if (chkSpontan.isSelected() == true) {
                 param.put("spontan", "V");
@@ -6598,7 +6642,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
     private void TdiagnosaIbuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdiagnosaIbuKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            TtglLahir.requestFocus();
+            chkTgllahirIbu.requestFocus();
         }
     }//GEN-LAST:event_TdiagnosaIbuKeyPressed
 
@@ -7100,6 +7144,26 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         }
     }//GEN-LAST:event_TmasalahLainKeyPressed
 
+    private void chkTgllahirIbuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkTgllahirIbuActionPerformed
+        TtglLahir.setDate(new Date());
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
+        
+        if (chkTgllahirIbu.isSelected() == true) {
+            TtglLahir.setEnabled(true);
+            cmbJam.setEnabled(true);
+            cmbMnt.setEnabled(true);
+            cmbDtk.setEnabled(true);
+            TtglLahir.requestFocus();
+        } else {
+            TtglLahir.setEnabled(false);
+            cmbJam.setEnabled(false);
+            cmbMnt.setEnabled(false);
+            cmbDtk.setEnabled(false);
+        }
+    }//GEN-LAST:event_chkTgllahirIbuActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -7337,6 +7401,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     public widget.CekBox chkTanda3;
     public widget.CekBox chkTanda4;
     public widget.CekBox chkTanda_1;
+    public widget.CekBox chkTgllahirIbu;
     public widget.CekBox chkTumit0;
     public widget.CekBox chkTumit1;
     public widget.CekBox chkTumit2;
@@ -7484,7 +7549,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel5;
     private widget.Label jLabel50;
     private widget.Label jLabel51;
-    private widget.Label jLabel52;
     private widget.Label jLabel53;
     private widget.Label jLabel54;
     private widget.Label jLabel55;
@@ -7770,7 +7834,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         rs.getString("tgl_rencana2"),
                         rs.getString("jam_rencana2"),
                         rs.getString("nip_perawat"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("cek_tgllahir_ibu")
                     });
                 }
             } catch (Exception e) {
@@ -7846,6 +7911,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         Tobat.setEnabled(false);
         Tobat.setText("");
         TdiagnosaIbu.setText("");
+        chkTgllahirIbu.setSelected(false);
+        TtglLahir.setEnabled(false);
+        cmbJam.setEnabled(false);
+        cmbMnt.setEnabled(false);
+        cmbDtk.setEnabled(false);
         TtglLahir.setDate(new Date());
         cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
@@ -8257,6 +8327,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             resikoKebutuhan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 182).toString();
             TmasalahLain.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 183).toString());            
             nip = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 188).toString();
+            cekTglLahir = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 190).toString();
             dataCek();
             hitungNilaiNeomuskular();
             hitungNilaiFisik();
@@ -8299,22 +8370,21 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 + "tumit1=?, tumit2=?, tumit3=?, tumit4=?, tumit5=?, tumit6=?, fisik_kulit=?, fisik_payudara=?, fisik_mata=?, fisik_genital_pria=?, fisik_genital_wanita=?, fisik_lanugo=?, "
                 + "fisik_plantar=?, hipotermi=?, resiko_hipotermi=?, hipertermi=?, pola_nafas=?, nyeri_masalah_keperawatan=?, kerusakan=?, resiko_kerusakan=?, kebutuhan=?, ikterik=?, "
                 + "gangguan_motilitas=?, bersihan=?, resiko_bersihan=?, perubahan_perfusi=?, kelebihan=?, resiko_kelebihan=?, resiko_kebutuhan=?, masalah_keperawatan_lain=?, tgl_rencana1=?, "
-                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?", 179, new String[]{
+                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?, cek_tgllahir_ibu=?", 180, new String[]{
                     cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                     cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                     Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
                     Tlp.getText(), Tll.getText(), Tkk.getText(), Tnadi.getText(), Trr.getText(), Tsuhu.getText(), jernih, keruh, lumpur, hijau, berbau, kering,
                     cmbAnus.getSelectedItem().toString(), cmbBab.getSelectedItem().toString(), cmbBak.getSelectedItem().toString(), Tkelainan.getText(), TanakKe.getText(),
                     TumurHamil.getText(), cmbRiwPenyakitIbu.getSelectedItem().toString(), hipertensi, dm, pms, tbc, asma, hepB, lainRiwayatIbu, TlainRiwayat.getText(),
-                    cmbMasih.getSelectedItem().toString(), Tobat.getText(), TdiagnosaIbu.getText(), Valid.SetTgl(TtglLahir.getSelectedItem() + ""),
-                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), TkeadaanSaat.getText(), Tas.getText(), spontan, vakum,
-                    forcep, sectio, lainCara, TlainCara.getText(), segar, layu, simpul, ibuDemam, kpd24, ketuban, chorio, fetal, kpd12, asfiksia, bblr, isk, uk, gemeli,
-                    keputihan, suhuIbu, cmbRiwAlergi.getSelectedItem().toString(), obat, TobatAlergi.getText(), makanan, TmakananAlergi.getText(), lainRiwayatAlergi,
-                    TlainyaAlergi.getText(), Treaksi.getText(), cmbMasalah.getSelectedItem().toString(), cmbAdaPerkawinan.getSelectedItem().toString(), TlainPerkawinan.getText(),
-                    cmbMengalami.getSelectedItem().toString(), cmbAdaMengalami.getSelectedItem().toString(), cmbDialami.getSelectedItem().toString(), cmbTrauma.getSelectedItem().toString(),
-                    TjelaskanTrauma.getText(), cmbGangguan.getSelectedItem().toString(), cmbKonsultasi.getSelectedItem().toString(), cmbPenerimaan.getSelectedItem().toString(),
-                    suami, orangTua, keluarga, lainDukungan, TlainDukungan.getText(), cmbStatusNikah.getSelectedItem().toString(), TkaliMenikah.getText(),
-                    cmbHubungan.getSelectedItem().toString(), cmbTinggal.getSelectedItem().toString(), TlainTinggal.getText(), cmbTempat.getSelectedItem().toString(),
+                    cmbMasih.getSelectedItem().toString(), Tobat.getText(), TdiagnosaIbu.getText(), Valid.SetTgl(TtglLahir.getSelectedItem() + ""), jamlahiribu, 
+                    TkeadaanSaat.getText(), Tas.getText(), spontan, vakum, forcep, sectio, lainCara, TlainCara.getText(), segar, layu, simpul, ibuDemam, kpd24, ketuban, 
+                    chorio, fetal, kpd12, asfiksia, bblr, isk, uk, gemeli, keputihan, suhuIbu, cmbRiwAlergi.getSelectedItem().toString(), obat, TobatAlergi.getText(), makanan, 
+                    TmakananAlergi.getText(), lainRiwayatAlergi, TlainyaAlergi.getText(), Treaksi.getText(), cmbMasalah.getSelectedItem().toString(), cmbAdaPerkawinan.getSelectedItem().toString(), 
+                    TlainPerkawinan.getText(), cmbMengalami.getSelectedItem().toString(), cmbAdaMengalami.getSelectedItem().toString(), cmbDialami.getSelectedItem().toString(), 
+                    cmbTrauma.getSelectedItem().toString(), TjelaskanTrauma.getText(), cmbGangguan.getSelectedItem().toString(), cmbKonsultasi.getSelectedItem().toString(), 
+                    cmbPenerimaan.getSelectedItem().toString(), suami, orangTua, keluarga, lainDukungan, TlainDukungan.getText(), cmbStatusNikah.getSelectedItem().toString(), 
+                    TkaliMenikah.getText(), cmbHubungan.getSelectedItem().toString(), cmbTinggal.getSelectedItem().toString(), TlainTinggal.getText(), cmbTempat.getSelectedItem().toString(),
                     TlainTempat.getText(), TnmKerabat.getText(), ThubKerabat.getText(), TtelpKerabat.getText(), TkegiatanAgama.getText(), TkegiatanSpiritual.getText(),
                     cmbNyeri.getSelectedItem().toString(), cmbCrying.getSelectedItem().toString(), cmbRequires.getSelectedItem().toString(), cmbIncreased.getSelectedItem().toString(),
                     cmbExpresion.getSelectedItem().toString(), cmbSleepless.getSelectedItem().toString(), TkesimpulanNyeri.getText(), sikap0, sikap1, sikap2, sikap3, sikap4,
@@ -8325,7 +8395,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                     hipotermi, resikoHipotermi, hipertermi, pola, nyeri, kerusakan, resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan,
                     kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), Valid.SetTgl(TtglRencana1.getSelectedItem() + ""),
                     cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Valid.SetTgl(TtglRencana2.getSelectedItem() + ""),
-                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip,
+                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir,
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 
@@ -8416,6 +8486,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             lainRiwayatIbu = "ya";
         } else {
             lainRiwayatIbu = "tidak";
+        }
+        
+        if (chkTgllahirIbu.isSelected() == true) {
+            cekTglLahir = "ya";
+            jamlahiribu = cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem();
+        } else {
+            cekTglLahir = "tidak";
+            jamlahiribu = "00:00:00";
         }
         
         //cara persalinan
@@ -9098,6 +9176,20 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             TlainRiwayat.setEnabled(false);
         }
         
+        if (cekTglLahir.equals("ya")) {
+            chkTgllahirIbu.setSelected(true);
+            TtglLahir.setEnabled(true);
+            cmbJam.setEnabled(true);
+            cmbMnt.setEnabled(true);
+            cmbDtk.setEnabled(true);
+        } else {
+            chkTgllahirIbu.setSelected(false);
+            TtglLahir.setEnabled(false);
+            cmbJam.setEnabled(false);
+            cmbMnt.setEnabled(false);
+            cmbDtk.setEnabled(false);
+        }
+
         //cara persalinan
         if (spontan.equals("ya")) {
             chkSpontan.setSelected(true);
@@ -10064,5 +10156,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         kelebihan = "";
         resikoKelebihan = "";
         resikoKebutuhan = "";
+        cekTglLahir = "";
+        jamlahiribu = "";
     }
 }
