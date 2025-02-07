@@ -1304,7 +1304,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1358,7 +1358,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -2208,7 +2208,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5221,7 +5221,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         chkResikoKebutuhan.setBackground(new java.awt.Color(255, 255, 250));
         chkResikoKebutuhan.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkResikoKebutuhan.setForeground(new java.awt.Color(0, 0, 0));
-        chkResikoKebutuhan.setText("Resiko Kebutuhan Cairan Tidak Terpenuhan");
+        chkResikoKebutuhan.setText("Resiko Kebutuhan Cairan Tidak Terpenuhi");
         chkResikoKebutuhan.setBorderPainted(true);
         chkResikoKebutuhan.setBorderPaintedFlat(true);
         chkResikoKebutuhan.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -5330,7 +5330,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5344,7 +5344,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "06-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5889,10 +5889,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             
             if (chkLainyaCara.isSelected() == true) {
                 param.put("lainCara", "V");
-                param.put("ketlainCara", "Lainnya (" + TlainCara.getText() + ")");
+                param.put("ketlainCara", "Lainnya : " + TlainCara.getText());
             } else {
                 param.put("lainCara", "");
-                param.put("ketlainCara", "Lainnya");
+                param.put("ketlainCara", "Lainnya : ....");
             }
             
             if (chkSegar.isSelected() == true) {
@@ -5995,29 +5995,45 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             
             if (chkObatAlergi.isSelected() == true) {
                 param.put("obatAlergi", "V");
-                param.put("ketobatAlergi", "Obat (" + TobatAlergi.getText() + ")");
+                if (TobatAlergi.getText().equals("")) {
+                    param.put("ketobatAlergi", "Obat ....");
+                } else {
+                    param.put("ketobatAlergi", "Obat (" + TobatAlergi.getText() + ")");
+                }                
             } else {
                 param.put("obatAlergi", "");
-                param.put("ketobatAlergi", "Obat");
+                param.put("ketobatAlergi", "Obat ....");
             }
             
             if (chkMakananAlergi.isSelected() == true) {
                 param.put("makanan", "V");
-                param.put("makanan", "Makanan (" + TmakananAlergi.getText() + ")");
+                if (TmakananAlergi.getText().equals("")) {
+                    param.put("ketMakanan", "Makanan ....");
+                } else {
+                    param.put("ketMakanan", "Makanan (" + TmakananAlergi.getText() + ")");
+                }                
             } else {
                 param.put("makanan", "");
-                param.put("makanan", "Makanan");
+                param.put("ketMakanan", "Makanan ....");
             }
             
             if (chkLainAlergi.isSelected() == true) {
                 param.put("lainAlergi", "V");
-                param.put("ketlainAlergi", "Lainnya (" + chkLainAlergi.getText() + ")");
+                if (TlainyaAlergi.getText().equals("")) {
+                    param.put("ketlainAlergi", "Lainnya ....");
+                } else {
+                    param.put("ketlainAlergi", "Lainnya (" + TlainyaAlergi.getText() + ")");
+                }                
             } else {
                 param.put("lainAlergi", "");
-                param.put("ketlainAlergi", "Lainnya");
+                param.put("ketlainAlergi", "Lainnya ....");
             }
             
-            param.put("reaksi", Treaksi.getText());
+            if (Treaksi.getText().equals("")) {
+                param.put("reaksi", "Reaksi : .......");
+            } else {
+                param.put("reaksi", "Reaksi : " + Treaksi.getText());
+            }            
             
             if (cmbMasalah.getSelectedIndex() == 1) {
                 if (cmbAdaPerkawinan.getSelectedIndex() == 4) {
@@ -6045,7 +6061,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 param.put("trauma", cmbTrauma.getSelectedItem().toString());
             }
             
-            param.put("gangguan", cmbGangguan.getSelectedItem().toString());
+            param.put("gangguanTidur", cmbGangguan.getSelectedItem().toString());
             param.put("konsultasi", cmbKonsultasi.getSelectedItem().toString());
             param.put("penerimaan", cmbPenerimaan.getSelectedItem().toString());
             
@@ -6177,7 +6193,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             
             param.put("nilaiNeo", TnilaiNeo.getText());
             param.put("nilaiFisik", TnilaiFisik.getText());
-            param.put("nilaiFisik", TnilaiFisik.getText());
             param.put("nilaiSkor", TnilaiSkor.getText());
             param.put("kesimpulanSkor", TkesimpulanSkor.getText());
             
@@ -6206,9 +6221,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
             
             if (chkNyeri.isSelected() == true) {
-                param.put("nyeri", "V");
+                param.put("masalahNyeri", "V");
             } else {
-                param.put("nyeri", "");
+                param.put("masalahNyeri", "");
             }
             
             if (chkKerusakan.isSelected() == true) {
@@ -6236,9 +6251,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
             
             if (chkGangguan.isSelected() == true) {
-                param.put("gangguan", "V");
+                param.put("masalahGangguan", "V");
             } else {
-                param.put("gangguan", "");
+                param.put("masalahGangguan", "");
             }
             
             if (chkBersihan.isSelected() == true) {
@@ -6289,10 +6304,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             param.put("jamRen2", cmbJam2.getSelectedItem().toString() + ":" + cmbMnt2.getSelectedItem().toString() + " Wita");            
             param.put("petugas", TnmPerawat.getText());
             
-            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
-                    "SELECT now() tanggal", param);
             Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
                     "SELECT now() tanggal", param);
+            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
+                    "SELECT now() tanggal", param);            
             
             TabRawat.setSelectedIndex(1);
             tampil();
@@ -6347,10 +6362,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 }//GEN-LAST:event_BtnAllKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        tampil();
-        
         if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
+            tampil();
         } else if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
             TabRawat.setSelectedIndex(0);
         }
@@ -10158,5 +10172,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         resikoKebutuhan = "";
         cekTglLahir = "";
         jamlahiribu = "";
+    }
+    
+    public void setTampil(){
+       TabRawat.setSelectedIndex(1);
+       tampil();
     }
 }

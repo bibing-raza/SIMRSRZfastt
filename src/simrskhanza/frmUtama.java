@@ -387,6 +387,7 @@ import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
+import rekammedis.RMAsesmenKeperawatanPerinatologi;
 import setting.DlgHistoriLoginUser;
 
 /**
@@ -905,6 +906,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnPenilaianAwalKeperawatanRalanKemoterapi = new widget.ButtonBig();
         btnHistoryLoginUser = new widget.ButtonBig();
         btnHistoryIpAddressPetugasRM = new widget.ButtonBig();
+        btnAsesmenKeperawatanPerinatologi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6145,6 +6147,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnHistoryIpAddressPetugasRM);
 
+        btnAsesmenKeperawatanPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
+        btnAsesmenKeperawatanPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/mp_viewer.png"))); // NOI18N
+        btnAsesmenKeperawatanPerinatologi.setText("Asesmen Keperawatan Perinatologi");
+        btnAsesmenKeperawatanPerinatologi.setIconTextGap(0);
+        btnAsesmenKeperawatanPerinatologi.setName("btnAsesmenKeperawatanPerinatologi"); // NOI18N
+        btnAsesmenKeperawatanPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnAsesmenKeperawatanPerinatologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnAsesmenKeperawatanPerinatologiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnAsesmenKeperawatanPerinatologi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6153,7 +6168,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03/02/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/02/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12148,6 +12163,20 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnHistoryIpAddressPetugasRMActionPerformed
 
+    private void btnAsesmenKeperawatanPerinatologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnAsesmenKeperawatanPerinatologiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMAsesmenKeperawatanPerinatologi aplikasi = new RMAsesmenKeperawatanPerinatologi(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setTampil();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnAsesmenKeperawatanPerinatologiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12206,6 +12235,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnAsesmenKebidananRalan;
     private widget.ButtonBig btnAsesmenKeperawatanAnak;
     private widget.ButtonBig btnAsesmenKeperawatanDewasa;
+    private widget.ButtonBig btnAsesmenKeperawatanPerinatologi;
     private widget.ButtonBig btnAsesmenKeperawatanPerioperatif;
     private widget.ButtonBig btnAsesmenMedikAnakRanap;
     private widget.ButtonBig btnAsesmenMedikBedahRanap;
@@ -12953,6 +12983,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getasesmen_medik_anak_ranap()== true) {
                 Panelmenu.add(btnAsesmenMedikPerinatologi);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnAsesmenKeperawatanPerinatologi);
                 jmlmenu++;
             }
             
@@ -14920,6 +14955,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getasesmen_medik_anak_ranap() == true) {
             Panelmenu.add(btnAsesmenMedikPerinatologi);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnAsesmenKeperawatanPerinatologi);
             jmlmenu++;
         }
         
@@ -16925,6 +16965,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getasesmen_medik_anak_ranap()== true) {
             if (btnAsesmenMedikPerinatologi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAsesmenMedikPerinatologi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnAsesmenKeperawatanPerinatologi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnAsesmenKeperawatanPerinatologi);
                 jmlmenu++;
             }
         }

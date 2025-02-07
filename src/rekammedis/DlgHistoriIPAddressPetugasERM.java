@@ -444,9 +444,10 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             if (cmbDokumen.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement("select h.*, pg.nama nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, time_format(h.waktu_simpan,'%H:%i:%s') jam, "
-                        + "p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=h.nip_petugas where "
+                ps = koneksi.prepareStatement("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, "
+                        + "time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h "
+                        + "inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai pg on pg.nik=h.nip_petugas where "
                         + "date(h.waktu_simpan) between ? and ? and h.no_rawat like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.proses_eksekusi like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.nip_petugas like ? or "
@@ -455,9 +456,10 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                         + "date(h.waktu_simpan) between ? and ? and p.no_rkm_medis like ? or "
                         + "date(h.waktu_simpan) between ? and ? and p.nm_pasien like ? order by h.waktu_simpan desc");
             } else {
-                ps = koneksi.prepareStatement("select h.*, pg.nama nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, time_format(h.waktu_simpan,'%H:%i:%s') jam, "
-                        + "p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h inner join reg_periksa rp on rp.no_rawat=h.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=h.nip_petugas where "
+                ps = koneksi.prepareStatement("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, "
+                        + "time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h "
+                        + "inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                        + "inner join pegawai pg on pg.nik=h.nip_petugas where "
                         + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.no_rawat like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.proses_eksekusi like ? or "
                         + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.nip_petugas like ? or "
@@ -535,7 +537,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
                         rs.getString("dokumen_rekam_medis"),
                         rs.getString("proses_eksekusi"),
                         rs.getString("nip_petugas"),
-                        rs.getString("nmpetugas").replaceAll("-", "Admin Utama"),
+                        rs.getString("nmpetugas"),
                         rs.getString("ip_address"),
                         gedung,
                         rs.getString("tgl"),
