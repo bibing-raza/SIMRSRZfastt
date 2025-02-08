@@ -60,7 +60,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
+    private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private PreparedStatement ps;
     private ResultSet rs;
     private int i = 0, x = 0;
@@ -2009,14 +2009,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(TumurHamil);
-        TumurHamil.setBounds(275, 514, 50, 23);
+        TumurHamil.setBounds(275, 514, 60, 23);
 
         jLabel46.setForeground(new java.awt.Color(0, 0, 0));
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel46.setText("Minggu");
         jLabel46.setName("jLabel46"); // NOI18N
         FormInput.add(jLabel46);
-        jLabel46.setBounds(330, 514, 40, 23);
+        jLabel46.setBounds(340, 514, 40, 23);
 
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Riwayat Penyakit Ibu : ");
@@ -6940,11 +6940,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbIncreased.setSelectedIndex(0);
         cmbExpresion.setSelectedIndex(0);
         cmbSleepless.setSelectedIndex(0);
-        TnilaiCrying.setText("0");
-        TnilaiRequires.setText("0");
-        TnilaiIncreased.setText("0");
-        TnilaiExpresion.setText("0");
-        TnilaiSleepless.setText("0");
+        TnilaiCrying.setText("");
+        TnilaiRequires.setText("");
+        TnilaiIncreased.setText("");
+        TnilaiExpresion.setText("");
+        TnilaiSleepless.setText("");
         TtotNilaiNyeri.setText("0");
         TkesimpulanNyeri.setText("-");
         
@@ -8022,11 +8022,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbIncreased.setSelectedIndex(0);
         cmbExpresion.setSelectedIndex(0);
         cmbSleepless.setSelectedIndex(0);
-        TnilaiCrying.setText("0");
-        TnilaiRequires.setText("0");
-        TnilaiIncreased.setText("0");
-        TnilaiExpresion.setText("0");
-        TnilaiSleepless.setText("0");
+        TnilaiCrying.setText("");
+        TnilaiRequires.setText("");
+        TnilaiIncreased.setText("");
+        TnilaiExpresion.setText("");
+        TnilaiSleepless.setText("");
         TtotNilaiNyeri.setText("0");
         TkesimpulanNyeri.setText("-");
         chkSikap0.setSelected(false);
@@ -8073,12 +8073,12 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbFisikPlantar.setSelectedIndex(0);        
         hitungNilaiNyeri();
         hitungNilaiNeomuskular();
-        TnilaiSikap.setText("0");
-        TnilaiPersegi.setText("0");
-        TnilaiRekoli.setText("0");
-        TnilaiSudut.setText("0");
-        TnilaiTanda.setText("0");
-        TnilaiTumit.setText("0");
+        TnilaiSikap.setText("");
+        TnilaiPersegi.setText("");
+        TnilaiRekoli.setText("");
+        TnilaiSudut.setText("");
+        TnilaiTanda.setText("");
+        TnilaiTumit.setText("");
         TtotNilaiNeomuskular.setText("0");
         TnilaiNeo.setText("0");
         hitungNilaiFisik();
@@ -9749,11 +9749,35 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         }
         
         //proses menghitung
-        TnilaiCrying.setText(Valid.SetAngka2(a));
-        TnilaiRequires.setText(Valid.SetAngka2(b));
-        TnilaiIncreased.setText(Valid.SetAngka2(c));
-        TnilaiExpresion.setText(Valid.SetAngka2(d));
-        TnilaiSleepless.setText(Valid.SetAngka2(e));
+        if (cmbCrying.getSelectedIndex() == 0) {
+            TnilaiCrying.setText("");
+        } else {
+            TnilaiCrying.setText(Valid.SetAngka2(a));
+        }
+        
+        if (cmbRequires.getSelectedIndex() == 0) {
+            TnilaiRequires.setText("");
+        } else {
+            TnilaiRequires.setText(Valid.SetAngka2(b));
+        }
+        
+        if (cmbIncreased.getSelectedIndex() == 0) {
+            TnilaiIncreased.setText("");
+        } else {
+            TnilaiIncreased.setText(Valid.SetAngka2(c));
+        }
+        
+        if (cmbExpresion.getSelectedIndex() == 0) {
+            TnilaiExpresion.setText("");
+        } else {
+            TnilaiExpresion.setText(Valid.SetAngka2(d));
+        }
+        
+        if (cmbSleepless.getSelectedIndex() == 0) {
+            TnilaiSleepless.setText("");
+        } else {
+            TnilaiSleepless.setText(Valid.SetAngka2(e));
+        }
         
         hasilNilai = a + b + c + d + e;
         TtotNilaiNyeri.setText(Valid.SetAngka2(hasilNilai));
@@ -9860,12 +9884,47 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         }
         
         //proses menghitung
-        TnilaiSikap.setText(Valid.SetAngka2(a));
-        TnilaiPersegi.setText(Valid.SetAngka2(b));
-        TnilaiRekoli.setText(Valid.SetAngka2(c));
-        TnilaiSudut.setText(Valid.SetAngka2(d));
-        TnilaiTanda.setText(Valid.SetAngka2(e));
-        TnilaiTumit.setText(Valid.SetAngka2(f));
+        if (chkSikap0.isSelected() == false && chkSikap1.isSelected() == false && chkSikap2.isSelected() == false
+                && chkSikap3.isSelected() == false && chkSikap4.isSelected() == false) {
+            TnilaiSikap.setText("");
+        } else {
+            TnilaiSikap.setText(Valid.SetAngka2(a));
+        }
+        
+        if (chkPersegi_1.isSelected() == false && chkPersegi0.isSelected() == false && chkPersegi1.isSelected() == false
+                && chkPersegi2.isSelected() == false && chkPersegi3.isSelected() == false && chkPersegi4.isSelected() == false) {
+            TnilaiPersegi.setText("");
+        } else {
+            TnilaiPersegi.setText(Valid.SetAngka2(b));
+        }
+        
+        if (chkRekoli0.isSelected() == false && chkRekoli1.isSelected() == false && chkRekoli2.isSelected() == false
+                && chkRekoli3.isSelected() == false && chkRekoli4.isSelected() == false) {
+            TnilaiRekoli.setText("");
+        } else {
+            TnilaiRekoli.setText(Valid.SetAngka2(c));
+        }
+        
+        if (chkSudut_1.isSelected() == false && chkSudut0.isSelected() == false && chkSudut1.isSelected() == false && chkSudut2.isSelected() == false
+                && chkSudut3.isSelected() == false && chkSudut4.isSelected() == false && chkSudut5.isSelected() == false) {
+            TnilaiSudut.setText("");
+        } else {
+            TnilaiSudut.setText(Valid.SetAngka2(d));
+        }
+        
+        if (chkTanda_1.isSelected() == false && chkTanda0.isSelected() == false && chkTanda1.isSelected() == false && chkTanda2.isSelected() == false
+                && chkTanda3.isSelected() == false && chkTanda4.isSelected() == false) {
+            TnilaiTanda.setText("");
+        } else {
+            TnilaiTanda.setText(Valid.SetAngka2(e));
+        }
+        
+        if (chkTumit_1.isSelected() == false && chkTumit0.isSelected() == false && chkTumit1.isSelected() == false && chkTumit2.isSelected() == false 
+                && chkTumit3.isSelected() == false && chkTumit4.isSelected() == false) {
+            TnilaiTumit.setText("");
+        } else {
+            TnilaiTumit.setText(Valid.SetAngka2(f));
+        }        
         
         hasilNilai = a + b + c + d + e + f;
         TtotNilaiNeomuskular.setText(Valid.SetAngka2(hasilNilai));
@@ -9998,13 +10057,47 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         }
         
         //proses menghitung
-        TnilaiKulit.setText(Valid.SetAngka2(a));
-        TnilaiPayudara.setText(Valid.SetAngka2(b));
-        TnilaiMata.setText(Valid.SetAngka2(c));
-        TnilaiGenPria.setText(Valid.SetAngka2(d));
-        TnilaiGenWanita.setText(Valid.SetAngka2(e));
-        TnilaiLanugo.setText(Valid.SetAngka2(f));
-        TnilaiPlantar.setText(Valid.SetAngka2(g));
+        if (cmbFisikKulit.getSelectedIndex() == 0) {
+            TnilaiKulit.setText("");
+        } else {
+            TnilaiKulit.setText(Valid.SetAngka2(a));
+        }
+        
+        if (cmbFisikPayudara.getSelectedIndex() == 0) {
+            TnilaiPayudara.setText("");
+        } else {
+            TnilaiPayudara.setText(Valid.SetAngka2(b));
+        }
+        
+        if (cmbFisikMata.getSelectedIndex() == 0) {
+            TnilaiMata.setText("");
+        } else {
+            TnilaiMata.setText(Valid.SetAngka2(c));
+        }
+        
+        if (cmbFisikGenPria.getSelectedIndex() == 0) {
+            TnilaiGenPria.setText("");
+        } else {
+            TnilaiGenPria.setText(Valid.SetAngka2(d));
+        }
+        
+        if (cmbFisikGenWanita.getSelectedIndex() == 0) {
+            TnilaiGenWanita.setText("");
+        } else {
+            TnilaiGenWanita.setText(Valid.SetAngka2(e));
+        }
+        
+        if (cmbFisikLanugo.getSelectedIndex() == 0) {
+            TnilaiLanugo.setText("");
+        } else {
+            TnilaiLanugo.setText(Valid.SetAngka2(f));
+        }
+        
+        if (cmbFisikPlantar.getSelectedIndex() == 0) {
+            TnilaiPlantar.setText("");
+        } else {
+            TnilaiPlantar.setText(Valid.SetAngka2(g));
+        }
         
         hasilNilai = a + b + c + d + e + f + g;
         TtotNilaiFisik.setText(Valid.SetAngka2(hasilNilai));

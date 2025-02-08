@@ -633,6 +633,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                             Sequel.queryu("update cppt set verifikasi = 'Sudah' where waktu_simpan='" + tbCPPT.getValueAt(i, 11).toString() + "'");
                         }
                     }
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Sudah");
                     BtnHapusActionPerformed(null);
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
@@ -671,6 +672,7 @@ public class DlgVerifikasiCPPT extends javax.swing.JDialog {
                             Sequel.queryu("update cppt set verifikasi = 'Belum' where waktu_simpan='" + tbCPPT.getValueAt(i, 11).toString() + "'");
                         }
                     }
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Verifikasi CPPT", "Belum");
                     BtnHapusActionPerformed(null);
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
