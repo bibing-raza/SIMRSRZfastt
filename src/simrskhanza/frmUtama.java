@@ -388,6 +388,7 @@ import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
+import rekammedis.RMSkorApgarDowneCapPerinatologi;
 import setting.DlgHistoriLoginUser;
 
 /**
@@ -907,6 +908,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnHistoryLoginUser = new widget.ButtonBig();
         btnHistoryIpAddressPetugasRM = new widget.ButtonBig();
         btnAsesmenKeperawatanPerinatologi = new widget.ButtonBig();
+        btnSkorApgarDowneCapJariPerinatologi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6160,6 +6162,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnAsesmenKeperawatanPerinatologi);
 
+        btnSkorApgarDowneCapJariPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
+        btnSkorApgarDowneCapJariPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/score_icon.png"))); // NOI18N
+        btnSkorApgarDowneCapJariPerinatologi.setText("Skor Apgar, Downe, Cap Jari Perinatologi");
+        btnSkorApgarDowneCapJariPerinatologi.setIconTextGap(0);
+        btnSkorApgarDowneCapJariPerinatologi.setName("btnSkorApgarDowneCapJariPerinatologi"); // NOI18N
+        btnSkorApgarDowneCapJariPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnSkorApgarDowneCapJariPerinatologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnSkorApgarDowneCapJariPerinatologiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnSkorApgarDowneCapJariPerinatologi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6168,7 +6183,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07/02/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/02/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12177,6 +12192,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnAsesmenKeperawatanPerinatologiActionPerformed
 
+    private void btnSkorApgarDowneCapJariPerinatologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnSkorApgarDowneCapJariPerinatologiActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMSkorApgarDowneCapPerinatologi aplikasi = new RMSkorApgarDowneCapPerinatologi(this, false);
+        aplikasi.isCek();
+        aplikasi.emptTeks();
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnSkorApgarDowneCapJariPerinatologiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12565,6 +12593,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnSirkulasi;
     private widget.ButtonBig btnSirkulasi2;
     private widget.ButtonBig btnSirkulasiInventaris;
+    private widget.ButtonBig btnSkorApgarDowneCapJariPerinatologi;
     private widget.ButtonBig btnSkriningGiziUlang;
     private widget.ButtonBig btnSpirometri;
     private widget.ButtonBig btnStokObatPasien;
@@ -13003,6 +13032,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getcppt() == true) {
                 Panelmenu.add(btnPemantauanHarian24Jam);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt()== true) {
+                Panelmenu.add(btnSkorApgarDowneCapJariPerinatologi);
                 jmlmenu++;
             }
             
@@ -14970,6 +15004,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getcppt() == true) {
             Panelmenu.add(btnAsesmenRestrain);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnSkorApgarDowneCapJariPerinatologi);
             jmlmenu++;
         }
         
@@ -16986,6 +17025,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getcppt()== true) {
             if (btnAsesmenRestrain.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnAsesmenRestrain);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnSkorApgarDowneCapJariPerinatologi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnSkorApgarDowneCapJariPerinatologi);
                 jmlmenu++;
             }
         }

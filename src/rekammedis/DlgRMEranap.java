@@ -136,6 +136,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPengelolaanTranfusiDarah = new widget.ButtonBig();
         BtnMonitoringEWSdewasa = new widget.ButtonBig();
         BtnMonitoringPEWSanak = new widget.ButtonBig();
+        BtnScoreApgarPerinatologi = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnTransferTindakan = new widget.ButtonBig();
         BtnPerencanaanPulang = new widget.ButtonBig();
@@ -584,6 +585,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnMonitoringPEWSanak);
+
+        BtnScoreApgarPerinatologi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnScoreApgarPerinatologi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/score_icon.png"))); // NOI18N
+        BtnScoreApgarPerinatologi.setText("Skor Apgar, Downe & Cap Jari");
+        BtnScoreApgarPerinatologi.setIconTextGap(0);
+        BtnScoreApgarPerinatologi.setName("BtnScoreApgarPerinatologi"); // NOI18N
+        BtnScoreApgarPerinatologi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnScoreApgarPerinatologi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnScoreApgarPerinatologiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnScoreApgarPerinatologi);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -1704,6 +1718,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnAsesmenKeperawatanPerinatologiActionPerformed
 
+    private void BtnScoreApgarPerinatologiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnScoreApgarPerinatologiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMSkorApgarDowneCapPerinatologi form = new RMSkorApgarDowneCapPerinatologi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnScoreApgarPerinatologiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1762,6 +1797,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.Button BtnRefres;
     private widget.ButtonBig BtnResep;
     private widget.ButtonBig BtnRingkasan;
+    private widget.ButtonBig BtnScoreApgarPerinatologi;
     private widget.Button BtnSimpan6;
     private widget.ButtonBig BtnSkriningUlangGizi;
     private widget.ButtonBig BtnTransferSerahTerima;
@@ -1799,6 +1835,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenKeperawatanDewasa.setEnabled(akses.getcppt());
         BtnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
         BtnAsesmenKeperawatanPerinatologi.setEnabled(akses.getcppt());
+        BtnScoreApgarPerinatologi.setEnabled(akses.getcppt());
         BtnAsesmenRestrain.setEnabled(akses.getcppt());
         BtnObservasiRestrain.setEnabled(akses.getcppt());
         BtnCPPT.setEnabled(akses.getcppt());

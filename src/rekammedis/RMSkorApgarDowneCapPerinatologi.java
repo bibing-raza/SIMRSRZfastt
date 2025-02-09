@@ -17,6 +17,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
@@ -40,7 +41,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private Properties prop = new Properties();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i = 0;
+    private int i = 0, x = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private String nip = "";
     
@@ -51,8 +52,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        tabMode=new DefaultTableModel(null,new String[]{
-            "Kode Komite", "Nama Komite"}) {
+        tabMode = new DefaultTableModel(null, new String[]{
+            "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan", "Tgl. Skoring", "Jam Skoring", "Evaluasi Downe Score", "Nama Perawat",
+            "apgar_frekuensi1", "apgar_usaha1", "apgar_tonus1", "apgar_reflex1", "apgar_warna1", "apgar_frekuensi5", "apgar_usaha5", "apgar_tonus5", "apgar_reflex5",
+            "apgar_warna5", "apgar_frekuensi10", "apgar_usaha10", "apgar_tonus10", "apgar_reflex10", "apgar_warna10", "nilai_downeA", "nilai_downeB", "nilai_downeC",
+            "downe_frekuensi_nilaiA", "downe_retraksi_nilaiA", "downe_sianosis_nilaiA", "downe_air_nilaiA", "downe_merintih_nilaiA", "downe_frekuensi_nilaiB",
+            "downe_retraksi_nilaiB", "downe_sianosis_nilaiB", "downe_air_nilaiB", "downe_merintih_nilaiB", "downe_frekuensi_nilaiC", "downe_retraksi_nilaiC",
+            "downe_sianosis_nilaiC", "downe_air_nilaiC", "downe_merintih_nilaiC", "evaluasi_downe", "tanggal", "jam", "nip_perawat", "waktu_simpan", "tgllahir"
+        }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
                 return false;
@@ -63,17 +70,153 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         tbSkor.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbSkor.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 2; i++) {
+        for (i = 0; i < 49; i++) {
             TableColumn column = tbSkor.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(80);
+                column.setPreferredWidth(105);
             } else if (i == 1) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(65);
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 3) {
+                column.setPreferredWidth(80);
+            } else if (i == 4) {
+                column.setPreferredWidth(75);
+            } else if (i == 5) {
+                column.setPreferredWidth(250);
+            } else if (i == 6) {
+                column.setPreferredWidth(80);
+            } else if (i == 7) {
+                column.setPreferredWidth(80);
+            } else if (i == 8) {
+                column.setPreferredWidth(150);                
+            } else if (i == 9) {
+                column.setPreferredWidth(220);
+            } else if (i == 10) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 11) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 12) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 13) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 14) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 15) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 16) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 17) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 18) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 19) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 20) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 21) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 22) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 23) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 24) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 25) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 26) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 27) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 28) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 29) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 30) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 31) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 32) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 33) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 34) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 35) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 36) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 37) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 39) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 40) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 41) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 42) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 43) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 44) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 45) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 46) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 47) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 48) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbSkor.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
+        TmenitA.setDocument(new batasInput((byte) 3).getOnlyAngka(TmenitA));
+        TmenitB.setDocument(new batasInput((byte) 3).getOnlyAngka(TmenitB));
+        TmenitC.setDocument(new batasInput((byte) 3).getOnlyAngka(TmenitC));
         
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
@@ -154,7 +297,6 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel135 = new widget.Label();
         TJumlah1 = new widget.TextBox();
         panelBiasa9 = new widget.PanelBiasa();
-        jLabel15 = new widget.Label();
         jLabel16 = new widget.Label();
         jLabel17 = new widget.Label();
         jLabel18 = new widget.Label();
@@ -177,8 +319,8 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         TnilaiWarna5 = new widget.TextBox();
         jLabel141 = new widget.Label();
         TJumlah5 = new widget.TextBox();
+        jLabel55 = new widget.Label();
         panelBiasa10 = new widget.PanelBiasa();
-        jLabel21 = new widget.Label();
         jLabel22 = new widget.Label();
         jLabel23 = new widget.Label();
         jLabel24 = new widget.Label();
@@ -201,6 +343,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         TnilaiWarna10 = new widget.TextBox();
         jLabel147 = new widget.Label();
         TJumlah10 = new widget.TextBox();
+        jLabel56 = new widget.Label();
         jLabel27 = new widget.Label();
         TabDowne = new javax.swing.JTabbedPane();
         panelBiasa11 = new widget.PanelBiasa();
@@ -228,6 +371,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         TJumlahA = new widget.TextBox();
         TmenitA = new widget.TextBox();
         cmbAirA = new widget.ComboBox();
+        jLabel52 = new widget.Label();
         panelBiasa12 = new widget.PanelBiasa();
         jLabel34 = new widget.Label();
         jLabel35 = new widget.Label();
@@ -253,6 +397,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         cmbSianosisB = new widget.ComboBox();
         cmbAirB = new widget.ComboBox();
         cmbMerintihB = new widget.ComboBox();
+        jLabel53 = new widget.Label();
         panelBiasa13 = new widget.PanelBiasa();
         jLabel40 = new widget.Label();
         jLabel41 = new widget.Label();
@@ -278,6 +423,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         cmbRetraksiC = new widget.ComboBox();
         cmbSianosisC = new widget.ComboBox();
         cmbMerintihC = new widget.ComboBox();
+        jLabel54 = new widget.Label();
         jLabel46 = new widget.Label();
         cmbEvaluasi = new widget.ComboBox();
         jLabel47 = new widget.Label();
@@ -289,6 +435,8 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel48 = new widget.Label();
         TnmPerawat = new widget.TextBox();
         BtnPerawat = new widget.Button();
+        jLabel51 = new widget.Label();
+        TtglLahir = new widget.TextBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbSkor = new widget.Table();
@@ -315,6 +463,11 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -361,7 +514,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         FormInput.add(TrgRawat);
-        TrgRawat.setBounds(114, 38, 608, 23);
+        TrgRawat.setBounds(114, 38, 390, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("1. Apgar Score : ");
@@ -383,11 +536,11 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa8.setLayout(null);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setText("TANDA 1 ' :");
+        jLabel9.setText("TANDA : 1 '");
         jLabel9.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel9.setName("jLabel9"); // NOI18N
         panelBiasa8.add(jLabel9);
-        jLabel9.setBounds(0, 10, 110, 23);
+        jLabel9.setBounds(0, 10, 125, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Frekuensi Jantung :");
@@ -574,13 +727,6 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa9.setName("panelBiasa9"); // NOI18N
         panelBiasa9.setLayout(null);
 
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("TANDA 5 ' :");
-        jLabel15.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel15.setName("jLabel15"); // NOI18N
-        panelBiasa9.add(jLabel15);
-        jLabel15.setBounds(0, 10, 110, 23);
-
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Frekuensi Jantung :");
         jLabel16.setName("jLabel16"); // NOI18N
@@ -761,17 +907,17 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa9.add(TJumlah5);
         TJumlah5.setBounds(374, 178, 40, 23);
 
+        jLabel55.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel55.setText("TANDA : 5 '");
+        jLabel55.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel55.setName("jLabel55"); // NOI18N
+        panelBiasa9.add(jLabel55);
+        jLabel55.setBounds(0, 10, 125, 23);
+
         TabApgar.addTab("Nilai 5'", panelBiasa9);
 
         panelBiasa10.setName("panelBiasa10"); // NOI18N
         panelBiasa10.setLayout(null);
-
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel21.setText("TANDA 10 ' :");
-        jLabel21.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jLabel21.setName("jLabel21"); // NOI18N
-        panelBiasa10.add(jLabel21);
-        jLabel21.setBounds(0, 10, 110, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("Frekuensi Jantung :");
@@ -953,6 +1099,13 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa10.add(TJumlah10);
         TJumlah10.setBounds(374, 178, 40, 23);
 
+        jLabel56.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel56.setText("TANDA : 10 '");
+        jLabel56.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel56.setName("jLabel56"); // NOI18N
+        panelBiasa10.add(jLabel56);
+        jLabel56.setBounds(0, 10, 132, 23);
+
         TabApgar.addTab("Nilai 10'", panelBiasa10);
 
         FormInput.add(TabApgar);
@@ -962,7 +1115,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel27.setText("2. Downe Score :");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(560, 66, 100, 23);
+        jLabel27.setBounds(530, 66, 130, 23);
 
         TabDowne.setBackground(new java.awt.Color(255, 255, 254));
         TabDowne.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
@@ -1172,7 +1325,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa11.add(cmbAirA);
         cmbAirA.setBounds(115, 122, 185, 23);
 
-        TabDowne.addTab("Pemeriksaan A", panelBiasa11);
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setText("Pemeriksaan Ke 1");
+        jLabel52.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel52.setName("jLabel52"); // NOI18N
+        panelBiasa11.add(jLabel52);
+        jLabel52.setBounds(0, 178, 280, 23);
+
+        TabDowne.addTab("Pemeriksaan Ke 1", panelBiasa11);
 
         panelBiasa12.setName("panelBiasa12"); // NOI18N
         panelBiasa12.setLayout(null);
@@ -1372,7 +1532,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa12.add(cmbMerintihB);
         cmbMerintihB.setBounds(115, 150, 195, 23);
 
-        TabDowne.addTab("Pemeriksaan B", panelBiasa12);
+        jLabel53.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel53.setText("Pemeriksaan Ke 2");
+        jLabel53.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel53.setName("jLabel53"); // NOI18N
+        panelBiasa12.add(jLabel53);
+        jLabel53.setBounds(0, 178, 280, 23);
+
+        TabDowne.addTab("Pemeriksaan Ke 2", panelBiasa12);
 
         panelBiasa13.setName("panelBiasa13"); // NOI18N
         panelBiasa13.setLayout(null);
@@ -1572,7 +1739,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         panelBiasa13.add(cmbMerintihC);
         cmbMerintihC.setBounds(115, 150, 195, 23);
 
-        TabDowne.addTab("Pemeriksaan C", panelBiasa13);
+        jLabel54.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel54.setText("Pemeriksaan Ke 3");
+        jLabel54.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jLabel54.setName("jLabel54"); // NOI18N
+        panelBiasa13.add(jLabel54);
+        jLabel54.setBounds(0, 178, 280, 23);
+
+        TabDowne.addTab("Pemeriksaan Ke 3", panelBiasa13);
 
         FormInput.add(TabDowne);
         TabDowne.setBounds(665, 66, 440, 250);
@@ -1581,14 +1755,14 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         jLabel46.setText("Evaluasi Downe Score :");
         jLabel46.setName("jLabel46"); // NOI18N
         FormInput.add(jLabel46);
-        jLabel46.setBounds(560, 322, 130, 23);
+        jLabel46.setBounds(530, 322, 130, 23);
 
         cmbEvaluasi.setForeground(new java.awt.Color(0, 0, 0));
         cmbEvaluasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "1 - 3 : Sesak Nafas Ringan", "4 - 5 : Sesak Nafas Sedang", ">= 6 : Sesak Nafas Berat" }));
         cmbEvaluasi.setName("cmbEvaluasi"); // NOI18N
         cmbEvaluasi.setPreferredSize(new java.awt.Dimension(55, 23));
         FormInput.add(cmbEvaluasi);
-        cmbEvaluasi.setBounds(695, 322, 165, 23);
+        cmbEvaluasi.setBounds(665, 322, 165, 23);
 
         jLabel47.setForeground(new java.awt.Color(0, 0, 0));
         jLabel47.setText("Tanggal : ");
@@ -1670,6 +1844,19 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         });
         FormInput.add(BtnPerawat);
         BtnPerawat.setBounds(545, 350, 28, 23);
+
+        jLabel51.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel51.setText("Tgl. Lahir :");
+        jLabel51.setName("jLabel51"); // NOI18N
+        FormInput.add(jLabel51);
+        jLabel51.setBounds(504, 38, 65, 23);
+
+        TtglLahir.setEditable(false);
+        TtglLahir.setBackground(new java.awt.Color(245, 250, 240));
+        TtglLahir.setForeground(new java.awt.Color(0, 0, 0));
+        TtglLahir.setName("TtglLahir"); // NOI18N
+        FormInput.add(TtglLahir);
+        TtglLahir.setBounds(572, 38, 150, 23);
 
         internalFrame1.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -1925,7 +2112,28 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            if (Sequel.menyimpantf("skor_apgar_downe_cap_jari_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 40, new String[]{
+                        TNoRw.getText(), TrgRawat.getText(), cmbFrek1.getSelectedItem().toString(), cmbUsaha1.getSelectedItem().toString(), cmbTonus1.getSelectedItem().toString(),
+                        cmbReflex1.getSelectedItem().toString(), cmbWarna1.getSelectedItem().toString(), cmbFrek5.getSelectedItem().toString(), cmbUsaha5.getSelectedItem().toString(), 
+                        cmbTonus5.getSelectedItem().toString(), cmbReflex5.getSelectedItem().toString(), cmbWarna5.getSelectedItem().toString(), cmbFrek10.getSelectedItem().toString(),
+                        cmbUsaha10.getSelectedItem().toString(), cmbTonus10.getSelectedItem().toString(), cmbReflex10.getSelectedItem().toString(), cmbWarna10.getSelectedItem().toString(), 
+                        TmenitA.getText(), TmenitB.getText(), TmenitC.getText(), cmbFrekNafasA.getSelectedItem().toString(), cmbRetraksiA.getSelectedItem().toString(),
+                        cmbSianosisA.getSelectedItem().toString(), cmbAirA.getSelectedItem().toString(), cmbMerintihA.getSelectedItem().toString(), cmbFrekNafasB.getSelectedItem().toString(),
+                        cmbRetraksiB.getSelectedItem().toString(), cmbSianosisB.getSelectedItem().toString(), cmbAirB.getSelectedItem().toString(), cmbMerintihB.getSelectedItem().toString(),
+                        cmbFrekNafasC.getSelectedItem().toString(), cmbRetraksiC.getSelectedItem().toString(), cmbSianosisC.getSelectedItem().toString(), cmbAirC.getSelectedItem().toString(), 
+                        cmbMerintihC.getSelectedItem().toString(), cmbEvaluasi.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), 
+                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip, Sequel.cariIsi("select now()")
+                    }) == true) {
+
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", "Simpan");
+                TCari.setText(TNoRw.getText());
+                tampil();
+                emptTeks();                
+            }
+        }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
@@ -1948,7 +2156,23 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnGantiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnGantiActionPerformed
-        
+        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            if (tbSkor.getSelectedRow() > -1) {
+                if (akses.getadmin() == true) {
+                    ganti();
+                } else {
+                    if (nip.equals(akses.getkode())) {
+                        ganti();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat yang bernama " + tbSkor.getValueAt(tbSkor.getSelectedRow(), 9).toString() + " ..!!");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+            }
+        }
 }//GEN-LAST:event_BtnGantiActionPerformed
 
     private void BtnGantiKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnGantiKeyPressed
@@ -2186,23 +2410,23 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     }//GEN-LAST:event_BtnPerawatActionPerformed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-//        if (tbAsesmen.getSelectedRow() > -1) {
-//            if (akses.getadmin() == true) {
-//                hapus();
-//            } else {
-//                if (nip.equals(akses.getkode())) {
-//                    hapus();
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat yang bernama " + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 10).toString() + " ..!!");
-//                }
-//            }
-//        } else {
-//            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
-//        }
+        if (tbSkor.getSelectedRow() > -1) {
+            if (akses.getadmin() == true) {
+                hapus();
+            } else {
+                if (nip.equals(akses.getkode())) {
+                    hapus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat yang bernama " + tbSkor.getValueAt(tbSkor.getSelectedRow(), 9).toString() + " ..!!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+        }
     }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
-//        if (tbAsesmen.getSelectedRow() > -1) {
+//        if (tbSkor.getSelectedRow() > -1) {
 //            Map<String, Object> param = new HashMap<>();
 //            param.put("namars", akses.getnamars());
 //            param.put("logo", Sequel.cariGambar("select logo from setting"));
@@ -2859,6 +3083,10 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPrintKeyPressed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
     * @param args the command line arguments
     */
@@ -2938,6 +3166,7 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.TextBox TnmPerawat;
     private widget.TextBox TrgRawat;
     private widget.Tanggal Ttgl;
+    private widget.TextBox TtglLahir;
     private widget.ComboBox cmbAirA;
     private widget.ComboBox cmbAirB;
     private widget.ComboBox cmbAirC;
@@ -2999,7 +3228,6 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel147;
     private widget.Label jLabel148;
     private widget.Label jLabel149;
-    private widget.Label jLabel15;
     private widget.Label jLabel150;
     private widget.Label jLabel151;
     private widget.Label jLabel152;
@@ -3021,7 +3249,6 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel18;
     private widget.Label jLabel19;
     private widget.Label jLabel20;
-    private widget.Label jLabel21;
     private widget.Label jLabel22;
     private widget.Label jLabel23;
     private widget.Label jLabel24;
@@ -3053,6 +3280,12 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     private widget.Label jLabel49;
     private widget.Label jLabel5;
     private widget.Label jLabel50;
+    private widget.Label jLabel51;
+    private widget.Label jLabel52;
+    private widget.Label jLabel53;
+    private widget.Label jLabel54;
+    private widget.Label jLabel55;
+    private widget.Label jLabel56;
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.Label jLabel8;
@@ -3073,22 +3306,87 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT kd_komite, nm_komite FROM jabatan_komite WHERE "
-                    + "kd_komite LIKE ? or "
-                    + "nm_komite like ? ORDER BY kd_komite");
-
+            ps = koneksi.prepareStatement("SELECT sa.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
+                    + "date_format(sa.tanggal,'%d-%m-%Y') tglSkoring, time_format(sa.jam,'%H:%i Wita') jamSkoring, pg.nama nmPerawat, p.tgl_lahir "
+                    + "FROM skor_apgar_downe_cap_jari_perinatologi sa INNER JOIN reg_periksa rp on rp.no_rawat=sa.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "INNER JOIN pegawai pg on pg.nik=sa.nip_perawat WHERE "
+                    + "sa.tanggal between ? and ? and sa.no_rawat like ? or "
+                    + "sa.tanggal between ? and ? and p.no_rkm_medis like ? or "
+                    + "sa.tanggal between ? and ? and p.nm_pasien like ? or "
+                    + "sa.tanggal between ? and ? and sa.ruang_rawat like ? or "
+                    + "sa.tanggal between ? and ? and pg.nama like ? order by sa.waktu_simpan desc");            
             try {
-                ps.setString(1, "%" + TCari.getText().trim() + "%");
-                ps.setString(2, "%" + TCari.getText().trim() + "%");
-                rs = ps.executeQuery();                
+                ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(5, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
+                ps.setString(7, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(8, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(9, "%" + TCari.getText().trim() + "%");
+                ps.setString(10, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(11, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();   
                 while (rs.next()) {
-                    tabMode.addRow(new String[]{                        
-                        rs.getString(1),
-                        rs.getString(2)
+                    tabMode.addRow(new String[]{
+                        rs.getString("no_rawat"),
+                        rs.getString("no_rkm_medis"),
+                        rs.getString("nm_pasien"),
+                        rs.getString("jenkel"),
+                        rs.getString("tglLahir"),
+                        rs.getString("ruang_rawat"),
+                        rs.getString("tglSkoring"),
+                        rs.getString("jamSkoring"),
+                        rs.getString("evaluasi_downe"),
+                        rs.getString("nmPerawat"),
+                        rs.getString("apgar_frekuensi1"),
+                        rs.getString("apgar_usaha1"),
+                        rs.getString("apgar_tonus1"),
+                        rs.getString("apgar_reflex1"),
+                        rs.getString("apgar_warna1"),
+                        rs.getString("apgar_frekuensi5"),
+                        rs.getString("apgar_usaha5"),
+                        rs.getString("apgar_tonus5"),
+                        rs.getString("apgar_reflex5"),
+                        rs.getString("apgar_warna5"),
+                        rs.getString("apgar_frekuensi10"),
+                        rs.getString("apgar_usaha10"),
+                        rs.getString("apgar_tonus10"),
+                        rs.getString("apgar_reflex10"),
+                        rs.getString("apgar_warna10"),
+                        rs.getString("nilai_downeA"),
+                        rs.getString("nilai_downeB"),
+                        rs.getString("nilai_downeC"),
+                        rs.getString("downe_frekuensi_nilaiA"),
+                        rs.getString("downe_retraksi_nilaiA"),
+                        rs.getString("downe_sianosis_nilaiA"),
+                        rs.getString("downe_air_nilaiA"),
+                        rs.getString("downe_merintih_nilaiA"),
+                        rs.getString("downe_frekuensi_nilaiB"),
+                        rs.getString("downe_retraksi_nilaiB"),
+                        rs.getString("downe_sianosis_nilaiB"),
+                        rs.getString("downe_air_nilaiB"),
+                        rs.getString("downe_merintih_nilaiB"),
+                        rs.getString("downe_frekuensi_nilaiC"),
+                        rs.getString("downe_retraksi_nilaiC"),
+                        rs.getString("downe_sianosis_nilaiC"),
+                        rs.getString("downe_air_nilaiC"),
+                        rs.getString("downe_merintih_nilaiC"),
+                        rs.getString("evaluasi_downe"),
+                        rs.getString("tanggal"),
+                        rs.getString("jam"),
+                        rs.getString("nip_perawat"),
+                        rs.getString("waktu_simpan"),
+                        rs.getString("tgl_lahir")                        
                     });
                 }                
             } catch (Exception e) {
-                System.out.println("rekammedis.DlgMasterJabatanKomite.tampil() : " + e);
+                System.out.println("rekammedis.RMSkorApgarDowneCapPerinatologi.tampil() : " + e);
             } finally {
                 if (rs != null) {
                     rs.close();
@@ -3104,19 +3402,131 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
     }
     
     public void emptTeks() {  
-        
+        cmbFrek1.setSelectedIndex(0);
+        cmbUsaha1.setSelectedIndex(0);
+        cmbTonus1.setSelectedIndex(0);
+        cmbReflex1.setSelectedIndex(0);
+        cmbWarna1.setSelectedIndex(0);
+        hitungApgar1();
+        cmbFrek5.setSelectedIndex(0);
+        cmbUsaha5.setSelectedIndex(0);
+        cmbTonus5.setSelectedIndex(0);
+        cmbReflex5.setSelectedIndex(0);
+        cmbWarna5.setSelectedIndex(0);
+        hitungApgar5();
+        cmbFrek10.setSelectedIndex(0);
+        cmbUsaha10.setSelectedIndex(0);
+        cmbTonus10.setSelectedIndex(0);
+        cmbReflex10.setSelectedIndex(0);
+        cmbWarna10.setSelectedIndex(0);
+        hitungApgar10();
+        TmenitA.setText("");
+        cmbFrekNafasA.setSelectedIndex(0);
+        cmbRetraksiA.setSelectedIndex(0);
+        cmbSianosisA.setSelectedIndex(0);
+        cmbAirA.setSelectedIndex(0);
+        cmbMerintihA.setSelectedIndex(0);
+        hitungDowneA();
+        TmenitA.setText("");
+        cmbFrekNafasB.setSelectedIndex(0);
+        cmbRetraksiB.setSelectedIndex(0);
+        cmbSianosisB.setSelectedIndex(0);
+        cmbAirB.setSelectedIndex(0);
+        cmbMerintihB.setSelectedIndex(0);
+        hitungDowneB();
+        TmenitA.setText("");
+        cmbFrekNafasC.setSelectedIndex(0);
+        cmbRetraksiC.setSelectedIndex(0);
+        cmbSianosisC.setSelectedIndex(0);
+        cmbAirC.setSelectedIndex(0);
+        cmbMerintihC.setSelectedIndex(0);
+        hitungDowneC();
+        Ttgl.setDate(new Date());
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
+        cmbEvaluasi.setSelectedIndex(0);
+        nip = "-";
+        TnmPerawat.setText("-");
+        TabApgar.setSelectedIndex(0);
+        TabDowne.setSelectedIndex(0);
     }
 
     private void getData() {
+        nip = "";
         if (tbSkor.getSelectedRow() != -1) {
-//            kdkomite.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString());
-//            nmkomite.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 1).toString());        
+            TNoRw.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString());
+            TNoRM.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 1).toString());
+            TPasien.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 2).toString());
+            TrgRawat.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 5).toString());
+            TtglLahir.setText(Valid.SetTglINDONESIA(tbSkor.getValueAt(tbSkor.getSelectedRow(), 48).toString()));
+            
+            cmbFrek1.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 10).toString());
+            cmbUsaha1.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 11).toString());
+            cmbTonus1.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 12).toString());
+            cmbReflex1.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 13).toString());
+            cmbWarna1.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 14).toString());
+            hitungApgar1();
+            cmbFrek5.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 15).toString());
+            cmbUsaha5.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 16).toString());
+            cmbTonus5.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 17).toString());
+            cmbReflex5.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 18).toString());
+            cmbWarna5.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 19).toString());
+            hitungApgar5();
+            cmbFrek10.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 20).toString());
+            cmbUsaha10.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 21).toString());
+            cmbTonus10.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 22).toString());
+            cmbReflex10.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 23).toString());
+            cmbWarna10.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 24).toString());
+            hitungApgar10();
+            TmenitA.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 25).toString());
+            TmenitB.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 26).toString());
+            TmenitC.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 27).toString());
+            
+            cmbFrekNafasA.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 28).toString());
+            cmbRetraksiA.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 29).toString());
+            cmbSianosisA.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 30).toString());
+            cmbAirA.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 31).toString());
+            cmbMerintihA.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 32).toString());
+            hitungDowneA();
+            cmbFrekNafasB.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 33).toString());
+            cmbRetraksiB.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 34).toString());
+            cmbSianosisB.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 35).toString());
+            cmbAirB.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 36).toString());
+            cmbMerintihB.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 37).toString());
+            hitungDowneB();
+            cmbFrekNafasC.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 38).toString());
+            cmbRetraksiC.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 39).toString());
+            cmbSianosisC.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 40).toString());
+            cmbAirC.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 41).toString());
+            cmbMerintihC.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 42).toString());
+            hitungDowneC();
+            cmbEvaluasi.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 43).toString());            
+            Valid.SetTgl(Ttgl, tbSkor.getValueAt(tbSkor.getSelectedRow(), 44).toString());
+            cmbJam.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 45).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 45).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbSkor.getValueAt(tbSkor.getSelectedRow(), 45).toString().substring(6, 8));
+            nip = tbSkor.getValueAt(tbSkor.getSelectedRow(), 46).toString();
+            TnmPerawat.setText(tbSkor.getValueAt(tbSkor.getSelectedRow(), 9).toString());
+            
+            TabApgar.setSelectedIndex(0);
+            TabDowne.setSelectedIndex(0);
         }
     }
     
     public void isCek() {
-        BtnSimpan.setEnabled(akses.getpegawai_admin());
-        BtnGanti.setEnabled(akses.getpegawai_admin());
+        BtnSimpan.setEnabled(akses.getcppt());
+        BtnHapus.setEnabled(akses.getcppt());
+        BtnPrint.setEnabled(akses.getcppt());
+        BtnGanti.setEnabled(akses.getcppt());
+        
+        if (akses.getjml2() >= 1) {
+            nip = akses.getkode();            
+            Sequel.cariIsi("select nama from pegawai where nik=?", TnmPerawat, nip);
+            if (TnmPerawat.getText().equals("")) {
+                nip = "";
+            }
+        } 
     }
     
     private void hitungApgar1() {
@@ -3615,5 +4025,60 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
 
         hasilNilai = a + b + c + d + e;
         TJumlahC.setText(Valid.SetAngka2(hasilNilai));
+    }
+    
+    public void setData(String norwt, String rgrawat) {
+        TNoRw.setText(norwt);
+        TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norwt + "'"));
+        TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+        TrgRawat.setText(rgrawat);
+        TtglLahir.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + TNoRM.getText() + "'")));
+        Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
+        DTPCari2.setDate(new Date());
+        TCari.setText(norwt);
+    }
+    
+    private void ganti() {
+        if (Sequel.mengedittf("skor_apgar_downe_cap_jari_perinatologi", "no_rawat=?", "apgar_frekuensi1=?, apgar_usaha1=?, apgar_tonus1=?, apgar_reflex1=?, "
+                + "apgar_warna1=?, apgar_frekuensi5=?, apgar_usaha5=?, apgar_tonus5=?, apgar_reflex5=?, apgar_warna5=?, apgar_frekuensi10=?, apgar_usaha10=?, apgar_tonus10=?, "
+                + "apgar_reflex10=?, apgar_warna10=?, nilai_downeA=?, nilai_downeB=?, nilai_downeC=?, downe_frekuensi_nilaiA=?, downe_retraksi_nilaiA=?, downe_sianosis_nilaiA=?, "
+                + "downe_air_nilaiA=?, downe_merintih_nilaiA=?, downe_frekuensi_nilaiB=?, downe_retraksi_nilaiB=?, downe_sianosis_nilaiB=?, downe_air_nilaiB=?, downe_merintih_nilaiB=?, "
+                + "downe_frekuensi_nilaiC=?, downe_retraksi_nilaiC=?, downe_sianosis_nilaiC=?, downe_air_nilaiC=?, downe_merintih_nilaiC=?, evaluasi_downe=?, tanggal=?, jam=?, "
+                + "nip_perawat=?", 38, new String[]{
+                    cmbFrek1.getSelectedItem().toString(), cmbUsaha1.getSelectedItem().toString(), cmbTonus1.getSelectedItem().toString(),
+                    cmbReflex1.getSelectedItem().toString(), cmbWarna1.getSelectedItem().toString(), cmbFrek5.getSelectedItem().toString(), cmbUsaha5.getSelectedItem().toString(),
+                    cmbTonus5.getSelectedItem().toString(), cmbReflex5.getSelectedItem().toString(), cmbWarna5.getSelectedItem().toString(), cmbFrek10.getSelectedItem().toString(),
+                    cmbUsaha10.getSelectedItem().toString(), cmbTonus10.getSelectedItem().toString(), cmbReflex10.getSelectedItem().toString(), cmbWarna10.getSelectedItem().toString(),
+                    TmenitA.getText(), TmenitB.getText(), TmenitC.getText(), cmbFrekNafasA.getSelectedItem().toString(), cmbRetraksiA.getSelectedItem().toString(),
+                    cmbSianosisA.getSelectedItem().toString(), cmbAirA.getSelectedItem().toString(), cmbMerintihA.getSelectedItem().toString(), cmbFrekNafasB.getSelectedItem().toString(),
+                    cmbRetraksiB.getSelectedItem().toString(), cmbSianosisB.getSelectedItem().toString(), cmbAirB.getSelectedItem().toString(), cmbMerintihB.getSelectedItem().toString(),
+                    cmbFrekNafasC.getSelectedItem().toString(), cmbRetraksiC.getSelectedItem().toString(), cmbSianosisC.getSelectedItem().toString(), cmbAirC.getSelectedItem().toString(),
+                    cmbMerintihC.getSelectedItem().toString(), cmbEvaluasi.getSelectedItem().toString(), Valid.SetTgl(Ttgl.getSelectedItem() + ""),
+                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip,
+                    tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString()
+                }) == true) {
+
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Skor Apgar, Skor Downe, Cap Jari Ibu Dan Bayi", "Ganti");
+            TCari.setText(TNoRw.getText());
+            tampil();
+            emptTeks();
+        }
+    }
+    
+    private void hapus() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.queryu2tf("delete from skor_apgar_downe_cap_jari_perinatologi where no_rawat=?", 1, new String[]{
+                tbSkor.getValueAt(tbSkor.getSelectedRow(), 0).toString()
+            }) == true) {
+                tampil();
+                emptTeks();            
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+            }
+        } else {
+            tampil();
+            emptTeks();
+        }
     }
 }
