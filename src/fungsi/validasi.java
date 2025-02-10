@@ -1848,8 +1848,8 @@ public final class validasi {
             workbook.write(outputStream);
             
         } catch (Exception e) {
-            System.out.println(e);
-            
+            JOptionPane.showMessageDialog(null, "Query Sql yang diterapkan tidak sesuai, periksa lagi penulisanya berikut erornya : \n" + e);
+            System.out.println("Error Query Sql Salah : " + e);
         }
     }
     

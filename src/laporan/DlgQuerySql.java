@@ -90,7 +90,7 @@ public class DlgQuerySql extends javax.swing.JDialog {
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 45));
         panelGlass9.setLayout(new java.awt.BorderLayout());
 
-        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Penulisan / Ketik Query SQL ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Lembar Penulisan / Pengetikan / Mempaste Query SQL ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
         Scroll.setPreferredSize(new java.awt.Dimension(282, 500));
@@ -245,6 +245,10 @@ public class DlgQuerySql extends javax.swing.JDialog {
     private void BtnExcelActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnExcelActionPerformed
         if (Tquery.getText().equals("")) {
             JOptionPane.showMessageDialog(rootPane, "Query Sql yang dieksekusi masih kosong..!!");
+            Tquery.requestFocus();
+        } else if (Tquery.getText().contains("select *") == true) {
+            JOptionPane.showMessageDialog(rootPane, "Penulisan query sql setelah select menggunakan * tidak dapat diproses utk. export   \n"
+                    + "data ke excel, select harus didefinisikan satu persatu utk. menyusun judul kolom pada excel..!!");
             Tquery.requestFocus();
         } else {
             if (Sequel.eksekusiQuery(Tquery.getText()).equals("ok")) {

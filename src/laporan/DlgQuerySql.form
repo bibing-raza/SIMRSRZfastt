@@ -74,7 +74,7 @@
               <Properties>
                 <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                   <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                    <TitledBorder title="[ Penulisan / Ketik Query SQL ]">
+                    <TitledBorder title="[ Lembar Penulisan / Pengetikan / Mempaste Query SQL ]">
                       <Font PropertyName="font" name="Tahoma" size="12" style="0"/>
                     </TitledBorder>
                   </Border>
