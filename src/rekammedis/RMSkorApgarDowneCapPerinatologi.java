@@ -2887,8 +2887,6 @@ public class RMSkorApgarDowneCapPerinatologi extends javax.swing.JDialog {
         cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk.setSelectedIndex(0);
         cmbEvaluasi.setSelectedIndex(0);
-        nip = "-";
-        TnmPerawat.setText("-");
         TabApgar.setSelectedIndex(0);
         TabDowne.setSelectedIndex(0);
     }

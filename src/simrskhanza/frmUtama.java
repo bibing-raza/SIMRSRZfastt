@@ -386,6 +386,7 @@ import tranfusidarah.UTDStokDarah;
 import simrskhanza.DlgInputPonek;
 import simrskhanza.DlgPenanggungJawab;
 import java.net.InetAddress;
+import laporan.DlgQuerySql;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
@@ -909,6 +910,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnHistoryIpAddressPetugasRM = new widget.ButtonBig();
         btnAsesmenKeperawatanPerinatologi = new widget.ButtonBig();
         btnSkorApgarDowneCapJariPerinatologi = new widget.ButtonBig();
+        btnQuerySql = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6175,6 +6177,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnSkorApgarDowneCapJariPerinatologi);
 
+        btnQuerySql.setForeground(new java.awt.Color(0, 0, 0));
+        btnQuerySql.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/query_sql.png"))); // NOI18N
+        btnQuerySql.setText("Query SQL (Export Data Ke Ms. Excel)");
+        btnQuerySql.setIconTextGap(0);
+        btnQuerySql.setName("btnQuerySql"); // NOI18N
+        btnQuerySql.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnQuerySql.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnQuerySqlActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnQuerySql);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6183,7 +6198,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "09/02/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/02/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12205,6 +12220,17 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSkorApgarDowneCapJariPerinatologiActionPerformed
 
+    private void btnQuerySqlActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnQuerySqlActionPerformed
+        isTutup();
+        DlgHome.dispose();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        DlgQuerySql aplikasi = new DlgQuerySql(this, false);
+        aplikasi.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        aplikasi.setLocationRelativeTo(PanelUtama);
+        aplikasi.setVisible(true);
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnQuerySqlActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12527,6 +12553,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnProdusenInventaris;
     private widget.ButtonBig btnProgramPRBBPJS;
     private widget.ButtonBig btnProtokolKemoterapi;
+    private widget.ButtonBig btnQuerySql;
     private widget.ButtonBig btnRBiayaIpsrs;
     private widget.ButtonBig btnRHKeluarIpsrs;
     private widget.ButtonBig btnRHMasukIpsrs;
@@ -13606,6 +13633,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 8) {
             jmlmenu = 0;
+            if (akses.getadmin() == true) {
+                Panelmenu.add(btnQuerySql);
+                jmlmenu++;
+            }
+            
             if (akses.geticd9() == true) {
                 Panelmenu.add(btnICD9);
                 jmlmenu++;
@@ -15254,6 +15286,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
         if (akses.getsisrute_referensi_faskes() == true) {
             Panelmenu.add(btnCekSisruteFaskes);
+            jmlmenu++;
+        }
+        
+        if (akses.getadmin() == true) {
+            Panelmenu.add(btnQuerySql);
             jmlmenu++;
         }
 
@@ -17765,6 +17802,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getbpjs_cek_rujukan_kartu_pcare() == true) {
             if (btnCekBPJSRujukanKartuPCare.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCekBPJSRujukanKartuPCare);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getadmin()== true) {
+            if (btnQuerySql.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnQuerySql);
                 jmlmenu++;
             }
         }

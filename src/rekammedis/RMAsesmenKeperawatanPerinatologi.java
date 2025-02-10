@@ -8107,8 +8107,6 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         cmbJam2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
         cmbMnt2.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
         cmbDtk2.setSelectedIndex(0);
-        nip = "-";
-        TnmPerawat.setText("-");
         buttonGroup1.clearSelection();
         buttonGroup2.clearSelection();
         buttonGroup3.clearSelection();

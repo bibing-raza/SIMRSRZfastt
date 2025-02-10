@@ -1356,6 +1356,40 @@ public final class sekuel {
             System.out.println("Notifikasi : " + e);
         }
     }
+    
+    public String eksekusiQuery(String sql) {
+        dicari = "";
+        try {
+            ps = connect.prepareStatement(sql);
+            try {
+                rs = ps.executeQuery();
+                if (rs.next()) {                    
+                    System.out.println("Query Sql yang diterapkan sudah benar..!!");
+                    dicari = "ok";
+                } else {
+                    System.out.println("Query Sql yang diterapkan masih salah, periksa lagi penulisanya..!!");
+                    dicari = "gagal";
+                }
+            } catch (Exception e) {
+                JOptionPane.showMessageDialog(null, "Query Sql yang diterapkan masih salah, periksa lagi penulisanya berikut erornya : \n" + e);
+                System.out.println("Error Query Sql Salah : " + e);
+                dicari = "gagal";
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(null, "Query Sql yang diterapkan masih salah, periksa lagi penulisanya berikut erornya : \n" + e);
+            System.out.println("Error Query Sql Salah : " + e);
+            dicari = "gagal";
+        }
+        return dicari;
+    }
 
     public String cariIsi(String sql) {
         dicari = "";
