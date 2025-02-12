@@ -454,6 +454,11 @@ public final class BPJSCekReferensiJadwalHFIS extends javax.swing.JDialog {
         setIconImages(null);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Pencarian Data Referensi Jadwal HFIS BPJS VClaim ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -480,15 +485,14 @@ public final class BPJSCekReferensiJadwalHFIS extends javax.swing.JDialog {
 
         KdPoli.setEditable(false);
         KdPoli.setForeground(new java.awt.Color(0, 0, 0));
-        KdPoli.setHighlighter(null);
         KdPoli.setName("KdPoli"); // NOI18N
-        KdPoli.setPreferredSize(new java.awt.Dimension(70, 23));
+        KdPoli.setPreferredSize(new java.awt.Dimension(60, 23));
         panelGlass6.add(KdPoli);
 
         NmPoli.setEditable(false);
         NmPoli.setForeground(new java.awt.Color(0, 0, 0));
         NmPoli.setName("NmPoli"); // NOI18N
-        NmPoli.setPreferredSize(new java.awt.Dimension(150, 23));
+        NmPoli.setPreferredSize(new java.awt.Dimension(350, 23));
         panelGlass6.add(NmPoli);
 
         BtnPoli.setForeground(new java.awt.Color(0, 0, 0));
@@ -783,6 +787,10 @@ public final class BPJSCekReferensiJadwalHFIS extends javax.swing.JDialog {
     private void btnDokterUpdateKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_btnDokterUpdateKeyPressed
         Valid.pindah(evt, btnPoliklinikUpdate, cmbHari);
     }//GEN-LAST:event_btnDokterUpdateKeyPressed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        BtnEdit.setEnabled(akses.getadmin());
+    }//GEN-LAST:event_formWindowOpened
 
     /**
     * @param args the command line arguments

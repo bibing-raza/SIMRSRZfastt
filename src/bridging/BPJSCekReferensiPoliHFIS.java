@@ -354,7 +354,7 @@ public final class BPJSCekReferensiPoliHFIS extends javax.swing.JDialog {
             headers.add("x-signature", api.getHmac(utc));
             headers.add("user_key", koneksiDB.USERKEYAPIMOBILEJKN());
             requestEntity = new HttpEntity(headers);
-            URL = link + "referensi/poli";
+            URL = link + "ref/poli";
             System.out.println(URL);
             root = mapper.readTree(api.getRest().exchange(URL, HttpMethod.GET, requestEntity, String.class).getBody());
             nameNode = root.path("metadata");
