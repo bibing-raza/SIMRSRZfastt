@@ -137,6 +137,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnMonitoringEWSdewasa = new widget.ButtonBig();
         BtnMonitoringPEWSanak = new widget.ButtonBig();
         BtnScoreApgarPerinatologi = new widget.ButtonBig();
+        BtnPengamatanMenyusui = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnTransferTindakan = new widget.ButtonBig();
         BtnPerencanaanPulang = new widget.ButtonBig();
@@ -598,6 +599,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnScoreApgarPerinatologi);
+
+        BtnPengamatanMenyusui.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPengamatanMenyusui.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/ibu_menyusui.png"))); // NOI18N
+        BtnPengamatanMenyusui.setText("Bantuan Pengamatan Menyusui");
+        BtnPengamatanMenyusui.setIconTextGap(0);
+        BtnPengamatanMenyusui.setName("BtnPengamatanMenyusui"); // NOI18N
+        BtnPengamatanMenyusui.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPengamatanMenyusui.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPengamatanMenyusuiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPengamatanMenyusui);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -1735,6 +1749,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnScoreApgarPerinatologiActionPerformed
 
+    private void BtnPengamatanMenyusuiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPengamatanMenyusuiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMPengamatanMenyusui form = new RMPengamatanMenyusui(null, false);
+                form.emptTeks();
+                form.isCek();
+//            form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnPengamatanMenyusuiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1786,6 +1821,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnMonitoringPEWSanak;
     private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
+    private widget.ButtonBig BtnPengamatanMenyusui;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPerencanaanPulang;
     private widget.ButtonBig BtnPersetujuanTindakan;
@@ -1832,6 +1868,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenKeperawatanAnak.setEnabled(akses.getcppt());
         BtnAsesmenKeperawatanPerinatologi.setEnabled(akses.getcppt());
         BtnScoreApgarPerinatologi.setEnabled(akses.getcppt());
+        BtnPengamatanMenyusui.setEnabled(akses.getcppt());
         BtnAsesmenRestrain.setEnabled(akses.getcppt());
         BtnObservasiRestrain.setEnabled(akses.getcppt());
         BtnCPPT.setEnabled(akses.getcppt());
