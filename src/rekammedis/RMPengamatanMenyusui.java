@@ -65,7 +65,13 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     private ResultSet rs;
     private int i = 0, x = 0;    
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
-    private String nip  = "";
+    private String nip = "", ibuSehat = "", ibuRileks = "", ibuTerlihat = "", ibuSakit = "", ibuTegang = "", ibuTidak = "", bayiSehat = "", bayiTenang = "",
+            bayiLapar = "", bayiMengantuk = "", bayiGelisah = "", bayiMencari = "", payudaraSehat = "", payudaraNyaman = "", payudaraDitopang = "",
+            payudaraPutingKeluar = "", payudaraMerah = "", payudaraNyeri = "", payudaraAerola = "", payudaraPutingDatar = "", posisiKepala = "",
+            posisiDipegang = "", posisiSeluruh = "", posisiHidungBerhadapan = "", posisiLeher = "", posisiTakDipegang = "", posisiHanya = "", posisiBibirBawah = "",
+            pelekatanTampak = "", pelekatanTerbuka = "", pelekatanTerputarKeluar = "", pelekatanMenempel = "", pelekatanLebih = "", pelekatanTakTerbuka = "",
+            pelekatanTerputarKedalam = "", pelekatanTidakMenempel = "", mengisapLambat = "", mengisapPipiMembulat = "", mengisapMelepaskanSelesai = "",
+            mengisapReflex = "", mengisapDangkal = "", mengisapPipiTertarik = "", mengisapMelepaskanPayudara = "", mengisapOksitosin = "";
     
     /** Creates new form DlgRujuk
      * @param parent
@@ -75,13 +81,14 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         initComponents();
         this.setLocation(8,1);
         tabMode = new DefaultTableModel(null, new Object[]{
-            "Jns. Rawat", "Tgl. Persetujuan", "Tgl. Penolakan", "No.Rawat", "No.RM", "Nama Pasien", "Nama Png. Jawab", "Umur PJ", "Alamat PJ", 
-            "Hub. Dg. Pasien", "Jns. Tindakan", "tgl_surat", "jam_surat", "nm_penjab", "umur_penjab", "jk_penjab", "alamat_penjab", "kd_kel", "kd_kec", 
-            "kd_kab", "hubungan_dg_pasien", "jns_surat", "kasus_tindakan", "nm_tindakan_kedokteran", "alasan_penolakan", "nip_dokter_pelaksana", 
-            "nip_pemberi_info", "penerima_info", "isi_info_diagnosis_kerja", "isi_info_dasar_diagnosis", "isi_info_tindakan", "isi_info_indikasi", 
-            "isi_info_tatacara", "isi_info_tujuan", "isi_info_resiko", "isi_info_komplikasi", "isi_info_prognosis", "isi_info_alternatif", 
-            "isi_info_lainlain", "waktu_simpan", "tgl_persetujuan", "jam_persetujuan", "tgl_penolakan", "jam_penolakan", "nmkel", "nmkec", 
-            "nmkab", "nmdokter", "nmpetugas", "jenkel"
+            "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan", "IMD", "Lama IMD", "Alasan", "ASI Eksklusif", "Lama Menyusui", "Tanggal", "Jam", "Nama Perawat",
+            "ibu_sehat", "ibu_rileks", "ibu_terlihat", "ibu_sakit", "ibu_tegang", "ibu_tidak", "bayi_sehat", "bayi_tenang", "bayi_lapar", 
+            "bayi_mengantuk", "bayi_gelisah", "bayi_mencari", "payudara_sehat", "payudara_nyaman", "payudara_ditopang", "payudara_puting_keluar", 
+            "payudara_merah", "payudara_nyeri", "payudara_aerola", "payudara_puting_datar", "posisi_kepala", "posisi_dipegang", "posisi_seluruh", 
+            "posisi_hidung_berhadapan", "posisi_leher", "posisi_tak_dipegang", "posisi_hanya", "posisi_bibir_bawah", "pelekatan_tampak", "pelekatan_terbuka", 
+            "pelekatan_terputar_keluar", "pelekatan_menempel", "pelekatan_lebih", "pelekatan_tak_terbuka", "pelekatan_terputar_kedalam", "pelekatan_tidak_menempel", 
+            "mengisap_lambat", "mengisap_pipi_membulat", "mengisap_melepaskan_selesai", "mengisap_reflex", "mengisap_dangkal", "mengisap_pipi_tertarik", 
+            "mengisap_melepaskan_payudara", "mengisap_oksitosin", "lama_menyusui", "catatan", "tanggal", "jam", "nip_perawat", "waktu_simpan"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -93,7 +100,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         tbPengamatan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPengamatan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 50; i++) {
+        for (i = 0; i < 64; i++) {
             TableColumn column = tbPengamatan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(65);
@@ -234,7 +241,49 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             } else if (i == 49) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } 
+            } else if (i == 50) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 51) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 52) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 53) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 54) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 55) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 56) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 57) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 58) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 59) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 60) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 61) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 62) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 63) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }         
         }
         tbPengamatan.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -1601,6 +1650,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
+            cekData();
             
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1928,31 +1978,16 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     public void tampil() {        
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT if(st.kasus_tindakan='Ralan','R. Jalan','R. Inap') jnsrawat, "
-                    + "if(jns_surat='PERSETUJUAN',concat(date_format(tgl_persetujuan,'%d-%m-%Y'),' / ',time_format(jam_persetujuan,'%H:%i')),'-') tgl_setuju, "
-                    + "if(jns_surat='PENOLAKAN',concat(date_format(tgl_penolakan,'%d-%m-%Y'),' / ',time_format(jam_penolakan,'%H:%i')),'-') tgl_tolak, "
-                    + "st.no_rawat, p.no_rkm_medis, p.nm_pasien, st.nm_penjab, st.umur_penjab, st.alamat_penjab, "
-                    + "st.hubungan_dg_pasien, st.jns_surat, st.tgl_surat, st.jam_surat, st.jk_penjab, st.kd_kel, st.kd_kec, "
-                    + "st.kd_kab, st.kasus_tindakan, st.nm_tindakan_kedokteran, st.alasan_penolakan, st.nip_dokter_pelaksana, "
-                    + "st.nip_pemberi_info, st.penerima_info, st.isi_info_diagnosis_kerja, st.isi_info_dasar_diagnosis, st.isi_info_tindakan, "
-                    + "st.isi_info_indikasi, st.isi_info_tatacara, st.isi_info_tujuan, st.isi_info_resiko, st.isi_info_komplikasi, "
-                    + "st.isi_info_prognosis, st.isi_info_alternatif, st.isi_info_lainlain, st.waktu_simpan, st.tgl_persetujuan, "
-                    + "st.jam_persetujuan, st.tgl_penolakan, st.jam_penolakan, kl.nm_kel, kc.nm_kec, kb.nm_kab, d.nm_dokter, pg.nama petugas, "
-                    + "if(st.jk_penjab='L','Laki-laki','Perempuan') jenkel from surat_tindakan_kedokteran st inner join reg_periksa rp on rp.no_rawat=st.no_rawat "
-                    + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join kelurahan kl on kl.kd_kel=st.kd_kel "
-                    + "inner join kecamatan kc on kc.kd_kec=st.kd_kec inner join kabupaten kb on kb.kd_kab=st.kd_kab "
-                    + "inner join dokter d on d.kd_dokter=st.nip_dokter_pelaksana inner join pegawai pg on pg.nik=st.nip_pemberi_info where "
-                    + "rp.tgl_registrasi between ? and ? and st.no_rawat like ? or "
-                    + "rp.tgl_registrasi between ? and ? and p.no_rkm_medis like ? or "
-                    + "rp.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.nm_penjab like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.alamat_penjab like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.hubungan_dg_pasien like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.jns_surat like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.kasus_tindakan like ? or "
-                    + "rp.tgl_registrasi between ? and ? and st.nm_tindakan_kedokteran like ? or "
-                    + "rp.tgl_registrasi between ? and ? and d.nm_dokter like ? or "
-                    + "rp.tgl_registrasi between ? and ? and pg.nama like ? order by st.no_rawat desc, rp.tgl_registrasi desc");
+            ps = koneksi.prepareStatement("select pm.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
+                    + "date_format(pm.tanggal,'%d-%m-%Y') tggl, time_format(pm.jam,'%H:%i Wita') jamm, pg.nama nmPetugas from pengamatan_menyusui_perinatologi pm "
+                    + "inner join reg_periksa rp on rp.no_rawat=pm.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=pm.nip_perawat where "
+                    + "pm.tanggal between ? and ? and pm.no_rawat like ? or "
+                    + "pm.tanggal between ? and ? and p.no_rkm_medis like ? or "
+                    + "pm.tanggal between ? and ? and p.nm_pasien like ? or "
+                    + "pm.tanggal between ? and ? and pm.lama_menyusui like ? or "
+                    + "pm.tanggal between ? and ? and pm.alasan like ? or "
+                    + "pm.tanggal between ? and ? and pg.nama like ? order by pm.waktu_simpan desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -1971,75 +2006,74 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
                 ps.setString(15, "%" + TCari.getText().trim() + "%");
                 ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(18, "%" + TCari.getText().trim() + "%");               
-                ps.setString(19, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(20, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(21, "%" + TCari.getText().trim() + "%");
-                ps.setString(22, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(23, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(24, "%" + TCari.getText().trim() + "%");
-                ps.setString(25, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(26, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(27, "%" + TCari.getText().trim() + "%");
-                ps.setString(28, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(29, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(30, "%" + TCari.getText().trim() + "%");
-                ps.setString(31, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
-                ps.setString(32, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(33, "%" + TCari.getText().trim() + "%");
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
-                        rs.getString("jnsrawat"),
-                        rs.getString("tgl_setuju"),
-                        rs.getString("tgl_tolak"),
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
-                        rs.getString("nm_penjab"),
-                        rs.getString("umur_penjab"),
-                        rs.getString("alamat_penjab"),
-                        rs.getString("hubungan_dg_pasien"),
-                        rs.getString("jns_surat"),
-                        rs.getString("tgl_surat"),
-                        rs.getString("jam_surat"),
-                        rs.getString("nm_penjab"),
-                        rs.getString("umur_penjab"),                        
-                        rs.getString("jk_penjab"),
-                        rs.getString("alamat_penjab"),
-                        rs.getString("kd_kel"),
-                        rs.getString("kd_kec"),
-                        rs.getString("kd_kab"),
-                        rs.getString("hubungan_dg_pasien"),
-                        rs.getString("jns_surat"),                        
-                        rs.getString("kasus_tindakan"),
-                        rs.getString("nm_tindakan_kedokteran"),
-                        rs.getString("alasan_penolakan"),
-                        rs.getString("nip_dokter_pelaksana"),
-                        rs.getString("nip_pemberi_info"),
-                        rs.getString("penerima_info"),
-                        rs.getString("isi_info_diagnosis_kerja"),
-                        rs.getString("isi_info_dasar_diagnosis"),
-                        rs.getString("isi_info_tindakan"),
-                        rs.getString("isi_info_indikasi"),
-                        rs.getString("isi_info_tatacara"),
-                        rs.getString("isi_info_tujuan"),
-                        rs.getString("isi_info_resiko"),
-                        rs.getString("isi_info_komplikasi"),
-                        rs.getString("isi_info_prognosis"),
-                        rs.getString("isi_info_alternatif"),
-                        rs.getString("isi_info_lainlain"),
-                        rs.getString("waktu_simpan"),
-                        rs.getString("tgl_persetujuan"),                        
-                        rs.getString("jam_persetujuan"),
-                        rs.getString("tgl_penolakan"),
-                        rs.getString("jam_penolakan"),
-                        rs.getString("nm_kel"),
-                        rs.getString("nm_kec"),                        
-                        rs.getString("nm_kab"),
-                        rs.getString("nm_dokter"),
-                        rs.getString("petugas"),
-                        rs.getString("jenkel")
+                        rs.getString("jenkel"),
+                        rs.getString("tglLahir"),
+                        rs.getString("ruang_rawat"),
+                        rs.getString("imd"),
+                        rs.getString("lama_imd"),
+                        rs.getString("alasan"),
+                        rs.getString("asi_eksklusif"),
+                        rs.getString("lama_menyusui"),
+                        rs.getString("tggl"),
+                        rs.getString("jamm"),
+                        rs.getString("nmPetugas"),
+                        rs.getString("ibu_sehat"),
+                        rs.getString("ibu_rileks"),
+                        rs.getString("ibu_terlihat"),
+                        rs.getString("ibu_sakit"),
+                        rs.getString("ibu_tegang"),
+                        rs.getString("ibu_tidak"),
+                        rs.getString("bayi_sehat"),
+                        rs.getString("bayi_tenang"),
+                        rs.getString("bayi_lapar"),
+                        rs.getString("bayi_mengantuk"),
+                        rs.getString("bayi_gelisah"),
+                        rs.getString("bayi_mencari"),
+                        rs.getString("payudara_sehat"),
+                        rs.getString("payudara_nyaman"),
+                        rs.getString("payudara_ditopang"),
+                        rs.getString("payudara_puting_keluar"),
+                        rs.getString("payudara_merah"),
+                        rs.getString("payudara_nyeri"),
+                        rs.getString("payudara_aerola"),
+                        rs.getString("payudara_puting_datar"),
+                        rs.getString("posisi_kepala"),
+                        rs.getString("posisi_dipegang"),
+                        rs.getString("posisi_seluruh"),
+                        rs.getString("posisi_hidung_berhadapan"),
+                        rs.getString("posisi_leher"),
+                        rs.getString("posisi_tak_dipegang"),
+                        rs.getString("posisi_hanya"),
+                        rs.getString("posisi_bibir_bawah"),
+                        rs.getString("pelekatan_tampak"),
+                        rs.getString("pelekatan_terbuka"),
+                        rs.getString("pelekatan_terputar_keluar"),
+                        rs.getString("pelekatan_menempel"),
+                        rs.getString("pelekatan_lebih"),
+                        rs.getString("pelekatan_tak_terbuka"),
+                        rs.getString("pelekatan_terputar_kedalam"),
+                        rs.getString("pelekatan_tidak_menempel"),
+                        rs.getString("mengisap_lambat"),
+                        rs.getString("mengisap_pipi_membulat"),
+                        rs.getString("mengisap_melepaskan_selesai"),
+                        rs.getString("mengisap_reflex"),
+                        rs.getString("mengisap_dangkal"),
+                        rs.getString("mengisap_pipi_tertarik"),
+                        rs.getString("mengisap_melepaskan_payudara"),
+                        rs.getString("mengisap_oksitosin"),
+                        rs.getString("lama_menyusui"),
+                        rs.getString("catatan"),
+                        rs.getString("tanggal"),
+                        rs.getString("jam"),
+                        rs.getString("nip_perawat"),
+                        rs.getString("waktu_simpan")
                     });
                 }
             } catch (Exception e) {
@@ -2059,7 +2093,68 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     }
     
     public void emptTeks(){
-
+        cmbImd.setSelectedIndex(0);
+        TlamaImd.setText("");
+        TlamaImd.setEnabled(false);
+        Talasan.setText("");
+        cmbAsi.setSelectedIndex(0);
+        
+        chkIbuSehat.setSelected(false);
+        chkIbuRileks.setSelected(false);
+        chkIbuTerlihat.setSelected(false);
+        chkIbuSakit.setSelected(false);
+        chkIbuTegang.setSelected(false);
+        chkIbuTidak.setSelected(false);
+        
+        chkBayiSehat.setSelected(false);
+        chkBayiTenang.setSelected(false);        
+        chkBayiLapar.setSelected(false);
+        chkBayiMengantuk.setSelected(false);
+        chkBayiGelisah.setSelected(false);
+        chkBayiMencari.setSelected(false);
+        
+        chkPayudaraSehat.setSelected(false);
+        chkPayudaraNyaman.setSelected(false);
+        chkPayudaraDitopang.setSelected(false);
+        chkPayudaraPutingKeluar.setSelected(false);
+        chkPayudaraMerah.setSelected(false);
+        chkPayudaraNyeri.setSelected(false);
+        chkPayudaraAerola.setSelected(false);
+        chkPayudaraPutingDatar.setSelected(false);
+        
+        chkPosisiKepala.setSelected(false);
+        chkPosisiDipegang.setSelected(false);
+        chkPosisiSeluruh.setSelected(false);
+        chkPosisiHidung.setSelected(false);
+        chkPosisiLeher.setSelected(false);
+        chkPosisiTakDipegang.setSelected(false);
+        chkPosisiHanya.setSelected(false);
+        chkPosisiBibir.setSelected(false);
+        
+        chkPelekatanTampak.setSelected(false);
+        chkPelekatanTerbuka.setSelected(false);
+        chkPelekatanTerputarKeluar.setSelected(false);
+        chkPelekatanMenempel.setSelected(false);
+        chkPelekatanLebih.setSelected(false);
+        chkPelekatanTakTerbuka.setSelected(false);
+        chkPelekatanTerputarKedalam.setSelected(false);
+        chkPelekatanTdkMenempel.setSelected(false);
+        
+        chkMengisapLambat.setSelected(false);
+        chkMengisapPipiMembulat.setSelected(false);
+        chkMengisapMelepaskanSelesai.setSelected(false);
+        chkMengisapReflex.setSelected(false);
+        chkMengisapDangkal.setSelected(false);
+        chkMengisapPipiTertarik.setSelected(false);
+        chkMengisapMelepaskanPayudara.setSelected(false);
+        chkMengisapOksitosin.setSelected(false);
+        
+        TlamaWkt.setText("");
+        Tcatatan.setText("");
+        Ttgl.setDate(new Date());
+        cmbJam.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+        cmbMnt.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        cmbDtk.setSelectedIndex(0);
     }
     
     public void setData(String norwt, String norm, String nmpasien, String jnsrwt) {
@@ -2079,14 +2174,674 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     }
     
     private void getData() {
+        variabelBersih();
         if (tbPengamatan.getSelectedRow() != -1) {
-            TNoRw.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 3).toString());
-            TNoRM.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 4).toString());
-            TPasien.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),5).toString());
+            TNoRw.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 0).toString());
+            TNoRM.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 1).toString());
+            TPasien.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),2).toString());
+            TrgRawat.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),5).toString());
+            cmbImd.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),6).toString());
+            TlamaImd.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),7).toString());
+            Talasan.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),8).toString());
+            cmbAsi.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),9).toString());
+            
+            ibuSehat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 14).toString();
+            ibuRileks = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 15).toString();
+            ibuTerlihat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 16).toString();
+            ibuSakit = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 17).toString();
+            ibuTegang = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 18).toString();
+            ibuTidak = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 19).toString();
+            
+            bayiSehat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 20).toString();
+            bayiTenang = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 21).toString();
+            bayiLapar = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 22).toString();
+            bayiMengantuk = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 23).toString();
+            bayiGelisah = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 24).toString();
+            bayiMencari = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 25).toString();
+            
+            payudaraSehat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 26).toString();
+            payudaraNyaman = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 27).toString();
+            payudaraDitopang = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 28).toString();
+            payudaraPutingKeluar = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 29).toString();
+            payudaraMerah = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 30).toString();
+            payudaraNyeri = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 31).toString();
+            payudaraAerola = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 32).toString();
+            payudaraPutingDatar = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 33).toString();
+            
+            posisiKepala = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 34).toString();
+            posisiDipegang = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 35).toString();
+            posisiSeluruh = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 36).toString();
+            posisiHidungBerhadapan = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 37).toString();
+            posisiLeher = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 38).toString();
+            posisiTakDipegang = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 39).toString();
+            posisiHanya = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 40).toString();
+            posisiBibirBawah = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 41).toString();
+            
+            pelekatanTampak = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 42).toString();
+            pelekatanTerbuka = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 43).toString();
+            pelekatanTerputarKeluar = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 44).toString();
+            pelekatanMenempel = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 45).toString();
+            pelekatanLebih = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 46).toString();
+            pelekatanTakTerbuka = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 47).toString();
+            pelekatanTerputarKedalam = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 48).toString();
+            pelekatanTidakMenempel = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 49).toString();
+            
+            mengisapLambat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 50).toString();
+            mengisapPipiMembulat = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 51).toString();
+            mengisapMelepaskanSelesai = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 52).toString();
+            mengisapReflex = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 53).toString();
+            mengisapDangkal = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 54).toString();
+            mengisapPipiTertarik = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 55).toString();
+            mengisapMelepaskanPayudara = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 56).toString();
+            mengisapOksitosin = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 57).toString();
+            
+            TlamaWkt.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),10).toString());            
+            Tcatatan.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),59).toString());
+            Valid.SetTgl(Ttgl, tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 60).toString());
+            cmbJam.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 61).toString().substring(0, 2));
+            cmbMnt.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 61).toString().substring(3, 5));
+            cmbDtk.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 61).toString().substring(6, 8));            
+            nip = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),62).toString();
+            TnmPerawat.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),13).toString());
+            dataCek();
         }
     }
     
     private void cekData() {
+        //umum ibu
+        if (chkIbuSehat.isSelected() == true) {
+            ibuSehat = "ya";
+        } else {
+            ibuSehat = "tidak";
+        }
         
+        if (chkIbuRileks.isSelected() == true) {
+            ibuRileks = "ya";
+        } else {
+            ibuRileks = "tidak";
+        }
+        
+        if (chkIbuTerlihat.isSelected() == true) {
+            ibuTerlihat = "ya";
+        } else {
+            ibuTerlihat = "tidak";
+        }
+        
+        if (chkIbuSakit.isSelected() == true) {
+            ibuSakit = "ya";
+        } else {
+            ibuSakit = "tidak";
+        }
+        
+        if (chkIbuTegang.isSelected() == true) {
+            ibuTegang = "ya";
+        } else {
+            ibuTegang = "tidak";
+        }
+        
+        if (chkIbuTidak.isSelected() == true) {
+            ibuTidak = "ya";
+        } else {
+            ibuTidak = "tidak";
+        }
+        
+        //umum bayi
+        if (chkBayiSehat.isSelected() == true) {
+            bayiSehat = "ya";
+        } else {
+            bayiSehat = "tidak";
+        }
+        
+        if (chkBayiTenang.isSelected() == true) {
+            bayiTenang = "ya";
+        } else {
+            bayiTenang = "tidak";
+        }
+        
+        if (chkBayiLapar.isSelected() == true) {
+            bayiLapar = "ya";
+        } else {
+            bayiLapar = "tidak";
+        }
+        
+        if (chkBayiMengantuk.isSelected() == true) {
+            bayiMengantuk = "ya";
+        } else {
+            bayiMengantuk = "tidak";
+        }
+        
+        if (chkBayiGelisah.isSelected() == true) {
+            bayiGelisah = "ya";
+        } else {
+            bayiGelisah = "tidak";
+        }
+        
+        if (chkBayiMencari.isSelected() == true) {
+            bayiMencari = "ya";
+        } else {
+            bayiMencari = "tidak";
+        }
+        
+        //payudara
+        if (chkPayudaraSehat.isSelected() == true) {
+            payudaraSehat = "ya";
+        } else {
+            payudaraSehat = "tidak";
+        }
+        
+        if (chkPayudaraNyaman.isSelected() == true) {
+            payudaraNyaman = "ya";
+        } else {
+            payudaraNyaman = "tidak";
+        }
+        
+        if (chkPayudaraDitopang.isSelected() == true) {
+            payudaraDitopang = "ya";
+        } else {
+            payudaraDitopang = "tidak";
+        }
+        
+        if (chkPayudaraPutingKeluar.isSelected() == true) {
+            payudaraPutingKeluar = "ya";
+        } else {
+            payudaraPutingKeluar = "tidak";
+        }
+        
+        if (chkPayudaraMerah.isSelected() == true) {
+            payudaraMerah = "ya";
+        } else {
+            payudaraMerah = "tidak";
+        }
+        
+        if (chkPayudaraNyeri.isSelected() == true) {
+            payudaraNyeri = "ya";
+        } else {
+            payudaraNyeri = "tidak";
+        }
+        
+        if (chkPayudaraAerola.isSelected() == true) {
+            payudaraAerola = "ya";
+        } else {
+            payudaraAerola = "tidak";
+        }
+        
+        if (chkPayudaraPutingDatar.isSelected() == true) {
+            payudaraPutingDatar = "ya";
+        } else {
+            payudaraPutingDatar = "tidak";
+        }
+        
+        //posisi bayi
+        if (chkPosisiKepala.isSelected() == true) {
+            posisiKepala = "ya";
+        } else {
+            posisiKepala = "tidak";
+        }
+        
+        if (chkPosisiDipegang.isSelected() == true) {
+            posisiDipegang = "ya";
+        } else {
+            posisiDipegang = "tidak";
+        }
+        
+        if (chkPosisiSeluruh.isSelected() == true) {
+            posisiSeluruh = "ya";
+        } else {
+            posisiSeluruh = "tidak";
+        }
+        
+        if (chkPosisiHidung.isSelected() == true) {
+            posisiHidungBerhadapan = "ya";
+        } else {
+            posisiHidungBerhadapan = "tidak";
+        }
+        
+        if (chkPosisiLeher.isSelected() == true) {
+            posisiLeher = "ya";
+        } else {
+            posisiLeher = "tidak";
+        }
+        
+        if (chkPosisiTakDipegang.isSelected() == true) {
+            posisiTakDipegang = "ya";
+        } else {
+            posisiTakDipegang = "tidak";
+        }
+        
+        if (chkPosisiHanya.isSelected() == true) {
+            posisiHanya = "ya";
+        } else {
+            posisiHanya = "tidak";
+        }
+        
+        if (chkPosisiBibir.isSelected() == true) {
+            posisiBibirBawah = "ya";
+        } else {
+            posisiBibirBawah = "tidak";
+        }
+        
+        //pelekatan bayi
+        if (chkPelekatanTampak.isSelected() == true) {
+            pelekatanTampak = "ya";
+        } else {
+            pelekatanTampak = "tidak";
+        }
+        
+        if (chkPelekatanTerbuka.isSelected() == true) {
+            pelekatanTerbuka = "ya";
+        } else {
+            pelekatanTerbuka = "tidak";
+        }
+        
+        if (chkPelekatanTerputarKeluar.isSelected() == true) {
+            pelekatanTerputarKeluar = "ya";
+        } else {
+            pelekatanTerputarKeluar = "tidak";
+        }
+        
+        if (chkPelekatanMenempel.isSelected() == true) {
+            pelekatanMenempel = "ya";
+        } else {
+            pelekatanMenempel = "tidak";
+        }
+        
+        if (chkPelekatanLebih.isSelected() == true) {
+            pelekatanLebih = "ya";
+        } else {
+            pelekatanLebih = "tidak";
+        }
+        
+        if (chkPelekatanTakTerbuka.isSelected() == true) {
+            pelekatanTakTerbuka = "ya";
+        } else {
+            pelekatanTakTerbuka = "tidak";
+        }
+        
+        if (chkPelekatanTerputarKedalam.isSelected() == true) {
+            pelekatanTerputarKedalam = "ya";
+        } else {
+            pelekatanTerputarKedalam = "tidak";
+        }
+        
+        if (chkPelekatanTdkMenempel.isSelected() == true) {
+            pelekatanTidakMenempel = "ya";
+        } else {
+            pelekatanTidakMenempel = "tidak";
+        }
+        
+        //mengisap
+        if (chkMengisapLambat.isSelected() == true) {
+            mengisapLambat = "ya";
+        } else {
+            mengisapLambat = "tidak";
+        }
+        
+        if (chkMengisapPipiMembulat.isSelected() == true) {
+            mengisapPipiMembulat = "ya";
+        } else {
+            mengisapPipiMembulat = "tidak";
+        }
+        
+        if (chkMengisapMelepaskanSelesai.isSelected() == true) {
+            mengisapMelepaskanSelesai = "ya";
+        } else {
+            mengisapMelepaskanSelesai = "tidak";
+        }
+        
+        if (chkMengisapReflex.isSelected() == true) {
+            mengisapReflex = "ya";
+        } else {
+            mengisapReflex = "tidak";
+        }
+        
+        if (chkMengisapDangkal.isSelected() == true) {
+            mengisapDangkal = "ya";
+        } else {
+            mengisapDangkal = "tidak";
+        }
+        
+        if (chkMengisapPipiTertarik.isSelected() == true) {
+            mengisapPipiTertarik = "ya";
+        } else {
+            mengisapPipiTertarik = "tidak";
+        }
+        
+        if (chkMengisapMelepaskanPayudara.isSelected() == true) {
+            mengisapMelepaskanPayudara = "ya";
+        } else {
+            mengisapMelepaskanPayudara = "tidak";
+        }
+        
+        if (chkMengisapOksitosin.isSelected() == true) {
+            mengisapOksitosin = "ya";
+        } else {
+            mengisapOksitosin = "tidak";
+        }
+    }
+    
+    private void dataCek() {        
+        if (cmbImd.getSelectedIndex() == 2) {
+            TlamaImd.setEnabled(true);
+        } else {
+            TlamaImd.setEnabled(false);
+        }
+        
+        //umum ibu
+        if (ibuSehat.equals("ya")) {
+            chkIbuSehat.setSelected(true);
+        } else {
+            chkIbuSehat.setSelected(false);
+        }
+        
+        if (ibuRileks.equals("ya")) {
+            chkIbuRileks.setSelected(true);
+        } else {
+            chkIbuRileks.setSelected(false);
+        }
+        
+        if (ibuTerlihat.equals("ya")) {
+            chkIbuTerlihat.setSelected(true);
+        } else {
+            chkIbuTerlihat.setSelected(false);
+        }
+        
+        if (ibuSakit.equals("ya")) {
+            chkIbuSakit.setSelected(true);
+        } else {
+            chkIbuSakit.setSelected(false);
+        }
+        
+        if (ibuTegang.equals("ya")) {
+            chkIbuTegang.setSelected(true);
+        } else {
+            chkIbuTegang.setSelected(false);
+        }
+        
+        if (ibuTidak.equals("ya")) {
+            chkIbuTidak.setSelected(true);
+        } else {
+            chkIbuTidak.setSelected(false);
+        }
+        
+        //umum bayi
+        if (bayiSehat.equals("ya")) {
+            chkBayiSehat.setSelected(true);
+        } else {
+            chkBayiSehat.setSelected(false);
+        }
+        
+        if (bayiTenang.equals("ya")) {
+            chkBayiTenang.setSelected(true);
+        } else {
+            chkBayiTenang.setSelected(false);
+        }
+        
+        if (bayiLapar.equals("ya")) {
+            chkBayiLapar.setSelected(true);
+        } else {
+            chkBayiLapar.setSelected(false);
+        }
+        
+        if (bayiMengantuk.equals("ya")) {
+            chkBayiMengantuk.setSelected(true);
+        } else {
+            chkBayiMengantuk.setSelected(false);
+        }
+        
+        if (bayiGelisah.equals("ya")) {
+            chkBayiGelisah.setSelected(true);
+        } else {
+            chkBayiGelisah.setSelected(false);
+        }
+        
+        if (bayiMencari.equals("ya")) {
+            chkBayiMencari.setSelected(true);
+        } else {
+            chkBayiMencari.setSelected(false);
+        }
+        
+        //payudara
+        if (payudaraSehat.equals("ya")) {
+            chkPayudaraSehat.setSelected(true);
+        } else {
+            chkPayudaraSehat.setSelected(false);
+        }
+        
+        if (payudaraNyaman.equals("ya")) {
+            chkPayudaraNyaman.setSelected(true);
+        } else {
+            chkPayudaraNyaman.setSelected(false);
+        }
+        
+        if (payudaraDitopang.equals("ya")) {
+            chkPayudaraDitopang.setSelected(true);
+        } else {
+            chkPayudaraDitopang.setSelected(false);
+        }
+        
+        if (payudaraPutingKeluar.equals("ya")) {
+            chkPayudaraPutingKeluar.setSelected(true);
+        } else {
+            chkPayudaraPutingKeluar.setSelected(false);
+        }
+        
+        if (payudaraMerah.equals("ya")) {
+            chkPayudaraMerah.setSelected(true);
+        } else {
+            chkPayudaraMerah.setSelected(false);
+        }
+        
+        if (payudaraNyeri.equals("ya")) {
+            chkPayudaraNyeri.setSelected(true);
+        } else {
+            chkPayudaraNyeri.setSelected(false);
+        }
+        
+        if (payudaraAerola.equals("ya")) {
+            chkPayudaraAerola.setSelected(true);
+        } else {
+            chkPayudaraAerola.setSelected(false);
+        }
+        
+        if (payudaraPutingDatar.equals("ya")) {
+            chkPayudaraPutingDatar.setSelected(true);
+        } else {
+            chkPayudaraPutingDatar.setSelected(false);
+        }
+        
+        //posisi bayi
+        if (posisiKepala.equals("ya")) {
+            chkPosisiKepala.setSelected(true);
+        } else {
+            chkPosisiKepala.setSelected(false);
+        }
+        
+        if (posisiDipegang.equals("ya")) {
+            chkPosisiDipegang.setSelected(true);
+        } else {
+            chkPosisiDipegang.setSelected(false);
+        }
+        
+        if (posisiSeluruh.equals("ya")) {
+            chkPosisiSeluruh.setSelected(true);
+        } else {
+            chkPosisiSeluruh.setSelected(false);
+        }
+        
+        if (posisiHidungBerhadapan.equals("ya")) {
+            chkPosisiHidung.setSelected(true);
+        } else {
+            chkPosisiHidung.setSelected(false);
+        }
+        
+        if (posisiLeher.equals("ya")) {
+            chkPosisiLeher.setSelected(true);
+        } else {
+            chkPosisiLeher.setSelected(false);
+        }
+        
+        if (posisiTakDipegang.equals("ya")) {
+            chkPosisiTakDipegang.setSelected(true);
+        } else {
+            chkPosisiTakDipegang.setSelected(false);
+        }
+        
+        if (posisiHanya.equals("ya")) {
+            chkPosisiHanya.setSelected(true);
+        } else {
+            chkPosisiHanya.setSelected(false);
+        }
+        
+        if (posisiBibirBawah.equals("ya")) {
+            chkPosisiBibir.setSelected(true);
+        } else {
+            chkPosisiBibir.setSelected(false);
+        }
+        
+        //pelekatan bayi
+        if (pelekatanTampak.equals("ya")) {
+            chkPelekatanTampak.setSelected(true);
+        } else {
+            chkPelekatanTampak.setSelected(false);
+        }
+        
+        if (pelekatanTerbuka.equals("ya")) {
+            chkPelekatanTerbuka.setSelected(true);
+        } else {
+            chkPelekatanTerbuka.setSelected(false);
+        }
+        
+        if (pelekatanTerputarKeluar.equals("ya")) {
+            chkPelekatanTerputarKeluar.setSelected(true);
+        } else {
+            chkPelekatanTerputarKeluar.setSelected(false);
+        }
+        
+        if (pelekatanMenempel.equals("ya")) {
+            chkPelekatanMenempel.setSelected(true);
+        } else {
+            chkPelekatanMenempel.setSelected(false);
+        }
+        
+        if (pelekatanLebih.equals("ya")) {
+            chkPelekatanLebih.setSelected(true);
+        } else {
+            chkPelekatanLebih.setSelected(false);
+        }
+        
+        if (pelekatanTakTerbuka.equals("ya")) {
+            chkPelekatanTakTerbuka.setSelected(true);
+        } else {
+            chkPelekatanTakTerbuka.setSelected(false);
+        }
+        
+        if (pelekatanTerputarKedalam.equals("ya")) {
+            chkPelekatanTerputarKedalam.setSelected(true);
+        } else {
+            chkPelekatanTerputarKedalam.setSelected(false);
+        }
+        
+        if (pelekatanTidakMenempel.equals("ya")) {
+            chkPelekatanTdkMenempel.setSelected(true);
+        } else {
+            chkPelekatanTdkMenempel.setSelected(false);
+        }
+        
+        //mengisap
+        if (mengisapLambat.equals("ya")) {
+            chkMengisapLambat.setSelected(true);
+        } else {
+            chkMengisapLambat.setSelected(false);
+        }
+        
+        if (mengisapPipiMembulat.equals("ya")) {
+            chkMengisapPipiMembulat.setSelected(true);
+        } else {
+            chkMengisapPipiMembulat.setSelected(false);
+        }
+        
+        if (mengisapMelepaskanSelesai.equals("ya")) {
+            chkMengisapMelepaskanSelesai.setSelected(true);
+        } else {
+            chkMengisapMelepaskanSelesai.setSelected(false);
+        }
+        
+        if (mengisapReflex.equals("ya")) {
+            chkMengisapReflex.setSelected(true);
+        } else {
+            chkMengisapReflex.setSelected(false);
+        }
+        
+        if (mengisapDangkal.equals("ya")) {
+            chkMengisapDangkal.setSelected(true);
+        } else {
+            chkMengisapDangkal.setSelected(false);
+        }
+        
+        if (mengisapPipiTertarik.equals("ya")) {
+            chkMengisapPipiTertarik.setSelected(true);
+        } else {
+            chkMengisapPipiTertarik.setSelected(false);
+        }
+        
+        if (mengisapMelepaskanPayudara.equals("ya")) {
+            chkMengisapMelepaskanPayudara.setSelected(true);
+        } else {
+            chkMengisapMelepaskanPayudara.setSelected(false);
+        }
+        
+        if (mengisapOksitosin.equals("ya")) {
+            chkMengisapOksitosin.setSelected(true);
+        } else {
+            chkMengisapOksitosin.setSelected(false);
+        }
+    }
+    
+    private void variabelBersih() {
+        nip = "";
+        ibuSehat = "";
+        ibuRileks = "";
+        ibuTerlihat = "";
+        ibuSakit = "";
+        ibuTegang = "";
+        ibuTidak = "";
+        bayiSehat = "";
+        bayiTenang = "";
+        bayiLapar = "";
+        bayiMengantuk = "";
+        bayiGelisah = "";
+        bayiMencari = "";
+        payudaraSehat = "";
+        payudaraNyaman = "";
+        payudaraDitopang = "";
+        payudaraPutingKeluar = "";
+        payudaraMerah = "";
+        payudaraNyeri = "";
+        payudaraAerola = "";
+        payudaraPutingDatar = "";
+        posisiKepala = "";
+        posisiDipegang = "";
+        posisiSeluruh = "";
+        posisiHidungBerhadapan = "";
+        posisiLeher = "";
+        posisiTakDipegang = "";
+        posisiHanya = "";
+        posisiBibirBawah = "";
+        pelekatanTampak = "";
+        pelekatanTerbuka = "";
+        pelekatanTerputarKeluar = "";
+        pelekatanMenempel = "";
+        pelekatanLebih = "";
+        pelekatanTakTerbuka = "";
+        pelekatanTerputarKedalam = "";
+        pelekatanTidakMenempel = "";
+        mengisapLambat = "";
+        mengisapPipiMembulat = "";
+        mengisapMelepaskanSelesai = "";
+        mengisapReflex = "";
+        mengisapDangkal = "";
+        mengisapPipiTertarik = "";
+        mengisapMelepaskanPayudara = "";
+        mengisapOksitosin = "";
     }
 }
