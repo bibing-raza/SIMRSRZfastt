@@ -1759,7 +1759,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 RMPengamatanMenyusui form = new RMPengamatanMenyusui(null, false);
                 form.emptTeks();
                 form.isCek();
-//            form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setData(TNoRW.getText(), nmUnit.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 form.setLocationRelativeTo(internalFrame1);
                 form.setVisible(true);

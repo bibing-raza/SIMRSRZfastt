@@ -88,7 +88,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             "posisi_hidung_berhadapan", "posisi_leher", "posisi_tak_dipegang", "posisi_hanya", "posisi_bibir_bawah", "pelekatan_tampak", "pelekatan_terbuka", 
             "pelekatan_terputar_keluar", "pelekatan_menempel", "pelekatan_lebih", "pelekatan_tak_terbuka", "pelekatan_terputar_kedalam", "pelekatan_tidak_menempel", 
             "mengisap_lambat", "mengisap_pipi_membulat", "mengisap_melepaskan_selesai", "mengisap_reflex", "mengisap_dangkal", "mengisap_pipi_tertarik", 
-            "mengisap_melepaskan_payudara", "mengisap_oksitosin", "lama_menyusui", "catatan", "tanggal", "jam", "nip_perawat", "waktu_simpan"
+            "mengisap_melepaskan_payudara", "mengisap_oksitosin", "lama_menyusui", "catatan", "tanggal", "jam", "nip_perawat", "waktu_simpan", "lama_menyusui"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -100,39 +100,36 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         tbPengamatan.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPengamatan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 64; i++) {
+        for (i = 0; i < 65; i++) {
             TableColumn column = tbPengamatan.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(65);
-            } else if (i == 1) {
-                column.setPreferredWidth(110);
-            } else if (i == 2) {
-                column.setPreferredWidth(110);
-            } else if (i == 3) {
                 column.setPreferredWidth(105);
+            } else if (i == 1) {
+                column.setPreferredWidth(65);
+            } else if (i == 2) {
+                column.setPreferredWidth(220);
+            } else if (i == 3) {
+                column.setPreferredWidth(80);
             } else if (i == 4) {
-                column.setPreferredWidth(60);
+                column.setPreferredWidth(75);
             } else if (i == 5) {
                 column.setPreferredWidth(220);
             } else if (i == 6) {
-                column.setPreferredWidth(220);
+                column.setPreferredWidth(60);
             } else if (i == 7) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(200);
             } else if (i == 8) {
-                column.setPreferredWidth(210);
+                column.setPreferredWidth(250);
             } else if (i == 9) {
-                column.setPreferredWidth(110);
+                column.setPreferredWidth(80);
             } else if (i == 10) {
                 column.setPreferredWidth(90);
             } else if (i == 11) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);                
+                column.setPreferredWidth(70);
             } else if (i == 12) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(65);
             } else if (i == 13) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(250);
             } else if (i == 14) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
@@ -283,7 +280,10 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             } else if (i == 63) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            }         
+            } else if (i == 64) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            }
         }
         tbPengamatan.setDefaultRenderer(Object.class, new WarnaTable());
         
@@ -444,6 +444,11 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         cmbJam = new widget.ComboBox();
         cmbMnt = new widget.ComboBox();
         cmbDtk = new widget.ComboBox();
+        jSeparator12 = new javax.swing.JSeparator();
+        jSeparator13 = new javax.swing.JSeparator();
+        jSeparator14 = new javax.swing.JSeparator();
+        jSeparator15 = new javax.swing.JSeparator();
+        jSeparator16 = new javax.swing.JSeparator();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbPengamatan = new widget.Table();
@@ -768,7 +773,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         jLabel12.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
         jLabel12.setName("jLabel12"); // NOI18N
         FormInput.add(jLabel12);
-        jLabel12.setBounds(40, 160, 300, 23);
+        jLabel12.setBounds(110, 160, 230, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1490,7 +1495,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         jLabel25.setBounds(0, 954, 130, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-02-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1537,6 +1542,41 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         FormInput.add(cmbDtk);
         cmbDtk.setBounds(378, 954, 45, 23);
 
+        jSeparator12.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator12.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator12.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator12.setName("jSeparator12"); // NOI18N
+        FormInput.add(jSeparator12);
+        jSeparator12.setBounds(30, 270, 700, 1);
+
+        jSeparator13.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator13.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator13.setName("jSeparator13"); // NOI18N
+        FormInput.add(jSeparator13);
+        jSeparator13.setBounds(30, 359, 700, 1);
+
+        jSeparator14.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator14.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator14.setName("jSeparator14"); // NOI18N
+        FormInput.add(jSeparator14);
+        jSeparator14.setBounds(30, 476, 700, 1);
+
+        jSeparator15.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator15.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator15.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator15.setName("jSeparator15"); // NOI18N
+        FormInput.add(jSeparator15);
+        jSeparator15.setBounds(30, 593, 700, 1);
+
+        jSeparator16.setBackground(new java.awt.Color(239, 244, 234));
+        jSeparator16.setForeground(new java.awt.Color(239, 244, 234));
+        jSeparator16.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        jSeparator16.setName("jSeparator16"); // NOI18N
+        FormInput.add(jSeparator16);
+        jSeparator16.setBounds(30, 710, 700, 1);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTindakan.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -1550,7 +1590,6 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbPengamatan.setAutoCreateRowSorter(true);
         tbPengamatan.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbPengamatan.setName("tbPengamatan"); // NOI18N
         tbPengamatan.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1578,7 +1617,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1593,7 +1632,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1647,11 +1686,27 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+        if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             cekData();
-            
+            if (Sequel.menyimpantf("pengamatan_menyusui_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                    + "?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 56, new String[]{
+                        TNoRw.getText(), TrgRawat.getText(), cmbImd.getSelectedItem().toString(), TlamaImd.getText(), Talasan.getText(), cmbAsi.getSelectedItem().toString(),
+                        ibuSehat, ibuRileks, ibuTerlihat, ibuSakit, ibuTegang, ibuTidak, bayiSehat, bayiTenang, bayiLapar, bayiMengantuk, bayiGelisah, bayiMencari, payudaraSehat,
+                        payudaraNyaman, payudaraDitopang, payudaraPutingKeluar, payudaraMerah, payudaraNyeri, payudaraAerola, payudaraPutingDatar, posisiKepala, posisiDipegang,
+                        posisiSeluruh, posisiHidungBerhadapan, posisiLeher, posisiTakDipegang, posisiHanya, posisiBibirBawah, pelekatanTampak, pelekatanTerbuka, pelekatanTerputarKeluar,
+                        pelekatanMenempel, pelekatanLebih, pelekatanTakTerbuka, pelekatanTerputarKedalam, pelekatanTidakMenempel, mengisapLambat, mengisapPipiMembulat,
+                        mengisapMelepaskanSelesai, mengisapReflex, mengisapDangkal, mengisapPipiTertarik, mengisapMelepaskanPayudara, mengisapOksitosin, TlamaWkt.getText(),
+                        Tcatatan.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                        nip, Sequel.cariIsi("select now()")
+                    }) == true) {
+
+                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Lembaran Bantuan Pengamatan Menyusui", "Simpan");                
+                TCari.setText(TNoRw.getText());
+                tampil();
+                emptTeks();
+            }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1669,11 +1724,39 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnBatalKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        
+        if (tbPengamatan.getSelectedRow() > -1) {
+            if (akses.getadmin() == true) {
+                hapus();
+            } else {
+                if (nip.equals(akses.getkode())) {
+                    hapus();
+                } else {
+                    JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh perawat yang bernama " + tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 13).toString() + " ..!!");
+                }
+            }
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+        }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        
+        if (TNoRw.getText().trim().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            if (tbPengamatan.getSelectedRow() > -1) {
+                if (akses.getadmin() == true) {
+                    ganti();
+                } else {
+                    if (nip.equals(akses.getkode())) {
+                        ganti();
+                    } else {
+                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat yang bernama " + tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 13).toString() + " ..!!");
+                    }
+                }
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            }
+        }
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnEditKeyPressed
@@ -1703,14 +1786,311 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
-            param.put("alamatrs", akses.getalamatrs());
-            param.put("kotars", akses.getkabupatenrs());
-            param.put("propinsirs", akses.getpropinsirs());
-            param.put("kontakrs", akses.getkontakrs());
-            param.put("emailrs", akses.getemailrs());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
-            param.put("tglsurat", "Martapura, " + Valid.SetTglINDONESIA(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 11).toString()) + " Pukul ");
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+            
+            if (TlamaImd.getText().equals("")) {
+                param.put("imd", cmbImd.getSelectedItem().toString() + ",  Lama IMD ......");
+            } else {
+                param.put("imd", cmbImd.getSelectedItem().toString() + ",  Lama IMD : " + TlamaImd.getText());
+            }
+            
+            if (Talasan.getText().equals("")) {
+                param.put("alasan", "-");
+            } else {
+                param.put("alasan", Talasan.getText());
+            }
 
+            param.put("asi", cmbAsi.getSelectedItem().toString());
+            
+            //umum ibu
+            if (chkIbuSehat.isSelected() == true) {
+                param.put("ibuSe", "V");
+            } else {
+                param.put("ibuSe", "");
+            }
+            
+            if (chkIbuRileks.isSelected() == true) {
+                param.put("ibuR", "V");
+            } else {
+                param.put("ibuR", "");
+            }
+            
+            if (chkIbuTerlihat.isSelected() == true) {
+                param.put("ibuTer", "V");
+            } else {
+                param.put("ibuTer", "");
+            }
+            
+            if (chkIbuSakit.isSelected() == true) {
+                param.put("ibuSa", "V");
+            } else {
+                param.put("ibuSa", "");
+            }
+            
+            if (chkIbuTegang.isSelected() == true) {
+                param.put("ibuTeg", "V");
+            } else {
+                param.put("ibuTeg", "");
+            }
+            
+            if (chkIbuTidak.isSelected() == true) {
+                param.put("ibuTi", "V");
+            } else {
+                param.put("ibuTi", "");
+            }
+            
+            //umum bayi
+            if (chkBayiSehat.isSelected() == true) {
+                param.put("bayiSe", "V");
+            } else {
+                param.put("bayiSe", "");
+            }
+            
+            if (chkBayiTenang.isSelected() == true) {
+                param.put("bayiTe", "V");
+            } else {
+                param.put("bayiTe", "");
+            }
+            
+            if (chkBayiLapar.isSelected() == true) {
+                param.put("bayiL", "V");
+            } else {
+                param.put("bayiL", "");
+            }
+            
+            if (chkBayiMengantuk.isSelected() == true) {
+                param.put("bayiMeng", "V");
+            } else {
+                param.put("bayiMeng", "");
+            }
+            
+            if (chkBayiGelisah.isSelected() == true) {
+                param.put("bayiG", "V");
+            } else {
+                param.put("bayiG", "");
+            }
+            
+            if (chkBayiMencari.isSelected() == true) {
+                param.put("bayiMen", "V");
+            } else {
+                param.put("bayiMen", "");
+            }
+            
+            //payudara
+            if (chkPayudaraSehat.isSelected() == true) {
+                param.put("payuSe", "V");
+            } else {
+                param.put("payuSe", "");
+            }
+            
+            if (chkPayudaraNyaman.isSelected() == true) {
+                param.put("payuNyam", "V");
+            } else {
+                param.put("payuNyam", "");
+            }
+            
+            if (chkPayudaraDitopang.isSelected() == true) {
+                param.put("payuDit", "V");
+            } else {
+                param.put("payuDit", "");
+            }
+            
+            if (chkPayudaraPutingKeluar.isSelected() == true) {
+                param.put("payuPutingKel", "V");
+            } else {
+                param.put("payuPutingKel", "");
+            }
+            
+            if (chkPayudaraMerah.isSelected() == true) {
+                param.put("payuMer", "V");
+            } else {
+                param.put("payuMer", "");
+            }
+            
+            if (chkPayudaraNyeri.isSelected() == true) {
+                param.put("payuNyer", "V");
+            } else {
+                param.put("payuNyer", "");
+            }
+            
+            if (chkPayudaraAerola.isSelected() == true) {
+                param.put("payuA", "V");
+            } else {
+                param.put("payuA", "");
+            }
+            
+            if (chkPayudaraPutingDatar.isSelected() == true) {
+                param.put("payuPutingDat", "V");
+            } else {
+                param.put("payuPutingDat", "");
+            }
+            
+            //posisi bayi
+            if (chkPosisiKepala.isSelected() == true) {
+                param.put("posisiKep", "V");
+            } else {
+                param.put("posisiKep", "");
+            }
+            
+            if (chkPosisiDipegang.isSelected() == true) {
+                param.put("posisiDip", "V");
+            } else {
+                param.put("posisiDip", "");
+            }
+            
+            if (chkPosisiSeluruh.isSelected() == true) {
+                param.put("posisiS", "V");
+            } else {
+                param.put("posisiS", "");
+            }
+            
+            if (chkPosisiHidung.isSelected() == true) {
+                param.put("posisiHid", "V");
+            } else {
+                param.put("posisiHid", "");
+            }
+            
+            if (chkPosisiLeher.isSelected() == true) {
+                param.put("posisiLeh", "V");
+            } else {
+                param.put("posisiLeh", "");
+            }
+            
+            if (chkPosisiTakDipegang.isSelected() == true) {
+                param.put("posisiTak", "V");
+            } else {
+                param.put("posisiTak", "");
+            }
+            
+            if (chkPosisiHanya.isSelected() == true) {
+                param.put("posisiHan", "V");
+            } else {
+                param.put("posisiHan", "");
+            }
+            
+            if (chkPosisiBibir.isSelected() == true) {
+                param.put("posisiB", "V");
+            } else {
+                param.put("posisiB", "");
+            }
+            
+            //pelekatan bayi
+            if (chkPelekatanTampak.isSelected() == true) {
+                param.put("pelekatanTam", "V");
+            } else {
+                param.put("pelekatanTam", "");
+            }
+            
+            if (chkPelekatanTerbuka.isSelected() == true) {
+                param.put("pelekatanTer", "V");
+            } else {
+                param.put("pelekatanTer", "");
+            }
+            
+            if (chkPelekatanTerputarKeluar.isSelected() == true) {
+                param.put("pelekatanTerKel", "V");
+            } else {
+                param.put("pelekatanTerKel", "");
+            }
+            
+            if (chkPelekatanMenempel.isSelected() == true) {
+                param.put("pelekatanMen", "V");
+            } else {
+                param.put("pelekatanMen", "");
+            }
+            
+            if (chkPelekatanLebih.isSelected() == true) {
+                param.put("pelekatanLeb", "V");
+            } else {
+                param.put("pelekatanLeb", "");
+            }
+            
+            if (chkPelekatanTakTerbuka.isSelected() == true) {
+                param.put("pelekatanTakTer", "V");
+            } else {
+                param.put("pelekatanTakTer", "");
+            }
+            
+            if (chkPelekatanTerputarKedalam.isSelected() == true) {
+                param.put("pelekatanTerKed", "V");
+            } else {
+                param.put("pelekatanTerKed", "");
+            }
+            
+            if (chkPelekatanTdkMenempel.isSelected() == true) {
+                param.put("pelekatanTdkMen", "V");
+            } else {
+                param.put("pelekatanTdkMen", "");
+            }
+            
+            //mengisap
+            if (chkMengisapLambat.isSelected() == true) {
+                param.put("mengisapLam", "V");
+            } else {
+                param.put("mengisapLam", "");
+            }
+            
+            if (chkMengisapPipiMembulat.isSelected() == true) {
+                param.put("mengisapPipMem", "V");
+            } else {
+                param.put("mengisapPipMem", "");
+            }
+            
+            if (chkMengisapMelepaskanSelesai.isSelected() == true) {
+                param.put("mengisapMelSel", "V");
+            } else {
+                param.put("mengisapMelSel", "");
+            }
+            
+            if (chkMengisapReflex.isSelected() == true) {
+                param.put("mengisapRef", "V");
+            } else {
+                param.put("mengisapRef", "");
+            }
+            
+            if (chkMengisapDangkal.isSelected() == true) {
+                param.put("mengisapDang", "V");
+            } else {
+                param.put("mengisapDang", "");
+            }
+            
+            if (chkMengisapPipiTertarik.isSelected() == true) {
+                param.put("mengisapPipTer", "V");
+            } else {
+                param.put("mengisapPipTer", "");
+            }
+            
+            if (chkMengisapMelepaskanPayudara.isSelected() == true) {
+                param.put("mengisapMelPay", "V");
+            } else {
+                param.put("mengisapMelPay", "");
+            }
+            
+            if (chkMengisapOksitosin.isSelected() == true) {
+                param.put("mengisapOks", "V");
+            } else {
+                param.put("mengisapOks", "");
+            }
+            
+            if (TlamaWkt.getText().equals("")) {
+                param.put("lamaMenyusui", "-");
+            } else {
+                param.put("lamaMenyusui", TlamaWkt.getText());
+            }
+            
+            if (Tcatatan.getText().equals("")) {
+                param.put("catatan", "-");
+            } else {
+                param.put("catatan", Tcatatan.getText());
+            }
+            
+            param.put("tanggal", Valid.SetTglINDONESIA(Valid.SetTgl(Ttgl.getSelectedItem() + "")));
+            param.put("jam", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
+            param.put("petugas", TnmPerawat.getText());
+            
 //            Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
 //                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
 //                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
@@ -1968,6 +2348,11 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private widget.Label jLabel96;
+    private javax.swing.JSeparator jSeparator12;
+    private javax.swing.JSeparator jSeparator13;
+    private javax.swing.JSeparator jSeparator14;
+    private javax.swing.JSeparator jSeparator15;
+    private javax.swing.JSeparator jSeparator16;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
@@ -2020,7 +2405,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
                         rs.getString("lama_imd"),
                         rs.getString("alasan"),
                         rs.getString("asi_eksklusif"),
-                        rs.getString("lama_menyusui"),
+                        rs.getString("lama_menyusui") + " menit",
                         rs.getString("tggl"),
                         rs.getString("jamm"),
                         rs.getString("nmPetugas"),
@@ -2073,7 +2458,8 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
                         rs.getString("tanggal"),
                         rs.getString("jam"),
                         rs.getString("nip_perawat"),
-                        rs.getString("waktu_simpan")
+                        rs.getString("waktu_simpan"),
+                        rs.getString("lama_menyusui")
                     });
                 }
             } catch (Exception e) {
@@ -2157,12 +2543,13 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         cmbDtk.setSelectedIndex(0);
     }
     
-    public void setData(String norwt, String norm, String nmpasien, String jnsrwt) {
+    public void setData(String norwt, String rgrawat) {
         TNoRw.setText(norwt);
-        TNoRM.setText(norm);
-        TPasien.setText(nmpasien);
+        TNoRM.setText(Sequel.cariIsi("select no_rkm_medis from reg_periksa where no_rawat='" + norwt + "'"));
+        TPasien.setText(Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
+        TrgRawat.setText(rgrawat);
         Valid.SetTgl(DTPCari1, Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'"));
-        DTPCari2.setDate(new Date());
+        DTPCari2.setDate(new Date());        
         TCari.setText(norwt);
     }
     
@@ -2235,7 +2622,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             mengisapMelepaskanPayudara = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 56).toString();
             mengisapOksitosin = tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 57).toString();
             
-            TlamaWkt.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),10).toString());            
+            TlamaWkt.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),64).toString());            
             Tcatatan.setText(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(),59).toString());
             Valid.SetTgl(Ttgl, tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 60).toString());
             cmbJam.setSelectedItem(tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 61).toString().substring(0, 2));
@@ -2843,5 +3230,49 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         mengisapPipiTertarik = "";
         mengisapMelepaskanPayudara = "";
         mengisapOksitosin = "";
+    }
+    
+    private void ganti() {
+        cekData();
+        if (Sequel.mengedittf("pengamatan_menyusui_perinatologi", "no_rawat=?", "imd=?, lama_imd=?, alasan=?, asi_eksklusif=?, ibu_sehat=?, ibu_rileks=?, "
+                + "ibu_terlihat=?, ibu_sakit=?, ibu_tegang=?, ibu_tidak=?, bayi_sehat=?, bayi_tenang=?, bayi_lapar=?, bayi_mengantuk=?, bayi_gelisah=?, bayi_mencari=?, "
+                + "payudara_sehat=?, payudara_nyaman=?, payudara_ditopang=?, payudara_puting_keluar=?, payudara_merah=?, payudara_nyeri=?, payudara_aerola=?, "
+                + "payudara_puting_datar=?, posisi_kepala=?, posisi_dipegang=?, posisi_seluruh=?, posisi_hidung_berhadapan=?, posisi_leher=?, posisi_tak_dipegang=?, "
+                + "posisi_hanya=?, posisi_bibir_bawah=?, pelekatan_tampak=?, pelekatan_terbuka=?, pelekatan_terputar_keluar=?, pelekatan_menempel=?, pelekatan_lebih=?, "
+                + "pelekatan_tak_terbuka=?, pelekatan_terputar_kedalam=?, pelekatan_tidak_menempel=?, mengisap_lambat=?, mengisap_pipi_membulat=?, mengisap_melepaskan_selesai=?, "
+                + "mengisap_reflex=?, mengisap_dangkal=?, mengisap_pipi_tertarik=?, mengisap_melepaskan_payudara=?, mengisap_oksitosin=?, lama_menyusui=?, catatan=?, tanggal=?, "
+                + "jam=?, nip_perawat=?", 54, new String[]{
+                    cmbImd.getSelectedItem().toString(), TlamaImd.getText(), Talasan.getText(), cmbAsi.getSelectedItem().toString(),
+                    ibuSehat, ibuRileks, ibuTerlihat, ibuSakit, ibuTegang, ibuTidak, bayiSehat, bayiTenang, bayiLapar, bayiMengantuk, bayiGelisah, bayiMencari, payudaraSehat,
+                    payudaraNyaman, payudaraDitopang, payudaraPutingKeluar, payudaraMerah, payudaraNyeri, payudaraAerola, payudaraPutingDatar, posisiKepala, posisiDipegang,
+                    posisiSeluruh, posisiHidungBerhadapan, posisiLeher, posisiTakDipegang, posisiHanya, posisiBibirBawah, pelekatanTampak, pelekatanTerbuka, pelekatanTerputarKeluar,
+                    pelekatanMenempel, pelekatanLebih, pelekatanTakTerbuka, pelekatanTerputarKedalam, pelekatanTidakMenempel, mengisapLambat, mengisapPipiMembulat,
+                    mengisapMelepaskanSelesai, mengisapReflex, mengisapDangkal, mengisapPipiTertarik, mengisapMelepaskanPayudara, mengisapOksitosin, TlamaWkt.getText(),
+                    Tcatatan.getText(), Valid.SetTgl(Ttgl.getSelectedItem() + ""), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), nip,
+                    tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 0).toString()
+                }) == true) {
+
+            Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Lembaran Bantuan Pengamatan Menyusui", "Ganti");
+            TCari.setText(TNoRw.getText());
+            tampil();
+            emptTeks();
+        }
+    }
+   
+    private void hapus() {
+        x = JOptionPane.showConfirmDialog(rootPane, "Yakin data mau dihapus..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            if (Sequel.queryu2tf("delete from pengamatan_menyusui_perinatologi where no_rawat=?", 1, new String[]{
+                tbPengamatan.getValueAt(tbPengamatan.getSelectedRow(), 0).toString()
+            }) == true) {
+                tampil();
+                emptTeks();
+            } else {
+                JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
+            }
+        } else {
+            tampil();
+            emptTeks();
+        }
     }
 }

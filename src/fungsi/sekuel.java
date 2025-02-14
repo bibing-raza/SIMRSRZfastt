@@ -1119,7 +1119,7 @@ public final class sekuel {
                 rm14 = 0, rm15 = 0, rm16 = 0, rm17 = 0, rm18 = 0, rm19 = 0, rm20 = 0, rm21 = 0, rm22 = 0, rm23 = 0, rm24 = 0, rm25 = 0, rm26 = 0,
                 rm27 = 0, rm28 = 0, rm29 = 0, rm30 = 0, rm31 = 0, rm32 = 0, rm33 = 0, rm34 = 0, rm35 = 0, rm36 = 0, rm37 = 0, rm38 = 0, rm39 = 0,
                 rm40 = 0, rm41 = 0, rm42 = 0, rm43 = 0, rm44 = 0, rm45 = 0, rm46 = 0, rm47 = 0, rm48 = 0, rm49 = 0, rm50 = 0, rm51 = 0, rm52 = 0,
-                rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0;
+                rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0, rm60 = 0;
 
         rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
@@ -1180,6 +1180,7 @@ public final class sekuel {
         rm57 = cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + norawat + "'");
         rm58 = cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + norawat + "'");
         rm59 = cariInteger("select count(-1) from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + norawat + "'");
+        rm60 = cariInteger("select count(-1) from pengamatan_menyusui_perinatologi where no_rawat='" + norawat + "'");
 
         System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel catatan_tindakan_keperawatan KOSONG','tabel catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel evaluasi_catatan_tindakan_keperawatan KOSONG','tabel evaluasi_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
@@ -1240,12 +1241,13 @@ public final class sekuel {
                 + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_perinatologi KOSONG','tabel asesmen_medik_perinatologi ADA DATANYA (" + norawat + ")') from asesmen_medik_perinatologi where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel asesmen_keperawatan_perinatologi KOSONG','tabel asesmen_keperawatan_perinatologi ADA DATANYA (" + norawat + ")') from asesmen_keperawatan_perinatologi where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel skor_apgar_downe_cap_jari_perinatologi KOSONG','tabel skor_apgar_downe_cap_jari_perinatologi ADA DATANYA (" + norawat + ")') from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pengamatan_menyusui_perinatologi KOSONG','tabel pengamatan_menyusui_perinatologi ADA DATANYA (" + norawat + ")') from pengamatan_menyusui_perinatologi where no_rawat='" + norawat + "'") + "\n"
         );
         
         angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19
                 + rm20 + rm21 + rm22 + rm23 + rm24 + rm25 + rm26 + rm27 + rm28 + rm29 + rm30 + rm31 + rm32 + rm33 + rm34 + rm35 + rm36 + rm37
                 + rm38 + rm39 + rm40 + rm41 + rm42 + rm43 + rm44 + rm45 + rm46 + rm47 + rm48 + rm49 + rm50 + rm51 + rm52 + rm53 + rm54 + rm55 + rm56
-                + rm57 + rm58 + rm59;
+                + rm57 + rm58 + rm59 + rm60;
 
         return angka;
     }

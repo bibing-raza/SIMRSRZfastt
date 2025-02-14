@@ -5623,7 +5623,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -5642,7 +5642,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
