@@ -8141,7 +8141,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             nip = akses.getkode();            
             Sequel.cariIsi("select nama from pegawai where nik=?", TnmPerawat, nip);
             if (TnmPerawat.getText().equals("")) {
-                nip = "";
+                nip = "-";
+                TnmPerawat.setText("-");
             }
         }  
     }

@@ -926,7 +926,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         chkBayiMengantuk.setBackground(new java.awt.Color(255, 255, 250));
         chkBayiMengantuk.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkBayiMengantuk.setForeground(new java.awt.Color(0, 0, 0));
-        chkBayiMengantuk.setText("Bayi Tampak Mengantuk");
+        chkBayiMengantuk.setText("Bayi Tampak Mengantuk Atau Sakit");
         chkBayiMengantuk.setBorderPainted(true);
         chkBayiMengantuk.setBorderPaintedFlat(true);
         chkBayiMengantuk.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1150,7 +1150,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         chkPosisiLeher.setBackground(new java.awt.Color(255, 255, 250));
         chkPosisiLeher.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
         chkPosisiLeher.setForeground(new java.awt.Color(0, 0, 0));
-        chkPosisiLeher.setText("Leher Dan Kepala Bayi Berputar");
+        chkPosisiLeher.setText("Leher Dan Kepala Bayi Terputar");
         chkPosisiLeher.setBorderPainted(true);
         chkPosisiLeher.setBorderPaintedFlat(true);
         chkPosisiLeher.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1495,7 +1495,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         jLabel25.setBounds(0, 954, 130, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1617,7 +1617,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -1632,7 +1632,7 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2082,22 +2082,17 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
             }
             
             if (Tcatatan.getText().equals("")) {
-                param.put("catatan", "-");
+                param.put("catatan", "-\n");
             } else {
-                param.put("catatan", Tcatatan.getText());
+                param.put("catatan", Tcatatan.getText() + "\n");
             }
             
             param.put("tanggal", Valid.SetTglINDONESIA(Valid.SetTgl(Ttgl.getSelectedItem() + "")));
             param.put("jam", cmbJam.getSelectedItem().toString() + ":" + cmbMnt.getSelectedItem().toString() + " Wita");
             param.put("petugas", TnmPerawat.getText());
             
-//            Valid.MyReport("rptBeriInfoTindakan.jasper", "report", "::[ Lembar Pemberian Informasi Tindakan ]::",
-//                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllhr, d.nm_dokter, pg.nama pemberiInfo, "
-//                    + "s.penerima_info, s.isi_info_diagnosis_kerja, s.isi_info_dasar_diagnosis, s.isi_info_tindakan, s.isi_info_indikasi, s.isi_info_tatacara, "
-//                    + "s.isi_info_tujuan, s.isi_info_resiko, s.isi_info_komplikasi, s.isi_info_prognosis, s.isi_info_alternatif, s.isi_info_lainlain, "
-//                    + "time_format(s.jam_surat,'%H:%i WITA') jamBeriInfo FROM surat_tindakan_kedokteran s INNER JOIN reg_periksa rp ON rp.no_rawat = s.no_rawat "
-//                    + "INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis INNER JOIN dokter d ON d.kd_dokter = s.nip_dokter_pelaksana "
-//                    + "INNER JOIN pegawai pg ON pg.nik = s.nip_pemberi_info where s.waktu_simpan='" + wktSimpan + "'", param);
+            Valid.MyReport("rptBantuanPengamatanMenyusui.jasper", "report", "::[ Lembaran Bantuan Pengamatan Menyusui ]::",
+                    "SELECT now() tanggal", param);
 
             this.setCursor(Cursor.getDefaultCursor());
             TCari.setText(TNoRw.getText());
@@ -2558,6 +2553,15 @@ public final class RMPengamatanMenyusui extends javax.swing.JDialog {
         BtnHapus.setEnabled(akses.getcppt());
         BtnPrint.setEnabled(akses.getcppt());
         BtnEdit.setEnabled(akses.getcppt());
+        
+        if (akses.getjml2() >= 1) {
+            nip = akses.getkode();            
+            Sequel.cariIsi("select nama from pegawai where nik=?", TnmPerawat, nip);
+            if (TnmPerawat.getText().equals("")) {
+                nip = "-";
+                TnmPerawat.setText("-");
+            }
+        } 
     }
     
     private void getData() {

@@ -5426,6 +5426,13 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
                 Sequel.mengedit("hiv_terapi_antiretroviral", "no_rkm_medis=?", "no_rkm_medis=?", 2, new String[]{
                     NoRmTujuan.getText(), TNo.getText()
                 });
+                Sequel.mengedit("booking_registrasi", "no_rkm_medis=?", "no_rkm_medis=?", 2, new String[]{
+                    NoRmTujuan.getText(), TNo.getText()
+                });
+                Sequel.mengedit("kelengkapan_booking_sep_bpjs", "nomr=?", "nomr=?", 2, new String[]{
+                    NoRmTujuan.getText(), TNo.getText()
+                });
+                
                 Sequel.meghapus("pasien", "no_rkm_medis", TNo.getText());
                 tampil();
                 emptTeks();
