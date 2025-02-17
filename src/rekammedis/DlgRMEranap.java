@@ -1784,20 +1784,17 @@ public class DlgRMEranap extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
         } else {
-            if (akses.getadmin() == true) {
-                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                akses.setform("DlgRMEranap");
-                RMRekonsiliasiObat form = new RMRekonsiliasiObat(null, false);
-                form.emptTeks();
-                form.isCek();
-                form.setData(TNoRW.getText(), nmUnit.getText());
-                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
-                form.setLocationRelativeTo(internalFrame1);
-                form.setVisible(true);
-                this.setCursor(Cursor.getDefaultCursor());
-            } else {
-                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
-            }
+            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+            akses.setform("DlgRMEranap");
+            RMRekonsiliasiObat form = new RMRekonsiliasiObat(null, false);
+            form.emptTeks();
+            form.emptTeksRiwayatIGD();
+            form.isCek();
+            form.setData(TNoRW.getText(), nmUnit.getText(), TNoRM.getText(), TNmPasien.getText());
+            form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+            form.setLocationRelativeTo(internalFrame1);
+            form.setVisible(true);
+            this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_BtnRekonsiliasiObatActionPerformed
 
@@ -1934,7 +1931,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnAsesmenKeperawatanPerioperatif.setEnabled(akses.getkegiatan_operasi());
         BtnPerencanaanPulang.setEnabled(akses.getcppt());
         BtnCatatanMaterial.setEnabled(akses.getkegiatan_operasi());
-        BtnRekonsiliasiObat.setEnabled(akses.getpemberian_obat());
+        BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());
     }
     
     public void setData(String norw, String norm, String nmpasien,

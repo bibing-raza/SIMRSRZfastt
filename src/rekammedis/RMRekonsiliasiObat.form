@@ -85,8 +85,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Rencana Penyesuaian Pengobatan">
-                    <Property name="tabTitle" type="java.lang.String" value="Rencana Penyesuaian Pengobatan"/>
+                  <JTabbedPaneConstraints tabName=".: Rencana Penyesuaian Pengobatan">
+                    <Property name="tabTitle" type="java.lang.String" value=".: Rencana Penyesuaian Pengobatan"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -646,7 +646,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="200" y="66" width="100" height="23"/>
+                          <AbsoluteConstraints x="260" y="66" width="120" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -667,7 +667,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="307" y="66" width="-1" height="-1"/>
+                          <AbsoluteConstraints x="385" y="66" width="-1" height="-1"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -935,8 +935,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Riwayat Penggunaan Obat Yang Diresepkan">
-                    <Property name="tabTitle" type="java.lang.String" value="Riwayat Penggunaan Obat Yang Diresepkan"/>
+                  <JTabbedPaneConstraints tabName=".: Riwayat Penggunaan Obat Yang Diresepkan">
+                    <Property name="tabTitle" type="java.lang.String" value=".: Riwayat Penggunaan Obat Yang Diresepkan"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -977,7 +977,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TNoRw3">
+                    <Component class="widget.TextBox" name="TNoRw2">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -986,7 +986,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TNoRw3" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TNoRw2" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -994,13 +994,13 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TNoRM3">
+                    <Component class="widget.TextBox" name="TNoRM2">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TNoRM3" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TNoRM2" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1008,7 +1008,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TPasien3">
+                    <Component class="widget.TextBox" name="TPasien2">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1017,7 +1017,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TPasien3" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TPasien2" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1049,7 +1049,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="205" y="38" width="115" height="23"/>
+                          <AbsoluteConstraints x="265" y="38" width="115" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1063,7 +1063,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="325" y="38" width="407" height="23"/>
+                          <AbsoluteConstraints x="385" y="38" width="347" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1080,7 +1080,7 @@
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="116" y="38" width="90" height="23"/>
+                          <AbsoluteConstraints x="116" y="38" width="150" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1289,8 +1289,8 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout" value="org.netbeans.modules.form.compat2.layouts.support.JTabbedPaneSupportLayout$JTabbedPaneConstraintsDescription">
-                  <JTabbedPaneConstraints tabName="Resep Dari IGD Yang Dikeluarkan Farmasi">
-                    <Property name="tabTitle" type="java.lang.String" value="Resep Dari IGD Yang Dikeluarkan Farmasi"/>
+                  <JTabbedPaneConstraints tabName=".: Resep Dari IGD Yang Dikeluarkan Farmasi">
+                    <Property name="tabTitle" type="java.lang.String" value=".: Resep Dari IGD Yang Dikeluarkan Farmasi"/>
                   </JTabbedPaneConstraints>
                 </Constraint>
               </Constraints>
@@ -1331,7 +1331,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TNoRw2">
+                    <Component class="widget.TextBox" name="TNoRw3">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1340,7 +1340,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TNoRw2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TNoRw3" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1348,13 +1348,13 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TNoRM2">
+                    <Component class="widget.TextBox" name="TNoRM3">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TNoRM2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TNoRM3" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1362,7 +1362,7 @@
                         </Constraint>
                       </Constraints>
                     </Component>
-                    <Component class="widget.TextBox" name="TPasien2">
+                    <Component class="widget.TextBox" name="TPasien3">
                       <Properties>
                         <Property name="editable" type="boolean" value="false"/>
                         <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
@@ -1371,7 +1371,7 @@
                         <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                           <Color blue="0" green="0" red="0" type="rgb"/>
                         </Property>
-                        <Property name="name" type="java.lang.String" value="TPasien2" noResource="true"/>
+                        <Property name="name" type="java.lang.String" value="TPasien3" noResource="true"/>
                       </Properties>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -1498,7 +1498,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="136" y="94" width="496" height="23"/>
+                          <AbsoluteConstraints x="136" y="94" width="590" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1550,7 +1550,7 @@
                       </Events>
                       <Constraints>
                         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                          <AbsoluteConstraints x="202" y="122" width="525" height="23"/>
+                          <AbsoluteConstraints x="202" y="122" width="524" height="23"/>
                         </Constraint>
                       </Constraints>
                     </Component>
@@ -1578,7 +1578,7 @@
                       <Properties>
                         <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
                           <Border info="org.netbeans.modules.form.compat2.border.TitledBorderInfo">
-                            <TitledBorder title=".: Rekonsiliasi Obat IGD ">
+                            <TitledBorder title=".: Penggunaan Obat IGD ">
                               <Font PropertyName="font" name="Tahoma" size="12" style="1"/>
                             </TitledBorder>
                           </Border>
