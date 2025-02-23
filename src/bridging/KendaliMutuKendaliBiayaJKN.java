@@ -519,7 +519,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         jLabel13.setBounds(0, 40, 90, 23);
 
         jnsRawat.setForeground(new java.awt.Color(0, 0, 0));
-        jnsRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "INAP", "JALAN" }));
+        jnsRawat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "INAP", "JALAN" }));
         jnsRawat.setName("jnsRawat"); // NOI18N
         jnsRawat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -883,12 +883,18 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         if (jnsRawat.getSelectedIndex() == 1) {
             cmbRuangan.setEnabled(true);
             btnPoli.setEnabled(false);
+            TabRawat.setSelectedIndex(1);
+            tampilRanap();
         } else if (jnsRawat.getSelectedIndex() == 2) {
             cmbRuangan.setEnabled(false);
             btnPoli.setEnabled(true);
+            TabRawat.setSelectedIndex(0);
+            tampilRalan();
         } else {
             cmbRuangan.setEnabled(false);
             btnPoli.setEnabled(false);
+            TabRawat.setSelectedIndex(0);
+            tampilRalan();
         }
     }//GEN-LAST:event_jnsRawatActionPerformed
 
@@ -923,7 +929,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
                     + "inner join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' "
                     + "inner join penyakit pk on pk.kd_penyakit = dp.kd_penyakit "
-                    + "left join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
+                    + "inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
                     + "left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
                     + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
                     + "left join dokter d on d.kd_dokter=dr.kd_dokter "
@@ -953,7 +959,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "left join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
+                    + "inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
                     + "left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
                     + "WHERE rp.status_lanjut='ranap' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "group by b.nm_gedung ORDER BY b.nm_gedung", dialog_simpan);
@@ -1054,7 +1060,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
                     + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
                     + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "left join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
+                    + "inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
                     + "left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
                     + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
                     + "left join dokter d on d.kd_dokter=dr.kd_dokter WHERE "
