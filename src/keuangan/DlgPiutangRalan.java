@@ -50,6 +50,7 @@ public final class DlgPiutangRalan extends javax.swing.JDialog {
     private double all = 0, Laborat = 0, Radiologi = 0, Obat = 0, Ralan_Dokter = 0, Ralan_Dokter_paramedis = 0, Ralan_Paramedis = 0, Tambahan = 0, Potongan = 0, Registrasi = 0,
             ttlLaborat = 0, ttlRadiologi = 0, ttlObat = 0, ttlRalan_Dokter = 0, ttlRalan_Paramedis = 0, ttlTambahan = 0, ttlPotongan = 0, ttlRegistrasi = 0,
             Operasi = 0, ttlOperasi = 0;
+    private String norwt = "";
 
     /** Creates new form DlgLhtBiaya
      * @param parent
@@ -523,10 +524,11 @@ private void BtnCari1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
         if (TKd.getText().trim().equals("")) {
             JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan menklik data pada table...!!!");
         } else {
+            norwt = Sequel.cariIsi("select no_rawat from nota_jalan where no_nota=?", TKd.getText());
             DlgBilingRalan billing = new DlgBilingRalan(null, false);
-            billing.TNoRw.setText(Sequel.cariIsi("select no_rawat from nota_jalan where no_nota=?", TKd.getText()));
+            billing.TNoRw.setText(norwt);
             billing.isRawat();
-            billing.isCek();
+            billing.isCek(Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + norwt + "'"));
             if (Sequel.cariInteger("select count(no_rawat) from piutang_pasien where no_rawat=?", billing.TNoRw.getText()) > 0) {
                 billing.setPiutang();
             }

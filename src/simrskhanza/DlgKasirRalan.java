@@ -5270,7 +5270,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                             DlgBilingRalan billing = new DlgBilingRalan(null, false);
                             billing.TNoRw.setText(TNoRw.getText());
-                            billing.isCek();
+                            billing.isCek(kdpoli.getText());
                             billing.isRawat();
                             if (sudah > 0) {
                                 billing.setPiutang();
@@ -5287,7 +5287,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
 
                         DlgBilingRalan billing = new DlgBilingRalan(null, false);
                         billing.TNoRw.setText(TNoRw.getText());
-                        billing.isCek();
+                        billing.isCek(kdpoli.getText());
                         billing.isRawat();
                         billing.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                         billing.setLocationRelativeTo(internalFrame1);
@@ -5498,7 +5498,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             dlgrwinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwinap.setLocationRelativeTo(internalFrame1);
             dlgrwinap.isCek();
-            dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ralan");
+            dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ralan", kdpoli.getText());
             dlgrwinap.tampilPO();
             dlgrwinap.setVisible(true);
         }
@@ -5521,7 +5521,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.emptTeks();
                 resep.isCek();
-                resep.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), Jam.getText().substring(0, 2), Jam.getText().substring(3, 5), Jam.getText().substring(6, 8));
+                resep.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), Jam.getText().substring(0, 2), 
+                        Jam.getText().substring(3, 5), Jam.getText().substring(6, 8), kdpoli.getText());
                 resep.setDokterRalan();
                 resep.tampil();
                 resep.setVisible(true);
@@ -5927,7 +5928,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.isCek();
                 resep.setNoRm(TNoRw.getText(), DTPCari1.getDate(), Jam.getText().substring(0, 2), Jam.getText().substring(3, 5), Jam.getText().substring(6, 8),
-                        tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 1).toString(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 2).toString());
+                        tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 1).toString(), tbKasirRalan.getValueAt(tbKasirRalan.getSelectedRow(), 2).toString(), kdpoli.getText());
                 resep.tampilobat();
                 resep.setVisible(true);
             }
@@ -9178,7 +9179,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 dlgrwinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgrwinap.setLocationRelativeTo(internalFrame1);
                 dlgrwinap.isCek();
-                dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ralan");
+                dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ralan", kdpoli.getText());
                 dlgrwinap.tampilPO();
                 dlgrwinap.setVisible(true);
             }
@@ -9360,7 +9361,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                                 DlgBilingRalan billing = new DlgBilingRalan(null, false);
                                 billing.TNoRw.setText(TNoRw.getText());
-                                billing.isCek();
+                                billing.isCek(kdpoli.getText());
                                 billing.isRawat();
                                 if (sudah > 0) {
                                     billing.setPiutang();
@@ -9377,7 +9378,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
 
                             DlgBilingRalan billing = new DlgBilingRalan(null, false);
                             billing.TNoRw.setText(TNoRw.getText());
-                            billing.isCek();
+                            billing.isCek(kdpoli.getText());
                             billing.isRawat();
                             billing.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                             billing.setLocationRelativeTo(internalFrame1);

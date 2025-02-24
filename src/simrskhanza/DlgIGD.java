@@ -4738,7 +4738,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             dlgbil.isRawat();
                             dlgbil.isKembali();
                             dlgbil.isRawat();
-                            dlgbil.isCek();
+                            dlgbil.isCek(Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                             dlgbil.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgbil.setLocationRelativeTo(internalFrame1);
                             dlgbil.setVisible(true);
@@ -4749,7 +4749,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         dlgbil.isRawat();
                         dlgbil.isKembali();
                         dlgbil.isRawat();
-                        dlgbil.isCek();
+                        dlgbil.isCek(Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
                         dlgbil.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                         dlgbil.setLocationRelativeTo(internalFrame1);
                         dlgbil.setVisible(true);

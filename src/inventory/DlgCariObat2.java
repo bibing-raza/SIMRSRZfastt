@@ -63,7 +63,7 @@ public final class DlgCariObat2 extends javax.swing.JDialog {
     private String[] kodebarang, namabarang, kodesatuan, letakbarang, namajenis, industri, aturan, kategori, golongan;
     private DlgBarang barang = new DlgBarang(null, false);
     private String Suspen_Piutang_Obat_Ranap = "", Obat_Ranap = "", HPP_Obat_Rawat_Inap = "", Persediaan_Obat_Rawat_Inap = "",
-            bangsal = "", status = "", stat = "", idObat = "", jenisResep = "", resepPulang = "";
+            bangsal = "", status = "", stat = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "";
     private WarnaTable2 warna = new WarnaTable2();
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
     public DlgAturanPakai aturanpakai = new DlgAturanPakai(null, false);
@@ -1451,7 +1451,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
             resep.setLocationRelativeTo(internalFrame1);
             resep.emptTeks();
             resep.isCek();
-            resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString());
+            resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(),
+                    cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
             resep.tampil();
             resep.setVisible(true);
         }
@@ -2277,8 +2278,9 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
         }
     }
 
-    public void setNoRm(String norwt, Date tanggal, String jam, String menit, String detik, boolean status) {
+    public void setNoRm(String norwt, Date tanggal, String jam, String menit, String detik, boolean status, String kodeUnit) {
         TNoRw.setText(norwt);
+        kdUnit = kodeUnit;
         cmbStatus.setSelectedIndex(0);
         cmbKertas.setSelectedIndex(0);
         cmbStatus1.setSelectedIndex(0);
@@ -2676,7 +2678,8 @@ private void ChkJlnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.emptTeks();
                 resep.isCek();
-                resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString());
+                resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), 
+                        cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
                 resep.tampil();
                 resep.setAlwaysOnTop(true);
                 resep.dokter.setAlwaysOnTop(true);

@@ -6879,7 +6879,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                             DlgBilingRalan dlgbil = new DlgBilingRalan(null, false);
                             dlgbil.TNoRw.setText(TNoRw.getText());
-                            dlgbil.isCek();
+                            dlgbil.isCek(kdpoli.getText());
                             dlgbil.isRawat();
                             dlgbil.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgbil.setLocationRelativeTo(internalFrame1);
@@ -6890,7 +6890,7 @@ private void MnBillingActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         DlgBilingRalan dlgbil = new DlgBilingRalan(null, false);
                         dlgbil.TNoRw.setText(TNoRw.getText());
-                        dlgbil.isCek();
+                        dlgbil.isCek(kdpoli.getText());
                         dlgbil.isRawat();
                         dlgbil.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                         dlgbil.setLocationRelativeTo(internalFrame1);

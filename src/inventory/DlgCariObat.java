@@ -66,7 +66,7 @@ public final class DlgCariObat extends javax.swing.JDialog {
     private double[] jumlah, harga, eb, ts, stok, beli;
     private String[] kodebarang, namabarang, kodesatuan, aturan1, aturan2, aturan3, waktu1, waktu2, keterangan, wktSmpn;
     private String kodedokter = "", namadokter = "", noresep = "", bangsal = "", bangsaldefault = Sequel.cariIsi("select kd_bangsal from set_lokasi limit 1"), tampilkan_ppnobat_ralan = "", status = "";
-    private String stat = "", obat = "", nmObat = "", idObat = "";
+    private String stat = "", obat = "", nmObat = "", idObat = "", kdUnit = "";
     private DlgCariBangsal caribangsal = new DlgCariBangsal(null, false);
     public DlgBarang barang = new DlgBarang(null, false);
     public DlgAturanPakai aturanpakai = new DlgAturanPakai(null, false);
@@ -1528,7 +1528,8 @@ private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIR
                     resep.isCek();
                     resep.setAlwaysOnTop(true);
                     resep.dokter.setAlwaysOnTop(true);
-                    resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString());
+                    resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(),
+                            cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
                     resep.tampil();
                     resep.setDokterRalan();
                     resep.setVisible(true);
@@ -1604,7 +1605,8 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
             resep.setLocationRelativeTo(internalFrame1);
             resep.emptTeks();
             resep.isCek();
-            resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString());
+            resep.setNoRm(TNoRw.getText(), DTPTgl.getDate(), DTPTgl.getDate(),
+                    cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), kdUnit);
             resep.tampil();
             resep.setDokterRalan();
             resep.setVisible(true);
@@ -2361,12 +2363,13 @@ private void JeniskelasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:even
         TCari.requestFocus();
     }
 
-    public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam) {
+    public void setNoRm(String norwt, String norm, String nama, String tanggal, String jam, String kodeUnit) {
         TNoRw.setText(norwt);
 //        LblNoRawat.setText(norwt);
 //        LblNoRM.setText(norm);
 //        LblNamaPasien.setText(nama);
         noresep = "";
+        kdUnit = kodeUnit;
         Tanggal.setText(tanggal);
         Jam.setText(jam);
         KdPj.setText(Sequel.cariIsi("select kd_pj from reg_periksa where no_rawat=?", norwt));

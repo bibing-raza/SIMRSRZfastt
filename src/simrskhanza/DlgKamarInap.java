@@ -7024,7 +7024,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgobt.setLocationRelativeTo(internalFrame1);
-                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), 
+                                    cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false, kdkamar.getText());
                             dlgobt.isCek();
                             dlgobt.tampil();
                             dlgobt.setVisible(true);
@@ -7085,7 +7086,8 @@ public class DlgKamarInap extends javax.swing.JDialog {
                             DlgCariObat2 dlgobt = new DlgCariObat2(null, false);
                             dlgobt.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                             dlgobt.setLocationRelativeTo(internalFrame1);
-                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                            dlgobt.setNoRm(norawat.getText(), DTPCari1.getDate(), cmbJam.getSelectedItem().toString(), 
+                                    cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false, kdkamar.getText());
                             dlgobt.isCek();
                             dlgobt.tampil();
                             dlgobt.setVisible(true);
@@ -7196,7 +7198,7 @@ private void MnRawatInapActionPerformed(java.awt.event.ActionEvent evt) {//GEN-F
             rawatinap.setLocationRelativeTo(internalFrame1);
             rawatinap.isCek();
             rawatinap.emptTeks();
-            rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+            rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdkamar.getText());
             rawatinap.dataRawat(ruangrawat.getText(), Valid.SetTgl3(tglInap.getText()), JamMasuk.getText());
             rawatinap.setpetugas();
             rawatinap.tampilDr();
@@ -7262,7 +7264,7 @@ private void MnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//G
             if (akses.getnamauser().equals("Admin Utama") || akses.getkode().equals("0215")) {
                 beriobat.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
                 beriobat.setLocationRelativeTo(internalFrame1);
-                beriobat.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap");
+                beriobat.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap", kdkamar.getText());
                 beriobat.isCek();
                 beriobat.tampilPO();
                 beriobat.setVisible(true);
@@ -7272,7 +7274,7 @@ private void MnPemberianObatActionPerformed(java.awt.event.ActionEvent evt) {//G
         } else {
             beriobat.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
             beriobat.setLocationRelativeTo(internalFrame1);
-            beriobat.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap");
+            beriobat.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap", kdkamar.getText());
             beriobat.isCek();
             beriobat.tampilPO();
             beriobat.setVisible(true);
@@ -8035,7 +8037,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     resep.setLocationRelativeTo(internalFrame1);
                     resep.emptTeks();
                     resep.isCek();
-                    resep.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), now.substring(11, 13), now.substring(14, 16), now.substring(17, 19));
+                    resep.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), 
+                            now.substring(11, 13), now.substring(14, 16), now.substring(17, 19), kdkamar.getText());
                     resep.tampil();
                     resep.setVisible(true);
                 } else {
@@ -8047,7 +8050,8 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 resep.setLocationRelativeTo(internalFrame1);
                 resep.emptTeks();
                 resep.isCek();
-                resep.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), now.substring(11, 13), now.substring(14, 16), now.substring(17, 19));
+                resep.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(),
+                        now.substring(11, 13), now.substring(14, 16), now.substring(17, 19), kdkamar.getText());
                 resep.tampil();
                 resep.setVisible(true);
             }
@@ -8646,7 +8650,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 rawatinap.setLocationRelativeTo(internalFrame1);
                 rawatinap.isCek();
                 rawatinap.emptTeks();
-                rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate());
+                rawatinap.setNoRm(norawat.getText(), DTPCari1.getDate(), DTPCari2.getDate(), kdkamar.getText());
                 rawatinap.dataRawat(ruangrawat.getText(), Valid.SetTgl3(tglInap.getText()), JamMasuk.getText());
                 rawatinap.setStatus(cmbStatus.getSelectedItem().toString());
                 rawatinap.setpetugas();

@@ -56,8 +56,8 @@ public final class DlgResepObat extends javax.swing.JDialog {
     public DlgCariDokter dokter = new DlgCariDokter(null, false);
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
     private Date date = new Date();
-    private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "", 
-            kodeobat = "", tglrsp = "", jamrsp = "";
+    private String now = dateFormat.format(date), status = "", penjab = "", nmPrinter1 = "", nmPrinter2 = "",
+            kodeobat = "", tglrsp = "", jamrsp = "", kdUnit = "";
     private double total = 0, jumlahtotal = 0;
     private int i = 0, conteng = 0;
 
@@ -936,11 +936,11 @@ public final class DlgResepObat extends javax.swing.JDialog {
             if (ChkRM.isSelected() == true) {
                 Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_resep,6),signed)),0) from resep_obat where tgl_perawatan like '%" + DTPBeri.getSelectedItem().toString().substring(6, 10) + "%' ", DTPBeri.getSelectedItem().toString().substring(6, 10), 6, NoResep);
             }
-            Sequel.menyimpan("resep_obat", "?,?,?,?,?,?,?", "Nomer Resep", 7, new String[]{
+            Sequel.menyimpan("resep_obat", "?,?,?,?,?,?,?,?", "Nomer Resep", 8, new String[]{
                 NoResep.getText(), Valid.SetTgl(DTPBeri.getSelectedItem() + ""),
                 cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
                 TNoRw.getText(), KdDokter.getText(), Valid.SetTgl(DTPBeri.getSelectedItem() + ""),
-                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem()
+                cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), kdUnit
             });
             tampil();
             emptTeks();
@@ -979,7 +979,6 @@ public final class DlgResepObat extends javax.swing.JDialog {
             Sequel.meghapus("resep_obat", "no_resep", NoResep.getText());
             tampil();
         }
-
         emptTeks();
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -1623,8 +1622,9 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }
     
-    public void setNoRm(String norwt, Date tgl1, Date tgl2, String jam, String menit, String detik) {
+    public void setNoRm(String norwt, Date tgl1, Date tgl2, String jam, String menit, String detik, String kodeUnit) {
         TNoRw.setText(norwt);
+        kdUnit = kodeUnit;
         Sequel.cariIsi("select concat(pasien.no_rkm_medis,' ',pasien.nm_pasien) from reg_periksa inner join pasien "
                 + " on reg_periksa.no_rkm_medis=pasien.no_rkm_medis where no_rawat=? ", TPasien, TNoRw.getText());
         TCari.setText(norwt);

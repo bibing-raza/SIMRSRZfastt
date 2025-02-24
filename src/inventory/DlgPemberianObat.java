@@ -69,7 +69,8 @@ public class DlgPemberianObat extends javax.swing.JDialog {
     private DlgPasien pasien = new DlgPasien(null, false);
     private DateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private Date date = new Date();
-    private String now = dateFormat.format(date), bangsal = "", tgl = "", pas = "", sql = "", status = "", statussimpan = "", kdptg = "", nmptg = "", cariDetailObat = "";
+    private String now = dateFormat.format(date), bangsal = "", tgl = "", pas = "", sql = "", status = "", statussimpan = "", kdptg = "",
+            nmptg = "", cariDetailObat = "", kdUnit = "";
     private PreparedStatement ps, psrekening;
     private ResultSet rs, rsrekening;
     private double embalase = Sequel.cariIsiAngka("select embalase_per_obat from set_embalase"), ttljual, ttlhpp;
@@ -1288,15 +1289,17 @@ public class DlgPemberianObat extends javax.swing.JDialog {
             akses.setform("DlgPemberianObat");
             if (akses.getkode().equals("Admin Utama")) {
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), 
+                            cmbDtk.getSelectedItem().toString(), false, kdUnit);
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();
                     dlgobt.setLocationRelativeTo(internalFrame1);
                     dlgobt.setVisible(true);
                 } else if (status.equals("ralan")) {
-                    dlgobtjalan.setNoRm(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+                    dlgobtjalan.setNoRm(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), 
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), kdUnit);
                     dlgobtjalan.isCek();
 //                    if(!namadokter.equals("")){
 //                        dlgobtjalan.setDokter(kodedokter, namadokter);
@@ -1328,15 +1331,17 @@ public class DlgPemberianObat extends javax.swing.JDialog {
 //                    }              
 //                }else{ 
                 if (status.equals("ranap")) {
-                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), cmbDtk.getSelectedItem().toString(), false);
+                    dlgobt.setNoRm(TNoRw.getText(), DTPBeri.getDate(), cmbJam.getSelectedItem().toString(), cmbMnt.getSelectedItem().toString(), 
+                            cmbDtk.getSelectedItem().toString(), false, kdUnit);
                     dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobt.isCek();
                     dlgobt.tampil();
                     dlgobt.setLocationRelativeTo(internalFrame1);
                     dlgobt.setVisible(true);
                 } else if (status.equals("ralan")) {
-                    dlgobtjalan.setNoRm(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
-                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+                    dlgobtjalan.setNoRm(TNoRw.getText(), TNoRM.getText(), TPasien.getText(), 
+                            Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + TNoRw.getText() + "'"),
+                            Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + TNoRw.getText() + "'"), kdUnit);
                     dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     dlgobtjalan.isCek();
 //                        if(!namadokter.equals("")){
@@ -2099,7 +2104,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             resep.setLocationRelativeTo(internalFrame1);
             resep.emptTeks();
             resep.isCek();
-            resep.setNoRm(TNoRw.getText(), Valid.SetTgl2(tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 0).toString()), Valid.SetTgl2(tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 0).toString()), tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(0, 2), tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(3, 5), tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(6, 8));
+            resep.setNoRm(TNoRw.getText(), Valid.SetTgl2(tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 0).toString()),
+                    Valid.SetTgl2(tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 0).toString()),
+                    tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(0, 2),
+                    tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(3, 5),
+                    tbPemberianObat.getValueAt(tbPemberianObat.getSelectedRow(), 1).toString().substring(6, 8), kdUnit);
             resep.tampil();
             resep.setVisible(true);
             resep.setStatus(status);
@@ -2526,9 +2535,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
 
-    public void setNoRm(String norwt, Date tgl1, Date tgl2, String statuspasien) {
+    public void setNoRm(String norwt, Date tgl1, Date tgl2, String statuspasien, String kodeUnit) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
+        kdUnit = kodeUnit;
         isRawat();
         isPsien();
         status = statuspasien;

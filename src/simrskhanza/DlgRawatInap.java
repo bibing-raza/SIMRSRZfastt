@@ -65,7 +65,7 @@ public final class DlgRawatInap extends javax.swing.JDialog {
             Utang_Jasa_Medik_Dokter_Tindakan_Ranap = "", Beban_Jasa_Medik_Paramedis_Tindakan_Ranap = "", nip = "",
             Utang_Jasa_Medik_Paramedis_Tindakan_Ranap = "", Beban_KSO_Tindakan_Ranap = "", kd_pj, kamar, tgl_m, kdDiag = "", tgm = "",
             tglmasuk, jammasuk, Utang_KSO_Tindakan_Ranap = "", hariawal = Sequel.cariIsi("select hariawal from set_jam_minimal"),
-            now = dateFormat.format(date), diag_awal, key = "", cekdpjp = "", dataKonfirmasi = "", nipDokter = "";
+            now = dateFormat.format(date), diag_awal, key = "", cekdpjp = "", dataKonfirmasi = "", nipDokter = "", kdUnit = "";
 
     /**
      * Creates new form DlgRawatInap
@@ -4120,7 +4120,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             dlgrwinap.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgrwinap.setLocationRelativeTo(internalFrame1);
             dlgrwinap.isCek();
-            dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap");
+            dlgrwinap.setNoRm(TNoRw.getText(), DTPCari1.getDate(), DTPCari2.getDate(), "ranap", kdUnit);
             dlgrwinap.tampilPO();
             dlgrwinap.setVisible(true);
             this.setCursor(Cursor.getDefaultCursor());
@@ -5096,8 +5096,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         }
     }
 
-    public void setNoRm(String norwt, Date awal, Date akhir) {
+    public void setNoRm(String norwt, Date awal, Date akhir, String kodeUnit) {
         cekdpjp = "";
+        kdUnit = kodeUnit;
         cekdpjp = Sequel.cariIsi("select kd_dokter from dpjp_ranap where no_rawat=?", norwt);
         
         if (cekdpjp.equals("")) {

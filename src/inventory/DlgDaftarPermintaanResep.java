@@ -29,7 +29,8 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
     private Connection koneksi=koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
-    private DlgCariObat dlgobt=new DlgCariObat(null,false);
+    private DlgCariObat dlgobt = new DlgCariObat(null, false);
+    private String kdUnit = "";
     
     /** Creates new form 
      * @param parent
@@ -462,7 +463,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
                         tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),4).toString(),
                         tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),5).toString(),
                         tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),1).toString(),
-                        tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),2).toString()
+                        tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),2).toString(), kdUnit
                     );
                     dlgobt.isCek();
                     dlgobt.tampilobat2(tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),0).toString());
@@ -477,7 +478,7 @@ public class DlgDaftarPermintaanResep extends javax.swing.JDialog {
                             tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),4).toString(),
                             tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),5).toString(),
                             tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),1).toString(),
-                            tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),2).toString()
+                            tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),2).toString(), kdUnit
                         );
                         dlgobt.isCek();
                         dlgobt.tampilobat2(tbPemisahan.getValueAt(tbPemisahan.getSelectedRow(),0).toString());
@@ -615,10 +616,9 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         return tbPemisahan;
     }
     
-    public void isCek(){
+    public void isCek(String kodeUnit){
         BtnTambah.setEnabled(akses.getberi_obat());
         BtnPrint.setEnabled(akses.getresep_dokter());
+        kdUnit = kodeUnit;
     }
-    
-    
 }

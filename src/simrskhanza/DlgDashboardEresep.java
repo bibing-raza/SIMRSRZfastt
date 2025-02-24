@@ -62,7 +62,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0;
-    private String norawat = "", norm = "", idObat = "";
+    private String norawat = "", norm = "", idObat = "", kdUnit = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -78,7 +78,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "No. Telp/HP.", "Poliklinik",
-            "Cara Bayar", "Dokter Yang Meresepkan", "Jlh. Item Obat", "tgl_resep"
+            "Cara Bayar", "Dokter Yang Meresepkan", "Jlh. Item Obat", "tgl_resep", "kodepoli"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -91,7 +91,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             Class[] types = new Class[]{
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
                 java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Object.class
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -104,7 +104,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 9; i++) {
+        for (i = 0; i < 10; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -123,7 +123,9 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             } else if (i == 7) {
                 column.setPreferredWidth(100);
             } else if (i == 8) {
-//                column.setPreferredWidth(130);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 9) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -956,7 +958,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 formobat.setLocationRelativeTo(internalFrame1);
                 formobat.isCek();
-                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
+                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap", kdUnit);
                 formobat.tampilPO();
                 formobat.setVisible(true);
             } else {
@@ -964,7 +966,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 formobat.setLocationRelativeTo(internalFrame1);
                 formobat.isCek();
-                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan");
+                formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan", kdUnit);
                 formobat.tampilPO();
                 formobat.setVisible(true);
             }
@@ -978,7 +980,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
             akses.setform("DlgDashboardEresep");
             dlgobtjalan.setNoRm(norawat, norm, Sequel.cariIsi("select nm_pasien from pasien where no_rkm_medis='" + norm + "'"),
                     Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norawat + "'"),
-                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"));
+                    Sequel.cariIsi("select jam_reg from reg_periksa where no_rawat='" + norawat + "'"), kdUnit);
             dlgobtjalan.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
             dlgobtjalan.isCek();
             dlgobtjalan.tampilobat();
@@ -1296,7 +1298,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         ((Painter) gambarQR).setImage("");
         try {
             ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, "
-                    + "pl.nm_poli, pj.png_jawab, d.nm_dokter, COUNT(cr.no_rawat) jlh_item_obat, cr.tgl_perawatan FROM catatan_resep cr "
+                    + "pl.nm_poli, pj.png_jawab, d.nm_dokter, COUNT(cr.no_rawat) jlh_item_obat, cr.tgl_perawatan, rp.kd_poli FROM catatan_resep cr "
                     + "INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                     + "INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
                     + "INNER JOIN dokter d on d.kd_dokter=cr.kd_dokter WHERE "
@@ -1350,7 +1352,8 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                         rs.getString("png_jawab"),
                         rs.getString("nm_dokter"),
                         rs.getString("jlh_item_obat"),
-                        rs.getString("tgl_perawatan")
+                        rs.getString("tgl_perawatan"),
+                        rs.getString("kd_poli")
                     });
                 }
             } catch (Exception e) {
@@ -1381,11 +1384,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     private void getData() {
         norawat = "";
         norm = "";
+        kdUnit = "";
         TdataQRresep.setText("");
         
         if (tbPasien.getSelectedRow() != -1) {
             norawat = tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString();
             norm = tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString();
+            kdUnit = tbPasien.getValueAt(tbPasien.getSelectedRow(), 9).toString();
             tampilResep();
             tampilQR();
         }

@@ -45,7 +45,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kdObat = "", nipPereview = "", nipApoteker = "", nmDokter = "", tglreg = "", nipDokter = "",
-            ruangRwt = "", cekTglRwt = "", ceknmDokter = "", cekNipDokter = "";
+            ruangRwt = "", ceknmDokter = "", cekNipDokter = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -2539,30 +2539,24 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     
     private void tampilRiwObatRanap() {
         ruangRwt = "";
-        cekTglRwt = "";
         ceknmDokter = "";
         cekNipDokter = "";
         Valid.tabelKosong(tabMode4);
         try {
             ps4 = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tglResep, db.nama_brng, "
-                    + "CONCAT(dpo.jml,' ',LOWER(db.kode_sat)) jlh, dpo.kode_brng, dpo.tgl_perawatan, dpo.no_rawat FROM detail_pemberian_obat dpo "
-                    + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng WHERE "
-                    + "dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' order by dpo.tgl_perawatan, dpo.jam");
+                    + "CONCAT(dpo.jml,' ',LOWER(db.kode_sat)) jlh, dpo.kode_brng, dpo.tgl_perawatan, dpo.no_rawat, ro.kode_unit FROM detail_pemberian_obat dpo "
+                    + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng INNER JOIN resep_obat ro on ro.no_rawat=dpo.no_rawat and ro.tgl_perawatan=dpo.tgl_perawatan and ro.jam=dpo.jam "
+                    + "WHERE dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' order by dpo.tgl_perawatan, dpo.jam");
             try {
                 rs4 = ps4.executeQuery();
                 x = 1;
                 while (rs4.next()) {
-                    cekTglRwt = Sequel.cariIsi("select tgl_masuk from kamar_inap where no_rawat='" + rs4.getString("no_rawat") + "' order by tgl_masuk desc limit 1");
-                    if (Sequel.cariInteger("select count(-1) from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + rs4.getString("no_rawat") + "' "
-                            + "and ki.tgl_masuk='" + rs4.getString("tgl_perawatan") + "'") == 0) {
-                        ruangRwt = Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                                + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + rs4.getString("no_rawat") + "' "
-                                + "and ki.tgl_masuk='" + cekTglRwt + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+                    if (Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                            + "WHERE k.kd_kamar='" + rs4.getString("kode_unit") + "' limit 1").equals("")) {
+                        ruangRwt = "-";
                     } else {
-                        ruangRwt = Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                                + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + rs4.getString("no_rawat") + "' "
-                                + "and ki.tgl_masuk='" + rs4.getString("tgl_perawatan") + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1");
+                        ruangRwt = Sequel.cariIsi("SELECT ifnull(b.nm_bangsal,'-') FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
+                                + "WHERE k.kd_kamar='" + rs4.getString("kode_unit") + "' limit 1");
                     }
 
                     if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + rs4.getString("no_rawat") + "' "

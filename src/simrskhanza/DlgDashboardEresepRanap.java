@@ -62,7 +62,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0, x = 0, cito = 0, iniResep = 0;
-    private String norawat = "", norm = "", idObat = "", jenisResep = "", resepPulang = "";
+    private String norawat = "", norm = "", idObat = "", jenisResep = "", resepPulang = "", kdUnit = "";
     public Timer tEresep;
     private BackgroundMusic music;
 
@@ -78,7 +78,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
         tabMode = new DefaultTableModel(null, new Object[]{
             "No. Rawat", "No. RM", "Nama Pasien", "No. Telp/HP.", "Ruang Rawat",
-            "Cara Bayar", "Jlh. Item Obat", "Status", "cekResepCito", "Resep"
+            "Cara Bayar", "Jlh. Item Obat", "Status", "cekResepCito", "Resep", "kodeKamar"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -90,7 +90,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         tbPasien.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbPasien.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 10; i++) {
+        for (i = 0; i < 11; i++) {
             TableColumn column = tbPasien.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(120);
@@ -113,6 +113,9 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                 column.setMaxWidth(0);
             } else if (i == 9) {
                 column.setPreferredWidth(98);
+            } else if (i == 10) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
 //        tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
@@ -911,7 +914,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                     formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     formobat.setLocationRelativeTo(internalFrame1);
                     formobat.isCek();
-                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap");
+                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ranap", kdUnit);
                     formobat.tampilPO();
                     formobat.setVisible(true);
                 } else {
@@ -919,7 +922,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                     formobat.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                     formobat.setLocationRelativeTo(internalFrame1);
                     formobat.isCek();
-                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan");
+                    formobat.setNoRm(norawat, tglCari1.getDate(), tglCari2.getDate(), "ralan", kdUnit);
                     formobat.tampilPO();
                     formobat.setVisible(true);
                 }
@@ -936,7 +939,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             } else {
                 akses.setform("DlgDashboardEresepRanap");
                 dlgobt.setNoRm(norawat, tglCari2.getDate(), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%H')"),
-                        Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false);
+                        Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%i')"), Sequel.cariIsi("SELECT TIME_FORMAT(NOW(),'%s')"), false, kdUnit);
                 dlgobt.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 dlgobt.isCek();
                 dlgobt.tampil();
@@ -1314,7 +1317,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         try {
             if (cmbRuang.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1325,7 +1328,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
             } else {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1387,7 +1390,8 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs.getString("png_jawab"),
                         rs.getString("jlh_item_obat"),
                         rs.getString("status"),
-                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'")
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'"),
+                        rs.getString("kd_kamar")
                     });
                 }
             } catch (Exception e) {
@@ -1501,12 +1505,14 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private void getData() {
         norawat = "";
         norm = "";
+        kdUnit = "";
         TdataQRresep.setText("");
         ((Painter) gambarQR).setImage("");
 
         if (tbPasien.getSelectedRow() != -1) {
             norawat = tbPasien.getValueAt(tbPasien.getSelectedRow(), 0).toString();
             norm = tbPasien.getValueAt(tbPasien.getSelectedRow(), 1).toString();
+            kdUnit = tbPasien.getValueAt(tbPasien.getSelectedRow(), 10).toString();
             tampilResep();
         }
     }

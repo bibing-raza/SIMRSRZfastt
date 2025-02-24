@@ -1714,7 +1714,7 @@ private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                 DlgBilingRalan billing = new DlgBilingRalan(null, false);
                 billing.TNoRw.setText(tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString());
-                billing.isCek();
+                billing.isCek(Sequel.cariIsi("select kd_poli from reg_periksa where no_rawat='" + tbPiutang.getValueAt(tbPiutang.getSelectedRow(), 0).toString() + "'"));
                 billing.isRawat();
                 billing.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
                 billing.setLocationRelativeTo(internalFrame1);
