@@ -4094,7 +4094,6 @@ public final class DlgIGD extends javax.swing.JDialog {
                     KataDatang = "Tidak";
                 }
                 
-                Sequel.menyimpan("poliklinik", "?,?,?,?,?,?", 6, new String[]{"IGDK", "IGD", "0", "0","0","0"});
                 if (Sequel.menyimpantf2("reg_periksa", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18,
                         new String[]{TNoReg.getText(), TNoRw.getText(), Sequel.cariIsi("select date(now())"), Sequel.cariIsi("SELECT TIME(NOW())"),
                             kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), TAlmt.getText(), THbngn.getText(), biaya + "", "Belum",
