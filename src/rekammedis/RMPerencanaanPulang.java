@@ -2100,6 +2100,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
         
         TnipDpjp.setText(Sequel.cariIsi("select ifnull(kd_dokter,'-') from dpjp_ranap where no_rawat='" + norw + "'"));
         TnmDpjp.setText(Sequel.cariIsi("select nm_dokter from dokter where kd_dokter='" + TnipDpjp.getText() + "'"));
+        TCari.setText(norw);
     }
     
     private void tampilTemplate() {

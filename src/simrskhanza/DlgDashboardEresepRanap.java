@@ -105,15 +105,15 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(130);
             } else if (i == 6) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(85);
             } else if (i == 7) {
                 column.setPreferredWidth(50);
-            } else if (i == 8) {
+            } else if (i == 8) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 9) {
-                column.setPreferredWidth(98);
-            } else if (i == 10) {
+                column.setPreferredWidth(100);
+            } else if (i == 10) {                
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -1317,7 +1317,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         try {
             if (cmbRuang.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1328,7 +1328,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
             } else {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1391,6 +1391,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs.getString("jlh_item_obat"),
                         rs.getString("status"),
                         Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'"),
+                        rs.getString("resep_untuk"),
                         rs.getString("kd_kamar")
                     });
                 }
@@ -1416,7 +1417,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         try {
             if (cmbRuang.getSelectedIndex() == 0) {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1427,7 +1428,7 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
             } else {
                 ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status FROM catatan_resep_ranap cr "
+                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
                         + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
                         + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
                         + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
@@ -1473,7 +1474,10 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
                         rs.getString("png_jawab"),
                         rs.getString("jlh_item_obat"),
                         rs.getString("status"),
-                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'")
+                        Sequel.cariIsi("SELECT count(-1) from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "' and status='belum' and jenis_resep='cito'"),
+                        rs.getString("resep_untuk"),
+                        rs.getString("kd_kamar")
+                        
                     });
                 }
             } catch (Exception e) {
