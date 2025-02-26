@@ -392,6 +392,7 @@ import rekammedis.RMAsesmenKeperawatanPerinatologi;
 import rekammedis.RMPengamatanMenyusui;
 import rekammedis.RMRekonsiliasiObat;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
+import rekammedis.RMTriasePediatrik;
 import setting.DlgHistoriLoginUser;
 
 /**
@@ -915,6 +916,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnQuerySql = new widget.ButtonBig();
         btnLembarBantuanPengamatanMenyusui = new widget.ButtonBig();
         btnRekonsiliasiObat = new widget.ButtonBig();
+        btnTriasePediatrikIGD = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6220,6 +6222,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnRekonsiliasiObat);
 
+        btnTriasePediatrikIGD.setForeground(new java.awt.Color(0, 0, 0));
+        btnTriasePediatrikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/pediatric_icon.png"))); // NOI18N
+        btnTriasePediatrikIGD.setText("Triase Pediatrik IGD");
+        btnTriasePediatrikIGD.setIconTextGap(0);
+        btnTriasePediatrikIGD.setName("btnTriasePediatrikIGD"); // NOI18N
+        btnTriasePediatrikIGD.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTriasePediatrikIGD.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTriasePediatrikIGDActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnTriasePediatrikIGD);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6228,7 +6243,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24/02/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26/02/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12288,6 +12303,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnRekonsiliasiObatActionPerformed
 
+    private void btnTriasePediatrikIGDActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriasePediatrikIGDActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMTriasePediatrik form = new RMTriasePediatrik(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnTriasePediatrikIGDActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12712,6 +12740,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnTransaksiPanjar;
     private widget.ButtonBig btnTransferPasienTindakan;
     private widget.ButtonBig btnTransferSerahTerimaPasien;
+    private widget.ButtonBig btnTriasePediatrikIGD;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
     private widget.ButtonBig btnUTDKomponenDarah;
@@ -13243,6 +13272,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
 
             if (akses.getpenilaian_awal_keperawatan_kebidanan() == true) {
                 Panelmenu.add(btnPenilaianAwalKeperawatanKebidananRalan);
+                jmlmenu++;
+            }
+            
+            if (akses.getdata_triase_igd() == true) {
+                Panelmenu.add(btnTriasePediatrikIGD);
                 jmlmenu++;
             }
             
@@ -15350,6 +15384,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getdata_persalinan() == true) {
             Panelmenu.add(btnKasusPersalinanDinkes);
+            jmlmenu++;
+        }
+        
+        if (akses.getdata_triase_igd() == true) {
+            Panelmenu.add(btnTriasePediatrikIGD);
             jmlmenu++;
         }
 
@@ -17526,6 +17565,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getpegawai_admin() == true) {
             if (btnMasterJabatanKomite.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnMasterJabatanKomite);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getdata_triase_igd() == true) {
+            if (btnTriasePediatrikIGD.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnTriasePediatrikIGD);
                 jmlmenu++;
             }
         }

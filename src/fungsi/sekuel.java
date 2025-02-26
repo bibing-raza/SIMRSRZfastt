@@ -1068,7 +1068,7 @@ public final class sekuel {
 
     public int cekRekamMedisIGD(String norawat) {
         angka = 0;
-        int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0;
+        int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
         a = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
         b = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
         c = cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'");
@@ -1088,6 +1088,7 @@ public final class sekuel {
         q = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "'");
         r = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "'");
         s = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "'");
+        t = cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norawat + "'");
 
         System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel triase_igd KOSONG','tabel triase_igd ADA DATANYA (" + norawat + ")') from triase_igd where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_medis_igd KOSONG','tabel penilaian_awal_medis_igd ADA DATANYA (" + norawat + ")') from penilaian_awal_medis_igd where no_rawat='" + norawat + "'") + "\n"
@@ -1107,9 +1108,11 @@ public final class sekuel {
                 + cariIsi("select if(count(-1)=0,'tabel catatan_resep KOSONG','tabel catatan_resep ADA DATANYA (" + norawat + ")') from catatan_resep where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel lembar_observasi KOSONG','tabel lembar_observasi ADA DATANYA (" + norawat + ")') from lembar_observasi where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel detail_lembar_observasi KOSONG','tabel detail_lembar_observasi ADA DATANYA (" + norawat + ")') from detail_lembar_observasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "'") + "\n");
+                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel triase_pediatrik KOSONG','tabel triase_pediatrik ADA DATANYA (" + norawat + ")') from triase_pediatrik where no_rawat='" + norawat + "'") + "\n"
+        );
 
-        angka = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s;
+        angka = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t;
         return angka;
     }
     

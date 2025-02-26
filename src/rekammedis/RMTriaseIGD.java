@@ -2780,7 +2780,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Simpan");
                 TCari.setText(TNoRw.getText());
                 BtnBatalActionPerformed(null);
-                tampil();
                 TabRawat.setSelectedIndex(1);                
             }
         }
@@ -2811,14 +2810,15 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             if (akses.getadmin() == true) {
                 hapus();
             } else {
-                if (nip.equals(tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString())) {
+                if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString().equals(akses.getkode())) {
                     hapus();
                 } else {
                     JOptionPane.showMessageDialog(null, "Hanya bisa dihapus oleh Petugas Triase yang bersangkutan..!!");
                 }
             }
         } else {
-            JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tbTriase.requestFocus();
         }
 }//GEN-LAST:event_BtnHapusActionPerformed
 
@@ -2830,17 +2830,18 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             btnPetugas.requestFocus();
         } else {
             if (tbTriase.getSelectedRow() > -1) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     ganti();
                 } else {
-                    if (nip.equals(tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString())) {
+                    if (tbTriase.getValueAt(tbTriase.getSelectedRow(), 67).toString().equals(akses.getkode())) {
                         ganti();
                     } else {
                         JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh Petugas Triase yang bersangkutan..!!");
                     }
                 }
             } else {
-                JOptionPane.showMessageDialog(rootPane, "Silahkan anda pilih data terlebih dahulu..!!");
+                JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+                tbTriase.requestFocus();
             }
         }
 }//GEN-LAST:event_BtnEditActionPerformed
@@ -2982,9 +2983,9 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
-            tampil();            
         } else {
-            JOptionPane.showMessageDialog(null, "Maaf, silahkan pilih data terlebih dahulu..!!!!");
+            JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
+            tbTriase.requestFocus();
         }
 }//GEN-LAST:event_BtnPrintActionPerformed
 
@@ -4289,7 +4290,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(new Date());
         isRawat();
-        tampil();
     }
     
     public void isCek(){
@@ -4687,13 +4687,11 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             if (Sequel.queryu2tf("delete from triase_igd where no_rawat=?", 1, new String[]{
                 tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
             }) == true) {
-                tampil();
                 BtnBatalActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(null, "Gagal menghapus..!!");
             }
         } else {
-            tampil();
             BtnBatalActionPerformed(null);
         }
     }
@@ -4722,7 +4720,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
 
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Ganti");
             TCari.setText(TNoRw.getText());
-            tampil();
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
         }
