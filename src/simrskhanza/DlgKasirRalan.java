@@ -9495,7 +9495,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-                if (akses.getadmin() == true) {
+//                if (akses.getadmin() == true) {
                     if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
                             + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
@@ -9527,15 +9527,27 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             tbKasirRalan.requestFocus();
                         }
                     }
-                } else {
-                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!");
-                }
+//                } else {
+//                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!");
+//                }
             }
         }
     }//GEN-LAST:event_MnInputDataTriasePediaActionPerformed
 
     private void MnLihatDataTriasePediaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTriasePediaActionPerformed
-        // TODO add your handling code here:
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cetakDataTriasePediatrik();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase pediatrik IGD tidak ditemukan...!!!");
+                tbKasirRalan.requestFocus();
+            }
+        }
     }//GEN-LAST:event_MnLihatDataTriasePediaActionPerformed
 
     /**
@@ -11424,6 +11436,407 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                 break;
         }
         Valid.autoNomer3("select ifnull(MAX(CONVERT(RIGHT(no_rawat,6),signed)),0) from reg_periksa where tgl_registrasi='" + Tanggal.getText() + "' ", Sequel.cariIsi("SELECT DATE_FORMAT(NOW(),'%Y/%m/%d')") + "/", 6, norwBARU);
+    }
+    
+    private void cetakDataTriasePediatrik() {
+        try {
+            psLaprm = koneksi.prepareStatement("SELECT tp.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') tglLahir, "
+                    + "pj.png_jawab, TIME_FORMAT(tp.jam_tiba,'%H:%i Wita') jamTiba, pg.nama nmPetugas, p.tgl_lahir, TIME_FORMAT(tp.jam_kasus,'%H:%i Wita') jamDOA, "
+                    + "TIME_FORMAT(tp.jam_keputusan,'%H:%i Wita') jamKeputusan FROM triase_pediatrik tp "
+                    + "inner join reg_periksa rp on rp.no_rawat=tp.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
+                    + "inner join pegawai pg on pg.nik=tp.nip_petugas inner join penjab pj on pj.kd_pj=rp.kd_pj where tp.no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("norm", rsLaprm.getString("no_rkm_medis"));
+                    param.put("nmpasien", rsLaprm.getString("nm_pasien"));
+                    param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + rsLaprm.getString("no_rkm_medis") + "'"));
+                    param.put("jenkel", rsLaprm.getString("jenkel") + ", Gelang : " + rsLaprm.getString("gelang"));
+
+                    param.put("diisi", rsLaprm.getString("diisi_oleh"));
+                    param.put("saatTiba", "Tanggal : " + Valid.SetTglINDONESIA(rsLaprm.getString("tgl_tiba")) + ", Jam : " + rsLaprm.getString("jamTiba"));
+                    param.put("pembiayaan", rsLaprm.getString("png_jawab"));
+                    
+                    if (rsLaprm.getString("autoanamnese").equals("ya")) {
+                        param.put("autoAnam", "V");
+                    } else {
+                        param.put("autoAnam", "");
+                    }
+
+                    if (rsLaprm.getString("heteroanamnese").equals("ya")) {
+                        param.put("heteroAnam", "V");
+                    } else {
+                        param.put("heteroAnam", "");
+                    }
+
+                    if (rsLaprm.getString("nm_sumber_data").equals("")) {
+                        param.put("nama", "Heteroanamnese    Nama : .......");
+                    } else {
+                        param.put("nama", "Heteroanamnese    Nama : " + rsLaprm.getString("nm_sumber_data"));
+                    }
+
+                    if (rsLaprm.getString("hubungan").equals("")) {
+                        param.put("hubungan", "Hubungan Dengan Pasien : -");
+                    } else {
+                        param.put("hubungan", "Hubungan Dengan Pasien : " + rsLaprm.getString("hubungan"));
+                    }
+                    
+                    if (rsLaprm.getString("rujukan").equals("Ya")) {
+                        if (rsLaprm.getString("ket_rujukan_ya").equals("")) {
+                            param.put("rujukan", rsLaprm.getString("rujukan") + "   dari : .......");
+                        } else {
+                            param.put("rujukan", rsLaprm.getString("rujukan") + "   dari : " + rsLaprm.getString("ket_rujukan_ya"));
+                        }
+                    } else {
+                        param.put("rujukan", rsLaprm.getString("rujukan") + "   dari : .......");
+                    }
+
+                    param.put("transportasi", rsLaprm.getString("transportasi"));
+
+                    if (rsLaprm.getString("keluhan").equals("")) {
+                        param.put("keluhan", "-");
+                    } else {
+                        param.put("keluhan", rsLaprm.getString("keluhan"));
+                    }
+
+                    param.put("penampilan", rsLaprm.getString("penampilan"));
+                    param.put("usaha", rsLaprm.getString("usaha_nafas"));
+                    param.put("sirkulasi", rsLaprm.getString("sirkulasi_kulit"));
+
+                    if (rsLaprm.getString("stabil").equals("ya")) {
+                        param.put("stabil", "V");
+                    } else {
+                        param.put("stabil", "");
+                    }
+
+                    if (rsLaprm.getString("distress").equals("ya")) {
+                        param.put("distress", "V");
+                    } else {
+                        param.put("distress", "");
+                    }
+
+                    if (rsLaprm.getString("gagal_nafas").equals("ya")) {
+                        param.put("gglNafas", "V");
+                    } else {
+                        param.put("gglNafas", "");
+                    }
+
+                    if (rsLaprm.getString("ssp").equals("ya")) {
+                        param.put("ssp", "V");
+                    } else {
+                        param.put("ssp", "");
+                    }
+
+                    if (rsLaprm.getString("gagal_jantung").equals("ya")) {
+                        param.put("gglJantung", "V");
+                    } else {
+                        param.put("gglJantung", "");
+                    }
+
+                    if (rsLaprm.getString("shock").equals("ya")) {
+                        param.put("shok", "V");
+                    } else {
+                        param.put("shok", "");
+                    }
+
+                    param.put("airwayLevel1", rsLaprm.getString("airway_level1"));
+
+                    if (rsLaprm.getString("airway_level2").equals("ya")) {
+                        param.put("ancaman", "V");
+                    } else {
+                        param.put("ancaman", "");
+                    }
+
+                    if (rsLaprm.getString("airway_level3").equals("ya")) {
+                        param.put("bebas3", "V");
+                    } else {
+                        param.put("bebas3", "");
+                    }
+
+                    if (rsLaprm.getString("airway_level4").equals("ya")) {
+                        param.put("bebas4", "V");
+                    } else {
+                        param.put("bebas4", "");
+                    }
+
+                    if (rsLaprm.getString("airway_level5").equals("ya")) {
+                        param.put("bebas5", "V");
+                    } else {
+                        param.put("bebas5", "");
+                    }
+
+                    param.put("breaLevel1", rsLaprm.getString("breathing_level1"));
+
+                    if (rsLaprm.getString("breathing_level11").equals("ya")) {
+                        param.put("breaSpoLevel1", "V");
+                    } else {
+                        param.put("breaSpoLevel1", "");
+                    }
+
+                    param.put("breaLevel2", rsLaprm.getString("breathing_level2"));
+
+                    if (rsLaprm.getString("breathing_level22").equals("ya")) {
+                        param.put("breaSpoLevel2", "V");
+                    } else {
+                        param.put("breaSpoLevel2", "");
+                    }
+                    
+                    param.put("breaLevel3", rsLaprm.getString("breathing_level3"));
+                    param.put("breaLevel4", rsLaprm.getString("breathing_level4"));
+                    param.put("breaLevel5", rsLaprm.getString("breathing_level5"));
+
+                    if (rsLaprm.getString("circulation_level1").equals("ya")) {
+                        param.put("circuLevel1", "V");
+                    } else {
+                        param.put("circuLevel1", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level2").equals("ya")) {
+                        param.put("circuAkralDingin", "V");
+                    } else {
+                        param.put("circuAkralDingin", "");
+                    }
+
+                    param.put("circuLevel2", rsLaprm.getString("circulation_level22"));
+                    
+                    if (rsLaprm.getString("circulation_level222").equals("ya")) {
+                        param.put("circuCrt", "V");
+                    } else {
+                        param.put("circuCrt", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level3").equals("ya")) {
+                        param.put("circuAkralHL3", "V");
+                    } else {
+                        param.put("circuAkralHL3", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level4").equals("ya")) {
+                        param.put("circuSadar", "V");
+                    } else {
+                        param.put("circuSadar", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level44").equals("ya")) {
+                        param.put("circuGcs", "V");
+                    } else {
+                        param.put("circuGcs", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level5").equals("ya")) {
+                        param.put("circuNadi", "V");
+                    } else {
+                        param.put("circuNadi", "");
+                    }
+
+                    if (rsLaprm.getString("circulation_level55").equals("ya")) {
+                        param.put("circuAkralHL5", "V");
+                    } else {
+                        param.put("circuAkralHL5", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level1").equals("ya")) {
+                        param.put("disaTidak", "V");
+                    } else {
+                        param.put("disaTidak", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level11").equals("ya")) {
+                        param.put("disaKejang", "V");
+                    } else {
+                        param.put("disaKejang", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level111").equals("ya")) {
+                        param.put("disaGcs9", "V");
+                    } else {
+                        param.put("disaGcs9", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level2").equals("ya")) {
+                        param.put("disaRespon", "V");
+                    } else {
+                        param.put("disaRespon", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level22").equals("ya")) {
+                        param.put("disaGelisah", "V");
+                    } else {
+                        param.put("disaGelisah", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level222").equals("ya")) {
+                        param.put("disaGcs912", "V");
+                    } else {
+                        param.put("disaGcs912", "");
+                    }
+
+                    param.put("disaLevel3", rsLaprm.getString("disability_level3"));
+                    
+                    if (rsLaprm.getString("disability_level4").equals("ya")) {
+                        param.put("disaSadarL4", "V");
+                    } else {
+                        param.put("disaSadarL4", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level44").equals("ya")) {
+                        param.put("disaGcsL4", "V");
+                    } else {
+                        param.put("disaGcsL4", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level5").equals("ya")) {
+                        param.put("disaSadarL5", "V");
+                    } else {
+                        param.put("disaSadarL5", "");
+                    }
+
+                    if (rsLaprm.getString("disability_level55").equals("ya")) {
+                        param.put("disaGcsL5", "V");
+                    } else {
+                        param.put("disaGcsL5", "");
+                    }
+                    
+                    param.put("sumLevel3", rsLaprm.getString("sumber_daya_level3"));
+                    param.put("sumLevel4", rsLaprm.getString("sumber_daya_level4"));
+                    param.put("sumLevel5", rsLaprm.getString("sumber_daya_level5"));
+
+                    if (rsLaprm.getString("vas").equals("ya")) {
+                        param.put("vas", "V");
+                    } else {
+                        param.put("vas", "");
+                    }
+
+                    if (rsLaprm.getString("kesimpulan_level1").equals("ya")) {
+                        param.put("kesLevel1", "V");
+                    } else {
+                        param.put("kesLevel1", "");
+                    }
+
+                    if (rsLaprm.getString("kesimpulan_level2").equals("ya")) {
+                        param.put("kesLevel2", "V");
+                    } else {
+                        param.put("kesLevel2", "");
+                    }
+
+                    if (rsLaprm.getString("kesimpulan_level3").equals("ya")) {
+                        param.put("kesLevel3", "V");
+                    } else {
+                        param.put("kesLevel3", "");
+                    }
+
+                    if (rsLaprm.getString("kesimpulan_level4").equals("ya")) {
+                        param.put("kesLevel4", "V");
+                    } else {
+                        param.put("kesLevel4", "");
+                    }
+
+                    if (rsLaprm.getString("kesimpulan_level5").equals("ya")) {
+                        param.put("kesLevel5", "V");
+                    } else {
+                        param.put("kesLevel5", "");
+                    }
+
+                    if (rsLaprm.getString("nadi").equals("")) {
+                        param.put("nadi", "..... x/menit");
+                    } else {
+                        param.put("nadi", rsLaprm.getString("nadi") + " x/menit");
+                    }
+
+                    if (rsLaprm.getString("respirasi").equals("")) {
+                        param.put("respi", "..... x/menit");
+                    } else {
+                        param.put("respi", rsLaprm.getString("respirasi") + " x/menit");
+                    }
+
+                    if (rsLaprm.getString("spo2").equals("")) {
+                        param.put("spo", "..... %");
+                    } else {
+                        param.put("spo", rsLaprm.getString("spo2") + " %");
+                    }
+
+                    if (rsLaprm.getString("umur").equals("< 3 bulan")) {
+                        if (rsLaprm.getString("spo2_peringatan").equals("")) {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 180, Nafas x/menit : > 50, Temperatur : > 38 °C, SpO2 : ...... %");
+                        } else {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 180, Nafas x/menit : > 50, Temperatur : > 38 °C, SpO2 : " + rsLaprm.getString("spo2_peringatan") + " %");
+                        }
+                    } else if (rsLaprm.getString("umur").equals("3 bulan - 3 tahun")) {
+                        if (rsLaprm.getString("spo2_peringatan").equals("")) {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 160, Nafas x/menit : > 40, Temperatur : - , SpO2 : ...... %");
+                        } else {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 160, Nafas x/menit : > 40, Temperatur : - , SpO2 : " + rsLaprm.getString("spo2_peringatan") + " %");
+                        }
+                    } else if (rsLaprm.getString("umur").equals("3 - 8 tahun")) {
+                        if (rsLaprm.getString("spo2_peringatan").equals("")) {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 140, Nafas x/menit : > 30, Temperatur : - , SpO2 : ...... %");
+                        } else {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 140, Nafas x/menit : > 30, Temperatur : - , SpO2 : " + rsLaprm.getString("spo2_peringatan") + " %");
+                        }
+                    } else if (rsLaprm.getString("umur").equals("8 tahun")) {
+                        if (rsLaprm.getString("spo2_peringatan").equals("")) {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 100, Nafas x/menit : - , Temperatur : - , SpO2 : ...... %");
+                        } else {
+                            param.put("umur", rsLaprm.getString("umur") + ", Nadi x/menit : > 100, Nafas x/menit : - , Temperatur : - , SpO2 : " + rsLaprm.getString("spo2_peringatan") + " %");
+                        }
+                    } else {
+                        if (rsLaprm.getString("spo2_peringatan").equals("")) {
+                            param.put("umur", rsLaprm.getString("umur") + ", SpO2 : ...... %");
+                        } else {
+                            param.put("umur", rsLaprm.getString("umur") + ", SpO2 : " + rsLaprm.getString("spo2_peringatan") + " %");
+                        }
+                    }
+                    
+                    if (rsLaprm.getString("trauma").equals("ya")) {
+                        param.put("trauma", "V");
+                    } else {
+                        param.put("trauma", "");
+                    }
+
+                    if (rsLaprm.getString("non_trauma").equals("ya")) {
+                        param.put("nonTrauma", "V");
+                    } else {
+                        param.put("nonTrauma", "");
+                    }
+
+                    if (rsLaprm.getString("doa").equals("ya")) {
+                        param.put("doa", "V");
+                        param.put("jamKasus", "DOA :      Jam : " + rsLaprm.getString("jamDOA"));
+                    } else {
+                        param.put("doa", "");
+                        param.put("jamKasus", "DOA");
+                    }
+
+                    if (rsLaprm.getString("catatan").equals("")) {
+                        param.put("catatan", "-");
+                    } else {
+                        param.put("catatan", rsLaprm.getString("catatan"));
+                    }
+
+                    param.put("tglKeputusan", Valid.SetTglINDONESIA(rsLaprm.getString("tgl_keputusan")));
+                    param.put("jamKeputusan", rsLaprm.getString("jamKeputusan"));
+                    param.put("keputusan", rsLaprm.getString("keputusan"));
+                    param.put("nmPetugas", rsLaprm.getString("nmPetugas"));
+
+                    Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                            "SELECT now() tanggal", param);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 
     private void cetakDataTriase() {

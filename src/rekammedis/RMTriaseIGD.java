@@ -60,8 +60,8 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
-    private PreparedStatement ps, psx, ps1, ps2, ps3, ps4, ps5, ps6, ps7, ps8;
-    private ResultSet rs, rsx, rs1, rs2, rs3, rs4, rs5, rs6, rs7, rs8;
+    private PreparedStatement ps, psx, ps1, ps2, ps3, ps4, ps5, ps6, ps7;
+    private ResultSet rs, rsx, rs1, rs2, rs3, rs4, rs5, rs6, rs7;
     private int i = 0, x = 0, totskor = 0, pilihan = 0, 
         //skor 0    
             sdr_pnh_skor0 = 0,
@@ -596,8 +596,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         tglLahir = new widget.TextBox();
         cmbNyeri = new widget.ComboBox();
         jLabel66 = new widget.Label();
-        scrollPane11 = new widget.ScrollPane();
-        Tvas = new widget.TextArea();
         jLabel58 = new widget.Label();
         label_5 = new widget.Label();
         label_24 = new widget.Label();
@@ -613,7 +611,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         BtnKimia = new widget.Button();
         BtnLainya = new widget.Button();
         BtnKeluhan = new widget.Button();
-        BtnVas = new widget.Button();
         BtnCatatan = new widget.Button();
         jLabel45 = new widget.Label();
         jLabel46 = new widget.Label();
@@ -622,6 +619,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         jLabel48 = new widget.Label();
         tb = new widget.TextBox();
         jLabel50 = new widget.Label();
+        Tvas = new widget.TextBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTriase = new widget.Table();
@@ -803,7 +801,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Triase IGD ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Triase IGD ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setFont(new java.awt.Font("Tahoma", 2, 12)); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
@@ -865,7 +863,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel18);
         jLabel18.setBounds(558, 10, 70, 23);
 
-        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
+        tgl_kunjungan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025 08:29:18" }));
         tgl_kunjungan.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kunjungan.setName("tgl_kunjungan"); // NOI18N
         tgl_kunjungan.setOpaque(false);
@@ -1100,7 +1098,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian_tunggal);
         tmpt_kejadian_tunggal.setBounds(223, 240, 310, 23);
 
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025 08:29:18" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1165,7 +1163,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(tmpt_kejadian);
         tmpt_kejadian.setBounds(538, 270, 228, 23);
 
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024 14:29:12" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025 08:29:18" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -2221,23 +2219,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel66);
         jLabel66.setBounds(490, 720, 80, 23);
 
-        scrollPane11.setName("scrollPane11"); // NOI18N
-
-        Tvas.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
-        Tvas.setColumns(20);
-        Tvas.setRows(5);
-        Tvas.setName("Tvas"); // NOI18N
-        Tvas.setPreferredSize(new java.awt.Dimension(162, 350));
-        Tvas.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TvasKeyPressed(evt);
-            }
-        });
-        scrollPane11.setViewportView(Tvas);
-
-        FormInput.add(scrollPane11);
-        scrollPane11.setBounds(575, 720, 300, 150);
-
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
         jLabel58.setText("TANDA VITAL");
         jLabel58.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
@@ -2410,21 +2391,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(BtnKeluhan);
         BtnKeluhan.setBounds(765, 480, 100, 23);
 
-        BtnVas.setForeground(new java.awt.Color(0, 0, 0));
-        BtnVas.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
-        BtnVas.setMnemonic('2');
-        BtnVas.setText("Template");
-        BtnVas.setToolTipText("Alt+2");
-        BtnVas.setName("BtnVas"); // NOI18N
-        BtnVas.setPreferredSize(new java.awt.Dimension(28, 23));
-        BtnVas.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnVasActionPerformed(evt);
-            }
-        });
-        FormInput.add(BtnVas);
-        BtnVas.setBounds(765, 690, 100, 23);
-
         BtnCatatan.setForeground(new java.awt.Color(0, 0, 0));
         BtnCatatan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
         BtnCatatan.setMnemonic('2');
@@ -2490,6 +2456,17 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         FormInput.add(jLabel50);
         jLabel50.setBounds(650, 630, 50, 23);
 
+        Tvas.setBackground(new java.awt.Color(245, 250, 240));
+        Tvas.setForeground(new java.awt.Color(0, 0, 0));
+        Tvas.setName("Tvas"); // NOI18N
+        Tvas.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TvasKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tvas);
+        Tvas.setBounds(575, 720, 140, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTriase.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2532,7 +2509,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2547,7 +2524,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "23-02-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3499,10 +3476,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbTriaseMouseClicked
 
-    private void TvasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TvasKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_TvasKeyPressed
-
     private void cmbNyeriActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cmbNyeriActionPerformed
         if (cmbNyeri.getSelectedIndex() == 1) {
             Tvas.setEnabled(true);
@@ -3680,27 +3653,12 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         TCari1.requestFocus();
     }//GEN-LAST:event_BtnKeluhanActionPerformed
 
-    private void BtnVasActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnVasActionPerformed
-        pilihan = 0;
-        Ttemplate.setText("");
-        TCari1.setText("");
-
-        pilihan = 7;
-        tampilTemplate();
-        internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template VAS ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
-        WindowTemplate.setSize(998, 325);
-        WindowTemplate.setLocationRelativeTo(internalFrame1);
-        WindowTemplate.setAlwaysOnTop(false);
-        WindowTemplate.setVisible(true);
-        TCari1.requestFocus();
-    }//GEN-LAST:event_BtnVasActionPerformed
-
     private void BtnCatatanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCatatanActionPerformed
         pilihan = 0;
         Ttemplate.setText("");
         TCari1.setText("");
 
-        pilihan = 8;
+        pilihan = 7;
         tampilTemplate();
         internalFrame5.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Template Catatan Khusus ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12)));
         WindowTemplate.setSize(998, 325);
@@ -3792,6 +3750,10 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_MnDokumenJangMedActionPerformed
 
+    private void TvasKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TvasKeyPressed
+        Valid.pindah(evt, cmbNyeri, Tcttn_khusus);
+    }//GEN-LAST:event_TvasKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3828,7 +3790,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private widget.Button BtnNotepad;
     private widget.Button BtnPrint;
     private widget.Button BtnSimpan;
-    private widget.Button BtnVas;
     public widget.CekBox Chk100;
     public widget.CekBox Chk101;
     public widget.CekBox Chk102;
@@ -3882,7 +3843,7 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private widget.TextArea Tcttn_khusus;
     private widget.TextArea Tkeluhan_utama;
     private widget.TextArea Ttemplate;
-    private widget.TextArea Tvas;
+    private widget.TextBox Tvas;
     private javax.swing.JDialog WindowTemplate;
     private widget.TextBox bb;
     private widget.TextBox bkn_ambulan;
@@ -4009,7 +3970,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
     private widget.TextBox rujukan_dari;
     private widget.TextBox saturasi;
     private widget.ScrollPane scrollPane10;
-    private widget.ScrollPane scrollPane11;
     private widget.ScrollPane scrollPane9;
     private widget.TextBox sdh_terpasang;
     private widget.TextBox tb;
@@ -5303,17 +5263,10 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                 ps7 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, ti.* from triase_igd ti "
                         + "inner join reg_periksa rp on rp.no_rawat=ti.no_rawat "
                         + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
-                        + "ti.vas<>'' and p.no_rkm_medis like ? OR "
-                        + "ti.vas<>'' and p.nm_pasien like ? OR "
-                        + "ti.vas<>'' and ti.vas like ? ORDER BY ti.tanggal desc limit 20");
-            } else if (pilihan == 8) {
-                ps8 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, ti.* from triase_igd ti "
-                        + "inner join reg_periksa rp on rp.no_rawat=ti.no_rawat "
-                        + "inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis where "
                         + "ti.catatan<>'' and p.no_rkm_medis like ? OR "
                         + "ti.catatan<>'' and p.nm_pasien like ? OR "
                         + "ti.catatan<>'' and ti.catatan like ? ORDER BY ti.tanggal desc limit 20");
-            } 
+            }
             try {
                 if (pilihan == 1) {
                     ps1.setString(1, "%" + TCari1.getText() + "%");
@@ -5396,22 +5349,10 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                         tabMode1.addRow(new String[]{
                             rs7.getString("no_rkm_medis"),
                             rs7.getString("nm_pasien"),
-                            rs7.getString("vas")
+                            rs7.getString("catatan")
                         });
                     }
-                } else if (pilihan == 8) {
-                    ps8.setString(1, "%" + TCari1.getText() + "%");
-                    ps8.setString(2, "%" + TCari1.getText() + "%");
-                    ps8.setString(3, "%" + TCari1.getText() + "%");
-                    rs8 = ps8.executeQuery();
-                    while (rs8.next()) {
-                        tabMode1.addRow(new String[]{
-                            rs8.getString("no_rkm_medis"),
-                            rs8.getString("nm_pasien"),
-                            rs8.getString("catatan")
-                        });
-                    }
-                } 
+                }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);
             } finally {
@@ -5429,8 +5370,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     rs6.close();
                 } else if (rs7 != null) {
                     rs7.close();
-                } else if (rs8 != null) {
-                    rs8.close();
                 } 
 
                 if (ps1 != null) {
@@ -5447,8 +5386,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
                     ps6.close();
                 } else if (ps7 != null) {
                     ps7.close();
-                } else if (ps8 != null) {
-                    ps8.close();
                 } 
             }
 
@@ -5471,8 +5408,6 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
         } else if (pilihan == 6) {
             Tkeluhan_utama.setText(Ttemplate.getText());
         } else if (pilihan == 7) {
-            Tvas.setText(Ttemplate.getText());
-        } else if (pilihan == 8) {
             Tcttn_khusus.setText(Ttemplate.getText());
         }
     }

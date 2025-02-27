@@ -805,7 +805,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel11.setBounds(210, 66, 160, 23);
 
         TtglTiba.setEditable(false);
-        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
+        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
         TtglTiba.setDisplayFormat("dd-MM-yyyy");
         TtglTiba.setName("TtglTiba"); // NOI18N
         TtglTiba.setOpaque(false);
@@ -2275,6 +2275,11 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         chkDoa.setName("chkDoa"); // NOI18N
         chkDoa.setOpaque(false);
         chkDoa.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkDoa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkDoaActionPerformed(evt);
+            }
+        });
         FormInput.add(chkDoa);
         chkDoa.setBounds(325, 1174, 55, 23);
 
@@ -2353,7 +2358,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel72.setBounds(136, 1298, 60, 23);
 
         TtglKeputusan.setEditable(false);
-        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
+        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
         TtglKeputusan.setDisplayFormat("dd-MM-yyyy");
         TtglKeputusan.setName("TtglKeputusan"); // NOI18N
         TtglKeputusan.setOpaque(false);
@@ -2475,7 +2480,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2490,7 +2495,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2810,20 +2815,378 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             Map<String, Object> param = new HashMap<>();
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));            
+            param.put("jenkel", Tjenkel.getText() + ", Gelang : " + cmbGelang.getSelectedItem().toString());
             
-            Valid.MyReport("rptTriaseIGD.jasper", "report", "::[ Laporan Data Triase IGD ]::",
-                    "SELECT ti.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(tp.waktu_simpan,'Tanggal : %d-%m-%Y    Pukul : %H:%i') kontak_awal, "
-                    + "if(ti.cara_masuk='','-',ti.cara_masuk) cr_msk, ti.sudah_terpasang, concat('Nama : ',ti.nm_pengantar,'    No. Telp : ',ti.telp_pengantar) iden_pengntar, "
-                    + "ti.kasus, ti.keluhan_utama, if(ti.kesadaran='','KESADARAN : -',concat('KESADARAN : ',ti.kesadaran)) kesadaran, ti.td, ti.nadi, ti.napas, ti.temperatur, "
-                    + "ti.saturasi, ti.nyeri, ti.vas, if(ti.skor0_sadar_penuh='ya','V','') skor0_sadar, if(ti.skor0_100='ya','V','') skor0_100, if(ti.skor0_101='ya','V','') skor0_101, "
-                    + "if(ti.skor0_19='ya','V','') skor0_19, if(ti.skor0_35_3='ya','V','') skor0_35, if(ti.skor0_96_100='ya','V','') skor0_96, if(ti.skor1_102='ya','V','') skor1_102, "
-                    + "if(ti.skor1_20_21='ya','V','') skor1_20, if(ti.skor1_94_95='ya','V','') skor1_94, if(ti.skor2_99='ya','V','') skor2_99, if(ti.skor2_22='ya','V','') skor2_22, "
-                    + "if(ti.skor2_92_93='ya','V','') skor2_92, if(ti.skor3_selain='ya','V','') skor3_selain, if(ti.skor3_35_3='ya','V','') skor3_35, if(ti.skor3_92='ya','V','') skor3_92, "
-                    + "ti.catatan, ti.pukul, if(ti.triase_resusitasi='ya','V','') resus, if(ti.triase_non_resusitasi='ya','V','') nonresus, if(ti.triase_klinik='ya','V','') klinik, "
-                    + "if(ti.triase_doa='ya','V','') doa, pg.nama petgas, if(ti.kll_tunggal='ya','V','') kll_tunggal, if(ti.kll_versus='ya','V','') kll_versus, if(ti.jatuh='ya','V','') jatuh, "
-                    + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain, "
-                    + "ti.bb, ti.tb from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+            param.put("diisi", cmbDiisi.getSelectedItem().toString());
+            param.put("saatTiba", "Tanggal : " + Valid.SetTglINDONESIA(Valid.SetTgl(TtglTiba.getSelectedItem() + "")) + ", Jam : " + cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + " Wita");
+            param.put("pembiayaan", Tpembiayaan.getText());
+            
+            if (chkAutoanam.isSelected() == true) {
+                param.put("autoAnam", "V");
+            } else {
+                param.put("autoAnam", "");
+            }
+            
+            if (chkHeteroanam.isSelected() == true) {
+                param.put("heteroAnam", "V");
+            } else {
+                param.put("heteroAnam", "");
+            }
+            
+            if (Tnama.getText().equals("")) {
+                param.put("nama", "Heteroanamnese    Nama : .......");
+            } else {
+                param.put("nama", "Heteroanamnese    Nama : " + Tnama.getText());
+            }
+            
+            if (Thubungan.getText().equals("")) {
+                param.put("hubungan", "Hubungan Dengan Pasien : -");
+            } else {
+                param.put("hubungan", "Hubungan Dengan Pasien : " + Thubungan.getText());
+            }
+            
+            if (cmbRujukan.getSelectedIndex() == 1) {
+                if (Tdari.getText().equals("")) {
+                    param.put("rujukan", cmbRujukan.getSelectedItem().toString() + "   dari : .......");
+                } else {
+                    param.put("rujukan", cmbRujukan.getSelectedItem().toString() + "   dari : " + Tdari.getText());
+                }                
+            } else {
+                param.put("rujukan", cmbRujukan.getSelectedItem().toString() + "   dari : .......");
+            }
+            
+            param.put("transportasi", cmbTransportasi.getSelectedItem().toString());
+            
+            if (Tkeluhan.getText().equals("")) {
+                param.put("keluhan", "-");
+            } else {
+                param.put("keluhan", Tkeluhan.getText());
+            }
+            
+            param.put("penampilan", cmbPenampilan.getSelectedItem().toString());
+            param.put("usaha", cmbUsaha.getSelectedItem().toString());
+            param.put("sirkulasi", cmbSirkulasi.getSelectedItem().toString());            
+            
+            if (chkStabil.isSelected() == true) {
+                param.put("stabil", "V");
+            } else {
+                param.put("stabil", "");
+            }
+            
+            if (chkDistres.isSelected() == true) {
+                param.put("distress", "V");
+            } else {
+                param.put("distress", "");
+            }
+            
+            if (chkGagalNafas.isSelected() == true) {
+                param.put("gglNafas", "V");
+            } else {
+                param.put("gglNafas", "");
+            }
+            
+            if (chkSsp.isSelected() == true) {
+                param.put("ssp", "V");
+            } else {
+                param.put("ssp", "");
+            }
+            
+            if (chkGagalJantung.isSelected() == true) {
+                param.put("gglJantung", "V");
+            } else {
+                param.put("gglJantung", "");
+            }
+            
+            if (chkShock.isSelected() == true) {
+                param.put("shok", "V");
+            } else {
+                param.put("shok", "");
+            }
+            
+            param.put("airwayLevel1", cmbAirway.getSelectedItem().toString());
+            
+            if (chkAncaman.isSelected() == true) {
+                param.put("ancaman", "V");
+            } else {
+                param.put("ancaman", "");
+            }
+            
+            if (chkBebas3.isSelected() == true) {
+                param.put("bebas3", "V");
+            } else {
+                param.put("bebas3", "");
+            }
+            
+            if (chkBebas4.isSelected() == true) {
+                param.put("bebas4", "V");
+            } else {
+                param.put("bebas4", "");
+            }
+            
+            if (chkBebas5.isSelected() == true) {
+                param.put("bebas5", "V");
+            } else {
+                param.put("bebas5", "");
+            }
+            
+            param.put("breaLevel1", cmbBreaLevel1.getSelectedItem().toString());
+            
+            if (chkBreaLevel1.isSelected() == true) {
+                param.put("breaSpoLevel1", "V");
+            } else {
+                param.put("breaSpoLevel1", "");
+            }
+            
+            param.put("breaLevel2", cmbBreaLevel2.getSelectedItem().toString());
+            
+            if (chkBreaLevel2.isSelected() == true) {
+                param.put("breaSpoLevel2", "V");
+            } else {
+                param.put("breaSpoLevel2", "");
+            }
+            
+            param.put("breaLevel3", cmbBreaLevel3.getSelectedItem().toString());
+            param.put("breaLevel4", cmbBreaLevel4.getSelectedItem().toString());
+            param.put("breaLevel5", cmbBreaLevel5.getSelectedItem().toString());
+            
+            if (chkCircuLevel1.isSelected() == true) {
+                param.put("circuLevel1", "V");
+            } else {
+                param.put("circuLevel1", "");
+            }
+            
+            if (chkCircuAkralD.isSelected() == true) {
+                param.put("circuAkralDingin", "V");
+            } else {
+                param.put("circuAkralDingin", "");
+            }
+            
+            param.put("circuLevel2", cmbCircuLevel2.getSelectedItem().toString());
+            
+            if (chkCircuCrt.isSelected() == true) {
+                param.put("circuCrt", "V");
+            } else {
+                param.put("circuCrt", "");
+            }
+            
+            if (chkCircuAkralHL3.isSelected() == true) {
+                param.put("circuAkralHL3", "V");
+            } else {
+                param.put("circuAkralHL3", "");
+            }
+            
+            if (chkCircuSadar.isSelected() == true) {
+                param.put("circuSadar", "V");
+            } else {
+                param.put("circuSadar", "");
+            }
+            
+            if (chkCircuGcs.isSelected() == true) {
+                param.put("circuGcs", "V");
+            } else {
+                param.put("circuGcs", "");
+            }
+            
+            if (chkCircuNadi.isSelected() == true) {
+                param.put("circuNadi", "V");
+            } else {
+                param.put("circuNadi", "");
+            }
+            
+            if (chkCircuAkralHL5.isSelected() == true) {
+                param.put("circuAkralHL5", "V");
+            } else {
+                param.put("circuAkralHL5", "");
+            }
+            
+            if (chkDisTidak.isSelected() == true) {
+                param.put("disaTidak", "V");
+            } else {
+                param.put("disaTidak", "");
+            }
+            
+            if (chkDisKejang.isSelected() == true) {
+                param.put("disaKejang", "V");
+            } else {
+                param.put("disaKejang", "");
+            }
+            
+            if (chkDisGcs9.isSelected() == true) {
+                param.put("disaGcs9", "V");
+            } else {
+                param.put("disaGcs9", "");
+            }
+            
+            if (chkDisRespon.isSelected() == true) {
+                param.put("disaRespon", "V");
+            } else {
+                param.put("disaRespon", "");
+            }
+            
+            if (chkDisGelisah.isSelected() == true) {
+                param.put("disaGelisah", "V");
+            } else {
+                param.put("disaGelisah", "");
+            }
+            
+            if (chkDisGcs912.isSelected() == true) {
+                param.put("disaGcs912", "V");
+            } else {
+                param.put("disaGcs912", "");
+            }
+            
+            param.put("disaLevel3", cmbDisLevel3.getSelectedItem().toString());
+            
+            if (chkDisSadarL4.isSelected() == true) {
+                param.put("disaSadarL4", "V");
+            } else {
+                param.put("disaSadarL4", "");
+            }
+            
+            if (chkDisGcsL4.isSelected() == true) {
+                param.put("disaGcsL4", "V");
+            } else {
+                param.put("disaGcsL4", "");
+            }
+            
+            if (chkDisSadarL5.isSelected() == true) {
+                param.put("disaSadarL5", "V");
+            } else {
+                param.put("disaSadarL5", "");
+            }
+            
+            if (chkDisGcsL5.isSelected() == true) {
+                param.put("disaGcsL5", "V");
+            } else {
+                param.put("disaGcsL5", "");
+            }
+            
+            param.put("sumLevel3", cmbSumLevel3.getSelectedItem().toString());
+            param.put("sumLevel4", cmbSumLevel4.getSelectedItem().toString());
+            param.put("sumLevel5", cmbSumLevel5.getSelectedItem().toString());
+            
+            if (chkVas.isSelected() == true) {
+                param.put("vas", "V");
+            } else {
+                param.put("vas", "");
+            }
+            
+            if (chkKesLevel1.isSelected() == true) {
+                param.put("kesLevel1", "V");
+            } else {
+                param.put("kesLevel1", "");
+            }
+            
+            if (chkKesLevel2.isSelected() == true) {
+                param.put("kesLevel2", "V");
+            } else {
+                param.put("kesLevel2", "");
+            }
+            
+            if (chkKesLevel3.isSelected() == true) {
+                param.put("kesLevel3", "V");
+            } else {
+                param.put("kesLevel3", "");
+            }
+            
+            if (chkKesLevel4.isSelected() == true) {
+                param.put("kesLevel4", "V");
+            } else {
+                param.put("kesLevel4", "");
+            }
+            
+            if (chkKesLevel5.isSelected() == true) {
+                param.put("kesLevel5", "V");
+            } else {
+                param.put("kesLevel5", "");
+            }
+            
+            if (Tnadi.getText().equals("")) {
+                param.put("nadi", "..... x/menit");
+            } else {
+                param.put("nadi", Tnadi.getText() + " x/menit");
+            }
+            
+            if (Trespi.getText().equals("")) {
+                param.put("respi", "..... x/menit");
+            } else {
+                param.put("respi", Trespi.getText() + " x/menit");
+            }
+            
+            if (Tspo.getText().equals("")) {
+                param.put("spo", "..... %");
+            } else {
+                param.put("spo", Tspo.getText() + " %");
+            }
+            
+            if (cmbUmur.getSelectedIndex() == 1) {
+                if (TumurSpo.getText().equals("")) {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 180, Nafas x/menit : > 50, Temperatur : > 38 °C, SpO2 : ...... %");
+                } else {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 180, Nafas x/menit : > 50, Temperatur : > 38 °C, SpO2 : " + TumurSpo.getText() + " %");
+                }
+            } else if (cmbUmur.getSelectedIndex() == 2) {
+                if (TumurSpo.getText().equals("")) {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 160, Nafas x/menit : > 40, Temperatur : - , SpO2 : ...... %");
+                } else {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 160, Nafas x/menit : > 40, Temperatur : - , SpO2 : " + TumurSpo.getText() + " %");
+                }
+            } else if (cmbUmur.getSelectedIndex() == 3) {
+                if (TumurSpo.getText().equals("")) {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 140, Nafas x/menit : > 30, Temperatur : - , SpO2 : ...... %");
+                } else {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 140, Nafas x/menit : > 30, Temperatur : - , SpO2 : " + TumurSpo.getText() + " %");
+                }
+            } else if (cmbUmur.getSelectedIndex() == 4) {
+                if (TumurSpo.getText().equals("")) {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 100, Nafas x/menit : - , Temperatur : - , SpO2 : ...... %");
+                } else {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 100, Nafas x/menit : - , Temperatur : - , SpO2 : " + TumurSpo.getText() + " %");
+                }
+            } else {
+                if (TumurSpo.getText().equals("")) {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", SpO2 : ...... %");
+                } else {
+                    param.put("umur", cmbUmur.getSelectedItem().toString() + ", SpO2 : " + TumurSpo.getText() + " %");
+                }
+            }
+            
+            if (chkTrauma.isSelected() == true) {
+                param.put("trauma", "V");
+            } else {
+                param.put("trauma", "");
+            }
+            
+            if (chkNonTrauma.isSelected() == true) {
+                param.put("nonTrauma", "V");
+            } else {
+                param.put("nonTrauma", "");
+            }
+            
+            if (chkDoa.isSelected() == true) {
+                param.put("doa", "V");
+                param.put("jamKasus", "DOA :      Jam : " + cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + " Wita");
+            } else {
+                param.put("doa", "");
+                param.put("jamKasus", "DOA");
+            }           
+            
+            if (Tcatatan.getText().equals("")) {
+                param.put("catatan", "-");
+            } else {
+                param.put("catatan", Tcatatan.getText());
+            }
+            
+            param.put("tglKeputusan", Valid.SetTglINDONESIA(Valid.SetTgl(TtglKeputusan.getSelectedItem() + "")));
+            param.put("jamKeputusan", cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + " Wita");
+            param.put("keputusan", cmbKeputusan.getSelectedItem().toString());
+            param.put("nmPetugas", TnmPetugas.getText());
+            
+            Valid.MyReport("rptTriasePediatrikIGD.jasper", "report", "::[ Laporan Data Triase Pediatrik IGD ]::",
+                    "SELECT now() tanggal", param);
             
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
@@ -3091,6 +3454,25 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         petugas.setAlwaysOnTop(false);
         petugas.setVisible(true);
     }//GEN-LAST:event_BtnPetugasActionPerformed
+
+    private void chkDoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDoaActionPerformed
+        if (chkDoa.isSelected() == true) {
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
+            cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
+            cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+            cmbDtk1.setSelectedIndex(0);
+            cmbJam1.requestFocus();
+        } else {
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
+            cmbJam1.setSelectedIndex(0);
+            cmbMnt1.setSelectedIndex(0);
+            cmbDtk1.setSelectedIndex(0);
+        }
+    }//GEN-LAST:event_chkDoaActionPerformed
 
     /**
     * @param args the command line arguments
@@ -3562,9 +3944,12 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         
         chkTrauma.setSelected(false);
         chkNonTrauma.setSelected(false);
-        chkDoa.setSelected(false);
-        cmbJam1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(0, 2));
-        cmbMnt1.setSelectedItem(Sequel.cariIsi("select time(now())").substring(3, 5));
+        chkDoa.setSelected(false);        
+        cmbJam1.setEnabled(false);
+        cmbMnt1.setEnabled(false);
+        cmbDtk1.setEnabled(false);
+        cmbJam1.setSelectedIndex(0);
+        cmbMnt1.setSelectedIndex(0);
         cmbDtk1.setSelectedIndex(0);
         Tcatatan.setText("");
         TtglKeputusan.setDate(new Date());
@@ -4303,8 +4688,14 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         
         if (doa.equals("ya")) {
             chkDoa.setSelected(true);
+            cmbJam1.setEnabled(true);
+            cmbMnt1.setEnabled(true);
+            cmbDtk1.setEnabled(true);
         } else {
             chkDoa.setSelected(false);
+            cmbJam1.setEnabled(false);
+            cmbMnt1.setEnabled(false);
+            cmbDtk1.setEnabled(false);
         }
     }
     
