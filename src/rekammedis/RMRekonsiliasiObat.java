@@ -45,7 +45,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String kdObat = "", nipPereview = "", nipApoteker = "", nmDokter = "", tglreg = "", nipDokter = "",
-            ruangRwt = "", ceknmDokter = "", cekNipDokter = "";
+            ceknmDokter = "", cekNipDokter = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -514,6 +514,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel10 = new widget.Label();
         cmbDilanjut = new widget.ComboBox();
         Tdilanjutkan = new widget.TextBox();
+        jLabel36 = new widget.Label();
+        TtglMRS1 = new widget.TextBox();
         internalFrame3 = new widget.InternalFrame();
         Scroll2 = new widget.ScrollPane();
         tbRekonIgd = new widget.Table();
@@ -540,11 +542,23 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         Taturan = new widget.TextBox();
         jLabel34 = new widget.Label();
         BtnDokter = new widget.Button();
+        jLabel37 = new widget.Label();
+        TtglMRS2 = new widget.TextBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll5 = new widget.ScrollPane();
         tbRekonRanap = new widget.Table();
+        FormInput4 = new widget.PanelBiasa();
         Scroll6 = new widget.ScrollPane();
         tbRiwayatObatRanap = new widget.Table();
+        panelGlass12 = new widget.panelisi();
+        jLabel67 = new widget.Label();
+        DTPCari5 = new widget.Tanggal();
+        jLabel72 = new widget.Label();
+        DTPCari6 = new widget.Tanggal();
+        jLabel35 = new widget.Label();
+        TCari2 = new widget.TextBox();
+        BtnCari2 = new widget.Button();
+        BtnAll2 = new widget.Button();
         panelGlass8 = new widget.panelisi();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
@@ -836,7 +850,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel22.setBounds(260, 66, 120, 23);
 
         TtglRekon.setEditable(false);
-        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        TtglRekon.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         TtglRekon.setDisplayFormat("dd-MM-yyyy");
         TtglRekon.setName("TtglRekon"); // NOI18N
         TtglRekon.setOpaque(false);
@@ -907,7 +921,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel65.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass10.add(jLabel65);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -921,7 +935,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel70.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel70);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1078,7 +1092,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel66.setPreferredSize(new java.awt.Dimension(95, 23));
         panelGlass11.add(jLabel66);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1092,7 +1106,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel71.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass11.add(jLabel71);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1201,7 +1215,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel5.setBounds(0, 38, 135, 23);
 
         TtglResep.setEditable(false);
-        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        TtglResep.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         TtglResep.setDisplayFormat("dd-MM-yyyy");
         TtglResep.setName("TtglResep"); // NOI18N
         TtglResep.setOpaque(false);
@@ -1279,6 +1293,19 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         });
         FormInput.add(Tdilanjutkan);
         Tdilanjutkan.setBounds(202, 122, 524, 23);
+
+        jLabel36.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel36.setText("Tgl. Masuk RS : ");
+        jLabel36.setName("jLabel36"); // NOI18N
+        FormInput.add(jLabel36);
+        jLabel36.setBounds(450, 66, 123, 23);
+
+        TtglMRS1.setEditable(false);
+        TtglMRS1.setBackground(new java.awt.Color(245, 250, 240));
+        TtglMRS1.setForeground(new java.awt.Color(0, 0, 0));
+        TtglMRS1.setName("TtglMRS1"); // NOI18N
+        FormInput.add(TtglMRS1);
+        TtglMRS1.setBounds(575, 66, 152, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.PAGE_START);
 
@@ -1374,7 +1401,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         jLabel29.setBounds(0, 66, 135, 23);
 
         TtglResep1.setEditable(false);
-        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-02-2025" }));
+        TtglResep1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
         TtglResep1.setDisplayFormat("dd-MM-yyyy");
         TtglResep1.setName("TtglResep1"); // NOI18N
         TtglResep1.setOpaque(false);
@@ -1448,7 +1475,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TrgRawat1.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat1.setName("TrgRawat1"); // NOI18N
         FormInput3.add(TrgRawat1);
-        TrgRawat1.setBounds(136, 38, 591, 23);
+        TrgRawat1.setBounds(136, 38, 340, 23);
 
         Taturan.setForeground(new java.awt.Color(0, 0, 0));
         Taturan.setName("Taturan"); // NOI18N
@@ -1479,6 +1506,19 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         FormInput3.add(BtnDokter);
         BtnDokter.setBounds(690, 150, 28, 23);
 
+        jLabel37.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel37.setText("Tgl. Masuk RS : ");
+        jLabel37.setName("jLabel37"); // NOI18N
+        FormInput3.add(jLabel37);
+        jLabel37.setBounds(480, 38, 95, 23);
+
+        TtglMRS2.setEditable(false);
+        TtglMRS2.setBackground(new java.awt.Color(245, 250, 240));
+        TtglMRS2.setForeground(new java.awt.Color(0, 0, 0));
+        TtglMRS2.setName("TtglMRS2"); // NOI18N
+        FormInput3.add(TtglMRS2);
+        TtglMRS2.setBounds(577, 38, 150, 23);
+
         PanelInput2.add(FormInput3, java.awt.BorderLayout.PAGE_START);
 
         internalFrame4.setBorder(null);
@@ -1506,6 +1546,10 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
 
         internalFrame4.add(Scroll5);
 
+        FormInput4.setName("FormInput4"); // NOI18N
+        FormInput4.setPreferredSize(new java.awt.Dimension(190, 185));
+        FormInput4.setLayout(new java.awt.BorderLayout());
+
         Scroll6.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Riwayat Peresepan Obat Selama Di R. Inap ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         Scroll6.setName("Scroll6"); // NOI18N
         Scroll6.setOpaque(true);
@@ -1525,7 +1569,85 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         });
         Scroll6.setViewportView(tbRiwayatObatRanap);
 
-        internalFrame4.add(Scroll6);
+        FormInput4.add(Scroll6, java.awt.BorderLayout.CENTER);
+
+        panelGlass12.setName("panelGlass12"); // NOI18N
+        panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
+        panelGlass12.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel67.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel67.setText("Tgl. Resep :");
+        jLabel67.setName("jLabel67"); // NOI18N
+        jLabel67.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass12.add(jLabel67);
+
+        DTPCari5.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
+        DTPCari5.setDisplayFormat("dd-MM-yyyy");
+        DTPCari5.setName("DTPCari5"); // NOI18N
+        DTPCari5.setOpaque(false);
+        DTPCari5.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass12.add(DTPCari5);
+
+        jLabel72.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel72.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel72.setText("s.d.");
+        jLabel72.setName("jLabel72"); // NOI18N
+        jLabel72.setPreferredSize(new java.awt.Dimension(23, 23));
+        panelGlass12.add(jLabel72);
+
+        DTPCari6.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-02-2025" }));
+        DTPCari6.setDisplayFormat("dd-MM-yyyy");
+        DTPCari6.setName("DTPCari6"); // NOI18N
+        DTPCari6.setOpaque(false);
+        DTPCari6.setPreferredSize(new java.awt.Dimension(90, 23));
+        panelGlass12.add(DTPCari6);
+
+        jLabel35.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel35.setText("Key Word :");
+        jLabel35.setName("jLabel35"); // NOI18N
+        jLabel35.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass12.add(jLabel35);
+
+        TCari2.setForeground(new java.awt.Color(0, 0, 0));
+        TCari2.setName("TCari2"); // NOI18N
+        TCari2.setPreferredSize(new java.awt.Dimension(200, 23));
+        TCari2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCari2KeyPressed(evt);
+            }
+        });
+        panelGlass12.add(TCari2);
+
+        BtnCari2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari2.setMnemonic('2');
+        BtnCari2.setText("Tampilkan Data");
+        BtnCari2.setName("BtnCari2"); // NOI18N
+        BtnCari2.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCari2ActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnCari2);
+
+        BtnAll2.setForeground(new java.awt.Color(0, 0, 0));
+        BtnAll2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
+        BtnAll2.setMnemonic('M');
+        BtnAll2.setText("Semua");
+        BtnAll2.setToolTipText("Alt+M");
+        BtnAll2.setName("BtnAll2"); // NOI18N
+        BtnAll2.setPreferredSize(new java.awt.Dimension(100, 23));
+        BtnAll2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnAll2ActionPerformed(evt);
+            }
+        });
+        panelGlass12.add(BtnAll2);
+
+        FormInput4.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+
+        internalFrame4.add(FormInput4);
 
         PanelInput2.add(internalFrame4, java.awt.BorderLayout.CENTER);
 
@@ -2169,6 +2291,25 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         dokter.setVisible(true);
     }//GEN-LAST:event_BtnDokterActionPerformed
 
+    private void TCari2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCari2KeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            BtnCari2ActionPerformed(null);
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
+            BtnCari2.requestFocus();
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
+            BtnKeluar.requestFocus();
+        }
+    }//GEN-LAST:event_TCari2KeyPressed
+
+    private void BtnCari2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnCari2ActionPerformed
+        tampilRiwObatRanap();
+    }//GEN-LAST:event_BtnCari2ActionPerformed
+
+    private void BtnAll2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnAll2ActionPerformed
+        TCari2.setText("");
+        tampilRiwObatRanap();
+    }//GEN-LAST:event_BtnAll2ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -2188,10 +2329,12 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnAll1;
+    private widget.Button BtnAll2;
     private widget.Button BtnApoteker;
     private widget.Button BtnBatal;
     private widget.Button BtnCari;
     private widget.Button BtnCari1;
+    private widget.Button BtnCari2;
     private widget.Button BtnDokter;
     private widget.Button BtnGanti;
     private widget.Button BtnHapus;
@@ -2202,10 +2345,13 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Tanggal DTPCari2;
     private widget.Tanggal DTPCari3;
     private widget.Tanggal DTPCari4;
+    private widget.Tanggal DTPCari5;
+    private widget.Tanggal DTPCari6;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
     private widget.PanelBiasa FormInput2;
     private widget.PanelBiasa FormInput3;
+    private widget.PanelBiasa FormInput4;
     private widget.Label LCount;
     private widget.Label LCount1;
     private javax.swing.JPanel PanelInput;
@@ -2219,6 +2365,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.ScrollPane Scroll6;
     public widget.TextBox TCari;
     public widget.TextBox TCari1;
+    public widget.TextBox TCari2;
     private widget.TextBox TNoRM1;
     private widget.TextBox TNoRM2;
     private widget.TextBox TNoRM3;
@@ -2252,6 +2399,8 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.TextBox Trute1;
     private widget.TextArea Tsaran;
     private widget.TextBox TtglMRS;
+    private widget.TextBox TtglMRS1;
+    private widget.TextBox TtglMRS2;
     private widget.Tanggal TtglRekon;
     private widget.Tanggal TtglResep;
     private widget.Tanggal TtglResep1;
@@ -2291,19 +2440,25 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     private widget.Label jLabel32;
     private widget.Label jLabel33;
     private widget.Label jLabel34;
+    private widget.Label jLabel35;
+    private widget.Label jLabel36;
+    private widget.Label jLabel37;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
     private widget.Label jLabel63;
     private widget.Label jLabel65;
     private widget.Label jLabel66;
+    private widget.Label jLabel67;
     private widget.Label jLabel7;
     private widget.Label jLabel70;
     private widget.Label jLabel71;
+    private widget.Label jLabel72;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private widget.panelisi panelGlass10;
     private widget.panelisi panelGlass11;
+    private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass8;
     private widget.ScrollPane scrollPane3;
     private widget.ScrollPane scrollPane4;
@@ -2538,27 +2693,27 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
     }
     
     private void tampilRiwObatRanap() {
-        ruangRwt = "";
         ceknmDokter = "";
         cekNipDokter = "";
         Valid.tabelKosong(tabMode4);
         try {
-            ps4 = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tglResep, db.nama_brng, "
+            ps4 = koneksi.prepareStatement("SELECT DATE_FORMAT(dpo.tgl_perawatan,'%d-%m-%Y') tglResep, db.nama_brng, ifnull(b.nm_bangsal,'-') rgrawat, "
                     + "CONCAT(dpo.jml,' ',LOWER(db.kode_sat)) jlh, dpo.kode_brng, dpo.tgl_perawatan, dpo.no_rawat, ro.kode_unit FROM detail_pemberian_obat dpo "
                     + "INNER JOIN databarang db ON dpo.kode_brng=db.kode_brng INNER JOIN resep_obat ro on ro.no_rawat=dpo.no_rawat and ro.tgl_perawatan=dpo.tgl_perawatan and ro.jam=dpo.jam "
-                    + "WHERE dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' order by dpo.tgl_perawatan, dpo.jam");
+                    + "INNER JOIN kamar k on k.kd_kamar=ro.kode_unit INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal WHERE "
+                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' and db.nama_brng like ? or "
+                    + "dpo.tgl_perawatan between ? and ? and dpo.no_rawat='" + TNoRw4.getText() + "' and dpo.status='ranap' and b.nm_bangsal like ? "
+                    + "order by dpo.tgl_perawatan, dpo.jam");
             try {
-                rs4 = ps4.executeQuery();
+                ps4.setString(1, Valid.SetTgl(DTPCari5.getSelectedItem() + ""));
+                ps4.setString(2, Valid.SetTgl(DTPCari6.getSelectedItem() + ""));
+                ps4.setString(3, "%" + TCari2.getText().trim() + "%");
+                ps4.setString(4, Valid.SetTgl(DTPCari5.getSelectedItem() + ""));
+                ps4.setString(5, Valid.SetTgl(DTPCari6.getSelectedItem() + ""));
+                ps4.setString(6, "%" + TCari2.getText().trim() + "%");
+                rs4 = ps4.executeQuery();                
                 x = 1;
                 while (rs4.next()) {
-                    if (Sequel.cariIsi("SELECT b.nm_bangsal FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                            + "WHERE k.kd_kamar='" + rs4.getString("kode_unit") + "' limit 1").equals("")) {
-                        ruangRwt = "-";
-                    } else {
-                        ruangRwt = Sequel.cariIsi("SELECT ifnull(b.nm_bangsal,'-') FROM kamar k INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                                + "WHERE k.kd_kamar='" + rs4.getString("kode_unit") + "' limit 1");
-                    }
-
                     if (Sequel.cariInteger("select count(-1) from catatan_resep_ranap where no_rawat='" + rs4.getString("no_rawat") + "' "
                             + "and tgl_perawatan='" + rs4.getString("tgl_perawatan") + "'") == 0) {
                         cekNipDokter = "-";
@@ -2575,7 +2730,7 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
                     tabMode4.addRow(new String[]{
                         x + ".",
                         rs4.getString("tglResep"),
-                        ruangRwt,
+                        rs4.getString("rgrawat"),
                         rs4.getString("nama_brng"),
                         rs4.getString("jlh"),
                         ceknmDokter,
@@ -2818,11 +2973,15 @@ public class RMRekonsiliasiObat extends javax.swing.JDialog {
         TPasien4.setText(nmpasien);
         tglreg = Sequel.cariIsi("select tgl_registrasi from reg_periksa where no_rawat='" + norwt + "'");
         TtglMRS.setText(Valid.SetTglINDONESIA(tglreg));
+        TtglMRS1.setText(Valid.SetTglINDONESIA(tglreg));
+        TtglMRS2.setText(Valid.SetTglINDONESIA(tglreg));
         TrgRawat.setText(rgrawat);
         Valid.SetTgl(DTPCari1, tglreg);
         DTPCari2.setDate(new Date());
         Valid.SetTgl(DTPCari3, tglreg);
         DTPCari4.setDate(new Date());
+        Valid.SetTgl(DTPCari5, tglreg);
+        DTPCari6.setDate(new Date());
         TCari.setText(norwt);
     }
 }
