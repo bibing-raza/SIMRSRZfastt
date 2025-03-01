@@ -88,7 +88,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             "circulation_level5", "circulation_level55", "disability_level1", "disability_level11", "disability_level111", "disability_level2", "disability_level22", "disability_level222",
             "disability_level3", "disability_level4", "disability_level44", "disability_level5", "disability_level55", "sumber_daya_level3", "sumber_daya_level4", "sumber_daya_level5",
             "vas", "kesimpulan_level1", "kesimpulan_level2", "kesimpulan_level3", "kesimpulan_level4", "kesimpulan_level5", "nadi", "respirasi", "spo2", "umur", "spo2_peringatan",
-            "trauma", "non_trauma", "doa", "jam_kasus", "catatan", "tgl_keputusan", "jam_keputusan", "keputusan", "nip_petugas", "waktu_simpan", "tgl_lahir"
+            "trauma", "non_trauma", "doa", "jam_kasus", "catatan", "tgl_keputusan", "jam_keputusan", "keputusan", "nip_petugas", "waktu_simpan", "tgl_lahir", "suhu", " bb", " satuan_bb"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -100,7 +100,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         tbTriase.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbTriase.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 91; i++) {
+        for (i = 0; i < 94; i++) {
             TableColumn column = tbTriase.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -363,6 +363,15 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             } else if (i == 90) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 91) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 92) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 93) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbTriase.setDefaultRenderer(Object.class, new WarnaTable());
@@ -374,6 +383,8 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         Trespi.setDocument(new batasInput((int) 7).getKata(Trespi));
         Tspo.setDocument(new batasInput((int) 7).getKata(Tspo));
         TumurSpo.setDocument(new batasInput((int) 7).getKata(TumurSpo));
+        Tsuhu.setDocument(new batasInput((int) 7).getKata(Tsuhu));
+        Tbb.setDocument(new batasInput((int) 7).getKata(Tbb));
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         
         if(koneksiDB.cariCepat().equals("aktif")){
@@ -626,6 +637,10 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel74 = new widget.Label();
         TnmPetugas = new widget.TextBox();
         BtnPetugas = new widget.Button();
+        Tsuhu = new widget.TextBox();
+        jLabel75 = new widget.Label();
+        Tbb = new widget.TextBox();
+        cmbBB = new widget.ComboBox();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbTriase = new widget.Table();
@@ -805,7 +820,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel11.setBounds(210, 66, 160, 23);
 
         TtglTiba.setEditable(false);
-        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
+        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         TtglTiba.setDisplayFormat("dd-MM-yyyy");
         TtglTiba.setName("TtglTiba"); // NOI18N
         TtglTiba.setOpaque(false);
@@ -2126,10 +2141,10 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel59.setText("%");
+        jLabel59.setText("%      Suhu :");
         jLabel59.setName("jLabel59"); // NOI18N
         FormInput.add(jLabel59);
-        jLabel59.setBounds(545, 1062, 20, 23);
+        jLabel59.setBounds(545, 1062, 65, 23);
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setText("Tanda Peringatan Untuk Pasien Pediatrik (Pilihlah Yang Sesuai Dengan Kondisi Pasien)");
@@ -2358,7 +2373,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel72.setBounds(136, 1298, 60, 23);
 
         TtglKeputusan.setEditable(false);
-        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
+        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         TtglKeputusan.setDisplayFormat("dd-MM-yyyy");
         TtglKeputusan.setName("TtglKeputusan"); // NOI18N
         TtglKeputusan.setOpaque(false);
@@ -2438,6 +2453,44 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         FormInput.add(BtnPetugas);
         BtnPetugas.setBounds(590, 1326, 28, 23);
 
+        Tsuhu.setBackground(new java.awt.Color(245, 250, 240));
+        Tsuhu.setForeground(new java.awt.Color(0, 0, 0));
+        Tsuhu.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tsuhu.setName("Tsuhu"); // NOI18N
+        Tsuhu.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TsuhuKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tsuhu);
+        Tsuhu.setBounds(610, 1062, 60, 23);
+
+        jLabel75.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel75.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel75.setText("°C      BB :");
+        jLabel75.setName("jLabel75"); // NOI18N
+        FormInput.add(jLabel75);
+        jLabel75.setBounds(675, 1062, 54, 23);
+
+        Tbb.setBackground(new java.awt.Color(245, 250, 240));
+        Tbb.setForeground(new java.awt.Color(0, 0, 0));
+        Tbb.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        Tbb.setName("Tbb"); // NOI18N
+        Tbb.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TbbKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tbb);
+        Tbb.setBounds(730, 1062, 60, 23);
+
+        cmbBB.setForeground(new java.awt.Color(0, 0, 0));
+        cmbBB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "Kg", "gram" }));
+        cmbBB.setName("cmbBB"); // NOI18N
+        cmbBB.setPreferredSize(new java.awt.Dimension(55, 23));
+        FormInput.add(cmbBB);
+        cmbBB.setBounds(795, 1062, 60, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormTriase.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -2480,7 +2533,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2495,7 +2548,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "27-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2713,7 +2766,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         } else {
             cekData();
             if (Sequel.menyimpantf("triase_pediatrik", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 78, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 81, new String[]{
                         TNoRw.getText(), cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
                         cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
                         Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
@@ -2727,7 +2780,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                         vas, kesimpulanLevel1, kesimpulanLevel2, kesimpulanLevel3, kesimpulanLevel4, kesimpulanLevel5, Tnadi.getText(), Trespi.getText(), Tspo.getText(),
                         cmbUmur.getSelectedItem().toString(), TumurSpo.getText(), trauma, nonTrauma, doa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                         Tcatatan.getText(), Valid.SetTgl(TtglKeputusan.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
-                        cmbKeputusan.getSelectedItem().toString(), nip, Sequel.cariIsi("select now()")
+                        cmbKeputusan.getSelectedItem().toString(), nip, Sequel.cariIsi("select now()"), Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString()
                     }) == true) {
                 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase Pediatrik", "Simpan");
@@ -2855,7 +2908,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                     param.put("rujukan", cmbRujukan.getSelectedItem().toString() + "   dari : " + Tdari.getText());
                 }                
             } else {
-                param.put("rujukan", cmbRujukan.getSelectedItem().toString() + "   dari : .......");
+                param.put("rujukan", cmbRujukan.getSelectedItem().toString());
             }
             
             param.put("transportasi", cmbTransportasi.getSelectedItem().toString());
@@ -3122,6 +3175,18 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                 param.put("spo", Tspo.getText() + " %");
             }
             
+            if (Tsuhu.getText().equals("")) {
+                param.put("suhu", "..... °C");
+            } else {
+                param.put("suhu", Tsuhu.getText() + " °C");
+            }
+            
+            if (Tbb.getText().equals("")) {
+                param.put("bb", "..... " + cmbBB.getSelectedItem().toString());
+            } else {
+                param.put("bb", Tbb.getText() + " " + cmbBB.getSelectedItem().toString());
+            }
+            
             if (cmbUmur.getSelectedIndex() == 1) {
                 if (TumurSpo.getText().equals("")) {
                     param.put("umur", cmbUmur.getSelectedItem().toString() + ", Nadi x/menit : > 180, Nafas x/menit : > 50, Temperatur : > 38 °C, SpO2 : ...... %");
@@ -3378,7 +3443,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
 
     private void TspoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TspoKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            cmbUmur.requestFocus();
+            Tsuhu.requestFocus();
         }
     }//GEN-LAST:event_TspoKeyPressed
 
@@ -3474,6 +3539,18 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_chkDoaActionPerformed
 
+    private void TsuhuKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TsuhuKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tbb.requestFocus();
+        }
+    }//GEN-LAST:event_TsuhuKeyPressed
+
+    private void TbbKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TbbKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            cmbBB.requestFocus();
+        }
+    }//GEN-LAST:event_TbbKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -3523,6 +3600,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
     private javax.swing.JTabbedPane TabRawat;
+    private widget.TextBox Tbb;
     private widget.TextArea Tcatatan;
     private widget.TextBox Tdari;
     private widget.TextBox Thubungan;
@@ -3534,6 +3612,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.TextBox Tpembiayaan;
     private widget.TextBox Trespi;
     private widget.TextBox Tspo;
+    private widget.TextBox Tsuhu;
     private widget.Tanggal TtglKeputusan;
     private widget.TextBox TtglLahir;
     private widget.Tanggal TtglTiba;
@@ -3584,6 +3663,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     public widget.CekBox chkTrauma;
     public widget.CekBox chkVas;
     private widget.ComboBox cmbAirway;
+    private widget.ComboBox cmbBB;
     private widget.ComboBox cmbBreaLevel1;
     private widget.ComboBox cmbBreaLevel2;
     private widget.ComboBox cmbBreaLevel3;
@@ -3683,6 +3763,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.Label jLabel72;
     private widget.Label jLabel73;
     private widget.Label jLabel74;
+    private widget.Label jLabel75;
     private widget.Label jLabel8;
     private widget.Label jLabel9;
     private javax.swing.JPopupMenu jPopupMenu1;
@@ -3837,7 +3918,10 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                         rs.getString("keputusan"),
                         rs.getString("nip_petugas"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("tgl_lahir")
+                        rs.getString("tgl_lahir"),                        
+                        rs.getString("suhu"),
+                        rs.getString("bb"),
+                        rs.getString("satuan_bb")
                     });
                 }
             } catch (Exception e) {
@@ -3941,6 +4025,9 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         TumurNafas.setText("");
         TumurTemp.setText("");
         TumurSpo.setText("");
+        Tsuhu.setText("");
+        Tbb.setText("");
+        cmbBB.setSelectedIndex(0);
         
         chkTrauma.setSelected(false);
         chkNonTrauma.setSelected(false);
@@ -4077,9 +4164,12 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             cmbJam2.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 86).toString().substring(0, 2));
             cmbMnt2.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 86).toString().substring(3, 5));
             cmbDtk2.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 86).toString().substring(6, 8));            
-            cmbKeputusan.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 87).toString());            
+            cmbKeputusan.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 87).toString());
             nip = tbTriase.getValueAt(tbTriase.getSelectedRow(), 88).toString();
-            TnmPetugas.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 11).toString());
+            TnmPetugas.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 11).toString());            
+            Tsuhu.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 91).toString());
+            Tbb.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 92).toString());
+            cmbBB.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 93).toString());
             dataCek();
         }
     }
@@ -4356,7 +4446,8 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                 + "circulation_level3=?, circulation_level4=?, circulation_level44=?, circulation_level5=?, circulation_level55=?, disability_level1=?, disability_level11=?, disability_level111=?, "
                 + "disability_level2=?, disability_level22=?, disability_level222=?, disability_level3=?, disability_level4=?, disability_level44=?, disability_level5=?, disability_level55=?, "
                 + "sumber_daya_level3=?, sumber_daya_level4=?, sumber_daya_level5=?, vas=?, kesimpulan_level1=?, kesimpulan_level2=?, kesimpulan_level3=?, kesimpulan_level4=?, kesimpulan_level5=?, "
-                + "nadi=?, respirasi=?, spo2=?, umur=?, spo2_peringatan=?, trauma=?, non_trauma=?, doa=?, jam_kasus=?, catatan=?, tgl_keputusan=?, jam_keputusan=?, keputusan=?, nip_petugas=?", 77, new String[]{
+                + "nadi=?, respirasi=?, spo2=?, umur=?, spo2_peringatan=?, trauma=?, non_trauma=?, doa=?, jam_kasus=?, catatan=?, tgl_keputusan=?, jam_keputusan=?, keputusan=?, "
+                + "nip_petugas=?, suhu=?, bb=?, satuan_bb=?", 80, new String[]{
                     cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
                     cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
                     Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
@@ -4370,7 +4461,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                     vas, kesimpulanLevel1, kesimpulanLevel2, kesimpulanLevel3, kesimpulanLevel4, kesimpulanLevel5, Tnadi.getText(), Trespi.getText(), Tspo.getText(),
                     cmbUmur.getSelectedItem().toString(), TumurSpo.getText(), trauma, nonTrauma, doa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
                     Tcatatan.getText(), Valid.SetTgl(TtglKeputusan.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
-                    cmbKeputusan.getSelectedItem().toString(), nip,
+                    cmbKeputusan.getSelectedItem().toString(), nip, Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString(),
                     tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString()
                 }) == true) {
 

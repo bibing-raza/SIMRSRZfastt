@@ -10769,7 +10769,7 @@ public class DlgCPPT extends javax.swing.JDialog {
                             param.put("rujukan", rsLaprm.getString("rujukan") + "   dari : " + rsLaprm.getString("ket_rujukan_ya"));
                         }
                     } else {
-                        param.put("rujukan", rsLaprm.getString("rujukan") + "   dari : .......");
+                        param.put("rujukan", rsLaprm.getString("rujukan"));
                     }
 
                     param.put("transportasi", rsLaprm.getString("transportasi"));
@@ -11034,6 +11034,18 @@ public class DlgCPPT extends javax.swing.JDialog {
                         param.put("spo", "..... %");
                     } else {
                         param.put("spo", rsLaprm.getString("spo2") + " %");
+                    }
+                    
+                    if (rsLaprm.getString("suhu").equals("")) {
+                        param.put("suhu", "..... °C");
+                    } else {
+                        param.put("suhu", rsLaprm.getString("suhu") + " °C");
+                    }
+                    
+                    if (rsLaprm.getString("bb").equals("")) {
+                        param.put("bb", "..... " + rsLaprm.getString("satuan_bb"));
+                    } else {
+                        param.put("bb", rsLaprm.getString("bb") + " " + rsLaprm.getString("satuan_bb"));
                     }
 
                     if (rsLaprm.getString("umur").equals("< 3 bulan")) {

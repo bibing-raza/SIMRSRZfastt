@@ -57,8 +57,8 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, ps3, ps4, pps1, pps2, pps3, pps4, pps5, pps6, pps7, pps8;
-    private ResultSet rs, rs1, rs2, rs3, rs4, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8;
+    private PreparedStatement ps, ps1, ps2, ps3, ps4, pps1, pps2, pps3, pps4, pps5, pps6, pps7, pps8, psTri;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rrs8, rsTri;
     private int i = 0, x = 0, skor = 0, pilihan = 0;
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);        
@@ -4750,7 +4750,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
         isRawat();
-        tampil();
     }
     
     public void isCek(){
@@ -4765,7 +4764,6 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             Sequel.cariIsi("select nama from pegawai where nik=?", nm_perawat, nip);
             if (nm_perawat.getText().equals("")) {
                 nip = "";
-//                JOptionPane.showMessageDialog(null, "User login bukan dokter...!!");
             }
         }  
     }
@@ -4939,27 +4937,24 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     
     private void isRawat() {
         try {
-            ps1 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
-                    + "rp.tgl_registrasi, IFNULL(ti.td,'') td, IFNULL(ti.nadi,'') nadi, IFNULL(ti.napas,'') nafas, "
-                    + "ifnull(ti.tb,'') tb, ifnull(ti.bb,'') bb, ifnull(ti.keluhan_utama,'') keluhan, IFNULL(ti.temperatur,'') suhu, "
-                    + "rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan, rp.jam_reg FROM reg_periksa rp "
-                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis inner join dokter d on d.kd_dokter=rp.kd_dokter "
-                    + "LEFT JOIN triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat=?");
+            ps1 = koneksi.prepareStatement("SELECT rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
+                    + "rp.tgl_registrasi, rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan, rp.jam_reg FROM reg_periksa rp "
+                    + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE rp.no_rawat=?");
             try {
                 ps1.setString(1, TNoRw.getText());
                 rs1 = ps1.executeQuery();
                 if (rs1.next()) {
+                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rs1.getString("no_rawat") + "'") > 0) {
+                        triaseDewasa(rs1.getString("no_rawat"));
+                    }
+                    
+                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rs1.getString("no_rawat") + "'") > 0) {
+                        triasePediatrik(rs1.getString("no_rawat"));
+                    }
+                    
                     TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
-                    Ttgl_lahir.setText(rs1.getString("tgl_lahir"));
-                    Tkeluhan.setText(rs1.getString("keluhan"));
-                    
-                    td.setText(rs1.getString("td"));
-                    nadi.setText(rs1.getString("nadi"));
-                    napas.setText(rs1.getString("nafas"));
-                    suhu.setText(rs1.getString("suhu"));
-                    bb.setText(rs1.getString("bb"));
-                    tb.setText(rs1.getString("tb"));
+                    Ttgl_lahir.setText(rs1.getString("tgl_lahir"));                    
                     
                     Tstts_nikah.setText(rs1.getString("stts_nikah"));
                     Tpekerjaan.setText(rs1.getString("pekerjaan"));
@@ -5734,6 +5729,62 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             Ttindakan.setText(Ttemplate.getText());
         } else if (pilihan == 8) {
             Tevaluasi.setText(Ttemplate.getText());
+        }
+    }
+
+    private void triaseDewasa(String norawat) {
+        try {
+            psTri = koneksi.prepareStatement("select * from triase_igd where no_rawat='" + norawat + "'");
+            try {
+                rsTri = psTri.executeQuery();
+                while (rsTri.next()) {
+                    Tkeluhan.setText(rsTri.getString("keluhan_utama"));
+                    td.setText(rsTri.getString("td"));
+                    nadi.setText(rsTri.getString("nadi"));
+                    napas.setText(rsTri.getString("napas"));
+                    suhu.setText(rsTri.getString("temperatur"));
+                    bb.setText(rsTri.getString("bb"));
+                    tb.setText(rsTri.getString("tb"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsTri != null) {
+                    rsTri.close();
+                }
+                if (psTri != null) {
+                    psTri.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void triasePediatrik(String norawat) {
+        try {
+            psTri = koneksi.prepareStatement("select * from triase_pediatrik where no_rawat='" + norawat + "'");
+            try {
+                rsTri = psTri.executeQuery();
+                while (rsTri.next()) {
+                    Tkeluhan.setText(rsTri.getString("keluhan"));
+                    nadi.setText(rsTri.getString("nadi"));
+                    napas.setText(rsTri.getString("respirasi"));
+                    suhu.setText(rsTri.getString("suhu"));
+                    bb.setText(rsTri.getString("bb"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsTri != null) {
+                    rsTri.close();
+                }
+                if (psTri != null) {
+                    psTri.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }
