@@ -1275,7 +1275,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1289,7 +1289,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1676,7 +1676,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 30, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024 17:03:24" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025 08:50:39" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1979,7 +1979,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label12);
         label12.setBounds(625, 360, 100, 23);
 
-        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024 17:03:25" }));
+        TglAnamnesa.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025 08:50:39" }));
         TglAnamnesa.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAnamnesa.setName("TglAnamnesa"); // NOI18N
         TglAnamnesa.setOpaque(false);
@@ -2016,7 +2016,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Triw_penyakit_sekarang.setColumns(20);
         Triw_penyakit_sekarang.setRows(5);
         Triw_penyakit_sekarang.setName("Triw_penyakit_sekarang"); // NOI18N
-        Triw_penyakit_sekarang.setPreferredSize(new java.awt.Dimension(162, 200));
+        Triw_penyakit_sekarang.setPreferredSize(new java.awt.Dimension(162, 2000));
         Triw_penyakit_sekarang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Triw_penyakit_sekarangKeyPressed(evt);
@@ -2343,7 +2343,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Triw_alergi.setColumns(20);
         Triw_alergi.setRows(5);
         Triw_alergi.setName("Triw_alergi"); // NOI18N
-        Triw_alergi.setPreferredSize(new java.awt.Dimension(162, 200));
+        Triw_alergi.setPreferredSize(new java.awt.Dimension(162, 2000));
         Triw_alergi.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Triw_alergiKeyPressed(evt);
@@ -3303,7 +3303,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         Thsl_pemeriksaan.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang");
         Thsl_pemeriksaan.setComponentPopupMenu(jPopupMenu1);
         Thsl_pemeriksaan.setName("Thsl_pemeriksaan"); // NOI18N
-        Thsl_pemeriksaan.setPreferredSize(new java.awt.Dimension(162, 200));
+        Thsl_pemeriksaan.setPreferredSize(new java.awt.Dimension(162, 9000));
         Thsl_pemeriksaan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Thsl_pemeriksaanKeyPressed(evt);
@@ -3472,7 +3472,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         FormInput.add(label86);
         label86.setBounds(625, 2475, 100, 23);
 
-        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024 17:03:25" }));
+        TglDpjp.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025 08:50:40" }));
         TglDpjp.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglDpjp.setName("TglDpjp"); // NOI18N
         TglDpjp.setOpaque(false);
@@ -3855,7 +3855,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3870,7 +3870,7 @@ public final class RMAsesmenMedikDewasaRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "15-12-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);

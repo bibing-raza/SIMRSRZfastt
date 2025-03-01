@@ -1099,7 +1099,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1113,7 +1113,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1501,7 +1501,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         FormInput.add(jLabel11);
         jLabel11.setBounds(730, 10, 40, 23);
 
-        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024 16:12:46" }));
+        TglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025 09:40:43" }));
         TglAsesmen.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         TglAsesmen.setName("TglAsesmen"); // NOI18N
         TglAsesmen.setOpaque(false);
@@ -1588,7 +1588,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Triw_penyakit_sekarang.setColumns(20);
         Triw_penyakit_sekarang.setRows(5);
         Triw_penyakit_sekarang.setName("Triw_penyakit_sekarang"); // NOI18N
-        Triw_penyakit_sekarang.setPreferredSize(new java.awt.Dimension(162, 900));
+        Triw_penyakit_sekarang.setPreferredSize(new java.awt.Dimension(162, 2000));
         Triw_penyakit_sekarang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Triw_penyakit_sekarangKeyPressed(evt);
@@ -1898,7 +1898,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Tpemeriksaan_penunjang.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang");
         Tpemeriksaan_penunjang.setComponentPopupMenu(jPopupMenu1);
         Tpemeriksaan_penunjang.setName("Tpemeriksaan_penunjang"); // NOI18N
-        Tpemeriksaan_penunjang.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Tpemeriksaan_penunjang.setPreferredSize(new java.awt.Dimension(162, 4000));
         Tpemeriksaan_penunjang.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 Tpemeriksaan_penunjangKeyPressed(evt);
@@ -1915,7 +1915,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Tpengobatan.setColumns(20);
         Tpengobatan.setRows(5);
         Tpengobatan.setName("Tpengobatan"); // NOI18N
-        Tpengobatan.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Tpengobatan.setPreferredSize(new java.awt.Dimension(162, 2000));
         Tpengobatan.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TpengobatanKeyPressed(evt);
@@ -1940,7 +1940,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Trencana.setColumns(20);
         Trencana.setRows(5);
         Trencana.setName("Trencana"); // NOI18N
-        Trencana.setPreferredSize(new java.awt.Dimension(162, 6000));
+        Trencana.setPreferredSize(new java.awt.Dimension(162, 9000));
         scrollPane17.setViewportView(Trencana);
 
         FormInput.add(scrollPane17);
@@ -3129,7 +3129,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Tdiagnosa.setToolTipText("Klik kanan pada area ini untuk melihat hasil pemeriksaan penunjang");
         Tdiagnosa.setComponentPopupMenu(jPopupMenu1);
         Tdiagnosa.setName("Tdiagnosa"); // NOI18N
-        Tdiagnosa.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Tdiagnosa.setPreferredSize(new java.awt.Dimension(162, 2000));
         Tdiagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TdiagnosaKeyPressed(evt);
@@ -3177,7 +3177,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         Tdiet.setColumns(20);
         Tdiet.setRows(5);
         Tdiet.setName("Tdiet"); // NOI18N
-        Tdiet.setPreferredSize(new java.awt.Dimension(162, 1000));
+        Tdiet.setPreferredSize(new java.awt.Dimension(162, 2000));
         Tdiet.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TdietKeyPressed(evt);
@@ -3352,7 +3352,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -3367,7 +3367,7 @@ public final class RMAsesmenMedikAnakRanap extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
