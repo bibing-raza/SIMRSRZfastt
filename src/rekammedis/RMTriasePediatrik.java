@@ -2764,29 +2764,33 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             Valid.textKosong(TnmPetugas, "Petugas Triase");
             BtnPetugas.requestFocus();
         } else {
-            cekData();
-            if (Sequel.menyimpantf("triase_pediatrik", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 81, new String[]{
-                        TNoRw.getText(), cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
-                        cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
-                        Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
-                        cmbPenampilan.getSelectedItem().toString(), cmbUsaha.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), stabil, distress,
-                        gagalNafas, ssp, gagalJantung, shock, cmbAirway.getSelectedItem().toString(), airwayLevel2, airwayLevel3, airwayLevel4, airwayLevel5,
-                        cmbBreaLevel1.getSelectedItem().toString(), breathingLevel11, cmbBreaLevel2.getSelectedItem().toString(), breathingLevel22, cmbBreaLevel3.getSelectedItem().toString(),
-                        cmbBreaLevel4.getSelectedItem().toString(), cmbBreaLevel5.getSelectedItem().toString(), circulationLevel1, circulationLevel2, cmbCircuLevel2.getSelectedItem().toString(),
-                        circulationLevel222, circulationLevel3, circulationLevel4, circulationLevel44, circulationLevel5, circulationLevel55, disabilityLevel1, disabilityLevel11,
-                        disabilityLevel111, disabilityLevel2, disabilityLevel22, disabilityLevel222, cmbDisLevel3.getSelectedItem().toString(), disabilityLevel4, disabilityLevel44,
-                        disabilityLevel5, disabilityLevel55, cmbSumLevel3.getSelectedItem().toString(), cmbSumLevel4.getSelectedItem().toString(), cmbSumLevel5.getSelectedItem().toString(),
-                        vas, kesimpulanLevel1, kesimpulanLevel2, kesimpulanLevel3, kesimpulanLevel4, kesimpulanLevel5, Tnadi.getText(), Trespi.getText(), Tspo.getText(),
-                        cmbUmur.getSelectedItem().toString(), TumurSpo.getText(), trauma, nonTrauma, doa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
-                        Tcatatan.getText(), Valid.SetTgl(TtglKeputusan.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
-                        cmbKeputusan.getSelectedItem().toString(), nip, Sequel.cariIsi("select now()"), Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString()
-                    }) == true) {
-                
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase Pediatrik", "Simpan");
-                TCari.setText(TNoRw.getText());
-                BtnBatalActionPerformed(null);
-                TabRawat.setSelectedIndex(1);
+            if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                cekData();
+                if (Sequel.menyimpantf("triase_pediatrik", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
+                        + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 81, new String[]{
+                            TNoRw.getText(), cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
+                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
+                            Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
+                            cmbPenampilan.getSelectedItem().toString(), cmbUsaha.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), stabil, distress,
+                            gagalNafas, ssp, gagalJantung, shock, cmbAirway.getSelectedItem().toString(), airwayLevel2, airwayLevel3, airwayLevel4, airwayLevel5,
+                            cmbBreaLevel1.getSelectedItem().toString(), breathingLevel11, cmbBreaLevel2.getSelectedItem().toString(), breathingLevel22, cmbBreaLevel3.getSelectedItem().toString(),
+                            cmbBreaLevel4.getSelectedItem().toString(), cmbBreaLevel5.getSelectedItem().toString(), circulationLevel1, circulationLevel2, cmbCircuLevel2.getSelectedItem().toString(),
+                            circulationLevel222, circulationLevel3, circulationLevel4, circulationLevel44, circulationLevel5, circulationLevel55, disabilityLevel1, disabilityLevel11,
+                            disabilityLevel111, disabilityLevel2, disabilityLevel22, disabilityLevel222, cmbDisLevel3.getSelectedItem().toString(), disabilityLevel4, disabilityLevel44,
+                            disabilityLevel5, disabilityLevel55, cmbSumLevel3.getSelectedItem().toString(), cmbSumLevel4.getSelectedItem().toString(), cmbSumLevel5.getSelectedItem().toString(),
+                            vas, kesimpulanLevel1, kesimpulanLevel2, kesimpulanLevel3, kesimpulanLevel4, kesimpulanLevel5, Tnadi.getText(), Trespi.getText(), Tspo.getText(),
+                            cmbUmur.getSelectedItem().toString(), TumurSpo.getText(), trauma, nonTrauma, doa, cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(),
+                            Tcatatan.getText(), Valid.SetTgl(TtglKeputusan.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(),
+                            cmbKeputusan.getSelectedItem().toString(), nip, Sequel.cariIsi("select now()"), Tsuhu.getText(), Tbb.getText(), cmbBB.getSelectedItem().toString()
+                        }) == true) {
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase Pediatrik", "Simpan");
+                    TCari.setText(TNoRw.getText());
+                    BtnBatalActionPerformed(null);
+                    TabRawat.setSelectedIndex(1);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase pasien ini tersimpan di triase IGD (Non Pediatrik), silakan hapus dulu datanya..!!");
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed

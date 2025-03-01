@@ -4486,25 +4486,6 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         return BtnKeluar;
     }
 
-    private void isIbu() {
-        try {
-            Statement stat = koneksi.createStatement();
-            ResultSet rs = stat.executeQuery("select pasien_ibu.nm_pasien,"
-                    + " pasien_ibu.suami, "
-                    + " pasien_ibu.umur, "
-                    + " pasien_ibu.alamat "
-                    + " from pasien_ibu where pasien_ibu.no_rm_ib ");
-            while (rs.next()) {
-                Nmibu.setText(rs.getString(1));
-                NmAyah.setText(rs.getString(2));
-                UmurIbu.setText(rs.getString(3));
-                AlamatIbu.setText(rs.getString(4));
-            }
-        } catch (SQLException ex) {
-            System.out.println("Catatan ibu : " + ex);
-        }
-    }
-
     private void isForm() {
         if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
@@ -4524,7 +4505,7 @@ private void MnKartuActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
         BtnEdit.setEnabled(akses.getkelahiran_bayi());
         BtnPrint.setEnabled(akses.getkelahiran_bayi());
 
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             NoSKL.setEditable(true);
             BtnHapus.setEnabled(true);
         } else {

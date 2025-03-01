@@ -2740,24 +2740,28 @@ public final class RMTriaseIGD extends javax.swing.JDialog {
             Valid.textKosong(nm_petugas, "Petugas Triase");
             btnPetugas.requestFocus();
         } else {
-            cekData();
-            hitungSkor();
-            if (Sequel.menyimpantf("triase_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 71, new String[]{
-                        TNoRw.getText(), Valid.SetTgl(tgl_kunjungan.getSelectedItem() + "") + " " + tgl_kunjungan.getSelectedItem().toString().substring(11, 19), cmbCaraMasuk.getSelectedItem().toString(),
-                        sdh_terpasang.getText(), cmbAlasanKedatangan.getSelectedItem().toString(), rujukan_dari.getText(), dijemput_oleh.getText(), cmbKendaraan.getSelectedItem().toString(), bkn_ambulan.getText(), 
-                        nm_pengantar.getText(), tlpn_pengantar.getText(), cmbKasus.getSelectedItem().toString(), kll_tunggal, tmpt_kejadian_tunggal.getText(), Valid.SetTgl(tgl_kejadian_tunggal.getSelectedItem() + "") + " " + tgl_kejadian_tunggal.getSelectedItem().toString().substring(11, 19),
-                        kll, versus1.getText(), versus2.getText(), tmpt_kejadian.getText(), Valid.SetTgl(tgl_kejadian.getSelectedItem() + "") + " " + tgl_kejadian.getSelectedItem().toString().substring(11, 19), 
-                        jatuh, ket_jatuh.getText(), luka, ket_luka.getText(), trauma_listrik, ket_trauma_listrik.getText(), trauma_zat, ket_trauma_zat.getText(), trauma_lain, ket_trauma_lain.getText(),
-                        Tkeluhan_utama.getText(), pacs1, pacs2, pacs3, pacs4, cmbKesadaran.getSelectedItem().toString(), tkann_darah.getText(), nadi.getText(), pernapasan.getText(),
-                        temperatur.getText(), saturasi.getText(), cmbNyeri.getSelectedItem().toString(), skor0_sadar, skor0_100, skor0_101, skor0_19, skor0_35, skor0_96, skor102, skor20, skor94,
-                        skor99, skor22, skor92, skor3_sadar, skor3_35, skor3_92, skortotal, Tcttn_khusus.getText(), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
-                        resus, nonresus, klinik, doa, nip, tgl_kejadian_tggl, tgl_kejadian_kll, Tvas.getText(), bb.getText(), tb.getText(), Sequel.cariIsi("select now()")
-                    }) == true) {
-                
-                Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Simpan");
-                TCari.setText(TNoRw.getText());
-                BtnBatalActionPerformed(null);
-                TabRawat.setSelectedIndex(1);                
+            if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                cekData();
+                hitungSkor();
+                if (Sequel.menyimpantf("triase_igd", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 71, new String[]{
+                    TNoRw.getText(), Valid.SetTgl(tgl_kunjungan.getSelectedItem() + "") + " " + tgl_kunjungan.getSelectedItem().toString().substring(11, 19), cmbCaraMasuk.getSelectedItem().toString(),
+                    sdh_terpasang.getText(), cmbAlasanKedatangan.getSelectedItem().toString(), rujukan_dari.getText(), dijemput_oleh.getText(), cmbKendaraan.getSelectedItem().toString(), bkn_ambulan.getText(),
+                    nm_pengantar.getText(), tlpn_pengantar.getText(), cmbKasus.getSelectedItem().toString(), kll_tunggal, tmpt_kejadian_tunggal.getText(), Valid.SetTgl(tgl_kejadian_tunggal.getSelectedItem() + "") + " " + tgl_kejadian_tunggal.getSelectedItem().toString().substring(11, 19),
+                    kll, versus1.getText(), versus2.getText(), tmpt_kejadian.getText(), Valid.SetTgl(tgl_kejadian.getSelectedItem() + "") + " " + tgl_kejadian.getSelectedItem().toString().substring(11, 19),
+                    jatuh, ket_jatuh.getText(), luka, ket_luka.getText(), trauma_listrik, ket_trauma_listrik.getText(), trauma_zat, ket_trauma_zat.getText(), trauma_lain, ket_trauma_lain.getText(),
+                    Tkeluhan_utama.getText(), pacs1, pacs2, pacs3, pacs4, cmbKesadaran.getSelectedItem().toString(), tkann_darah.getText(), nadi.getText(), pernapasan.getText(),
+                    temperatur.getText(), saturasi.getText(), cmbNyeri.getSelectedItem().toString(), skor0_sadar, skor0_100, skor0_101, skor0_19, skor0_35, skor0_96, skor102, skor20, skor94,
+                    skor99, skor22, skor92, skor3_sadar, skor3_35, skor3_92, skortotal, Tcttn_khusus.getText(), cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(),
+                    resus, nonresus, klinik, doa, nip, tgl_kejadian_tggl, tgl_kejadian_kll, Tvas.getText(), bb.getText(), tb.getText(), Sequel.cariIsi("select now()")
+                }) == true) {
+
+                    Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Triase IGD", "Simpan");
+                    TCari.setText(TNoRw.getText());
+                    BtnBatalActionPerformed(null);
+                    TabRawat.setSelectedIndex(1);
+                }
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase pasien ini tersimpan di triase pediatrik, silakan hapus dulu datanya..!!");
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed

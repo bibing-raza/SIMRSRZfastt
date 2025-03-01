@@ -3149,7 +3149,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
                 cmbTindakanCegah.requestFocus();
             } else {
                 if (tbAsesmen.getSelectedRow() > -1) {
-                    if (akses.getkode().equals("Admin Utama")) {
+                    if (akses.getadmin() == true) {
                         ganti();
                     } else {
                         if (nip.equals(akses.getkode())) {
@@ -3164,7 +3164,7 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
             }
         } else {
             if (tbAsesmen.getSelectedRow() > -1) {
-                if (akses.getkode().equals("Admin Utama")) {
+                if (akses.getadmin() == true) {
                     ganti();
                 } else {
                     if (nip.equals(akses.getkode())) {
@@ -4750,6 +4750,14 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
         TCari.setText(norwt);
         DTPCari2.setDate(tgl2);
         isRawat();
+        
+        if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + norwt + "'") > 0) {
+            triaseDewasa(norwt);
+        }
+
+        if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norwt + "'") > 0) {
+            triasePediatrik(norwt);
+        }
     }
     
     public void isCek(){
@@ -4937,24 +4945,16 @@ public final class RMPenilaianAwalKeperawatanIGDrz extends javax.swing.JDialog {
     
     private void isRawat() {
         try {
-            ps1 = koneksi.prepareStatement("SELECT rp.no_rawat, rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
+            ps1 = koneksi.prepareStatement("SELECT rp.no_rkm_medis, p.nm_pasien, DATE_FORMAT(p.tgl_lahir, '%d-%m-%Y') tgl_lahir, "
                     + "rp.tgl_registrasi, rp.kd_dokter, d.nm_dokter, p.stts_nikah, p.pekerjaan, rp.jam_reg FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis inner join dokter d on d.kd_dokter=rp.kd_dokter WHERE rp.no_rawat=?");
             try {
                 ps1.setString(1, TNoRw.getText());
                 rs1 = ps1.executeQuery();
                 if (rs1.next()) {
-                    if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + rs1.getString("no_rawat") + "'") > 0) {
-                        triaseDewasa(rs1.getString("no_rawat"));
-                    }
-                    
-                    if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + rs1.getString("no_rawat") + "'") > 0) {
-                        triasePediatrik(rs1.getString("no_rawat"));
-                    }
-                    
                     TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
-                    Ttgl_lahir.setText(rs1.getString("tgl_lahir"));                    
+                    Ttgl_lahir.setText(rs1.getString("tgl_lahir"));
                     
                     Tstts_nikah.setText(rs1.getString("stts_nikah"));
                     Tpekerjaan.setText(rs1.getString("pekerjaan"));
