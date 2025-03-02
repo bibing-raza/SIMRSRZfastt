@@ -67,8 +67,8 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private DlgCariPetugas petugas = new DlgCariPetugas(null, false);    
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     public DlgKamar kamar = new DlgKamar(null, false);
-    private PreparedStatement ps, ps1, ps2, pps1, pps2, pps3, pps4, pps5, pps6, pps7;
-    private ResultSet rs, rs1, rs2, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7;
+    private PreparedStatement ps, ps1, ps2, pps1, pps2, pps3, pps4, pps5, pps6, pps7, psTri;
+    private ResultSet rs, rs1, rs2, rrs1, rrs2, rrs3, rrs4, rrs5, rrs6, rrs7, rsTri;
     private int i = 0, x = 0, pilihan = 0;
     private String nip_dpjp = "", nip_konsulen1 = "", nip_konsulen2 = "", kd_kamar = "", 
             kd_kamar_pindah = "", resepDipilih = "", cekResep = "", tglResep = "", status_kmr = "",
@@ -3770,13 +3770,21 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
         ChkIGD.setSelected(false);
         kd_kamar = kdunit;
         Tnm_kamar.setText(nmunit);
+        isRawat();
         
         if (posisidata.equals("IGD (Ralan)") || posisidata.equals("IGD (Ranap)")) {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(true);
             statusOK = "Ralan";
             
-            Talasan_ranap.setText(Sequel.cariIsi("select ifnull(keluhan_utama,'') from triase_igd where no_rawat='" + TNoRw.getText() + "'"));
+            if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + norwt + "'") > 0) {
+                triaseDewasa(norwt);
+            }
+
+            if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norwt + "'") > 0) {
+                triasePediatrik(norwt);
+            }
+            
             if (Sequel.cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + TNoRw.getText() + "'") > 0) {
                 asesmenMedikIGD(TNoRw.getText());
             } else {
@@ -3786,6 +3794,14 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             btnKamar1.setEnabled(false);
             ChkIGD.setEnabled(false);
             statusOK = "Ralan";
+            
+            if (Sequel.cariInteger("select count(-1) from triase_igd where no_rawat='" + norwt + "'") > 0) {
+                triaseDewasa(norwt);
+            }
+
+            if (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norwt + "'") > 0) {
+                triasePediatrik(norwt);
+            }
         } else if (posisidata.equals("ranap")) {
             btnKamar1.setEnabled(true);
             ChkIGD.setEnabled(false);
@@ -3795,9 +3811,7 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
             ChkIGD.setEnabled(true);
             kd_kamar = "-";
             Tnm_kamar.setText("-");
-        }
-        isRawat();
-        tampil();
+        }        
     }
     
     public void isCek(){
@@ -3941,13 +3955,11 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
     private void isRawat() {
         try {
             ps1 = koneksi.prepareStatement("select rp.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
-                    + "rp.tgl_registrasi, IFNULL(ti.td,'') td, IFNULL(ti.nadi,'') nadi, IFNULL(ti.temperatur, '') suhu, "
-                    + "IFNULL(ti.napas, '') nafas, IFNULL(ti.saturasi, '') spo2, ifnull(pa.diag_medis_sementara,'') diag_medis, "
+                    + "rp.tgl_registrasi, ifnull(pa.diag_medis_sementara,'') diag_medis, "
                     + "ifnull(pr.skala_nyeri,'') skala, ifnull(pr.diagnosa_keperawatan,'') diag_perawat FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
-                    + "LEFT JOIN penilaian_awal_medis_igd pa ON pa.no_rawat = rp.no_rawat "
-                    + "left join penilaian_awal_keperawatan_igdrz pr on pr.no_rawat=rp.no_rawat "
-                    + "left join triase_igd ti ON ti.no_rawat = rp.no_rawat WHERE rp.no_rawat = ?");
+                    + "left join penilaian_awal_medis_igd pa ON pa.no_rawat = rp.no_rawat "
+                    + "left join penilaian_awal_keperawatan_igdrz pr on pr.no_rawat=rp.no_rawat WHERE rp.no_rawat = ?");
             try {
                 ps1.setString(1, TNoRw.getText());
                 rs1 = ps1.executeQuery();
@@ -3957,11 +3969,6 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                     DTPCari1.setDate(rs1.getDate("tgl_registrasi"));
                     tgllahir.setText(rs1.getString("tgl_lahir"));
                     
-                    Ttd.setText(rs1.getString("td"));
-                    Tnadi.setText(rs1.getString("nadi"));
-                    Trr.setText(rs1.getString("nafas"));
-                    Tsuhu.setText(rs1.getString("suhu"));
-                    Tspo2.setText(rs1.getString("spo2"));
                     Tdiagnosis.setText(rs1.getString("diag_medis"));
                     TskalaNyeri.setText(rs1.getString("skala"));
                     TDiagnosa.setText(rs1.getString("diag_perawat"));
@@ -4784,6 +4791,63 @@ public final class RMTransferSerahTerimaIGD extends javax.swing.JDialog {
                 }
                 if (ps2 != null) {
                     ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void triaseDewasa(String norawat) {
+        try {
+            psTri = koneksi.prepareStatement("select * from triase_igd where no_rawat='" + norawat + "'");
+            try {
+                rsTri = psTri.executeQuery();
+                while (rsTri.next()) {
+                    Triw_penyakit_skg.setText(rsTri.getString("keluhan_utama"));
+                    Talasan_ranap.setText(rsTri.getString("keluhan_utama"));
+                    Ttd.setText(rsTri.getString("td"));
+                    Tnadi.setText(rsTri.getString("nadi"));
+                    Trr.setText(rsTri.getString("napas"));
+                    Tsuhu.setText(rsTri.getString("temperatur"));
+                    Tspo2.setText(rsTri.getString("saturasi"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsTri != null) {
+                    rsTri.close();
+                }
+                if (psTri != null) {
+                    psTri.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void triasePediatrik(String norawat) {
+        try {
+            psTri = koneksi.prepareStatement("select * from triase_pediatrik where no_rawat='" + norawat + "'");
+            try {
+                rsTri = psTri.executeQuery();
+                while (rsTri.next()) {
+                    Triw_penyakit_skg.setText(rsTri.getString("keluhan"));
+                    Talasan_ranap.setText(rsTri.getString("keluhan"));
+                    Tnadi.setText(rsTri.getString("nadi"));
+                    Trr.setText(rsTri.getString("respirasi"));
+                    Tsuhu.setText(rsTri.getString("suhu"));
+                    Tspo2.setText(rsTri.getString("spo2"));
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsTri != null) {
+                    rsTri.close();
+                }
+                if (psTri != null) {
+                    psTri.close();
                 }
             }
         } catch (Exception e) {
