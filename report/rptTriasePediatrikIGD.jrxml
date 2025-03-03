@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" language="groovy" pageWidth="595" pageHeight="842" columnWidth="520" leftMargin="56" rightMargin="19" topMargin="19" bottomMargin="19" uuid="d4cfccf4-5e10-490e-89af-678af0ae8cbd">
 	<property name="ireport.zoom" value="1.8181818181818235"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="577"/>
+	<property name="ireport.y" value="97"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w1" value="0"/>
 	<property name="com.jaspersoft.studio.data.sql.SQLQueryDesigner.sash.w2" value="1000"/>
 	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="lokal"/>
@@ -27,7 +27,7 @@
 	<parameter name="pembiayaan" class="java.lang.String"/>
 	<parameter name="autoAnam" class="java.lang.String"/>
 	<parameter name="heteroAnam" class="java.lang.String"/>
-	<parameter name="nama" class="java.lang.String"/>
+	<parameter name="pngJawab" class="java.lang.String"/>
 	<parameter name="hubungan" class="java.lang.String"/>
 	<parameter name="rujukan" class="java.lang.String"/>
 	<parameter name="transportasi" class="java.lang.String"/>
@@ -421,7 +421,7 @@
 					<font fontName="Tahoma" size="8"/>
 					<paragraph lineSpacing="Single"/>
 				</textElement>
-				<textFieldExpression><![CDATA[$P{nama}+"  "+$P{hubungan}]]></textFieldExpression>
+				<textFieldExpression><![CDATA[$P{pngJawab}+"  "+$P{hubungan}]]></textFieldExpression>
 			</textField>
 			<line>
 				<reportElement x="0" y="142" width="519" height="1" uuid="8cd306b0-eb9f-4591-8836-e91d6c23ff4e">

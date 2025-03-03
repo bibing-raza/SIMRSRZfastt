@@ -169,7 +169,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));
         TPasien.setDocument(new batasInput((int) 255).getKata(TPasien));
-        TTempLahr.setDocument(new batasInput((int) 255).getKata(TTempLahr));
+        TTempLahr.setDocument(new batasInput((int) 255).getKataBebas(TTempLahr));
         TPekerjaan.setDocument(new batasInput((int) 100).getKata(TPekerjaan));
         Tpermintaan.setDocument(new batasInput((int) 180).getKata(Tpermintaan));
         Tno_surat_dari.setDocument(new batasInput((int) 150).getKata(Tno_surat_dari));
@@ -177,7 +177,7 @@ public class DlgSuratKeteranganDokter extends javax.swing.JDialog {
         Tbb.setDocument(new batasInput((byte) 3).getOnlyAngka(Tbb));
         Ttb.setDocument(new batasInput((byte) 3).getOnlyAngka(Ttb));
         Tgol.setDocument(new batasInput((int) 3).getKata(Tgol));
-        TPasien.setDocument(new batasInput((int) 255).getKata(TPasien));
+        TPasien.setDocument(new batasInput((int) 255).getKataBebas(TPasien));
         Ttensi.setDocument(new batasInput((int) 7).getKata(Ttensi));
         Tnadi.setDocument(new batasInput((int) 7).getKata(Tnadi));
         Tbmi.setDocument(new batasInput((int) 7).getKata(Tbmi));

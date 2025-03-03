@@ -376,7 +376,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         }
         tbTriase.setDefaultRenderer(Object.class, new WarnaTable());
         
-        Tnama.setDocument(new batasInput((int) 40).getKata(Tnama));
+        TPngJawab.setDocument(new batasInput((int) 40).getKata(TPngJawab));
         Thubungan.setDocument(new batasInput((int) 100).getKata(Thubungan));
         Tdari.setDocument(new batasInput((int) 200).getKata(Tdari));
         Tnadi.setDocument(new batasInput((int) 7).getKata(Tnadi));
@@ -477,7 +477,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         chkAutoanam = new widget.CekBox();
         chkHeteroanam = new widget.CekBox();
         jLabel15 = new widget.Label();
-        Tnama = new widget.TextBox();
+        TPngJawab = new widget.TextBox();
         jLabel16 = new widget.Label();
         Thubungan = new widget.TextBox();
         jLabel17 = new widget.Label();
@@ -820,7 +820,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel11.setBounds(210, 66, 160, 23);
 
         TtglTiba.setEditable(false);
-        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        TtglTiba.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
         TtglTiba.setDisplayFormat("dd-MM-yyyy");
         TtglTiba.setName("TtglTiba"); // NOI18N
         TtglTiba.setOpaque(false);
@@ -915,21 +915,21 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         chkHeteroanam.setBounds(250, 122, 110, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setText("Nama :");
+        jLabel15.setText("Nama Pnggung. Jwb. :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
         jLabel15.setBounds(0, 150, 130, 23);
 
-        Tnama.setBackground(new java.awt.Color(245, 250, 240));
-        Tnama.setForeground(new java.awt.Color(0, 0, 0));
-        Tnama.setName("Tnama"); // NOI18N
-        Tnama.addKeyListener(new java.awt.event.KeyAdapter() {
+        TPngJawab.setBackground(new java.awt.Color(245, 250, 240));
+        TPngJawab.setForeground(new java.awt.Color(0, 0, 0));
+        TPngJawab.setName("TPngJawab"); // NOI18N
+        TPngJawab.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                TnamaKeyPressed(evt);
+                TPngJawabKeyPressed(evt);
             }
         });
-        FormInput.add(Tnama);
-        Tnama.setBounds(136, 150, 300, 23);
+        FormInput.add(TPngJawab);
+        TPngJawab.setBounds(136, 150, 300, 23);
 
         jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setText("Hub. Dengan Pasien :");
@@ -2373,7 +2373,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         jLabel72.setBounds(136, 1298, 60, 23);
 
         TtglKeputusan.setEditable(false);
-        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        TtglKeputusan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
         TtglKeputusan.setDisplayFormat("dd-MM-yyyy");
         TtglKeputusan.setName("TtglKeputusan"); // NOI18N
         TtglKeputusan.setOpaque(false);
@@ -2533,7 +2533,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2548,7 +2548,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2769,7 +2769,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                 if (Sequel.menyimpantf("triase_pediatrik", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                         + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 81, new String[]{
                             TNoRw.getText(), cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
-                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
+                            cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, TPngJawab.getText(),
                             Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
                             cmbPenampilan.getSelectedItem().toString(), cmbUsaha.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), stabil, distress,
                             gagalNafas, ssp, gagalJantung, shock, cmbAirway.getSelectedItem().toString(), airwayLevel2, airwayLevel3, airwayLevel4, airwayLevel5,
@@ -2893,16 +2893,16 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                 param.put("heteroAnam", "");
             }
             
-            if (Tnama.getText().equals("")) {
-                param.put("nama", "Heteroanamnese    Nama : .......");
+            if (TPngJawab.getText().equals("")) {
+                param.put("pngJawab", "Heteroanamnese    Nama Png. Jwb. : .......");
             } else {
-                param.put("nama", "Heteroanamnese    Nama : " + Tnama.getText());
+                param.put("pngJawab", "Heteroanamnese    Nama Png. Jwb. : " + TPngJawab.getText());
             }
             
             if (Thubungan.getText().equals("")) {
-                param.put("hubungan", "Hubungan Dengan Pasien : -");
+                param.put("hubungan", "Hub. Dengan Pasien : -");
             } else {
-                param.put("hubungan", "Hubungan Dengan Pasien : " + Thubungan.getText());
+                param.put("hubungan", "Hub. Dengan Pasien : " + Thubungan.getText());
             }
             
             if (cmbRujukan.getSelectedIndex() == 1) {
@@ -3399,11 +3399,11 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         AutoCompleteDecorator.decorate(cmbDtk);
     }//GEN-LAST:event_cmbDtkMouseReleased
 
-    private void TnamaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnamaKeyPressed
+    private void TPngJawabKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPngJawabKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             Thubungan.requestFocus();
         }
-    }//GEN-LAST:event_TnamaKeyPressed
+    }//GEN-LAST:event_TPngJawabKeyPressed
 
     private void TdariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TdariKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
@@ -3603,6 +3603,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.TextBox TNoRM;
     private widget.TextBox TNoRw;
     private widget.TextBox TPasien;
+    private widget.TextBox TPngJawab;
     private javax.swing.JTabbedPane TabRawat;
     private widget.TextBox Tbb;
     private widget.TextArea Tcatatan;
@@ -3611,7 +3612,6 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     private widget.TextBox Tjenkel;
     private widget.TextBox Tkeluhan;
     private widget.TextBox Tnadi;
-    private widget.TextBox Tnama;
     private widget.TextBox TnmPetugas;
     private widget.TextBox Tpembiayaan;
     private widget.TextBox Trespi;
@@ -3953,7 +3953,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
         cmbDtk.setSelectedIndex(0);
         chkAutoanam.setSelected(false);
         chkHeteroanam.setSelected(false);
-        Tnama.setText("");
+        TPngJawab.setText("");
         Thubungan.setText("");
         cmbRujukan.setSelectedIndex(0);
         Tdari.setText("");
@@ -4096,7 +4096,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
             Tpembiayaan.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 7).toString());
             autoanamnese = tbTriase.getValueAt(tbTriase.getSelectedRow(), 17).toString();
             heteroanamnese = tbTriase.getValueAt(tbTriase.getSelectedRow(), 18).toString();
-            Tnama.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 19).toString());
+            TPngJawab.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 19).toString());
             Thubungan.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 20).toString());
             cmbRujukan.setSelectedItem(tbTriase.getValueAt(tbTriase.getSelectedRow(), 21).toString());
             Tdari.setText(tbTriase.getValueAt(tbTriase.getSelectedRow(), 22).toString());
@@ -4453,7 +4453,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                 + "nadi=?, respirasi=?, spo2=?, umur=?, spo2_peringatan=?, trauma=?, non_trauma=?, doa=?, jam_kasus=?, catatan=?, tgl_keputusan=?, jam_keputusan=?, keputusan=?, "
                 + "nip_petugas=?, suhu=?, bb=?, satuan_bb=?", 80, new String[]{
                     cmbGelang.getSelectedItem().toString(), cmbDiisi.getSelectedItem().toString(), Valid.SetTgl(TtglTiba.getSelectedItem() + ""),
-                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, Tnama.getText(),
+                    cmbJam.getSelectedItem() + ":" + cmbMnt.getSelectedItem() + ":" + cmbDtk.getSelectedItem(), autoanamnese, heteroanamnese, TPngJawab.getText(),
                     Thubungan.getText(), cmbRujukan.getSelectedItem().toString(), Tdari.getText(), cmbTransportasi.getSelectedItem().toString(), Tkeluhan.getText(),
                     cmbPenampilan.getSelectedItem().toString(), cmbUsaha.getSelectedItem().toString(), cmbSirkulasi.getSelectedItem().toString(), stabil, distress,
                     gagalNafas, ssp, gagalJantung, shock, cmbAirway.getSelectedItem().toString(), airwayLevel2, airwayLevel3, airwayLevel4, airwayLevel5,
@@ -4478,7 +4478,7 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
     
     private void isRawat() {
         try {
-            psx = koneksi.prepareStatement("SELECT p.*, if(p.jk='L','Laki-laki','Perempuan') jenkel, pj.png_jawab, rp.tgl_registrasi FROM reg_periksa rp "
+            psx = koneksi.prepareStatement("SELECT p.*, if(p.jk='L','Laki-laki','Perempuan') jenkel, pj.png_jawab, rp.tgl_registrasi, rp.p_jawab, rp.hubunganpj FROM reg_periksa rp "
                     + "INNER JOIN pasien p ON rp.no_rkm_medis = p.no_rkm_medis "
                     + "INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj WHERE rp.no_rawat= ?");
             try {
@@ -4490,7 +4490,9 @@ public final class RMTriasePediatrik extends javax.swing.JDialog {
                     TtglLahir.setText(Valid.SetTglINDONESIA(rsx.getString("tgl_lahir")));
                     Tjenkel.setText(rsx.getString("jenkel"));
                     Tpembiayaan.setText(rsx.getString("png_jawab"));
-                    DTPCari1.setDate(rsx.getDate("tgl_registrasi"));
+                    DTPCari1.setDate(rsx.getDate("tgl_registrasi"));                    
+                    TPngJawab.setText(rsx.getString("p_jawab"));
+                    Thubungan.setText(rsx.getString("hubunganpj"));
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);

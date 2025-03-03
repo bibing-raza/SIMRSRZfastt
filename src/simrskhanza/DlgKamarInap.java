@@ -17571,15 +17571,15 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     }
 
                     if (rsLaprm.getString("nm_sumber_data").equals("")) {
-                        param.put("nama", "Heteroanamnese    Nama : .......");
+                        param.put("pngJawab", "Heteroanamnese    Nama Png. Jwb. : .......");
                     } else {
-                        param.put("nama", "Heteroanamnese    Nama : " + rsLaprm.getString("nm_sumber_data"));
+                        param.put("pngJawab", "Heteroanamnese    Nama Png. Jwb. : " + rsLaprm.getString("nm_sumber_data"));
                     }
 
                     if (rsLaprm.getString("hubungan").equals("")) {
-                        param.put("hubungan", "Hubungan Dengan Pasien : -");
+                        param.put("hubungan", "Hub. Dengan Pasien : -");
                     } else {
-                        param.put("hubungan", "Hubungan Dengan Pasien : " + rsLaprm.getString("hubungan"));
+                        param.put("hubungan", "Hub. Dengan Pasien : " + rsLaprm.getString("hubungan"));
                     }
                     
                     if (rsLaprm.getString("rujukan").equals("Ya")) {

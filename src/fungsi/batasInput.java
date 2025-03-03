@@ -114,6 +114,43 @@ public class batasInput {
             }
         };return filter;
     }
+    
+    public PlainDocument getKataBebas(final JTextField inputan) {
+        filter = new PlainDocument() {
+            @Override
+            public void insertString(int offs, String str, AttributeSet a) throws BadLocationException {
+                StringBuilder buf = new StringBuilder();
+                int c = 0;
+                char[] upp = str.toCharArray();
+                for (int i = 0; i < upp.length; i++) {
+                    boolean isOnlyAngka = Character.isDigit(upp[i]);
+                    boolean isOnlyLetter = Character.isLetter(upp[i]);
+                    boolean isOnlySpasi = Character.isSpaceChar(upp[i]);
+
+                    if (isOnlyLetter == true) {
+                        upp[c] = upp[i];
+                        c++;
+                    } else if (isOnlyAngka == true) {
+                        upp[c] = upp[i];
+                        c++;
+                    } else if (isOnlySpasi == true) {
+                        upp[c] = upp[i];
+                        c++;
+                    } else if (isOnlyLetter == false) {
+                        upp[c] = upp[i];
+                        c++;
+                    }
+                }
+                buf.append(upp, 0, c);
+                int x = inputan.getText().length();
+                if (x < length) {
+                    //disini aja bedanya
+                    super.insertString(offs, new String(buf), a);
+                }
+            }
+        };
+        return filter;
+    }
 
     public PlainDocument getKata(final JTextField inputan){
         filter=new PlainDocument(){
