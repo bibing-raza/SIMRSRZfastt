@@ -218,11 +218,11 @@ public class DlgPasien extends javax.swing.JDialog {
         tbPasien.setDefaultRenderer(Object.class, new WarnaTable());
 
         TNo.setDocument(new batasInput((byte) 15).getKata(TNo));
-        TNm.setDocument(new batasInput((byte) 255).getKata(TNm));
+        TNm.setDocument(new batasInput((int) 255).getKata(TNm));
         NmIbu.setDocument(new batasInput((byte) 40).getKata(NmIbu));
         TKtp.setDocument(new batasInput((byte) 20).getKata(TKtp));
         Kdpnj.setDocument(new batasInput((byte) 3).getKata(Kdpnj));
-        TTmp.setDocument(new batasInput((byte) 255).getKata(TTmp));
+        TTmp.setDocument(new batasInput((int) 255).getKata(TTmp));
         Alamat.setDocument(new batasInput((int) 200).getFilter(Alamat));
         AlamatDomisili.setDocument(new batasInput((int) 200).getFilter(AlamatDomisili));
         AlamatPj.setDocument(new batasInput((int) 100).getFilter(AlamatPj));
