@@ -210,7 +210,8 @@ public class DlgSuratKeteranganDisabilitas extends javax.swing.JDialog {
         }
         tbSurat.setDefaultRenderer(Object.class, new WarnaTable());
 
-        TTempLahr.setDocument(new batasInput((int) 150).getKata(TTempLahr));
+        TPasien.setDocument(new batasInput((int) 255).getKata(TPasien));
+        TTempLahr.setDocument(new batasInput((int) 255).getKata(TTempLahr));
         TekstremAtas.setDocument(new batasInput((int) 200).getKata(TekstremAtas));
         TekstremBawah.setDocument(new batasInput((int) 200).getKata(TekstremBawah));
         Talat.setDocument(new batasInput((int) 200).getKata(Talat));

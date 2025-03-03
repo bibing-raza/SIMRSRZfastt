@@ -275,8 +275,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
         TPekerjaan.setDocument(new batasInput((int) 100).getKata(TPekerjaan));
         TPermintaanDari.setDocument(new batasInput((int) 180).getKata(TPermintaanDari));
         TnoSuratDari.setDocument(new batasInput((int) 150).getKata(TnoSuratDari));
-        TTempLahr.setDocument(new batasInput((int) 150).getKata(TTempLahr));
-        TPasien.setDocument(new batasInput((int) 40).getKata(TPasien));
+        TTempLahr.setDocument(new batasInput((int) 255).getKata(TTempLahr));
+        TPasien.setDocument(new batasInput((int) 255).getKata(TPasien));
         Tpenyidik.setDocument(new batasInput((int) 200).getKata(Tpenyidik));
         Tnrp.setDocument(new batasInput((byte) 20).getOnlyAngka(Tnrp));
 

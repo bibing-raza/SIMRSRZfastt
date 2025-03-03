@@ -136,14 +136,14 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
         tbSurat.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((int) 100).getKata(TCari));        
-        TTempLahr.setDocument(new batasInput((int) 150).getKata(TTempLahr));
+        TTempLahr.setDocument(new batasInput((int) 255).getKata(TTempLahr));
         TPendidikan.setDocument(new batasInput((int) 100).getKata(TPendidikan));
         TPekerjaan.setDocument(new batasInput((int) 100).getKata(TPekerjaan));
         Tnm_tertulis.setDocument(new batasInput((int) 150).getKata(Tnm_tertulis));
         Tjabatan.setDocument(new batasInput((int) 200).getKata(Tjabatan));
         Tinstansi.setDocument(new batasInput((int) 200).getKata(Tinstansi));
         Tno_surat_dari.setDocument(new batasInput((int) 150).getKata(Tno_surat_dari));
-        TPasien.setDocument(new batasInput((int) 40).getKata(TPasien));
+        TPasien.setDocument(new batasInput((int) 255).getKata(TPasien));
         
         dokter.addWindowListener(new WindowListener() {
             @Override
