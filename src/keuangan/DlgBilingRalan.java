@@ -176,7 +176,8 @@ public class DlgBilingRalan extends javax.swing.JDialog {
             + "(detreturjual.jml_retur * -1) as jml, "
             + "(detreturjual.subtotal * -1) as ttl from detreturjual inner join databarang inner join returjual "
             + "on detreturjual.kode_brng=databarang.kode_brng "
-            + "and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual=? group by databarang.nama_brng",
+            + "and returjual.no_retur_jual=detreturjual.no_retur_jual and returjual.tgl_retur=detreturjual.tgl_retur "
+            + "where returjual.no_retur_jual=? group by databarang.nama_brng",
             sqlpstambahan = "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat=?  ",
             //            sqlpsbiling = "insert into billing values('0',?,?,?,?,?,?,?,?,?,?)",
             sqlpsbiling = "insert into billing values('0',?,?,?,?,?,?,?,?,?,?,?)",

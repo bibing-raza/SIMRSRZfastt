@@ -950,9 +950,9 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         try {
                             rs=ps.executeQuery();
                             while(rs.next()){
-                                if(Sequel.menyimpantf("detreturjual","?,?,?,?,?,?,?,?,?","data barang sama",9,new String[]{
+                                if(Sequel.menyimpantf("detreturjual","?,?,?,?,?,?,?,?,?,?","data barang sama",10,new String[]{
                                     NoRetur.getText(),rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-                                    rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)
+                                    rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),Valid.SetTgl(TglRetur.getSelectedItem()+"")
                                 })==true){
                                     Trackobat.catatRiwayat2(rs.getString(2),rs.getDouble(6),0,"Retur Jual",akses.getkode(),kdgudang.getText(),"Simpan");
                                     Sequel.menyimpan("gudangbarang","'"+rs.getString(2)+"','"+kdgudang.getText()+"','"+rs.getString(6)+"'", 
@@ -988,9 +988,9 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                             try {
                                 rs=ps.executeQuery();
                                 while(rs.next()){
-                                    if(Sequel.menyimpantf("detreturjual","?,?,?,?,?,?,?,?,?","data barang sama",9,new String[]{
+                                    if(Sequel.menyimpantf("detreturjual","?,?,?,?,?,?,?,?,?,?","data barang sama",10,new String[]{
                                         NoRetur.getText(),rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-                                        rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8)
+                                        rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),Valid.SetTgl(TglRetur.getSelectedItem()+"")
                                     })==true){
                                         Trackobat.catatRiwayat2(rs.getString(2),rs.getDouble(6),0,"Retur Jual",akses.getkode(),kdgudang.getText(),"Simpan");
                                         Sequel.menyimpan("gudangbarang","'"+rs.getString(2)+"','"+kdgudang.getText()+"','"+rs.getString(6)+"'", 

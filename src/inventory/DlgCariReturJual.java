@@ -306,9 +306,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
-        ppHapus.setBackground(new java.awt.Color(255, 255, 255));
         ppHapus.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppHapus.setForeground(new java.awt.Color(0, 0, 0));
         ppHapus.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         ppHapus.setText("Hapus Retur");
         ppHapus.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -323,9 +321,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         });
         jPopupMenu1.add(ppHapus);
 
-        ppCetakBilRetur.setBackground(new java.awt.Color(255, 255, 255));
         ppCetakBilRetur.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
-        ppCetakBilRetur.setForeground(new java.awt.Color(0, 0, 0));
         ppCetakBilRetur.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
         ppCetakBilRetur.setText("Cetak Bil Retur");
         ppCetakBilRetur.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -349,7 +345,7 @@ public class DlgCariReturJual extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Retur Obat, Alkes & BHP Medis Dari Pembeli/Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Cari Retur Obat, Alkes & BHP Medis Dari Pembeli/Pasien ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
@@ -357,7 +353,6 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         scrollPane1.setName("scrollPane1"); // NOI18N
         scrollPane1.setOpaque(true);
 
-        tbRetur.setForeground(new java.awt.Color(0, 0, 0));
         tbRetur.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {},
@@ -674,7 +669,6 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         label11.setBounds(320, 40, 55, 23);
 
         TglRetur1.setEditable(false);
-        TglRetur1.setForeground(new java.awt.Color(0, 0, 0));
         TglRetur1.setDisplayFormat("dd-MM-yyyy");
         TglRetur1.setName("TglRetur1"); // NOI18N
         TglRetur1.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -694,7 +688,6 @@ public class DlgCariReturJual extends javax.swing.JDialog {
         label12.setBounds(500, 40, 27, 23);
 
         TglRetur2.setEditable(false);
-        TglRetur2.setForeground(new java.awt.Color(0, 0, 0));
         TglRetur2.setDisplayFormat("dd-MM-yyyy");
         TglRetur2.setName("TglRetur2"); // NOI18N
         TglRetur2.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -1060,7 +1053,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
-                                                                            tanggal = " returjual.tgl_retur between '" + Valid.SetTgl(TglRetur1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TglRetur2.getSelectedItem() + "") + "' ";
+        tanggal = " returjual.tgl_retur between '" + Valid.SetTgl(TglRetur1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(TglRetur2.getSelectedItem() + "") + "' ";
         noret = "";
         ptg = "";
         sat = "";
@@ -1089,7 +1082,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     + " and returjual.no_rkm_medis=pasien.no_rkm_medis "
                     + " and detreturjual.kode_sat=kodesatuan.kode_sat "
                     + " and returjual.no_retur_jual=detreturjual.no_retur_jual "
-                    + " and returjual.nip=petugas.nip "
+                    + " and returjual.nip=petugas.nip and returjual.tgl_retur = detreturjual.tgl_retur"
                     + " where " + tanggal + noret + ptg + sat + bar + " and returjual.no_retur_jual like '%" + TCari.getText() + "%' or "
                     + tanggal + noret + ptg + sat + bar + " and returjual.nip like '%" + TCari.getText() + "%' or "
                     + tanggal + noret + ptg + sat + bar + " and petugas.nama like '%" + TCari.getText() + "%' or "
@@ -1101,7 +1094,7 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                     + tanggal + noret + ptg + sat + bar + " and detreturjual.nota_jual like '%" + TCari.getText() + "%' or "
                     + tanggal + noret + ptg + sat + bar + " and kodesatuan.satuan like '%" + TCari.getText() + "%' or "
                     + tanggal + noret + ptg + sat + bar + " and detreturjual.kode_sat like '%" + TCari.getText() + "%' "
-                    + " group by returjual.no_retur_jual order by returjual.tgl_retur,returjual.no_retur_jual ");
+                    + " order by returjual.tgl_retur,returjual.no_retur_jual ");
             try {
                 rs = ps.executeQuery();
                 ttlretur = 0;
@@ -1129,13 +1122,13 @@ private void ppHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST
                             "detreturjual.subtotal from detreturjual inner join databarang inner join kodesatuan "+
                             " on detreturjual.kode_brng=databarang.kode_brng "+
                             " and detreturjual.kode_sat=kodesatuan.kode_sat where "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_brng like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and databarang.nama_brng like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.kode_sat like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and detreturjual.no_retur_jual like '%"+TCari.getText()+"%' or "+
-                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' "+sat+bar+nonot+" and kodesatuan.satuan like '%"+TCari.getText()+"%' order by detreturjual.kode_brng  ");
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and detreturjual.kode_brng like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and databarang.nama_brng like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and detreturjual.kode_sat like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and detreturjual.nota_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and detreturjual.no_retur_jual like '%"+TCari.getText()+"%' or "+
+                            " detreturjual.no_retur_jual='"+rs.getString(1)+"' and detreturjual.tgl_retur='"+rs.getString(2)+"' "+sat+bar+nonot+" and kodesatuan.satuan like '%"+TCari.getText()+"%' order by detreturjual.kode_brng  ");
 
                     try {
                         subtotal = 0;
