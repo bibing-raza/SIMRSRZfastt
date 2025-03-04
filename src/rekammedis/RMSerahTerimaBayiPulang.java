@@ -52,7 +52,7 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "No. Rawat", "No. RM", "Nama Pasien", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan",
+            "No. Rawat", "No. RM", "Nama Pasien/Bayi", "Jns. Kelamin", "Tgl. Lahir", "Ruang Perawatan",
             "Nama Ibu Kandung", "Diagnosa Bayi", "Tgl. Pulang", "BB Lahir", "BB Pulang", "Nama Petugas",
             "Nama Orang Tua/Wali", "tgl_lahir", "tgl_pulang", "nip_petugas", "waktu_simpan"
         }) {
@@ -383,7 +383,7 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -397,7 +397,7 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -479,10 +479,14 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         PanelInput.add(TNoRM);
         TNoRM.setBounds(260, 10, 70, 23);
 
-        TPasien.setEditable(false);
         TPasien.setBackground(new java.awt.Color(245, 250, 240));
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setName("TPasien"); // NOI18N
+        TPasien.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TPasienKeyPressed(evt);
+            }
+        });
         PanelInput.add(TPasien);
         TPasien.setBounds(335, 10, 395, 23);
 
@@ -572,7 +576,7 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         jLabel12.setBounds(305, 149, 94, 23);
 
         TtglPulang.setEditable(false);
-        TtglPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-03-2025" }));
+        TtglPulang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "04-03-2025" }));
         TtglPulang.setDisplayFormat("dd-MM-yyyy");
         TtglPulang.setName("TtglPulang"); // NOI18N
         TtglPulang.setOpaque(false);
@@ -704,9 +708,9 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
         if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
-            if (Sequel.menyimpantf("serah_terima_bayi_pulang_perinatologi", "?,?,?,?,?,?,?,?,?,?", "No.Rawat", 10, new String[]{
+            if (Sequel.menyimpantf("serah_terima_bayi_pulang_perinatologi", "?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 11, new String[]{
                 TNoRw.getText(), TrgRawat.getText(), TnmIbu.getText(), Tdiagnosa.getText(), Valid.SetTgl(TtglPulang.getSelectedItem() + ""),
-                TbbLahir.getText(), TbbPulang.getText(), nip, TnmOrtu.getText(), Sequel.cariIsi("select now()")
+                TbbLahir.getText(), TbbPulang.getText(), nip, TnmOrtu.getText(), Sequel.cariIsi("select now()"), TPasien.getText()
             }) == true) {
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Serah Terima Bayi Pulang", "Simpan");
                 TCari.setText(TNoRw.getText());
@@ -757,9 +761,9 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
 
     private void ganti() {
         if (Sequel.mengedittf("serah_terima_bayi_pulang_perinatologi", "no_rawat=?", "nm_ibu_kandung=?, diagnosa=?, "
-                + "tgl_pulang=?, bb_lahir=?, bb_pulang=?, nip_petugas=?, nm_ortu_wali=?", 8, new String[]{
+                + "tgl_pulang=?, bb_lahir=?, bb_pulang=?, nip_petugas=?, nm_ortu_wali=?, nm_bayi=?", 9, new String[]{
                     TnmIbu.getText(), Tdiagnosa.getText(), Valid.SetTgl(TtglPulang.getSelectedItem() + ""),
-                    TbbLahir.getText(), TbbPulang.getText(), nip, TnmOrtu.getText(),
+                    TbbLahir.getText(), TbbPulang.getText(), nip, TnmOrtu.getText(), TPasien.getText(),
                     tbSerah.getValueAt(tbSerah.getSelectedRow(), 0).toString()
                 }) == true) {
             Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Serah Terima Bayi Pulang", "Ganti");
@@ -910,17 +914,50 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
     
     private void BtnPrintActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPrintActionPerformed
         if (tbSerah.getSelectedRow() > -1) {
-//            Map<String, Object> param = new HashMap<>();
-//            param.put("namars", akses.getnamars());
-//            param.put("logo", Sequel.cariGambar("select logo from setting"));
-//            param.put("norm", TNoRM.getText());
-//            param.put("nmpasien", TPasien.getText());
-//            param.put("tgllahir", Sequel.cariIsi("select date_format(tgl_lahir,'%d-%m-%Y') from pasien where no_rkm_medis='" + TNoRM.getText() + "'"));
-//            
-//            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
-//                "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
-//                "SELECT now() tanggal", param);
+            Map<String, Object> param = new HashMap<>();
+            param.put("namars", akses.getnamars());
+            param.put("logo", Sequel.cariGambar("select logo from setting"));
+            param.put("norm", TNoRM.getText());
+            param.put("nmpasien", TPasien.getText());
+            
+            if (TnmIbu.getText().equals("")) {
+                param.put("nmIbu", "-");
+            } else {
+                param.put("nmIbu", TnmIbu.getText());
+            }
+            
+            if (Talamat.getText().equals("")) {
+                param.put("alamat", "-");
+            } else {
+                param.put("alamat", Talamat.getText());
+            }
+            
+            if (Tdiagnosa.getText().equals("")) {
+                param.put("diagnosa", "-");
+            } else {
+                param.put("diagnosa", Tdiagnosa.getText());
+            }
+            
+            param.put("tglLahir", TtglLahir.getText());
+            param.put("tglPulang", Valid.SetTglINDONESIA(Valid.SetTgl(TtglPulang.getSelectedItem() + "")));
+            
+            if (TbbLahir.getText().equals("")) {
+                param.put("bbLahir", "..... gram");
+            } else {
+                param.put("bbLahir", TbbLahir.getText() + " gram");
+            }
+            
+            if (TbbPulang.getText().equals("")) {
+                param.put("bbPulang", "..... gram");
+            } else {
+                param.put("bbPulang", TbbPulang.getText() + " gram");
+            }
+            
+            param.put("nmPetugas", "( " + TnmPetugas.getText() + " )");
+            param.put("nmOrtu", "( " + TnmOrtu.getText() + " )");
+            
+            Valid.MyReport("rptSerahTerimaBayiPulang.jasper", "report", "::[ Lembar Serah Terima Bayi Pulang ]::",
+                "SELECT now() tanggal", param);
 
             tampil();
             emptTeks();
@@ -938,6 +975,12 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
     }//GEN-LAST:event_formWindowOpened
+
+    private void TPasienKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TPasienKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            TnmIbu.requestFocus();
+        }
+    }//GEN-LAST:event_TPasienKeyPressed
 
     /**
     * @param args the command line arguments
@@ -1013,13 +1056,14 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
     public void tampil() {     
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT st.*, p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d/%m/%Y') tglLahir, "
+            ps = koneksi.prepareStatement("SELECT st.*, p.no_rkm_medis, if(p.jk='L','Laki-laki','Perempuan') jenkel, date_format(p.tgl_lahir,'%d/%m/%Y') tglLahir, "
                     + "date_format(st.tgl_pulang,'%d/%m/%Y') tglPulang, pg.nama nmPetugas, p.tgl_lahir FROM serah_terima_bayi_pulang_perinatologi st "
                     + "inner join reg_periksa rp on rp.no_rawat=st.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis inner join pegawai pg on pg.nik=st.nip_petugas WHERE "
                     + "st.tgl_pulang between ? and ? and st.no_rawat like ? or "
                     + "st.tgl_pulang between ? and ? and p.no_rkm_medis like ? or "
-                    + "st.tgl_pulang between ? and ? and p.nm_pasien like ? or "
+                    + "st.tgl_pulang between ? and ? and st.nm_bayi like ? or "
                     + "st.tgl_pulang between ? and ? and if(p.jk='L','Laki-laki','Perempuan') like ? or "
+                    + "st.tgl_pulang between ? and ? and st.nm_ibu_kandung like ? or "
                     + "st.tgl_pulang between ? and ? and pg.nama like ? ORDER BY st.waktu_simpan desc");
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -1036,13 +1080,16 @@ public class RMSerahTerimaBayiPulang extends javax.swing.JDialog {
                 ps.setString(12, "%" + TCari.getText().trim() + "%");
                 ps.setString(13, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps.setString(14, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
-                ps.setString(15, "%" + TCari.getText().trim() + "%");
+                ps.setString(15, "%" + TCari.getText().trim() + "%");                
+                ps.setString(16, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
+                ps.setString(17, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
+                ps.setString(18, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new String[]{
                         rs.getString("no_rawat"),
                         rs.getString("no_rkm_medis"),
-                        rs.getString("nm_pasien"),
+                        rs.getString("nm_bayi"),
                         rs.getString("jenkel"),
                         rs.getString("tglLahir"),
                         rs.getString("ruang_rawat"),

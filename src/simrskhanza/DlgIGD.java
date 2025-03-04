@@ -4431,9 +4431,9 @@ public final class DlgIGD extends javax.swing.JDialog {
             
             cekRujuk = Sequel.cariInteger("select count(-1) from rujuk_masuk where no_rawat='" + TNoRw.getText() + "'");
             if (akses.getedit_registrasi() == true) {
-                Sequel.queryu2("update reg_periksa set no_rawat=?,no_reg=?,kd_dokter=?,no_rkm_medis=?,kd_poli=?,"
-                        + "p_jawab=?,almt_pj=?,biaya_reg=?,hubunganpj=?,stts_daftar=?,kd_pj=? where no_rawat=?", 12,
-                        new String[]{TNoRw.getText(), TNoReg.getText(), kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), 
+                Sequel.queryu2("update reg_periksa set no_rawat=?, kd_dokter=?,no_rkm_medis=?,kd_poli=?,"
+                        + "p_jawab=?,almt_pj=?,biaya_reg=?,hubunganpj=?,stts_daftar=?,kd_pj=? where no_rawat=?", 11,
+                        new String[]{TNoRw.getText(), kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), 
                             TAlmt.getText(), "" + biaya, THbngn.getText(), TStatus.getText(), kdpnj.getText(), 
                             tbregistrasiIGD.getValueAt(tbregistrasiIGD.getSelectedRow(), 2).toString()});
 
@@ -4477,9 +4477,9 @@ public final class DlgIGD extends javax.swing.JDialog {
                     JOptionPane.showMessageDialog(rootPane, "Maaf pasien sudah ada transaksi sebelumnya & tidak bisa diedit..!!! ");
                     TCari.requestFocus();
                 } else {
-                    Sequel.queryu2("update reg_periksa set no_rawat=?,no_reg=?,kd_dokter=?,no_rkm_medis=?,kd_poli=?,"
-                            + "p_jawab=?,almt_pj=?,biaya_reg=?,hubunganpj=?,stts_daftar=?,kd_pj=? where no_rawat=?", 12,
-                            new String[]{TNoRw.getText(), TNoReg.getText(), kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), 
+                    Sequel.queryu2("update reg_periksa set no_rawat=?, kd_dokter=?,no_rkm_medis=?,kd_poli=?,"
+                            + "p_jawab=?,almt_pj=?,biaya_reg=?,hubunganpj=?,stts_daftar=?,kd_pj=? where no_rawat=?", 11,
+                            new String[]{TNoRw.getText(), kddokter.getText(), TNoRM.getText(), "IGDK", TPngJwb.getText(), 
                                 TAlmt.getText(), "" + biaya, THbngn.getText(), TStatus.getText(), kdpnj.getText(), 
                                 tbregistrasiIGD.getValueAt(tbregistrasiIGD.getSelectedRow(), 2).toString()});
 

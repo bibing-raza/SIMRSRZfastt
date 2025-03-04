@@ -36,7 +36,7 @@
 	<entry key="URLAPIINHEALTH">https://dummy.inhealth.co.id/pelkesws2</entry>
     <entry key="TOKENINHEALTH">token dari inhealt</entry>
 	<entry key="PORTWEB">80</entry>
-	<entry key="URUTNOREG">dokter</entry>
+	<entry key="URUTNOREG">poli</entry>
 	<entry key="PASSPCARE">password pcare</entry>
     <entry key="USERPCARE">user pcare</entry>
     <entry key="URLAPISISRUTE">https://api.sisrute.kemkes.go.id</entry>
