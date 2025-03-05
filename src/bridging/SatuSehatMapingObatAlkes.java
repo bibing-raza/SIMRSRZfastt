@@ -244,10 +244,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                     }
                 }
             });
-        }  
-        
-        ChkInput.setSelected(true);
-        isForm();
+        }
     }
 
     /** This method is called from within the constructor to
@@ -262,8 +259,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         NamaBarang = new widget.TextBox();
         internalFrame1 = new widget.InternalFrame();
         PanelInput = new javax.swing.JPanel();
-        ChkInput = new widget.CekBox();
-        FormInput = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
         KodeBarang = new widget.TextBox();
         jLabel5 = new widget.Label();
@@ -303,17 +298,17 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         TCari1 = new widget.TextBox();
         BtnCari1 = new widget.Button();
         panelGlass8 = new widget.panelisi();
-        jLabel6 = new widget.Label();
-        TCari = new widget.TextBox();
-        BtnCari = new widget.Button();
-        jLabel7 = new widget.Label();
-        LCount = new widget.Label();
         BtnSimpan = new widget.Button();
         BtnBatal = new widget.Button();
         BtnHapus = new widget.Button();
         BtnEdit = new widget.Button();
         BtnAll = new widget.Button();
         BtnKeluar = new widget.Button();
+        jLabel6 = new widget.Label();
+        TCari = new widget.TextBox();
+        BtnCari = new widget.Button();
+        jLabel7 = new widget.Label();
+        LCount = new widget.Label();
 
         NamaBarang.setEditable(false);
         NamaBarang.setHighlighter(null);
@@ -323,57 +318,31 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         setUndecorated(true);
         setResizable(false);
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Data Mapping Obat/Alkes/BHP Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Mapping Obat/Alkes/BHP Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(660, 215));
-        PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
-
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
-        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('I');
-        ChkInput.setText(".: Input Data");
-        ChkInput.setToolTipText("Alt+I");
-        ChkInput.setBorderPainted(true);
-        ChkInput.setBorderPaintedFlat(true);
-        ChkInput.setFocusable(false);
-        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput.setName("ChkInput"); // NOI18N
-        ChkInput.setPreferredSize(new java.awt.Dimension(192, 20));
-        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInputActionPerformed(evt);
-            }
-        });
-        PanelInput.add(ChkInput, java.awt.BorderLayout.PAGE_END);
-
-        FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(100, 104));
-        FormInput.setLayout(null);
+        PanelInput.setPreferredSize(new java.awt.Dimension(660, 200));
+        PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("KFA System :");
         jLabel4.setName("jLabel4"); // NOI18N
-        FormInput.add(jLabel4);
+        PanelInput.add(jLabel4);
         jLabel4.setBounds(345, 10, 80, 23);
 
         KodeBarang.setEditable(false);
         KodeBarang.setForeground(new java.awt.Color(0, 0, 0));
         KodeBarang.setName("KodeBarang"); // NOI18N
-        FormInput.add(KodeBarang);
+        PanelInput.add(KodeBarang);
         KodeBarang.setBounds(212, 10, 130, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("Form Code :");
         jLabel5.setName("jLabel5"); // NOI18N
-        FormInput.add(jLabel5);
+        PanelInput.add(jLabel5);
         jLabel5.setBounds(0, 70, 105, 23);
 
         FormCode.setEditable(false);
@@ -384,13 +353,13 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 FormCodeKeyPressed(evt);
             }
         });
-        FormInput.add(FormCode);
+        PanelInput.add(FormCode);
         FormCode.setBounds(109, 70, 80, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Numerator Code :");
         jLabel8.setName("jLabel8"); // NOI18N
-        FormInput.add(jLabel8);
+        PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 130, 105, 23);
 
         NumoratorCode.setEditable(false);
@@ -401,25 +370,25 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 NumoratorCodeKeyPressed(evt);
             }
         });
-        FormInput.add(NumoratorCode);
+        PanelInput.add(NumoratorCode);
         NumoratorCode.setBounds(109, 130, 70, 23);
 
         KFACode.setEditable(false);
         KFACode.setForeground(new java.awt.Color(0, 0, 0));
         KFACode.setName("KFACode"); // NOI18N
-        FormInput.add(KFACode);
+        PanelInput.add(KFACode);
         KFACode.setBounds(109, 10, 100, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("KFA Code :");
         jLabel9.setName("jLabel9"); // NOI18N
-        FormInput.add(jLabel9);
+        PanelInput.add(jLabel9);
         jLabel9.setBounds(0, 10, 105, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("KFA Display :");
         jLabel10.setName("jLabel10"); // NOI18N
-        FormInput.add(jLabel10);
+        PanelInput.add(jLabel10);
         jLabel10.setBounds(0, 40, 105, 23);
 
         KFADisplay.setEditable(false);
@@ -430,13 +399,13 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 KFADisplayKeyPressed(evt);
             }
         });
-        FormInput.add(KFADisplay);
+        PanelInput.add(KFADisplay);
         KFADisplay.setBounds(109, 40, 615, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Form System :");
         jLabel11.setName("jLabel11"); // NOI18N
-        FormInput.add(jLabel11);
+        PanelInput.add(jLabel11);
         jLabel11.setBounds(192, 70, 90, 23);
 
         FormSystem.setEditable(false);
@@ -447,7 +416,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 FormSystemKeyPressed(evt);
             }
         });
-        FormInput.add(FormSystem);
+        PanelInput.add(FormSystem);
         FormSystem.setBounds(286, 70, 438, 23);
 
         FormDisplay.setEditable(false);
@@ -458,25 +427,25 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 FormDisplayKeyPressed(evt);
             }
         });
-        FormInput.add(FormDisplay);
+        PanelInput.add(FormDisplay);
         FormDisplay.setBounds(109, 100, 615, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("Form Display :");
         jLabel12.setName("jLabel12"); // NOI18N
-        FormInput.add(jLabel12);
+        PanelInput.add(jLabel12);
         jLabel12.setBounds(0, 100, 105, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Denomina Code :");
         jLabel13.setName("jLabel13"); // NOI18N
-        FormInput.add(jLabel13);
+        PanelInput.add(jLabel13);
         jLabel13.setBounds(0, 160, 105, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Numerator System :");
         jLabel14.setName("jLabel14"); // NOI18N
-        FormInput.add(jLabel14);
+        PanelInput.add(jLabel14);
         jLabel14.setBounds(180, 130, 130, 23);
 
         NemeratorSystem.setEditable(false);
@@ -487,7 +456,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 NemeratorSystemKeyPressed(evt);
             }
         });
-        FormInput.add(NemeratorSystem);
+        PanelInput.add(NemeratorSystem);
         NemeratorSystem.setBounds(314, 130, 410, 23);
 
         DenominatorCode.setEditable(false);
@@ -498,7 +467,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 DenominatorCodeKeyPressed(evt);
             }
         });
-        FormInput.add(DenominatorCode);
+        PanelInput.add(DenominatorCode);
         DenominatorCode.setBounds(109, 160, 70, 23);
 
         KFASystem.setEditable(false);
@@ -509,13 +478,13 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 KFASystemKeyPressed(evt);
             }
         });
-        FormInput.add(KFASystem);
+        PanelInput.add(KFASystem);
         KFASystem.setBounds(429, 10, 295, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Denominator System :");
         jLabel15.setName("jLabel15"); // NOI18N
-        FormInput.add(jLabel15);
+        PanelInput.add(jLabel15);
         jLabel15.setBounds(180, 160, 130, 23);
 
         DenominatorSystem.setEditable(false);
@@ -527,10 +496,8 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 DenominatorSystemKeyPressed(evt);
             }
         });
-        FormInput.add(DenominatorSystem);
+        PanelInput.add(DenominatorSystem);
         DenominatorSystem.setBounds(314, 160, 410, 23);
-
-        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -681,54 +648,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         panelGlass8.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass8.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 7));
 
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel6.setText("Key Word :");
-        jLabel6.setName("jLabel6"); // NOI18N
-        jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
-        panelGlass8.add(jLabel6);
-
-        TCari.setForeground(new java.awt.Color(0, 0, 0));
-        TCari.setName("TCari"); // NOI18N
-        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
-        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                TCariKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(TCari);
-
-        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
-        BtnCari.setMnemonic('2');
-        BtnCari.setText("Tampilkan Data");
-        BtnCari.setToolTipText("Alt+2");
-        BtnCari.setName("BtnCari"); // NOI18N
-        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
-        BtnCari.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCariActionPerformed(evt);
-            }
-        });
-        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCariKeyPressed(evt);
-            }
-        });
-        panelGlass8.add(BtnCari);
-
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel7.setText("Record :");
-        jLabel7.setName("jLabel7"); // NOI18N
-        jLabel7.setPreferredSize(new java.awt.Dimension(55, 23));
-        panelGlass8.add(jLabel7);
-
-        LCount.setForeground(new java.awt.Color(0, 0, 0));
-        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        LCount.setText("0");
-        LCount.setName("LCount"); // NOI18N
-        LCount.setPreferredSize(new java.awt.Dimension(80, 23));
-        panelGlass8.add(LCount);
-
         BtnSimpan.setForeground(new java.awt.Color(0, 0, 0));
         BtnSimpan.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/save-16x16.png"))); // NOI18N
         BtnSimpan.setMnemonic('S');
@@ -842,6 +761,54 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnKeluar);
+
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel6.setText("Key Word :");
+        jLabel6.setName("jLabel6"); // NOI18N
+        jLabel6.setPreferredSize(new java.awt.Dimension(70, 23));
+        panelGlass8.add(jLabel6);
+
+        TCari.setForeground(new java.awt.Color(0, 0, 0));
+        TCari.setName("TCari"); // NOI18N
+        TCari.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TCariKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(TCari);
+
+        BtnCari.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCari.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
+        BtnCari.setMnemonic('2');
+        BtnCari.setText("Tampilkan Data");
+        BtnCari.setToolTipText("Alt+2");
+        BtnCari.setName("BtnCari"); // NOI18N
+        BtnCari.setPreferredSize(new java.awt.Dimension(130, 23));
+        BtnCari.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCariActionPerformed(evt);
+            }
+        });
+        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                BtnCariKeyPressed(evt);
+            }
+        });
+        panelGlass8.add(BtnCari);
+
+        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel7.setText("Record :");
+        jLabel7.setName("jLabel7"); // NOI18N
+        jLabel7.setPreferredSize(new java.awt.Dimension(55, 23));
+        panelGlass8.add(jLabel7);
+
+        LCount.setForeground(new java.awt.Color(0, 0, 0));
+        LCount.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        LCount.setText("0");
+        LCount.setName("LCount"); // NOI18N
+        LCount.setPreferredSize(new java.awt.Dimension(80, 23));
+        panelGlass8.add(LCount);
 
         internalFrame1.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
@@ -1045,10 +1012,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_tbMapingKeyReleased
 
-    private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
-        isForm();
-    }//GEN-LAST:event_ChkInputActionPerformed
-
     private void KFASystemKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_KFASystemKeyPressed
         Valid.pindah(evt, KFACode, KFASystem);
     }//GEN-LAST:event_KFASystemKeyPressed
@@ -1150,12 +1113,10 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
     private widget.Button BtnSimpan;
-    private widget.CekBox ChkInput;
     private widget.TextBox DenominatorCode;
     private widget.TextBox DenominatorSystem;
     private widget.TextBox FormCode;
     private widget.TextBox FormDisplay;
-    private widget.PanelBiasa FormInput;
     private widget.TextBox FormSystem;
     private widget.TextBox KFACode;
     private widget.TextBox KFADisplay;
@@ -1255,12 +1216,10 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         NemeratorSystem.setText("");
         DenominatorCode.setText("");
         DenominatorSystem.setText("");
-        ChkInput.setSelected(true);
         TCari1.setText("");
         TCari2.setText("");
         Valid.tabelKosong(tabMode1);
         Valid.tabelKosong(tabMode2);
-        isForm();
         KFACode.requestFocus();
     }
 
@@ -1285,20 +1244,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getobat());
         BtnHapus.setEnabled(akses.getobat());
         BtnEdit.setEnabled(akses.getobat());
-    }
-    
-    private void isForm() {
-        if (ChkInput.isSelected() == true) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 215));
-            FormInput.setVisible(true);
-            ChkInput.setVisible(true);
-        } else if (ChkInput.isSelected() == false) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 20));
-            FormInput.setVisible(false);
-            ChkInput.setVisible(true);
-        }
     }
     
     private void tampilObatRS() {

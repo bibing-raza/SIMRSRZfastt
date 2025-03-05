@@ -8317,8 +8317,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("1", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8336,8 +8340,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("2", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
                 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8354,8 +8362,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("3", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
                 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8370,8 +8382,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("4", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);                
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
                 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8388,8 +8404,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("5", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
                 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8406,8 +8426,12 @@ public class DlgCPPT extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
             } else {
                 simpanTemporaryCppt("6", "Ranap");
-                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
-                        "SELECT * from temporary_cppt", param);
+                if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                    Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Inap ]::",
+                            "SELECT * from temporary_cppt", param);
+                } else {
+                    JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+                }
                 
                 TCari.setText(TNoRw.getText());
                 tampil();
@@ -8426,8 +8450,12 @@ public class DlgCPPT extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(rootPane, "Data tidak ditemukan, silahkan ulangi lagi..!!");
         } else {
             simpanTemporaryCppt("4", "Ralan");
-            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
-                    "SELECT * from temporary_cppt", param);
+            if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+                Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
+                        "SELECT * from temporary_cppt", param);
+            } else {
+                JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+            }
 
             TCari.setText(TNoRw.getText());
             tampil();
@@ -10683,9 +10711,9 @@ public class DlgCPPT extends javax.swing.JDialog {
                         dataKonfir = konfirmasi_terapi;
                     }
 
-                    Sequel.menyimpan("temporary_cppt",
+                    Sequel.menyimpanIgnore("temporary_cppt",
                             "'" + rsCetak.getString("no_rkm_medis") + "','"
-                            + rsCetak.getString("nm_pasien") + "','"
+                            + rsCetak.getString("nm_pasien").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgllhr") + "','"
                             + rsCetak.getString("tglcppt") + "','"
                             + rsCetak.getString("bagian") + "','"
@@ -10693,8 +10721,8 @@ public class DlgCPPT extends javax.swing.JDialog {
                             + rsCetak.getString("hasil_pemeriksaan") + "','"
                             + rsCetak.getString("instruksi_nakes") + "','"
                             + rsCetak.getString("verif") + "','"
-                            + rsCetak.getString("ptgsSerah").replaceAll("'", " ") + "','"
-                            + rsCetak.getString("ptgsTerima").replaceAll("'", " ") + "','"
+                            + rsCetak.getString("ptgsSerah").replaceAll("'", "") + "','"
+                            + rsCetak.getString("ptgsTerima").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgl_cppt") + "','"
                             + rsCetak.getString("jam_cppt") + "','"
                             + rsCetak.getString("cppt_shift") + "','"

@@ -12847,8 +12847,12 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
         param.put("logo", Sequel.cariGambar("select logo from setting"));
         param.put("judul", "CATATAN PERKEMBANGAN PASIEN TERINTEGRASI (IGD)");
         simpanTemporaryCppt();
-        Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
-                "SELECT * from temporary_cppt", param);
+        if (Sequel.cariInteger("select count(-1) from temporary_cppt") > 0) {
+            Valid.MyReport("rptCPPT.jasper", "report", "::[ Laporan CPPT Rawat Jalan/IGD ]::",
+                    "SELECT * from temporary_cppt", param);
+        } else {
+            JOptionPane.showMessageDialog(rootPane, "Preview data cppt gagal, kemungkinan ada ketidaksesuaian data cppt..!!");
+        }
     }
     
     private void simpanTemporaryCppt() {
@@ -12881,9 +12885,9 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         dataKonfir = konfirmasi_terapi;
                     }
 
-                    Sequel.menyimpan("temporary_cppt",
+                    Sequel.menyimpanIgnore("temporary_cppt",
                             "'" + rsCetak.getString("no_rkm_medis") + "','"
-                            + rsCetak.getString("nm_pasien") + "','"
+                            + rsCetak.getString("nm_pasien").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgllhr") + "','"
                             + rsCetak.getString("tglcppt") + "','"
                             + rsCetak.getString("bagian") + "','"
@@ -12891,8 +12895,8 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                             + rsCetak.getString("hasil_pemeriksaan") + "','"
                             + rsCetak.getString("instruksi_nakes") + "','"
                             + rsCetak.getString("verif") + "','"
-                            + rsCetak.getString("ptgsSerah") + "','"
-                            + rsCetak.getString("ptgsTerima") + "','"
+                            + rsCetak.getString("ptgsSerah").replaceAll("'", "") + "','"
+                            + rsCetak.getString("ptgsTerima").replaceAll("'", "") + "','"
                             + rsCetak.getString("tgl_cppt") + "','"
                             + rsCetak.getString("jam_cppt") + "','"
                             + rsCetak.getString("cppt_shift") + "','"

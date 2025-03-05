@@ -6258,7 +6258,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28/02/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/03/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -13770,7 +13770,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         } else if (cmbMenu.getSelectedIndex() == 8) {
             jmlmenu = 0;
-            if (akses.getadmin() == true) {
+            if (akses.getpenyakit() == true) {
                 Panelmenu.add(btnQuerySql);
                 jmlmenu++;
             }
@@ -15446,7 +15446,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             jmlmenu++;
         }
         
-        if (akses.getadmin() == true) {
+        if (akses.getpenyakit() == true) {
             Panelmenu.add(btnQuerySql);
             jmlmenu++;
         }
@@ -17991,7 +17991,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             }
         }
         
-        if (akses.getadmin()== true) {
+        if (akses.getpenyakit()== true) {
             if (btnQuerySql.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnQuerySql);
                 jmlmenu++;
