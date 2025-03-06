@@ -1479,6 +1479,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             }
         });
 
+        Scroll.setComponentPopupMenu(Popup1);
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
@@ -1508,7 +1509,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         TlogProses.setRows(5);
         TlogProses.setFont(new java.awt.Font("Tahoma", 0, 13)); // NOI18N
         TlogProses.setName("TlogProses"); // NOI18N
-        TlogProses.setPreferredSize(new java.awt.Dimension(230, 10000));
+        TlogProses.setPreferredSize(new java.awt.Dimension(230, 100000));
         scroll1.setViewportView(TlogProses);
 
         TabData.addTab(".: Log Proses e-Klaim", scroll1);
@@ -2127,7 +2128,8 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 JOptionPane.showMessageDialog(rootPane, "Data pasien berdasarkan No. SEP/No. Klaim belum dipilih/diconteng,...!!");
                 tbINACBG.requestFocus();
             } else {
-                TlogProses.setText("");                
+                TlogProses.setText("");
+                TabData.setSelectedIndex(1);
                 try {
                     for (i = 0; i < tbINACBG.getRowCount(); i++) {
                         if (tbINACBG.getValueAt(i, 0).toString().equals("true")) {
@@ -2140,10 +2142,9 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                             } else {
                                 TlogProses.setText(TlogProses.getText() + "\n\n" + ApiEKLAIM_inacbg.getPesan());
                             }
-                        }
+                        }                        
                     }
 
-                    BtnCari1ActionPerformed(null);
                     TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
@@ -2424,32 +2425,19 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Maaf, data klaim masih kosong...!!!!");
             tbINACBG.requestFocus();
         } else {
-            //cek conteng
-            n = 0;
-            for (i = 0; i < tbINACBG.getRowCount(); i++) {
-                if (tbINACBG.getValueAt(i, 0).toString().equals("true")) {
-                    n++;
-                }
+            WindowKirimKolektif.setSize(415, 144);
+            WindowKirimKolektif.setLocationRelativeTo(internalFrame1);
+            WindowKirimKolektif.setAlwaysOnTop(false);
+            WindowKirimKolektif.setVisible(true);
+
+            if (Chktgl.isSelected() == true) {
+                cmbJnsTanggal.setSelectedIndex(1);
+            } else {
+                cmbJnsTanggal.setSelectedIndex(0);
             }
 
-            if (n == 0) {
-                JOptionPane.showMessageDialog(rootPane, "Data pasien berdasarkan No. SEP/No. Klaim belum dipilih/diconteng,...!!");
-                tbINACBG.requestFocus();
-            } else {                
-                WindowKirimKolektif.setSize(415, 144);
-                WindowKirimKolektif.setLocationRelativeTo(internalFrame1);
-                WindowKirimKolektif.setAlwaysOnTop(false);
-                WindowKirimKolektif.setVisible(true);
-                
-                if (Chktgl.isSelected() == true) {
-                    cmbJnsTanggal.setSelectedIndex(1);
-                } else {
-                    cmbJnsTanggal.setSelectedIndex(0);
-                }
-                
-                TtglA.setDate(tglA.getDate());
-                TtglB.setDate(tglB.getDate());
-            }
+            TtglA.setDate(tglA.getDate());
+            TtglB.setDate(tglB.getDate());
         }
     }//GEN-LAST:event_ppKirimOnlineKolektifBtnPrintActionPerformed
 
@@ -2479,30 +2467,17 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 jnsTgl = "2";
             }
             
-            TlogProses.setText("");            
+            TlogProses.setText("");
+            TabData.setSelectedIndex(1);
             try {
                 mbak_eka.mengirimOnlineKolektif(Valid.SetTgl(TtglA.getSelectedItem() + ""), Valid.SetTgl(TtglB.getSelectedItem() + ""), jnsrwt, jnsTgl);
-                TlogProses.setText(ApiEKLAIM_inacbg.getPesan() + "\n");
-                try {
-                    for (i = 0; i < tbINACBG.getRowCount(); i++) {
-                        if (tbINACBG.getValueAt(i, 0).toString().equals("true")) {
-                            mbak_eka.mengambilData(tbINACBG.getValueAt(i, 1).toString(),
-                                    tbINACBG.getValueAt(i, 3).toString(),
-                                    tbINACBG.getValueAt(i, 23).toString());
-                            
-                            if (TlogProses.getText().equals("")) {
-                                TlogProses.setText(ApiEKLAIM_inacbg.getPesan() + "\n");
-                            } else {
-                                TlogProses.setText(TlogProses.getText() + "\n\n" + ApiEKLAIM_inacbg.getPesan());
-                            }
-                        }
-                    }
-
-                    BtnCloseIn4ActionPerformed(null);
-                    TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
-                } catch (Exception e) {
-                    System.out.println("Notifikasi : " + e);
+                if (TlogProses.getText().equals("")) {
+                    TlogProses.setText(ApiEKLAIM_inacbg.getPesan() + "\n");
+                } else {
+                    TlogProses.setText(TlogProses.getText() + "\n\n" + ApiEKLAIM_inacbg.getPesan());
                 }
+
+                TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }            
