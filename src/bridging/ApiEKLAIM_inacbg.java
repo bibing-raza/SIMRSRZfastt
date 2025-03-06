@@ -38,7 +38,8 @@ public class ApiEKLAIM_inacbg {
     private String URL = "", requestJsonA = "", requestJsonB = "", requestJson1 = "", requestJson2 = "", requestJson3 = "",
             requestJson4 = "", requestJson5 = "", requestJson6 = "", requestJson7 = "", requestJson8 = "", 
             requestJson9 = "", requestJson10 = "", requestJson11 = "", requestJson12 = "", requestJson13 = "", 
-            requestJson14 = "", stringbalik = "", requestJson15 = "", requestJson16 = "", requestJson17 = "";
+            requestJson14 = "", stringbalik = "", requestJson15 = "", requestJson16 = "", requestJson17 = "", notifBalik1 = "", notifBalik2 = "";
+    private static String pesanNotif = "";
     private HttpHeaders headers;
     private HttpEntity requestEntity;
     private JsonNode root;
@@ -657,6 +658,54 @@ public class ApiEKLAIM_inacbg {
             }
         }
     }
+    
+    public void mengirimOnlineKolektif(String tglA, String tglB, String jnsRawat, String jnsData) {
+    notifBalik1 = "";
+    notifBalik2 = "";
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Content-Type", "application/json;charset=UTF-8");
+            requestJson8
+                    = "{"
+                    + "\"metadata\": {"
+                    + "\"method\": \"send_claim\""
+                    + "},"
+                    + "\"data\": {"
+                    + "\"start_dt\": \"" + tglA + "\","
+                    + "\"stop_dt\": \"" + tglB + "\","
+                    + "\"jenis_rawat\": \"" + jnsRawat + "\","
+                    + "\"date_type\": \"" + jnsData + "\""
+                    + "}"
+                    + "}";
+
+            System.out.println("JSON : " + requestJson8);
+            requestEntity = new HttpEntity(requestJson8, headers);
+            stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
+            System.out.println("Output : " + stringbalik);
+            notifBalik1 = "Output : " + stringbalik;
+            root = mapper.readTree(stringbalik);
+
+            if (root.path("metadata").path("code").asText().equals("200")) {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                notifBalik2 = root.path("metadata").path("message").asText();
+            } else {
+                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                notifBalik2 = root.path("metadata").path("message").asText();
+            }
+        } catch (Exception erornya) {
+            System.out.println("Notifikasi : " + erornya);
+            if (erornya.toString().contains("UnknownHostException") || erornya.toString().contains("false")) {
+                JOptionPane.showMessageDialog(null, erornya);
+            }
+        }        
+        
+        ApiEKLAIM_inacbg.pesanNotif = notifBalik1 + "\n" + notifBalik2;
+    }
+    
+    public static String getPesan() {
+        return ApiEKLAIM_inacbg.pesanNotif;
+    }
 
     public boolean ngecekDiagnosa(String kodeICD) {
         try {
@@ -786,6 +835,8 @@ public class ApiEKLAIM_inacbg {
     }
 
     public void mengambilData(String norawt, String nosep_pengajuan, String tglSEP) {
+        notifBalik1 = "";
+        notifBalik2 = "";
         try {
             headers = new HttpHeaders();
             headers.setContentType(MediaType.APPLICATION_JSON);
@@ -806,13 +857,16 @@ public class ApiEKLAIM_inacbg {
             requestEntity = new HttpEntity(requestJson13, headers);
             stringbalik = getRest().exchange(URL, HttpMethod.POST, requestEntity, String.class).getBody();
             System.out.println("Output : " + stringbalik);
+            notifBalik1 = "Output : " + stringbalik;
             root = mapper.readTree(stringbalik);
 
             if (root.path("metadata").path("code").asText().equals("200")) {
 //                JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
                 System.out.println("Pesan : " + root.path("metadata").path("message").asText());
+                notifBalik2 = "Pesan : " + root.path("metadata").path("message").asText();
             } else {
                 JOptionPane.showMessageDialog(null, root.path("metadata").path("message").asText());
+                notifBalik2 = root.path("metadata").path("message").asText();
             }
         } catch (Exception erornya) {
             System.out.println("Notifikasi : " + erornya);
@@ -820,6 +874,8 @@ public class ApiEKLAIM_inacbg {
                 JOptionPane.showMessageDialog(null, erornya);
             }
         }
+        
+        ApiEKLAIM_inacbg.pesanNotif = notifBalik1 + "\n" + notifBalik2;
     }
 
     public void menghapusFileUpload(String nosep_pengajuan, String kodeFile) {
