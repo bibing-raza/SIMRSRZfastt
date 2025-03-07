@@ -99,7 +99,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             "tanda_selempang4", "tanda_selempang5", "tanda_selempang6", "tumit1", "tumit2", "tumit3", "tumit4", "tumit5", "tumit6", "fisik_kulit", "fisik_payudara", "fisik_mata",
             "fisik_genital_pria", "fisik_genital_wanita", "fisik_lanugo", "fisik_plantar", "hipotermi", "resiko_hipotermi", "hipertermi", "pola_nafas", "nyeri_masalah_keperawatan",
             "kerusakan", "resiko_kerusakan", "kebutuhan", "ikterik", "gangguan_motilitas", "bersihan", "resiko_bersihan", "perubahan_perfusi", "kelebihan", "resiko_kelebihan",
-            "resiko_kebutuhan", "masalah_keperawatan_lain", "tgl_rencana1", "jam_rencana1", "tgl_rencana2", "jam_rencana2", "nip_perawat", "waktu_simpan", "cek_tgllahir_ibu"
+            "resiko_kebutuhan", "masalah_keperawatan_lain", "tgl_rencana1", "jam_rencana1", "tgl_rencana2", "jam_rencana2", "nip_perawat", "waktu_simpan", "cek_tgllahir_ibu", "spo2"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -111,7 +111,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         tbAsesmen.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbAsesmen.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 191; i++) {
+        for (i = 0; i < 192; i++) {
             TableColumn column = tbAsesmen.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(105);
@@ -675,6 +675,9 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             } else if (i == 190) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
+            } else if (i == 191) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbAsesmen.setDefaultRenderer(Object.class, new WarnaTable());
@@ -688,6 +691,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         Tlk.setDocument(new batasInput((int) 7).getKata(Tlk));
         Tld.setDocument(new batasInput((int) 7).getKata(Tld));
         Tlp.setDocument(new batasInput((int) 7).getKata(Tlp));
+        Tspo.setDocument(new batasInput((int) 7).getKata(Tspo));
         Tll.setDocument(new batasInput((int) 7).getKata(Tll));
         Tkk.setDocument(new batasInput((int) 7).getKata(Tkk));
         Tnadi.setDocument(new batasInput((int) 7).getKata(Tnadi));
@@ -1179,6 +1183,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel145 = new widget.Label();
         cmbJenkel = new widget.ComboBox();
         chkTgllahirIbu = new widget.CekBox();
+        Tspo = new widget.TextBox();
+        jLabel52 = new widget.Label();
         internalFrame4 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbAsesmen = new widget.Table();
@@ -1304,7 +1310,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         TrgRawat.setBounds(114, 38, 608, 23);
 
         TtglRencana2.setEditable(false);
-        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
+        TtglRencana2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         TtglRencana2.setDisplayFormat("dd-MM-yyyy");
         TtglRencana2.setName("TtglRencana2"); // NOI18N
         TtglRencana2.setOpaque(false);
@@ -1358,7 +1364,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel95.setBounds(0, 2727, 125, 23);
 
         TtglRencana1.setEditable(false);
-        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
+        TtglRencana1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         TtglRencana1.setDisplayFormat("dd-MM-yyyy");
         TtglRencana1.setName("TtglRencana1"); // NOI18N
         TtglRencana1.setOpaque(false);
@@ -1637,10 +1643,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
         jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel25.setText("gram     PB :");
+        jLabel25.setText("gram   PB :");
         jLabel25.setName("jLabel25"); // NOI18N
         FormInput.add(jLabel25);
-        jLabel25.setBounds(170, 318, 60, 23);
+        jLabel25.setBounds(170, 318, 55, 23);
 
         Tpb.setBackground(new java.awt.Color(245, 250, 240));
         Tpb.setForeground(new java.awt.Color(0, 0, 0));
@@ -1651,14 +1657,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(Tpb);
-        Tpb.setBounds(234, 318, 60, 23);
+        Tpb.setBounds(229, 318, 50, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel26.setText("cm      LK : ");
+        jLabel26.setText("cm   LK : ");
         jLabel26.setName("jLabel26"); // NOI18N
         FormInput.add(jLabel26);
-        jLabel26.setBounds(300, 318, 53, 23);
+        jLabel26.setBounds(285, 318, 45, 23);
 
         Tlk.setBackground(new java.awt.Color(245, 250, 240));
         Tlk.setForeground(new java.awt.Color(0, 0, 0));
@@ -1669,14 +1675,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(Tlk);
-        Tlk.setBounds(355, 318, 60, 23);
+        Tlk.setBounds(330, 318, 50, 23);
 
         jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel27.setText("cm      LD : ");
+        jLabel27.setText("cm  LD : ");
         jLabel27.setName("jLabel27"); // NOI18N
         FormInput.add(jLabel27);
-        jLabel27.setBounds(420, 318, 53, 23);
+        jLabel27.setBounds(385, 318, 43, 23);
 
         Tld.setBackground(new java.awt.Color(245, 250, 240));
         Tld.setForeground(new java.awt.Color(0, 0, 0));
@@ -1687,14 +1693,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(Tld);
-        Tld.setBounds(475, 318, 60, 23);
+        Tld.setBounds(430, 318, 50, 23);
 
         jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel28.setText("cm      LP : ");
+        jLabel28.setText("cm   LP : ");
         jLabel28.setName("jLabel28"); // NOI18N
         FormInput.add(jLabel28);
-        jLabel28.setBounds(540, 318, 53, 23);
+        jLabel28.setBounds(485, 318, 45, 23);
 
         Tlp.setBackground(new java.awt.Color(245, 250, 240));
         Tlp.setForeground(new java.awt.Color(0, 0, 0));
@@ -1705,14 +1711,14 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             }
         });
         FormInput.add(Tlp);
-        Tlp.setBounds(595, 318, 60, 23);
+        Tlp.setBounds(530, 318, 50, 23);
 
         jLabel29.setForeground(new java.awt.Color(0, 0, 0));
         jLabel29.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel29.setText("cm");
+        jLabel29.setText("cm   SpO2 :");
         jLabel29.setName("jLabel29"); // NOI18N
         FormInput.add(jLabel29);
-        jLabel29.setBounds(660, 318, 20, 23);
+        jLabel29.setBounds(585, 318, 59, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("LL : ");
@@ -2208,7 +2214,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(TdiagnosaIbu);
         TdiagnosaIbu.setBounds(114, 654, 610, 23);
 
-        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
+        TtglLahir.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         TtglLahir.setDisplayFormat("dd-MM-yyyy");
         TtglLahir.setName("TtglLahir"); // NOI18N
         TtglLahir.setOpaque(false);
@@ -5288,6 +5294,23 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         FormInput.add(chkTgllahirIbu);
         chkTgllahirIbu.setBounds(22, 682, 90, 23);
 
+        Tspo.setForeground(new java.awt.Color(0, 0, 0));
+        Tspo.setName("Tspo"); // NOI18N
+        Tspo.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                TspoKeyPressed(evt);
+            }
+        });
+        FormInput.add(Tspo);
+        Tspo.setBounds(647, 318, 52, 23);
+
+        jLabel52.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel52.setText("%");
+        jLabel52.setName("jLabel52"); // NOI18N
+        FormInput.add(jLabel52);
+        jLabel52.setBounds(705, 318, 30, 23);
+
         ScrollTriase1.setViewportView(FormInput);
 
         FormAsesmen.add(ScrollTriase1, java.awt.BorderLayout.CENTER);
@@ -5330,7 +5353,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel19.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -5344,7 +5367,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5560,7 +5583,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             cekData();
             if (Sequel.menyimpantf("asesmen_keperawatan_perinatologi", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
                     + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,"
-                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 182, new String[]{
+                    + "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 183, new String[]{
                         TNoRw.getText(), TrgRawat.getText(), cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                         cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                         Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
@@ -5586,7 +5609,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan, kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), 
                         Valid.SetTgl(TtglRencana1.getSelectedItem() + ""), cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), 
                         Valid.SetTgl(TtglRencana2.getSelectedItem() + ""), cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, 
-                        Sequel.cariIsi("select now()"), cekTglLahir
+                        Sequel.cariIsi("select now()"), cekTglLahir, Tspo.getText()
                     }) == true) {
 
                 Sequel.SimpanHistoriRekamMedis(TNoRw.getText(), "Assesmen Keperawatan Perinatologi", "Simpan");
@@ -5727,6 +5750,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             param.put("lk", Tlk.getText() + " cm.");
             param.put("ld", Tld.getText() + " cm.");
             param.put("lp", Tlp.getText() + " cm.");
+            param.put("spo2", Tspo.getText() + " %");
             param.put("ll", Tll.getText() + " cm.");
             param.put("kk", Tkk.getText() + " cm.");
             param.put("nadi", Tnadi.getText() + " x/menit");
@@ -6540,7 +6564,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 
     private void TlpKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TlpKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
-            Tll.requestFocus();
+            Tspo.requestFocus();
         }
     }//GEN-LAST:event_TlpKeyPressed
 
@@ -7178,6 +7202,12 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         }
     }//GEN-LAST:event_chkTgllahirIbuActionPerformed
 
+    private void TspoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TspoKeyPressed
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
+            Tll.requestFocus();
+        }
+    }//GEN-LAST:event_TspoKeyPressed
+
     /**
     * @param args the command line arguments
     */
@@ -7316,6 +7346,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.TextBox Treaksi;
     private widget.TextBox TrgRawat;
     private widget.TextBox Trr;
+    private widget.TextBox Tspo;
     private widget.TextBox Tsuhu;
     private widget.TextBox TtelpKerabat;
     private widget.Tanggal TtglLahir;
@@ -7563,6 +7594,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
     private widget.Label jLabel5;
     private widget.Label jLabel50;
     private widget.Label jLabel51;
+    private widget.Label jLabel52;
     private widget.Label jLabel53;
     private widget.Label jLabel54;
     private widget.Label jLabel55;
@@ -7849,7 +7881,8 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                         rs.getString("jam_rencana2"),
                         rs.getString("nip_perawat"),
                         rs.getString("waktu_simpan"),
-                        rs.getString("cek_tgllahir_ibu")
+                        rs.getString("cek_tgllahir_ibu"),
+                        rs.getString("spo2")
                     });
                 }
             } catch (Exception e) {
@@ -7888,6 +7921,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
         Tld.setText("");
         Tlp.setText("");
         Tll.setText("");
+        Tspo.setText("");
         Tkk.setText("");
         Tnadi.setText("");
         Trr.setText("");
@@ -8338,9 +8372,10 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
             kelebihan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 180).toString();
             resikoKelebihan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 181).toString();
             resikoKebutuhan = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 182).toString();
-            TmasalahLain.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 183).toString());            
+            TmasalahLain.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 183).toString());
             nip = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 188).toString();
             cekTglLahir = tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 190).toString();
+            Tspo.setText(tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 191).toString());
             dataCek();
             hitungNilaiNeomuskular();
             hitungNilaiFisik();
@@ -8383,7 +8418,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                 + "tumit1=?, tumit2=?, tumit3=?, tumit4=?, tumit5=?, tumit6=?, fisik_kulit=?, fisik_payudara=?, fisik_mata=?, fisik_genital_pria=?, fisik_genital_wanita=?, fisik_lanugo=?, "
                 + "fisik_plantar=?, hipotermi=?, resiko_hipotermi=?, hipertermi=?, pola_nafas=?, nyeri_masalah_keperawatan=?, kerusakan=?, resiko_kerusakan=?, kebutuhan=?, ikterik=?, "
                 + "gangguan_motilitas=?, bersihan=?, resiko_bersihan=?, perubahan_perfusi=?, kelebihan=?, resiko_kelebihan=?, resiko_kebutuhan=?, masalah_keperawatan_lain=?, tgl_rencana1=?, "
-                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?, cek_tgllahir_ibu=?", 180, new String[]{
+                + "jam_rencana1=?, tgl_rencana2=?, jam_rencana2=?, nip_perawat=?, cek_tgllahir_ibu=?, spo2=?", 181, new String[]{
                     cmbSumber.getSelectedItem().toString(), TlainSumber.getText(), cmbRujukan.getSelectedItem().toString(),
                     cmbJnsRujukan.getSelectedItem().toString(), TdiagnosaRujukan.getText(), Tkeluhan.getText(), TnmIdentitas.getText(), cmbPendidikan.getSelectedItem().toString(),
                     Tpekerjaan.getText(), cmbAgama.getSelectedItem().toString(), Talamat.getText(), Tbbl.getText(), Tpb.getText(), Tlk.getText(), Tld.getText(),
@@ -8408,7 +8443,7 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
                     hipotermi, resikoHipotermi, hipertermi, pola, nyeri, kerusakan, resikoKerusakan, kebutuhan, ikterik, gangguan, bersihan, resikoBersihan, perubahan,
                     kelebihan, resikoKelebihan, resikoKebutuhan, TmasalahLain.getText(), Valid.SetTgl(TtglRencana1.getSelectedItem() + ""),
                     cmbJam1.getSelectedItem() + ":" + cmbMnt1.getSelectedItem() + ":" + cmbDtk1.getSelectedItem(), Valid.SetTgl(TtglRencana2.getSelectedItem() + ""),
-                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir,
+                    cmbJam2.getSelectedItem() + ":" + cmbMnt2.getSelectedItem() + ":" + cmbDtk2.getSelectedItem(), nip, cekTglLahir, Tspo.getText(),
                     tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 0).toString()
                 }) == true) {
 

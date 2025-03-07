@@ -47,8 +47,8 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     private Connection koneksi = koneksiDB.condb();
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
-    private PreparedStatement ps, ps1, ps2, pscppt, psrestor;
-    private ResultSet rs, rs1, rs2, rscppt, rsrestor;
+    private PreparedStatement ps, ps1, ps2, ps3, pscppt, psrestor;
+    private ResultSet rs, rs1, rs2, rs3, rscppt, rsrestor;
     private int i = 0, x = 0;
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private String user = "", dataKonfirmasi = "", kodekamar = "", hipertensi = "", diabet = "", jantung = "", strok = "", asma = "", kejang = "", hati = "",
@@ -1189,7 +1189,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -1203,7 +1203,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -1583,7 +1583,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         jLabel12.setBounds(0, 38, 110, 23);
 
         TtglAsesmen.setEditable(false);
-        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        TtglAsesmen.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         TtglAsesmen.setDisplayFormat("dd-MM-yyyy");
         TtglAsesmen.setName("TtglAsesmen"); // NOI18N
         TtglAsesmen.setOpaque(false);
@@ -4269,13 +4269,13 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
 
         jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setText("Tgl. Pengkajian :");
+        jLabel19.setText("Tgl. Assesmen :");
         jLabel19.setName("jLabel19"); // NOI18N
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4290,7 +4290,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "07-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5306,6 +5306,7 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
     }//GEN-LAST:event_TabRawatMouseClicked
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
         if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") > 0) {
             TabRawat.setSelectedIndex(1);
         } else if (Sequel.cariInteger("select count(-1) from asesmen_medik_perinatologi where no_rawat='" + TNoRw.getText() + "'") == 0) {
@@ -7018,11 +7019,15 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
                     TPasien.setText(rs.getString("nm_pasien"));
                     Tjk.setText(rs.getString("jk"));
                     TtglLahir.setText(rs.getString("tgllahir"));
+                    chkSex.setSelected(true);
+                    Tsex.setEnabled(true);
+                    Tsex.setText(rs.getString("jk"));
+                    DTPCari1.setDate(rs.getDate("tgl_registrasi"));
+                    
 //                    Valid.SetTgl(TtglAsesmen, rs.getString("tgl_registrasi"));
 //                    cmbJam.setSelectedItem(rs.getString("jam_reg").toString().substring(0, 2));
 //                    cmbMnt.setSelectedItem(rs.getString("jam_reg").toString().substring(3, 5));
-//                    cmbDtk.setSelectedItem(rs.getString("jam_reg").toString().substring(6, 8));
-                    DTPCari1.setDate(rs.getDate("tgl_registrasi"));
+//                    cmbDtk.setSelectedItem(rs.getString("jam_reg").toString().substring(6, 8));                    
                 }
             } catch (Exception e) {
                 System.out.println("Notif : " + e);
@@ -7039,13 +7044,188 @@ public final class RMAsesmenMedikPerinatologi extends javax.swing.JDialog {
         }
     }
     
+    private void isAskepPeri() {
+        try {
+            ps3 = koneksi.prepareStatement("SELECT * FROM asesmen_keperawatan_perinatologi WHERE no_rawat = ?");
+            try {
+                ps3.setString(1, TNoRw.getText());
+                rs3 = ps3.executeQuery();
+                if (rs3.next()) {
+                    Tkeluhan.setText(rs3.getString("keluhan"));
+                    Tbbl.setText(rs3.getString("bbl"));
+                    Tpb.setText(rs3.getString("pb"));
+                    Tlk.setText(rs3.getString("lk"));
+                    Tld.setText(rs3.getString("ld"));
+                    Tlp.setText(rs3.getString("lp"));
+                    Tsaturasi.setText(rs3.getString("spo2"));
+                    Tlla.setText(rs3.getString("ll"));
+                    Thr.setText(rs3.getString("nadi"));
+                    Trr.setText(rs3.getString("rr"));
+                    Tsuhu.setText(rs3.getString("suhu"));
+                    cmbAnus.setSelectedItem(rs3.getString("anus"));
+                    TketAs.setText(rs3.getString("ket_as"));
+                    
+                    if (rs3.getString("keadaan_saat_lahir").toLowerCase().contains("Tidak Segera")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("TIDAK SEGERA")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("tidak segera")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("tdk segera")                            
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("tidak menangis")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("TIDAK MENANGIS")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("tdk menangis")) {
+                        cmbKondisi.setSelectedIndex(2);
+                    } else if (rs3.getString("keadaan_saat_lahir").toLowerCase().contains("Segera Menangis")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("segera menangis")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("SEGERA MENANGIS")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("Menangis")
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("menangis") 
+                            || rs3.getString("keadaan_saat_lahir").toLowerCase().contains("MENANGIS")) {
+                        cmbKondisi.setSelectedIndex(1);
+                    } else {
+                        cmbKondisi.setSelectedIndex(0);
+                    }
+                    
+                    if (rs3.getString("bab").equals("Ada")) {
+                        chkBAB.setSelected(true);
+                        Tbab.setEnabled(true);
+                    } else {
+                        chkBAB.setSelected(false);
+                        Tbab.setEnabled(false);
+                    }
+                    
+                    
+                    if (rs3.getString("bak").equals("Ada")) {
+                        chkBAK.setSelected(true);
+                        Tbak.setEnabled(true);
+                    } else {
+                        chkBAK.setSelected(false);
+                        Tbak.setEnabled(false);
+                    }
+                    
+                    if (rs3.getString("hipertensi").equals("ya")) {
+                        chkHipertensi.setSelected(true);
+                    } else {
+                        chkHipertensi.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("dm").equals("ya")) {
+                        chkDiabetes.setSelected(true);
+                    } else {
+                        chkDiabetes.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("jantung")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("JANTUNG") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Jantung")) {
+                        chkJantung.setSelected(true);
+                    } else {
+                        chkJantung.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("stroke") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Stroke")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("STROKE")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("strok")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Strok")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("STROK")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("struk") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Struk") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("STRUK")) {
+                        chkStrok.setSelected(true);
+                    } else {
+                        chkStrok.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("asma").equals("ya")) {
+                        chkAsma.setSelected(true);
+                    } else {
+                        chkAsma.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("kejang")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Kejang")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("KEJANG")) {
+                        chkKejang.setSelected(true);
+                    } else {
+                        chkKejang.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("hepatitis_b").equals("ya")) {
+                        chkHati.setSelected(true);
+                    } else {
+                        chkHati.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("kanker") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Kanker")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("KANKER")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("kangker") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Kangker")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("KANKER")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("cancer") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Cancer") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("CANCER")) {
+                        chkKanker.setSelected(true);
+                    } else {
+                        chkKanker.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("tbc").equals("ya")) {
+                        chkTB.setSelected(true);
+                    } else {
+                        chkTB.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("pms").equals("ya")) {
+                        chkPMS.setSelected(true);
+                    } else {
+                        chkPMS.setSelected(false);
+                    }
+                    
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("perdarahan") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Perdarahan") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("PERDARAHAN")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("pendarahan")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Pendarahan")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("PENDARAHAN")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("darah") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Darah") 
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("DARAH")) {
+                        chkPerdarahan.setSelected(true);
+                    } else {
+                        chkPerdarahan.setSelected(false);
+                    }
+
+                    if (rs3.getString("lain_riwayat").toLowerCase().contains("ginjal")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("Ginjal")
+                            || rs3.getString("lain_riwayat").toLowerCase().contains("GINJAL")) {
+                        chkGinjal.setSelected(true);
+                    } else {
+                        chkGinjal.setSelected(false);
+                    }
+                }
+            } catch (Exception e) {
+                System.out.println("Notif : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notif : " + e);
+        }
+    }
+    
     public void setNoRm(String norwt, String rgrawat) {
         TNoRw.setText(norwt);
         TCari.setText(norwt);
         DTPCari2.setDate(new Date());
         TrgRawat.setText(rgrawat);
         isRawat();
-        tampil();        
+        isAskepPeri();        
+        TCari.setText(norwt);
     }    
     
     public void isCek() {
