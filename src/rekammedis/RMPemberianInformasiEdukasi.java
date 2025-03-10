@@ -2784,51 +2784,38 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         TpndLainyaLain.setText("");
 
         if (cmbProfesi.getSelectedIndex() == 1) {
-            chkDiagnosis.setEnabled(true);
-            chkKondisi.setEnabled(true);
-            chkTindakan.setEnabled(true);
-            chkTataCara.setEnabled(true);
-            chkManfaat.setEnabled(true);
-            chkNamaOrang.setEnabled(true);
-            chkKemungkinan.setEnabled(true);
-            chkPrognosis.setEnabled(true);
-            chkKemTdkTerduga.setEnabled(true);
-            chkKemBila.setEnabled(true);
+            dokterTRUE();
+            perawatBidanFALSE();
+            nutrisionisFALSE();
+            admisiFALSE();
+            TpndLainyaLain.setEnabled(false);
         } else if (cmbProfesi.getSelectedIndex() == 2 || cmbProfesi.getSelectedIndex() == 3) {
-            chkPendidikanKes.setEnabled(true);
-            chkHasilAsuhan.setEnabled(true);
-            chkPenanganan.setEnabled(true);
-            chkPerawatan.setEnabled(true);
-            chkAlatAlat.setEnabled(true);
-            chkInformasi.setEnabled(true);
-            chkKeamanan.setEnabled(true);
-            chkProsedur.setEnabled(true);
-            chkFarmaObat.setEnabled(true);
-            chkFarmaInjek.setEnabled(true);
-            chkFarmaSedasi.setEnabled(true);
-            chkPerawatanLatihan.setEnabled(true);
-            chkDistraksi.setEnabled(true);
-            chkPengalihan.setEnabled(true);
-            chkEtika.setEnabled(true);
-            chkCaraBuang.setEnabled(true);
-            chkTempat.setEnabled(true);
-            chkCaraCuci.setEnabled(true);
-            chkLainProPerawat.setEnabled(true);
+            dokterFALSE();
+            perawatBidanTRUE();
+            nutrisionisFALSE();
+            admisiFALSE();
+            TpndLainyaLain.setEnabled(false);
             TpendidikanKes.setEnabled(false);
             TpndPerawatLain.setEnabled(false);
         } else if (cmbProfesi.getSelectedIndex() == 4) {
-            chkDiet.setEnabled(true);
-            chkKonsulGiziRanap.setEnabled(true);
-            chkKonsulGiziRalan.setEnabled(true);
-            TpndNutrisionisLain.setEnabled(true);
+            dokterFALSE();
+            perawatBidanFALSE();
+            nutrisionisTRUE();
+            admisiFALSE();
+            TpndLainyaLain.setEnabled(false);
         } else if (cmbProfesi.getSelectedIndex() == 5) {
-            chkHak.setEnabled(true);
-            chkJam.setEnabled(true);
-            chkInfoKejadian.setEnabled(true);
-            TpndAdmisiLain.setEnabled(true);
+            dokterFALSE();
+            perawatBidanFALSE();
+            nutrisionisFALSE();
+            admisiTRUE();
+            TpndLainyaLain.setEnabled(false);
         } else if (cmbProfesi.getSelectedIndex() == 6) {
             Tprofesi.setEnabled(true);
             Tprofesi.requestFocus();
+            dokterFALSE();
+            perawatBidanFALSE();
+            nutrisionisFALSE();
+            admisiFALSE();
             TpndLainyaLain.setEnabled(true);
         } else {
             Tprofesi.setEnabled(false);
@@ -3754,5 +3741,103 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
         } else {
             JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
         }
+    }
+
+    private void dokterTRUE() {
+        chkDiagnosis.setEnabled(true);
+        chkKondisi.setEnabled(true);
+        chkTindakan.setEnabled(true);
+        chkTataCara.setEnabled(true);
+        chkManfaat.setEnabled(true);
+        chkNamaOrang.setEnabled(true);
+        chkKemungkinan.setEnabled(true);
+        chkPrognosis.setEnabled(true);
+        chkKemTdkTerduga.setEnabled(true);
+        chkKemBila.setEnabled(true);
+    }
+
+    private void dokterFALSE() {
+        chkDiagnosis.setEnabled(false);
+        chkKondisi.setEnabled(false);
+        chkTindakan.setEnabled(false);
+        chkTataCara.setEnabled(false);
+        chkManfaat.setEnabled(false);
+        chkNamaOrang.setEnabled(false);
+        chkKemungkinan.setEnabled(false);
+        chkPrognosis.setEnabled(false);
+        chkKemTdkTerduga.setEnabled(false);
+        chkKemBila.setEnabled(false);
+    }
+    
+    private void perawatBidanTRUE() {
+        chkPendidikanKes.setEnabled(true);
+        chkHasilAsuhan.setEnabled(true);
+        chkPenanganan.setEnabled(true);
+        chkPerawatan.setEnabled(true);
+        chkAlatAlat.setEnabled(true);
+        chkInformasi.setEnabled(true);
+        chkKeamanan.setEnabled(true);
+        chkProsedur.setEnabled(true);
+        chkFarmaObat.setEnabled(true);
+        chkFarmaInjek.setEnabled(true);
+        chkFarmaSedasi.setEnabled(true);
+        chkPerawatanLatihan.setEnabled(true);
+        chkDistraksi.setEnabled(true);
+        chkPengalihan.setEnabled(true);
+        chkEtika.setEnabled(true);
+        chkCaraBuang.setEnabled(true);
+        chkTempat.setEnabled(true);
+        chkCaraCuci.setEnabled(true);
+        chkLainProPerawat.setEnabled(true);
+    }
+    
+    private void perawatBidanFALSE() {
+        chkPendidikanKes.setEnabled(false);
+        chkHasilAsuhan.setEnabled(false);
+        chkPenanganan.setEnabled(false);
+        chkPerawatan.setEnabled(false);
+        chkAlatAlat.setEnabled(false);
+        chkInformasi.setEnabled(false);
+        chkKeamanan.setEnabled(false);
+        chkProsedur.setEnabled(false);
+        chkFarmaObat.setEnabled(false);
+        chkFarmaInjek.setEnabled(false);
+        chkFarmaSedasi.setEnabled(false);
+        chkPerawatanLatihan.setEnabled(false);
+        chkDistraksi.setEnabled(false);
+        chkPengalihan.setEnabled(false);
+        chkEtika.setEnabled(false);
+        chkCaraBuang.setEnabled(false);
+        chkTempat.setEnabled(false);
+        chkCaraCuci.setEnabled(false);
+        chkLainProPerawat.setEnabled(false);
+    }
+    
+    private void nutrisionisTRUE() {
+        chkDiet.setEnabled(true);
+        chkKonsulGiziRanap.setEnabled(true);
+        chkKonsulGiziRalan.setEnabled(true);
+        TpndNutrisionisLain.setEnabled(true);
+    }
+    
+    private void nutrisionisFALSE() {
+        chkDiet.setEnabled(false);
+        chkKonsulGiziRanap.setEnabled(false);
+        chkKonsulGiziRalan.setEnabled(false);
+        TpndNutrisionisLain.setEnabled(false);
+    }
+    
+    private void admisiTRUE() {
+        chkHak.setEnabled(true);
+        chkJam.setEnabled(true);
+        chkInfoKejadian.setEnabled(true);
+        TpndAdmisiLain.setEnabled(true);
+    }
+
+    private void admisiFALSE() {
+        chkHak.setEnabled(false);
+        chkJam.setEnabled(false);
+        chkInfoKejadian.setEnabled(false);
+        TpndAdmisiLain.setEnabled(false);
     }
 }

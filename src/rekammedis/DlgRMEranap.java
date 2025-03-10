@@ -2001,6 +2001,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPerencanaanPulang.setEnabled(akses.getcppt());
         BtnCatatanMaterial.setEnabled(akses.getkegiatan_operasi());
         BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());
+        BtnPemberianInformasiEdukasi.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,
