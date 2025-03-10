@@ -140,6 +140,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnPengamatanMenyusui = new widget.ButtonBig();
         BtnSerahTerimaBayiPulang = new widget.ButtonBig();
         BtnRekonsiliasiObat = new widget.ButtonBig();
+        BtnPemberianInformasiEdukasi = new widget.ButtonBig();
         BtnJadwalObat = new widget.ButtonBig();
         BtnTransferTindakan = new widget.ButtonBig();
         BtnPerencanaanPulang = new widget.ButtonBig();
@@ -640,6 +641,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnRekonsiliasiObat);
+
+        BtnPemberianInformasiEdukasi.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPemberianInformasiEdukasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
+        BtnPemberianInformasiEdukasi.setText("Pemberian Informasi Dan Edukasi");
+        BtnPemberianInformasiEdukasi.setIconTextGap(0);
+        BtnPemberianInformasiEdukasi.setName("BtnPemberianInformasiEdukasi"); // NOI18N
+        BtnPemberianInformasiEdukasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnPemberianInformasiEdukasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPemberianInformasiEdukasiActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnPemberianInformasiEdukasi);
 
         BtnJadwalObat.setForeground(new java.awt.Color(0, 0, 0));
         BtnJadwalObat.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/1404047834_application-vnd.ms-excel.png"))); // NOI18N
@@ -1829,6 +1843,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnSerahTerimaBayiPulangActionPerformed
 
+    private void BtnPemberianInformasiEdukasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPemberianInformasiEdukasiActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMPemberianInformasiEdukasi form = new RMPemberianInformasiEdukasi(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setData(TNoRW.getText(), nmUnit.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnPemberianInformasiEdukasiActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1880,6 +1915,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnMonitoringPEWSanak;
     private widget.ButtonBig BtnObservasiRestrain;
     private widget.ButtonBig BtnPantauHarianPasien;
+    private widget.ButtonBig BtnPemberianInformasiEdukasi;
     private widget.ButtonBig BtnPengamatanMenyusui;
     private widget.ButtonBig BtnPengelolaanTranfusiDarah;
     private widget.ButtonBig BtnPerencanaanPulang;

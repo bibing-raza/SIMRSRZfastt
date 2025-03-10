@@ -1815,6 +1815,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         WindowRegistrasi.dispose();
         WindowIBUBAYI.dispose();
         WindowGagalSEP.dispose();
+        WindowKirimKolektif.dispose();
     }//GEN-LAST:event_BtnKeluar1ActionPerformed
 
     private void BtnDataActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnDataActionPerformed
@@ -2478,6 +2479,7 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
                 }
 
                 TlogProses.setText(TlogProses.getText() + "\n\n-- PROSES SELESAI --\n\n");
+                WindowKirimKolektif.dispose();
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }            

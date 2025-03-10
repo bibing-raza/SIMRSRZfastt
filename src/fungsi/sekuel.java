@@ -1122,7 +1122,7 @@ public final class sekuel {
                 rm14 = 0, rm15 = 0, rm16 = 0, rm17 = 0, rm18 = 0, rm19 = 0, rm20 = 0, rm21 = 0, rm22 = 0, rm23 = 0, rm24 = 0, rm25 = 0, rm26 = 0,
                 rm27 = 0, rm28 = 0, rm29 = 0, rm30 = 0, rm31 = 0, rm32 = 0, rm33 = 0, rm34 = 0, rm35 = 0, rm36 = 0, rm37 = 0, rm38 = 0, rm39 = 0,
                 rm40 = 0, rm41 = 0, rm42 = 0, rm43 = 0, rm44 = 0, rm45 = 0, rm46 = 0, rm47 = 0, rm48 = 0, rm49 = 0, rm50 = 0, rm51 = 0, rm52 = 0,
-                rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0, rm60 = 0, rm61 = 0, rm62 = 0, rm63 = 0;
+                rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0, rm60 = 0, rm61 = 0, rm62 = 0, rm63 = 0, rm64 = 0;
 
         rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
@@ -1187,6 +1187,7 @@ public final class sekuel {
         rm61 = cariInteger("select count(-1) from rekonsiliasi_obat where no_rawat='" + norawat + "'");
         rm62 = cariInteger("select count(-1) from rekonsiliasi_obat_igd where no_rawat='" + norawat + "'");
         rm63 = cariInteger("select count(-1) from serah_terima_bayi_pulang_perinatologi where no_rawat='" + norawat + "'");
+        rm64 = cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + norawat + "'");
 
         System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel catatan_tindakan_keperawatan KOSONG','tabel catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel evaluasi_catatan_tindakan_keperawatan KOSONG','tabel evaluasi_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
@@ -1251,6 +1252,7 @@ public final class sekuel {
                 + cariIsi("select if(count(-1)=0,'tabel rekonsiliasi_obat KOSONG','tabel rekonsiliasi_obat ADA DATANYA (" + norawat + ")') from rekonsiliasi_obat where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel rekonsiliasi_obat_igd KOSONG','tabel rekonsiliasi_obat_igd ADA DATANYA (" + norawat + ")') from rekonsiliasi_obat_igd where no_rawat='" + norawat + "'") + "\n"
                 + cariIsi("select if(count(-1)=0,'tabel serah_terima_bayi_pulang_perinatologi KOSONG','tabel serah_terima_bayi_pulang_perinatologi ADA DATANYA (" + norawat + ")') from serah_terima_bayi_pulang_perinatologi where no_rawat='" + norawat + "'") + "\n"
+                + cariIsi("select if(count(-1)=0,'tabel pemberian_informasi_edukasi KOSONG','tabel pemberian_informasi_edukasi ADA DATANYA (" + norawat + ")') from pemberian_informasi_edukasi where no_rawat='" + norawat + "'") + "\n"
         );
         
         angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19

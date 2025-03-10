@@ -389,6 +389,7 @@ import java.net.InetAddress;
 import laporan.DlgQuerySql;
 import rekammedis.DlgHistoriIPAddressPetugasERM;
 import rekammedis.RMAsesmenKeperawatanPerinatologi;
+import rekammedis.RMPemberianInformasiEdukasi;
 import rekammedis.RMPengamatanMenyusui;
 import rekammedis.RMRekonsiliasiObat;
 import rekammedis.RMSerahTerimaBayiPulang;
@@ -919,6 +920,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnRekonsiliasiObat = new widget.ButtonBig();
         btnTriasePediatrikIGD = new widget.ButtonBig();
         btnSerahTerimaBayiPulang = new widget.ButtonBig();
+        btnPemberianInformasiEdukasi = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6250,6 +6252,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnSerahTerimaBayiPulang);
 
+        btnPemberianInformasiEdukasi.setForeground(new java.awt.Color(0, 0, 0));
+        btnPemberianInformasiEdukasi.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/people.png"))); // NOI18N
+        btnPemberianInformasiEdukasi.setText("Pemberian Informasi Dan Edukasi");
+        btnPemberianInformasiEdukasi.setIconTextGap(0);
+        btnPemberianInformasiEdukasi.setName("btnPemberianInformasiEdukasi"); // NOI18N
+        btnPemberianInformasiEdukasi.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnPemberianInformasiEdukasi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPemberianInformasiEdukasiActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnPemberianInformasiEdukasi);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6258,7 +6273,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05/03/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "10/03/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12344,6 +12359,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnSerahTerimaBayiPulangActionPerformed
 
+    private void btnPemberianInformasiEdukasiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPemberianInformasiEdukasiActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMPemberianInformasiEdukasi form = new RMPemberianInformasiEdukasi(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnPemberianInformasiEdukasiActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12623,6 +12651,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnPemasukanLain;
     private widget.ButtonBig btnPembelian;
     private widget.ButtonBig btnPembelianIpsrs;
+    private widget.ButtonBig btnPemberianInformasiEdukasi;
     private widget.ButtonBig btnPemberianObat;
     private widget.ButtonBig btnPemesanan;
     private widget.ButtonBig btnPengajuanKlaimINACBGrz;
@@ -13076,6 +13105,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getadmin() == true) {
                 Panelmenu.add(btnMasterCatatanMaterialOperasi);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnPemberianInformasiEdukasi);
                 jmlmenu++;
             }
             
@@ -15035,6 +15069,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(btnCeklisKesiapanAnestesi);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnPemberianInformasiEdukasi);
             jmlmenu++;
         }
         
@@ -17030,6 +17069,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (btnCeklisKesiapanAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCeklisKesiapanAnestesi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnPemberianInformasiEdukasi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnPemberianInformasiEdukasi);
                 jmlmenu++;
             }
         }
