@@ -276,32 +276,25 @@
 				<text><![CDATA[Kesimpulan : ]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="303" y="360" width="214" height="14"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[............................................ *)]]></text>
-			</staticText>
-			<staticText>
 				<reportElement x="70" y="360" width="233" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[c. Tidak baik kesehatannya, dengan diagnosa]]></text>
+				<text><![CDATA[c. Tidak baik kesehatannya. *)]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="345" width="447" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[b. Kurang baik kesehatannya, besar harapan dapat diperbaiki. *)]]></text>
+				<text><![CDATA[b. Kurang baik kesehatannya, besar harapan dapat diperbaiki.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="70" y="331" width="447" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[a. Baik kesehatannya dan tidak ditemukan kelainan *)]]></text>
+				<text><![CDATA[a. Baik kesehatannya.]]></text>
 			</staticText>
 		</band>
 	</title>

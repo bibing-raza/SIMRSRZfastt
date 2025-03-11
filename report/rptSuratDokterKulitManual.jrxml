@@ -2,7 +2,7 @@
 <jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="null" pageWidth="595" pageHeight="842" columnWidth="517" leftMargin="39" rightMargin="39" topMargin="39" bottomMargin="35">
 	<property name="ireport.zoom" value="1.6105100000000017"/>
 	<property name="ireport.x" value="0"/>
-	<property name="ireport.y" value="528"/>
+	<property name="ireport.y" value="337"/>
 	<parameter name="namars" class="java.lang.String"/>
 	<parameter name="alamatrs" class="java.lang.String"/>
 	<parameter name="kotars" class="java.lang.String"/>
@@ -39,7 +39,7 @@
 		</band>
 	</background>
 	<title>
-		<band height="412">
+		<band height="394">
 			<textField>
 				<reportElement x="0" y="30" width="517" height="14"/>
 				<textElement textAlignment="Center" lineSpacing="Single">
@@ -264,28 +264,21 @@
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[a. Baik Kesehatannya. *)]]></text>
+				<text><![CDATA[a. Baik Kesehatannya.]]></text>
 			</staticText>
 			<staticText>
 				<reportElement x="69" y="358" width="448" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[b. Kurang baik kesehatannya, besar harapan dapat diperbaiki. *)]]></text>
+				<text><![CDATA[b. Kurang baik kesehatannya, besar harapan dapat diperbaiki.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="69" y="373" width="234" height="14"/>
+				<reportElement x="69" y="373" width="177" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[c. Tidak Baik Kesehatannya dengan diagnosa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="303" y="373" width="214" height="14"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[..............................................................................]]></text>
+				<text><![CDATA[c. Tidak Baik Kesehatannya. *)]]></text>
 			</staticText>
 			<line direction="BottomUp">
 				<reportElement x="0" y="300" width="517" height="1"/>
@@ -311,13 +304,6 @@
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
 				<text><![CDATA[Kesimpulan :]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="0" y="390" width="517" height="14"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[.................................................................................................................................................................. *)]]></text>
 			</staticText>
 		</band>
 	</title>

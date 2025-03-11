@@ -418,18 +418,11 @@ MARTAPURA]]></text>
 				<text><![CDATA[b. Kurang baik kesehatannya, besar harapan dapat diperbaiki.]]></text>
 			</staticText>
 			<staticText>
-				<reportElement x="40" y="316" width="233" height="14"/>
+				<reportElement x="40" y="316" width="170" height="14"/>
 				<textElement textAlignment="Left" lineSpacing="Single">
 					<font fontName="Tahoma" size="10" isBold="true" isUnderline="false"/>
 				</textElement>
-				<text><![CDATA[c. Tidak baik kesehatannya, dengan diagnosa]]></text>
-			</staticText>
-			<staticText>
-				<reportElement x="273" y="316" width="228" height="14"/>
-				<textElement textAlignment="Left" lineSpacing="Single">
-					<font fontName="Tahoma" size="10" isBold="false" isUnderline="false"/>
-				</textElement>
-				<text><![CDATA[............................................ *)]]></text>
+				<text><![CDATA[c. Tidak baik kesehatannya. *)]]></text>
 			</staticText>
 			<textField isStretchWithOverflow="true">
 				<reportElement x="56" y="331" width="461" height="39"/>

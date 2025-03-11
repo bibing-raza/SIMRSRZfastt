@@ -1852,6 +1852,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
                 akses.setform("DlgRMEranap");
                 RMPemberianInformasiEdukasi form = new RMPemberianInformasiEdukasi(null, false);
                 form.emptTeks();
+                form.emptTeksPenilaian();
                 form.isCek();
                 form.setData(TNoRW.getText(), nmUnit.getText());
                 form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());

@@ -47,15 +47,15 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private DlgPasien pasien = new DlgPasien(null, false);
-    private PreparedStatement pspenyakit, psdiagnosapasien, psprosedur, pstindakanpasien, psralan,
+    private PreparedStatement pspenyakit, psdiagnosapasien, psprosedur, pstindakanpasien, psralan, ps2, ps3, ps4,
             pspenyakitsekunder, pspasien, psdiagnosa, pstindakan, psdokter, psinadrg, psTINinadrg;
-    private ResultSet rs, rs1, rspasien, rsdiagnosa, rstindakan, rsdokter, rsralan, rsrad, rshslRad, rsLISMaster, rsLIS1, rsLIS2, rsLIS3;
+    private ResultSet rs, rs1, rs2, rs3, rs4, rspasien, rsdiagnosa, rstindakan, rsdokter, rsralan, rsrad, rshslRad, rsLISMaster, rsLIS1, rsLIS2, rsLIS3;
     private int jml = 0, i = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, cekINADRG = 0,
             cekPremier = 0, cekPremierINADRG = 0, lis1 = 0, lis2 = 0, lisM = 0;
     private String[] kode, nama, ciripny, keterangan, kategori, cirium, kode2, panjang, pendek,
             kode1, nama1, ciripny1, keterangan1, kategori1, cirium1;
-    private boolean[] pilih, pilih2, pilih3;    
-    private String tglklaim = "", drdpjp = "", poli = "", crBayar = "", cekKlaim = "", jlhTindakan = "";
+    private boolean[] pilih, pilih2, pilih3;
+    private String tglklaim = "", drdpjp = "", poli = "", crBayar = "", cekKlaim = "", jlhTindakan = "", noRWTerakhir = "";
 
     /**
      * Creates new form DlgPemberianObat
@@ -639,6 +639,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         btnTambahPenyakit1 = new widget.Button();
         cmbDiagPro = new widget.ComboBox();
         jLabel20 = new widget.Label();
+        chkDiagnosa = new widget.CekBox();
         ChkInput = new widget.CekBox();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -913,7 +914,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -927,7 +928,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-01-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1066,7 +1067,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll1.setName("Scroll1"); // NOI18N
         Scroll1.setOpaque(true);
 
-        tbDiagnosa.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosa.setName("tbDiagnosa"); // NOI18N
         tbDiagnosa.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1164,7 +1164,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
 
-        tbProsedur.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbProsedur.setName("tbProsedur"); // NOI18N
         tbProsedur.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1204,7 +1203,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll4.setName("Scroll4"); // NOI18N
         Scroll4.setOpaque(true);
 
-        tbDiagnosa1.setToolTipText("Silahkan klik untuk memilih data yang mau diedit ataupun dihapus");
         tbDiagnosa1.setName("tbDiagnosa1"); // NOI18N
         tbDiagnosa1.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -1256,6 +1254,25 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
         jLabel20.setBounds(790, 12, 150, 23);
+
+        chkDiagnosa.setBackground(new java.awt.Color(255, 255, 250));
+        chkDiagnosa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        chkDiagnosa.setForeground(new java.awt.Color(0, 0, 0));
+        chkDiagnosa.setText("Cek Diagnosa & Prosedur Sesuai Kunjungan Terakhir");
+        chkDiagnosa.setBorderPainted(true);
+        chkDiagnosa.setBorderPaintedFlat(true);
+        chkDiagnosa.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        chkDiagnosa.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        chkDiagnosa.setName("chkDiagnosa"); // NOI18N
+        chkDiagnosa.setOpaque(false);
+        chkDiagnosa.setPreferredSize(new java.awt.Dimension(175, 23));
+        chkDiagnosa.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                chkDiagnosaActionPerformed(evt);
+            }
+        });
+        FormInput.add(chkDiagnosa);
+        chkDiagnosa.setBounds(445, 42, 290, 23);
 
         PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
 
@@ -1657,8 +1674,19 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             tbProsedur.setValueAt(false, i, 0);
         }
         
+        chkDiagnosa.setSelected(false);
+        if (Status.getSelectedIndex() == 0) {
+            chkDiagnosa.setEnabled(true);
+        } else {
+            chkDiagnosa.setEnabled(false);
+        }
+        
         ChkInput.setSelected(true);
-        isForm();        
+        isForm();
+        bersihkanConteng();
+        tampildiagnosa();
+        tampildiagnosaSekunder();
+        tampilprosedure();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1741,12 +1769,16 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnPrintKeyPressed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();        
+        dispose();
+        bersihkanConteng();
+        tampildiagnosa();
+        tampildiagnosaSekunder();
+        tampilprosedure();
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
-            dispose();
+            BtnKeluarActionPerformed(null);
         } else {
             Valid.pindah(evt, BtnPrint, TCari);
         }
@@ -1876,6 +1908,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_tbDiagnosaKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        bersihkanConteng();
         tampildiagnosa();
         tampildiagnosaSekunder();
         tampilprosedure();
@@ -2142,6 +2175,29 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         }
     }//GEN-LAST:event_MnHapusContengActionPerformed
 
+    private void chkDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDiagnosaActionPerformed
+        noRWTerakhir = "";
+        noRWTerakhir = Sequel.cariIsi("select no_rawat from reg_periksa where no_rkm_medis='" + TNoRM.getText() + "' and status_lanjut='Ralan' order by tgl_registrasi desc limit 1");
+
+        if (chkDiagnosa.isSelected() == true) {
+            if (Sequel.cariInteger("select count(-1) from diagnosa_pasien where no_rawat='" + noRWTerakhir + "'") > 0) {
+                tampilRiwDiagnosaPrimer(noRWTerakhir);
+                tampilRiwDiagnosaSekunder(noRWTerakhir);
+                tampilRiwProsedur(noRWTerakhir);
+            } else {
+                bersihkanConteng();
+                tampildiagnosa();
+                tampildiagnosaSekunder();
+                tampilprosedure();
+            }
+        } else {
+            bersihkanConteng();
+            tampildiagnosa();
+            tampildiagnosaSekunder();
+            tampilprosedure();
+        }
+    }//GEN-LAST:event_chkDiagnosaActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2218,6 +2274,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button btnTambahPenyakit;
     private widget.Button btnTambahPenyakit1;
     private widget.Button btnTambahProsedur;
+    public widget.CekBox chkDiagnosa;
     private widget.ComboBox cmbDiagPro;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
@@ -2470,6 +2527,13 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         ChkInput.setSelected(true);
         cmbDiagPro.setSelectedIndex(0);
         isForm();
+        
+        chkDiagnosa.setSelected(false);
+        if (Status.getSelectedIndex() == 0) {
+            chkDiagnosa.setEnabled(true);
+        } else {
+            chkDiagnosa.setEnabled(false);
+        }
     }
 
     private void isForm() {
@@ -2547,7 +2611,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     + " penyakit.keterangan like ? or "
                     + " kategori_penyakit.nm_kategori like ? or "
                     + " kategori_penyakit.ciri_umum like ? ) and penyakit.kd_penyakit <> '-' "
-                    + "order by penyakit.kd_penyakit  LIMIT 100");
+                    + "order by penyakit.kd_penyakit LIMIT 100");
             try {
                 pspenyakit.setString(1, "%" + Diagnosa.getText().trim() + "%");
                 pspenyakit.setString(2, "%" + Diagnosa.getText().trim() + "%");
@@ -3042,7 +3106,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
                 for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
                     if (tbDiagnosa1.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.menyimpan("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                        Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
                             TNoRw.getText(), tbDiagnosa1.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                             Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from diagnosa_pasien where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()), 
                             akses.getkode()
@@ -3061,7 +3125,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 } else {
                     for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                         if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.menyimpan("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                            Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
                                 TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), "1", akses.getkode()
                             });
                         }
@@ -3071,7 +3135,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 if (cekPremier == 1) {
                     for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
                         if (tbDiagnosa1.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.menyimpan("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                            Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien", "?,?,?,?,?", "Penyakit", 5, new String[]{
                                 TNoRw.getText(), tbDiagnosa1.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                                 Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from diagnosa_pasien where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()), 
                                 akses.getkode()
@@ -3093,7 +3157,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             koneksi.setAutoCommit(false);
             for (i = 0; i < tbProsedur.getRowCount(); i++) {
                 if (tbProsedur.getValueAt(i, 0).toString().equals("true")) {
-                    Sequel.menyimpan("prosedur_pasien", "?,?,?,?,?", "ICD 9", 5, new String[]{
+                    Sequel.menyimpanPesanGagalnyaDiTerminal("prosedur_pasien", "?,?,?,?,?", "ICD 9", 5, new String[]{
                         TNoRw.getText(), tbProsedur.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                         Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from prosedur_pasien where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()), 
                         akses.getkode()
@@ -3120,7 +3184,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 }
                 for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
                     if (tbDiagnosa1.getValueAt(i, 0).toString().equals("true")) {
-                        Sequel.menyimpan("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                        Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
                             TNoRw.getText(), tbDiagnosa1.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                             Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from diagnosa_pasien_inadrg where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()),
                             akses.getkode()
@@ -3139,7 +3203,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 } else {
                     for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
                         if (tbDiagnosa.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.menyimpan("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                            Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
                                 TNoRw.getText(), tbDiagnosa.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), "1", akses.getkode()
                             });
                         }
@@ -3149,7 +3213,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                 if (cekPremierINADRG == 1) {
                     for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
                         if (tbDiagnosa1.getValueAt(i, 0).toString().equals("true")) {
-                            Sequel.menyimpan("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
+                            Sequel.menyimpanPesanGagalnyaDiTerminal("diagnosa_pasien_inadrg", "?,?,?,?,?", "Penyakit", 5, new String[]{
                                 TNoRw.getText(), tbDiagnosa1.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                                 Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from diagnosa_pasien_inadrg where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()),
                                 akses.getkode()
@@ -3171,7 +3235,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             koneksi.setAutoCommit(false);
             for (i = 0; i < tbProsedur.getRowCount(); i++) {
                 if (tbProsedur.getValueAt(i, 0).toString().equals("true")) {
-                    Sequel.menyimpan("prosedur_pasien_inadrg", "?,?,?,?,?,?", "ICD 9", 6, new String[]{
+                    Sequel.menyimpanPesanGagalnyaDiTerminal("prosedur_pasien_inadrg", "?,?,?,?,?,?", "ICD 9", 6, new String[]{
                         TNoRw.getText(), tbProsedur.getValueAt(i, 1).toString(), Status.getSelectedItem().toString(), 
                         Sequel.cariIsi("select ifnull(MAX(prioritas)+1,1) from prosedur_pasien_inadrg where no_rawat=? and status='" + Status.getSelectedItem().toString() + "'", TNoRw.getText()), 
                         "1", akses.getkode()
@@ -3576,5 +3640,118 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
             System.out.println("Notifikasi : " + e);
         }
         this.setCursor(Cursor.getDefaultCursor());
+    }
+    
+    private void tampilRiwDiagnosaPrimer(String norwt) {
+        Valid.tabelKosong(tabModeDiagnosa);
+        try {
+            ps2 = koneksi.prepareStatement("SELECT py.kd_penyakit, py.nm_penyakit, py.ciri_ciri, py.keterangan, kp.nm_kategori, kp.ciri_umum "
+                    + "FROM diagnosa_pasien dp INNER JOIN penyakit py ON py.kd_penyakit=dp.kd_penyakit INNER JOIN kategori_penyakit kp ON kp.kd_ktg=py.kd_ktg "
+                    + "WHERE dp.no_rawat='" + norwt + "' and dp.prioritas=1 and dp.status='Ralan' LIMIT 1");
+            try {
+                rs2 = ps2.executeQuery();
+                while (rs2.next()) {
+                    tabModeDiagnosa.addRow(new Object[]{
+                        true,
+                        rs2.getString(1),
+                        rs2.getString(2),
+                        rs2.getString(3),
+                        rs2.getString(4),
+                        rs2.getString(5),
+                        rs2.getString(6)
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs2 != null) {
+                    rs2.close();
+                }
+                if (ps2 != null) {
+                    ps2.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRiwDiagnosaSekunder(String norwt) {
+        Valid.tabelKosong(tabModeDiagnosaSekunder);
+        try {
+            ps3 = koneksi.prepareStatement("SELECT py.kd_penyakit, py.nm_penyakit, py.ciri_ciri, py.keterangan, kp.nm_kategori, kp.ciri_umum "
+                    + "FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit py ON py.kd_penyakit=dp.kd_penyakit "
+                    + "INNER JOIN kategori_penyakit kp ON kp.kd_ktg=py.kd_ktg "
+                    + "WHERE dp.no_rawat='" + norwt + "' and dp.status='Ralan' order by dp.prioritas");
+            try {
+                rs3 = ps3.executeQuery();
+                while (rs3.next()) {
+                    tabModeDiagnosaSekunder.addRow(new Object[]{
+                        true,
+                        rs3.getString(1),
+                        rs3.getString(2),
+                        rs3.getString(3),
+                        rs3.getString(4),
+                        rs3.getString(5),
+                        rs3.getString(6)
+                    });
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs3 != null) {
+                    rs3.close();
+                }
+                if (ps3 != null) {
+                    ps3.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void tampilRiwProsedur(String norwt) {
+        Valid.tabelKosong(tabModeProsedur);
+        try {
+            ps4 = koneksi.prepareStatement("SELECT i.* FROM prosedur_pasien pp INNER JOIN icd9 i ON i.kode=pp.kode "
+                    + "WHERE pp.no_rawat='" + norwt + "' and pp.status='Ralan' ORDER BY pp.prioritas");
+            try {
+                rs4 = ps4.executeQuery();
+                while (rs4.next()) {
+                    tabModeProsedur.addRow(new Object[]{
+                        true,
+                        rs4.getString(1),
+                        rs4.getString(2),
+                        rs4.getString(3)
+                    });
+                }
+            } catch (Exception ex) {
+                System.out.println(ex);
+            } finally {
+                if (rs4 != null) {
+                    rs4.close();
+                }
+                if (ps4 != null) {
+                    ps4.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+    }
+    
+    private void bersihkanConteng() {
+        for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
+            tbDiagnosa.setValueAt(Boolean.FALSE, i, 0);
+        }
+        
+        for (i = 0; i < tbDiagnosa1.getRowCount(); i++) {
+            tbDiagnosa1.setValueAt(Boolean.FALSE, i, 0);
+        }
+        
+        for (i = 0; i < tbProsedur.getRowCount(); i++) {
+            tbProsedur.setValueAt(Boolean.FALSE, i, 0);
+        }
     }
 }
