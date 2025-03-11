@@ -1662,18 +1662,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setText("");
         Prosedur.setText("");
         cmbDiagPro.setSelectedIndex(0);
-        TNoRw.requestFocus();
-        
-        for (i = 0; i < tbDiagnosa.getRowCount(); i++) {
-            tbDiagnosa.setValueAt(false, i, 0);
-        }
-        for (s = 0; s < tbDiagnosa1.getRowCount(); s++) {
-            tbDiagnosa1.setValueAt(false, s, 0);
-        }
-        for (i = 0; i < tbProsedur.getRowCount(); i++) {
-            tbProsedur.setValueAt(false, i, 0);
-        }
-        
+        TNoRw.requestFocus();        
         chkDiagnosa.setSelected(false);
         if (Status.getSelectedIndex() == 0) {
             chkDiagnosa.setEnabled(true);
