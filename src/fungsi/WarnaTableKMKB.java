@@ -26,15 +26,15 @@ public class WarnaTableKMKB extends DefaultTableCellRenderer {
             component.setBackground(new Color(255, 255, 255));
         }
         
-        if (table.getValueAt(row, kolom).toString().equals("rugi")) {
+        if (table.getValueAt(row, kolom).toString().equals("Berpotensi Rugi")) {
             component.setBackground(new Color(255,204,204));
         }
         
-        if (table.getValueAt(row, kolom).toString().equals("untung")) {
+        if (table.getValueAt(row, kolom).toString().equals("Untung")) {
             component.setBackground(new Color(204,255,204));
         }
         
-        if (table.getValueAt(row, kolom).toString().equals("impas")) {            
+        if (table.getValueAt(row, kolom).toString().equals("Impas")) {            
             component.setBackground(new Color(255,255,153));
         }
         return component;

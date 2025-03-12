@@ -40,7 +40,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
     private DlgCariPoli poli = new DlgCariPoli(null, false);
     private DlgCariDokter dokter = new DlgCariDokter(null, false);
     private final Properties prop = new Properties();
-    private int i = 0, a = 0, b = 0;
+    private int i = 0, a = 0, b = 0, selisih = 0;
     private Date tgl = new Date();
     private String unitnya = "", dialog_simpan = "", cekRugi = "";
     
@@ -116,7 +116,8 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         
         tabMode1 = new DefaultTableModel(null, new String[]{
             "No. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Status Klaim", "Deskripsi CBG",
-            "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Biaya RealCost", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "stts_lanjut", "cekRugi"
+            "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Biaya RealCost", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "stts_lanjut", 
+            "Status Biaya", "Selisih Rugi/Untung"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -128,7 +129,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 16; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbKendaliKlaimRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -162,8 +163,9 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 15) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(95);
+            } else if (i == 16) {
+                column.setPreferredWidth(110);
             }
         }
         tbKendaliKlaimRanap.setDefaultRenderer(Object.class, new WarnaTableKMKB());
@@ -316,6 +318,8 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         jnsRawat = new widget.ComboBox();
         jLabel14 = new widget.Label();
         cmbRuangan = new widget.ComboBox();
+        BtnHapusPoli = new widget.Button();
+        BtnHapusDpjp = new widget.Button();
         panelisi1 = new widget.panelisi();
         label10 = new widget.Label();
         TCari = new widget.TextBox();
@@ -541,6 +545,32 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         cmbRuangan.setPreferredSize(new java.awt.Dimension(120, 20));
         panelisi3.add(cmbRuangan);
         cmbRuangan.setBounds(453, 40, 180, 23);
+
+        BtnHapusPoli.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusPoli.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusPoli.setToolTipText("Hapus DPJP Utama");
+        BtnHapusPoli.setName("BtnHapusPoli"); // NOI18N
+        BtnHapusPoli.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusPoli.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusPoliActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnHapusPoli);
+        BtnHapusPoli.setBounds(835, 10, 28, 23);
+
+        BtnHapusDpjp.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapusDpjp.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/exit.png"))); // NOI18N
+        BtnHapusDpjp.setToolTipText("Hapus DPJP Utama");
+        BtnHapusDpjp.setName("BtnHapusDpjp"); // NOI18N
+        BtnHapusDpjp.setPreferredSize(new java.awt.Dimension(28, 23));
+        BtnHapusDpjp.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapusDpjpActionPerformed(evt);
+            }
+        });
+        panelisi3.add(BtnHapusDpjp);
+        BtnHapusDpjp.setBounds(835, 70, 28, 23);
 
         internalFrame1.add(panelisi3, java.awt.BorderLayout.PAGE_START);
 
@@ -799,8 +829,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         TglSEP2.setDate(new Date());
         kdDokter.setText("");
         TDokter.setText("");
-        TCari.setText("");
-        TabRawat.setSelectedIndex(0);        
+        TCari.setText("");     
     }//GEN-LAST:event_formWindowOpened
 
     private void MnExportkeExcelRalanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnExportkeExcelRalanActionPerformed
@@ -919,8 +948,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', "
                     + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
-                    + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', ifnull(ts.jumlah_tagihan,'0') 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
-                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') 'Pemakaian Obat (%)' "
+                    + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
+                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') 'Pemakaian Obat (%)', "
+                    + "if(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)>convert(ifnull(ts.jumlah_tagihan,'0'),int),'Untung','Berpotensi Rugi') 'Status Biaya', "
+                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih Rugi & Untung' "
                     + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
                     + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
                     + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
@@ -970,6 +1001,16 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         }
     }//GEN-LAST:event_MnExportkeExcelRekapRanapActionPerformed
 
+    private void BtnHapusPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusPoliActionPerformed
+        KdPoli.setText("");
+        NmPoli.setText("");
+    }//GEN-LAST:event_BtnHapusPoliActionPerformed
+
+    private void BtnHapusDpjpActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusDpjpActionPerformed
+        kdDokter.setText("");
+        TDokter.setText("");
+    }//GEN-LAST:event_BtnHapusDpjpActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -989,6 +1030,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private widget.Button BtnAll;
     private widget.Button BtnCari;
+    private widget.Button BtnHapusDpjp;
+    private widget.Button BtnHapusPoli;
     private widget.Button BtnKeluar;
     private widget.TextBox KdPoli;
     private widget.Label LCount;
@@ -1028,9 +1071,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     private widget.Table tbKendaliKlaimRanap;
     // End of variables declaration//GEN-END:variables
 
-    public void tampilRanap() {
+    private void tampilRanap() {
         unitnya = "";
         cekRugi = "";
+        selisih = 0;
         a = 0;
         b = 0;        
         Valid.tabelKosong(tabMode1);
@@ -1102,12 +1146,14 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     b = Integer.parseInt(rs1.getString("tot_biayaRC"));
                     
                     if (b > a) {
-                        cekRugi = "rugi";
+                        cekRugi = "Berpotensi Rugi";
                     } else if (a > b) {
-                        cekRugi = "untung";
+                        cekRugi = "Untung";
                     } else if (b == a) {
-                        cekRugi = "impas";
+                        cekRugi = "Impas";
                     }
+                    
+                    selisih = a - b;
                     
                     tabMode1.addRow(new String[]{
                         rs1.getString("no_sep"),
@@ -1125,7 +1171,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         "   " + rs1.getString("total_trf_grp"),
                         rs1.getString("perc_pakai_obat"),
                         rs1.getString("status_lanjut"),
-                        cekRugi                        
+                        cekRugi,
+                        "   " + Valid.SetAngka(selisih)
                     });
                 }
                 this.setCursor(Cursor.getDefaultCursor());
@@ -1145,7 +1192,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         LCount.setText("" + tabMode1.getRowCount());
     }
     
-    public void tampilRalan() {
+    private void tampilRalan() {
         unitnya = "";        
         Valid.tabelKosong(tabMode);
 

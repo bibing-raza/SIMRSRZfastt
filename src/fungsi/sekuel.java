@@ -65,7 +65,8 @@ public final class sekuel {
     private int angka = 0;
     private static int angka3 = 0;
     private double angka2 = 0;
-    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "", user = "";
+    private String dicari = "", output = "", inputan = "", bulan = "", hari = "", romawi = "", ipAddresKomputer = "", user = "", 
+            umur = "", sttsumur = "", umurOK = "";
     private static String dicari2 = "", output2 = "", inputan2 = "";
     private char enkrip;
     private static char enkrip2;
@@ -1368,6 +1369,49 @@ public final class sekuel {
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
+    }
+    
+    public String cekUmurPasien(String norm) {
+        umurOK = "";
+        umur = "0";
+        sttsumur = "Th";
+        try {
+            ps = connect.prepareStatement("select TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) as tahun, "
+                    + "(TIMESTAMPDIFF(MONTH, tgl_lahir, CURDATE()) - ((TIMESTAMPDIFF(MONTH, tgl_lahir, CURDATE()) div 12) * 12)) as bulan, "
+                    + "TIMESTAMPDIFF(DAY, DATE_ADD(DATE_ADD(tgl_lahir,INTERVAL TIMESTAMPDIFF(YEAR, tgl_lahir, CURDATE()) YEAR), INTERVAL TIMESTAMPDIFF(MONTH, tgl_lahir, CURDATE()) - ((TIMESTAMPDIFF(MONTH, tgl_lahir, CURDATE()) div 12) * 12) MONTH), CURDATE()) as hari "
+                    + "FROM pasien WHERE no_rkm_medis ='" + norm + "'");
+            try {
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    if (rs.getInt("tahun") > 0) {
+                        umur = rs.getString("tahun");
+                        sttsumur = "Th";
+                    } else if (rs.getInt("tahun") == 0) {
+                        if (rs.getInt("bulan") > 0) {
+                            umur = rs.getString("bulan");
+                            sttsumur = "Bl";
+                        } else if (rs.getInt("bulan") == 0) {
+                            umur = rs.getString("hari");
+                            sttsumur = "Hr";
+                        }
+                    }
+                }
+                umurOK = umur + " " + sttsumur;
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rs != null) {
+                    rs.close();
+                }
+                if (ps != null) {
+                    ps.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
+        
+        return umurOK;
     }
     
     public String eksekusiQuery(String sql) {

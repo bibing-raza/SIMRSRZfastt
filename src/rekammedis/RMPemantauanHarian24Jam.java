@@ -760,7 +760,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -774,7 +774,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1044,7 +1044,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -2053,7 +2053,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2067,7 +2067,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14-09-2024" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -2263,9 +2263,6 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
                 } else if (Tsuhu.getText().trim().equals("")) {
                     Valid.textKosong(Tsuhu, "Suhu");
                     Tsuhu.requestFocus();
-                } else if (Tsistole.getText().equals("0") && Tdistole.getText().equals("0")) {
-                    JOptionPane.showMessageDialog(rootPane, "Angka sistole & diastole masih terisi angka 0, sesuaikan dulu dengan tensinya..!!");
-                    Tsistole.requestFocus();
                 } else {
                     tglBekasInput = "";
                     gantiPemantauan();
@@ -3261,7 +3258,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             TlabelTensi.setText("Tensi : " + tbPantau.getValueAt(tbPantau.getSelectedRow(), 45).toString() + " mmHg");
             TrgRawat.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(), 46).toString());
             cmbPerhari.setSelectedItem(tbPantau.getValueAt(tbPantau.getSelectedRow(),47).toString());
-            Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+            Tumur.setText(Sequel.cekUmurPasien(TNoRm.getText()));
             tampilParental();
             tampilTotal24Jam(Valid.SetTgl(DTPCariA.getSelectedItem() + ""), Valid.SetTgl(DTPCariB.getSelectedItem() + ""), TNoRw.getText());
         }
@@ -3577,7 +3574,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         DTPCariB.setDate(new Date());
         TrgRawat.setText(rgrawat);
         ruangranap = rgrawat;
-        Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + TNoRw.getText() + "'"));
+        Tumur.setText(Sequel.cekUmurPasien(TNoRm.getText()));
         
         if (TrgRawat.getText().contains("Anak") || TrgRawat.getText().contains("VIP") || TrgRawat.getText().contains("ICU/I")) {            
             cmbPerhari.setSelectedIndex(0);

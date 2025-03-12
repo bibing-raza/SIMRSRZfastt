@@ -191,8 +191,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbDiagnosa.setModel(tabModeDiagnosa);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbDiagnosa.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbDiagnosa.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for (i = 0; i < 7; i++) {
@@ -204,17 +204,14 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(300);
             } else if (i == 3) {
-                column.setPreferredWidth(700);
+                column.setPreferredWidth(315);
             } else if (i == 4) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 5) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 6) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -241,8 +238,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbDiagnosa1.setModel(tabModeDiagnosaSekunder);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbDiagnosa1.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbDiagnosa1.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         for (i = 0; i < 7; i++) {
@@ -254,17 +251,14 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(300);
             } else if (i == 3) {
-                column.setPreferredWidth(700);
+                column.setPreferredWidth(315);
             } else if (i == 4) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 5) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 6) {
-//                column.setPreferredWidth(75);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -290,8 +284,8 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
+        
         tbProsedur.setModel(tabModeProsedur);
-        //tbPenyakit.setDefaultRenderer(Object.class, new WarnaTable(panelJudul.getBackground(),tbPenyakit.getBackground()));
         tbProsedur.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbProsedur.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
@@ -304,7 +298,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(300);
             } else if (i == 3) {
-                column.setPreferredWidth(700);
+                column.setPreferredWidth(200);
             }
         }
         tbProsedur.setDefaultRenderer(Object.class, new WarnaTable());
@@ -612,6 +606,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         PanelInput = new javax.swing.JPanel();
+        TabData = new javax.swing.JTabbedPane();
         FormInput = new widget.PanelBiasa();
         jLabel3 = new widget.Label();
         TNoRw = new widget.TextBox();
@@ -640,6 +635,10 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         cmbDiagPro = new widget.ComboBox();
         jLabel20 = new widget.Label();
         chkDiagnosa = new widget.CekBox();
+        Scroll43 = new widget.ScrollPane();
+        LoadHTML1 = new widget.editorpane();
+        Scroll44 = new widget.ScrollPane();
+        LoadHTML2 = new widget.editorpane();
         ChkInput = new widget.CekBox();
         TabRawat = new javax.swing.JTabbedPane();
         internalFrame2 = new widget.InternalFrame();
@@ -654,7 +653,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         tbTindakanPasien = new widget.Table();
         Scroll6 = new widget.ScrollPane();
         tbTindakanPasien1 = new widget.Table();
-        internalFrame6 = new widget.InternalFrame();
         Scroll7 = new widget.ScrollPane();
         FormInput1 = new widget.PanelBiasa();
         jLabel12 = new widget.Label();
@@ -675,12 +673,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         jLabel25 = new widget.Label();
         Scroll13 = new widget.ScrollPane();
         TRincianTindakan2 = new widget.TextArea();
-        internalFrame7 = new widget.InternalFrame();
-        Scroll43 = new widget.ScrollPane();
-        LoadHTML1 = new widget.editorpane();
-        internalFrame8 = new widget.InternalFrame();
-        Scroll44 = new widget.ScrollPane();
-        LoadHTML2 = new widget.editorpane();
 
         jPopupMenu1.setName("jPopupMenu1"); // NOI18N
 
@@ -914,7 +906,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel14);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -928,7 +920,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "11-03-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1018,30 +1010,40 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(865, 350));
+        PanelInput.setPreferredSize(new java.awt.Dimension(865, 420));
         PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
+
+        TabData.setBackground(new java.awt.Color(255, 255, 254));
+        TabData.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
+        TabData.setName("TabData"); // NOI18N
+        TabData.setPreferredSize(new java.awt.Dimension(270, 106));
+        TabData.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                TabDataMouseClicked(evt);
+            }
+        });
 
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(865, 217));
         FormInput.setLayout(null);
 
         jLabel3.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel3.setText("No.Rawat :");
+        jLabel3.setText("No. Rawat :");
         jLabel3.setName("jLabel3"); // NOI18N
         FormInput.add(jLabel3);
-        jLabel3.setBounds(0, 12, 68, 23);
+        jLabel3.setBounds(0, 12, 130, 23);
 
         TNoRw.setEditable(false);
         TNoRw.setForeground(new java.awt.Color(0, 0, 0));
         TNoRw.setName("TNoRw"); // NOI18N
         FormInput.add(TNoRw);
-        TNoRw.setBounds(71, 12, 140, 23);
+        TNoRw.setBounds(135, 12, 140, 23);
 
         TNoRM.setEditable(false);
         TNoRM.setForeground(new java.awt.Color(0, 0, 0));
         TNoRM.setName("TNoRM"); // NOI18N
         FormInput.add(TNoRM);
-        TNoRM.setBounds(213, 12, 110, 23);
+        TNoRM.setBounds(280, 12, 90, 23);
 
         TPasien.setEditable(false);
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
@@ -1049,19 +1051,19 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         TPasien.setName("TPasien"); // NOI18N
         TPasien.setPreferredSize(new java.awt.Dimension(25, 28));
         FormInput.add(TPasien);
-        TPasien.setBounds(325, 12, 330, 23);
+        TPasien.setBounds(375, 12, 330, 23);
 
         jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Diagnosa Primer :");
         jLabel13.setName("jLabel13"); // NOI18N
         FormInput.add(jLabel13);
-        jLabel13.setBounds(0, 42, 97, 23);
+        jLabel13.setBounds(0, 42, 130, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Status :");
         jLabel17.setName("jLabel17"); // NOI18N
         FormInput.add(jLabel17);
-        jLabel17.setBounds(667, 12, 50, 23);
+        jLabel17.setBounds(710, 12, 50, 23);
 
         Scroll1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
         Scroll1.setName("Scroll1"); // NOI18N
@@ -1076,7 +1078,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll1.setViewportView(tbDiagnosa);
 
         FormInput.add(Scroll1);
-        Scroll1.setBounds(11, 69, 720, 105);
+        Scroll1.setBounds(30, 69, 720, 90);
 
         Diagnosa.setForeground(new java.awt.Color(0, 0, 0));
         Diagnosa.setName("Diagnosa"); // NOI18N
@@ -1086,7 +1088,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         FormInput.add(Diagnosa);
-        Diagnosa.setBounds(101, 42, 270, 23);
+        Diagnosa.setBounds(135, 42, 230, 23);
 
         BtnCariPenyakit.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -1152,13 +1154,13 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         FormInput.add(Prosedur);
-        Prosedur.setBounds(798, 42, 260, 23);
+        Prosedur.setBounds(825, 42, 230, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Prosedur :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(735, 42, 60, 23);
+        jLabel15.setBounds(758, 42, 60, 23);
 
         Scroll2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
         Scroll2.setName("Scroll2"); // NOI18N
@@ -1173,7 +1175,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll2.setViewportView(tbProsedur);
 
         FormInput.add(Scroll2);
-        Scroll2.setBounds(738, 67, 620, 253);
+        Scroll2.setBounds(758, 67, 620, 290);
 
         Status.setForeground(new java.awt.Color(0, 0, 0));
         Status.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Ralan", "Ranap" }));
@@ -1181,13 +1183,13 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Status.setName("Status"); // NOI18N
         Status.setPreferredSize(new java.awt.Dimension(308, 23));
         FormInput.add(Status);
-        Status.setBounds(720, 12, 70, 23);
+        Status.setBounds(765, 12, 70, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Diagnosa Sekunder :");
         jLabel18.setName("jLabel18"); // NOI18N
         FormInput.add(jLabel18);
-        jLabel18.setBounds(0, 180, 110, 23);
+        jLabel18.setBounds(0, 165, 130, 23);
 
         Diagnosa1.setForeground(new java.awt.Color(0, 0, 0));
         Diagnosa1.setName("Diagnosa1"); // NOI18N
@@ -1197,7 +1199,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         FormInput.add(Diagnosa1);
-        Diagnosa1.setBounds(114, 180, 253, 23);
+        Diagnosa1.setBounds(135, 165, 230, 23);
 
         Scroll4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)));
         Scroll4.setName("Scroll4"); // NOI18N
@@ -1212,7 +1214,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         Scroll4.setViewportView(tbDiagnosa1);
 
         FormInput.add(Scroll4);
-        Scroll4.setBounds(11, 210, 720, 110);
+        Scroll4.setBounds(30, 195, 720, 162);
 
         BtnCariPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         BtnCariPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/accept.png"))); // NOI18N
@@ -1226,7 +1228,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         FormInput.add(BtnCariPenyakit1);
-        BtnCariPenyakit1.setBounds(373, 180, 28, 23);
+        BtnCariPenyakit1.setBounds(373, 165, 28, 23);
 
         btnTambahPenyakit1.setForeground(new java.awt.Color(0, 0, 0));
         btnTambahPenyakit1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/plus_16.png"))); // NOI18N
@@ -1240,20 +1242,20 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         FormInput.add(btnTambahPenyakit1);
-        btnTambahPenyakit1.setBounds(403, 180, 28, 23);
+        btnTambahPenyakit1.setBounds(403, 165, 28, 23);
 
         cmbDiagPro.setForeground(new java.awt.Color(0, 0, 0));
         cmbDiagPro.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Semua", "STATISTIK (V5)", "INADRG (V6)" }));
         cmbDiagPro.setName("cmbDiagPro"); // NOI18N
         cmbDiagPro.setPreferredSize(new java.awt.Dimension(308, 23));
         FormInput.add(cmbDiagPro);
-        cmbDiagPro.setBounds(943, 12, 108, 23);
+        cmbDiagPro.setBounds(993, 12, 108, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("Jns. Diagnosa & Prosedur : ");
         jLabel20.setName("jLabel20"); // NOI18N
         FormInput.add(jLabel20);
-        jLabel20.setBounds(790, 12, 150, 23);
+        jLabel20.setBounds(840, 12, 150, 23);
 
         chkDiagnosa.setBackground(new java.awt.Color(255, 255, 250));
         chkDiagnosa.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1274,7 +1276,29 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         FormInput.add(chkDiagnosa);
         chkDiagnosa.setBounds(445, 42, 290, 23);
 
-        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
+        TabData.addTab("Input Diagnosa & Prosedur (Tindakan)", FormInput);
+
+        Scroll43.setName("Scroll43"); // NOI18N
+        Scroll43.setOpaque(true);
+
+        LoadHTML1.setBorder(null);
+        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML1.setName("LoadHTML1"); // NOI18N
+        Scroll43.setViewportView(LoadHTML1);
+
+        TabData.addTab("Hasil Pemeriksaan Radiologi", Scroll43);
+
+        Scroll44.setName("Scroll44"); // NOI18N
+        Scroll44.setOpaque(true);
+
+        LoadHTML2.setBorder(null);
+        LoadHTML2.setForeground(new java.awt.Color(0, 0, 0));
+        LoadHTML2.setName("LoadHTML2"); // NOI18N
+        Scroll44.setViewportView(LoadHTML2);
+
+        TabData.addTab("Hasil Pemeriksaan Lab.", Scroll44);
+
+        PanelInput.add(TabData, java.awt.BorderLayout.CENTER);
 
         ChkInput.setForeground(new java.awt.Color(0, 0, 0));
         ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
@@ -1357,7 +1381,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame9.add(Scroll5);
 
-        internalFrame2.add(internalFrame9, java.awt.BorderLayout.PAGE_START);
+        internalFrame2.add(internalFrame9, java.awt.BorderLayout.CENTER);
 
         TabRawat.addTab("Diagnosa", internalFrame2);
 
@@ -1409,19 +1433,16 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         internalFrame4.add(Scroll6);
 
-        internalFrame3.add(internalFrame4, java.awt.BorderLayout.PAGE_START);
+        internalFrame3.add(internalFrame4, java.awt.BorderLayout.CENTER);
 
         TabRawat.addTab("Prosedur", internalFrame3);
 
-        internalFrame6.setBorder(null);
-        internalFrame6.setName("internalFrame6"); // NOI18N
-        internalFrame6.setLayout(new java.awt.BorderLayout(1, 1));
-
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
+        Scroll7.setPreferredSize(new java.awt.Dimension(192, 220));
 
         FormInput1.setName("FormInput1"); // NOI18N
-        FormInput1.setPreferredSize(new java.awt.Dimension(190, 210));
+        FormInput1.setPreferredSize(new java.awt.Dimension(190, 400));
         FormInput1.setLayout(null);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
@@ -1534,41 +1555,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
         Scroll7.setViewportView(FormInput1);
 
-        internalFrame6.add(Scroll7, java.awt.BorderLayout.CENTER);
-
-        TabRawat.addTab("Pemriksn. Poliklinik/Inst.", internalFrame6);
-
-        internalFrame7.setBorder(null);
-        internalFrame7.setName("internalFrame7"); // NOI18N
-        internalFrame7.setLayout(new java.awt.BorderLayout());
-
-        Scroll43.setName("Scroll43"); // NOI18N
-        Scroll43.setOpaque(true);
-
-        LoadHTML1.setBorder(null);
-        LoadHTML1.setForeground(new java.awt.Color(0, 0, 0));
-        LoadHTML1.setName("LoadHTML1"); // NOI18N
-        Scroll43.setViewportView(LoadHTML1);
-
-        internalFrame7.add(Scroll43, java.awt.BorderLayout.CENTER);
-
-        TabRawat.addTab("Hasil Pemriksn. Radiologi", internalFrame7);
-
-        internalFrame8.setBorder(null);
-        internalFrame8.setName("internalFrame8"); // NOI18N
-        internalFrame8.setLayout(new java.awt.BorderLayout());
-
-        Scroll44.setName("Scroll44"); // NOI18N
-        Scroll44.setOpaque(true);
-
-        LoadHTML2.setBorder(null);
-        LoadHTML2.setForeground(new java.awt.Color(0, 0, 0));
-        LoadHTML2.setName("LoadHTML2"); // NOI18N
-        Scroll44.setViewportView(LoadHTML2);
-
-        internalFrame8.add(Scroll44, java.awt.BorderLayout.CENTER);
-
-        TabRawat.addTab("Hasil Pemriksn. Lab.", internalFrame8);
+        TabRawat.addTab("Pemeriksaan Poliklinik / IGD", Scroll7);
 
         internalFrame1.add(TabRawat, java.awt.BorderLayout.CENTER);
 
@@ -1606,10 +1593,6 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
                 TKeluhan2.setText("-");
                 TRincianTindakan2.setText("-");
             }
-        } else if (TabRawat.getSelectedIndex() == 3) {
-            tampilHasilRadiologi();
-        } else if (TabRawat.getSelectedIndex() == 4) {
-            tampilHasilLaboratorium();
         }
 }//GEN-LAST:event_BtnCariActionPerformed
 
@@ -1664,18 +1647,20 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         cmbDiagPro.setSelectedIndex(0);
         TNoRw.requestFocus();        
         chkDiagnosa.setSelected(false);
+        
         if (Status.getSelectedIndex() == 0) {
             chkDiagnosa.setEnabled(true);
+            bersihkanConteng();
         } else {
             chkDiagnosa.setEnabled(false);
+            bersihkanConteng();
+            tampildiagnosa();
+            tampildiagnosaSekunder();
+            tampilprosedure();
         }
         
         ChkInput.setSelected(true);
         isForm();
-        bersihkanConteng();
-        tampildiagnosa();
-        tampildiagnosaSekunder();
-        tampilprosedure();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -1759,10 +1744,15 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
         dispose();
-        bersihkanConteng();
-        tampildiagnosa();
-        tampildiagnosaSekunder();
-        tampilprosedure();
+        
+        if (Status.getSelectedIndex() == 0) {
+            bersihkanConteng();
+        } else if (Status.getSelectedIndex() == 1) {
+            bersihkanConteng();
+            tampildiagnosa();
+            tampildiagnosaSekunder();
+            tampilprosedure();
+        }
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
@@ -1897,7 +1887,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_tbDiagnosaKeyPressed
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
-        bersihkanConteng();
         tampildiagnosa();
         tampildiagnosaSekunder();
         tampilprosedure();
@@ -2166,26 +2155,28 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void chkDiagnosaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_chkDiagnosaActionPerformed
         noRWTerakhir = "";
-        noRWTerakhir = Sequel.cariIsi("select no_rawat from reg_periksa where no_rkm_medis='" + TNoRM.getText() + "' and status_lanjut='Ralan' order by tgl_registrasi desc limit 1");
+        noRWTerakhir = Sequel.cariIsi("select dp.no_rawat from reg_periksa rp inner join diagnosa_pasien dp on dp.no_rawat=rp.no_rawat "
+                + "where rp.no_rkm_medis='" + TNoRM.getText() + "' and rp.status_lanjut='Ralan' order by rp.tgl_registrasi desc limit 1");
 
         if (chkDiagnosa.isSelected() == true) {
-            if (Sequel.cariInteger("select count(-1) from diagnosa_pasien where no_rawat='" + noRWTerakhir + "'") > 0) {
-                tampilRiwDiagnosaPrimer(noRWTerakhir);
-                tampilRiwDiagnosaSekunder(noRWTerakhir);
-                tampilRiwProsedur(noRWTerakhir);
-            } else {
-                bersihkanConteng();
-                tampildiagnosa();
-                tampildiagnosaSekunder();
-                tampilprosedure();
-            }
+            tampilRiwDiagnosaPrimer(noRWTerakhir);
+            tampilRiwDiagnosaSekunder(noRWTerakhir);
+            tampilRiwProsedur(noRWTerakhir);
         } else {
             bersihkanConteng();
             tampildiagnosa();
-            tampildiagnosaSekunder();
-            tampilprosedure();
+//            tampildiagnosaSekunder();
+//            tampilprosedure();
         }
     }//GEN-LAST:event_chkDiagnosaActionPerformed
+
+    private void TabDataMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_TabDataMouseClicked
+        if (TabData.getSelectedIndex() == 1) {
+            tampilHasilRadiologi();
+        } else if (TabData.getSelectedIndex() == 2) {
+            tampilHasilLaboratorium();
+        }
+    }//GEN-LAST:event_TabDataMouseClicked
 
     /**
      * @param args the command line arguments
@@ -2259,6 +2250,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.TextBox TPasien;
     private widget.TextArea TRincianTindakan1;
     private widget.TextArea TRincianTindakan2;
+    private javax.swing.JTabbedPane TabData;
     private javax.swing.JTabbedPane TabRawat;
     private widget.Button btnTambahPenyakit;
     private widget.Button btnTambahPenyakit1;
@@ -2269,9 +2261,6 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.InternalFrame internalFrame2;
     private widget.InternalFrame internalFrame3;
     private widget.InternalFrame internalFrame4;
-    private widget.InternalFrame internalFrame6;
-    private widget.InternalFrame internalFrame7;
-    private widget.InternalFrame internalFrame8;
     private widget.InternalFrame internalFrame9;
     private widget.Label jLabel10;
     private widget.Label jLabel12;
@@ -2528,7 +2517,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private void isForm() {
         if (ChkInput.isSelected() == true) {
             ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 350));
+            PanelInput.setPreferredSize(new Dimension(WIDTH, 420));
             FormInput.setVisible(true);
             ChkInput.setVisible(true);
         } else if (ChkInput.isSelected() == false) {
@@ -3669,7 +3658,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         Valid.tabelKosong(tabModeDiagnosaSekunder);
         try {
             ps3 = koneksi.prepareStatement("SELECT py.kd_penyakit, py.nm_penyakit, py.ciri_ciri, py.keterangan, kp.nm_kategori, kp.ciri_umum "
-                    + "FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit py ON py.kd_penyakit=dp.kd_penyakit "
+                    + "FROM diagnosa_pasien dp INNER JOIN penyakit py ON py.kd_penyakit=dp.kd_penyakit "
                     + "INNER JOIN kategori_penyakit kp ON kp.kd_ktg=py.kd_ktg "
                     + "WHERE dp.no_rawat='" + norwt + "' and dp.status='Ralan' order by dp.prioritas");
             try {

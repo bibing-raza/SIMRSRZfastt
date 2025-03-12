@@ -391,7 +391,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         internalFrame10.add(BtnCetak);
         BtnCetak.setBounds(320, 23, 90, 26);
 
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -406,7 +406,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         internalFrame10.add(jLabel49);
         jLabel49.setBounds(185, 25, 30, 23);
 
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -589,7 +589,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel30);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -603,7 +603,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         jLabel32.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel32);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -763,7 +763,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         panelGlass7.add(jLabel9);
         jLabel9.setBounds(220, 94, 40, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-05-2024" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "12-03-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1480,6 +1480,8 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         Map<String, Object> param = new HashMap<>();
         param.put("namars", akses.getnamars());
         param.put("logo", Sequel.cariGambar("select logo from setting"));
+        param.put("umur", Sequel.cekUmurPasien(Sequel.cariIsi("SELECT no_rkm_medis from reg_periksa WHERE no_rawat = '" + TNoRw.getText() + "'")));
+        
         Valid.MyReport("rptMonitoringPEWS.jasper", "report", "::[ Lembar Monitoring Pediatric Early Warning Score (PEWS) ]::",
                 "SELECT p.no_rkm_medis, p.nm_pasien, concat(date_format(p.tgl_lahir,'%d-%m-%Y'),' (',p.jk,')') tgllahir, concat(rp.umurdaftar,' ',rp.sttsumur) umur, m.ruang_rawat, "
                 + "if(m.skor_keadaan_umum='0' and m.keadaan_umum='1',m.skor_keadaan_umum,'') ku1, "
@@ -1723,7 +1725,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         Valid.SetTglINDONESIA(rs.getString("tgl_lahir")),
-                        rs.getString("umur"),
+                        Sequel.cekUmurPasien(rs.getString("no_rkm_medis")),
                         rs.getString("jk"),
                         rs.getString("ruang_rawat"),
                         rs.getString("tgl"),
@@ -1886,7 +1888,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
         TruangRwt.setText(ruangan);
         TtglLahir.setText(Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_lahir from pasien where no_rkm_medis='" + norm + "'")));
         Tjenkel.setText(Sequel.cariIsi("select if(jk='L','Laki-laki','Perempuan') from pasien where no_rkm_medis='" + norm + "'"));
-        Tumur.setText(Sequel.cariIsi("select concat(umurdaftar,' ',sttsumur) from reg_periksa where no_rawat='" + norw + "'"));
+        Tumur.setText(Sequel.cekUmurPasien(norm));
         TCari.setText(norw);
         
         if (Sequel.cariInteger("select count(-1) from monitoring_pews_anak where no_rawat='" + norw + "'") > 0) {
@@ -1894,7 +1896,7 @@ public class RMMonitoringPEWSAnak extends javax.swing.JDialog {
                     + "no_rawat='" + norw + "' order by tanggal desc limit 1"));
         } else {
             DTPCari1.setDate(new Date());
-        }
+        }        
     }
     
     public void isMenu() {

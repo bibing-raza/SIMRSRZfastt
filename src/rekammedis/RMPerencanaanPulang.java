@@ -1909,7 +1909,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
                         rs.getString("no_rkm_medis"),
                         rs.getString("nm_pasien"),
                         rs.getString("tgllahir"),
-                        rs.getString("umurdaftar") + " " + rs.getString("stsUmur"),
+                        Sequel.cekUmurPasien(rs.getString("no_rkm_medis")),
                         rs.getString("jenkel"),
                         rs.getString("pekerjaan"),
                         rs.getString("ruang_rawat"),
@@ -2198,8 +2198,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
     
     private void isPasien() {
         try {
-            ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, "
-                    + "rp.umurdaftar, if(rp.sttsumur='Th','Tahun',if(rp.sttsumur='Bl','Bulan','Hari')) stsUmur, p.pekerjaan, "
+            ps1 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, if(p.jk='L','Laki-laki','Perempuan') jenkel, p.pekerjaan, "
                     + "p.agama, p.no_tlp, date_format(rp.tgl_registrasi,'%d-%m-%Y') tglmrs, "
                     + "concat(p.alamat,', Kel. ',kl.nm_kel,', Kec. ',kc.nm_kec,', Kab./Kota ',kb.nm_kab) almat "
                     + "from reg_periksa rp inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
@@ -2210,7 +2209,7 @@ public class RMPerencanaanPulang extends javax.swing.JDialog {
                 while (rs1.next()) {
                     TNoRM.setText(rs1.getString("no_rkm_medis"));
                     TPasien.setText(rs1.getString("nm_pasien"));
-                    Tumur.setText(rs1.getString("umurdaftar") + " " + rs1.getString("stsUmur"));
+                    Tumur.setText(Sequel.cekUmurPasien(rs1.getString("no_rkm_medis")));
                     Tjk.setText(rs1.getString("jenkel"));
                     Tpekerjaan.setText(rs1.getString("pekerjaan"));
                     Tagama.setText(rs1.getString("agama"));
