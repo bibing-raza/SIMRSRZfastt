@@ -760,7 +760,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel23.setPreferredSize(new java.awt.Dimension(99, 23));
         internalFrame13.add(jLabel23);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -774,7 +774,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame13.add(jLabel25);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -1036,7 +1036,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TPasien.setForeground(new java.awt.Color(0, 0, 0));
         TPasien.setName("TPasien"); // NOI18N
         panelGlass7.add(TPasien);
-        TPasien.setBounds(314, 10, 490, 23);
+        TPasien.setBounds(314, 10, 529, 23);
 
         jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setText("Tgl. Pemantauan :");
@@ -1044,7 +1044,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         panelGlass7.add(jLabel8);
         jLabel8.setBounds(0, 38, 110, 23);
 
-        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        tglPantau.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
         tglPantau.setDisplayFormat("dd-MM-yyyy");
         tglPantau.setName("tglPantau"); // NOI18N
         tglPantau.setOpaque(false);
@@ -1089,7 +1089,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel11.setText("Jam :");
         jLabel11.setName("jLabel11"); // NOI18N
         panelGlass7.add(jLabel11);
-        jLabel11.setBounds(270, 66, 40, 23);
+        jLabel11.setBounds(265, 66, 40, 23);
 
         cmbJam.setForeground(new java.awt.Color(0, 0, 0));
         cmbJam.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "7", "8", "9", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "01", "02", "03", "04", "05", "06" }));
@@ -1100,7 +1100,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbJam);
-        cmbJam.setBounds(316, 66, 45, 23);
+        cmbJam.setBounds(311, 66, 45, 23);
 
         jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setText("GCS :");
@@ -1173,7 +1173,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tkesadaran);
-        Tkesadaran.setBounds(395, 94, 408, 23);
+        Tkesadaran.setBounds(395, 94, 448, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Tekanan Darah :");
@@ -1222,10 +1222,10 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
 
         jLabel41.setForeground(new java.awt.Color(0, 0, 0));
         jLabel41.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel41.setText("% dengan Oksigen : ");
+        jLabel41.setText("%     dengan Oksigen : ");
         jLabel41.setName("jLabel41"); // NOI18N
         panelGlass7.add(jLabel41);
-        jLabel41.setBounds(349, 150, 102, 23);
+        jLabel41.setBounds(349, 150, 115, 23);
 
         jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setText("INTAKE :");
@@ -1296,14 +1296,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         Ttotintake.setForeground(new java.awt.Color(0, 0, 0));
         Ttotintake.setName("Ttotintake"); // NOI18N
         panelGlass7.add(Ttotintake);
-        Ttotintake.setBounds(705, 178, 80, 23);
+        Ttotintake.setBounds(740, 178, 80, 23);
 
         jLabel45.setForeground(new java.awt.Color(0, 0, 0));
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel45.setText("cc.");
         jLabel45.setName("jLabel45"); // NOI18N
         panelGlass7.add(jLabel45);
-        jLabel45.setBounds(790, 178, 20, 23);
+        jLabel45.setBounds(825, 178, 20, 23);
 
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setText("OUTPUT :");
@@ -1443,39 +1443,39 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         Ttotouput.setForeground(new java.awt.Color(0, 0, 0));
         Ttotouput.setName("Ttotouput"); // NOI18N
         panelGlass7.add(Ttotouput);
-        Ttotouput.setBounds(705, 234, 80, 23);
+        Ttotouput.setBounds(740, 234, 80, 23);
 
         jLabel58.setForeground(new java.awt.Color(0, 0, 0));
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel58.setText("cc.");
         jLabel58.setName("jLabel58"); // NOI18N
         panelGlass7.add(jLabel58);
-        jLabel58.setBounds(790, 234, 20, 23);
+        jLabel58.setBounds(825, 234, 20, 23);
 
         jLabel59.setForeground(new java.awt.Color(0, 0, 0));
         jLabel59.setText("BALANCE :");
         jLabel59.setName("jLabel59"); // NOI18N
         panelGlass7.add(jLabel59);
-        jLabel59.setBounds(640, 262, 60, 23);
+        jLabel59.setBounds(675, 262, 60, 23);
 
         Tbalance.setEditable(false);
         Tbalance.setForeground(new java.awt.Color(0, 0, 0));
         Tbalance.setName("Tbalance"); // NOI18N
         panelGlass7.add(Tbalance);
-        Tbalance.setBounds(705, 262, 80, 23);
+        Tbalance.setBounds(740, 262, 80, 23);
 
         jLabel60.setForeground(new java.awt.Color(0, 0, 0));
         jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel60.setText("cc.");
         jLabel60.setName("jLabel60"); // NOI18N
         panelGlass7.add(jLabel60);
-        jLabel60.setBounds(790, 262, 20, 23);
+        jLabel60.setBounds(825, 262, 20, 23);
 
         jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setText("BB Masuk RS :");
         jLabel24.setName("jLabel24"); // NOI18N
         panelGlass7.add(jLabel24);
-        jLabel24.setBounds(360, 66, 90, 23);
+        jLabel24.setBounds(355, 66, 85, 23);
 
         Tbb.setForeground(new java.awt.Color(0, 0, 0));
         Tbb.setToolTipText("Jika pakai koma ganti dengan titik, sebagai gantinya koma");
@@ -1486,14 +1486,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tbb);
-        Tbb.setBounds(456, 66, 50, 23);
+        Tbb.setBounds(445, 66, 70, 23);
 
         jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel61.setText("Kg.  Umur :");
+        jLabel61.setText("Kg/gram  Umur :");
         jLabel61.setName("jLabel61"); // NOI18N
         panelGlass7.add(jLabel61);
-        jLabel61.setBounds(512, 66, 60, 23);
+        jLabel61.setBounds(520, 66, 83, 23);
 
         jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("Kode Pemantauan :");
@@ -1527,7 +1527,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(BtnTotOutput);
-        BtnTotOutput.setBounds(570, 234, 130, 23);
+        BtnTotOutput.setBounds(604, 234, 130, 23);
 
         jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setText("Jml. Parental / Line :");
@@ -1545,7 +1545,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel27.setText("TOTAL INTAKE :");
         jLabel27.setName("jLabel27"); // NOI18N
         panelGlass7.add(jLabel27);
-        jLabel27.setBounds(610, 178, 90, 23);
+        jLabel27.setBounds(645, 178, 90, 23);
 
         jLabel63.setForeground(new java.awt.Color(0, 0, 0));
         jLabel63.setText("Rg. Rawat : ");
@@ -1557,7 +1557,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TrgRawat.setForeground(new java.awt.Color(0, 0, 0));
         TrgRawat.setName("TrgRawat"); // NOI18N
         panelGlass7.add(TrgRawat);
-        TrgRawat.setBounds(553, 38, 250, 23);
+        TrgRawat.setBounds(553, 38, 290, 23);
 
         jLabel43.setForeground(new java.awt.Color(0, 0, 0));
         jLabel43.setText("Transfusi :");
@@ -1596,7 +1596,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(TreaksiTransfusi);
-        TreaksiTransfusi.setBounds(375, 206, 410, 23);
+        TreaksiTransfusi.setBounds(375, 206, 462, 23);
 
         jLabel66.setForeground(new java.awt.Color(0, 0, 0));
         jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
@@ -1635,7 +1635,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Tcatatan);
-        Tcatatan.setBounds(320, 290, 465, 23);
+        Tcatatan.setBounds(320, 290, 515, 23);
 
         jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("Petugas :");
@@ -1721,14 +1721,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(Toksigen);
-        Toksigen.setBounds(451, 150, 60, 23);
+        Toksigen.setBounds(466, 150, 60, 23);
 
         jLabel71.setForeground(new java.awt.Color(0, 0, 0));
         jLabel71.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel71.setText("Lpm");
         jLabel71.setName("jLabel71"); // NOI18N
         panelGlass7.add(jLabel71);
-        jLabel71.setBounds(515, 150, 28, 23);
+        jLabel71.setBounds(535, 150, 28, 23);
 
         BtnNilaiMAP.setForeground(new java.awt.Color(0, 0, 0));
         BtnNilaiMAP.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1805,20 +1805,20 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         TlabelTensi.setText("Tensi : 0 mmHg");
         TlabelTensi.setName("TlabelTensi"); // NOI18N
         panelGlass7.add(TlabelTensi);
-        TlabelTensi.setBounds(615, 122, 170, 23);
+        TlabelTensi.setBounds(615, 122, 220, 23);
 
         Tumur.setEditable(false);
         Tumur.setForeground(new java.awt.Color(0, 0, 0));
         Tumur.setToolTipText("");
         Tumur.setName("Tumur"); // NOI18N
         panelGlass7.add(Tumur);
-        Tumur.setBounds(570, 66, 60, 23);
+        Tumur.setBounds(604, 66, 60, 23);
 
         jLabel78.setForeground(new java.awt.Color(0, 0, 0));
         jLabel78.setText("Kg BB/Hari (IWL) : ");
         jLabel78.setName("jLabel78"); // NOI18N
         panelGlass7.add(jLabel78);
-        jLabel78.setBounds(630, 66, 100, 23);
+        jLabel78.setBounds(670, 66, 100, 23);
 
         cmbPerhari.setForeground(new java.awt.Color(0, 0, 0));
         cmbPerhari.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "10", "15", "20", "30", "40", "50" }));
@@ -1829,14 +1829,14 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             }
         });
         panelGlass7.add(cmbPerhari);
-        cmbPerhari.setBounds(732, 66, 45, 23);
+        cmbPerhari.setBounds(772, 66, 45, 23);
 
         jLabel79.setForeground(new java.awt.Color(0, 0, 0));
         jLabel79.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel79.setText("Cc.");
         jLabel79.setName("jLabel79"); // NOI18N
         panelGlass7.add(jLabel79);
-        jLabel79.setBounds(783, 66, 25, 23);
+        jLabel79.setBounds(825, 66, 25, 23);
 
         panelGlass10.add(panelGlass7, java.awt.BorderLayout.CENTER);
 
@@ -2053,7 +2053,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel28.setPreferredSize(new java.awt.Dimension(65, 23));
         panelGlass9.add(jLabel28);
 
-        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCariA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
         DTPCariA.setDisplayFormat("dd-MM-yyyy");
         DTPCariA.setName("DTPCariA"); // NOI18N
         DTPCariA.setOpaque(false);
@@ -2067,7 +2067,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         jLabel29.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel29);
 
-        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCariB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "13-03-2025" }));
         DTPCariB.setDisplayFormat("dd-MM-yyyy");
         DTPCariB.setName("DTPCariB"); // NOI18N
         DTPCariB.setOpaque(false);
@@ -3222,7 +3222,7 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
             cmbJam.setSelectedItem(tbPantau.getValueAt(tbPantau.getSelectedRow(), 5).toString());
             Tnadi.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),6).toString());
             Tsuhu.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),7).toString());
-            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TNoRw.getText() + "'"));
+//            Tbb.setText(Sequel.cariIsi("select ifnull(bb_msk_rs,'0') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + TNoRw.getText() + "'"));
             Tgcse.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),26).toString());
             Tgcsm.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),27).toString());
             Tgcsv.setText(tbPantau.getValueAt(tbPantau.getSelectedRow(),28).toString());
@@ -3576,7 +3576,9 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         ruangranap = rgrawat;
         Tumur.setText(Sequel.cekUmurPasien(TNoRm.getText()));
         
-        if (TrgRawat.getText().contains("Anak") || TrgRawat.getText().contains("VIP") || TrgRawat.getText().contains("ICU/I")) {            
+        if (TrgRawat.getText().contains("Anak") || TrgRawat.getText().contains("VIP")
+                || TrgRawat.getText().contains("ICU/I") || TrgRawat.getText().contains("Bayi")
+                || TrgRawat.getText().contains("NICU")) {
             cmbPerhari.setSelectedIndex(0);
         } else {
             cmbPerhari.setSelectedIndex(2);
@@ -3588,6 +3590,9 @@ public class RMPemantauanHarian24Jam extends javax.swing.JDialog {
         //pasien ruang anak
         } else if (Sequel.cariInteger("select count(-1) from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norw + "'") > 0) {
             Tbb.setText(Sequel.cariIsi("select bb_msk_rs from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norw + "'"));
+        //pasien bayi (perinatologi/bayi sehat)
+        } else if (Sequel.cariInteger("select count(-1) from asesmen_keperawatan_perinatologi where no_rawat='" + norw + "'") > 0) {
+            Tbb.setText(Sequel.cariIsi("select bbl from asesmen_keperawatan_perinatologi where no_rawat='" + norw + "'"));
         } else {
             Tbb.setText("");
         }
