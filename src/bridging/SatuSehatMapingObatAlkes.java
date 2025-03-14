@@ -50,12 +50,15 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         this.setLocation(8,1);
         setSize(628,674);
 
-        tabMode= new DefaultTableModel(null, new Object[]{
+        tabMode = new DefaultTableModel(null, new String[]{
             "KFA Code", "KFA System", "Kode Barang", "Nama Obat/Alkes/BHP", "KFA Display", "Form Code",
             "Form System", "Form Display", "Numerator Code", "Numerator System", "Denominator Code",
             "Denominator System"
-            }){
-             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         
         tbMaping.setModel(tabMode);
@@ -67,27 +70,34 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(80);
             } else if (i == 1) {
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 2) {
-                column.setPreferredWidth(85);
+                column.setPreferredWidth(140);
             } else if (i == 3) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(300);
             } else if (i == 4) {
-                column.setPreferredWidth(200);
+                column.setPreferredWidth(300);
             } else if (i == 5) {
-                column.setPreferredWidth(80);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 6) {
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 7) {
-                column.setPreferredWidth(170);
-            } else if (i == 8) {
-                column.setPreferredWidth(90);
-            } else if (i == 9) {
-                column.setPreferredWidth(200);
-            } else if (i == 10) {
                 column.setPreferredWidth(100);
+            } else if (i == 8) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 9) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 10) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 11) {
-                column.setPreferredWidth(200);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             }
         }
         tbMaping.setDefaultRenderer(Object.class, new WarnaTable());
@@ -175,11 +185,14 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         }
         tbObatRS.setDefaultRenderer(Object.class, new WarnaTable());
         
-        tabMode2= new DefaultTableModel(null, new Object[]{
+        tabMode2 = new DefaultTableModel(null, new String[]{
             "Kode KFA", "Obat Display", "Form Kode", "Form Display", "Numerator Kode",
             "Numerator Sistem", "Denominator Kode", "Denominator Sistem"
-            }){
-             @Override public boolean isCellEditable(int rowIndex, int colIndex){return false;}
+        }) {
+            @Override
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
+            }
         };
         
         tbKFA.setModel(tabMode2);
@@ -191,19 +204,25 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(80);
             } else if (i == 1) {
-                column.setPreferredWidth(350);
+                column.setPreferredWidth(1000);
             } else if (i == 2) {
-                column.setPreferredWidth(75);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 3) {
-                column.setPreferredWidth(75);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 4) {
-                column.setPreferredWidth(106);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 5) {
-                column.setPreferredWidth(140);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 6) {
-                column.setPreferredWidth(115);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } else if (i == 7) {
-                column.setPreferredWidth(400);
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
             } 
         }
         tbKFA.setDefaultRenderer(Object.class, new WarnaTable());
@@ -317,6 +336,11 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setUndecorated(true);
         setResizable(false);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Mapping Obat/Alkes/BHP Satu Sehat ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
@@ -539,7 +563,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         Scroll1.setOpaque(true);
         Scroll1.setPreferredSize(new java.awt.Dimension(452, 255));
 
-        tbKFA.setToolTipText("Silahkan klik untuk memilih data yang mau dimapping dengan obat RS");
         tbKFA.setName("tbKFA"); // NOI18N
         tbKFA.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -593,7 +616,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         Scroll2.setOpaque(true);
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 300));
 
-        tbObatRS.setToolTipText("Silahkan klik untuk memilih data yang mau dimapping dengan standar KFA");
         tbObatRS.setName("tbObatRS"); // NOI18N
         tbObatRS.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1087,6 +1109,12 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         tampilKFA();
     }//GEN-LAST:event_BtnCari2ActionPerformed
 
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        tampil();
+        tampilKFA();
+        tampilObatRS();
+    }//GEN-LAST:event_formWindowOpened
+
     /**
     * @param args the command line arguments
     */
@@ -1170,7 +1198,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                    "on satu_sehat_mapping_obat.kode_brng=databarang.kode_brng "+
                    (TCari.getText().equals("")?"":"where satu_sehat_mapping_obat.kode_brng like ? or databarang.nama_brng like ? or "+
                    "satu_sehat_mapping_obat.obat_code like ? or satu_sehat_mapping_obat.obat_display like ? or satu_sehat_mapping_obat.form_display like ? ")+
-                   " order by satu_sehat_mapping_obat.obat_code");
+                   " order by satu_sehat_mapping_obat.obat_code limit 200");
             try {
                 if(!TCari.getText().equals("")){
                     ps.setString(1,"%"+TCari.getText()+"%");
@@ -1181,10 +1209,19 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                 }
                 rs=ps.executeQuery();
                 while(rs.next()){
-                    tabMode.addRow(new Object[]{
-                        rs.getString("obat_code"),rs.getString("obat_system"),rs.getString("kode_brng"),rs.getString("nama_brng"),rs.getString("obat_display"),
-                        rs.getString("form_code"),rs.getString("form_system"),rs.getString("form_display"),rs.getString("numerator_code"),rs.getString("numerator_system"),
-                        rs.getString("denominator_code"),rs.getString("denominator_system")
+                    tabMode.addRow(new String[]{
+                        rs.getString("obat_code"),
+                        rs.getString("obat_system"),
+                        rs.getString("kode_brng"),
+                        rs.getString("nama_brng"),
+                        rs.getString("obat_display"),
+                        rs.getString("form_code"),
+                        rs.getString("form_system"),
+                        rs.getString("form_display"),
+                        rs.getString("numerator_code"),
+                        rs.getString("numerator_system"),
+                        rs.getString("denominator_code"),
+                        rs.getString("denominator_system")
                     });
                 }
             } catch (Exception e) {
@@ -1205,6 +1242,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
 
     public void emptTeks() {
         KFACode.setText("");
+        KFACode.requestFocus();
         KFASystem.setText("");
         KodeBarang.setText("");
         NamaBarang.setText("");
@@ -1218,9 +1256,6 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         DenominatorSystem.setText("");
         TCari1.setText("");
         TCari2.setText("");
-        Valid.tabelKosong(tabMode1);
-        Valid.tabelKosong(tabMode2);
-        KFACode.requestFocus();
     }
 
     private void getData() {
@@ -1241,9 +1276,9 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
     }
     
     public void isCek(){
-        BtnSimpan.setEnabled(akses.getobat());
-        BtnHapus.setEnabled(akses.getobat());
-        BtnEdit.setEnabled(akses.getobat());
+        BtnSimpan.setEnabled(akses.getstok_obat_pasien());
+        BtnHapus.setEnabled(akses.getstok_obat_pasien());
+        BtnEdit.setEnabled(akses.getstok_obat_pasien());
     }
     
     private void tampilObatRS() {
