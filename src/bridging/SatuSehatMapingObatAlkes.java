@@ -1149,6 +1149,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         tampil();
         tampilKFA();
         tampilObatRS();
+        isCek();
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnMiningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMiningActionPerformed
