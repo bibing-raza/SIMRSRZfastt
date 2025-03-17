@@ -42,7 +42,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
     private final Properties prop = new Properties();
     private int i = 0, a = 0, b = 0, selisih = 0;
     private Date tgl = new Date();
-    private String unitnya = "", dialog_simpan = "", cekRugi = "";
+    private String unitnya = "", dialog_simpan = "", cekRugi = "", obat = "";
     
     /** Creates new form DlgProgramStudi
      * @param parent
@@ -51,27 +51,14 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        tabMode = new DefaultTableModel(null, new Object[]{
-            "No. SEP", "No. RM", "Nama Pasien", "Poliklinik/Inst.", "Nama Dokter", "Biaya Real Obat", "Status Klaim", "Deskripsi CBG",
-            "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "stts_lanjut"
+        tabMode = new DefaultTableModel(null, new String[]{
+            "No. SEP", "No. RM", "Nama Pasien", "Poliklinik/Inst.", "Nama Dokter", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
+            "Tot. Biaya Oksigen", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Tot. Trf. Grouping", "Pemakaian Obat (%)",
+            "stts_lanjut"
         }) {
-              @Override
-            public boolean isCellEditable(int rowIndex, int colIndex) {
-                boolean a = false;
-                if (colIndex == 0) {
-                    a = false;
-                }
-                return a;
-            }
-            Class[] types = new Class[]{
-                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
-                java.lang.Double.class, java.lang.Object.class, java.lang.Object.class, java.lang.Double.class, java.lang.Object.class,
-                java.lang.Double.class, java.lang.Double.class, java.lang.Object.class, java.lang.Object.class
-            };
-
             @Override
-            public Class getColumnClass(int columnIndex) {
-                return types[columnIndex];
+            public boolean isCellEditable(int rowIndex, int colIndex) {
+                return false;
             }
         };
         
@@ -79,7 +66,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRalan.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRalan.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 14; i++) {
+        for (i = 0; i < 17; i++) {
             TableColumn column = tbKendaliKlaimRalan.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -94,20 +81,26 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(90);
             } else if (i == 6) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(110);
             } else if (i == 7) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(90);
             } else if (i == 8) {
-                column.setPreferredWidth(75);
-            } else if (i == 9) {
-                column.setPreferredWidth(115);
-            } else if (i == 10) {
-                column.setPreferredWidth(75);
-            } else if (i == 11) {
                 column.setPreferredWidth(100);
+            } else if (i == 9) {
+                column.setPreferredWidth(75);
+            } else if (i == 10) {
+                column.setPreferredWidth(300);
+            } else if (i == 11) {
+                column.setPreferredWidth(75);
             } else if (i == 12) {
                 column.setPreferredWidth(115);
             } else if (i == 13) {
+                column.setPreferredWidth(75);
+            } else if (i == 14) {
+                column.setPreferredWidth(100);
+            } else if (i == 15) {
+                column.setPreferredWidth(115);
+            } else if (i == 16) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -115,9 +108,9 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRalan.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode1 = new DefaultTableModel(null, new String[]{
-            "No. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Status Klaim", "Deskripsi CBG",
-            "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Biaya RealCost", "Tot. Trf. Grouping", "Pemakaian Obat (%)", "stts_lanjut", 
-            "Status Biaya", "Selisih Rugi/Untung"
+            "No. SEP", "No. RM", "Nama Pasien", "Rg. Perawatan Inap", "Nama DPJP", "Biaya Real Obat", "Tot. Biaya Radiologi", "Tot. Biaya Lab.",
+            "Tot. Biaya Oksigen", "Status Klaim", "Deskripsi CBG", "Tarif CBG", "Deskripsi TopUp", "TopUp Tarif", "Biaya RealCost",
+            "Tot. Trf. Grouping", "Pemakaian Obat (%)", "stts_lanjut", "Status Biaya", "Selisih Rugi/Untung"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -129,7 +122,7 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         tbKendaliKlaimRanap.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbKendaliKlaimRanap.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 17; i++) {
+        for (i = 0; i < 20; i++) {
             TableColumn column = tbKendaliKlaimRanap.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -144,27 +137,33 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
             } else if (i == 5) {
                 column.setPreferredWidth(90);
             } else if (i == 6) {
-                column.setPreferredWidth(75);
+                column.setPreferredWidth(110);
             } else if (i == 7) {
-                column.setPreferredWidth(300);
+                column.setPreferredWidth(90);
             } else if (i == 8) {
-                column.setPreferredWidth(75);
-            } else if (i == 9) {
-                column.setPreferredWidth(115);
-            } else if (i == 10) {
-                column.setPreferredWidth(75);
-            } else if (i == 11) {
-                column.setPreferredWidth(88);
-            } else if (i == 12) {
                 column.setPreferredWidth(100);
-            } else if (i == 13) {
+            } else if (i == 9) {
+                column.setPreferredWidth(75);
+            } else if (i == 10) {
+                column.setPreferredWidth(300);
+            } else if (i == 11) {
+                column.setPreferredWidth(75);
+            } else if (i == 12) {
                 column.setPreferredWidth(115);
+            } else if (i == 13) {
+                column.setPreferredWidth(75);
             } else if (i == 14) {
+                column.setPreferredWidth(88);
+            } else if (i == 15) {
+                column.setPreferredWidth(100);
+            } else if (i == 16) {
+                column.setPreferredWidth(115);
+            } else if (i == 17) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
-            } else if (i == 15) {
+            } else if (i == 18) {
                 column.setPreferredWidth(95);
-            } else if (i == 16) {
+            } else if (i == 19) {
                 column.setPreferredWidth(110);
             }
         }
@@ -838,6 +837,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
+            obat = "";
             Valid.tabelKosong(tabMode);
 
             if (jnsRawat.getSelectedIndex() == 2) {
@@ -849,6 +849,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', "
                     + "d.nm_dokter 'Nama Dokter',s.nm_sps 'Spesialis', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', "
+                    + "(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Radiologi', "
+                    + "(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Lab.', "
+                    + "(SELECT convert(ifnull(sum(r.biaya_rawat),'0'),int) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
+                    + "WHERE r.no_rawat=enc.no_rawat and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', "
                     + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', "
                     + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
@@ -947,7 +951,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
 
             dialog_simpan = Valid.openDialog();
             Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', "
-                    + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
+                    + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', (select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi') 'Tot. Biaya Radiologi', "
+                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat') 'Tot. Biaya Lab.', "
+                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', "
+                    + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
                     + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') 'Pemakaian Obat (%)', "
                     + "if(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)>convert(ifnull(ts.jumlah_tagihan,'0'),int),'Untung','Berpotensi Rugi') 'Status Biaya', "
@@ -1095,7 +1102,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             ps1 = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, "
                     + "format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, "
                     + "IFNULL(egsc.desc,'-') topup_desc, format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
-                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, rp.status_lanjut, "
+                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, "
                     + "format(ifnull(ts.jumlah_tagihan,'0'),0) biayaRC, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) tot_trf_grp, ifnull(ts.jumlah_tagihan,'0') tot_biayaRC "
                     + "FROM eklaim_new_claim enc "
                     + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
@@ -1162,6 +1169,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                         rs1.getString("unit"),
                         rs1.getString("dpjp"),
                         "   " + rs1.getString("by_obat_real"),
+                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Radiologi'"),
+                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and status='Laborat'"),
+                        "   " + Sequel.cariIsi("select ifnull(format(sum(totalbiaya),0),'') from billing where no_rawat='" + rs1.getString("no_rawat") + "' and "
+                        + "(nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')"),
                         rs1.getString("klaim_final"),
                         rs1.getString("cbg_desc"),
                         "   " + rs1.getString("cbg_tarif"),
@@ -1193,7 +1204,8 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }
     
     private void tampilRalan() {
-        unitnya = "";        
+        unitnya = "";
+        obat = "";
         Valid.tabelKosong(tabMode);
 
         if (jnsRawat.getSelectedIndex() == 2) {            
@@ -1205,9 +1217,10 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             //tarif obat yg dari tabel eklaim_set_claim dikali 0.8 atau 80%
             //0.8 adalah 80% sudah dipotong 20% dari harga tarif obat
-            ps = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, ROUND(esc.tarif_obat * 0.8) by_obat_real, "
-                    + "concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc,eg.cbg_tarif, IFNULL(egsc.desc,'-') topup_desc, IFNULL(egsc.tarif,0) topup_tarif, "
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) total_trf_grp, CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
+            ps = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, "
+                    + "concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, format(IFNULL(egsc.desc,'-'),0) topup_desc, "
+                    + "format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
+                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
                     + "rp.status_lanjut FROM eklaim_new_claim enc "
                     + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
                     + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
@@ -1243,19 +1256,29 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                 ps.setString(18, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    tabMode.addRow(new Object[]{
+                    if (rs.getString("by_obat_real").equals("0")) {
+                        obat = "";
+                    } else {
+                        obat = rs.getString("by_obat_real");
+                    }
+                    
+                    tabMode.addRow(new String[]{
                         rs.getString("no_sep"),
                         rs.getString("no_rm"),
                         rs.getString("nm_pasien"),
                         rs.getString("nm_poli"),
                         rs.getString("nm_dokter"),
-                        rs.getDouble("by_obat_real"),
+                        "   " + obat,
+                        "   " + Sequel.cariIsi("SELECT ifnull(format(SUM(biaya),0),'') FROM periksa_radiologi WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
+                        "   " + Sequel.cariIsi("SELECT ifnull(format(SUM(biaya_item),0),'') FROM detail_periksa_lab WHERE no_rawat='" + rs.getString("no_rawat") + "'"),
+                        "   " + Sequel.cariIsi("SELECT ifnull(format(sum(r.biaya_rawat),0),'') FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
+                        + "WHERE r.no_rawat='" + rs.getString("no_rawat") + "' and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')"),
                         rs.getString("klaim_final"),
                         rs.getString("cbg_desc"),
-                        rs.getDouble("cbg_tarif"),
+                        "   " + rs.getString("cbg_tarif"),
                         rs.getString("topup_desc"),
-                        rs.getDouble("topup_tarif"),
-                        rs.getDouble("total_trf_grp"),
+                        "   " + rs.getString("topup_tarif"),
+                        "   " + rs.getString("total_trf_grp"),
                         rs.getString("perc_pakai_obat"),
                         rs.getString("status_lanjut")
                     });

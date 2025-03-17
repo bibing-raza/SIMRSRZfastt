@@ -1196,6 +1196,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("rekonsiliasi_obat_igd", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("serah_terima_bayi_pulang_perinatologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
             Sequel.mengedit("pemberian_informasi_edukasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("penilaian_informasi_edukasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("evaluasi_catatan_tindakan_keperawatan", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
@@ -1275,6 +1276,7 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("rekonsiliasi_obat_igd", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("serah_terima_bayi_pulang_perinatologi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
             Sequel.mengedit("pemberian_informasi_edukasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("penilaian_informasi_edukasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
     }
     
@@ -2593,6 +2595,26 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             Sequel.mengedit("serah_terima_bayi_pulang_perinatologi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
         } else if (pilihan == 2) {
             Sequel.mengedit("serah_terima_bayi_pulang_perinatologi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+        }
+
+        tampil();
+        tampilTujuan();
+        pilihan = 0;
+        ChkTglTran.setSelected(false);
+        ChkTglTran.setText("Semua Tgl. Transaksi");
+        tglDari.setText("");
+        pukulDari.setText("");
+        ChkRMranap.setSelected(false);
+        ChkRMigd.setSelected(false);
+    }
+    
+    private void pemberianInformasiEdukasi() {
+        if (pilihan == 1) {
+            Sequel.mengedit("pemberian_informasi_edukasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+            Sequel.mengedit("penilaian_informasi_edukasi", "no_rawat='" + TNoRwTerpilih.getText() + "'", "no_rawat='" + TNoRwTujuan.getText() + "'");
+        } else if (pilihan == 2) {
+            Sequel.mengedit("pemberian_informasi_edukasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
+            Sequel.mengedit("penilaian_informasi_edukasi", "no_rawat='" + TNoRwTujuan.getText() + "'", "no_rawat='" + TNoRwTerpilih.getText() + "'");
         }
 
         tampil();
@@ -4299,6 +4321,11 @@ public class DlgPindahDataNomorRawat extends javax.swing.JDialog {
             x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
             if (x == JOptionPane.YES_OPTION) {
                 SerahTerimaBayiPulang();
+            }
+        } else if (cmbJnsTran.getSelectedIndex() == 64) {
+            x = JOptionPane.showConfirmDialog(rootPane, "Apakah yakin data " + cmbJnsTran.getSelectedItem().toString() + " yang dipilih akan dipindah nomor rawatnya..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+            if (x == JOptionPane.YES_OPTION) {
+                pemberianInformasiEdukasi();
             }
         }
     }

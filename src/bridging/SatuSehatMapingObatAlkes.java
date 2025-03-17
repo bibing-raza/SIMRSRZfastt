@@ -4,6 +4,8 @@
  */
 
 package bridging;
+import com.fasterxml.jackson.databind.JsonNode;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import fungsi.WarnaTable;
 import fungsi.batasInput;
 import fungsi.koneksiDB;
@@ -26,6 +28,10 @@ import javax.swing.JTable;
 import javax.swing.event.DocumentEvent;
 import javax.swing.table.DefaultTableModel;
 import javax.swing.table.TableColumn;
+import org.springframework.http.HttpEntity;
+import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpMethod;
+import org.springframework.http.MediaType;
 
 /**
  *
@@ -36,9 +42,16 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
     private sekuel Sequel = new sekuel();
     private validasi Valid = new validasi();
     private Connection koneksi = koneksiDB.condb();
+    private ApiSatuSehat api = new ApiSatuSehat();
     private PreparedStatement ps, ps1, ps2;
     private ResultSet rs, rs1, rs2;
     private int i = 0;
+    private String link = "", json = "";
+    private HttpHeaders headers;
+    private HttpEntity requestEntity;
+    private ObjectMapper mapper = new ObjectMapper();
+    private JsonNode root;
+    private JsonNode response;
 
     /** Creates new form DlgJnsPerawatanRalan
      * @param parent
@@ -299,6 +312,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         KFASystem = new widget.TextBox();
         jLabel15 = new widget.Label();
         DenominatorSystem = new widget.TextBox();
+        BtnMining = new widget.Button();
         panelGlass10 = new widget.panelisi();
         Scroll = new widget.ScrollPane();
         tbMaping = new widget.Table();
@@ -310,6 +324,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         jLabel17 = new widget.Label();
         TCari2 = new widget.TextBox();
         BtnCari2 = new widget.Button();
+        panelGlass14 = new widget.panelisi();
         Scroll2 = new widget.ScrollPane();
         tbObatRS = new widget.Table();
         panelGlass12 = new widget.panelisi();
@@ -523,6 +538,21 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         PanelInput.add(DenominatorSystem);
         DenominatorSystem.setBounds(314, 160, 410, 23);
 
+        BtnMining.setForeground(new java.awt.Color(0, 0, 0));
+        BtnMining.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/42a.png"))); // NOI18N
+        BtnMining.setMnemonic('M');
+        BtnMining.setText("Mining KFA Satu Sehat");
+        BtnMining.setToolTipText("Alt+M");
+        BtnMining.setName("BtnMining"); // NOI18N
+        BtnMining.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnMining.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnMiningActionPerformed(evt);
+            }
+        });
+        PanelInput.add(BtnMining);
+        BtnMining.setBounds(730, 155, 180, 30);
+
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
         panelGlass10.setName("panelGlass10"); // NOI18N
@@ -552,7 +582,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
 
         panelGlass11.setName("panelGlass11"); // NOI18N
         panelGlass11.setPreferredSize(new java.awt.Dimension(44, 44));
-        panelGlass11.setLayout(new java.awt.BorderLayout());
+        panelGlass11.setLayout(new java.awt.GridLayout(2, 0));
 
         panelGlass9.setName("panelGlass9"); // NOI18N
         panelGlass9.setPreferredSize(new java.awt.Dimension(44, 300));
@@ -571,7 +601,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         });
         Scroll1.setViewportView(tbKFA);
 
-        panelGlass9.add(Scroll1, java.awt.BorderLayout.PAGE_START);
+        panelGlass9.add(Scroll1, java.awt.BorderLayout.CENTER);
 
         panelGlass13.setName("panelGlass13"); // NOI18N
         panelGlass13.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -609,9 +639,13 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
 
         panelGlass9.add(panelGlass13, java.awt.BorderLayout.PAGE_END);
 
-        panelGlass11.add(panelGlass9, java.awt.BorderLayout.PAGE_START);
+        panelGlass11.add(panelGlass9);
 
-        Scroll2.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Daftar Obat/Alkes Farmasi RS ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelGlass14.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Daftar Obat/Alkes Farmasi RS ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelGlass14.setName("panelGlass14"); // NOI18N
+        panelGlass14.setPreferredSize(new java.awt.Dimension(44, 300));
+        panelGlass14.setLayout(new java.awt.BorderLayout());
+
         Scroll2.setName("Scroll2"); // NOI18N
         Scroll2.setOpaque(true);
         Scroll2.setPreferredSize(new java.awt.Dimension(452, 300));
@@ -624,7 +658,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         });
         Scroll2.setViewportView(tbObatRS);
 
-        panelGlass11.add(Scroll2, java.awt.BorderLayout.CENTER);
+        panelGlass14.add(Scroll2, java.awt.BorderLayout.CENTER);
 
         panelGlass12.setName("panelGlass12"); // NOI18N
         panelGlass12.setPreferredSize(new java.awt.Dimension(44, 44));
@@ -660,7 +694,9 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         });
         panelGlass12.add(BtnCari1);
 
-        panelGlass11.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+        panelGlass14.add(panelGlass12, java.awt.BorderLayout.PAGE_END);
+
+        panelGlass11.add(panelGlass14);
 
         panelGlass10.add(panelGlass11);
 
@@ -1115,6 +1151,10 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         tampilObatRS();
     }//GEN-LAST:event_formWindowOpened
 
+    private void BtnMiningActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnMiningActionPerformed
+        miningKFA();
+    }//GEN-LAST:event_BtnMiningActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1140,6 +1180,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
     private widget.Button BtnEdit;
     private widget.Button BtnHapus;
     private widget.Button BtnKeluar;
+    private widget.Button BtnMining;
     private widget.Button BtnSimpan;
     private widget.TextBox DenominatorCode;
     private widget.TextBox DenominatorSystem;
@@ -1180,6 +1221,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
     private widget.panelisi panelGlass11;
     private widget.panelisi panelGlass12;
     private widget.panelisi panelGlass13;
+    private widget.panelisi panelGlass14;
     private widget.panelisi panelGlass8;
     private widget.panelisi panelGlass9;
     private widget.Table tbKFA;
@@ -1279,6 +1321,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
         BtnSimpan.setEnabled(akses.getstok_obat_pasien());
         BtnHapus.setEnabled(akses.getstok_obat_pasien());
         BtnEdit.setEnabled(akses.getstok_obat_pasien());
+        BtnMining.setEnabled(akses.getadmin());
     }
     
     private void tampilObatRS() {
@@ -1413,6 +1456,75 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
             NemeratorSystem.setText(tbKFA.getValueAt(tbKFA.getSelectedRow(), 5).toString());
             DenominatorCode.setText(tbKFA.getValueAt(tbKFA.getSelectedRow(), 6).toString());
             DenominatorSystem.setText(tbKFA.getValueAt(tbKFA.getSelectedRow(), 7).toString());
+        }
+    }
+    
+    private void miningKFA() {
+        link = "https://api-satusehat.kemkes.go.id/kfa-v2/";
+        try {
+            headers = new HttpHeaders();
+            headers.setContentType(MediaType.APPLICATION_JSON);
+            headers.add("Authorization", "Bearer " + api.TokenSatuSehat());
+            requestEntity = new HttpEntity(headers);            
+            int limit = 100;
+            for (int i = 1; i <= 180; i++) {
+                System.out.println("Iterasi ke : " + i);
+                json = api.getRest().exchange(link + "products/all?page=" + i + "&size=" + limit + "&product_type=farmasi", HttpMethod.GET, requestEntity, String.class).getBody();
+                root = mapper.readTree(json);
+                System.out.println("JSON : " + json);
+                JsonNode dataArray = root.path("items").path("data");
+                for (JsonNode data : dataArray) {
+                    // Extract all fields and create a DataObject instance
+                    String name = data.path("name").asText();
+                    String kfaCode = data.path("kfa_code").asText();
+                    String active = data.path("active").asText();
+                    String state = data.path("state").asText();
+                    String image = data.path("image").asText();
+                    String updatedAt = data.path("updated_at").asText();
+                    String produksiBuatan = data.path("produksi_buatan").asText();
+                    String nie = data.path("nie").asText();
+                    String namaDagang = data.path("nama_dagang").asText();
+                    String manufacturer = data.path("manufacturer").asText();
+                    String registrar = data.path("registrar").asText();
+                    String generik = data.path("generik").asText();
+                    String rxterm = data.path("rxterm").asText();
+                    String dosePerUnit = data.path("dose_per_unit").asText();
+                    String fixPrice = data.path("fix_price").asText();
+                    String hetPrice = data.path("het_price").asText();
+                    String farmalkesHscode = data.path("farmalkes_hscode").asText();
+                    String tayangLkpp = data.path("tayang_lkpp").asText();
+                    String kodeLkpp = data.path("kode_lkpp").asText();
+                    String netWeight = data.path("net_weight").asText();
+                    String netWeightUomName = data.path("net_weight_uom_name").asText();
+                    String volume = data.path("volume").asText();
+                    String volumeUomName = data.path("volume_uom_name").asText();
+                    String dosageFormCode = data.path("dosage_form").path("code").asText();
+                    String dosageFormName = data.path("dosage_form").path("name").asText();
+                    String productTemplateKfaCode = data.path("product_template").path("kfa_code").asText();
+                    String productTemplateName = data.path("product_template").path("name").asText();
+                    String productTemplateState = data.path("product_template").path("state").asText();
+                    String productTemplateActive = data.path("product_template").path("active").asText();
+                    String productTemplateDisplayName = data.path("product_template").path("display_name").asText();
+                    String productTemplateUpdatedAt = data.path("product_template").path("updated_at").asText();
+
+                    // Store data into MySQL table using Sequel.menyimpan method
+                    if (Sequel.menyimpantf2("satu_sehat_kfa_master", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "Kfa Master", 31, new String[]{
+                        name, kfaCode, active, state, image, updatedAt, produksiBuatan, nie, namaDagang, manufacturer, registrar, generik, rxterm, dosePerUnit, fixPrice,
+                        hetPrice, farmalkesHscode, tayangLkpp, kodeLkpp, netWeight, netWeightUomName, volume, volumeUomName, dosageFormCode, dosageFormName, productTemplateKfaCode,
+                        productTemplateName, productTemplateState, productTemplateActive, productTemplateDisplayName, productTemplateUpdatedAt}
+                    ) == true) {
+                        System.out.println("Sukses menyimpan : " + name);
+                    } else {
+                        System.out.println("gagal simpan, duplicate");
+                    }
+                }
+
+                Thread.sleep(5000);
+
+            }
+        } catch (Exception ea) {
+            System.out.println("Notifikasi Bridging : " + ea);
+            miningKFA();
         }
     }
 }

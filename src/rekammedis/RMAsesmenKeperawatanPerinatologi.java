@@ -5651,19 +5651,11 @@ public final class RMAsesmenKeperawatanPerinatologi extends javax.swing.JDialog 
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnEditActionPerformed
-        if (TNoRw.getText().trim().equals("") || TPasien.getText().trim().equals("")) {
+        if (TNoRw.getText().trim().equals("")) {
             Valid.textKosong(TNoRw, "Pasien");
         } else {
             if (tbAsesmen.getSelectedRow() > -1) {
-                if (akses.getadmin() == true) {
-                    ganti();
-                } else {
-                    if (nip.equals(akses.getkode())) {
-                        ganti();
-                    } else {
-                        JOptionPane.showMessageDialog(null, "Hanya bisa diganti oleh perawat yang bernama " + tbAsesmen.getValueAt(tbAsesmen.getSelectedRow(), 10).toString() + " ..!!");
-                    }
-                }
+                ganti();
             } else {
                 JOptionPane.showMessageDialog(rootPane, "Silahkan pilih dulu salah satu datanya pada tabel..!!");
             }
