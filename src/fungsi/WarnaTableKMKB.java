@@ -15,7 +15,7 @@ import javax.swing.table.DefaultTableCellRenderer;
  * @author Owner
  */
 public class WarnaTableKMKB extends DefaultTableCellRenderer {
-    private int kolom = 18;
+    private int kolom = 19;
     
     @Override
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int column) {

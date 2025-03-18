@@ -1876,7 +1876,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "22-01-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3511,10 +3511,15 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu DPJP nya dengan benar...!");
             btnDPJP.requestFocus();
         } else {
-            Sequel.menyimpanPesanGagalnyaDiTerminal("dpjp_ranap", "?,?", "DPJP Rawat Inap", 2, new String[]{
-                TNoRW.getText(), kddpjp.getText()
-            });
-            BtnCloseIn10ActionPerformed(null);
+            if (Sequel.cariInteger("select count(-1) from dpjp_ranap where no_rawat='" + TNoRW.getText() + "'") > 0) {
+                Sequel.mengedit("dpjp_ranap", "no_rawat='" + TNoRW.getText() + "'", "kd_dokter='" + kddpjp.getText() + "'");
+                BtnCloseIn10ActionPerformed(null);
+            } else {
+                Sequel.menyimpanPesanGagalnyaDiTerminal("dpjp_ranap", "?,?", "DPJP Rawat Inap", 2, new String[]{
+                    TNoRW.getText(), kddpjp.getText()
+                });
+                BtnCloseIn10ActionPerformed(null);
+            }
         }
     }//GEN-LAST:event_BtnSimpan6ActionPerformed
 

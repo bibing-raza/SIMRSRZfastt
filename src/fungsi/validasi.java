@@ -2301,6 +2301,11 @@ public final class validasi {
         }
     }
     
+    public String Set2AngkaSetelahKoma(double nilai) {
+        double value = nilai;
+        return String.format("%.2f", value);
+    }
+    
     public String SetAngka7(double nilai) {
         return df7.format(nilai);
     }
