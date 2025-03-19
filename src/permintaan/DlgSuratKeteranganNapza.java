@@ -1563,23 +1563,21 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             } else {
                 autoNomorSurat();
                 cekData();
-                Sequel.menyimpan("surat_keterangan_napza", "'" + TNoRW.getText() + "','" + TNoSurat.getText() + "',"
-                        + "'" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "") + "','" + TPekerjaan.getText() + "','" + Ttmpt_tinggal.getText() + "',"
-                        + "'" + TPermintaanDari.getText() + "','" + TnoSuratDari.getText() + "','" + Valid.SetTgl(TtglSuratDari.getSelectedItem() + "") + "',"
-                        + "'" + thc + "','" + bzo + "','" + met + "','" + mop + "','" + coc + "','" + amp + "',"
-                        + "'" + cmbTHC.getSelectedItem().toString() + "','" + cmbBZO.getSelectedItem().toString() + "','" + cmbMET.getSelectedItem().toString() + "',"
-                        + "'" + cmbMOP.getSelectedItem().toString() + "','" + cmbCOC.getSelectedItem().toString() + "','" + cmbAMP.getSelectedItem().toString() + "',"
-                        + "'" + cmbKesHasil.getSelectedItem().toString() + "','" + Tkeperluan.getText() + "','" + kddokter + "',"
-                        + "'" + tglsurat + "','" + TPasien.getText() + "','" + TTempLahr.getText() + "','" + TnoDokumen.getText() + "','" + opi + "',"
-                        + "'" + cmbOPI.getSelectedItem().toString() + "','" + Tnomor.getText() + "','" + cmbJnsPermintaan.getSelectedItem().toString() + "',"
-                        + "'" + Tpenyidik.getText() + "','" + Tnrp.getText() + "','" + cmbIndikasi.getSelectedItem().toString() + "'", "Surat Keterangan NAPZA");
-
-                TCari.setText(TNoRW.getText());
-                tbSurat.requestFocus();
-                emptTeks();
-                tampil();
-                ChkAccor.setSelected(false);
-                isMenu();
+                if (Sequel.menyimpantf("surat_keterangan_napza", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 34, new String[]{
+                    TNoRW.getText(), TNoSurat.getText(), Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), Ttmpt_tinggal.getText(),
+                    TPermintaanDari.getText(), TnoSuratDari.getText(), Valid.SetTgl(TtglSuratDari.getSelectedItem() + ""), thc, bzo, met, mop, coc, amp,
+                    cmbTHC.getSelectedItem().toString(), cmbBZO.getSelectedItem().toString(), cmbMET.getSelectedItem().toString(), cmbMOP.getSelectedItem().toString(),
+                    cmbCOC.getSelectedItem().toString(), cmbAMP.getSelectedItem().toString(), cmbKesHasil.getSelectedItem().toString(), Tkeperluan.getText(),
+                    kddokter, tglsurat, TPasien.getText(), TTempLahr.getText(), TnoDokumen.getText(), opi, cmbOPI.getSelectedItem().toString(), Tnomor.getText(),
+                    cmbJnsPermintaan.getSelectedItem().toString(), Tpenyidik.getText(), Tnrp.getText(), cmbIndikasi.getSelectedItem().toString()
+                }) == true) {
+                    TCari.setText(TNoRW.getText());
+                    tbSurat.requestFocus();
+                    emptTeks();
+                    tampil();
+                    ChkAccor.setSelected(false);
+                    isMenu();
+                }
             }
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
@@ -1647,11 +1645,10 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
             } else {
                 cekData();
                 if (tbSurat.getSelectedRow() > -1) {
-                    Sequel.mengedit("surat_keterangan_napza", "no_rawat=?",
-                            "tgl_surat=?,pekerjaan=?,tempat_tinggal=?,permintaan_dari=?,no_surat_dari=?,tgl_surat_dari=?,thc=?,"
-                            + "bzo=?,met=?,mop=?,coc=?,amp=?,hasil_thc=?,hasil_bzo=?,hasil_met=?,hasil_mop=?,hasil_coc=?,hasil_amp=?,"
-                            + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?, opi=?, "
-                            + "hasil_opi=?, jns_permintaan=?, nm_penyidik=?, nrp=?, indikasi=?", 32, new String[]{
+                    if (Sequel.mengedittf("surat_keterangan_napza", "no_rawat=?", "tgl_surat=?,pekerjaan=?,tempat_tinggal=?,permintaan_dari=?,no_surat_dari=?,"
+                            + "tgl_surat_dari=?,thc=?,bzo=?,met=?,mop=?,coc=?,amp=?,hasil_thc=?,hasil_bzo=?,hasil_met=?,hasil_mop=?,hasil_coc=?,hasil_amp=?,"
+                            + "kesimpulan_hasil=?,keperluan=?,nip_dokter=?,ada_tgl_nosurat=?,nm_pasien=?,tmpt_lahir=?, no_dokumen=?, opi=?, hasil_opi=?, jns_permintaan=?, "
+                            + "nm_penyidik=?, nrp=?, indikasi=?", 32, new String[]{
                                 Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), TPekerjaan.getText(), Ttmpt_tinggal.getText(), TPermintaanDari.getText(),
                                 TnoSuratDari.getText(), Valid.SetTgl(TtglSuratDari.getSelectedItem() + ""), thc, bzo, met, mop, coc, amp,
                                 cmbTHC.getSelectedItem().toString(), cmbBZO.getSelectedItem().toString(), cmbMET.getSelectedItem().toString(),
@@ -1660,8 +1657,8 @@ public class DlgSuratKeteranganNapza extends javax.swing.JDialog {
                                 TnoDokumen.getText(), opi, cmbOPI.getSelectedItem().toString(), cmbJnsPermintaan.getSelectedItem().toString(),
                                 Tpenyidik.getText(), Tnrp.getText(), cmbIndikasi.getSelectedItem().toString(),
                                 tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                            });
-                    if (tabMode.getRowCount() != 0) {
+                            }) == true) {
+
                         TCari.setText(TNoRW.getText());
                         tbSurat.requestFocus();
                         emptTeks();

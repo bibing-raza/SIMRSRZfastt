@@ -975,19 +975,17 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
             BtnDokumen.requestFocus();
         } else {
             autoNomorSurat();
-            Sequel.menyimpan("surat_keterangan_rohani", "'" + TNoRW.getText() + "','" + TNoSurat.getText() + "',"
-                    + "'" + Valid.SetTgl(Ttgl_surat.getSelectedItem() + "") + "','" + kddokter + "',"
-                    + "'" + Tnm_tertulis.getText() + "','" + Tjabatan.getText() + "','" + Tinstansi.getText() + "',"
-                    + "'" + Tno_surat_dari.getText() + "','" + Tperihal.getText() + "',"
-                    + "'" + Valid.SetTgl(Ttgl_psikiatrik.getSelectedItem() + "") + "','" + TPendidikan.getText() + "',"
-                    + "'" + TPekerjaan.getText() + "','" + TAlamat.getText() + "','" + Tkeperluan.getText() + "',"
-                    + "'" + TTempLahr.getText() + "','" + TPasien.getText() + "','" + TnoDokumen.getText() + "',"
-                    + "'" + Tnomor.getText() + "'", "Surat Keterangan Rohani");
-            
-            TCari.setText(TNoRW.getText());
-            tbSurat.requestFocus();
-            emptTeks();
-            tampil();            
+            if (Sequel.menyimpantf("surat_keterangan_rohani", "?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?", "No.Rawat", 18, new String[]{
+                TNoRW.getText(), TNoSurat.getText(), Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), kddokter, Tnm_tertulis.getText(),
+                Tjabatan.getText(), Tinstansi.getText(), Tno_surat_dari.getText(), Tperihal.getText(), Valid.SetTgl(Ttgl_psikiatrik.getSelectedItem() + ""),
+                TPendidikan.getText(), TPekerjaan.getText(), TAlamat.getText(), Tkeperluan.getText(), TTempLahr.getText(), TPasien.getText(),
+                TnoDokumen.getText(), Tnomor.getText()
+            }) == true) {
+                TCari.setText(TNoRW.getText());
+                tbSurat.requestFocus();
+                emptTeks();
+                tampil();
+            }         
         }
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
@@ -1028,7 +1026,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
             BtnDokumen.requestFocus();
         } else {
             if (tbSurat.getSelectedRow() > -1) {
-                Sequel.mengedit("surat_keterangan_rohani", "no_rawat=?", "tgl_surat=?,kd_dokter=?,nama_tertulis=?,jabatan=?,instansi=?,"
+                if (Sequel.mengedittf("surat_keterangan_rohani", "no_rawat=?", "tgl_surat=?,kd_dokter=?,nama_tertulis=?,jabatan=?,instansi=?,"
                         + "no_surat_dari=?,perihal_permintaan=?,tgl_pemeriksaan=?,pendidikan=?,pekerjaan=?,alamat=?,keperluan=?,"
                         + "tmpt_lahir=?,nm_pasien=?, no_dokumen=?", 16, new String[]{
                             Valid.SetTgl(Ttgl_surat.getSelectedItem() + ""), kddokter, Tnm_tertulis.getText(), Tjabatan.getText(),
@@ -1036,8 +1034,7 @@ public class DlgSuratKeteranganRohani extends javax.swing.JDialog {
                             TPendidikan.getText(), TPekerjaan.getText(), TAlamat.getText(), Tkeperluan.getText(), TTempLahr.getText(),
                             TPasien.getText(), TnoDokumen.getText(),
                             tbSurat.getValueAt(tbSurat.getSelectedRow(), 0).toString()
-                        });
-                if (tabMode.getRowCount() != 0) {
+                        }) == true) {
                     TCari.setText(TNoRW.getText());
                     tbSurat.requestFocus();
                     emptTeks();
