@@ -843,7 +843,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
             obat = "";
-            Valid.tabelKosong(tabMode);
 
             if (jnsRawat.getSelectedIndex() == 2) {
                 unitnya = "p.nm_poli like '%" + NmPoli.getText() + "%'";
@@ -861,7 +860,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', "
                     + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
-                    + "CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
+                    + "CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
                     //ini menghitung persentase biaya cost pokok
                     + "CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat)+"
                     + "(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat)+"
@@ -883,8 +882,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "ORDER BY enc.tglsep", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");
-            BtnCariActionPerformed(null);
+            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");            
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnExportkeExcelRalanActionPerformed
@@ -907,8 +905,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "WHERE rp.status_lanjut='ralan' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "group by pl.nm_poli ORDER BY pl.nm_poli", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");
-            BtnCariActionPerformed(null);
+            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");            
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnExportkeExcelRekapRalanActionPerformed
@@ -950,7 +947,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
-            Valid.tabelKosong(tabMode1);
 
             if (jnsRawat.getSelectedIndex() == 1) {
                 if ((cmbRuangan.getSelectedItem().equals("-"))) {
@@ -969,7 +965,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', "
                     + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
                     + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
-                    + "CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
+                    + "CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
                     //ini menghitung persentase biaya cost pokok
                     + "CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+"
                     + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+"
@@ -995,8 +991,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
                     + "ORDER BY enc.tglsep", dialog_simpan);
 
-            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");
-            BtnCariActionPerformed(null);
+            JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");            
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnExportkeExcelRanapActionPerformed
@@ -1022,7 +1017,6 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
                     + "group by b.nm_gedung ORDER BY b.nm_gedung", dialog_simpan);
 
             JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");
-            BtnCariActionPerformed(null);
             this.setCursor(Cursor.getDefaultCursor());
         }
     }//GEN-LAST:event_MnExportkeExcelRekapRanapActionPerformed
@@ -1121,7 +1115,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             ps1 = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, "
                     + "format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, "
                     + "IFNULL(egsc.desc,'-') topup_desc, format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
-                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, "
+                    + "CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, "
                     + "format(ifnull(ts.jumlah_tagihan,'0'),0) biayaRC, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) tot_trf_grp, ifnull(ts.jumlah_tagihan,'0') tot_biayaRC, "
                     + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping, ROUND(esc.tarif_obat * 0.8) byRealObat FROM eklaim_new_claim enc "
                     + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
@@ -1246,7 +1240,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             ps = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, "
                     + "concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, format(IFNULL(egsc.desc,'-'),0) topup_desc, "
                     + "format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
-                    + "CONCAT('   ',FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
+                    + "CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, "
                     + "rp.status_lanjut, ROUND(esc.tarif_obat * 0.8) byRealObat, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping FROM eklaim_new_claim enc "
                     + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
                     + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
