@@ -2680,6 +2680,38 @@ public final class sekuel {
         }
         return hari;
     }
+    
+    public String hariINDONESIAnamaHari(String namahari) {
+        hari = "";        
+        if (namahari.equals("Monday")) {
+            hari = "Senin";
+        }
+
+        if (namahari.equals("Tuesday")) {
+            hari = "Selasa";
+        }
+
+        if (namahari.equals("Wednesday")) {
+            hari = "Rabu";
+        }
+
+        if (namahari.equals("Thursday")) {
+            hari = "Kamis";
+        }
+
+        if (namahari.equals("Friday")) {
+            hari = "Jum'at";
+        }
+
+        if (namahari.equals("Saturday")) {
+            hari = "Sabtu";
+        }
+
+        if (namahari.equals("Sunday")) {
+            hari = "Minggu";
+        }
+        return hari;
+    }
 
     public String bulanRomawi(String sql) {
         romawi = "";
