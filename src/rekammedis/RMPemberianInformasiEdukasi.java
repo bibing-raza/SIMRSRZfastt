@@ -3269,9 +3269,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                     isiPenKesProfesiLain = "** Edukasi Lain/Lanjutan **\n\n" + rs3.getString("edukasi_lain_lanjutan") + "\n";
                                 }
                             }
-
+                            
                             isiPenKesOK = isiPenKesDokter + isiPenKesPERBID + isiPenKesNutrisionis + isiPenKesAdmisi + isiPenKesProfesiLain;
-
+                            
                             Sequel.menyimpanIgnore("temporary3",
                                     "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "','"
                                     + rs3.getString("penerima_pendidikan") + "','"
@@ -3300,14 +3300,11 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
                 Sequel.AutoComitTrue();
-
-//            Valid.MyReport("rptAsesmenKeperawatanPerinatologi2.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 2 ]::",
-//                    "SELECT now() tanggal", param);
-//            Valid.MyReport("rptAsesmenKeperawatanPerinatologi1.jasper", "report", "::[ Asesmen Keperawatan Perinatologi Hal. 1 ]::",
-//                    "SELECT now() tanggal", param);
-
-                tampil();
-                emptTeks();
+                
+                Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                        "SELECT * FROM temporary3", param);
+                
+                BtnBatalActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(null, "Maaf, data pemberian informasi & edukasi belum tersimpan untuk pasien ini..!!!");
             }
