@@ -2650,7 +2650,7 @@ public final class sekuel {
                     }
 
                     if (hari.equals("Friday")) {
-                        hari = "Jum'at";
+                        hari = "Jumat";
                     }
 
                     if (hari.equals("Saturday")) {
@@ -2700,7 +2700,7 @@ public final class sekuel {
         }
 
         if (namahari.equals("Friday")) {
-            hari = "Jum'at";
+            hari = "Jumat";
         }
 
         if (namahari.equals("Saturday")) {

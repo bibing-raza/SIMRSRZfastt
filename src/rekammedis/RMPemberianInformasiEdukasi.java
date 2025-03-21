@@ -3300,20 +3300,15 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
                 Sequel.AutoComitTrue();
-                
-                if (Sequel.cariInteger("select count(-1) from temporary3") == 0) {
-                    Sequel.menyimpanIgnore("temporary3",
-                            "'','','','','','','','','','"
-                            + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
-                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
-                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi & Edukasi");
-                    Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                            "SELECT * FROM temporary3", param);
+
+                if (Sequel.cariInteger("select count(-1) from penilaian_informasi_edukasi where no_rawat='" + TNoRw.getText() + "'") == 0) {
+                    Valid.MyReport("rptPemberianInformasiEdukasiKosong.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                            "SELECT date(now()) tanggal", param);
                 } else {
                     Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
                             "SELECT * FROM temporary3", param);
                 }
-                
+
                 BtnBatalActionPerformed(null);
             } else {
                 JOptionPane.showMessageDialog(null, "Maaf, data pemberian informasi & edukasi belum tersimpan untuk pasien ini..!!!");
