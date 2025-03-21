@@ -3269,9 +3269,9 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                     isiPenKesProfesiLain = "** Edukasi Lain/Lanjutan **\n\n" + rs3.getString("edukasi_lain_lanjutan") + "\n";
                                 }
                             }
-                            
+
                             isiPenKesOK = isiPenKesDokter + isiPenKesPERBID + isiPenKesNutrisionis + isiPenKesAdmisi + isiPenKesProfesiLain;
-                            
+
                             Sequel.menyimpanIgnore("temporary3",
                                     "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "','"
                                     + rs3.getString("penerima_pendidikan") + "','"
@@ -3284,7 +3284,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                     + rs3.getString("nm_penerima_edukasi") + "','"
                                     + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
                                     + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
-                                    + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi & Edukasi");                            
+                                    + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi & Edukasi");
                         }
                     } catch (Exception e) {
                         System.out.println("Notifikasi : " + e);
@@ -3301,8 +3301,18 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                 }
                 Sequel.AutoComitTrue();
                 
-                Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
-                        "SELECT * FROM temporary3", param);
+                if (Sequel.cariInteger("select count(-1) from temporary3") == 0) {
+                    Sequel.menyimpanIgnore("temporary3",
+                            "'','','','','','','','','','"
+                            + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
+                            + "'','','','','','','','','','','','','','','','','','','','','','','','','','',''", "Pemberian Informasi & Edukasi");
+                    Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                            "SELECT * FROM temporary3", param);
+                } else {
+                    Valid.MyReport("rptPemberianInformasiEdukasi.jasper", "report", "::[ Pemberian Informasi Dan Edukasi ]::",
+                            "SELECT * FROM temporary3", param);
+                }
                 
                 BtnBatalActionPerformed(null);
             } else {
