@@ -3004,7 +3004,7 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                         while (rs3.next()) {
                             variabelBersihPenilaian();
                             String profesi = "", isiPenKesDokter = "", isiPenKesPERBID = "", isiPenKesNutrisionis = "", isiPenKesNutrisionisLain = "",
-                                    isiPenKesAdmisi = "", isiPenKesAdmisiLain = "", isiPenKesProfesiLain = "", isiPenKesOK = "";
+                                    isiPenKesAdmisi = "", isiPenKesAdmisiLain = "", isiPenKesProfesiLain = "", isiPenKesOK = "", tingkatPemahanan = "", evaluasi = "";
 
                             if (rs3.getString("profesi").equals("Lainnya")) {
                                 if (rs3.getString("profesi_lainya").equals("")) {
@@ -3271,6 +3271,20 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                             }
 
                             isiPenKesOK = isiPenKesDokter + isiPenKesPERBID + isiPenKesNutrisionis + isiPenKesAdmisi + isiPenKesProfesiLain;
+                            
+                            if (rs3.getString("tingkat_pemahaman").equals("2 - ReEdukasi ke 2/3 atau Lebih")) {
+                                tingkatPemahanan = "2 - ReEdukasi\nke 2/3 atau Lebih";
+                            } else {
+                                tingkatPemahanan = rs3.getString("tingkat_pemahaman");
+                            }
+                            
+                            if (rs3.getString("evaluasi_respon").equals("2 - Menyatakan Pemahaman")) {
+                                evaluasi = "2 - Menyatakan\nPemahaman";
+                            } else if (rs3.getString("evaluasi_respon").equals("4 - Mampu Demonstrasi / Simulasi")) {
+                                evaluasi = "4 - Mampu\nDemonstrasi/Simulasi";
+                            } else {
+                                evaluasi = rs3.getString("evaluasi_respon");
+                            }
 
                             Sequel.menyimpanIgnore("temporary3",
                                     "'" + Sequel.hariINDONESIAnamaHari(rs3.getString("harii")) + ", " + rs3.getString("tggl") + "\n" + rs3.getString("jamm") + " Wita" + "','"
@@ -3278,8 +3292,8 @@ public final class RMPemberianInformasiEdukasi extends javax.swing.JDialog {
                                     + rs3.getString("metode") + "','"
                                     + profesi + "','"
                                     + isiPenKesOK + "','"
-                                    + rs3.getString("tingkat_pemahaman") + "','"
-                                    + rs3.getString("evaluasi_respon") + "','"
+                                    + tingkatPemahanan + "','"
+                                    + evaluasi + "','"
                                     + Sequel.cariIsi("select nama from pegawai where nik='" + rs3.getString("nip_petugas") + "'") + "','"
                                     + rs3.getString("nm_penerima_edukasi") + "','"
                                     + "','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','','',"
