@@ -1095,7 +1095,7 @@ public final class SatuSehatMapingObatAlkes extends javax.swing.JDialog {
                     + "on satu_sehat_mapping_obat.kode_brng=databarang.kode_brng "
                     + (TCari.getText().equals("") ? "" : "where satu_sehat_mapping_obat.kode_brng like ? or databarang.nama_brng like ? or "
                     + "satu_sehat_mapping_obat.obat_code like ? or satu_sehat_mapping_obat.obat_display like ? or satu_sehat_mapping_obat.form_display like ? ")
-                    + " order by satu_sehat_mapping_obat.obat_code limit 200");
+                    + " order by satu_sehat_mapping_obat.obat_code");
             try {
                 if (!TCari.getText().equals("")) {
                     ps.setString(1, "%" + TCari.getText() + "%");

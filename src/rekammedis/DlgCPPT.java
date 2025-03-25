@@ -2068,7 +2068,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         cmbSiftPetugas.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -2084,7 +2084,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -2520,7 +2520,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel29.setBounds(0, 40, 80, 23);
 
         DTPTgl.setEditable(false);
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -2695,7 +2695,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowDataSampah.setUndecorated(true);
         WindowDataSampah.setResizable(false);
 
-        internalFrame13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ CPPT Data Sampah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
+        internalFrame13.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 153, 255), 3), "::[ Data Sampah CPPT ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame13.setName("internalFrame13"); // NOI18N
         internalFrame13.setWarnaBawah(new java.awt.Color(245, 250, 240));
         internalFrame13.setLayout(new java.awt.BorderLayout());
@@ -2718,7 +2718,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel30.setPreferredSize(new java.awt.Dimension(60, 23));
         internalFrame17.add(jLabel30);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -2732,7 +2732,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel31.setPreferredSize(new java.awt.Dimension(23, 23));
         internalFrame17.add(jLabel31);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -2878,7 +2878,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbSampah.setName("tbSampah"); // NOI18N
         Scroll6.setViewportView(tbSampah);
 
-        TabHistory.addTab("Data CPPT Terhapus", Scroll6);
+        TabHistory.addTab(".: Riwayat CPPT Terhapus", Scroll6);
 
         Scroll7.setName("Scroll7"); // NOI18N
         Scroll7.setOpaque(true);
@@ -2888,7 +2888,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         tbRiwayat.setName("tbRiwayat"); // NOI18N
         Scroll7.setViewportView(tbRiwayat);
 
-        TabHistory.addTab("Riwayat CPPT", Scroll7);
+        TabHistory.addTab(".: Riwayat CPPT Diganti", Scroll7);
 
         internalFrame13.add(TabHistory, java.awt.BorderLayout.CENTER);
 
@@ -2923,7 +2923,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel43.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass12.add(jLabel43);
 
-        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tgl1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tgl1.setDisplayFormat("dd-MM-yyyy");
         tgl1.setName("tgl1"); // NOI18N
         tgl1.setOpaque(false);
@@ -2937,7 +2937,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel44.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass12.add(jLabel44);
 
-        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tgl2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tgl2.setDisplayFormat("dd-MM-yyyy");
         tgl2.setName("tgl2"); // NOI18N
         tgl2.setOpaque(false);
@@ -3433,7 +3433,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         internalFrame7.add(jLabel8);
         jLabel8.setBounds(0, 38, 180, 23);
 
-        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglCppt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tglCppt.setDisplayFormat("dd-MM-yyyy");
         tglCppt.setName("tglCppt"); // NOI18N
         tglCppt.setOpaque(false);
@@ -3931,7 +3931,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel35.setBounds(0, 8, 120, 23);
 
         tglLapor.setEditable(false);
-        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglLapor.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tglLapor.setDisplayFormat("dd-MM-yyyy");
         tglLapor.setName("tglLapor"); // NOI18N
         tglLapor.setOpaque(false);
@@ -3985,7 +3985,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel38.setBounds(0, 36, 120, 23);
 
         tglVerifikasi.setEditable(false);
-        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglVerifikasi.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         tglVerifikasi.setDisplayFormat("dd-MM-yyyy");
         tglVerifikasi.setName("tglVerifikasi"); // NOI18N
         tglVerifikasi.setOpaque(false);
@@ -4301,7 +4301,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass10.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -4315,7 +4315,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass10.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-03-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -5938,6 +5938,8 @@ public class DlgCPPT extends javax.swing.JDialog {
         WindowDataSampah.setVisible(true);
         
         TCari2.setText(TNoRm.getText());
+        DTPCari3.setDate(new Date());
+        DTPCari4.setDate(new Date());
         BtnCari2ActionPerformed(null);
     }//GEN-LAST:event_MnDataSampahActionPerformed
 
@@ -7935,9 +7937,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         nipKonfirDpjp.setText("-");
         nmKonfirDpjp.setText("-");
         TabPetugas.setSelectedIndex(0);
-        chkDpjp.setSelected(false);
-        DTPCari3.setDate(new Date());
-        DTPCari4.setDate(new Date());
+        chkDpjp.setSelected(false);        
     }
 
     private void getData() {
