@@ -89,10 +89,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 @Override
                 public void changedUpdate(DocumentEvent e) {tampil();}
             });
-        } 
-        
-        ChkInput.setSelected(true);
-        isForm();
+        }
     }
  
     /** This method is called from within the constructor to
@@ -114,13 +111,14 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         BtnNumdenom = new widget.Button();
         BtnKeluar = new widget.Button();
         panelGlass10 = new widget.panelisi();
+        jLabel12 = new widget.Label();
+        cmbGedung1 = new widget.ComboBox();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
         BtnCari = new widget.Button();
         jLabel7 = new widget.Label();
         LCount = new widget.Label();
         PanelInput = new javax.swing.JPanel();
-        FormInput = new widget.PanelBiasa();
         jLabel4 = new widget.Label();
         kdIndikator = new widget.TextBox();
         jLabel9 = new widget.Label();
@@ -131,7 +129,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         cmbGedung = new widget.ComboBox();
         jLabel11 = new widget.Label();
         cmbStatus = new widget.ComboBox();
-        ChkInput = new widget.CekBox();
         internalFrame2 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
         tbMutu = new widget.Table();
@@ -151,7 +148,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
         jPanel3.setName("jPanel3"); // NOI18N
         jPanel3.setOpaque(false);
-        jPanel3.setPreferredSize(new java.awt.Dimension(44, 100));
+        jPanel3.setPreferredSize(new java.awt.Dimension(44, 124));
         jPanel3.setLayout(new java.awt.BorderLayout(1, 1));
 
         panelGlass8.setName("panelGlass8"); // NOI18N
@@ -269,9 +266,22 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
         jPanel3.add(panelGlass8, java.awt.BorderLayout.PAGE_END);
 
+        panelGlass10.setBorder(javax.swing.BorderFactory.createTitledBorder(null, ".: Filter Data ", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
         panelGlass10.setName("panelGlass10"); // NOI18N
         panelGlass10.setPreferredSize(new java.awt.Dimension(44, 44));
         panelGlass10.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 5, 9));
+
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel12.setText("Nama Gedung : ");
+        jLabel12.setName("jLabel12"); // NOI18N
+        jLabel12.setPreferredSize(new java.awt.Dimension(100, 23));
+        panelGlass10.add(jLabel12);
+
+        cmbGedung1.setForeground(new java.awt.Color(0, 0, 0));
+        cmbGedung1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
+        cmbGedung1.setName("cmbGedung1"); // NOI18N
+        cmbGedung1.setPreferredSize(new java.awt.Dimension(150, 23));
+        panelGlass10.add(cmbGedung1);
 
         jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setText("Key Word :");
@@ -326,29 +336,25 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
         PanelInput.setName("PanelInput"); // NOI18N
         PanelInput.setOpaque(false);
-        PanelInput.setPreferredSize(new java.awt.Dimension(192, 120));
-        PanelInput.setLayout(new java.awt.BorderLayout(1, 1));
-
-        FormInput.setName("FormInput"); // NOI18N
-        FormInput.setPreferredSize(new java.awt.Dimension(190, 107));
-        FormInput.setLayout(null);
+        PanelInput.setPreferredSize(new java.awt.Dimension(192, 103));
+        PanelInput.setLayout(null);
 
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));
         jLabel4.setText("Kode Indikator : ");
         jLabel4.setName("jLabel4"); // NOI18N
-        FormInput.add(jLabel4);
+        PanelInput.add(jLabel4);
         jLabel4.setBounds(0, 10, 100, 23);
 
         kdIndikator.setEditable(false);
         kdIndikator.setForeground(new java.awt.Color(0, 0, 0));
         kdIndikator.setName("kdIndikator"); // NOI18N
-        FormInput.add(kdIndikator);
+        PanelInput.add(kdIndikator);
         kdIndikator.setBounds(103, 10, 90, 23);
 
         jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setText("Nama Indikator : ");
         jLabel9.setName("jLabel9"); // NOI18N
-        FormInput.add(jLabel9);
+        PanelInput.add(jLabel9);
         jLabel9.setBounds(0, 38, 100, 23);
 
         TnmIndikator.setForeground(new java.awt.Color(0, 0, 0));
@@ -358,13 +364,13 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 TnmIndikatorKeyPressed(evt);
             }
         });
-        FormInput.add(TnmIndikator);
+        PanelInput.add(TnmIndikator);
         TnmIndikator.setBounds(103, 38, 530, 23);
 
         jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setText("No. Urut :");
         jLabel5.setName("jLabel5"); // NOI18N
-        FormInput.add(jLabel5);
+        PanelInput.add(jLabel5);
         jLabel5.setBounds(195, 10, 60, 23);
 
         TnoUrut.setForeground(new java.awt.Color(0, 0, 0));
@@ -374,57 +380,34 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
                 TnoUrutKeyPressed(evt);
             }
         });
-        FormInput.add(TnoUrut);
+        PanelInput.add(TnoUrut);
         TnoUrut.setBounds(260, 10, 50, 23);
 
         jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setText("Nama Gedung : ");
         jLabel10.setName("jLabel10"); // NOI18N
-        FormInput.add(jLabel10);
+        PanelInput.add(jLabel10);
         jLabel10.setBounds(0, 66, 100, 23);
 
         cmbGedung.setForeground(new java.awt.Color(0, 0, 0));
-        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH" }));
+        cmbGedung.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "-", "VK BERSALIN", "RAWAT JALAN", "IBS", "AR RAUDAH", "HEMODIALISA" }));
         cmbGedung.setName("cmbGedung"); // NOI18N
         cmbGedung.setPreferredSize(new java.awt.Dimension(55, 28));
-        FormInput.add(cmbGedung);
+        PanelInput.add(cmbGedung);
         cmbGedung.setBounds(103, 66, 230, 23);
 
         jLabel11.setForeground(new java.awt.Color(0, 0, 0));
         jLabel11.setText("Status Data :");
         jLabel11.setName("jLabel11"); // NOI18N
-        FormInput.add(jLabel11);
+        PanelInput.add(jLabel11);
         jLabel11.setBounds(340, 66, 80, 23);
 
         cmbStatus.setForeground(new java.awt.Color(0, 0, 0));
         cmbStatus.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Aktif", "Non Aktif" }));
         cmbStatus.setName("cmbStatus"); // NOI18N
         cmbStatus.setPreferredSize(new java.awt.Dimension(55, 28));
-        FormInput.add(cmbStatus);
+        PanelInput.add(cmbStatus);
         cmbStatus.setBounds(425, 66, 80, 23);
-
-        PanelInput.add(FormInput, java.awt.BorderLayout.CENTER);
-
-        ChkInput.setForeground(new java.awt.Color(0, 0, 0));
-        ChkInput.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setMnemonic('M');
-        ChkInput.setText(".: Input Data");
-        ChkInput.setBorderPainted(true);
-        ChkInput.setBorderPaintedFlat(true);
-        ChkInput.setFocusable(false);
-        ChkInput.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        ChkInput.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        ChkInput.setName("ChkInput"); // NOI18N
-        ChkInput.setPreferredSize(new java.awt.Dimension(192, 20));
-        ChkInput.setRolloverIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/143.png"))); // NOI18N
-        ChkInput.setRolloverSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.setSelectedIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/145.png"))); // NOI18N
-        ChkInput.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                ChkInputActionPerformed(evt);
-            }
-        });
-        PanelInput.add(ChkInput, java.awt.BorderLayout.PAGE_END);
 
         internalFrame1.add(PanelInput, java.awt.BorderLayout.PAGE_START);
 
@@ -496,8 +479,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
 
     private void BtnBatalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnBatalActionPerformed
         emptTeks();
-        ChkInput.setSelected(true);
-        isForm(); 
+        tampil();
 }//GEN-LAST:event_BtnBatalActionPerformed
 
     private void BtnBatalKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnBatalKeyPressed
@@ -621,10 +603,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         Valid.pindah(evt, TnmIndikator, cmbGedung);
     }//GEN-LAST:event_TnmIndikatorKeyPressed
 
-    private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkInputActionPerformed
-        isForm();
-    }//GEN-LAST:event_ChkInputActionPerformed
-
     private void TnoUrutKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnoUrutKeyPressed
         Valid.pindah(evt, TnoUrut, TnmIndikator);
     }//GEN-LAST:event_TnoUrutKeyPressed
@@ -632,6 +610,7 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         tampil();
         Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung);
+        Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbGedung1);
     }//GEN-LAST:event_formWindowOpened
 
     private void BtnNumdenomActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnNumdenomActionPerformed
@@ -668,8 +647,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private widget.Button BtnKeluar;
     private widget.Button BtnNumdenom;
     private widget.Button BtnSimpan;
-    public widget.CekBox ChkInput;
-    private widget.PanelBiasa FormInput;
     private widget.Label LCount;
     private javax.swing.JPanel PanelInput;
     private widget.ScrollPane Scroll;
@@ -677,11 +654,13 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
     private widget.TextBox TnmIndikator;
     private widget.TextBox TnoUrut;
     private widget.ComboBox cmbGedung;
+    private widget.ComboBox cmbGedung1;
     private widget.ComboBox cmbStatus;
     private widget.InternalFrame internalFrame1;
     private widget.InternalFrame internalFrame2;
     private widget.Label jLabel10;
     private widget.Label jLabel11;
+    private widget.Label jLabel12;
     private widget.Label jLabel4;
     private widget.Label jLabel5;
     private widget.Label jLabel6;
@@ -698,16 +677,14 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         try {
             ps = koneksi.prepareStatement("SELECT * FROM master_indikator_nasional_mutu WHERE "
-                    + "kd_indikator LIKE ? or "
-                    + "nm_indikator like ? or "
-                    + "gedung like ? or "
-                    + "status_data like ? ORDER BY no_urut, gedung");
+                    + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and kd_indikator LIKE ? or "
+                    + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and nm_indikator like ? or "
+                    + "gedung='" + cmbGedung1.getSelectedItem().toString() + "' and status_data like ? ORDER BY no_urut, gedung");
 
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
                 ps.setString(3, "%" + TCari.getText().trim() + "%");
-                ps.setString(4, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{                        
@@ -756,20 +733,6 @@ public class DlgMasterIndikatorMutu extends javax.swing.JDialog {
             } else {
                 cmbStatus.setSelectedIndex(1);
             }
-        }
-    }
-    
-    public void isForm(){
-        if (ChkInput.isSelected() == true) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 120));
-            FormInput.setVisible(true);
-            ChkInput.setVisible(true);
-        } else if (ChkInput.isSelected() == false) {
-            ChkInput.setVisible(false);
-            PanelInput.setPreferredSize(new Dimension(WIDTH, 20));
-            FormInput.setVisible(false);
-            ChkInput.setVisible(true);
         }
     }
     
