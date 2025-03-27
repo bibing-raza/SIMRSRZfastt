@@ -1069,51 +1069,163 @@ public final class sekuel {
 
     public int cekRekamMedisIGD(String norawat) {
         angka = 0;
-        int a = 0, b = 0, c = 0, d = 0, e = 0, f = 0, g = 0, h = 0, i = 0, j = 0, k = 0, l = 0, m = 0, n = 0, o = 0, p = 0, q = 0, r = 0, s = 0, t = 0;
-        a = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
-        b = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
-        c = cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'");
-        d = cariInteger("select count(-1) from penilaian_awal_keperawatan_igd_resiko where no_rawat='" + norawat + "'");
-        e = cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "'");
-        f = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "'");
-        g = cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + norawat + "'");
-        h = cariInteger("select count(-1) from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat + "'");
-        i = cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and flag_hapus='tidak'");
-        j = cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'");
-        k = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "'");
-        l = cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat + "'");
-        m = cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + norawat + "'");
-        n = cariInteger("select count(-1) from surat_istirahat_sakit where no_rawat='" + norawat + "'");
-        o = cariInteger("select count(-1) from surat_keterangan_sakit where no_rawat='" + norawat + "'");
-        p = cariInteger("select count(-1) from catatan_resep where no_rawat='" + norawat + "'");
-        q = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "'");
-        r = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "'");
-        s = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "'");
-        t = cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norawat + "'");
+        int rmigd1 = 0, rmigd2 = 0, rmigd3 = 0, rmigd4 = 0, rmigd5 = 0, rmigd6 = 0, rmigd7 = 0, rmigd8 = 0, rmigd9 = 0, rmigd10 = 0, rmigd11 = 0,
+                rmigd12 = 0, rmigd13 = 0, rmigd14 = 0, rmigd15 = 0, rmigd16 = 0, rmigd17 = 0, rmigd18 = 0, rmigd19 = 0, rmigd20 = 0;
+        
+        String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "", 
+                tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "";
+        
+        rmigd1 = cariInteger("select count(-1) from triase_igd where no_rawat='" + norawat + "'");
+        rmigd2 = cariInteger("select count(-1) from penilaian_awal_medis_igd where no_rawat='" + norawat + "'");
+        rmigd3 = cariInteger("select count(-1) from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'");
+        rmigd4 = cariInteger("select count(-1) from penilaian_awal_keperawatan_igd_resiko where no_rawat='" + norawat + "'");
+        rmigd5 = cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and status='Ralan'");
+        rmigd6 = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and status='Ralan'");
+        rmigd7 = cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + norawat + "' and nm_unit like '%igd%'");
+        rmigd8 = cariInteger("select count(-1) from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat + "'");
+        rmigd9 = cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and flag_hapus='tidak' and status='Ralan'");
+        rmigd10 = cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'");
+        rmigd11 = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "' and kasus_tindakan='Ralan'");
+        rmigd12 = cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat + "'");
+        rmigd13 = cariInteger("select count(-1) from permintaan_radiologi where no_rawat='" + norawat + "'");
+        rmigd14 = cariInteger("select count(-1) from surat_istirahat_sakit where no_rawat='" + norawat + "'");
+        rmigd15 = cariInteger("select count(-1) from surat_keterangan_sakit where no_rawat='" + norawat + "'");
+        rmigd16 = cariInteger("select count(-1) from catatan_resep where no_rawat='" + norawat + "'");
+        rmigd17 = cariInteger("select count(-1) from lembar_observasi where no_rawat='" + norawat + "'");
+        rmigd18 = cariInteger("select count(-1) from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat like '%igd%'");
+        rmigd19 = cariInteger("select count(-1) from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat like '%igd%'");
+        rmigd20 = cariInteger("select count(-1) from triase_pediatrik where no_rawat='" + norawat + "'");
+        
+        if (rmigd1 > 0) {
+            tbl1 = "triase_igd\n";
+        } else {
+            tbl1 = "";
+        }
+        
+        if (rmigd2 > 0) {
+            tbl2 = "penilaian_awal_medis_igd\n";
+        } else {
+            tbl2 = "";
+        }
+        
+        if (rmigd3 > 0) {
+            tbl3 = "penilaian_awal_keperawatan_igdrz\n";
+        } else {
+            tbl3 = "";
+        }
+        
+        if (rmigd4 > 0) {
+            tbl4 = "penilaian_awal_keperawatan_igd_resiko\n";
+        } else {
+            tbl4 = "";
+        }
+        
+        if (rmigd5 > 0) {
+            tbl5 = "transfer_serah_terima_pasien_igd\n";
+        } else {
+            tbl5 = "";
+        }
+        
+        if (rmigd6 > 0) {
+            tbl6 = "pemberian_obat\n";
+        } else {
+            tbl6 = "";
+        }
+        
+        if (rmigd7 > 0) {
+            tbl7 = "pelaksana_pemberian_obat\n";
+        } else {
+            tbl7 = "";
+        }
+        
+        if (rmigd8 > 0) {
+            tbl8 = "penilaian_awal_medis_obstetri_ralan\n";
+        } else {
+            tbl8 = "";
+        }
+        
+        if (rmigd9 > 0) {
+            tbl9 = "cppt\n";
+        } else {
+            tbl9 = "";
+        }
+        
+        if (rmigd10 > 0) {
+            tbl10 = "cppt_konfirmasi_terapi\n";
+        } else {
+            tbl10 = "";
+        }
+        
+        if (rmigd11 > 0) {
+            tbl11 = "surat_tindakan_kedokteran\n";
+        } else {
+            tbl11 = "";
+        }
+        
+        if (rmigd12 > 0) {
+            tbl12 = "permintaan_lab_raza\n";
+        } else {
+            tbl12 = "";
+        }
+        
+        if (rmigd13 > 0) {
+            tbl13 = "permintaan_radiologi\n";
+        } else {
+            tbl13 = "";
+        }
+        
+        if (rmigd14 > 0) {
+            tbl14 = "surat_istirahat_sakit\n";
+        } else {
+            tbl14 = "";
+        }
+        
+        if (rmigd15 > 0) {
+            tbl15 = "surat_keterangan_sakit\n";
+        } else {
+            tbl15 = "";
+        }
+        
+        if (rmigd16 > 0) {
+            tbl16 = "catatan_resep\n";
+        } else {
+            tbl16 = "";
+        }
+        
+        if (rmigd17 > 0) {
+            tbl17 = "lembar_observasi\n";
+        } else {
+            tbl17 = "";
+        }
+        
+        if (rmigd18 > 0) {
+            tbl18 = "detail_lembar_observasi\n";
+        } else {
+            tbl18 = "";
+        }
+        
+        if (rmigd19 > 0) {
+            tbl19 = "asesmen_pra_sedasi\n";
+        } else {
+            tbl19 = "";
+        }
+        
+        if (rmigd20 > 0) {
+            tbl20 = "triase_pediatrik\n";
+        } else {
+            tbl20 = "";
+        }
 
-        System.out.println("Notifikasi : " + cariIsi("select if(count(-1)=0,'tabel triase_igd KOSONG','tabel triase_igd ADA DATANYA (" + norawat + ")') from triase_igd where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_medis_igd KOSONG','tabel penilaian_awal_medis_igd ADA DATANYA (" + norawat + ")') from penilaian_awal_medis_igd where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_igdrz KOSONG','tabel penilaian_awal_keperawatan_igdrz ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_igdrz where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_igd_resiko KOSONG','tabel penilaian_awal_keperawatan_igd_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_igd_resiko where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel transfer_serah_terima_pasien_igd KOSONG','tabel transfer_serah_terima_pasien_igd ADA DATANYA (" + norawat + ")') from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pemberian_obat KOSONG','tabel pemberian_obat ADA DATANYA (" + norawat + ")') from pemberian_obat where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pelaksana_pemberian_obat KOSONG','tabel pelaksana_pemberian_obat ADA DATANYA (" + norawat + ")') from pelaksana_pemberian_obat where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_medis_obstetri_ralan KOSONG','tabel penilaian_awal_medis_obstetri_ralan ADA DATANYA (" + norawat + ")') from penilaian_awal_medis_obstetri_ralan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel cppt KOSONG','tabel cppt ADA DATANYA (" + norawat + ")') from cppt where no_rawat='" + norawat + "' and flag_hapus='tidak'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel cppt_konfirmasi_terapi KOSONG','tabel cppt_konfirmasi_terapi ADA DATANYA (" + norawat + ")') from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_tindakan_kedokteran KOSONG','tabel surat_tindakan_kedokteran ADA DATANYA (" + norawat + ")') from surat_tindakan_kedokteran where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel permintaan_lab_raza KOSONG','tabel permintaan_lab_raza ADA DATANYA (" + norawat + ")') from permintaan_lab_raza where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel permintaan_radiologi KOSONG','tabel permintaan_radiologi ADA DATANYA (" + norawat + ")') from permintaan_radiologi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_istirahat_sakit KOSONG','tabel surat_istirahat_sakit ADA DATANYA (" + norawat + ")') from surat_istirahat_sakit where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_keterangan_sakit KOSONG','tabel surat_keterangan_sakit ADA DATANYA (" + norawat + ")') from surat_keterangan_sakit where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel catatan_resep KOSONG','tabel catatan_resep ADA DATANYA (" + norawat + ")') from catatan_resep where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel lembar_observasi KOSONG','tabel lembar_observasi ADA DATANYA (" + norawat + ")') from lembar_observasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel detail_lembar_observasi KOSONG','tabel detail_lembar_observasi ADA DATANYA (" + norawat + ")') from detail_lembar_observasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel triase_pediatrik KOSONG','tabel triase_pediatrik ADA DATANYA (" + norawat + ")') from triase_pediatrik where no_rawat='" + norawat + "'") + "\n"
-        );
-
-        angka = a + b + c + d + e + f + g + h + i + j + k + l + m + n + o + p + q + r + s + t;
+        angka = rmigd1 + rmigd2 + rmigd3 + rmigd4 + rmigd5 + rmigd6 + rmigd7 + rmigd8 + rmigd9 + rmigd10 + rmigd11 + rmigd12 + rmigd13 + rmigd14 + rmigd15 
+                + rmigd16 + rmigd17 + rmigd18 + rmigd19 + rmigd20;
+        
+        if (angka > 0) {
+            System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
+                    + tbl1 + tbl2 + tbl3 + tbl4 + tbl5 + tbl6 + tbl7 + tbl8 + tbl9 + tbl10 + tbl11 + tbl12 + tbl13 + tbl14 + tbl15 + tbl16 + tbl17 + tbl18
+                    + tbl19 + tbl20
+            );
+        }
+        
         return angka;
     }
     
@@ -1125,6 +1237,13 @@ public final class sekuel {
                 rm40 = 0, rm41 = 0, rm42 = 0, rm43 = 0, rm44 = 0, rm45 = 0, rm46 = 0, rm47 = 0, rm48 = 0, rm49 = 0, rm50 = 0, rm51 = 0, rm52 = 0,
                 rm53 = 0, rm54 = 0, rm55 = 0, rm56 = 0, rm57 = 0, rm58 = 0, rm59 = 0, rm60 = 0, rm61 = 0, rm62 = 0, rm63 = 0, rm64 = 0, rm65 = 0;
 
+        String tbl1 = "", tbl2 = "", tbl3 = "", tbl4 = "", tbl5 = "", tbl6 = "", tbl7 = "", tbl8 = "", tbl9 = "", tbl10 = "", tbl11 = "", tbl12 = "",
+                tbl13 = "", tbl14 = "", tbl15 = "", tbl16 = "", tbl17 = "", tbl18 = "", tbl19 = "", tbl20 = "", tbl21 = "", tbl22 = "", tbl23 = "",
+                tbl24 = "", tbl25 = "", tbl26 = "", tbl27 = "", tbl28 = "", tbl29 = "", tbl30 = "", tbl31 = "", tbl32 = "", tbl33 = "", tbl34 = "",
+                tbl35 = "", tbl36 = "", tbl37 = "", tbl38 = "", tbl39 = "", tbl40 = "", tbl41 = "", tbl42 = "", tbl43 = "", tbl44 = "", tbl45 = "",
+                tbl46 = "", tbl47 = "", tbl48 = "", tbl49 = "", tbl50 = "", tbl51 = "", tbl52 = "", tbl53 = "", tbl54 = "", tbl55 = "", tbl56 = "",
+                tbl57 = "", tbl58 = "", tbl59 = "", tbl60 = "", tbl61 = "", tbl62 = "", tbl63 = "", tbl64 = "", tbl65 = "";
+
         rm1 = cariInteger("select count(-1) from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm2 = cariInteger("select count(-1) from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
         rm3 = cariInteger("select count(-1) from manajemen_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'");
@@ -1134,9 +1253,9 @@ public final class sekuel {
         rm7 = cariInteger("select count(-1) from cppt where no_rawat='" + norawat + "' and status='Ranap' and flag_hapus='tidak'");
         rm8 = cariInteger("select count(-1) from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'");
         rm9 = cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and status='Ranap'");
-        rm10 = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'");
+        rm10 = cariInteger("select count(-1) from pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%' and status='Ranap'");
         rm11 = cariInteger("select count(-1) from pelaksana_pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'");
-        rm12 = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "'");
+        rm12 = cariInteger("select count(-1) from surat_tindakan_kedokteran where no_rawat='" + norawat + "' and kasus_tindakan='Ranap'");
         rm13 = cariInteger("select count(-1) from spirometri where no_rawat='" + norawat + "'");
         rm14 = cariInteger("select count(-1) from data_persalinan where no_rawat='" + norawat + "'");
         rm15 = cariInteger("select count(-1) from permintaan_lab_raza where no_rawat='" + norawat + "' and status_rawat='Ranap'");
@@ -1190,79 +1309,410 @@ public final class sekuel {
         rm63 = cariInteger("select count(-1) from serah_terima_bayi_pulang_perinatologi where no_rawat='" + norawat + "'");
         rm64 = cariInteger("select count(-1) from pemberian_informasi_edukasi where no_rawat='" + norawat + "'");
         rm65 = cariInteger("select count(-1) from penilaian_informasi_edukasi where no_rawat='" + norawat + "'");
-
-        System.out.println("Notifikasi : " 
-                + cariIsi("select if(count(-1)=0,'tabel catatan_tindakan_keperawatan KOSONG','tabel catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel evaluasi_catatan_tindakan_keperawatan KOSONG','tabel evaluasi_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from evaluasi_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel manajemen_catatan_tindakan_keperawatan KOSONG','tabel manajemen_catatan_tindakan_keperawatan ADA DATANYA (" + norawat + ")') from manajemen_catatan_tindakan_keperawatan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_konsul_unit_ranap KOSONG','tabel surat_konsul_unit_ranap ADA DATANYA (" + norawat + ")') from surat_konsul_unit_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_dewasa_ranap KOSONG','tabel asesmen_medik_dewasa_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_dewasa_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ringkasan_pulang_ranap KOSONG','tabel ringkasan_pulang_ranap ADA DATANYA (" + norawat + ")') from ringkasan_pulang_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel cppt KOSONG','tabel cppt ADA DATANYA (" + norawat + ")') from cppt where no_rawat='" + norawat + "' and status='Ranap' and flag_hapus='tidak'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel cppt_konfirmasi_terapi KOSONG','tabel cppt_konfirmasi_terapi ADA DATANYA (" + norawat + ")') from cppt_konfirmasi_terapi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel transfer_serah_terima_pasien_igd KOSONG','tabel transfer_serah_terima_pasien_igd ADA DATANYA (" + norawat + ")') from transfer_serah_terima_pasien_igd where no_rawat='" + norawat + "' and status='Ranap'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pemberian_obat KOSONG','tabel pemberian_obat ADA DATANYA (" + norawat + ")') from pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pelaksana_pemberian_obat KOSONG','tabel pelaksana_pemberian_obat ADA DATANYA (" + norawat + ")') from pelaksana_pemberian_obat where no_rawat='" + norawat + "' and nm_unit not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_tindakan_kedokteran KOSONG','tabel surat_tindakan_kedokteran ADA DATANYA (" + norawat + ")') from surat_tindakan_kedokteran where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel spirometri KOSONG','tabel spirometri ADA DATANYA (" + norawat + ")') from spirometri where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel data_persalinan KOSONG','tabel data_persalinan ADA DATANYA (" + norawat + ")') from data_persalinan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel permintaan_lab_raza KOSONG','tabel permintaan_lab_raza ADA DATANYA (" + norawat + ")') from permintaan_lab_raza where no_rawat='" + norawat + "' and status_rawat='Ranap'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel permintaan_radiologi KOSONG','tabel permintaan_radiologi ADA DATANYA (" + norawat + ")') from permintaan_radiologi where no_rawat='" + norawat + "' and dari_unit not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_istirahat_sakit KOSONG','tabel surat_istirahat_sakit ADA DATANYA (" + norawat + ")') from surat_istirahat_sakit where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel surat_keterangan_sakit KOSONG','tabel surat_keterangan_sakit ADA DATANYA (" + norawat + ")') from surat_keterangan_sakit where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel catatan_resep_ranap KOSONG','tabel catatan_resep_ranap ADA DATANYA (" + norawat + ")') from catatan_resep_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap_resiko KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap_resiko where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_dewasa_ranap_decubitus KOSONG','tabel penilaian_awal_keperawatan_dewasa_ranap_decubitus ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_dewasa_ranap_decubitus where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pemantauan_harian_parental KOSONG','tabel pemantauan_harian_parental ADA DATANYA (" + norawat + ")') from pemantauan_harian_parental where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pemantauan_harian_24jam KOSONG','tabel pemantauan_harian_24jam ADA DATANYA (" + norawat + ")') from pemantauan_harian_24jam where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel protokol_kemoterapi KOSONG','tabel protokol_kemoterapi ADA DATANYA (" + norawat + ")') from protokol_kemoterapi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_ulang_resiko_jatuh KOSONG','tabel asesmen_ulang_resiko_jatuh ADA DATANYA (" + norawat + ")') from asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel detail_asesmen_ulang_resiko_jatuh KOSONG','tabel detail_asesmen_ulang_resiko_jatuh ADA DATANYA (" + norawat + ")') from detail_asesmen_ulang_resiko_jatuh where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pengelolaan_transfusi_darah KOSONG','tabel pengelolaan_transfusi_darah ADA DATANYA (" + norawat + ")') from pengelolaan_transfusi_darah where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel monitoring_ews_dewasa KOSONG','tabel monitoring_ews_dewasa ADA DATANYA (" + norawat + ")') from monitoring_ews_dewasa where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_anak_ranap KOSONG','tabel penilaian_awal_keperawatan_anak_ranap ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_anak_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_awal_keperawatan_anak_ranap_resiko KOSONG','tabel penilaian_awal_keperawatan_anak_ranap_resiko ADA DATANYA (" + norawat + ")') from penilaian_awal_keperawatan_anak_ranap_resiko where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_anak_ranap KOSONG','tabel asesmen_medik_anak_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_anak_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_ulang_resiko_jatuh_anak KOSONG','tabel asesmen_ulang_resiko_jatuh_anak ADA DATANYA (" + norawat + ")') from asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel detail_asesmen_ulang_resiko_jatuh_anak KOSONG','tabel detail_asesmen_ulang_resiko_jatuh_anak ADA DATANYA (" + norawat + ")') from detail_asesmen_ulang_resiko_jatuh_anak where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel monitoring_pews_anak KOSONG','tabel monitoring_pews_anak ADA DATANYA (" + norawat + ")') from monitoring_pews_anak where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_restrain KOSONG','tabel asesmen_restrain ADA DATANYA (" + norawat + ")') from asesmen_restrain where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel observasi_restrain KOSONG','tabel observasi_restrain ADA DATANYA (" + norawat + ")') from observasi_restrain where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel skrining_gizi_ulang KOSONG','tabel skrining_gizi_ulang ADA DATANYA (" + norawat + ")') from skrining_gizi_ulang where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel monev_asuhan_gizi KOSONG','tabel monev_asuhan_gizi ADA DATANYA (" + norawat + ")') from monev_asuhan_gizi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel assesmen_gizi_ulang KOSONG','tabel assesmen_gizi_ulang ADA DATANYA (" + norawat + ")') from assesmen_gizi_ulang where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel lembar_observasi KOSONG','tabel lembar_observasi ADA DATANYA (" + norawat + ")') from lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel detail_lembar_observasi KOSONG','tabel detail_lembar_observasi ADA DATANYA (" + norawat + ")') from detail_lembar_observasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel transfer_sebelum_tindakan KOSONG','tabel transfer_sebelum_tindakan ADA DATANYA (" + norawat + ")') from transfer_sebelum_tindakan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel transfer_sesudah_tindakan KOSONG','tabel transfer_sesudah_tindakan ADA DATANYA (" + norawat + ")') from transfer_sesudah_tindakan where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_pra_sedasi KOSONG','tabel asesmen_pra_sedasi ADA DATANYA (" + norawat + ")') from asesmen_pra_sedasi where no_rawat='" + norawat + "' and ruang_rawat not like '%igd%'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ceklis_pra_operasi KOSONG','tabel ceklis_pra_operasi ADA DATANYA (" + norawat + ")') from ceklis_pra_operasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ceklis_kesiapan_anestesi KOSONG','tabel ceklis_kesiapan_anestesi ADA DATANYA (" + norawat + ")') from ceklis_kesiapan_anestesi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_pre_induksi KOSONG','tabel asesmen_pre_induksi ADA DATANYA (" + norawat + ")') from asesmen_pre_induksi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_keperawatan_perioperatif KOSONG','tabel asesmen_keperawatan_perioperatif ADA DATANYA (" + norawat + ")') from asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel hitungan_asesmen_keperawatan_perioperatif KOSONG','tabel hitungan_asesmen_keperawatan_perioperatif ADA DATANYA (" + norawat + ")') from hitungan_asesmen_keperawatan_perioperatif where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel perencanaan_pulang_ranap KOSONG','tabel perencanaan_pulang_ranap ADA DATANYA (" + norawat + ")') from perencanaan_pulang_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi1 KOSONG','tabel ceklis_keselamatan_operasi1 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi1 where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi2 KOSONG','tabel ceklis_keselamatan_operasi2 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi2 where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel ceklis_keselamatan_operasi3 KOSONG','tabel ceklis_keselamatan_operasi3 ADA DATANYA (" + norawat + ")') from ceklis_keselamatan_operasi3 where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel catatan_material_operasi KOSONG','tabel catatan_material_operasi ADA DATANYA (" + norawat + ")') from catatan_material_operasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_bedah_ranap KOSONG','tabel asesmen_medik_bedah_ranap ADA DATANYA (" + norawat + ")') from asesmen_medik_bedah_ranap where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_medik_perinatologi KOSONG','tabel asesmen_medik_perinatologi ADA DATANYA (" + norawat + ")') from asesmen_medik_perinatologi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel asesmen_keperawatan_perinatologi KOSONG','tabel asesmen_keperawatan_perinatologi ADA DATANYA (" + norawat + ")') from asesmen_keperawatan_perinatologi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel skor_apgar_downe_cap_jari_perinatologi KOSONG','tabel skor_apgar_downe_cap_jari_perinatologi ADA DATANYA (" + norawat + ")') from skor_apgar_downe_cap_jari_perinatologi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pengamatan_menyusui_perinatologi KOSONG','tabel pengamatan_menyusui_perinatologi ADA DATANYA (" + norawat + ")') from pengamatan_menyusui_perinatologi where no_rawat='" + norawat + "'") + "\n"                
-                + cariIsi("select if(count(-1)=0,'tabel rekonsiliasi_obat KOSONG','tabel rekonsiliasi_obat ADA DATANYA (" + norawat + ")') from rekonsiliasi_obat where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel rekonsiliasi_obat_igd KOSONG','tabel rekonsiliasi_obat_igd ADA DATANYA (" + norawat + ")') from rekonsiliasi_obat_igd where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel serah_terima_bayi_pulang_perinatologi KOSONG','tabel serah_terima_bayi_pulang_perinatologi ADA DATANYA (" + norawat + ")') from serah_terima_bayi_pulang_perinatologi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel pemberian_informasi_edukasi KOSONG','tabel pemberian_informasi_edukasi ADA DATANYA (" + norawat + ")') from pemberian_informasi_edukasi where no_rawat='" + norawat + "'") + "\n"
-                + cariIsi("select if(count(-1)=0,'tabel penilaian_informasi_edukasi KOSONG','tabel penilaian_informasi_edukasi ADA DATANYA (" + norawat + ")') from penilaian_informasi_edukasi where no_rawat='" + norawat + "'") + "\n"
-        );
+        
+        if (rm1 > 0) {
+            tbl1 = "catatan_tindakan_keperawatan\n";
+        } else {
+            tbl1 = "";
+        }
+        
+        if (rm2 > 0) {
+            tbl2 = "evaluasi_catatan_tindakan_keperawatan\n";
+        } else {
+            tbl2 = "";
+        }
+        
+        if (rm3 > 0) {
+            tbl3 = "manajemen_catatan_tindakan_keperawatan\n";
+        } else {
+            tbl3 = "";
+        }
+        
+        if (rm4 > 0) {
+            tbl4 = "surat_konsul_unit_ranap\n";
+        } else {
+            tbl4 = "";
+        }
+        
+        if (rm5 > 0) {
+            tbl5 = "asesmen_medik_dewasa_ranap\n";
+        } else {
+            tbl5 = "";
+        }
+        
+        if (rm6 > 0) {
+            tbl6 = "ringkasan_pulang_ranap\n";
+        } else {
+            tbl6 = "";
+        }
+        
+        if (rm7 > 0) {
+            tbl7 = "cppt\n";
+        } else {
+            tbl7 = "";
+        }
+        
+        if (rm8 > 0) {
+            tbl8 = "cppt_konfirmasi_terapi\n";
+        } else {
+            tbl8 = "";
+        }
+        
+        if (rm9 > 0) {
+            tbl9 = "transfer_serah_terima_pasien_igd\n";
+        } else {
+            tbl9 = "";
+        }
+        
+        if (rm10 > 0) {
+            tbl10 = "pemberian_obat\n";
+        } else {
+            tbl10 = "";
+        }
+        
+        if (rm11 > 0) {
+            tbl11 = "pelaksana_pemberian_obat\n";
+        } else {
+            tbl11 = "";
+        }
+        
+        if (rm12 > 0) {
+            tbl12 = "surat_tindakan_kedokteran\n";
+        } else {
+            tbl12 = "";
+        }
+        
+        if (rm13 > 0) {
+            tbl13 = "spirometri\n";
+        } else {
+            tbl13 = "";
+        }
+        
+        if (rm14 > 0) {
+            tbl14 = "data_persalinan\n";
+        } else {
+            tbl14 = "";
+        }
+        
+        if (rm15 > 0) {
+            tbl15 = "permintaan_lab_raza\n";
+        } else {
+            tbl15 = "";
+        }
+        
+        if (rm16 > 0) {
+            tbl16 = "permintaan_radiologi\n";
+        } else {
+            tbl16 = "";
+        }
+        
+        if (rm17 > 0) {
+            tbl17 = "surat_istirahat_sakit\n";
+        } else {
+            tbl17 = "";
+        }
+        
+        if (rm18 > 0) {
+            tbl18 = "surat_keterangan_sakit\n";
+        } else {
+            tbl18 = "";
+        }
+        
+        if (rm19 > 0) {
+            tbl19 = "catatan_resep_ranap\n";
+        } else {
+            tbl19 = "";
+        }
+        
+        if (rm20 > 0) {
+            tbl20 = "penilaian_awal_keperawatan_dewasa_ranap\n";
+        } else {
+            tbl20 = "";
+        }
+        
+        if (rm21 > 0) {
+            tbl21 = "penilaian_awal_keperawatan_dewasa_ranap_resiko\n";
+        } else {
+            tbl21 = "";
+        }
+        
+        if (rm22 > 0) {
+            tbl22 = "penilaian_awal_keperawatan_dewasa_ranap_decubitus\n";
+        } else {
+            tbl22 = "";
+        }
+        
+        if (rm23 > 0) {
+            tbl23 = "pemantauan_harian_parental\n";
+        } else {
+            tbl23 = "";
+        }
+        
+        if (rm24 > 0) {
+            tbl24 = "pemantauan_harian_24jam\n";
+        } else {
+            tbl24 = "";
+        }
+        
+        if (rm25 > 0) {
+            tbl25 = "protokol_kemoterapi\n";
+        } else {
+            tbl25 = "";
+        }
+        
+        if (rm26 > 0) {
+            tbl26 = "asesmen_ulang_resiko_jatuh\n";
+        } else {
+            tbl26 = "";
+        }
+        
+        if (rm27 > 0) {
+            tbl27 = "detail_asesmen_ulang_resiko_jatuh\n";
+        } else {
+            tbl27 = "";
+        }
+        
+        if (rm28 > 0) {
+            tbl28 = "pengelolaan_transfusi_darah\n";
+        } else {
+            tbl28 = "";
+        }
+        
+        if (rm29 > 0) {
+            tbl29 = "monitoring_ews_dewasa\n";
+        } else {
+            tbl29 = "";
+        }
+        
+        if (rm30 > 0) {
+            tbl30 = "penilaian_awal_keperawatan_anak_ranap\n";
+        } else {
+            tbl30 = "";
+        }
+        
+        if (rm31 > 0) {
+            tbl31 = "penilaian_awal_keperawatan_anak_ranap_resiko\n";
+        } else {
+            tbl31 = "";
+        }
+        
+        if (rm32 > 0) {
+            tbl32 = "asesmen_medik_anak_ranap\n";
+        } else {
+            tbl32 = "";
+        }
+        
+        if (rm33 > 0) {
+            tbl33 = "asesmen_ulang_resiko_jatuh_anak\n";
+        } else {
+            tbl33 = "";
+        }
+        
+        if (rm34 > 0) {
+            tbl34 = "detail_asesmen_ulang_resiko_jatuh_anak\n";
+        } else {
+            tbl34 = "";
+        }
+        
+        if (rm35 > 0) {
+            tbl35 = "monitoring_pews_anak\n";
+        } else {
+            tbl35 = "";
+        }
+        
+        if (rm36 > 0) {
+            tbl36 = "asesmen_restrain\n";
+        } else {
+            tbl36 = "";
+        }
+        
+        if (rm37 > 0) {
+            tbl37 = "observasi_restrain\n";
+        } else {
+            tbl37 = "";
+        }
+        
+        if (rm38 > 0) {
+            tbl38 = "skrining_gizi_ulang\n";
+        } else {
+            tbl38 = "";
+        }
+        
+        if (rm39 > 0) {
+            tbl39 = "monev_asuhan_gizi\n";
+        } else {
+            tbl39 = "";
+        }
+        
+        if (rm40 > 0) {
+            tbl40 = "assesmen_gizi_ulang\n";
+        } else {
+            tbl40 = "";
+        }
+        
+        if (rm41 > 0) {
+            tbl41 = "lembar_observasi\n";
+        } else {
+            tbl41 = "";
+        }
+        
+        if (rm42 > 0) {
+            tbl42 = "detail_lembar_observasi\n";
+        } else {
+            tbl42 = "";
+        }
+        
+        if (rm43 > 0) {
+            tbl43 = "transfer_sebelum_tindakan\n";
+        } else {
+            tbl43 = "";
+        }
+        
+        if (rm44 > 0) {
+            tbl44 = "transfer_sesudah_tindakan\n";
+        } else {
+            tbl44 = "";
+        }
+        
+        if (rm45 > 0) {
+            tbl45 = "asesmen_pra_sedasi\n";
+        } else {
+            tbl45 = "";
+        }
+        
+        if (rm46 > 0) {
+            tbl46 = "ceklis_pra_operasi\n";
+        } else {
+            tbl46 = "";
+        }
+        
+        if (rm47 > 0) {
+            tbl47 = "ceklis_kesiapan_anestesi\n";
+        } else {
+            tbl47 = "";
+        }
+        
+        if (rm48 > 0) {
+            tbl48 = "asesmen_pre_induksi\n";
+        } else {
+            tbl48 = "";
+        }
+        
+        if (rm49 > 0) {
+            tbl49 = "asesmen_keperawatan_perioperatif\n";
+        } else {
+            tbl49 = "";
+        }
+        
+        if (rm50 > 0) {
+            tbl50 = "hitungan_asesmen_keperawatan_perioperatif\n";
+        } else {
+            tbl50 = "";
+        }
+        
+        if (rm51 > 0) {
+            tbl51 = "perencanaan_pulang_ranap\n";
+        } else {
+            tbl51 = "";
+        }
+        
+        if (rm52 > 0) {
+            tbl52 = "ceklis_keselamatan_operasi1\n";
+        } else {
+            tbl52 = "";
+        }
+        
+        if (rm53 > 0) {
+            tbl53 = "ceklis_keselamatan_operasi2\n";
+        } else {
+            tbl53 = "";
+        }
+        
+        if (rm54 > 0) {
+            tbl54 = "ceklis_keselamatan_operasi3\n";
+        } else {
+            tbl54 = "";
+        }
+        
+        if (rm55 > 0) {
+            tbl55 = "catatan_material_operasi\n";
+        } else {
+            tbl55 = "";
+        }
+        
+        if (rm56 > 0) {
+            tbl56 = "asesmen_medik_bedah_ranap\n";
+        } else {
+            tbl56 = "";
+        }
+        
+        if (rm57 > 0) {
+            tbl57 = "asesmen_medik_perinatologi\n";
+        } else {
+            tbl57 = "";
+        }
+        
+        if (rm58 > 0) {
+            tbl58 = "asesmen_keperawatan_perinatologi\n";
+        } else {
+            tbl58 = "";
+        }
+        
+        if (rm59 > 0) {
+            tbl59 = "skor_apgar_downe_cap_jari_perinatologi\n";
+        } else {
+            tbl59 = "";
+        }
+        
+        if (rm60 > 0) {
+            tbl60 = "pengamatan_menyusui_perinatologi\n";
+        } else {
+            tbl60 = "";
+        }
+        
+        if (rm61 > 0) {
+            tbl61= "rekonsiliasi_obat\n";
+        } else {
+            tbl61 = "";
+        }
+        
+        if (rm62 > 0) {
+            tbl62= "rekonsiliasi_obat_igd\n";
+        } else {
+            tbl62 = "";
+        }
+        
+        if (rm63 > 0) {
+            tbl63= "serah_terima_bayi_pulang_perinatologi\n";
+        } else {
+            tbl63 = "";
+        }
+        
+        if (rm64 > 0) {
+            tbl64= "pemberian_informasi_edukasi\n";
+        } else {
+            tbl64 = "";
+        }
+        
+        if (rm65 > 0) {
+            tbl65= "penilaian_informasi_edukasi\n";
+        } else {
+            tbl65 = "";
+        }
         
         angka = rm1 + rm2 + rm3 + rm4 + rm5 + rm6 + rm7 + rm8 + rm9 + rm10 + rm11 + rm12 + rm13 + rm14 + rm15 + rm16 + rm17 + rm18 + rm19
                 + rm20 + rm21 + rm22 + rm23 + rm24 + rm25 + rm26 + rm27 + rm28 + rm29 + rm30 + rm31 + rm32 + rm33 + rm34 + rm35 + rm36 + rm37
                 + rm38 + rm39 + rm40 + rm41 + rm42 + rm43 + rm44 + rm45 + rm46 + rm47 + rm48 + rm49 + rm50 + rm51 + rm52 + rm53 + rm54 + rm55 + rm56
                 + rm57 + rm58 + rm59 + rm60 + rm61 + rm62 + rm63 + rm64 + rm65;
+        
+        if (angka > 0) {
+            System.out.println("\nPesan  : no. rawat " + norawat + " utk. data e-RM nya masih ada tersimpan ditabel berikut ini :\n"
+                    + tbl1 + tbl2 + tbl3 + tbl4 + tbl5 + tbl6 + tbl7 + tbl8 + tbl9 + tbl10 + tbl11 + tbl12 + tbl13 + tbl14 + tbl15 + tbl16 + tbl17 + tbl18
+                    + tbl19 + tbl20 + tbl21 + tbl22 + tbl23 + tbl24 + tbl25 + tbl26 + tbl27 + tbl28 + tbl29 + tbl30 + tbl31 + tbl32 + tbl33 + tbl34 + tbl35
+                    + tbl36 + tbl37 + tbl38 + tbl39 + tbl40 + tbl41 + tbl42 + tbl43 + tbl44 + tbl45 + tbl46 + tbl47 + tbl48 + tbl49 + tbl50 + tbl51 + tbl52
+                    + tbl53 + tbl54 + tbl55 + tbl56 + tbl57 + tbl58 + tbl59 + tbl60 + tbl61 + tbl62 + tbl63 + tbl64 + tbl65
+            );
+        }
 
         return angka;
     }
