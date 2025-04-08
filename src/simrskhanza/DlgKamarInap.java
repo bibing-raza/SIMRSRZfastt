@@ -16187,6 +16187,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                     param.put("kesadaran", rsLaprm.getString("kesadaran") + ", GCS : " + rsLaprm.getString("GCS"));
                     param.put("tandavital", "Tekanan Darah : " + rsLaprm.getString("tekanan_darah") + " mmHg, Suhu : " + rsLaprm.getString("suhu") + " °C, Nadi : " + rsLaprm.getString("nadi") + " x/mnt, Frekuensi Nafas : " + rsLaprm.getString("frekuensi_nafas") + " x/mnt");
                     param.put("edukasi", rsLaprm.getString("edukasi"));
+                    param.put("catatanPenting", rsLaprm.getString("catatan_penting"));
                     param.put("terapiPlg", rsLaprm.getString("terapi_pulang"));
                     param.put("pengobatan", rsLaprm.getString("pengobatan_dilanjutkan") + " " + rsLaprm.getString("dokter_luar_lanjutan"));
 

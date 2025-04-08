@@ -1876,7 +1876,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
         chkTglKontrol.setBounds(730, 884, 130, 23);
 
         TglKontrol.setEditable(false);
-        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TglKontrol.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TglKontrol.setDisplayFormat("dd-MM-yyyy");
         TglKontrol.setName("TglKontrol"); // NOI18N
         TglKontrol.setOpaque(false);
@@ -3060,6 +3060,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
             param.put("kesadaran", TKesadaran.getText() + ", GCS : " + Tgcs.getText());
             param.put("tandavital", "Tekanan Darah : " + TTensi.getText() + " mmHg, Suhu : " + TSuhu.getText() + " °C, Nadi : " + TNadi.getText() + " x/mnt, Frekuensi Nafas : " + TFrekuensiNafas.getText() + " x/mnt");
             param.put("edukasi", Tedukasi.getText());
+            param.put("catatanPenting", TCatatan.getText());
             param.put("terapiPlg", TTerapiPulang.getText());
             param.put("pengobatan", cmbLanjutan.getSelectedItem().toString() + " " + TDokterLuar.getText());
 
@@ -3394,6 +3395,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     param.put("kesadaran", TKesadaran.getText() + ", GCS : " + Tgcs.getText());
                     param.put("tandavital", "Tekanan Darah : " + TTensi.getText() + " mmHg, Suhu : " + TSuhu.getText() + " °C, Nadi : " + TNadi.getText() + " x/mnt, Frekuensi Nafas : " + TFrekuensiNafas.getText() + " x/mnt");
                     param.put("edukasi", Tedukasi.getText());
+                    param.put("catatanPenting", TCatatan.getText());
                     param.put("terapiPlg", TTerapiPulang.getText());
                     param.put("pengobatan", cmbLanjutan.getSelectedItem().toString() + " " + TDokterLuar.getText());
 
