@@ -49,17 +49,17 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
     private validasi Valid = new validasi();
     private DlgPasien pasien = new DlgPasien(null, false);
     private PreparedStatement pspenyakit, psdiagnosapasien, psprosedur, pstindakanpasien, psralan, ps2, ps3, ps4, psreg, pskamar, psanak,
-            pspenyakitsekunder, pspasien, psdiagnosa, pstindakan, psdokter, psinadrg, psTINinadrg, pscekbilling, pscarirm, pscaripasien,
+            pspenyakitsekunder, pspasien, psdiagnosa, pstindakan, psdokter, psinadrg, psTINinadrg, pscekbilling, pscarirm, pscaripasien, pspros,
             pscarialamat, pscaridpjp, psdokterranap, psdokterralan, pskamarin, pstamkur, psbiayasekali, psbiayaharian, pskategori, psralandokter,
             psralandrpr, psranapdokter, psranapdrpr, psralanperawat, psranapperawat, psperiksalab, psdetaillab, psperiksarad, psoperasi, pscariobat,
             psobatlangsung, psobatoperasi, psreturobat, psreseppulang, pstambahanbiaya, pspotonganbiaya, psservice, pssudahmasuk, psRujuk, pscaripoli,
-            pscariralandokter, pscariralandrpr, pscariralanperawat, pscarilab, pscariradiologi, pstambahan, pspotongan, psbilling;
+            pscariralandokter, pscariralandrpr, pscariralanperawat, pscarilab, pscariradiologi, pstambahan, pspotongan, psbilling, psLaprm, psdiag;
     private ResultSet rs, rs1, rs2, rs3, rs4, rspasien, rsdiagnosa, rstindakan, rsdokter, rsralan, rsrad, rshslRad, rsreg, rskamar, rscaripoli,
-            rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rscekbilling, rscarirm, rscaripasien, rsanak, rscarialamat, rscaridpjp, rsdokterranap,
+            rsLISMaster, rsLIS1, rsLIS2, rsLIS3, rscekbilling, rscarirm, rscaripasien, rsanak, rscarialamat, rscaridpjp, rsdokterranap, rspros,
             rsdokterralan, rskamarin, rstamkur, rsbiayasekali, rsbiayaharian, rskategori, rsralandokter, rsralandrpr, rsranapdokter, rsranapdrpr,
             rsralanperawat, rsranapperawat, rsperiksalab, rsdetaillab, rsperiksarad, rsoperasi, rscariobat, rsobatlangsung, rsobatoperasi, 
             rsreturobat, rsreseppulang, rstambahanbiaya, rspotonganbiaya, rsservice, rssudahmasuk, rsRujuk, rscariralandokter, rscariralandrpr,
-            rscariralanperawat, rscarilab, rscariradiologi, rstambahan, rspotongan, rsbilling;
+            rscariralanperawat, rscarilab, rscariradiologi, rstambahan, rspotongan, rsbilling, rsLaprm, rsdiag;
     private int jml = 0, i = 0, index = 0, jml1 = 0, s = 0, index1 = 0, cek = 0, cekINADRG = 0, r = 0,
             cekPremier = 0, cekPremierINADRG = 0, lis1 = 0, lis2 = 0, lisM = 0, x = 0, z = 0;
     private double Jasa_Medik_Dokter_Tindakan_Ralan = 0, Jasa_Medik_Paramedis_Tindakan_Ralan = 0, KSO_Tindakan_Ralan = 0, Jasa_Medik_Dokter_Laborat_Ralan = 0,
@@ -70,7 +70,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             kode1, nama1, ciripny1, keterangan1, kategori1, cirium1;
     private boolean[] pilih, pilih2, pilih3;
     private String tglklaim = "", drdpjp = "", poli = "", crBayar = "", cekKlaim = "", jlhTindakan = "", noRWTerakhir = "", nmPoli = "", centangdokterralan = "",
-            rinciandokterralan = "", centangobatralan = "", tampilkan_ppnobat_ralan = "";
+            rinciandokterralan = "", centangobatralan = "", tampilkan_ppnobat_ralan = "", diagsekunder = "", tindakan = "";
     private String biaya = "", tambahan = "", totals = "", norawatbayi = "", centangdokterranap = "", kd_pj = "", jamplgRS1 = "",
             rinciandokterranap = "", rincianoperasi = "", hariawal = "", notaranap = "", tampilkan_administrasi_di_billingranap = "",
             Tindakan_Ranap = "", Laborat_Ranap = "", Radiologi_Ranap = "", Obat_Ranap = "", Registrasi_Ranap = "",
@@ -977,6 +977,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         BtnHapus = new widget.Button();
         BtnPrint = new widget.Button();
         BtnKlaim = new widget.Button();
+        BtnResume = new widget.Button();
         BtnAll = new widget.Button();
         jLabel10 = new widget.Label();
         LCount = new widget.Label();
@@ -1121,7 +1122,7 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
         nmpoli.setHighlighter(null);
         nmpoli.setName("nmpoli"); // NOI18N
 
-        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2025 11:01:45" }));
+        DTPTgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "05-04-2025 17:38:34" }));
         DTPTgl.setDisplayFormat("dd-MM-yyyy HH:mm:ss");
         DTPTgl.setName("DTPTgl"); // NOI18N
         DTPTgl.setOpaque(false);
@@ -1259,6 +1260,20 @@ public class DlgDiagnosaPenyakit extends javax.swing.JDialog {
             }
         });
         panelGlass8.add(BtnKlaim);
+
+        BtnResume.setForeground(new java.awt.Color(0, 0, 0));
+        BtnResume.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/PatientFile.png"))); // NOI18N
+        BtnResume.setMnemonic('R');
+        BtnResume.setText("Rngksn. Pulang / Resume");
+        BtnResume.setToolTipText("Alt+R");
+        BtnResume.setName("BtnResume"); // NOI18N
+        BtnResume.setPreferredSize(new java.awt.Dimension(200, 30));
+        BtnResume.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnResumeActionPerformed(evt);
+            }
+        });
+        panelGlass8.add(BtnResume);
 
         BtnAll.setForeground(new java.awt.Color(0, 0, 0));
         BtnAll.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/Search-16x16.png"))); // NOI18N
@@ -2699,11 +2714,22 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     }//GEN-LAST:event_chkBayarActionPerformed
 
     private void TNoNotaKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TNoNotaKeyPressed
-        // TODO add your handling code here:
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             isRawat();
         }
     }//GEN-LAST:event_TNoNotaKeyPressed
+
+    private void BtnResumeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnResumeActionPerformed
+        if (TNoRw.getText().equals("")) {
+            Valid.textKosong(TNoRw, "Pasien");
+        } else {
+            if (Sequel.cariInteger("select count(-1) from ringkasan_pulang_ranap where no_rawat='" + TNoRw.getText() + "'") > 0) {
+                cetakRingkasanRanap();
+            } else {
+                JOptionPane.showMessageDialog(null, "Data ringkasan pulang rawat inap tidak ditemukan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnResumeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2733,6 +2759,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
     private widget.Button BtnKeluar;
     private widget.Button BtnKlaim;
     private widget.Button BtnPrint;
+    private widget.Button BtnResume;
     private widget.Button BtnSeek4;
     private widget.Button BtnSimpan;
     private widget.CekBox ChkInput;
@@ -3047,8 +3074,10 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         chkDiagnosa.setSelected(false);
         if (Status.getSelectedIndex() == 0) {
             chkDiagnosa.setEnabled(true);
+            BtnResume.setEnabled(false);
         } else {
             chkDiagnosa.setEnabled(false);
+            BtnResume.setEnabled(true);
         }
     }
 
@@ -6917,5 +6946,132 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
         //TtlSemua.setText(Valid.SetAngka3(ttl));
         TtlSemua.setText(Valid.SetAngka3(Valid.roundUp(ttl, 0)));
         ttl = Valid.roundUp(ttl, 0);
+    }
+    
+    private void cetakRingkasanRanap() {
+        try {
+            psLaprm = koneksi.prepareStatement("select *, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, if(p.jk='L','Laki-laki','Perempuan') jenkel, "
+                    + "date_format(rp.tgl_registrasi,'%d-%m-%Y') tgl_msk from ringkasan_pulang_ranap r "
+                    + "inner join reg_periksa rp on rp.no_rawat = r.no_rawat inner join pasien p on p.no_rkm_medis = rp.no_rkm_medis where r.no_rawat='" + TNoRw.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    diagsekunder = "";
+                    tindakan = "";
+
+                    //simpan diagnosa sekunder ICD-10------------->>
+                    try {
+                        psdiag = koneksi.prepareStatement("SELECT dp.kd_penyakit icd_sekunder, py.ciri_ciri diag_sekunder FROM diagnosa_pasien dp "
+                                + "INNER JOIN penyakit py ON py.kd_penyakit = dp.kd_penyakit "
+                                + "WHERE dp.no_rawat like '%" + rsLaprm.getString("no_rawat") + "%' AND dp.prioritas <> 1 AND dp. STATUS = 'ranap'");
+                        try {
+                            rsdiag = psdiag.executeQuery();
+                            i = 1;
+                            while (rsdiag.next()) {
+                                if (diagsekunder.equals("")) {
+                                    diagsekunder = i + ". " + rsdiag.getString("diag_sekunder") + " (ICD 10 : " + rsdiag.getString("icd_sekunder") + ")";
+                                } else {
+                                    diagsekunder = diagsekunder + "\n" + i + ". " + rsdiag.getString("diag_sekunder") + " (ICD 10 : " + rsdiag.getString("icd_sekunder") + ")";
+                                }
+                                i++;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+
+                    //simpan tindakan prosedur ------------->>
+                    try {
+                        pspros = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp INNER JOIN icd9 i ON i.kode = pp.kode "
+                                + "WHERE pp.no_rawat like '%" + rsLaprm.getString("no_rawat") + "%' AND pp. STATUS = 'ranap'");
+                        try {
+                            rspros = pspros.executeQuery();
+                            i = 1;
+                            while (rspros.next()) {
+                                if (tindakan.equals("")) {
+                                    tindakan = i + ". " + rspros.getString("deskripsi_panjang") + " (ICD 9 CM : " + rspros.getString("kode") + ")";
+                                } else {
+                                    tindakan = tindakan + "\n" + i + ". " + rspros.getString("deskripsi_panjang") + " (ICD 9 CM : " + rspros.getString("kode") + ")";
+                                }
+                                i++;
+                            }
+                        } catch (Exception e) {
+                            System.out.println("Notifikasi : " + e);
+                        }
+                    } catch (Exception e) {
+                        System.out.println("Notifikasi : " + e);
+                    }
+
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("alamatrs", akses.getalamatrs());
+                    param.put("kotars", akses.getkabupatenrs());
+                    param.put("propinsirs", akses.getpropinsirs());
+                    param.put("kontakrs", akses.getkontakrs());
+                    param.put("emailrs", akses.getemailrs());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+                    param.put("norm", rsLaprm.getString("no_rkm_medis"));
+                    param.put("nmpasien", rsLaprm.getString("nm_pasien"));
+                    param.put("tgllahir", rsLaprm.getString("tgllahir"));
+                    param.put("jk", rsLaprm.getString("jenkel"));
+                    param.put("tglmsk", rsLaprm.getString("tgl_msk"));
+                    param.put("tglplg", Sequel.cariIsi("select date_format(tgl_keluar,'%d-%m-%Y') from kamar_inap where stts_pulang not in ('-','Pindah Kamar') and no_rawat='" + rsLaprm.getString("no_rawat") + "'"));
+                    param.put("rgrawat", Sequel.cariIsi("select b.nm_bangsal from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
+                            + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + TNoRw.getText() + "' "
+                            + "order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1"));
+                    param.put("crbayar", Sequel.cariIsi("select pj.png_jawab from reg_periksa r inner join penjab pj on pj.kd_pj=r.kd_pj where r.no_rawat='" + TNoRw.getText() + "'"));
+                    param.put("drDPJP", Sequel.cariIsi("select ifnull(d.nm_dokter,'-') from dpjp_ranap dr inner join dokter d on d.kd_dokter=dr.kd_dokter where dr.no_rawat='" + TNoRw.getText() + "'"));
+                    param.put("nmdokter", rsLaprm.getString("nm_dokter_pengirim"));
+                    param.put("alasan", rsLaprm.getString("alasan_masuk_dirawat"));
+                    param.put("ringkasan", rsLaprm.getString("ringkasan_riwayat_penyakit"));
+                    param.put("fisik", rsLaprm.getString("pemeriksaan_fisik"));
+                    param.put("penunjang", rsLaprm.getString("pemeriksaan_penunjang"));
+                    param.put("terapi", rsLaprm.getString("terapi_pengobatan"));
+                    param.put("diagnosaUtama", rsLaprm.getString("diagnosa_utama"));
+                    param.put("diagnosaSekunder", rsLaprm.getString("diagnosa_sekunder"));
+                    param.put("diagnosaSekunderList", diagsekunder);
+                    param.put("tindakan", rsLaprm.getString("tindakan_prosedur"));
+                    param.put("tindakanList", tindakan);
+                    param.put("png_jawab_px", rsLaprm.getString("penanggung_jwb_pasien"));
+                    param.put("kondisiPlg", Sequel.cariIsi("select stts_pulang from kamar_inap where no_rawat='" + TNoRw.getText() + "' order by tgl_masuk desc, jam_masuk desc limit 1"));
+                    param.put("keadaanumum", rsLaprm.getString("keadaan_umum"));
+                    param.put("kesadaran", rsLaprm.getString("kesadaran") + ", GCS : " + rsLaprm.getString("GCS"));
+                    param.put("tandavital", "Tekanan Darah : " + rsLaprm.getString("tekanan_darah") + " mmHg, Suhu : " + rsLaprm.getString("suhu") + " °C, Nadi : " + rsLaprm.getString("nadi") + " x/mnt, Frekuensi Nafas : " + rsLaprm.getString("frekuensi_nafas") + " x/mnt");
+                    param.put("edukasi", rsLaprm.getString("edukasi"));
+                    param.put("catatanPenting", rsLaprm.getString("catatan_penting"));
+                    param.put("terapiPlg", rsLaprm.getString("terapi_pulang"));
+                    param.put("pengobatan", rsLaprm.getString("pengobatan_dilanjutkan") + " " + rsLaprm.getString("dokter_luar_lanjutan"));
+
+                    if (rsLaprm.getString("cek_tgl_kontrol").equals("tidak")) {
+                        param.put("tglkontrolpoli", "-");
+                    } else {
+                        param.put("tglkontrolpoli", Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_kontrol_poliklinik from ringkasan_pulang_ranap where no_rawat='" + rsLaprm.getString("no_rawat") + "'")));
+                    }
+
+                    param.put("tglRingkasan", "Martapura, " + Valid.SetTglINDONESIA(Sequel.cariIsi("select tgl_keluar from kamar_inap where "
+                            + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1")));
+                    param.put("jamRingkasan", "Jam          : " + Sequel.cariIsi("select time_format(jam_keluar,'%H:%i') from kamar_inap where "
+                            + "no_rawat='" + rsLaprm.getString("no_rawat") + "' and stts_pulang<>'Pindah Kamar' order by tgl_masuk desc, jam_masuk desc limit 1") + " WITA");
+
+                    Valid.MyReport("rptRingkasanPulangRanap.jasper", "report", "::[ Lembar Ringkasan Pulang Pasien Rawat Inap ]::",
+                            "select date(now())", param);
+                    this.setCursor(Cursor.getDefaultCursor());
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
+        }
     }
 }
