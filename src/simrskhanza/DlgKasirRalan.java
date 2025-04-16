@@ -108,6 +108,7 @@ import rekammedis.RMProtokolKemoterapi;
 import rekammedis.RMTindakanKedokteran;
 import rekammedis.RMTransferSerahTerimaIGD;
 import rekammedis.RMTriasePediatrik;
+import rekammedis.RMTriasePonek;
 
 /**
  *
@@ -790,6 +791,9 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDataTriasePediatrik = new javax.swing.JMenu();
         MnInputDataTriasePedia = new javax.swing.JMenuItem();
         MnLihatDataTriasePedia = new javax.swing.JMenuItem();
+        MnDataTriasePonek = new javax.swing.JMenu();
+        MnInputDataTriasePonek = new javax.swing.JMenuItem();
+        MnLihatDataTriasePonek = new javax.swing.JMenuItem();
         MnAssesmenMedikIGD = new javax.swing.JMenu();
         MnInputDataAssesmenMedikIGD = new javax.swing.JMenuItem();
         MnLihatDataAssesmenMedikIGD = new javax.swing.JMenuItem();
@@ -2256,6 +2260,53 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         MnDataTriasePediatrik.add(MnLihatDataTriasePedia);
 
         MnRMGawatDarurat.add(MnDataTriasePediatrik);
+
+        MnDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnDataTriasePonek.setText("Triase Ponek IGD");
+        MnDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnDataTriasePonek.setIconTextGap(5);
+        MnDataTriasePonek.setName("MnDataTriasePonek"); // NOI18N
+        MnDataTriasePonek.setOpaque(true);
+        MnDataTriasePonek.setPreferredSize(new java.awt.Dimension(230, 26));
+
+        MnInputDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnInputDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnInputDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnInputDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnInputDataTriasePonek.setText("Input Data");
+        MnInputDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnInputDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnInputDataTriasePonek.setIconTextGap(5);
+        MnInputDataTriasePonek.setName("MnInputDataTriasePonek"); // NOI18N
+        MnInputDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnInputDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnInputDataTriasePonekActionPerformed(evt);
+            }
+        });
+        MnDataTriasePonek.add(MnInputDataTriasePonek);
+
+        MnLihatDataTriasePonek.setBackground(new java.awt.Color(255, 255, 254));
+        MnLihatDataTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnLihatDataTriasePonek.setForeground(new java.awt.Color(50, 50, 50));
+        MnLihatDataTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnLihatDataTriasePonek.setText("Lihat Data");
+        MnLihatDataTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnLihatDataTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnLihatDataTriasePonek.setIconTextGap(5);
+        MnLihatDataTriasePonek.setName("MnLihatDataTriasePonek"); // NOI18N
+        MnLihatDataTriasePonek.setPreferredSize(new java.awt.Dimension(98, 26));
+        MnLihatDataTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnLihatDataTriasePonekActionPerformed(evt);
+            }
+        });
+        MnDataTriasePonek.add(MnLihatDataTriasePonek);
+
+        MnRMGawatDarurat.add(MnDataTriasePonek);
 
         MnAssesmenMedikIGD.setBackground(new java.awt.Color(255, 255, 254));
         MnAssesmenMedikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
@@ -9511,9 +9562,22 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             tbKasirRalan.requestFocus();
         } else {
             if (tbKasirRalan.getSelectedRow() != -1) {
-//                if (akses.getadmin() == true) {
-                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
-                            + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                        + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                    this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                    akses.setform("DlgKasirRalan");
+                    RMTriasePediatrik form = new RMTriasePediatrik(null, false);
+                    form.isCek();
+                    form.emptTeks();
+                    form.setNoRm(TNoRw.getText());
+                    form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                    form.setLocationRelativeTo(internalFrame1);
+                    form.setVisible(true);
+                    this.setCursor(Cursor.getDefaultCursor());
+                } else {
+                    if ((Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                            || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                            || (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(waktu_simpan,Interval 24 DAY_HOUR)") == 1)) {
                         this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
                         akses.setform("DlgKasirRalan");
                         RMTriasePediatrik form = new RMTriasePediatrik(null, false);
@@ -9525,27 +9589,10 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
                         form.setVisible(true);
                         this.setCursor(Cursor.getDefaultCursor());
                     } else {
-                        if ((Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "'") == 0)
-                                || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
-                                || (Sequel.cariInteger("select count(-1) from triase_pediatrik where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(waktu_simpan,Interval 24 DAY_HOUR)") == 1)) {
-                            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
-                            akses.setform("DlgKasirRalan");
-                            RMTriasePediatrik form = new RMTriasePediatrik(null, false);
-                            form.isCek();
-                            form.emptTeks();
-                            form.setNoRm(TNoRw.getText());
-                            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
-                            form.setLocationRelativeTo(internalFrame1);
-                            form.setVisible(true);
-                            this.setCursor(Cursor.getDefaultCursor());
-                        } else {
-                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
-                            tbKasirRalan.requestFocus();
-                        }
+                        JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                        tbKasirRalan.requestFocus();
                     }
-//                } else {
-//                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan..!!");
-//                }
+                }
             }
         }
     }//GEN-LAST:event_MnInputDataTriasePediaActionPerformed
@@ -9583,6 +9630,61 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
             }
         }
     }//GEN-LAST:event_ppSudahDiperiksaDokterBtnPrintActionPerformed
+
+    private void MnInputDataTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnInputDataTriasePonekActionPerformed
+        if (tabModekasir.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+            TCari.requestFocus();
+        } else if (TNoRw.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKasirRalan.requestFocus();
+        } else if (!kdpoli.getText().equals("IGDK")) {
+            JOptionPane.showMessageDialog(null, "Hanya untuk pasien yang dirawat di Ponek IGD saja...!!!");
+            tbKasirRalan.requestFocus();
+        } else {
+            if (tbKasirRalan.getSelectedRow() != -1) {
+                if (akses.getadmin() == true) {
+                    if (akses.getadmin() == true || Sequel.cariInteger("select count(-1) from riwayat_akses_rekam_medis where "
+                            + "no_rawat='" + TNoRw.getText() + "' and status_akses='terbuka' and dokumen_rme='ralan'") > 0) {
+                        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                        akses.setform("DlgKasirRalan");
+                        RMTriasePonek form = new RMTriasePonek(null, false);
+                        form.isCek();
+                        form.emptTeks();
+                        form.setNoRm(TNoRw.getText());
+                        form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                        form.setLocationRelativeTo(internalFrame1);
+                        form.setVisible(true);
+                        this.setCursor(Cursor.getDefaultCursor());
+                    } else {
+                        if ((Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "'") == 0)
+                                || (Sequel.cariInteger("select count(-1) from transfer_serah_terima_pasien_igd where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tgl_jam_pindah,Interval 24 DAY_HOUR)") == 1)
+                                || (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat = '" + TNoRw.getText() + "' and now() <= DATE_ADD(tanggal,Interval 24 DAY_HOUR)") == 1)) {
+                            this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                            akses.setform("DlgKasirRalan");
+                            RMTriasePonek form = new RMTriasePonek(null, false);
+                            form.isCek();
+                            form.emptTeks();
+                            form.setNoRm(TNoRw.getText());
+                            form.setSize(internalFrame1.getWidth() - 40, internalFrame1.getHeight() - 40);
+                            form.setLocationRelativeTo(internalFrame1);
+                            form.setVisible(true);
+                            this.setCursor(Cursor.getDefaultCursor());
+                        } else {
+                            JOptionPane.showMessageDialog(null, "Sudah Lewat Dari 24 Jam, akses rekam medis sudah tertutup !!!");
+                            tbKasirRalan.requestFocus();
+                        }
+                    }
+                } else {
+                    JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+                }
+            }
+        }
+    }//GEN-LAST:event_MnInputDataTriasePonekActionPerformed
+
+    private void MnLihatDataTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnLihatDataTriasePonekActionPerformed
+        JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+    }//GEN-LAST:event_MnLihatDataTriasePonekActionPerformed
 
     /**
      * @param args the command line arguments
@@ -9665,6 +9767,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnDataRalan1;
     private javax.swing.JMenu MnDataTriaseIGD;
     private javax.swing.JMenu MnDataTriasePediatrik;
+    private javax.swing.JMenu MnDataTriasePonek;
     private javax.swing.JMenuItem MnDiagnosa;
     private javax.swing.JMenuItem MnDibuka;
     private javax.swing.JMenuItem MnDiet;
@@ -9691,6 +9794,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnInputDataTransferSerahTerimaIGD;
     private javax.swing.JMenuItem MnInputDataTriaseIGD;
     private javax.swing.JMenuItem MnInputDataTriasePedia;
+    private javax.swing.JMenuItem MnInputDataTriasePonek;
     private javax.swing.JMenuItem MnJadwalOperasi;
     private javax.swing.JMenuItem MnKamarInap;
     private javax.swing.JMenu MnKemenkes;
@@ -9711,6 +9815,7 @@ private void MnDataPemberianObatActionPerformed(java.awt.event.ActionEvent evt) 
     private javax.swing.JMenuItem MnLihatDataTransferSerahTerimaIGD;
     private javax.swing.JMenuItem MnLihatDataTriaseIGD;
     private javax.swing.JMenuItem MnLihatDataTriasePedia;
+    private javax.swing.JMenuItem MnLihatDataTriasePonek;
     private javax.swing.JMenuItem MnLihatSEP;
     private javax.swing.JMenuItem MnNoResep;
     private javax.swing.JMenuItem MnNomorTB;

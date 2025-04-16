@@ -116,6 +116,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         TabRekamMedis = new javax.swing.JTabbedPane();
         scrollInput = new widget.ScrollPane();
         FormInput = new widget.PanelBiasa();
+        BtnTriasePonek = new widget.ButtonBig();
         BtnAsesmenRestrain = new widget.ButtonBig();
         BtnObservasiRestrain = new widget.ButtonBig();
         BtnAsesmenMedikBedah = new widget.ButtonBig();
@@ -323,6 +324,19 @@ public class DlgRMEranap extends javax.swing.JDialog {
         FormInput.setName("FormInput"); // NOI18N
         FormInput.setPreferredSize(new java.awt.Dimension(870, 834));
         FormInput.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.CENTER, 8, 25));
+
+        BtnTriasePonek.setForeground(new java.awt.Color(0, 0, 0));
+        BtnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/report_icon.png"))); // NOI18N
+        BtnTriasePonek.setText("Triase Ponek");
+        BtnTriasePonek.setIconTextGap(0);
+        BtnTriasePonek.setName("BtnTriasePonek"); // NOI18N
+        BtnTriasePonek.setPreferredSize(new java.awt.Dimension(200, 90));
+        BtnTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnTriasePonekActionPerformed(evt);
+            }
+        });
+        FormInput.add(BtnTriasePonek);
 
         BtnAsesmenRestrain.setForeground(new java.awt.Color(0, 0, 0));
         BtnAsesmenRestrain.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/medical_record.png"))); // NOI18N
@@ -1861,6 +1875,27 @@ public class DlgRMEranap extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_BtnPemberianInformasiEdukasiActionPerformed
 
+    private void BtnTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnTriasePonekActionPerformed
+        if (TNoRW.getText().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu salah satu datanya pada tabel...!!!");
+        } else {
+            if (akses.getadmin() == true) {
+                this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+                akses.setform("DlgRMEranap");
+                RMTriasePonek form = new RMTriasePonek(null, false);
+                form.emptTeks();
+                form.isCek();
+                form.setNoRm(TNoRW.getText());
+                form.setSize(internalFrame1.getWidth(), internalFrame1.getHeight());
+                form.setLocationRelativeTo(internalFrame1);
+                form.setVisible(true);
+                this.setCursor(Cursor.getDefaultCursor());
+            } else {
+                JOptionPane.showMessageDialog(null, "Masih dalam proses dikerjakan...!!!");
+            }
+        }
+    }//GEN-LAST:event_BtnTriasePonekActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -1928,6 +1963,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
     private widget.ButtonBig BtnSkriningUlangGizi;
     private widget.ButtonBig BtnTransferSerahTerima;
     private widget.ButtonBig BtnTransferTindakan;
+    private widget.ButtonBig BtnTriasePonek;
     private widget.PanelBiasa FormInput;
     private widget.PanelBiasa FormInput1;
     private widget.TextBox TNmPasien;
@@ -1999,6 +2035,7 @@ public class DlgRMEranap extends javax.swing.JDialog {
         BtnCatatanMaterial.setEnabled(akses.getkegiatan_operasi());
         BtnRekonsiliasiObat.setEnabled(akses.getberi_obat());
         BtnPemberianInformasiEdukasi.setEnabled(akses.getcppt());
+        BtnTriasePonek.setEnabled(akses.getcppt());
     }
     
     public void setData(String norw, String norm, String nmpasien,
