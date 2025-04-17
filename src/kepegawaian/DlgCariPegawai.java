@@ -53,7 +53,7 @@ public final class DlgCariPegawai extends javax.swing.JDialog {
         for (int i = 0; i < 24; i++) {
             TableColumn column = tbPegawai.getColumnModel().getColumn(i);
             if (i == 0) {
-                column.setPreferredWidth(150);
+                column.setPreferredWidth(130);
             } else if (i == 1) {
                 column.setPreferredWidth(200);
             } else if (i == 2) {

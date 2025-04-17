@@ -78,7 +78,7 @@ public final class DlgRestorePetugas extends javax.swing.JDialog {
             if(i==0){
                 column.setPreferredWidth(20);
             }else if(i==1){
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             }else if(i==2){
                 column.setPreferredWidth(200);
             }else if(i==3){

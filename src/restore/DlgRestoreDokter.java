@@ -31,12 +31,12 @@ import javax.swing.table.TableColumn;
  */
 public final class DlgRestoreDokter extends javax.swing.JDialog {
     private final DefaultTableModel tabMode;
-    private sekuel Sequel=new sekuel();
-    private validasi Valid=new validasi();
-    private Connection koneksi=koneksiDB.condb();
+    private sekuel Sequel = new sekuel();
+    private validasi Valid = new validasi();
+    private Connection koneksi = koneksiDB.condb();
     private PreparedStatement ps;
     private ResultSet rs;
-    private int i=0;
+    private int i = 0;
 
     /** Creates new form DlgJnsPerawatanRalan
      * @param parent
@@ -46,9 +46,9 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
         initComponents();
         
         Object[] row = {
-            "P","Kode Dokter","Nama Dokter","J.K.","Tmp.Lahir",
-            "Tgl.Lahir","G.D.","Agama","Alamat Tinggal",
-            "No.HP/Telp","Stts.Nikah","Spesialis","Alumni",
+            "P", "Kode Dokter", "Nama Dokter", "J.K.", "Tmp.Lahir",
+            "Tgl.Lahir", "G.D.", "Agama", "Alamat Tinggal",
+            "No.HP/Telp", "Stts.Nikah", "Spesialis", "Alumni",
             "No.Ijin Praktek"
         };
         tabMode = new DefaultTableModel(null, row) {
@@ -61,10 +61,10 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
                 return a;
             }
             Class[] types = new Class[]{
-                java.lang.Boolean.class, java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
-                java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,
-                java.lang.Object.class,java.lang.Object.class,java.lang.Object.class,java.lang.Object.class ,
-                java.lang.Object.class ,java.lang.Object.class 
+                java.lang.Boolean.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class, java.lang.Object.class, java.lang.Object.class,
+                java.lang.Object.class, java.lang.Object.class
             };
 
             @Override
@@ -72,46 +72,47 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
                 return types[columnIndex];
             }
         };
-        tbObat.setModel(tabMode);
-
-        tbObat.setPreferredScrollableViewportSize(new Dimension(800, 800));
-        tbObat.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
+        
+        tbDokter.setModel(tabMode);
+        tbDokter.setPreferredScrollableViewportSize(new Dimension(800, 800));
+        tbDokter.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
         for (int i = 0; i < 14; i++) {
-            TableColumn column = tbObat.getColumnModel().getColumn(i);
-            if(i==0){
+            TableColumn column = tbDokter.getColumnModel().getColumn(i);
+            if (i == 0) {
                 column.setPreferredWidth(20);
-            }else if(i==1){
-                column.setPreferredWidth(100);
-            }else if(i==2){
+            } else if (i == 1) {
+                column.setPreferredWidth(130);
+            } else if (i == 2) {
                 column.setPreferredWidth(200);
-            }else if(i==3){
+            } else if (i == 3) {
                 column.setPreferredWidth(40);
-            }else if(i==4){
+            } else if (i == 4) {
                 column.setPreferredWidth(100);
-            }else if(i==5){
+            } else if (i == 5) {
                 column.setPreferredWidth(100);
-            }else if(i==6){
+            } else if (i == 6) {
                 column.setPreferredWidth(40);
-            }else if(i==7){
+            } else if (i == 7) {
                 column.setPreferredWidth(150);
-            }else if(i==8){
+            } else if (i == 8) {
                 column.setPreferredWidth(150);
-            }else if(i==9){
+            } else if (i == 9) {
                 column.setPreferredWidth(100);
-            }else if(i==10){
+            } else if (i == 10) {
                 column.setPreferredWidth(100);
-            }else if(i==11){
+            } else if (i == 11) {
                 column.setPreferredWidth(150);
-            }else if(i==12){
+            } else if (i == 12) {
                 column.setPreferredWidth(200);
-            }else if(i==13){
+            } else if (i == 13) {
                 column.setPreferredWidth(100);
             }
         }
-        tbObat.setDefaultRenderer(Object.class, new WarnaTable());
+        tbDokter.setDefaultRenderer(Object.class, new WarnaTable());
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));
+        
         if(koneksiDB.cariCepat().equals("aktif")){
             TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
                 @Override
@@ -121,10 +122,7 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
                 @Override
                 public void changedUpdate(DocumentEvent e) {tampil();}
             });
-        }  
-        
-       
-    
+        }
     }
 
     /** This method is called from within the constructor to
@@ -138,7 +136,7 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
 
         internalFrame1 = new widget.InternalFrame();
         Scroll = new widget.ScrollPane();
-        tbObat = new widget.Table();
+        tbDokter = new widget.Table();
         panelGlass8 = new widget.panelisi();
         jLabel6 = new widget.Label();
         TCari = new widget.TextBox();
@@ -159,17 +157,17 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
             }
         });
 
-        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Restore & Hapus Permanen Data Sampah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12), new java.awt.Color(0, 0, 0))); // NOI18N
+        internalFrame1.setBorder(javax.swing.BorderFactory.createTitledBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(240, 245, 235)), "::[ Restore & Hapus Permanen Data Sampah ]::", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 1, 12))); // NOI18N
         internalFrame1.setName("internalFrame1"); // NOI18N
         internalFrame1.setLayout(new java.awt.BorderLayout(1, 1));
 
         Scroll.setName("Scroll"); // NOI18N
         Scroll.setOpaque(true);
 
-        tbObat.setAutoCreateRowSorter(true);
-        tbObat.setToolTipText("Silahkan klik untuk memilih data yang mau diedit, untuk menghapus data silahkan centang kemudian klik hapus");
-        tbObat.setName("tbObat"); // NOI18N
-        Scroll.setViewportView(tbObat);
+        tbDokter.setAutoCreateRowSorter(true);
+        tbDokter.setToolTipText("Silahkan klik untuk memilih data yang mau diedit, untuk menghapus data silahkan centang kemudian klik hapus");
+        tbDokter.setName("tbDokter"); // NOI18N
+        Scroll.setViewportView(tbDokter);
 
         internalFrame1.add(Scroll, java.awt.BorderLayout.CENTER);
 
@@ -310,36 +308,36 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void BtnSimpanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnSimpanActionPerformed
-        for(i=0;i<tbObat.getRowCount();i++){ 
-            if(tbObat.getValueAt(i,0).toString().equals("true")){
-                Sequel.mengedit("dokter","kd_dokter='"+tbObat.getValueAt(i,1).toString()+"'","status='1'");
-                Sequel.mengedit("pegawai","nik='"+tbObat.getValueAt(i,1).toString()+"'","stts_aktif='AKTIF'");
+        for (i = 0; i < tbDokter.getRowCount(); i++) {
+            if (tbDokter.getValueAt(i, 0).toString().equals("true")) {
+                Sequel.mengedit("dokter", "kd_dokter='" + tbDokter.getValueAt(i, 1).toString() + "'", "status='1'");
+                Sequel.mengedit("pegawai", "nik='" + tbDokter.getValueAt(i, 1).toString() + "'", "stts_aktif='AKTIF'");
             }
-        }        
+        }
         BtnCariActionPerformed(evt);
 }//GEN-LAST:event_BtnSimpanActionPerformed
 
     private void BtnSimpanKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnSimpanKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnSimpanActionPerformed(null);
-        }else{
-            Valid.pindah(evt,BtnHapus,BtnKeluar);
+        } else {
+            Valid.pindah(evt, BtnHapus, BtnKeluar);
         }
 }//GEN-LAST:event_BtnSimpanKeyPressed
 
     private void BtnHapusActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapusActionPerformed
-        for(i=0;i<tbObat.getRowCount();i++){ 
-            if(tbObat.getValueAt(i,0).toString().equals("true")){
-                Sequel.meghapus("dokter","kd_dokter",tbObat.getValueAt(i,1).toString());
+        for (i = 0; i < tbDokter.getRowCount(); i++) {
+            if (tbDokter.getValueAt(i, 0).toString().equals("true")) {
+                Sequel.meghapus("dokter", "kd_dokter", tbDokter.getValueAt(i, 1).toString());
             }
-        }        
+        }
         BtnCariActionPerformed(evt);
 }//GEN-LAST:event_BtnHapusActionPerformed
 
     private void BtnHapusKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnHapusKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnHapusActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnSimpan);
         }
 }//GEN-LAST:event_BtnHapusKeyPressed
@@ -349,17 +347,19 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             dispose();
-        }else{Valid.pindah(evt,BtnSimpan,TCari);}
+        } else {
+            Valid.pindah(evt, BtnSimpan, TCari);
+        }
 }//GEN-LAST:event_BtnKeluarKeyPressed
 
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
+        if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_DOWN){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_DOWN) {
             BtnCari.requestFocus();
-        }else if(evt.getKeyCode()==KeyEvent.VK_PAGE_UP){
+        } else if (evt.getKeyCode() == KeyEvent.VK_PAGE_UP) {
             BtnKeluar.requestFocus();
         }
 }//GEN-LAST:event_TCariKeyPressed
@@ -369,9 +369,9 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnCariActionPerformed
 
     private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             BtnCariActionPerformed(null);
-        }else{
+        } else {
             Valid.pindah(evt, TCari, BtnAll);
         }
 }//GEN-LAST:event_BtnCariKeyPressed
@@ -382,10 +382,10 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnAllActionPerformed
 
     private void BtnAllKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllKeyPressed
-        if(evt.getKeyCode()==KeyEvent.VK_SPACE){
+        if (evt.getKeyCode() == KeyEvent.VK_SPACE) {
             tampil();
             TCari.setText("");
-        }else{
+        } else {
             Valid.pindah(evt, BtnCari, BtnHapus);
         }
 }//GEN-LAST:event_BtnAllKeyPressed
@@ -423,28 +423,28 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
     private widget.Label jLabel6;
     private widget.Label jLabel7;
     private widget.panelisi panelGlass8;
-    private widget.Table tbObat;
+    private widget.Table tbDokter;
     // End of variables declaration//GEN-END:variables
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("select dokter.kd_dokter,dokter.nm_dokter,dokter.jk,dokter.tmp_lahir, "+
-                   "dokter.tgl_lahir,dokter.gol_drh,dokter.agama,dokter.almt_tgl,dokter.no_telp, "+
-                   "dokter.stts_nikah,spesialis.nm_sps,dokter.alumni,dokter.no_ijn_praktek "+
-                   "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "+
-                   "where dokter.status='0' and dokter.kd_dokter like ? or "+
-                   "dokter.status='0' and dokter.nm_dokter like ? or "+
-                   "dokter.status='0' and dokter.tmp_lahir like ? or "+
-                   "dokter.status='0' and dokter.tgl_lahir like ? or "+
-                   "dokter.status='0' and dokter.agama like ? or "+
-                   "dokter.status='0' and dokter.almt_tgl like ? or "+
-                   "dokter.status='0' and dokter.no_telp like ? or "+
-                   "dokter.status='0' and dokter.stts_nikah like ? or "+
-                   "dokter.status='0' and spesialis.nm_sps like ? or "+
-                   "dokter.status='0' and dokter.alumni like ? or "+
-                   "dokter.status='0' and dokter.no_ijn_praktek like ? "+
-                   "order by dokter.kd_dokter");
+            ps = koneksi.prepareStatement("select dokter.kd_dokter,dokter.nm_dokter,dokter.jk,dokter.tmp_lahir, "
+                    + "dokter.tgl_lahir,dokter.gol_drh,dokter.agama,dokter.almt_tgl,dokter.no_telp, "
+                    + "dokter.stts_nikah,spesialis.nm_sps,dokter.alumni,dokter.no_ijn_praktek "
+                    + "from dokter inner join spesialis on dokter.kd_sps=spesialis.kd_sps "
+                    + "where dokter.status='0' and dokter.kd_dokter like ? or "
+                    + "dokter.status='0' and dokter.nm_dokter like ? or "
+                    + "dokter.status='0' and dokter.tmp_lahir like ? or "
+                    + "dokter.status='0' and dokter.tgl_lahir like ? or "
+                    + "dokter.status='0' and dokter.agama like ? or "
+                    + "dokter.status='0' and dokter.almt_tgl like ? or "
+                    + "dokter.status='0' and dokter.no_telp like ? or "
+                    + "dokter.status='0' and dokter.stts_nikah like ? or "
+                    + "dokter.status='0' and spesialis.nm_sps like ? or "
+                    + "dokter.status='0' and dokter.alumni like ? or "
+                    + "dokter.status='0' and dokter.no_ijn_praktek like ? "
+                    + "order by dokter.kd_dokter");
             try {
                 ps.setString(1, "%" + TCari.getText().trim() + "%");
                 ps.setString(2, "%" + TCari.getText().trim() + "%");
@@ -460,26 +460,25 @@ public final class DlgRestoreDokter extends javax.swing.JDialog {
                 rs = ps.executeQuery();
                 while (rs.next()) {
                     tabMode.addRow(new Object[]{
-                        false, rs.getString(1),rs.getString(2),rs.getString(3),rs.getString(4),
-                        rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),
-                        rs.getString(9),rs.getString(10),rs.getString(11),rs.getString(12),
+                        false, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4),
+                        rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8),
+                        rs.getString(9), rs.getString(10), rs.getString(11), rs.getString(12),
                         rs.getString(13)});
                 }
                 LCount.setText("" + tabMode.getRowCount());
             } catch (SQLException e) {
                 System.out.println("Notifikasi : " + e);
-            } finally{
-                if(rs != null){
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                
-                if(ps != null){
+
+                if (ps != null) {
                     ps.close();
                 }
             }
         } catch (Exception e) {
             System.out.println("Notifikasi : " + e);
         }
-    }
-    
+    }    
 }

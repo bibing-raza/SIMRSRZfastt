@@ -71,7 +71,7 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
             } else if (i == 3) {
                 column.setPreferredWidth(300);
             } else if (i == 4) {
-                column.setPreferredWidth(65);
+                column.setPreferredWidth(120);
             } else if (i == 5) {
                 column.setPreferredWidth(130);
             } else if (i == 6) {

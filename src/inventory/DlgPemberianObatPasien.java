@@ -810,6 +810,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         panelisi14 = new widget.panelisi();
         ChkTglBeri = new widget.CekBox();
         TtglBeri = new widget.Tanggal();
+        ChkNoRm = new widget.CekBox();
         jLabel31 = new widget.Label();
         TCari2 = new widget.TextBox();
         BtnCari2 = new widget.Button();
@@ -1421,12 +1422,28 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglBeri);
 
-        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2024" }));
+        TtglBeri.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglBeri.setDisplayFormat("dd-MM-yyyy");
         TtglBeri.setName("TtglBeri"); // NOI18N
         TtglBeri.setOpaque(false);
         TtglBeri.setPreferredSize(new java.awt.Dimension(95, 23));
         panelisi14.add(TtglBeri);
+
+        ChkNoRm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkNoRm.setForeground(new java.awt.Color(0, 0, 0));
+        ChkNoRm.setText("No. RM Pasien Ini");
+        ChkNoRm.setBorderPainted(true);
+        ChkNoRm.setBorderPaintedFlat(true);
+        ChkNoRm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkNoRm.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkNoRm.setName("ChkNoRm"); // NOI18N
+        ChkNoRm.setPreferredSize(new java.awt.Dimension(113, 23));
+        ChkNoRm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkNoRmActionPerformed(evt);
+            }
+        });
+        panelisi14.add(ChkNoRm);
 
         jLabel31.setForeground(new java.awt.Color(0, 0, 0));
         jLabel31.setText("Key Word :");
@@ -1436,7 +1453,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
 
         TCari2.setForeground(new java.awt.Color(0, 0, 0));
         TCari2.setName("TCari2"); // NOI18N
-        TCari2.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari2.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCari2KeyPressed(evt);
@@ -2545,7 +2562,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(100, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2024" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2559,7 +2576,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "28-10-2024" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3880,7 +3897,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
 
-                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Simpan");
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Simpan (Copy Paste)");
                 DTPCari1.setDate(tgl_beri.getDate());
                 JOptionPane.showMessageDialog(null, "Data pemberian obat berhasil di copy..!!!!");
                 tampil();
@@ -4064,11 +4081,12 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
         if (TNoRW.getText().equals("")) {
             JOptionPane.showMessageDialog(null, "Silahkan pilih dulu salah satu data pasiennya...!!!!");
         } else {
-            WindowCopyData.setSize(829, internalFrame1.getHeight() - 40);
+            WindowCopyData.setSize(899, internalFrame1.getHeight() - 40);
             WindowCopyData.setLocationRelativeTo(internalFrame1);
             WindowCopyData.setAlwaysOnTop(false);
             WindowCopyData.setVisible(true);
 
+            ChkNoRm.setSelected(false);
             TtglBeri.setDate(new Date());
             ChkTglBeri.setSelected(false);
             TtglBeri.setEnabled(false);
@@ -4242,6 +4260,8 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
                 }
+                
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Pemberian Obat Pasien", "Simpan (Copy Paste)");
                 JOptionPane.showMessageDialog(null, "Data jadwal pemberian obat pasien yang dipilih berhasil di copy..!!!!");
                 BtnKeluar1ActionPerformed(null);
                 BtnCariActionPerformed(null);
@@ -4260,6 +4280,14 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
             }
         }
     }//GEN-LAST:event_ChkRuanganActionPerformed
+
+    private void ChkNoRmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkNoRmActionPerformed
+        if (ChkNoRm.isSelected() == true) {
+            TCari2.setText(TNoRM.getText());
+        } else {
+            TCari2.setText("");
+        }
+    }//GEN-LAST:event_ChkNoRmActionPerformed
 
     /**
     * @param args the command line arguments
@@ -4302,6 +4330,7 @@ public class DlgPemberianObatPasien extends javax.swing.JDialog {
     private widget.Button BtnResep;
     private widget.Button BtnSimpan;
     public widget.CekBox ChkAccor;
+    private widget.CekBox ChkNoRm;
     public widget.CekBox ChkRuangan;
     private widget.CekBox ChkTglBeri;
     private widget.Tanggal DTPCari1;

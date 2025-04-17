@@ -666,12 +666,12 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi14 = new widget.panelisi();
         ChkTglCTK = new widget.CekBox();
         TtglCTK = new widget.Tanggal();
+        ChkNoRm = new widget.CekBox();
         jLabel14 = new widget.Label();
         TCari2 = new widget.TextBox();
         BtnCari2 = new widget.Button();
+        panelisi17 = new widget.panelisi();
         panelisi16 = new widget.panelisi();
-        BtnPasteData = new widget.Button();
-        BtnCloseIn6 = new widget.Button();
         jLabel57 = new widget.Label();
         TtglCopy1 = new widget.Tanggal();
         jLabel15 = new widget.Label();
@@ -684,6 +684,9 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         TnmPetugasCopy1 = new widget.TextBox();
         BtnPetugasCopy1 = new widget.Button();
         chkSayaCopy1 = new widget.CekBox();
+        panelisi18 = new widget.panelisi();
+        BtnPasteData = new widget.Button();
+        BtnCloseIn6 = new widget.Button();
         internalFrame1 = new widget.InternalFrame();
         panelGlass10 = new widget.panelisi();
         jLabel3 = new widget.Label();
@@ -1514,7 +1517,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -1576,7 +1579,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -1630,7 +1633,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel53.setBounds(0, 8, 100, 23);
 
         TtglCopy.setEditable(false);
-        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglCopy.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglCopy.setDisplayFormat("dd-MM-yyyy");
         TtglCopy.setName("TtglCopy"); // NOI18N
         TtglCopy.setOpaque(false);
@@ -1801,7 +1804,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         internalFrame11.add(Scroll8, java.awt.BorderLayout.CENTER);
 
         panelisi15.setName("panelisi15"); // NOI18N
-        panelisi15.setPreferredSize(new java.awt.Dimension(100, 157));
+        panelisi15.setPreferredSize(new java.awt.Dimension(100, 190));
         panelisi15.setLayout(new java.awt.BorderLayout());
 
         panelisi14.setName("panelisi14"); // NOI18N
@@ -1824,12 +1827,28 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         });
         panelisi14.add(ChkTglCTK);
 
-        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglCTK.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglCTK.setDisplayFormat("dd-MM-yyyy");
         TtglCTK.setName("TtglCTK"); // NOI18N
         TtglCTK.setOpaque(false);
         TtglCTK.setPreferredSize(new java.awt.Dimension(95, 23));
         panelisi14.add(TtglCTK);
+
+        ChkNoRm.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
+        ChkNoRm.setForeground(new java.awt.Color(0, 0, 0));
+        ChkNoRm.setText("No. RM Pasien Ini");
+        ChkNoRm.setBorderPainted(true);
+        ChkNoRm.setBorderPaintedFlat(true);
+        ChkNoRm.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        ChkNoRm.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        ChkNoRm.setName("ChkNoRm"); // NOI18N
+        ChkNoRm.setPreferredSize(new java.awt.Dimension(113, 23));
+        ChkNoRm.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                ChkNoRmActionPerformed(evt);
+            }
+        });
+        panelisi14.add(ChkNoRm);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setText("Key Word :");
@@ -1839,7 +1858,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         TCari2.setForeground(new java.awt.Color(0, 0, 0));
         TCari2.setName("TCari2"); // NOI18N
-        TCari2.setPreferredSize(new java.awt.Dimension(250, 23));
+        TCari2.setPreferredSize(new java.awt.Dimension(200, 23));
         TCari2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 TCari2KeyPressed(evt);
@@ -1863,40 +1882,14 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
 
         panelisi15.add(panelisi14, java.awt.BorderLayout.PAGE_START);
 
-        panelisi16.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Tujuan Copy Data ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelisi17.setBorder(javax.swing.BorderFactory.createTitledBorder(null, "[ Tujuan Copy Data ]", javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION, javax.swing.border.TitledBorder.DEFAULT_POSITION, new java.awt.Font("Tahoma", 0, 12))); // NOI18N
+        panelisi17.setName("panelisi17"); // NOI18N
+        panelisi17.setPreferredSize(new java.awt.Dimension(100, 140));
+        panelisi17.setLayout(new java.awt.BorderLayout());
+
         panelisi16.setName("panelisi16"); // NOI18N
         panelisi16.setPreferredSize(new java.awt.Dimension(100, 110));
         panelisi16.setLayout(null);
-
-        BtnPasteData.setForeground(new java.awt.Color(0, 0, 0));
-        BtnPasteData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
-        BtnPasteData.setMnemonic('P');
-        BtnPasteData.setText("Paste Salah Satu Data");
-        BtnPasteData.setToolTipText("Alt+P");
-        BtnPasteData.setName("BtnPasteData"); // NOI18N
-        BtnPasteData.setPreferredSize(new java.awt.Dimension(120, 30));
-        BtnPasteData.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnPasteDataActionPerformed(evt);
-            }
-        });
-        panelisi16.add(BtnPasteData);
-        BtnPasteData.setBounds(102, 76, 180, 23);
-
-        BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
-        BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
-        BtnCloseIn6.setMnemonic('U');
-        BtnCloseIn6.setText("Tutup");
-        BtnCloseIn6.setToolTipText("Alt+U");
-        BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
-        BtnCloseIn6.setPreferredSize(new java.awt.Dimension(100, 30));
-        BtnCloseIn6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                BtnCloseIn6ActionPerformed(evt);
-            }
-        });
-        panelisi16.add(BtnCloseIn6);
-        BtnCloseIn6.setBounds(480, 76, 90, 23);
 
         jLabel57.setForeground(new java.awt.Color(0, 0, 0));
         jLabel57.setText("Dicopy Ke Tgl. : ");
@@ -1904,33 +1897,33 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel57.setPreferredSize(new java.awt.Dimension(70, 23));
         jLabel57.setRequestFocusEnabled(false);
         panelisi16.add(jLabel57);
-        jLabel57.setBounds(0, 20, 100, 23);
+        jLabel57.setBounds(0, 10, 100, 23);
 
-        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        TtglCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         TtglCopy1.setDisplayFormat("dd-MM-yyyy");
         TtglCopy1.setName("TtglCopy1"); // NOI18N
         TtglCopy1.setOpaque(false);
         TtglCopy1.setPreferredSize(new java.awt.Dimension(95, 23));
         panelisi16.add(TtglCopy1);
-        TtglCopy1.setBounds(102, 20, 95, 23);
+        TtglCopy1.setBounds(102, 10, 95, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Sift Petugas :");
         jLabel15.setName("jLabel15"); // NOI18N
         panelisi16.add(jLabel15);
-        jLabel15.setBounds(200, 20, 80, 23);
+        jLabel15.setBounds(200, 10, 80, 23);
 
         cmbSiftCopy1.setForeground(new java.awt.Color(0, 0, 0));
         cmbSiftCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Pagi", "Sore", "Malam" }));
         cmbSiftCopy1.setName("cmbSiftCopy1"); // NOI18N
         panelisi16.add(cmbSiftCopy1);
-        cmbSiftCopy1.setBounds(285, 20, 70, 23);
+        cmbSiftCopy1.setBounds(285, 10, 70, 23);
 
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setText("Jam Tindakan :");
         jLabel17.setName("jLabel17"); // NOI18N
         panelisi16.add(jLabel17);
-        jLabel17.setBounds(356, 20, 90, 23);
+        jLabel17.setBounds(356, 10, 90, 23);
 
         cmbJamCopy1.setForeground(new java.awt.Color(0, 0, 0));
         cmbJamCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23" }));
@@ -1941,7 +1934,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi16.add(cmbJamCopy1);
-        cmbJamCopy1.setBounds(453, 20, 45, 23);
+        cmbJamCopy1.setBounds(453, 10, 45, 23);
 
         cmbMntCopy1.setForeground(new java.awt.Color(0, 0, 0));
         cmbMntCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1952,7 +1945,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi16.add(cmbMntCopy1);
-        cmbMntCopy1.setBounds(504, 20, 45, 23);
+        cmbMntCopy1.setBounds(504, 10, 45, 23);
 
         cmbDtkCopy1.setForeground(new java.awt.Color(0, 0, 0));
         cmbDtkCopy1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "00", "01", "02", "03", "04", "05", "06", "07", "08", "09", "10", "11", "12", "13", "14", "15", "16", "17", "18", "19", "20", "21", "22", "23", "24", "25", "26", "27", "28", "29", "30", "31", "32", "33", "34", "35", "36", "37", "38", "39", "40", "41", "42", "43", "44", "45", "46", "47", "48", "49", "50", "51", "52", "53", "54", "55", "56", "57", "58", "59" }));
@@ -1963,18 +1956,18 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi16.add(cmbDtkCopy1);
-        cmbDtkCopy1.setBounds(555, 20, 45, 23);
+        cmbDtkCopy1.setBounds(555, 10, 45, 23);
 
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setText("Nama Petugas : ");
         jLabel18.setName("jLabel18"); // NOI18N
         panelisi16.add(jLabel18);
-        jLabel18.setBounds(0, 48, 100, 23);
+        jLabel18.setBounds(0, 38, 100, 23);
 
         TnmPetugasCopy1.setForeground(new java.awt.Color(0, 0, 0));
         TnmPetugasCopy1.setName("TnmPetugasCopy1"); // NOI18N
         panelisi16.add(TnmPetugasCopy1);
-        TnmPetugasCopy1.setBounds(102, 48, 360, 23);
+        TnmPetugasCopy1.setBounds(102, 38, 360, 23);
 
         BtnPetugasCopy1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPetugasCopy1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/190.png"))); // NOI18N
@@ -1987,7 +1980,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi16.add(BtnPetugasCopy1);
-        BtnPetugasCopy1.setBounds(462, 48, 28, 23);
+        BtnPetugasCopy1.setBounds(462, 38, 28, 23);
 
         chkSayaCopy1.setBackground(new java.awt.Color(242, 242, 242));
         chkSayaCopy1.setForeground(new java.awt.Color(0, 0, 0));
@@ -2003,9 +1996,45 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             }
         });
         panelisi16.add(chkSayaCopy1);
-        chkSayaCopy1.setBounds(505, 48, 90, 23);
+        chkSayaCopy1.setBounds(505, 38, 90, 23);
 
-        panelisi15.add(panelisi16, java.awt.BorderLayout.PAGE_END);
+        panelisi17.add(panelisi16, java.awt.BorderLayout.CENTER);
+
+        panelisi18.setName("panelisi18"); // NOI18N
+        panelisi18.setPreferredSize(new java.awt.Dimension(100, 44));
+        panelisi18.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.RIGHT, 8, 8));
+
+        BtnPasteData.setForeground(new java.awt.Color(0, 0, 0));
+        BtnPasteData.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        BtnPasteData.setMnemonic('P');
+        BtnPasteData.setText("Paste Salah Satu Data");
+        BtnPasteData.setToolTipText("Alt+P");
+        BtnPasteData.setName("BtnPasteData"); // NOI18N
+        BtnPasteData.setPreferredSize(new java.awt.Dimension(170, 26));
+        BtnPasteData.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnPasteDataActionPerformed(evt);
+            }
+        });
+        panelisi18.add(BtnPasteData);
+
+        BtnCloseIn6.setForeground(new java.awt.Color(0, 0, 0));
+        BtnCloseIn6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/cross.png"))); // NOI18N
+        BtnCloseIn6.setMnemonic('U');
+        BtnCloseIn6.setText("Tutup");
+        BtnCloseIn6.setToolTipText("Alt+U");
+        BtnCloseIn6.setName("BtnCloseIn6"); // NOI18N
+        BtnCloseIn6.setPreferredSize(new java.awt.Dimension(100, 26));
+        BtnCloseIn6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnCloseIn6ActionPerformed(evt);
+            }
+        });
+        panelisi18.add(BtnCloseIn6);
+
+        panelisi17.add(panelisi18, java.awt.BorderLayout.PAGE_END);
+
+        panelisi15.add(panelisi17, java.awt.BorderLayout.PAGE_END);
 
         internalFrame11.add(panelisi15, java.awt.BorderLayout.PAGE_END);
 
@@ -2058,7 +2087,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         panelGlass10.add(jLabel4);
         jLabel4.setBounds(2, 38, 100, 23);
 
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -2490,7 +2519,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel19.setPreferredSize(new java.awt.Dimension(80, 23));
         panelGlass9.add(jLabel19);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2504,7 +2533,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         jLabel21.setPreferredSize(new java.awt.Dimension(23, 23));
         panelGlass9.add(jLabel21);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "03-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -3198,6 +3227,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 }
             }
             
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Simpan");
             tampilPagi();
             tampilSore();
             tampilMalam();
@@ -3214,6 +3244,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         Tpagi.getText(), Tsore.getText(), Tmalam.getText(),
                         wktSimpanPagi
                     });
+            
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Ganti");
             tampilPagi();
             emptTeksEvaluasi();
             WindowEvaluasi.dispose();
@@ -3224,6 +3256,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         Tpagi.getText(), Tsore.getText(), Tmalam.getText(),
                         wktSimpanSore
                     });
+            
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Ganti");
             tampilSore();
             emptTeksEvaluasi();
             WindowEvaluasi.dispose();
@@ -3234,6 +3268,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         Tpagi.getText(), Tsore.getText(), Tmalam.getText(),
                         wktSimpanMalam
                     });
+            
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Ganti");
             tampilMalam();
             emptTeksEvaluasi();
             WindowEvaluasi.dispose();
@@ -3515,6 +3551,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             Sequel.menyimpan("manajemen_catatan_tindakan_keperawatan", "'" + TNoRW.getText() + "',"
                     + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "','" + TManajemen.getText() + "'", "Manajemen Nyeri");
 
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Manajemen Catatan Tindakan Keperawatan", "Simpan");
             tampilPagi();
             tampilSore();
             tampilMalam();
@@ -3534,6 +3571,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                             Valid.SetTgl(Ttgl.getSelectedItem() + ""), TManajemen.getText(),
                             tbManajemen.getValueAt(tbManajemen.getSelectedRow(), 3).toString()
                         });
+                
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Manajemen Catatan Tindakan Keperawatan", "Ganti");
                 tampilManajemen();
                 WindowManajemen.dispose();
             } else {
@@ -3635,6 +3674,10 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 WindowCopyTindakan.setLocationRelativeTo(internalFrame1);
                 WindowCopyTindakan.setAlwaysOnTop(false);
                 WindowCopyTindakan.setVisible(true);
+                
+                chkSayaCopy.setSelected(false);
+                nipCopy = "";
+                TnmPetugasCopy.setText("");                
             }
         }
     }//GEN-LAST:event_MnCopyTindakanActionPerformed
@@ -3702,6 +3745,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                 DTPCari1.setDate(Ttgl.getDate());                
                 tampilPagi();
                 tampilSore();
@@ -3775,6 +3819,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                 DTPCari1.setDate(Ttgl.getDate());
                 tampilPagi();
                 tampilSore();
@@ -3848,6 +3893,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                     System.out.println("Notifikasi : " + e);
                 }
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Evaluasi Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                 DTPCari1.setDate(Ttgl.getDate());
                 tampilPagi();
                 tampilSore();
@@ -3866,6 +3912,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 Sequel.menyimpan("manajemen_catatan_tindakan_keperawatan", "'" + TNoRW.getText() + "',"
                         + "'" + Valid.SetTgl(Ttgl.getSelectedItem() + "") + "','" + TManajemen.getText() + "'", "Manajemen Nyeri");
 
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Manajemen Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                 DTPCari1.setDate(Ttgl.getDate());
                 tampilPagi();
                 tampilSore();
@@ -4111,7 +4158,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
             } catch (Exception e) {
                 System.out.println("Notifikasi : " + e);
             }
-
+            
+            Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
             DTPCari1.setDate(Ttgl.getDate());
             tampil();
             emptTeks();
@@ -4199,14 +4247,16 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                 cmbSiftCopy1.setSelectedIndex(2);
             }
             
-            WindowCopyData.setSize(744, internalFrame1.getHeight() - 40);
+            WindowCopyData.setSize(764, internalFrame1.getHeight() - 40);
             WindowCopyData.setLocationRelativeTo(internalFrame1);
             WindowCopyData.setAlwaysOnTop(false);
             WindowCopyData.setVisible(true);
             
+            ChkNoRm.setSelected(false);
             TtglCTK.setDate(new Date());
             ChkTglCTK.setSelected(false);
             TtglCTK.setEnabled(false);
+            chkSayaCopy1.setSelected(false);
             nipCopy1 = "";
             TnmPetugasCopy1.setText("");
             TCari2.setText("");
@@ -4297,6 +4347,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                         });
                     }
 
+                    Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                     tampilPasienLain();
                     BtnCariActionPerformed(null);
                     for (i = 0; i < tbCatatan.getRowCount(); i++) {
@@ -4530,10 +4581,12 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
                             //jeda 1 detik
                             Thread.sleep(1000);
                         }
-                    }
+                    }                    
                 } catch (Exception e) {
                     System.out.println("Notifikasi : " + e);
                 }
+                
+                Sequel.SimpanHistoriRekamMedis(TNoRW.getText(), "Catatan Tindakan Keperawatan", "Simpan (Copy Paste)");
                 JOptionPane.showMessageDialog(null, "Data catatan tindakan keperawatan yang dipilih berhasil di copy..!!!!");
                 BtnCloseIn6ActionPerformed(null);
             }
@@ -4588,6 +4641,14 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
         }
     }//GEN-LAST:event_ChkPeriodeActionPerformed
 
+    private void ChkNoRmActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_ChkNoRmActionPerformed
+        if (ChkNoRm.isSelected() == true) {
+            TCari2.setText(TNoRM.getText());
+        } else {
+            TCari2.setText("");
+        }
+    }//GEN-LAST:event_ChkNoRmActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -4636,6 +4697,7 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.Button BtnSimpan2;
     private widget.Button BtnTindakan;
     public widget.CekBox ChkAccor;
+    private widget.CekBox ChkNoRm;
     public widget.CekBox ChkPeriode;
     private widget.CekBox ChkTglCTK;
     private widget.Tanggal DTPCari1;
@@ -4781,6 +4843,8 @@ public class DlgCatatanTindakanKeperawatan extends javax.swing.JDialog {
     private widget.panelisi panelisi14;
     private widget.panelisi panelisi15;
     private widget.panelisi panelisi16;
+    private widget.panelisi panelisi17;
+    private widget.panelisi panelisi18;
     private widget.panelisi panelisi5;
     private widget.panelisi panelisi6;
     private widget.panelisi panelisi7;

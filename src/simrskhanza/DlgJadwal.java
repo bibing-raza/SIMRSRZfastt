@@ -84,7 +84,7 @@ public class DlgJadwal extends javax.swing.JDialog {
             if (i == 0) {
                 column.setPreferredWidth(20);
             } else if (i == 1) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(130);
             } else if (i == 2) {
                 column.setPreferredWidth(250);
             } else if (i == 3) {
@@ -875,7 +875,7 @@ public class DlgJadwal extends javax.swing.JDialog {
 
 private void btnDokterActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDokterActionPerformed
     dokter.isCek();
-    dokter.setSize(1060, 384);
+    dokter.setSize(1060, internalFrame1.getHeight() - 40);
     dokter.setLocationRelativeTo(internalFrame1);
     dokter.setVisible(true);
 }//GEN-LAST:event_btnDokterActionPerformed
@@ -902,7 +902,7 @@ private void KdPoliKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_Kd
 
 private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPoliActionPerformed
     poli.isCek();
-    poli.setSize(1055, 350);
+    poli.setSize(1055, internalFrame1.getHeight() - 40);
     poli.setLocationRelativeTo(internalFrame1);
     poli.setVisible(true);
 }//GEN-LAST:event_BtnPoliActionPerformed
