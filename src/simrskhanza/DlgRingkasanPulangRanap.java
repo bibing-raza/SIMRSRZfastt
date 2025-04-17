@@ -2615,7 +2615,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                     Valid.mysql_real_escape_stringERM(TPemeriksaanPenunjang.getText()), TTerapiPengobatan.getText(), TDiagUtama.getText(),
                     TDiagSekunder.getText(), TKeadaanumum.getText(), TKesadaran.getText(), TTensi.getText(), TSuhu.getText(), TNadi.getText(), TFrekuensiNafas.getText(),
                     TCatatan.getText(), TTerapiPulang.getText(), cmbLanjutan.getSelectedItem().toString(), kontrolPoli, TNmDokter.getText(), Tgcs.getText(),
-                    TTindakan.getText(), TDokterLuar.getText(), cekTgl, Tedukasi.getText(), TKlgPasien.getText(), nipPenyimpan, THasil.getText(),
+                    TTindakan.getText(), TDokterLuar.getText(), cekTgl, Tedukasi.getText().replaceAll("'", ""), TKlgPasien.getText(), nipPenyimpan, THasil.getText(),
                     cmbKondisiWP.getSelectedItem().toString()
                 }) == true) {
                     if (nmgedung.equals("AL-HAKIM/PARU")) {
@@ -2692,7 +2692,7 @@ public class DlgRingkasanPulangRanap extends javax.swing.JDialog {
                         + "frekuensi_nafas='" + TFrekuensiNafas.getText() + "',catatan_penting='" + TCatatan.getText() + "',terapi_pulang='" + TTerapiPulang.getText() + "',"
                         + "pengobatan_dilanjutkan='" + cmbLanjutan.getSelectedItem().toString() + "',tgl_kontrol_poliklinik='" + kontrolPoli + "',"
                         + "nm_dokter_pengirim='" + TNmDokter.getText() + "',GCS='" + Tgcs.getText() + "',tindakan_prosedur='" + TTindakan.getText() + "',"
-                        + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText() + "',"
+                        + "dokter_luar_lanjutan='" + TDokterLuar.getText() + "',cek_tgl_kontrol='" + cekTgl + "',edukasi='" + Tedukasi.getText().replaceAll("'", "") + "',"
                         + "penanggung_jwb_pasien='" + TKlgPasien.getText() + "',hasil_pemeriksaan='" + THasil.getText() + "',stts_pulang='" + cmbKondisiWP.getSelectedItem().toString() + "'");
 
                 if (nmgedung.equals("AL-HAKIM/PARU")) {

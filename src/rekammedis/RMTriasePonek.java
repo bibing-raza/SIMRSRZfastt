@@ -932,7 +932,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         jLabel68.setBounds(136, 38, 60, 23);
 
         Ttgl.setEditable(false);
-        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        Ttgl.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         Ttgl.setDisplayFormat("dd-MM-yyyy");
         Ttgl.setName("Ttgl"); // NOI18N
         Ttgl.setOpaque(false);
@@ -1233,7 +1233,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         Chktgl_kll_tunggal.setBounds(535, 262, 90, 23);
 
         tgl_kejadian_tunggal.setEditable(false);
-        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tgl_kejadian_tunggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         tgl_kejadian_tunggal.setDisplayFormat("dd-MM-yyyy");
         tgl_kejadian_tunggal.setName("tgl_kejadian_tunggal"); // NOI18N
         tgl_kejadian_tunggal.setOpaque(false);
@@ -1298,7 +1298,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
             }
         });
         FormInput.add(ChkKll);
-        ChkKll.setBounds(20, 290, 40, 23);
+        ChkKll.setBounds(20, 290, 60, 23);
 
         versus1.setForeground(new java.awt.Color(0, 0, 0));
         versus1.setName("versus1"); // NOI18N
@@ -1308,14 +1308,14 @@ public final class RMTriasePonek extends javax.swing.JDialog {
             }
         });
         FormInput.add(versus1);
-        versus1.setBounds(80, 290, 160, 23);
+        versus1.setBounds(223, 290, 160, 23);
 
         jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("VS.");
         jLabel14.setName("jLabel14"); // NOI18N
         FormInput.add(jLabel14);
-        jLabel14.setBounds(242, 290, 30, 23);
+        jLabel14.setBounds(385, 290, 30, 23);
 
         versus2.setForeground(new java.awt.Color(0, 0, 0));
         versus2.setName("versus2"); // NOI18N
@@ -1325,18 +1325,18 @@ public final class RMTriasePonek extends javax.swing.JDialog {
             }
         });
         FormInput.add(versus2);
-        versus2.setBounds(272, 290, 160, 23);
+        versus2.setBounds(415, 290, 160, 23);
 
         jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setText("Tempat Kejadian :");
         jLabel15.setName("jLabel15"); // NOI18N
         FormInput.add(jLabel15);
-        jLabel15.setBounds(433, 290, 100, 23);
+        jLabel15.setBounds(118, 318, 100, 23);
 
         tmpt_kejadian.setForeground(new java.awt.Color(0, 0, 0));
         tmpt_kejadian.setName("tmpt_kejadian"); // NOI18N
         FormInput.add(tmpt_kejadian);
-        tmpt_kejadian.setBounds(538, 290, 202, 23);
+        tmpt_kejadian.setBounds(223, 318, 310, 23);
 
         Chktgl_kll.setBackground(new java.awt.Color(255, 255, 250));
         Chktgl_kll.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 250)));
@@ -1358,7 +1358,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         Chktgl_kll.setBounds(535, 318, 90, 23);
 
         tgl_kejadian.setEditable(false);
-        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        tgl_kejadian.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         tgl_kejadian.setDisplayFormat("dd-MM-yyyy");
         tgl_kejadian.setName("tgl_kejadian"); // NOI18N
         tgl_kejadian.setOpaque(false);
@@ -2591,7 +2591,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         panelGlass9.add(jLabel19);
 
         DTPCari1.setEditable(false);
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -2606,7 +2606,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         panelGlass9.add(jLabel21);
 
         DTPCari2.setEditable(false);
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "16-04-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -2932,66 +2932,92 @@ public final class RMTriasePonek extends javax.swing.JDialog {
             param.put("namars", akses.getnamars());
             param.put("logo", Sequel.cariGambar("select logo from setting"));
             
-            if (cmbAlasanKedatangan.getSelectedIndex() == 0) {
-                param.put("alasan_kedatangan", "-");
-            } else if (cmbAlasanKedatangan.getSelectedIndex() == 1 || cmbAlasanKedatangan.getSelectedIndex() == 2) {
+            if (cmbAlasanKedatangan.getSelectedIndex() == 0 || cmbAlasanKedatangan.getSelectedIndex() == 1 || cmbAlasanKedatangan.getSelectedIndex() == 2) {
                 param.put("alasan_kedatangan", cmbAlasanKedatangan.getSelectedItem().toString());
             } else if (cmbAlasanKedatangan.getSelectedIndex() == 3) {
-                param.put("alasan_kedatangan", "Rujukan, dari : " + rujukan_dari.getText());
+                if (rujukan_dari.getText().equals("")) {
+                    param.put("alasan_kedatangan", cmbAlasanKedatangan.getSelectedItem().toString() + " : -");
+                } else {
+                    param.put("alasan_kedatangan", cmbAlasanKedatangan.getSelectedItem().toString() + " : " + rujukan_dari.getText());
+                }
             } else if (cmbAlasanKedatangan.getSelectedIndex() == 4) {
-                param.put("alasan_kedatangan", "Dijemput oleh : " + dijemput_oleh.getText());
+                if (dijemput_oleh.getText().equals("")) {
+                    param.put("alasan_kedatangan", cmbAlasanKedatangan.getSelectedItem().toString() + " : -");
+                } else {
+                    param.put("alasan_kedatangan", cmbAlasanKedatangan.getSelectedItem().toString() + " : " + dijemput_oleh.getText());
+                }
             }
             
-            if (cmbKendaraan.getSelectedIndex() == 0) {
-                param.put("kendaraan", "-");
-            } else if (cmbKendaraan.getSelectedIndex() == 1) {
+            if (cmbKendaraan.getSelectedIndex() == 0 || cmbKendaraan.getSelectedIndex() == 1) {
                 param.put("kendaraan", cmbKendaraan.getSelectedItem().toString());
             } else if (cmbKendaraan.getSelectedIndex() == 2) {
-                param.put("kendaraan", "Kendaraan bukan ambulance, jelaskan : " + bkn_ambulan.getText());
+                if (bkn_ambulan.getText().equals("")) {
+                    param.put("kendaraan", cmbKendaraan.getSelectedItem().toString() + ", jelaskan : -");
+                } else {
+                    param.put("kendaraan", cmbKendaraan.getSelectedItem().toString() + ", jelaskan : " + bkn_ambulan.getText());
+                }
             }
             
             if (ChkKll_tunggal.isSelected() == true) {
-                param.put("kll_tunggal", "KLL Tunggal Tempat Kejadian " + tmpt_kejadian_tunggal.getText() + " Tanggal Kejadian "
-                        + Sequel.cariIsi("select date_format(kll_tunggal_tanggal,'%d-%m-%Y    Pukul : %H:%i') from triase_igd "
-                                + "where no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'"));
+                param.put("kll_tunggal", "KLL Tunggal, Tempat Kejadian " + tmpt_kejadian_tunggal.getText() + ", Tanggal Kejadian " + tgl_kejadian_tunggal.getSelectedItem().toString()
+                        + ", Pukul " + cmbJam1.getSelectedItem().toString() + ":" + cmbMnt1.getSelectedItem().toString() + " Wita");
             } else {
                 param.put("kll_tunggal", "KLL Tunggal");
             }
             
             if (ChkKll.isSelected() == true) {
-                param.put("kll", "KLL " + versus1.getText() + " Vs. " + versus2.getText() + " Tempat Kejadian " + tmpt_kejadian.getText() + " Tanggal Kejadian "
-                        + Sequel.cariIsi("select date_format(kll_tanggal,'%d-%m-%Y    Pukul : %H:%i') from triase_igd "
-                                + "where no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'"));
+                param.put("kll", "KLL " + versus1.getText() + " Vs. " + versus2.getText() + ", Tempat Kejadian " + tmpt_kejadian.getText() + ", Tanggal Kejadian "
+                        + tgl_kejadian.getSelectedItem().toString() + ", Pukul " + cmbJam2.getSelectedItem().toString() + ":" + cmbMnt2.getSelectedItem().toString() + " Wita");
             } else {
                 param.put("kll", "KLL");
             }
             
             if (ChkJatuh.isSelected() == true) {
-                param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : " + ket_jatuh.getText());
+                if (ket_jatuh.getText().equals("")) {
+                    param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : -");
+                } else {
+                    param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : " + ket_jatuh.getText());
+                }
             } else {
                 param.put("jatuh", "Jatuh dari ketinggian,");
             }
             
             if (ChkLuka.isSelected() == true) {
-                param.put("luka", "Luka bakar, Jelaskan : " + ket_luka.getText());
+                if (ket_luka.getText().equals("")) {
+                    param.put("luka", "Luka bakar, Jelaskan : -");
+                } else {
+                    param.put("luka", "Luka bakar, Jelaskan : " + ket_luka.getText());
+                }
             } else {
                 param.put("luka", "Luka bakar,");
             }
             
             if (Chktrauma_listrik.isSelected() == true) {
-                param.put("trauma_listrik", "Trauma listrik, Jelaskan : " + ket_trauma_listrik.getText());
+                if (ket_trauma_listrik.getText().equals("")) {
+                    param.put("trauma_listrik", "Trauma listrik, Jelaskan : -");
+                } else {
+                    param.put("trauma_listrik", "Trauma listrik, Jelaskan : " + ket_trauma_listrik.getText());
+                }
             } else {
                 param.put("trauma_listrik", "Trauma listrik,");
             }
             
             if (Chktrauma_zat.isSelected() == true) {
-                param.put("trauma_zat", "Trauma zat kimia, Jelaskan : " + ket_trauma_zat.getText());
+                if (ket_trauma_zat.getText().equals("")) {
+                    param.put("trauma_zat", "Trauma zat kimia, Jelaskan : -");
+                } else {
+                    param.put("trauma_zat", "Trauma zat kimia, Jelaskan : " + ket_trauma_zat.getText());
+                }
             } else {
                 param.put("trauma_zat", "Trauma zat kimia,");
             }
             
             if (Chktrauma_lain.isSelected() == true) {
-                param.put("trauma_lain", "Trauma lainnya (" + ket_trauma_lain.getText() + ")");
+                if (ket_trauma_lain.getText().equals("")) {
+                    param.put("trauma_lain", "Trauma lainnya : -");
+                } else {
+                    param.put("trauma_lain", "Trauma lainnya (" + ket_trauma_lain.getText() + ")");
+                }
             } else {
                 param.put("trauma_lain", "Trauma lainnya");
             }
@@ -3025,20 +3051,42 @@ public final class RMTriasePonek extends javax.swing.JDialog {
                 param.put("total24", "");
                 param.put("total01", "");
             }
-                        
-            Valid.MyReport("rptTriaseIGD.jasper", "report", "::[ Laporan Data Triase IGD ]::",
-                    "SELECT ti.no_rawat, p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgllahir, date_format(ti.tanggal,'Tanggal : %d-%m-%Y    Pukul : %H:%i') kontak_awal, "
-                    + "if(ti.cara_masuk='','-',ti.cara_masuk) cr_msk, ti.sudah_terpasang, concat('Nama : ',ti.nm_pengantar,'    No. Telp : ',ti.telp_pengantar) iden_pengntar, "
-                    + "ti.kasus, ti.keluhan_utama, if(ti.kesadaran='','KESADARAN : -',concat('KESADARAN : ',ti.kesadaran)) kesadaran, ti.td, ti.nadi, ti.napas, ti.temperatur, "
-                    + "ti.saturasi, ti.nyeri, ti.vas, if(ti.skor0_sadar_penuh='ya','V','') skor0_sadar, if(ti.skor0_100='ya','V','') skor0_100, if(ti.skor0_101='ya','V','') skor0_101, "
-                    + "if(ti.skor0_19='ya','V','') skor0_19, if(ti.skor0_35_3='ya','V','') skor0_35, if(ti.skor0_96_100='ya','V','') skor0_96, if(ti.skor1_102='ya','V','') skor1_102, "
-                    + "if(ti.skor1_20_21='ya','V','') skor1_20, if(ti.skor1_94_95='ya','V','') skor1_94, if(ti.skor2_99='ya','V','') skor2_99, if(ti.skor2_22='ya','V','') skor2_22, "
-                    + "if(ti.skor2_92_93='ya','V','') skor2_92, if(ti.skor3_selain='ya','V','') skor3_selain, if(ti.skor3_35_3='ya','V','') skor3_35, if(ti.skor3_92='ya','V','') skor3_92, "
-                    + "ti.catatan, ti.pukul, if(ti.triase_resusitasi='ya','V','') resus, if(ti.triase_non_resusitasi='ya','V','') nonresus, if(ti.triase_klinik='ya','V','') klinik, "
-                    + "if(ti.triase_doa='ya','V','') doa, pg.nama petgas, if(ti.kll_tunggal='ya','V','') kll_tunggal, if(ti.kll_versus='ya','V','') kll_versus, if(ti.jatuh='ya','V','') jatuh, "
-                    + "if(ti.luka_bakar='ya','V','') luka, if(ti.trauma_listrik='ya','V','') trauma_listrik, if(ti.trauma_zat_kimia='ya','V','') trauma_zat, if(ti.trauma_lain='ya','V','') trauma_lain, "
-                    + "ti.bb, ti.tb from triase_igd ti inner join reg_periksa rp on rp.no_rawat=ti.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN pegawai pg on nik=ti.nip_petugas where ti.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
+
+            Valid.MyReport("rptTriasePonek.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
+                    "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
+                    + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
+                    + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
+                    + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
+                    + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
+                    + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
+                    + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
+                    + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
+                    + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
+                    + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
+                    + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
+                    + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
+                    + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
+                    + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
+                    + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
+                    + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
+                    + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
+                    + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
+                    + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
+                    + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
+                    + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
+                    + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
+                    + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
+                    + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
+                    + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
+                    + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
+                    + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
+                    + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
+                    + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
+                    + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
+                    + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
+                    + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
+                    + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                    + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + tbTriase.getValueAt(tbTriase.getSelectedRow(), 0).toString() + "'", param);
             
             BtnBatalActionPerformed(null);
             TabRawat.setSelectedIndex(1);
@@ -3707,7 +3755,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
     }//GEN-LAST:event_temperaturKeyPressed
 
     private void TnyeriKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TnyeriKeyPressed
-        // TODO add your handling code here:
+        Valid.pindah(evt, saturasi, Tcttn_khusus);
     }//GEN-LAST:event_TnyeriKeyPressed
 
     private void Chksadar_skor0ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Chksadar_skor0ActionPerformed
@@ -5181,7 +5229,7 @@ public final class RMTriasePonek extends javax.swing.JDialog {
         skortotal = "";
         //skor 0
         if (Chksadar_skor0.isSelected() == true || Chksadar_skor0.isSelected() == false) {
-            sdr_pnh_skor0 = 0;            
+            sdr_pnh_skor0 = 0;
         }
         if (Chk100.isSelected() == true || Chk100.isSelected() == false) {
             seratus_skor0 = 0;            

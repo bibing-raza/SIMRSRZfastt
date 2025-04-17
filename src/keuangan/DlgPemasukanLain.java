@@ -4189,7 +4189,7 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
                     hitungSelisih();
                     Sequel.menyimpan("temporary_bayar_ranap",
                             "'0','"
-                            + rsTem1.getString("pasien") + "','"
+                            + rsTem1.getString("pasien").replaceAll("'", "") + "','"
                             + rsTem1.getString("no_kartu") + "','"
                             + rsTem1.getString("nosep") + "','"
                             + rsTem1.getString("ruang_inap") + "','"

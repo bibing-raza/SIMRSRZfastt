@@ -1479,6 +1479,7 @@ public class DlgCPPT extends javax.swing.JDialog {
         panelGlass24 = new widget.panelisi();
         BtnVerif = new widget.Button();
         BtnNotepad = new widget.Button();
+        BtnHapus4 = new widget.Button();
         BtnPrint1 = new widget.Button();
         BtnResep1 = new widget.Button();
         BtnKeluar3 = new widget.Button();
@@ -5275,6 +5276,20 @@ public class DlgCPPT extends javax.swing.JDialog {
             }
         });
         panelGlass24.add(BtnNotepad);
+
+        BtnHapus4.setForeground(new java.awt.Color(0, 0, 0));
+        BtnHapus4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/stop_f2.png"))); // NOI18N
+        BtnHapus4.setMnemonic('H');
+        BtnHapus4.setText("Hapus");
+        BtnHapus4.setToolTipText("Alt+H");
+        BtnHapus4.setName("BtnHapus4"); // NOI18N
+        BtnHapus4.setPreferredSize(new java.awt.Dimension(100, 30));
+        BtnHapus4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                BtnHapus4ActionPerformed(evt);
+            }
+        });
+        panelGlass24.add(BtnHapus4);
 
         BtnPrint1.setForeground(new java.awt.Color(0, 0, 0));
         BtnPrint1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/b_print.png"))); // NOI18N
@@ -9530,6 +9545,10 @@ public class DlgCPPT extends javax.swing.JDialog {
         klikRiwayatRalan();
     }//GEN-LAST:event_BtnHapusPoliActionPerformed
 
+    private void BtnHapus4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnHapus4ActionPerformed
+        BtnHapusActionPerformed(null);
+    }//GEN-LAST:event_BtnHapus4ActionPerformed
+
     /**
     * @param args the command line arguments
     */
@@ -9584,6 +9603,7 @@ public class DlgCPPT extends javax.swing.JDialog {
     private widget.Button BtnHapus1;
     private widget.Button BtnHapus2;
     private widget.Button BtnHapus3;
+    private widget.Button BtnHapus4;
     private widget.Button BtnHapusDPJP;
     private widget.Button BtnHapusFile;
     private widget.Button BtnHapusKonfirDpjp;

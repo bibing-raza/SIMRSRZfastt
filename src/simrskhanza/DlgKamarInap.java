@@ -951,6 +951,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         MnBacaGawatDarurat = new javax.swing.JMenu();
         MnTriase = new javax.swing.JMenuItem();
         MnTriasePediatrik = new javax.swing.JMenuItem();
+        MnTriasePonek = new javax.swing.JMenuItem();
         MnAsesmenMedikIGD = new javax.swing.JMenuItem();
         MnAsesmenKeperawatanIGD = new javax.swing.JMenuItem();
         MnAsesmenMedikObstetriIGD = new javax.swing.JMenuItem();
@@ -1611,7 +1612,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
 
         TglMati.setEditable(false);
         TglMati.setForeground(new java.awt.Color(0, 0, 153));
-        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TglMati.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TglMati.setDisplayFormat("dd-MM-yyyy");
         TglMati.setName("TglMati"); // NOI18N
         TglMati.setOpaque(false);
@@ -3454,6 +3455,21 @@ public class DlgKamarInap extends javax.swing.JDialog {
         });
         MnBacaGawatDarurat.add(MnTriasePediatrik);
 
+        MnTriasePonek.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
+        MnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
+        MnTriasePonek.setText("Triase Ponek");
+        MnTriasePonek.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        MnTriasePonek.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
+        MnTriasePonek.setIconTextGap(5);
+        MnTriasePonek.setName("MnTriasePonek"); // NOI18N
+        MnTriasePonek.setPreferredSize(new java.awt.Dimension(190, 26));
+        MnTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                MnTriasePonekActionPerformed(evt);
+            }
+        });
+        MnBacaGawatDarurat.add(MnTriasePonek);
+
         MnAsesmenMedikIGD.setFont(new java.awt.Font("Tahoma", 0, 11)); // NOI18N
         MnAsesmenMedikIGD.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/category.png"))); // NOI18N
         MnAsesmenMedikIGD.setText("Assesmen Medik IGD");
@@ -4372,7 +4388,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame7.add(jLabel37);
         jLabel37.setBounds(0, 20, 110, 23);
 
-        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        Tglsurat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         Tglsurat.setDisplayFormat("dd-MM-yyyy");
         Tglsurat.setName("Tglsurat"); // NOI18N
         Tglsurat.setOpaque(false);
@@ -4500,7 +4516,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame18.add(jLabel105);
         jLabel105.setBounds(0, 20, 110, 23);
 
-        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        Tglsurat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         Tglsurat1.setDisplayFormat("dd-MM-yyyy");
         Tglsurat1.setName("Tglsurat1"); // NOI18N
         Tglsurat1.setOpaque(false);
@@ -4603,7 +4619,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame8.add(jLabel43);
         jLabel43.setBounds(10, 20, 120, 23);
 
-        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TglMati1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TglMati1.setDisplayFormat("dd-MM-yyyy");
         TglMati1.setName("TglMati1"); // NOI18N
         TglMati1.setOpaque(false);
@@ -5169,7 +5185,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         internalFrame11.add(jLabel51);
         jLabel51.setBounds(0, 25, 130, 23);
 
-        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TglRegRalan.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TglRegRalan.setDisplayFormat("dd-MM-yyyy");
         TglRegRalan.setName("TglRegRalan"); // NOI18N
         TglRegRalan.setOpaque(false);
@@ -5404,7 +5420,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         cmbSift.setBounds(287, 10, 65, 23);
 
         tglA.setEditable(false);
-        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglA.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         tglA.setDisplayFormat("dd-MM-yyyy");
         tglA.setName("tglA"); // NOI18N
         tglA.setOpaque(false);
@@ -5420,7 +5436,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel49.setBounds(288, 38, 30, 23);
 
         tglB.setEditable(false);
-        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglB.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         tglB.setDisplayFormat("dd-MM-yyyy");
         tglB.setName("tglB"); // NOI18N
         tglB.setOpaque(false);
@@ -5499,7 +5515,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         panelisi10.setLayout(null);
 
         TtglCetak1.setEditable(false);
-        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TtglCetak1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TtglCetak1.setDisplayFormat("dd-MM-yyyy");
         TtglCetak1.setName("TtglCetak1"); // NOI18N
         TtglCetak1.setOpaque(false);
@@ -5585,7 +5601,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel58.setBounds(211, 8, 25, 23);
 
         TtglCetak2.setEditable(false);
-        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        TtglCetak2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         TtglCetak2.setDisplayFormat("dd-MM-yyyy");
         TtglCetak2.setName("TtglCetak2"); // NOI18N
         TtglCetak2.setOpaque(false);
@@ -5846,7 +5862,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         statusSEP.setPreferredSize(new java.awt.Dimension(207, 23));
 
         tglMasukInap.setEditable(false);
-        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglMasukInap.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         tglMasukInap.setDisplayFormat("dd-MM-yyyy");
         tglMasukInap.setName("tglMasukInap"); // NOI18N
         tglMasukInap.setOpaque(false);
@@ -5875,7 +5891,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         Scroll9.setViewportView(tbFaktorDecu);
 
         tglPiutang.setEditable(false);
-        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        tglPiutang.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         tglPiutang.setDisplayFormat("dd-MM-yyyy");
         tglPiutang.setName("tglPiutang"); // NOI18N
         tglPiutang.setOpaque(false);
@@ -6167,7 +6183,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R2.setPreferredSize(new java.awt.Dimension(90, 23));
         panelGlass11.add(R2);
 
-        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         DTPCari1.setDisplayFormat("dd-MM-yyyy");
         DTPCari1.setName("DTPCari1"); // NOI18N
         DTPCari1.setOpaque(false);
@@ -6191,7 +6207,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel22.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel22);
 
-        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         DTPCari2.setDisplayFormat("dd-MM-yyyy");
         DTPCari2.setName("DTPCari2"); // NOI18N
         DTPCari2.setOpaque(false);
@@ -6218,7 +6234,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         R3.setPreferredSize(new java.awt.Dimension(75, 23));
         panelGlass11.add(R3);
 
-        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari3.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         DTPCari3.setDisplayFormat("dd-MM-yyyy");
         DTPCari3.setName("DTPCari3"); // NOI18N
         DTPCari3.setOpaque(false);
@@ -6242,7 +6258,7 @@ public class DlgKamarInap extends javax.swing.JDialog {
         jLabel25.setPreferredSize(new java.awt.Dimension(25, 23));
         panelGlass11.add(jLabel25);
 
-        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "24-02-2025" }));
+        DTPCari4.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "08-04-2025" }));
         DTPCari4.setDisplayFormat("dd-MM-yyyy");
         DTPCari4.setName("DTPCari4"); // NOI18N
         DTPCari4.setOpaque(false);
@@ -12241,6 +12257,23 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         }
     }//GEN-LAST:event_MnTriasePediatrikActionPerformed
 
+    private void MnTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnTriasePonekActionPerformed
+        if (tabMode.getRowCount() == 0) {
+            JOptionPane.showMessageDialog(null, "Maaf, tabel masih kosong...!!!!");
+        } else if (norawat.getText().trim().equals("")) {
+            JOptionPane.showMessageDialog(null, "Maaf, Silahkan anda pilih dulu dengan mengklik data pada tabel...!!!");
+            tbKamIn.requestFocus();
+        } else {
+            if (Sequel.cariInteger("select count(-1) from triase_ponek where no_rawat='" + norawat.getText() + "'") > 0) {
+                cetakDataTriasePonek();
+                BtnCariActionPerformed(null);
+            } else {
+                JOptionPane.showMessageDialog(null, "Data triase ponek tidak ditemukan...!!!");
+                tbKamIn.requestFocus();
+            }
+        }
+    }//GEN-LAST:event_MnTriasePonekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12456,6 +12489,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     private javax.swing.JMenuItem MnTransferSerahTerimaPasien;
     private javax.swing.JMenuItem MnTriase;
     private javax.swing.JMenuItem MnTriasePediatrik;
+    private javax.swing.JMenuItem MnTriasePonek;
     private javax.swing.JMenuItem MnUpdateHari;
     private javax.swing.JMenuItem MnUpdateJadwalOperasi;
     private javax.swing.JMenuItem MnWaktuRegRalan;
@@ -17993,6 +18027,191 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
             rawatinap.setpetugas();
             rawatinap.tampilDr();
             rawatinap.setVisible(true);
+        }
+    }
+    
+    private void cetakDataTriasePonek() {
+        totskorTriase = 0;
+        try {
+            psLaprm = koneksi.prepareStatement("select *, date_format(kll_tunggal_tanggal,'%d-%m-%Y') tglKllTunggal, time_format(kll_tunggal_pukul,'%H:%i') jamKllTunggal, "
+                    + "date_format(kll_tanggal,'%d-%m-%Y') tglKll, time_format(kll_pukul,'%H:%i') jamKll from triase_ponek where no_rawat='" + norawat.getText() + "'");
+            try {
+                rsLaprm = psLaprm.executeQuery();
+                while (rsLaprm.next()) {
+                    Map<String, Object> param = new HashMap<>();
+                    param.put("namars", akses.getnamars());
+                    param.put("logo", Sequel.cariGambar("select logo from setting"));
+
+                    if (rsLaprm.getString("alasan_kedatangan").equals("-") || rsLaprm.getString("alasan_kedatangan").equals("Datang Sendiri") || rsLaprm.getString("alasan_kedatangan").equals("Polisi")) {
+                        param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan"));
+                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Rujukan, dari")) {
+                        if (rsLaprm.getString("rujukan_dari").equals("")) {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : -");
+                        } else {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : " + rsLaprm.getString("rujukan_dari"));
+                        }
+                    } else if (rsLaprm.getString("alasan_kedatangan").equals("Dijemput oleh")) {
+                        if (rsLaprm.getString("dijemput_oleh").equals("")) {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : -");
+                        } else {
+                            param.put("alasan_kedatangan", rsLaprm.getString("alasan_kedatangan") + " : " + rsLaprm.getString("dijemput_oleh"));
+                        }
+                    }
+
+                    if (rsLaprm.getString("kendaraan").equals("-") || rsLaprm.getString("kendaraan").equals("Ambulance")) {
+                        param.put("kendaraan", rsLaprm.getString("kendaraan"));
+                    } else if (rsLaprm.getString("kendaraan").equals("Kendaraan bukan ambulance")) {
+                        if (rsLaprm.getString("bukan_ambulan").equals("")) {
+                            param.put("kendaraan", rsLaprm.getString("kendaraan") + ", jelaskan : -");
+                        } else {
+                            param.put("kendaraan", rsLaprm.getString("kendaraan") + ", jelaskan : " + rsLaprm.getString("bukan_ambulan"));
+                        }
+                    }
+
+                    if (rsLaprm.getString("kll_tunggal").equals("ya")) {
+                        param.put("kll_tunggal", "KLL Tunggal, Tempat Kejadian " + rsLaprm.getString("kll_tunggal_tmpt_kejadian") + ", Tanggal Kejadian " + rsLaprm.getString("tglKllTunggal")
+                                + ", Pukul " + rsLaprm.getString("jamKllTunggal") + " Wita");
+                    } else {
+                        param.put("kll_tunggal", "KLL Tunggal");
+                    }
+
+                    if (rsLaprm.getString("kll_versus").equals("ya")) {
+                        param.put("kll", "KLL " + rsLaprm.getString("versus1") + " Vs. " + rsLaprm.getString("versus2") + ", Tempat Kejadian "
+                                + rsLaprm.getString("kll_tmpt_kejadian") + ", Tanggal Kejadian " + rsLaprm.getString("tglKll")
+                                + ", Pukul " + rsLaprm.getString("jamKll") + " Wita");
+                    } else {
+                        param.put("kll", "KLL");
+                    }
+
+                    if (rsLaprm.getString("jatuh").equals("ya")) {
+                        if (rsLaprm.getString("ket_jatuh").equals("")) {
+                            param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : -");
+                        } else {
+                            param.put("jatuh", "Jatuh dari ketinggian, Jelaskan : " + rsLaprm.getString("ket_jatuh"));
+                        }
+                    } else {
+                        param.put("jatuh", "Jatuh dari ketinggian,");
+                    }
+
+                    if (rsLaprm.getString("luka_bakar").equals("ya")) {
+                        if (rsLaprm.getString("ket_luka_bakar").equals("")) {
+                            param.put("luka", "Luka bakar, Jelaskan : -");
+                        } else {
+                            param.put("luka", "Luka bakar, Jelaskan : " + rsLaprm.getString("ket_luka_bakar"));
+                        }
+                    } else {
+                        param.put("luka", "Luka bakar,");
+                    }
+
+                    if (rsLaprm.getString("trauma_listrik").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_listrik").equals("")) {
+                            param.put("trauma_listrik", "Trauma listrik, Jelaskan : -");
+                        } else {
+                            param.put("trauma_listrik", "Trauma listrik, Jelaskan : " + rsLaprm.getString("ket_trauma_listrik"));
+                        }
+                    } else {
+                        param.put("trauma_listrik", "Trauma listrik,");
+                    }
+
+                    if (rsLaprm.getString("trauma_zat_kimia").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_zat_kimia").equals("")) {
+                            param.put("trauma_zat", "Trauma zat kimia, Jelaskan : -");
+                        } else {
+                            param.put("trauma_zat", "Trauma zat kimia, Jelaskan : " + rsLaprm.getString("ket_trauma_zat_kimia"));
+                        }
+                    } else {
+                        param.put("trauma_zat", "Trauma zat kimia,");
+                    }
+
+                    if (rsLaprm.getString("trauma_lain").equals("ya")) {
+                        if (rsLaprm.getString("ket_trauma_lain").equals("")) {
+                            param.put("trauma_lain", "Trauma lainnya : -");
+                        } else {
+                            param.put("trauma_lain", "Trauma lainnya (" + rsLaprm.getString("ket_trauma_lain") + ")");
+                        }
+                    } else {
+                        param.put("trauma_lain", "Trauma lainnya");
+                    }
+
+                    if (rsLaprm.getString("pacs1").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 1");
+                    } else if (rsLaprm.getString("pacs2").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 2");
+                    } else if (rsLaprm.getString("pacs3").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 3");
+                    } else if (rsLaprm.getString("pacs4").equals("ya")) {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : PACS 4");
+                    } else {
+                        param.put("pacs", "LEVEL TRIASE (PATIENT'S ACUITY CATEGORIZATION SCALE / PACS) : -");
+                    }
+
+                    totskorTriase = Integer.parseInt(rsLaprm.getString("total_skor"));
+                    if (totskorTriase >= 5) {
+                        param.put("total5", "V");
+                        param.put("total24", "");
+                        param.put("total01", "");
+                    } else if (totskorTriase >= 2 && totskorTriase <= 4) {
+                        param.put("total5", "");
+                        param.put("total24", "V");
+                        param.put("total01", "");
+                    } else if (totskorTriase >= 0 && totskorTriase <= 1) {
+                        param.put("total5", "");
+                        param.put("total24", "");
+                        param.put("total01", "V");
+                    } else {
+                        param.put("total5", "");
+                        param.put("total24", "");
+                        param.put("total01", "");
+                    }
+
+                    Valid.MyReport("rptTriasePonek.jasper", "report", "::[ Laporan Data Triase Ponek ]::",
+                            "SELECT p.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir, '%d-%m-%Y') tgllahir, concat('Tanggal : ',date_format(tp.tanggal,'%d-%m-%Y'),'        Pukul : ',time_format(tp.pukul,'%H:%i'),' Wita') kontak_awal, "
+                            + "tp.cara_masuk, if(tp.sudah_terpasang='','-',tp.sudah_terpasang) sudah_terpasang, concat('Nama : ', tp.nm_pengantar, '    No. Telp : ', tp.telp_pengantar) iden_pengntar, "
+                            + "tp.kasus, if(tp.icd_10='','-',tp.icd_10) icd_10, if(tp.keluhan_utama='','-',tp.keluhan_utama) keluhan_utama, pg.nama petgas, concat('KESADARAN : ', tp.kesadaran) kesadaran, "
+                            + "if(tp.td='','-',tp.td) td, if(tp.nadi='','-',tp.nadi) nadi, if(tp.napas='','-',tp.napas) napas, if(tp.temperatur='','-',tp.temperatur) temperatur, if(tp.saturasi='','-',tp.saturasi) saturasi, "
+                            + "if(tp.nyeri='','-',tp.nyeri) nyeri, if(tp.bb='','-',tp.bb) bb, if(tp.tb='','-',tp.tb) tb, if(tp.catatan='','-',tp.catatan) catatan, if(tp.keputusan='','-',tp.keputusan) keputusan, "
+                            + "time_format(tp.pukul_keputusan,'%H:%i Wita') pukul_keputusan, "
+                            + "IF(tp.skor0_sadar_penuh = 'ya', 'V', '') skor0_sadar, "
+                            + "IF(tp.skor0_100 = 'ya', 'V', '') skor0_100, "
+                            + "IF(tp.skor0_101 = 'ya', 'V', '') skor0_101, "
+                            + "IF(tp.skor0_19 = 'ya', 'V', '') skor0_19, "
+                            + "IF(tp.skor0_35_3 = 'ya', 'V', '') skor0_35, "
+                            + "IF(tp.skor0_96_100 = 'ya', 'V', '') skor0_96, "
+                            + "IF(tp.skor1_102 = 'ya', 'V', '') skor1_102, "
+                            + "IF(tp.skor1_20_21 = 'ya', 'V', '') skor1_20, "
+                            + "IF(tp.skor1_94_95 = 'ya', 'V', '') skor1_94, "
+                            + "IF(tp.skor2_99 = 'ya', 'V', '') skor2_99, "
+                            + "IF(tp.skor2_22 = 'ya', 'V', '') skor2_22, "
+                            + "IF(tp.skor2_92_93 = 'ya', 'V', '') skor2_92, "
+                            + "IF(tp.skor3_selain = 'ya', 'V', '') skor3_selain, "
+                            + "IF(tp.skor3_35_3 = 'ya', 'V', '') skor3_35, "
+                            + "IF(tp.skor3_92 = 'ya', 'V', '') skor3_92, "
+                            + "IF(tp.triase_resusitasi = 'ya', 'V', '') resus, "
+                            + "IF(tp.triase_non_resusitasi = 'ya', 'V', '') nonresus, "
+                            + "IF(tp.triase_klinik = 'ya', 'V', '') klinik, "
+                            + "IF(tp.triase_doa = 'ya', 'V', '') doa, "
+                            + "IF(tp.kll_tunggal = 'ya', 'V', '') kll_tunggal, "
+                            + "IF(tp.kll_versus = 'ya', 'V', '') kll_versus, "
+                            + "IF(tp.jatuh = 'ya', 'V', '') jatuh, "
+                            + "IF(tp.luka_bakar = 'ya', 'V', '') luka, "
+                            + "IF(tp.trauma_listrik = 'ya', 'V', '') trauma_listrik, "
+                            + "IF(tp.trauma_zat_kimia = 'ya', 'V', '') trauma_zat, "
+                            + "IF(tp.trauma_lain = 'ya', 'V', '') trauma_lain "
+                            + "FROM triase_ponek tp INNER JOIN reg_periksa rp ON rp.no_rawat = tp.no_rawat INNER JOIN pasien p ON p.no_rkm_medis = rp.no_rkm_medis "
+                            + "INNER JOIN pegawai pg ON nik = tp.nip_petugas where tp.no_rawat='" + rsLaprm.getString("no_rawat") + "'", param);
+                }
+            } catch (Exception e) {
+                System.out.println("Notifikasi : " + e);
+            } finally {
+                if (rsLaprm != null) {
+                    rsLaprm.close();
+                }
+                if (psLaprm != null) {
+                    psLaprm.close();
+                }
+            }
+        } catch (Exception e) {
+            System.out.println("Notifikasi : " + e);
         }
     }
 }

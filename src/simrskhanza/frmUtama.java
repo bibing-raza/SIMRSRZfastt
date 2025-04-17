@@ -395,6 +395,7 @@ import rekammedis.RMRekonsiliasiObat;
 import rekammedis.RMSerahTerimaBayiPulang;
 import rekammedis.RMSkorApgarDowneCapPerinatologi;
 import rekammedis.RMTriasePediatrik;
+import rekammedis.RMTriasePonek;
 import setting.DlgHistoriLoginUser;
 
 /**
@@ -921,6 +922,7 @@ public class frmUtama extends javax.swing.JFrame {
         btnTriasePediatrikIGD = new widget.ButtonBig();
         btnSerahTerimaBayiPulang = new widget.ButtonBig();
         btnPemberianInformasiEdukasi = new widget.ButtonBig();
+        btnTriasePonek = new widget.ButtonBig();
         tanggal = new widget.Tanggal();
         btnDataPenjualan = new widget.ButtonBig();
         btnInputPenjualan = new widget.ButtonBig();
@@ -6265,6 +6267,19 @@ public class frmUtama extends javax.swing.JFrame {
         });
         Panelmenu.add(btnPemberianInformasiEdukasi);
 
+        btnTriasePonek.setForeground(new java.awt.Color(0, 0, 0));
+        btnTriasePonek.setIcon(new javax.swing.ImageIcon(getClass().getResource("/48x48/report_icon.png"))); // NOI18N
+        btnTriasePonek.setText("Triase Ponek");
+        btnTriasePonek.setIconTextGap(0);
+        btnTriasePonek.setName("btnTriasePonek"); // NOI18N
+        btnTriasePonek.setPreferredSize(new java.awt.Dimension(200, 90));
+        btnTriasePonek.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnTriasePonekActionPerformed(evt);
+            }
+        });
+        Panelmenu.add(btnTriasePonek);
+
         scrollPane2.setViewportView(Panelmenu);
 
         panelMenu.add(scrollPane2, java.awt.BorderLayout.CENTER);
@@ -6273,7 +6288,7 @@ public class frmUtama extends javax.swing.JFrame {
 
         tanggal.setEditable(false);
         tanggal.setForeground(new java.awt.Color(50, 70, 50));
-        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "14/03/2025" }));
+        tanggal.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "17/04/2025" }));
         tanggal.setDisplayFormat("dd/MM/yyyy");
         tanggal.setName("tanggal"); // NOI18N
         tanggal.setOpaque(false);
@@ -12371,6 +12386,19 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         this.setCursor(Cursor.getDefaultCursor());
     }//GEN-LAST:event_btnPemberianInformasiEdukasiActionPerformed
 
+    private void btnTriasePonekActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnTriasePonekActionPerformed
+        isTutup();
+        this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
+        RMTriasePonek form = new RMTriasePonek(this, false);
+        form.isCek();
+        form.emptTeks();
+        form.setSize(PanelUtama.getWidth(), PanelUtama.getHeight());
+        form.setLocationRelativeTo(PanelUtama);
+        form.setVisible(true);
+        DlgHome.dispose();
+        this.setCursor(Cursor.getDefaultCursor());
+    }//GEN-LAST:event_btnTriasePonekActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -12798,6 +12826,7 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
     private widget.ButtonBig btnTransferPasienTindakan;
     private widget.ButtonBig btnTransferSerahTerimaPasien;
     private widget.ButtonBig btnTriasePediatrikIGD;
+    private widget.ButtonBig btnTriasePonek;
     private widget.ButtonBig btnUTDCekalDarah;
     private widget.ButtonBig btnUTDDonorDarah;
     private widget.ButtonBig btnUTDKomponenDarah;
@@ -13104,6 +13133,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
             
             if (akses.getadmin() == true) {
                 Panelmenu.add(btnMasterCatatanMaterialOperasi);
+                jmlmenu++;
+            }
+            
+            if (akses.getcppt() == true) {
+                Panelmenu.add(btnTriasePonek);
                 jmlmenu++;
             }
             
@@ -15068,6 +15102,11 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         
         if (akses.getkegiatan_operasi() == true) {
             Panelmenu.add(btnCeklisKesiapanAnestesi);
+            jmlmenu++;
+        }
+        
+        if (akses.getcppt() == true) {
+            Panelmenu.add(btnTriasePonek);
             jmlmenu++;
         }
         
@@ -17068,6 +17107,13 @@ private void BtnSimpanPassKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:e
         if (akses.getkegiatan_operasi()== true) {
             if (btnCeklisKesiapanAnestesi.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
                 Panelmenu.add(btnCeklisKesiapanAnestesi);
+                jmlmenu++;
+            }
+        }
+        
+        if (akses.getcppt()== true) {
+            if (btnTriasePonek.getText().toLowerCase().trim().contains(TCari.getText().toLowerCase().trim())) {
+                Panelmenu.add(btnTriasePonek);
                 jmlmenu++;
             }
         }
