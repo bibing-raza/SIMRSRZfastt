@@ -2648,6 +2648,8 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     private void tampilSEP() {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         nilaiRWT = "";
         Valid.tabelKosong(tabMode);
         if (cmbJnsRawat.getSelectedItem().equals("INAP")) {
@@ -2660,51 +2662,54 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         
         try {
             if (!cmbLimit.getSelectedItem().equals("Semuanya")) {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
-                        + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
-                        + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
-                        + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
-                        + "if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, "
-                        + "enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, "
-                        + "IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, "
-                        + "IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep "
-                        + "LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep "
-                        + "LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep "
-                        + "LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
-                        + "left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rawat like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and esc.payor_cd like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and p.nama like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? "
-                        + "order by enc.tglsep desc limit " + cmbLimit.getSelectedItem().toString() + "");
+                sb1.append("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, ");
+                sb1.append("if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, ");
+                sb1.append("(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, ");
+                sb1.append("eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, ");
+                sb1.append("if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, ");
+                sb1.append("enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, ");
+                sb1.append("IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, ");
+                sb1.append("IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep ");
+                sb1.append("LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep ");
+                sb1.append("LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep ");
+                sb1.append("LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli ");
+                sb1.append("left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rawat like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and esc.payor_cd like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and p.nama like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? ");
+                sb1.append("order by enc.tglsep desc limit " + cmbLimit.getSelectedItem().toString() + "");
+                ps = koneksi.prepareStatement(sb1.toString());
+             
             } else {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
-                        + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
-                        + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
-                        + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
-                        + "if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, "
-                        + "enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, "
-                        + "IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, "
-                        + "IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep "
-                        + "LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep "
-                        + "LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep "
-                        + "LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
-                        + "left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rawat like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and esc.payor_cd like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and p.nama like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? "
-                        + "order by enc.tglsep desc");
+                sb2.append("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, ");
+                sb2.append("if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, ");
+                sb2.append("(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, ");
+                sb2.append("eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, ");
+                sb2.append("if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, ");
+                sb2.append("enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, ");
+                sb2.append("IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, ");
+                sb2.append("IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep ");
+                sb2.append("LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep ");
+                sb2.append("LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep ");
+                sb2.append("LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli ");
+                sb2.append("left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rawat like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and esc.payor_cd like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and p.nama like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and enc.tglsep BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? ");
+                sb2.append("order by enc.tglsep desc");
+                ps = koneksi.prepareStatement(sb2.toString());
             }
             try {
                  if (!cmbLimit.getSelectedItem().equals("Semuanya")) {
@@ -3072,6 +3077,8 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
     }
     
     private void tampilKLAIM() {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         nilaiRWT = "";
         Valid.tabelKosong(tabMode);
         if (cmbJnsRawat.getSelectedItem().equals("INAP")) {
@@ -3084,52 +3091,54 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         
         try {
             if (!cmbLimit.getSelectedItem().equals("Semuanya")) {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
-                        + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
-                        + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
-                        + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
-                        + "if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, "
-                        + "enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, "
-                        + "IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, "
-                        + "IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep "
-                        + "LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep "
-                        + "LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep "
-                        + "LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
-                        + "left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rawat like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and esc.payor_cd like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_sep like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.klaim_final like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and p.nama like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rm like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? "
-                        + "order by enc.tgl_input desc limit " + cmbLimit.getSelectedItem().toString() + "");
+                sb1.append("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, ");
+                sb1.append("if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, ");
+                sb1.append("(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, ");
+                sb1.append("eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, ");
+                sb1.append("if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, ");
+                sb1.append("enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, ");
+                sb1.append("IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, ");
+                sb1.append("IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep ");
+                sb1.append("LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep ");
+                sb1.append("LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep ");
+                sb1.append("LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli ");
+                sb1.append("left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rawat like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and esc.payor_cd like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_sep like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.klaim_final like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and p.nama like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rm like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or ");
+                sb1.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? ");
+                sb1.append("order by enc.tgl_input desc limit " + cmbLimit.getSelectedItem().toString() + "");
+                ps = koneksi.prepareStatement(sb1.toString());
 
             } else {
-                ps = koneksi.prepareStatement("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, "
-                        + "if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, "
-                        + "(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, "
-                        + "eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, "
-                        + "if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, "
-                        + "enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, "
-                        + "IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, "
-                        + "IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep "
-                        + "LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep "
-                        + "LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep "
-                        + "LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli "
-                        + "left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rawat like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and esc.payor_cd like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_sep like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.klaim_final like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and p.nama like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rm like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or "
-                        + "rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? "
-                        + "order by enc.tgl_input desc");
+                sb2.append("SELECT enc.no_rawat,ifnull(esc.payor_cd,'') payor_cd,enc.no_sep,if(enc.jnspelayanan='1','Inap','Jalan') Rawat,if(esc.jenis_rawat='1',eg.kelas,'') Kelas, ");
+                sb2.append("if(esc.upgrade_class_ind='1',esc.upgrade_class_class,'') naik_kelas,eg.cbg_code,eg.cbg_tarif,eg.sub_acute_tarif,eg.chronic_tarif, ");
+                sb2.append("(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) special_cmg_tarif, ");
+                sb2.append("eg.cbg_tarif+eg.sub_acute_tarif+eg.chronic_tarif+(SELECT if(SUM(cmg.tarif) IS NULL,0,SUM(cmg.tarif)) FROM eklaim_grouping_spc_cmg cmg WHERE cmg.no_sep=enc.no_sep) total_tarif_grouping, ");
+                sb2.append("if(esc.upgrade_class_ind='1',eg.add_payment_amt,0) naik_kelas_tarif, round(esc.real_tarif,0) real_tarif,enc.klaim_final,if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') kirim_online, ");
+                sb2.append("enc.nm_pasien, date_format(enc.tgl_input,'%d-%m-%Y') tglInput, enc.tglsep, p.nama nm_petugas, IFNULL(ecd.top_up_rawat,'0') trf_covid, enc.no_rm, ");
+                sb2.append("IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) unit, ");
+                sb2.append("IFNULL(egc.payor_id,'3') payor_id FROM eklaim_new_claim enc LEFT JOIN eklaim_generate_claim egc ON egc.claim_number=enc.no_sep ");
+                sb2.append("LEFT JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep LEFT JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep LEFT JOIN eklaim_online_status eos ON eos.no_sep=enc.no_sep ");
+                sb2.append("LEFT JOIN inacbg_coder_nik koder ON koder.no_ik=esc.coder_nik LEFT JOIN pegawai p ON p.nik=koder.nik LEFT JOIN eklaim_covid19_data ecd ON ecd.no_sep=enc.no_sep ");
+                sb2.append("LEFT JOIN reg_periksa rp on rp.no_rawat=enc.no_rawat LEFT JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli ");
+                sb2.append("left join kamar_inap ki on ki.no_rawat = rp.no_rawat left JOIN kamar k ON k.kd_kamar=ki.kd_kamar left JOIN bangsal b ON b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rawat like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and esc.payor_cd like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_sep like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.klaim_final like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and p.nama like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and enc.no_rm like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and if(eos.kemkes_dc_status='sent','Sudah Terkirim ke Kemenkes','Belum Terkirim') like ? or ");
+                sb2.append("rp.status_lanjut like '" + nilaiRWT + "' and DATE(enc.tgl_input) BETWEEN ? AND ? and IF(rp.status_lanjut='Ralan',CONCAT('Inst./Poli ',pl.nm_poli),CONCAT('Rg. ',b.nm_bangsal)) like ? ");
+                sb2.append("order by enc.tgl_input desc");
+                ps = koneksi.prepareStatement(sb2.toString());
             }
             try {
                 if (!cmbLimit.getSelectedItem().equals("Semuanya")) {

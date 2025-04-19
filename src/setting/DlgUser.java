@@ -2221,33 +2221,40 @@ private void BtnPrintKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_
 
     private void tampil() {        
         Valid.tabelKosong(tabMode);
-        StringBuilder sb = new StringBuilder();        
+        StringBuilder sb = new StringBuilder();
+        user = "";
+        jabatan = "";
         try {            
-            sb.append("select u.*, AES_DECRYPT(u.id_user,'nur') idUser, AES_DECRYPT(u.password,'windi') pwd, pt1.nip nip1, pt1.nip nip2, ");
+            sb.append("select u.*, AES_DECRYPT(u.id_user,'nur') idUser, AES_DECRYPT(u.password,'windi') pwd, ");
             sb.append("pt1.nama nmPetugas1, jb1.nm_jbtn jbtn1, pt2.nama nmPetugas2, jb2.nm_jbtn jbtn2 from user u ");
             sb.append("left join petugas pt1 on pt1.nip=AES_DECRYPT(u.id_user,'nur') ");
             sb.append("left join jabatan jb1 on jb1.kd_jbtn=pt1.kd_jbtn ");
             sb.append("left join petugas pt2 on pt2.user_id=AES_DECRYPT(u.id_user,'nur') ");
             sb.append("left join jabatan jb2 on jb2.kd_jbtn=pt2.kd_jbtn where ");            
-            sb.append("AES_DECRYPT(u.id_user,'nur') like '%" + TCari.getText().trim() + "%' or ");
-            sb.append("AES_DECRYPT(u.password,'windi') like '%" + TCari.getText().trim() + "%' or ");
-            sb.append("pt1.nama like '%" + TCari.getText().trim() + "%' or ");
-            sb.append("pt2.nama like '%" + TCari.getText().trim() + "%' or ");
-            sb.append("jb1.nm_jbtn like '%" + TCari.getText().trim() + "%' or ");
-            sb.append("jb2.nm_jbtn like '%" + TCari.getText().trim() + "%' order by AES_DECRYPT(u.id_user,'nur')");
+            sb.append("AES_DECRYPT(u.id_user,'nur') like ? or ");
+            sb.append("AES_DECRYPT(u.password,'windi') like ? or ");
+            sb.append("pt1.nama like ? or ");
+            sb.append("pt2.nama like ? or ");
+            sb.append("jb1.nm_jbtn like ? or ");
+            sb.append("jb2.nm_jbtn like ? order by AES_DECRYPT(u.id_user,'nur')");
             ps = koneksi.prepareStatement(sb.toString());
             try {
+                ps.setString(1, "%" + TCari.getText().trim() + "%");
+                ps.setString(2, "%" + TCari.getText().trim() + "%");
+                ps.setString(3, "%" + TCari.getText().trim() + "%");
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
+                ps.setString(5, "%" + TCari.getText().trim() + "%");
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();
                 while (rs.next()) {
-                    user = "";
-                    jabatan = "";
+                    if (Sequel.cariInteger("select count(-1) from petugas where nip='" + rs.getString("idUser") + "'") > 0) {
+                        user = Sequel.cariIsi("select nama from petugas where nip='" + rs.getString("idUser") + "'");
+                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn='" + Sequel.cariIsi("select kd_jbtn from petugas where nip='" + rs.getString("idUser") + "'") + "'");
+                    } 
                     
-                    if (!rs.getString("nip1").equals("")) {
-                        user = rs.getString("nmPetugas1");
-                        jabatan = rs.getString("jbtn1");
-                    } else if (!rs.getString("nip2").equals("")) {
-                        user = rs.getString("nmPetugas2");
-                        jabatan = rs.getString("jbtn2");
+                    if (Sequel.cariInteger("select count(-1) from petugas where user_id='" + rs.getString("idUser") + "'") > 0) {
+                        user = Sequel.cariIsi("select nama from petugas where user_id='" + rs.getString("idUser") + "'");
+                        jabatan = Sequel.cariIsi("select nm_jbtn from jabatan where kd_jbtn='" + Sequel.cariIsi("select kd_jbtn from petugas where user_id='" + rs.getString("idUser") + "'") + "'");
                     }
                     
                     try {

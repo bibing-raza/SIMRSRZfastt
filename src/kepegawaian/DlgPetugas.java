@@ -1309,102 +1309,108 @@ private void ChkInputActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRS
 
     private void tampil() {
         Valid.tabelKosong(tabMode);
-        try{
-            ps=koneksi.prepareStatement(
+        try {
+            ps = koneksi.prepareStatement(
                     "SELECT petugas.nip, petugas.nama, petugas.jk, petugas.tmp_lahir, petugas.tgl_lahir, petugas.gol_darah, petugas.agama, "
                     + "petugas.stts_nikah, petugas.alamat, jabatan.nm_jbtn, petugas.no_telp, IF(pegawai.no_ktp='','-',pegawai.no_ktp) no_ktp, petugas.user_id "
-                    + "FROM petugas INNER JOIN jabatan ON jabatan.kd_jbtn = petugas.kd_jbtn INNER JOIN pegawai ON pegawai.nik = petugas.nip "
-                    + "where petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nama like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.jk like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tmp_lahir like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tgl_lahir like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.gol_darah like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.agama like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.alamat like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.no_telp like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and jabatan.nm_jbtn like ? or "
-                    + " petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? order by petugas.nip");
+                    + "FROM petugas INNER JOIN jabatan ON jabatan.kd_jbtn = petugas.kd_jbtn INNER JOIN pegawai ON pegawai.nik = petugas.nip where "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nip like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.nama like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.jk like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tmp_lahir like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.tgl_lahir like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.gol_darah like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.agama like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.alamat like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.no_telp like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and jabatan.nm_jbtn like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and petugas.user_id like ? or "
+                    + "petugas.status='1' and petugas.jk like ? and petugas.gol_darah like ? and petugas.stts_nikah like ? and pegawai.no_ktp like ? order by petugas.nip");
             try {
-                ps.setString(1,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(2,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(3,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(4,"%"+TCari.getText().trim()+"%");
-                ps.setString(5,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(6,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(7,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(8,"%"+TCari.getText().trim()+"%");
-                ps.setString(9,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(10,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(11,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(12,"%"+TCari.getText().trim()+"%");
-                ps.setString(13,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(14,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(15,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(16,"%"+TCari.getText().trim()+"%");
-                ps.setString(17,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(18,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(19,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(20,"%"+TCari.getText().trim()+"%");
-                ps.setString(21,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(22,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(23,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(24,"%"+TCari.getText().trim()+"%");
-                ps.setString(25,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(26,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(27,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(28,"%"+TCari.getText().trim()+"%");
-                ps.setString(29,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(30,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(31,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(32,"%"+TCari.getText().trim()+"%");
-                ps.setString(33,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(34,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(35,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(36,"%"+TCari.getText().trim()+"%");
-                ps.setString(37,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(38,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(39,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(40,"%"+TCari.getText().trim()+"%");                
-                ps.setString(41,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(42,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(43,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(44,"%"+TCari.getText().trim()+"%");
-                ps.setString(45,"%"+cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI","L").replaceAll("PEREMPUAN","P").trim()+"%");
-                ps.setString(46,"%"+CmbCrGd.getSelectedItem().toString().trim()+"%");
-                ps.setString(47,"%"+CmbCrStts.getSelectedItem().toString().trim()+"%");
-                ps.setString(48,"%"+TCari.getText().trim()+"%");
-                rs=ps.executeQuery();
-                while(rs.next()){
-                    tabMode.addRow(new Object[]{rs.getString(1),
-                                   rs.getString(2),
-                                   rs.getString(3),
-                                   rs.getString(4),
-                                   rs.getString(5),
-                                   rs.getString(6),
-                                   rs.getString(7),
-                                   rs.getString(8),
-                                   rs.getString(9),
-                                   rs.getString(10),
-                                   rs.getString(11),
-                                   rs.getString(12),
-                                   rs.getString(13)});
+                ps.setString(1, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(2, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(3, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(4, "%" + TCari.getText().trim() + "%");
+                ps.setString(5, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(6, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(7, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(8, "%" + TCari.getText().trim() + "%");
+                ps.setString(9, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(10, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(11, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(12, "%" + TCari.getText().trim() + "%");
+                ps.setString(13, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(14, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(15, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(16, "%" + TCari.getText().trim() + "%");
+                ps.setString(17, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(18, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(19, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(20, "%" + TCari.getText().trim() + "%");
+                ps.setString(21, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(22, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(23, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(24, "%" + TCari.getText().trim() + "%");
+                ps.setString(25, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(26, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(27, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(28, "%" + TCari.getText().trim() + "%");
+                ps.setString(29, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(30, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(31, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(32, "%" + TCari.getText().trim() + "%");
+                ps.setString(33, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(34, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(35, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(36, "%" + TCari.getText().trim() + "%");
+                ps.setString(37, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(38, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(39, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(40, "%" + TCari.getText().trim() + "%");
+                ps.setString(41, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(42, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(43, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(44, "%" + TCari.getText().trim() + "%");
+                ps.setString(45, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(46, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(47, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(48, "%" + TCari.getText().trim() + "%");
+                ps.setString(49, "%" + cmbCrJk.getSelectedItem().toString().replaceAll("LAKI-LAKI", "L").replaceAll("PEREMPUAN", "P").trim() + "%");
+                ps.setString(50, "%" + CmbCrGd.getSelectedItem().toString().trim() + "%");
+                ps.setString(51, "%" + CmbCrStts.getSelectedItem().toString().trim() + "%");
+                ps.setString(52, "%" + TCari.getText().trim() + "%");
+                rs = ps.executeQuery();
+                while (rs.next()) {
+                    tabMode.addRow(new Object[]{
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getString(4),
+                        rs.getString(5),
+                        rs.getString(6),
+                        rs.getString(7),
+                        rs.getString(8),
+                        rs.getString(9),
+                        rs.getString(10),
+                        rs.getString(11),
+                        rs.getString(12),
+                        rs.getString(13)});
                 }
             } catch (Exception e) {
                 System.out.println(e);
-            } finally{
-                if(rs!=null){
+            } finally {
+                if (rs != null) {
                     rs.close();
                 }
-                if(ps!=null){
+                if (ps != null) {
                     ps.close();
                 }
             }
-        }catch(SQLException e){
-            System.out.println("Notifikasi : "+e);
+        } catch (SQLException e) {
+            System.out.println("Notifikasi : " + e);
         }
-        LCount.setText(""+tabMode.getRowCount());
+        LCount.setText("" + tabMode.getRowCount());
     }
 
     public void emptTeks() {
