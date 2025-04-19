@@ -12751,6 +12751,7 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        StringBuilder sb = new StringBuilder();        
         //update status pulang ringkasan/resume pulang pasien
         Sequel.queryu("update ringkasan_pulang_ranap r, kamar_inap k set r.stts_pulang=k.stts_pulang WHERE "
                 + "r.no_rawat=k.no_rawat and k.stts_pulang<>'Pindah Kamar'");
@@ -12799,34 +12800,34 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         Valid.tabelKosong(tabMode);
         try {
             try {
-                rs = koneksi.prepareStatement(
-                        " SELECT a.no_rawat, a.no_rkm_medis, a.nm_pasien, a.tgl_lahir, a.alamat, a.png_jawab, "
-                        + "IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) sep, "
-                        + "a.kd_kamar, a.nm_bangsal, a.trf_kamar, a.diagnosa_awal, a.diagnosa_akhir, a.tgl_masuk, a.jam_masuk, a.tgl_keluar, a.jam_keluar, "
-                        + "a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel,a.nm_kec,a.nm_kab, a.dokter2, "
-                        + "date_format(a.tgl_masuk,'%d-%m-%Y') tglmsk_format, date_format(a.tgl_keluar,'%d-%m-%Y') tglklr_format FROM  "
-                        + "((SELECT ki.no_rawat, r.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, "
-                        + "concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, "
-                        + "b.nm_bangsal, ki.trf_kamar, ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF (ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, "
-                        + "IF (ki.jam_keluar = '00:00:00','',ki.jam_keluar) jam_keluar, ki.ttl_biaya, ki.stts_pulang, ki.lama, "
-                        + "d.nm_dokter, r.kd_pj,kl.nm_kel,kc.nm_kec,kb.nm_kab,k.kelas,p.no_tlp, d1.nm_dokter dokter2 "
-                        + "FROM kamar_inap ki INNER JOIN reg_periksa r ON ki.no_rawat = r.no_rawat "
-                        + "INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis "
-                        + "INNER JOIN dokter d ON d.kd_dokter = r.kd_dokter "
-                        + "INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj "
-                        + "INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar "
-                        + "INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal "
-                        + "INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel "
-                        + "INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec "
-                        + "INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab "
-                        + "LEFT JOIN dpjp_ranap dr ON dr.no_rawat = ki.no_rawat "
-                        + "LEFT JOIN dokter d1 ON d1.kd_dokter = dr.kd_dokter) AS a "
-                        + "LEFT JOIN (SELECT DISTINCT bs.no_rawat FROM	bridging_sep bs WHERE bs.jnspelayanan = '1') AS b "
-                        + "ON a.no_rawat = b.no_rawat "
-                        + "LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jamkesda where jns_rawat = 'inap') AS c "
-                        + "ON c.no_rawat = a.no_rawat "
-                        + "LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jampersal WHERE jns_rawat = 'inap') AS d "
-                        + "ON d.no_rawat = a.no_rawat) where " + key + " order by a.nm_bangsal, a.tgl_masuk, a.jam_masuk").executeQuery();
+                sb.append("SELECT a.no_rawat, a.no_rkm_medis, a.nm_pasien, a.tgl_lahir, a.alamat, a.png_jawab, ");
+                sb.append("IF (b.no_rawat = a.no_rawat OR c.no_rawat = a.no_rawat or d.no_rawat = a.no_rawat, 'SUDAH', IF (a.kd_pj <> 'b01' AND a.kd_pj not in ('d01','d04'),'NON SEP','BELUM')) sep, ");
+                sb.append("a.kd_kamar, a.nm_bangsal, a.trf_kamar, a.diagnosa_awal, a.diagnosa_akhir, a.tgl_masuk, a.jam_masuk, a.tgl_keluar, a.jam_keluar, ");
+                sb.append("a.ttl_biaya, a.stts_pulang, a.lama, a.nm_dokter, a.no_tlp, a.kd_pj, a.nm_kel,a.nm_kec,a.nm_kab, a.dokter2, ");
+                sb.append("date_format(a.tgl_masuk,'%d-%m-%Y') tglmsk_format, date_format(a.tgl_keluar,'%d-%m-%Y') tglklr_format FROM ");
+                sb.append("((SELECT ki.no_rawat, r.no_rkm_medis, p.nm_pasien, date_format(p.tgl_lahir,'%d-%m-%Y') tgl_lahir, ");
+                sb.append("concat(p.alamat,', ',kl.nm_kel,', ',kc.nm_kec,',',kb.nm_kab) alamat, pj.png_jawab, ki.kd_kamar, ");
+                sb.append("b.nm_bangsal, ki.trf_kamar, ki.diagnosa_awal, ki.diagnosa_akhir, ki.tgl_masuk, ki.jam_masuk, IF (ki.tgl_keluar ='0000-00-00','',ki.tgl_keluar) tgl_keluar, ");
+                sb.append("IF (ki.jam_keluar = '00:00:00','',ki.jam_keluar) jam_keluar, ki.ttl_biaya, ki.stts_pulang, ki.lama, ");
+                sb.append("d.nm_dokter, r.kd_pj,kl.nm_kel,kc.nm_kec,kb.nm_kab,k.kelas,p.no_tlp, d1.nm_dokter dokter2 ");
+                sb.append("FROM kamar_inap ki INNER JOIN reg_periksa r ON ki.no_rawat = r.no_rawat ");
+                sb.append("INNER JOIN pasien p ON p.no_rkm_medis = r.no_rkm_medis ");
+                sb.append("INNER JOIN dokter d ON d.kd_dokter = r.kd_dokter ");
+                sb.append("INNER JOIN penjab pj ON pj.kd_pj = r.kd_pj ");
+                sb.append("INNER JOIN kamar k ON k.kd_kamar = ki.kd_kamar ");
+                sb.append("INNER JOIN bangsal b ON b.kd_bangsal = k.kd_bangsal ");
+                sb.append("INNER JOIN kelurahan kl ON kl.kd_kel = p.kd_kel ");
+                sb.append("INNER JOIN kecamatan kc ON kc.kd_kec = p.kd_kec ");
+                sb.append("INNER JOIN kabupaten kb ON kb.kd_kab = p.kd_kab ");
+                sb.append("LEFT JOIN dpjp_ranap dr ON dr.no_rawat = ki.no_rawat ");
+                sb.append("LEFT JOIN dokter d1 ON d1.kd_dokter = dr.kd_dokter) AS a ");
+                sb.append("LEFT JOIN (SELECT DISTINCT bs.no_rawat FROM bridging_sep bs WHERE bs.jnspelayanan = '1') AS b ");
+                sb.append("ON a.no_rawat = b.no_rawat ");
+                sb.append("LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jamkesda where jns_rawat = 'inap') AS c ");
+                sb.append("ON c.no_rawat = a.no_rawat ");
+                sb.append("LEFT JOIN (SELECT DISTINCT no_rawat FROM bridging_jampersal WHERE jns_rawat = 'inap') AS d ");
+                sb.append("ON d.no_rawat = a.no_rawat) where " + key + " order by a.nm_bangsal, a.tgl_masuk, a.jam_masuk");
+                rs = koneksi.prepareStatement(sb.toString()).executeQuery();
 
                 while (rs.next()) {
                     e_resep = Sequel.cariIsi("select if(ifnull(no_rawat,'')<>'','ada','') from catatan_resep_ranap where no_rawat='" + rs.getString("no_rawat") + "'");
@@ -13647,11 +13648,12 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
     }
 
     private void tampilDPJP() {
+        StringBuilder sb = new StringBuilder();
         row = tbKamIn.getRowCount();
         for (i = 0; i < row; i++) {
             try {
-                psdpjp = koneksi.prepareStatement("select dokter.nm_dokter from dpjp_ranap inner join dokter "
-                        + "on dpjp_ranap.kd_dokter=dokter.kd_dokter where dpjp_ranap.no_rawat=?");
+                sb.append("select dokter.nm_dokter from dpjp_ranap inner join dokter on dpjp_ranap.kd_dokter=dokter.kd_dokter where dpjp_ranap.no_rawat=?");
+                psdpjp = koneksi.prepareStatement(sb.toString());
                 dokterranap = "";
                 try {
                     psdpjp.setString(1, tbKamIn.getValueAt(i, 0).toString());

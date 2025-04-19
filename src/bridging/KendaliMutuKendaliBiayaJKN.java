@@ -843,6 +843,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
             obat = "";
+            StringBuilder sb = new StringBuilder();
 
             if (jnsRawat.getSelectedIndex() == 2) {
                 unitnya = "p.nm_poli like '%" + NmPoli.getText() + "%'";
@@ -851,36 +852,37 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }
 
             dialog_simpan = Valid.openDialog();
-            Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', "
-                    + "d.nm_dokter 'Nama Dokter',s.nm_sps 'Spesialis', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', "
-                    + "(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Radiologi', "
-                    + "(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Lab.', "
-                    + "(SELECT convert(ifnull(sum(r.biaya_rawat),'0'),int) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
-                    + "WHERE r.no_rawat=enc.no_rawat and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', "
-                    + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
-                    + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', "
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
-                    + "CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
-                    //ini menghitung persentase biaya cost pokok
-                    + "CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat)+"
-                    + "(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat)+"
-                    + "(SELECT convert(ifnull(sum(r.biaya_rawat),'0'),int) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw "
-                    + "WHERE r.no_rawat=enc.no_rawat and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')))/"
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100),2),' %') 'Biaya Cost Pokok (%)' "
-                    //sampe sini----------------
-                    + "FROM eklaim_new_claim enc "
-                    + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
-                    + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
-                    + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli "
-                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter "
-                    + "inner join spesialis s on s.kd_sps = d.kd_sps "
-                    + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
-                    + "LEFT join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' "
-                    + "LEFT join penyakit pk on pk.kd_penyakit = dp.kd_penyakit WHERE "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and "
-                    + "enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
-                    + "ORDER BY enc.tglsep", dialog_simpan);
+            sb.append("SELECT enc.no_sep 'No. SEP', enc.no_rm 'No. RM',enc.nm_pasien 'Nama Pasien', p.nm_poli 'Poliklinik/Inst.', ");
+            sb.append("d.nm_dokter 'Nama Dokter',s.nm_sps 'Spesialis', ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', ");
+            sb.append("(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Radiologi', ");
+            sb.append("(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat) 'Tot. Biaya Lab.', ");
+            sb.append("(SELECT convert(ifnull(sum(r.biaya_rawat),'0'),int) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw ");
+            sb.append("WHERE r.no_rawat=enc.no_rawat and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', ");
+            sb.append("concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', ");
+            sb.append("IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', ");
+            sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', ");
+            sb.append("CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', ");
+            //ini menghitung persentase biaya cost pokok
+            sb.append("CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(SELECT convert(ifnull(SUM(biaya),'0'),int) FROM periksa_radiologi WHERE no_rawat=enc.no_rawat)+");
+            sb.append("(SELECT convert(ifnull(SUM(biaya_item),'0'),int) FROM detail_periksa_lab WHERE no_rawat=enc.no_rawat)+");
+            sb.append("(SELECT convert(ifnull(sum(r.biaya_rawat),'0'),int) FROM rawat_jl_drpr r inner join jns_perawatan j on j.kd_jenis_prw=r.kd_jenis_prw ");
+            sb.append("WHERE r.no_rawat=enc.no_rawat and (j.nm_perawatan like '%liter%' or j.nm_perawatan like '%Pemasangan Oksigenasi%')))/");
+            sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100),2),' %') 'Biaya Cost Pokok (%)' ");
+            //sampe sini----------------
+            sb.append("FROM eklaim_new_claim enc ");
+            sb.append("INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat ");
+            sb.append("INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli ");
+            sb.append("INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter ");
+            sb.append("inner join spesialis s on s.kd_sps = d.kd_sps ");
+            sb.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep ");
+            sb.append("LEFT join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' ");
+            sb.append("LEFT join penyakit pk on pk.kd_penyakit = dp.kd_penyakit WHERE ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and ");
+            sb.append("enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' ");
+            sb.append("ORDER BY enc.tglsep");
+            Valid.MyReportToExcel(sb.toString(), dialog_simpan);
 
             JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");            
             this.setCursor(Cursor.getDefaultCursor());
@@ -947,6 +949,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         } else {
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             unitnya = "";
+            StringBuilder sb = new StringBuilder();
 
             if (jnsRawat.getSelectedIndex() == 1) {
                 if ((cmbRuangan.getSelectedItem().equals("-"))) {
@@ -959,37 +962,38 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
             }
 
             dialog_simpan = Valid.openDialog();
-            Valid.MyReportToExcel("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', "
-                    + "ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', (select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi') 'Tot. Biaya Radiologi', "
-                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat') 'Tot. Biaya Lab.', "
-                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', "
-                    + "concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', "
-                    + "IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', "
-                    + "CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', "
-                    //ini menghitung persentase biaya cost pokok
-                    + "CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+"
-                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+"
-                    + "(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')))/"
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100),2),' %') 'Biaya Cost Pokok (%)', "
-                    //sampe sini----------------
-                    + "if(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)>convert(ifnull(ts.jumlah_tagihan,'0'),int),'Untung','Berpotensi Rugi') 'Status Biaya', "
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih Rugi & Untung' "
-                    + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
-                    + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
-                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "inner join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' "
-                    + "inner join penyakit pk on pk.kd_penyakit = dp.kd_penyakit "
-                    + "inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
-                    + "left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
-                    + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
-                    + "left join dokter d on d.kd_dokter=dr.kd_dokter "
-                    + "left join spesialis s on s.kd_sps = d.kd_sps WHERE "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' "
-                    + "ORDER BY enc.tglsep", dialog_simpan);
+            sb.append("SELECT enc.no_sep 'No. SEP',enc.no_rm 'No. RM', enc.nm_pasien 'Nama Pasien', b.nm_gedung 'Rg. Perawatan Inap', d.nm_dokter 'Nama DPJP',s.nm_sps 'Spesialis', ");
+            sb.append("ROUND(esc.tarif_obat * 0.8) 'Biaya Real Obat', (select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi') 'Tot. Biaya Radiologi', ");
+            sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat') 'Tot. Biaya Lab.', ");
+            sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')) 'Tot. Biaya Oksigen', ");
+            sb.append("concat('   ',enc.klaim_final) 'Status Klaim',dp.kd_penyakit'Code ICD',pk.nm_penyakit 'Diagnosa Akhir',eg.cbg_desc 'Deskripsi CBG',eg.cbg_tarif 'Tarif CBG', ");
+            sb.append("IFNULL(egsc.desc,'-') 'Deskripsi TopUp', IFNULL(egsc.tarif,0) 'TopUp Tarif', convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Biaya RealCost', IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) 'Tot. Trf. Grouping', ");
+            sb.append("CONCAT(FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') 'Pemakaian Obat (%)', ");
+            //ini menghitung persentase biaya cost pokok
+            sb.append("CONCAT(format((((ROUND(esc.tarif_obat * 0.8)+(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Radiologi')+");
+            sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and status='Laborat')+");
+            sb.append("(select convert(ifnull(sum(totalbiaya),'0'),int) from billing where no_rawat=enc.no_rawat and (nm_perawatan like '%liter%' or nm_perawatan like '%Pemasangan Oksigenasi%')))/");
+            sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100),2),' %') 'Biaya Cost Pokok (%)', ");
+            //sampe sini----------------
+            sb.append("if(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)>convert(ifnull(ts.jumlah_tagihan,'0'),int),'Untung','Berpotensi Rugi') 'Status Biaya', ");
+            sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif)-convert(ifnull(ts.jumlah_tagihan,'0'),int) 'Selisih Rugi & Untung' ");
+            sb.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat ");
+            sb.append("inner join kamar_inap ki on ki.no_rawat=rp.no_rawat ");
+            sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar ");
+            sb.append("inner join bangsal b on b.kd_bangsal=k.kd_bangsal ");
+            sb.append("inner join diagnosa_pasien dp on dp.no_rawat = enc.no_rawat and dp.prioritas = '1' ");
+            sb.append("inner join penyakit pk on pk.kd_penyakit = dp.kd_penyakit ");
+            sb.append("inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat ");
+            sb.append("left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep ");
+            sb.append("left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat ");
+            sb.append("left join dokter d on d.kd_dokter=dr.kd_dokter ");
+            sb.append("left join spesialis s on s.kd_sps = d.kd_sps WHERE ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN '" + Valid.SetTgl(TglSEP1.getSelectedItem() + "") + "' AND '" + Valid.SetTgl(TglSEP2.getSelectedItem() + "") + "' ");
+            sb.append("ORDER BY enc.tglsep");
+            Valid.MyReportToExcel(sb.toString(), dialog_simpan);
 
             JOptionPane.showMessageDialog(null, "Data telah berhasil diexport menjadi file excel,..!!!");            
             this.setCursor(Cursor.getDefaultCursor());
@@ -1092,6 +1096,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     // End of variables declaration//GEN-END:variables
 
     private void tampilRanap() {
+        StringBuilder sb = new StringBuilder();
         unitnya = "";
         cekRugi = "";
         selisih = 0;
@@ -1112,35 +1117,37 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             //tarif obat yg dari tabel eklaim_set_claim dikali 0.8 atau 80%
             //0.8 adalah 80% sudah dipotong 20% dari harga tarif obat
-            ps1 = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, "
-                    + "format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, "
-                    + "IFNULL(egsc.desc,'-') topup_desc, format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
-                    + "CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, "
-                    + "format(ifnull(ts.jumlah_tagihan,'0'),0) biayaRC, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) tot_trf_grp, ifnull(ts.jumlah_tagihan,'0') tot_biayaRC, "
-                    + "IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping, ROUND(esc.tarif_obat * 0.8) byRealObat FROM eklaim_new_claim enc "
-                    + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
-                    + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
-                    + "inner join kamar_inap ki on ki.no_rawat=rp.no_rawat "
-                    + "inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal "
-                    + "inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat "
-                    + "left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep "
-                    + "left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat "
-                    + "left join dokter d on d.kd_dokter=dr.kd_dokter WHERE "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and eg.cbg_desc like ? or "
-                    + "ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and "
-                    + "d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') like ? "
-                    + "ORDER BY enc.tglsep");
+            sb.append("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, b.nm_gedung unit, d.nm_dokter dpjp, ");
+            sb.append("format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, ");
+            sb.append("IFNULL(egsc.desc,'-') topup_desc, format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, ");
+            sb.append("CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, rp.status_lanjut, enc.no_rawat, ");
+            sb.append("format(ifnull(ts.jumlah_tagihan,'0'),0) biayaRC, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) tot_trf_grp, ifnull(ts.jumlah_tagihan,'0') tot_biayaRC, ");
+            sb.append("IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping, ROUND(esc.tarif_obat * 0.8) byRealObat FROM eklaim_new_claim enc ");
+            sb.append("INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat ");
+            sb.append("inner join kamar_inap ki on ki.no_rawat=rp.no_rawat ");
+            sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar ");
+            sb.append("inner join bangsal b on b.kd_bangsal=k.kd_bangsal ");
+            sb.append("inner join tagihan_sadewa ts on ts.no_nota = enc.no_rawat ");
+            sb.append("left join eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep ");
+            sb.append("left join dpjp_ranap dr on dr.no_rawat=ki.no_rawat ");
+            sb.append("left join dokter d on d.kd_dokter=dr.kd_dokter WHERE ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and eg.cbg_desc like ? or ");
+            sb.append("ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung<>'igd' and b.nm_gedung<>'-' and b.status='1' and " + unitnya + " and rp.status_lanjut='ranap' and ");
+            sb.append("d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') like ? ");
+            sb.append("ORDER BY enc.tglsep");
+            ps1 = koneksi.prepareStatement(sb.toString());
+
             try {
                 ps1.setString(1, Valid.SetTgl(TglSEP1.getSelectedItem() + ""));
                 ps1.setString(2, Valid.SetTgl(TglSEP2.getSelectedItem() + ""));
@@ -1224,6 +1231,7 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
     }
     
     private void tampilRalan() {
+        StringBuilder sb = new StringBuilder();
         unitnya = "";
         obat = "";
         Valid.tabelKosong(tabMode);
@@ -1237,24 +1245,26 @@ private void KdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TKdKey
         try {
             //tarif obat yg dari tabel eklaim_set_claim dikali 0.8 atau 80%
             //0.8 adalah 80% sudah dipotong 20% dari harga tarif obat
-            ps = koneksi.prepareStatement("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, "
-                    + "concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, format(IFNULL(egsc.desc,'-'),0) topup_desc, "
-                    + "format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, "
-                    + "CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, "
-                    + "rp.status_lanjut, ROUND(esc.tarif_obat * 0.8) byRealObat, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping FROM eklaim_new_claim enc "
-                    + "INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep "
-                    + "INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat "
-                    + "INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli "
-                    + "INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter "
-                    + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep WHERE "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and eg.cbg_desc like ? or "
-                    + "rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') like ? "
-                    + "ORDER BY enc.tglsep");
+            sb.append("SELECT enc.no_sep,enc.no_rm,enc.nm_pasien, p.nm_poli, d.nm_dokter, format(ROUND(esc.tarif_obat * 0.8),0) by_obat_real, enc.no_rawat, ");
+            sb.append("concat('   ',enc.klaim_final) klaim_final,eg.cbg_desc, format(eg.cbg_tarif,0) cbg_tarif, format(IFNULL(egsc.desc,'-'),0) topup_desc, ");
+            sb.append("format(IFNULL(egsc.tarif,0),0) topup_tarif, format(IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif),0) total_trf_grp, ");
+            sb.append("CONCAT('   ',FORMAT((ROUND(esc.tarif_obat * 0.8)/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' %') perc_pakai_obat, ");
+            sb.append("rp.status_lanjut, ROUND(esc.tarif_obat * 0.8) byRealObat, IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif) totTrfGrouping FROM eklaim_new_claim enc ");
+            sb.append("INNER JOIN eklaim_set_claim esc ON esc.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN eklaim_grouping eg ON eg.no_sep = enc.no_sep ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat = enc.no_rawat ");
+            sb.append("INNER JOIN poliklinik p ON p.kd_poli = rp.kd_poli ");
+            sb.append("INNER JOIN dokter d ON d.kd_dokter = rp.kd_dokter ");
+            sb.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep = enc.no_sep WHERE ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_sep like ? or ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.no_rm like ? or ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.nm_pasien like ? or ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and enc.klaim_final like ? or ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and eg.cbg_desc like ? or ");
+            sb.append("rp.status_lanjut='ralan' and " + unitnya + " and d.nm_dokter like '%" + TDokter.getText() + "%' and enc.tglsep BETWEEN ? AND ? and CONCAT(FORMAT((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') like ? ");
+            sb.append("ORDER BY enc.tglsep");
+            ps = koneksi.prepareStatement(sb.toString());
+            
             try {
                 ps.setString(1, Valid.SetTgl(TglSEP1.getSelectedItem() + ""));
                 ps.setString(2, Valid.SetTgl(TglSEP2.getSelectedItem() + ""));

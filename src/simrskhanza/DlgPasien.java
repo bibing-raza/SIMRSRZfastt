@@ -94,7 +94,7 @@ public class DlgPasien extends javax.swing.JDialog {
     private LocalDate birthday;
     private Period p;
     private long p2;
-
+    
     /**
      * Creates new form DlgPas
      *
@@ -156,7 +156,6 @@ public class DlgPasien extends javax.swing.JDialog {
             } else if (z == 6) {
                 column.setPreferredWidth(70);
             } else if (z == 7) {
-//                column.setPreferredWidth(150);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (z == 8) {
@@ -190,11 +189,9 @@ public class DlgPasien extends javax.swing.JDialog {
             } else if (z == 22) {
                 column.setPreferredWidth(60);
             } else if (z == 23) {
-//                column.setPreferredWidth(85);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (z == 24) {
-//                column.setPreferredWidth(160);
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (z == 25) {
@@ -6108,60 +6105,67 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
     public void tampil() {
         Valid.tabelKosong(tabMode);
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         try {
-            ps = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, "
-                    + "p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, "
-                    + "concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, "
-                    + "concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom, ifnull(p.umur_pj,'') umurpj, "
-                    + "ifnull(p.no_tlp_pj,'') notlppj FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab "
-                    + "INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa "
-                    + "INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE "
-                    + "concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis LIKE ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc LIMIT ? ");
-            
-            ps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, "
-                    + "p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, "
-                    + "concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, "
-                    + "concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom, ifnull(p.umur_pj,'') umurpj, "
-                    + "ifnull(p.no_tlp_pj,'') notlppj FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab "
-                    + "INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa "
-                    + "INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE "
-                    + "concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis LIKE ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc");
+            if (cmbHlm.getSelectedItem().toString().equals("Semua")) {
+                sb2.append("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, ");
+                sb2.append("p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, ");
+                sb2.append("concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, ");
+                sb2.append("concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom, ifnull(p.umur_pj,'') umurpj, ");
+                sb2.append("ifnull(p.no_tlp_pj,'') notlppj FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab ");
+                sb2.append("INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa ");
+                sb2.append("INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis LIKE ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc");
+                ps2 = koneksi.prepareStatement(sb2.toString());
+            } else {
+                sb1.append("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, ");
+                sb1.append("p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, ");
+                sb1.append("concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, ");
+                sb1.append("concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom, ifnull(p.umur_pj,'') umurpj, ");
+                sb1.append("ifnull(p.no_tlp_pj,'') notlppj FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab ");
+                sb1.append("INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa ");
+                sb1.append("INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc limit ");
+                sb1.append(Integer.parseInt(cmbHlm.getSelectedItem().toString()));
+                ps = koneksi.prepareStatement(sb1.toString());
+            }            
             try {
                 if (cmbHlm.getSelectedItem().toString().equals("Semua")) {
                     ps2.setString(1, "%" + Carialamat.getText().trim() + "%");
@@ -6242,7 +6246,6 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
                     ps.setString(36, "%" + TCari.getText().trim() + "%");
                     ps.setString(37, "%" + Carialamat.getText().trim() + "%");
                     ps.setString(38, "%" + TCari.getText().trim() + "%");
-                    ps.setInt(39, Integer.parseInt(cmbHlm.getSelectedItem().toString()));
                     rs = ps.executeQuery();
                 }
                 while (rs.next()) {
@@ -6269,7 +6272,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
                         rs.getString("namakeluarga"),
                         rs.getString("png_jawab"), 
                         rs.getString("no_peserta"),
-                        "Klik Kanan, Tampilkan Banyak Daftar",                        
+                        "Klik Kanan, Tampilkan Banyak Daftar",
                         rs.getString("pekerjaanpj"),
                         rs.getString("almt_pj"),
                         rs.getString("nama_suku_bangsa"),
@@ -6347,7 +6350,7 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
         TNo.requestFocus();
 
-        if (akses.getkode().equals("Admin Utama")) {
+        if (akses.getadmin() == true) {
             Kdpnj.setText("");
             nmpnj.setText("");
 
@@ -6473,59 +6476,68 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
 
     private void prosesCari2() {
         Valid.tabelKosong(tabMode);
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         try {
-            ps = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, "
-                    + "p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, "
-                    + "concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, "
-                    + "concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel "
-                    + "INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab "
-                    + "INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa "
-                    + "INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE "
-                    + "concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis LIKE ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc LIMIT ? ");
-            ps2 = koneksi.prepareStatement("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, "
-                    + "p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, "
-                    + "concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, "
-                    + "concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel "
-                    + "INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab "
-                    + "INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa "
-                    + "INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE "
-                    + "concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis LIKE ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? "
-                    + "or concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc");
+            if (cmbHlm.getSelectedItem().toString().equals("Semua")) {
+                sb2.append("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, ");
+                sb2.append("p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, ");
+                sb2.append("concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, ");
+                sb2.append("concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel ");
+                sb2.append("INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab ");
+                sb2.append("INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa ");
+                sb2.append("INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? or ");
+                sb2.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc");
+                ps2 = koneksi.prepareStatement(sb2.toString());
+
+            } else {
+                sb1.append("SELECT p.no_rkm_medis, p.nm_pasien, p.no_ktp, p.jk, p.tmp_lahir, p.tgl_lahir, p.nm_ibu, concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) AS alamat, ");
+                sb1.append("p.gol_darah, p.pekerjaan, p.stts_nikah, p.agama, p.tgl_daftar, p.no_tlp, p.umur, p.pnd, p.keluarga, p.namakeluarga, pj.png_jawab, p.no_peserta, p.pekerjaanpj, ");
+                sb1.append("concat(p.alamatpj,', ',p.kelurahanpj,', ',p.kecamatanpj,', ',p.kabupatenpj) almt_pj, sb.nama_suku_bangsa, bp.nama_bahasa, sb.id id_suku, bp.id id_bhs, ");
+                sb1.append("concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) AS alamat_dom FROM pasien p INNER JOIN kelurahan kl1 ON kl1.kd_kel=p.kd_kel ");
+                sb1.append("INNER JOIN kecamatan kc1 ON kc1.kd_kec=p.kd_kec INNER JOIN kabupaten kb1 ON kb1.kd_kab=p.kd_kab ");
+                sb1.append("INNER JOIN penjab pj ON pj.kd_pj=p.kd_pj INNER JOIN bahasa_pasien bp ON bp.id=p.bahasa_pasien INNER JOIN suku_bangsa sb ON sb.id=p.suku_bangsa ");
+                sb1.append("INNER JOIN kelurahan kl2 ON kl2.kd_kel = p.kd_kel_domisili_pasien INNER JOIN kecamatan kc2 ON kc2.kd_kec = p.kd_kec_domisili_pasien INNER JOIN kabupaten kb2 ON kb2.kd_kab = p.kd_kab_domisili_pasien WHERE ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) LIKE ? AND p.no_rkm_medis like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_pasien like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_ktp like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_peserta like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tmp_lahir like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_lahir like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and pj.png_jawab like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.alamat like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.gol_darah like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.pekerjaan like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.stts_nikah like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.namakeluarga like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.agama like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.nm_ibu like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.tgl_daftar like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and sb.nama_suku_bangsa like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and bp.nama_bahasa like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and concat(p.alamat_domisili_pasien,', ',kl2.nm_kel,', ',kc2.nm_kec,', ',kb2.nm_kab) like ? or ");
+                sb1.append("concat(p.alamat,', ',kl1.nm_kel,', ',kc1.nm_kec,', ',kb1.nm_kab) like ? and p.no_tlp like ? order by p.no_rkm_medis desc limit ");
+                sb1.append(Integer.parseInt(cmbHlm.getSelectedItem().toString()));
+                ps = koneksi.prepareStatement(sb1.toString());
+            }
             try {
                 if (cmbHlm.getSelectedItem().toString().equals("Semua")) {
                     ps2.setString(1, "%" + Carialamat.getText().trim() + "%");
@@ -6606,7 +6618,6 @@ private void KabupatenMouseMoved(java.awt.event.MouseEvent evt) {//GEN-FIRST:eve
                     ps.setString(36, "%" + TCari.getText().trim() + "%");
                     ps.setString(37, "%" + Carialamat.getText().trim() + "%");
                     ps.setString(38, "%" + TCari.getText().trim() + "%");
-                    ps.setInt(39, Integer.parseInt(cmbHlm.getSelectedItem().toString()));
                     rs = ps.executeQuery();
                 }
                 while (rs.next()) {

@@ -9180,22 +9180,27 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     }
     
     private void ExportSEPRalanMeninggal() {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         Sequel.AutoComitFalse();
         Sequel.queryu("delete from temporary3");
         try {
-            ps7 = koneksi.prepareStatement("select bs.*, ifnull(concat('474.3/',pm.no_surat),'-') noSurat, "
-                    + "DATE_FORMAT(bs.tglsep,'%d/%m/%Y') tglSep, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(pm.tanggal,'%d/%m/%Y') tglMati, "
-                    + "time_format(pm.jam,'%H:%i:%s') jamMati from pasien_mati pm "
-                    + "inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                    + "and bs.jnspelayanan='2' order by pm.tanggal, pm.jam");
+            sb1.append("select bs.*, ifnull(concat('474.3/',pm.no_surat),'-') noSurat, ");
+            sb1.append("DATE_FORMAT(bs.tglsep,'%d/%m/%Y') tglSep, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(pm.tanggal,'%d/%m/%Y') tglMati, ");
+            sb1.append("time_format(pm.jam,'%H:%i:%s') jamMati from pasien_mati pm ");
+            sb1.append("inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE ");
+            sb1.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ");
+            sb1.append("and bs.jnspelayanan='2' order by pm.tanggal, pm.jam");
+            ps7 = koneksi.prepareStatement(sb1.toString());
+
             try {
                 rs7 = ps7.executeQuery();
                 while (rs7.next()) {
-                    if (Sequel.cariInteger("select count(bs.no_kartu) FROM pasien_mati pm INNER JOIN pasien p ON p.no_rkm_medis = pm.no_rkm_medis "
-                            + "INNER JOIN bridging_sep bs ON bs.nomr = pm.no_rkm_medis WHERE "
-                            + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                            + "and bs.jnspelayanan='2' and bs.no_kartu='" + rs7.getString("no_kartu") + "' GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc") == 1) {
+                    sb2.append("select count(bs.no_kartu) FROM pasien_mati pm INNER JOIN pasien p ON p.no_rkm_medis = pm.no_rkm_medis ");
+                    sb2.append("INNER JOIN bridging_sep bs ON bs.nomr = pm.no_rkm_medis WHERE ");
+                    sb2.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ");
+                    sb2.append("and bs.jnspelayanan='2' and bs.no_kartu='" + rs7.getString("no_kartu") + "' GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+                    if (Sequel.cariInteger(sb2.toString()) == 1) {
                         
                         Sequel.menyimpanIgnore("temporary3",
                                 "'" + rs7.getString("no_sep") + "','"
@@ -9236,22 +9241,27 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     }
 
     private void ExportSEPRanapMeninggal() {
+        StringBuilder sb1 = new StringBuilder();
+        StringBuilder sb2 = new StringBuilder();
         Sequel.AutoComitFalse();
         Sequel.queryu("delete from temporary3");
         try {
-            ps7 = koneksi.prepareStatement("select bs.*, ifnull(concat('474.3/',pm.no_surat),'-') noSurat, "
-                    + "DATE_FORMAT(bs.tglsep,'%d/%m/%Y') tglSep, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(pm.tanggal,'%d/%m/%Y') tglMati, "
-                    + "time_format(pm.jam,'%H:%i:%s') jamMati from pasien_mati pm "
-                    + "inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                    + "and bs.jnspelayanan='1' order by pm.tanggal, pm.jam");
+            sb1.append("select bs.*, ifnull(concat('474.3/',pm.no_surat),'-') noSurat, ");
+            sb1.append("DATE_FORMAT(bs.tglsep,'%d/%m/%Y') tglSep, p.no_rkm_medis, p.nm_pasien, DATE_FORMAT(pm.tanggal,'%d/%m/%Y') tglMati, ");
+            sb1.append("time_format(pm.jam,'%H:%i:%s') jamMati from pasien_mati pm ");
+            sb1.append("inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE ");
+            sb1.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ");
+            sb1.append("and bs.jnspelayanan='1' order by pm.tanggal, pm.jam");
+            ps7 = koneksi.prepareStatement(sb1.toString());
+            
             try {
                 rs7 = ps7.executeQuery();
                 while (rs7.next()) {
-                    if (Sequel.cariInteger("select count(bs.no_kartu) FROM pasien_mati pm INNER JOIN pasien p ON p.no_rkm_medis = pm.no_rkm_medis "
-                            + "INNER JOIN bridging_sep bs ON bs.nomr = pm.no_rkm_medis WHERE "
-                            + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' "
-                            + "and bs.jnspelayanan='1' and bs.no_kartu='" + rs7.getString("no_kartu") + "' GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc") == 1) {
+                    sb2.append("select count(bs.no_kartu) FROM pasien_mati pm INNER JOIN pasien p ON p.no_rkm_medis = pm.no_rkm_medis ");
+                    sb2.append("INNER JOIN bridging_sep bs ON bs.nomr = pm.no_rkm_medis WHERE ");
+                    sb2.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' ");
+                    sb2.append("and bs.jnspelayanan='1' and bs.no_kartu='" + rs7.getString("no_kartu") + "' GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+                    if (Sequel.cariInteger(sb2.toString()) == 1) {
                         
                         Sequel.menyimpanIgnore("temporary3",
                                 "'" + rs7.getString("no_sep") + "','"
@@ -10044,12 +10054,15 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     }
     
     private void cekNoKartuSEPMatiRalan() {
+        StringBuilder sb = new StringBuilder();
         try {
-            ps9 = koneksi.prepareStatement("select bs.no_kartu, if(count(bs.no_kartu)>1,'banyak','1 aja') jumlah "
-                    + "from pasien_mati pm inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis "
-                    + "inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and bs.jnspelayanan='2' "
-                    + "GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+            sb.append("select bs.no_kartu, if(count(bs.no_kartu)>1,'banyak','1 aja') jumlah ");
+            sb.append("from pasien_mati pm inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis ");
+            sb.append("inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE ");
+            sb.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and bs.jnspelayanan='2' ");
+            sb.append("GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+            ps9 = koneksi.prepareStatement(sb.toString());
+
             try {
                 rs9 = ps9.executeQuery();
                 while (rs9.next()) {
@@ -10075,12 +10088,15 @@ public final class BPJSDataSEP extends javax.swing.JDialog {
     }
     
     private void cekNoKartuSEPMatiRanap() {
+        StringBuilder sb = new StringBuilder();
         try {
-            ps9 = koneksi.prepareStatement("select bs.no_kartu, if(count(bs.no_kartu)>1,'banyak','1 aja') jumlah "
-                    + "from pasien_mati pm inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis "
-                    + "inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE "
-                    + "bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and bs.jnspelayanan='1' "
-                    + "GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+            sb.append("select bs.no_kartu, if(count(bs.no_kartu)>1,'banyak','1 aja') jumlah ");
+            sb.append("from pasien_mati pm inner join pasien p on p.no_rkm_medis=pm.no_rkm_medis ");
+            sb.append("inner join bridging_sep bs on bs.nomr=pm.no_rkm_medis WHERE ");
+            sb.append("bs.tglsep BETWEEN '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "' and bs.jnspelayanan='1' ");
+            sb.append("GROUP BY bs.no_kartu ORDER BY count(bs.no_kartu) desc");
+            ps9 = koneksi.prepareStatement(sb.toString());
+
             try {
                 rs9 = ps9.executeQuery();
                 while (rs9.next()) {

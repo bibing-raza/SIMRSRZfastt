@@ -7206,38 +7206,40 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     // End of variables declaration//GEN-END:variables
 
     public void tampilAwal() {
+        StringBuilder sb = new StringBuilder();
         kdkamar = "";
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT r.no_reg, r.no_rawat, r.tgl_registrasi, r.jam_reg, r.kd_dokter, "
-                    + " d.nm_dokter, r.no_rkm_medis, p.nm_pasien, p.jk, concat(r.umurdaftar,' ',r.sttsumur) AS umur, "
-                    + " pj.png_jawab, r.stts, r.stts_daftar, pl.nm_poli, r.p_jawab, r.almt_pj, r.hubunganpj, r.biaya_reg, "
-                    + " IFNULL(di.datang_sendiri,'-') AS datang_sendiri, "
-                    + " IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, "
-                    + " IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, "
-                    + " IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, "
-                    + "if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) nm_petugas "
-                    + " FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis "
-                    + " INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj "
-                    + " INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat "
-                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat WHERE "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.kd_dokter like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and d.nm_dokter like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rkm_medis like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.stts_daftar like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pl.nm_poli like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.p_jawab like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.almt_pj like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.hubunganpj like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.tindakan_lanjut like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.non_trauma like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.ket_igd like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pj.png_jawab like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) like ? order by r.no_rawat ");
+            sb.append("SELECT r.no_reg, r.no_rawat, r.tgl_registrasi, r.jam_reg, r.kd_dokter, ");
+            sb.append("d.nm_dokter, r.no_rkm_medis, p.nm_pasien, p.jk, concat(r.umurdaftar,' ',r.sttsumur) AS umur, ");
+            sb.append("pj.png_jawab, r.stts, r.stts_daftar, pl.nm_poli, r.p_jawab, r.almt_pj, r.hubunganpj, r.biaya_reg, ");
+            sb.append("IFNULL(di.datang_sendiri,'-') AS datang_sendiri, ");
+            sb.append("IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, ");
+            sb.append("IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, ");
+            sb.append("IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, ");
+            sb.append("if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) nm_petugas ");
+            sb.append("FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis ");
+            sb.append("INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj ");
+            sb.append("INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat ");
+            sb.append("LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat WHERE ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.kd_dokter like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rkm_medis like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.stts_daftar like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.p_jawab like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.almt_pj like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.hubunganpj like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.tindakan_lanjut like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.non_trauma like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.ket_igd like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(r.nip_petugas,'-')) like ? order by r.no_rawat ");
+            ps = koneksi.prepareStatement(sb.toString());
 
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
@@ -7933,37 +7935,39 @@ private void MnLaporanRekapKunjunganBulananPoliActionPerformed(java.awt.event.Ac
     }
     
     public void tampil() {
+        StringBuilder sb = new StringBuilder();
         Valid.tabelKosong(tabMode);
         try {
-            ps = koneksi.prepareStatement("SELECT r.no_reg, r.no_rawat, r.tgl_registrasi, r.jam_reg, r.kd_dokter, "
-                    + " d.nm_dokter, r.no_rkm_medis, p.nm_pasien, p.jk, concat(r.umurdaftar,' ',r.sttsumur) AS umur, "
-                    + " pj.png_jawab, r.stts, r.stts_daftar, pl.nm_poli, r.p_jawab, r.almt_pj, r.hubunganpj, r.biaya_reg, "
-                    + " IFNULL(di.datang_sendiri,'-') AS datang_sendiri, "
-                    + " IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, "
-                    + " IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, "
-                    + " IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, "
-                    + "if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas "
-                    + " FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis "
-                    + " INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj "
-                    + " INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat "
-                    + "LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat left join pegawai pg on pg.nik=r.nip_petugas WHERE "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.kd_dokter like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and d.nm_dokter like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rkm_medis like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.stts_daftar like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and p.nm_pasien like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pl.nm_poli like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.p_jawab like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.almt_pj like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.hubunganpj like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.tindakan_lanjut like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.non_trauma like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.ket_igd like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pj.png_jawab like ? or "
-                    + " pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by r.no_rawat ");
+            sb.append("SELECT r.no_reg, r.no_rawat, r.tgl_registrasi, r.jam_reg, r.kd_dokter, ");
+            sb.append("d.nm_dokter, r.no_rkm_medis, p.nm_pasien, p.jk, concat(r.umurdaftar,' ',r.sttsumur) AS umur, ");
+            sb.append("pj.png_jawab, r.stts, r.stts_daftar, pl.nm_poli, r.p_jawab, r.almt_pj, r.hubunganpj, r.biaya_reg, ");
+            sb.append("IFNULL(di.datang_sendiri,'-') AS datang_sendiri, ");
+            sb.append("IFNULL(di.trauma, '-') AS trauma, IFNULL(di.non_trauma, '-') AS non_trauma, ");
+            sb.append("IFNULL(di.tindakan_lanjut,'-') AS tindakan_lanjut, IFNULL(di.ket_igd, '-') AS ket_igd, r.umurdaftar, ");
+            sb.append("IFNULL(bs.no_sep,'-') nosep, ifnull(di.kd_dokter_ranap,'-') kddokterinap, ");
+            sb.append("if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) nm_petugas ");
+            sb.append("FROM reg_periksa r INNER JOIN pasien p ON r.no_rkm_medis = p.no_rkm_medis ");
+            sb.append("INNER JOIN poliklinik pl ON pl.kd_poli = r.kd_poli INNER JOIN penjab pj ON r.kd_pj = pj.kd_pj ");
+            sb.append("INNER JOIN dokter d ON r.kd_dokter = d.kd_dokter LEFT JOIN data_igd di ON r.no_rawat = di.no_rawat ");
+            sb.append("LEFT JOIN bridging_sep bs ON bs.no_rawat = r.no_rawat left join pegawai pg on pg.nik=r.nip_petugas WHERE ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_reg like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rawat like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.tgl_registrasi like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.kd_dokter like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and d.nm_dokter like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.no_rkm_medis like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.stts_daftar like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and p.nm_pasien like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pl.nm_poli like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.p_jawab like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.almt_pj like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and r.hubunganpj like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.tindakan_lanjut like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.non_trauma like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and di.ket_igd like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and pj.png_jawab like ? or ");
+            sb.append("pl.kd_poli='IGDK' and r.tgl_registrasi between ? and ? and if(r.nip_petugas='Admin Utama','Admin Utama',ifnull(pg.nama,'-')) like ? order by r.no_rawat ");
+            ps = koneksi.prepareStatement(sb.toString());
 
             try {
                 ps.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
