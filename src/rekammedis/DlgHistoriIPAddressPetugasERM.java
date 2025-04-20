@@ -442,31 +442,34 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
     public void tampil() {
         gedung = "";
         Valid.tabelKosong(tabMode);
+        StringBuilder sb = new StringBuilder();
         try {
             if (cmbDokumen.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, "
-                        + "time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h "
-                        + "inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join pegawai pg on pg.nik=h.nip_petugas where "
-                        + "date(h.waktu_simpan) between ? and ? and h.no_rawat like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.proses_eksekusi like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.nip_petugas like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.ip_address like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and pg.nama like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and p.no_rkm_medis like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and p.nm_pasien like ? order by h.waktu_simpan desc");
+                sb.append("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, ");
+                sb.append("time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join pegawai pg on pg.nik=h.nip_petugas where ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.no_rawat like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.proses_eksekusi like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.nip_petugas like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.ip_address like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and pg.nama like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and p.no_rkm_medis like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and p.nm_pasien like ? order by h.waktu_simpan desc");
+                ps = koneksi.prepareStatement(sb.toString());
             } else {
-                ps = koneksi.prepareStatement("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, "
-                        + "time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h "
-                        + "inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join pegawai pg on pg.nik=h.nip_petugas where "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.no_rawat like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.proses_eksekusi like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.nip_petugas like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.ip_address like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and pg.nama like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and p.no_rkm_medis like ? or "
-                        + "date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and p.nm_pasien like ? order by h.waktu_simpan desc");
+                sb.append("select h.*, if(h.nip_petugas='-','Admin Utama',pg.nama) nmpetugas, date_format(h.waktu_simpan,'%d/%m/%Y') tgl, ");
+                sb.append("time_format(h.waktu_simpan,'%H:%i:%s') jam, p.no_rkm_medis, p.nm_pasien, rp.status_lanjut, rp.kd_poli from histori_petugas_erm h ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=h.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join pegawai pg on pg.nik=h.nip_petugas where ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.no_rawat like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.proses_eksekusi like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.nip_petugas like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and h.ip_address like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and pg.nama like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and p.no_rkm_medis like ? or ");
+                sb.append("date(h.waktu_simpan) between ? and ? and h.dokumen_rekam_medis like ? and p.nm_pasien like ? order by h.waktu_simpan desc");
+                ps = koneksi.prepareStatement(sb.toString());
             }
             try {
                 if (cmbDokumen.getSelectedIndex() == 0) {

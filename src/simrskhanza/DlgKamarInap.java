@@ -13647,18 +13647,18 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
         this.setCursor(Cursor.getDefaultCursor());
     }
 
-    private void tampilDPJP() {
-        StringBuilder sb = new StringBuilder();
+    private void tampilDPJP() {        
         row = tbKamIn.getRowCount();
         for (i = 0; i < row; i++) {
             try {
-                sb.append("select dokter.nm_dokter from dpjp_ranap inner join dokter on dpjp_ranap.kd_dokter=dokter.kd_dokter where dpjp_ranap.no_rawat=?");
+                StringBuilder sb = new StringBuilder();
+                sb.append("select d.nm_dokter from dpjp_ranap dr inner join dokter d on dr.kd_dokter=d.kd_dokter where ");
+                sb.append("dr.no_rawat='" + tbKamIn.getValueAt(i, 0).toString() + "'");
                 psdpjp = koneksi.prepareStatement(sb.toString());
-                dokterranap = "";
                 try {
-                    psdpjp.setString(1, tbKamIn.getValueAt(i, 0).toString());
                     rs = psdpjp.executeQuery();
                     while (rs.next()) {
+                        dokterranap = "";
                         dokterranap = rs.getString("nm_dokter") + ", " + dokterranap;
                     }
                 } catch (Exception e) {
