@@ -330,42 +330,42 @@ public class INACBGDaftarKlaim extends javax.swing.JDialog {
         TCari1.setDocument(new batasInput((byte) 100).getKata(TCari1));
         TCarinorm.setDocument(new batasInput((byte) 6).getOnlyAngka(TCarinorm));
         
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari1.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if (TCari1.getText().length() > 2) {
-                        if (Chktgl.isSelected() == true) {
-                            tampilKLAIM();
-                        } else {
-                            tampilSEP();
-                        }
-                    }
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if (TCari1.getText().length() > 2) {
-                        if (Chktgl.isSelected() == true) {
-                            tampilKLAIM();
-                        } else {
-                            tampilSEP();
-                        }
-                    }
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if (TCari1.getText().length() > 2) {
-                        if (Chktgl.isSelected() == true) {
-                            tampilKLAIM();
-                        } else {
-                            tampilSEP();
-                        }
-                    }
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari1.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    if (TCari1.getText().length() > 2) {
+//                        if (Chktgl.isSelected() == true) {
+//                            tampilKLAIM();
+//                        } else {
+//                            tampilSEP();
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    if (TCari1.getText().length() > 2) {
+//                        if (Chktgl.isSelected() == true) {
+//                            tampilKLAIM();
+//                        } else {
+//                            tampilSEP();
+//                        }
+//                    }
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    if (TCari1.getText().length() > 2) {
+//                        if (Chktgl.isSelected() == true) {
+//                            tampilKLAIM();
+//                        } else {
+//                            tampilSEP();
+//                        }
+//                    }
+//                }
+//            });
+//        }
     }
 
     /**

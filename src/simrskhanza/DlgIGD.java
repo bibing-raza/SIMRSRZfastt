@@ -292,28 +292,28 @@ public final class DlgIGD extends javax.swing.JDialog {
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         Tumur.setDocument(new batasInput((byte) 3).getOnlyAngka(Tumur));
         
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                private void tampil() {
-                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                private void tampil() {
+//                    throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//                }
+//            });
+//        }
 
         ChkInput.setSelected(false);
         isForm();

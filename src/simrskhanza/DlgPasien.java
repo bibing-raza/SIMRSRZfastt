@@ -105,7 +105,7 @@ public class DlgPasien extends javax.swing.JDialog {
         super(parent, modal);
         initComponents();
 
-        Object[] row = {"#", "No. RM", "Nama Pasien", "No. SIM/KTP", "J.K.", "Tmp. Lahir", "Tgl. Lahir", "Nama Ibu", "Alamat KTP/KK", "Alamat Domisili",
+        Object[] row = {"#", "No. RM", "Nama Pasien", "No. SIM/KTP", "J.K.", "Tempat Lahir", "Tgl. Lahir", "Nama Ibu", "Alamat KTP/KK", "Alamat Domisili",
             "G.D.", "Pekerjaan", "Stts. Nikah", "Agama", "Tgl. Daftar", "No. Telp/HP", "Umur", "Pendidikan", "Png. Jawab", "Nama Png. Jawab", "Cara Bayar",
             "No. Peserta", "Daftar", "Pekerjaan P.J.", "Alamat P.J.", "Suku Pasien", "Bahasa Pasien", "kd_suku", "kd_bahasa", "umurPJ", "notlpPJ"
         };
@@ -146,36 +146,36 @@ public class DlgPasien extends javax.swing.JDialog {
             } else if (z == 1) {
                 column.setPreferredWidth(85);
             } else if (z == 2) {
-                column.setPreferredWidth(190);
+                column.setPreferredWidth(230);
             } else if (z == 3) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(120);
             } else if (z == 4) {
                 column.setPreferredWidth(35);
             } else if (z == 5) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(200);
             } else if (z == 6) {
                 column.setPreferredWidth(70);
             } else if (z == 7) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (z == 8) {
-                column.setPreferredWidth(190);
+                column.setPreferredWidth(250);
             } else if (z == 9) {
-                column.setPreferredWidth(190);
+                column.setPreferredWidth(250);
             } else if (z == 10) {
                 column.setPreferredWidth(35);
             } else if (z == 11) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(250);
             } else if (z == 12) {
-                column.setPreferredWidth(100);
+                column.setPreferredWidth(120);
             } else if (z == 13) {
                 column.setPreferredWidth(75);
             } else if (z == 14) {
                 column.setPreferredWidth(75);
             } else if (z == 15) {
-                column.setPreferredWidth(80);
-            } else if (z == 16) {
                 column.setPreferredWidth(90);
+            } else if (z == 16) {
+                column.setPreferredWidth(105);
             } else if (z == 17) {
                 column.setPreferredWidth(80);
             } else if (z == 18) {
@@ -183,7 +183,7 @@ public class DlgPasien extends javax.swing.JDialog {
             } else if (z == 19) {
                 column.setPreferredWidth(150);
             } else if (z == 20) {
-                column.setPreferredWidth(120);
+                column.setPreferredWidth(140);
             } else if (z == 21) {
                 column.setPreferredWidth(100);
             } else if (z == 22) {
@@ -245,24 +245,24 @@ public class DlgPasien extends javax.swing.JDialog {
         umurPjawab.setDocument(new batasInput((byte) 3).getKata(umurPjawab));
         notlpPJ.setDocument(new batasInput((byte) 13).getOnlyAngka(notlpPJ));
         
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         ChkInput.setSelected(false);
         isForm();
 

@@ -6870,17 +6870,20 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
 
         try {
             //kalau kode payor 3 adalah JKN
+            StringBuilder sb = new StringBuilder();
             if (kodePayor.equals("3")) {
-                ps = koneksi.prepareStatement("select bs.nomr, REPLACE(REPLACE(bs.nama_pasien,'\\\\',''),'''','') nama_pasien, "
-                        + "p.jk jkel, bs.tanggal_lahir, UPPER(DATE_FORMAT(bs.tanggal_lahir,'%d %b %Y')) tgllhr, bs.tglsep, "
-                        + "bs.no_kartu, bs.jnspelayanan, bs.klsrawat from bridging_sep bs "
-                        + "INNER JOIN pasien p ON p.no_rkm_medis=bs.nomr where bs.no_sep='" + nosep + "' and bs.tglsep='" + tglsep + "'");
+                sb.append("select bs.nomr, REPLACE(REPLACE(bs.nama_pasien,'\\\\',''),'''','') nama_pasien, ");
+                sb.append("p.jk jkel, bs.tanggal_lahir, UPPER(DATE_FORMAT(bs.tanggal_lahir,'%d %b %Y')) tgllhr, bs.tglsep, ");
+                sb.append("bs.no_kartu, bs.jnspelayanan, bs.klsrawat from bridging_sep bs ");
+                sb.append("INNER JOIN pasien p ON p.no_rkm_medis=bs.nomr where bs.no_sep='" + nosep + "' and bs.tglsep='" + tglsep + "'");
+                ps = koneksi.prepareStatement(sb.toString());
 
-            } else {
-                ps = koneksi.prepareStatement("SELECT rp.no_rawat, rp.tgl_registrasi, p.no_ktp, p.no_peserta, p.no_rkm_medis, "
-                        + "p.nm_pasien, if(p.jk='L','1','2') jkel, IF(rp.status_lanjut='Ralan','2','1') jRawat, "
-                        + "p.tgl_lahir, UPPER(DATE_FORMAT(p.tgl_lahir,'%d %b %Y')) tgllhir FROM reg_periksa rp "
-                        + "INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE rp.no_rawat='" + norw + "'");
+            } else {                
+                sb.append("SELECT rp.no_rawat, rp.tgl_registrasi, p.no_ktp, p.no_peserta, p.no_rkm_medis, ");
+                sb.append("p.nm_pasien, if(p.jk='L','1','2') jkel, IF(rp.status_lanjut='Ralan','2','1') jRawat, ");
+                sb.append("p.tgl_lahir, UPPER(DATE_FORMAT(p.tgl_lahir,'%d %b %Y')) tgllhir FROM reg_periksa rp ");
+                sb.append("INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis WHERE rp.no_rawat='" + norw + "'");
+                ps = koneksi.prepareStatement(sb.toString());
             }
             try {
                 rs = ps.executeQuery();
@@ -7056,9 +7059,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //diagnosa v5 -----------------------------------------
             Valid.tabelKosong(tabMode);
             try {
-                ps1 = koneksi.prepareStatement("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status "
-                        + "FROM diagnosa_pasien dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit "
-                        + "WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status ");
+                sb1.append("FROM diagnosa_pasien dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit ");
+                sb1.append("WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                ps1 = koneksi.prepareStatement(sb1.toString());
                 try {
                     rs1 = ps1.executeQuery();
                     while (rs1.next()) {
@@ -7092,9 +7097,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //diagnosa v6 -----------------------------------------
             Valid.tabelKosong(tabMode13);
             try {
-                ps13 = koneksi.prepareStatement("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status "
-                        + "FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit "
-                        + "WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status ");
+                sb2.append("FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit ");
+                sb2.append("WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                ps13 = koneksi.prepareStatement(sb2.toString());
                 try {
                     rs13 = ps13.executeQuery();
                     while (rs13.next()) {
@@ -7129,9 +7136,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //diagnosa v5 -----------------------------------------
             Valid.tabelKosong(tabMode5);
             try {
-                ps1 = koneksi.prepareStatement("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status "
-                        + "FROM diagnosa_pasien dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit "
-                        + "WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status ");
+                sb3.append("FROM diagnosa_pasien dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit ");
+                sb3.append("WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                ps1 = koneksi.prepareStatement(sb3.toString());
                 try {
                     rs1 = ps1.executeQuery();
                     while (rs1.next()) {
@@ -7165,9 +7174,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //diagnosa v6 -----------------------------------------
             Valid.tabelKosong(tabMode14);
             try {
-                ps14 = koneksi.prepareStatement("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status "
-                        + "FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit "
-                        + "WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                StringBuilder sb4 = new StringBuilder();
+                sb4.append("SELECT dp.kd_penyakit, p.ciri_ciri, IF (dp.prioritas = '1','Primer','Sekunder') status ");
+                sb4.append("FROM diagnosa_pasien_inadrg dp INNER JOIN penyakit p ON p.kd_penyakit=dp.kd_penyakit ");
+                sb4.append("WHERE dp.no_rawat='" + norawat + "' ORDER BY dp.prioritas");
+                ps14 = koneksi.prepareStatement(sb4.toString());
                 try {
                     rs14 = ps14.executeQuery();
                     while (rs14.next()) {
@@ -7208,8 +7219,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //prosedur v5 ---------------------------------------
             Valid.tabelKosong(tabMode1);
             try {
-                ps2 = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp "
-                        + "INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp ");
+                sb1.append("INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                ps2 = koneksi.prepareStatement(sb1.toString());
                 try {
                     rs2 = ps2.executeQuery();
                     while (rs2.next()) {
@@ -7241,8 +7254,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //prosedur v6 ---------------------------------------
             Valid.tabelKosong(tabMode15);
             try {
-                ps15 = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang, pp.qty FROM prosedur_pasien_inadrg pp "
-                        + "INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SELECT pp.kode, i.deskripsi_panjang, pp.qty FROM prosedur_pasien_inadrg pp ");
+                sb2.append("INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                ps15 = koneksi.prepareStatement(sb2.toString());
                 try {
                     rs15 = ps15.executeQuery();
                     while (rs15.next()) {
@@ -7271,8 +7286,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //prosedur v5 ---------------------------------------
             Valid.tabelKosong(tabMode6);
             try {
-                ps2 = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp "
-                        + "INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                StringBuilder sb3 = new StringBuilder();
+                sb3.append("SELECT pp.kode, i.deskripsi_panjang FROM prosedur_pasien pp ");
+                sb3.append("INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                ps2 = koneksi.prepareStatement(sb3.toString());
                 try {
                     rs2 = ps2.executeQuery();
                     while (rs2.next()) {
@@ -7304,8 +7321,10 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
             //prosedur v6 ---------------------------------------
             Valid.tabelKosong(tabMode16);
             try {
-                ps16 = koneksi.prepareStatement("SELECT pp.kode, i.deskripsi_panjang, pp.qty FROM prosedur_pasien_inadrg pp "
-                        + "INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                StringBuilder sb4 = new StringBuilder();
+                sb4.append("SELECT pp.kode, i.deskripsi_panjang, pp.qty FROM prosedur_pasien_inadrg pp ");
+                sb4.append("INNER JOIN icd9 i ON i.kode=pp.kode WHERE pp.no_rawat='" + norawat + "' ORDER BY pp.prioritas");
+                ps16 = koneksi.prepareStatement(sb4.toString());
                 try {
                     rs16 = ps16.executeQuery();
                     while (rs16.next()) {
@@ -7336,9 +7355,11 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         nilaiUnggah = "";
         Valid.tabelKosong(tabMode9);
         try {
-            ps10 = koneksi.prepareStatement("SELECT efu.file_name,efu.message,efut.basecode64_file, efu.file_id,efu.kode,"
-                    + "efu.file_class FROM eklaim_file_upload efu LEFT join eklaim_file_upload_temp efut ON efut.no_sep=efu.no_sep "
-                    + "AND efut.file_id=efu.file_id WHERE efu.no_sep='" + noKlaim.getText() + "'");
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT efu.file_name,efu.message,efut.basecode64_file, efu.file_id,efu.kode,");
+            sb.append("efu.file_class FROM eklaim_file_upload efu LEFT join eklaim_file_upload_temp efut ON efut.no_sep=efu.no_sep ");
+            sb.append("AND efut.file_id=efu.file_id WHERE efu.no_sep='" + noKlaim.getText() + "'");
+            ps10 = koneksi.prepareStatement(sb.toString());
             try {
                 rs10 = ps10.executeQuery();
                 while (rs10.next()) {
@@ -8057,14 +8078,16 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             Valid.tabelKosong(tabMode2);
             try {
-                ps3 = koneksi.prepareStatement("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noSEP.getText() + "' union ALL "
-                        + "SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noSEP.getText() + "' union ALL "
-                        + "SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noSEP.getText() + "' UNION ALL "
-                        + "SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc "
-                        + "WHERE egsc.no_sep='" + noSEP.getText() + "'");
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg ");
+                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
+                sb1.append("SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg ");
+                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' union ALL ");
+                sb1.append("SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg ");
+                sb1.append("WHERE eg.no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc ");
+                sb1.append("WHERE egsc.no_sep='" + noSEP.getText() + "'");
+                ps3 = koneksi.prepareStatement(sb1.toString());
                 try {
                     rs3 = ps3.executeQuery();
                     while (rs3.next()) {
@@ -8092,20 +8115,22 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             Valid.tabelKosong(tabMode7);
             try {
-                ps3 = koneksi.prepareStatement("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noKlaim.getText() + "' union ALL "
-                        + "SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noKlaim.getText() + "' union ALL "
-                        + "SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg "
-                        + "WHERE eg.no_sep='" + noKlaim.getText() + "' UNION ALL "
-                        + "SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc "
-                        + "WHERE egsc.no_sep='" + noKlaim.getText() + "' UNION ALL "
-                        + "SELECT 'Perawatan Covid-19',CONCAT(ecd.covid19_status_nm,' ',if(ecd.cc_ind='0','Tanpa Komorbid/Komplikasi','Dengan Komorbid/Komplikasi')) desk, '', concat('Rp. ',format(ecd.top_up_rawat,0)) nominal FROM eklaim_covid19_data ecd "
-                        + "WHERE ecd.no_sep='" + noKlaim.getText() + "' UNION ALL "
-                        + "SELECT 'Pemulasaran Jenazah','', '', concat('Rp. ',format(ecd.top_up_jenazah,0)) nominal FROM eklaim_covid19_data ecd "
-                        + "WHERE ecd.no_sep='" + noKlaim.getText() + "' UNION ALL "
-                        + "SELECT '','TOTAL BIAYA PERAWATAN COVID-19', '', concat('Rp. ',format(ecd.top_up_rawat+ecd.top_up_jenazah,0)) nominal FROM eklaim_covid19_data ecd "
-                        + "WHERE ecd.no_sep='" + noKlaim.getText() + "'");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SELECT 'CBG' komponen, eg.cbg_desc deskrip, eg.cbg_code kode, concat('Rp. ',format(eg.cbg_tarif,0)) nominal  FROM eklaim_grouping eg ");
+                sb2.append("WHERE eg.no_sep='" + noKlaim.getText() + "' union ALL ");
+                sb2.append("SELECT 'Sub Acute',eg.sub_acute_desc, eg.sub_acute_code, concat('Rp. ',format(eg.sub_acute_tarif,0)) nominal FROM eklaim_grouping eg ");
+                sb2.append("WHERE eg.no_sep='" + noKlaim.getText() + "' union ALL ");
+                sb2.append("SELECT 'Chronic',eg.chronic_desc, eg.chronic_code, concat('Rp. ',format(eg.chronic_tarif,0)) nominal FROM eklaim_grouping eg ");
+                sb2.append("WHERE eg.no_sep='" + noKlaim.getText() + "' UNION ALL ");
+                sb2.append("SELECT egsc.type,egsc.desc, egsc.code, concat('Rp. ',format(egsc.tarif,0)) nominal FROM eklaim_grouping_spc_cmg egsc ");
+                sb2.append("WHERE egsc.no_sep='" + noKlaim.getText() + "' UNION ALL ");
+                sb2.append("SELECT 'Perawatan Covid-19',CONCAT(ecd.covid19_status_nm,' ',if(ecd.cc_ind='0','Tanpa Komorbid/Komplikasi','Dengan Komorbid/Komplikasi')) desk, '', concat('Rp. ',format(ecd.top_up_rawat,0)) nominal FROM eklaim_covid19_data ecd ");
+                sb2.append("WHERE ecd.no_sep='" + noKlaim.getText() + "' UNION ALL ");
+                sb2.append("SELECT 'Pemulasaran Jenazah','', '', concat('Rp. ',format(ecd.top_up_jenazah,0)) nominal FROM eklaim_covid19_data ecd ");
+                sb2.append("WHERE ecd.no_sep='" + noKlaim.getText() + "' UNION ALL ");
+                sb2.append("SELECT '','TOTAL BIAYA PERAWATAN COVID-19', '', concat('Rp. ',format(ecd.top_up_rawat+ecd.top_up_jenazah,0)) nominal FROM eklaim_covid19_data ecd ");
+                sb2.append("WHERE ecd.no_sep='" + noKlaim.getText() + "'");
+                ps3 = koneksi.prepareStatement(sb2.toString());
                 try {
                     rs3 = ps3.executeQuery();
                     while (rs3.next()) {
@@ -8137,7 +8162,9 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             Valid.tabelKosong(tabMode3);
             try {
-                ps4 = koneksi.prepareStatement("SELECT egco.type,egco.code,egco.desc FROM eklaim_grouping_cmg_opt egco WHERE egco.no_sep='" + noSEP.getText() + "'");
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT egco.type,egco.code,egco.desc FROM eklaim_grouping_cmg_opt egco WHERE egco.no_sep='" + noSEP.getText() + "'");
+                ps4 = koneksi.prepareStatement(sb1.toString());
                 try {
                     rs4 = ps4.executeQuery();
                     while (rs4.next()) {
@@ -8164,7 +8191,9 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             Valid.tabelKosong(tabMode8);
             try {
-                ps4 = koneksi.prepareStatement("SELECT egco.type,egco.code,egco.desc FROM eklaim_grouping_cmg_opt egco WHERE egco.no_sep='" + noKlaim.getText() + "'");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SELECT egco.type,egco.code,egco.desc FROM eklaim_grouping_cmg_opt egco WHERE egco.no_sep='" + noKlaim.getText() + "'");
+                ps4 = koneksi.prepareStatement(sb2.toString());
                 try {
                     rs4 = ps4.executeQuery();
                     while (rs4.next()) {
@@ -9918,10 +9947,12 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         if (kodePayor.equals("3")) {
             Valid.tabelKosong(tabMode11);
             try {
-                ps11 = koneksi.prepareStatement("SELECT 'MDC' komponen, mdc_number kode, mdc_description deskripsi FROM eklaim_response_inagrouper "
-                        + "WHERE no_sep='" + noSEP.getText() + "' UNION ALL "
-                        + "SELECT 'DRG', drg_code, drg_description FROM eklaim_response_inagrouper "
-                        + "WHERE no_sep='" + noSEP.getText() + "'");
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("SELECT 'MDC' komponen, mdc_number kode, mdc_description deskripsi FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb1.append("SELECT 'DRG', drg_code, drg_description FROM eklaim_response_inagrouper ");
+                sb1.append("WHERE no_sep='" + noSEP.getText() + "'");
+                ps11 = koneksi.prepareStatement(sb1.toString());
                 try {
                     rs11 = ps11.executeQuery();
                     while (rs11.next()) {
@@ -9948,10 +9979,12 @@ public final class PengajuanKlaimINACBGrz extends javax.swing.JDialog {
         } else {
             Valid.tabelKosong(tabMode12);
             try {
-                ps12 = koneksi.prepareStatement("SELECT 'MDC' komponen, mdc_number kode, mdc_description deskripsi FROM eklaim_response_inagrouper "
-                        + "WHERE no_sep='" + noSEP.getText() + "' UNION ALL "
-                        + "SELECT 'DRG', drg_code, drg_description FROM eklaim_response_inagrouper "
-                        + "WHERE no_sep='" + noSEP.getText() + "'");
+                StringBuilder sb2 = new StringBuilder();
+                sb2.append("SELECT 'MDC' komponen, mdc_number kode, mdc_description deskripsi FROM eklaim_response_inagrouper ");
+                sb2.append("WHERE no_sep='" + noSEP.getText() + "' UNION ALL ");
+                sb2.append("SELECT 'DRG', drg_code, drg_description FROM eklaim_response_inagrouper ");
+                sb2.append("WHERE no_sep='" + noSEP.getText() + "'");
+                ps12 = koneksi.prepareStatement(sb2.toString());
                 try {
                     rs12 = ps12.executeQuery();
                     while (rs2.next()) {

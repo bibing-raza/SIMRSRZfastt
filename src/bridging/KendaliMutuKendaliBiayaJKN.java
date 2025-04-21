@@ -177,16 +177,16 @@ public class KendaliMutuKendaliBiayaJKN extends javax.swing.JDialog {
         
         TCari.setDocument(new batasInput((byte)100).getKata(TCari));    
         
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
-                @Override
-                public void insertUpdate(DocumentEvent e) {tampilRalan();}
-                @Override
-                public void removeUpdate(DocumentEvent e) {tampilRalan();}
-                @Override
-                public void changedUpdate(DocumentEvent e) {tampilRalan();}
-            });
-        }
+//        if(koneksiDB.cariCepat().equals("aktif")){
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {tampilRalan();}
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {tampilRalan();}
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {tampilRalan();}
+//            });
+//        }
         
         poli.addWindowListener(new WindowListener() {
             @Override

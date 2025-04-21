@@ -145,24 +145,24 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         TnoTlpnFaskes.setDocument(new batasInput((byte) 15).getOnlyAngka(TnoTlpnFaskes));    
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         
         faskes.addWindowListener(new WindowListener() {
             @Override
@@ -396,36 +396,51 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         });
 
         try {
-            ps = koneksi.prepareStatement("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') AS umur_thn, "
-                    + "pt.nama, pl.tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, d.nm_dokter,IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') hasil FROM periksa_lab pl "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN petugas pt on pt.nip=pl.nip INNER JOIN dokter d on d.kd_dokter=pl.kd_dokter "
-                    + "LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam "
-                    + "left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab WHERE "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND p.nm_pasien LIKE ? OR "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pt.nama LIKE ? OR "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND rp.no_rkm_medis LIKE ? OR "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pl.no_rawat LIKE ? OR "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND lr.no_lab LIKE ? OR "
-                    + "pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') LIKE ? "
-                    + "GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) order by pl.tgl_periksa desc, pl.jam desc");
-            ps2 = koneksi.prepareStatement("SELECT jpl.kd_jenis_prw, jpl.nm_perawatan, pl.biaya FROM periksa_lab pl "
-                    + "INNER JOIN jns_perawatan_lab jpl ON jpl.kd_jenis_prw=pl.kd_jenis_prw WHERE pl.no_rawat =? AND pl.tgl_periksa =? AND pl.jam =?");
-            ps3 = koneksi.prepareStatement("SELECT tl.Pemeriksaan, dpl.nilai, tl.satuan, dpl.nilai_rujukan, dpl.biaya_item, dpl.keterangan, "
-                    + "dpl.kd_jenis_prw FROM detail_periksa_lab dpl INNER JOIN template_laboratorium tl ON tl.id_template=dpl.id_template "
-                    + "WHERE dpl.no_rawat =? AND dpl.kd_jenis_prw =? AND dpl.tgl_periksa =? AND dpl.jam =?");
-            ps4 = koneksi.prepareStatement("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, p.jk, p.umur, pt.nama, "
-                    + "DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y') AS tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, p.alamat, d.nm_dokter, "
-                    + "DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') AS lahir FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat "
-                    + "INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pl.nip INNER JOIN dokter d ON d.kd_dokter=pl.kd_dokter "
-                    + "LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam  "
-                    + "WHERE pl.tgl_periksa =? AND pl.jam =? AND pl.no_rawat =? GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam)");
+            StringBuilder sb1 = new StringBuilder();
+            sb1.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, CONCAT(rp.umurdaftar,' ',rp.sttsumur,'.') AS umur_thn, ");
+            sb1.append("pt.nama, pl.tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, d.nm_dokter,IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') hasil FROM periksa_lab pl ");
+            sb1.append("INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb1.append("INNER JOIN petugas pt on pt.nip=pl.nip INNER JOIN dokter d on d.kd_dokter=pl.kd_dokter ");
+            sb1.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb1.append("left join lis_hasil_periksa_lab h on h.no_lab = lr.no_lab WHERE ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND p.nm_pasien LIKE ? OR ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pt.nama LIKE ? OR ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND rp.no_rkm_medis LIKE ? OR ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND pl.no_rawat LIKE ? OR ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND lr.no_lab LIKE ? OR ");
+            sb1.append("pl.tgl_periksa BETWEEN ? AND ? AND pl.no_rawat LIKE ? AND rp.no_rkm_medis LIKE ? AND pt.nip LIKE ? AND IF(ifnull(h.no_lab,'-')='-','Belum','Sudah') LIKE ? ");
+            sb1.append("GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam) order by pl.tgl_periksa desc, pl.jam desc");
+            ps = koneksi.prepareStatement(sb1.toString());
+            
+            StringBuilder sb2 = new StringBuilder();
+            sb2.append("SELECT jpl.kd_jenis_prw, jpl.nm_perawatan, pl.biaya FROM periksa_lab pl ");
+            sb2.append("INNER JOIN jns_perawatan_lab jpl ON jpl.kd_jenis_prw=pl.kd_jenis_prw WHERE pl.no_rawat =? AND pl.tgl_periksa =? AND pl.jam =?");
+            ps2 = koneksi.prepareStatement(sb2.toString());
+            
+            StringBuilder sb3 = new StringBuilder();
+            sb3.append("SELECT tl.Pemeriksaan, dpl.nilai, tl.satuan, dpl.nilai_rujukan, dpl.biaya_item, dpl.keterangan, ");
+            sb3.append("dpl.kd_jenis_prw FROM detail_periksa_lab dpl INNER JOIN template_laboratorium tl ON tl.id_template=dpl.id_template ");
+            sb3.append("WHERE dpl.no_rawat =? AND dpl.kd_jenis_prw =? AND dpl.tgl_periksa =? AND dpl.jam =?");
+            ps3 = koneksi.prepareStatement(sb3.toString());
+            
+            StringBuilder sb4 = new StringBuilder();
+            sb4.append("SELECT pl.no_rawat, IFNULL(lr.no_lab,'-') no_lab, rp.no_rkm_medis, p.nm_pasien, p.jk, p.umur, pt.nama, ");
+            sb4.append("DATE_FORMAT(pl.tgl_periksa,'%d-%m-%Y') AS tgl_periksa, pl.jam, pl.dokter_perujuk, pl.kd_dokter, p.alamat, d.nm_dokter, ");
+            sb4.append("DATE_FORMAT(p.tgl_lahir,'%d-%m-%Y') AS lahir FROM periksa_lab pl INNER JOIN reg_periksa rp on rp.no_rawat=pl.no_rawat ");
+            sb4.append("INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis INNER JOIN petugas pt ON pt.nip=pl.nip INNER JOIN dokter d ON d.kd_dokter=pl.kd_dokter ");
+            sb4.append("LEFT JOIN lis_reg lr on lr.no_rawat=pl.no_rawat and lr.tgl_periksa=pl.tgl_periksa AND lr.jam_periksa=pl.jam ");
+            sb4.append("WHERE pl.tgl_periksa =? AND pl.jam =? AND pl.no_rawat =? GROUP BY concat(pl.no_rawat, pl.tgl_periksa, pl.jam)");
+            ps4 = koneksi.prepareStatement(sb4.toString());
+
         } catch (Exception e) {
             System.out.println(e);
         }
 
         try {
-            psrekening = koneksi.prepareStatement("select * from set_akun_ranap");
+            StringBuilder sb8 = new StringBuilder();
+            sb8.append("select * from set_akun_ranap");
+            psrekening = koneksi.prepareStatement(sb8.toString());
+            
             try {
                 rsrekening = psrekening.executeQuery();
                 while (rsrekening.next()) {
@@ -455,21 +470,28 @@ public class DlgCariPeriksaLab extends javax.swing.JDialog {
         }
 
         try {
-            psLIS1 = koneksi.prepareStatement("SELECT lhp.kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                    + "LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? "
-                    + "GROUP BY lhp.kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.pemeriksaan_no_urut");
+            StringBuilder sb5 = new StringBuilder();
+            sb5.append("SELECT lhp.kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+            sb5.append("LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? ");
+            sb5.append("GROUP BY lhp.kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.pemeriksaan_no_urut");
+            psLIS1 = koneksi.prepareStatement(sb5.toString());
 
-            psLIS2 = koneksi.prepareStatement("SELECT lhp.sub_kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                    + "LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? "
-                    + "and lhp.kategori_pemeriksaan_nama=? GROUP BY lhp.sub_kategori_pemeriksaan_nama "
-                    + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.sub_kategori_pemeriksaan_nama desc,lhp.pemeriksaan_no_urut");
+            StringBuilder sb6 = new StringBuilder();
+            sb6.append("SELECT lhp.sub_kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+            sb6.append("LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? ");
+            sb6.append("and lhp.kategori_pemeriksaan_nama=? GROUP BY lhp.sub_kategori_pemeriksaan_nama ");
+            sb6.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.sub_kategori_pemeriksaan_nama desc,lhp.pemeriksaan_no_urut");
+            psLIS2 = koneksi.prepareStatement(sb6.toString());
 
-            psLIS3 = koneksi.prepareStatement("SELECT lhp.pemeriksaan_nama, lhp.nilai_hasil, lhp.satuan, lhp.flag_kode, "
-                    + "lhp.nilai_rujukan, DATE_FORMAT(lhdp.waktu_insert,'%d/%m/%Y - %H:%i:%s') wkt_selesai, lhp.metode "
-                    + "FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp ON lhp.no_lab = lr.no_lab "
-                    + "LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? "
-                    + "and lhp.sub_kategori_pemeriksaan_nama=? and lhp.kategori_pemeriksaan_nama=? GROUP BY lhp.pemeriksaan_nama "
-                    + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.pemeriksaan_no_urut");
+            StringBuilder sb7 = new StringBuilder();
+            sb7.append("SELECT lhp.pemeriksaan_nama, lhp.nilai_hasil, lhp.satuan, lhp.flag_kode, ");
+            sb7.append("lhp.nilai_rujukan, DATE_FORMAT(lhdp.waktu_insert,'%d/%m/%Y - %H:%i:%s') wkt_selesai, lhp.metode ");
+            sb7.append("FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp ON lhp.no_lab = lr.no_lab ");
+            sb7.append("LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab=? ");
+            sb7.append("and lhp.sub_kategori_pemeriksaan_nama=? and lhp.kategori_pemeriksaan_nama=? GROUP BY lhp.pemeriksaan_nama ");
+            sb7.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut,lhp.pemeriksaan_no_urut");
+            psLIS3 = koneksi.prepareStatement(sb7.toString());
+            
         } catch (Exception e) {
             System.out.println(e);
         }

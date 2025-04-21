@@ -399,24 +399,24 @@ public final class DlgReg extends javax.swing.JDialog {
         CrDokter.setDocument(new batasInput((byte) 100).getKata(CrDokter));
         Tumur.setDocument(new batasInput((byte) 3).getOnlyAngka(Tumur));
         
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampilAwal();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampilAwal();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampilAwal();
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampilAwal();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampilAwal();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampilAwal();
+//                }
+//            });
+//        }
         
         penjab.addWindowListener(new WindowListener() {
             @Override

@@ -93,16 +93,16 @@ public class DlgHistoriIPAddressPetugasERM extends javax.swing.JDialog {
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
         
-        if(koneksiDB.cariCepat().equals("aktif")){
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
-                @Override
-                public void insertUpdate(DocumentEvent e) {tampil();}
-                @Override
-                public void removeUpdate(DocumentEvent e) {tampil();}
-                @Override
-                public void changedUpdate(DocumentEvent e) {tampil();}
-            });
-        }
+//        if(koneksiDB.cariCepat().equals("aktif")){
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener(){
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {tampil();}
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {tampil();}
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {tampil();}
+//            });
+//        }
     }
  
     /** This method is called from within the constructor to

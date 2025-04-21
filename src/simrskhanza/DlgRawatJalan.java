@@ -988,36 +988,36 @@ public final class DlgRawatJalan extends javax.swing.JDialog {
         TRespirasi.setDocument(new batasInput((byte) 3).getOnlyAngka(TRespirasi));
         TlingkarPerut.setDocument(new batasInput((byte) 4).getKata(TlingkarPerut));
 
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if (TabRawat.getSelectedIndex() == 0) {
-                        tampilDrPr();
-                    } else if (TabRawat.getSelectedIndex() == 1) {
-                        tampilPemeriksaanDokter();
-                    }
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if (TabRawat.getSelectedIndex() == 0) {
-                        tampilDrPr();
-                    } else if (TabRawat.getSelectedIndex() == 1) {
-                        tampilPemeriksaanDokter();
-                    }
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if (TabRawat.getSelectedIndex() == 0) {
-                        tampilDrPr();
-                    } else if (TabRawat.getSelectedIndex() == 1) {
-                        tampilPemeriksaanDokter();
-                    }
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    if (TabRawat.getSelectedIndex() == 0) {
+//                        tampilDrPr();
+//                    } else if (TabRawat.getSelectedIndex() == 1) {
+//                        tampilPemeriksaanDokter();
+//                    }
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    if (TabRawat.getSelectedIndex() == 0) {
+//                        tampilDrPr();
+//                    } else if (TabRawat.getSelectedIndex() == 1) {
+//                        tampilPemeriksaanDokter();
+//                    }
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    if (TabRawat.getSelectedIndex() == 0) {
+//                        tampilDrPr();
+//                    } else if (TabRawat.getSelectedIndex() == 1) {
+//                        tampilPemeriksaanDokter();
+//                    }
+//                }
+//            });
+//        }
 
         perawatan.addWindowListener(new WindowListener() {
             @Override
@@ -11559,7 +11559,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
     }
 
     public void setNoRm(String norwt, Date tgl1, Date tgl2) {
-        ChkLihat.setSelected(false);
+        ChkLihat.setSelected(false);        
         cmbBulan.setSelectedIndex(0);
         cmbBulan.setEnabled(false);
         PoliKhusus = "";
@@ -11635,6 +11635,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         } else {
             TabRawat.setBackgroundAt(8, TabRawat.getBackground());
             BtnMenjawabRujukan.setGlassColor(TabRawat.getBackground());
+        }
+        
+        if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+            TabRawat.setSelectedIndex(1);
+            tampilPemeriksaanDokter();
+        } else {
+            TabRawat.setSelectedIndex(0);
+            tampilDrPr();
         }
     }
 
@@ -12046,24 +12054,27 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else {
                 a = "";
             }
-            StringBuilder htmlContent = new StringBuilder();
+            StringBuilder htmlContent = new StringBuilder();            
             try {
-                rs = koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, "
-                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten "
-                        + "on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
+                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");                        
+                rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
                 y = 1;
                 while (rs.next()) {
                     try {
-                        rs2 = koneksi.prepareStatement(
-                                "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
-                                + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                + "stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and "
-                                + "reg_periksa.tgl_registrasi between DATE_SUB(date(now()), INTERVAL " + cmbBulan.getSelectedItem().toString() + " MONTH) and NOW()" + a).executeQuery();
+                        StringBuilder sb2 = new StringBuilder();
+                        sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
+                        sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                        sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
+                        sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                        sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                        sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                        sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                        sb2.append("reg_periksa.tgl_registrasi between DATE_SUB(date(now()), INTERVAL " + cmbBulan.getSelectedItem().toString() + " MONTH) and NOW()" + a);
+                        rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         urut = 1;
                         while (rs2.next()) {
                             htmlContent.append(
@@ -12112,9 +12123,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                            }
                             //menampilkan rencana follow up dokter
                             try {
-                                rsDiag = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb3 = new StringBuilder();
+                                sb3.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan ");
+                                sb3.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag = koneksi.prepareStatement(sb3.toString()).executeQuery();
                                 if (rsDiag.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12133,9 +12145,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan rencana follow up perawat/bidan
                             try {
-                                rsDiag1 = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb4 = new StringBuilder();
+                                sb4.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas ");
+                                sb4.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag1 = koneksi.prepareStatement(sb4.toString()).executeQuery();
                                 if (rsDiag1.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12154,9 +12167,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan catatan Resep Obat
                             try {
-                                rsObat = koneksi.prepareStatement(
-                                        "Select nama_obat,status from catatan_resep "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb5 = new StringBuilder();
+                                sb5.append("Select nama_obat, status from catatan_resep where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsObat = koneksi.prepareStatement(sb5.toString()).executeQuery();
                                 if (rsObat.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12195,10 +12208,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan diagnosa penyakit                            
                             try {
-                                rs3 = koneksi.prepareStatement("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status "
-                                        + "from diagnosa_pasien inner join penyakit "
-                                        + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
-                                        + "where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb6 = new StringBuilder();
+                                sb6.append("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status ");
+                                sb6.append("from diagnosa_pasien inner join penyakit ");
+                                sb6.append("on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit ");
+                                sb6.append("where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb6.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12239,9 +12254,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan prosedur tindakan
                             try {
-                                rs3 = koneksi.prepareStatement("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status "
-                                        + "from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode "
-                                        + "where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb7 = new StringBuilder();
+                                sb7.append("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status ");
+                                sb7.append("from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode ");
+                                sb7.append("where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb7.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -12283,13 +12300,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan riwayat pemeriksaan ralan dokter
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,"
-                                        + "pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, "
-                                        + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, "
-                                        + "ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where "
-                                        + "pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb8 = new StringBuilder();
+                                sb8.append("select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,");
+                                sb8.append("pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, ");
+                                sb8.append("pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where ");
+                                sb8.append("pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb8.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12356,9 +12374,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             //menampilkan pemeriksaan THT
                             if (rs2.getString("kd_poli").equals("THT")) {
                                 try {
-                                    rsTHT = koneksi.prepareStatement(
-                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
-                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb9 = new StringBuilder();
+                                    sb9.append("Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya ");
+                                    sb9.append("from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsTHT = koneksi.prepareStatement(sb9.toString()).executeQuery();
                                     if (rsTHT.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -12380,8 +12399,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             //menampilkan reasesmen pemeriksaan
                             if (Sequel.cariIsi("select reasesmen from pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").equals("1")) {
                                 try {
-                                    rs3 = koneksi.prepareStatement(
-                                            "SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb10 = new StringBuilder();
+                                    sb10.append("SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rs3 = koneksi.prepareStatement(sb10.toString()).executeQuery();
                                     if (rs3.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -12418,13 +12438,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan konsul internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,"
-                                        + "pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, "
-                                        + "date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk "
-                                        + "inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                                        + "inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas "
-                                        + "inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb11 = new StringBuilder();
+                                sb11.append("select sk.*, p.no_rkm_medis, p.nm_pasien, pl1.nm_poli poliAwal, d.nm_dokter, date_format(sk.tgl_permintaan_konsul,'%d/%m/%Y') tglKonsul,");
+                                sb11.append("pl2.nm_poli poliTujuan, DATE_FORMAT(sk.tgl_permintaan_konsul,'%d-%m-%Y') tglKonsul, if(sk.tgl_menjawab='0000-00-00','-',sk.tgl_menjawab) tgljawab, ");
+                                sb11.append("date_format(sk.tgl_menjawab,'%d/%m/%Y') tglmenjawab, date_format(sk.tgl_konsul_ulang,'%d/%m/%Y') tglkonsululang from surat_konsul_unit_ralan sk ");
+                                sb11.append("inner join reg_periksa rp on rp.no_rawat=sk.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                                sb11.append("inner join poliklinik pl1 on pl1.kd_poli=sk.kd_poli inner join poliklinik pl2 on pl2.kd_poli=sk.kd_poli_pembalas ");
+                                sb11.append("inner join dokter d on d.kd_dokter=sk.kd_dokter_pembalas WHERE sk.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb11.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12503,11 +12524,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan rujukan internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, "
-                                        + "ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri "
-                                        + "INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas "
-                                        + "WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb12 = new StringBuilder();
+                                sb12.append("SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, ");
+                                sb12.append("ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri ");
+                                sb12.append("INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas ");
+                                sb12.append("WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb12.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -12548,13 +12570,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan riwayat pemeriksaan ralan petugas
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,"
-                                        + "pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, "
-                                        + "pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where "
-                                        + "pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb13 = new StringBuilder();
+                                sb13.append("select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,");
+                                sb13.append("pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, ");
+                                sb13.append("pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, ");
+                                sb13.append("ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where ");
+                                sb13.append("pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb13.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12620,7 +12644,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //hasil pemeriksaan laboratorium LIS
                             try {
-                                rsLISMaster = koneksi.prepareStatement("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab").executeQuery();
+                                StringBuilder sb14 = new StringBuilder();
+                                sb14.append("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab");
+                                rsLISMaster = koneksi.prepareStatement(sb14.toString()).executeQuery();
                                 if (rsLISMaster.next()) {
                                     rsLISMaster.beforeFirst();
                                     lisM = 1;
@@ -12642,10 +12668,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                 + "</tr>"
                                         );
 
-                                        rsLIS1 = koneksi.prepareStatement(
-                                                "SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                + "WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama "
-                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                        StringBuilder sb15 = new StringBuilder();
+                                        sb15.append("SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                        sb15.append("WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama ");
+                                        sb15.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                        rsLIS1 = koneksi.prepareStatement(sb15.toString()).executeQuery();
 
                                         if (rsLIS1.next()) {
                                             rsLIS1.beforeFirst();
@@ -12656,11 +12683,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                         + "<td valign='top'>" + rsLIS1.getString("kategori_pemeriksaan_nama") + "</td>"
                                                         + "</tr>");
 
-                                                rsLIS2 = koneksi.prepareStatement("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr "
-                                                        + "LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab "
-                                                        + "WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' "
-                                                        + "GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, "
-                                                        + "lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut").executeQuery();
+                                                StringBuilder sb16 = new StringBuilder();
+                                                sb16.append("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr ");
+                                                sb16.append("LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab ");
+                                                sb16.append("WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' ");
+                                                sb16.append("GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, ");
+                                                sb16.append("lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut");
+                                                rsLIS2 = koneksi.prepareStatement(sb16.toString()).executeQuery();
+                                                
                                                 if (rsLIS2.next()) {
                                                     rsLIS2.beforeFirst();
                                                     lis1 = 1;
@@ -12670,12 +12700,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                                 + "<td valign='top'>&emsp;" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "</td>"
                                                                 + "</tr>");
 
-                                                        rsLIS3 = koneksi.prepareStatement("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, "
-                                                                + "lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                                + "LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and "
-                                                                + "lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and "
-                                                                + "lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama "
-                                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                                        StringBuilder sb17 = new StringBuilder();
+                                                        sb17.append("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, ");
+                                                        sb17.append("lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                                        sb17.append("LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and ");
+                                                        sb17.append("lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and ");
+                                                        sb17.append("lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama ");
+                                                        sb17.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                                        rsLIS3 = koneksi.prepareStatement(sb17.toString()).executeQuery();
+                                                        
                                                         if (rsLIS3.next()) {
                                                             rsLIS3.beforeFirst();
                                                             lis2 = 1;
@@ -12713,12 +12746,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //hasil pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, "
-                                        + "ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, "
-                                        + "ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                                        + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam "
-                                        + "WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam").executeQuery();
+                                StringBuilder sb18 = new StringBuilder();
+                                sb18.append("SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, ");
+                                sb18.append("ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, ");
+                                sb18.append("ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw ");
+                                sb18.append("LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam ");
+                                sb18.append("WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam");
+                                rs3 = koneksi.prepareStatement(sb18.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -12762,15 +12796,18 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan tarif klaim inacbg ralan
                             try {
-                                rs3 = koneksi.prepareStatement("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, "
-                                        + "IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, "
-                                        + "concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, "
-                                        + "concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel "
-                                        + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep "
-                                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter "
-                                        + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb19 = new StringBuilder();
+                                sb19.append("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, ");
+                                sb19.append("IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, ");
+                                sb19.append("concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, ");
+                                sb19.append("concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', ");
+                                sb19.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel ");
+                                sb19.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep ");
+                                sb19.append("INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter ");
+                                sb19.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb19.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -12834,11 +12871,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan dokter ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat "
-                                        + "from rawat_jl_dr inner join jns_perawatan inner join dokter "
-                                        + "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb20 = new StringBuilder();
+                                sb20.append("select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat ");
+                                sb20.append("from rawat_jl_dr inner join jns_perawatan inner join dokter ");
+                                sb20.append("on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb20.append("and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb20.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -12876,11 +12915,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan paramedis ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat "
-                                        + "from rawat_jl_pr inner join jns_perawatan inner join petugas "
-                                        + "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb21 = new StringBuilder();
+                                sb21.append("select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat ");
+                                sb21.append("from rawat_jl_pr inner join jns_perawatan inner join petugas ");
+                                sb21.append("on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb21.append("and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb21.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -12918,11 +12959,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan ralan dokter dan paramedis
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat "
-                                        + "from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas "
-                                        + "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip "
-                                        + "and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb22 = new StringBuilder();
+                                sb22.append("select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat ");
+                                sb22.append("from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas ");
+                                sb22.append("on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip ");
+                                sb22.append("and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb22.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -12962,24 +13005,26 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"
-                                        + "operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "
-                                        + "operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,"
-                                        + "operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, "
-                                        + "operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, "
-                                        + "operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, "
-                                        + "operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, "
-                                        + "operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,"
-                                        + "operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,"
-                                        + "operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,"
-                                        + "(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+"
-                                        + "operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+"
-                                        + "operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+"
-                                        + "operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+"
-                                        + "operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+"
-                                        + "operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi "
-                                        + "on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi").executeQuery();
+                                StringBuilder sb23 = new StringBuilder();
+                                sb23.append("select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,");
+                                sb23.append("operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, ");
+                                sb23.append("operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,");
+                                sb23.append("operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, ");
+                                sb23.append("operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, ");
+                                sb23.append("operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, ");
+                                sb23.append("operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, ");
+                                sb23.append("operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,");
+                                sb23.append("operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,");
+                                sb23.append("operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,");
+                                sb23.append("(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+");
+                                sb23.append("operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+");
+                                sb23.append("operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+");
+                                sb23.append("operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+");
+                                sb23.append("operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+");
+                                sb23.append("operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi ");
+                                sb23.append("on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi");
+                                rs3 = koneksi.prepareStatement(sb23.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13076,13 +13121,15 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, "
-                                        + "jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter "
-                                        + "from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter "
-                                        + "on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter "
-                                        + "and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' "
-                                        + "order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam").executeQuery();
+                                StringBuilder sb24 = new StringBuilder();
+                                sb24.append("select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, ");
+                                sb24.append("jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter ");
+                                sb24.append("from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter ");
+                                sb24.append("on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter ");
+                                sb24.append("and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' ");
+                                sb24.append("order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam");
+                                rs3 = koneksi.prepareStatement(sb24.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13159,15 +13206,16 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan pemeriksaan laborat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total "
-                                        + "FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat "
-                                        + "INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL "
-                                        + "SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total "
-                                        + "FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw "
-                                        + "LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan").executeQuery();
+                                StringBuilder sb25 = new StringBuilder();
+                                sb25.append("SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total ");
+                                sb25.append("FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat ");
+                                sb25.append("INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL ");
+                                sb25.append("SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total ");
+                                sb25.append("FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw ");
+                                sb25.append("LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template ");
+                                sb25.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan");
+                                rs3 = koneksi.prepareStatement(sb25.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -13207,12 +13255,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //pemberian obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, "
-                                        + "detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,"
-                                        + "databarang.nama_brng from detail_pemberian_obat inner join databarang "
-                                        + "on detail_pemberian_obat.kode_brng=databarang.kode_brng  "
-                                        + "where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam").executeQuery();
+                                StringBuilder sb26 = new StringBuilder();
+                                sb26.append("select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, ");
+                                sb26.append("detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,");
+                                sb26.append("databarang.nama_brng from detail_pemberian_obat inner join databarang ");
+                                sb26.append("on detail_pemberian_obat.kode_brng=databarang.kode_brng ");
+                                sb26.append("where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam");
+                                rs3 = koneksi.prepareStatement(sb26.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13255,11 +13305,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //pemberian obat Operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(beri_obat_operasi.tanggal,'%d-%m-%Y') tanggal,beri_obat_operasi.kd_obat,beri_obat_operasi.hargasatuan,obatbhp_ok.kode_sat, "
-                                        + "beri_obat_operasi.jumlah, obatbhp_ok.nm_obat,(beri_obat_operasi.hargasatuan*beri_obat_operasi.jumlah) as total "
-                                        + "from beri_obat_operasi inner join obatbhp_ok  on  beri_obat_operasi.kd_obat=obatbhp_ok.kd_obat  "
-                                        + "where beri_obat_operasi.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb27 = new StringBuilder();
+                                sb27.append("select date_format(beri_obat_operasi.tanggal,'%d-%m-%Y') tanggal,beri_obat_operasi.kd_obat,beri_obat_operasi.hargasatuan,obatbhp_ok.kode_sat, ");
+                                sb27.append("beri_obat_operasi.jumlah, obatbhp_ok.nm_obat,(beri_obat_operasi.hargasatuan*beri_obat_operasi.jumlah) as total ");
+                                sb27.append("from beri_obat_operasi inner join obatbhp_ok  on  beri_obat_operasi.kd_obat=obatbhp_ok.kd_obat ");
+                                sb27.append("where beri_obat_operasi.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb27.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13339,11 +13391,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Retur Obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, "
-                                        + "(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual "
-                                        + "inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng "
-                                        + "and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng").executeQuery();
+                                StringBuilder sb28 = new StringBuilder();
+                                sb28.append("select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, ");
+                                sb28.append("(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual ");
+                                sb28.append("inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng ");
+                                sb28.append("and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng");
+                                rs3 = koneksi.prepareStatement(sb28.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13379,8 +13433,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Tambahan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya").executeQuery();
+                                StringBuilder sb29 = new StringBuilder();
+                                sb29.append("select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya");
+                                rs3 = koneksi.prepareStatement(sb29.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13416,8 +13472,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Pengurangan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan").executeQuery();
+                                StringBuilder sb30 = new StringBuilder();
+                                sb30.append("select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan");
+                                rs3 = koneksi.prepareStatement(sb30.toString()).executeQuery();
+
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -13494,37 +13552,40 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
             } else {
                 a = "";
             }
-            StringBuilder htmlContent = new StringBuilder();
+            StringBuilder htmlContent = new StringBuilder();            
             try {
-                rs = koneksi.prepareStatement("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, "
-                        + "tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten "
-                        + "on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and "
-                        + "pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc ").executeQuery();
+                StringBuilder sb1 = new StringBuilder();
+                sb1.append("select pasien.no_rkm_medis, pasien.nm_pasien, pasien.jk, concat(pasien.alamat,', ',kelurahan.nm_kel,', ',kecamatan.nm_kec,', ',kabupaten.nm_kab) as alamat, pasien.umur, ");
+                sb1.append("tmp_lahir,date_format(tgl_lahir,'%d %M %Y') tgl_lahir,nm_ibu,gol_darah,stts_nikah,agama,pnd,date_format(tgl_daftar,'%d %M %Y') tgl_daftar from pasien inner join kelurahan inner join kecamatan inner join kabupaten ");
+                sb1.append("on pasien.kd_kel=kelurahan.kd_kel and pasien.kd_kec=kecamatan.kd_kec and ");
+                sb1.append("pasien.kd_kab=kabupaten.kd_kab where pasien.no_rkm_medis='" + TNoRM.getText() + "' order by pasien.no_rkm_medis desc");                
+                rs = koneksi.prepareStatement(sb1.toString()).executeQuery();
                 y = 1;
                 while (rs.next()) {
                     try {
+                        StringBuilder sb2 = new StringBuilder();
                         if (ChkTanggal.isSelected() == true) {
-                            rs2 = koneksi.prepareStatement(
-                                    "select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,"
-                                    + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,"
-                                    + "penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                    + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                    + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                    + "stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and "
-                                    + "reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'" + a).executeQuery();
+                            sb2.append("select reg_periksa.no_reg,reg_periksa.no_rawat,date_format(reg_periksa.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(reg_periksa.jam_reg,'%h:%i %p') jam_reg,");
+                            sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,if(reg_periksa.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,");
+                            sb2.append("penjab.png_jawab, reg_periksa.kd_poli from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                            sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                            sb2.append("stts<>'Batal' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "' and reg_periksa.status_lanjut='Ralan' and ");
+                            sb2.append("reg_periksa.tgl_registrasi between '" + Valid.SetTgl(DTPCari1.getSelectedItem() + "") + "' and '" + Valid.SetTgl(DTPCari2.getSelectedItem() + "") + "'" + a);
+                            rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         } else {
-                            rs2 = koneksi.prepareStatement(
-                                    "select * from (select a.no_reg, a.no_rawat,date_format(a.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(a.jam_reg,'%h:%i %p') jam_reg,a.kd_dokter,a.nm_dokter,"
-                                    + "a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, "
-                                    + "a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,"
-                                    + "reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,"
-                                    + "reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli "
-                                    + "from reg_periksa inner join dokter inner join poliklinik inner join penjab "
-                                    + "on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj "
-                                    + "and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where "
-                                    + "stts<>'Batal' and reg_periksa.status_lanjut='Ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a "
-                                    + "ORDER BY a.tgl_registrasi desc, a.jam_reg desc limit 3) as a order by a.tglReg, a.jamReg").executeQuery();
+                            sb2.append("select * from (select a.no_reg, a.no_rawat,date_format(a.tgl_registrasi,'%d-%m-%Y') tgl_registrasi,date_format(a.jam_reg,'%h:%i %p') jam_reg,a.kd_dokter,a.nm_dokter,");
+                            sb2.append("a.nm_poli,a.p_jawab,a.almt_pj,a.hubunganpj,a.biaya_reg,if(a.status_lanjut='Ranap','Rawat Inap','Rawat Jalan') status_lanjut,a.png_jawab, ");
+                            sb2.append("a.tgl_registrasi tglReg, a.jam_reg jamReg, a.kd_poli from (select reg_periksa.no_reg,reg_periksa.no_rawat,reg_periksa.tgl_registrasi,reg_periksa.jam_reg,");
+                            sb2.append("reg_periksa.kd_dokter,dokter.nm_dokter,IF(reg_periksa.kd_poli='IRM',CONCAT(poliklinik.nm_poli,' - ',IFNULL(data_rehab_medik.jns_rehabmedik,'FISIOTERAPI')),poliklinik.nm_poli) nm_poli,");
+                            sb2.append("reg_periksa.p_jawab,reg_periksa.almt_pj,reg_periksa.hubunganpj,reg_periksa.biaya_reg,reg_periksa.status_lanjut,penjab.png_jawab, reg_periksa.kd_poli ");
+                            sb2.append("from reg_periksa inner join dokter inner join poliklinik inner join penjab ");
+                            sb2.append("on reg_periksa.kd_dokter=dokter.kd_dokter and reg_periksa.kd_pj=penjab.kd_pj ");
+                            sb2.append("and reg_periksa.kd_poli=poliklinik.kd_poli LEFT JOIN data_rehab_medik ON data_rehab_medik.no_rawat = reg_periksa.no_rawat where ");
+                            sb2.append("stts<>'Batal' and reg_periksa.status_lanjut='Ralan' and reg_periksa.no_rkm_medis='" + rs.getString("no_rkm_medis") + "'" + a + ") as a ");
+                            sb2.append("ORDER BY a.tgl_registrasi desc, a.jam_reg desc limit 3) as a order by a.tglReg, a.jamReg");
+                            rs2 = koneksi.prepareStatement(sb2.toString()).executeQuery();
                         }
 
                         urut = 1;
@@ -13575,9 +13636,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                            }
                             //menampilkan rencana follow up dokter
                             try {
-                                rsDiag = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb3 = new StringBuilder();
+                                sb3.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan ");
+                                sb3.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag = koneksi.prepareStatement(sb3.toString()).executeQuery();
                                 if (rsDiag.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13596,9 +13658,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan rencana follow up perawat/bidan
                             try {
-                                rsDiag1 = koneksi.prepareStatement(
-                                        "Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb4 = new StringBuilder();
+                                sb4.append("Select ifnull(rencana_follow_up,'-') rencana_follow_up from pemeriksaan_ralan_petugas ");
+                                sb4.append("where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsDiag1 = koneksi.prepareStatement(sb4.toString()).executeQuery();
                                 if (rsDiag1.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13617,9 +13680,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan catatan Resep Obat
                             try {
-                                rsObat = koneksi.prepareStatement(
-                                        "Select nama_obat,status from catatan_resep "
-                                        + "where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb5 = new StringBuilder();
+                                sb5.append("Select nama_obat,status from catatan_resep where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rsObat = koneksi.prepareStatement(sb5.toString()).executeQuery();
                                 if (rsObat.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13658,10 +13721,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan diagnosa penyakit                            
                             try {
-                                rs3 = koneksi.prepareStatement("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status "
-                                        + "from diagnosa_pasien inner join penyakit "
-                                        + "on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit "
-                                        + "where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb6 = new StringBuilder();
+                                sb6.append("select diagnosa_pasien.kd_penyakit,penyakit.nm_penyakit, diagnosa_pasien.status ");
+                                sb6.append("from diagnosa_pasien inner join penyakit ");
+                                sb6.append("on diagnosa_pasien.kd_penyakit=penyakit.kd_penyakit ");
+                                sb6.append("where diagnosa_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb6.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13702,10 +13767,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan prosedur tindakan
                             try {
-                                rs3 = koneksi.prepareStatement("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status "
-                                        + "from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode "
-                                        + "where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
-
+                                StringBuilder sb7 = new StringBuilder();
+                                sb7.append("select prosedur_pasien.kode,icd9.deskripsi_panjang, prosedur_pasien.status ");
+                                sb7.append("from prosedur_pasien inner join icd9 on prosedur_pasien.kode=icd9.kode ");
+                                sb7.append("where prosedur_pasien.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb7.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13746,13 +13812,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan riwayat pemeriksaan ralan dokter
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,"
-                                        + "pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, "
-                                        + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, "
-                                        + "ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where "
-                                        + "pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb8 = new StringBuilder();
+                                sb8.append("select pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi,pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,");
+                                sb8.append("pemeriksaan_ralan.tinggi,pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, ");
+                                sb8.append("pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,ifnull(pemeriksaan_ralan.diagnosa,'-') diagnosa, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.rincian_tindakan,'-') rincian_tindakan, ifnull(pemeriksaan_ralan.terapi,'-') terapi, ");
+                                sb8.append("ifnull(pemeriksaan_ralan.spo2,'-') spo2 from pemeriksaan_ralan where ");
+                                sb8.append("pemeriksaan_ralan.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb8.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -13819,9 +13886,10 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                             //menampilkan pemeriksaan THT
                             if (rs2.getString("kd_poli").equals("THT")) {
                                 try {
-                                    rsTHT = koneksi.prepareStatement(
-                                            "Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya "
-                                            + "from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                    StringBuilder sb9 = new StringBuilder();
+                                    sb9.append("Select ifnull(nama_pemeriksaan,'-') namanya, ifnull(hasil_pemeriksaan,'-') hasilnya ");
+                                    sb9.append("from pemeriksaan_tht where no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rsTHT = koneksi.prepareStatement(sb9.toString()).executeQuery();
                                     if (rsTHT.next()) {
                                         htmlContent.append(
                                                 "<tr class='isi'>"
@@ -13839,14 +13907,55 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                     }
                                 }
                             }
+                            
+                            //menampilkan reasesmen pemeriksaan
+                            if (Sequel.cariIsi("select reasesmen from pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'").equals("1")) {
+                                try {
+                                    StringBuilder sb10 = new StringBuilder();
+                                    sb10.append("SELECT kesimpulan, rekomendasi FROM pemeriksaan_ralan WHERE no_rawat='" + rs2.getString("no_rawat") + "'");
+                                    rs3 = koneksi.prepareStatement(sb10.toString()).executeQuery();
+                                    if (rs3.next()) {
+                                        htmlContent.append(
+                                                "<tr class='isi'>"
+                                                + "<td valign='top' width='20%'>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Reasesmen Pemeriksaan Dokter</td>"
+                                                + "<td valign='top' width='1%' align='center'>:</td>"
+                                                + "<td valign='top' width='79%'>"
+                                                + "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
+                                                + "<tr align='center'>"
+                                                + "<td valign='top' width='15%' bgcolor='#f8fdf3'>Kesimpulan</td>"
+                                                + "<td valign='top' width='13%' bgcolor='#f8fdf3'>Rekomendasi</td>"
+                                                + "</tr>"
+                                        );
+                                        rs3.beforeFirst();
+                                        while (rs3.next()) {
+                                            htmlContent.append(
+                                                    "<tr>"
+                                                    + "<td valign='top'>" + rs3.getString("kesimpulan").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                    + "<td valign='top'>" + rs3.getString("rekomendasi").replaceAll("(\r\n|\r|\n|\n\r)", "<br>") + "<br><br></td>"
+                                                    + "</tr>");
+                                        }
+                                        htmlContent.append(
+                                                "</table>"
+                                                + "</td>"
+                                                + "</tr>");
+                                    }
+                                } catch (Exception e) {
+                                    System.out.println("Notifikasi : " + e);
+                                } finally {
+                                    if (rs3 != null) {
+                                        rs3.close();
+                                    }
+                                }
+                            }
 
                             //menampilkan rujukan internal poliklinik
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, "
-                                        + "ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri "
-                                        + "INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas "
-                                        + "WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb10 = new StringBuilder();
+                                sb10.append("SELECT ifnull(pl.nm_poli,'-') ke_poli, ifnull(DATE_FORMAT(ri.tgl_rencana_dirujuk,'%d-%m-%Y'),'-') tgl_dirujuk, ");
+                                sb10.append("ifnull(ri.keterangan,'-') keterangan, ifnull(ri.keterangan_balasan,'-') jwbn, ifnull(d.nm_dokter,'') drMenjawab FROM rujukan_internal_poli ri ");
+                                sb10.append("INNER JOIN poliklinik pl on pl.kd_poli=ri.kd_poli_pembalas left join dokter d on d.kd_dokter=ri.kd_dokter_pembalas ");
+                                sb10.append("WHERE ri.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb10.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -13887,13 +13996,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan riwayat pemeriksaan ralan petugas
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,"
-                                        + "pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, "
-                                        + "pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, "
-                                        + "ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where "
-                                        + "pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb11 = new StringBuilder();
+                                sb11.append("select pemeriksaan_ralan_petugas.suhu_tubuh,pemeriksaan_ralan_petugas.tensi,pemeriksaan_ralan_petugas.nadi,pemeriksaan_ralan_petugas.respirasi,");
+                                sb11.append("pemeriksaan_ralan_petugas.tinggi,pemeriksaan_ralan_petugas.berat,pemeriksaan_ralan_petugas.gcs,pemeriksaan_ralan_petugas.keluhan, ");
+                                sb11.append("pemeriksaan_ralan_petugas.pemeriksaan,pemeriksaan_ralan_petugas.alergi,ifnull(pemeriksaan_ralan_petugas.diagnosa,'-') diagnosa, ");
+                                sb11.append("ifnull(pemeriksaan_ralan_petugas.rincian_tindakan,'-') rincian_tindakan, ");
+                                sb11.append("ifnull(pemeriksaan_ralan_petugas.terapi,'-') terapi, ifnull(pemeriksaan_ralan_petugas.spo2,'-') spo2 from pemeriksaan_ralan_petugas where ");
+                                sb11.append("pemeriksaan_ralan_petugas.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb11.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14019,7 +14129,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                            }
                             //hasil pemeriksaan laboratorium LIS
                             try {
-                                rsLISMaster = koneksi.prepareStatement("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab").executeQuery();
+                                StringBuilder sb12 = new StringBuilder();
+                                sb12.append("SELECT no_lab FROM lis_reg WHERE no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY no_lab");
+                                rsLISMaster = koneksi.prepareStatement(sb12.toString()).executeQuery();
                                 if (rsLISMaster.next()) {
                                     rsLISMaster.beforeFirst();
                                     lisM = 1;
@@ -14041,10 +14153,11 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                 + "</tr>"
                                         );
 
-                                        rsLIS1 = koneksi.prepareStatement(
-                                                "SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                + "WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama "
-                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                        StringBuilder sb13 = new StringBuilder();
+                                        sb13.append("SELECT ifnull(kategori_pemeriksaan_nama,'') kategori_pemeriksaan_nama FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                        sb13.append("WHERE lr.no_rawat='" + rs2.getString("no_rawat") + "' and lr.no_lab ='" + rsLISMaster.getString("no_lab") + "' GROUP BY lhp.kategori_pemeriksaan_nama ");
+                                        sb13.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                        rsLIS1 = koneksi.prepareStatement(sb13.toString()).executeQuery();
 
                                         if (rsLIS1.next()) {
                                             rsLIS1.beforeFirst();
@@ -14055,11 +14168,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                         + "<td valign='top'>" + rsLIS1.getString("kategori_pemeriksaan_nama") + "</td>"
                                                         + "</tr>");
 
-                                                rsLIS2 = koneksi.prepareStatement("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr "
-                                                        + "LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab "
-                                                        + "WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' "
-                                                        + "GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, "
-                                                        + "lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut").executeQuery();
+                                                StringBuilder sb14 = new StringBuilder();
+                                                sb14.append("SELECT ifnull(lhp.sub_kategori_pemeriksaan_nama,'') sub_kategori_pemeriksaan_nama FROM lis_reg lr ");
+                                                sb14.append("LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab LEFT JOIN lis_hasil_data_pasien lhdp on lhdp.no_lab=lr.no_lab ");
+                                                sb14.append("WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' ");
+                                                sb14.append("GROUP BY lhp.sub_kategori_pemeriksaan_nama ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, ");
+                                                sb14.append("lhp.sub_kategori_pemeriksaan_nama desc, lhp.pemeriksaan_no_urut");
+                                                rsLIS2 = koneksi.prepareStatement(sb14.toString()).executeQuery();
                                                 if (rsLIS2.next()) {
                                                     rsLIS2.beforeFirst();
                                                     lis1 = 1;
@@ -14069,12 +14184,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
                                                                 + "<td valign='top'>&emsp;" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "</td>"
                                                                 + "</tr>");
 
-                                                        rsLIS3 = koneksi.prepareStatement("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, "
-                                                                + "lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab "
-                                                                + "LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and "
-                                                                + "lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and "
-                                                                + "lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama "
-                                                                + "ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut").executeQuery();
+                                                        StringBuilder sb15 = new StringBuilder();
+                                                        sb15.append("SELECT ifnull(lhp.pemeriksaan_nama,'') pemeriksaan_nama, lhp.metode, lhp.nilai_hasil, lhp.nilai_rujukan, ");
+                                                        sb15.append("lhp.satuan, lhp.flag_kode FROM lis_reg lr LEFT JOIN lis_hasil_periksa_lab lhp on lhp.no_lab=lr.no_lab ");
+                                                        sb15.append("LEFT JOIN lis_hasil_data_pasien lhdp ON lhdp.no_lab=lr.no_lab WHERE lr.no_lab='" + rsLISMaster.getString("no_lab") + "' and ");
+                                                        sb15.append("lhp.sub_kategori_pemeriksaan_nama='" + rsLIS2.getString("sub_kategori_pemeriksaan_nama") + "' and ");
+                                                        sb15.append("lhp.kategori_pemeriksaan_nama='" + rsLIS1.getString("kategori_pemeriksaan_nama") + "' GROUP BY lhp.pemeriksaan_nama ");
+                                                        sb15.append("ORDER BY lhp.kategori_pemeriksaan_no_urut, lhp.sub_kategori_pemeriksaan_no_urut, lhp.pemeriksaan_no_urut");
+                                                        rsLIS3 = koneksi.prepareStatement(sb15.toString()).executeQuery();
                                                         if (rsLIS3.next()) {
                                                             rsLIS3.beforeFirst();
                                                             lis2 = 1;
@@ -14112,12 +14229,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //hasil pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, "
-                                        + "ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, "
-                                        + "ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw "
-                                        + "LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam "
-                                        + "WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam").executeQuery();
+                                StringBuilder sb16 = new StringBuilder();
+                                sb16.append("SELECT date_format(pr.tgl_periksa, '%d-%m-%Y') tgl_periksa, date_format(pr.jam, '%h:%i %p') jam, ");
+                                sb16.append("ifnull(jpr.nm_perawatan,'-') nm_pemeriksaan, ifnull(hr.diag_klinis_radiologi, '-') diag_klinis_radiologi, ");
+                                sb16.append("ifnull(hr.hasil, '-') hasil FROM periksa_radiologi pr INNER JOIN jns_perawatan_radiologi jpr on jpr.kd_jenis_prw=pr.kd_jenis_prw ");
+                                sb16.append("LEFT JOIN hasil_radiologi hr on hr.no_rawat=pr.no_rawat and hr.kd_jenis_prw=pr.kd_jenis_prw AND hr.tgl_periksa=pr.tgl_periksa AND hr.jam=pr.jam ");
+                                sb16.append("WHERE pr.no_rawat='" + rs2.getString("no_rawat") + "' ORDER BY pr.tgl_periksa, pr.jam");
+                                rs3 = koneksi.prepareStatement(sb16.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -14161,15 +14279,17 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //menampilkan tarif klaim inacbg ralan
                             try {
-                                rs3 = koneksi.prepareStatement("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, "
-                                        + "IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, "
-                                        + "concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, "
-                                        + "concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', "
-                                        + "IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel "
-                                        + "FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep "
-                                        + "INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter "
-                                        + "LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb17 = new StringBuilder();
+                                sb17.append("SELECT ifnull(enc.no_rawat,'') no_rawat, ifnull(enc.klaim_final,'') klaim_final, ifnull(eg.cbg_desc,'') cbg_desc, ");
+                                sb17.append("IFNULL(egsc.desc,'-') topup_desc, concat('Rp. ',format(ifnull(eg.cbg_tarif,''),0)) cbg_tarif, ");
+                                sb17.append("concat('Rp. ',IFNULL(format(egsc.tarif,0),0)) topup_tarif, concat('Rp. ',IFNULL(format(eg.cbg_tarif+egsc.tarif,0),format(eg.cbg_tarif,0))) total_trf_grp, ");
+                                sb17.append("concat('Rp. ',format(ifnull(esc.tarif_obat,''),0)) by_obat_real, CONCAT(FORMAT((esc.tarif_obat/IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100,2),' ','%') perc_pakai_obat, ");
+                                sb17.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=40,'#00ff00', ");
+                                sb17.append("IF((esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100>40 AND (esc.tarif_obat/ IFNULL(eg.cbg_tarif+egsc.tarif,eg.cbg_tarif))*100<=80,'#ff8040','#ff3333')) warna_sel ");
+                                sb17.append("FROM eklaim_new_claim enc INNER JOIN eklaim_set_claim esc ON esc.no_sep=enc.no_sep INNER JOIN eklaim_grouping eg ON eg.no_sep=enc.no_sep ");
+                                sb17.append("INNER JOIN reg_periksa rp ON rp.no_rawat=enc.no_rawat INNER JOIN poliklinik p ON p.kd_poli=rp.kd_poli INNER JOIN dokter d ON d.kd_dokter=rp.kd_dokter ");
+                                sb17.append("LEFT JOIN eklaim_grouping_spc_cmg egsc ON egsc.no_sep=enc.no_sep WHERE rp.status_lanjut='Ralan' and enc.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb17.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<tr class='isi'>"
@@ -14233,11 +14353,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan dokter ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat "
-                                        + "from rawat_jl_dr inner join jns_perawatan inner join dokter "
-                                        + "on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb18 = new StringBuilder();
+                                sb18.append("select rawat_jl_dr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,rawat_jl_dr.biaya_rawat ");
+                                sb18.append("from rawat_jl_dr inner join jns_perawatan inner join dokter ");
+                                sb18.append("on rawat_jl_dr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb18.append("and rawat_jl_dr.kd_dokter=dokter.kd_dokter where rawat_jl_dr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb18.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14275,11 +14396,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan paramedis ralan
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat "
-                                        + "from rawat_jl_pr inner join jns_perawatan inner join petugas "
-                                        + "on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw "
-                                        + "and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb19 = new StringBuilder();
+                                sb19.append("select rawat_jl_pr.kd_jenis_prw,jns_perawatan.nm_perawatan,petugas.nama,rawat_jl_pr.biaya_rawat ");
+                                sb19.append("from rawat_jl_pr inner join jns_perawatan inner join petugas ");
+                                sb19.append("on rawat_jl_pr.kd_jenis_prw=jns_perawatan.kd_jenis_prw ");
+                                sb19.append("and rawat_jl_pr.nip=petugas.nip where rawat_jl_pr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb19.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14317,11 +14439,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan ralan dokter dan paramedis
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat "
-                                        + "from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas "
-                                        + "on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip "
-                                        + "and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'").executeQuery();
+                                StringBuilder sb20 = new StringBuilder();
+                                sb20.append("select rawat_jl_drpr.kd_jenis_prw,jns_perawatan.nm_perawatan,dokter.nm_dokter,petugas.nama,rawat_jl_drpr.biaya_rawat ");
+                                sb20.append("from rawat_jl_drpr inner join jns_perawatan inner join dokter inner join petugas ");
+                                sb20.append("on rawat_jl_drpr.kd_jenis_prw=jns_perawatan.kd_jenis_prw and rawat_jl_drpr.nip=petugas.nip ");
+                                sb20.append("and rawat_jl_drpr.kd_dokter=dokter.kd_dokter where rawat_jl_drpr.no_rawat='" + rs2.getString("no_rawat") + "'");
+                                rs3 = koneksi.prepareStatement(sb20.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14545,24 +14668,25 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 //                            }
                             //operasi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,"
-                                        + "operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, "
-                                        + "operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,"
-                                        + "operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, "
-                                        + "operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, "
-                                        + "operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, "
-                                        + "operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, "
-                                        + "operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,"
-                                        + "operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,"
-                                        + "operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,"
-                                        + "(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+"
-                                        + "operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+"
-                                        + "operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+"
-                                        + "operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+"
-                                        + "operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+"
-                                        + "operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi "
-                                        + "on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi").executeQuery();
+                                StringBuilder sb21 = new StringBuilder();
+                                sb21.append("select DATE_FORMAT(operasi.tgl_operasi,'%d-%m-%Y %h:%i %p') tgl_operasi,operasi.jenis_anasthesi,operasi.operator1, operasi.operator2, operasi.operator3, operasi.asisten_operator1,");
+                                sb21.append("operasi.asisten_operator2, operasi.instrumen, operasi.dokter_anak, operasi.perawaat_resusitas, ");
+                                sb21.append("operasi.dokter_anestesi, operasi.asisten_anestesi, operasi.bidan, operasi.bidan2, operasi.bidan3, operasi.perawat_luar, operasi.omloop,");
+                                sb21.append("operasi.omloop2,operasi.omloop3,operasi.dokter_pjanak,operasi.dokter_umum, ");
+                                sb21.append("operasi.kode_paket,paket_operasi.nm_perawatan, operasi.biayaoperator1, operasi.biayaoperator2, operasi.biayaoperator3, ");
+                                sb21.append("operasi.biayaasisten_operator1, operasi.biayaasisten_operator2, operasi.biayainstrumen, ");
+                                sb21.append("operasi.biayadokter_anak, operasi.biayaperawaat_resusitas, operasi.biayadokter_anestesi, ");
+                                sb21.append("operasi.biayaasisten_anestesi, operasi.biayabidan,operasi.biayabidan2,operasi.biayabidan3, operasi.biayaperawat_luar, operasi.biayaalat,");
+                                sb21.append("operasi.biayasewaok,operasi.akomodasi,operasi.bagian_rs,operasi.biaya_omloop,operasi.biaya_omloop2,operasi.biaya_omloop3,");
+                                sb21.append("operasi.biayasarpras,operasi.biaya_dokter_pjanak,operasi.biaya_dokter_umum,");
+                                sb21.append("(operasi.biayaoperator1+operasi.biayaoperator2+operasi.biayaoperator3+");
+                                sb21.append("operasi.biayaasisten_operator1+operasi.biayaasisten_operator2+operasi.biayainstrumen+");
+                                sb21.append("operasi.biayadokter_anak+operasi.biayaperawaat_resusitas+operasi.biayadokter_anestesi+");
+                                sb21.append("operasi.biayaasisten_anestesi+operasi.biayabidan+operasi.biayabidan2+operasi.biayabidan3+operasi.biayaperawat_luar+operasi.biayaalat+");
+                                sb21.append("operasi.biayasewaok+operasi.akomodasi+operasi.bagian_rs+operasi.biaya_omloop+operasi.biaya_omloop2+operasi.biaya_omloop3+");
+                                sb21.append("operasi.biayasarpras+operasi.biaya_dokter_pjanak+operasi.biaya_dokter_umum) as total from operasi inner join paket_operasi ");
+                                sb21.append("on operasi.kode_paket=paket_operasi.kode_paket where operasi.no_rawat='" + rs2.getString("no_rawat") + "' order by operasi.tgl_operasi");
+                                rs3 = koneksi.prepareStatement(sb21.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14659,13 +14783,14 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan pemeriksaan radiologi
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, "
-                                        + "jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter "
-                                        + "from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter "
-                                        + "on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter "
-                                        + "and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' "
-                                        + "order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam").executeQuery();
+                                StringBuilder sb22 = new StringBuilder();
+                                sb22.append("select date_format(periksa_radiologi.tgl_periksa,'%d-%m-%Y') tgl_periksa,date_format(periksa_radiologi.jam,'%h:%i %p') jam,periksa_radiologi.kd_jenis_prw, ");
+                                sb22.append("jns_perawatan_radiologi.nm_perawatan,petugas.nama,periksa_radiologi.biaya,periksa_radiologi.dokter_perujuk,dokter.nm_dokter ");
+                                sb22.append("from periksa_radiologi inner join jns_perawatan_radiologi inner join petugas inner join dokter ");
+                                sb22.append("on periksa_radiologi.kd_jenis_prw=jns_perawatan_radiologi.kd_jenis_prw and periksa_radiologi.kd_dokter=dokter.kd_dokter ");
+                                sb22.append("and periksa_radiologi.nip=petugas.nip  where periksa_radiologi.no_rawat='" + rs2.getString("no_rawat") + "' ");
+                                sb22.append("order by periksa_radiologi.tgl_periksa,periksa_radiologi.jam");                                
+                                rs3 = koneksi.prepareStatement(sb22.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14742,15 +14867,16 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //tindakan pemeriksaan laborat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total "
-                                        + "FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat "
-                                        + "INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL "
-                                        + "SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total "
-                                        + "FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw "
-                                        + "LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template "
-                                        + "WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan").executeQuery();
+                                StringBuilder sb23 = new StringBuilder();
+                                sb23.append("SELECT DISTINCT dp.no_rawat, d.nm_dokter, pt.nama, '' nm_perawatan, '' Pemeriksaan, '' qty, '' total ");
+                                sb23.append("FROM detail_periksa_lab dp INNER JOIN periksa_lab pl ON pl.no_rawat = dp.no_rawat ");
+                                sb23.append("INNER JOIN dokter d ON d.kd_dokter = pl.kd_dokter INNER JOIN petugas pt ON pt.nip = pl.nip ");
+                                sb23.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' UNION ALL ");
+                                sb23.append("SELECT dp.no_rawat, '', '',j.nm_perawatan, tl.Pemeriksaan, count(dp.kd_jenis_prw) qty, sum(tl.biaya_item) total ");
+                                sb23.append("FROM detail_periksa_lab dp LEFT JOIN jns_perawatan_lab j ON dp.kd_jenis_prw = j.kd_jenis_prw ");
+                                sb23.append("LEFT JOIN template_laboratorium tl ON dp.id_template = tl.id_template ");
+                                sb23.append("WHERE dp.no_rawat = '" + rs2.getString("no_rawat") + "' GROUP BY dp.no_rawat, j.nm_perawatan, tl.Pemeriksaan");
+                                rs3 = koneksi.prepareStatement(sb23.toString()).executeQuery();
 
                                 if (rs3.next()) {
                                     htmlContent.append(
@@ -14790,12 +14916,13 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //pemberian obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, "
-                                        + "detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,"
-                                        + "databarang.nama_brng from detail_pemberian_obat inner join databarang "
-                                        + "on detail_pemberian_obat.kode_brng=databarang.kode_brng  "
-                                        + "where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam").executeQuery();
+                                StringBuilder sb24 = new StringBuilder();
+                                sb24.append("select date_format(detail_pemberian_obat.tgl_perawatan,'%d-%m-%Y') tgl_perawatan,date_format(detail_pemberian_obat.jam,'%h:%i %p') jam,databarang.kode_sat, ");
+                                sb24.append("detail_pemberian_obat.kode_brng,detail_pemberian_obat.jml,detail_pemberian_obat.total,");
+                                sb24.append("databarang.nama_brng from detail_pemberian_obat inner join databarang ");
+                                sb24.append("on detail_pemberian_obat.kode_brng=databarang.kode_brng  ");
+                                sb24.append("where detail_pemberian_obat.no_rawat='" + rs2.getString("no_rawat") + "' order by detail_pemberian_obat.tgl_perawatan,detail_pemberian_obat.jam");
+                                rs3 = koneksi.prepareStatement(sb24.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14922,11 +15049,12 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Retur Obat
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, "
-                                        + "(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual "
-                                        + "inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng "
-                                        + "and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng").executeQuery();
+                                StringBuilder sb25 = new StringBuilder();
+                                sb25.append("select databarang.kode_brng,databarang.nama_brng,detreturjual.kode_sat,detreturjual.h_retur, ");
+                                sb25.append("(detreturjual.jml_retur * -1) as jumlah,(detreturjual.subtotal * -1) as total from detreturjual ");
+                                sb25.append("inner join databarang inner join returjual on detreturjual.kode_brng=databarang.kode_brng ");
+                                sb25.append("and returjual.no_retur_jual=detreturjual.no_retur_jual where returjual.no_retur_jual='" + rs2.getString("no_rawat") + "' order by databarang.nama_brng");
+                                rs3 = koneksi.prepareStatement(sb25.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14962,8 +15090,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Tambahan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya").executeQuery();
+                                StringBuilder sb26 = new StringBuilder();
+                                sb26.append("select nama_biaya, besar_biaya from tambahan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_biaya");
+                                rs3 = koneksi.prepareStatement(sb26.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -14999,8 +15128,9 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
                             //Pengurangan Biaya
                             try {
-                                rs3 = koneksi.prepareStatement(
-                                        "select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan").executeQuery();
+                                StringBuilder sb27 = new StringBuilder();
+                                sb27.append("select nama_pengurangan, (-1*besar_pengurangan) as besar_pengurangan from pengurangan_biaya where no_rawat='" + rs2.getString("no_rawat") + "' order by nama_pengurangan");
+                                rs3 = koneksi.prepareStatement(sb27.toString()).executeQuery();
                                 if (rs3.next()) {
                                     htmlContent.append(
                                             "<table width='100%' border='0' align='center' cellpadding='3px' cellspacing='0' class='tbl_form'>"
@@ -15152,9 +15282,7 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
         this.kode_poli = KodePoli;
     }
 
-    public void fokus() {
-        TabRawat.setSelectedIndex(0);
-        tampilDrPr();
+    public void fokus() {        
         BtnSeekPetugas2.requestFocus();
     }
 

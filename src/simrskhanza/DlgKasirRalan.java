@@ -460,24 +460,25 @@ public final class DlgKasirRalan extends javax.swing.JDialog {
         CrPtg.setDocument(new batasInput((byte) 100).getKata(CrPtg));
 
         kdboking.setDocument(new batasInput((byte) 15).getKata(kdboking));
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampilkasir();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampilkasir();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampilkasir();
-                }
-            });
-        }
+        
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampilkasir();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampilkasir();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampilkasir();
+//                }
+//            });
+//        }
 
         poliklinik.addWindowListener(new WindowListener() {
             @Override

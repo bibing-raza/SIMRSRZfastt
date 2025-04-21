@@ -386,39 +386,39 @@ public class DlgKamarInap extends javax.swing.JDialog {
         umurPasangan.setDocument(new batasInput((byte) 3).getKata(umurPasangan));
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
 
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                        tampil();
-                        tampilDPJP();
-                    } else {
-                        tampil();
-                    }
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                        tampil();
-                        tampilDPJP();
-                    } else {
-                        tampil();
-                    }
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
-                        tampil();
-                        tampilDPJP();
-                    } else {
-                        tampil();
-                    }
-                }
-            });
-        }
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+//                        tampil();
+//                        tampilDPJP();
+//                    } else {
+//                        tampil();
+//                    }
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+//                        tampil();
+//                        tampilDPJP();
+//                    } else {
+//                        tampil();
+//                    }
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    if (Sequel.cariInteger("select count(-1) from dokter where kd_dokter='" + akses.getkode() + "'") > 0) {
+//                        tampil();
+//                        tampilDPJP();
+//                    } else {
+//                        tampil();
+//                    }
+//                }
+//            });
+//        }
 
         TJmlHari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
             @Override
@@ -13572,7 +13572,6 @@ private void MnRujukMasukActionPerformed(java.awt.event.ActionEvent evt) {//GEN-
                 cmbRuangKhusus3.setVisible(false);
                 cmbRuangKhusus4.setVisible(false);
                 
-                formWindowOpened(null);
                 kdAkses.setText(Sequel.cariIsi("SELECT kode_unit FROM hak_akses_unit WHERE nip='" + akses.getkode() + "' "));
 
                 if (kdAkses.getText().equals("")) {
