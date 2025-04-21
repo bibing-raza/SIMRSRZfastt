@@ -506,7 +506,7 @@
                   <Properties>
                     <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                       <StringArray count="1">
-                        <StringItem index="0" value="26-03-2025"/>
+                        <StringItem index="0" value="21-04-2025"/>
                       </StringArray>
                     </Property>
                     <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1203,7 +1203,7 @@
               <Properties>
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="1">
-                    <StringItem index="0" value="26-03-2025"/>
+                    <StringItem index="0" value="21-04-2025"/>
                   </StringArray>
                 </Property>
                 <Property name="displayFormat" type="java.lang.String" value="dd-MM-yyyy"/>
@@ -1259,7 +1259,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="125" y="67" width="560" height="80"/>
+                  <AbsoluteConstraints x="125" y="67" width="760" height="80"/>
                 </Constraint>
               </Constraints>
 

@@ -47,7 +47,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             tgl1 = "", tgl2 = "", tgl3 = "", tgl4 = "", tgl5 = "", tgl6 = "", tgl7 = "", tgl8 = "", tgl9 = "", tgl10 = "",
             tgl11 = "", tgl12 = "", tgl13 = "", tgl14 = "", tgl15 = "", tgl16 = "", tgl17 = "", tgl18 = "", tgl19 = "", tgl20 = "",
             tgl21 = "", tgl22 = "", tgl23 = "", tgl24 = "", tgl25 = "", tgl26 = "", tgl27 = "", tgl28 = "", tgl29 = "", tgl30 = "", tgl31 = "",
-            dialog_simpan = "";
+            dialog_simpan = "", jnsIndikator = "";
     
     /** Creates new form DlgPemberianInfus
      * @param parent
@@ -57,7 +57,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         initComponents();
 
         tabMode = new DefaultTableModel(null, new String[]{
-            "Ruangan", "No.", "Indikator", "Numerator Denominator", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
+            "Ruangan", "No.", "Indikator", "Jenis Indikator", "Kalimat Deskripsi", "Tgl. 1", "Tgl. 2", "Tgl. 3", "Tgl. 4", "Tgl. 5", "Tgl. 6", "Tgl. 7", "Tgl. 8", "Tgl. 9", "Tgl. 10",
             "Tgl. 11", "Tgl. 12", "Tgl. 13", "Tgl. 14", "Tgl. 15", "Tgl. 16", "Tgl. 17", "Tgl. 18", "Tgl. 19", "Tgl. 20",
             "Tgl. 21", "Tgl. 22", "Tgl. 23", "Tgl. 24", "Tgl. 25", "Tgl. 26", "Tgl. 27", "Tgl. 28", "Tgl. 29", "Tgl. 30", "Tgl. 31", "Total",
             "kdindikator", "tglcatat", "kdnumdemon"}) {
@@ -71,7 +71,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbIndikator.setPreferredScrollableViewportSize(new Dimension(500,500));
         tbIndikator.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (i = 0; i < 39; i++) {
+        for (i = 0; i < 40; i++) {
             TableColumn column = tbIndikator.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setPreferredWidth(130);
@@ -80,9 +80,9 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 2) {
                 column.setPreferredWidth(400);
             } else if (i == 3) {
-                column.setPreferredWidth(400);
+                column.setPreferredWidth(100);
             } else if (i == 4) {
-                column.setPreferredWidth(48);
+                column.setPreferredWidth(450);
             } else if (i == 5) {
                 column.setPreferredWidth(48);
             } else if (i == 6) {
@@ -144,14 +144,16 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 34) {
                 column.setPreferredWidth(48);
             } else if (i == 35) {
-                column.setPreferredWidth(55);
+                column.setPreferredWidth(48);
             } else if (i == 36) {
-                column.setMinWidth(0);
-                column.setMaxWidth(0);
+                column.setPreferredWidth(55);
             } else if (i == 37) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 38) {
+                column.setMinWidth(0);
+                column.setMaxWidth(0);
+            } else if (i == 39) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             }
@@ -223,7 +225,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbGanti.setDefaultRenderer(Object.class, new WarnaTable());
         
         tabMode3 = new DefaultTableModel(null, new String[]{
-            "kode", "Numerator Denominator"
+            "kode", "Jenis Indikator", "Kalimat Deskripsi"
         }) {
             @Override
             public boolean isCellEditable(int rowIndex, int colIndex) {
@@ -234,12 +236,14 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         tbNumdenom.setPreferredScrollableViewportSize(new Dimension(500, 500));
         tbNumdenom.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
 
-        for (int i = 0; i < 2; i++) {
+        for (int i = 0; i < 3; i++) {
             TableColumn column = tbNumdenom.getColumnModel().getColumn(i);
             if (i == 0) {
                 column.setMinWidth(0);
                 column.setMaxWidth(0);
             } else if (i == 1) {
+                column.setPreferredWidth(100);
+            } else if (i == 2) {
                 column.setPreferredWidth(530);
             } 
         }
@@ -557,7 +561,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         internalFrame9.add(jLabel36);
         jLabel36.setBounds(0, 94, 150, 23);
 
-        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-03-2025" }));
+        TtglCatat1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
         TtglCatat1.setDisplayFormat("dd-MM-yyyy");
         TtglCatat1.setName("TtglCatat1"); // NOI18N
         TtglCatat1.setOpaque(false);
@@ -935,7 +939,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         PanelInput.add(jLabel8);
         jLabel8.setBounds(0, 154, 120, 23);
 
-        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "26-03-2025" }));
+        TtglCatat.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
         TtglCatat.setDisplayFormat("dd-MM-yyyy");
         TtglCatat.setName("TtglCatat"); // NOI18N
         TtglCatat.setOpaque(false);
@@ -969,7 +973,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Scroll1.setViewportView(tbNumdenom);
 
         PanelInput.add(Scroll1);
-        Scroll1.setBounds(125, 67, 560, 80);
+        Scroll1.setBounds(125, 67, 760, 80);
 
         BtnNumdenom.setForeground(new java.awt.Color(0, 0, 0));
         BtnNumdenom.setIcon(new javax.swing.ImageIcon(getClass().getResource("/picture/34.png"))); // NOI18N
@@ -1293,7 +1297,8 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                         + tabMode.getValueAt(r, 32).toString() + "','"
                         + tabMode.getValueAt(r, 33).toString() + "','"
                         + tabMode.getValueAt(r, 34).toString() + "','"
-                        + tabMode.getValueAt(r, 35).toString() + "','',''", "Indikator Mutu Rumah Sakit");
+                        + tabMode.getValueAt(r, 35).toString() + "','"
+                        + tabMode.getValueAt(r, 36).toString() + "',''", "Indikator Mutu Rumah Sakit");
             }
             Sequel.AutoComitTrue();
             Valid.MyReport("rptIndikatorNasionalMutu.jasper", "report", "::[ Indikator Mutu Rumah Sakit ]::",
@@ -1510,19 +1515,20 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                         + tabMode.getValueAt(r, 32).toString() + "','"
                         + tabMode.getValueAt(r, 33).toString() + "','"
                         + tabMode.getValueAt(r, 34).toString() + "','"
-                        + tabMode.getValueAt(r, 35).toString() + "','',''", "Indikator Mutu Rumah Sakit");
+                        + tabMode.getValueAt(r, 35).toString() + "','"
+                        + tabMode.getValueAt(r, 36).toString() + "',''", "Indikator Mutu Rumah Sakit");
             }
             Sequel.AutoComitTrue();
             dialog_simpan = Valid.openDialog();
 
-            Valid.MyReportToExcel("select temp1 'No.', temp2 Indikator, temp3 'Numerator Denominator', "
-                    + "CONVERT(temp4,int) 'Tgl. 1', CONVERT(temp5,int) 'Tgl. 2', CONVERT(temp6,int) 'Tgl. 3', CONVERT(temp7,int) 'Tgl. 4', CONVERT(temp8,int) 'Tgl. 5', "
-                    + "CONVERT(temp9,int) 'Tgl. 6', CONVERT(temp10,int) 'Tgl. 7', CONVERT(temp11,int) 'Tgl. 8', CONVERT(temp12,int) 'Tgl. 9', CONVERT(temp13,int) 'Tgl. 10', "
-                    + "CONVERT(temp14,int) 'Tgl. 11', CONVERT(temp15,int) 'Tgl. 12', CONVERT(temp16,int) 'Tgl. 13', CONVERT(temp17,int) 'Tgl. 14', CONVERT(temp18,int) 'Tgl. 15', "
-                    + "CONVERT(temp19,int) 'Tgl. 16', CONVERT(temp20,int) 'Tgl. 17', CONVERT(temp21,int) 'Tgl. 18', CONVERT(temp22,int) 'Tgl. 19', CONVERT(temp23,int) 'Tgl. 20', "
-                    + "CONVERT(temp24,int) 'Tgl. 21', CONVERT(temp25,int) 'Tgl. 22', CONVERT(temp26,int) 'Tgl. 23', CONVERT(temp27,int) 'Tgl. 24', CONVERT(temp28,int) 'Tgl. 25', "
-                    + "CONVERT(temp29,int) 'Tgl. 26', CONVERT(temp30,int) 'Tgl. 27', CONVERT(temp31,int) 'Tgl. 28', CONVERT(temp32,int) 'Tgl. 29', CONVERT(temp33,int) 'Tgl. 30', "
-                    + "CONVERT(temp34,int) 'Tgl. 31', temp35 Total from temporary", dialog_simpan);
+            Valid.MyReportToExcel("select temp1 'No.', temp2 Indikator, temp3 'Jenis Indikator', temp4 'Kalimat Deskripsi', "
+                    + "CONVERT(temp5,int) 'Tgl. 1', CONVERT(temp6,int) 'Tgl. 2', CONVERT(temp7,int) 'Tgl. 3', CONVERT(temp8,int) 'Tgl. 4', CONVERT(temp9,int) 'Tgl. 5', "
+                    + "CONVERT(temp10,int) 'Tgl. 6', CONVERT(temp11,int) 'Tgl. 7', CONVERT(temp12,int) 'Tgl. 8', CONVERT(temp13,int) 'Tgl. 9', CONVERT(temp14,int) 'Tgl. 10', "
+                    + "CONVERT(temp15,int) 'Tgl. 11', CONVERT(temp16,int) 'Tgl. 12', CONVERT(temp17,int) 'Tgl. 13', CONVERT(temp18,int) 'Tgl. 14', CONVERT(temp19,int) 'Tgl. 15', "
+                    + "CONVERT(temp20,int) 'Tgl. 16', CONVERT(temp21,int) 'Tgl. 17', CONVERT(temp22,int) 'Tgl. 18', CONVERT(temp23,int) 'Tgl. 19', CONVERT(temp24,int) 'Tgl. 20', "
+                    + "CONVERT(temp25,int) 'Tgl. 21', CONVERT(temp26,int) 'Tgl. 22', CONVERT(temp27,int) 'Tgl. 23', CONVERT(temp28,int) 'Tgl. 24', CONVERT(temp29,int) 'Tgl. 25', "
+                    + "CONVERT(temp30,int) 'Tgl. 26', CONVERT(temp31,int) 'Tgl. 27', CONVERT(temp32,int) 'Tgl. 28', CONVERT(temp33,int) 'Tgl. 29', CONVERT(temp34,int) 'Tgl. 30', "
+                    + "CONVERT(temp35,int) 'Tgl. 31', temp36 Total from temporary", dialog_simpan);
             JOptionPane.showMessageDialog(null, "Data Indikator Mutu Rumah Sakit berhasil diexport menjadi file excel,..!!!");
             this.setCursor(Cursor.getDefaultCursor());
         }
@@ -1621,6 +1627,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
     // End of variables declaration//GEN-END:variables
 
     public void tampil() {
+        jnsIndikator = "";
         Scroll.setBorder(javax.swing.BorderFactory.createTitledBorder(null,
                 ".: Data Indikator Mutu Rumah Sakit Bulan " + cmbBulan.getSelectedItem().toString() + " Tahun " + Ttahun.getText() + " Ruang Perawatan " + cmbGedung1.getSelectedItem().toString() + " :.",
                 javax.swing.border.TitledBorder.DEFAULT_JUSTIFICATION,
@@ -1637,7 +1644,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
 
         try {
-            ps = koneksi.prepareStatement("SELECT inm.*, m.no_urut urutInm, mn.no_urut, m.nm_indikator, mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, "
+            ps = koneksi.prepareStatement("SELECT inm.*, m.no_urut urutInm, mn.no_urut, m.nm_indikator, mn.nm_numdemon, MONTH(inm.tgl_catat) bln, YEAR(inm.tgl_catat) thn, mn.jenis_numdemon ,"
                     + "ifnull(sum(case when day(inm.tgl_catat)=1 THEN inm.jumlah_pertanggal END),'0') tgl1, "
                     + "ifnull(sum(case when day(inm.tgl_catat)=2 THEN inm.jumlah_pertanggal END),'0') tgl2, "
                     + "ifnull(sum(case when day(inm.tgl_catat)=3 THEN inm.jumlah_pertanggal END),'0') tgl3, "
@@ -1963,11 +1970,12 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                     } else {
                         tgl31 = rs.getString("tgl31");
                     }
-
+                    
                     tabMode.addRow(new String[]{
                         rs.getString("gedung"),
                         rs.getString("urutInm") + ".",
-                        rs.getString("nm_indikator"),
+                        rs.getString("nm_indikator"),                        
+                        rs.getString("jenis_numdemon"),
                         rs.getString("nm_numdemon"),
                         tgl1, tgl2, tgl3, tgl4, tgl5, tgl6, tgl7, tgl8, tgl9, tgl10,
                         tgl11, tgl12, tgl13, tgl14, tgl15, tgl16, tgl17, tgl18, tgl19, tgl20,
@@ -2132,7 +2140,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
         
         Valid.tabelKosong(tabMode3);
         try {
-            ps3 = koneksi.prepareStatement("SELECT m1.kd_numdemon, m1.nm_numdemon FROM master_numdemon_indikator_nasional_mutu m1 "
+            ps3 = koneksi.prepareStatement("SELECT m1.kd_numdemon, m1.nm_numdemon, m1.jenis_numdemon FROM master_numdemon_indikator_nasional_mutu m1 "
                     + "inner join master_indikator_nasional_mutu m2 on m1.kd_indikator=m2.kd_indikator WHERE "
                     + "m2.gedung='" + cmbGedung.getSelectedItem().toString() + "' and m2.kd_indikator='" + kdIndikator + "' "
                     + "and m1.status_data='aktif' ORDER BY m1.no_urut");
@@ -2141,6 +2149,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 while (rs3.next()) {
                     tabMode3.addRow(new String[]{
                         rs3.getString("kd_numdemon"),
+                        rs3.getString("jenis_numdemon"),
                         rs3.getString("nm_numdemon")
                     });
                 }

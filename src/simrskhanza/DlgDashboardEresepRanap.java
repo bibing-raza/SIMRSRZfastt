@@ -180,24 +180,25 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         tbdaftarResep.setDefaultRenderer(Object.class, new WarnaTableResepRanap1());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+        
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         
         penjab.addWindowListener(new WindowListener() {
             @Override
@@ -1066,7 +1067,6 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         Sequel.cariIsiComboDB("SELECT nm_gedung FROM bangsal WHERE nm_gedung<>'igd' and nm_gedung<>'-' and status='1' GROUP BY nm_gedung ORDER BY nm_gedung", cmbRuang);
-        tampilAwal();
     }//GEN-LAST:event_formWindowOpened
 
     private void MnContengSemuaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_MnContengSemuaActionPerformed
@@ -1314,29 +1314,33 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         Valid.tabelKosong(tabMode1);
         ((Painter) gambarQR).setImage("");
+        StringBuilder sb = new StringBuilder();
         try {
             if (cmbRuang.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
-                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
-                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and cr.no_rawat like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_rkm_medis like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_tlp like ? "
-                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                sb.append("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, ");
+                sb.append("pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat ");
+                sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and cr.no_rawat like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_rkm_medis like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_tlp like ? ");
+                sb.append("GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                ps = koneksi.prepareStatement(sb.toString());
+                
             } else {
-                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
-                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
-                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and cr.no_rawat like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
-                        + "cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_tlp like ? "
-                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                sb.append("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, ");
+                sb.append("pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat ");
+                sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and cr.no_rawat like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or ");
+                sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_tlp like ? ");
+                sb.append("GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                ps = koneksi.prepareStatement(sb.toString());
             }
 
             try {
@@ -1414,29 +1418,33 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         Valid.tabelKosong(tabMode);
         Valid.tabelKosong(tabMode1);
         ((Painter) gambarQR).setImage("");
+        StringBuilder sb = new StringBuilder();
         try {
             if (cmbRuang.getSelectedIndex() == 0) {
-                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
-                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
-                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and cr.no_rawat like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_rkm_medis like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_tlp like ? "
-                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                sb.append("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, ");
+                sb.append("pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat ");
+                sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and cr.no_rawat like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_rkm_medis like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and rp.kd_pj like ? and p.no_tlp like ? ");
+                sb.append("GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                ps = koneksi.prepareStatement(sb.toString());
+
             } else {
-                ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, "
-                        + "pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr "
-                        + "inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                        + "inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat "
-                        + "inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and cr.no_rawat like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
-                        + "cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_tlp like ? "
-                        + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                sb.append("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, b.nm_gedung, ");
+                sb.append("pj.png_jawab, COUNT(cr.no_rawat) jlh_item_obat, cr.status, ki.kd_kamar, cr.resep_untuk FROM catatan_resep_ranap cr ");
+                sb.append("inner join reg_periksa rp on rp.no_rawat=cr.no_rawat inner join pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+                sb.append("inner join penjab pj on pj.kd_pj=rp.kd_pj inner join kamar_inap ki on ki.no_rawat=cr.no_rawat ");
+                sb.append("inner join kamar k on k.kd_kamar=ki.kd_kamar inner join bangsal b on b.kd_bangsal=k.kd_bangsal WHERE ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and cr.no_rawat like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or ");
+                sb.append("cr.status='belum' and ki.stts_pulang<>'Pindah Kamar' and b.nm_gedung like ? and rp.kd_pj like ? and p.no_tlp like ? ");
+                sb.append("GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+                ps = koneksi.prepareStatement(sb.toString());
             }
 
             try {
@@ -1527,12 +1535,15 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
 
     private void tampilResep() {
         Valid.tabelKosong(tabMode1);
+        StringBuilder sb = new StringBuilder();
         try {
-            ps1 = koneksi.prepareStatement("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, "
-                    + "cr.jam_perawatan, cr.nama_obat, cr.status, d.nm_dokter, cr.jenis_resep, cr.resep_untuk "
-                    + "FROM catatan_resep_ranap cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat "
-                    + "inner join dokter d on d.kd_dokter=cr.kd_dokter WHERE cr.no_rawat='" + norawat + "' "
-                    + "ORDER BY cr.status, cr.noId desc, cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
+            sb.append("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, ");
+            sb.append("cr.jam_perawatan, cr.nama_obat, cr.status, d.nm_dokter, cr.jenis_resep, cr.resep_untuk ");
+            sb.append("FROM catatan_resep_ranap cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat ");
+            sb.append("inner join dokter d on d.kd_dokter=cr.kd_dokter WHERE cr.no_rawat='" + norawat + "' ");
+            sb.append("ORDER BY cr.status, cr.noId desc, cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
+            ps1 = koneksi.prepareStatement(sb.toString());
+
             try {
                 rs1 = ps1.executeQuery();
                 x = 1;
@@ -1624,33 +1635,34 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
         }
 
         TdataQRresep.setText("");
-        ((Painter) gambarQR).setImage("");
+        ((Painter) gambarQR).setImage("");        
         try {
-            ps2 = koneksi.prepareStatement(
-                    " (select concat('Rg. Rawat : ',b.nm_bangsal) datanya from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar "
-                    + "inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1) "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('No. RM : ',rp.no_rkm_medis) FROM catatan_resep_ranap cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat "
-                    + "WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('Pasien : ',p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,'.)') FROM catatan_resep_ranap cr "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                    + "WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "select concat('Cara Bayar : ',pj.png_jawab) from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj "
-                    + "where rp.no_rawat='" + norawat + "' "
-                    + "UNION ALL "
-                    + "select concat('Scan QR Tgl. : ',date_format(now(),'%d-%m-%Y'),', Jam : ',time_format(now(),'%H:%i')) "
-                    + "UNION ALL "
-                    + "SELECT '______________________________' "
-                    + "UNION ALL "
-                    + "SELECT 'Item Obat/Alkes : " + jenisResep + "' "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('~ ',nama_obat) FROM catatan_resep_ranap where noId in (" + idObat + ") "
-                    + "UNION ALL "
-                    + "SELECT '______________________________' "
-                    + "UNION ALL "
-                    + "SELECT concat('Totalnya Ada : ',count(noId),' Item Resep.') FROM catatan_resep_ranap WHERE noId in (" + idObat + ")");
+            StringBuilder sb = new StringBuilder();
+            sb.append("(select concat('Rg. Rawat : ',b.nm_bangsal) datanya from kamar_inap ki inner join kamar k on k.kd_kamar=ki.kd_kamar ");
+            sb.append("inner join bangsal b on b.kd_bangsal=k.kd_bangsal where ki.no_rawat='" + norawat + "' order by ki.tgl_masuk desc, ki.jam_masuk desc limit 1) ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('No. RM : ',rp.no_rkm_medis) FROM catatan_resep_ranap cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('Pasien : ',p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,'.)') FROM catatan_resep_ranap cr ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("select concat('Cara Bayar : ',pj.png_jawab) from reg_periksa rp inner join penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb.append("where rp.no_rawat='" + norawat + "' ");
+            sb.append("UNION ALL ");
+            sb.append("select concat('Scan QR Tgl. : ',date_format(now(),'%d-%m-%Y'),', Jam : ',time_format(now(),'%H:%i')) ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT '______________________________' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT 'Item Obat/Alkes : " + jenisResep + "' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('~ ',nama_obat) FROM catatan_resep_ranap where noId in (" + idObat + ") ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT '______________________________' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT concat('Totalnya Ada : ',count(noId),' Item Resep.') FROM catatan_resep_ranap WHERE noId in (" + idObat + ")");
+            ps2 = koneksi.prepareStatement(sb.toString());
 
             try {
                 rs2 = ps2.executeQuery();
@@ -1697,7 +1709,6 @@ public class DlgDashboardEresepRanap extends javax.swing.JDialog {
     private String folder;
 
     public class Painter extends Canvas {
-
         Image image;
 
         public void setImage(String file) {

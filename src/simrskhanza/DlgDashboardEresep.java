@@ -184,24 +184,25 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         tbdaftarResep.setDefaultRenderer(Object.class, new WarnaTable());
 
         TCari.setDocument(new batasInput((byte) 100).getKata(TCari));
-        if (koneksiDB.cariCepat().equals("aktif")) {
-            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
-                @Override
-                public void insertUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void removeUpdate(DocumentEvent e) {
-                    tampil();
-                }
-
-                @Override
-                public void changedUpdate(DocumentEvent e) {
-                    tampil();
-                }
-            });
-        }
+        
+//        if (koneksiDB.cariCepat().equals("aktif")) {
+//            TCari.getDocument().addDocumentListener(new javax.swing.event.DocumentListener() {
+//                @Override
+//                public void insertUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void removeUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//
+//                @Override
+//                public void changedUpdate(DocumentEvent e) {
+//                    tampil();
+//                }
+//            });
+//        }
         
         poli.addWindowListener(new WindowListener() {
             @Override
@@ -556,7 +557,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         panelGlass9.add(jLabel23);
 
         tglCari1.setEditable(false);
-        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2023" }));
+        tglCari1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
         tglCari1.setDisplayFormat("dd-MM-yyyy");
         tglCari1.setName("tglCari1"); // NOI18N
         tglCari1.setOpaque(false);
@@ -571,7 +572,7 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         panelGlass9.add(jLabel24);
 
         tglCari2.setEditable(false);
-        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "01-11-2023" }));
+        tglCari2.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "21-04-2025" }));
         tglCari2.setDisplayFormat("dd-MM-yyyy");
         tglCari2.setName("tglCari2"); // NOI18N
         tglCari2.setOpaque(false);
@@ -703,11 +704,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
                 BtnCariActionPerformed(evt);
             }
         });
-        BtnCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnCariKeyPressed(evt);
-            }
-        });
         panelGlass8.add(BtnCari);
 
         BtnAllCari.setForeground(new java.awt.Color(0, 0, 0));
@@ -720,11 +716,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         BtnAllCari.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 BtnAllCariActionPerformed(evt);
-            }
-        });
-        BtnAllCari.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                BtnAllCariKeyPressed(evt);
             }
         });
         panelGlass8.add(BtnAllCari);
@@ -857,10 +848,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         tampil();
     }//GEN-LAST:event_BtnCariActionPerformed
 
-    private void BtnCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnCariKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnCariKeyPressed
-
     private void TCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_TCariKeyPressed
         if (evt.getKeyCode() == KeyEvent.VK_ENTER) {
             BtnCariActionPerformed(null);
@@ -871,10 +858,6 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
         emptTeks();
         tampil();
     }//GEN-LAST:event_BtnAllCariActionPerformed
-
-    private void BtnAllCariKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnAllCariKeyPressed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_BtnAllCariKeyPressed
 
     private void BtnPoliActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnPoliActionPerformed
         akses.setform("DlgDashboardEresep");
@@ -1295,20 +1278,22 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     public void tampil() {
         Valid.tabelKosong(tabMode);
         Valid.tabelKosong(tabMode1);
+        StringBuilder sb = new StringBuilder();
         ((Painter) gambarQR).setImage("");
         try {
-            ps = koneksi.prepareStatement("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, "
-                    + "pl.nm_poli, pj.png_jawab, d.nm_dokter, COUNT(cr.no_rawat) jlh_item_obat, cr.tgl_perawatan, rp.kd_poli FROM catatan_resep cr "
-                    + "INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis "
-                    + "INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj "
-                    + "INNER JOIN dokter d on d.kd_dokter=cr.kd_dokter WHERE "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and cr.no_rawat like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_tlp like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and d.nm_dokter like ? or "
-                    + "cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and pl.nm_poli like ? "
-                    + "GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+            sb.append("SELECT cr.no_rawat, p.no_rkm_medis, concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') pasienya, p.no_tlp, ");
+            sb.append("pl.nm_poli, pj.png_jawab, d.nm_dokter, COUNT(cr.no_rawat) jlh_item_obat, cr.tgl_perawatan, rp.kd_poli FROM catatan_resep cr ");
+            sb.append("INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat INNER JOIN pasien p on p.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("INNER JOIN poliklinik pl on pl.kd_poli=rp.kd_poli INNER JOIN penjab pj on pj.kd_pj=rp.kd_pj ");
+            sb.append("INNER JOIN dokter d on d.kd_dokter=cr.kd_dokter WHERE ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and cr.no_rawat like ? or ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_rkm_medis like ? or ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and concat(p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,')') like ? or ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and p.no_tlp like ? or ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and d.nm_dokter like ? or ");
+            sb.append("cr.tgl_perawatan between ? and ? and cr.status='belum' and rp.kd_poli like ? and rp.kd_pj like ? and pl.nm_poli like ? ");
+            sb.append("GROUP BY cr.no_rawat ORDER BY cr.tgl_perawatan, cr.jam_perawatan");
+            ps = koneksi.prepareStatement(sb.toString());
 
             try {
                 ps.setString(1, Valid.SetTgl(tglCari1.getSelectedItem() + ""));
@@ -1402,10 +1387,13 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
 
     private void tampilResep() {
         Valid.tabelKosong(tabMode1);
+        StringBuilder sb = new StringBuilder();
         try {
-            ps1 = koneksi.prepareStatement("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, cr.jam_perawatan, "
-                    + "cr.nama_obat, cr.status FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat "
-                    + "WHERE cr.no_rawat='" + norawat + "' ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
+            sb.append("SELECT cr.noId, cr.no_rawat, DATE_FORMAT(cr.tgl_perawatan,'%d-%m-%Y') tgl, cr.jam_perawatan, ");
+            sb.append("cr.nama_obat, cr.status FROM catatan_resep cr INNER JOIN reg_periksa rp on rp.no_rawat=cr.no_rawat ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' ORDER BY cr.tgl_perawatan DESC, cr.jam_perawatan DESC");
+            ps1 = koneksi.prepareStatement(sb.toString());
+            
             try {
                 rs1 = ps1.executeQuery();
                 x = 1;
@@ -1480,34 +1468,37 @@ public class DlgDashboardEresep extends javax.swing.JDialog {
     
     private void tampilQR() {
         ((Painter) gambarQR).setImage("");
+        String tglResep = "", totalItem = "";
+        tglResep = Valid.SetTglINDONESIA(Sequel.cariIsi("SELECT tgl_perawatan FROM catatan_resep WHERE no_rawat='" + norawat + "' GROUP BY no_rawat limit 1"));
+        totalItem = Sequel.cariIsi("SELECT count(no_rawat) FROM catatan_resep WHERE no_rawat='" + norawat + "'");
+        
         try {
-            ps2 = koneksi.prepareStatement(
-                    " SELECT CONCAT('Poliklinik : ',pl.nm_poli) datanya FROM catatan_resep cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat "
-                    + "INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('Tgl. Resep : ',DATE_FORMAT(tgl_perawatan,'%d "
-                    + Sequel.bulanINDONESIA("SELECT DATE_FORMAT(tgl_perawatan,'%m') FROM catatan_resep "
-                    + "WHERE no_rawat='" + norawat + "' GROUP BY no_rawat") + " %Y')) FROM catatan_resep WHERE no_rawat='" + norawat + "' GROUP BY no_rawat "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('Nama Dokter : ',d.nm_dokter) FROM catatan_resep cr INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter "
-                    + "WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('No. RM : ',rp.no_rkm_medis) FROM catatan_resep cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat "
-                    + "WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('Pasien : ',p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,'.)') FROM catatan_resep cr "
-                    + "INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis "
-                    + "WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat "
-                    + "UNION ALL "
-                    + "SELECT '------------------------------' "
-                    + "UNION ALL "
-                    + "SELECT 'Item Resep Obat/Alkes : ' "
-                    + "UNION ALL "
-                    + "SELECT CONCAT('~ ',nama_obat) FROM catatan_resep WHERE no_rawat='" + norawat + "' "
-                    + "UNION ALL "
-                    + "SELECT '------------------------------' "
-                    + "UNION ALL "
-                    + "SELECT 'Totalnya Ada : " + Sequel.cariInteger("SELECT count(no_rawat) FROM catatan_resep WHERE no_rawat='" + norawat + "'") + " Item Resep.' ");
+            StringBuilder sb = new StringBuilder();
+            sb.append("SELECT CONCAT('Poliklinik : ',pl.nm_poli) datanya FROM catatan_resep cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat ");
+            sb.append("INNER JOIN poliklinik pl ON pl.kd_poli=rp.kd_poli WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('Tgl. Resep : ','" + tglResep + "') ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('Nama Dokter : ',d.nm_dokter) FROM catatan_resep cr INNER JOIN dokter d ON d.kd_dokter=cr.kd_dokter ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('No. RM : ',rp.no_rkm_medis) FROM catatan_resep cr INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('Pasien : ',p.nm_pasien,' (Umur : ',rp.umurdaftar,' ',rp.sttsumur,'.)') FROM catatan_resep cr ");
+            sb.append("INNER JOIN reg_periksa rp ON rp.no_rawat=cr.no_rawat INNER JOIN pasien p ON p.no_rkm_medis=rp.no_rkm_medis ");
+            sb.append("WHERE cr.no_rawat='" + norawat + "' GROUP BY cr.no_rawat ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT '------------------------------' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT 'Item Resep Obat/Alkes : ' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT CONCAT('~ ',nama_obat) FROM catatan_resep WHERE no_rawat='" + norawat + "' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT '------------------------------' ");
+            sb.append("UNION ALL ");
+            sb.append("SELECT 'Totalnya Ada : " + totalItem + " Item Resep.' ");
+            ps2 = koneksi.prepareStatement(sb.toString());
 
             try {
                 rs2 = ps2.executeQuery();
