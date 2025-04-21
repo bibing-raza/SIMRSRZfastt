@@ -2013,22 +2013,22 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
 
         if (tbIndikator.getSelectedRow() != -1) {
             gedungDIpilih = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 0).toString();
-            kdIndikator = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 36).toString();
-            tglDipilih = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 37).toString();
-            kdNumdenom = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 38).toString();
+            kdIndikator = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 37).toString();
+            tglDipilih = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 38).toString();
+            kdNumdenom = tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 39).toString();
             
             //untuk proses hapus
             Truangan.setText(gedungDIpilih);
             TkdIndikator.setText(kdIndikator);
             TnmIndikator.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 2).toString());
             TkdNumdenom.setText(kdNumdenom);
-            TnmNumdenom.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 3).toString());
+            TnmNumdenom.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 4).toString());
             //untuk proses ganti
             Truangan1.setText(gedungDIpilih);
             TkdIndikator1.setText(kdIndikator);
             TnmIndikator1.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 2).toString());
             TkdNumdenom1.setText(kdNumdenom);
-            TnmNumdenom1.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 3).toString());
+            TnmNumdenom1.setText(tbIndikator.getValueAt(tbIndikator.getSelectedRow(), 4).toString());
         }
     }
     
