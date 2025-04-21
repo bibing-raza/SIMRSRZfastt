@@ -244,7 +244,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
             } else if (i == 1) {
                 column.setPreferredWidth(100);
             } else if (i == 2) {
-                column.setPreferredWidth(530);
+                column.setPreferredWidth(600);
             } 
         }
         tbNumdenom.setDefaultRenderer(Object.class, new WarnaTable());
@@ -1036,7 +1036,7 @@ public class DlgIndikatorNasionalMutu extends javax.swing.JDialog {
                 kdNumdenom = Sequel.cariIsi("SELECT m1.kd_numdemon FROM master_numdemon_indikator_nasional_mutu m1 "
                         + "inner join master_indikator_nasional_mutu m2 on m1.kd_indikator=m2.kd_indikator WHERE "
                         + "m2.gedung='" + cmbGedung.getSelectedItem().toString() + "' and m2.kd_indikator='" + kdIndikator + "' and "
-                        + "m1.nm_numdemon='" + tbNumdenom.getValueAt(tbNumdenom.getSelectedRow(), 1).toString() + "' and m1.status_data='aktif'");
+                        + "m1.nm_numdemon='" + tbNumdenom.getValueAt(tbNumdenom.getSelectedRow(), 2).toString() + "' and m1.status_data='aktif'");
 
                 Sequel.menyimpan("indikator_nasional_mutu", "'" + kdIndikator + "','" + cmbGedung.getSelectedItem().toString() + "',"
                         + "'" + Valid.SetTgl(TtglCatat.getSelectedItem() + "") + "',"
