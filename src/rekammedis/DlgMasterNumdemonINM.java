@@ -725,6 +725,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m2.nm_indikator like ? or "
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m1.kd_numdemon like ? or "
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m1.nm_numdemon like ? or "
+                    + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m1.jenis_numdemon like ? or "
                     + "m2.gedung='" + cmbGedung1.getSelectedItem().toString() + "' and m1.status_data like ? ORDER BY m1.no_urut, m2.gedung");
 
             try {
@@ -733,6 +734,7 @@ public class DlgMasterNumdemonINM extends javax.swing.JDialog {
                 ps.setString(3, "%" + TCari.getText().trim() + "%");
                 ps.setString(4, "%" + TCari.getText().trim() + "%");
                 ps.setString(5, "%" + TCari.getText().trim() + "%");
+                ps.setString(6, "%" + TCari.getText().trim() + "%");
                 rs = ps.executeQuery();                
                 while (rs.next()) {
                     tabMode.addRow(new String[]{

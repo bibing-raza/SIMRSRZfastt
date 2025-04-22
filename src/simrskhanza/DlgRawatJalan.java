@@ -11746,24 +11746,27 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void tampilPemeriksaanDokter() {
         Valid.tabelKosong(tabModePemeriksaanDr);
+        StringBuilder sb = new StringBuilder();
         try {
-            ps4 = koneksi.prepareStatement("select pemeriksaan_ralan.no_rawat,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,"
-                    + "pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi, "
-                    + "pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,pemeriksaan_ralan.tinggi, "
-                    + "pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, "
-                    + "pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,pemeriksaan_ralan.imun_ke, "
-                    + "pemeriksaan_ralan.diagnosa,pemeriksaan_ralan.rencana_follow_up, pemeriksaan_ralan.rincian_tindakan, pemeriksaan_ralan.terapi, "
-                    + "pemeriksaan_ralan.stts_prmrj, ifnull(pemeriksaan_ralan.spo2,'') spo2, pemeriksaan_ralan.reasesmen, "
-                    + "pemeriksaan_ralan.kesimpulan, pemeriksaan_ralan.rekomendasi from pasien inner join reg_periksa inner join pemeriksaan_ralan "
-                    + "on pemeriksaan_ralan.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter = pemeriksaan_ralan.kd_dokter where "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.no_rawat like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pasien.nm_pasien like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and reg_periksa.no_rkm_medis like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.alergi like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.keluhan like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.terapi like ? or "
-                    + "pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.pemeriksaan like ? "
-                    + "order by pemeriksaan_ralan.no_rawat desc");
+            sb.append("select pemeriksaan_ralan.no_rawat,dokter.nm_dokter,reg_periksa.no_rkm_medis,pasien.nm_pasien,");
+            sb.append("pemeriksaan_ralan.tgl_perawatan,pemeriksaan_ralan.jam_rawat,pemeriksaan_ralan.suhu_tubuh,pemeriksaan_ralan.tensi, ");
+            sb.append("pemeriksaan_ralan.nadi,pemeriksaan_ralan.respirasi,pemeriksaan_ralan.tinggi, ");
+            sb.append("pemeriksaan_ralan.berat,pemeriksaan_ralan.gcs,pemeriksaan_ralan.keluhan, ");
+            sb.append("pemeriksaan_ralan.pemeriksaan,pemeriksaan_ralan.alergi,pemeriksaan_ralan.imun_ke, ");
+            sb.append("pemeriksaan_ralan.diagnosa,pemeriksaan_ralan.rencana_follow_up, pemeriksaan_ralan.rincian_tindakan, pemeriksaan_ralan.terapi, ");
+            sb.append("pemeriksaan_ralan.stts_prmrj, ifnull(pemeriksaan_ralan.spo2,'') spo2, pemeriksaan_ralan.reasesmen, ");
+            sb.append("pemeriksaan_ralan.kesimpulan, pemeriksaan_ralan.rekomendasi from pasien inner join reg_periksa inner join pemeriksaan_ralan ");
+            sb.append("on pemeriksaan_ralan.no_rawat=reg_periksa.no_rawat and reg_periksa.no_rkm_medis=pasien.no_rkm_medis inner join dokter on dokter.kd_dokter = pemeriksaan_ralan.kd_dokter where ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.no_rawat like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pasien.nm_pasien like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and reg_periksa.no_rkm_medis like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.alergi like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.keluhan like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.terapi like ? or ");
+            sb.append("pemeriksaan_ralan.tgl_perawatan between ? and ? and reg_periksa.no_rkm_medis like ? and pemeriksaan_ralan.pemeriksaan like ? ");
+            sb.append("order by pemeriksaan_ralan.no_rawat desc");
+            ps4 = koneksi.prepareStatement(sb.toString());
+
             try {
                 ps4.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));
                 ps4.setString(2, Valid.SetTgl(DTPCari2.getSelectedItem() + ""));
@@ -15411,20 +15414,22 @@ private void BtnEditKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_B
 
     private void tampilPemeriksaanPetugas() {
         Valid.tabelKosong(tabModePemeriksaanPr);
+        StringBuilder sb = new StringBuilder();
         try {
-            ps6 = koneksi.prepareStatement("SELECT prp.no_rawat, ifnull(pt.nama,'-') nama, rp.no_rkm_medis, p.nm_pasien, prp.tgl_perawatan, prp.jam_rawat, prp.suhu_tubuh,"
-                    + "prp.tensi, prp.nadi, prp.respirasi, prp.tinggi, prp.berat, prp.gcs, prp.keluhan, prp.pemeriksaan, prp.alergi,"
-                    + "prp.imun_ke, prp.diagnosa, prp.rencana_follow_up, prp.nip, prp.rincian_tindakan, "
-                    + "ifnull(prp.terapi,'-') terapi, rp.kd_poli, ifnull(prp.spo2,'') spo2, ifnull(prp.kesadaran,'') kesadaran, ifnull(prp.lingkar_perut,'') lp from pasien p "
-                    + "inner join reg_periksa rp on rp.no_rkm_medis=p.no_rkm_medis inner join pemeriksaan_ralan_petugas prp on prp.no_rawat=rp.no_rawat "
-                    + "inner join dokter d on d.kd_dokter=prp.kd_dokter left join petugas pt on pt.nip = prp.nip where "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.no_rawat like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and p.nm_pasien like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.alergi like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.keluhan like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.pemeriksaan like ? or "
-                    + "prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.terapi like ? order by prp.no_rawat desc");
+            sb.append("SELECT prp.no_rawat, ifnull(pt.nama,'-') nama, rp.no_rkm_medis, p.nm_pasien, prp.tgl_perawatan, prp.jam_rawat, prp.suhu_tubuh,");
+            sb.append("prp.tensi, prp.nadi, prp.respirasi, prp.tinggi, prp.berat, prp.gcs, prp.keluhan, prp.pemeriksaan, prp.alergi,");
+            sb.append("prp.imun_ke, prp.diagnosa, prp.rencana_follow_up, prp.nip, prp.rincian_tindakan, ");
+            sb.append("ifnull(prp.terapi,'-') terapi, rp.kd_poli, ifnull(prp.spo2,'') spo2, ifnull(prp.kesadaran,'') kesadaran, ifnull(prp.lingkar_perut,'') lp from pasien p ");
+            sb.append("inner join reg_periksa rp on rp.no_rkm_medis=p.no_rkm_medis inner join pemeriksaan_ralan_petugas prp on prp.no_rawat=rp.no_rawat ");
+            sb.append("inner join dokter d on d.kd_dokter=prp.kd_dokter left join petugas pt on pt.nip = prp.nip where ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.no_rawat like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and p.nm_pasien like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and rp.no_rkm_medis like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.alergi like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.keluhan like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.pemeriksaan like ? or ");
+            sb.append("prp.tgl_perawatan between ? and ? and rp.no_rkm_medis like ? and rp.kd_poli like ? and prp.terapi like ? order by prp.no_rawat desc");
+            ps6 = koneksi.prepareStatement(sb.toString());
 
             try {
                 ps6.setString(1, Valid.SetTgl(DTPCari1.getSelectedItem() + ""));

@@ -6625,16 +6625,19 @@ public class DlgCPPT extends javax.swing.JDialog {
 }//GEN-LAST:event_BtnEditActionPerformed
 
     private void BtnKeluarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_BtnKeluarActionPerformed
-        dispose();
-        WindowTemplate.dispose();
-        WindowDataMonevGizi.dispose();
-        WindowCPPT.dispose();
-        WindowFarmasi.dispose();
-        WindowDiet.dispose();
-        WindowDataDiet.dispose();
-        WindowDataSampah.dispose();
-        WindowHapusDokJangMed.dispose();
-        WindowRehabMedik.dispose();
+        x = JOptionPane.showConfirmDialog(rootPane, "Apakah CPPT anda sudah selesai diisi/diperbaiki..??", "Konfirmasi", JOptionPane.YES_NO_OPTION);
+        if (x == JOptionPane.YES_OPTION) {
+            dispose();
+            WindowTemplate.dispose();
+            WindowDataMonevGizi.dispose();
+            WindowCPPT.dispose();
+            WindowFarmasi.dispose();
+            WindowDiet.dispose();
+            WindowDataDiet.dispose();
+            WindowDataSampah.dispose();
+            WindowHapusDokJangMed.dispose();
+            WindowRehabMedik.dispose();
+        }
 }//GEN-LAST:event_BtnKeluarActionPerformed
 
     private void BtnKeluarKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_BtnKeluarKeyPressed
